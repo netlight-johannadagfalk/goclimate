@@ -6,6 +6,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	<%= stylesheet_link_tag params[:controller] %>
   </head>
 
   <body>
@@ -22,7 +23,7 @@
               <h3 class="masthead-brand">Live Climate Neutral</h3>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
+                  <li class="active"><a href="/">Home</a></li>
                   <li><a href="#">Blog</a></li>
                   <li><a href="#">Log in</a></li>
                 </ul>
@@ -30,9 +31,9 @@
             </div>
           </div>
 
-    <%= yield %>
+    		<%= yield %>
 
-              <div class="mastfoot">
+          <div class="mastfoot">
             <div class="inner">
               <p>Read more about us <a href="#">here</a>.</p>
             </div>
