@@ -51,10 +51,6 @@ body {
   color: #fff;
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
-  background-image: image-url("background4.jpg");
-  background-repeat:no-repeat;
-  background-size: cover;
-  background-position:center;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -65,8 +61,6 @@ body {
   min-height: 100%;
   -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
           box-shadow: inset 0 0 100px rgba(0,0,0,.5);
-}
-.site-wrapper-inner {
   display: table-cell;
   vertical-align: top;
 }
@@ -173,13 +167,5 @@ body {
   .mastfoot,
   .cover-container {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
-  }
-}
-
-@media (min-width: 992px) {
-  .masthead,
-  .mastfoot,
-  .cover-container {
-    width: 700px;
   }
 }

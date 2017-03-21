@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'signup/index'
+
   get '', to: 'welcome#index'
   get 'step_1_reduce', to: 'welcome#reduce'
   get 'step_2_offset', to: 'welcome#offset'

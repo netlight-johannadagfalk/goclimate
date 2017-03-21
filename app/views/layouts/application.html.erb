@@ -9,39 +9,14 @@
 	<%= stylesheet_link_tag params[:controller] %>
   </head>
 
-  <body>
+  <body class="<%= controller_name + " " + controller_name + "-" + action_name %>">
 
 
     <div class="site-wrapper">
 
-      <div class="site-wrapper-inner">
 
-        <div class="cover-container">
+    <%= yield %>
 
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">Live Climate Neutral</h3>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li class="active"><a href="/">Home</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Log in</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-
-    		<%= yield %>
-
-          <div class="mastfoot">
-            <div class="inner">
-              <p>Read more about us <a href="#">here</a>.</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
 
     </div>
   </body>
