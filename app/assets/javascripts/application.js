@@ -13,3 +13,28 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery
+//= require jquery_ujs
+
+$(document).ready(function() {
+
+	function planSum(){
+    	var food = $('#food').val();
+    	var car = $('#car').val();
+		var flight = $('#flight').val();
+		var total = parseInt(food) + parseInt(car) + parseInt(flight);
+		console.log(total);
+		$('#sum').text(total);
+    };
+
+    $('#food').change(function() {
+  		planSum();
+	});
+	$('#car').change(function() {
+  		planSum();
+	});
+	$('#flight').change(function() {
+  		planSum();
+	});
+   
+});
