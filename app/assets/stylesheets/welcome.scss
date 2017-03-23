@@ -1,7 +1,7 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.welcome-index{
+.welcome-index, .subscriptions {
 	.site-wrapper{
 	  background-image: image-url("background7.jpg");
 	  background-repeat:no-repeat;
@@ -64,7 +64,7 @@
     padding-bottom: 50px;
 }
 
-.welcome {
+.welcome, .subscriptions {
 	.site-wrapper-inner {
   		display: table;
   		width: 100%;

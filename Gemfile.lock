@@ -8,6 +8,13 @@ GIT
       sprockets (~> 4.x)
       sprockets-rails (< 4.0)
 
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: 0727e11a5b59d8979cbbc1d40f23fd7b12d6f8c3
+  specs:
+    stripe (2.1.0)
+      faraday (~> 0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -78,6 +85,8 @@ GEM
     debug_inspector (0.0.2)
     erubi (1.6.0)
     execjs (2.7.0)
+    faraday (0.11.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -104,6 +113,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
+    multipart-post (2.0.0)
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
@@ -198,6 +208,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
+  stripe!
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)

@@ -25,6 +25,7 @@ $(document).ready(function() {
 		var total = parseInt(food) + parseInt(car) + parseInt(flight);
 		console.log(total);
 		$('#sum').text(total);
+		$('#custom-plan').attr("href", "/signup?plan=" + total);
     };
 
     $('#food').change(function() {

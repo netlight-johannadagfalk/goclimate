@@ -87,7 +87,7 @@
                               </table>
                           </div>
                           <div class="panel-footer">
-                              <a href="/signup" class="btn btn-success" role="button">This is me!</a>
+                              <a href="<%= new_subscription_path %>?plan=5" class="btn btn-success" role="button">This is me!</a>
                           </div>
                       </div>
                   </div>
@@ -121,7 +121,7 @@
                               </table>
                           </div>
                           <div class="panel-footer">
-                              <a href="/signup" class="btn btn-success" role="button">Yep, me!</a>
+                              <a href="<%= new_subscription_path %>?plan=10" class="btn btn-success" role="button">Yep, me!</a>
                           </div>
                       </div>
                   </div>
@@ -155,7 +155,7 @@
                               </table>
                           </div>
                           <div class="panel-footer">
-                              <a href="/signup" class="btn btn-success" role="button">Sorry, but yes.</a></div>
+                              <a href="<%= new_subscription_path %>?plan=40" class="btn btn-success" role="button">Sorry, but yes.</a></div>
                       </div>
                   </div>
                   <div class="col-xs-12 col-md-3">
@@ -208,7 +208,7 @@
                               </table>
                           </div>
                           <div class="panel-footer">
-                              <a href="/signup" class="btn btn-success" role="button">That's more like it!</a></div>
+                              <a id="custom-plan" href="<%= new_subscription_path %>?plan=5" class="btn btn-success" role="button">That's more like it!</a></div>
                       </div>
                   </div>
               </div>
