@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .welcome-index, .subscriptions {
-	.site-wrapper{
+	.site-wrapper {
 	  background-image: image-url("background7.jpg");
 	  background-repeat:no-repeat;
 	  background-size: cover;
@@ -11,7 +11,10 @@
 	}
 }
 
-.welcome-offset, .welcome-reduce  {
+.welcome-offset, .welcome-reduce {
+    .site-wrapper-inner {
+        height: 90vh;   
+    }
 	.site-wrapper-first {
 	  background-image: image-url("background7.jpg");
 	  background-repeat:no-repeat;
@@ -41,7 +44,7 @@
         text-align: right; 
     }
     .glyphicon-chevron-down {
-        padding-top: 80px;
+        padding-top: 110px;
         font-size: 40px;
         width: 23px;
         text-align: left;

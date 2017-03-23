@@ -22,10 +22,10 @@ $(document).ready(function() {
     	var food = $('#food').val();
     	var car = $('#car').val();
 		var flight = $('#flight').val();
-		var total = parseInt(food) + parseInt(car) + parseInt(flight);
+		var total = 1 + parseInt(food) + parseInt(car) + parseInt(flight);
 		console.log(total);
 		$('#sum').text(total);
-		$('#custom-plan').attr("href", "/signup?plan=" + total);
+		$('#custom-plan').attr("href", "/subscriptions/new?plan=" + total);
     };
 
     $('#food').change(function() {
