@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  get 'dashboard/index'
+
+  devise_for :users, controllers: {
+  	sessions: 'users/sessions',
+  	registrations: 'users/registrations'
+  }
+
   get '', to: 'welcome#index'
   get 'step_1_reduce', to: 'welcome#reduce'
   get 'step_2_offset', to: 'welcome#offset'

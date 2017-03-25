@@ -1,0 +1,97 @@
+
+      <div class="site-wrapper-inner site-wrapper-first">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Live Climate Neutral</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="/">Home</a></li>
+                  <li><a href="#">Blog</a></li>
+                  <li><a href="#">Log in</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+      <div class="inner cover">
+      <h1 class="cover-heading">Sign up for a Climate Neutral Life</h1>
+      <span class="glyphicon glyphicon glyphicon-hand-down" aria-hidden="true"></span>
+
+      
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: "payment-form", :class => "form-horizontal"}) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="form-group">
+          <div class="col-sm-2"></div>
+          <label for="plan" class="col-sm-3 control-label padding-top">Climate Plan</label>
+          <div class="col-sm-4">
+            <select id="plan" class="form-control input-sm">
+
+              <%=raw @plan.to_i > 9 ? '<option value="' + (@plan.to_i - 5).to_s + '">$' + (@plan.to_i - 5).to_s + '/month</option>' : "" %>
+              <option value="<%= @plan %>" selected="1">$<%= @plan %>/month</option>
+              <option value="<%= @plan.to_i+5 %>">$<%= @plan.to_i+5 %>/month</option>
+              <option value="<%= @plan.to_i+10 %>">$<%= @plan.to_i+10 %>/month</option>
+              <option value="<%= @plan.to_i+15 %>">$<%= @plan.to_i+15 %>/month</option>
+            </select>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-2"></div>
+          <label for="email" class="col-sm-3 control-label padding-top">Email</label>
+          <div class="col-sm-4">
+            <%= f.email_field :email, autofocus: true, id: "email", class: "form-control" %>
+          </div>
+        </div>
+   
+        <div class="form-group">
+          <div class="col-sm-2"></div>
+          <label for="password" class="col-sm-3 control-label padding-top">Password</label>
+          <div class="col-sm-4">
+          <%= f.password_field :password, autocomplete: "off", id: "password", class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-2"></div>
+          <label for="confirmationPassword" class="col-sm-3 control-label padding-top">Password confirmation</label>
+          <div class="col-sm-4">
+          <%= f.password_field :password_confirmation, autocomplete: "off", id: "confirmationPassword", class: "form-control" %>
+          </div>
+        </div>
+        <%= hidden_field(:user, :stripe_customer_id, :value => "") %>
+
+        <div class="form-group">
+          <div class="col-sm-2"></div>
+          <label for="card-element" class="col-sm-3 control-label">Credit or debit card</label>
+          <div id="card-element" class="col-sm-4 form-control">
+          <!-- a Stripe Element will be inserted here. -->
+          </div>
+        </div>
+
+        
+
+        <div id="card-errors"></div>
+
+        <div class="form-group">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-offset-3 col-sm-3">
+          <button type="submit" class="btn btn-primary">Go Climate Neutral!</button>
+          </div>
+        </div>
+
+      <% end %>
+
+      </div>
+
+    </div>
+    </div>

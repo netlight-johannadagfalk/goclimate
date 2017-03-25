@@ -1,7 +1,7 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.welcome-index, .subscriptions {
+.welcome-index, .registrations, .dashboard {
 	.site-wrapper {
 	  background-image: image-url("background7.jpg");
 	  background-repeat:no-repeat;
@@ -67,7 +67,7 @@
     padding-bottom: 50px;
 }
 
-.welcome, .subscriptions {
+.welcome, .registrations {
 	.site-wrapper-inner {
   		display: table;
   		width: 100%;
@@ -189,10 +189,59 @@
   	padding-top: 80px;
   	padding-bottom: 30px;
   }
+  .form-group {
+    input {
+        float: left;
+    }
+    .padding-top {
+        padding-top: 13px;
+    }
+    button {
+        float: left;
+    }
+  }
 }
+@media (max-width: 768px) {
+    .form-group {
+        select, input {
+            display: inline;
+            margin: 0 auto;
+        }
+        #card-element {
+            margin: 0 auto;
+            width: 300px;
+        }
+    }
+}
+
 
 .glyphicon {
 	padding-top: 50px;
 	font-size: 150px;
+}
+.form-horizontal {
+    margin-top: 40px;
+}
+
+.form-group {
+    div {
+        padding: 0px;
+    }
+    input {
+        color: #777;
+        width: 200px;
+        margin-top: 5px;
+    }
+    select {
+        width: 200px;
+        margin-top: 5px;
+    }
+
+
+}
+#card-element {
+    background-color: #fff;
+    width: 300px;
+    padding-left: 10px;
 }
 

@@ -1,0 +1,32 @@
+
+
+      <div class="site-wrapper-inner site-wrapper-first">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Live Climate Neutral</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="/">Home</a></li>
+                  <li><a href="#">Blog</a></li>
+                  <li><a href="#">Log in</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+		  <div class="inner cover">
+			<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+			<h1 class="cover-heading">Climate Progress</h1>
+			<p class="lead">You are currently logged in as: <%= current_user.email %></p>
+			<p><%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </p>
+		  </div>
+
+      <div class="mastfoot">
+        <div class="inner">
+          <p>Read more about us <a href="#">here</a>.</p>
+        </div>
+      </div>
+
