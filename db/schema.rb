@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170325082258) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "stripe_events", force: :cascade do |t|
     t.string "stripe_event_id"
     t.string "stripe_customer_id"
