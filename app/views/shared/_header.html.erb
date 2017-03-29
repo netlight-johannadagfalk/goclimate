@@ -1,0 +1,16 @@
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Live Climate Neutral</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="/">Home</a></li>
+                  <li><a href="#">Blog</a></li>
+                  <% if user_signed_in? %> 
+                    <li><%= link_to('Log out', destroy_user_session_path, :method => :delete) %></li>
+                  <% else %>
+                    <li><a href="#">Log in</a></li>
+                  <% end %>
+                </ul>
+              </nav>
+            </div>
+          </div>

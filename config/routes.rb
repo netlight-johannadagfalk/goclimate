@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
+  resources :stripe_events
   get 'dashboard/index'
 
   devise_for :users, controllers: {
   	sessions: 'users/sessions',
   	registrations: 'users/registrations'
   }
+
+  get '/users' => 'dashboard#index', as: :user_root 
 
   get '', to: 'welcome#index'
   get 'step_1_reduce', to: 'welcome#reduce'

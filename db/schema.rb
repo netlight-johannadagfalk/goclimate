@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324132123) do
+ActiveRecord::Schema.define(version: 20170325082258) do
+
+  create_table "stripe_events", force: :cascade do |t|
+    t.string "stripe_event_id"
+    t.string "stripe_customer_id"
+    t.string "stripe_object"
+    t.string "stripe_status"
+    t.string "stripe_amount"
+    t.datetime "stripe_created"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

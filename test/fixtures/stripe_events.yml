@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stripe_event_id: MyString
+  stripe_customer_id: MyString
+  stripe_object: MyString
+  stripe_status: MyString
+  stripe_amount: MyString
+  stripe_created: 2017-03-25 09:22:58
+
+two:
+  stripe_event_id: MyString
+  stripe_customer_id: MyString
+  stripe_object: MyString
+  stripe_status: MyString
+  stripe_amount: MyString
+  stripe_created: 2017-03-25 09:22:58
