@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170325082258) do
     t.string "stripe_customer_id"
     t.string "stripe_object"
     t.string "stripe_status"
-    t.string "stripe_amount"
+    t.integer "stripe_amount"
     t.datetime "stripe_created"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
