@@ -4,7 +4,7 @@
               <nav>
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="/">Home</a></li>
-                  <li><a href="#">Blog</a></li>
+                  <li><a href="/blog">Blog</a></li>
                   <% if user_signed_in? %> 
                     <li><%= link_to('Log out', destroy_user_session_path, :method => :delete) %></li>
                   <% else %>
