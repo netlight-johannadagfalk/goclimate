@@ -3,7 +3,11 @@
 require_relative 'config/environment'
 
 use Rack::ReverseProxy do  
-       reverse_proxy /^\/blog(\/.*)$/, 'http://goclimateneutral.nilver.se/$1', opts={:preserve_host => true}
+    # Set :preserve_host to true globally (default is true already)
+    reverse_proxy_options preserve_host: true
+
+    # Forward the path /test* to http://example.com/test*
+    reverse_proxy /^\/blog(\/.*)$/, 'http://goclimateneutral.nilver.se$1'
 end
 
 run Rails.application
