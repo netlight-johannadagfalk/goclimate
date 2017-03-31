@@ -22,8 +22,8 @@
         <%= devise_error_messages! %>
 
         <div class="form-group">
-          <div class="col-sm-2"></div>
-          <label for="plan" class="col-sm-3 control-label padding-top">Climate Plan</label>
+          <div class="col-sm-1"></div>
+          <label for="plan" class="col-sm-4 control-label padding-top">Climate Plan</label>
           <div class="col-sm-4">
             <select id="plan" class="form-control input-sm">
 
@@ -38,23 +38,23 @@
         </div>
 
         <div class="form-group">
-          <div class="col-sm-2"></div>
-          <label for="email" class="col-sm-3 control-label padding-top">Email</label>
+          <div class="col-sm-1"></div>
+          <label for="email" class="col-sm-4 control-label padding-top">Email</label>
           <div class="col-sm-4">
             <%= f.email_field :email, autofocus: true, id: "email", class: "form-control" %>
           </div>
         </div>
    
         <div class="form-group">
-          <div class="col-sm-2"></div>
-          <label for="password" class="col-sm-3 control-label padding-top">Password</label>
+          <div class="col-sm-1"></div>
+          <label for="password" class="col-sm-4 control-label padding-top">Password</label>
           <div class="col-sm-4">
           <%= f.password_field :password, autocomplete: "off", id: "password", class: "form-control" %>
           </div>
         </div>
         <div class="form-group">
-          <div class="col-sm-2"></div>
-          <label for="confirmationPassword" class="col-sm-3 control-label padding-top">Password confirmation</label>
+          <div class="col-sm-1"></div>
+          <label for="confirmationPassword" class="col-sm-4 control-label padding-top">Confirm password</label>
           <div class="col-sm-4">
           <%= f.password_field :password_confirmation, autocomplete: "off", id: "confirmationPassword", class: "form-control" %>
           </div>
@@ -62,8 +62,8 @@
         <%= hidden_field(:user, :stripe_customer_id, :value => "") %>
 
         <div class="form-group">
-          <div class="col-sm-2"></div>
-          <label for="card-element" class="col-sm-3 control-label">Credit or debit card</label>
+          <div class="col-sm-1"></div>
+          <label for="card-element" class="col-sm-4 control-label">Credit or debit card</label>
           <div id="card-element" class="col-sm-4 form-control">
           <!-- a Stripe Element will be inserted here. -->
           </div>
