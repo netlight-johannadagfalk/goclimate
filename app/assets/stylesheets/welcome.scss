@@ -212,7 +212,39 @@
             width: 300px;
         }
     }
+
 }
+@media only screen and (max-device-width: 768px) {
+    h3 {
+        font-size: 30px;
+    }
+    .masthead-nav li a {
+        font-size: 30px;   
+    }
+    .inner .glyphicon {
+        font-size: 300px;
+        padding-top: 150px;
+    }
+    h1 {
+        font-size: 70px;
+        padding-top: 100px;
+    }
+    p.lead {
+        font-size: 60px;
+        margin-top: 20px;
+    }
+    p.lead a.btn {
+        margin-top: 50px;
+        font-size: 70px;
+        padding: 20px 50px;
+        border-radius: 15px;
+    }
+    p.lead.note {
+        font-size: 40px;
+    }
+}
+
+
 
 
 .glyphicon {
