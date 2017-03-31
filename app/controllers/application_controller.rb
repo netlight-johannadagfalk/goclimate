@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
     dashboard_index_path
   end
 
+  def blog
+    redirect_to "https://www.goclimateneutral.org/blog#{request.fullpath.gsub('/blog','')}", :status => :moved_permanently
+  end
+
   protected
   
   def configure_permitted_parameters

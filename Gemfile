@@ -39,6 +39,7 @@ gem 'jquery-rails'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'devise'
 gem 'omniauth'
+gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
