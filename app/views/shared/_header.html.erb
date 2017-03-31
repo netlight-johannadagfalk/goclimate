@@ -8,7 +8,7 @@
                   <% if user_signed_in? %> 
                     <li><%= link_to('Log out', destroy_user_session_path, :method => :delete) %></li>
                   <% else %>
-                    <li><a href="#">Log in</a></li>
+                    <li><%= link_to('Log in', new_user_session_url)%></li>
                   <% end %>
                 </ul>
               </nav>
