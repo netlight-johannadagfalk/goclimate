@@ -1,7 +1,7 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.welcome-index, .registrations, .dashboard {
+.welcome-index, .registrations, .dashboard, .sessions {
 	.site-wrapper {
 	  background-image: image-url("background9.jpg");
 	  background-repeat:no-repeat;
@@ -337,4 +337,25 @@
     width: 300px;
     padding-left: 10px;
 }
+.sessions {
+    .btn {
+        width: 200px;
+    }
+    .checkbox {
+        text-align: left;
+    }
+    .checkbox label {
+        padding-left: 17px;
+    }
+    .checkbox label label {
+        padding-left: 3px;   
+    }
+}
+.alert, .notice {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+}
+
 

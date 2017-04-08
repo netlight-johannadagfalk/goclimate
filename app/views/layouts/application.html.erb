@@ -17,8 +17,11 @@
        
     <% if notice || alert %>
       <div class="alert alert-warning" role="alert">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <% if notice %>
+          <p class="notice"><%= notice %></p>
+        <% elsif alert %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
       </div>
     <% end %>
 
