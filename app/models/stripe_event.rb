@@ -2,7 +2,7 @@ class StripeEvent < ApplicationRecord
   
   def update_events
     require "stripe"
-    Stripe.api_key = "***REMOVED***"
+    Stripe.api_key = ENV['SECRET_KEY']
 
     list = Stripe::Event.list(limit: 1000)
 
