@@ -1,7 +1,7 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.welcome-index, .registrations, .dashboard, .sessions {
+.registrations, .dashboard, .sessions {
 	.site-wrapper {
 	  background-image: image-url("background9.jpg");
 	  background-repeat:no-repeat;
@@ -11,12 +11,12 @@
 	}
 }
 
-.welcome-offset, .welcome-reduce {
+.welcome {
     .site-wrapper-inner {
         height: 90vh;   
     }
 	.site-wrapper-first {
-	  background-image: image-url("background9.jpg");
+	  background-image: image-url("background7.jpg");
 	  background-repeat:no-repeat;
 	  background-size: cover;
 	  background-position:center;
@@ -28,7 +28,7 @@
 		background-position:center;
 	}
     .site-wrapper-fifth {
-        background-image: image-url("background7.jpg");
+        background-image: image-url("background9.jpg");
         background-repeat:no-repeat;
         background-size: cover; 
         background-position:center;
@@ -356,6 +356,9 @@
     width: 100%;
     height: 40px;
     padding: 5px;
+}
+.welcome .mastfoot {
+    position: relative;
 }
 
 
