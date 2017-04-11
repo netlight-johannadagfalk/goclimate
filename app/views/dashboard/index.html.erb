@@ -7,14 +7,39 @@
           <%= render "shared/header" %>
 
 		  <div class="inner cover">
-			<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-			<h1 class="cover-heading">Thank you for offsetting your climate impact!</h1>
-			<p class="lead">You are currently logged in as: <%= current_user.email %></p>
-		  </div>
+			   <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+			   <h3 class="cover-heading">You have lived climate neutral for <%= @my_neutral_months %> month. Good Job!</h3>
+			</div>
 
-      <p>You have contributed to:</p> 
-      <h1 style="font-size: 100px">$<%= @total %></h1>
-      <p>You have contributed with:</p> 
-      <h1 style="font-size: 100px">$<%= @total_contributed %></h1>
+
+      <div class="row stats">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <p>Number of climate neutral months in total:</p> 
+          <h1><%= @total_climate_neutral_months %></h1>
+        </div>
+        <div class="col-md-4">
+          <p>Number of climate neutral users right now:</p> 
+          <h1><%= @unique_climate_neutral_users %></h1>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    
+      <div class="row stats">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <p>Total climate offset project investments:</p> 
+          <h1>$<%= @total %></h1>
+        </div>
+        <div class="col-md-4">
+          <p>Your climate offset investments:</p> 
+          <h1>$<%= @my_amount_invested %></h1>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+
+
+
+
 
 
