@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     require "stripe"
 
-    @plan = params[:plan] || 5
+    @plan = params[:user][:plan] || 5
 
     begin
       

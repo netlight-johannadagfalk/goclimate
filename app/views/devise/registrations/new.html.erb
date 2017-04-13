@@ -25,13 +25,18 @@
           <div class="col-sm-1"></div>
           <label for="plan" class="col-sm-4 control-label padding-top">Climate Plan</label>
           <div class="col-sm-4">
-            <select id="plan" class="form-control input-sm">
+            <select id="plan" name="user[plan]" class="form-control input-sm">
 
-              <%=raw @plan.to_i > 9 ? '<option value="' + (@plan.to_i - 5).to_s + '">$' + (@plan.to_i - 5).to_s + '/month</option>' : "" %>
+              <% if @plan.to_i > 9 %>
+                <%=raw '<option value="' + (@plan.to_i / 5 * 5 - 5).to_s + '">$' + (@plan.to_i / 5 * 5 - 5).to_s + '/month</option>' %>
+                <% if @plan.to_i != (@plan.to_i / 5 * 5) %>
+                  <%=raw  '<option value="' + (@plan.to_i / 5 * 5).to_s + '">$' + (@plan.to_i / 5 * 5).to_s + '/month</option>'%>
+                <% end %>
+              <% end %>
               <option value="<%= @plan %>" selected="1">$<%= @plan %>/month</option>
-              <option value="<%= @plan.to_i+5 %>">$<%= @plan.to_i+5 %>/month</option>
-              <option value="<%= @plan.to_i+10 %>">$<%= @plan.to_i+10 %>/month</option>
-              <option value="<%= @plan.to_i+15 %>">$<%= @plan.to_i+15 %>/month</option>
+              <option value="<%= @plan.to_i / 5 * 5 + 5 %>">$<%= @plan.to_i / 5 * 5 + 5 %>/month</option>
+              <option value="<%= @plan.to_i / 5 * 5 + 10 %>">$<%= @plan.to_i / 5 * 5 + 10 %>/month</option>
+              <option value="<%= @plan.to_i / 5 * 5 + 15 %>">$<%= @plan.to_i / 5 * 5 + 15 %>/month</option>
             </select>
 
           </div>
