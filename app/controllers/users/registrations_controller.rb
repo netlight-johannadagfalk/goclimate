@@ -12,6 +12,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+
+    super
+    
     require "stripe"
 
     @plan = params[:user][:plan] || 5
@@ -54,8 +57,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
         flash[:error] = e.message
         redirect_to new_subscription_path
     end
-
-    super
 
   end
 
