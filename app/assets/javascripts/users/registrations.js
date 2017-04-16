@@ -1,89 +1,95 @@
 
 $(document).ready(function() {
 
-	if (location.hostname === "localhost") {
-		var stripe = Stripe('pk_test_a1OlA12lwmhYeYTK77LvdqIe');
-	} else {
-		var stripe = Stripe('pk_live_3HlQg5UTUX1iwEVSuH9Hk6bI');
-	}
+	if($('#card-element').length) {
 
-	var elements = stripe.elements();
+		
+		
 
-	if ( $(window).width() > 768) {
-		// Custom styling can be passed to options when creating an Element.
-		var style = {
-		  base: {
-		    // Add your base input styles here. For example:
-		    fontSize: '16px',
-		    color: '#000',
-		    iconColor: '#666EE8',
-	      	color: '#31325F',
-	      	lineHeight: '35px',
-	      	fontWeight: 300,
-		      '::placeholder': {
-	    	    color: '#CFD7E0',
-	      	},
+		if (location.hostname === "localhost") {
+			var stripe = Stripe('pk_test_a1OlA12lwmhYeYTK77LvdqIe');
+		} else {
+			var stripe = Stripe('pk_live_3HlQg5UTUX1iwEVSuH9Hk6bI');
+		}
+
+		var elements = stripe.elements();
+
+		if ( $(window).width() > 768) {
+			// Custom styling can be passed to options when creating an Element.
+			var style = {
+			  base: {
+			    // Add your base input styles here. For example:
+			    fontSize: '16px',
+			    color: '#000',
+			    iconColor: '#666EE8',
+		      	color: '#31325F',
+		      	lineHeight: '35px',
+		      	fontWeight: 300,
+			      '::placeholder': {
+		    	    color: '#CFD7E0',
+		      	},
+			  }
+			};
+		} else {
+			// Custom styling can be passed to options when creating an Element.
+			var style = {
+			  base: {
+			    // Add your base input styles here. For example:
+			    fontSize: '26px',
+			    color: '#000',
+			    iconColor: '#666EE8',
+		      	color: '#31325F',
+		      	lineHeight: '35px',
+		      	fontWeight: 300,
+			      '::placeholder': {
+		    	    color: '#CFD7E0',
+		      	},
+			  }
+			};
+		}
+		// Create an instance of the card Element
+		var card = elements.create('card', {style: style, hidePostalCode: true});
+
+		// Add an instance of the card Element into the `card-element` <div>
+		card.mount('#card-element');
+
+		card.addEventListener('change', function(event) {
+		  var displayError = document.getElementById('card-errors');
+		  if (event.error) {
+		    displayError.textContent = event.error.message;
+		  } else {
+		    displayError.textContent = '';
 		  }
-		};
-	} else {
-		// Custom styling can be passed to options when creating an Element.
-		var style = {
-		  base: {
-		    // Add your base input styles here. For example:
-		    fontSize: '26px',
-		    color: '#000',
-		    iconColor: '#666EE8',
-	      	color: '#31325F',
-	      	lineHeight: '35px',
-	      	fontWeight: 300,
-		      '::placeholder': {
-	    	    color: '#CFD7E0',
-	      	},
-		  }
-		};
-	}
-	// Create an instance of the card Element
-	var card = elements.create('card', {style: style, hidePostalCode: true});
+		});
 
-	// Add an instance of the card Element into the `card-element` <div>
-	card.mount('#card-element');
+		// Create a token or display an error the form is submitted.
+		var form = document.getElementById('payment-form');
+		form.addEventListener('submit', function(event) {
+		  event.preventDefault();
 
-	card.addEventListener('change', function(event) {
-	  var displayError = document.getElementById('card-errors');
-	  if (event.error) {
-	    displayError.textContent = event.error.message;
-	  } else {
-	    displayError.textContent = '';
-	  }
-	});
+		  stripe.createToken(card).then(function(result) {
+		    if (result.error) {
+		      // Inform the user if there was an error
+		      var errorElement = document.getElementById('card-errors');
+		      errorElement.textContent = result.error.message;
+		    } else {
+		      // Send the token to your server
+		      stripeTokenHandler(result.token);
+		    }
+		  });
+		});
+		function stripeTokenHandler(token) {
+		  // Insert the token ID into the form so it gets submitted to the server
+		  var form = document.getElementById('payment-form');
+		  var hiddenInput = document.createElement('input');
+		  hiddenInput.setAttribute('type', 'hidden');
+		  hiddenInput.setAttribute('name', 'stripeToken');
+		  hiddenInput.setAttribute('value', token.id);
+		  form.appendChild(hiddenInput);
 
-	// Create a token or display an error the form is submitted.
-	var form = document.getElementById('payment-form');
-	form.addEventListener('submit', function(event) {
-	  event.preventDefault();
-
-	  stripe.createToken(card).then(function(result) {
-	    if (result.error) {
-	      // Inform the user if there was an error
-	      var errorElement = document.getElementById('card-errors');
-	      errorElement.textContent = result.error.message;
-	    } else {
-	      // Send the token to your server
-	      stripeTokenHandler(result.token);
-	    }
-	  });
-	});
-	function stripeTokenHandler(token) {
-	  // Insert the token ID into the form so it gets submitted to the server
-	  var form = document.getElementById('payment-form');
-	  var hiddenInput = document.createElement('input');
-	  hiddenInput.setAttribute('type', 'hidden');
-	  hiddenInput.setAttribute('name', 'stripeToken');
-	  hiddenInput.setAttribute('value', token.id);
-	  form.appendChild(hiddenInput);
-
-	  // Submit the form
-	  form.submit();
+		  // Submit the form
+		  form.submit();
+		}
 	}
    
 });

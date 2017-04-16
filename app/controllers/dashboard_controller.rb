@@ -13,7 +13,8 @@ class DashboardController < ApplicationController
 
     @total_climate_neutral_months = StripeEvent.where(stripe_object: "charge").count
 
+    @user_top_list = User.left_joins(:stripe_events).select("users.id, COUNT(1)").group("users.id").order('COUNT(1) DESC').limit(10)
 
-
+    @country_top_list = User.left_joins(:stripe_events).select("users.country, COUNT(1)").group("users.country").order('COUNT(1) DESC').limit(10)
   end
 end

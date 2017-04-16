@@ -1,42 +1,83 @@
-
-
       <div class="site-wrapper-inner site-wrapper-first">
-
+        
         <div class="cover-container">
-
+          
           <%= render "shared/header" %>
 
-		  <div class="inner cover">
-			   <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-			   <h3 class="cover-heading">You have lived climate neutral for <%= @my_neutral_months %> month. Good Job!</h3>
-			</div>
+          <div class="inner cover">
+              <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+              <h3 class="cover-heading">You have lived climate neutral for <%= @my_neutral_months %> month. Good Job!</h3>
+
+                  <div class="row stats">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                      <p>Number of climate neutral months in total:</p> 
+                      <h1><%= @total_climate_neutral_months %></h1>
+                    </div>
+                    <div class="col-md-4">
+                      <p>Number of climate neutral users right now:</p> 
+                      <h1><%= @unique_climate_neutral_users %></h1>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+                
+                  <div class="row stats">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                      <p>Total climate offset project investments:</p> 
+                      <h1>$<%= @total %></h1>
+                    </div>
+                    <div class="col-md-4">
+                      <p>Your climate offset investments:</p> 
+                      <h1>$<%= @my_amount_invested %></h1>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="site-wrapper-inner site-wrapper-second">
+        <div class="cover-container">
+          <div class="inner cover">
+            <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+            
+            <div class="row stats">
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                    <h3>Climate Hero Toplist</h3>
+                    <ol>
+                    <% @user_top_list.each do |user| %>
+                      <% count = user.count %>
+                      <% user_name = user.reload.user_name || "Unknown User" %>
+                      <li><%= user_name %> (<%= count %> climate neutral months)</li>  
+                    <% end %>
+                    </ol>
+                </div>
+                <div class="col-md-4">
+                    <h3>Climate Country Toplist</h3>
+                    <ol>
+                    <% @country_top_list.each do |country| %>
+                      <% count = country.count %>
+                      <% country_name = country.country_name || "Unknown" %>
+                      <li><%= country_name %> (<%= count %> climate neutral months)</li>  
+                    <% end %>
+                    </ol>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
-      <div class="row stats">
-        <div class="col-md-2"></div>
-        <div class="col-md-4">
-          <p>Number of climate neutral months in total:</p> 
-          <h1><%= @total_climate_neutral_months %></h1>
-        </div>
-        <div class="col-md-4">
-          <p>Number of climate neutral users right now:</p> 
-          <h1><%= @unique_climate_neutral_users %></h1>
-        </div>
-        <div class="col-md-2"></div>
-      </div>
-    
-      <div class="row stats">
-        <div class="col-md-2"></div>
-        <div class="col-md-4">
-          <p>Total climate offset project investments:</p> 
-          <h1>$<%= @total %></h1>
-        </div>
-        <div class="col-md-4">
-          <p>Your climate offset investments:</p> 
-          <h1>$<%= @my_amount_invested %></h1>
-        </div>
-        <div class="col-md-2"></div>
-      </div>
+
+
+
+
+
 
 
 

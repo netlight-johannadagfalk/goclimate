@@ -1,4 +1,6 @@
 class StripeEvent < ApplicationRecord
+
+  belongs_to :user, class_name: 'User', primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
   
   def update_events
     require "stripe"
