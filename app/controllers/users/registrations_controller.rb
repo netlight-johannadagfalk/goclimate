@@ -6,7 +6,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    @plan = params[:plan] || 5
+    if !params[:tonnes_co2].nil?
+      @plan = (params[:tonnes_co2].to_i / 12 * 5.5).round
+    else
+      @plan = params[:plan] || 5
+    end
+
     super
   end
 

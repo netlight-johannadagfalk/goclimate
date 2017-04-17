@@ -384,6 +384,11 @@
         display: inline-block;
     }
 }
+input#plan {
+    margin-top: 0px;
+    width: 75px;
+}
+
 .registrations-edit {
     .form-group input { 
         text-align: left; 
@@ -391,4 +396,7 @@
 }
 .mastfoot {
     position: relative;
+}
+hr {
+    margin: 60px;
 }
