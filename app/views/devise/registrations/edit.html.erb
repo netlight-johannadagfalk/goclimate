@@ -25,7 +25,7 @@
                   <div class="col-sm-1"></div>
                   <label for="country" class="col-sm-4 control-label padding-top">Country</label>
                   <div class="col-sm-4">
-                    <%= f.country_select :country, {}, {selected: current_user.country_name, autofocus: true, id: "country", class: 'form-control'} %>
+                    <%= f.country_select :country, {include_blank: true}, {selected: current_user.country_name, autofocus: true, id: "country", class: 'form-control'} %>
                   </div>
                 </div>
 

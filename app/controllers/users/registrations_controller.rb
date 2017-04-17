@@ -71,9 +71,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if !params[:user][:country].nil? && params[:user][:country] == ""
+      params[:user][:country] = nil
+    end
+    super
+  end
 
   # DELETE /resource
   # def destroy
