@@ -228,11 +228,15 @@
 
 }
 @media only screen and (max-device-width: 768px) {
+    .inner ul.dropdown-menu {
+        margin: 2px -105px;
+    }
+
     h3 {
-        font-size: 30px;
+        font-size: 35px;
     }
     .masthead-nav li a {
-        font-size: 30px;   
+        font-size: 35px;   
     }
     .inner .glyphicon {
         font-size: 300px;
@@ -241,6 +245,10 @@
     h1 {
         font-size: 135px;
         padding-top: 100px;
+    }
+    h2 {
+        font-size: 100px;
+        padding-top: 70px;   
     }
     p.lead {
         font-size: 60px;
@@ -274,7 +282,7 @@
         .table {
             font-size: 40px;
         }
-        a.btn {
+        button, a.btn {
             margin: 50px;
             font-size: 70px;
             padding: 10px 40px;
@@ -286,6 +294,12 @@
         }
         .notice, .alert {
             font-size: 40px;
+        }
+        input.small_number#plan {
+            width: 150px;
+            border-radius: 15px;
+            height: 119px;
+            padding: 35px;
         }
     }
     .site-wrapper .form-group {
