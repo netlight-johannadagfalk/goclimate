@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/users' => 'dashboard#index', as: :user_root 
 
   get '', to: 'welcome#index'
+  get 'step_1_choose_plan', to: 'welcome#plan'
   get 'step_1_reduce', to: 'welcome#reduce'
   get 'step_2_offset', to: 'welcome#offset'
   get 'step_3_impact', to: 'welcome#impact'

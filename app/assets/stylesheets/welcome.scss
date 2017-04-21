@@ -11,7 +11,7 @@
   }
 }
 
-.registrations-new, .sessions {
+.registrations-new, .sessions, .welcome-index {
 	.site-wrapper {
 	  background-image: image-url("background9.jpg");
 	  background-repeat:no-repeat;
@@ -19,9 +19,13 @@
 	  background-position:center;
 	  display: block;
 	}
+
+    .mastfoot {
+        position: absolute;
+    }
 }
 
-.welcome, .dashboard, .registrations-edit {
+.welcome-reduce, .welcome-offset, .welcome-plan, .dashboard, .registrations-edit {
     .site-wrapper {
         display: inline;
     }
@@ -90,7 +94,7 @@
 	}
 }
 
-.welcome-offset, .registrations-edit {
+.welcome-offset, .welcome-plan, .registrations-edit {
 	.panel {
         text-align: center;
     }
@@ -198,7 +202,7 @@
 }
 
 @media (min-width: 768px) {
-  .welcome-offset .glyphicon-grain {
+  .welcome-plan .glyphicon-grain, .welcome-offset .glyphicon-grain {
   	padding-top: 80px;
   	padding-bottom: 30px;
   }
@@ -264,7 +268,7 @@
         font-size: 40px;
     }
     
-    .welcome-offset, .registrations-edit {
+    .welcome-offset, .welcome-plan, .registrations-edit {
         h3.panel-title {
             font-size: 70px;
             padding: 10px;

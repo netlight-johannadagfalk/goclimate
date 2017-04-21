@@ -8,4 +8,7 @@ class WelcomeController < ApplicationController
 
   def offset
   end
+
+  def plan
+  end
 end
