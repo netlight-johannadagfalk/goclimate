@@ -9,7 +9,7 @@ class CreateProjects < ActiveRecord::Migration[5.1]
       t.decimal :latitude
       t.integer :carbon_offset
       t.string :country
-      t.string :type
+      t.string :offset_type
 
       t.timestamps
     end

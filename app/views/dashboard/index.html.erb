@@ -91,6 +91,33 @@
 
 
 
+      <div class="site-wrapper-inner site-wrapper-third">
+        <div class="cover-container">
+          <div class="inner cover">
+            <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span>
+            
+            <div class="row stats">
+                <div class="col-md-12">
+                  <p>Total carbon offset by all users:</p> 
+                  <h1><%= @total_carbon_offset %> tonnes CO2</h1>
+                </div>
+            </div>
+            <div class="row stats">
+                <div class="col-md-12">
+                    <h3>Latest Carbon Offset Projects</h3>
+                    <ol>
+                    <% @projects.each do |project| %>
+                      <li><a href ="<%= project.blog_url %>"><%= project.name %></a> - <%= project.carbon_offset %> tonnes CO2</li>  
+                    <% end %>
+                    </ol>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
 
 
 
