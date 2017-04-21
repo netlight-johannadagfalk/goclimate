@@ -8,10 +8,24 @@
               <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
               <h3 class="cover-heading">You have lived climate neutral for <%= @my_neutral_months %> month. Good Job!</h3>
 
+
                   <div class="row stats">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
-                      <p>Number of climate neutral months in total:</p> 
+                      <p>Number of months you have been climate neutral:</p> 
+                      <h1><%= @my_neutral_months %></h1>
+                    </div>
+                    <div class="col-md-4">
+                      <p>Your climate offset investments:</p> 
+                      <h1>$<%= @my_amount_invested %></h1>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+
+                  <div class="row stats">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                      <p>Number of climate neutral months for all users:</p> 
                       <h1><%= @total_climate_neutral_months %></h1>
                     </div>
                     <div class="col-md-4">
@@ -20,7 +34,8 @@
                     </div>
                     <div class="col-md-2"></div>
                   </div>
-                
+
+
                   <div class="row stats">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
@@ -28,11 +43,13 @@
                       <h1>$<%= @total %></h1>
                     </div>
                     <div class="col-md-4">
-                      <p>Your climate offset investments:</p> 
-                      <h1>$<%= @my_amount_invested %></h1>
+                      <p></p> 
+                      <h1></h1>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
+                
+
 
           </div>
           

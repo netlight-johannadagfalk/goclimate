@@ -33,7 +33,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
           :email => params[:user][:email],
           :source  => params[:stripeToken]
       )
-      params[:user][:stripe_customer_id] = customer.id
+
+      User.where(email: params[:user][:email]).update_all(stripe_customer_id: customer.id)
 
       begin
         plan = Stripe::Plan.retrieve(plan_id)
