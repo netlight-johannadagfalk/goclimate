@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  link: MyString
+  image_url: MyString
+  blog_url: MyString
+  longitude: 9.99
+  latitude: 9.99
+  carbon_offset: 1
+  country: MyString
+  type: 
+
+two:
+  name: MyString
+  link: MyString
+  image_url: MyString
+  blog_url: MyString
+  longitude: 9.99
+  latitude: 9.99
+  carbon_offset: 1
+  country: MyString
+  type: 

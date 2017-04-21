@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170416073907) do
+ActiveRecord::Schema.define(version: 20170421121522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.string "link"
+    t.string "image_url"
+    t.string "blog_url"
+    t.decimal "longitude"
+    t.decimal "latitude"
+    t.integer "carbon_offset"
+    t.string "country"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "stripe_events", force: :cascade do |t|
     t.string "stripe_event_id"

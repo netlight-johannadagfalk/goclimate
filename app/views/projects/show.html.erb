@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @project.link %>
+</p>
+
+<p>
+  <strong>Image url:</strong>
+  <%= @project.image_url %>
+</p>
+
+<p>
+  <strong>Blog url:</strong>
+  <%= @project.blog_url %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @project.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @project.latitude %>
+</p>
+
+<p>
+  <strong>Carbon offset:</strong>
+  <%= @project.carbon_offset %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @project.country %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @project.type %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
