@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 
   get '', to: 'welcome#index'
   get 'step_1_choose_plan', to: 'welcome#plan'
+  get 'about', to: 'welcome#about'
+  get 'contact', to: 'welcome#contact'
+  
+
   get 'step_1_reduce', to: 'welcome#reduce'
   get 'step_2_offset', to: 'welcome#offset'
   get 'step_3_impact', to: 'welcome#impact'

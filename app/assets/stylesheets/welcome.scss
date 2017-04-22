@@ -11,7 +11,11 @@
   }
 }
 
-.registrations-new, .sessions, .welcome-index {
+p {
+    line-height: 200%;
+}
+
+.sessions, .welcome-index {
 	.site-wrapper {
 	  background-image: image-url("background9.jpg");
 	  background-repeat:no-repeat;
@@ -25,7 +29,7 @@
     }
 }
 
-.welcome-reduce, .welcome-offset, .welcome-plan, .dashboard, .registrations-edit {
+.registrations-new, .welcome-reduce, .welcome-offset, .welcome-plan, .dashboard, .registrations-edit {
     .site-wrapper {
         display: inline;
     }
@@ -411,6 +415,22 @@ input#plan {
     .form-group input { 
         text-align: left; 
     }
+}
+.registrations-new {
+    .form-group input { 
+        text-align: left; 
+    }
+    .form-horizontal {
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+    .lead {
+        margin-top: 20px;
+    }
+    .site-wrapper .site-wrapper-first {
+        background-image: image-url("background9.jpg");
+    }
+
 }
 .mastfoot {
     position: relative;

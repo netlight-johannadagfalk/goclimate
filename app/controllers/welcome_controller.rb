@@ -11,4 +11,10 @@ class WelcomeController < ApplicationController
 
   def plan
   end
+
+  def about
+  end
+
+  def contact
+  end
 end
