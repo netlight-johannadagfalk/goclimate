@@ -1,82 +1,63 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
- .inner {
-  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-    background-color: transparent;
-  }
-  .dropdown-menu {
-    margin: 2px -38px;
-    min-width: 108px;
-  }
-}
-
 p {
     line-height: 200%;
 }
-
-.sessions, .welcome-index {
-	.site-wrapper {
-	  background-image: image-url("background9.jpg");
-	  background-repeat:no-repeat;
-	  background-size: cover;
-	  background-position:center;
-	  display: block;
-	}
-
-    .mastfoot {
-        position: absolute;
-    }
+hr {
+    margin: 60px;
+}
+input { 
+    text-align: right; 
+}
+.site-wrapper {
+    display: inline;
+    min-height: 100%;
+}
+.site-wrapper-inner {
+    height: 90vh;
+}
+.site-wrapper-inner.solo-inner-wrapper {
+    height: 100vh;
+}
+.site-wrapper-first {
+  background-image: image-url("background7.jpg");
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position:center;
+}
+.site-wrapper-third {
+	background-image: image-url("background4.jpg");
+	background-repeat:no-repeat;
+	background-size: cover;	
+	background-position:center;
+}
+.site-wrapper-fifth {
+    background-image: image-url("background9.jpg");
+    background-repeat:no-repeat;
+    background-size: cover; 
+    background-position:center;
+}
+.plan {
+	padding-top: 50px;
+	color: black;
+}
+.form {
+    padding: 3.5px;
 }
 
-.registrations-new, .welcome-reduce, .welcome-offset, .welcome-plan, .dashboard, .registrations-edit {
-    .site-wrapper {
-        display: inline;
-    }
-    .site-wrapper-inner {
-        height: 90vh;
-    }
-	.site-wrapper-first {
-	  background-image: image-url("background7.jpg");
-	  background-repeat:no-repeat;
-	  background-size: cover;
-	  background-position:center;
-	}
-	.site-wrapper-third {
-		background-image: image-url("background4.jpg");
-		background-repeat:no-repeat;
-		background-size: cover;	
-		background-position:center;
-	}
-    .site-wrapper-fifth {
-        background-image: image-url("background9.jpg");
-        background-repeat:no-repeat;
-        background-size: cover; 
-        background-position:center;
-    }
-	.plan {
-		padding-top: 50px;
-		color: black;
-	}
-    .form {
-        padding: 3.5px;
-    }
-    input { 
-        text-align: right; 
-    }
-    .glyphicon-chevron-down {
-        padding-top: 110px;
-        font-size: 40px;
-        width: 23px;
-        text-align: left;
-    }
+.glyphicon-chevron-down {
+    padding-top: 110px;
+    font-size: 40px;
+    width: 23px;
+    text-align: left;
+}
 
-    .site-wrapper-second {
-        padding-top: 60px;
-    }
-    .site-wrapper-third, .site-wrapper-fifth {
-        padding-top: 100px;
-    }
+.site-wrapper-second {
+    padding-top: 60px;
+}
+.site-wrapper-third, .site-wrapper-fifth {
+    padding-top: 100px;
 }
 
 .welcome .lead {
@@ -246,6 +227,9 @@ p {
     .masthead-nav li a {
         font-size: 35px;   
     }
+    .mastfoot .inner p {
+        font-size: 40px;
+    }
     .inner .glyphicon {
         font-size: 300px;
         padding-top: 150px;
@@ -261,6 +245,12 @@ p {
     p.lead {
         font-size: 60px;
         margin-top: 20px;
+    }
+    .welcome p {
+        font-size: 50px;  
+    }
+    address {
+        font-size: 60px;
     }
     p.lead a.btn {
         margin-top: 50px;
@@ -434,7 +424,18 @@ input#plan {
 }
 .mastfoot {
     position: relative;
+    margin-top: 60px;
 }
-hr {
-    margin: 60px;
+.mastfoot .inner {
+    padding: 15px;
+}
+
+.inner {
+  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: transparent;
+  }
+  .dropdown-menu {
+    margin: 2px -38px;
+    min-width: 108px;
+  }
 }
