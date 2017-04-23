@@ -105,16 +105,17 @@
             <div class="row stats">
                 <div class="col-md-12">
                     <h3>Latest Carbon Offset Projects</h3>
-                    <ol>
                     <% @projects.each do |project| %>
-                      <li><a href ="<%= project.blog_url %>"><%= project.name %></a> - <%= project.carbon_offset %> tonnes CO2</li>  
+                      <div><%= image_tag project.image_url, size: "150" %></div>
+                      <div>- <a href ="<%= project.blog_url %>"><%= project.name %></a> - <%= project.carbon_offset %> tonnes CO2</div>  
                     <% end %>
-                    </ol>
                 </div>
             </div>
           </div>
         </div>
       </div>
+
+      <%= render "shared/footer" %>
 
 
 

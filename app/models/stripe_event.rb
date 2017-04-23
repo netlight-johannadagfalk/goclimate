@@ -2,7 +2,19 @@ class StripeEvent < ApplicationRecord
 
   belongs_to :user, class_name: 'User', primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
   
-  def update_events
+  scope :charges, ->(user = nil) { where(stripe_object: "charge").where(stripe_customer_id: user.stripe_customer_id) }
+
+  def self.try_updating_events user
+    tries = 0
+    loop do 
+      tries += 1
+      StripeEvent.update_events
+      break if StripeEvent.charges(user).count != 0 || tries > 3
+      sleep(5)
+    end 
+  end
+
+  def self.update_events
     require "stripe"
     Stripe.api_key = ENV['SECRET_KEY']
 
