@@ -11,15 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree
  */
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/*
- * Globals
- */
 
 /* Links */
 a,
@@ -42,7 +38,6 @@ a:hover {
 /*
  * Base structure
  */
-
 html,
 body {
   height: 100%;
@@ -169,4 +164,324 @@ body {
   .cover-container {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
+}
+
+
+p {
+    line-height: 200%;
+}
+hr {
+    margin: 60px;
+}
+input { 
+    text-align: right; 
+}
+.site-wrapper {
+    min-height: 100vh;
+    display: table;
+    width: 100%;
+}
+.site-wrapper-inner {
+    height: 90vh;
+}
+.site-wrapper-inner.solo-inner-wrapper {
+    min-height: 100vh;
+    height: 100%;
+}
+.solo-inner-wrapper {
+    .cover-container {
+        min-height: 100vh;
+        height: 100%;
+    }
+    .mastfoot {
+        margin-top: -70px;
+    }
+}
+.site-wrapper-first {
+  background-image: image-url("background7.jpg");
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position:center;
+}
+.site-wrapper-third {
+  background-image: image-url("background4.jpg");
+  background-repeat:no-repeat;
+  background-size: cover; 
+  background-position:center;
+}
+.site-wrapper-fifth {
+    background-image: image-url("background9.jpg");
+    background-repeat:no-repeat;
+    background-size: cover; 
+    background-position:center;
+}
+.plan {
+  padding-top: 50px;
+  color: black;
+}
+.form {
+    padding: 3.5px;
+}
+.checkbox {
+    text-align: left;
+}
+.site-wrapper .glyphicon-chevron-down {
+    padding-top: 110px;
+    font-size: 40px;
+    width: 23px;
+    text-align: left;
+}
+.site-wrapper-second {
+    padding-top: 60px;
+}
+.site-wrapper-third, .site-wrapper-fifth {
+    padding-top: 100px;
+}
+.welcome .lead-btn {
+  padding-top: 30px;
+    padding-bottom: 50px;
+}
+.glyphicon {
+    padding-top: 50px;
+    font-size: 150px;
+}
+.form-horizontal {
+    margin-top: 40px;
+}
+
+.form-group {
+    div {
+        padding: 0px;
+    }
+    input {
+        color: #777;
+        width: 200px;
+        margin-top: 5px;
+    }
+    select {
+        width: 200px;
+        margin-top: 5px;
+    }
+
+
+}
+#card-element {
+    background-color: #fff;
+    width: 300px;
+    padding-left: 10px;
+}
+.alert, .notice {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+}
+.dashboard .stats {
+    h1 {
+        font-size: 50px;
+        padding-top: 0px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+    h3 {
+        padding-bottom: 25px;
+    }
+    li {
+        font-size: 16px;
+    }
+    ol {
+        display: inline-block;
+    }
+}
+input#plan {
+    margin-top: 0px;
+    width: 75px;
+}
+
+.registrations-edit {
+    .form-group input { 
+        text-align: left; 
+    }
+}
+.registrations-new {
+    .form-group input { 
+        text-align: left; 
+    }
+    .form-horizontal {
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+    .lead {
+        margin-top: 20px;
+    }
+    .site-wrapper .site-wrapper-first {
+        background-image: image-url("background9.jpg");
+    }
+}
+.masthead {
+    position: relative;
+}
+.mastfoot {
+    position: relative;
+    margin-top: 60px;
+}
+.mastfoot .inner {
+    padding: 15px;
+} 
+.inner {
+  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: transparent;
+  }
+  .dropdown-menu {
+    margin: 2px -38px;
+    min-width: 108px;
+  }
+}
+
+@media (min-width: 768px) {
+  .glyphicon-grain {
+    padding-top: 80px;
+    padding-bottom: 30px;
+  }
+  .form-group {
+    input {
+        float: left;
+    }
+    .padding-top {
+        padding-top: 13px;
+    }
+    button {
+        float: left;
+    }
+  }
+}
+@media (max-width: 768px) {
+    .form-group {
+        select, input {
+            display: inline;
+            margin: 0 auto;
+        }
+        #card-element {
+            margin: 0 auto;
+            width: 300px;
+        }
+    }
+}
+@media only screen and (max-device-width: 768px) {
+    .inner ul.dropdown-menu {
+        margin: 2px -105px;
+    }
+    .inner p, .inner address {
+        padding: 40px 40px 0px 40px;
+    }
+    .inner p.lead-btn {
+        padding: 0px;
+    }
+    h3 {
+        font-size: 40px;
+    }
+    .masthead-nav li a {
+        font-size: 40px;   
+    }
+    .mastfoot .inner p {
+        font-size: 40px;
+    }
+    .solo-inner-wrapper {
+        .mastfoot {
+            margin-top: 20px;
+        }
+    }
+    .inner .glyphicon {
+        font-size: 300px;
+        padding-top: 150px;
+    }
+    h1 {
+        font-size: 135px;
+        padding-top: 100px;
+    }
+    h2 {
+        font-size: 100px;
+        padding-top: 70px;   
+    }
+    p.lead {
+        font-size: 60px;
+        margin-top: 20px;
+    }
+    p {
+        font-size: 50px;  
+    }
+    address {
+        font-size: 60px;
+    }
+    p.lead a.btn {
+        margin-top: 50px;
+        font-size: 70px;
+        padding: 20px 50px;
+        border-radius: 15px;
+    }
+    p.lead.note {
+        font-size: 40px;
+    }
+    
+    h3.panel-title {
+        font-size: 70px;
+        padding: 10px;
+    }
+    .panel-heading {
+        height: 120px;
+    }
+    .subscript {
+        font-size: 40px;
+    }
+    .the-price {
+        font-size: 80px;
+        padding: 50px 20px 10px 20px;
+    }
+    .table {
+        font-size: 40px;
+    }
+    button, a.btn {
+        margin: 50px;
+        font-size: 70px;
+        padding: 10px 40px;
+        border-radius: 15px; 
+    }
+    select.input-sm {
+        font-size: 30px;
+        height: 60px;
+    }
+    .notice, .alert {
+        font-size: 40px;
+    }
+    input.small_number#plan {
+        width: 150px;
+        border-radius: 15px;
+        height: 119px;
+        padding: 35px;
+    }
+    .site-wrapper .form-group {
+        select, input {
+            width: 400px;
+            height: 80px;
+            font-size: 50px;
+        }
+        label {
+            width: 350px;
+            height: 80px;
+            font-size: 34px;
+            margin-top: 12px;
+        }
+        #card-element {
+            width: 500px;
+            height: 80px;
+            padding-top: 22px;
+        }
+        button.btn {
+            margin: 50px;
+            font-size: 70px;
+            padding: 10px 40px;
+            border-radius: 15px;
+            margin-left: -250px; 
+        }
+    }
 }
