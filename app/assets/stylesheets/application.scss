@@ -182,7 +182,7 @@ input {
     width: 100%;
 }
 .site-wrapper-inner {
-    height: 90vh;
+    min-height: 90vh;
 }
 .site-wrapper-inner.solo-inner-wrapper {
     min-height: 100vh;
