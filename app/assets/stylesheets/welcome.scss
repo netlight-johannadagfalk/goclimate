@@ -17,8 +17,17 @@ input {
 .site-wrapper-inner {
     height: 90vh;
 }
+
 .site-wrapper-inner.solo-inner-wrapper {
     height: 100vh;
+}
+.solo-inner-wrapper {
+    .cover-container {
+        height: 100%;
+    }
+    .mastfoot {
+        margin-top: -70px;
+    }
 }
 .site-wrapper-first {
   background-image: image-url("background7.jpg");
@@ -45,7 +54,9 @@ input {
 .form {
     padding: 3.5px;
 }
-
+.checkbox {
+    text-align: left;
+}
 .site-wrapper .glyphicon-chevron-down {
     padding-top: 110px;
     font-size: 40px;
@@ -68,16 +79,14 @@ input {
 	padding-top: 30px;
     padding-bottom: 50px;
 }
-
-.welcome, .registrations, .dashboard {
-	.site-wrapper-inner {
-  		display: table;
-  		width: 100%;
-  	}
-  	.masthead {
-		position: relative;
-	}
+.site-wrapper-inner {
+		display: table;
+		width: 100%;
 }
+.masthead {
+	position: relative;
+}
+
 
 .welcome-offset, .welcome-plan, .registrations-edit {
 	.panel {
@@ -214,7 +223,6 @@ input {
             width: 300px;
         }
     }
-
 }
 @media only screen and (max-device-width: 768px) {
     .inner ul.dropdown-menu {
@@ -229,6 +237,11 @@ input {
     }
     .mastfoot .inner p {
         font-size: 40px;
+    }
+    .solo-inner-wrapper {
+        .mastfoot {
+            margin-top: -110px;
+        }
     }
     .inner .glyphicon {
         font-size: 300px;
@@ -358,20 +371,6 @@ input {
     background-color: #fff;
     width: 300px;
     padding-left: 10px;
-}
-.sessions {
-    .btn {
-        width: 200px;
-    }
-    .checkbox {
-        text-align: left;
-    }
-    .checkbox label {
-        padding-left: 17px;
-    }
-    .checkbox label label {
-        padding-left: 3px;   
-    }
 }
 .alert, .notice {
     position: absolute;
