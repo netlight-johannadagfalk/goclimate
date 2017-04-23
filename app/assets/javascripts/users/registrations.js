@@ -3,9 +3,6 @@ $(document).ready(function() {
 
 	if($('#card-element').length) {
 
-		
-		
-
 		if (location.hostname === "localhost") {
 			var stripe = Stripe('pk_test_a1OlA12lwmhYeYTK77LvdqIe');
 		} else {
@@ -14,8 +11,25 @@ $(document).ready(function() {
 
 		var elements = stripe.elements();
 
-		if ( $(window).width() > 768) {
+		if(mobilecheck()) {
 			// Custom styling can be passed to options when creating an Element.
+			var style = {
+			  base: {
+			    // Add your base input styles here. For example:
+			    fontSize: '28px',
+			    color: '#000',
+			    iconColor: '#666EE8',
+		      	color: '#31325F',
+		      	lineHeight: '35px',
+		      	fontWeight: 300,
+			      '::placeholder': {
+		    	    color: '#CFD7E0',
+		      	},
+			  }
+			};
+
+		} else {
+			
 			var style = {
 			  base: {
 			    // Add your base input styles here. For example:
@@ -30,22 +44,8 @@ $(document).ready(function() {
 		      	},
 			  }
 			};
-		} else {
 			// Custom styling can be passed to options when creating an Element.
-			var style = {
-			  base: {
-			    // Add your base input styles here. For example:
-			    fontSize: '26px',
-			    color: '#000',
-			    iconColor: '#666EE8',
-		      	color: '#31325F',
-		      	lineHeight: '35px',
-		      	fontWeight: 300,
-			      '::placeholder': {
-		    	    color: '#CFD7E0',
-		      	},
-			  }
-			};
+			
 		}
 		// Create an instance of the card Element
 		var card = elements.create('card', {style: style, hidePostalCode: true});
