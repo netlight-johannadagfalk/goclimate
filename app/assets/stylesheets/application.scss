@@ -297,7 +297,9 @@ input#plan {
     margin-top: 0px;
     width: 75px;
 }
-
+p.lead.last {
+    padding-bottom: 60px;
+}
 .registrations-edit {
     .form-group input { 
         text-align: left; 
@@ -440,7 +442,7 @@ input#plan {
     .table {
         font-size: 40px;
     }
-    button, a.btn {
+    .form-inline button, a.btn {
         margin: 50px;
         font-size: 70px;
         padding: 10px 40px;
