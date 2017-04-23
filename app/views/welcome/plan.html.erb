@@ -195,7 +195,7 @@
             <p class="lead">Calculating your exact climate footprint is a lot more complicated than by just choosing one of the plans above. You need tons of data, about what you eat, where you go and how you live. But the above plans are a good estimate and you don't have to worry that they are not covering for your climate footprint. But if you want to be more detailed, there's actually <b><a href="https://www.google.se/?gfe_rd=cr&ei=IVb0WOOHLIfEYOmlqNAI#q=climate+calculator">lots of advanced calculators out there</a></b>, so if you want to, you can try one and then enter your yearly carbon footprint here:</p>
             <form class="form-inline" method="GET" action="<%= new_registration_path(:user) %>">
               <div class="form-group">
-                <input type="text" class="form-control small_number" id="plan" name="tonnes_co2" placeholder="15">
+                <input type="text" class="form-control small_number" id="plan" name="tonnes_co2" placeholder="15" value="15">
               </div>
               <button type="submit" class="btn btn-success">tonnes CO2/year</button>
             </form>

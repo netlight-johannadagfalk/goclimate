@@ -225,6 +225,9 @@ input {
 .checkbox {
     text-align: left;
 }
+.form-group .checkbox input {
+    margin-left: 0px;
+}
 .site-wrapper .glyphicon-chevron-down {
     padding-top: 110px;
     font-size: 40px;
@@ -452,6 +455,7 @@ p.lead.last {
         font-size: 30px;
         height: 60px;
     }
+
     .notice, .alert {
         font-size: 40px;
     }
@@ -467,11 +471,21 @@ p.lead.last {
             height: 80px;
             font-size: 50px;
         }
+        .checkbox input {
+            width: 50px;
+        }
+        .checkbox {
+            margin-left: 42px;
+        }
         label {
             width: 350px;
             height: 80px;
             font-size: 34px;
             margin-top: 12px;
+        }
+        .checkbox label {
+            margin-left: 35px;
+            margin-top: 20px;
         }
         #card-element {
             width: 500px;
@@ -484,6 +498,10 @@ p.lead.last {
             padding: 10px 40px;
             border-radius: 15px;
             margin-left: -250px; 
+        }
+        button.btn.sign-in {
+            margin-left: -50px;
+            margin-top: 0px; 
         }
     }
 }
