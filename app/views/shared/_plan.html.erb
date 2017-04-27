@@ -1,0 +1,17 @@
+
+        <div class="form-group">
+          <div class="col-sm-1"></div>
+          <label for="plan" class="col-sm-4 control-label padding-top">Climate Plan</label>
+          <div class="col-sm-4">
+            <select id="plan" name="user[plan]" class="form-control input-sm">
+              <% (2...30).each do |i| %>
+                <% if i == @plan.to_i %>
+                  <option value="<%= i %>" selected=1>$<%= i %>/month</option>
+                <% else %>
+                  <option value="<%= i %>">$<%= i %>/month</option>
+                <% end %>
+              <% end %>
+            </select>
+
+          </div>
+        </div>

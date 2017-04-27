@@ -2,7 +2,37 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+  def generate_plan_id plan
+    "climate_offset_" + plan.to_s + "_monthly"
+  end
 
+  def generate_plan_name plan
+    "Climate Offset " + plan.to_s + " Monthly"
+  end
+
+  def get_stripe_plan plan
+    
+    plan_id = generate_plan_id plan
+    plan_name = generate_plan_name plan
+
+    begin
+        stripe_plan = Stripe::Plan.retrieve(plan_id)
+    rescue      
+      begin 
+        stripe_plan = Stripe::Plan.create(
+          :name => plan_name,
+          :id => plan_id,
+          :interval => "month",
+          :currency => "usd",
+          :amount => plan.to_s + "00"
+        )
+      rescue
+        flash[:error] = e.message
+        redirect_to new_subscrition_path
+      end
+    end
+    stripe_plan
+  end
 
   # GET /resource/sign_up
   def new
@@ -20,15 +50,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
 
     super
-    
-    require "stripe"
 
     @plan = params[:user][:plan] || 5
 
     begin
-      
-      plan_id = "climate_offset_" + @plan.to_s + "_monthly"
-      plan_name = "Climate Offset " + @plan.to_s + " Monthly"
 
       customer = Stripe::Customer.create(
           :email => params[:user][:email],
@@ -37,23 +62,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
       User.where(email: params[:user][:email]).update_all(stripe_customer_id: customer.id)
 
-      begin
-        plan = Stripe::Plan.retrieve(plan_id)
-      rescue
-        
-        begin 
-          plan = Stripe::Plan.create(
-            :name => plan_name,
-            :id => plan_id,
-            :interval => "month",
-            :currency => "usd",
-            :amount => @plan.to_s + "00"
-          )
-        rescue
-          flash[:error] = e.message
-            redirect_to new_subscrition_path
-          end
-      end
+      plan = get_stripe_plan @plan
 
       Stripe::Subscription.create(
         :customer => customer.id,
@@ -68,12 +77,30 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+    @plan = customer["subscriptions"]["data"][0]["plan"]["amount"] / 100
+    super
+  end
 
   # PUT /resource
   def update
+
+    @plan = params[:user][:plan]
+
+    if !@plan.nil?
+
+      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+      current_plan = customer["subscriptions"]["data"][0]["plan"]["amount"] / 100
+
+      if @plan != current_plan
+        subscription = Stripe::Subscription.retrieve(customer["subscriptions"]["data"][0]["id"])
+        stripe_plan = get_stripe_plan @plan
+        subscription.plan = stripe_plan["id"]
+        subscription.save
+      end
+    end
+
     if !params[:user][:country].nil? && params[:user][:country] == ""
       params[:user][:country] = nil
     end
