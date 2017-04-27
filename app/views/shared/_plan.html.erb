@@ -4,6 +4,13 @@
           <label for="plan" class="col-sm-4 control-label padding-top">Climate Plan</label>
           <div class="col-sm-4">
             <select id="plan" name="user[plan]" class="form-control input-sm">
+              <% if action_name == "edit" %>
+                <% if @plan == "canceled" %>
+                  <option value="" selected=1>-</option>
+                <% else %>
+                  <option value="cancel">cancel climate plan</option>
+                <% end %>
+              <% end %>
               <% (2...30).each do |i| %>
                 <% if i == @plan.to_i %>
                   <option value="<%= i %>" selected=1>$<%= i %>/month</option>
@@ -12,6 +19,5 @@
                 <% end %>
               <% end %>
             </select>
-
           </div>
         </div>

@@ -79,7 +79,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-    @plan = customer["subscriptions"]["data"][0]["plan"]["amount"] / 100
+    if customer["subscriptions"]["total_count"] == 0
+      @plan = "canceled"
+    else 
+      @plan = customer["subscriptions"]["data"][0]["plan"]["amount"] / 100
+    end
+
     super
   end
 
@@ -91,13 +96,29 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if !@plan.nil?
 
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-      current_plan = customer["subscriptions"]["data"][0]["plan"]["amount"] / 100
 
-      if @plan != current_plan
+      if @plan == "cancel"  
         subscription = Stripe::Subscription.retrieve(customer["subscriptions"]["data"][0]["id"])
-        stripe_plan = get_stripe_plan @plan
-        subscription.plan = stripe_plan["id"]
-        subscription.save
+        subscription.delete
+      else 
+
+        if customer["subscriptions"]["total_count"] == 0 && @plan.to_i > 1
+          plan = get_stripe_plan @plan
+
+          Stripe::Subscription.create(
+            :customer => customer.id,
+            :plan => plan.id,
+          )
+        else
+          current_plan = customer["subscriptions"]["data"][0]["plan"]["amount"] / 100
+
+          if @plan != current_plan
+            subscription = Stripe::Subscription.retrieve(customer["subscriptions"]["data"][0]["id"])
+            stripe_plan = get_stripe_plan @plan
+            subscription.plan = stripe_plan["id"]
+            subscription.save
+          end
+        end
       end
     end
 
