@@ -98,16 +98,31 @@
             
             <div class="row stats">
                 <div class="col-md-12">
-                  <p>Total carbon offset by all users:</p> 
+                  <p>Total carbon offset by GoClimateNeutral.org:</p> 
                   <h1><%= @total_carbon_offset %> tonnes CO2</h1>
+                  <p>Thank you so much everyone for helping to save the world! You Rock!</p> 
                 </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="site-wrapper-inner site-wrapper-second">
+        <div class="cover-container">
+          <div class="inner cover">
+            <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+            
             <div class="row stats">
                 <div class="col-md-12">
-                    <h3>Latest Carbon Offset Projects</h3>
+                    <h1>Latest Carbon Offset Projects</h1>
                     <% @projects.each do |project| %>
+                      <h3><a href ="<%= project.blog_url %>"><%= project.name %></a></h3>
                       <div><%= image_tag project.image_url, size: "150" %></div>
-                      <div>- <a href ="<%= project.blog_url %>"><%= project.name %></a> - <%= project.carbon_offset %> tonnes CO2</div>  
+                      <p>Offset: <%= project.carbon_offset %> tonnes CO2
+                      <br>Country: <%= project.country %>
+                      <br>Location: <a href="https://www.google.com/maps/preview/@<%= project.latitude %>,<%= project.longitude %>,8z" target="_blank"><%= project.latitude %>,<%= project.longitude %></a>
+                      <br><a href="<%= project.link %>">More info on UN site</a></p>
                     <% end %>
                 </div>
             </div>
