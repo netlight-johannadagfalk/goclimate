@@ -21,7 +21,7 @@
 a,
 a:focus,
 a:hover {
-  color: #fff;
+  color: #333;
 }
 
 /* Custom default button */
@@ -44,9 +44,9 @@ body {
   background-color: #333;
 }
 body {
-  color: #fff;
+  color: #444444;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  font-family: 'Raleway', sans-serif;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -90,8 +90,8 @@ body {
   padding-left: 0;
   font-size: 16px;
   font-weight: bold;
-  color: #fff; /* IE8 proofing */
-  color: rgba(255,255,255,.75);
+  color: #444444; /* IE8 proofing */
+  color: rgba(68, 68, 68, 0.75);
   border-bottom: 2px solid transparent;
 }
 .masthead-nav > li > a:hover,
@@ -103,8 +103,8 @@ body {
 .masthead-nav > .active > a,
 .masthead-nav > .active > a:hover,
 .masthead-nav > .active > a:focus {
-  color: #fff;
-  border-bottom-color: #fff;
+  color: #444444;
+  border-bottom-color: #444444;
 }
 
 @media (min-width: 768px) {
@@ -169,6 +169,8 @@ body {
 
 p {
     line-height: 200%;
+    margin: 0 auto;
+    max-width: 600px;
 }
 hr {
     margin: 60px;
@@ -197,23 +199,26 @@ input {
         margin-top: -70px;
     }
 }
+.solo-inner-wrapper .cover {
+  padding: 110px 20px;
+}
 .site-wrapper-first {
-  background-image: image-url("background7.jpg");
+  background-image: image-url("background-illustrated.png");
   background-repeat:no-repeat;
   background-size: cover;
   background-position:center;
 }
-.site-wrapper-third {
-  background-image: image-url("background4.jpg");
+.site-wrapper-second {
+  background-color: #fff;
   background-repeat:no-repeat;
   background-size: cover; 
   background-position:center;
 }
-.site-wrapper-fifth {
-    background-image: image-url("background9.jpg");
-    background-repeat:no-repeat;
-    background-size: cover; 
-    background-position:center;
+.site-wrapper-third, .site-wrapper-fifth{
+  background-color: #f7f5e8;
+  background-repeat:no-repeat;
+  background-size: cover; 
+  background-position:center;
 }
 .plan {
   padding-top: 50px;
@@ -320,7 +325,7 @@ p.lead.last {
         margin-top: 20px;
     }
     .site-wrapper .site-wrapper-first {
-        background-image: image-url("background9.jpg");
+        background-image: image-url("background-illustrated.png");
     }
 }
 .masthead {
