@@ -131,16 +131,6 @@ body {
 
 
 /*
- * Footer
- */
-
-.mastfoot {
-  color: #999; /* IE8 proofing */
-  color: rgba(255,255,255,.5);
-}
-
-
-/*
  * Affix and center
  */
 
@@ -172,7 +162,7 @@ p {
     margin: 0 auto;
     max-width: 600px;
 }
-p.lead-btn, p.alert, p.warning, p.info {
+p.lead-btn, p.alert, p.warning, p.info, p.notice {
    max-width: none;
 }
 hr {
@@ -199,7 +189,8 @@ input {
         height: 100%;
     }
     .mastfoot {
-        margin-top: -70px;
+        margin-top: -58px;
+        background-color: transparent;
     }
 }
 .solo-inner-wrapper .cover {
@@ -228,7 +219,11 @@ input {
   color: black;
 }
 .form {
-    padding: 3.5px;
+  padding: 3.5px;
+}
+.form-tonnes {
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 .checkbox {
     text-align: left;
@@ -337,7 +332,7 @@ p.lead.last {
 }
 .mastfoot {
     position: relative;
-    margin-top: 60px;
+    background-color: #f7f5e8;
 }
 .mastfoot .inner {
     padding: 15px;
@@ -423,7 +418,7 @@ p.lead.last {
     }
     p {
         font-size: 50px;  
-        max-width: 800px;
+        max-width: 1200px;
     }
     address {
         font-size: 60px;
