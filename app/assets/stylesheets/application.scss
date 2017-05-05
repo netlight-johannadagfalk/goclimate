@@ -172,7 +172,7 @@ p {
     margin: 0 auto;
     max-width: 600px;
 }
-p.lead-btn {
+p.lead-btn, p.alert, p.warning, p.info {
    max-width: none;
 }
 hr {
@@ -203,7 +203,7 @@ input {
     }
 }
 .solo-inner-wrapper .cover {
-  padding: 110px 20px;
+  padding: 0px 20px;
 }
 .site-wrapper-first {
   background-image: image-url("background-illustrated.png");
@@ -255,6 +255,7 @@ input {
 .glyphicon {
     padding-top: 50px;
     font-size: 150px;
+    color: #cedfcf;
 }
 .form-horizontal {
     margin-top: 40px;
