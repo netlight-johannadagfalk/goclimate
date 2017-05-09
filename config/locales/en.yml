@@ -1,33 +1,22 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  goclimateneutral_org: GoClimateNeutral.org
+  welcome_to_a_climate_neutral_life: Welcome to a Climate Neutral Life!
+  climate_change_is_the_greatest_challange: Climate change is the greatest challenge of our time. Together we have a chance to give our children the future on this planet that they deserve. But we have to act now.
+  log_in: Log in
+  log_out: Log out
+  settings: Settings
+  go_climate_neutral_now: Go Climate Neutral Now!
+  contact_us: Contact us
+  about_us: About us
+  blog: Blog
+  go_climate_neutral: Go Climate Neutral!
+  section_1_text: By each month investing in the UN certified climate offset projects that has the most positive impact for the environment for you - with a sum that corresponds to your lifestyle - we can help you offset your climate footprint. This way you can live an as climate neutural life as possible over time.
+  its_fun_to_do_it_together: It's fun to do it together!
+  section_2_text: By offseting your climate impact with us, you inspire others to do the same. Climate change is a challange we face together, so we should fight it together as well. And it's fun seeing the impact we can make together and follow the process over time.
+  we_are_100_transparent: We are 100% transparent
+  section_3_text: We are 100% transparent in which UN certified climate offset projects we invest in, and why. We are also 100% transparent with the amount corbon we manage to offset with your help, and how much carbon we manage to offset with the help of all of our users.
+  we_are_975_effective: We are 97.5% effective
+  section_4_text: 97.5% of what you offset for goes directly to the most effective UN certified climate reducing projects we can find. The other 2.5% goes to covering our costs and for marketing to get even more people to live a more climate neutral life. This is excluding any credit card fees that may apply depending on which country you live in.
+  start_by_choosing_plan: Start by choosing a climate offset plan
+  section_5_text: Whats your climate impact? Let us help you offset your climate impact by choosing a climate offset plan that corresponds most to your lifestyle below.
+
