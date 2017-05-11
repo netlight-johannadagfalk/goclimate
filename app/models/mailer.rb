@@ -4,27 +4,27 @@ class Mailer
   include SendGrid
   require 'json'
 
-  def send_one_more_month_email
+  def send_one_more_month_email user
+
+    user = User.find_by_email "kalle@nilver.se"
+    climate_neutral_months = StripeEvent.charges(user).count
+    total_carbon_offset = Project.all.sum("carbon_offset")
 
     mail = Mail.new
     mail.from = Email.new(email: 'info@goclimateneutral.org', name: 'GoClimateNeutral.org')
-    mail.subject = 'One More Month Climate Neutral'
+    mail.subject = "Thank you! You're the best!"
 
     personalization = Personalization.new
-    personalization.to = Email.new(email: 'kalle@nilver.se')
-    personalization.subject = '2 Climate Neutral Months! Yey!'
+    personalization.to = Email.new(email: user.email)
+    personalization.subject = "Thank you! You're the best!"
     personalization.headers = Header.new(key: 'X-Test', value: 'True')
     personalization.headers = Header.new(key: 'X-Mock', value: 'False')
-    personalization.substitutions = Substitution.new(key: '%months%', value: '2')
+    personalization.substitutions = Substitution.new(key: '%months%', value: climate_neutral_months.to_s)
+    personalization.substitutions = Substitution.new(key: '%tonnes%', value: total_carbon_offset.to_s)
     mail.personalizations = personalization
 
     mail.template_id = '3401db51-a0df-4dd2-8f9c-d3dfd3c64430'
 
-
-    mail.sections = Section.new(key: '%body%', value: '2 months!')
-
-    mail.headers = Header.new(key: 'X-Test3', value: 'test3')
-    mail.headers = Header.new(key: 'X-Test4', value: 'test4')
 
     mail.reply_to = Email.new(email: 'info@goclimateneutral.org')
 
