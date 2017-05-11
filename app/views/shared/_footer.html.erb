@@ -1,7 +1,11 @@
   <div class="mastfoot">
     <div class="inner">
-      <p><%= link_to I18n.t('about_us'), '/about' %> | 
-      <%= link_to I18n.t('contact_us'), '/contact' %> |
-      <a href="https://www.goclimateneutral.org/blog/"><%=t 'blog' %></a></p>
+      <p>
+	      <%= link_to t('about_us'), '/about' %> | 
+	      <%= link_to t('contact_us'), '/contact' %> |
+	      <a href="https://www.goclimateneutral.org/blog/"><%=t 'blog' %></a> |
+	      <%= link_to t('other_language'), t('other_language_site') %>
+      </p>
+
     </div>
   </div>
