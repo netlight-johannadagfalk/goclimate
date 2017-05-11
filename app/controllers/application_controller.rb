@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
  
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
-    if (request.host.include?("levklimatneutralt") || request.host.include?("localhost"))
-      I18n.locale = :sv
+    if request.host.include? "en.goclimateneutral.org"
+      I18n.locale = :en
     end
   end
 
