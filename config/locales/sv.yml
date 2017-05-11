@@ -19,3 +19,49 @@ sv:
   section_4_text: 97.5% av det du kompenserar går direkt till det mest effektiva FN-certifierade klimatprojektet som vi kan hitta. De andra 2.5% går till att täcka våra kostnader och till marknadsföring för att försöka få fler att leva klimatneutrala liv. Obs att detta är exklusive eventuella kreditkortsavgitfter som kan variera beroende på korttyp.
   start_by_choosing_plan: Börja med att beskriva din klimatpåverkan
   section_5_text: Vad har du för klimatpåverkan? Välj ett alternativ nedan eller knappa in en anpassad variant som passar dig.
+  vegan: Vegan
+  no_car: Ingen bil
+  hardly_ever_flies: Flyger nästan aldrig
+  mini_impact_plan: Mini
+  small_impact_plan: Liten
+  custom_impact_plan: Anpassad
+  mostly_vegetarian: Nästan vegetarian
+  one_fuel_efficient_car: En bränslesnål bil
+  flies_sometimes: Flyger ibland
+  this_is_me: Låter som mig!
+  yep_me: Ja, jag!
+  vegetarian: Vegetarian
+  sometimes_vegetarian: Ibland vegetarian
+  meat_eater: Köttätare
+  no_car: Ingen bil
+  fuel_efficient_seldom_drives: Bränslesnål bil, kör lite
+  fuel_efficient_car_drives_often: Bränslesnål bil, kör mycket
+  normal_car_seldom_drives: Normal bil, kör lite
+  normal_car_drives_often: Normal bil, kör ofta
+  suv_seldom_drives: SUV, kör lite
+  suv_drives_often: SUV, kör ofta
+  never_flies: Flyger aldrig
+  flies_short_distance_time_year: Flyger kortare distanser %{times} ggr/år
+  flies_long_distance_time_year: Flyger längre distanser %{times} ggr/år
+  thats_it: Nu så!
+  read_more_how_we_calculate_offset_plans_html: Läs mer om hur vi räknar ut våra kompensationsplaner %{href}.
+  here: här
+  read_more_about_how_we_choose_climet_projects_html: Läs mer om hur vi väljer vilka klimatprojekt vi investerar i %{href}.
+  but_i_want_to_enter_more_details: Men.. jag vill räkna mer detaljerat på mitt klimatavtryck!
+  calculating_your_exact_footprint_html: Att beräkna ett exakt klimatavtryck är väldigt svårt - mycket svårare än att bara välja ett alternativ här ovan - och kräver att man skriver in stora mängder data i komplicerade formulär. Man behöver skriva in och beräkna hur långt du rör dig varje och med vilka transportmedel, detaljer om vad du äter och vart maten kommer ifrån, och energispecifikationer från din bostad och ditt jobb. Men även om vi tycker att alternativen ovan är en rätt bra uppskattning, så finns även möjligheten använda %{href} och sen skriva in en exakt siffra här
+  lots_of_advanced_calculators_out_there: en av många klimatkalkylatorer där ute
+  tonnes_co2_per_year: ton CO2/år
+  sign_up_for_a_climate_neutral_life: Här börjar ditt klimatneutrala liv!
+  sign_up_here_to_start_livint_a_climate_neutral_life: Skriv in dina uppgifter nedan för att börja leva ett klimatneutralt liv.
+  email: E-post
+  password: Lösenord
+  credit_or_debit_card: Kortuppgifter
+  climate_plan: Kompensation
+  go_climate_neutral: Jag vill rädda världen!
+  log_in_to_see_how_we_are_doing: Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Logga in för att se hur det går i vår kamp med att försöka ställa klimatet till rätta igen - och därmed rädda världen.
+  you_have_lived_climate_neutral_for_one_month: Du har levt ett klimatneutralt liv i %{months} månad. Bra jobbat!
+  you_have_lived_climate_neutral_for_more_months: Du har levt ett klimatneutralt liv i %{months} månader. Bra jobbat!
+  number_of_months_you_have_been_climate_neutral: Antal månader som du har levt ett klimatneutralt liv
+  you_climate_offset_investments: Du har klimatkompenserat för
+  number_of_climate_neutral_months_for_all_users: Antal klimatneutrala månader för alla användare totalt
+

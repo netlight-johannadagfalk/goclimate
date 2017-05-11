@@ -6,17 +6,23 @@
 
           <div class="inner cover">
               <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-              <h3 class="cover-heading">You have lived climate neutral for <%= @my_neutral_months %> month. Good Job!</h3>
+              <h3 class="cover-heading">
+                <% if @my_neutral_months == 1 %>
+                  <%=t 'you_have_lived_climate_neutral_for_one_month', months: @my_neutral_months %>
+                <% else %>
+                  <%=t 'you_have_lived_climate_neutral_for_more_months', months: @my_neutral_months %>
+                <% end %>
+              e</h3>
 
 
                   <div class="row stats">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
-                      <p>Number of months you have been climate neutral:</p> 
+                      <p><%=t 'number_of_months_you_have_been_climate_neutral' %>:</p> 
                       <h1><%= @my_neutral_months %></h1>
                     </div>
                     <div class="col-md-4">
-                      <p>Your climate offset investments:</p> 
+                      <p><%=t 'you_climate_offset_investments' %>:</p>
                       <h1>$<%= @my_amount_invested %></h1>
                     </div>
                     <div class="col-md-2"></div>
@@ -25,7 +31,7 @@
                   <div class="row stats">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
-                      <p>Number of climate neutral months for all users:</p> 
+                      <p><%=t 'number_of_climate_neutral_months_for_all_users' %>:</p> 
                       <h1><%= @total_climate_neutral_months %></h1>
                     </div>
                     <div class="col-md-4">

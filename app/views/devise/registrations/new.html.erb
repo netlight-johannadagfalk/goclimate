@@ -8,10 +8,10 @@
 
 
       <div class="inner cover">
-      <h1 class="cover-heading">Sign up for a Climate Neutral Life</h1>
+      <h1 class="cover-heading"><%=t 'sign_up_for_a_climate_neutral_life' %></h1>
       <span class="glyphicon glyphicon glyphicon-hand-down" aria-hidden="true"></span>
 
-      <p class="lead">Sign up here to start living a climate neutral life.</p>
+      <p class="lead"><%=t 'sign_up_here_to_start_livint_a_climate_neutral_life' %></p>
       
       <% if flash[:error].present? %>
         <div id="error_explanation">
@@ -26,7 +26,7 @@
 
         <div class="form-group">
           <div class="col-sm-1"></div>
-          <label for="email" class="col-sm-4 control-label padding-top">Email</label>
+          <label for="email" class="col-sm-4 control-label padding-top"><%=t 'email' %></label>
           <div class="col-sm-4">
             <%= f.email_field :email, autofocus: true, id: "email", class: "form-control" %>
           </div>
@@ -34,7 +34,7 @@
    
         <div class="form-group">
           <div class="col-sm-1"></div>
-          <label for="password" class="col-sm-4 control-label padding-top">Password</label>
+          <label for="password" class="col-sm-4 control-label padding-top"><%=t 'password' %></label>
           <div class="col-sm-4">
           <%= f.password_field :password, autocomplete: "off", id: "password", class: "form-control" %>
           </div>
@@ -44,7 +44,7 @@
 
         <div class="form-group">
           <div class="col-sm-1"></div>
-          <label for="card-element" class="col-sm-4 control-label">Credit or debit card</label>
+          <label for="card-element" class="col-sm-4 control-label"><%=t 'credit_or_debit_card' %></label>
           <div id="card-element" class="col-sm-4 form-control">
           <!-- a Stripe Element will be inserted here. -->
           </div>
@@ -57,7 +57,7 @@
         <div class="form-group">
           <div class="col-sm-2"></div>
           <div class="col-sm-offset-3 col-sm-3">
-          <button type="submit" class="btn btn-success">Go Climate Neutral!</button>
+          <button type="submit" class="btn btn-success"><%=t 'go_climate_neutral' %></button>
           </div>
         </div>
 

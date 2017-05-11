@@ -60,7 +60,7 @@
                       <div class="panel panel-success">
                           <div class="panel-heading">
                               <h3 class="panel-title">
-                                  Mini Impact Plan</h3>
+                                  <%=t 'mini_impact_plan' %></h3>
                           </div>
                           <div class="panel-body">
                               <div class="the-price">
@@ -70,23 +70,23 @@
                               <table class="table">
                                   <tr>
                                       <td>
-                                          Vegan
+                                          <%=t 'vegan' %> 
                                       </td>
                                   </tr>
                                   <tr class="active">
                                       <td>
-                                          No car
+                                          <%=t 'no_car' %>
                                       </td>
                                   </tr>
                                   <tr>
                                       <td>
-                                          Hardly ever flies
+                                          <%=t 'hardly_ever_flies' %>
                                       </td>
                                   </tr>
                               </table>
                           </div>
                           <div class="panel-footer">
-                              <a href="<%= new_registration_path(:user) %>?plan=4" class="btn btn-success" role="button">This is me!</a>
+                              <a href="<%= new_registration_path(:user) %>?plan=4" class="btn btn-success" role="button"><%=t 'this_is_me' %></a>
                           </div>
                       </div>
                   </div>
@@ -94,7 +94,7 @@
                       <div class="panel panel-success">
                           <div class="panel-heading">
                               <h3 class="panel-title">
-                                  Small Impact Plan</h3>
+                                  <%=t 'small_impact_plan' %></h3>
                           </div>
                           <div class="panel-body">
                               <div class="the-price">
@@ -104,23 +104,23 @@
                               <table class="table">
                                   <tr>
                                       <td>
-                                          Mostly Vegetarian
+                                          <%=t 'mostly_vegetarian' %>
                                       </td>
                                   </tr>
                                   <tr class="active">
                                       <td>
-                                          One fuel efficient car
+                                          <%=t 'one_fuel_efficient_car' %>
                                       </td>
                                   </tr>
                                   <tr>
                                       <td>
-                                          Flies sometimes
+                                          <%=t 'flies_sometimes' %>
                                       </td>
                                   </tr>
                               </table>
                           </div>
                           <div class="panel-footer">
-                              <a href="<%= new_registration_path(:user) %>?plan=7" class="btn btn-success" role="button">Yep, me!</a>
+                              <a href="<%= new_registration_path(:user) %>?plan=7" class="btn btn-success" role="button"><%=t 'yep_me' %></a>
                           </div>
                       </div>
                   </div>
@@ -129,7 +129,7 @@
                       <div class="panel panel-success">
                           <div class="panel-heading">
                               <h3 class="panel-title">
-                                  Custom Plan</h3>
+                                  <%=t 'custom_impact_plan' %></h3>
                           </div>
                           <div class="panel-body">
                               <div class="the-price">
@@ -140,54 +140,54 @@
                                   <tr>
                                       <td class="form select">
                                           <select id="food" class="form-control input-sm">
-                                            <option value="1">Vegan</option>
-                                            <option value="1.5">Vegetarian</option>
-                                            <option value="2">Mostly Vegetarian</option>
-                                            <option value="3">Sometimes Vegetarian</option>
-                                            <option value="4">Meat Eater</option>
+                                            <option value="1"><%=t 'vegan' %></option>
+                                            <option value="1.5"><%=t 'vegetarian' %></option>
+                                            <option value="2"><%=t 'mostly_vegetarian' %></option>
+                                            <option value="3"><%=t 'sometimes_vegetarian' %></option>
+                                            <option value="4"><%=t 'meat_eater' %></option>
                                           </select>
                                       </td>
                                   </tr>
                                   <tr class="active">
                                       <td class="form select">
                                           <select id="car" class="form-control input-sm">
-                                            <option value="0">No Car</option>
-                                            <option value="2">Fuel efficient car, seldom drives</option>
-                                            <option value="3">Fuel efficient car, drives often</option>
-                                            <option value="3">Normal car, seldom drives</option>
-                                            <option value="5">Normal car, drives often</option>
-                                            <option value="4">SUV, seldom drives</option>
-                                            <option value="6">SUV, drives often</option>
+                                            <option value="0"><%=t 'no_car' %></option>
+                                            <option value="2"><%=t 'fuel_efficient_seldom_drives' %></option>
+                                            <option value="3"><%=t 'fuel_efficient_car_drives_often' %></option>
+                                            <option value="3"><%=t 'normal_car_seldom_drives' %></option>
+                                            <option value="5"><%=t 'normal_car_drives_often' %></option>
+                                            <option value="4"><%=t 'suv_seldom_drives' %></option>
+                                            <option value="6"><%=t 'suv_drives_often' %></option>
                                           </select>
                                       </td>
                                   </tr>
                                   <tr>
                                       <td class="form select">
                                           <select id="flight" class="form-control input-sm">
-                                            <option value="0">Never flies</option>
-                                            <option value="1">Flies short distance 1 time/year</option>
-                                            <option value="2">Flies short distance 2 times/year</option>
-                                            <option value="3">Flies short distance 3 times/year</option>
-                                            <option value="6">Flies short distance 6 times/year</option>
-                                            <option value="12">Flies short distance 12 times/year</option>
-                                            <option value="2">Flies long distance 1 time/year</option>
-                                            <option value="4">Flies long distance 2 times/year</option>
-                                            <option value="6">Flies long distance 3 times/year</option>
-                                            <option value="12">Flies long distance 6 times/year</option>
-                                            <option value="24">Flies long distance 12 times/year</option>
+                                            <option value="0"><%=t 'never_flies' %></option>
+                                            <option value="1"><%=t 'flies_short_distance_time_year', times: 1 %></option>
+                                            <option value="2"><%=t 'flies_short_distance_time_year', times: 2 %></option>
+                                            <option value="3"><%=t 'flies_short_distance_time_year', times: 3 %></option>
+                                            <option value="6"><%=t 'flies_short_distance_time_year', times: 6 %></option>
+                                            <option value="12"><%=t 'flies_short_distance_time_year', times: 12 %></option>
+                                            <option value="2"><%=t 'flies_long_distance_time_year', times: 1 %></option>
+                                            <option value="4"><%=t 'flies_long_distance_time_year', times: 2 %></option>
+                                            <option value="6"><%=t 'flies_long_distance_time_year', times: 3 %></option>
+                                            <option value="12"><%=t 'flies_long_distance_time_year', times: 6 %></option>
+                                            <option value="24"><%=t 'flies_long_distance_time_year', times: 12 %></option>
                                           </select>
                                       </td>
                                   </tr>
                               </table>
                           </div>
                           <div class="panel-footer">
-                              <a id="custom-plan" href="<%= new_registration_path(:user) %>?plan=5" class="btn btn-success" role="button">That's it!</a></div>
+                              <a id="custom-plan" href="<%= new_registration_path(:user) %>?plan=5" class="btn btn-success" role="button"><%=t 'thats_it' %></a></div>
                       </div>
                   </div>
               </div>
           </div>
           <p class="lead"></p>
-          <p class="lead last">Read more on how we calculate the offset plans <b><a href="https://www.goclimateneutral.org/blog/how-calculate-the-offset-plans/">here</a></b>. Read more about how we choose what climate projects to invest in <b><a href="https://www.goclimateneutral.org/blog/what-climate-projects-we-invest-in/">here</a></b>.</p>
+          <p class="lead last"><%=t 'read_more_how_we_calculate_offset_plans_html', href: link_to(t('here'), 'https://www.goclimateneutral.org/blog/how-calculate-the-offset-plans/') %> <%=t 'read_more_about_how_we_choose_climet_projects_html', href: link_to(t('here'), 'https://www.goclimateneutral.org/blog/what-climate-projects-we-invest-in/') %></p>
 
           </div>
         </div>
@@ -197,13 +197,13 @@
         <div class="cover-container">
           <div class="inner cover">
             <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-            <h1 class="cover-heading">But.. I want to enter more details?</h1>
-            <p class="lead">Calculating your exact climate footprint is a lot more complicated than by just choosing one of the plans above. You need tons of data, about what you eat, where you go and how you live. But the above plans are a good estimate and you don't have to worry that they are not covering for your climate footprint. But if you want to be more detailed, there's actually <b><a href="https://www.google.se/?gfe_rd=cr&ei=IVb0WOOHLIfEYOmlqNAI#q=climate+calculator">lots of advanced calculators out there</a></b>, so if you want to, you can try one and then enter your yearly carbon footprint here:</p>
+            <h1 class="cover-heading"><%=t 'but_i_want_to_enter_more_details' %></h1>
+            <p class="lead"><%=t 'calculating_your_exact_footprint_html', href: link_to(t('lots_of_advanced_calculators_out_there'), 'https://www.google.se/?gfe_rd=cr&ei=IVb0WOOHLIfEYOmlqNAI#q=climate+calculator') %>:</p>
             <form class="form-inline form-tonnes" method="GET" action="<%= new_registration_path(:user) %>">
               <div class="form-group">
                 <input type="text" class="form-control small_number" id="plan" name="tonnes_co2" placeholder="15" value="15">
               </div>
-              <button type="submit" class="btn btn-success">tonnes CO2/year</button>
+              <button type="submit" class="btn btn-success"><%=t 'tonnes_co2_per_year' %></button>
             </form>
 
           </div>

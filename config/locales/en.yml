@@ -19,4 +19,48 @@ en:
   section_4_text: 97.5% of what you offset for goes directly to the most effective UN certified climate reducing projects we can find. The other 2.5% goes to covering our costs and for marketing to get even more people to live a more climate neutral life. This is excluding any credit card fees that may apply depending on which country you live in.
   start_by_choosing_plan: Start by choosing a climate offset plan
   section_5_text: Whats your climate impact? Let us help you offset your climate impact by choosing a climate offset plan that corresponds most to your lifestyle below.
-
+  vegan: Vegan
+  no_car: No car
+  hardly_ever_flies: Hardly ever flies
+  mini_impact_plan: Mini Impact Plan
+  small_impact_plan: Small Impact Plan
+  custom_impact_plan: Custom Plan
+  mostly_vegetarian: Mostly Vegetarian
+  one_fuel_efficient_car: One Fuel Efficient Car
+  flies_sometimes: Flies Sometimes
+  this_is_me: This is me!
+  yep_me: Yep, me!
+  vegetarian: Vegetarian
+  sometimes_vegetarian: Sometimes Vegetarian
+  meat_eater: Meat Eater
+  no_car: No Car
+  fuel_efficient_seldom_drives: Fuel efficient car, seldom drives
+  fuel_efficient_car_drives_often: Fuel efficient car, drives often
+  normal_car_seldom_drives: Normal car, seldom drives
+  normal_car_drives_often: Normal car, drives often
+  suv_seldom_drives: SUV, seldom drives
+  suv_drives_often: SUV, drives often
+  never_flies: Never flies
+  flies_short_distance_time_year: Flies short distance %{times} time/year
+  flies_long_distance_time_year: Flies long distance %{times} time/year
+  thats_it: That's it!
+  read_more_how_we_calculate_offset_plans_html: Read more on how we calculate the offset plans %{href}.
+  here: here
+  read_more_about_how_we_choose_climet_projects_html: Read more about how we choose what climate projects to invest in %{href}
+  but_i_want_to_enter_more_details: But.. I want to enter more details?
+  calculating_your_exact_footprint_html: "Calculating your exact climate footprint is a lot more complicated than by just choosing one of the plans above. You need tons of data, about what you eat, where you go and how you live. But the above plans are a good estimate and you don't have to worry that they are not covering for your climate footprint. But if you want to be more detailed, there's actually %{href}, so if you want to, you can try one and then enter your yearly carbon footprint here"
+  lots_of_advanced_calculators_out_there: lots of advanced calculators out there
+  tonnes_co2_per_year: tonnes CO2/year
+  sign_up_for_a_climate_neutral_life: Sign up for a Climate Neutral Life
+  sign_up_here_to_start_livint_a_climate_neutral_life: Sign up here to start living a climate neutral life.
+  email: Email
+  password: Password
+  credit_or_debit_card: Credit or debit card
+  climate_plan: Climate Plan
+  go_climate_neutral: Go Climate Neutral!
+  log_in_to_see_how_we_are_doing: Climate Change is the biggest challenge of our time. Log in to see how we are doing in our fight against it.
+  you_have_lived_climate_neutral_for_one_month: You have lived climate neutral for %{months} month. Good Job!
+  you_have_lived_climate_neutral_for_more_months: You have lived climate neutral for %{months} months. Good Job!
+  number_of_months_you_have_been_climate_neutral: Number of months you have been climate neutral
+  you_climate_offset_investments: Your climate offset investments
+  number_of_climate_neutral_months_for_all_users: Number of climate neutral months for all users

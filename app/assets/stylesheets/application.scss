@@ -307,6 +307,9 @@ input#plan {
 p.lead.last {
     padding-bottom: 60px;
 }
+p.lead a {
+  font-weight: bold;
+}
 .registrations-edit {
     .form-group input { 
         text-align: left; 
