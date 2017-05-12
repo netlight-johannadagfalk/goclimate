@@ -24,17 +24,19 @@ class StripeEvent < ApplicationRecord
       puts e.data.object.object
       event_object = e.data.object
       if event_object.object == "charge" && StripeEvent.where(stripe_event_id: event_object.id).empty?
-        StripeEvent.create( 
-          stripe_event_id: event_object.id,
-          stripe_customer_id: event_object.customer, 
-          stripe_object: event_object.object,
-          stripe_amount: event_object.amount,
-          stripe_created: event_object.created
-        )
-        # u = User.find_by_stripe_customer_id event_object.customer
-        # Mailer.new.send_one_more_month_email u
-        u = User.find_by_email "kalle@nilver.se"
-        Mailer.new.send_one_more_month_email u
+        if !User.find_by_stripe_customer_id(event_object.customer).nil?
+          StripeEvent.create( 
+            stripe_event_id: event_object.id,
+            stripe_customer_id: event_object.customer, 
+            stripe_object: event_object.object,
+            stripe_amount: event_object.amount,
+            stripe_created: event_object.created
+          )
+          # u = User.find_by_stripe_customer_id event_object.customer
+          # Mailer.new.send_one_more_month_email u
+          u = User.find_by_email "kalle@nilver.se"
+          Mailer.new.send_one_more_month_email u
+        end
       end
     end
   end
