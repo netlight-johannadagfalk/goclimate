@@ -1,7 +1,12 @@
           <div class="masthead clearfix">
             <div class="inner">
+            <% if controller_name == "welcome" && action_name == "index" %>
               <h4 class="masthead-brand"><a href="/#this_is_how_it_works"><%=t 'why_goclimateneutral_head' %></a></h4>
-              <h4 class="masthead-brand"><a href="/#why_goclimateneutral"><%=t 'how_it_works_head' %></a></h4>
+              <h4 class="masthead-brand second"><a href="/#why_goclimateneutral"><%=t 'how_it_works_head' %></a></h4>
+            <% else %> 
+              <h4 class="masthead-brand"><a href="/">GOCLIMATENEUTRAL.ORG</a></h4>
+            <% end %>
+
 
               <nav>
                 <ul class="nav masthead-nav">

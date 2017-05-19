@@ -94,9 +94,7 @@ body {
   padding-right: 0;
   padding-left: 0;
   font-size: 14px;
-  font-weight: bold;
-  color: #444444; /* IE8 proofing */
-  color: rgba(68, 68, 68, 0.75);
+  color: #7b8d7d;
   border-bottom: 2px solid transparent;
 }
 .masthead-nav > li > a:hover,
@@ -249,10 +247,13 @@ input {
   padding-top: 30px;
     padding-bottom: 50px;
 }
+.welcome-index .site-wrapper-third {
+  padding-top: 75px;
+}
 .glyphicon {
     padding-top: 25px;
     font-size: 150px;
-    color: #cedfcf;
+    color: #bbd2bd;
 }
 .glyphicon.steps {
   font-size: 100px;
@@ -405,8 +406,20 @@ p.lead a {
     .masthead-nav li a {
         font-size: 40px;   
     }
+    h4.masthead-brand a {
+      font-size: 40px;
+    }
+    h4.masthead-brand {
+      margin-top: 18px;
+    }
+    h4.masthead-brand.second {
+      display: none;
+    }
     .mastfoot .inner p {
         font-size: 40px;
+    }
+    .mastfoot {
+      min-height: 260px;
     }
     .solo-inner-wrapper {
         .mastfoot {
@@ -428,6 +441,8 @@ p.lead a {
     p.lead {
         font-size: 60px;
         margin-top: 20px;
+        padding-top: 100px;
+        padding-bottom: 100px;
     }
     p {
         font-size: 50px;  
