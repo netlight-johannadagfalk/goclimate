@@ -49,6 +49,12 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+.masthead h4 a {
+  font-size: 14px;
+  color: #7b8d7d;
+  padding-right: 30px;
+}
+
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .site-wrapper {
   display: table;
@@ -67,9 +73,8 @@ body {
 
 /* Padding for spacing */
 .inner {
-  padding: 30px;
+  padding: 10px 30px;
 }
-
 
 /*
  * Header
@@ -88,7 +93,7 @@ body {
 .masthead-nav > li > a {
   padding-right: 0;
   padding-left: 0;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   color: #444444; /* IE8 proofing */
   color: rgba(68, 68, 68, 0.75);
@@ -121,9 +126,6 @@ body {
  * Cover
  */
 
-.cover {
-  padding: 0 20px;
-}
 .cover .btn-lg {
   padding: 10px 20px;
   font-weight: bold;
@@ -248,14 +250,19 @@ input {
     padding-bottom: 50px;
 }
 .glyphicon {
-    padding-top: 50px;
+    padding-top: 25px;
     font-size: 150px;
     color: #cedfcf;
+}
+.glyphicon.steps {
+  font-size: 100px;
 }
 .form-horizontal {
     margin-top: 40px;
 }
-
+.welcome .row {
+  padding: 50px;
+}
 .form-group {
     div {
         padding: 0px;

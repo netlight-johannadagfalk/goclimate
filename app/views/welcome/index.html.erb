@@ -1,16 +1,62 @@
-<div class="site-wrapper-inner solo-inner-wrapper site-wrapper-first">
-  <div class="cover-container">
-    
-    <%= render "shared/header" %>
+      <div class="site-wrapper-inner site-wrapper-first">
+
+        <div class="cover-container">
+
+          <%= render "shared/header" %>
 
           <div class="inner cover">
-    				<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-    				<h1 class="cover-heading"><%=t('welcome_to_a_climate_neutral_life') %></h1>
-    				<p class="lead"><%=t 'climate_change_is_the_greatest_challange' %></p>
-    				<p class="lead lead-btn">
-    					<a href="/step_1_choose_plan" class="btn btn-lg btn-success"><%=t 'go_climate_neutral_now' %></a>
-    				</p>
-		       </div>
+            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+            <h1 class="cover-heading"><%=t('welcome_to_a_climate_neutral_life') %></h1>
+            <p class="lead"><%=t 'climate_change_is_the_greatest_challange' %></p>
+            <p class="lead lead-btn">
+              <a href="/step_1_choose_plan" class="btn btn-lg btn-success"><%=t 'i_want_to_know_more' %></a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <a name="why_goclimateneutral"></a>
+      <div class="site-wrapper-inner site-wrapper-second">
+        <div class="cover-container">
+          <div class="inner cover">
+            <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+            <h1 class="cover-heading"><%=t 'why_goclimateneutral' %></h1>
+            <p class="lead"><%=t 'section_1_text' %></p>
+          </div>
+        </div>
+      </div>
+
+      <a name="this_is_how_it_works"></a>
+      <div class="site-wrapper-inner site-wrapper-third">
+        <div class="cover-container">
+          <div class="inner cover">
+            <h1 class="cover-heading"><%=t 'this_is_how_it_works' %>:</h1>
+            <div class="row">
+                  <div class="col-xs-12 col-md-4">
+                    <span class="glyphicon glyphicon-dashboard steps" aria-hidden="true"></span>
+                    
+                    <h2><%=t '1_describe_your_lifestyle' %></h2>
+                    <p><%=t 'describe_your_lifestyle_text' %></p>
+                  </div>
+                  <div class="col-xs-12 col-md-4">
+                    <span class="glyphicon glyphicon-check steps" aria-hidden="true"></span>
+                    <h2><%=t '2_sign_up' %></h2>
+                    <p><%=t 'sign_up_text' %></p>
+                  </div>
+                  <div class="col-xs-12 col-md-4">
+                    <span class="glyphicon glyphicon-globe steps" aria-hidden="true"></span>
+                      <h2><%=t '3_save_the_world' %></h2>
+                      <p><%=t 'save_the_world_text' %></p>
+                  </div>
+            </div>
+            <p class="lead"><%=t 'its_that_simple_text' %></p>
+            <p class="lead lead-btn">
+              <a href="/step_1_choose_plan" class="btn btn-lg btn-success"><%=t 'ok_i_want_to_know_more' %></a>
+            </p>
+          </div>
+        </div>
+      </div>
+
 
 
   </div>

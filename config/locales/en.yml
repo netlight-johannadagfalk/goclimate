@@ -5,11 +5,12 @@ en:
   log_in: Log in
   log_out: Log out
   settings: Settings
-  go_climate_neutral_now: Go Climate Neutral Now!
+  ok_i_want_to_know_more: Ok, I want to know more!
+  i_want_to_know_more: I want to know more!
   contact_us: Contact us
   about_us: About us
   blog: Blog
-  go_climate_neutral: Go Climate Neutral!
+  section_1_go_climate_neutral: Go Climate Neutral!
   section_1_text: By each month investing in the UN certified climate offset projects that has the most positive impact for the environment for you - with a sum that corresponds to your lifestyle - we can help you offset your climate footprint. This way you can live an as climate neutural life as possible over time.
   its_fun_to_do_it_together: It's fun to do it together!
   section_2_text: By offseting your climate impact with us, you inspire others to do the same. Climate change is a challange we face together, so we should fight it together as well. And it's fun seeing the impact we can make together and follow the process over time.
@@ -84,3 +85,14 @@ en:
   other_language_site: https://www.goclimateneutral.org
   other_language: På svenska
   site_title: GoClimateNeutral.org
+  why_goclimateneutral: Why GoClimateNeutral.org?
+  this_is_how_it_works: This is how it works
+  1_describe_your_lifestyle: 1. Describe Your Lifestyle
+  describe_your_lifestyle_text: Describe your lifestyle and thereby also your carbon footprint.
+  2_sign_up: 2. Sign up
+  sign_up_text: Sign up in our really simple form
+  3_save_the_world: 3. Save the world
+  save_the_world_text: By every month buying climate offsets for you we help you become carbon neutral and save the world.
+  its_that_simple_text: "It's that simple. Climate change is the biggest challange of our time, but we can do something together. We are not saying that this will be enough, but it's a step in the right direction. And by joining us, you will encourage others to join us as well! So, find out more, and join us, by clicking the button below!"
+  why_goclimateneutral_head: WHY GOCLIMATENEUTRAL?
+  how_it_works_head: HOW IT WORKS
