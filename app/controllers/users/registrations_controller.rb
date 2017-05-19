@@ -23,11 +23,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
         stripe_plan = Stripe::Plan.retrieve(plan_id)
     rescue      
       begin 
+        currency = I18n.locale == :sv ? "sek" : "usd"
         stripe_plan = Stripe::Plan.create(
           :name => plan_name,
           :id => plan_id,
           :interval => "month",
-          :currency => "usd",
+          :currency => currency,
           :amount => plan.to_s + "00"
         )
       rescue

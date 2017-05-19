@@ -24,8 +24,13 @@ en:
   no_car: No car
   hardly_ever_flies: Hardly ever flies
   mini_impact_plan: Mini Impact Plan
+  mini_impact_plan_price_html: '$3<span class="subscript">/mo</span>'
+  mini_impact_plan_price: 3
   small_impact_plan: Small Impact Plan
+  small_impact_plan_price_html: '$5<span class="subscript">/mo</span>'
+  small_impact_plan_price: 5
   custom_impact_plan: Custom Plan
+  custom_impact_plan_price_html: '$<span id="sum">x</span><span class="subscript">/mo</span>'
   mostly_vegetarian: Mostly Vegetarian
   one_fuel_efficient_car: One Fuel Efficient Car
   flies_sometimes: Flies Sometimes
@@ -44,6 +49,31 @@ en:
   never_flies: Never flies
   flies_short_distance_time_year: Flies short distance %{times} time/year
   flies_long_distance_time_year: Flies long distance %{times} time/year
+  vegan_price: '1'
+  vegetarian_price: '1.5'
+  mostly_vegetarian_price: '2'
+  sometimes_vegetarian_price: '3'
+  meat_eater_price: '4'
+  fuel_efficient_seldom_drives_price: '2'
+  fuel_efficient_car_drives_often_price: '3'
+  normal_car_seldom_drives_price: '3'
+  normal_car_drives_often_price: '5'
+  suv_seldom_drives_price: '4'
+  suv_drives_often_price: '6'
+  flies_short_distance_1_time_year_price: '1'
+  flies_short_distance_2_times_year_price: '2'
+  flies_short_distance_3_times_year_price: '3'
+  flies_short_distance_6_times_year_price: '6'
+  flies_short_distance_12_times_year_price: '12'
+  flies_long_distance_1_time_year_price: '2'
+  flies_long_distance_2_times_year_price: '4'
+  flies_long_distance_4_times_year_price: '6'
+  flies_long_distance_6_times_year_price: '12'
+  flies_long_distance_12_times_year_price: '24'
+  base_cost: '1'
+  cost_per_month_html: '$%{cost}/month'
+
+
   thats_it: That's it!
   read_more_how_we_calculate_offset_plans_html: Read more on how we calculate the offset plans %{href}.
   here: here

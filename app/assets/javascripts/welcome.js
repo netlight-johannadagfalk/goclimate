@@ -4,7 +4,8 @@ $(document).ready(function() {
     	var food = $('#food').val();
     	var car = $('#car').val();
 		var flight = $('#flight').val();
-		var total = 1 + parseInt(food) + parseInt(car) + parseInt(flight);
+		var base_cost = $('#base_cost').val();
+		var total = parseInt(base_cost) + parseInt(food) + parseInt(car) + parseInt(flight);
 		console.log(total);
 		$('#sum').text(total);
 		$('#custom-plan').attr("href", "/users/sign_up?plan=" + total);

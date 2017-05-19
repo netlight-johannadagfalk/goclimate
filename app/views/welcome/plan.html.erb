@@ -64,8 +64,7 @@
                           </div>
                           <div class="panel-body">
                               <div class="the-price">
-                                  <h1>
-                                      $3<span class="subscript">/mo</span></h1>
+                                  <h1><%=t 'mini_impact_plan_price_html' %></h1>
                               </div>
                               <table class="table">
                                   <tr>
@@ -86,7 +85,7 @@
                               </table>
                           </div>
                           <div class="panel-footer">
-                              <a href="<%= new_registration_path(:user) %>?plan=4" class="btn btn-success" role="button"><%=t 'this_is_me' %></a>
+                              <a href="<%= new_registration_path(:user) + "?plan=" + t('mini_impact_plan_price').to_s %>" class="btn btn-success" role="button"><%=t 'this_is_me' %></a>
                           </div>
                       </div>
                   </div>
@@ -98,8 +97,7 @@
                           </div>
                           <div class="panel-body">
                               <div class="the-price">
-                                  <h1>
-                                      $5<span class="subscript">/mo</span></h1>
+                                  <h1><%=t 'small_impact_plan_price_html' %></h1>
                               </div>
                               <table class="table">
                                   <tr>
@@ -120,7 +118,7 @@
                               </table>
                           </div>
                           <div class="panel-footer">
-                              <a href="<%= new_registration_path(:user) %>?plan=7" class="btn btn-success" role="button"><%=t 'yep_me' %></a>
+                              <a href="<%= new_registration_path(:user) + "?plan=" + t('small_impact_plan_price').to_s %>" class="btn btn-success" role="button"><%=t 'yep_me' %></a>
                           </div>
                       </div>
                   </div>
@@ -133,18 +131,17 @@
                           </div>
                           <div class="panel-body">
                               <div class="the-price">
-                                  <h1>
-                                      $<span id="sum">x</span><span class="subscript">/mo</span></h1>
+                                  <h1><%=t 'custom_impact_plan_price_html' %></h1>
                               </div>
                               <table class="table">
                                   <tr>
                                       <td class="form select">
                                           <select id="food" class="form-control input-sm">
-                                            <option value="1"><%=t 'vegan' %></option>
-                                            <option value="1.5"><%=t 'vegetarian' %></option>
-                                            <option value="2"><%=t 'mostly_vegetarian' %></option>
-                                            <option value="3"><%=t 'sometimes_vegetarian' %></option>
-                                            <option value="4"><%=t 'meat_eater' %></option>
+                                            <option value="<%=t 'vegan_price' %>"><%=t 'vegan' %></option>
+                                            <option value="<%=t 'vegetarian_price' %>"><%=t 'vegetarian' %></option>
+                                            <option value="<%=t 'mostly_vegetarian_price' %>" selected><%=t 'mostly_vegetarian' %></option>
+                                            <option value="<%=t 'sometimes_vegetarian_price' %>"><%=t 'sometimes_vegetarian' %></option>
+                                            <option value="<%=t 'meat_eater_price' %>"><%=t 'meat_eater' %></option>
                                           </select>
                                       </td>
                                   </tr>
@@ -152,12 +149,12 @@
                                       <td class="form select">
                                           <select id="car" class="form-control input-sm">
                                             <option value="0"><%=t 'no_car' %></option>
-                                            <option value="2"><%=t 'fuel_efficient_seldom_drives' %></option>
-                                            <option value="3"><%=t 'fuel_efficient_car_drives_often' %></option>
-                                            <option value="3"><%=t 'normal_car_seldom_drives' %></option>
-                                            <option value="5"><%=t 'normal_car_drives_often' %></option>
-                                            <option value="4"><%=t 'suv_seldom_drives' %></option>
-                                            <option value="6"><%=t 'suv_drives_often' %></option>
+                                            <option value="<%=t 'fuel_efficient_seldom_drives_price' %>"><%=t 'fuel_efficient_seldom_drives' %></option>
+                                            <option value="<%=t 'fuel_efficient_car_drives_often_price' %>"><%=t 'fuel_efficient_car_drives_often' %></option>
+                                            <option value="<%=t 'normal_car_seldom_drives_price' %>" selected><%=t 'normal_car_seldom_drives' %></option>
+                                            <option value="<%=t 'normal_car_drives_often_price' %>"><%=t 'normal_car_drives_often' %></option>
+                                            <option value="<%=t 'suv_seldom_drives_price' %>"><%=t 'suv_seldom_drives' %></option>
+                                            <option value="<%=t 'suv_drives_often_price' %>"><%=t 'suv_drives_often' %></option>
                                           </select>
                                       </td>
                                   </tr>
@@ -165,20 +162,21 @@
                                       <td class="form select">
                                           <select id="flight" class="form-control input-sm">
                                             <option value="0"><%=t 'never_flies' %></option>
-                                            <option value="1"><%=t 'flies_short_distance_time_year', times: 1 %></option>
-                                            <option value="2"><%=t 'flies_short_distance_time_year', times: 2 %></option>
-                                            <option value="3"><%=t 'flies_short_distance_time_year', times: 3 %></option>
-                                            <option value="6"><%=t 'flies_short_distance_time_year', times: 6 %></option>
-                                            <option value="12"><%=t 'flies_short_distance_time_year', times: 12 %></option>
-                                            <option value="2"><%=t 'flies_long_distance_time_year', times: 1 %></option>
-                                            <option value="4"><%=t 'flies_long_distance_time_year', times: 2 %></option>
-                                            <option value="6"><%=t 'flies_long_distance_time_year', times: 3 %></option>
-                                            <option value="12"><%=t 'flies_long_distance_time_year', times: 6 %></option>
-                                            <option value="24"><%=t 'flies_long_distance_time_year', times: 12 %></option>
+                                            <option value="<%=t 'flies_short_distance_1_time_year_price' %>"><%=t 'flies_short_distance_time_year', times: 1 %></option>
+                                            <option value="<%=t 'flies_short_distance_2_times_year_price' %>"><%=t 'flies_short_distance_time_year', times: 2 %></option>
+                                            <option value="<%=t 'flies_short_distance_3_times_year_price' %>"><%=t 'flies_short_distance_time_year', times: 3 %></option>
+                                            <option value="<%=t 'flies_short_distance_6_times_year_price' %>"><%=t 'flies_short_distance_time_year', times: 6 %></option>
+                                            <option value="<%=t 'flies_short_distance_12_times_year_price' %>"><%=t 'flies_short_distance_time_year', times: 12 %></option>
+                                            <option value="<%=t 'flies_long_distance_1_time_year_price' %>" selected><%=t 'flies_long_distance_time_year', times: 1 %></option>
+                                            <option value="<%=t 'flies_long_distance_2_times_year_price' %>"><%=t 'flies_long_distance_time_year', times: 2 %></option>
+                                            <option value="<%=t 'flies_long_distance_4_times_year_price' %>"><%=t 'flies_long_distance_time_year', times: 3 %></option>
+                                            <option value="<%=t 'flies_long_distance_6_times_year_price' %>"><%=t 'flies_long_distance_time_year', times: 6 %></option>
+                                            <option value="<%=t 'flies_long_distance_12_times_year_price' %>"><%=t 'flies_long_distance_time_year', times: 12 %></option>
                                           </select>
                                       </td>
                                   </tr>
                               </table>
+                              <input type="hidden" id="base_cost" value="<%=t 'base_cost' %>">
                           </div>
                           <div class="panel-footer">
                               <a id="custom-plan" href="<%= new_registration_path(:user) %>?plan=5" class="btn btn-success" role="button"><%=t 'thats_it' %></a></div>
@@ -186,7 +184,7 @@
                   </div>
               </div>
           </div>
-          <p class="lead last"><%=t 'read_more_how_we_calculate_offset_plans_html', href: link_to(t('here'), 'https://www.goclimateneutral.org/blog/how-calculate-the-offset-plans/') %> <%=t 'read_more_about_how_we_choose_climet_projects_html', href: link_to(t('here'), 'https://www.goclimateneutral.org/blog/what-climate-projects-we-invest-in/') %></p>
+          <p class="lead last"><%=t 'read_more_how_we_calculate_offset_plans_html', href: link_to(t('here'), 'https://www.goclimateneutral.org/blog/how-calculate-the-offset-plans/') %> <br> <%=t 'read_more_about_how_we_choose_climet_projects_html', href: link_to(t('here'), 'https://www.goclimateneutral.org/blog/what-climate-projects-we-invest-in/') %></p>
 
           </div>
         </div>

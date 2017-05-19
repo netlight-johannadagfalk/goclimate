@@ -25,8 +25,13 @@ sv:
   no_car: Ingen bil
   hardly_ever_flies: Flyger nästan aldrig
   mini_impact_plan: Mini
+  mini_impact_plan_price_html: '25 <span class="subscript">kr/mån</span>'
+  mini_impact_plan_price: 25
   small_impact_plan: Liten
+  small_impact_plan_price_html: '45 <span class="subscript">kr/mån</span>'
+  small_impact_plan_price: 45
   custom_impact_plan: Anpassad
+  custom_impact_plan_price_html: '<span id="sum">x</span><span class="subscript"> kr/mån</span>'
   mostly_vegetarian: Nästan vegetarian
   one_fuel_efficient_car: En bränslesnål bil
   flies_sometimes: Flyger ibland
@@ -45,6 +50,30 @@ sv:
   never_flies: Flyger aldrig
   flies_short_distance_time_year: Flyger kortare distanser %{times} ggr/år
   flies_long_distance_time_year: Flyger längre distanser %{times} ggr/år
+  vegan_price: '10'
+  vegetarian_price: '15'
+  mostly_vegetarian_price: '20'
+  sometimes_vegetarian_price: '25'
+  meat_eater_price: '30'
+  fuel_efficient_seldom_drives_price: '20'
+  fuel_efficient_car_drives_often_price: '30'
+  normal_car_seldom_drives_price: '30'
+  normal_car_drives_often_price: '50'
+  suv_seldom_drives_price: '40'
+  suv_drives_often_price: '60'
+  flies_short_distance_1_time_year_price: '10'
+  flies_short_distance_2_times_year_price: '20'
+  flies_short_distance_3_times_year_price: '30'
+  flies_short_distance_6_times_year_price: '60'
+  flies_short_distance_12_times_year_price: '120'
+  flies_long_distance_1_time_year_price: '20'
+  flies_long_distance_2_times_year_price: '40'
+  flies_long_distance_4_times_year_price: '60'
+  flies_long_distance_6_times_year_price: '120'
+  flies_long_distance_12_times_year_price: '240'
+  base_cost: '10'
+  cost_per_month_html: '%{cost} kr/mån'
+
   thats_it: Nu så!
   read_more_how_we_calculate_offset_plans_html: Läs mer om hur vi räknar ut våra kompensationsplaner %{href}.
   here: här
