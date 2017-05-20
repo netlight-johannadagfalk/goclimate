@@ -14,6 +14,7 @@ class Mailer
     
     personalization = Personalization.new
     personalization.to = Email.new(email: user.email)
+    personalization.bcc = Email.new(email: 'info@goclimateneutral.org')
     personalization.subject = "Stort Tack!"
     personalization.headers = Header.new(key: 'X-Test', value: 'True')
     personalization.headers = Header.new(key: 'X-Mock', value: 'False')
@@ -22,7 +23,7 @@ class Mailer
 
     personalization.substitutions = Substitution.new(key: '%months%', value: climate_neutral_months.to_s)
     personalization.substitutions = Substitution.new(key: '%tonnes%', value: total_carbon_offset.to_s)
-    
+
     mail.personalizations = personalization
 
     mail.template_id = '3401db51-a0df-4dd2-8f9c-d3dfd3c64430'
