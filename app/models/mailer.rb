@@ -15,6 +15,7 @@ class Mailer
     personalization = Personalization.new
     personalization.to = Email.new(email: user.email)
     personalization.bcc = Email.new(email: 'info@goclimateneutral.org')
+    personalization.bcc = Email.new(email: 'kalle@nilver.se')
     personalization.subject = "Stort Tack!"
     personalization.headers = Header.new(key: 'X-Test', value: 'True')
     personalization.headers = Header.new(key: 'X-Mock', value: 'False')
