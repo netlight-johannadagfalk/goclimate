@@ -2,6 +2,11 @@
 
 <h1>Projects</h1>
 
+<div>
+<h1>Total CO2: <%= @total_co2 %> tonnes</h1>
+<h1>Total spent: <%= @total_sek_spent %> SEK</h1>
+</div>
+
 <table>
   <thead>
     <tr>
@@ -12,6 +17,8 @@
       <th>Longitude</th>
       <th>Latitude</th>
       <th>Carbon offset</th>
+      <th>Cost in SEK</th>
+      <th>Date bought</th>
       <th>Country</th>
       <th>Offset type</th>
       <th colspan="3"></th>
@@ -28,6 +35,8 @@
         <td><%= project.longitude %></td>
         <td><%= project.latitude %></td>
         <td><%= project.carbon_offset %></td>
+        <td><%= project.cost_in_sek %></td>
+        <td><%= project.date_bought %></td>
         <td><%= project.country %></td>
         <td><%= project.offset_type %></td>
         <td><%= link_to 'Show', project %></td>

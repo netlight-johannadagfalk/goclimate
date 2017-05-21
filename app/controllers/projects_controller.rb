@@ -5,6 +5,8 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+    @total_co2 = Project.all.sum("carbon_offset")
+    @total_sek_spent = Project.all.sum("cost_in_sek")
   end
 
   # GET /projects/1
@@ -69,6 +71,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :link, :image_url, :blog_url, :longitude, :latitude, :carbon_offset, :country, :type)
+      params.require(:project).permit(:name, :link, :image_url, :blog_url, :longitude, :latitude, :carbon_offset, :country, :type, :cost_in_sek, :date_bought)
     end
 end
