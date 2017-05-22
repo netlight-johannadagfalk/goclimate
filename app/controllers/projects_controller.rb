@@ -1,6 +1,11 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
+  before_action :authenticate_user!
+  before_action do 
+    redirect_to new_user_session_path unless current_user && current_user.id == 2
+  end
+
   # GET /projects
   # GET /projects.json
   def index
@@ -71,6 +76,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :link, :image_url, :blog_url, :longitude, :latitude, :carbon_offset, :country, :type, :cost_in_sek, :date_bought)
+      params.require(:project).permit(:name, :link, :image_url, :blog_url, :longitude, :latitude, :carbon_offset, :country, :offset_type, :cost_in_sek, :date_bought)
     end
 end
