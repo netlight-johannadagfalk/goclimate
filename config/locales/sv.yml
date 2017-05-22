@@ -2,7 +2,7 @@ sv:
   goclimateneutral_org: GoClimateNeutral.org
   site_title: GoClimateNeutral.org
   welcome_to_a_climate_neutral_life: Välkommen till ett klimatneutralt liv!
-  climate_change_is_the_greatest_challange: "Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Men tillsammans har vi möjligheten att bromsa klimatförändringarna och rädda världen. Enda haken: vi måste agera nu."
+  climate_change_is_the_greatest_challange: "Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Tillsammans kan vi bromsa klimatförändringarna och rädda världen, OM vi agerar nu."
   log_in: LOGGA IN
   log_out: LOGGA UT
   settings: Inställningar
@@ -12,15 +12,15 @@ sv:
   about_us: Om oss
   blog: Blogg
   section_1_go_climate_neutral: Lev ett klimatneutralt liv!
-  section_1_text: Genom att varje månad investera i FN-ceritifierade klimatprojekt åt dig - med en summa som motsvarar din livsstil - kan vi kompensera för din klimatpåverkan. På så sätt kan du leva ett klimatneutralt liv - och därmed vara med och bromsa klimatförändringarna och rädda världen.
+  section_1_text: Genom att varje månad investera i FN-certifierade klimatprojekt åt dig - med en summa som motsvarar din livsstil – kompenserar vi för din klimatpåverkan. På så sätt gör du ett minimalt avtryck på jordklotet,  bromsar klimatförändringarna och medverkar till att rädda världen.
   its_fun_to_do_it_together: Det är roligare att rädda världen tillsammans!
   section_2_text: Genom att leva klimatneutralt med oss så inspirerar du andra att göra samma sak. Klimatförändringar är en utmaning som vi står inför tillsammans, och vi måste lösa den tillsammans också. Plus att det är roligt att se vad vi kan åstadkomma tillsamans!
   we_are_100_transparent: Vi är 100% transparenta
-  section_3_text: Vi är 100% transparenta med vart dina pengar tar vägen, vilka FN-ceritifierade klimatprojekt vi investerar i och varför. Vi är också 100% transparenta med hur mycket koldioxid som vi lyckas få bort med din hjälp och hur mycket vi får bort totalt.
+  section_3_text: Vi är 100% transparenta med vilka FN-certifierade klimatprojekt dina pengar investeras i och varför. Vi är även 100% transparenta med mängden koldioxid som försvinner från atmosfären tack vare dig samt hur mycket vi får bort totalt.
   we_are_975_effective: Vi är väldigt klimateffektiva
-  section_4_text: 97.5% av det du kompenserar går direkt till det mest effektiva FN-certifierade klimatprojektet som vi kan hitta. De andra 2.5% går till att täcka våra kostnader och till marknadsföring för att försöka få fler att leva klimatneutrala liv.
+  section_4_text: 97.5% av det du kompenserar går direkt till de mest effektiva FN-certifierade klimatprojekt som vi kan hitta. De andra 2.5% går till att täcka kostnader som marknadsföring för att få fler att leva klimatneutrala liv.
   start_by_choosing_plan: Börja med att beskriva din klimatpåverkan
-  section_5_text: Vad har du för klimatpåverkan? Välj ett alternativ nedan eller knappa in en anpassad variant som passar dig.
+  section_5_text: Vad har du för livsstil? Välj ett alternativ nedan eller knappa in en anpassad variant som passar dig bättre.
   vegan: Vegan
   no_car: Ingen bil
   hardly_ever_flies: Flyger nästan aldrig
@@ -75,9 +75,10 @@ sv:
   cost_per_month_html: '%{cost} kr/mån'
 
   thats_it: Nu så!
-  read_more_how_we_calculate_offset_plans_html: Läs mer om hur vi räknar ut våra kompensationsplaner %{href}.
-  here: här
-  read_more_about_how_we_choose_climet_projects_html: Läs mer om hur vi väljer vilka klimatprojekt vi investerar i %{href}.
+  read_more_how_we_calculate_offset_plans_html: Läs mer om hur vi räknar ut våra %{href}.
+  offset_plans: kompensationsplaner
+  read_more_about_how_we_choose_climet_projects_html: Läs mer om hur vi väljer ut %{href}.
+  climate_projects: klimatprojekt 
   but_i_want_to_enter_more_details: Men.. jag vill räkna mer detaljerat på mitt klimatavtryck!
   calculating_your_exact_footprint_html: Att beräkna ett exakt klimatavtryck är väldigt svårt - mycket svårare än att bara välja ett alternativ här ovan - och kräver att man skriver in stora mängder data i krångliga formulär. Man behöver skriva in och beräkna hur långt man rör sig varje dag och med vilka transportmedel, detaljer om vad man äter och vart maten kommer ifrån, och energispecifikationer från ens bostad och jobb. Men även om vi tycker att alternativen ovan är en rätt bra uppskattning, så finns även möjligheten att använda %{href} och sen skriva in en exakt siffra här
   lots_of_advanced_calculators_out_there: en av många klimatkalkylatorer där ute
@@ -89,7 +90,7 @@ sv:
   credit_or_debit_card: Kortuppgifter
   climate_plan: Kompensation
   go_climate_neutral: Jag vill rädda världen!
-  log_in_to_see_how_we_are_doing: Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Logga in för att se hur det går i vår kamp med att försöka ställa klimatet till rätta igen.
+  log_in_to_see_how_we_are_doing: Logga in för att se hur det går i vår kamp med att försöka ställa klimatet till rätta igen.
   you_have_lived_climate_neutral_for_one_month: Du har levt ett klimatneutralt liv i %{months} månad. Bra jobbat!
   you_have_lived_climate_neutral_for_more_months: Du har levt ett klimatneutralt liv i %{months} månader. Bra jobbat!
   number_of_months_you_have_been_climate_neutral: Antal månader som du har levt ett klimatneutralt liv
@@ -117,13 +118,13 @@ sv:
   other_language: In English
   why_goclimateneutral: Varför GoClimateNeutral?
   this_is_how_it_works: Så här funkar det
-  1_describe_your_lifestyle: 1. Beskriv din livsstil
-  describe_your_lifestyle_text: Beskriv din livsstil och därmed din klimatpåverkan.
-  2_sign_up: 2. Signa upp dig
-  sign_up_text: Signa upp dig i vårt jätteenkla formulär.
+  1_describe_your_lifestyle: 1. Välj din livsstil
+  describe_your_lifestyle_text: Välj den livsstil som är mest lik din egna.
+  2_sign_up: 2. Registrera dig
+  sign_up_text: Registrera dig i vårt enkla formulär.
   3_save_the_world: 3. Rädda världen
-  save_the_world_text: Vi köper klimatkompensation åt dig varje månad - så att du lever klimatneutralt och är med och räddar världen.
-  its_that_simple_text: Så här enkelt är det. Klimatförändringarna är den största utmaningen som vår generation stått inför, och vi kan göra någonting åt det tillsammans. Vi säger inte att det här räcker, men det är i alla fall ett steg i rätt riktning, och om du hoppar på nu så kommer det bidra till att ännu fler hänger med!
+  save_the_world_text: Vi köper klimatkompensation åt dig varje månad - så att du lever klimatneutralt och därmed är med och räddar världen.
+  its_that_simple_text: Så här enkelt är det. Klimatförändringarna är den största utmaningen som vår generation stått inför och vi kan göra någonting åt det tillsammans. Vi säger inte att det här räcker, men det är ett stort steg i rätt riktning. Hoppa på nu och sprid ordet så bidrar det till att ännu fler hänger med!
   why_goclimateneutral_head: VARFÖR GOCLIMATENEUTRAL?
   how_it_works_head: SÅ FUNKAR DET
   

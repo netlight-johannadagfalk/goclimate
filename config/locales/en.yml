@@ -75,9 +75,10 @@ en:
 
 
   thats_it: That's it!
-  read_more_how_we_calculate_offset_plans_html: Read more on how we calculate the offset plans %{href}.
-  here: here
-  read_more_about_how_we_choose_climet_projects_html: Read more about how we choose what climate projects to invest in %{href}
+  read_more_how_we_calculate_offset_plans_html: Read more on how we calculate the %{href}.
+  offset_plans: offset plans
+  read_more_about_how_we_choose_climet_projects_html: Read more about how we choose what %{href}.
+  climate_projects: climate projects to invest in
   but_i_want_to_enter_more_details: But.. I want to enter more details?
   calculating_your_exact_footprint_html: "Calculating your exact climate footprint is a lot more complicated than by just choosing one of the plans above. You need tons of data, about what you eat, where you go and how you live. But the above plans are a good estimate and you don't have to worry that they are not covering for your climate footprint. But if you want to be more detailed, there's actually %{href}, so if you want to, you can try one and then enter your yearly carbon footprint here"
   lots_of_advanced_calculators_out_there: lots of advanced calculators out there
