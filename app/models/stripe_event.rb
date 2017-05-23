@@ -30,6 +30,7 @@ class StripeEvent < ApplicationRecord
             stripe_customer_id: event_object.customer, 
             stripe_object: event_object.object,
             stripe_amount: event_object.amount,
+            currency: event_object.currency,
             stripe_created: event_object.created
           )
           # u = User.find_by_stripe_customer_id event_object.customer
