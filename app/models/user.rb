@@ -13,4 +13,8 @@ class User < ApplicationRecord
       "Unknown"
     end
   end
+
+  def currency
+    stripe_events.first.currency
+  end
 end

@@ -18,6 +18,15 @@ class ApplicationController < ActionController::Base
     redirect_to "https://www.goclimateneutral.org/blog#{request.fullpath.gsub('/blog','')}", :status => :moved_permanently
   end
 
+  def currency_for_user
+    if user_signed_in? && !current_user.stripe_events.first.nil?
+      currency = current_user.currency
+    else
+      currency = I18n.locale == :sv ? "sek" : "usd"
+    end
+    currency
+  end
+
   protected
   
   def configure_permitted_parameters

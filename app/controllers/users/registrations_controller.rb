@@ -23,17 +23,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
         stripe_plan = Stripe::Plan.retrieve(plan_id)
     rescue      
       begin 
-        currency = I18n.locale == :sv ? "sek" : "usd"
+
         stripe_plan = Stripe::Plan.create(
           :name => plan_name,
           :id => plan_id,
           :interval => "month",
-          :currency => currency,
+          :currency => currency_for_user,
           :amount => plan.to_s + "00"
         )
-      rescue
+      rescue Stripe::StripeError => e
         flash[:error] = e.message
-        redirect_to new_subscrition_path
+        redirect_to new_subscription_path
       end
     end
     stripe_plan
@@ -41,12 +41,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    if !params[:tonnes_co2].nil?
-      params[:tonnes_co2] = params[:tonnes_co2] == "" ? 15 : params[:tonnes_co2]
-      @plan = (params[:tonnes_co2].to_i / 12 * 5.5).round
-    else
-      @plan = params[:plan] || 5
-    end
+
+    @plan = params[:plan] || 5
+    @currency = currency_for_user
 
     super
   end
@@ -83,6 +80,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
+    @currency = currency_for_user
+
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
     if customer["subscriptions"]["total_count"] == 0
       @plan = "canceled"

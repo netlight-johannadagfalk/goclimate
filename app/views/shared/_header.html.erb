@@ -12,7 +12,7 @@
                 <ul class="nav masthead-nav">
                   <% if user_signed_in? %> 
                       <li id="fat-menu" class="dropdown"> 
-                        <a href="#" class="dropdown-toggle" id="drop3" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.user_name.nil? ? current_user.email : current_user.user_name %><span class="caret"></span> </a> 
+                        <a href="#" class="dropdown-toggle" id="drop3" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.user_name.nil? || current_user.user_name.empty? ? current_user.email : current_user.user_name %><span class="caret"></span> </a> 
                         <ul class="dropdown-menu" aria-labelledby="drop3"> 
                           <li><a href="<%= dashboard_index_path %>">Dashboard</a></li>
                           <li><a href="<%= edit_user_registration_path %>"><%=t 'settings' %></a></li>

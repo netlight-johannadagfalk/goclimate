@@ -11,13 +11,26 @@
                   <option value="cancel">cancel climate plan</option>
                 <% end %>
               <% end %>
-              <% range = I18n.locale == :sv ? (10..300).step(5) : (2...30) %>
-              <% range.each do |i| %>
-                <% if i == @plan.to_i %>
-                  <option value="<%= i %>" selected=1><%=t 'cost_per_month_html', cost: i %></option>
-                <% else %>
-                  <option value="<%= i %>"><%=t 'cost_per_month_html', cost: i %></option>
+              <% if @currency == "sek" %>
+
+                <% (10..300).step(5).each do |i| %>
+                  <% if i == @plan.to_i %>
+                    <option value="<%= i %>" selected=1><%= i %> kr/mån</option>
+                  <% else %>
+                    <option value="<%= i %>"><%= i %> kr/mån</option>
+                  <% end %>
                 <% end %>
+
+              <% elsif @currency == "usd" %>
+
+                <% (2...30).each do |i| %>
+                  <% if i == @plan.to_i %>
+                    <option value="<%= i %>" selected=1>$<%= i %>/month</option>
+                  <% else %>
+                    <option value="<%= i %>">$<%= i %>/month</option>
+                  <% end %>
+                <% end %>
+
               <% end %>
             </select>
           </div>

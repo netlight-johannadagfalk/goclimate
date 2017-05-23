@@ -71,7 +71,6 @@ en:
   flies_long_distance_6_times_year_price: '12'
   flies_long_distance_12_times_year_price: '24'
   base_cost: '1'
-  cost_per_month_html: '$%{cost}/month'
 
 
   thats_it: That's it!

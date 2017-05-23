@@ -72,7 +72,6 @@ sv:
   flies_long_distance_6_times_year_price: '120'
   flies_long_distance_12_times_year_price: '240'
   base_cost: '10'
-  cost_per_month_html: '%{cost} kr/mån'
 
   thats_it: Nu så!
   read_more_how_we_calculate_offset_plans_html: Läs mer om hur vi räknar ut våra %{href}.
