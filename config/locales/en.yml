@@ -95,9 +95,11 @@ en:
   you_have_lived_climate_neutral_for_more_months: You have lived climate neutral for %{months} months. Good Job!
   number_of_months_you_have_been_climate_neutral: Number of months you have been climate neutral
   you_climate_offset_investments: Your climate offset investments
+  you_climate_offset_investments_amount: '$%{usd}'
   number_of_climate_neutral_months_for_all_users: Number of climate neutral months for all users
   number_of_climate_neutral_users_right_now: Number of climate neutral users right now
   total_climate_offset_project_investments: Total climate offset project investments
+  total_climate_offset_project_investments_amount: '$%{usd}'
   cimate_hero_toplist: Climate Hero Toplist
   climate_neutral_month: climate neutral month
   climate_neutral_months: climate neutral months

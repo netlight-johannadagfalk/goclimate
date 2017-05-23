@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-md-4">
                       <p><%=t 'you_climate_offset_investments' %>:</p>
-                      <h1>$<%= @my_amount_invested %></h1>
+                      <h1><%=t 'you_climate_offset_investments_amount', usd: @my_amount_invested_usd, sek: @my_amount_invested_sek %></h1>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
@@ -46,7 +46,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
                       <p><%=t 'total_climate_offset_project_investments' %>:</p> 
-                      <h1>$<%= @total %></h1>
+                      <h1><%=t 'total_climate_offset_project_investments_amount', usd: @total_usd, sek: @total_sek %></h1>
                     </div>
                     <div class="col-md-4">
                       <p></p> 

@@ -95,9 +95,11 @@ sv:
   you_have_lived_climate_neutral_for_more_months: Du har levt ett klimatneutralt liv i %{months} månader. Bra jobbat!
   number_of_months_you_have_been_climate_neutral: Antal månader som du har levt ett klimatneutralt liv
   you_climate_offset_investments: Du har klimatkompenserat för
+  you_climate_offset_investments_amount: '%{sek} kr'
   number_of_climate_neutral_months_for_all_users: Antal klimatneutrala månader för alla användare totalt
   number_of_climate_neutral_users_right_now: Antal klimatneutrala användare just nu
   total_climate_offset_project_investments: Total summa som vi klimatkomponserat för
+  total_climate_offset_project_investments_amount: '%{sek} kr'
   cimate_hero_toplist: Topplista klimathjältar
   climate_neutral_month: klimatneutral månad
   climate_neutral_months: klimatneutrala månader
