@@ -7,11 +7,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def generate_plan_id plan
-    "climate_offset_" + plan.to_s + "_monthly"
+    "climate_offset_" + plan.to_s + "_" + currency_for_user + "_monthly"
   end
 
   def generate_plan_name plan
-    "Climate Offset " + plan.to_s + " Monthly"
+    "Climate Offset " + plan.to_s + " " + currency_for_user + " Monthly"
   end
 
   def get_stripe_plan plan
