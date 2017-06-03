@@ -19,7 +19,7 @@
         </div>
       <% end %>
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: "payment-form", :class => "form-horizontal"}) do |f| %>
+      <%= form_for(resource, as: resource_name, validate: true, url: registration_path(resource_name), html: {id: "payment-form", :class => "form-horizontal"}) do |f| %>
         <%= devise_error_messages! %>
 
         <%= render "shared/plan" %>

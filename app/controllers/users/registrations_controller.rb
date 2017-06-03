@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     "Climate Offset " + plan.to_s + " " + currency_for_user + " Monthly"
   end
 
-  def get_stripe_plan plan
+  def get_stripe_plan plan, error_path
     
     plan_id = generate_plan_id plan
     plan_name = generate_plan_name plan
@@ -33,7 +33,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         )
       rescue Stripe::StripeError => e
         flash[:error] = e.message
-        redirect_to new_subscription_path
+        redirect_to error_path
       end
     end
     stripe_plan
@@ -51,11 +51,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
 
-    super
-
     @plan = params[:user][:plan] || 5
 
     begin
+
+      if !User.find_by_email(params[:user][:email]).nil?
+        flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.taken')
+        redirect_to new_user_registration_path({plan: @plan}) and return
+      end
 
       customer = Stripe::Customer.create(
           :email => params[:user][:email],
@@ -64,7 +67,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
       User.where(email: params[:user][:email]).update_all(stripe_customer_id: customer.id)
 
-      plan = get_stripe_plan @plan
+      plan = get_stripe_plan @plan, new_user_registration_path
 
       Stripe::Subscription.create(
         :customer => customer.id,
@@ -73,8 +76,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     rescue Stripe::CardError => e
         flash[:error] = e.message
-        redirect_to new_subscription_path
+        redirect_to new_user_registration_path
     end
+
+    super
 
   end
 
@@ -107,7 +112,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       else 
 
         if customer["subscriptions"]["total_count"] == 0 && @plan.to_i > 1
-          plan = get_stripe_plan @plan
+          plan = get_stripe_plan @plan, new_subscription_path
 
           Stripe::Subscription.create(
             :customer => customer.id,

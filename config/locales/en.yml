@@ -128,3 +128,13 @@ en:
   its_that_simple_text: "It's that simple. Climate change is the biggest challange of our time, but we can do something together. We are not saying that this will be enough, but it's a step in the right direction. And by joining us, you will encourage others to join us as well! So, find out more, and join us, by clicking the button below!"
   why_goclimateneutral_head: WHY GOCLIMATENEUTRAL?
   how_it_works_head: HOW IT WORKS
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+              password:
+                too_short: The password is too short, please try at least 6 characters!
+              email:
+                taken: The email adress already exists, try another one!
+                invalid: The email looks incorrect, try again!

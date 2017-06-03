@@ -42,6 +42,7 @@ gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 gem 'country_select'
 gem 'sendgrid-ruby'
 gem 'devise-i18n'
+gem 'client_side_validations'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

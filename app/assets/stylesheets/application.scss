@@ -118,6 +118,9 @@ body {
 .projects input {
   color: #000;
 }
+#error_explanation {
+  color: red;
+}
 
 @media (min-width: 768px) {
   .masthead-brand {
