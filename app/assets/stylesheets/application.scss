@@ -401,19 +401,22 @@ p.lead a {
 }
 @media only screen and (max-device-width: 768px) {
     .inner ul.dropdown-menu {
-        margin: 2px -105px;
+      margin: 2px -105px;
     }
     .inner p, .inner address {
-        padding: 40px 40px 0px 40px;
+      padding: 40px 40px 0px 40px;
     }
     .inner p.lead-btn {
-        padding: 0px;
+      padding: 0px;
     }
     h3 {
-        font-size: 40px;
+      font-size: 110px;
+    }
+    .dashboard .stats li {
+      font-size: 40px;
     }
     .masthead-nav li a {
-        font-size: 40px;   
+      font-size: 40px;   
     }
     h4.masthead-brand a {
       font-size: 40px;
