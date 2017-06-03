@@ -123,7 +123,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
           if @plan != current_plan
             subscription = Stripe::Subscription.retrieve(customer["subscriptions"]["data"][0]["id"])
-            stripe_plan = get_stripe_plan @plan
+            stripe_plan = get_stripe_plan @plan, new_subscription_path
             subscription.plan = stripe_plan["id"]
             subscription.save
           end
