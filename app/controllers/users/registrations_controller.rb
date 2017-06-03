@@ -65,7 +65,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           :source  => params[:stripeToken]
       )
 
-      User.where(email: params[:user][:email]).update_all(stripe_customer_id: customer.id)
+      
 
       plan = get_stripe_plan @plan, new_user_registration_path
 
@@ -80,6 +80,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     super
+    User.where(email: params[:user][:email]).update_all(stripe_customer_id: customer.id)
 
   end
 
