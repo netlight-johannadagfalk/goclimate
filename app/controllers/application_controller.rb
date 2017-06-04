@@ -3,6 +3,17 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
  
+  unless Rails.application.config.consider_all_requests_local
+    rescue_from ActionController::RoutingError, with: -> { render_404  }
+  end
+
+  def render_404
+    respond_to do |format|
+      format.html { render template: 'errors/not_found', status: 404 }
+      format.all { render nothing: true, status: 404 }
+    end
+  end
+
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
     if request.host.include? "en.goclimateneutral.org"
