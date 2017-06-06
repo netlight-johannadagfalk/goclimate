@@ -9,7 +9,14 @@ sv:
   i_want_to_know_more: Jag vill veta mer!
   ok_i_want_to_know_more: Ok, jag är intresserad!
   contact_us: Kontakta oss
+  if_you_want_to_get_involved: Om du vill hjälpa till, kontakta oss på
+  general_questions: Allmänna frågor, kontakta oss på
+  if_you_want_to_talk: Om du vill prata lite så når du oss på
+  or_come_visit_us: Eller kom och hälsa på oss här
+  or_talk_to_us_on_twitter: Eller twittra med några av oss
   about_us: Om oss
+  about_us_intro: Vi är övertygade om att klimatförändringarna kan stoppas – om vi gör något tillsammans och gör något nu.
+  about_us_text: För att kunna hejda klimatförändringarna behöver så många som möjligt bli klimatneutrala (eller ännu bättre – klimatpositiva) nu. Det bästa tillvägagångssättet är att minska våra egna fotavtryck så mycket det bara går samtidigt som vi klimatkompenserar för det vi inte kan eller vill minska på eller förändra just nu. Hemsidan Go Climate Neutral skapades 2017 i syfte att göra ovanstående så enkelt som möjligt – tipsa om hur vi kan minska vår egen klimatpåverkan och erbjuda möjligheten att klimatkompensera för de fotavtryck vi personligen orsakar. Vi tror att det bästa sättet att minska människors klimatpåverkan är att informera, utbilda och inspirera. Vi tror också att det bästa sättet att få människor att klimatkompensera för sin livsstil är att göra det så enkelt som möjligt och därför har vi tagit fram olika generella profiler där du väljer den som känns mest aktuell för dig. Om du har funderingar kring tjänsten, vilka vi är som står bakom eller tips på hur vi kan förbättra den eller sprida den till ännu fler, hör gärna av dig till info@coclimateneutral.org
   blog: Blogg
   section_1_go_climate_neutral: Lev ett klimatneutralt liv!
   section_1_text: Genom att varje månad investera i FN-certifierade klimatprojekt åt dig - med en summa som motsvarar din livsstil – kompenserar vi för din klimatpåverkan. På så sätt gör du ett minimalt avtryck på jordklotet,  bromsar klimatförändringarna och medverkar till att rädda världen.
@@ -41,12 +48,13 @@ sv:
   sometimes_vegetarian: Ibland vegetarian
   meat_eater: Köttätare
   no_car: Ingen bil
+  electric_car: Elbil
   fuel_efficient_seldom_drives: Bränslesnål bil, kör lite
   fuel_efficient_car_drives_often: Bränslesnål bil, kör mycket
   normal_car_seldom_drives: Normal bil, kör lite
-  normal_car_drives_often: Normal bil, kör ofta
-  suv_seldom_drives: SUV, kör lite
-  suv_drives_often: SUV, kör ofta
+  normal_car_drives_often: Normal bil, kör mycket
+  suv_seldom_drives: Törstigare bil, kör lite
+  suv_drives_often: Törstigare bil, kör mycket
   never_flies: Flyger aldrig
   flies_short_distance_time_year: Flyger kortare distanser %{times} ggr/år
   flies_long_distance_time_year: Flyger längre distanser %{times} ggr/år
@@ -55,6 +63,7 @@ sv:
   mostly_vegetarian_price: '20'
   sometimes_vegetarian_price: '25'
   meat_eater_price: '30'
+  electric_car_price: '0'
   fuel_efficient_seldom_drives_price: '20'
   fuel_efficient_car_drives_often_price: '30'
   normal_car_seldom_drives_price: '30'

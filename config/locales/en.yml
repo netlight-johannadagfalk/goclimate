@@ -8,7 +8,14 @@ en:
   ok_i_want_to_know_more: Ok, I want to know more!
   i_want_to_know_more: I want to know more!
   contact_us: Contact us
+  if_you_want_to_get_involved: If you want to get involved, contact us at
+  general_questions: General questions, contact us at
+  if_you_want_to_talk: If you want to talk, give us a call on
+  or_come_visit_us: Or come visit us at
+  or_talk_to_us_on_twitter: Or talk to some of us on Twitter
   about_us: About us
+  about_us_intro: We believe that we can stop climate change - if we do it together and if we start now.
+  about_us_text: In order to stop climate change we all need to live climate neutral lives now. The best way to do that is to reduce our footprint as much as possible and at the same time start to offset for the things we can't reduce. The Go Climate Neutral site was founded in 2017 with the aim to make it easy to do just that - reduce our climate impact and offset for the things we can't reduce. We believe that the best way to help reduce climate impact is to inform, educate and inspire. We believe that the best way to help offset climate impact is to make it easy as possible to offset the climate impact of a specific lifestyle. If you have any questions about who we are our how you can support our cause, please send us an e-mail at info@goclimateneutral.org
   blog: Blog
   section_1_go_climate_neutral: Go Climate Neutral!
   section_1_text: By each month investing in the UN certified climate offset projects that has the most positive impact for the environment for you - with a sum that corresponds to your lifestyle - we can help you offset your climate footprint. This way you can live an as climate neutural life as possible over time.
@@ -40,6 +47,7 @@ en:
   sometimes_vegetarian: Sometimes Vegetarian
   meat_eater: Meat Eater
   no_car: No Car
+  electric_car: Electric car
   fuel_efficient_seldom_drives: Fuel efficient car, seldom drives
   fuel_efficient_car_drives_often: Fuel efficient car, drives often
   normal_car_seldom_drives: Normal car, seldom drives
@@ -54,6 +62,7 @@ en:
   mostly_vegetarian_price: '2'
   sometimes_vegetarian_price: '3'
   meat_eater_price: '4'
+  electric_car_price: '0'
   fuel_efficient_seldom_drives_price: '2'
   fuel_efficient_car_drives_often_price: '3'
   normal_car_seldom_drives_price: '3'
