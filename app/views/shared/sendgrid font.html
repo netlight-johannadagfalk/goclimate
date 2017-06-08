@@ -1,0 +1,17 @@
+<!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+<!--[if mso]>
+    <style>
+        * {
+            font-family: sans-serif !important;
+        }
+    </style>
+<![endif]-->
+
+<!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+<!--[if !mso]><!-->
+    <link href='https://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+<!--<![endif]-->
+
+<style>
+    * {font-family: Raleway, sans-serif;}
+</style>
