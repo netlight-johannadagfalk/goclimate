@@ -33,7 +33,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         )
       rescue Stripe::StripeError => e
         flash[:error] = e.message
-        redirect_to error_path
+        redirect_to error_path and return false
       end
     end
     stripe_plan
@@ -65,9 +65,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
           :source  => params[:stripeToken]
       )
 
-      
-
       plan = get_stripe_plan @plan, new_user_registration_path
+
+      return if plan == false
 
       Stripe::Subscription.create(
         :customer => customer.id,
@@ -75,8 +75,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       )
 
     rescue Stripe::CardError => e
-        flash[:error] = e.message
-        redirect_to new_user_registration_path
+        body = e.json_body
+        err  = body[:error]
+        flash[:error] = "Something went wrong with the payment"
+        flash[:error] = "The payment failed: #{err[:message]}" if err[:message]
+        redirect_to new_user_registration_path and return
     end
 
     super
@@ -115,6 +118,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         if customer["subscriptions"]["total_count"] == 0 && @plan.to_i > 1
           plan = get_stripe_plan @plan, new_subscription_path
 
+          return if plan == false
+
           Stripe::Subscription.create(
             :customer => customer.id,
             :plan => plan.id,
@@ -125,6 +130,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           if @plan != current_plan
             subscription = Stripe::Subscription.retrieve(customer["subscriptions"]["data"][0]["id"])
             stripe_plan = get_stripe_plan @plan, new_subscription_path
+            return if stripe_plan == false
             subscription.plan = stripe_plan["id"]
             subscription.save
           end
