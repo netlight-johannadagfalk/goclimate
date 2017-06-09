@@ -144,6 +144,7 @@ sv:
           attributes:
               password:
                 too_short: Lösenordet är för kort, minst 6 tecken!
+                blank: Oj, lösenordet ser tomt ut!
               email:
                 taken: Användaren finns redan registrerad hos oss, prova med en annan e-postadress!
                 invalid: E-postadressen ser konstig ut, prova igen!
