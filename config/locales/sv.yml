@@ -148,3 +148,4 @@ sv:
               email:
                 taken: Användaren finns redan registrerad hos oss, prova med en annan e-postadress!
                 invalid: E-postadressen ser konstig ut, prova igen!
+                blank: E-postfältet ser tomt ut!

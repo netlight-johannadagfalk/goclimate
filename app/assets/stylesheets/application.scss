@@ -121,6 +121,19 @@ body {
 #error_explanation {
   color: red;
 }
+#card-errors {
+  margin-left: 73px;
+  color: red;
+  margin-bottom: 10px;
+}
+.message {
+  color: red;
+  margin-left: -20px;
+  margin-top: 10px;
+}
+label[for="password"].message {
+  margin-left: -30px;
+}
 
 @media (min-width: 768px) {
   .masthead-brand {
@@ -492,6 +505,9 @@ p.lead a {
     }
     .table {
         font-size: 40px;
+    }
+    #card-errors {
+      font-size: 40px;
     }
     .form-inline button, a.btn {
         margin: 50px;
