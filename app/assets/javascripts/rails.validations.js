@@ -171,8 +171,12 @@
             return ClientSideValidations.formBuilders[form.ClientSideValidations.settings.html_settings.type].add(element, form.ClientSideValidations.settings.html_settings, message);
           },
           removeError: function(element) {
-            $('#register-button').prop('disabled', false);
-            return ClientSideValidations.formBuilders[form.ClientSideValidations.settings.html_settings.type].remove(element, form.ClientSideValidations.settings.html_settings);
+            
+            var returnValue = ClientSideValidations.formBuilders[form.ClientSideValidations.settings.html_settings.type].remove(element, form.ClientSideValidations.settings.html_settings);
+            if ($('#email').val().length > 0 && $('#password').val().length > 0 && $('.field_with_errors').length === 0 && $('#card-errors').text() === "") {
+              $('#register-button').prop('disabled', false);
+            };
+            return returnValue;
           }
         };
         ref = {

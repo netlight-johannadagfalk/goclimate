@@ -1,5 +1,27 @@
-
 $(document).ready(function() {
+
+	if($('#register-button').length) {
+		
+		$('#register-button').prop('disabled', true);
+		
+		activateRegisterButton = function (){
+			if ($('#email').val().length > 0 && $('#password').val().length > 0 && $('.field_with_errors').length === 0 && $('#card-errors').text() === "") {
+				$('#register-button').prop('disabled', false);
+			} else {
+				$('#register-button').prop('disabled', true);
+			};
+		};
+		
+		$('#email').change(function(event) {
+			activateRegisterButton();
+		});
+		$('#password').change(function(event) {
+			activateRegisterButton();
+		});
+		$('#card-element').change(function(event) {
+			activateRegisterButton();
+		});
+	};
 
 	if($('#card-element').length) {
 
@@ -65,7 +87,6 @@ $(document).ready(function() {
 		// Create a token or display an error the form is submitted.
 		var form = document.getElementById('payment-form');
 		form.addEventListener('submit', function(event) {
-		  $('#register-button').prop('disabled', true);
 		  event.preventDefault();
 
 		  stripe.createToken(card).then(function(result) {
@@ -73,7 +94,6 @@ $(document).ready(function() {
 		      // Inform the user if there was an error
 		      var errorElement = document.getElementById('card-errors');
 		      errorElement.textContent = result.error.message;
-		      $('#register-button').prop('disabled', false);
 		    } else {
 		      // Send the token to your server
 		      stripeTokenHandler(result.token);
