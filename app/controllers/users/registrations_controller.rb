@@ -55,6 +55,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     begin
 
+      if params[:user][:email].nil? || params[:user][:email].length < 4
+        flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.blank')
+        redirect_to new_user_registration_path({plan: @plan}) and return
+      end
+
+      if params[:user][:password].nil? || params[:user][:password].length < 6
+        flash[:error] = I18n.t('activerecord.errors.models.user.attributes.password.blank')
+        redirect_to new_user_registration_path({plan: @plan}) and return
+      end
+
       if !User.find_by_email(params[:user][:email]).nil?
         flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.taken')
         redirect_to new_user_registration_path({plan: @plan}) and return
