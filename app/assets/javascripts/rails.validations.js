@@ -167,9 +167,11 @@
         form.ClientSideValidations = {
           settings: $form.data('clientSideValidations'),
           addError: function(element, message) {
+            $('#register-button').prop('disabled', true);
             return ClientSideValidations.formBuilders[form.ClientSideValidations.settings.html_settings.type].add(element, form.ClientSideValidations.settings.html_settings, message);
           },
           removeError: function(element) {
+            $('#register-button').prop('disabled', false);
             return ClientSideValidations.formBuilders[form.ClientSideValidations.settings.html_settings.type].remove(element, form.ClientSideValidations.settings.html_settings);
           }
         };
