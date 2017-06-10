@@ -126,13 +126,9 @@ body {
   color: red;
   margin-bottom: 10px;
 }
-.message {
+.field_with_errors {
+  text-align: left;
   color: red;
-  margin-left: -20px;
-  margin-top: 10px;
-}
-label[for="password"].message {
-  margin-left: -30px;
 }
 
 @media (min-width: 768px) {
