@@ -167,16 +167,10 @@
         form.ClientSideValidations = {
           settings: $form.data('clientSideValidations'),
           addError: function(element, message) {
-            $('#register-button').prop('disabled', true);
             return ClientSideValidations.formBuilders[form.ClientSideValidations.settings.html_settings.type].add(element, form.ClientSideValidations.settings.html_settings, message);
           },
           removeError: function(element) {
-            
-            var returnValue = ClientSideValidations.formBuilders[form.ClientSideValidations.settings.html_settings.type].remove(element, form.ClientSideValidations.settings.html_settings);
-            if ($('#email').val().length > 0 && $('#password').val().length > 0 && $('.field_with_errors').length === 0 && $('#card-errors').text() === "") {
-              $('#register-button').prop('disabled', false);
-            };
-            return returnValue;
+            return ClientSideValidations.formBuilders[form.ClientSideValidations.settings.html_settings.type].remove(element, form.ClientSideValidations.settings.html_settings);
           }
         };
         ref = {
