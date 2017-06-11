@@ -137,6 +137,13 @@ sv:
   its_that_simple_text: Så här enkelt är det. Klimatförändringarna är den största utmaningen som vår generation stått inför och vi kan göra någonting åt det tillsammans. Vi säger inte att det här räcker, men det är ett stort steg i rätt riktning. Hoppa på nu och sprid ordet så bidrar det till att ännu fler hänger med!
   why_goclimateneutral_head: VARFÖR GOCLIMATENEUTRAL?
   how_it_works_head: SÅ FUNKAR DET
+  forgot_your_password: Glömt ditt lösenord?
+  enter_your_email_below_and_we_will_send_you: Skriv in din e-post nedan så mailar vi dig instruktioner.
+  send_me_an_email_with_instructions: Skicka ett mail till mig!
+  change_your_password: Ändra ditt lösenord
+  change_your_password_by_entering_your_new_password_below: Ändra ditt lösenord genom att skriva in ditt nya lösenord här.
+  change_password: Ändra lösenord
+  forgot_your_password: Glömt lösenordet?
   activerecord:
     errors:
       models:

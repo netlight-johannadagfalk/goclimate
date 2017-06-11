@@ -247,10 +247,13 @@ input {
   padding-bottom: 40px;
 }
 .checkbox {
-    text-align: left;
+  text-align: left;
 }
 .form-group .checkbox input {
-    margin-left: 0px;
+  margin-left: 0px;
+}
+.form-group div {
+  text-align: left;
 }
 .site-wrapper .glyphicon-chevron-down {
     padding-top: 110px;
@@ -542,6 +545,9 @@ p.lead a {
             height: 80px;
             font-size: 34px;
             margin-top: 12px;
+        }
+        a {
+          font-size: 34px;
         }
         .checkbox label {
             margin-left: 35px;

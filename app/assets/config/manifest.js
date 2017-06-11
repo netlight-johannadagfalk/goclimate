@@ -3,3 +3,4 @@
 //= link_directory ../stylesheets .css
 //= link users/registrations.js
 //= link users/sessions.js
+//= link devise/passwords.js

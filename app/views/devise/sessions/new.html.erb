@@ -32,7 +32,7 @@
           <div class="form-group">
             <div class="col-sm-offset-5 col-sm-4">
               <div class="checkbox">
-                  <%= f.check_box :remember_me %><%= f.label :remember_me %>
+                  <%= f.check_box :remember_me, checked: true %><%= f.label :remember_me %>
               </div>
             </div>
           </div>
@@ -44,8 +44,15 @@
           </div>
         </div>
 
+        <div class="form-group">
+          <div class="col-sm-offset-5 col-sm-4">
+            <%= link_to t('forgot_your_password'), new_user_password_path %>
+          </div>
+        </div>
+        
       <% end %>
 
     </div>
   </div>
+    <%= render "shared/footer" %>
 </div>
