@@ -405,13 +405,19 @@ p.lead a {
 @media (max-width: 768px) {
     .form-group {
         select, input {
-            display: inline;
-            margin: 0 auto;
+          display: inline;
+          margin: 0 auto;
         }
         #card-element {
-            margin: 0 auto;
-            width: 300px;
+          margin: 0 auto;
+          width: 300px;
         }
+        div {
+          text-align: center;
+        }
+    }
+    #card-errors {
+      margin-left: 0px;
     }
 }
 @media only screen and (max-device-width: 768px) {
