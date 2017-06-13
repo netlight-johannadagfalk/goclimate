@@ -261,6 +261,12 @@ input {
     width: 23px;
     text-align: left;
 }
+.glyphicon-chevron-down.first {
+  color: #fff;
+}
+.img-circle {
+    border-radius: 50%;
+}
 .site-wrapper-second {
     padding-top: 60px;
 }
@@ -330,6 +336,9 @@ input {
     }
     ol {
         display: inline-block;
+    }
+    p {
+      line-height: 150%;
     }
 }
 input#plan {

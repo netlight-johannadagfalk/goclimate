@@ -1,31 +1,68 @@
-<div class="site-wrapper-inner solo-inner-wrapper site-wrapper-first">
-  <div class="cover-container">
-    
-    <%= render "shared/header" %>
-
+      <div class="site-wrapper-inner site-wrapper-first">
+        <div class="cover-container">
+          <%= render "shared/header" %>
           <div class="inner cover">
-    				<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-    				
+            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+            <h1 class="cover-heading"><%=t('about_us') %></h1>
+            <p class="lead"><%=t 'about_us_intro' %></p>
+          </div>
+          <span class="glyphicon glyphicon-chevron-down first" aria-hidden="true"></span>
+        </div>
+      </div>
 
-            <div class="row stats">
-              <div class="col-md-3"></div>
-              <div class="col-md-6">
-                <h1 class="cover-heading"><%=t 'about_us' %></h1>
-                <p class="lead text-left"><%=t 'about_us_intro' %></p>
-                <p class="text-left"><%=t 'about_us_text' %></p>
+      <a name="why_goclimateneutral"></a>
+      <div class="site-wrapper-inner site-wrapper-second">
+        <div class="cover-container">
+          <div class="inner cover">
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            <h1 class="cover-heading"><%=t 'about_us_why_do_we_exist' %></h1>
+            <p class="lead"><%=t 'about_us_why_do_we_exist_text' %></p>
+          </div>
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </div>
+      </div>
+
+
+      <a name="why_goclimateneutral"></a>
+      <div class="site-wrapper-inner site-wrapper-third">
+        <div class="cover-container">
+          <div class="inner cover">
+            <span class="glyphicon glyphicon glyphicon-leaf" aria-hidden="true"></span>
+            <h1 class="cover-heading"><%=t 'about_us_how_do_we_stop_climate_change' %></h1>
+            <p class="lead"><%=t 'about_us_how_do_we_stop_climate_change_text' %></p>
+            <p class="lead"><%=t 'about_us_how_do_we_stop_climate_change_text_2' %></p>
+          </div>
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+        </div>
+      </div>
+
+
+      <a name="why_goclimateneutral"></a>
+      <div class="site-wrapper-inner site-wrapper-second">
+        <div class="cover-container">
+          <div class="inner cover">
+            <h1 class="cover-heading"><%=t 'about_us_who_are_we' %></h1>
+            <div class="row">
+              <div class="col-xs-12 col-md-6">
+                <%= image_tag 'kalle_small.jpg', class: 'img-circle' %>
+                <h2>Kalle Nilvér</h2>
+                <p><%=t 'about_us_who_are_we_kalle' %></p>
+                <p><b>Twitter:</b> <%= link_to 'kallenilver', 'https://twitter.com/kallenilver' %></p>
+                <p><b>Telefon:</b> +46706084374</p>
               </div>
-              <div class="col-md-3"></div>
+              <div class="col-xs-12 col-md-6">
+                <%= image_tag 'cissi_small.png', class: 'img-circle' %>
+                <h2>Cissi Lindén</h2>
+                <p><%=t 'about_us_who_are_we_cissi' %></p>
+                <p><b>Twitter:</b> <%= link_to 'cissilinden', 'https://twitter.com/cissilinden' %></p>
+                <p><b>Telefon:</b> +46705476300</p>
+              </div>
             </div>
-
-    				
-    				<p class="lead lead-btn">
-    					<a href="/step_1_choose_plan" class="btn btn-lg btn-success">Go Climate Neutral Now!</a>
-    				</p>
-		       </div>
-
-
-  </div>
+          </div>
+        </div>
+      </div>
   
-  <%= render "shared/footer" %>
-
-</div>
+        
+        <%= render "shared/footer" %>
+        
+  
