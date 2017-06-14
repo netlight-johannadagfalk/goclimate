@@ -5,47 +5,47 @@ en:
   log_in: Log in
   log_out: Log out
   settings: Settings
-  ok_i_want_to_know_more: Ok, I want to know more!
+  ok_i_want_to_know_more: Ok, sign me up!
   i_want_to_know_more: I want to know more!
   contact_us: Contact us
   if_you_want_to_get_involved: If you want to get involved, contact us at
-  general_questions: General questions, contact us at
+  general_questions: General inquires, contact us at
   if_you_want_to_talk: If you want to talk, give us a call on
-  or_come_visit_us: Or come visit us at
-  or_talk_to_us_on_twitter: Or talk to some of us on Twitter
+  or_come_visit_us: Or, if you prefer, come visit us at
+  or_talk_to_us_on_twitter: Or get in contact on Twitter
   about_us: About us
   about_us_intro: GoClimateNeutral is a non-profit association with the sole purpose of making it easier to live a climate neutral life and thereby be a part of saving the world.
   about_us_why_do_we_exist: Why does GoClimateNeutral exist?
   about_us_why_do_we_exist_text: One day our children will hold us accountable for what we did or rather what we did not do even though we knew about the seriousness of the situation. That is the main reason for why we set up GoClimateNeutral. We need to do everything in our power to stop global warming so that we can look our children in the eyes in the future.
   about_us_how_do_we_stop_climate_change: How do we stop climate change?
-  about_us_how_do_we_stop_climate_change_text: In order to stop climate change we all need to live climate neutral lives now. The best way to do that is to reduce our footprint as much as possible and at the same time start to offset for the things we can't reduce. The Go Climate Neutral site was founded in 2017 with the aim to make it easy to do just that - reduce our climate impact and offset for the things we can't reduce. 
+  about_us_how_do_we_stop_climate_change_text: In order to stop climate change we all need to live climate neutral lives now. The best way to do that is to reduce our footprint as much as possible and at the same time start to offset for the things we can't reduce. The GoClimateNeutral site was founded in 2017 with the aim to make it easy to do just that - reduce our climate impact and offset for the things we can't reduce. 
   about_us_how_do_we_stop_climate_change_text_2: We believe that the best way to help offset climate impact is to make it as easy as possible to offset the climate impact of a specific lifestyle. We believe that we can stop climate change - if we do it together and if we start now.
   about_us_who_are_we: Who are we?
   about_us_who_are_we_kalle: "CEO of Booli.se at daytime. MSc Information Technology and Business Economics. Likes vegan choclate cake and cute animals on the internet."
   about_us_who_are_we_cissi: "Marketing Manager and managing sustainability topics at an international sports brand. Degree in Buisness Economics and has studied sustainability and environment."
   blog: Blog
   section_1_go_climate_neutral: Go Climate Neutral!
-  section_1_text: By each month investing in the UN certified climate offset projects that has the most positive impact for the environment for you - with a sum that corresponds to your lifestyle - we can help you offset your climate footprint. This way you can live an as climate neutural life as possible over time.
-  its_fun_to_do_it_together: It's fun to do it together!
-  section_2_text: By offseting your climate impact with us, you inspire others to do the same. Climate change is a challange we face together, so we should fight it together as well. And it's fun seeing the impact we can make together and follow the process over time.
+  section_1_text: By letting us do monthly investments in UN certified climate offset projects for you - with a sum that corresponds to your lifestyle - we help you offset your climate footprint. By doing this you reduce your climate footprint, help slow down climate change and contribute to saving our planet.
+  its_fun_to_do_it_together: It's more fun to save the planet together!
+  section_2_text: By offsetting your climate impact with us, you inspire others to do the same. Climate change is a challenge we face together, so we should fight it together as well. (On top of that it's exciting to see the impact we can make when we join forces and also to follow the process over time.)
   we_are_100_transparent: We are 100% transparent
-  section_3_text: We are 100% transparent in which UN certified climate offset projects we invest in, and why. We are also 100% transparent with the amount corbon we manage to offset with your help, and how much carbon we manage to offset with the help of all of our users.
-  we_are_975_effective: We are 97.5% effective
-  section_4_text: 97.5% of what you offset for goes directly to the most effective UN certified climate reducing projects we can find. The other 2.5% goes to covering our costs and for marketing to get even more people to live a more climate neutral life. This is excluding any credit card fees that may apply depending on which country you live in.
-  start_by_choosing_plan: Start by choosing a climate offset plan
-  section_5_text: Whats your climate impact? Let us help you offset your climate impact by choosing a climate offset plan that corresponds most to your lifestyle below.
+  section_3_text: We are 100% transparent in which UN certified climate offset projects we invest in, and why. We are also 100% transparent with the amount carbon we manage to offset with your help, and how much carbon we manage to offset in total.
+  we_are_975_effective: We are very climate efficient
+  section_4_text: 97.5% of what you offset for is invested in the most effective UN certified climate reducing projects we can find. The other 2.5% covers costs for running the service and marketing - to get even more people to live climate neutral lives.
+  start_by_choosing_plan: Start by describing your climate impact
+  section_5_text: What is your way of living? Select an option below or enter a custom one that better corresponds to your lifestyle.
   vegan: Vegan
   no_car: No car
   hardly_ever_flies: Hardly ever flies
-  mini_impact_plan: Mini Impact Plan
+  mini_impact_plan: Mini
   mini_impact_plan_price_html: '$3<span class="subscript">/mo</span>'
   mini_impact_plan_price: 3
-  small_impact_plan: Small Impact Plan
+  small_impact_plan: Small
   small_impact_plan_price_html: '$5<span class="subscript">/mo</span>'
   small_impact_plan_price: 5
-  custom_impact_plan: Custom Plan
+  custom_impact_plan: Custom
   custom_impact_plan_price_html: '$<span id="sum">x</span><span class="subscript">/mo</span>'
-  mostly_vegetarian: Mostly Vegetarian
+  mostly_vegetarian: Almost vegetarian
   one_fuel_efficient_car: One Fuel Efficient Car
   flies_sometimes: Flies Sometimes
   this_is_me: This is me!
@@ -55,15 +55,15 @@ en:
   meat_eater: Meat Eater
   no_car: No Car
   electric_car: Electric car
-  fuel_efficient_seldom_drives: Fuel efficient car, seldom drives
-  fuel_efficient_car_drives_often: Fuel efficient car, drives often
-  normal_car_seldom_drives: Normal car, seldom drives
-  normal_car_drives_often: Normal car, drives often
-  suv_seldom_drives: SUV, seldom drives
-  suv_drives_often: SUV, drives often
+  fuel_efficient_seldom_drives: Fuel efficient car, seldom drive
+  fuel_efficient_car_drives_often: Fuel efficient car, drive often
+  normal_car_seldom_drives: Normal car, seldom driv
+  normal_car_drives_often: Normal car, drive often
+  suv_seldom_drives: Fuel thirsty car, seldom drive
+  suv_drives_often: Fuel thirsty car, drive often
   never_flies: Never flies
-  flies_short_distance_time_year: Flies short distance %{times} time/year
-  flies_long_distance_time_year: Flies long distance %{times} time/year
+  flies_short_distance_time_year: Fly short distance %{times} time/year
+  flies_long_distance_time_year: Fly long distance %{times} time/year
   vegan_price: '1'
   vegetarian_price: '1.5'
   mostly_vegetarian_price: '2'
@@ -87,8 +87,6 @@ en:
   flies_long_distance_6_times_year_price: '12'
   flies_long_distance_12_times_year_price: '24'
   base_cost: '1'
-
-
   thats_it: That's it!
   read_more_how_we_calculate_offset_plans_html: Read more on how we calculate the %{href}.
   offset_plans: offset plans
@@ -105,7 +103,7 @@ en:
   credit_or_debit_card: Credit or debit card
   climate_plan: Climate Plan
   go_climate_neutral: Go Climate Neutral!
-  log_in_to_see_how_we_are_doing: Climate Change is the biggest challenge of our time. Log in to see how we are doing in our fight against it.
+  log_in_to_see_how_we_are_doing: Climate change is the biggest challenge of our time. Log in to see how we are doing in our fight to stop it.
   you_have_lived_climate_neutral_for_one_month: You have lived climate neutral for %{months} month. Good Job!
   you_have_lived_climate_neutral_for_more_months: You have lived climate neutral for %{months} months. Good Job!
   number_of_months_you_have_been_climate_neutral: Number of months you have been climate neutral
@@ -138,10 +136,10 @@ en:
   1_describe_your_lifestyle: 1. Describe Your Lifestyle
   describe_your_lifestyle_text: Describe your lifestyle and thereby also your carbon footprint.
   2_sign_up: 2. Sign up
-  sign_up_text: Sign up in our really simple form
+  sign_up_text: Take 1 minute to register
   3_save_the_world: 3. Save the world
-  save_the_world_text: By every month buying climate offsets for you we help you become carbon neutral and save the world.
-  its_that_simple_text: "It's that simple. Climate change is the biggest challange of our time, but we can do something together. We are not saying that this will be enough, but it's a step in the right direction. And by joining us, you will encourage others to join us as well! So, find out more, and join us, by clicking the button below!"
+  save_the_world_text: We buy climate offsets for you each month to help you live a climate neutral life and thus contribute to saving our planet.
+  its_that_simple_text: "It's that simple. Climate change is the biggest challenge of our time, but together we can do something about it. We are not claiming that this will be enough, but it's a big step in the right direction. Join us and spread the word to encourage others to be part of this movement!"
   why_goclimateneutral_head: WHY GOCLIMATENEUTRAL?
   how_it_works_head: HOW IT WORKS
   forgot_your_password: Forgot your password?
