@@ -9,13 +9,9 @@ sv:
   i_want_to_know_more: Jag vill veta mer!
   ok_i_want_to_know_more: Ok, jag är intresserad!
   contact_us: Kontakta oss
-  if_you_want_to_get_involved: Om du vill hjälpa till, kontakta oss på
-  general_questions: Allmänna frågor, kontakta oss på
-  if_you_want_to_talk: Om du vill prata lite så når du oss på
-  or_come_visit_us: Eller kom och hälsa på oss här
-  or_talk_to_us_on_twitter: Eller twittra med några av oss
+  general_questions_html: 'Om du har frågor om GoClimateNeutral eller har idéer om hur vi kan förbättra tjänsten, hör gärna av dig till oss på: <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a>, <a href="tel:+46706084374">+46706084374</a> eller twittra med oss på <a href="https://twitter.com/kallenilver">@kallenilver</a> eller <a href="https://twitter.com/cissilinden">@cissilinden</a>.'
   about_us: Om oss
-  about_us_intro: GoClimateNeutral är en ideell förening vars enda syfte är att hjälpa så många som möjligt att leva ett klimatneutralt liv och därmed vara med bromsa klimatförändringarna och rädda världen.
+  about_us_intro: GoClimateNeutral är en ideell förening vars syfte är att hjälpa så många som möjligt att leva ett klimatneutralt liv och därmed vara med bromsa klimatförändringarna och rädda världen.
   about_us_why_do_we_exist: Varför finns GoClimateNeutral?
   about_us_why_do_we_exist_text: En dag kommer våra barn ställa oss till svars för vad vi gjorde eller varför vi inte gjorde mer åt klimatförändringarna trots att vi var medvetna om att situationen var så allvarlig. Det är den största anledningen till att vi skapade GoClimateNeutral. Den dag våra barn frågar oss om vår medverkan vill vi kunna svara att vi gjorde allt vi bara kunde för att bromsa klimatförändringarna för att ge dem och deras generation en bättre framtid. 
   about_us_how_do_we_stop_climate_change: Hur bromsar vi klimatförändringarna?
@@ -23,7 +19,7 @@ sv:
   about_us_how_do_we_stop_climate_change_text_2: GoClimateNeutral skapades 2017 i syfte att göra ovanstående så enkelt som möjligt – ge tips om hur vi alla kan minska vår egen klimatpåverkan och erbjuda möjligheten att klimatkompensera för de fotavtryck vi personligen orsakar. Vi tror att det bästa sättet att få människor att klimatkompensera för sin livsstil är att göra det så enkelt som möjligt och därför har vi tagit fram olika generella profiler där du väljer den som känns mest aktuell för dig. Vi är övertygade om att klimatförändringarna kan stoppas –om vi är tillräckligt många som agerar och om vi gör det nu.
   about_us_who_are_we: Vilka är vi?
   about_us_who_are_we_kalle: "Till vardags VD på Booli.se. Utbildad civilingenjör samt ekonom. Tycker om vegansk kladdkaka och söta djur på internet."
-  about_us_who_are_we_cissi: "Marknadsförare samt ansvarig för hållbarhetsfrågor på ett internationellt sportföretag. Utbildad ekonom, marknadsförare samt har studerat kurser inom miljöområdet. Miljörnörd och trädgårdsodlingsgeni."
+  about_us_who_are_we_cissi: "Marknadsförare samt CSR-ansvarig på ett internationellt sportföretag. Utbildad ekonom och har läst kurser inom miljöområdet. Miljönörd och trädgårdsodlingsgeni."
   blog: Blogg
   section_1_go_climate_neutral: Lev ett klimatneutralt liv!
   section_1_text: Genom att varje månad investera i FN-certifierade klimatprojekt åt dig - med en summa som motsvarar din livsstil – kompenserar vi för din klimatpåverkan. På så sätt gör du ett minimalt avtryck på jordklotet,  bromsar klimatförändringarna och medverkar till att rädda världen.

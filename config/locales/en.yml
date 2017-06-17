@@ -8,11 +8,7 @@ en:
   ok_i_want_to_know_more: Ok, sign me up!
   i_want_to_know_more: I want to know more!
   contact_us: Contact us
-  if_you_want_to_get_involved: If you want to get involved, contact us at
-  general_questions: General inquires, contact us at
-  if_you_want_to_talk: If you want to talk, give us a call on
-  or_come_visit_us: Or, if you prefer, come visit us at
-  or_talk_to_us_on_twitter: Or get in contact on Twitter
+  general_questions_html: 'For questions about GoClimateNeutral or if you have ideas on how we can improve the site, please drop us a line at <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a>, <a href="tel:+46706084374">+46706084374</a> or on Twitter <a href="https://twitter.com/kallenilver">@kallenilver</a> or <a href="https://twitter.com/cissilinden">@cissilinden</a>.'
   about_us: About us
   about_us_intro: GoClimateNeutral is a non-profit association with the sole purpose of making it easier to live a climate neutral life and thereby be a part of saving the world.
   about_us_why_do_we_exist: Why does GoClimateNeutral exist?
@@ -21,11 +17,11 @@ en:
   about_us_how_do_we_stop_climate_change_text: In order to stop climate change we all need to live climate neutral lives now. The best way to do that is to reduce our footprint as much as possible and at the same time start to offset for the things we can't reduce. The GoClimateNeutral site was founded in 2017 with the aim to make it easy to do just that - reduce our climate impact and offset for the things we can't reduce. 
   about_us_how_do_we_stop_climate_change_text_2: We believe that the best way to help offset climate impact is to make it as easy as possible to offset the climate impact of a specific lifestyle. We believe that we can stop climate change - if we do it together and if we start now.
   about_us_who_are_we: Who are we?
-  about_us_who_are_we_kalle: "CEO of Booli.se at daytime. MSc Information Technology and Business Economics. Likes vegan choclate cake and cute animals on the internet."
-  about_us_who_are_we_cissi: "Marketing Manager and managing sustainability topics at an international sports brand. Degree in Buisness Economics and has studied sustainability and environment."
+  about_us_who_are_we_kalle: "CEO of Booli.se. MSc Information Technology and Business Economics. Likes vegan choclate cake and cute animals on the internet."
+  about_us_who_are_we_cissi: "Marketing and CSR Manager at an international sports brand. Degree in Buisness Economics and studies in sustainability and environment."
   blog: Blog
   section_1_go_climate_neutral: Go Climate Neutral!
-  section_1_text: By letting us do monthly investments in UN certified climate offset projects for you - with a sum that corresponds to your lifestyle - we help you offset your climate footprint. By doing this you reduce your climate footprint, help slow down climate change and contribute to saving our planet.
+  section_1_text: By letting us do monthly investments in UN certified climate offset projects - with a sum that corresponds to your lifestyle - we help you offset your climate footprint. By doing this you help slow down climate change and contribute to saving our planet.
   its_fun_to_do_it_together: It's more fun to save the planet together!
   section_2_text: By offsetting your climate impact with us, you inspire others to do the same. Climate change is a challenge we face together, so we should fight it together as well. (On top of that it's exciting to see the impact we can make when we join forces and also to follow the process over time.)
   we_are_100_transparent: We are 100% transparent
@@ -57,7 +53,7 @@ en:
   electric_car: Electric car
   fuel_efficient_seldom_drives: Fuel efficient car, seldom drive
   fuel_efficient_car_drives_often: Fuel efficient car, drive often
-  normal_car_seldom_drives: Normal car, seldom driv
+  normal_car_seldom_drives: Normal car, seldom drive
   normal_car_drives_often: Normal car, drive often
   suv_seldom_drives: Fuel thirsty car, seldom drive
   suv_drives_often: Fuel thirsty car, drive often
@@ -135,9 +131,9 @@ en:
   this_is_how_it_works: This is how it works
   1_describe_your_lifestyle: 1. Describe Your Lifestyle
   describe_your_lifestyle_text: Describe your lifestyle and thereby also your carbon footprint.
-  2_sign_up: 2. Sign up
+  2_sign_up: 2. Sign Up
   sign_up_text: Take 1 minute to register
-  3_save_the_world: 3. Save the world
+  3_save_the_world: 3. Save the World
   save_the_world_text: We buy climate offsets for you each month to help you live a climate neutral life and thus contribute to saving our planet.
   its_that_simple_text: "It's that simple. Climate change is the biggest challenge of our time, but together we can do something about it. We are not claiming that this will be enough, but it's a big step in the right direction. Join us and spread the word to encourage others to be part of this movement!"
   why_goclimateneutral_head: WHY GOCLIMATENEUTRAL?
