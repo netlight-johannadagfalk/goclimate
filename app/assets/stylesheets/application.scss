@@ -499,6 +499,11 @@ p.lead a {
         font-size: 300px;
         padding-top: 150px;
     }
+    .modal-content .glyphicon {
+        font-size: 300px;
+        padding-top: 100px;
+        padding-bottom: 50px;
+    }
     h1 {
         font-size: 135px;
         padding-top: 100px;
@@ -569,6 +574,20 @@ p.lead a {
         border-radius: 15px;
         height: 119px;
         padding: 35px;
+    }
+    .modal-dialog {
+      width: 1200px;
+    }
+    .modal-dialog h4 {
+      font-size: 40px;
+    }
+    a.btn.btn-social {
+      font-size: 50px;
+      width: 450px;
+    }
+    a.btn.btn-social > :first-child {
+      top: 20px;
+      font-size: 70px;
     }
     .site-wrapper .form-group {
         select, input {
