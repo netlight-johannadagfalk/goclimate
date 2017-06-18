@@ -102,8 +102,16 @@ sv:
   climate_plan: Kompensation
   go_climate_neutral: Jag vill rädda världen!
   log_in_to_see_how_we_are_doing: Logga in för att se hur det går i vår kamp med att försöka ställa klimatet till rätta igen.
-  you_have_lived_climate_neutral_for_one_month: Du har levt ett klimatneutralt liv i %{months} månad.
-  you_have_lived_climate_neutral_for_more_months: Du har levt ett klimatneutralt liv i %{months} månader.
+  you_have_lived_climate_neutral_for_one_month: Du har levt klimatneutralt i %{months} månad.
+  you_have_lived_climate_neutral_for_more_months: Du har levt klimatneutralt i %{months} månader.
+  I_have_lived_climate_neutral_for_one_month_join_me: Nu har jag levt klimatneutralt i %{months} månad! Join me! -> https://www.goclimateneutral.org/
+  I_have_lived_climate_neutral_for_one_months_join_me: Nu har jag levt klimatneutralt i %{months} månader! Join me! -> https://www.goclimateneutral.org/
+  tell_your_friends: Berätta för dina vänner!
+  climate_change_is_best_faced_together: Du är en hjälte! Bäst bromsar vi klimatförändringarna tillsammans, så dela jättegärna det här vidare så att vi blir fler som lever klimatneutrala liv!
+  share_on_facebook: Dela på Facebook
+  share_on_twitter: Dela på Twitter
+  we_have_accomplished_alot_together: Vi har åstadkommit mycket tillsammans!
+  amount_of_carbon_we_have_offset: Antal ton CO2 vi har kompenserat bort
   good_job: Bra jobbat!
   number_of_months_you_have_been_climate_neutral: Antal månader som du har levt ett klimatneutralt liv
   you_climate_offset_investments: Du har klimatkompenserat för
@@ -116,8 +124,9 @@ sv:
   climate_neutral_month: klimatneutral månad
   climate_neutral_months: klimatneutrala månader
   climate_country_toplist: Topplista klimatneutrala länder
-  total_carbon_offset_by_us: Total klimatkompensering av oss tillsammans
+  total_carbon_offset_by_us: Totalt har vi klimatkompenserat bort
   tonnes_CO2: ton C02
+  tonnes: ton
   thank_you_so_much_everyone_for_helping_to_save_the_world: Otroligt stort tack för att du är med och räddar världen! Du är bäst!
   latest_carbon_offset_projects: Senaste klimatkompensationsprojekten
   offset: Kompensation

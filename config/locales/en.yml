@@ -102,7 +102,15 @@ en:
   log_in_to_see_how_we_are_doing: Climate change is the biggest challenge of our time. Log in to see how we are doing in our fight to stop it.
   you_have_lived_climate_neutral_for_one_month: You have lived climate neutral for %{months} month.
   you_have_lived_climate_neutral_for_more_months: You have lived climate neutral for %{months} months.
+  I_have_lived_climate_neutral_for_one_month_join_me: Now I have lived a climate neutral life for %{months} month! Join me! -> https://www.goclimateneutral.org/
+  I_have_lived_climate_neutral_for_one_months_join_me: Now I have lived a climate neutral life for %{months} months! Join me! -> https://www.goclimateneutral.org/
+  tell_your_friends: Tell your friends!
+  climate_change_is_best_faced_together: You are awesome! Since climate change is best faced together, it would be great if you want to share the message so that more people ca start living climate neutral lives!
   good_job: Good Job!
+  share_on_facebook: Share on Facebook
+  share_on_twitter: Share on Twitter
+  we_have_accomplished_alot_together: We have accomplished a lot together!
+  amount_of_carbon_we_have_offset: Number of tonnes CO2 that we have offset
   number_of_months_you_have_been_climate_neutral: Number of months you have been climate neutral
   you_climate_offset_investments: Your climate offset investments
   you_climate_offset_investments_amount: '$%{usd}'
@@ -115,6 +123,8 @@ en:
   climate_neutral_months: climate neutral months
   climate_country_toplist: Climate Country Toplist
   total_carbon_offset_by_us: Total carbon offsets by us together
+  tonnes_CO2: tonnes C02
+  tonnes: tonnes
   thank_you_so_much_everyone_for_helping_to_save_the_world: Thank you so much everyone for helping to save the world! You Rock!
   latest_carbon_offset_projects: Latest Carbon Offset Projects
   offset: Offset

@@ -37,7 +37,12 @@ a:hover {
 .btn-social {
   width: 228px;
 }
-
+.last .btn-social {
+  width: 232px;
+}
+.offset-projects {
+  padding-bottom: 40px;
+}
 
 /*
  * Base structure
@@ -151,20 +156,10 @@ body {
   }
 }
 
-
-/*
- * Cover
- */
-
 .cover .btn-lg {
   padding: 10px 20px;
   font-weight: bold;
 }
-
-
-/*
- * Affix and center
- */
 
 @media (min-width: 768px) {
   /* Pull out the header and footer */
@@ -305,6 +300,27 @@ input {
 .welcome .row {
   padding: 50px;
 }
+.modal-content h3 {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.modal-content p {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.dashboard .cover-container h3 {
+  padding: 20px;
+}
+.row.stats.last {
+  padding-bottom: 50px;
+}
+.dashboard .stats.total-offset h1 {
+  font-size: 95px;
+}
+.dashboard .stats.total-offset {
+  padding-top: 40px;
+}
+
 .form-group {
     div {
         padding: 0px;

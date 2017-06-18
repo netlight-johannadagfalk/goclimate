@@ -1,26 +1,8 @@
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId            : '452582378427296',
-      xfbml      : true,
-      version          : 'v2.9'
-    });
-    FB.AppEvents.logPageView();
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     <% if I18n.locale == :sv %>
-      js.src = "//connect.facebook.net/sv_SE/sdk.js";
-     <% else %>
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-     <% end %>
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-
+<%= render "shared/facebook_script" %>
+<%= render "shared/twitter_script" %>
+<%= javascript_tag do %>
+  window.facebookQuote = '<%= @social_quote %>';
+<% end %>
 
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="shareModal">
   <div class="modal-dialog modal-lg" role="document">
@@ -28,7 +10,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="gridSystemModalLabel">
-          Berätta för dina vänner!
+          <%=t 'tell_your_friends' %>
         </h4>
       </div>
       <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
@@ -40,16 +22,16 @@
         <% end %>
         <%=t 'good_job' %>
       </h3>
-      <p>Du är en hjälte! Bäst bromsar vi klimatförändringarna tillsammans, så dela jättegärna det här vidare så att vi blir fler som lever klimatneutrala liv!</p>
+      <p><%=t 'climate_change_is_best_faced_together' %></p>
       <p> </p>
       <div>
       <div class="row share-buttons">
           <div class="col-sm-1 col-md-3"></div>
           <div class="col-sm-5 col-md-3">
-            <a class="btn btn-social btn-lg btn-facebook" id="share-facebook"><span class="fa fa-facebook"></span> Dela på Facebook</a>
+            <a class="btn btn-social btn-lg btn-facebook" id="share-facebook"><span class="fa fa-facebook"></span> <%=t 'share_on_facebook' %></a>
           </div>
           <div class="col-sm-5 col-md-3">
-            <a class="btn btn-social btn-lg btn-twitter"><span class="fa fa-twitter"></span> Dela på Twitter</a>
+            <a class="btn btn-social btn-lg btn-twitter" href="https://twitter.com/intent/tweet?text=<%= @encoded_social_quote %>" data-size="large"><span class="fa fa-twitter"></span> <%=t 'share_on_twitter' %></a>
           </div>
           <div class="col-sm-1 col-md-3"></div>
       </div>
@@ -68,13 +50,8 @@
           <div class="inner cover">
               <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
               <h3 class="cover-heading">
-                <% if @my_neutral_months == 1 %>
-                  <%=t 'you_have_lived_climate_neutral_for_one_month', months: @my_neutral_months %>
-                <% else %>
-                  <%=t 'you_have_lived_climate_neutral_for_more_months', months: @my_neutral_months %>
-                <% end %>
+                <%=t 'we_have_accomplished_alot_together' %>
               </h3>
-
 
                   <div class="row stats">
                     <div class="col-md-2"></div>
@@ -103,15 +80,15 @@
                   </div>
 
 
-                  <div class="row stats">
+                  <div class="row stats last">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
                       <p><%=t 'total_climate_offset_project_investments' %>:</p> 
                       <h1><%=t 'total_climate_offset_project_investments_amount', usd: @total_usd, sek: @total_sek %></h1>
                     </div>
                     <div class="col-md-4">
-                      <p></p> 
-                      <h1></h1>
+                      <p><%=t 'amount_of_carbon_we_have_offset' %></p> 
+                      <h1><%= @total_carbon_offset %> <%=t 'tonnes' %></h1>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
@@ -176,7 +153,7 @@
           <div class="inner cover">
             <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span>
             
-            <div class="row stats">
+            <div class="row stats total-offset">
                 <div class="col-md-12">
                   <p><%=t 'total_carbon_offset_by_us' %>:</p> 
                   <h1><%= @total_carbon_offset %> <%=t 'tonnes_CO2' %></h1>
@@ -191,18 +168,19 @@
       <div class="site-wrapper-inner site-wrapper-second">
         <div class="cover-container">
           <div class="inner cover">
-            <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
             
-            <div class="row stats">
+            <div class="row stats offset-projects">
                 <div class="col-md-12">
-                    <h1><%=t 'latest_carbon_offset_projects' %></h1>
+                    <h3 class="cover-heading"><%=t 'latest_carbon_offset_projects' %></h3>
                     <% @projects.each do |project| %>
-                      <h3><a href ="<%= project.blog_url %>"><%= project.name %></a></h3>
+                      <h4><a href ="<%= project.blog_url %>"><%= project.name %></a></h4>
                       <div><%= image_tag project.image_url, size: "150" %></div>
                       <p><%=t 'offset' %>: <%= project.carbon_offset %> <%=t 'tonnes_CO2' %>
                       <br><%=t 'country' %></>: <%= project.country %>
                       <br><%=t 'location' %>: <a href="https://www.google.com/maps/preview/@<%= project.latitude %>,<%= project.longitude %>,8z" target="_blank"><%= project.latitude %>,<%= project.longitude %></a>
                       <br><a href="<%= project.link %>"><%=t 'more_info_on_un_site' %></a></p>
+                      <p>--------</p>
                     <% end %>
                 </div>
             </div>
@@ -210,17 +188,34 @@
         </div>
       </div>
 
+      <div class="site-wrapper-inner site-wrapper-third">
+        <div class="cover-container">
+          <div class="inner cover">
+            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+            <h3 class="cover-heading">
+        <% if @my_neutral_months == 1 %>
+          <%=t 'you_have_lived_climate_neutral_for_one_month', months: @my_neutral_months %>
+        <% else %>
+          <%=t 'you_have_lived_climate_neutral_for_more_months', months: @my_neutral_months %>
+        <% end %>
+        <%=t 'good_job' %>
+      </h3>
+      <p><%=t 'climate_change_is_best_faced_together' %></p>
+      <p> </p>
+      <div>
+      <div class="row share-buttons last">
+          <div class="col-sm-1 col-md-3"></div>
+          <div class="col-sm-5 col-md-3">
+            <a class="btn btn-social btn-lg btn-facebook" id="share-facebook"><span class="fa fa-facebook"></span> <%=t 'share_on_facebook' %></a>
+          </div>
+          <div class="col-sm-5 col-md-3">
+            <a class="btn btn-social btn-lg btn-twitter" href="https://twitter.com/intent/tweet?text=<%= @encoded_social_quote %>" data-size="large"><span class="fa fa-twitter"></span> <%=t 'share_on_twitter' %></a>
+          </div>
+          <div class="col-sm-1 col-md-3"></div>
+      </div>
+      </div>
+          </div>
+        </div>
+      </div>
+
       <%= render "shared/footer" %>
-
-
-
-
-
-
-
-
-
-
-
-
-
