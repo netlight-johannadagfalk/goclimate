@@ -1,3 +1,64 @@
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '452582378427296',
+      xfbml      : true,
+      version          : 'v2.9'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     <% if I18n.locale == :sv %>
+      js.src = "//connect.facebook.net/sv_SE/sdk.js";
+     <% else %>
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+     <% end %>
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="shareModal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">
+          Berätta för dina vänner!
+        </h4>
+      </div>
+      <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+      <h3 class="cover-heading">
+        <% if @my_neutral_months == 1 %>
+          <%=t 'you_have_lived_climate_neutral_for_one_month', months: @my_neutral_months %>
+        <% else %>
+          <%=t 'you_have_lived_climate_neutral_for_more_months', months: @my_neutral_months %>
+        <% end %>
+        <%=t 'good_job' %>
+      </h3>
+      <p>Du är en hjälte! Bäst bromsar vi klimatförändringarna tillsammans, så dela jättegärna det här vidare så att vi blir fler som lever klimatneutrala liv!</p>
+      <p> </p>
+      <div>
+      <div class="row share-buttons">
+          <div class="col-sm-1 col-md-3"></div>
+          <div class="col-sm-5 col-md-3">
+            <a class="btn btn-social btn-lg btn-facebook" id="share-facebook"><span class="fa fa-facebook"></span> Dela på Facebook</a>
+          </div>
+          <div class="col-sm-5 col-md-3">
+            <a class="btn btn-social btn-lg btn-twitter"><span class="fa fa-twitter"></span> Dela på Twitter</a>
+          </div>
+          <div class="col-sm-1 col-md-3"></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
       <div class="site-wrapper-inner site-wrapper-first">
         
         <div class="cover-container">

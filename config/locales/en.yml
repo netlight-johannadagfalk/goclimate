@@ -100,8 +100,9 @@ en:
   climate_plan: Climate Plan
   go_climate_neutral: Go Climate Neutral!
   log_in_to_see_how_we_are_doing: Climate change is the biggest challenge of our time. Log in to see how we are doing in our fight to stop it.
-  you_have_lived_climate_neutral_for_one_month: You have lived climate neutral for %{months} month. Good Job!
-  you_have_lived_climate_neutral_for_more_months: You have lived climate neutral for %{months} months. Good Job!
+  you_have_lived_climate_neutral_for_one_month: You have lived climate neutral for %{months} month.
+  you_have_lived_climate_neutral_for_more_months: You have lived climate neutral for %{months} months.
+  good_job: Good Job!
   number_of_months_you_have_been_climate_neutral: Number of months you have been climate neutral
   you_climate_offset_investments: Your climate offset investments
   you_climate_offset_investments_amount: '$%{usd}'
