@@ -40,7 +40,7 @@ class DashboardController < ApplicationController
     else
       @social_quote = I18n.t('I_have_lived_climate_neutral_for_more_months_join_me', months: @my_neutral_months)
     end
-    @encoded_social_quote = URI.encode(@social_quote + ' -> https://www.goclimateneutral.org/')
+    @encoded_social_quote = URI.encode(@social_quote + ' -> ' + I18n.t('goclimateneutral_url'))
 
   end
 end
