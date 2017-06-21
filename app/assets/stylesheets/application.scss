@@ -35,10 +35,7 @@ a:hover {
   border: 1px solid #fff;
 }
 .btn-social {
-  width: 228px;
-}
-.last .btn-social {
-  width: 232px;
+  width: 242px;
 }
 .offset-projects {
   padding-bottom: 40px;
@@ -142,6 +139,8 @@ body {
 .share-buttons {
   padding-top: 30px;
   padding-bottom: 30px;
+  max-width: 620px;
+  margin: 0 auto;
 }
 .btn-social {
   margin-bottom: 20px;
@@ -456,181 +455,8 @@ p.lead a {
     #card-errors {
       margin-left: 0px;
     }
-}
-@media only screen and (max-device-width: 768px) {
-    .inner ul.dropdown-menu {
-      margin: 2px -105px;
-    }
-    .inner p, .inner address {
-      padding: 40px 40px 0px 40px;
-    }
-    .inner p.lead-btn {
-      padding: 0px;
-    }
-    h3 {
-      font-size: 90px;
-    }
-    .dashboard .stats li {
-      font-size: 40px;
-    }
-    .masthead-nav li a {
-      font-size: 40px;   
-    }
-    h4.masthead-brand a {
-      font-size: 40px;
-    }
-    h4.masthead-brand {
-      margin-top: 18px;
-    }
-    h4.masthead-brand.second {
-      display: none;
-    }
-    .mastfoot .inner p {
-        font-size: 40px;
-    }
-    .mastfoot {
-      min-height: 260px;
-    }
-    .solo-inner-wrapper {
-        .mastfoot {
-            margin-top: 20px;
-        }
-    }
-    .inner .glyphicon {
-        font-size: 300px;
-        padding-top: 150px;
-    }
-    .modal-content .glyphicon {
-        font-size: 300px;
-        padding-top: 100px;
-        padding-bottom: 50px;
-    }
-    h1 {
-        font-size: 135px;
-        padding-top: 100px;
-    }
-    h2 {
-        font-size: 100px;
-        padding-top: 70px;   
-    }
-    p.lead {
-        font-size: 60px;
-        margin-top: 20px;
-        padding-top: 100px;
-        padding-bottom: 100px;
-    }
-    p {
-        font-size: 50px;  
-        max-width: 1200px;
-    }
-    address {
-        font-size: 60px;
-    }
-    p.lead a.btn {
-        margin-top: 50px;
-        font-size: 70px;
-        padding: 20px 50px;
-        border-radius: 15px;
-    }
-    p.lead.note {
-        font-size: 40px;
-    }
-    
-    h3.panel-title {
-        font-size: 70px;
-        padding: 10px;
-    }
-    .panel-heading {
-        height: 120px;
-    }
-    .subscript {
-        font-size: 40px;
-    }
-    .the-price {
-        font-size: 80px;
-        padding: 50px 20px 10px 20px;
-    }
-    .table {
-        font-size: 40px;
-    }
-    #card-errors {
-      font-size: 40px;
-    }
-    .form-inline button, a.btn {
-        margin: 50px;
-        font-size: 70px;
-        padding: 10px 40px;
-        border-radius: 15px; 
-    }
-    select.input-sm {
-        font-size: 30px;
-        height: 60px;
-    }
-
-    .notice, .alert {
-        font-size: 40px;
-    }
-    input.small_number#plan {
-        width: 150px;
-        border-radius: 15px;
-        height: 119px;
-        padding: 35px;
-    }
-    .modal-dialog {
-      width: 1200px;
-    }
-    .modal-dialog h4 {
-      font-size: 40px;
-    }
-    a.btn.btn-social {
-      font-size: 50px;
-      width: 450px;
-    }
-    a.btn.btn-social > :first-child {
-      top: 20px;
-      font-size: 70px;
-    }
-    .site-wrapper .form-group {
-        select, input {
-            width: 400px;
-            height: 80px;
-            font-size: 50px;
-        }
-        .checkbox input {
-            width: 50px;
-        }
-        .checkbox {
-            margin-left: 42px;
-        }
-        label {
-            width: 350px;
-            height: 80px;
-            font-size: 34px;
-            margin-top: 12px;
-        }
-        a {
-          font-size: 34px;
-        }
-        .checkbox label {
-            margin-left: 35px;
-            margin-top: 20px;
-        }
-        #card-element {
-            width: 500px;
-            height: 80px;
-            padding-top: 22px;
-        }
-        button.btn {
-            margin: 50px;
-            font-size: 70px;
-            padding: 10px 40px;
-            border-radius: 15px;
-            margin-left: -250px; 
-        }
-        button.btn.sign-in {
-            margin-left: -50px;
-            margin-top: 0px; 
-        }
+    .share-buttons {
+      width: auto;
     }
 }
 
