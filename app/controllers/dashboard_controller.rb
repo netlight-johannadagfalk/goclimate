@@ -42,5 +42,7 @@ class DashboardController < ApplicationController
     end
     @encoded_social_quote = URI.encode(@social_quote + ' -> ' + I18n.t('goclimateneutral_url'))
 
+    @should_show_share_popup = current_user.last_seen_at < 24.hour.ago
+
   end
 end

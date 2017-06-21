@@ -85,7 +85,6 @@ sv:
   flies_long_distance_6_times_year_price: '120'
   flies_long_distance_12_times_year_price: '240'
   base_cost: '10'
-
   thats_it: Nu så!
   read_more_how_we_calculate_offset_plans_html: Läs mer om hur vi räknar ut våra %{href}.
   offset_plans: kompensationsplaner
@@ -108,7 +107,7 @@ sv:
   I_have_lived_climate_neutral_for_one_month_join_me: Nu har jag levt klimatneutralt i %{months} månad! Join me!
   I_have_lived_climate_neutral_for_more_months_join_me: Nu har jag levt klimatneutralt i %{months} månader! Join me!
   tell_your_friends: Berätta för dina vänner!
-  climate_change_is_best_faced_together: Du är en hjälte! Bäst bromsar vi klimatförändringarna tillsammans, så dela jättegärna det här vidare så att vi blir fler som lever klimatneutrala liv!
+  climate_change_is_best_faced_together: Du är en hjälte! Bäst bromsar vi klimatförändringarna tillsammans, så dela gärna det här så att vi blir fler som lever klimatneutrala liv!
   share_on_facebook: Dela på Facebook
   share_on_twitter: Dela på Twitter
   we_have_accomplished_alot_together: Vi har åstadkommit mycket tillsammans!
@@ -119,7 +118,7 @@ sv:
   you_climate_offset_investments_amount: '%{sek} kr'
   number_of_climate_neutral_months_for_all_users: Antal klimatneutrala månader för alla användare totalt
   number_of_climate_neutral_users_right_now: Antal klimatneutrala användare just nu
-  total_climate_offset_project_investments: Total summa som vi klimatkomponserat för
+  total_climate_offset_project_investments: Total summa som vi klimatkompenserat för
   total_climate_offset_project_investments_amount: '%{sek} kr'
   cimate_hero_toplist: Topplista klimathjältar
   climate_neutral_month: klimatneutral månad
