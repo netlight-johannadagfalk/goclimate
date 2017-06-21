@@ -35,8 +35,6 @@ class StripeEvent < ApplicationRecord
           )
           u = User.find_by_stripe_customer_id event_object.customer
           Mailer.new.send_one_more_month_email u
-          u = User.find_by_email "kalle@nilver.se"
-          Mailer.new.send_one_more_month_email u
         end
       end
     end
