@@ -296,9 +296,6 @@ input {
 .form-horizontal {
     margin-top: 40px;
 }
-.welcome .row {
-  padding: 50px;
-}
 .modal-content h3 {
   padding-left: 40px;
   padding-right: 40px;
@@ -465,6 +462,9 @@ td.form.select {
 } 
 .panel {
     text-align: center;
+    max-width: 300px;
+    margin: 0 auto;
+    margin-bottom: 20px;
 }
 .panel:hover { box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 1px 5px rgba(130, 130, 130, 0.35); }
 .plan .row {
