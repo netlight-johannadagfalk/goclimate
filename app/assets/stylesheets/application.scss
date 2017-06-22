@@ -79,7 +79,7 @@ body {
 
 /* Padding for spacing */
 .inner {
-  padding: 10px 30px;
+  padding: 50px 30px;
 }
 
 /*
@@ -274,18 +274,9 @@ input {
 .img-circle {
     border-radius: 50%;
 }
-.site-wrapper-second {
-    padding-top: 60px;
-}
-.site-wrapper-third, .site-wrapper-fifth {
-    padding-top: 100px;
-}
 .welcome .lead-btn {
   padding-top: 30px;
     padding-bottom: 50px;
-}
-.welcome-index .site-wrapper-third {
-  padding-top: 75px;
 }
 .glyphicon {
     padding-top: 25px;
@@ -403,6 +394,9 @@ p.lead a {
 .masthead {
     position: relative;
 }
+.masthead .inner {
+    padding: 0px 15px;
+}
 .mastfoot {
     position: relative;
     background-color: #f7f5e8;
@@ -457,7 +451,6 @@ p.lead a {
     .share-buttons {
       width: auto;
     }
-
     .masthead h4 a {
       padding-right: 0px;
     }
