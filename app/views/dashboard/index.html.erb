@@ -2,6 +2,7 @@
 <%= render "shared/twitter_script" %>
 <%= javascript_tag do %>
   window.facebookQuote = '<%= @social_quote %>';
+  window.urlToShare = '<%=t 'goclimateneutral_url' %>'
 <% end %>
 
 <% if @should_show_share_popup %>

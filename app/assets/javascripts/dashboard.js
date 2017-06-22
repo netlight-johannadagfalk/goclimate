@@ -5,7 +5,7 @@ $(document).ready(function() {
 	function shareFacebook() {
 		FB.ui({
 		  method: 'share',
-		  href: 'https://www.goclimateneutral.org',
+		  href: window.urlToShare,
 		  quote: window.facebookQuote,
 		  hashtag: '#goclimateneutral'
 		}, function(response){});
