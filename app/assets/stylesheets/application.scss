@@ -256,6 +256,8 @@ input {
 }
 .form-group .checkbox input {
   margin-left: 0px;
+  width: auto;
+  margin-top: 4px;
 }
 .form-group div {
   text-align: left;
@@ -454,6 +456,10 @@ p.lead a {
     }
     .share-buttons {
       width: auto;
+    }
+
+    .masthead h4 a {
+      padding-right: 0px;
     }
 }
 
