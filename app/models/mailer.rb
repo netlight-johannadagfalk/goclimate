@@ -6,7 +6,7 @@ class Mailer
 
   def send_one_more_month_email user
 
-    climate_neutral_months = StripeEvent.charges(user).count
+    climate_neutral_months = StripeEvent.invoices(user).count
     total_carbon_offset = Project.all.sum("carbon_offset")
 
     if climate_neutral_months > 1
