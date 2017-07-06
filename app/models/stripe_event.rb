@@ -34,8 +34,8 @@ class StripeEvent < ApplicationRecord
             currency: event_object.currency,
             stripe_created: event_object.date
           )
-          #u = User.find_by_stripe_customer_id event_object.customer
-          #Mailer.new.send_one_more_month_email u
+          u = User.find_by_stripe_customer_id event_object.customer
+          Mailer.new.send_one_more_month_email u
         end
       end
     end
