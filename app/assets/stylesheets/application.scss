@@ -409,8 +409,15 @@ p.lead a {
     background-color: transparent;
   }
   .dropdown-menu {
-    margin: 2px -38px;
-    min-width: 108px;
+    min-width: 110px;
+    left: 0;
+    right: 0;
+    margin: auto auto;
+    position: absolute;
+    text-align: center;
+  }
+  #fat-menu {
+    min-width: 118px;
   }
 }
 div.profile {
@@ -421,6 +428,9 @@ div.profile {
   .glyphicon-grain {
     padding-top: 80px;
     padding-bottom: 30px;
+  }
+  .dropdown-toggle {
+    text-align: right;
   }
   .form-group {
     input {
