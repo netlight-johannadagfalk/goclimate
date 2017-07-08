@@ -26,9 +26,8 @@ Rails.application.routes.draw do
   get '/blog' => redirect("https://www.goclimateneutral.org/blog/")
 
   root 'welcome#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  unless Rails.application.config.consider_all_requests_local
-    get '*path', to: 'errors#error_404', via: :all
-  end
+#  unless Rails.application.config.consider_all_requests_local
+#    get '*path', to: 'errors#error_404', via: :all
+#  end
 end
