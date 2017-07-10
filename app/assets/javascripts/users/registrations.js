@@ -1,5 +1,12 @@
 $(document).ready(function() {
 
+
+	if($('#new-card-div').length) {
+		$('#add-new-card').click(function() {
+			$('#new-card-div').removeClass("hidden");
+		});
+	}
+
 	if($('#card-element').length) {
 
 		if (location.hostname === "localhost") {
@@ -43,20 +50,31 @@ $(document).ready(function() {
 		$('#payment-form').on('submit', function(event) {
 		  event.preventDefault();
 
-		  stripe.createToken(card).then(function(result) {
-		    if (result.error || $('#email').val().length === 0 || $('#password').val().length === 0 || $('.field_with_errors').length !== 0){
-		      // Inform the user if there was an error
-		      if (result.error === undefined) {
-				$('#card-errors').text("Check your email or password");
-		      } else {
-		      	$('#card-errors').textContent = result.error.message;
-		      }
-		      $('#register-button').prop('disabled', false);
-		    } else {
-		      // Send the token to your server
-		      stripeTokenHandler(result.token);
-		    }
-		  });
+		  if ($('#new-card-div').length && $('#new-card-div').hasClass("hidden")) {
+
+		  	var form = document.getElementById('payment-form');
+		  	form.submit();
+
+		  } else {
+
+			  stripe.createToken(card).then(function(result) {
+			    if (result.error || 
+			    	($('#email').val() !== undefined && $('#email').val().length === 0) || 
+			    	($('#password').val() !== undefined && $('#password').val().length === 0) || 
+			    	$('.field_with_errors').length !== 0){
+			      // Inform the user if there was an error
+			      if (result.error === undefined) {
+					$('#card-errors').text("Check your email or password");
+			      } else {
+			      	$('#card-errors').textContent = result.error.message;
+			      }
+			      $('#register-button').prop('disabled', false);
+			    } else {
+			      // Send the token to your server
+			      stripeTokenHandler(result.token);
+			    }
+			  });
+			}
 		});
 		function stripeTokenHandler(token) {
 		  // Insert the token ID into the form so it gets submitted to the server

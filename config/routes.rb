@@ -4,10 +4,14 @@ Rails.application.routes.draw do
   resources :stripe_events
   get 'dashboard/index'
 
+  devise_scope :user do
+    get 'users/edit/payment', to: 'users/registrations#payment', as: 'payment'
+  end
   devise_for :users, controllers: {
   	sessions: 'users/sessions',
   	registrations: 'users/registrations'
   }
+
 
   get '/users' => 'dashboard#index', as: :user_root 
 

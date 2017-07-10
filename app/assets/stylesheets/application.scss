@@ -115,6 +115,24 @@ body {
   color: #444444;
   border-bottom-color: #444444;
 }
+ul.nav.nav-tabs li.active a {
+  background-color: #edf7f6;
+  border-bottom-color: #edf7f6;
+}
+.nav-tabs {
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.nav.nav-tabs a:hover {
+  background-color: #fff;
+}
+.nav.nav-tabs .active a:hover {
+  background-color: transparent;
+}
+.nav.nav-tabs .active {
+  font-weight: bold;
+}
 .projects {
   color: #fff;
 }
@@ -330,6 +348,15 @@ input {
     background-color: #fff;
     width: 300px;
     padding-left: 10px;
+}
+#current-card {
+  text-align: left;
+  margin-left: -13px;
+  padding-top: 10px;
+}
+#current-card a {
+  text-color: blue;
+  text-decoration: underline;
 }
 .alert, .notice {
     position: absolute;

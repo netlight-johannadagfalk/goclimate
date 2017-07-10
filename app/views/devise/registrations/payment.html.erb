@@ -1,0 +1,43 @@
+      <div class="site-wrapper-inner solo-inner-wrapper site-wrapper-first">
+        
+        <div class="cover-container">
+          
+          <%= render "shared/header" %>
+
+          <div class="inner cover">
+            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+        
+            <%= render "shared/user_menu" %>
+
+            <%= form_for("users", as: resource_name, url: registration_path(resource_name), html: { id: "payment-form",method: :put, :class => "form-horizontal" }) do |f| %>
+
+                <%= render "shared/plan" %>
+
+                <div class="form-group">
+                  <div class="col-sm-1"></div>
+                  <label for="current-card" class="col-sm-4 control-label padding-top"><%=t 'current_card' %></label>
+                  <p id="current-card" class="col-sm-4 control-label"><%= @current_card %> (<a id="add-new-card" href="#">edit card</a>)</p>
+                </div>
+
+                <%= hidden_field(:user, :stripe_customer_id, :value => "") %>
+
+                <div id="new-card-div" class="form-group hidden">
+                  <div class="col-sm-1"></div>
+                  <label for="card-element" class="col-sm-4 control-label"><%=t 'add_new_card' %></label>
+                  <div id="card-element" class="col-sm-4 form-control">
+                  <!-- a Stripe Element will be inserted here. -->
+                  </div>
+                </div>
+
+                <div id="card-errors"></div>
+
+                <div class="actions">
+                  <%= f.submit t("update"), class: "btn btn-success"  %>
+                </div>
+              <% end %>
+
+
+              </div>
+
+        </div>
+      </div>

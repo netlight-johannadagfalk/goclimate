@@ -99,17 +99,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
+    super
+  end
+
+  def payment
     @currency = currency_for_user
 
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+
+    current_card = customer.sources.retrieve(customer.default_source)
+    @current_card = "XXXX XXXX XXXX " + current_card.last4
     if customer["subscriptions"]["total_count"] == 0
       @plan = "canceled"
     else 
       @plan = customer["subscriptions"]["data"][0]["plan"]["amount"] / 100
     end
 
-    super
   end
+
 
   # PUT /resource
   def update
@@ -147,6 +154,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
         end
       end
     end
+
+    if !params[:stripeToken].nil?
+      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+      card = customer.sources.create({:source => params[:stripeToken]})
+      customer.default_source = card.id
+      customer.save
+    end
+
+    puts customer
 
     if !params[:user][:country].nil? && params[:user][:country] == ""
       params[:user][:country] = nil
