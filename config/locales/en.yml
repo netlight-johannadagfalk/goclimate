@@ -98,6 +98,9 @@ en:
   email: Email
   password: Password
   credit_or_debit_card: Credit or debit card
+  add_new_card: Add new card
+  edit_card: edit card
+  your_payment_details_have_been_updated: Your settings has been updated
   climate_plan: Climate Plan
   go_climate_neutral: Go Climate Neutral!
   log_in_to_see_how_we_are_doing: Climate change is the biggest challenge of our time. Log in to see how we are doing in our fight to stop it.

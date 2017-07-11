@@ -162,7 +162,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       customer.save
     end
 
-    puts customer
+    if !params[:stripeToken].nil? || !params[:user][:plan].nil?
+      flash[:notice] = I18n.t('your_payment_details_have_been_updated')
+      redirect_to payment_path and return
+    end
 
     if !params[:user][:country].nil? && params[:user][:country] == ""
       params[:user][:country] = nil

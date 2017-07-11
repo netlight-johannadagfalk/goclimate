@@ -15,8 +15,8 @@
 
                 <div class="form-group">
                   <div class="col-sm-1"></div>
-                  <label for="current-card" class="col-sm-4 control-label padding-top"><%=t 'current_card' %></label>
-                  <p id="current-card" class="col-sm-4 control-label"><%= @current_card %> (<a id="add-new-card" href="#">edit card</a>)</p>
+                  <label for="current-card" class="col-sm-4 control-label padding-top"><%=t 'credit_or_debit_card' %></label>
+                  <p id="current-card" class="col-sm-4 control-label"><%= @current_card %> (<a id="add-new-card" href="#"><%=t 'edit_card' %></a>)</p>
                 </div>
 
                 <%= hidden_field(:user, :stripe_customer_id, :value => "") %>
