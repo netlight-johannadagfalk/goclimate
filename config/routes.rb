@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'step_1_choose_plan', to: 'welcome#plan'
   get 'about', to: 'welcome#about'
   get 'contact', to: 'welcome#contact'
+  get 'faq', to: 'welcome#faq'
   
 
   get 'step_1_reduce', to: 'welcome#reduce'

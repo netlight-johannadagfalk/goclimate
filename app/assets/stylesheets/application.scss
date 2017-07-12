@@ -499,6 +499,19 @@ div.profile {
 td.form.select {
     padding: 3px;
 } 
+.faq {
+  .panel-group {
+    margin-top: 40px;
+  }
+  .panel {
+    max-width: 600px;
+    text-align: left;
+  }
+  .panel-body {
+    padding: 20px;
+    text-align: left;
+  }
+}
 .panel {
     text-align: center;
     max-width: 300px;
