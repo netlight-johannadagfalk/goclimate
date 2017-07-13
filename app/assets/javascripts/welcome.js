@@ -20,4 +20,12 @@ $(document).ready(function() {
 	$('#flight').change(function() {
   		planSum();
 	});
+
+	//for faq links
+	$('.panel-title a').on('click', function (e) {
+	   window.location.hash = e.target.hash + "id";
+	});
+    var anchor = window.location.hash.replace("id", "");
+    $(".collapse").collapse('hide');
+    $(anchor).collapse('show');
 });

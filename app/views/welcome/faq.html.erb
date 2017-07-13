@@ -10,14 +10,18 @@
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
                 <% questions = t('questions', scope: 'faq_questions') %>
+                <% count = 0 %>
 
                 <% questions.each do |question| %>
+                <% count = count + 1 %>
+
+                	  <div id="collapse<%= question[0] %>id" ></div>
 
 					  <div class="panel panel-default">
 					    <div class="panel-heading" role="tab" id="<%= question[0] %>">
 					      <h4 class="panel-title">
-					        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= question[0] %>" aria-expanded="false" aria-controls="collapse<%= question[0] %>">
-					          <%= question[1][:question] %>
+					        <a role="button" data-toggle="collapse" href="#collapse<%= question[0] %>" aria-expanded="false" aria-controls="collapse<%= question[0] %>">
+					          <%= count %>. <%= question[1][:question] %>
 					        </a>
 					      </h4>
 					    </div>

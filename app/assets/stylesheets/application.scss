@@ -470,6 +470,9 @@ div.profile {
         float: left;
     }
   }
+  .faq .panel {
+    max-width: 600px;
+  }
 }
 @media (max-width: 768px) {
     .form-group {
@@ -494,6 +497,9 @@ div.profile {
     .masthead h4 a {
       padding-right: 0px;
     }
+    .faq .panel {
+      max-width: 300px;
+    }
 }
 
 td.form.select {
@@ -504,7 +510,6 @@ td.form.select {
     margin-top: 40px;
   }
   .panel {
-    max-width: 600px;
     text-align: left;
   }
   .panel-body {
