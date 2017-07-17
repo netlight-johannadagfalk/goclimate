@@ -34,7 +34,7 @@ class StripeEvent < ApplicationRecord
             stripe_customer_id: event_object.customer, 
             stripe_object: event_object.object,
             stripe_amount: event_object.amount_due,
-            stripe_paid: event_object.paid,
+            paid: event_object.paid,
             currency: event_object.currency,
             stripe_created: event_object.date
           )
