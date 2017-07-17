@@ -137,6 +137,7 @@ sv:
   location: Plats
   more_info_on_un_site: Mer information på FNs sida
   edit_settings: Ändra inställningar
+  payment_settings: Betalningsinställningar
   user_name: Namn
   confirm_password: Bekräfta lösenord
   update: Uppdatera
@@ -167,6 +168,13 @@ sv:
   this_mail_was_sent_by: Det här mailet skickades av
   to_stop_recieving_these_emails: För att sluta få de här mailen
   click_here: klicka här
+  thank_you_for_saving_our_planet: Tack för att du är med och räddar vår planet!
+  you_have_lived_a_climate_neutral_life_for: Du har varit klimatneutral i
+  months: månader
+  together_we_have_offset: Tillsammans har vi nu fått bort
+  goclimateneutral_and_this_planet_loves_you: GoClimateNeutral.org och den här planeten älskar dig! Tack! Du är bäst!
+  learn_more_about_what_we_have_achieved_here: Läs mer om hur det går för oss här >>
+  thank_you: Stort Tack!
   faq: Frågor & Svar
   answer: Svar
   faq_questions:
@@ -229,5 +237,5 @@ sv:
                 blank: Oj, lösenordet ser tomt ut!
               email:
                 taken: Användaren finns redan registrerad hos oss, prova med en annan e-postadress!
-                invalid: E-postadressen ser konstig ut, prova igen!
                 blank: E-postfältet ser tomt ut!
+                invalid: E-postadressen ser konstig ut, prova igen!

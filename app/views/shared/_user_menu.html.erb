@@ -1,4 +1,4 @@
             <ul class="nav nav-tabs nav-justified">
               <li role="presentation" <%== action_name == "edit" ? "class='active'" : "" %>><%= link_to t('edit_settings'), edit_user_registration_path %></li>
-              <li role="presentation" <%== action_name == "payment" ? "class='active'" : "" %>><%= link_to 'Betalning', payment_path %></li>
+              <li role="presentation" <%== action_name == "payment" ? "class='active'" : "" %>><%= link_to t('payment_settings'), payment_path %></li>
             </ul>

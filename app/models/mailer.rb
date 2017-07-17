@@ -11,18 +11,34 @@ class Mailer
 
     mail = Mail.new
     mail.from = Email.new(email: 'info@goclimateneutral.org', name: 'GoClimateNeutral.org')
+
+    I18n.locale = user.language
     
     personalization = Personalization.new
     personalization.to = Email.new(email: user.email)
     personalization.bcc = Email.new(email: 'info@goclimateneutral.org')
-    personalization.subject = "Stort Tack!"
+    personalization.subject = I18n.t('thank_you')
     personalization.headers = Header.new(key: 'X-Test', value: 'True')
     personalization.headers = Header.new(key: 'X-Mock', value: 'False')
 
     mail.asm = ASM.new(group_id: 16739)
 
-    personalization.substitutions = Substitution.new(key: '%months%', value: climate_neutral_months.to_s)
+    personalization.substitutions = Substitution.new(key: '%number_of_months%', value: climate_neutral_months.to_s)
     personalization.substitutions = Substitution.new(key: '%tonnes%', value: total_carbon_offset.to_s)
+
+    personalization.substitutions = Substitution.new(key: '%tonnes_CO2%', value: I18n.t('tonnes_CO2'))
+    personalization.substitutions = Substitution.new(key: '%goclimateneutral_url%', value: I18n.t('goclimateneutral_url'))
+
+    personalization.substitutions = Substitution.new(key: '%this_mail_was_sent_by%', value: I18n.t('this_mail_was_sent_by'))
+    personalization.substitutions = Substitution.new(key: '%to_stop_recieving_these_emails%', value: I18n.t('to_stop_recieving_these_emails'))
+    personalization.substitutions = Substitution.new(key: '%click_here%', value: I18n.t('click_here'))
+
+    personalization.substitutions = Substitution.new(key: '%thank_you_for_saving_our_planet%', value: I18n.t('thank_you_for_saving_our_planet'))
+    personalization.substitutions = Substitution.new(key: '%you_have_lived_a_climate_neutral_life_for%', value: I18n.t('you_have_lived_a_climate_neutral_life_for'))
+    personalization.substitutions = Substitution.new(key: '%months%', value: I18n.t('months'))
+    personalization.substitutions = Substitution.new(key: '%together_we_have_offset%', value: I18n.t('together_we_have_offset'))
+    personalization.substitutions = Substitution.new(key: '%goclimateneutral_and_this_planet_loves_you%', value: I18n.t('goclimateneutral_and_this_planet_loves_you'))
+    personalization.substitutions = Substitution.new(key: '%learn_more_about_what_we_have_achieved_here%', value: I18n.t('learn_more_about_what_we_have_achieved_here'))
 
     mail.personalizations = personalization
 
@@ -56,6 +72,8 @@ class Mailer
     personalization.headers = Header.new(key: 'X-Mock', value: 'False')
 
     mail.asm = ASM.new(group_id: 16739)
+
+    personalization.substitutions = Substitution.new(key: '%goclimateneutral_url%', value: I18n.t('goclimateneutral_url'))
 
     personalization.substitutions = Substitution.new(key: '%the_payment_unfortunately_failed%', value: I18n.t('the_payment_unfortunately_failed'))
     personalization.substitutions = Substitution.new(key: '%no_worries_we_will_try_again_within_a_few_days%', value: I18n.t('no_worries_we_will_try_again_within_a_few_days'))

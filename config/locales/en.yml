@@ -1,6 +1,7 @@
 en:
   goclimateneutral_org: GoClimateNeutral.org
   goclimateneutral_url: https://en.goclimateneutral.org/
+  site_title: GoClimateNeutral.org
   welcome_to_a_climate_neutral_life: Welcome to a Climate Neutral Life!
   climate_change_is_the_greatest_challange: Climate change is the greatest challenge of our time. Together we have a chance to give our children the future on this planet that they deserve. But we have to act now.
   log_in: Log in
@@ -136,12 +137,12 @@ en:
   location: Location
   more_info_on_un_site: More info on UN site
   edit_settings: Edit Settings
+  payment_settings: Payment Settings
   user_name: User Name
   confirm_password: Confirm password
   update: Update
   other_language_site: https://www.goclimateneutral.org
   other_language: På svenska
-  site_title: GoClimateNeutral.org
   why_goclimateneutral: Why GoClimateNeutral.org?
   this_is_how_it_works: This is how it works
   1_describe_your_lifestyle: 1. Describe Your Lifestyle
@@ -167,6 +168,13 @@ en:
   this_mail_was_sent_by: This email was sent by
   to_stop_recieving_these_emails: To stop recieving these emails
   click_here: click here
+  thank_you_for_saving_our_planet: Thank you for saving our planet!
+  you_have_lived_a_climate_neutral_life_for: You have lived a climate neutral life for
+  months: months
+  together_we_have_offset: Together we have offset
+  goclimateneutral_and_this_planet_loves_you: GoClimateNeutral.org and this planet loves you! You are the best!
+  learn_more_about_what_we_have_achieved_here: Learn more about what we have achieved here >>
+  thank_you: Thank you!
   faq: FAQ
   answer: Answer
   faq_questions:
