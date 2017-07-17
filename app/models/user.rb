@@ -17,4 +17,12 @@ class User < ApplicationRecord
   def currency
     stripe_events.first.currency
   end
+
+  def language
+    if stripe_events.first.currency == "sek"
+      :sv
+    else
+      :en
+    end
+  end
 end

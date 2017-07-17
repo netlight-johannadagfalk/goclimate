@@ -160,6 +160,13 @@ sv:
   change_your_password_by_entering_your_new_password_below: Ändra ditt lösenord genom att skriva in ditt nya lösenord här.
   change_password: Ändra lösenord
   forgot_your_password: Glömt lösenordet?
+  the_payment_unfortunately_failed: Betalningen misslyckades tyvärr
+  no_worries_we_will_try_again_within_a_few_days: Det är ingen fara. Vi försöker genomföra betalningen igen under de närmaste dagarna.
+  you_might_need_to_update_your_payment_info: Om du vill fortsätta att leva ett klimatneutralt liv med oss kan du behöva att uppdatera din betalningsinformation.
+  link_to_update_your_payment_info: Uppdatera betalningsinformationen här >>
+  this_mail_was_sent_by: Det här mailet skickades av
+  to_stop_recieving_these_emails: För att sluta få de här mailen
+  click_here: klicka här
   faq: Frågor & Svar
   answer: Svar
   faq_questions:

@@ -23,19 +23,27 @@ class StripeEvent < ApplicationRecord
     list["data"].each do |e| 
 
       event_object = e.data.object
+      
+      paid_invoice = event_object.object == "invoice" && event_object.paid == true
+      failed_payment = event_object.object == "invoice" && event_object.paid == false && event_object.attempted == true
 
-      if event_object.object == "invoice" && event_object.paid == true && StripeEvent.where(stripe_event_id: event_object.id).empty?
+      if (paid_invoice || failed_payment) && StripeEvent.where(stripe_event_id: event_object.id).empty?
         if !User.find_by_stripe_customer_id(event_object.customer).nil?
           StripeEvent.create( 
             stripe_event_id: event_object.id,
             stripe_customer_id: event_object.customer, 
             stripe_object: event_object.object,
             stripe_amount: event_object.amount_due,
+            stripe_paid: event_object.paid,
             currency: event_object.currency,
             stripe_created: event_object.date
           )
           u = User.find_by_stripe_customer_id event_object.customer
-          Mailer.new.send_one_more_month_email u
+          if paid_invoice
+            #Mailer.new.send_one_more_month_email u
+          elsif failed_payment
+            #Mailer.new.send_payment_failed_email u
+          end
         end
       end
     end
