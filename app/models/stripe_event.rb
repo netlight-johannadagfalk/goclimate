@@ -42,7 +42,7 @@ class StripeEvent < ApplicationRecord
           if paid_invoice
             Mailer.new.send_one_more_month_email u
           elsif failed_payment
-            #Mailer.new.send_payment_failed_email u
+            Mailer.new.send_payment_failed_email u
           end
         end
       end
