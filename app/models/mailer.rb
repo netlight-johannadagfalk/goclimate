@@ -35,7 +35,13 @@ class Mailer
 
     personalization.substitutions = Substitution.new(key: '%thank_you_for_saving_our_planet%', value: I18n.t('thank_you_for_saving_our_planet'))
     personalization.substitutions = Substitution.new(key: '%you_have_lived_a_climate_neutral_life_for%', value: I18n.t('you_have_lived_a_climate_neutral_life_for'))
-    personalization.substitutions = Substitution.new(key: '%months%', value: I18n.t('months'))
+
+    if climate_neutral_months == 1
+        personalization.substitutions = Substitution.new(key: '%months%', value: I18n.t('month'))
+    else
+        personalization.substitutions = Substitution.new(key: '%months%', value: I18n.t('months'))
+    end
+
     personalization.substitutions = Substitution.new(key: '%together_we_have_offset%', value: I18n.t('together_we_have_offset'))
     personalization.substitutions = Substitution.new(key: '%goclimateneutral_and_this_planet_loves_you%', value: I18n.t('goclimateneutral_and_this_planet_loves_you'))
     personalization.substitutions = Substitution.new(key: '%learn_more_about_what_we_have_achieved_here%', value: I18n.t('learn_more_about_what_we_have_achieved_here'))
