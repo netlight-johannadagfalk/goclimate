@@ -10,17 +10,17 @@ class DashboardController < ApplicationController
       StripeEvent.try_updating_events current_user
     end
 
-  	total_invoices_usd_part = StripeEvent.where(stripe_object: "invoice").where(currency: "usd").sum("stripe_amount").to_i / 100
-    total_invoices_sek_part = StripeEvent.where(stripe_object: "invoice").where(currency: "sek").sum("stripe_amount").to_i / 100 
+  	total_invoices_usd_part = StripeEvent.where(stripe_object: "invoice").where(paid: true).where(currency: "usd").sum("stripe_amount").to_i / 100
+    total_invoices_sek_part = StripeEvent.where(stripe_object: "invoice").where(paid: true).where(currency: "sek").sum("stripe_amount").to_i / 100 
     @total_usd = (total_invoices_usd_part + total_invoices_sek_part / 8.7).round
     @total_sek = (total_invoices_sek_part + total_invoices_usd_part * 8.7).round
 
-    my_amount_invested_usd_part = StripeEvent.invoices(current_user).where(currency: "usd").sum("stripe_amount").to_i / 100
-    my_amount_invested_sek_part = StripeEvent.invoices(current_user).where(currency: "sek").sum("stripe_amount").to_i / 100
+    my_amount_invested_usd_part = StripeEvent.invoices(current_user).where(paid: true).where(currency: "usd").sum("stripe_amount").to_i / 100
+    my_amount_invested_sek_part = StripeEvent.invoices(current_user).where(paid: true).where(currency: "sek").sum("stripe_amount").to_i / 100
     @my_amount_invested_usd = (my_amount_invested_usd_part + my_amount_invested_sek_part / 8.7).round
     @my_amount_invested_sek = (my_amount_invested_sek_part + my_amount_invested_usd_part * 8.7).round    
 
-    @my_neutral_months = StripeEvent.invoices(current_user).count
+    @my_neutral_months = StripeEvent.invoices(current_user).where(paid: true).count
     @my_neutral_months = @my_neutral_months == 0 ? 1 : @my_neutral_months
 
     @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
