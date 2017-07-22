@@ -2,42 +2,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+  prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy, :payment]
+
   def after_update_path_for(resource)
     edit_user_registration_path(resource)
   end
 
-  def generate_plan_id plan
-    "climate_offset_" + plan.to_s + "_" + currency_for_user + "_monthly"
-  end
-
-  def generate_plan_name plan
-    "Climate Offset " + plan.to_s + " " + currency_for_user + " Monthly"
-  end
-
-  def get_stripe_plan plan, error_path
-    
-    plan_id = generate_plan_id plan
-    plan_name = generate_plan_name plan
-
-    begin
-        stripe_plan = Stripe::Plan.retrieve(plan_id)
-    rescue      
-      begin 
-
-        stripe_plan = Stripe::Plan.create(
-          :name => plan_name,
-          :id => plan_id,
-          :interval => "month",
-          :currency => currency_for_user,
-          :amount => plan.to_s + "00"
-        )
-      rescue Stripe::StripeError => e
-        flash[:error] = e.message
-        redirect_to error_path and return false
-      end
-    end
-    stripe_plan
-  end
 
   # GET /resource/sign_up
   def new
@@ -212,4 +182,38 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
+
+  def get_stripe_plan plan, error_path
+    
+    plan_id = generate_plan_id plan
+    plan_name = generate_plan_name plan
+
+    begin
+        stripe_plan = Stripe::Plan.retrieve(plan_id)
+    rescue      
+      begin 
+
+        stripe_plan = Stripe::Plan.create(
+          :name => plan_name,
+          :id => plan_id,
+          :interval => "month",
+          :currency => currency_for_user,
+          :amount => plan.to_s + "00"
+        )
+      rescue Stripe::StripeError => e
+        flash[:error] = e.message
+        redirect_to error_path and return false
+      end
+    end
+    stripe_plan
+  end
+
+  def generate_plan_id plan
+    "climate_offset_" + plan.to_s + "_" + currency_for_user + "_monthly"
+  end
+
+  def generate_plan_name plan
+    "Climate Offset " + plan.to_s + " " + currency_for_user + " Monthly"
+  end
+
 end
