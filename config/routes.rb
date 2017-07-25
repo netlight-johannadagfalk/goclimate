@@ -20,11 +20,6 @@ Rails.application.routes.draw do
   get 'about', to: 'welcome#about'
   get 'contact', to: 'welcome#contact'
   get 'faq', to: 'welcome#faq'
-  
-
-  get 'step_1_reduce', to: 'welcome#reduce'
-  get 'step_2_offset', to: 'welcome#offset'
-  get 'step_3_impact', to: 'welcome#impact'
 
   resources :subscriptions
 
