@@ -4,7 +4,7 @@
           <label for="plan" class="col-sm-4 control-label padding-top"><%=t 'climate_plan' %></label>
           <div class="col-sm-4">
             <select id="plan" name="user[plan]" class="form-control input-sm">
-              <% if action_name == "edit" %>
+              <% if action_name == "payment" %>
                 <% if @plan == "canceled" %>
                   <option value="" selected=1>-</option>
                 <% else %>
@@ -23,7 +23,7 @@
 
               <% elsif @currency == "usd" %>
 
-                <% (2...30).each do |i| %>
+                <% (2...@plan+10).each do |i| %>
                   <% if i == @plan.to_i %>
                     <option value="<%= i %>" selected=1>$<%= i %>/month</option>
                   <% else %>
