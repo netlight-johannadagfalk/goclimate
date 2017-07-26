@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
 
-    @plan = params[:plan] || 5
+    @plan = get_plan params[:choices]
     @currency = currency_for_user
 
     super
@@ -21,23 +21,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
 
-    @plan = params[:user][:plan] || 5
+    @plan = get_plan params[:user][:choices]
 
     begin
 
+      if params[:user][:choices].nil? || !params[:user][:choices].match(/\d+,\d+,\d+,\d/).nil?
+        flash[:error] = I18n.t('something_went_wrong')
+        redirect_to new_user_registration_path({choices: params[:user][:choices]}) and return
+      end
+
       if params[:user][:email].nil? || params[:user][:email].length < 4
         flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.blank')
-        redirect_to new_user_registration_path({plan: @plan}) and return
+        redirect_to new_user_registration_path({choices: params[:user][:choices]}) and return
       end
 
       if params[:user][:password].nil? || params[:user][:password].length < 6
         flash[:error] = I18n.t('activerecord.errors.models.user.attributes.password.blank')
-        redirect_to new_user_registration_path({plan: @plan}) and return
+        redirect_to new_user_registration_path({choices: params[:user][:choices]}) and return
       end
 
       if !User.find_by_email(params[:user][:email]).nil?
         flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.taken')
-        redirect_to new_user_registration_path({plan: @plan}) and return
+        redirect_to new_user_registration_path({choices: params[:user][:choices]}) and return
       end
 
       customer = Stripe::Customer.create(
@@ -59,12 +64,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
         err  = body[:error]
         flash[:error] = "Something went wrong with the payment"
         flash[:error] = "The payment failed: #{err[:message]}" if err[:message]
-        redirect_to new_user_registration_path and return
+        redirect_to new_user_registration_path({choices: params[:user][:choices]}) and return
     end
 
     super
     User.where(email: params[:user][:email]).update_all(stripe_customer_id: customer.id)
 
+    user = User.where(email: params[:user][:email]).first
+
+    choices = params[:user][:choices].split(",").map(&:to_i)
+
+    choices.each do |choice_id|
+      user.lifestyle_choices << LifestyleChoice.find(choice_id)
+    end
+  end
+
+  def get_plan choices
+    choices = choices.split(",").map(&:to_i)
+    prices = LifestyleChoice.get_lifestyle_choice_prices
+    sum = choices.inject(0) { |sum, choice_id| sum + prices[choice_id] }
+    sum.round
   end
 
   # GET /resource/edit

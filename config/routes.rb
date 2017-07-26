@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :lifestyle_choices
   resources :projects
   resources :stripe_events
   get 'dashboard/index'

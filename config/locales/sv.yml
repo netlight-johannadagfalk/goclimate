@@ -36,11 +36,8 @@ sv:
   no_car: Ingen bil
   hardly_ever_flies: Flyger nästan aldrig
   mini_impact_plan: Mini
-  mini_impact_plan_price_html: '25 <span class="subscript">kr/mån</span>'
-  mini_impact_plan_price: 25
   small_impact_plan: Liten
-  small_impact_plan_price_html: '45 <span class="subscript">kr/mån</span>'
-  small_impact_plan_price: 45
+  plan_price_html: '%{cost} <span class="subscript">kr/mån</span>'
   custom_impact_plan: Anpassad
   custom_impact_plan_price_html: '<span id="sum">x</span><span class="subscript"> kr/mån</span>'
   mostly_vegetarian: Nästan vegetarian
@@ -60,8 +57,16 @@ sv:
   suv_seldom_drives: Törstigare bil, kör lite
   suv_drives_often: Törstigare bil, kör mycket
   never_flies: Flyger aldrig
-  flies_short_distance_time_year: Flyger kortare distanser %{times} ggr/år
-  flies_long_distance_time_year: Flyger längre distanser %{times} ggr/år
+  flies_short_distance_1_time_year: Flyger kortare distanser 1 ggr/år
+  flies_short_distance_2_time_year: Flyger kortare distanser 2 ggr/år
+  flies_short_distance_3_time_year: Flyger kortare distanser 3 ggr/år
+  flies_short_distance_6_time_year: Flyger kortare distanser 6 ggr/år
+  flies_short_distance_12_time_year: Flyger kortare distanser 12 ggr/år
+  flies_long_distance_1_time_year: Flyger längre distanser 1 ggr/år
+  flies_long_distance_2_time_year: Flyger längre distanser 2 ggr/år
+  flies_long_distance_3_time_year: Flyger längre distanser 3 ggr/år
+  flies_long_distance_6_time_year: Flyger längre distanser 6 ggr/år
+  flies_long_distance_12_time_year: Flyger längre distanser 12 ggr/år
   vegan_price: '10'
   vegetarian_price: '15'
   mostly_vegetarian_price: '20'
@@ -128,7 +133,7 @@ sv:
   climate_neutral_months: klimatneutrala månader
   climate_country_toplist: Topplista klimatneutrala länder
   total_carbon_offset_by_us: Totalt har vi klimatkompenserat bort
-  tonnes_CO2: ton C02
+  tonnes_CO2: ton CO2
   tonnes: ton
   thank_you_so_much_everyone_for_helping_to_save_the_world: Otroligt stort tack för att du är med och räddar världen! Du är bäst!
   latest_carbon_offset_projects: Senaste investeringarna

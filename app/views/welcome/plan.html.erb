@@ -66,7 +66,7 @@
                           </div>
                           <div class="panel-body">
                               <div class="the-price">
-                                  <h1><%=t 'mini_impact_plan_price_html' %></h1>
+                                  <h1><%=t 'plan_price_html', cost: (@lifestyle_choice_prices[25] + @lifestyle_choice_prices[1] + @lifestyle_choice_prices[6] + @lifestyle_choice_prices[26]).round %></h1>
                               </div>
                               <table class="table">
                                   <tr>
@@ -87,7 +87,7 @@
                               </table>
                           </div>
                           <div class="panel-footer">
-                              <a href="<%= new_registration_path(:user) + "?plan=" + t('mini_impact_plan_price').to_s %>" class="btn btn-success" role="button"><%=t 'this_is_me' %></a>
+                              <a href="<%= new_registration_path(:user) + "?choices=25,1,6,26" %>" class="btn btn-success" role="button"><%=t 'this_is_me' %></a>
                           </div>
                       </div>
                   </div>
@@ -99,7 +99,7 @@
                           </div>
                           <div class="panel-body">
                               <div class="the-price">
-                                  <h1><%=t 'small_impact_plan_price_html' %></h1>
+                                  <h1><%=t 'plan_price_html', cost: (@lifestyle_choice_prices[25] + @lifestyle_choice_prices[3] + @lifestyle_choice_prices[9] + @lifestyle_choice_prices[27]).round %></h1>
                               </div>
                               <table class="table">
                                   <tr>
@@ -120,7 +120,7 @@
                               </table>
                           </div>
                           <div class="panel-footer">
-                              <a href="<%= new_registration_path(:user) + "?plan=" + t('small_impact_plan_price').to_s %>" class="btn btn-success" role="button"><%=t 'yep_me' %></a>
+                              <a href="<%= new_registration_path(:user) + "?choices=25,3,9,27"  %>" class="btn btn-success" role="button"><%=t 'yep_me' %></a>
                           </div>
                       </div>
                   </div>
@@ -139,50 +139,37 @@
                                   <tr>
                                       <td class="form select">
                                           <select id="food" class="form-control input-sm">
-                                            <option value="<%=t 'vegan_price' %>"><%=t 'vegan' %></option>
-                                            <option value="<%=t 'vegetarian_price' %>"><%=t 'vegetarian' %></option>
-                                            <option value="<%=t 'mostly_vegetarian_price' %>" selected><%=t 'mostly_vegetarian' %></option>
-                                            <option value="<%=t 'sometimes_vegetarian_price' %>"><%=t 'sometimes_vegetarian' %></option>
-                                            <option value="<%=t 'meat_eater_price' %>"><%=t 'meat_eater' %></option>
+                                            <% LifestyleChoice.where(category: :food).each do |choice| %>
+                                              <option value="<%= choice.id %>"><%=t choice.name %></option>
+                                            <% end %>
                                           </select>
                                       </td>
                                   </tr>
                                   <tr class="active">
                                       <td class="form select">
                                           <select id="car" class="form-control input-sm">
-                                            <option value="0"><%=t 'no_car' %></option>
-                                            <option value="<%=t 'electric_car_price' %>"><%=t 'electric_car' %></option>
-                                            <option value="<%=t 'fuel_efficient_seldom_drives_price' %>"><%=t 'fuel_efficient_seldom_drives' %></option>
-                                            <option value="<%=t 'fuel_efficient_car_drives_often_price' %>"><%=t 'fuel_efficient_car_drives_often' %></option>
-                                            <option value="<%=t 'normal_car_seldom_drives_price' %>" selected><%=t 'normal_car_seldom_drives' %></option>
-                                            <option value="<%=t 'normal_car_drives_often_price' %>"><%=t 'normal_car_drives_often' %></option>
-                                            <option value="<%=t 'suv_seldom_drives_price' %>"><%=t 'suv_seldom_drives' %></option>
-                                            <option value="<%=t 'suv_drives_often_price' %>"><%=t 'suv_drives_often' %></option>
+                                            <% LifestyleChoice.where(category: :car).each do |choice| %>
+                                              <option value="<%= choice.id %>"><%=t choice.name %></option>
+                                            <% end %>
                                           </select>
                                       </td>
                                   </tr>
                                   <tr>
                                       <td class="form select">
-                                          <select id="flight" class="form-control input-sm">
-                                            <option value="0"><%=t 'never_flies' %></option>
-                                            <option value="<%=t 'flies_short_distance_1_time_year_price' %>"><%=t 'flies_short_distance_time_year', times: 1 %></option>
-                                            <option value="<%=t 'flies_short_distance_2_times_year_price' %>"><%=t 'flies_short_distance_time_year', times: 2 %></option>
-                                            <option value="<%=t 'flies_short_distance_3_times_year_price' %>"><%=t 'flies_short_distance_time_year', times: 3 %></option>
-                                            <option value="<%=t 'flies_short_distance_6_times_year_price' %>"><%=t 'flies_short_distance_time_year', times: 6 %></option>
-                                            <option value="<%=t 'flies_short_distance_12_times_year_price' %>"><%=t 'flies_short_distance_time_year', times: 12 %></option>
-                                            <option value="<%=t 'flies_long_distance_1_time_year_price' %>" selected><%=t 'flies_long_distance_time_year', times: 1 %></option>
-                                            <option value="<%=t 'flies_long_distance_2_times_year_price' %>"><%=t 'flies_long_distance_time_year', times: 2 %></option>
-                                            <option value="<%=t 'flies_long_distance_4_times_year_price' %>"><%=t 'flies_long_distance_time_year', times: 3 %></option>
-                                            <option value="<%=t 'flies_long_distance_6_times_year_price' %>"><%=t 'flies_long_distance_time_year', times: 6 %></option>
-                                            <option value="<%=t 'flies_long_distance_12_times_year_price' %>"><%=t 'flies_long_distance_time_year', times: 12 %></option>
+                                          <select id="flying" class="form-control input-sm">
+                                            <% LifestyleChoice.where(category: :flying).each do |choice| %>
+                                              <option value="<%= choice.id %>"><%=t choice.name %></option>
+                                            <% end %>
                                           </select>
                                       </td>
                                   </tr>
                               </table>
-                              <input type="hidden" id="base_cost" value="<%=t 'base_cost' %>">
+                              <input type="hidden" id="base_cost" value="<%= LifestyleChoice.where(category: :base).first.id %>">
+
+
                           </div>
                           <div class="panel-footer">
-                              <a id="custom-plan" href="<%= new_registration_path(:user) %>?plan=5" class="btn btn-success" role="button"><%=t 'thats_it' %></a></div>
+                              <a id="custom-plan" href="<%= new_registration_path(:user) %>?choices=25,1,6,14" class="btn btn-success" role="button"><%=t 'thats_it' %></a></div>
                       </div>
                   </div>
               </div>

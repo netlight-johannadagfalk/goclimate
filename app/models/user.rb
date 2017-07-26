@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   has_many :stripe_events, class_name: "StripeEvent", primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
+  has_and_belongs_to_many :lifestyle_choices
 
   def country_name
     if !country.nil? && !country.empty?

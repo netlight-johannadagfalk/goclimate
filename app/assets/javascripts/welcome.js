@@ -1,14 +1,14 @@
 $(document).ready(function() {
 
 	function planSum(){
-    	var food = $('#food').val();
-    	var car = $('#car').val();
-		var flight = $('#flight').val();
-		var base_cost = $('#base_cost').val();
-		var total = parseInt(base_cost) + parseInt(food) + parseInt(car) + parseInt(flight);
-		console.log(total);
+    	var food = parseInt($('#food').val());
+    	var car = parseInt($('#car').val());
+		var flying = parseInt($('#flying').val());
+		var base_cost = parseInt($('#base_cost').val());
+		
+		var total = Math.round(parseFloat(gon.lifestyle_choice_prices[base_cost]) + parseFloat(gon.lifestyle_choice_prices[food]) + parseFloat(gon.lifestyle_choice_prices[car]) + parseFloat(gon.lifestyle_choice_prices[flying]));
 		$('#sum').text(total);
-		$('#custom-plan').attr("href", "/users/sign_up?plan=" + total);
+		$('#custom-plan').attr("href", "/users/sign_up?choices=" + base_cost + "," + food + "," + car + "," + flying);
     };
 
     $('#food').change(function() {
@@ -17,7 +17,7 @@ $(document).ready(function() {
 	$('#car').change(function() {
   		planSum();
 	});
-	$('#flight').change(function() {
+	$('#flying').change(function() {
   		planSum();
 	});
 

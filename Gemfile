@@ -44,6 +44,8 @@ gem 'sendgrid-ruby'
 gem 'devise-i18n'
 gem 'client_side_validations'
 gem 'font-awesome-rails'
+gem 'gon'
+gem 'seed_dump'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

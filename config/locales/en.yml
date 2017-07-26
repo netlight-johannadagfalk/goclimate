@@ -36,11 +36,8 @@ en:
   no_car: No car
   hardly_ever_flies: Hardly ever flies
   mini_impact_plan: Mini
-  mini_impact_plan_price_html: '$3<span class="subscript">/mo</span>'
-  mini_impact_plan_price: 3
+  plan_price_html: '$%{cost}<span class="subscript">/mo</span>'
   small_impact_plan: Small
-  small_impact_plan_price_html: '$5<span class="subscript">/mo</span>'
-  small_impact_plan_price: 5
   custom_impact_plan: Custom
   custom_impact_plan_price_html: '$<span id="sum">x</span><span class="subscript">/mo</span>'
   mostly_vegetarian: Almost vegetarian
@@ -60,31 +57,16 @@ en:
   suv_seldom_drives: Fuel thirsty car, seldom drive
   suv_drives_often: Fuel thirsty car, drive often
   never_flies: Never flies
-  flies_short_distance_time_year: Fly short distance %{times} time/year
-  flies_long_distance_time_year: Fly long distance %{times} time/year
-  vegan_price: '1'
-  vegetarian_price: '1.5'
-  mostly_vegetarian_price: '2'
-  sometimes_vegetarian_price: '3'
-  meat_eater_price: '4'
-  electric_car_price: '0'
-  fuel_efficient_seldom_drives_price: '2'
-  fuel_efficient_car_drives_often_price: '3'
-  normal_car_seldom_drives_price: '3'
-  normal_car_drives_often_price: '5'
-  suv_seldom_drives_price: '4'
-  suv_drives_often_price: '6'
-  flies_short_distance_1_time_year_price: '1'
-  flies_short_distance_2_times_year_price: '2'
-  flies_short_distance_3_times_year_price: '3'
-  flies_short_distance_6_times_year_price: '6'
-  flies_short_distance_12_times_year_price: '12'
-  flies_long_distance_1_time_year_price: '2'
-  flies_long_distance_2_times_year_price: '4'
-  flies_long_distance_4_times_year_price: '6'
-  flies_long_distance_6_times_year_price: '12'
-  flies_long_distance_12_times_year_price: '24'
-  base_cost: '1'
+  flies_short_distance_1_time_year: Fly short distance 1 time/year
+  flies_short_distance_2_time_year: Fly short distance 2 time/year
+  flies_short_distance_3_time_year: Fly short distance 3 time/year
+  flies_short_distance_6_time_year: Fly short distance 6 time/year
+  flies_short_distance_12_time_year: Fly short distance 12 time/year
+  flies_long_distance_1_time_year: Fly long distance 1 time/year
+  flies_long_distance_2_time_year: Fly long distance 2 time/year
+  flies_long_distance_3_time_year: Fly long distance 3 time/year
+  flies_long_distance_6_time_year: Fly long distance 6 time/year
+  flies_long_distance_12_time_year: Fly long distance 12 time/year
   thats_it: That's it!
   read_more_how_we_calculate_offset_plans_html: Read more on how we calculate the %{href}.
   offset_plans: offset plans
@@ -128,7 +110,7 @@ en:
   climate_neutral_months: climate neutral months
   climate_country_toplist: Climate Country Toplist
   total_carbon_offset_by_us: Total carbon offsets by us together
-  tonnes_CO2: tonnes C02
+  tonnes_CO2: tonnes CO2
   tonnes: tonnes
   thank_you_so_much_everyone_for_helping_to_save_the_world: Thank you so much everyone for helping to save the world! You Rock!
   latest_carbon_offset_projects: Latest Carbon Offset Projects
