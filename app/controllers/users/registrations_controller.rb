@@ -25,8 +25,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     begin
 
-      if params[:user][:choices].nil? || !params[:user][:choices].match(/\d+,\d+,\d+,\d/).nil?
-        flash[:error] = I18n.t('something_went_wrong')
+      if params[:user][:choices].nil? || params[:user][:choices].match(/\d+,\d+,\d+,\d/).nil?
+        flash[:error] = I18n.t('something_went_wrong_go_back_one_step_and_try_again')
         redirect_to new_user_registration_path({choices: params[:user][:choices]}) and return
       end
 

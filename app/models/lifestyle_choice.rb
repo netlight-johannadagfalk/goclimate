@@ -4,7 +4,7 @@ class LifestyleChoice < ApplicationRecord
   def self.get_lifestyle_choice_prices
     lifestyle_choice_prices = []
 
-    sek_per_ton = 150
+    sek_per_ton = 125
     buffer_size = 2
 
     LifestyleChoice.all.each do |choice|

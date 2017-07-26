@@ -36,8 +36,9 @@ en:
   no_car: No car
   hardly_ever_flies: Hardly ever flies
   mini_impact_plan: Mini
-  plan_price_html: '$%{cost}<span class="subscript">/mo</span>'
   small_impact_plan: Small
+  plan_price_html: '$%{cost}<span class="subscript">/mo</span>'
+  you_will_offset_for: You will offset with $%{cost}/month
   custom_impact_plan: Custom
   custom_impact_plan_price_html: '$<span id="sum">x</span><span class="subscript">/mo</span>'
   mostly_vegetarian: Almost vegetarian
@@ -77,7 +78,7 @@ en:
   lots_of_advanced_calculators_out_there: lots of advanced calculators out there
   tonnes_co2_per_year: tonnes CO2/year
   sign_up_for_a_climate_neutral_life: Sign up for a Climate Neutral Life
-  sign_up_here_to_start_livint_a_climate_neutral_life: Sign up here to start living a climate neutral life.
+  sign_up_here_to_start_livint_a_climate_neutral_life: Enter your details below to start living a climate neutral life.
   email: Email
   password: Password
   credit_or_debit_card: Credit or debit card
@@ -143,6 +144,7 @@ en:
   change_your_password_by_entering_your_new_password_below: Change your password by entering your new password below.
   change_password: Change password
   forgot_your_password: Forgot your password?
+  something_went_wrong_go_back_one_step_and_try_again: Something went wrong, go back one step and try again!
   the_payment_unfortunately_failed: Unfortunately your payment has failed
   no_worries_we_will_try_again_within_a_few_days: No worries, we will try again in a few days.
   you_might_need_to_update_your_payment_info: In order to continue living a climate neutral life with us, you might need to update your payment info.

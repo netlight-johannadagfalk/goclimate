@@ -13,7 +13,7 @@
               <% end %>
               <% if @currency == "sek" %>
 
-                <% (10..300).step(5).each do |i| %>
+                <% (10..@plan+100).step(5).each do |i| %>
                   <% if i == @plan.to_i %>
                     <option value="<%= i %>" selected=1><%= i %> kr/mån</option>
                   <% else %>

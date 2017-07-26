@@ -9,9 +9,8 @@
 
       <div class="inner cover">
       <h1 class="cover-heading"><%=t 'sign_up_for_a_climate_neutral_life' %></h1>
+      <p class="lead"><%=t 'you_will_offset_for', cost: @plan %>. <%=t 'sign_up_here_to_start_livint_a_climate_neutral_life' %></p>
       <span class="glyphicon glyphicon glyphicon-hand-down" aria-hidden="true"></span>
-
-      <p class="lead"><%=t 'sign_up_here_to_start_livint_a_climate_neutral_life' %></p>
       
       <% if flash[:error].present? %>
         <div id="error_explanation">
@@ -23,8 +22,6 @@
         <%= devise_error_messages! %>
 
         <%= hidden_field(:user, :choices, :value => params[:choices]) %>
-
-        <%= render "shared/plan" %>
 
         <div class="form-group">
           <div class="col-sm-1"></div>
