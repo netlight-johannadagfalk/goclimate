@@ -26,10 +26,6 @@ Rails.application.routes.draw do
 
   get '/blog' => redirect("https://www.goclimateneutral.org/blog/")
 
-  get '.well-known/acme-challenge/j3xDCIxTqC4ePhzHBh0hlnY1K9xUSlX2T0DRMEbwR3E', to: 'welcome#cert1'
-  get '.well-known/acme-challenge/6vlQNuynTXChf3kEYpQEG3BU5wI01x2zXyYOjbM0QqM', to: 'welcome#cert2'
-  get '.well-known/acme-challenge/KTen_LB2qGKnnNoi0svsU-EwzBDk3CipUaIurr2RF9o', to: 'welcome#cert3'
-
   root 'welcome#index'
 
 #  unless Rails.application.config.consider_all_requests_local
