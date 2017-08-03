@@ -26,6 +26,5 @@ $(document).ready(function() {
 	   window.location.hash = e.target.hash + "id";
 	});
     var anchor = window.location.hash.replace("id", "");
-    $(".collapse").collapse('hide');
     $(anchor).collapse('show');
 });
