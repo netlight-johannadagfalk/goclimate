@@ -209,6 +209,7 @@ sv:
       q15:
         question: Kommer ni plocka ut vinst på det här projektet?
         answer: Nej. Däremot har vi lagt ner hundratals timmar, utan betalning, på att sätta oss in i det här med klimatkompensation genom att läsa på samt träffa människor som arbetar med detta dagligen, ta fram och utveckla hemsidan samt göra reklam för sidan för att få så många som möjligt att registrera sig och på så sätt bidra till att bromsa klimatförändringarna. Vi har inga planer på att plocka ut någon vinst utan kommer investera alla eventuella vinster i att försöka bromsa klimatförändringarna ytterligare. Dock hoppas vi på sikt att kanske kunna anställa och betala ut lön till någon för att kunna göra ännu större nytta för planeten.
+      q16:
         question: När klimatkrisen är över, kommer GoClimateNeutral.org att lägga ner då?
         answer: Ja! Tjohoo!
   activerecord:
