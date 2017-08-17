@@ -27,7 +27,7 @@ class DashboardController < ApplicationController
 
     @total_climate_neutral_months = StripeEvent.where(stripe_object: "invoice").count
 
-    @user_top_list = User.where("users.stripe_customer_id != ''").left_joins(:stripe_events).select("users.id, COUNT(1)").group("users.id").order('COUNT(1) DESC').limit(10)
+    @user_top_list = User.where("users.stripe_customer_id != ''").where("users.user_name != ''").left_joins(:stripe_events).select("users.id, COUNT(1)").group("users.id").order('COUNT(1) DESC')
 
     @country_top_list = User.where("users.stripe_customer_id != ''").left_joins(:stripe_events).select("users.country, COUNT(1)").group("users.country").order('COUNT(1) DESC').limit(10)
 
