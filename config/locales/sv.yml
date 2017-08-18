@@ -108,9 +108,12 @@ sv:
   total_climate_offset_project_investments: Total summa som vi klimatkompenserat för
   total_climate_offset_project_investments_amount: '%{sek} kr'
   cimate_hero_toplist: Topplista klimathjältar
+  show_full_toplist: Visa hela toplistan
+  hide_full_toplist: Göm hela toplistan
   climate_neutral_month: klimatneutral månad
   climate_neutral_months: klimatneutrala månader
   climate_country_toplist: Topplista klimatneutrala länder
+  read_more_about_investments_on_our_blog: Läs mer om projekten vi investerar i på vår blogg >>
   total_carbon_offset_by_us: Totalt har vi klimatkompenserat bort
   tonnes_CO2: ton CO2
   tonnes: ton

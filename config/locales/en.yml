@@ -108,10 +108,13 @@ en:
   total_climate_offset_project_investments: Total climate offset project investments
   total_climate_offset_project_investments_amount: '$%{usd}'
   cimate_hero_toplist: Climate Hero Toplist
+  show_full_toplist: Show Full Toplist
+  hide_full_toplist: Hide Full Toplist
   climate_neutral_month: climate neutral month
   climate_neutral_months: climate neutral months
   climate_country_toplist: Climate Country Toplist
   total_carbon_offset_by_us: Total carbon offsets by us together
+  read_more_about_investments_on_our_blog: Read more about the projects we investments in on our blog >>
   tonnes_CO2: tonnes CO2
   tonnes: tonnes
   thank_you_so_much_everyone_for_helping_to_save_the_world: Thank you so much everyone for helping to save the world! You Rock!
