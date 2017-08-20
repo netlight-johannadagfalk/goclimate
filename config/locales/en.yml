@@ -38,10 +38,11 @@ en:
   hardly_ever_flies: Hardly ever flies
   mini_impact_plan: Mini
   small_impact_plan: Small
-  plan_price_html: '$%{cost}<span class="subscript">/mo</span>'
+  plan_price_html: '$<span id="sum">%{cost}</span><span class="subscript">/mo</span>'
+  cost_calculation: Cost calculation
+  price_info_popup_content: With these choices you have a yearly climate footprint of %{footprint} tonne CO<sub>2</sub>. Since the number is approximate we offset for twice as many tonnes. This way you can be sure you live climate neutral every month. With a offsetting price with both Gold Standard (that WWF and Greenpeace among others are behind) and CDM-certified (that the UN is behind) projects at %{price_per_tonne} $/tonne these choices end up at %{price_per_month} $/month.
   you_will_offset_for: You will offset with $%{cost}/month
   custom_impact_plan: Custom
-  custom_impact_plan_price_html: '$<span id="sum">x</span><span class="subscript">/mo</span>'
   mostly_vegetarian: Almost vegetarian
   one_fuel_efficient_car: One Fuel Efficient Car
   flies_sometimes: Flies Sometimes
@@ -216,6 +217,12 @@ en:
       q16:
         question: When the climate crisis is over, will GoClimateNeutral.org shut down?
         answer: Yes. And we will then invite you all for a glas of champagne!
+      q17:
+        question: How do we calculate the carbon footprints?
+        answer: The calculation of a carbon footprint is very complicated and can never be perfect. It doesn't matter how detailed you do your calculation, you will always need to make a lot of assumptions. Instead of using a complicated calculation we base our model on the three lifestyle choices that effect your footprint the most; what you eat, what you drive and how much you fly. To be on the safe side we offset for twice as much as we estimate that your lifestyle cause. The amount of corbon in the different lifestyle choices we base on the excellent calculators from myclimate.com and carbonstory.org. If you want a more exact amount of your carbon footprint there are <b><a href='https://www.google.se/search?safe=active&q=carbon+footprint+calculator&cad=h'>lots of very good calculators out there</a><b>.
+      q18:
+        question: How do I know what projects are invested in?
+        answer: We believe in full transparency in everything we do. All project that we invest in are shown on the first page when you log in to your account. You can also read about them <b><a href='https://www.goclimateneutral.org/blog/category/investment/'>on our blog under the category investment</a></b>.
   activerecord:
     errors:
       models:

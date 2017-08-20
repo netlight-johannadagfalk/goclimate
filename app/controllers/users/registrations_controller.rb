@@ -81,9 +81,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def get_plan choices
     choices = choices.split(",").map(&:to_i)
-    prices = LifestyleChoice.get_lifestyle_choice_prices
-    sum = choices.inject(0) { |sum, choice_id| sum + prices[choice_id] }
-    sum.round
+    LifestyleChoice.get_lifestyle_choice_price choices
   end
 
   # GET /resource/edit

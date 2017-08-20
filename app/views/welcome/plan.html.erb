@@ -65,9 +65,7 @@
                                   <%=t 'mini_impact_plan' %></h3>
                           </div>
                           <div class="panel-body">
-                              <div class="the-price">
-                                  <h1><%=t 'plan_price_html', cost: (@lifestyle_choice_prices[25] + @lifestyle_choice_prices[1] + @lifestyle_choice_prices[6] + @lifestyle_choice_prices[26]).round %></h1>
-                              </div>
+                            <%= render 'shared/price', choices: [25, 1, 6, 26] %>
                               <table class="table">
                                   <tr>
                                       <td>
@@ -98,13 +96,11 @@
                                   <%=t 'small_impact_plan' %></h3>
                           </div>
                           <div class="panel-body">
-                              <div class="the-price">
-                                  <h1><%=t 'plan_price_html', cost: (@lifestyle_choice_prices[25] + @lifestyle_choice_prices[3] + @lifestyle_choice_prices[9] + @lifestyle_choice_prices[27]).round %></h1>
-                              </div>
+                              <%= render 'shared/price', choices: [25, 4, 9, 27] %>
                               <table class="table">
                                   <tr>
                                       <td>
-                                          <%=t 'mostly_vegetarian' %>
+                                          <%=t 'sometimes_vegetarian' %>
                                       </td>
                                   </tr>
                                   <tr class="active">
@@ -120,7 +116,7 @@
                               </table>
                           </div>
                           <div class="panel-footer">
-                              <a href="<%= new_registration_path(:user) + "?choices=25,3,9,27"  %>" class="btn btn-success" role="button"><%=t 'yep_me' %></a>
+                              <a href="<%= new_registration_path(:user) + "?choices=25,4,9,27"  %>" class="btn btn-success" role="button"><%=t 'yep_me' %></a>
                           </div>
                       </div>
                   </div>
@@ -131,10 +127,8 @@
                               <h3 class="panel-title">
                                   <%=t 'custom_impact_plan' %></h3>
                           </div>
-                          <div class="panel-body">
-                              <div class="the-price">
-                                  <h1><%=t 'custom_impact_plan_price_html' %></h1>
-                              </div>
+                          <div class="panel-body custom-plan-price">
+                              <%= render 'shared/price', choices: [] %>
                               <table class="table">
                                   <tr>
                                       <td class="form select">
@@ -174,28 +168,11 @@
                   </div>
               </div>
           </div>
-          <p class="lead last"><%=t 'read_more_how_we_calculate_offset_plans_html', href: link_to(t('offset_plans'), 'https://www.goclimateneutral.org/blog/how-calculate-the-offset-plans/') %> <br> <%=t 'read_more_about_how_we_choose_climet_projects_html', href: link_to(t('climate_projects'), 'https://www.goclimateneutral.org/blog/what-climate-projects-we-invest-in/') %></p>
 
+          <p class="lead last">Hur fungerar klimatkompensation? Kan man verkligen kalla sig själv klimatneutral? Hur räknar vi på klimatavtryck? Hur får man reda på vilka projekt som investeras i? Läs mer på sidan med <%= link_to 'frågor och svar >>', '/faq' %></p>
           </div>
         </div>
       </div>
-<!--
-      <div class="site-wrapper-inner site-wrapper-second">
-        <div class="cover-container">
-          <div class="inner cover">
-            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-            <h1 class="cover-heading"><%=t 'but_i_want_to_enter_more_details' %></h1>
-            <p class="lead"><%=t 'calculating_your_exact_footprint_html', href: link_to(t('lots_of_advanced_calculators_out_there'), 'https://www.google.se/?gfe_rd=cr&ei=IVb0WOOHLIfEYOmlqNAI#q=climate+calculator') %>:</p>
-            <form class="form-inline form-tonnes" method="GET" action="<%= new_registration_path(:user) %>">
-              <div class="form-group">
-                <input type="text" class="form-control small_number" id="plan" name="tonnes_co2" placeholder="15" value="15">
-              </div>
-              <button type="submit" class="btn btn-success"><%=t 'tonnes_co2_per_year' %></button>
-            </form>
 
-          </div>
-        </div>
-      </div>
--->
 
 <%= render "shared/footer" %>

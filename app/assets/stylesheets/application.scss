@@ -549,7 +549,13 @@ td.form.select {
     padding: 0px;
     text-align: center;
 }
-
+.price-info-helper {
+    cursor: pointer;
+    font-size: 14px;
+    top: -10px;
+    color: #5cb85c;
+    padding-top: 0px;
+}
 .the-price {
     background-color: rgba(220,220,220,.17);
     box-shadow: 0 1px 0 #dcdcdc, inset 0 1px 0 #fff;

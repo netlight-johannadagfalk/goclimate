@@ -4,8 +4,13 @@ class WelcomeController < ApplicationController
   end
 
   def plan
-    @lifestyle_choice_prices = LifestyleChoice.get_lifestyle_choice_prices
-    gon.lifestyle_choice_prices = @lifestyle_choice_prices
+    @lifestyle_choice_co2 = LifestyleChoice.get_lifestyle_choice_co2
+    gon.lifestyle_choice_co2 = @lifestyle_choice_co2
+    gon.locale = I18n.locale
+    gon.SEK_PER_TONNE = LifestyleChoice::SEK_PER_TONNE
+    gon.BUFFER_SIZE = LifestyleChoice::BUFFER_SIZE
+    gon.SEK_PER_DOLLAR = LifestyleChoice::SEK_PER_DOLLAR
+    gon.price_info_popup_content = I18n.t('price_info_popup_content')
   end
 
   def about
