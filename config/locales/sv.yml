@@ -167,6 +167,7 @@ sv:
   thank_you: Stort Tack!
   faq: Frågor & Svar
   answer: Svar
+  read_more_on_frequently_asked_questions: Läs mer på vår sida med frågor och svar >>
   faq_questions:
     questions:
       q1:
@@ -179,7 +180,7 @@ sv:
         question: Varför ska jag låta er sköta min klimatkompensation?
         answer: Det finns främst två anledningar till att använda vår tjänst. För det första är marknaden för klimatkompensation rätt knepig. Det finns olika standarder som CDM, Gold Standard, Fair Trade och Plan Vivo som i sin tur innehåller olika typer av projekt som trädplantering och projekt där man ersätter gammal fossilbaserad teknik med ny grön mer energisnål teknik. Att hitta rätt bland de olika projekten och veta att ens pengar gör så mycket nytta för klimatet som möjligt är svårt, och där hoppas vi att vi kan hjälpa till så att vi gör riktigt smarta investeringar tillsammans.<br><br>För det andra finns ingen annan tjänst, vad vi känner till, som dels beräknar vad du ska klimatkompensera för just din livsstil, dels gör det enkelt för dig genom att dra pengar från ditt konto varje månad istället för att du aktivt ska gå in och klimatkompensera manuellt, och samtidigt ger tips om hur du kan minska ditt klimatavtryck så mycket som möjligt.<br><br>Dessutom så är det rätt roligt att göra bra saker tillsammans och se hur stor nytta vi kan göra om vi agerar tillsammans. Och med lite tur kan din delaktighet även få med fler, så att vi blir fler och fler som försöker göra något för att bromsa klimatförändringarna.
       q4:
-        question: Räcker det verkligen med att betala för att bli klimatneutral?
+        question: Räcker det med att betala pengar för att bli klimatneutral?
         answer: "Ja, bidrar du - genom att betala pengar - till att ta bort lika mycket utsläpp från atmosfären som du släpper ut så kan du kalla dig klimatneutral. Så enkelt är det - i teorin. I praktiken är det dock mer komplicerat att säkerställa att du är helt klimatneutral, då det både är svårt att veta exakt hur mycket just du orsakar i utsläpp och exakt hur mycket du bidrar med att ta bort när du köper klimatkompensation. Därför är målet med GoClimateNeutral.org både att inspirera att minska sina utsläpp så mycket som möjligt och samtidigt investera i projekt som minskar mängden koldioxid i atmosfären med en stor marginal för det de utsläpp du orsakar. <br><br>Generellt har människor svårt att ändra sina vanor och därmed dra ner på sina utsläpp. Därför har vi valt att först ge dig möjligheten att betala för att börja bidra till att bromsa klimatförändringarna. När detta första steg i form av en månatlig betalning är taget vill vi inspirera dig att ta nästa steg dvs börja ändra dina vanor. <br><br>Tillvägagångssättet att få människor att först ta ett litet steg i rätt riktning för att sedan göra större förändringar kallas Foot in the door technique. Det kan du läsa mer om här:  https://en.wikipedia.org/wiki/Foot-in-the-door_technique<br><br>Målet med GoClimateNeutral.org är att att få dig att dra ner på dina utsläpp så mycket som möjligt och samtidigt klimatkompensera för det du inte kan dra ner på (plus lite till)."
       q5:
         question: Är det inte viktigare att minska sina utsläpp än att klimatkompensera?
@@ -221,7 +222,7 @@ sv:
         question: Hur räknar vi på klimatavtryck?
         answer: Att räkna på klimatavtryck är väldigt komplicerat och kan aldrig bli exakt. Oavsett hur nogrannt man räknar behöver man alltid göra vissa antaganden. Vi har istället för en komplicerad modell räknat väldigt grovt utifrån tre generella livsstilsval som påverkar ens klimatavtryck mest; vad man äter, vad man kör och hur mycket man flyger. För att man sedan ska kunna vara på säkra sidan med att man verkligen kompenserar för sin livsstil så väljer vi att kompensera för dubbelt så mycket som vi uppskattar att ens livsstil orsakar i utsläpp. Mängden koldioxid utifrån de olika valen har baserats från de utmärkta kalkylatornerna på myclimate.com och carbonstory.org. Vill man ha reda på sitt klimatavtryck lite mer nogrannt finns det <b><a href='https://www.google.se/search?safe=active&q=carbon+footprint+calculator&cad=h'>väldigt många bra kalkylatorer där ute</a></b>.
       q18:
-        question: Hur får man reda på vilka projekt som investeras i?
+        question: Hur får man reda på vilka klimatprojekt som vi investerar i?
         answer: Vi tror på full transparens i allt vi gör. Alla klimatkompensationsprojekt som vi investerar i redovisas på förstasidan när man loggat in på sitt konto. Man kan dessutom läsa om dem på <b><a href='https://www.goclimateneutral.org/blog/category/investment/'>bloggen under kategorin investeringar</a></b>.
   activerecord:
     errors:
