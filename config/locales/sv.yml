@@ -40,7 +40,7 @@ sv:
   small_impact_plan: Liten
   plan_price_html: '<span id="sum">%{cost}</span> <span class="subscript">kr/mån</span>'
   cost_calculation: Kostnadsberäkning
-  price_info_popup_content: Med de här valen räknar vi på ett årligt klimatavtryck på %{footprint} ton CO<sub>2</sub>. Eftersom kalkylen är ungefärlig klimatkompenserar vi dock för dubbelt så många ton. På så sätt kan du vara säker på att du lever klimatneutralt varje månad. Med ett pris på klimatkompensation i både Gold Standard och CDM-certifierade projekt (certifieringar som bland annat WWF och Greenpeace respektive FN ligger bakom) på %{price_per_tonne} sek/ton landar därför dessa val på %{price_per_month} sek/mån.
+  price_info_popup_content: Detta val räknar vi ger ett årligt utsläpp på %{footprint} ton CO<sub>2</sub>. Eftersom kalkylen är ungefärlig klimatkompenserar vi för dubbelt så många ton, alltså %{footprint_x2} ton C0<sub>2</sub>, så att du kan vara säker på att du lever klimatneutralt varje månad. <br>Vi klimatkompenserar i projekt som är FN-certifierade (CDM) samt har kvalitetsmärkningen Gold Standard (skapad av bland annat WWF och Greenpeace). Dessa projekt kostar ca %{price_per_tonne} kr/ton - och därför landar detta val på %{price_per_month} kr/mån.
   you_will_offset_for: Du kommer klimatkompensera för %{cost} kr/mån
   custom_impact_plan: Anpassad
   mostly_vegetarian: Nästan vegetarian

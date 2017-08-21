@@ -20,6 +20,7 @@ $(document).ready(function() {
 	    }
 
 		var data_content = gon.price_info_popup_content.replace('%{footprint}', Math.round(tonne_co2, 2));
+		data_content = data_content.replace('%{footprint_x2}', (Math.round(tonne_co2, 2)*2));
 		data_content = data_content.replace('%{price_per_tonne}', Math.round(price_per_tonne, 2));
 		data_content = data_content.replace('%{price_per_month}', Math.round(rounded_price_with_buffer, 2));
 

@@ -40,7 +40,7 @@ en:
   small_impact_plan: Small
   plan_price_html: '$<span id="sum">%{cost}</span><span class="subscript">/mo</span>'
   cost_calculation: Cost calculation
-  price_info_popup_content: With these choices you have a yearly climate footprint of %{footprint} tonne CO<sub>2</sub>. Since the number is approximate we offset for twice as many tonnes. This way you can be sure you live climate neutral every month. With a offsetting price with both Gold Standard (that WWF and Greenpeace among others are behind) and CDM-certified (that the UN is behind) projects at %{price_per_tonne} $/tonne these choices end up at %{price_per_month} $/month.
+  price_info_popup_content: With this choice we estimate a yearly climate footprint of %{footprint} tonne CO<sub>2</sub>. Since the number is approximate we offset for twice as many tonnes, so %{footprint_x2} tonne C0<sub>2</sub>. This way you can be sure you live climate neutral every month.<br>We invest in projects that are UN-certified (CDM) and also have the quality label Gold Standard (created among others by Greenpeace and WWF). These project cost about $%{price_per_tonne} per tonne - so this choice end up at $%{price_per_month} per month.
   you_will_offset_for: You will offset with $%{cost}/month
   custom_impact_plan: Custom
   mostly_vegetarian: Almost vegetarian
