@@ -219,11 +219,11 @@ sv:
         question: När klimatkrisen är över, kommer GoClimateNeutral.org att lägga ner då?
         answer: Ja! Tjohoo!
       q17:
-        question: Hur räknar vi på klimatavtryck?
-        answer: Att räkna på klimatavtryck är väldigt komplicerat och kan aldrig bli exakt. Oavsett hur nogrannt man räknar behöver man alltid göra vissa antaganden. Vi har istället för en komplicerad modell räknat väldigt grovt utifrån tre generella livsstilsval som påverkar ens klimatavtryck mest; vad man äter, vad man kör och hur mycket man flyger. För att man sedan ska kunna vara på säkra sidan med att man verkligen kompenserar för sin livsstil så väljer vi att kompensera för dubbelt så mycket som vi uppskattar att ens livsstil orsakar i utsläpp. Mängden koldioxid utifrån de olika valen har baserats från de utmärkta kalkylatornerna på myclimate.com och carbonstory.org. Vill man ha reda på sitt klimatavtryck lite mer nogrannt finns det <b><a href='https://www.google.se/search?safe=active&q=carbon+footprint+calculator&cad=h'>väldigt många bra kalkylatorer där ute</a></b>.
+        question: Hur beräknar vi klimatavtryck?
+        answer: Att räkna på klimatavtryck är väldigt komplicerat och kan aldrig bli exakt. Oavsett hur noggrant man räknar behöver alltid vissa antaganden göras. Vi har, istället för en komplicerad modell, räknat väldigt grovt utifrån tre val som påverkar ditt klimatavtryck mest; vad du äter, vilken bil du har och hur mycket du kör samt hur mycket du flyger. För att säkra att man ska kunna kalla sig klimatneutral om man använder tjänsten kompenserar vi för dubbelt så mycket av det uträknade klimatavtrycket.<br>De olika alternativens koldioxidutsläppsnivåer baseras på de utmärkta kalkylatornerna på myclimate.com och carbonstory.org. Vill du ta reda på ditt klimatavtryck lite mer exakt så finns det <b><a href='https://www.google.se/search?safe=active&q=carbon+footprint+calculator&cad=h'>väldigt många bra kalkylatorer där ute</a></b>.
       q18:
-        question: Hur får man reda på vilka klimatprojekt som vi investerar i?
-        answer: Vi tror på full transparens i allt vi gör. Alla klimatkompensationsprojekt som vi investerar i redovisas på förstasidan när man loggat in på sitt konto. Man kan dessutom läsa om dem på <b><a href='https://www.goclimateneutral.org/blog/category/investment/'>bloggen under kategorin investeringar</a></b>.
+        question: Hur får jag reda på vilka klimatprojekt som vi investerar i?
+        answer: Vi tror på full transparens i allt vi gör. Alla klimatkompensationsprojekt som vi investerar i redovisas på förstasidan när du loggar in på ditt konto. Du kan dessutom läsa om dem på <b><a href='https://www.goclimateneutral.org/blog/category/investment/'>bloggen under kategorin investeringar</a></b>.
   activerecord:
     errors:
       models:
