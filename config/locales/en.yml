@@ -24,11 +24,11 @@ en:
   about_us_who_are_we_henrik_html: 'Agil & Lean coach. The creator of <a href="https://youtu.be/3CM_KkDuzGQ">A friendly guide to Climate Change</a>, <a href="http://climate.crisp.se/">Climate Crisplet</a> and <a href="http://carbonmanifesto.org/">Carbon Manifesto</a>.'
   blog: Blog
   section_1_go_climate_neutral: Go Climate Neutral!
-  section_1_text: By letting us do monthly investments in certified climate offset projects - with a sum that corresponds to your lifestyle - we help you offset your climate footprint. By doing this you help slow down climate change and contribute to saving our planet.
+  section_1_text: By letting us do monthly investments in certified climate offset projects we will help you offset your climate footprint. At the same time we will help you can reduce your climate footprint. By doing this you help slow down climate change and contribute to saving our planet.
   its_fun_to_do_it_together: It's more fun to save the planet together!
   section_2_text: By offsetting your climate impact with us, you inspire others to do the same. Climate change is a challenge we face together, so we should fight it together as well.
   we_are_100_transparent: We are 100% transparent
-  section_3_text: We are 100% transparent in which certified climate offset projects we invest in, and why. We are also 100% transparent with the amount carbon we manage to offset with your help, and how much carbon we manage to offset in total.
+  section_3_text: We are 100% transparent in which both UN and Gold Standard-certified climate offset projects we invest in, and why. We are also 100% transparent with the amount carbon we manage to offset with your help, and how much carbon we manage to offset in total.
   we_are_975_effective: We are very climate efficient
   section_4_text: We invest in the most effective certified climate offset projects we can find, so that your money slows down climate change as much as possible.
   start_by_choosing_plan: Start by describing your climate impact
@@ -37,7 +37,7 @@ en:
   no_car: No car
   hardly_ever_flies: Hardly ever flies
   mini_impact_plan: Mini
-  small_impact_plan: Small
+  small_impact_plan: Medium
   plan_price_html: '$<span id="sum">%{cost}</span><span class="subscript">/mo</span>'
   cost_calculation: Cost calculation
   price_info_popup_content: With this choice we estimate a yearly climate footprint of %{footprint} tonne CO<sub>2</sub>. Since the number is approximate we offset for twice as many tonnes, so %{footprint_x2} tonne C0<sub>2</sub>. This way you can be sure you live climate neutral every month.<br>We invest in projects that are UN-certified (CDM) and also have the quality label Gold Standard (created among others by Greenpeace and WWF). These project cost about $%{price_per_tonne} per tonne - so this choice end up at $%{price_per_month} per month.
@@ -80,7 +80,7 @@ en:
   lots_of_advanced_calculators_out_there: lots of advanced calculators out there
   tonnes_co2_per_year: tonnes CO2/year
   sign_up_for_a_climate_neutral_life: Sign up for a Climate Neutral Life
-  sign_up_here_to_start_livint_a_climate_neutral_life: Enter your details below to start living a climate neutral life.
+  sign_up_here_to_start_livint_a_climate_neutral_life: Enter your details below to start the journey towards a climate neutral life.
   email: Email
   password: Password
   credit_or_debit_card: Credit or debit card
@@ -138,7 +138,7 @@ en:
   2_sign_up: 2. Sign Up
   sign_up_text: Take 1 minute to register
   3_save_the_world: 3. Save the World
-  save_the_world_text: We buy climate offsets for you each month to help you live a climate neutral life and thus contribute to saving our planet.
+  save_the_world_text: We buy climate offsets for you and show you how you can reduce your climate footprint to help you live a climate neutral life and thus contribute to saving our planet.
   its_that_simple_text: "It's that simple. Climate change is the biggest challenge of our time, but together we can do something about it. We are not claiming that this will be enough, but it's a big step in the right direction. Join us and spread the word to encourage others to be part of this movement!"
   why_goclimateneutral_head: WHY GOCLIMATENEUTRAL?
   how_it_works_head: HOW IT WORKS
