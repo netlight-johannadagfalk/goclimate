@@ -10,7 +10,11 @@ en:
   ok_i_want_to_know_more: Ok, sign me up!
   i_want_to_know_more: I want to know more!
   contact_us: Contact us
-  general_questions_html: 'For questions about GoClimateNeutral or if you have ideas on how we can improve the site, please drop us a line at <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a>, <a href="tel:+46706084374">+46706084374</a> or on Twitter <a href="https://twitter.com/kallenilver">@kallenilver</a> or <a href="https://twitter.com/cissilinden">@cissilinden</a>.'
+  general_questions_html: 'For questions about GoClimateNeutral or if you have ideas on how we can improve the site, please drop us a line at <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a> or give us a call at <a href="tel:+46706084374">+46706084374</a>.'
+  general_questions_press_html: If you have PR-related questions send us an email at <a href="mailto:press@goclimateneutral.org">press@goclimateneutral.org</a>
+  general_questions_payments_html: If you have any questions about payments och technology-reletad questions, email us at <a href="mailto:payments@goclimateneutral.org">payments@goclimateneutral.org</a>
+  general_questions_facebook_html: 'You can find us on Facebook here: <a href="https://www.facebook.com/GoClimateNeutral">GoClimateNeutral</a>'
+  general_questions_twitter_html: 'You can find us on twitter here: <a href="https://twitter.com/goclimateneutrl">@goclimateneutrl</a>'
   about_us: About us
   about_us_intro: GoClimateNeutral was created in 2017 with the sole purpose of making it easier to live a climate neutral life and thereby slow down climate change. We offset your way of living and give ideas on how to reduce your footprint so that you can make this world a better place.
   about_us_why_do_we_exist: Why does GoClimateNeutral exist?

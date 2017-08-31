@@ -10,7 +10,12 @@ sv:
   i_want_to_know_more: Jag vill veta mer!
   ok_i_want_to_know_more: Ok, jag är intresserad!
   contact_us: Kontakta oss
-  general_questions_html: 'Om du har frågor om GoClimateNeutral eller har idéer om hur vi kan förbättra tjänsten, hör gärna av dig till oss på: <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a>, <a href="tel:+46706084374">+46706084374</a> eller twittra med oss på <a href="https://twitter.com/kallenilver">@kallenilver</a> eller <a href="https://twitter.com/cissilinden">@cissilinden</a>.'
+  general_questions_html: 'Om du har frågor om GoClimateNeutral eller har idéer om hur vi kan förbättra tjänsten, hör gärna av dig till oss på: <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a> eller ring oss på <a href="tel:+46706084374">+46706084374</a>.'
+  general_questions_press_html: Har du pressfrågor eller vill ha tag på material, maila <a href="mailto:press@goclimateneutral.org">press@goclimateneutral.org</a>
+  general_questions_payments_html: Har du frågor om betalningar eller teknik, maila <a href="mailto:payments@goclimateneutral.org">payments@goclimateneutral.org</a>
+  general_questions_facebook_html: 'Du hittar oss på facebook här: <a href="https://www.facebook.com/GoClimateNeutral">GoClimateNeutral</a>.'
+  general_questions_twitter_html: Twittra med oss på <a href="https://twitter.com/goclimateneutrl">@goclimateneutrl</a>, eller indivuduellt på <a href="https://twitter.com/kallenilver">@kallenilver</a>, <a href="https://twitter.com/cissilinden">@cissilinden</a> eller <a href="https://twitter.com/henrikkniberg">@henrikkniberg</a>.
+  general_questions_twitter_html: Twittra gärna med oss på kontot <a href="https://twitter.com/goclimateneutrl">@goclimateneutrl</a>.
   about_us: Om oss
   about_us_intro: GoClimateNeutral skapades 2017 med syfte att hjälpa så många som möjligt att leva ett klimatneutralt liv och därmed vara med och bromsa klimatförändringarna. Vi klimatkompenserar för din livsstil samtidigt som vi tipsar om vad du kan göra för att minimera ditt totala fotavtryck på vår planet och därigenom bidra till att göra världen lite bättre.
   about_us_why_do_we_exist: Varför finns GoClimateNeutral?
