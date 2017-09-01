@@ -55,7 +55,7 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
-.masthead h4 a {
+.masthead a {
   font-size: 14px;
   color: #7b8d7d;
   padding-right: 30px;
@@ -92,9 +92,6 @@ body {
 
 .masthead-nav > li {
   display: inline-block;
-}
-.masthead-nav > li + li {
-  margin-left: 20px;
 }
 .masthead-nav > li > a {
   padding-right: 0;
@@ -435,7 +432,7 @@ p.lead a {
     position: relative;
 }
 .masthead .inner {
-    padding: 0px 15px;
+    padding: 0px 0px;
 }
 .mastfoot {
     position: relative;
@@ -447,9 +444,20 @@ p.lead a {
 .lead.last-text {
   margin-top: 40px;
 }
-.inner {
+.navbar.navbar-default {
+  background-color: transparent;
+  border-color: transparent;
+}
+.navbar {
   .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background-color: transparent;
+  }
+  .navbar-nav > li > a {
+    padding: 11px 20px 11px 0px;
+  }
+  .navbar-collapse {
+    padding-left: 0px;
+    padding-right: 0px;
   }
   .dropdown-menu {
     min-width: 110px;
@@ -459,8 +467,17 @@ p.lead a {
     position: absolute;
     text-align: center;
   }
-  #fat-menu {
+  .dropdown-menu > li > a {
+    padding: 3px 0px;
+  }
+  .dropdown img {
+    margin-top: -4px;
+  }
+  .fat-menu {
     min-width: 118px;
+  }
+  .languages {
+    min-width: 60px;
   }
 }
 div.profile {
@@ -509,9 +526,6 @@ div.profile {
     }
     .share-buttons {
       width: auto;
-    }
-    .masthead h4 a {
-      padding-right: 0px;
     }
     .faq .panel {
       max-width: 300px;
