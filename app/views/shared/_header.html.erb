@@ -56,8 +56,11 @@
         <% else %>
           <li><%= link_to(I18n.t('log_in'), new_user_session_url)%></li>
           <li role="separator" class="divider"></li>
-          <li><a href="https://sv.goclimateneutral.org/"><%= image_tag 'SE.png' %> SVENSKA</a></li>
-          <li><a href="https://en.goclimateneutral.org/"><%= image_tag 'US.png' %> ENGLISH</a></li>
+          <% if I18n.locale == :sv %>
+            <li><a href="https://en.goclimateneutral.org/"><%= image_tag 'US.png' %> IN ENGLISH</a></li>
+          <% else %>
+            <li><a href="https://sv.goclimateneutral.org/"><%= image_tag 'SE.png' %> PÅ SVENSKA</a></li>
+          <% end %>
         <% end %>
       </ul>
 
