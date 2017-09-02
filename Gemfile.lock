@@ -120,6 +120,8 @@ GEM
     hashie (3.5.5)
     i18n (0.8.1)
     i18n_data (0.7.0)
+    intercom-rails (0.3.5)
+      activesupport (> 3.0)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
@@ -271,6 +273,7 @@ DEPENDENCIES
   devise-i18n
   font-awesome-rails
   gon
+  intercom-rails
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

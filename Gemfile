@@ -46,6 +46,7 @@ gem 'client_side_validations'
 gem 'font-awesome-rails'
 gem 'gon'
 gem 'seed_dump'
+gem 'intercom-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
