@@ -36,7 +36,7 @@
         <% else %>
           <li><%= link_to(I18n.t('log_in'), new_user_session_url)%></li>
           <li class="dropdown languages">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= I18n.locale == :sv ? image_tag('SE.png') : image_tag('EN.png') %><span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= I18n.locale == :sv ? image_tag('SE.png') : image_tag('US.png') %><span class="caret"></span></a>
               <ul class="dropdown-menu languages">
                 <li><a href="https://sv.goclimateneutral.org/"><%= image_tag 'SE.png' %> SV</a></li>
                 <li><a href="https://en.goclimateneutral.org/"><%= image_tag 'US.png' %> EN</a></li>
