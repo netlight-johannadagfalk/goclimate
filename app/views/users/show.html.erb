@@ -2,7 +2,7 @@
 <%= render "shared/twitter_script" %>
 <%= javascript_tag do %>
   window.facebookQuote = '<%= @social_quote %>';
-  window.urlToShare = '<%=t 'goclimateneutral_url' %>users/<%= @user.id %> %>'
+  window.urlToShare = '<%=t 'goclimateneutral_url' %>users/<%= @user.id %>'
 <% end %>
 
 <div class="site-wrapper-inner site-wrapper-first solo-inner-wrapper">
