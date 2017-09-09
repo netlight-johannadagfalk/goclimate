@@ -23,18 +23,10 @@ class Mailer
 
     mail.asm = ASM.new(group_id: 16739)
 
-    personalization.substitutions = Substitution.new(key: '%number_of_months%', value: climate_neutral_months.to_s)
-    personalization.substitutions = Substitution.new(key: '%tonnes%', value: total_carbon_offset.to_s)
-
-    personalization.substitutions = Substitution.new(key: '%tonnes_CO2%', value: I18n.t('tonnes_CO2'))
-    personalization.substitutions = Substitution.new(key: '%goclimateneutral_url%', value: I18n.t('goclimateneutral_url'))
-
-    personalization.substitutions = Substitution.new(key: '%this_mail_was_sent_by%', value: I18n.t('this_mail_was_sent_by'))
-    personalization.substitutions = Substitution.new(key: '%to_stop_recieving_these_emails%', value: I18n.t('to_stop_recieving_these_emails'))
-    personalization.substitutions = Substitution.new(key: '%click_here%', value: I18n.t('click_here'))
-
     personalization.substitutions = Substitution.new(key: '%thank_you_for_saving_our_planet%', value: I18n.t('thank_you_for_saving_our_planet'))
     personalization.substitutions = Substitution.new(key: '%you_have_lived_a_climate_neutral_life_for%', value: I18n.t('you_have_lived_a_climate_neutral_life_for'))
+
+    personalization.substitutions = Substitution.new(key: '%number_of_months%', value: climate_neutral_months.to_s)
 
     if climate_neutral_months == 1
         personalization.substitutions = Substitution.new(key: '%months%', value: I18n.t('month'))
@@ -42,8 +34,22 @@ class Mailer
         personalization.substitutions = Substitution.new(key: '%months%', value: I18n.t('months'))
     end
 
-    personalization.substitutions = Substitution.new(key: '%together_we_have_offset%', value: I18n.t('together_we_have_offset'))
     personalization.substitutions = Substitution.new(key: '%goclimateneutral_and_this_planet_loves_you%', value: I18n.t('goclimateneutral_and_this_planet_loves_you'))
+
+    personalization.substitutions = Substitution.new(key: '%the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible%', value: I18n.t('the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible'))
+
+
+    personalization.substitutions = Substitution.new(key: '%goclimateneutral_url%', value: I18n.t('goclimateneutral_url'))
+
+    personalization.substitutions = Substitution.new(key: '%this_mail_was_sent_by%', value: I18n.t('this_mail_was_sent_by'))
+    personalization.substitutions = Substitution.new(key: '%to_stop_recieving_these_emails%', value: I18n.t('to_stop_recieving_these_emails'))
+    personalization.substitutions = Substitution.new(key: '%click_here%', value: I18n.t('click_here'))
+
+    share_url = I18n.t('goclimateneutral_url') + "users/" + current_user.id
+
+    personalization.substitutions = Substitution.new(key: '%facebook_share_url%', value: share_url + "?share=fb")
+    personalization.substitutions = Substitution.new(key: '%twitter_share_url%', value: share_url + "?share=tw")
+    
     personalization.substitutions = Substitution.new(key: '%learn_more_about_what_we_have_achieved_here%', value: I18n.t('learn_more_about_what_we_have_achieved_here'))
 
     mail.personalizations = personalization

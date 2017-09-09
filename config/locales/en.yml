@@ -96,10 +96,13 @@ en:
   log_in_to_see_how_we_are_doing: Climate change is the biggest challenge of our time. Log in to see how we are doing in our fight to stop it.
   you_have_lived_climate_neutral_for_one_month: You have been climate neutral for %{months} month.
   you_have_lived_climate_neutral_for_more_months: You have been climate neutral for %{months} months.
-  I_have_lived_climate_neutral_for_one_month_join_me: I have lived a climate neutral life for %{months} month! Join me!
-  I_have_lived_climate_neutral_for_more_months_join_me: I have lived a climate neutral life for %{months} months! Join me!
+  i_have_lived_climate_neutral_for_one_month_join_me: I have lived a climate neutral life for %{months} month! Join me!
+  i_have_lived_climate_neutral_for_more_months_join_me: I have lived a climate neutral life for %{months} months! Join me!
+  name_have_lived_climate_neutral_for_one_month_join_me: '%{name} has lived a climate neutral life for %{months} month now!'
+  name_have_lived_climate_neutral_for_more_months_join_me: '%{name} has lived a climate neutral life for %{months} months now!'
   tell_your_friends: Tell your friends!
   climate_change_is_best_faced_together: You are awesome! Since climate change is best faced together, it would be great if you want to share the message so that more people can start living climate neutral lives!
+  one_extra_month_for_every_friend_html: We give you <b>1 extra climate neutral month</b> (worth about $10) for every new friend that beceomes climate neutral through us!
   good_job: Good job!
   share_on_facebook: Share on Facebook
   share_on_twitter: Share on Twitter
@@ -169,6 +172,7 @@ en:
   goclimateneutral_and_this_planet_loves_you: GoClimateNeutral.org and this planet love you! You are the best!
   learn_more_about_what_we_have_achieved_here: Learn more about what we have achieved here >>
   thank_you: Thank you!
+  the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible: 'Please share this with your friends, the more people that become climate neutral, the bigger the chance that we succeed in slowing down climate change!'
   faq: FAQ
   answer: Answer
   read_more_on_frequently_asked_questions: Read more on our FAQ

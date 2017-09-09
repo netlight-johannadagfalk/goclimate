@@ -1,0 +1,38 @@
+<%= render "shared/facebook_script" %>
+<%= render "shared/twitter_script" %>
+<%= javascript_tag do %>
+  window.facebookQuote = '<%= @social_quote %>';
+  window.urlToShare = '<%=t 'goclimateneutral_url' %>'
+<% end %>
+
+<div class="site-wrapper-inner site-wrapper-first solo-inner-wrapper">
+  <div class="cover-container">
+  <%= render "shared/header" %>
+    <div class="inner cover">
+      <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+      <!-- <h3 class="cover-heading"><%=t 'one_extra_month_for_every_friend_html' %></h3> -->
+      <h3 class="cover-heading"><%= @social_quote %></h3>
+      
+      <% if @sharing %>
+        <p><%=t 'climate_change_is_best_faced_together' %></p>
+        <div>
+          <div class="row share-buttons last">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-5">
+                <a class="btn btn-social btn-lg btn-facebook" id="share-facebook-bottom"><span class="fa fa-facebook"></span> <%=t 'share_on_facebook' %></a>
+              </div>
+              <div class="col-sm-5">
+                <a class="btn btn-social btn-lg btn-twitter" href="https://twitter.com/intent/tweet?text=<%= @encoded_social_quote %>" data-size="large"><span class="fa fa-twitter"></span> <%=t 'share_on_twitter' %></a>
+              </div>
+              <div class="col-sm-1"></div>
+          </div>
+        </div>
+      <% else %>
+        <p class="welcome"><%=t 'climate_change_is_the_greatest_challange' %></p>
+        <p class="lead lead-btn">
+          <a href="/step_1_choose_plan" class="btn btn-lg btn-success"><%=t 'i_want_to_know_more' %></a>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

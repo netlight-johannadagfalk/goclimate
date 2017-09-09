@@ -7,14 +7,13 @@ sv:
   log_in: LOGGA IN
   log_out: LOGGA UT
   settings: Inställningar
-  i_want_to_know_more: Jag vill veta mer!
   ok_i_want_to_know_more: Ok, jag är intresserad!
+  i_want_to_know_more: Jag vill veta mer!
   contact_us: Kontakta oss
   general_questions_html: 'Om du har frågor om GoClimateNeutral eller har idéer om hur vi kan förbättra tjänsten, hör gärna av dig till oss på: <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a> eller ring oss på <a href="tel:+46706084374">+46706084374</a>.'
   general_questions_press_html: Har du pressfrågor eller vill ha tag på material, maila <a href="mailto:press@goclimateneutral.org">press@goclimateneutral.org</a>
   general_questions_payments_html: Har du frågor om betalningar eller teknik, maila <a href="mailto:payments@goclimateneutral.org">payments@goclimateneutral.org</a>
   general_questions_facebook_html: 'Du hittar oss på facebook här: <a href="https://www.facebook.com/GoClimateNeutral">GoClimateNeutral</a>.'
-  general_questions_twitter_html: Twittra med oss på <a href="https://twitter.com/goclimateneutrl">@goclimateneutrl</a>, eller indivuduellt på <a href="https://twitter.com/kallenilver">@kallenilver</a>, <a href="https://twitter.com/cissilinden">@cissilinden</a> eller <a href="https://twitter.com/henrikkniberg">@henrikkniberg</a>.
   general_questions_twitter_html: Twittra gärna med oss på kontot <a href="https://twitter.com/goclimateneutrl">@goclimateneutrl</a>.
   about_us: Om oss
   about_us_intro: GoClimateNeutral skapades 2017 med syfte att hjälpa så många som möjligt att leva ett klimatneutralt liv och därmed vara med och bromsa klimatförändringarna. Vi klimatkompenserar för din livsstil samtidigt som vi tipsar om vad du kan göra för att minimera ditt totala fotavtryck på vår planet och därigenom bidra till att göra världen lite bättre.
@@ -97,10 +96,13 @@ sv:
   log_in_to_see_how_we_are_doing: Logga in för att se hur det går i vår kamp med att försöka ställa klimatet till rätta igen.
   you_have_lived_climate_neutral_for_one_month: Du har levt klimatneutralt i %{months} månad.
   you_have_lived_climate_neutral_for_more_months: Du har levt klimatneutralt i %{months} månader.
-  I_have_lived_climate_neutral_for_one_month_join_me: Nu har jag levt klimatneutralt i %{months} månad! Join me!
-  I_have_lived_climate_neutral_for_more_months_join_me: Nu har jag levt klimatneutralt i %{months} månader! Join me!
+  i_have_lived_climate_neutral_for_one_month_join_me: Nu har jag levt klimatneutralt i %{months} månad! Join me!
+  i_have_lived_climate_neutral_for_more_months_join_me: Nu har jag levt klimatneutralt i %{months} månader! Join me!
+  name_have_lived_climate_neutral_for_one_month_join_me: '%{name} har levt klimatneutralt i %{months} månad nu!'
+  name_have_lived_climate_neutral_for_more_months_join_me: '%{name} har levt klimatneutralt i %{months} månader nu!'
   tell_your_friends: Berätta för dina vänner!
   climate_change_is_best_faced_together: Du är en hjälte! Bäst bromsar vi klimatförändringarna tillsammans, så dela gärna det här så att vi blir fler som lever klimatneutrala liv!
+  one_extra_month_for_every_friend_html: Vi bjuder dig på <b>1 extra klimatneutral månad</b> (värde ca 85 kr) för varje ny kompis du får att bli klimatneutral genom oss!
   share_on_facebook: Dela på Facebook
   share_on_twitter: Dela på Twitter
   we_have_accomplished_alot_together: Vi har åstadkommit mycket tillsammans!
@@ -170,6 +172,7 @@ sv:
   goclimateneutral_and_this_planet_loves_you: GoClimateNeutral.org och den här planeten älskar dig! Tack! Du är bäst!
   learn_more_about_what_we_have_achieved_here: Läs mer om hur det går för oss här >>
   thank_you: Stort Tack!
+  the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible: 'Dela gärna det här med dina vänner, ju fler vi blir, dessto större är chansen att vi lyckas bromsa klimatförändringarna!'
   faq: Frågor & Svar
   answer: Svar
   read_more_on_frequently_asked_questions: Läs mer på vår sida med frågor och svar
