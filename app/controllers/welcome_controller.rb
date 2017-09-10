@@ -21,4 +21,7 @@ class WelcomeController < ApplicationController
 
   def faq
   end
+
+  def friendlyguide
+  end
 end
