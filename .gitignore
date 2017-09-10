@@ -4,8 +4,17 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+# Ignore IDE files
+/.idea
+
 # Ignore bundler config.
 /.bundle
+
+# Ignore the postgres logfile
+/logfile
+
+# Ignore the local goclimateneutral database
+/db/goclimateneutral
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
