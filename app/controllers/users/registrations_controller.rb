@@ -215,7 +215,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           :id => plan_id,
           :interval => "month",
           :currency => currency_for_user,
-          :amount => plan.to_s + "00"
+          :amount => (plan * 100).round
         )
       rescue Stripe::StripeError => e
         flash[:error] = e.message
