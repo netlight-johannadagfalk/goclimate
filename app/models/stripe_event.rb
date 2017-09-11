@@ -4,6 +4,22 @@ class StripeEvent < ApplicationRecord
   
   scope :invoices, ->(user = nil) { where(stripe_object: "invoice").where(stripe_customer_id: user.stripe_customer_id) }
 
+  def self.total_invoices_usd_part
+    StripeEvent.where(stripe_object: "invoice").where(paid: true).where(currency: "usd").sum("stripe_amount").to_i / 100
+  end
+
+  def self.total_invoices_sek_part
+    StripeEvent.where(stripe_object: "invoice").where(paid: true).where(currency: "sek").sum("stripe_amount").to_i / 100 
+  end
+
+  def self.total_in_sek
+    (total_invoices_sek_part + total_invoices_usd_part * 8.7).round
+  end
+
+  def self.total_in_usd
+    (total_invoices_usd_part + total_invoices_sek_part / 8.7).round
+  end
+
   def self.try_updating_events user
     tries = 0
     loop do 

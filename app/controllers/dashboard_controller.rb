@@ -10,10 +10,9 @@ class DashboardController < ApplicationController
       StripeEvent.try_updating_events current_user
     end
 
-  	total_invoices_usd_part = StripeEvent.where(stripe_object: "invoice").where(paid: true).where(currency: "usd").sum("stripe_amount").to_i / 100
-    total_invoices_sek_part = StripeEvent.where(stripe_object: "invoice").where(paid: true).where(currency: "sek").sum("stripe_amount").to_i / 100 
-    @total_usd = (total_invoices_usd_part + total_invoices_sek_part / 8.7).round
-    @total_sek = (total_invoices_sek_part + total_invoices_usd_part * 8.7).round
+    @total_usd = StripeEvent.total_in_sek
+    @total_sek = StripeEvent.total_in_sek
+    @total_carbon_offset = Project.total_carbon_offset
 
     my_amount_invested_usd_part = StripeEvent.invoices(current_user).where(paid: true).where(currency: "usd").sum("stripe_amount").to_i / 100
     my_amount_invested_sek_part = StripeEvent.invoices(current_user).where(paid: true).where(currency: "sek").sum("stripe_amount").to_i / 100
@@ -32,8 +31,6 @@ class DashboardController < ApplicationController
     @country_top_list = User.where("users.stripe_customer_id != ''").left_joins(:stripe_events).select("users.country, COUNT(1)").group("users.country").order('COUNT(1) DESC')
 
     @projects = Project.all.order(created_at: :desc).limit(5);
-
-    @total_carbon_offset = Project.all.sum("carbon_offset")
 
     if @my_neutral_months == 1
       @social_quote = I18n.t('I_have_lived_climate_neutral_for_one_month_join_me', months: @my_neutral_months)

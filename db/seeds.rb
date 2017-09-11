@@ -23,7 +23,7 @@ LifestyleChoice.create!([
   {name: "flies_long_distance_3_time_year", category: "flying", version: 1, co2: "6.9"},
   {name: "flies_long_distance_6_time_year", category: "flying", version: 1, co2: "13.8"},
   {name: "flies_long_distance_12_time_year", category: "flying", version: 1, co2: "27.6"},
-  {name: "base", category: "base", version: 1, co2: "1"},
   {name: "hardly_ever_flies", category: "custom", version: 1, co2: "0.536"},
-  {name: "flies_sometimes", category: "custom", version: 1, co2: "2.3"}
+  {name: "flies_sometimes", category: "custom", version: 1, co2: "2.3"},
+  {name: "base", category: "base", version: 1, co2: "4.0"}
 ])
