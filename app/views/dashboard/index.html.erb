@@ -163,7 +163,7 @@
                     <h3 class="cover-heading"><%=t 'latest_carbon_offset_projects' %></h3>
                     <% @projects.each do |project| %>
                       <h4><a href ="<%= project.blog_url %>"><%= project.name %></a></h4>
-                      <div><%= image_tag project.image_url, size: "150" %></div>
+                      <div><%= image_tag project.image_url, height: "150" %></div>
                       <p><%=t 'offset' %>: <%= project.carbon_offset %> <%=t 'tonnes_CO2' %>
                       <br><%=t 'country' %></>: <%= project.country %>
                       <br><%=t 'location' %>: <a href="https://www.google.com/maps/preview/@<%= project.latitude %>,<%= project.longitude %>,8z" target="_blank"><%= project.latitude %>,<%= project.longitude %></a>
