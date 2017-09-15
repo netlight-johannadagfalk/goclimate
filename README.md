@@ -9,15 +9,19 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
 * Install Rails
   * `gem install rails`
 * Install Postgres
-  * `brew install pg` 
+  * `brew install postgresql` 
 * Install project-specific gems
   * `bundle install`  
-* Create the DB
+* Init the DB
   * `initdb db/goclimateneutral`
 * Start Postgres
   * `pg_ctl -D db/goclimateneutral -l logfile start`
+* Create the DB
+  * `createdb goclimateneutral`
 * Init the DB tables
   * `bin/rails db:migrate RAILS_ENV=development`  
+* Set Stripe API key
+  * TODO
 * Init basic LifestyleChoice data
   * `bin/rails c`
   * in console mode, enter: 
