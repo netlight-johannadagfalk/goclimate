@@ -20,7 +20,8 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
   * `bin/rails db:migrate RAILS_ENV=development`  
 * Init basic LifestyleChoice data
   * `bin/rails c`
-  * in console mode, enter: "
+  * in console mode, enter: 
+```
 LifestyleChoice.create!([
   {name: "vegan", category: "food", version: 1, co2: "0.59"},
   {name: "vegetarian", category: "food", version: 1, co2: "1.23"},
@@ -50,7 +51,7 @@ LifestyleChoice.create!([
   {name: "flies_sometimes", category: "custom", version: 1, co2: "2.3"},
   {name: "base", category: "base", version: 1, co2: "4.0"}
 ])
-"
+```
 
 # How do I start the server locally?
 
