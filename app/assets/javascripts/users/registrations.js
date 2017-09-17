@@ -52,12 +52,11 @@ $(document).ready(function() {
 
 		  if ($('#new-card-div').length && $('#new-card-div').hasClass("hidden")) {
 
-		  	var form = document.getElementById('payment-form');
-		  	form.submit();
+		  	$('#payment-form').submit();
 
 		  } else {
 
-			  stripe.createToken(card).then(function(result) {
+			stripe.createSource(card).then(function(result) {
 			    if (result.error || 
 			    	($('#email').val() !== undefined && $('#email').val().length === 0) || 
 			    	($('#password').val() !== undefined && $('#password').val().length === 0) || 
@@ -70,20 +69,27 @@ $(document).ready(function() {
 			      }
 			      $('#register-button').prop('disabled', false);
 			    } else {
-			      // Send the token to your server
-			      stripeTokenHandler(result.token);
+			      // Send the source to your server
+			      stripeSourceHandler(result.source);
 			    }
 			  });
 			}
 		});
-		function stripeTokenHandler(token) {
-		  // Insert the token ID into the form so it gets submitted to the server
+		function stripeSourceHandler(source) {
+		  // Insert the source ID into the form so it gets submitted to the server
 		  var form = document.getElementById('payment-form');
 		  var hiddenInput = document.createElement('input');
 		  hiddenInput.setAttribute('type', 'hidden');
-		  hiddenInput.setAttribute('name', 'stripeToken');
-		  hiddenInput.setAttribute('value', token.id);
+		  hiddenInput.setAttribute('name', 'stripeSource');
+		  hiddenInput.setAttribute('value', source.id);
+
+		  var hiddenInput2 = document.createElement('input');
+		  hiddenInput2.setAttribute('type', 'hidden');
+		  hiddenInput2.setAttribute('name', 'threeDSecure');
+		  hiddenInput2.setAttribute('value', source.card.three_d_secure);
+
 		  form.appendChild(hiddenInput);
+		  form.appendChild(hiddenInput2);
 
 		  // Submit the form
 		  form.submit();

@@ -4,8 +4,8 @@ task :update_stripe_events => :environment do
   puts "done."
 end
 
-task :update_stripe_invoices => :environment do
-  puts "Update StripeInvoices..."
-  StripeEvent.update_stripe_invoices
+task :update_stripe_charges => :environment do
+  puts "Update StripeCharges..."
+  StripeEvent.update_stripe_charges
   puts "done."
 end

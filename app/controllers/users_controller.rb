@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @neutral_months = StripeEvent.invoices(@user).where(paid: true).count
+    @neutral_months = StripeEvent.payments(@user).where(paid: true).count
     @neutral_months = @neutral_months == 0 ? 1 : @neutral_months
 
     if @user.user_name.nil?

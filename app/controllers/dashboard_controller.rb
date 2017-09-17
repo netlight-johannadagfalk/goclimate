@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
 
     require 'uri'
 
-    if StripeEvent.invoices(current_user).count == 0
+    if StripeEvent.payments(current_user).count == 0
       StripeEvent.try_updating_events current_user
     end
 
@@ -14,21 +14,21 @@ class DashboardController < ApplicationController
     @total_sek = StripeEvent.total_in_sek
     @total_carbon_offset = Project.total_carbon_offset
 
-    my_amount_invested_usd_part = StripeEvent.invoices(current_user).where(paid: true).where(currency: "usd").sum("stripe_amount").to_i / 100
-    my_amount_invested_sek_part = StripeEvent.invoices(current_user).where(paid: true).where(currency: "sek").sum("stripe_amount").to_i / 100
+    my_amount_invested_usd_part = StripeEvent.payments(current_user).where(paid: true).where(currency: "usd").sum("stripe_amount").to_i / 100
+    my_amount_invested_sek_part = StripeEvent.payments(current_user).where(paid: true).where(currency: "sek").sum("stripe_amount").to_i / 100
     @my_amount_invested_usd = (my_amount_invested_usd_part + my_amount_invested_sek_part / 8.7).round
     @my_amount_invested_sek = (my_amount_invested_sek_part + my_amount_invested_usd_part * 8.7).round    
 
-    @my_neutral_months = StripeEvent.invoices(current_user).where(paid: true).count
+    @my_neutral_months = StripeEvent.payments(current_user).where(paid: true).count
     @my_neutral_months = @my_neutral_months == 0 ? 1 : @my_neutral_months
 
     @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
 
-    @total_climate_neutral_months = StripeEvent.where(stripe_object: "invoice").count
+    @total_climate_neutral_months = StripeEvent.where(stripe_object: "charge").count
 
-    @user_top_list = User.where("users.stripe_customer_id != ''").left_joins(:stripe_events).select("users.id, COUNT(1)").group("users.id").order('COUNT(1) DESC')
+    @user_top_list = User.where("users.stripe_customer_id != ''").left_joins(:stripe_events).select("users.id, COUNT(1)").where("stripe_amount > 0").group("users.id").order('COUNT(1) DESC')
 
-    @country_top_list = User.where("users.stripe_customer_id != ''").left_joins(:stripe_events).select("users.country, COUNT(1)").group("users.country").order('COUNT(1) DESC')
+    @country_top_list = User.where("users.stripe_customer_id != ''").left_joins(:stripe_events).select("users.country, COUNT(1)").where("stripe_amount > 0").group("users.country").order('COUNT(1) DESC')
 
     @projects = Project.all.order(created_at: :desc).limit(5);
 
