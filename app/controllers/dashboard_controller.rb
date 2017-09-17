@@ -26,9 +26,9 @@ class DashboardController < ApplicationController
 
     @total_climate_neutral_months = StripeEvent.where(stripe_object: "charge").where(paid: true).count
 
-    @user_top_list = User.where("users.stripe_customer_id != ''").left_joins(:stripe_events).select("users.id, COUNT(1)").where(paid: true).group("users.id").order('COUNT(1) DESC')
+    @user_top_list = User.where("users.stripe_customer_id != ''").left_joins(:stripe_events).where("stripe_events.paid = true").select("users.id, COUNT(1)").group("users.id").order('COUNT(1) DESC')
 
-    @country_top_list = User.where("users.stripe_customer_id != ''").left_joins(:stripe_events).select("users.country, COUNT(1)").where(paid: true).group("users.country").order('COUNT(1) DESC')
+    @country_top_list = User.where("users.stripe_customer_id != ''").left_joins(:stripe_events).where("stripe_events.paid = true").select("users.country, COUNT(1)").group("users.country").order('COUNT(1) DESC')
 
     @projects = Project.all.order(created_at: :desc).limit(5);
 
