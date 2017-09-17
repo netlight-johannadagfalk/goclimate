@@ -55,7 +55,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       # 3dsecure is required
       if params[:threeDSecure] == "required"
         source = Stripe::Source.create({
-          amount: (@plan * 100).round,
+          amount: (@plan.to_f * 100).round,
           currency: currency_for_user,
           type: 'three_d_secure',
           three_d_secure: {
@@ -288,7 +288,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           :id => plan_id,
           :interval => "month",
           :currency => currency_for_user,
-          :amount => (plan * 100).round
+          :amount => (plan.to_f * 100).round
         )
       rescue Stripe::StripeError => e
         flash[:error] = e.message

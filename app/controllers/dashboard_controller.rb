@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
       StripeEvent.try_updating_events current_user
     end
 
-    @total_usd = StripeEvent.total_in_sek
+    @total_usd = StripeEvent.total_in_usd
     @total_sek = StripeEvent.total_in_sek
     @total_carbon_offset = Project.total_carbon_offset
 
