@@ -33,9 +33,9 @@ class DashboardController < ApplicationController
     @projects = Project.all.order(created_at: :desc).limit(5);
 
     if @my_neutral_months == 1
-      @social_quote = I18n.t('I_have_lived_climate_neutral_for_one_month_join_me', months: @my_neutral_months)
+      @social_quote = I18n.t('i_have_lived_climate_neutral_for_one_month_join_me', months: @my_neutral_months)
     else
-      @social_quote = I18n.t('I_have_lived_climate_neutral_for_more_months_join_me', months: @my_neutral_months)
+      @social_quote = I18n.t('i_have_lived_climate_neutral_for_more_months_join_me', months: @my_neutral_months)
     end
     @encoded_social_quote = URI.encode(@social_quote + ' -> ' + I18n.t('goclimateneutral_url'))
 
