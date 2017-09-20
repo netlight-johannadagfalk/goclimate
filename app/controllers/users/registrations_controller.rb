@@ -167,8 +167,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
 
-    current_card = customer.sources.retrieve(customer.default_source)
-    @current_card = "XXXX XXXX XXXX " + current_card.last4
+    current_source = customer.sources.retrieve(customer.default_source)
+    
+    if current_source.object == "source"
+      @current_card = "XXXX XXXX XXXX " + current_source.card.last4
+    elsif current_source.object == "card"
+      @current_card = "XXXX XXXX XXXX " + current_source.last4
+    end
+
     if customer["subscriptions"]["total_count"] == 0
       @plan = "canceled"
     else 
@@ -215,14 +221,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
 
-    if !params[:stripeToken].nil?
+    if !params[:stripeSource].nil?
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-      card = customer.sources.create({:source => params[:stripeToken]})
+      puts customer.inspect
+      card = customer.sources.create({:source => params[:stripeSource]})
       customer.default_source = card.id
       customer.save
     end
 
-    if !params[:stripeToken].nil? || !params[:user][:plan].nil?
+    if !params[:stripeSource].nil? || !params[:user][:plan].nil?
       flash[:notice] = I18n.t('your_payment_details_have_been_updated')
       redirect_to payment_path and return
     end

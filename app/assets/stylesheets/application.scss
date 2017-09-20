@@ -268,7 +268,6 @@ ul.nav.nav-tabs li.active a {
     padding-left: 10px;
 }
 #current-card {
-  text-align: left;
   margin-left: -13px;
   padding-top: 10px;
 }
@@ -436,6 +435,9 @@ div.profile {
   }
   .faq .panel {
     max-width: 600px;
+  }
+  #current-card {
+    text-align: left;
   }
 }
 @media (max-width: 768px) {

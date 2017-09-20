@@ -52,7 +52,8 @@ $(document).ready(function() {
 
 		  if ($('#new-card-div').length && $('#new-card-div').hasClass("hidden")) {
 
-		  	$('#payment-form').submit();
+		  	var form = document.getElementById('payment-form');
+		  	form.submit();
 
 		  } else {
 
