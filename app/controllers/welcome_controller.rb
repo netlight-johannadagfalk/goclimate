@@ -27,7 +27,7 @@ class WelcomeController < ApplicationController
 
   def press
     @press_images = Dir.glob("app/assets/images/press/*.jpg")
-    @press_social_images = Dir.glob("app/assets/images/press_social/*.jpg")
+    @press_social_images = Dir.glob("app/assets/images/press_social/*.*")
   end
 
 end
