@@ -28,43 +28,25 @@
                       <h1><%= @my_neutral_months %></h1>
                     </div>
                     <div class="col-md-4">
-                      <p><%=t 'you_climate_offset_investments' %>:</p>
-                      <h1><%=t 'you_climate_offset_investments_amount', usd: @my_amount_invested_usd, sek: @my_amount_invested_sek %></h1>
+                      <p><%=t 'amount_of_carbon_i_have_offset' %>:</p> 
+                      <h1><%= @my_carbon_offset %> <%=t 'tonnes' %></h1>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
-
-                  <div class="row stats">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-4">
-                      <p><%=t 'number_of_climate_neutral_months_for_all_users' %>:</p> 
-                      <h1><%= @total_climate_neutral_months %></h1>
-                    </div>
-                    <div class="col-md-4">
-                      <p><%=t 'number_of_climate_neutral_users_right_now' %>:</p> 
-                      <h1><%= @unique_climate_neutral_users %></h1>
-                    </div>
-                    <div class="col-md-2"></div>
-                  </div>
-
 
                   <div class="row stats last">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
-                      <p><%=t 'total_climate_offset_project_investments' %>:</p> 
-                      <h1><%=t 'total_climate_offset_project_investments_amount', usd: @total_usd, sek: @total_sek %></h1>
+                      <p><%=t 'number_of_climate_neutral_users_right_now' %>:</p> 
+                      <h1><%= @unique_climate_neutral_users %></h1>
                     </div>
                     <div class="col-md-4">
-                      <p><%=t 'amount_of_carbon_we_have_offset' %></p> 
+                      <p><%=t 'amount_of_carbon_we_have_offset' %>:</p>
                       <h1><%= @total_carbon_offset %> <%=t 'tonnes' %></h1>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
-                
-
-
           </div>
-          
         </div>
       </div>
 
@@ -110,8 +92,6 @@
 
                 </div>
                 
-
-
                 <div class="col-md-4">
                     <h3><%=t 'climate_country_toplist' %></h3>
                     <ol>
@@ -134,8 +114,6 @@
         </div>
       </div>
 
-
-
       <div class="site-wrapper-inner site-wrapper-third">
         <div class="cover-container">
           <div class="inner cover">
@@ -151,7 +129,6 @@
           </div>
         </div>
       </div>
-
 
       <div class="site-wrapper-inner site-wrapper-second">
         <div class="cover-container">

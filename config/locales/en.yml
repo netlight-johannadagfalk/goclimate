@@ -103,11 +103,12 @@ en:
   tell_your_friends: Tell your friends!
   climate_change_is_best_faced_together: You are awesome! Since climate change is best faced together, it would be great if you want to share the message so that more people can start living climate neutral lives!
   one_extra_month_for_every_friend_html: We give you <b>1 extra climate neutral month</b> (worth about $10) for every new friend that beceomes climate neutral through us!
-  good_job: Good job!
   share_on_facebook: Share on Facebook
   share_on_twitter: Share on Twitter
   we_have_accomplished_alot_together: We have accomplished a lot together!
-  amount_of_carbon_we_have_offset: Number of tonnes CO2 that we have offset
+  amount_of_carbon_we_have_offset: Number of tonnes CO2 that we have offset together
+  amount_of_carbon_i_have_offset: Number of tonnes CO2 that you have offset so far
+  good_job: Good job!
   number_of_months_you_have_been_climate_neutral: Number of months you have been climate neutral
   you_climate_offset_investments: Your climate offset investments
   you_climate_offset_investments_amount: '$%{usd}'

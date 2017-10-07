@@ -101,17 +101,18 @@ sv:
   name_have_lived_climate_neutral_for_one_month_join_me: '%{name} har levt klimatneutralt i %{months} månad nu!'
   name_have_lived_climate_neutral_for_more_months_join_me: '%{name} har levt klimatneutralt i %{months} månader nu!'
   tell_your_friends: Berätta för dina vänner!
-  climate_change_is_best_faced_together: Du är en hjälte! Bäst bromsar vi klimatförändringarna tillsammans, så dela gärna det här så att vi blir fler som lever klimatneutrala liv!
+  climate_change_is_best_faced_together: Du är en hjälte! Bäst bromsar vi klimatförändringarna tillsammans, så dela gärna det här så att vi blir fler som lever klimatneutralt!
   one_extra_month_for_every_friend_html: Vi bjuder dig på <b>1 extra klimatneutral månad</b> (värde ca 85 kr) för varje ny kompis du får att bli klimatneutral genom oss!
   share_on_facebook: Dela på Facebook
   share_on_twitter: Dela på Twitter
   we_have_accomplished_alot_together: Vi har åstadkommit mycket tillsammans!
-  amount_of_carbon_we_have_offset: Antal ton CO2 vi har kompenserat bort
+  amount_of_carbon_we_have_offset: Antal ton CO2 vi har kompenserat för tillsammans
+  amount_of_carbon_i_have_offset: Antal ton CO2 som du har kompenserat för hittills
   good_job: Bra jobbat!
   number_of_months_you_have_been_climate_neutral: Antal månader som du har levt ett klimatneutralt liv
   you_climate_offset_investments: Du har klimatkompenserat för
   you_climate_offset_investments_amount: '%{sek} kr'
-  number_of_climate_neutral_months_for_all_users: Antal klimatneutrala månader för alla användare totalt
+  number_of_climate_neutral_months_for_all_users: Antal klimatneutrala månader för alla användare
   number_of_climate_neutral_users_right_now: Antal klimatneutrala användare just nu
   total_climate_offset_project_investments: Total summa som vi klimatkompenserat för
   total_climate_offset_project_investments_amount: '%{sek} kr'
