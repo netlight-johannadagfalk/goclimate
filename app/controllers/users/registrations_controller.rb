@@ -169,14 +169,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     current_source = customer.sources.retrieve(customer.default_source)
     
-    if current_source.object == "source"
+    if current_source.object == "source" && current_source.type == "three_d_secure"
+      @current_card = "XXXX XXXX XXXX XXXX"
+    elsif current_source.object == "source"
       @current_card = "XXXX XXXX XXXX " + current_source.card.last4
     elsif current_source.object == "card"
       @current_card = "XXXX XXXX XXXX " + current_source.last4
     end
 
     if customer["subscriptions"]["total_count"] == 0
-      @plan = "canceled"
+      @plan = 0
     else 
       @plan = customer["subscriptions"]["data"][0]["plan"]["amount"] / 100
     end
@@ -193,9 +195,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
 
-      if @plan == "cancel"  
-        subscription = Stripe::Subscription.retrieve(customer["subscriptions"]["data"][0]["id"])
-        subscription.delete
+      if @plan == "cancel"
+        if customer["subscriptions"]["total_count"] > 0
+          subscription = Stripe::Subscription.retrieve(customer["subscriptions"]["data"][0]["id"])
+          subscription.delete
+        end
       else 
 
         if customer["subscriptions"]["total_count"] == 0 && @plan.to_i > 1
