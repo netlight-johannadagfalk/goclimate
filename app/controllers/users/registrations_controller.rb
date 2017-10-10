@@ -41,7 +41,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         redirect_to new_user_registration_path({choices: params[:user][:choices]}) and return
       end
 
-      user = User.find_by_email(params[:user][:email])
+      user = User.find_for_authentication(email: params[:user][:email])
 
       if !user.nil?
         if user.stripe_customer_id.nil?
@@ -101,9 +101,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     super
-    User.where(email: params[:user][:email]).update_all(stripe_customer_id: customer.id)
+    
+    User.where('lower(email) = ?', params[:user][:email].downcase).update_all(stripe_customer_id: customer.id)
 
-    user = User.where(email: params[:user][:email]).first
+    user = User.find_for_authentication(email: params[:user][:email])
 
     choices.each do |choice_id|
       user.lifestyle_choices << LifestyleChoice.find(choice_id)
@@ -113,7 +114,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def threedsecure
     puts params.inspect
 
-    user = User.where(email: params[:email]).first
+    user = User.find_for_authentication(email: params[:email])
     plan = get_stripe_plan params[:plan], new_user_registration_path
 
     source = Stripe::Source.retrieve(params['source'])
@@ -136,7 +137,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       customer: customer.id
     })
 
-    User.where(email: params[:email]).update_all(stripe_customer_id: customer.id)
+    User.where('lower(email) = ?', params[:email].downcase).update_all(stripe_customer_id: customer.id)
 
     Stripe::Subscription.create(
       :customer => customer.id,
