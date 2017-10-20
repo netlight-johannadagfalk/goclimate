@@ -49,5 +49,31 @@ $(document).ready(function() {
 
     $(function () {
   		$('[data-toggle="popover"]').popover();
-	})
+	});
+
+	function scrollToAnchor(aid){
+    	var aTag = $(aid);
+    	$('html,body').animate({scrollTop: aTag.offset().top},'slow');
+	};
+
+	$('#im-in-button').on('click', function (e) {
+		ga('send', {
+			hitType: 'event',
+			eventAction: 'scrollToPlans'
+		});
+		scrollToAnchor('#choose-plan');
+	});
+	$('#scroll-to-second-section').on('click', function (e) {
+		scrollToAnchor('#second-section');
+	});
+	$('#scroll-to-third-section').on('click', function (e) {
+		scrollToAnchor('#third-section');
+	});
+	$('#scroll-to-fourth-section').on('click', function (e) {
+		scrollToAnchor('#fourth-section');
+	});
+	$('#scroll-to-choose-plan').on('click', function (e) {
+		scrollToAnchor('#choose-plan');
+	});
+	
 });

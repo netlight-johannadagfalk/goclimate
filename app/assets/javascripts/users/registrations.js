@@ -92,6 +92,11 @@ $(document).ready(function() {
 		  form.appendChild(hiddenInput);
 		  form.appendChild(hiddenInput2);
 
+		  ga('send', {
+				hitType: 'event',
+				eventAction: 'commit'
+			});
+
 		  // Submit the form
 		  form.submit();
 		}
