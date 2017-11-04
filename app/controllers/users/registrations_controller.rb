@@ -168,14 +168,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
 
-    current_source = customer.sources.retrieve(customer.default_source)
-    
-    if current_source.object == "source" && current_source.type == "three_d_secure"
-      @current_card = "XXXX XXXX XXXX XXXX"
-    elsif current_source.object == "source"
-      @current_card = "XXXX XXXX XXXX " + current_source.card.last4
-    elsif current_source.object == "card"
-      @current_card = "XXXX XXXX XXXX " + current_source.last4
+    if customer.default_source.nil?
+      @current_card = nil
+    else 
+
+      current_source = customer.sources.retrieve(customer.default_source)
+      
+      if current_source.object == "source" && current_source.type == "three_d_secure"
+        @current_card = "XXXX XXXX XXXX XXXX"
+      elsif current_source.object == "source"
+        @current_card = "XXXX XXXX XXXX " + current_source.card.last4
+      elsif current_source.object == "card"
+        @current_card = "XXXX XXXX XXXX " + current_source.last4
+      end
     end
 
     if customer["subscriptions"]["total_count"] == 0
