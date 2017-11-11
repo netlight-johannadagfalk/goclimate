@@ -98,8 +98,9 @@ ul.nav.nav-tabs li.active a {
 .projects, .lifestyle_choices {
   color: #fff;
 }
-.projects, .lifestyle_choices a {
-  color: #fff; 
+.projects a, .lifestyle_choices a {
+  color: blue;
+  padding: 5px;
 }
 .projects input, .lifestyle_choices input {
   color: #000;
