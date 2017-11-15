@@ -16,7 +16,6 @@ class Mailer
     
     personalization = Personalization.new
     personalization.to = Email.new(email: user.email)
-    personalization.bcc = Email.new(email: 'gcn_monthly@nilver.se')
     personalization.subject = I18n.t('thank_you')
     personalization.headers = Header.new(key: 'X-Test', value: 'True')
     personalization.headers = Header.new(key: 'X-Mock', value: 'False')
@@ -82,7 +81,6 @@ class Mailer
     
     personalization = Personalization.new
     personalization.to = Email.new(email: user.email)
-    personalization.bcc = Email.new(email: 'gcn_payment@nilver.se')
     personalization.subject = I18n.t('the_payment_unfortunately_failed')
     personalization.headers = Header.new(key: 'X-Test', value: 'True')
     personalization.headers = Header.new(key: 'X-Mock', value: 'False')
