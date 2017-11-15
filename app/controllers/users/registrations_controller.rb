@@ -41,6 +41,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
         redirect_to new_user_registration_path({choices: params[:user][:choices]}) and return
       end
 
+      if params[:stripeSource].nil?
+        flash[:error] = "Oops, an error occured, please try again!"
+        redirect_to new_user_registration_path({choices: params[:user][:choices]}) and return
+      end
+
       user = User.find_for_authentication(email: params[:user][:email])
 
       if !user.nil?
