@@ -105,6 +105,12 @@ ul.nav.nav-tabs li.active a {
 .projects input, .lifestyle_choices input {
   color: #000;
 }
+.welcome-our_projects .site-wrapper-first .inner {
+   padding-bottom: 180px;
+}
+.welcome-our_projects h1 {
+  margin-bottom: 40px;
+}
 #error_explanation {
   color: red;
 }
@@ -478,6 +484,10 @@ div.profile {
     .faq .panel {
       max-width: 300px;
     }
+    table.our-projects {
+      width: 270px;
+      display: block;
+    }
 }
 
 td.form.select {
@@ -556,6 +566,15 @@ table.press {
 }
 table.press td {
   padding: 20px;
+}
+table.our-projects td {
+    padding: 5px;
+    text-align: center;
+}
+table.our-projects th {
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
 }
 .welcome-press h3 {
   margin-top: 50px;

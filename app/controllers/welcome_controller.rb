@@ -30,4 +30,8 @@ class WelcomeController < ApplicationController
     @press_social_images = Dir.glob("app/assets/images/press_social/*.*")
   end
 
+  def our_projects
+    @projects = Project.all.order(date_bought: :desc)
+  end
+
 end

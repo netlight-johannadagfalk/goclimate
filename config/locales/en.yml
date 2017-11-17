@@ -78,7 +78,6 @@ en:
   read_more_how_we_calculate_offset_plans_html: Read more on how we calculate the %{href}.
   offset_plans: offset plans
   read_more_about_how_we_choose_climet_projects_html: Read more about how we choose what %{href}.
-  climate_projects: climate projects to invest in
   but_i_want_to_enter_more_details: But.. I want to enter more details?
   calculating_your_exact_footprint_html: "Calculating your exact climate footprint is a lot more complicated than by just choosing one of the plans above. You need tons of data, about what you eat, where you go and how you live. But the above plans are a good estimate and you don't have to worry that they are not covering for your climate footprint. But if you want to be more detailed, there's actually %{href}, so if you want to, you can try one and then enter your yearly carbon footprint here"
   lots_of_advanced_calculators_out_there: lots of advanced calculators out there
@@ -117,6 +116,21 @@ en:
   number_of_climate_neutral_users_right_now: Number of climate neutral users right now
   total_climate_offset_project_investments: Total climate offset project investments
   total_climate_offset_project_investments_amount: '$%{usd}'
+  our_projects: Our Climate Investments
+  our_investments_in_climate_projects: Our Investments in Climate Projects
+  our_investments_in_climate_projects_intro_html: 'We invest in UN-certified climate projects (CDM) that are also Gold Standard-certified. When you choose UN-certified Gold Standard projects you have all the members of the UN and 80 diffent environment NGOs behind you - among them WWF.
+    <br><br>Gold Standard also focuses on other aspects sustainability then the climate - reducing poverty and contributing to cleaner air and water - which is reported through the UN 2030 Sustainable Development Goals. You can find more information about the projects on <a href="http://UNFCCC.int">the UNFCCS website</a> and <a href="https://www.goldstandard.org/">the Gold Standards website</a>.
+    <br><br>All climate projects are verified by a third party, such as TÜV and DNV. All the protocols are public and follow the projects during the project time to be able to guarantee that real climate benefit is obtained.'
+  climate_project_we_have_invested_in: The Climate Projects we have invested in
+  project_name: Project name
+  map: Map
+  more_info_on_blog: More Information
+  our_investment_certificate: Investment certificate
+  certificate: Certificate
+  invoice: Invoice
+  date_of_our_investment: Date of Investment
+  project_certification: Project Certification
+  read_more: More info
   cimate_hero_toplist: Climate Hero Toplist
   show_full_toplist: Show Full Toplist
   hide_full_toplist: Hide Full Toplist
@@ -189,54 +203,57 @@ en:
         question: Can I really become completely climate neutral?
         answer: For companies, there are standards that regulate the requirements for what is considered being climate-neutral (PAS 2060 and ISO 14021), but in the case of individuals, there are no similar standards that we know of. This means that there may be different opinions of what it takes for a person to be considered climate neutral. <br><br>In theory climate neutrality is when the difference between the emissions you cause and the emissions that you offset is zero. The challenge with this is partly to calculate the exact carbon footprint for each individual, and also to find ways to reliably remove emissions from the atmosphere (see <a href='/faq#collapseq2id'>Does offsetting really make a difference?</a>).<br><br>There are advanced methods to calculate a person’s carbon footprint. We have chosen a simple estimate to make it as easy as possible for you to start doing something about climate change without having to spend a lot of time in carbon dioxide calculators where you need to enter exact air mileage, kWh consumption etc.<br><br>There are many advanced calculators freely available on the internet that provide more accurate estimates such as <a href='http://footprint.wwf.org.uk'>http://footprint.wwf.org.uk</a> and <a href='http://www.carbonfootprint.com/calculator.aspx'>http://www.carbonfootprint.com/calculator.aspx</a>. What all calculators have in common is that they are based on estimates and generalizations, which in turn means that the value you get is approximate. For example, the calculators does not take into account if you have built a new house last year and thus caused large emissions in the form of building materials, or if you only use very fuel efficient airplanes when you fly. The calculators also do not take into account the exact emissions caused by the manufacture of the batteries for your electric car nor if the your car has been bought new or second hand, if you charge it with renewable energy at home and with fossil based energy at work. The reason is that such a calculator would be extremely complex and time consuming to use - and yet not perfect.<br><br>Is it then impossible to consider one self as climate neutral since you cannot calculate your exact carbon footprint? Well, we believe it’s still possible. To ensure that our users are climate neutral, as far as we can, our profiles are designed to compensate for more than twice as much as the overall impact of your lifestyle while doing everything we can to ensure the reliability of the projects. This way there is a buffer that compensates for miscalculations of your emissions and for risks in the projects we invest in. With a two-fold compensation, we should be on the safe side, and most likely even be climate-positive.<br><br>So to answer the question, yes, we definitely think that you can call yourself climate neutral!
       q2:
+        question: What is Carbon Offsetting?
+        answer: Carbon offsetting is when you invest in climate projects to offset for the carbon emissions you can not reduce from your own climate footprint.
+      q3:
         question: Does climate offsetting really make a difference? 
         answer: Yes, but the industry has some problems so you need to be careful when you invest in climate offset projects. There are several challenges with how climate compensation projects have been carried out historically, including ensuring that projects have not been possible to implement without contributions (something called additionality) and that the offset projects keep promises in emission reductions and in the social aspects of projects.<br><br>For example, planting a tree means that CO2 is taken from the atmosphere and bound in the tree. For this to be considered a carbon-reducing measure, the tree must not be chopped down and used to make a fire. If the money is invested in the construction of a wind turbine in India, one needs to ensure that the specific project had not been possible to implement without climate offset money. To ensure that projects really are carbon-reducing, there are different types of standards.<br><br>However, offsetting alone is not enough in order to not exceed the climate target of maximum two degrees, but can be seen as a complement to rapidly addressing climate change in order to reduce one’s own climate impact to very low levels through changed habits in the longer term.
-      q3:
+      q4:
         question: Why should I put my money in GoClimateNeutral.org? Isn’t better to invest in offsetting projects myself without intermediaries?
         answer: There are two main reasons why we think you should use GoClimateNeutral.org. Firstly, the offsetting market is complex. There are different standards such as CDM, Gold Standard, Fair Trade and Plan Vivo which, in turn, contain large amounts of projects such of different character. It is hard to know which climate offset projects that are the most climate effective ones, that uses your money to get as much impact on the climate as possible.<br><br>Secondly, there is no other service, that we know of, which is operating on a monthly basis by offsetting your climate footprint every month instead of you having to enter your information to offset at several occasions to compensate for individual events.<br><br>We also believe that it’s more fun fighting climate change together, and believe that we can have a bigger impact on climate change if work together. Other than offsetting, we will also do all we can to make everyone lower their carbon footprint by sending tips and information on what you can do to have as small carbon footprint as possible.
-      q4:
+      q5:
         question: Can you really just pay money to become climate neutral?
         answer: "Yes. If you, with money contributions, remove as much emissions from the atmosphere as you release you can call yourself climate neutral. It's that simple - in theory. In practice, it's a bit more complicated to make sure you're completely climate-neutral, as it's both hard to know exactly how much you emit and how much you help remove when you offset. Therefore, the goal of GoClimateNeutral.org is to both inspire users to reduce their emissions as much as possible while investing in projects that reduce the amount of carbon dioxide in the atmosphere.<br><br>Generally, people find it hard to change habits, which is necessary to reduce their emissions. Therefore, we want to give you the opportunity to first pay to start contributing to slow down climate change. Once this first step in the form of a monthly payment is taken, we want to inspire you to take the next step, ie start changing your habits.<br><br>The approach of getting people to take a small step in the right direction before making major changes is called Foot in the door technique. You can read more about this: <a href='https://en.wikipedia.org/wiki/Foot-in-the-door_technique'>https://en.wikipedia.org/wiki/Foot-in-the-door_technique</a><br><br>The goal of GoClimateNeutral.org is to help you reduce your emissions as much as possible and at the same time offset for what you can not reduce (plus a little bit extra)."
-      q5:
+      q6:
         question: Is it not more important to reduce emissions than to offset?
         answer: The short answer is yes. It is more reliable and therefore better not to release anything at all than to compensate for what you release. At GoClimateNeutral.org, climate compensation is used as a first step to start reducing your emissions, but we do not suggest it's enough in the long term or more important. However, it is an important first step.<br><br>At the same time it is obviously better to release 1 ton of CO2 and offset 2 tonnes of CO2 - and thus have the net effect of removing 1 ton of CO2 from the atmosphere - than settling in a cave and not emit nor offset anything that is of course if not everyone did the same thing.
-      q6:
+      q7:
         question: This feels like a letter of indulgence, can I really buy myself free from liability?
         answer: No, you can’t. We consider it a first step to offset as a way to start engaging in climate change. It has been proven that when looking at companies that offset their carbon footprint, they reduce their emissions more than those that do not offset.<br><br>“The typical offset buyer directly slashed almost 17% of their scope 1 emissions while the typical non-offset buyer reduced scope 1 emissions by less than 5%.” - <a href='http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf'>http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf</a><br><br>We believe that this also applies to individuals. We believe that those who sign up for GoClimateNeutral.org and pay to remove emissions from the atmosphere every month will also reduce their emissions caused by their way of living more than if they did not register at all.
-      q7:
+      q8:
         question: What is a climate offsetting project?
         answer: An offsetting project reduces emissions from the atmosphere with the money invested in it.  For example, it can be a tree planting project, a construction of a wind turbine that generates renewable energy to avoid using fossil based electricity or it can be a project that replaces a whole fleet of buses on diesel to electricity.
-      q8:
+      q9:
         question: How can I be sure that the offsetting projects are reliable?
         answer: To ensure that the invested money really offsets emissions, there are different standards such as CDM, Gold Standard, Plan Vivo and Fair Trade, based on a number of different parameters.<br><br>It is still a bit complex since some projects, especially CDM ones, have repeatedly failed to keep what they promise, and in some cases even had negative effects for local people and for the environment where the project was carried out. Therefore, it is clear to us at GoClimateNeutral.org that we cannot choose any random CDM project to invest in in order to become climate neutral, so we consult professionals in the offsetting business when choosing projects. <br><br>Still it’s not certain that the projects are 100% reliable. Therefore - in addition to trying to select as reliable and efficient projects as possible - we have chosen to compensate for two times evenly calculated emissions to be on the safe side.
-      q9:
+      q10:
         question: How can I be guaranteed that offsetting works?
         answer: What you can be sure of is that standards like Gold Standard, Plan Vivo and Fair Trade have a lot to lose if projects don’t deliver as promised which means that they will do everything in their power to make sure the climate benefits are real and impactful. To be completely on the safe side, you automatically offset for two times more than your chosen lifestyle, so even if 50% of all projects prove unsuccessful, which is very unlikely, we still offset enough to cover your emissions.
-      q10:
+      q11:
         question: Are humans really the cause of climate change?
         answer: "Yes. If you're unsure, read more here: <a href='https://www.bloomberg.com/graphics/2015-whats-warming-the-world/'>https://www.bloomberg.com/graphics/2015-whats-warming-the-world/</a>"
-      q11:
+      q12:
         question: Does my money really make a difference? 
         answer: Yes. The money benefits the projects it is invested in. Indirectly there’s another effect since this money showcases that people are willing to invest in projects that do good for the planet. If everyone would get 10 000 dollars to install solar panels on their roofs you can be sure that emissions would decrease. In the same way, money besides the direct benefit, also indirectly benefits the climate.
-      q12:
+      q13:
         question: Does offsetting prevent a shift to a sustainable society?
         answer: We must do everything we can to slow down climate change, reduce our emissions as much as we can, and help others to reduce as much as possible by offsetting. If you only offset and not reduce we will unfortunately fail in the long run and exceed the climate target of maximum 2 degrees Celsius. It has been found that companies that calculate and offset their footprint reduce their emissions more than those who do not offset. We believe in the same dynamics for individuals. If you begin to offset, you become more aware of your emissions and on how you can reduce them. 
-      q13:
+      q14:
         question: Are there other positive effects of offsetting?
         answer: "Yes, it has been found that companies that offset for their carbon footprint also reduce their emissions. We believe that offsetting can have the same effect on individuals - that individuals who offset also reduce their carbon footprint in the long term due to changed habits. Read more in this report on offsetting companies:<br><br>Read more in this report on offsetting companies: <br>“ The typical offset buyer directly slashed almost 17% of their scope 1 emissions while the typical non-offset buyer reduced scope 1 emissions by less than 5%.” - <a href='http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf'>http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf</a>"
-      q14:
+      q15:
         question: Is CO2 dangerous?
         answer: No. CO2 is critical for any form of life on Earth. But when we emit millions of tonnes of CO2 from the ground on a daily basis and release it into the atmosphere it raises the temperature on Earth as a consequence. It will in turn lead to drought, water shortage, starvation and possibly war. The Nature Conservation Association in Sweden believes there will be 200 million climate refugees in 2050.
-      q15:
+      q16:
         question: Will you make profit from this project?
         answer: No. Instead we have spent hundreds of hours without pay on understanding the offsetting market, meeting people who work on this daily and developing the website as well as promoting the page to get as many as possible to register in order to contribute to slowing down climate change. We have no plans to do profits, but will instead invest them in projects to slow down climate change even further. However, in the long run, we hope to be able to hire and pay wages to have someone manage the administrative parts and to work on increasing the number of users.
-      q16:
+      q17:
         question: When the climate crisis is over, will GoClimateNeutral.org shut down?
         answer: Yes. And we will then invite you all for a glas of champagne!
-      q17:
+      q18:
         question: How do we calculate the carbon footprints?
         answer: The calculation of a carbon footprint is very complicated and can never be perfect. It doesn't matter how detailed you do your calculation, you will always need to make a lot of assumptions. Instead of using a complicated calculation we base our model on the three lifestyle choices that effect your footprint the most; what you eat, what you drive and how much you fly. To be on the safe side we offset for twice as much as we estimate that your lifestyle cause. The amount of corbon in the different lifestyle choices we base on the excellent calculators from myclimate.com and carbonstory.org. If you want a more exact amount of your carbon footprint there are <b><a href='https://www.google.se/search?safe=active&q=carbon+footprint+calculator&cad=h'>lots of very good calculators out there</a><b>.
-      q18:
+      q19:
         question: How do I know what climate offset projects are invested in?
         answer: We believe in full transparency in everything we do. All project that we invest in are shown on the first page when you log in to your account. You can also read about them <b><a href='https://www.goclimateneutral.org/blog/category/investment/'>on our blog under the category investment</a></b>.
   activerecord:

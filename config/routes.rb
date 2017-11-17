@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get 'faq', to: 'welcome#faq'
   get 'friendlyguide', to: 'welcome#friendlyguide'
   get 'press', to: 'welcome#press'
+  get 'transparency', to: 'welcome#transparency'
+  get 'our_projects', to: 'welcome#our_projects'
 
   resources :subscriptions
 
