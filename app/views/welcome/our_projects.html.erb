@@ -41,7 +41,7 @@
                           <td><a href="https://www.google.com/maps/preview/@<%= project.latitude %>,<%= project.longitude %>,8z" target="_blank">Google Maps</a></td>
                           <td><a href="<%= project.certificate_url %>"><%=t 'certificate' %></a></td>
                           <td><%= project.date_bought.to_date %></td>
-                          <td><%= project.offset_type %></td>
+                          <td><%= project.offset_type %><span class="glyphicon glyphicon-question-sign certification-info-helper" data-html="true" aria-hidden="true" data-toggle="popover" data-container="body" title="<%=t 'project_certification' %>" data-placement="auto down" data-content="<%=t 'project_certification_info_html' %>"></span></td>
                           <td><%= project.carbon_offset %></td>
                           <td><a href ="<%= project.blog_url %>"><%=t 'read_more' %></a></td>
                         </tr>
