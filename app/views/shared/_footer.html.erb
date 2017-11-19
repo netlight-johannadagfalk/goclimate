@@ -1,13 +1,18 @@
   <div class="mastfoot">
     <div class="inner">
+      <p>---</p>
       <p>
-	      <%= link_to t('about_us'), '/about' %> | 
+	      <%= link_to t('about_us'), '/about' %> |
 	      <%= link_to t('contact_us'), '/contact' %> |
         <%= link_to t('press'), '/press' %> |
         <%= link_to t('faq'), '/faq' %> |
-        <%= link_to t('our_projects'), '/our_projects' %> |
-	      <a href="https://www.goclimateneutral.org/blog/"><%=t 'blog' %></a> |
-	      <%= link_to t('other_language'), t('other_language_site') %>
+        <%= link_to t('our_projects'), '/our_projects' %>
       </p>
+      <p><%= link_to 'Twitter', 'https://twitter.com/goclimateneutrl' %> |
+        <%= link_to 'Instagram', 'https://www.instagram.com/goclimateneutral/' %> |
+        <%= link_to 'Facebook', 'https://www.facebook.com/GoClimateNeutral' %> |
+        <%= link_to t('blog'), "https://www.goclimateneutral.org/blog/" %>
+      <p>---</p>
+      <p>© <%= Time.current.year %> GoClimateNeutral.org</p>
     </div>
   </div>
