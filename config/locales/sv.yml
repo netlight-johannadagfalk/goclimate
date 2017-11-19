@@ -121,7 +121,8 @@ sv:
   our_investments_in_climate_projects_intro_html: 'Vi investerar i FN-certifierade klimatprojekt (CDM) som har certifieringen Gold Standard. När man väljer FN-certifierade Gold Standard-projekt har man FNs alla medlemsstater och 80 miljöorganisationer i ryggen - bland annat Världsnaturfonden. 
             <br><br>Gold Standard har även fokus på andra hållbarhetsaspekter än klimatet - som att minska fattigdom och bidra till renare luft och vatten - vilket redovisas genom FNs agenda 2030-mål. Du kan hitta mer information om projekten på <a href="http://UNFCCC.int">UNFCCS webbsida</a> respektive <a href="https://www.goldstandard.org/">Gold Standards webbsida</a>. 
             <br><br>Alla klimatprojekt tredjepartsverifieras av bland annat TÜV och DNV. Granskningsprotokollen är offentliga och följer projekten under projekttiden för att garantera att verklig klimatnytta uppnås.'
-  climate_project_we_have_invested_in: Klimatprojekt vi investerat i
+  climate_project_we_have_invested_in: Klimatprojekt vi investerat i tillsammans
+  i_want_to_contribute: Okej, jag bidra!
   project_name: Namn på projekt
   map: Karta
   more_info_on_blog: Mer information
