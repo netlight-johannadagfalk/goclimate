@@ -34,4 +34,11 @@ class WelcomeController < ApplicationController
     @projects = Project.all.order(date_bought: :desc)
   end
 
+  def transparency
+    @projects = Project.all.order(date_bought: :desc)
+    @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
+    @total_carbon_offset = Project.total_carbon_offset
+    @cost_in_sek = Project.sum (:cost_in_sek)
+  end
+
 end

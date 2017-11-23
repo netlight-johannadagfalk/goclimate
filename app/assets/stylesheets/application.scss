@@ -105,7 +105,7 @@ ul.nav.nav-tabs li.active a {
 .projects input, .lifestyle_choices input {
   color: #000;
 }
-.welcome-our_projects .site-wrapper-first .inner {
+.welcome-our_projects .site-wrapper-first .inner, .welcome-transparency .site-wrapper-first .inner {
    padding-bottom: 180px;
 }
 .welcome-our_projects h1 {
@@ -187,6 +187,20 @@ ul.nav.nav-tabs li.active a {
   padding-top: 50px;
   color: black;
 }
+.financial-info {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+.welcome-transparency .lead {
+  padding-top: 20px;
+}
+.welcome-transparency table {
+  margin-top: 40px;
+}
+
 .form {
   padding: 3.5px;
 }

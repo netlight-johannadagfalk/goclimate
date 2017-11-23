@@ -1,0 +1,97 @@
+      <div class="site-wrapper-inner site-wrapper-first">
+
+        <div class="cover-container">
+
+          <%= render "shared/header" %>
+
+          <div class="inner cover">
+            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+            <h1 class="cover-heading">100% Transparens</h1>
+            <p class="lead">Vi tror att 100% transparens är viktigt när man försöker rädda världen, så att alla kan känna sig trygga med att pengar vi får in gör så mycket klimatnytta som möjligt. Här hittar du information om alla projekt vi investerat i och förhoppningsvis alla finansiella uppgifter du kan tänka dig att vara intresserad av.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-wrapper-inner site-wrapper-second">
+        <div class="cover-container">
+          <div class="inner cover">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            <div class="row stats offset-projects">
+                <div class="col-md-12">
+                    <h1 class="cover-heading">100% transparens - klimatprojekt</h1>
+                    <p class="lead">Här är klimatprojekten vi investerat i med tillhörande certifikat och fakturor/kvitton. Man kan även se våra investeringar i respektive certifierings databas.</p>
+                    <div class="table-responsive">
+                      <table class="table table-striped our-projects">
+                        <tbody>
+                        <tr>
+                          <th></th>
+                          <th><%=t 'project_name' %></th>
+                          <th><%=t 'our_investment_certificate' %></th>
+                          <th><%=t 'project_invoices' %></th>
+                          <th><%=t 'date_of_our_investment' %></th>
+                          <th><%= t('tonnes_CO2').upcase_first %></th>
+                          <th><%=t 'more_info_on_blog' %></th>
+                        </tr>
+                        <% @projects.each do |project| %>  
+                        <tr>
+                          <td><%= image_tag project.image_url, height: "50" %></td>
+                          <td><a href ="<%= project.blog_url %>"><%= project.name %></a></td>
+                          <td><a href="<%= project.certificate_url %>"><%=t 'certificate' %></a></td>
+                          <td><a href="<%= project.invoice_url %>"><%=t 'invoice' %></a></td>
+                          <td><%= project.date_bought.to_date %></td>
+                          <td><%= project.carbon_offset %></td>
+                          <td><a href ="<%= project.blog_url %>"><%=t 'read_more' %></a></td>
+                        </tr>
+                        </tbody>
+                      <% end %>
+                    </table>
+                    <p class="lead">För mer information om klimatprojekten, läs mer på sidan om <%= link_to t('our_projects').downcase, '/our_projects' %>.</p>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a name="this_is_how_it_works"></a>
+      <div class="site-wrapper-inner site-wrapper-third">
+        <div class="cover-container">
+          <div class="inner cover">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            <h1 class="cover-heading">100% transparens - finansiell information</h1>
+            <p class="lead">GoClimateNeutral Sweden AB (organisationsnummer 559130-6583) startades 2017. Vi har ett förlängt räkenskapsår och vår första årsredovisning kommer innefatta perioden maj 2017- december 2018. Årsredovisningen kommer att publiceras här nedan när räkenskapsåret är över.</p>
+            <div class="financial-info">
+              <h3>Räkenskapsåret 2017-2018 - nuläge</h3>
+              <h4>Intäkter</h4>
+              <ul>
+                <li>Klimatkompensation: 35 837 SEK</li>
+              </ul>
+              <h4>Kostnader</h4>
+              <ul>
+                <li>Investeringar i klimatprojekt: <%= @cost_in_sek %> sek</li>
+                <li>Lönekostnader: 0 sek</li>
+                <li>Övriga verksamhetskostnader: 2793 sek</li>
+                <li>Totalt: <%= @cost_in_sek + 2793 %> sek</li>
+              </ul>
+              <h4>Resultat</h4>
+              <ul>
+                <li>Resultat (som ska investeras för klimatet): <%= 35837 - (@cost_in_sek + 2793) %> sek</li>
+              </ul>
+              <h4>Övriga nyckeltal</h4>
+              <ul>
+                <li>Antal användare: <%= @unique_climate_neutral_users %> st</li>
+                <li>Antal ton CO2 som kompenserats för: <%= @total_carbon_offset %> ton C02</li>
+                <li>Du kan även se <%= link_to 'detaljer kring våra kostnader här', 'https://docs.google.com/spreadsheets/d/1RzUCaVqTTxJYjfUMeh3KlTxBpiATy2ViPO3m0LHGpG8/' %>.</li>
+              </ul>
+              
+            </div>
+            <p class="lead">Frågor eller synpunkter? Kontakta oss jättegärna på: <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a></p>
+          </div>
+        </div>
+      </div>
+
+  
+        
+        <%= render "shared/footer" %>
+        
+  
