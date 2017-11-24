@@ -48,7 +48,6 @@ $(document).ready(function() {
 		});
 
 		$('#payment-form').on('submit', function(event) {
-		  event.preventDefault();
 
 		  if ($('#new-card-div').length && $('#new-card-div').hasClass("hidden")) {
 
@@ -73,8 +72,11 @@ $(document).ready(function() {
 			      // Send the source to your server
 			      stripeSourceHandler(result.source);
 			    }
-			  });
-			}
+			});
+		  }
+
+		  //https://stackoverflow.com/questions/1357118/event-preventdefault-vs-return-false
+		  return false;
 		});
 		function stripeSourceHandler(source) {
 		  // Insert the source ID into the form so it gets submitted to the server
