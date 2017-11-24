@@ -9,7 +9,7 @@
             <h1 class="cover-heading"><%=t('welcome_to_a_climate_neutral_life') %></h1>
             <p class="lead"><%=t 'climate_change_is_the_greatest_challange' %></p>
             <% if I18n.locale == :sv %>
-              <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://player.vimeo.com/video/241825913' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>
+              <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 640px; margin: 0 auto; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://player.vimeo.com/video/241825913' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>
             <% end %>
             <p class="lead lead-btn">
               <a href="/step_1_choose_plan" class="btn btn-lg btn-success"><%=t 'i_want_to_know_more' %></a>
