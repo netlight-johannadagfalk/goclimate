@@ -32,7 +32,7 @@
                 <div id="card-errors"></div>
 
                 <div class="actions">
-                  <%= f.submit t("update"), class: "btn btn-success"  %>
+                  <button id="register-button" type="submit" class="btn btn-success" onclick="this.disabled=true; this.value='Submitting...'; $('#payment-form').submit();">Update</button>
                 </div>
               <% end %>
 
