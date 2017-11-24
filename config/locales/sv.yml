@@ -11,6 +11,27 @@ sv:
   i_want_to_know_more: Jag vill veta mer!
   contact_us: Kontakta oss
   100_percent_transparency: 100% transparens
+  100_percent_transparency_intro: Vi tror att transparens är viktigt när man försöker rädda världen, så att du kan känna dig trygg med att dina pengar gör så stor klimatnytta som möjligt. Här hittar du information om alla projekt vi har investerat i och förhoppningsvis alla finansiella uppgifter du kan tänka dig vara intresserad av.
+  100_percent_transparency_climate_projects: 100% transparens - klimatinvesteringar
+  100_percent_transparency_climate_projects_intro: Här gör dina pengar skillnad. Här ser du alla projekt vi har investerat i med tillhörande certifikat och kvitton. Våra investeringar finns naturligtvis även registerrade i respektive certifierings databas.
+  for_more_information_about_climate_projects: För mer information om klimatprojekten, läs mer på sidan om
+  100_percent_transparency_financial_info: 100% transparens - finansiell information
+  100_percent_transparency_financial_info_intro: GoClimateNeutral Sweden AB (organisationsnummer 559130-6583) startades 2017 med fokus på socialt företagande med enda ambition och mål att bromsa klimatförändringarna så snabbt som möjligt. Vi har ett förlängt räkenskapsår och vår första årsredovisning kommer innefatta perioden maj 2017- december 2018. Årsredovisningen kommer att publiceras här nedan när räkenskapsåret är över.
+  fiscal_year_2017_2018_status: Räkenskapsåret 2017-2018 - nuläge
+  revenue: Intäkter
+  cost: Kostnader
+  result: Resultat
+  climate_offset_from_users: Klimatkompensation från användare
+  investments_in_climate_projects: Investeringar i klimatprojekt
+  salary_costs: Lönekostnader
+  other_operating_expenses: Övriga verksamhetskostnader
+  total: Totalt
+  result_that_will_be_invested_for_the_climate: Resultat (som ska investeras för klimatet)
+  other_kpis: Övriga nyckeltal
+  number_of_users: Antal användare
+  number_of_ton_that_has_been_offset: Antal ton CO2 som kompenserats för
+  you_can_read_more_details_about_our_costs_here: Du kan även se detaljer kring våra kostnader här
+  questions_or_comments_contact_us: Frågor eller synpunkter? Hör gärna av dig till
   general_questions_html: 'Om du har frågor om GoClimateNeutral eller har idéer om hur vi kan förbättra tjänsten, hör gärna av dig till oss på: <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a> eller ring oss på <a href="tel:+46706084374">+46706084374</a>.'
   general_questions_press_html: Har du pressfrågor eller vill ha tag på ytterligare material, maila <a href="mailto:press@goclimateneutral.org">press@goclimateneutral.org</a>
   general_questions_payments_html: Har du frågor om betalningar eller teknik, maila <a href="mailto:payments@goclimateneutral.org">payments@goclimateneutral.org</a>
@@ -119,9 +140,9 @@ sv:
   total_climate_offset_project_investments_amount: '%{sek} kr'
   our_projects: Våra klimatinvesteringar
   our_investments_in_climate_projects: Våra investeringar i klimatprojekt
-  our_investments_in_climate_projects_intro_html: 'Vi investerar i FN-certifierade klimatprojekt (CDM) som har certifieringen Gold Standard. När man väljer FN-certifierade Gold Standard-projekt har man FNs alla medlemsstater och 80 miljöorganisationer i ryggen - bland annat Världsnaturfonden. 
-            <br><br>Gold Standard har även fokus på andra hållbarhetsaspekter än klimatet - som att minska fattigdom och bidra till renare luft och vatten - vilket redovisas genom FNs agenda 2030-mål. Du kan hitta mer information om projekten på <a href="http://UNFCCC.int">UNFCCS webbsida</a> respektive <a href="https://www.goldstandard.org/">Gold Standards webbsida</a>. 
-            <br><br>Alla klimatprojekt tredjepartsverifieras av av en helt oberoende part, som till exempel TÜV och DNV. Alla granskningsprotokoll är offentliga. Projekten inspekteras kontinuerligt under projekttiden för att garantera att verklig klimatnytta uppnås.'
+  our_investments_in_climate_projects_intro_html: 'Vi investerar i FN-certifierade klimatprojekt (CDM) som dessutom har certifieringen Gold Standard. När man väljer FN-certifierade Gold Standard-projekt har man FNs alla medlemsstater och 80 miljöorganisationer i ryggen - bland annat Världsnaturfonden. 
+            <br><br>Gold Standard har även fokus på andra hållbarhetsaspekter än klimatet - som att minska fattigdom och bidra till renare luft och vatten - vilket redovisas genom FNs agenda 2030-mål. Du kan hitta mer information om projekten på <a href="http://UNFCCC.int">UNFCCS webbsida</a> respektive <a href="https://www.goldstandard.org/">Gold Standards webbsida</a>.
+            <br><br>Alla klimatprojekt verifieras av en oberoende tredje part, t ex TÜV och DNV. Alla granskningsprotokoll är offentliga. Projekten inspekteras kontinuerligt under projekttiden för att garantera att verklig klimatnytta uppnås.'
   climate_project_we_have_invested_in: Klimatprojekt vi investerat i tillsammans
   project_certification_info_html: '<b>CDM+GS:</b> FN-certifierade (CDM) projekt som dessutom har certifieringen Gold Standard (GS).<br><b>CDM:</b> Innan augusti 2017 investerade vi även i projekt som visserligen var FN-certifierade (CDM) men inte hade certifieringen Gold Standard.'
   i_want_to_contribute: Okej, jag vill bidra!
