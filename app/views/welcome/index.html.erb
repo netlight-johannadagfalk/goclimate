@@ -8,6 +8,9 @@
             <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
             <h1 class="cover-heading"><%=t('welcome_to_a_climate_neutral_life') %></h1>
             <p class="lead"><%=t 'climate_change_is_the_greatest_challange' %></p>
+            <% if I18n.locale == :sv %>
+              <iframe src="https://player.vimeo.com/video/241825913?color=16c613&title=0&byline=0&portrait=0" width="640" height="480" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <% end %>
             <p class="lead lead-btn">
               <a href="/step_1_choose_plan" class="btn btn-lg btn-success"><%=t 'i_want_to_know_more' %></a>
             </p>
@@ -19,8 +22,9 @@
       <div class="site-wrapper-inner site-wrapper-second">
         <div class="cover-container">
           <div class="inner cover">
+            <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
             <h1 class="cover-heading"><%=t 'why_goclimateneutral' %></h1>
-            <iframe src="https://player.vimeo.com/video/241825913?color=ffffff" width="640" height="480" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <p class="lead"><%=t 'section_1_text' %></p>
           </div>
           <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
         </div>
