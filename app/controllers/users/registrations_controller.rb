@@ -71,7 +71,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
           },
         })
 
-        unless (source.redirect.status == "succeeded" && source.three_d_secure.authenticated == false) || source.status == "failed"
+        # Checking if verification is still required
+        # -> https://stripe.com/docs/sources/three-d-secure
+        unless ((source.redirect.status == "succeeded" || source.redirect.status == "not_required") && source.three_d_secure.authenticated == false) || source.status == "failed"
           user = User.new({email: params[:user][:email], password: params[:user][:password]})
           user.save
           
