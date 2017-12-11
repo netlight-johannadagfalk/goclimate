@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
     I18n.locale = params[:locale] || I18n.default_locale
     
-    if request.env['HTTP_ACCEPT_LANGUAGE'].include? "sv;"
+    if !request.env['HTTP_ACCEPT_LANGUAGE'].nil? && request.env['HTTP_ACCEPT_LANGUAGE'].include? "sv;"
       I18n.locale = :sv
     end
 
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     elsif request.host.include? "sv.goclimateneutral.org"
       I18n.locale = :sv
     end
-    
+
   end
 
   def after_sign_in_path_for(resource)
