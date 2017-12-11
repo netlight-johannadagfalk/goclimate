@@ -16,12 +16,19 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
+
     I18n.locale = params[:locale] || I18n.default_locale
+    
+    if request.env['HTTP_ACCEPT_LANGUAGE'].include? "sv;"
+      I18n.locale = :sv
+    end
+
     if request.host.include? "en.goclimateneutral.org"
       I18n.locale = :en
     elsif request.host.include? "sv.goclimateneutral.org"
       I18n.locale = :sv
     end
+    
   end
 
   def after_sign_in_path_for(resource)
@@ -39,6 +46,16 @@ class ApplicationController < ActionController::Base
       currency = I18n.locale == :sv ? "sek" : "usd"
     end
     currency
+  end
+
+  def set_plan_data
+    @lifestyle_choice_co2 = LifestyleChoice.get_lifestyle_choice_co2
+    gon.lifestyle_choice_co2 = @lifestyle_choice_co2
+    gon.locale = I18n.locale
+    gon.SEK_PER_TONNE = LifestyleChoice::SEK_PER_TONNE
+    gon.BUFFER_SIZE = LifestyleChoice::BUFFER_SIZE
+    gon.SEK_PER_DOLLAR = LifestyleChoice::SEK_PER_DOLLAR
+    gon.price_info_popup_content = I18n.t('price_info_popup_content')
   end
 
   protected
