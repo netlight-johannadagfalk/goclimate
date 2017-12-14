@@ -8,7 +8,7 @@ use Rack::ReverseProxy do
 
     # Forward the path /test* to http://example.com/test*
     reverse_proxy /^\/blog(\/.*)$/, 'http://goclimateneutral.nilver.se$1'
-    reverse_proxy /^\/wp-admin/(\/.*)$/, 'http://goclimateneutral.nilver.se/wp-admin$1'
+    reverse_proxy /^\/wp-admin(\/.*)$/, 'http://goclimateneutral.nilver.se/wp-admin$1'
     
 end
 
