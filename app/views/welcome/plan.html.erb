@@ -135,7 +135,7 @@
                                   <tr>
                                       <td class="form select">
                                           <select id="food" class="form-control input-sm">
-                                            <% LifestyleChoice.where(category: :food).each do |choice| %>
+                                            <% LifestyleChoice.where(category: :food).where("version != 0").order(:co2).each do |choice| %>
                                               <option value="<%= choice.id %>"><%=t choice.name %></option>
                                             <% end %>
                                           </select>

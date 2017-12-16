@@ -59,7 +59,7 @@ sv:
   section_4_text: Vi investerar i de mest effektiva certifierade klimatprojekt som vi kan hitta, så att dina pengar gör så stor nytta för planeten som möjligt.
   start_by_choosing_plan: Börja med att beskriva din klimatpåverkan
   section_5_text: Vad har du för livsstil? Välj ett alternativ nedan eller knappa in en anpassad variant som passar dig bättre.
-  vegan: Vegan
+  vegan: Äter helt växtbaserat
   no_car: Ingen bil
   hardly_ever_flies: Flyger nästan aldrig
   mini_impact_plan: Liten
@@ -69,14 +69,15 @@ sv:
   price_info_popup_content: Detta val räknar vi ger ett årligt utsläpp på %{footprint} ton CO<sub>2</sub>. Eftersom kalkylen är ungefärlig klimatkompenserar vi för dubbelt så många ton, alltså %{footprint_x2} ton C0<sub>2</sub>, så att du kan vara säker på att du lever klimatneutralt varje månad. <br>Vi klimatkompenserar i projekt som är FN-certifierade (CDM) samt har kvalitetsmärkningen Gold Standard (skapad av bland annat WWF och Greenpeace). Dessa projekt kostar ca %{price_per_tonne} kr/ton - och därför landar detta val på %{price_per_month} kr/mån.
   you_will_offset_for: Du kommer klimatkompensera för %{cost} kr/mån
   custom_impact_plan: Anpassad
-  mostly_vegetarian: Nästan vegetarian
+  mostly_vegetarian: Äter mest vegetariskt
   one_fuel_efficient_car: En bränslesnål bil
   flies_sometimes: Flyger ibland
   this_is_me: Ja!
   yep_me: Ja, jag!
-  vegetarian: Vegetarian
-  sometimes_vegetarian: Ibland vegetarian
-  meat_eater: Köttätare
+  vegetarian: Äter helt vegetariskt
+  sometimes_vegetarian: Äter ofta vegetariskt
+  meat_eater: Köttätare, men inte så mycket rött kött
+  meat_eater_lots_of_beef: Köttätare, mycket rött kött
   no_car: Ingen bil
   electric_car: Elbil
   fuel_efficient_seldom_drives: Bränslesnål bil, kör lite

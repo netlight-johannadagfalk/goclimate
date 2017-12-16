@@ -59,7 +59,7 @@ en:
   section_4_text: We invest in the most effective certified climate offset projects we can find, so that your money slows down climate change as much as possible.
   start_by_choosing_plan: Start by describing your climate impact
   section_5_text: What is your way of living? Select an option below or enter a custom one that better corresponds to your lifestyle.
-  vegan: Vegan
+  vegan: Eat only plant based food
   no_car: No car
   hardly_ever_flies: Hardly ever flies
   mini_impact_plan: Mini
@@ -69,14 +69,15 @@ en:
   price_info_popup_content: With this choice we estimate a yearly climate footprint of %{footprint} tonne CO<sub>2</sub>. Since the number is approximate we offset for twice as many tonnes, so %{footprint_x2} tonne C0<sub>2</sub>. This way you can be sure you live climate neutral every month.<br>We invest in projects that are UN-certified (CDM) and also have the quality label Gold Standard (created among others by Greenpeace and WWF). These project cost about $%{price_per_tonne} per tonne - so this choice end up at $%{price_per_month} per month.
   you_will_offset_for: You will offset with $%{cost}/month
   custom_impact_plan: Custom
-  mostly_vegetarian: Almost vegetarian
+  mostly_vegetarian: Eat mostly vegetarian food
   one_fuel_efficient_car: One Fuel Efficient Car
   flies_sometimes: Flies Sometimes
   this_is_me: This is me!
   yep_me: Yep, me!
-  vegetarian: Vegetarian
-  sometimes_vegetarian: Sometimes Vegetarian
-  meat_eater: Meat Eater
+  vegetarian: Eat only vegetarian food
+  sometimes_vegetarian: Eat often vegetarian food
+  meat_eater: Meat Eater, not so much beef
+  meat_eater_lots_of_beef: Meat Eater, lots of beef
   no_car: No Car
   electric_car: Electric car
   fuel_efficient_seldom_drives: Fuel efficient car, seldom drive
