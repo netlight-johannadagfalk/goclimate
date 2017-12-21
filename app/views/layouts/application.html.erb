@@ -56,7 +56,13 @@
   </head>
 
   <body class="<%= controller_name + " " + controller_name + "-" + action_name %>">
-       
+
+    <% if params[:registered].to_i == 1 %>
+      <script>
+        fbq('track', 'Purchase');
+      </script>
+    <% end %>
+
     <div class="site-wrapper">
        
     <% if notice || alert %>
