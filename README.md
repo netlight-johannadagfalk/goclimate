@@ -26,11 +26,12 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
   * `bin/rails c`
   * in console mode, enter: 
 ```
+LifestyleChoice.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!('lifestyle_choices')
+
 LifestyleChoice.create!([
   {name: "vegan", category: "food", version: 1, co2: "0.59"},
   {name: "vegetarian", category: "food", version: 1, co2: "1.23"},
-  {name: "mostly_vegetarian", category: "food", version: 1, co2: "1.8"},
-  {name: "sometimes_vegetarian", category: "food", version: 1, co2: "2.0"},
   {name: "meat_eater", category: "food", version: 1, co2: "2.62"},
   {name: "no_car", category: "car", version: 1, co2: "0.0"},
   {name: "electric_car", category: "car", version: 1, co2: "0.0"},
@@ -53,8 +54,32 @@ LifestyleChoice.create!([
   {name: "flies_long_distance_12_time_year", category: "flying", version: 1, co2: "27.6"},
   {name: "hardly_ever_flies", category: "custom", version: 1, co2: "0.536"},
   {name: "flies_sometimes", category: "custom", version: 1, co2: "2.3"},
-  {name: "base", category: "base", version: 1, co2: "4.0"}
+  {name: "base", category: "base", version: 1, co2: "4.0"},
+  {name: "meat_eater_lots_of_beef", category: "food", version: 1, co2: "4.0"},
+  {name: "1_people", category: "people", version: 1, co2: "1.0"},
+  {name: "sometimes_vegetarian", category: "food", version: 1, co2: "2.0"},
+  {name: "mostly_vegetarian", category: "food", version: 0, co2: "1.8"},
+  {name: "2_people", category: "people", version: 1, co2: "2.0"},
+  {name: "3_people", category: "people", version: 1, co2: "3.0"},
+  {name: "4_people", category: "people", version: 1, co2: "4.0"},
+  {name: "5_people", category: "people", version: 1, co2: "5.0"},
+  {name: "6_people", category: "people", version: 1, co2: "6.0"},
+  {name: "7_people", category: "people", version: 1, co2: "7.0"},
+  {name: "8_people", category: "people", version: 1, co2: "8.0"},
+  {name: "9_people", category: "people", version: 1, co2: "9.0"},
+  {name: "10_people", category: "people", version: 1, co2: "10.0"},
+  {name: "11_people", category: "people", version: 1, co2: "11.0"},
+  {name: "12_people", category: "people", version: 1, co2: "12.0"},
+  {name: "13_people", category: "people", version: 1, co2: "13.0"},
+  {name: "14_people", category: "people", version: 1, co2: "14.0"},
+  {name: "15_people", category: "people", version: 1, co2: "15.0"},
+  {name: "16_people", category: "people", version: 1, co2: "16.0"},
+  {name: "17_people", category: "people", version: 1, co2: "17.0"},
+  {name: "18_people", category: "people", version: 1, co2: "18.0"},
+  {name: "19_people", category: "people", version: 1, co2: "19.0"},
+  {name: "20_people", category: "people", version: 1, co2: "20.0"}
 ])
+
 ```
 
 # How do I start the server locally?
