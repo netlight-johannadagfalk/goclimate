@@ -134,11 +134,9 @@ en:
   good_job: Good job!
   number_of_months_you_have_been_climate_neutral: Number of months you have been climate neutral
   you_climate_offset_investments: Your climate offset investments
-  you_climate_offset_investments_amount: '$%{usd}'
   number_of_climate_neutral_months_for_all_users: Number of climate neutral months for all users
   number_of_climate_neutral_users_right_now: Number of climate neutral users right now
   total_climate_offset_project_investments: Total climate offset project investments
-  total_climate_offset_project_investments_amount: '$%{usd}'
   our_projects: Our Climate Investments
   our_investments_in_climate_projects: Our Investments in Climate Projects
   our_investments_in_climate_projects_intro_html: 'We invest in UN-certified climate projects (CDM) that are also Gold Standard-certified. When you choose UN-certified Gold Standard projects you have all the members of the UN and 80 diffent environment NGOs behind you - among them WWF.
@@ -219,6 +217,8 @@ en:
   press_social_images: Social Media Images
   press_credits: The illustrations are created by Henrik Kniberg and are Creative Commons-licensed.
   im_in: I'm in!
+  1_people: 1 person
+  x_people: '%{number} people'
   faq: FAQ
   answer: Answer
   read_more_on_frequently_asked_questions: Read more on our FAQ

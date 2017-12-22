@@ -26,10 +26,17 @@ class LifestyleChoice < ApplicationRecord
 
   def self.get_lifestyle_choice_tonnes choices
     tonne_co2 = 0
+    people = 1
     choices.each do |choice|
       lifestyle_choice = LifestyleChoice.find choice
-      tonne_co2 = tonne_co2 + lifestyle_choice.co2
+
+      if lifestyle_choice.category == "people"
+        people = lifestyle_choice.co2.to_i
+      else
+        tonne_co2 = tonne_co2 + lifestyle_choice.co2
+      end
     end
+    tonne_co2 = tonne_co2 * people
     tonne_co2
   end
 

@@ -71,10 +71,15 @@
                               <table class="table">
                                   <tr>
                                       <td>
+                                          1 person
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>
                                           <%=t 'vegan' %> 
                                       </td>
                                   </tr>
-                                  <tr class="active">
+                                  <tr>
                                       <td>
                                           <%=t 'no_car' %>
                                       </td>
@@ -87,7 +92,7 @@
                               </table>
                           </div>
                           <div class="panel-footer">
-                              <a href="<%= new_registration_path(:user) + "?choices=25,1,6,26" %>" class="btn btn-success" role="button"><%=t 'this_is_me' %></a>
+                              <a href="<%= new_registration_path(:user) + "?choices=25,1,6,26,29" %>" class="btn btn-success" role="button"><%=t 'this_is_me' %></a>
                           </div>
                       </div>
                   </div>
@@ -102,10 +107,15 @@
                               <table class="table">
                                   <tr>
                                       <td>
+                                          1 person
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>
                                           <%=t 'sometimes_vegetarian' %>
                                       </td>
                                   </tr>
-                                  <tr class="active">
+                                  <tr>
                                       <td>
                                           <%=t 'one_fuel_efficient_car' %>
                                       </td>
@@ -118,7 +128,7 @@
                               </table>
                           </div>
                           <div class="panel-footer">
-                              <a href="<%= new_registration_path(:user) + "?choices=25,4,9,27"  %>" class="btn btn-success" role="button"><%=t 'yep_me' %></a>
+                              <a href="<%= new_registration_path(:user) + "?choices=25,4,9,27,29"  %>" class="btn btn-success" role="button"><%=t 'yep_me' %></a>
                           </div>
                       </div>
                   </div>
@@ -130,42 +140,56 @@
                                   <%=t 'custom_impact_plan' %></h3>
                           </div>
                           <div class="panel-body custom-plan-price">
-                              <%= render 'shared/price', choices: [] %>
-                              <table class="table">
-                                  <tr>
-                                      <td class="form select">
-                                          <select id="food" class="form-control input-sm">
-                                            <% LifestyleChoice.where(category: :food).where("version != 0").order(:co2).each do |choice| %>
-                                              <option value="<%= choice.id %>"><%=t choice.name %></option>
-                                            <% end %>
-                                          </select>
-                                      </td>
-                                  </tr>
-                                  <tr class="active">
-                                      <td class="form select">
-                                          <select id="car" class="form-control input-sm">
-                                            <% LifestyleChoice.where(category: :car).each do |choice| %>
-                                              <option value="<%= choice.id %>"><%=t choice.name %></option>
-                                            <% end %>
-                                          </select>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td class="form select">
-                                          <select id="flying" class="form-control input-sm">
-                                            <% LifestyleChoice.where(category: :flying).each do |choice| %>
-                                              <option value="<%= choice.id %>"><%=t choice.name %></option>
-                                            <% end %>
-                                          </select>
-                                      </td>
-                                  </tr>
-                              </table>
-                              <input type="hidden" id="base_cost" value="<%= LifestyleChoice.where(category: :base).first.id %>">
+                            <%= render 'shared/price', choices: [] %>
+                            <table class="table">
+                              <tr>
+                                  <td class="form select">
+                                    <select id="people" class="form-control input-sm">
+                                      <% LifestyleChoice.where(category: :people).where("version != 0").order(:co2).each do |people| %>
+                                        <% if people.co2.to_i == 1 %>
+                                          <option value="<%= people.id %>"><%=t people.name %></option>
+                                        <% else %>
+                                          <option value="<%= people.id %>"><%= I18n.t('x_people', number: people.co2.to_i) %></option>
+                                        <% end %>
+                                      <% end %>
+                                    </select>
+                                  </td>
+                              </tr>
+
+                              <tr>
+                                  <td class="form select">
+                                      <select id="food" class="form-control input-sm">
+                                        <% LifestyleChoice.where(category: :food).where("version != 0").order(:co2).each do |choice| %>
+                                          <option value="<%= choice.id %>"><%=t choice.name %></option>
+                                        <% end %>
+                                      </select>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td class="form select">
+                                      <select id="car" class="form-control input-sm">
+                                        <% LifestyleChoice.where(category: :car).each do |choice| %>
+                                          <option value="<%= choice.id %>"><%=t choice.name %></option>
+                                        <% end %>
+                                      </select>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td class="form select">
+                                      <select id="flying" class="form-control input-sm">
+                                        <% LifestyleChoice.where(category: :flying).each do |choice| %>
+                                          <option value="<%= choice.id %>"><%=t choice.name %></option>
+                                        <% end %>
+                                      </select>
+                                  </td>
+                              </tr>
+                            </table>
+                            <input type="hidden" id="base_cost" value="<%= LifestyleChoice.where(category: :base).first.id %>">
 
 
                           </div>
                           <div class="panel-footer">
-                              <a id="custom-plan" href="<%= new_registration_path(:user) %>?choices=25,1,6,14" class="btn btn-success" role="button"><%=t 'thats_it' %></a></div>
+                              <a id="custom-plan" href="<%= new_registration_path(:user) %>?choices=25,1,6,14,29" class="btn btn-success" role="button"><%=t 'thats_it' %></a></div>
                       </div>
                   </div>
               </div>
