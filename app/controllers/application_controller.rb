@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
 
-    I18n.locale = params[:locale] || I18n.default_locale
+    I18n.locale = I18n.default_locale
     
     if !request.env['HTTP_ACCEPT_LANGUAGE'].nil? && request.env['HTTP_ACCEPT_LANGUAGE'].include?("sv;")
       I18n.locale = :sv
@@ -28,6 +28,13 @@ class ApplicationController < ActionController::Base
     elsif request.host.include? "sv.goclimateneutral.org"
       I18n.locale = :sv
     end
+
+    if !params[:locale].nil?
+      I18n.locale = params[:locale]
+    end
+
+    logger.debug "host: " + request.host
+    logger.debug "locale: " + I18n.locale.to_s
 
   end
 
