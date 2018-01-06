@@ -6,8 +6,8 @@ class DashboardController < ApplicationController
 
     require 'uri'
 
-    if StripeEvent.payments(current_user).count == 0
-      StripeEvent.try_updating_events current_user
+    if StripeEvent.payments(current_user).count == 0 && Rails.env.production?
+        StripeEvent.try_updating_events current_user
     end
 
     @total_carbon_offset = Project.total_carbon_offset
@@ -23,7 +23,7 @@ class DashboardController < ApplicationController
 
     @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
 
-    @user_top_list = User.where("users.stripe_customer_id != ''").left_joins(:stripe_events).where("stripe_events.paid = true").select("users.id, COUNT(1)").group("users.id").order('COUNT(1) DESC')
+    @user_top_list = User.where("users.stripe_customer_id != ''").left_joins(:stripe_events).where("stripe_events.paid = true").select("users.id, users.user_name, COUNT(1)").group("users.id").order('COUNT(1) DESC')
 
     @country_top_list = User.where("users.stripe_customer_id != ''").left_joins(:stripe_events).where("stripe_events.paid = true").select("users.country, COUNT(1)").group("users.country").order('COUNT(1) DESC')
 
