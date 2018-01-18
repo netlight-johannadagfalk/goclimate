@@ -64,7 +64,7 @@
               <h3><%=t 'fiscal_year_2017_2018_status' %></h3>
               <h4><%=t 'revenue' %></h4>
               <ul>
-                <li><%=t 'climate_offset_from_users' %>: 49 062 SEK</li>
+                <li><%=t 'climate_offset_from_users' %>: <%= (StripePayout.sum(:amount) / 100).to_s %> SEK</li>
               </ul>
               <h4><%=t 'cost' %></h4>
               <ul>
