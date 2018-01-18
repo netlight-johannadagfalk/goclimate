@@ -64,7 +64,7 @@
               <h3><%=t 'fiscal_year_2017_2018_status' %></h3>
               <h4><%=t 'revenue' %></h4>
               <ul>
-                <li><%=t 'climate_offset_from_users' %>: <%= (StripePayout.sum(:amount) / 100).to_s %> SEK</li>
+                <li><%=t 'climate_offset_from_users' %>: <%= @payouts_in_sek %> SEK</li>
               </ul>
               <h4><%=t 'cost' %></h4>
               <ul>
@@ -75,7 +75,7 @@
               </ul>
               <h4><%=t 'result' %></h4>
               <ul>
-                <li><%=t 'result_that_will_be_invested_for_the_climate' %>: <%= 49062 - (@cost_in_sek + 2793) %> sek</li>
+                <li><%=t 'result_that_will_be_invested_for_the_climate' %>: <%= @payouts_in_sek - (@cost_in_sek + 2793) %> sek</li>
               </ul>
               <h4><%=t 'other_kpis' %></h4>
               <ul>
