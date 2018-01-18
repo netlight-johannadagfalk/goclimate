@@ -10,10 +10,10 @@ GIT
 
 GIT
   remote: https://github.com/stripe/stripe-ruby
-  revision: 0727e11a5b59d8979cbbc1d40f23fd7b12d6f8c3
+  revision: f6484e3240e9277230702beefbdcecc42d9efda0
   specs:
-    stripe (2.1.0)
-      faraday (~> 0)
+    stripe (3.9.1)
+      faraday (~> 0.10)
 
 GEM
   remote: https://rubygems.org/
@@ -105,7 +105,7 @@ GEM
     devise-i18n (1.1.2)
     erubi (1.6.0)
     execjs (2.7.0)
-    faraday (0.11.0)
+    faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     font-awesome-rails (4.7.0.2)
