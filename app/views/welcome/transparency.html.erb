@@ -36,12 +36,12 @@
                         <tr>
                           <td><%= image_tag project.image_url, height: "50" %></td>
                           <td><a href ="<%= project.blog_url %>"><%= project.name %></a></td>
-                          <% if project.certificate_url.nil? %>
+                          <% if project.certificate_url.nil? || project.certificate_url.empty? %>
                             <td>-</td>
                           <% else %>
                             <td><a href="<%= project.certificate_url %>"><%=t 'certificate' %></a></td>
                           <% end %>
-                          <% if project.invoice_url.nil? %>
+                          <% if project.invoice_url.nil? || project.invoice_url.empty? %>
                             <td>-</td>
                           <% else %>
                             <td><a href="<%= project.invoice_url %>"><%=t 'invoice' %></a></td>
