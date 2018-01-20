@@ -36,8 +36,16 @@
                         <tr>
                           <td><%= image_tag project.image_url, height: "50" %></td>
                           <td><a href ="<%= project.blog_url %>"><%= project.name %></a></td>
-                          <td><a href="<%= project.certificate_url %>"><%=t 'certificate' %></a></td>
-                          <td><a href="<%= project.invoice_url %>"><%=t 'invoice' %></a></td>
+                          <% if project.certificate_url.nil? %>
+                            <td>-</td>
+                          <% else %>
+                            <td><a href="<%= project.certificate_url %>"><%=t 'certificate' %></a></td>
+                          <% end %>
+                          <% if project.invoice_url.nil? %>
+                            <td>-</td>
+                          <% else %>
+                            <td><a href="<%= project.invoice_url %>"><%=t 'invoice' %></a></td>
+                          <% end %>
                           <td><%= project.date_bought.to_date %></td>
                           <td><%= project.carbon_offset %></td>
                           <td><a href ="<%= project.blog_url %>"><%=t 'read_more' %></a></td>
@@ -70,12 +78,12 @@
               <ul>
                 <li><%=t 'investments_in_climate_projects' %>: <%= @cost_in_sek %> sek</li>
                 <li><%=t 'salary_costs' %>: 0 sek</li>
-                <li><%=t 'other_operating_expenses' %>: 2793 sek</li>
-                <li><%=t 'total' %>: <%= @cost_in_sek + 2793 %> sek</li>
+                <li><%=t 'other_operating_expenses' %>: 6185 sek</li>
+                <li><%=t 'total' %>: <%= @cost_in_sek + 6185 %> sek</li>
               </ul>
               <h4><%=t 'result' %></h4>
               <ul>
-                <li><%=t 'result_that_will_be_invested_for_the_climate' %>: <%= @payouts_in_sek - (@cost_in_sek + 2793) %> sek</li>
+                <li><%=t 'result_that_will_be_invested_for_the_climate' %>: <%= @payouts_in_sek - (@cost_in_sek + 6185) %> sek</li>
               </ul>
               <h4><%=t 'other_kpis' %></h4>
               <ul>
