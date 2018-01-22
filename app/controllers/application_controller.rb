@@ -25,6 +25,8 @@ class ApplicationController < ActionController::Base
 
     if request.host.include? "en.goclimateneutral.org"
       I18n.locale = :en
+    elsif request.host.include? "de.goclimateneutral.org"
+      I18n.locale = :de
     elsif request.host.include? "sv.goclimateneutral.org"
       I18n.locale = :sv
     end

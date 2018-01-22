@@ -17,7 +17,7 @@ module ClimateNeutralLife
     I18n.load_path += Dir[Rails.root.join('locale', '*.{rb,yml}')]
      
     # Whitelist locales available for the application
-    I18n.available_locales = [:en, :sv]
+    I18n.available_locales = [:en, :sv, :de]
     
     I18n.default_locale = :en
     
