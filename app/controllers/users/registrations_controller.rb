@@ -57,6 +57,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
         end
       end
 
+      customer = Stripe::Customer.create(
+        :email => params[:user][:email],
+        :source  => params[:stripeSource]
+      )
+
       # 3dsecure is required
       if params[:threeDSecure] == "required"
         source = Stripe::Source.create({
@@ -64,10 +69,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
           currency: currency_for_user,
           type: 'three_d_secure',
           three_d_secure: {
-            card: params[:stripeSource],
+            customer: customer.id,
+            card: params[:stripeSource]
           },
           redirect: {
-            return_url: threedsecure_url + "?email=" + params[:user][:email] + "&plan=" + @plan.to_s + "&choices=" + params[:user][:choices]
+            return_url: threedsecure_url + "?email=" + params[:user][:email] + "&plan=" + @plan.to_s + "&choices=" + params[:user][:choices] + "&customer=" + customer.id
           },
         })
 
@@ -85,10 +91,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         end
       end
 
-      customer = Stripe::Customer.create(
-        :email => params[:user][:email],
-        :source  => params[:stripeSource]
-      )
+
 
       plan = get_stripe_plan @plan, new_user_registration_path
 
@@ -132,22 +135,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
       redirect_to new_user_registration_path({choices: params[:choices]}) and return
     end
 
-    customer = Stripe::Customer.create(
-      :email => params[:email],
-      :source  => params['source']
-    )
-
     charge = Stripe::Charge.create({
       amount: plan.amount,
       currency: plan.currency,
       source: params['source'],
-      customer: customer.id
+      customer: params[:customer]
     })
 
-    User.where('lower(email) = ?', params[:email].downcase).update_all(stripe_customer_id: customer.id)
+    User.where('lower(email) = ?', params[:email].downcase).update_all(stripe_customer_id: params[:customer])
 
     Stripe::Subscription.create(
-      :customer => customer.id,
+      :customer => params[:customer],
       :items => [
         {
           :plan => plan.id,
