@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
     I18n.locale = I18n.default_locale
     
-    if !request.env['HTTP_ACCEPT_LANGUAGE'].nil? && request.env['HTTP_ACCEPT_LANGUAGE'].include?("sv;")
+    if !request.env['HTTP_ACCEPT_LANGUAGE'].nil? && request.env['HTTP_ACCEPT_LANGUAGE'].include?("sv")
       I18n.locale = :sv
     end
 
