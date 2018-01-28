@@ -91,8 +91,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
         end
       end
 
-
-
       plan = get_stripe_plan @plan, new_user_registration_path
 
       return if plan == false
@@ -122,17 +120,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def threedsecure
-    puts params.inspect
 
     user = User.find_for_authentication(email: params[:email])
     plan = get_stripe_plan params[:plan], new_user_registration_path
-
     source = Stripe::Source.retrieve(params['source'])
 
     if source.status == "failed"
       flash[:error] = "Something went wrong with the payment, please check if your card is chargable and try again."
-      user.delete
-      redirect_to new_user_registration_path({choices: params[:choices]}) and return
+
+      if !params[:updatecard].nil? && params[:updatecard] == "1"
+        redirect_to payment_path and return
+      else   
+        user.delete
+        redirect_to new_user_registration_path({choices: params[:choices]}) and return
+      end
+
     end
 
     charge = Stripe::Charge.create({
@@ -154,8 +156,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :trial_end => 1.month.from_now.to_i,
     )
 
-    sign_in user
-    redirect_to user_root_url and return
+    if !params[:updatecard].nil? && params[:updatecard] == "1"
+      flash[:notice] = I18n.t('your_payment_details_have_been_updated')
+      redirect_to payment_path and return
+    else
+      sign_in user
+      redirect_to user_root_url and return
+    end
   end
 
   def get_plan choices
@@ -202,6 +209,45 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     @plan = params[:user][:plan]
 
+    if !params[:stripeSource].nil?
+
+      if params[:threeDSecure] == "required"
+
+        customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+        customer.delete
+
+        customer = Stripe::Customer.create(
+          :email => current_user.email,
+          :source  => params[:stripeSource]
+        )
+
+        source = Stripe::Source.create({
+          amount: (@plan.to_f * 100).round,
+          currency: currency_for_user,
+          type: 'three_d_secure',
+          three_d_secure: {
+            customer: customer.id,
+            card: params[:stripeSource]
+          },
+          redirect: {
+            return_url: threedsecure_url + "?email=" + current_user.email + "&plan=" + @plan.to_s + "&updatecard=1" + "&customer=" + customer.id
+          },
+        })
+
+        # Checking if verification is still required
+        # -> https://stripe.com/docs/sources/three-d-secure
+        unless ((source.redirect.status == "succeeded" || source.redirect.status == "not_required") && source.three_d_secure.authenticated == false) || source.status == "failed"
+          redirect_to source.redirect.url and return
+        end
+
+      end 
+
+      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+      card = customer.sources.create({:source => params[:stripeSource]})
+      customer.default_source = card.id
+      customer.save
+    end
+
     if !@plan.nil?
 
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
@@ -234,14 +280,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
           end
         end
       end
-    end
-
-    if !params[:stripeSource].nil?
-      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-      puts customer.inspect
-      card = customer.sources.create({:source => params[:stripeSource]})
-      customer.default_source = card.id
-      customer.save
     end
 
     if !params[:stripeSource].nil? || !params[:user][:plan].nil?
