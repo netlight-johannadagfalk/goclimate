@@ -95,14 +95,14 @@ ul.nav.nav-tabs li.active a {
 .nav.nav-tabs .active {
   font-weight: bold;
 }
-.projects, .lifestyle_choices {
+.projects, .lifestyle_choices, .invoices {
   color: #fff;
 }
-.projects a, .lifestyle_choices a {
+.projects a, .lifestyle_choices a, .invoices a {
   color: blue;
   padding: 5px;
 }
-.projects input, .lifestyle_choices input {
+.projects input, .lifestyle_choices input, .invoices input {
   color: #000;
 }
 .welcome-our_projects .site-wrapper-first .inner, .welcome-transparency .site-wrapper-first .inner {

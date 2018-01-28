@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :invoices
   resources :lifestyle_choices
   resources :projects
   resources :stripe_events
