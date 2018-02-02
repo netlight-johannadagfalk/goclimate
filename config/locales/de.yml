@@ -78,7 +78,6 @@ de:
   sometimes_vegetarian: Often vegetarian diet
   meat_eater: Meat Eater, not so much beef
   meat_eater_lots_of_beef: Meat Eater, lots of beef
-  no_car: No Car
   electric_car: Electric car
   fuel_efficient_seldom_drives: Fuel efficient car, seldom drive
   fuel_efficient_car_drives_often: Fuel efficient car, drive often
@@ -195,7 +194,6 @@ de:
   change_your_password: Change your password
   change_your_password_by_entering_your_new_password_below: Change your password by entering your new password below.
   change_password: Change password
-  forgot_your_password: Forgot your password?
   something_went_wrong_go_back_one_step_and_try_again: Something went wrong, go back one step and try again!
   the_payment_unfortunately_failed: Unfortunately your payment has failed
   no_worries_we_will_try_again_within_a_few_days: No worries, we will try again in a few days.
