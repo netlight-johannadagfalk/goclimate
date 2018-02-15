@@ -1,9 +1,12 @@
 de:
   goclimateneutral_org: GoClimateNeutral.org
-  goclimateneutral_url: https://de.goclimateneutral.org/
+  goclimateneutral_url: 'https://de.goclimateneutral.org/'
   site_title: GoClimateNeutral.org
   welcome_to_a_climate_neutral_life: Willkommen in einem klimaneutralen Leben!
-  climate_change_is_the_greatest_challange: Der Klimawandel ist eine der größten Herausforderungen unserer Zeit. Gemeinsam haben wir eine Chance, unseren Kindern die Zukunft auf diesem Planeten zu geben, die sie verdienen. Aber dafür müssen wir jetzt handeln.
+  climate_change_is_the_greatest_challange: >-
+    Der Klimawandel ist eine der größten Herausforderungen unserer Zeit.
+    Gemeinsam haben wir eine Chance, unseren Kindern die Zukunft auf diesem
+    Planeten zu geben, die sie verdienen. Aber dafür müssen wir jetzt handeln.
   log_in: EINLOGGEN
   log_out: Ausloggen
   settings: Einstellungen
@@ -11,11 +14,203 @@ de:
   i_want_to_know_more: Mehr erfahren!
   contact_us: Kontakt
   100_percent_transparency: 100% Transparenz
-  100_percent_transparency_intro: Wir glauben, dass Transparenz extrem wichtig ist, wenn man die Welt retten will, damit Sie sich sicher sein können, dass Ihr Geld so viel wie möglich dazu beiträgt, den Klimawandel zu stoppen. Auf dieser Seite finden Sie Informationen über alle Projekte, in die wir investieren, und hoffentlich auch über alle relevanten finanziellen Fragen.
+  100_percent_transparency_intro: >-
+    Wir glauben, dass Transparenz extrem wichtig ist, wenn man die Welt retten
+    will, damit Sie sich sicher sein können, dass Ihr Geld so viel wie möglich
+    dazu beiträgt, den Klimawandel zu stoppen. Auf dieser Seite finden Sie
+    Informationen über alle Projekte, in die wir investieren, und hoffentlich
+    auch über alle relevanten finanziellen Fragen.
   100_percent_transparency_climate_projects: 100% Transparenz - Klimainvestitionen
-  100_percent_transparency_climate_projects_intro: Ihr Geld macht den Unterschied. Hier können Sie alle Projekte finden, in die wir investieren, inklusive der Zertifikate und Belege. Unsere Investitionen sind natürlich auch in der jeweiligen Zertifizierungsdatenbank gespeichert.
+  100_percent_transparency_climate_projects_intro: >-
+    Ihr Geld macht den Unterschied. Hier können Sie alle Projekte finden, in die
+    wir investieren, inklusive der Zertifikate und Belege. Unsere Investitionen
+    sind natürlich auch in der jeweiligen Zertifizierungsdatenbank gespeichert.
   for_more_information_about_climate_projects: Weitere Informationen zu unseren Klimainvestitionen finden Sie hier
   100_percent_transparency_financial_info: 100% Transparenz - Finanzielle Informationen
-  100_percent_transparency_financial_info_intro: GoClimateNeutral Sweden AB (Registriernummer 559130-6583) wurde 2017 mit dem Fokus auf soziales Unternehmertum und das alleinige Ziel gegründet, den Klimawandel so schnell wie möglich zu verlangsamen. Wir haben ein verlängertes Geschäftsjahr und unser erster Jahresbericht wird den Zeitraum Mai 2017 bis Dezember 2018 umfassen. Der Jahresbericht wird nach Beendigung des Geschäftsjahres veröffentlicht werden.
-  
-  
+  100_percent_transparency_financial_info_intro: >-
+    GoClimateNeutral Sweden AB (Registriernummer 559130-6583) wurde 2017 mit dem
+    Fokus auf soziales Unternehmertum und das alleinige Ziel gegründet, den
+    Klimawandel so schnell wie möglich zu verlangsamen. Wir haben ein
+    verlängertes Geschäftsjahr und unser erster Jahresbericht wird den Zeitraum
+    Mai 2017 bis Dezember 2018 umfassen. Der Jahresbericht wird nach Beendigung
+    des Geschäftsjahres veröffentlicht werden.
+  fiscal_year_2017_2018_status: Geschäftsjahr 2017-2018 - Status
+  revenue: Einnahmen
+  cost: Ausgaben
+  result: Ergebnis
+  climate_offset_from_users: Klimaausgleichssumme unserer Nutzer
+  investments_in_climate_projects: Investitionen in Klimaprojekte
+  salary_costs: Lohnkosten
+  other_operating_expenses: Sonstige Betriebsausgaben
+  total: Gesamt
+  result_that_will_be_invested_for_the_climate: 'Ergebnis (das in das Klima investiert wird) '
+  other_kpis: Weitere Kennzahlen
+  number_of_users: Anzahl der Nutzer
+  number_of_ton_that_has_been_offset: Kompensierte Menge an CO2
+  you_can_read_more_details_about_our_costs_here: Weitere Details zu unseren Ausgaben finden Sie hier
+  questions_or_comments_contact_us: Fragen oder Anmerkungen? Schreiben Sie einfach an
+  general_questions_html: >-
+    Wenn Sie Fragen zu GoClimateNeutral oder Ideen haben, wie wir unsere Seite
+    verbessern können, schreiben Sie uns eine E-Mail an <a
+    href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a> oder
+    rufen Sie uns an <a href="tel:+46706084374">+46706084374</a>
+  general_questions_press_html: >-
+    Presseanfragen können Sie gerne an <a
+    href="mailto:press@goclimateneutral.org">press@goclimateneutral.org</a>
+    richten
+  general_questions_payments_html: >
+    Wenn Sie Fragen zur Zahlung oder technische Fragen haben, schreiben Sie uns
+    eine E-Mail an <a
+    href="mailto:payments@goclimateneutral.org">payments@goclimateneutral.org</a>
+  general_questions_facebook_html: >-
+    Sie finden uns auch bei Facebook unter <a
+    href="https://www.facebook.com/GoClimateNeutral">GoClimateNeutral</a>
+  general_questions_twitter_html: >-
+    Bei Twitter finden Sie uns hier: <a
+    href="https://twitter.com/goclimateneutrl">@goclimateneutrl</a>
+  about_us: Über uns
+  about_us_intro: >-
+    GoClimateNeutral wurde 2017 mit dem Ziel gegründet, es einfacher zu machen,
+    ein klimaneutrales Leben zu führen und somit den Klimawandel zu
+    verlangsamen. Wir gleichen unseren Lebensstil aus und geben Anregungen, um
+    den eigenen ökologischen Fußabdruck zu reduzieren und so die Welt zu einem
+    besseren Ort zu machen. 
+  about_us_why_do_we_exist: Warum gibt es GoClimateNeutral?
+  about_us_why_do_we_exist_text: >-
+    Eines Tages werden unsere Kinder uns dafür verantwortlich machen, was wir
+    getan, oder besser gesagt nicht getan haben, obwohl uns der Ernst der Lage
+    bewusst war. Das ist der Hauptgrund, warum wir GoClimateNeutral ins Leben
+    gerufen haben. Um unseren Kindern zukünftig noch ohne schlechtes Gewissen in
+    die Augen schauen zu können, müssen wir alles in unserer Macht stehende tun,
+    um die globale Erwärmung zu stoppen. 
+  about_us_how_do_we_stop_climate_change: Wie können wir den Klimawandel stoppen?
+  about_us_how_do_we_stop_climate_change_text: >-
+    Um den Klimawandel stoppen zu können, müssen wir alle ab jetzt ein
+    Klimaneutrales Leben führen. Die beste Möglichkeit ist, unseren ökologischen
+    Fußabdruck zu minimieren und gleichzeitig die Dinge, die wir nicht vermeiden
+    können, auszugleichen. Die GoClimateNeutral Webseite entstand 2017 mit dem
+    Ziel, genau das zu schaffen - die negativen Auswirkungen auf unser Klima zu
+    verringern und auszugleichen.
+  about_us_how_do_we_stop_climate_change_text_2: >-
+    Wir glauben, dass man die Auswirkungen auf das Klima am besten kompensieren
+    kann, indem man es möglichst einfach macht, die Auswirkungen eines
+    bestimmten Lifestyles auszugleichen. Wir glauben fest daran, dass wir den
+    Klimawandel stoppen können - wenn wir es gemeinsam versuchen und jetzt damit
+    anfangen.
+  about_us_who_are_we: Wer sind wir?
+  about_us_who_are_we_kalle: >-
+    CEO von Booli.se. MSc Informationstechnologie und Betriebswirtschaft. Mag
+    vegane Schokoladenkuchen und süße Tiere im Internet.
+  about_us_who_are_we_cissi: >-
+    Marketing- und CSR-Manager bei einer internationalen Sportmarke. Abschluss
+    in Business Economics und Studien in Nachhaltigkeit und Umwelt.
+  about_us_who_are_we_henrik_html: >-
+    Agile & Lean Coach. Schöpfer von <a href="https://youtu.be/3CM_KkDuzGQ">A
+    friendly guide to Climate Change</a>, <a
+    href="http://climate.crisp.se/">Climate Crisplet</a> und <a
+    href="http://carbonmanifesto.org/">Carbon Manifesto</a>
+  blog: Blog
+  section_1_go_climate_neutral: Go Climate Neutral!
+  section_1_text: >-
+    Wir investieren für Sie in zertifizierte Klimaprojekte und zeigen Ihnen
+    Möglichkeiten, wie Sie Ihren Fußabdruck verringern können - auf diese Weise
+    helfen Sie, den Klimawandel zu bremsen und unser Klima zu retten.
+  its_fun_to_do_it_together: 'Den Planeten zu retten, macht gemeinsam noch mehr Spaß!'
+  section_2_text: >-
+    Wenn Sie Ihre Auswirkungen auf den Klimawandel mit uns zusammen ausgleichen,
+    motivieren Sie Andere dazu, dasselbe zu tun. Der Klimawandel ist eine
+    Herausforderung, der wir uns gemeinsam stellen müssen, also sollten wir auch
+    gemeinsam dagegen kämpfen.
+  we_are_100_transparent: Wir sind zu 100% transparent
+  section_3_text: >-
+    Wir bieten eine 100 %ige Transparenz, in welche UN- und Gold
+    Standard-zertifizierte Projekte wir investieren und warum. Außerdem bieten
+    wir 100 %ige Transparenz was die Menge an Emmissionen angeht, die wir in
+    Ihrem Namen und insgesamt ausgleichen können.
+  we_are_975_effective: Wir sind sehr klimaeffizient
+  section_4_text: >-
+    Wir investieren in die effektivsten zertifizierten Klimaprojekte, die wir
+    finden können, damit Ihr Beitrag den größtmöglichen positiven Effekt auf das
+    Klima haben kann. 
+  start_by_choosing_plan: Beschreiben Sie Ihren Einfluss auf das Klima
+  section_5_text: >-
+    Welche ist Ihre Lebensweise? Wählen Sie eine der unten aufgeführten Optionen
+    oder geben Sie Ihre individuellen Angaben ein.
+  vegan: Pflanzliche Ernährung
+  no_car: Kein Auto
+  hardly_ever_flies: Fliegt selten
+  mini_impact_plan: Mini
+  small_impact_plan: Medium
+  plan_price_html: '$<span id="sum">%{cost}</span><span class="subscript">/mo</span>'
+  cost_calculation: Kostenkalkulation
+  price_info_popup_content: >-
+    In diesem Fall schätzen wir Ihre jährliche Klimabilanz auf %{footprint}
+    Tonnen CO<sub>2</sub>. Da dies nur eine Schätzung ist, setzen wir eine
+    doppelt so große Menge an Ausgleich an, also %{footprint_x2} Tonnen
+    CO<sub>2</sub>. Auf diese Weise können Sie sich sicher sein, jeden Monat
+    klimaneutral leben zu können. 
+
+    Wir investieren in Projekte, die von der UN zertifiziert sind (CDM) und
+    verfügen außerdem über das Label Gold Standard (u.a. von Greenpeace und
+    WWF). Diese Projekte kosten ca. $%{price_per_tonne} pro Tonne - daher kostet
+    Sie dies $%{price_per_month} pro Monat.
+  you_will_offset_for: 'Sie kompensieren mit $%{cost}/month'
+  custom_impact_plan: Individuell
+  mostly_vegetarian: Überwiegend pflanzliche Ernährung
+  one_fuel_efficient_car: Ein verbrauchsarmes Auto
+  flies_sometimes: Fliegt gelegentlich
+  this_is_me: Das bin ich!
+  yep_me: Trifft zu!
+  vegetarian: Vegetarische Ernährung
+  sometimes_vegetarian: Überwiegend vegetarische Ernährung
+  meat_eater: 'Fleischesser, kaum Rindfleisch'
+  meat_eater_lots_of_beef: 'Fleischesser, viel Rindfleisch'
+  electric_car: Elektroauto
+  fuel_efficient_seldom_drives: 'Verbrauchsarmes Auto, fährt selten'
+  fuel_efficient_car_drives_often: 'Verbrauchsarmes Auto, fährt oft'
+  normal_car_seldom_drives: 'Normales Auto, fährt selten'
+  normal_car_drives_often: 'Normales Auto, fährt oft'
+  suv_seldom_drives: 'Auto mit hohem Verbrauch, fährt selten'
+  suv_drives_often: 'Auto mit hohem Verbrauch, fährt oft'
+  never_flies: Fliegt nie
+  flies_short_distance_1_time_year: Fliegt 1 Mal/Jahr kurze Distanzen
+  flies_short_distance_2_time_year: Fliegt 2 Mal/Jahr kurze Distanzen
+  flies_short_distance_3_time_year: Fliegt 3 Mal/Jahr kurze Distanzen
+  flies_short_distance_6_time_year: Fliegt 3 Mal/Jahr kurze Distanzen
+  flies_short_distance_12_time_year: Fliegt 12 Mal/Jahr kurze Distanzen
+  flies_long_distance_1_time_year: Fliegt 1 Mal/Jahr lange Distanzen
+  flies_long_distance_2_time_year: Fliegt 2 Mal/Jahr lange Distanzen
+  flies_long_distance_3_time_year: Fliegt 3 Mal/Jahr lange Distanzen
+  flies_long_distance_6_time_year: Fliegt 6 Mal/Jahr lange Distanzen
+  flies_long_distance_12_time_year: Fliegt 12 Mal/Jahr lange Distanzen
+  thats_it: Das ist es!
+  but_i_want_to_enter_more_details: Ich will weitere Angaben machen
+  calculating_your_exact_footprint_html: >-
+    Ihre genaue Klimabilanz zu berechnen ist um einiges komplizierter, als nur
+    einen der beiden Vorlagen auszuwählen. Man benötigt eine Menge an Daten
+    darüber, was Sie essen, wie und wohin Sie sich bewegen und wie Sie leben.
+    Unsere Vorlagen sind jedoch gute Schätzungen und Sie müssen sich keine
+    Gedanken machen, dass Sie Ihre Klimabilanz nicht ausgleichen. Wenn Sie mehr
+    Details haben möchten, gibt es %{href}. Damit können Sie eine Option
+    auswählen und dann Ihre jährliche Klimabilanz hier eingeben. 
+  tonnes_co2_per_year: Tonnen CO2/Jahr
+  sign_up_for_a_climate_neutral_life: Anmelden für ein klimaneutrales Leben
+  sign_up_here_to_start_livint_a_climate_neutral_life: Geben Sie Ihre Daten ein und starten Sie Ihr klimaneutrales Leben
+  email: E-Mail
+  password: Passwort
+  credit_or_debit_card: Kredit- oder Debitkarte
+  add_new_card: Neue Karte hinzufügen
+  edit_card: Kartendetails bearbeiten
+  your_payment_details_have_been_updated: Ihre Einstellungen wurden aktualisiert
+  no_card_registered: Keine Karte registriert
+  climate_plan: Klimaplan
+  log_in_to_see_how_we_are_doing: >-
+    Der Klimawandel ist die größte Herausforderung unserer Zeit. Loggen Sie sich
+    ein, um zu erfahren, wie weit wir im Kampf gegen den Klimawandel schon
+    gekommen sind.
+  you_have_lived_climate_neutral_for_one_month: 'Sie sind seit %{months} Monat klimaneutral.'
+  you_have_lived_climate_neutral_for_more_months: 'Sie sind seit %{months} Monaten klimaneutral.'
+  i_have_lived_climate_neutral_for_one_month_join_me: 'Ich lebe seit %{months} Monat klimaneutral! Mach mit!'
+  i_have_lived_climate_neutral_for_more_months_join_me: 'Ich lebe seit %{months} Monaten klimaneutral! Mach mit!'
+  name_have_lived_climate_neutral_for_one_month_join_me: '%{name} lebt seit %{months} Monat klimaneutral!'
+  name_have_lived_climate_neutral_for_more_months_join_me: '%{name} lebt seit %{months} Monaten klimaneutral!'
