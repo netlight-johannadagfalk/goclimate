@@ -125,7 +125,7 @@ de:
   section_3_text: >-
     Wir bieten eine 100 %ige Transparenz, in welche UN- und Gold
     Standard-zertifizierte Projekte wir investieren und warum. Außerdem bieten
-    wir 100 %ige Transparenz was die Menge an Emmissionen angeht, die wir in
+    wir 100 %ige Transparenz was die Menge an Emissionen angeht, die wir in
     Ihrem Namen und insgesamt ausgleichen können.
   we_are_975_effective: Wir sind sehr klimaeffizient
   section_4_text: >-
@@ -214,3 +214,176 @@ de:
   i_have_lived_climate_neutral_for_more_months_join_me: 'Ich lebe seit %{months} Monaten klimaneutral! Mach mit!'
   name_have_lived_climate_neutral_for_one_month_join_me: '%{name} lebt seit %{months} Monat klimaneutral!'
   name_have_lived_climate_neutral_for_more_months_join_me: '%{name} lebt seit %{months} Monaten klimaneutral!'
+  tell_your_friends: Weitersagen!
+  climate_change_is_best_faced_together: >-
+    Sie sind großartig! Da man den Klimawandel am besten gemeinsam bekämpfen
+    kann, würden wir uns freuen, wenn Sie Anderen von GoClimateNeutral erzählen,
+    damit auch sie ein klimaneutrales Leben führen können!
+  one_extra_month_for_every_friend_html: >-
+    Wir schenken Ihnen <b>1 klimaneutralen Monat</b> (im Wert von $10) für jeden
+    neuen Freund, den Sie werben!
+  share_on_facebook: Auf Facebook teilen
+  share_on_twitter: Auf Twitter teilen
+  we_have_accomplished_alot_together: Gemeinsam haben wir viel geschafft!
+  amount_of_carbon_we_have_offset: 'Tonnen an CO2, die wir zusammen ausgeglichen haben'
+  amount_of_carbon_i_have_offset: 'Tonnen an CO2, die Sie bisher ausgeglichen haben'
+  good_job: Gut gemacht!
+  number_of_months_you_have_been_climate_neutral: Ihre klimaneutralen Monate
+  you_climate_offset_investments: Ihre Investitionen in die Klimarettung
+  number_of_climate_neutral_months_for_all_users: Anzahl klimaneutraler Monate aller Nutzer
+  number_of_climate_neutral_users_right_now: Aktuelle Anzahl klimaneutraler Nutzer
+  total_climate_offset_project_investments: Gesamtinvestitionen in Klimaprojekte
+  our_projects: Unsere Klimainvestitionen
+  our_investments_in_climate_projects: Unsere Investitionen in Klimaprojekte
+  our_investments_in_climate_projects_intro_html: >-
+    Wir investieren in UN-zertifizierte Klimaprojekte (CDM), die zudem Gold
+    Standard-zertifiziert sind. Mit UN-zertifizierten Gold Standard Projekten
+    hat man alle Mitglieder der UN sowie 80 verschiedene
+    Nichtregierungsorganisationen hinter sich - unter ihnen auch der WWF.
+    <br><br>Gold Standard konzentriert sich außerdem auch auf andere
+    Nachhaltigkeitsaspekte neben dem Klimaschutz - Armutsbekämpfung und Zugang
+    zu sauberer Luft und sauberem Wasser z.B. (UN 2030 Nachhaltigkeitsziele).
+    Weitere Informationen zu den Projekten finden Sie unter <a
+    href="http://UNFCCC.int">der UNFCCS Webseite</a> und <a
+    href="https://www.goldstandard.org/">der Gold Standard Webseite</a>.
+    <br><br>Alle Klimaprojekte sind durch eine unabhängige dritte Partei wie TÜV
+    oder DNV verifiziert. Alle Protokolle sind öffentlich zugänglich und
+    verfolgen die komplette Projektphase, um sicherzustellen, dass tatsächlich
+    ein positiver Klimaeffekt erreicht wird. 
+  climate_project_we_have_invested_in: 'Klimaprojekte, in die wir gemeinsam investiert haben'
+  project_certification_info_html: >-
+    <b>CDM+GS:</b>  UN-zertifizierte Projekte (CDM), die zusätzlich Gold
+    Standard-zertifiziert  (GS) sind.<br><b>CDM:</b> Bis August 2017
+    investierten wir in Projekte, die von der UN zertifiziert waren, jedoch
+    nicht die Gold Standard Zertifizierung hatten. 
+  i_want_to_contribute: 'Ok, ich bin dabei!'
+  project_name: Projekt Name
+  more_info_on_blog: Weitere Informationen
+  our_investment_certificate: Investment Zertifikat
+  certificate: Zertifikat
+  invoice: Rechnung
+  date_of_our_investment: Datum der Investition
+  project_certification: Projektzertifizierung
+  read_more: Weitere Informationen
+  cimate_hero_toplist: Topliste Klimahelden
+  show_full_toplist: Gesamte Liste anzeigen
+  hide_full_toplist: Gesamte Liste verbergen
+  climate_neutral_month: Klimaneutraler Monat
+  climate_neutral_months: Klimaneutrale Monate
+  climate_country_toplist: Topliste Klimaländer
+  total_carbon_offset_by_us: Gesamte gemeinsame Klimakompensation
+  read_more_about_investments_on_our_blog: >-
+    Erfahren Sie in unserem Blog mehr über die Projekte, in die wir investieren
+    >>
+  tonnes_CO2: Tonnen CO2
+  tonnes: Tonnen
+  thank_you_so_much_everyone_for_helping_to_save_the_world: 'Vielen Dank an alle, die helfen, die Welt zu retten! Sie sind großartig!'
+  latest_carbon_offset_projects: Die jüngsten Klimaprojekte
+  offset: Kompensation
+  country: Land
+  location: Ort
+  more_info_on_un_site: Weitere Infos der UN Seite
+  more_info_on_our_blog: Weitere Infos in unserem Blog
+  edit_settings: Einstellungen anpassen
+  payment_settings: Zahlungseinstellungen
+  user_name: Nutzername
+  confirm_password: Passwort bestätigen
+  update: Aktualisieren
+  other_language_site: 'https://sv.goclimateneutral.org'
+  other_language: Auf schwedisch
+  why_goclimateneutral: Warum GoClimateNeutral?
+  this_is_how_it_works: So funktioniert's
+  1_describe_your_lifestyle: 1. Lifestyle beschreiben
+  describe_your_lifestyle_text: Beschreiben Sie Ihren Lifestyle und somit Ihren ökologischen Fußabdruck
+  2_sign_up: 2. Anmelden
+  sign_up_text: 'Nehmen Sie sich 1 Minute, um sich anzumelden'
+  3_save_the_world: 3. Save the World
+  save_the_world_text: >-
+    Wir zahlen in Ihrem Namen für Klimaausgleich und zeigen Ihnen, wie Sie Ihren
+    Fußabdruck verringern können.
+  its_that_simple_text: >-
+    So einfach ist das. Der Klimawandel ist die größte Herausforderung unserer
+    Zeit, aber gemeinsam können wir etwas dagegen tun. Wir behaupten nicht, dass
+    das ausreicht, aber es ist ein großer Schritt in die richtige Richtung.
+    Schließen Sie sich uns an und ermutigen Sie Andere, sich auch dieser
+    Bewegung anzuschließen!
+  why_goclimateneutral_head: WARUM GOCLIMATENEUTRAL?
+  how_it_works_head: SO FUNKTIONIERT'S
+  forgot_your_password: Passwort vergessen?
+  enter_your_email_below_and_we_will_send_you: Geben Sie Ihre E-Mail Adresse ein und wir senden Ihnen eine Info-Mail.
+  send_me_an_email_with_instructions: Anleitung zum Zurücksetzen des Passworts zusenden!
+  change_your_password: Passwort ändern
+  change_your_password_by_entering_your_new_password_below: 'Ändern Sie Ihr Passwort, indem Sie unten Ihr neues Passwort eingeben.'
+  change_password: Passwort ändern
+  something_went_wrong_go_back_one_step_and_try_again: >-
+    Etwas ist schief gelaufen. Gehen Sie einen Schritt zurück und versuchen Sie
+    es erneut!
+  the_payment_unfortunately_failed: Leider ist Ihre Zahlung fehlgeschlagen
+  no_worries_we_will_try_again_within_a_few_days: 'Keine Sorge, wir versuchen es in ein paar Tagen erneut.'
+  you_might_need_to_update_your_payment_info: >-
+    Um weiterhin mit uns ein klimaneutrales Leben führen zu können, müssen Sie
+    evtl. Ihre Zahlungsinformationen aktualisieren.
+  link_to_update_your_payment_info: Hier Zahlungsinformationen aktualisieren >>
+  this_mail_was_sent_by: Diese E-Mail wurde versendet von
+  to_stop_recieving_these_emails: Um diese E-Mails nicht mehr zu erhalten
+  click_here: klicken Sie hier
+  thank_you_for_saving_our_planet: 'Vielen Dank, dass Sie unseren Planeten retten!'
+  you_have_lived_a_climate_neutral_life_for: Sie leben ein klimaneutrales Leben seit
+  months: Monaten
+  month: Monat
+  together_we_have_offset: Unsere gemeinsamen Klimakompensationen
+  goclimateneutral_and_this_planet_loves_you: GoClimateNeutral.org und unser Planet lieben Sie! Sie sind großartig!
+  learn_more_about_what_we_have_achieved_here: 'Erfahren Sie hier mehr darüber, was wir bereits geschafft haben >>'
+  thank_you: Vielen Dank!
+  the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible: >-
+    Bitte erzählen Sie Ihren Freunden davon. Je mehr Menschen klimaneutral
+    leben, umso größer ist die Chance, dass wir erfolgreich den Klimawandel
+    verlangsamen können!
+  press_images: Pressebilder
+  press_social_images: Bilder Soziale Medien
+  press_credits: >-
+    Diese Illustrationen stammen von Henrik Kniberg und sind Creative
+    Commons-lizensiert.
+  im_in: Ich bin dabei!
+  1_people: 1 Person
+  faq: FAQ
+  answer: Antwort
+  read_more_on_frequently_asked_questions: Lesen Sie mehr in unseren FAQs
+  faq_questions:
+    questions:
+      q1:
+        question: Kann ich wirklich ein klimaneutrales Leben führen?
+        answer: >-
+          Ja, wir glauben wirklich daran, dass man klimaneutral leben kann!
+          <br><br> Für Unternehmen gibt es Standards, die die Anforderungen für
+          Klimaneutralität regeln (PAS 2060 und ISO 14021). Für Privatpersonen
+          kennen wir jedoch keine solcher Standards. Daher gibt es verschiedene
+          Auffassungen darüber, was es bedeutet, als Einzelperson als
+          klimaneutral angesehen zu werden. <br><br> <img class='alignnone
+          wp-image-264 size-large'
+          src='https://www.goclimateneutral.org/blog/wp-content/uploads/2018/02/climate-neutral-1024x526.png'
+          /> <br> Rein rechnerisch bedeutet Klimaneutralität, dass die sich
+          Differenz der Emissionen, die man verursacht, und der Emissionen, die
+          man vermeidet, auf Null beläuft. Die Herausforderung dabei ist
+          einerseits, die exakte CO2-Bilanz einer Person zu kalkulieren, und
+          andererseits, verlässliche Möglichkeiten zu finden, die vermeiden,
+          dass Emissionen in die Atmosphäre gelangen, bzw. diese Emissionen zu
+          beseitigen. <br><br> Wenn es darum geht, die eigene CO2-Bilanz zu
+          messen, gibt es einige sehr fortgeschrittene Methoden. Wir haben uns
+          für eine simple Schätzung entschieden, um es Ihnen so einfach wie
+          möglich zu machen, etwas gegen den Klimawandel zu tun, ohne viel Zeit
+          für eine ganz exakte CO2-Berechnung aufwenden zu müssen, für die man
+          die genaue Angabe von Flugmeilen, Kilowattstunden etc. benötigen
+          würde. <br><br> Im Internet sind eine Vielzahl an fortgeschritteneren
+          Rechnern frei verfügbar, die eine genauere Einschätzung berechnen
+          können wie <a
+          href='http://footprint.wwf.org.uk'>http://footprint.wwf.org.uk</a> und
+          <a
+          href='http://www.carbonfootprint.com/calculator.aspx'>http://www.carbonfootprint.com/calculator.aspx</a>.
+          Ein gemeinsames Merkmal all dieser Rechner ist, dass sie auf
+          Schätzungen und Verallgemeinerungen beruhen, was bedeutet, dass das
+          Ergebnis nie ganz exakt ist. Es wird beispielsweise nicht
+          einkalkuliert, ob man im vergangenen Jahr ein Haus gebaut hat und
+          somit viele Emissionen in Form von Baumaterial verursacht hat oder ob
+          man bei Flügen darauf achtet, mit verbrauchsarmen Flugzeugen zu
+          fliegen. 
