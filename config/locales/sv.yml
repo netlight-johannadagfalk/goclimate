@@ -367,7 +367,7 @@ sv:
         answer: Nej. Vi behöver CO2 för att leva på jorden. Men när vi pumpar upp miljontals ton CO2 från jordens inre varje dag och släpper ut i atmosfären så har det visat sig att det får konsekvenser i form av att vår planet blir varmare. Och det i sin tur kommer att leda till torka, vattenbrist, svält och eventuellt krig. Naturskyddsföreningen tror att vi kommer ha 200 miljoner klimatflyktingar 2050.
       q15:
         question: Kommer ni plocka ut vinst på det här projektet?
-        answer: "Vi vill göra allt för att uppnå maximal klimatnytta och har inte några planer på att plocka ut någon vinst. Om det däremot skulle visa sig att vi kan uppnå ännu mer klimatnytta framöver genom att sätta upp vinst-mål, så kommer vi göra det. Klimatnyttan går före allt för oss. <br><br>Än så länge har vi lagt ner tusentals timmar utan betalning och vinst på projektet, men vi hoppas på sikt att kunna betala ut lön till någon eller några för att göra projektet mer långsiktigt och därmed kunna göra ännu mer nytta för planeten. <br><br>Om vi någon gång skulle plocka ut lön eller vinst så kommer vi vara 100% transparenta med det, du kan redan idag följa alla ekonomiska detaljer om vår verksamhet här: <a href='https://www.goclimateneutral.org/100_percent_transparency'>https://www.goclimateneutral.org/100_percent_transparency</a>"
+        answer: "Vi vill göra allt för att uppnå maximal klimatnytta och har inte några planer på att plocka ut någon vinst. Om det däremot skulle visa sig att vi kan uppnå ännu mer klimatnytta framöver genom att sätta upp vinst-mål, så kommer vi göra det. Klimatnyttan går före allt för oss. <br><br>Än så länge har vi lagt ner tusentals timmar utan betalning och vinst på projektet, men vi hoppas på sikt att kunna betala ut lön till någon eller några för att göra projektet mer långsiktigt och därmed kunna göra ännu mer nytta för planeten. <br><br>Om vi någon gång skulle plocka ut lön eller vinst så kommer vi vara 100% transparenta med det, du kan redan idag följa alla ekonomiska detaljer om vår verksamhet här: <a href='https://sv.goclimateneutral.org/100_percent_transparency'>https://sv.goclimateneutral.org/100_percent_transparency</a>"
       q16:
         question: När klimatkrisen är över, kommer GoClimateNeutral.org att lägga ner då?
         answer: Ja! Tjohoo!
@@ -389,3 +389,5 @@ sv:
                 taken: Användaren finns redan registrerad hos oss, prova med en annan e-postadress!
                 blank: E-postfältet ser tomt ut!
                 invalid: E-postadressen ser konstig ut, prova igen!
+  climate_neutral_users_right_now: klimatneutrala användare just nu
+  ton_co2_we_have_offset_together: ton CO2 har vi stoppat tillsammans
