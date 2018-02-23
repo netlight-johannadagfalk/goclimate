@@ -559,13 +559,73 @@ de:
           Schritt im Kampf gegen den Klimawandel an. Es ist erwiesen, dass
           Unternehmen, die ihre Emissionen ausgleichen auch gleichzeitig ihren
           Emissionsausstoß stärker reduzieren als die, die keinen Ausgleich
-          schaffen. <br><br> 
+          schaffen. <br><br> 'Der typische Käufer von CO2-Kompensation reduziert
+          seine sogenannten Scope 1 Emissionen fast um 17% während Leute, die
+          keine Kompensation kaufen, ihre Scope 1 Emissionen lediglich um
+          weniger als 5% reduzieren.' - <a
+          href='http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf'
+          target='_blank'>http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf</a>
+          <br><br> Wir glauben, dass dies auch für Privatpersonen zutrifft und
+          dass Leute, die sich bei GoClimateNeutral.org registrieren und dafür
+          zahlen, Emissionen in der Atmosphäre zu reduzieren, auch eher ihren
+          eigenen CO2-Ausstoß reduzieren als Leute, die sich nicht
+          registrieren. 
       q8:
         question: Was genau ist ein Klimaprojekt?
+        answer: >-
+          Klimaprojekte verringern mit den investierten Geldern die Menge an
+          Emissionen, die in die Atmosphäre gelangen. Das können etwa
+          Windkraftanlagen sein, die elektrische Energie erzeugen, um Energie
+          aus fossilen Brennstoffen zu vermeiden. Auch effektivere Öfen können
+          Teil dieser Projekte sein, damit nicht mehr so viele Bäume abgeholzt
+          werden müssen. Es gibt auch Projekte, die eine ganze Busflotte von
+          Diesel auf Elektroantrieb tauschen. 
       q9:
         question: 'Wie kann ich mir sicher sein, dass diese Projekte zuverlässig sind?'
+        answer: >-
+          <img class='aligncenter wp-image-227 size-large'
+          src='https://www.goclimateneutral.org/blog/wp-content/uploads/2017/08/gold_standard_CDM-1024x626.png'
+          /><br> Um sicherzustellen, dass die investierten Gelder wirklich dazu
+          beitragen, Emissionen zu reduzieren, gibt es verschiedene Standards
+          wie CDM, Gold Standard, Plan Vivo, VCS und Fair Trade, die Projekte
+          anhand verschiedener Parameter zertifizieren. <br><br> Auch wenn die
+          meisten Projekte wirklich großartig sind, gibt es immer wieder welche,
+          die nicht halten, was sie versprechen, oder in manchen Fällen sogar
+          negative Auswirkungen auf die lokale Bevölkerung und das Umfeld haben,
+          in dem das Projekt umgesetzt wird. <br><br> Aus diesem Grund suchen
+          wir uns bei GoClimateNeutral.org die Projekte gut aus und investieren
+          nur in die zuverlässigsten und am besten geprüften Projekte - solche,
+          die sowohl die CDM-Zertifizierung (UN) als auch die Gold
+          Standard-Zertifizierung (u.a. WWF und Greenpeace) erhalten haben. Wenn
+          Sie in diese Projekte investieren, haben Sie alle UN-Mitgliedsstaaten
+          und ca. 90 weitere Umweltorganisationen im Rücken. Diese Projekte
+          werden zudem von Dritten wie TÜV und DNV verifiziert. Alle Protokolle
+          sind öffentlich und werden das gesamte Projekt über auf dem neuesten
+          Stand gehalten. <br><br> Wir wählen nicht nur Projekte aus, die
+          geprüft und zertifiziert sind, sondern kompensieren auch die doppelte
+          Menge an Emissionen - um auf der sicheren Seite zu sein, falls doch
+          einmal etwas mit den Klimaprojekten, in die wir investieren, schief
+          gehen sollte. Außerdem verteilen wir die Investitionen in mehrere
+          Klimaprojekte, um so viel Gutes wie möglich mit Ihrem Geld erreichen
+          zu können. 
       q10:
         question: 'Wie kann es so günstig sein, meine Emissionen auszugleichen? '
+        answer: >-
+          <img class="alignnone wp-image-270 size-large"
+          src="https://www.goclimateneutral.org/blog/wp-content/uploads/2018/01/price-ton-co2.png"
+          alt="" /><br> Man braucht nicht viel Geld, um in Entwicklungsländern
+          große Effekte erzielen zu können. Mit kleinen Beträgen kann man große
+          Klimaprojekte starten und umsetzen. <br><br> Bspl.: Ein Dorf in
+          Vietnam kann für 10,1 Millionen USD ein Wasserkraftwerk bauen. Das ist
+          leider mehr, als Energie aus Kohlekraftwerken zu kaufen, die 10
+          Millionen USD kosten würden. Das Dorf ist sehr arm und so wird die
+          Wasserkraftanlage nicht gebaut. Wenn man nun aber lediglich 0,1
+          Millionen USD hinzusteuert, geht die Rechnung wieder auf und das
+          Projekt kann umgesetzt werden - eine saubere Wasserkraftanlage ersetzt
+          nun die Energiegewinnung aus Kohle! Geringe Summen - in diesem Fall
+          0,1 Millionen USD - machen also einen großen Unterschied für die
+          Umwelt! Das Beispiel ist natürlich stark vereinfacht, demonstriert
+          aber hoffentlich das Prinzip. <br><br> 
       q11:
         question: Sind Menschen wirklich schuld am Klimawandel?
         answer: >-
@@ -590,6 +650,13 @@ de:
         question: Wie wird die persönliche Klimabilanz errechnet?
       q18:
         question: 'Woher weiß ich, in welche Klimaprojekte investiert wird?'
+        answer: >-
+          Wir stehen für absolute Transparenz bei allem, was wir tun. Alle
+          Projekte, in die wir investieren, werden Ihnen auf der ersten Seite
+          angezeigt, wenn Sie sich einloggen. Hier können Sie alles noch einmal
+          <b><a
+          href='https://www.goclimateneutral.org/blog/category/investment/'>in
+          unserem Blog zum Thema Investitionen nachlesen</a></b>.
   activerecord:
     errors:
       models:
@@ -603,5 +670,13 @@ de:
                 Diese E-Mail Adresse existiert bereits, versuchen Sie es mit
                 einer anderen!
               blank: Dieses Feld scheint leer zu sein!
+              invalid: >-
+                Scheinbar ist ein Fehler aufgetreten, versuchen Sie es noch
+                einmal!
   climate_neutral_users_right_now: Klimaneutrale Nutzer zum jetzigen Zeitpunkt
   ton_co2_less_in_atmosphere: Tonnen CO2 weniger in der Atmosphäre
+  for_companies: Für Unternehmen
+  for_companies_text_html: >
+    Sie möchten die Emissionen eines Fluges oder für den Lifestyle Ihrer
+    Mitarbeiter kompensieren? Wir helfen gerne. Kontaktieren Sie uns über <a
+    href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a>
