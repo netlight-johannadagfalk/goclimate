@@ -20,6 +20,9 @@ class WelcomeController < ApplicationController
   def about
   end
 
+  def companies
+  end
+
   def contact
   end
 

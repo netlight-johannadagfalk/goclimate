@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get 'press', to: 'welcome#press'
   get '100_percent_transparency', to: 'welcome#transparency'
   get 'our_projects', to: 'welcome#our_projects'
+  get 'companies', to: 'welcome#companies'
 
   resources :subscriptions
 

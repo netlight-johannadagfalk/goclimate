@@ -371,3 +371,7 @@ en:
                 invalid: The email looks incorrect, try again!
   climate_neutral_users_right_now: climate neutral users right now
   ton_co2_less_in_atmosphere: ton CO2 less in atmosphere
+  for_companies: For Companies
+  for_companies_text_html: Do you want to carbon offset the emissions from a flight or for all your employees lifestyle? We would love to help. Contact us at <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> now.
+  business: BUSINESS
+  consumer: CONSUMER
