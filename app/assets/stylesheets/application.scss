@@ -227,6 +227,9 @@ ul.nav.nav-tabs li.active a {
     width: 23px;
     text-align: left;
 }
+.site-wrapper .glyphicon-chevron-down.after-video {
+  padding-top: 20px;
+}
 .site-wrapper .glyphicon-chevron-down.glyphicon-plan-first {
     padding-top: 0px;
 }
@@ -440,6 +443,7 @@ div.profile {
 }
 .embed-container-wrapper { 
   max-height: 600px;
+  padding-top: 20px;
   margin: auto;
 }
 .embed-container { 
