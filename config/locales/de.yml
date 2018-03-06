@@ -291,7 +291,7 @@ de:
   update: Aktualisieren
   other_language_site: 'https://sv.goclimateneutral.org'
   other_language: Auf schwedisch
-  why_goclimateneutral: Warum GoClimateNeutral?
+  what_is_goclimateneutral: Warum GoClimateNeutral?
   this_is_how_it_works: So funktioniert's
   1_describe_your_lifestyle: 1. Lifestyle beschreiben
   describe_your_lifestyle_text: Beschreiben Sie Ihren Lifestyle und somit Ihren ökologischen Fußabdruck
@@ -625,22 +625,73 @@ de:
           nun die Energiegewinnung aus Kohle! Geringe Summen - in diesem Fall
           0,1 Millionen USD - machen also einen großen Unterschied für die
           Umwelt! Das Beispiel ist natürlich stark vereinfacht, demonstriert
-          aber hoffentlich das Prinzip. <br><br> 
+          aber hoffentlich das Prinzip. <br><br> Der wirtschaftliche Mechanismus
+          stammt von der UN und dem Kyoto-Protokoll, wo die sogenannten
+          CDM-Projekte und CER-Credits entstanden. Um die Qualität der sozialen
+          Aspekte der CDM-Projekte noch zu stärken, wurde bald die Gold Standard
+          Foundation von WWF und Greenpeace u.a. gegründet. <br><br> Bei
+          GoClimateNeutral.org versuchen wir die kosteneffektivsten CDM und Gold
+          Standard Projekte zu finden, damit Ihr Geld so viel positiven Einfluss
+          wie möglich auf das Klima nehmen kann. 
       q11:
         question: Sind Menschen wirklich schuld am Klimawandel?
         answer: >-
           Ja. Wenn Sie sich unsicher sind, erfahren Sie hier mehr darüber: <a
           href='https://www.bloomberg.com/graphics/2015-whats-warming-the-world/'>https://www.bloomberg.com/graphics/2015-whats-warming-the-world/</a>
       q12:
-        question: >-
-          Kann die CO2-Kompensation eine nachhaltigere Gesellschaft zur Folge
-          haben? 
+        question: 'Verhindert CO2-Kompensation eine nachhaltigere Gesellschaft? '
+        answer: >-
+          Nein, eher im Gegenteil! Wir glauben, dass CO2-Kompensation für viele
+          ein exzellenter erster Schritt sein kann, den Wandel zu einer
+          nachhaltigeren Gesellschaft zu beschleunigen. <br><br> Forschungen
+          haben gezeigt, dass Menschen die beispielsweise durch CO2-Kompensation
+          einen ersten Schritt in die richtige Richtung machen, auch eher danach
+          noch weitere und größere Schritte in diese Richtung unternehmen. Das
+          nennt man "Foot-in-the-door"-Technik und einer der Gründe, warum wir
+          den Einstieg in den Klimaschutz so einfach wie möglich machen wollen.
+          Wir haben viele Beispiele dafür, dass dies gelingt und sind überzeugt,
+          dass die Mehrheit der Leute, die sich registrieren, auch weitere
+          Schritte in Richtung einer nachhaltigeren Gesellschaft unternehmen. 
       q13:
         question: Hat der Klimaausgleich noch andere positive Effekte?
+        answer: >-
+          Ja, man hat herausgefunden, dass Unternehmen, die ihren CO2-Ausstoß
+          ausgleichen auch gleichzeitig ihre Emissionen verringern. Wir glauben,
+          dass der gleiche Effekte auch für Privatpersonen gilt - also dass auch
+          sie auf lange Sicht ihre Gewohnheiten ändern und ihren Fußabdruck
+          verringern. Lesen Sie hier mehr über den CO2-Ausgleich von
+          Unternehmen:<br><br>Read more in this report on offsetting companies:
+          <br>“ Der typische Käufer von CO2-Kompensation reduzierte seine Scope
+          1 Emissionen direkt um ca. 17%, wohingegen typische Nicht-Käufer ihre
+          Scope 1 Emissionen um weniger als 5% reduzierten.” - <a
+          href='http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf'
+          target='_blank'>http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf</a>
       q14:
         question: Ist CO2 gefährlich?
+        answer: >-
+          Nein. CO2 ist wichtig für jegliche Form von Leben auf der Erde. Wenn
+          aber Millionen Tonnen CO2 täglich ausgestoßen werden und in die
+          Atmosphäre gelangen, steigt infolgedessen die Temperatur auf der Erde.
+          Das wiederum führt zu Trockenheit, Wasserknappheit, Hunger und u. U.
+          sogar Kriegen. Die Nature Conservation Association in Schweden geht
+          davon aus, dass es im Jahr 2050 ca 200 Millionen Klimaflüchtlinge
+          geben wird. 
       q15:
         question: Macht GoClimateNeutral Gewinne mit diesem Projekt?
+        answer: >-
+          Wir möchten alles tun, um den Klimawandel so weit wie möglich zu
+          stoppen und haben keine Pläne, damit Profit zu machen. Wenn wir jedoch
+          zukünftig die Chancen, den Klimawandel zu stoppen, durch Gewinnziele
+          steigern können, werden wir das tun. Den Klimawandel zu stoppen, ist
+          unser höchstes Ziel. <br><br> Bis zum heutigen Zeitpunkt haben wir
+          bereits tausende Stunden ohne Bezahlung oder Profit in dieses Projekt
+          gesteckt, aber wir hoffen, dass wir in der Zukunft in der Lage sein
+          werden, Gehälter zu zahlen, um das Projekt langfristig zu sichern und
+          noch mehr Gutes für den Planeten zu tun. <br><br> Sollten wir
+          irgendwann Gehälter zahlen können oder Gewinn machen, werden wir zu
+          100% transparent sein, was das angeht. Auch jetzt können Sie schon
+          alle finanziellen Details hier einsehen: <a
+          href='https://en.goclimateneutral.org/100_percent_transparency'>https://en.goclimateneutral.org/100_percent_transparency</a>
       q16:
         question: >-
           Wenn die Klimakrise vorbei ist, wird GoClimateNeutral.org dann seine
