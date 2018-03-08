@@ -184,7 +184,9 @@ de:
   flies_long_distance_6_time_year: Fliegt 6 Mal/Jahr lange Distanzen
   flies_long_distance_12_time_year: Fliegt 12 Mal/Jahr lange Distanzen
   thats_it: Das ist es!
-  but_i_want_to_enter_more_details: Ich will weitere Angaben machen
+  read_more_how_we_calculate_offset_plans_html: 'Erfahren Sie mehr über unsere %-Berechnung{href}'
+  offset_plans: Kompensationspläne
+  but_i_want_to_enter_more_details: Aber...ich will weitere Angaben machen
   calculating_your_exact_footprint_html: >-
     Ihre genaue Klimabilanz zu berechnen ist um einiges komplizierter, als nur
     einen der beiden Vorlagen auszuwählen. Man benötigt eine Menge an Daten
@@ -346,6 +348,7 @@ de:
     Commons-lizensiert.
   im_in: Ich bin dabei!
   1_people: 1 Person
+  x_people: '%{Anzahl} Personen'
   faq: FAQ
   answer: Antwort
   read_more_on_frequently_asked_questions: Lesen Sie mehr in unseren FAQs
@@ -699,6 +702,21 @@ de:
         answer: Ja. Und wir geben allen ein Glas Champagner aus!
       q17:
         question: Wie wird die persönliche Klimabilanz errechnet?
+        answer: >-
+          Die Berechnung des persönlichen CO2-Ausstoßes ist ziemlich kompliziert
+          und kann niemals perfekt sein. Egal, wie detailliert die Kalkulation
+          ist, man wird immer eine Menge Annahmen machen müssen. Statt
+          komplizierte Berechnungsmodelle zu nutzen, basiert unsere Kalkulation
+          auf drei Lifestyle-Modellen, die den CO2-Fußabdruck am besten
+          wiedergeben: was man isst, welches Auto man fährt und wie oft man
+          fliegt. Um auf der sicheren Seite zu sein, kompensieren wir die
+          doppelte Menge an Emissionen, die Ihr Lifestyle unserer Schätzung nach
+          verursacht. Die zugrundeliegenden Mengen an CO2 der drei Modelle
+          basieren auf den exzellenten Berechnungen von myclimate.com und
+          carbonstory.org. Wenn Sie gerne eine genauere Angabe Ihrer CO2-Bilanz
+          haben möchten gibt es  <b><a
+          href='https://www.google.se/search?safe=active&q=carbon+footprint+calculator&cad=h'
+          target='_blank'> einige sehr gute Seiten da draußen</a><b>.
       q18:
         question: 'Woher weiß ich, in welche Klimaprojekte investiert wird?'
         answer: >-
