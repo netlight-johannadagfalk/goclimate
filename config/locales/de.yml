@@ -348,7 +348,7 @@ de:
     Commons-lizensiert.
   im_in: Ich bin dabei!
   1_people: 1 Person
-  x_people: '%{Anzahl} Personen'
+  x_people: '%{number} Personen'
   faq: FAQ
   answer: Antwort
   read_more_on_frequently_asked_questions: Lesen Sie mehr in unseren FAQs

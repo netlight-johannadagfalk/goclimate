@@ -99,10 +99,8 @@ sv:
   thats_it: Nu så!
   read_more_how_we_calculate_offset_plans_html: Läs mer om hur vi räknar ut våra %{href}.
   offset_plans: kompensationsplaner
-  read_more_about_how_we_choose_climet_projects_html: Läs mer om hur vi väljer ut %{href}.
   but_i_want_to_enter_more_details: Men.. jag vill räkna mer detaljerat på mitt klimatavtryck!
   calculating_your_exact_footprint_html: Att beräkna ett exakt klimatavtryck är väldigt svårt - mycket svårare än att bara välja ett alternativ här ovan - och kräver att man skriver in stora mängder data i krångliga formulär. Man behöver skriva in och beräkna hur långt man rör sig varje dag och med vilka transportmedel, detaljer om vad man äter och vart maten kommer ifrån, och energispecifikationer från ens bostad och jobb. Men även om vi tycker att alternativen ovan är en rätt bra uppskattning, så finns även möjligheten att använda %{href} och sen skriva in en exakt siffra här
-  lots_of_advanced_calculators_out_there: en av många klimatkalkylatorer där ute
   tonnes_co2_per_year: ton CO2/år
   sign_up_for_a_climate_neutral_life: Här börjar ditt klimatneutrala liv!
   sign_up_here_to_start_livint_a_climate_neutral_life: Skriv in dina uppgifter nedan för att börja resan mot ett klimatneutralt liv.
@@ -114,7 +112,7 @@ sv:
   your_payment_details_have_been_updated: Dina inställningar har uppdaterats
   no_card_registered: Inget kort registrerat
   climate_plan: Kompensation
-  go_climate_neutral: Jag vill rädda världen!
+  go_climate_neutral: Skapa prenumeration
   log_in_to_see_how_we_are_doing: Logga in för att se hur det går i vår kamp med att försöka ställa klimatet till rätta igen.
   you_have_lived_climate_neutral_for_one_month: Du har levt klimatneutralt i %{months} månad.
   you_have_lived_climate_neutral_for_more_months: Du har levt klimatneutralt i %{months} månader.
