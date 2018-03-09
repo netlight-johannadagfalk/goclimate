@@ -187,14 +187,6 @@ de:
   read_more_how_we_calculate_offset_plans_html: 'Erfahren Sie mehr über unsere Berechnung für %{href}.'
   offset_plans: Kompensationspläne
   but_i_want_to_enter_more_details: Aber...ich will weitere Angaben machen
-  calculating_your_exact_footprint_html: >-
-    Ihre genaue Klimabilanz zu berechnen ist um einiges komplizierter, als nur
-    eine der vorgegebenen Vorlagen auszuwählen. Man benötigt eine Menge an Daten
-    darüber, was Sie essen, wie und wohin Sie sich fortbewegen und wie Sie
-    leben. Unsere Vorlagen sind jedoch gute Schätzungen und Sie müssen sich
-    keine Gedanken machen, Ihre Klimabilanz damit nicht auszugleichen. Wenn Sie
-    mehr Details möchten, gibt es %{href}. Damit können Sie eine Option
-    auswählen und dann Ihre jährliche Klimabilanz hier eingeben. 
   tonnes_co2_per_year: Tonnen CO2/Jahr
   sign_up_for_a_climate_neutral_life: Anmelden für ein klimaneutrales Leben
   sign_up_here_to_start_livint_a_climate_neutral_life: Geben Sie Ihre Daten ein und starten Sie Ihr klimaneutrales Leben
@@ -351,6 +343,7 @@ de:
   im_in: Ich bin dabei!
   1_people: 1 Person
   x_people: '%{number} Personen'
+  press: Presse
   faq: FAQ
   answer: Antwort
   read_more_on_frequently_asked_questions: Lesen Sie mehr in unseren FAQs

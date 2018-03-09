@@ -100,7 +100,6 @@ sv:
   read_more_how_we_calculate_offset_plans_html: Läs mer om hur vi räknar ut våra %{href}.
   offset_plans: kompensationsplaner
   but_i_want_to_enter_more_details: Men.. jag vill räkna mer detaljerat på mitt klimatavtryck!
-  calculating_your_exact_footprint_html: Att beräkna ett exakt klimatavtryck är väldigt svårt - mycket svårare än att bara välja ett alternativ här ovan - och kräver att man skriver in stora mängder data i krångliga formulär. Man behöver skriva in och beräkna hur långt man rör sig varje dag och med vilka transportmedel, detaljer om vad man äter och vart maten kommer ifrån, och energispecifikationer från ens bostad och jobb. Men även om vi tycker att alternativen ovan är en rätt bra uppskattning, så finns även möjligheten att använda %{href} och sen skriva in en exakt siffra här
   tonnes_co2_per_year: ton CO2/år
   sign_up_for_a_climate_neutral_life: Här börjar ditt klimatneutrala liv!
   sign_up_here_to_start_livint_a_climate_neutral_life: Skriv in dina uppgifter nedan för att börja resan mot ett klimatneutralt liv.
@@ -215,6 +214,7 @@ sv:
   im_in: Ja, tack!
   1_people: 1 person
   x_people: '%{number} personer'
+  press: Press
   faq: Frågor & Svar
   answer: Svar
   read_more_on_frequently_asked_questions: Läs mer på vår sida med frågor och svar

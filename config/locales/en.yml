@@ -100,7 +100,6 @@ en:
   read_more_how_we_calculate_offset_plans_html: Read more on how we calculate the %{href}.
   offset_plans: offset plans
   but_i_want_to_enter_more_details: But.. I want to enter more details?
-  calculating_your_exact_footprint_html: "Calculating your exact climate footprint is a lot more complicated than by just choosing one of the plans above. You need tons of data, about what you eat, where you go and how you live. But the above plans are a good estimate and you don't have to worry that they are not covering for your climate footprint. But if you want to be more detailed, there's actually %{href}, so if you want to, you can try one and then enter your yearly carbon footprint here"
   tonnes_co2_per_year: tonnes CO2/year
   sign_up_for_a_climate_neutral_life: Sign up for a Climate Neutral Life
   sign_up_here_to_start_livint_a_climate_neutral_life: Enter your details below to start the journey towards a climate neutral life.
@@ -215,6 +214,7 @@ en:
   im_in: I'm in!
   1_people: 1 person
   x_people: '%{number} people'
+  press: Press
   faq: FAQ
   answer: Answer
   read_more_on_frequently_asked_questions: Read more on our FAQ
