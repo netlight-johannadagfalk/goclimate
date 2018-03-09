@@ -12,13 +12,13 @@ $(document).ready(function() {
 		var rounded_price_with_buffer = 0;
 
 		if (gon.locale === "en") {
-			var price = tonne_co2 * gon.SEK_PER_TONNE / gon.SEK_PER_DOLLAR / 12;
+			var price = tonne_co2 * gon.SEK_PER_TONNE / gon.SEK_PER_USD / 12;
 			var rounded_price_with_buffer = Math.round((price * gon.BUFFER_SIZE) * 10) / 10;
-			var price_per_tonne = Math.round((gon.SEK_PER_TONNE / gon.SEK_PER_DOLLAR) * 10) / 10;
+			var price_per_tonne = Math.round((gon.SEK_PER_TONNE / gon.SEK_PER_USD) * 10) / 10;
 		} else if (gon.locale === "de") {
-			var price = tonne_co2 * gon.SEK_PER_TONNE / gon.SEK_PER_EURO / 12;
+			var price = tonne_co2 * gon.SEK_PER_TONNE / gon.SEK_PER_EUR / 12;
 			var rounded_price_with_buffer = Math.round((price * gon.BUFFER_SIZE) * 10) / 10;
-			var price_per_tonne = Math.round((gon.SEK_PER_TONNE / gon.SEK_PER_EURO) * 10) / 10;
+			var price_per_tonne = Math.round((gon.SEK_PER_TONNE / gon.SEK_PER_EUR) * 10) / 10;
 		} else {
 			var price = tonne_co2 * gon.SEK_PER_TONNE / 12;
 			var rounded_price_with_buffer = Math.ceil(price * gon.BUFFER_SIZE / 5) * 5;

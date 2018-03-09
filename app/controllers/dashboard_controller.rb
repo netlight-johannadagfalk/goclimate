@@ -14,7 +14,8 @@ class DashboardController < ApplicationController
 
     my_amount_invested_usd_part = StripeEvent.payments(current_user).where(paid: true).where(currency: "usd").sum("stripe_amount").to_i / 100
     my_amount_invested_sek_part = StripeEvent.payments(current_user).where(paid: true).where(currency: "sek").sum("stripe_amount").to_i / 100
-    @my_amount_invested_sek = (my_amount_invested_sek_part + my_amount_invested_usd_part * 8.7).round 
+    my_amount_invested_eur_part = StripeEvent.payments(current_user).where(paid: true).where(currency: "eur").sum("stripe_amount").to_i / 100
+    @my_amount_invested_sek = (my_amount_invested_sek_part + my_amount_invested_usd_part * LifestyleChoice::SEK_PER_USD + my_amount_invested_eur_part * LifestyleChoice::SEK_PER_EUR).round 
 
     @my_carbon_offset = (@my_amount_invested_sek / LifestyleChoice::SEK_PER_TONNE.to_f).round(1)
 

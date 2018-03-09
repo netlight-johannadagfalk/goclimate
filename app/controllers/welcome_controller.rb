@@ -13,8 +13,8 @@ class WelcomeController < ApplicationController
     gon.locale = I18n.locale
     gon.SEK_PER_TONNE = LifestyleChoice::SEK_PER_TONNE
     gon.BUFFER_SIZE = LifestyleChoice::BUFFER_SIZE
-    gon.SEK_PER_DOLLAR = LifestyleChoice::SEK_PER_DOLLAR
-    gon.SEK_PER_EURO = LifestyleChoice::SEK_PER_EURO
+    gon.SEK_PER_USD = LifestyleChoice::SEK_PER_USD
+    gon.SEK_PER_EUR = LifestyleChoice::SEK_PER_EUR
     gon.price_info_popup_content = I18n.t('price_info_popup_content')
   end
 
