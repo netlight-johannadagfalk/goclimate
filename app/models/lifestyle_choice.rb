@@ -4,6 +4,7 @@ class LifestyleChoice < ApplicationRecord
   SEK_PER_TONNE = 40
   BUFFER_SIZE = 2
   SEK_PER_DOLLAR = 8.5
+  SEK_PER_EURO = 10
 
   def self.get_lifestyle_choice_price choices
 
@@ -15,6 +16,9 @@ class LifestyleChoice < ApplicationRecord
 
     if I18n.locale == :en
       price = tonne_co2 * SEK_PER_TONNE / SEK_PER_DOLLAR / 12
+      rounded_price_with_buffer = (price * BUFFER_SIZE).round(1)
+    elsif I18n.locale == :de
+      price = tonne_co2 * SEK_PER_TONNE / SEK_PER_EURO / 12
       rounded_price_with_buffer = (price * BUFFER_SIZE).round(1)
     else
       price = tonne_co2 * SEK_PER_TONNE / 12
@@ -46,5 +50,15 @@ class LifestyleChoice < ApplicationRecord
       lifestyle_choice_co2[choice.id] = choice.co2
     end
     lifestyle_choice_co2
+  end
+
+  def self.get_price_per_tonne
+    if I18n.locale == :en
+      (SEK_PER_TONNE / SEK_PER_DOLLAR).round(1)
+    elsif I18n.locale == :de
+      (SEK_PER_TONNE / SEK_PER_EURO).round(1)
+    else
+      SEK_PER_TONNE
+    end
   end
 end

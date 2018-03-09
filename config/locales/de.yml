@@ -141,7 +141,7 @@ de:
   hardly_ever_flies: Fliege selten
   mini_impact_plan: Mini
   small_impact_plan: Medium
-  plan_price_html: '$<span id="sum">%{cost}</span><span class="subscript">/mo</span>'
+  plan_price_html: '<span id="sum">%{cost}</span><span class="subscript"> €/mo</span>'
   cost_calculation: Kostenkalkulation
   price_info_popup_content: >-
     In diesem Fall schätzen wir Ihre jährliche Klimabilanz auf %{footprint}
@@ -152,9 +152,9 @@ de:
 
     Wir investieren in Projekte, die von der UN zertifiziert sind (CDM) und
     verfügen außerdem über das Label Gold Standard (u.a. von Greenpeace und
-    WWF). Diese Projekte kosten ca. $%{price_per_tonne} pro Tonne - daher kostet
-    Sie dies $%{price_per_month} pro Monat.
-  you_will_offset_for: 'Sie kompensieren mit $%{cost}/month'
+    WWF). Diese Projekte kosten ca. %{price_per_tonne} € pro Tonne - daher kostet
+    Sie dies %{price_per_month} € pro Monat.
+  you_will_offset_for: 'Sie kompensieren mit %{cost} €/monat'
   custom_impact_plan: Individuell
   mostly_vegetarian: Überwiegend vegetarische Ernährung
   one_fuel_efficient_car: Ein verbrauchsarmes Auto
@@ -223,7 +223,7 @@ de:
     kann, würden wir uns freuen, wenn Sie Anderen von GoClimateNeutral erzählen,
     damit auch sie ein klimaneutrales Leben führen können!
   one_extra_month_for_every_friend_html: >-
-    Wir schenken Ihnen <b>1 klimaneutralen Monat</b> (im Wert von $10) für jeden
+    Wir schenken Ihnen <b>1 klimaneutralen Monat</b> (im Wert von 1 €) für jeden
     neuen Freund, den Sie werben!
   share_on_facebook: Auf Facebook teilen
   share_on_twitter: Auf Twitter teilen

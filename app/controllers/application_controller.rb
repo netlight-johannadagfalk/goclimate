@@ -35,9 +35,6 @@ class ApplicationController < ActionController::Base
       I18n.locale = params[:locale]
     end
 
-    logger.debug "host: " + request.host
-    logger.debug "locale: " + I18n.locale.to_s
-
   end
 
   def after_sign_in_path_for(resource)
@@ -49,22 +46,20 @@ class ApplicationController < ActionController::Base
   end
 
   def currency_for_user
+    
     if user_signed_in? && !current_user.stripe_events.first.nil?
       currency = current_user.currency
     else
-      currency = I18n.locale == :sv ? "sek" : "usd"
+      if I18n.locale == :sv 
+        currency = "sek"
+      elsif I18n.locale == :en
+        currency = "usd"
+      elsif I18n.locale == :de
+        currency = "eur"
+      end
+
     end
     currency
-  end
-
-  def set_plan_data
-    @lifestyle_choice_co2 = LifestyleChoice.get_lifestyle_choice_co2
-    gon.lifestyle_choice_co2 = @lifestyle_choice_co2
-    gon.locale = I18n.locale
-    gon.SEK_PER_TONNE = LifestyleChoice::SEK_PER_TONNE
-    gon.BUFFER_SIZE = LifestyleChoice::BUFFER_SIZE
-    gon.SEK_PER_DOLLAR = LifestyleChoice::SEK_PER_DOLLAR
-    gon.price_info_popup_content = I18n.t('price_info_popup_content')
   end
 
   protected
