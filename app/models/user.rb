@@ -26,6 +26,8 @@ class User < ApplicationRecord
   def language
     if stripe_events.first.currency == "sek"
       :sv
+    elsif stripe_events.first.currency == "eur" 
+      :de
     else
       :en
     end
