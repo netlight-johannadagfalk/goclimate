@@ -701,6 +701,61 @@ table.our-projects th {
     text-align: center;
 }
 
+/***** Modal *****/
+ 
+.welcome-index {
+
+  .modal-backdrop.in {
+      filter: alpha(opacity=7);
+      opacity: 0.7;
+  }
+   
+  .modal-content {
+      background: none;
+      border: 0;
+      -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
+      -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+  }
+   
+  .modal-body {
+      padding: 0 25px 25px 25px;
+  }
+   
+  .modal-header {
+      padding: 25px 25px 15px 25px;
+      text-align: right;
+  }
+   
+  .modal-header, .modal-footer {
+      border: 0;
+  }
+   
+  .modal-header .close {
+      float: none;
+      margin: 0;
+      font-size: 60px;
+      color: #fff;
+      font-weight: 300;
+      text-shadow: none;
+      opacity: 1;
+  }
+  .welcome .modal.fade .modal-dialog {
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+       -moz-transition: -moz-transform 0.3s ease-out;
+         -o-transition: -o-transform 0.3s ease-out;
+            transition: transform 0.3s ease-out;
+  }
+
+  .welcome .modal.in .modal-dialog {
+
+  }
+
+  .modal-header {
+    padding: 0px;
+  }
+}
+
+
 /*
  * Social Buttons for Bootstrap
  *

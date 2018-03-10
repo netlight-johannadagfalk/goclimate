@@ -8,10 +8,31 @@
             <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
             <h1 class="cover-heading"><%=t('welcome_to_a_climate_neutral_life') %></h1>
             <p class="lead"><%=t 'climate_change_is_the_greatest_challange' %></p>
-            
             <p class="lead lead-btn">
               <a href="/step_1_choose_plan" class="btn btn-lg btn-success"><%=t 'i_want_to_know_more' %></a>
             </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+              <div class='embed-container-wrapper'>
+                      <div class='embed-container'>
+                        <% if I18n.locale == :sv %>
+                          <iframe src='https://player.vimeo.com/video/241825913' align='top' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <% else %>
+                          <iframe src='https://player.vimeo.com/video/246406263' align='top' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <% end %>
+                      </div>
+                  </div>
+            </div>
           </div>
         </div>
       </div>

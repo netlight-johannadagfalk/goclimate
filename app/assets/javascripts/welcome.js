@@ -84,5 +84,20 @@ $(document).ready(function() {
 	$('#scroll-to-choose-plan').on('click', function (e) {
 		scrollToAnchor('#choose-plan');
 	});
+
+    $('#videoModal').modal('show');
+    $('#videoModal').on('hidden.bs.modal', function (e) {
+		var $frame = $('iframe');
+
+		// saves the current iframe source
+		var vidsrc = $frame.attr('src');
+
+		// sets the source to nothing, stopping the video
+		$frame.attr('src', '');
+
+		// sets it back to the correct link so that it reloads immediately on the next window open
+		$frame.attr('src', vidsrc);
+
+	})
 	
 });
