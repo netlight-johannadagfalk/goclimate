@@ -353,8 +353,14 @@ en:
         question: How do we calculate the carbon footprints?
         answer: The calculation of a carbon footprint is very complicated and can never be perfect. It doesn't matter how detailed you do your calculation, you will always need to make a lot of assumptions. Instead of using a complicated calculation we base our model on the three lifestyle choices that effect your footprint the most; what you eat, what you drive and how much you fly. To be on the safe side we offset for twice as much as we estimate that your lifestyle cause. The amount of corbon in the different lifestyle choices we base on the excellent calculators from myclimate.com and carbonstory.org. If you want a more exact amount of your carbon footprint there are <b><a href='https://www.google.se/search?safe=active&q=carbon+footprint+calculator&cad=h' target='_blank'>lots of very good calculators out there</a><b>.
       q18:
-        question: How do I know what climate offset projects are invested in?
+        question: How do I know what climate offset projects we are investing in?
         answer: We believe in full transparency in everything we do. All project that we invest in are shown on the first page when you log in to your account. You can also read about them <b><a href='https://www.goclimateneutral.org/blog/category/investment/'>on our blog under the category investment</a></b>.
+      q19:
+        question: How do i cancel my subscription?
+        answer: "You can easily cancel your subscription by choosing 'cancel climate plan' on the payment settings page here: <a href='https://en.goclimateneutral.org/users/edit/payment'>https://en.goclimateneutral.org/users/edit/payment</a>"
+      q20:
+        question: How is my card details stored and handled?
+        answer: We are using Stripe (<a href="https://stripe.com/">https://stripe.com/</a>) as our payments provider. Stripe is one of the biggest payment providers online. All card details are completely handled by them - completely encrypted of course. Card details never go by our own servers, they are handled directly by Stripe.
   activerecord:
     errors:
       models:

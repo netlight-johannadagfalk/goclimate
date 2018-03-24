@@ -375,6 +375,12 @@ sv:
       q18:
         question: Hur får jag reda på vilka klimatprojekt som vi investerar i?
         answer: Vi tror på full transparens i allt vi gör. Alla klimatkompensationsprojekt som vi investerar i redovisas på förstasidan när du loggar in på ditt konto. Du kan dessutom läsa om dem på <b><a href='https://www.goclimateneutral.org/blog/category/investment/'>bloggen under kategorin investeringar</a></b>.
+      q19:
+        question: Hur avslutar jag min prenumeration?
+        answer: "Det är superenkelt, man stänger av sin prenumeration genom att välja 'cancel climate plan' på sidan där man hanterar sina betalningsinställningar: <a href='https://sv.goclimateneutral.org/users/edit/payment'>https://sv.goclimateneutral.org/users/edit/payment</a>"
+      q20:
+        question: Hur hanteras mina kortuppgifter?
+        answer: Vi använder vi oss av Stripe (<a href="https://stripe.com/se">stripe.com</a>) som betalningsleverantör, som är en av de största betalningsleverantörerna på nätet. Kortuppgifterna och betalningarna hanteras helt och hållet av dem - helt krypterat förstås. Kortuppgifterna hamnar aldrig på våra eller någon annans servrar, utan hanteras endast utav Stripe.
   activerecord:
     errors:
       models:
