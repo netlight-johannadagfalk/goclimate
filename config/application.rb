@@ -18,7 +18,7 @@ module ClimateNeutralLife
      
     # Whitelist locales available for the application
     I18n.available_locales = [:en, :sv, :de]
-    
+    config.i18n.fallbacks = true
     I18n.default_locale = :en
     
   end

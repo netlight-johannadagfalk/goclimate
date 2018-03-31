@@ -1,11 +1,20 @@
 $(document).ready(function() {
 
 
+	function scrollToAnchor(aid){
+		var aTag = $(aid);
+		$('html,body').animate({scrollTop: aTag.offset().top},'slow');
+	};
+	
+	if($('#error_explanation').length) {
+		scrollToAnchor('#error_explanation');
+	};
+
 	if($('#new-card-div').length) {
 		$('#add-new-card').click(function() {
 			$('#new-card-div').removeClass("hidden");
 		});
-	}
+	};
 
 	if($('#card-element').length) {
 

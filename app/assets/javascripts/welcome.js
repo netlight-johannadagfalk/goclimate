@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
 	function planSum(){
-    	var food = parseInt($('#food').val());
-    	var car = parseInt($('#car').val());
+		var food = parseInt($('#food').val());
+		var car = parseInt($('#car').val());
 		var flying = parseInt($('#flying').val());
 		var base_cost = parseInt($('#base_cost').val());
 		var people = parseInt($('#people').val());
@@ -34,35 +34,35 @@ $(document).ready(function() {
 		$('.custom-plan-price .price-info-helper').attr('data-content', data_content);
 		$('.popover-content').html(data_content);
 		$('#custom-plan').attr("href", "/users/sign_up?choices=" + base_cost + "," + food + "," + car + "," + flying + "," + people);
-    };
+	};
 
-    $('#food').change(function() {
-  		planSum();
+	$('#food').change(function() {
+			planSum();
 	});
 	$('#car').change(function() {
-  		planSum();
+			planSum();
 	});
 	$('#flying').change(function() {
-  		planSum();
+			planSum();
 	});
 	$('#people').change(function() {
-  		planSum();
+			planSum();
 	});
 
 	//for faq links
 	$('.panel-title a').on('click', function (e) {
 	   window.location.hash = e.target.hash + "id";
 	});
-    var anchor = window.location.hash.replace("id", "");
-    $(anchor).collapse('show');
+	var anchor = window.location.hash.replace("id", "");
+	$(anchor).collapse('show');
 
-    $(function () {
-  		$('[data-toggle="popover"]').popover();
+	$(function () {
+			$('[data-toggle="popover"]').popover();
 	});
 
 	function scrollToAnchor(aid){
-    	var aTag = $(aid);
-    	$('html,body').animate({scrollTop: aTag.offset().top},'slow');
+		var aTag = $(aid);
+		$('html,body').animate({scrollTop: aTag.offset().top},'slow');
 	};
 
 	$('#im-in-button').on('click', function (e) {
@@ -85,8 +85,8 @@ $(document).ready(function() {
 		scrollToAnchor('#choose-plan');
 	});
 
-    $('#videoModal').modal('show');
-    $('#videoModal').on('hidden.bs.modal', function (e) {
+	$('#videoModal').modal('show');
+	$('#videoModal').on('hidden.bs.modal', function (e) {
 		var $frame = $('iframe');
 
 		// saves the current iframe source
@@ -99,5 +99,5 @@ $(document).ready(function() {
 		$frame.attr('src', vidsrc);
 
 	})
-	
+
 });
