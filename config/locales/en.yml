@@ -53,11 +53,11 @@ en:
   section_1_text: We invest in certified climate offset projects for you and show you easy ways to reduce your climate footprint - in this way you help slow down climate change and contribute to saving our planet.
   its_fun_to_do_it_together: It's more fun to save the planet together!
   section_2_text: By offsetting your climate impact with us, you inspire others to do the same. Climate change is a challenge we face together, so we should fight it together as well.
-  we_are_100_transparent: We are 100% transparent
-  section_3_text: We are 100% transparent in which both UN and Gold Standard-certified climate offset projects we invest in, and why. We are also 100% transparent with the amount carbon we manage to offset with your help, and how much carbon we manage to offset in total.
-  we_are_975_effective: We are very climate efficient
+  we_are_100_transparent: We are 100% transparent.
+  section_3_text: We are 100% transparent in which both UN and Gold Standard-certified climate offset projects we invest in, and why.
+  we_are_975_effective: We are very climate efficient.
   section_4_text: We invest in the most effective certified climate offset projects we can find, so that your money slows down climate change as much as possible.
-  start_by_choosing_plan: Start by describing your climate impact
+  start_by_choosing_plan: Start by describing your climate impact.
   section_5_text: What is your way of living? Select an option below or enter a custom one that better corresponds to your lifestyle.
   vegan: Plant-based diet
   no_car: No car
@@ -216,7 +216,7 @@ en:
   x_people: '%{number} people'
   press: Press
   where_will_my_money_be_used: Where will my money be used?
-  why_can_i_trust_goclimateneutral: Why can I trust this?
+  good_to_know: You can feel safe.
   why_trust_1: All climate projects we invest in are thoroughly reviewed by a third-party
   why_trust_2: We are completely transparent with were your money ends up
   why_trust_3: We are non-profit - we just want to do everything we can to stop climate change
