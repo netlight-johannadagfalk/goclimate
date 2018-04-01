@@ -54,6 +54,8 @@ en:
   its_fun_to_do_it_together: It's more fun to save the planet together!
   section_2_text: By offsetting your climate impact with us, you inspire others to do the same. Climate change is a challenge we face together, so we should fight it together as well.
   we_are_100_transparent: We are 100% transparent.
+  this_is_a_first_step: This is a first step.
+  this_is_a_first_step_description: Get started with a climate neutral life now. We will also all need to reduce our climate footprint, something that we will help with by sharing inspiration and information.
   section_3_text: We are 100% transparent in which both UN and Gold Standard-certified climate offset projects we invest in, and why.
   we_are_975_effective: We are very climate efficient.
   section_4_text: We invest in the most effective certified climate offset projects we can find, so that your money slows down climate change as much as possible.
@@ -67,7 +69,7 @@ en:
   plan_price_html: '$<span id="sum">%{cost}</span><span class="subscript">/mo</span>'
   cost_calculation: Cost calculation
   price_info_popup_content: With this choice we estimate a yearly climate footprint of %{footprint} tonne CO<sub>2</sub>. Since the number is approximate we offset for twice as many tonnes, so %{footprint_x2} tonne C0<sub>2</sub>. This way you can be sure you live climate neutral every month.<br>We invest in projects that are UN-certified (CDM) and also have the quality label Gold Standard (created among others by Greenpeace and WWF). These project cost about $%{price_per_tonne} per tonne - so this choice end up at $%{price_per_month} per month.
-  you_will_offset_for: You will offset with $%{cost}/month
+  you_will_offset_for: To take responsibility for your climate footprint costs $%{cost}/month
   custom_impact_plan: Custom
   mostly_vegetarian: Eat mostly vegetarian food
   one_fuel_efficient_car: One Fuel Efficient Car
@@ -222,7 +224,7 @@ en:
   why_trust_3: We are non-profit - we just want to do everything we can to stop climate change
   why_trust_4: It's super easy to cancel your climate offset plan if you want to
   why_trust_5: If you regret your offset plan within 60 days we will give you your money back
-  we_invest_in_un_climate_projects_that_are_gold_standard_certified: We are investing in UN climate projects that are Gold Standard certified. See some examples of projects we invested in below.
+  we_invest_in_un_climate_projects_that_are_gold_standard_certified: We take responsibility for your climate footprint by investing in climate projects that are UN and Gold Standard certified. See some examples of projects we invested in below.
   thai_solar_carousel_description: Over 90% of electricity consumed in Thailand’s grid is supplied by fossil fuel. We have invested in this solar plant that supplies clean renewable electricity to the Thailand grid.
   nanyang_danjiang_carousel_description: By replacing traditional coal-fired cooking stoves with clean solar cookers – CO2-emissions are reduced and the quality of life of 50.000 rural household are improved.
   dak_pone_carousel_description: The Dak Pone Hydro project replaces diesel generators and wood-fired heating with clean sustainable hydro energy.
