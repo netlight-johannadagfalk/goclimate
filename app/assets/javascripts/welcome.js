@@ -89,6 +89,10 @@ $(document).ready(function() {
 	$('#show-video').on('click', function (e) {
 		e.preventDefault();
 		$('#videoModal').modal('show');
+		ga('send', {
+			hitType: 'event',
+			eventAction: 'viewVideo'
+		});
 	});
 	
 	$('#videoModal').on('hidden.bs.modal', function (e) {
