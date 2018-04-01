@@ -85,7 +85,12 @@ $(document).ready(function() {
 		scrollToAnchor('#choose-plan');
 	});
 
-	$('#videoModal').modal('show');
+
+	$('#show-video').on('click', function (e) {
+		e.preventDefault();
+		$('#videoModal').modal('show');
+	});
+	
 	$('#videoModal').on('hidden.bs.modal', function (e) {
 		var $frame = $('iframe');
 
@@ -98,6 +103,6 @@ $(document).ready(function() {
 		// sets it back to the correct link so that it reloads immediately on the next window open
 		$frame.attr('src', vidsrc);
 
-	})
+	});
 
 });
