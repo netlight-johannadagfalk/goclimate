@@ -47,7 +47,7 @@ class WelcomeController < ApplicationController
     @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
     @total_carbon_offset = Project.total_carbon_offset
     @cost_in_sek = Project.sum (:cost_in_sek)
-    @payouts_in_sek = (StripePayout.sum(:amount) / 100)
+    @payouts_in_sek = (StripePayout.sum(:amount) / 100) + Invoice.sum(:amount_in_sek)
   end
 
 end
