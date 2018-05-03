@@ -1,8 +1,6 @@
 class WelcomeController < ApplicationController
 
   def index
-    @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
-    @total_carbon_offset = Project.total_carbon_offset
   end
 
   def plan

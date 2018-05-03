@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'our_projects', to: 'welcome#our_projects'
   get 'companies', to: 'welcome#companies'
   get 'start', to: 'welcome#start'
+  get 'welcome', to: 'welcome#welcome'
 
   resources :subscriptions
 
