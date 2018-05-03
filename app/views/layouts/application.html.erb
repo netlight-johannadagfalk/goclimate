@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% if params[:controller] === "welcome" && params[:action] === "index" %>
+    <% if params[:controller] === "welcome" && params[:action] === "index" && request.host.include?("sv.goclimateneutral.org") %>
           <!-- Google Analytics Content Experiment code -->
           <script>function utmx_section(){}function utmx(){}(function(){var
           k='148323510-0',d=document,l=d.location,c=d.cookie;
