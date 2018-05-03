@@ -94,7 +94,9 @@ $(document).ready(function() {
 			eventAction: 'viewVideo'
 		});
 	});
-	
+
+	$('#video-modal-on-start').modal('show');
+
 	$('#videoModal').on('hidden.bs.modal', function (e) {
 		var $frame = $('iframe');
 
