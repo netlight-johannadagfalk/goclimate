@@ -50,6 +50,7 @@
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-97611261-1', 'auto');
       ga('send', 'pageview');
+      gtag('config', 'AW-823228700');
     </script>
     <!-- Facebook Pixel Code -->
     <script>
@@ -76,6 +77,10 @@
     <% if params[:registered].to_i == 1 %>
       <script>
         fbq('track', 'Purchase');
+        gtag('event', 'conversion', {
+            'send_to': 'AW-823228700/my_gCMeBs4EBEJzyxYgD',
+            'transaction_id': ''
+        });
       </script>
     <% end %>
 
