@@ -28,6 +28,8 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
 ```
 LifestyleChoice.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!('lifestyle_choices')
+Project.delete_all
+ActiveRecord::Base.connection.reset_pk_sequence!('projects')
 
 LifestyleChoice.create!([
   {name: "vegan", category: "food", version: 1, co2: "0.59"},
@@ -78,6 +80,9 @@ LifestyleChoice.create!([
   {name: "18_people", category: "people", version: 1, co2: "18.0"},
   {name: "19_people", category: "people", version: 1, co2: "19.0"},
   {name: "20_people", category: "people", version: 1, co2: "20.0"}
+])
+Project.create!([
+  {name: "Trang Palm Oil Wastewater Treatment Project in Trang Province", link: "https://offset.climateneutralnow.org/trang-palm-oil-wastewater-treatment-project-in-trang-province-thailand-3335-", image_url: "https://www.goclimateneutral.org/blog/wp-content/uploads/2017/05/0000213_trang-palm-oil-wastewater-treatment-project-in-trang-province-thailand_550.jpeg", blog_url: "https://www.goclimateneutral.org/blog/carbon-offset-investment-in-trang-palm-oil-wastewater-treatment-project/", longitude: "99.438056", latitude: "7.555", carbon_offset: 50, country: "Thailand", offset_type: "CDM", cost_in_sek: 228, date_bought: "2017-05-21 00:00:00", invoice_url: "https://www.goclimateneutral.org/blog/wp-content/uploads/2017/05/invoice_1491461_2048.pdf", certificate_url: "https://www.goclimateneutral.org/blog/wp-content/uploads/2017/05/1491461_2048.pdf"}
 ])
 
 ```
