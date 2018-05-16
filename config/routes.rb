@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get 'companies', to: 'welcome#companies'
   get 'start', to: 'welcome#start'
   get 'welcome', to: 'welcome#welcome'
+  get 'klimatkompensera', to: 'welcome#klimatkompensera'
 
   resources :subscriptions
 
