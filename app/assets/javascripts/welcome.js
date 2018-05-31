@@ -85,6 +85,7 @@ $(document).ready(function() {
 		scrollToAnchor('#choose-plan');
 	});
 
+	$('#videoModal').modal('show');
 
 	$('#show-video').on('click', function (e) {
 		e.preventDefault();
