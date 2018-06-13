@@ -607,6 +607,9 @@ td.form.select {
     padding: 20px;
     margin: 0;
 }
+.giftcard .the-price {
+  box-shadow: none;
+}
 .plan-faq {
   padding-top: 30px;
 }
@@ -661,6 +664,12 @@ div.trust {
 ul.trust {
   text-align: left;
   margin: 0 auto;
+}
+.form-horizontal.giftcard .control-label {
+  padding-top: 12px;
+}
+.form-horizontal.giftcard textarea {
+  width: 200px;
 }
 
 
@@ -733,7 +742,7 @@ ul.trust {
 
 /***** Modal *****/
  
-.welcome-index, .welcome-start {
+.welcome-index, .welcome-start, .users {
 
   .modal-backdrop.in {
       filter: alpha(opacity=7);

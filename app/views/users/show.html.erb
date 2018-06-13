@@ -9,8 +9,7 @@
   <div class="cover-container">
   <%= render "shared/header" %>
     <div class="inner cover">
-      <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-      <!-- <h3 class="cover-heading"><%=t 'one_extra_month_for_every_friend_html' %></h3> -->
+      <a id="show-video" href=""><span class="glyphicon" aria-hidden="true"><%= image_tag "play.png" %></span></a>
       <h3 class="cover-heading"><%= @social_quote %></h3>
       
       <% if @sharing %>
@@ -36,3 +35,28 @@
     </div>
   </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class='embed-container-wrapper'>
+                <div class='embed-container'>
+                  <% if I18n.locale == :sv %>
+                    <iframe src='https://player.vimeo.com/video/241825913' align='top' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                  <% else %>
+                    <iframe src='https://player.vimeo.com/video/246406263' align='top' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                  <% end %>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
