@@ -365,7 +365,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def generate_plan_id plan
-    "climate_offset_" + plan.to_s + "_" + currency_for_user + "_monthly"
+    "climate_offset_" + plan.to_s.gsub(/[.,]/, "_") + "_" + currency_for_user + "_monthly"
   end
 
   def generate_product_name plan
