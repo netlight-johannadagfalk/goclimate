@@ -12,6 +12,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
 
+    if params[:choices].nil? || !params[:choices].include?(",")
+      redirect_to "/step_1_choose_plan" and return
+    end
+
     @plan = get_plan params[:choices]
     @currency = currency_for_user
 
