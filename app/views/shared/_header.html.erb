@@ -13,7 +13,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <% if controller_name == "welcome" && action_name == "index" %>
+        <% if controller_name == "welcome" && (action_name == "index" || action_name == "index_all_in_one") %>
           <li><a href="/companies"><%= t('business') %></a></li>
           <li><a href="/companies">|</a></li>
           <li><a href="/"><%= t('consumer') %></a></li>

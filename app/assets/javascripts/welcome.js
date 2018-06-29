@@ -65,7 +65,7 @@ $(document).ready(function() {
 		$('html,body').animate({scrollTop: aTag.offset().top},'slow');
 	};
 
-	$('#im-in-button').on('click', function (e) {
+	$('.im-in-button').on('click', function (e) {
 		ga('send', {
 			hitType: 'event',
 			eventAction: 'scrollToPlans'

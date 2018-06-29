@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   resources :users, :only => [:show]
 
   get '/users' => 'dashboard#index', as: :user_root 
-  get '', to: 'welcome#index'
   get 'step_1_choose_plan', to: 'welcome#plan'
   get 'about', to: 'welcome#about'
   get 'contact', to: 'welcome#contact'
@@ -40,7 +39,8 @@ Rails.application.routes.draw do
   get 'wp-login.php', to: proc { [404, {}, ['']] }
   get 'ads.txt', to: proc { [404, {}, ['']] }
 
-  root 'welcome#index'
+  root 'welcome#index_all_in_one'
+
 
 #  unless Rails.application.config.consider_all_requests_local
 #    get '*path', to: 'errors#error_404', via: :all
