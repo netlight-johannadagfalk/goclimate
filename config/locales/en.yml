@@ -395,3 +395,18 @@ en:
   thats_amazing_from_the_bottom_of_our_hearts: That's amaizing! From the bottom of our hearts
   year: year
   years: years
+
+  welcome:
+    intro: Climate change is the greatest challenge of our time. Together we have a chance to hit the brakes and save our planet, but we have to act now. By offsetting your climate impact, you can become part of the solution right now. GoClimateNeutral is the simplest way to do this.
+    what_is_gcn_text: We invest in UN certified climate offset projects and highlight easy ways to reduce your climate footprint. In this way we help slow down climate change and contribute to saving our planet.
+    lets_save_our_planet_header: Less is more!
+    lets_save_our_planet_text: Every ton CO2 less in the atmosphere means more of all the things we love on this planet. Here's what we've achieved together so far.
+    call_to_actions:
+      tell_me_more: Tell me more!
+      im_ready_to_sign_up: I'm ready to sign up!
+      i_want_to_contribute: I want to contribute!
+    how_it_works:
+      describe_your_lifestyle_text: Use our climate calculator to get your estimated carbon footprint.
+      sign_up_text: Sign up to offset your carbon footprint on a monthly basis.
+      save_our_planet_header: 3. Save Our Planet
+      save_our_planet_text: Be part of our community of people who no longer contribute to climate change.

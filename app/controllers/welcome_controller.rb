@@ -3,6 +3,19 @@ class WelcomeController < ApplicationController
   def index
   end
 
+  def index_all_in_one
+    @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
+    @total_carbon_offset = Project.total_carbon_offset
+    @lifestyle_choice_co2 = LifestyleChoice.get_lifestyle_choice_co2
+    gon.lifestyle_choice_co2 = @lifestyle_choice_co2
+    gon.locale = I18n.locale
+    gon.SEK_PER_TONNE = LifestyleChoice::SEK_PER_TONNE
+    gon.BUFFER_SIZE = LifestyleChoice::BUFFER_SIZE
+    gon.SEK_PER_USD = LifestyleChoice::SEK_PER_USD
+    gon.SEK_PER_EUR = LifestyleChoice::SEK_PER_EUR
+    gon.price_info_popup_content = I18n.t('price_info_popup_content')
+  end
+
   def plan
     @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
     @total_carbon_offset = Project.total_carbon_offset
