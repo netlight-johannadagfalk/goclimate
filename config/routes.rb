@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   get 'wp-login.php', to: proc { [404, {}, ['']] }
   get 'ads.txt', to: proc { [404, {}, ['']] }
 
-  root 'welcome#index_all_in_one'
+  root 'welcome#index'
 
 
 #  unless Rails.application.config.consider_all_requests_local
