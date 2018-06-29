@@ -17,8 +17,7 @@ Rails.application.routes.draw do
   }
   resources :users, :only => [:show]
 
-  get '/users' => 'dashboard#index', as: :user_root 
-  get 'step_1_choose_plan', to: 'welcome#plan'
+  get '/users' => 'dashboard#index', as: :user_root
   get 'about', to: 'welcome#about'
   get 'contact', to: 'welcome#contact'
   get 'faq', to: 'welcome#faq'
@@ -27,8 +26,6 @@ Rails.application.routes.draw do
   get '100_percent_transparency', to: 'welcome#transparency'
   get 'our_projects', to: 'welcome#our_projects'
   get 'companies', to: 'welcome#companies'
-  get 'start', to: 'welcome#start'
-  get 'welcome', to: 'welcome#welcome'
   get 'klimatkompensera', to: 'welcome#klimatkompensera'
 
   resources :subscriptions

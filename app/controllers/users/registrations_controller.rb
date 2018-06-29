@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
 
     if params[:choices].nil? || !params[:choices].include?(",")
-      redirect_to "/step_1_choose_plan" and return
+      redirect_to "/#choose-plan" and return
     end
 
     @plan = get_plan params[:choices]

@@ -177,7 +177,7 @@ sv:
   other_language_site: https://en.goclimateneutral.org
   other_language: In English
   what_is_goclimateneutral: Vad är GoClimateNeutral?
-  this_is_how_it_works: Så här funkar det
+  this_is_how_it_works: Så här funkar det.
   1_describe_your_lifestyle: 1. Välj din livsstil
   describe_your_lifestyle_text: Välj den livsstil som är mest lik din egna.
   2_sign_up: 2. Registrera dig
@@ -415,3 +415,18 @@ sv:
   thats_amazing_from_the_bottom_of_our_hearts: Vilket är fantastiskt! Från djupet av våra hjärtan
   year: år
   years: år
+
+  welcome:
+    intro: Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Tillsammans kan vi bromsa klimatförändringarna och rädda världen, om vi agerar nu. Genom att kompensera för ditt klimatavtryck kan du bli en del av lösningen redan nu.
+    what_is_gcn_text: Vi investerar i FN-certifierade klimatprojekt och tipsar dig om enkla sätt att minska ditt klimatavtryck. På så sätt kan vi bidra till att bromsa klimatförändringarna och rädda världen.
+    lets_save_our_planet_header: Mindre är mer!
+    lets_save_our_planet_text: Varje ton CO2 mindre i atmosfären betyder mer av allt som vi tycker om med den här planeten. Här är vad vi åstadkommit än så länge.
+    call_to_actions:
+      tell_me_more: Berätta mer!
+      im_ready_to_sign_up: Jag är redo!
+      i_want_to_contribute: Jag vill vara med och bidra!
+    how_it_works:
+      describe_your_lifestyle_text: Använd vår kalkylator för att beräkna ditt ungefärliga klimatavtryck.
+      sign_up_text: Registrera dig för att kompensera för ditt klimatavtryck. 
+      save_our_planet_header: 3. Rädda vår planet
+      save_our_planet_text: Bli en av alla oss som vill vara med och stoppa klimatförändringarna.
