@@ -5,43 +5,45 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.0.beta1'
+
+# Environment
 gem 'pg'
-# Use Puma as the app server
 gem 'puma', '~> 3.7'
-# Use SCSS for stylesheets
-gem 'sass-rails', github: "rails/sass-rails"
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
-gem 'jquery-rails'
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+# Authentication
 gem 'devise'
-gem 'omniauth'
-gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
-gem 'country_select'
-gem 'sendgrid-ruby'
 gem 'devise-i18n'
+gem 'omniauth'
+
+# I18n
+gem 'http_accept_language'
+
+# Views
+gem 'country_select'
 gem 'client_side_validations'
-gem 'font-awesome-rails'
 gem 'gon'
-gem 'seed_dump'
+gem 'jbuilder', '~> 2.5'
+
+# Assets
+gem 'uglifier', '>= 1.3.0'
+gem 'sass-rails', github: "rails/sass-rails"
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'jquery-rails'
+gem 'font-awesome-rails'
+
+# Third-party integrations
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'sendgrid-ruby'
 gem 'intercom-rails'
 gem 'rollbar'
-gem 'http_accept_language'
+
+# Utilities
+gem 'seed_dump'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -64,4 +66,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
