@@ -8,7 +8,7 @@ end
 gem 'rails', '5.1.0.beta1'
 
 # Environment
-gem 'pg', '~> 0.20.0'
+gem 'pg', '~> 0.21'
 gem 'puma', '~> 3.7'
 gem 'rack-reverse-proxy', '~> 0.12.0', require: 'rack/reverse_proxy'
 
