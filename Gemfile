@@ -5,45 +5,45 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.1.0.beta1'
+gem 'rails', '5.1.0.beta1'
 
 # Environment
-gem 'pg'
+gem 'pg', '~> 0.20.0'
 gem 'puma', '~> 3.7'
-gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
+gem 'rack-reverse-proxy', '~> 0.11.0', require: 'rack/reverse_proxy'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 
 # Authentication
-gem 'devise'
-gem 'devise-i18n'
-gem 'omniauth'
+gem 'devise', '~> 4.2.1'
+gem 'devise-i18n', '~> 1.1.2'
+gem 'omniauth', '~> 1.6.1'
 
 # I18n
-gem 'http_accept_language'
+gem 'http_accept_language', '~> 2.1.1'
 
 # Views
-gem 'country_select'
-gem 'client_side_validations'
-gem 'gon'
-gem 'jbuilder', '~> 2.5'
+gem 'country_select', '~> 3.0.0'
+gem 'client_side_validations', '~> 9.3.3'
+gem 'gon', '~> 6.1.0'
+gem 'jbuilder', '~> 2.6.3'
 
 # Assets
 gem 'uglifier', '>= 1.3.0'
-gem 'sass-rails', github: "rails/sass-rails"
+gem 'sass-rails', github: "rails/sass-rails", ref: 'dfbcc6a'
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'jquery-rails'
-gem 'font-awesome-rails'
+gem 'jquery-rails', '~> 4.3.1'
+gem 'font-awesome-rails', '~> 4.7.0'
 
 # Third-party integrations
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
-gem 'sendgrid-ruby'
-gem 'intercom-rails'
-gem 'rollbar'
+gem 'stripe', git: 'https://github.com/stripe/stripe-ruby', ref: 'f6484e3'
+gem 'sendgrid-ruby', '~> 4.3.1'
+gem 'intercom-rails', '~> 0.3.5'
+gem 'rollbar', '~> 2.16.2'
 
 # Utilities
-gem 'seed_dump'
+gem 'seed_dump', '~> 3.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
