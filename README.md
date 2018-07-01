@@ -16,8 +16,9 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
   * `initdb db/goclimateneutral`
 * Start Postgres.
   * `pg_ctl -D db/goclimateneutral -l logfile start`
-* Create the DB.
+* Create the DB's.
   * `createdb goclimateneutral`
+  * `createdb goclimateneutral_test`
 * Init the DB tables.
   * `bin/rails db:migrate RAILS_ENV=development`  
 * Set environment variables.

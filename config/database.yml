@@ -15,6 +15,7 @@ development:
 
 test:
   <<: *default
+  database: goclimateneutral_test
 
 production:
   <<: *default
