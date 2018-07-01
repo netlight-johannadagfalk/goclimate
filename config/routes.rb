@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   get 'companies', to: 'welcome#companies'
   get 'klimatkompensera', to: 'welcome#klimatkompensera'
 
+  resources :subscriptions
+
   get '/blog' => redirect("https://www.goclimateneutral.org/blog/")
 
   #filtering out requests from error logging
@@ -35,6 +37,7 @@ Rails.application.routes.draw do
   get 'ads.txt', to: proc { [404, {}, ['']] }
 
   root 'welcome#index'
+
 
 #  unless Rails.application.config.consider_all_requests_local
 #    get '*path', to: 'errors#error_404', via: :all
