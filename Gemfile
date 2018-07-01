@@ -10,7 +10,7 @@ gem 'rails', '5.1.0.beta1'
 # Environment
 gem 'pg', '~> 0.20.0'
 gem 'puma', '~> 3.7'
-gem 'rack-reverse-proxy', '~> 0.11.0', require: 'rack/reverse_proxy'
+gem 'rack-reverse-proxy', '~> 0.12.0', require: 'rack/reverse_proxy'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
