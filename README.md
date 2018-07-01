@@ -4,25 +4,25 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
 
 # How do I set up my environment?
 
-* Install Ruby
+* Install Ruby. See `.ruby-version` for required version.
   * [https://www.ruby-lang.org/en/downloads/](https://www.ruby-lang.org/en/downloads/)
-* Install Rails
+* Install Rails.
   * `gem install rails`
-* Install Postgres
+* Install Postgres.
   * `brew install postgresql` 
-* Install project-specific gems
+* Install project-specific gems.
   * `bundle install`  
-* Init the DB
+* Init the DB.
   * `initdb db/goclimateneutral`
-* Start Postgres
+* Start Postgres.
   * `pg_ctl -D db/goclimateneutral -l logfile start`
-* Create the DB
+* Create the DB.
   * `createdb goclimateneutral`
-* Init the DB tables
+* Init the DB tables.
   * `bin/rails db:migrate RAILS_ENV=development`  
-* Set Stripe API key
+* Set Stripe API key.
   * TODO
-* Init basic LifestyleChoice data
+* Init basic LifestyleChoice data.
   * `bin/rails c`
   * in console mode, enter: 
 ```
