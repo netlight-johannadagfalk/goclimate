@@ -9,7 +9,7 @@ one:
   latitude: 9.99
   carbon_offset: 1
   country: MyString
-  type: 
+  offset_type: CDM
 
 two:
   name: MyString
@@ -20,4 +20,4 @@ two:
   latitude: 9.99
   carbon_offset: 1
   country: MyString
-  type: 
+  offset_type: GS
