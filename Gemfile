@@ -40,7 +40,6 @@ gem 'font-awesome-rails', '~> 4.7.0'
 # Third-party integrations
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby', ref: 'f6484e3'
 gem 'sendgrid-ruby', '~> 4.3.1'
-gem 'intercom-rails', '~> 0.3.5'
 gem 'rollbar', '~> 2.16.2'
 
 # Utilities
