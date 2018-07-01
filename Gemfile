@@ -8,7 +8,7 @@ end
 gem 'rails', '~> 5.2.0'
 
 # Environment
-gem 'pg', '~> 0.21'
+gem 'pg', '~> 1.0'
 gem 'puma', '~> 3.7'
 gem 'rack-reverse-proxy', '~> 0.12.0', require: 'rack/reverse_proxy'
 gem 'bootsnap', '~> 1.3'
