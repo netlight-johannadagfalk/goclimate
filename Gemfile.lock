@@ -103,6 +103,10 @@ GEM
       responders
       warden (~> 1.2.3)
     devise-i18n (1.1.2)
+    dotenv (2.5.0)
+    dotenv-rails (2.5.0)
+      dotenv (= 2.5.0)
+      railties (>= 3.2, < 6.0)
     erubi (1.6.0)
     execjs (2.7.0)
     faraday (0.13.1)
@@ -275,6 +279,7 @@ DEPENDENCIES
   country_select
   devise
   devise-i18n
+  dotenv-rails
   font-awesome-rails
   gon
   http_accept_language

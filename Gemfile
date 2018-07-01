@@ -57,6 +57,7 @@ group :development, :test do
   gem 'capybara', '~> 2.7.0'
   gem 'selenium-webdriver'
   gem 'rb-readline'
+  gem 'dotenv-rails'
 end
 
 group :development do
