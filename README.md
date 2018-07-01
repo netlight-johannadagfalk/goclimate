@@ -20,8 +20,8 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
   * `createdb goclimateneutral`
 * Init the DB tables.
   * `bin/rails db:migrate RAILS_ENV=development`  
-* Set Stripe API key.
-  * TODO
+* Set environment variables.
+  * Copy `.env.template` to `.env` and add your keys to the file.
 * Init basic LifestyleChoice data.
   * `bin/rails c`
   * in console mode, enter: 
