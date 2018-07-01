@@ -88,7 +88,7 @@ GEM
       money (~> 6.9)
       sixarm_ruby_unaccent (~> 1.1)
       unicode_utils (~> 1.4)
-    country_select (3.0.0)
+    country_select (3.1.1)
       countries (~> 2.0)
       sort_alphabetical (~> 1.0)
     crass (1.0.4)
@@ -273,7 +273,7 @@ DEPENDENCIES
   byebug
   capybara (~> 3.3)
   client_side_validations (~> 11.1.2)
-  country_select (~> 3.0.0)
+  country_select (~> 3.1.1)
   devise (~> 4.4.3)
   devise-i18n (~> 1.6.2)
   dotenv-rails

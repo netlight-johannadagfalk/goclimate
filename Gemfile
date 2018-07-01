@@ -24,7 +24,7 @@ gem 'omniauth', '~> 1.8.1'
 gem 'http_accept_language', '~> 2.1.1'
 
 # Views
-gem 'country_select', '~> 3.0.0'
+gem 'country_select', '~> 3.1.1'
 gem 'client_side_validations', '~> 11.1.2'
 gem 'gon', '~> 6.2.0'
 gem 'jbuilder', '~> 2.7.0'
