@@ -27,7 +27,7 @@ gem 'http_accept_language', '~> 2.1.1'
 gem 'country_select', '~> 3.0.0'
 gem 'client_side_validations', '~> 9.3.3'
 gem 'gon', '~> 6.2.0'
-gem 'jbuilder', '~> 2.6.3'
+gem 'jbuilder', '~> 2.7.0'
 
 # Assets
 gem 'uglifier', '>= 1.3.0'
