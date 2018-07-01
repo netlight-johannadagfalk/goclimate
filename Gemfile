@@ -16,9 +16,9 @@ gem 'rack-reverse-proxy', '~> 0.12.0', require: 'rack/reverse_proxy'
 # gem 'redis', '~> 3.0'
 
 # Authentication
-gem 'devise', '~> 4.2.1'
-gem 'devise-i18n', '~> 1.1.2'
-gem 'omniauth', '~> 1.6.1'
+gem 'devise', '~> 4.4.3'
+gem 'devise-i18n', '~> 1.6.2'
+gem 'omniauth', '~> 1.8.1'
 
 # I18n
 gem 'http_accept_language', '~> 2.1.1'
