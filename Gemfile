@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '5.1.0.beta1'
+gem 'rails', '~> 5.1.6'
 
 # Environment
 gem 'pg', '~> 0.21'
@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.7.0'
 
 # Assets
 gem 'uglifier', '>= 1.3.0'
-gem 'sass-rails', github: "rails/sass-rails", ref: 'dfbcc6a'
+gem 'sass-rails', github: "rails/sass-rails"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails', '~> 4.3.1'
 gem 'font-awesome-rails', '~> 4.7.0'
