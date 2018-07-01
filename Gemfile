@@ -25,7 +25,7 @@ gem 'http_accept_language', '~> 2.1.1'
 
 # Views
 gem 'country_select', '~> 3.0.0'
-gem 'client_side_validations', '~> 9.3.3'
+gem 'client_side_validations', '~> 11.1.2'
 gem 'gon', '~> 6.2.0'
 gem 'jbuilder', '~> 2.7.0'
 
