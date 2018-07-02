@@ -2,7 +2,7 @@ sv:
   goclimateneutral_org: GoClimateNeutral.org
   goclimateneutral_url: https://sv.goclimateneutral.org/
   site_title: GoClimateNeutral.org
-  welcome_to_a_climate_neutral_life: Välkommen till ett klimatneutralt liv!
+  welcome_to_a_climate_neutral_life: Lev ett klimatneutralt liv!
   climate_change_is_the_greatest_challange: "Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Tillsammans kan vi bromsa klimatförändringarna och rädda världen, OM vi agerar nu."
   log_in: LOGGA IN
   log_out: LOGGA UT
@@ -101,7 +101,6 @@ sv:
   thats_it: Nu så!
   read_more_how_we_calculate_offset_plans_html: Läs mer om hur vi räknar ut våra %{href}.
   offset_plans: kompensationsplaner
-  but_i_want_to_enter_more_details: Men.. jag vill räkna mer detaljerat på mitt klimatavtryck!
   tonnes_co2_per_year: ton CO2/år
   sign_up_for_a_climate_neutral_life: Här börjar ditt klimatneutrala liv!
   sign_up_here_to_start_livint_a_climate_neutral_life: Skriv in dina uppgifter nedan för att börja resan mot ett klimatneutralt liv.
@@ -179,14 +178,12 @@ sv:
   what_is_goclimateneutral: Vad är GoClimateNeutral?
   this_is_how_it_works: Så här funkar det.
   1_describe_your_lifestyle: 1. Välj din livsstil
-  describe_your_lifestyle_text: Välj den livsstil som är mest lik din egna.
   2_sign_up: 2. Registrera dig
   sign_up_text: Registrera dig i vårt enkla formulär.
   3_save_the_world: 3. Rädda världen
   save_the_world_text: Vi köper klimatkompensation åt dig varje månad och tipsar om hur du kan minska ditt klimatavtryck.
   its_that_simple_text: Så här enkelt är det att komma igång. Klimatförändringarna är den största utmaningen som vår generation stått inför och vi kan göra någonting åt det tillsammans. Vi säger inte att det här räcker, men det är ett stort steg i rätt riktning. Hoppa på nu och sprid ordet så bidrar det till att ännu fler hänger med!
   why_goclimateneutral_head: VARFÖR GOCLIMATENEUTRAL?
-  how_it_works_head: SÅ FUNKAR DET
   forgot_your_password: Glömt ditt lösenord?
   enter_your_email_below_and_we_will_send_you: Skriv in din e-post nedan så mailar vi dig instruktioner.
   send_me_an_email_with_instructions: Skicka ett mail till mig!
@@ -417,7 +414,7 @@ sv:
   years: år
 
   welcome:
-    intro: Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Tillsammans kan vi bromsa klimatförändringarna och rädda världen, om vi agerar nu. Genom att kompensera för ditt klimatavtryck kan du bli en del av lösningen redan nu.
+    intro: Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Tillsammans kan vi bromsa klimatförändringarna och rädda världen, OM vi agerar nu. Genom att kompensera för ditt klimatavtryck kan du bli en del av lösningen.
     what_is_gcn_text: Vi investerar i FN-certifierade klimatprojekt och tipsar dig om enkla sätt att minska ditt klimatavtryck. På så sätt kan vi bidra till att bromsa klimatförändringarna och rädda världen.
     lets_save_our_planet_header: Mindre är mer!
     lets_save_our_planet_text: Varje ton CO2 mindre i atmosfären betyder mer av allt som vi tycker om med den här planeten. Här är vad vi åstadkommit än så länge.

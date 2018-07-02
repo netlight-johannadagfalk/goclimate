@@ -2,7 +2,7 @@ en:
   goclimateneutral_org: GoClimateNeutral.org
   goclimateneutral_url: https://en.goclimateneutral.org/
   site_title: GoClimateNeutral.org
-  welcome_to_a_climate_neutral_life: Welcome to a Climate Neutral Life!
+  welcome_to_a_climate_neutral_life: Go Climate Neutral!
   climate_change_is_the_greatest_challange: Climate change is the greatest challenge of our time. Together we have a chance to give our children the future on this planet that they deserve. But we have to act now.
   log_in: LOG IN
   log_out: Log out
@@ -101,7 +101,6 @@ en:
   thats_it: That's it!
   read_more_how_we_calculate_offset_plans_html: Read more on how we calculate the %{href}.
   offset_plans: offset plans
-  but_i_want_to_enter_more_details: But.. I want to enter more details?
   tonnes_co2_per_year: tonnes CO2/year
   sign_up_for_a_climate_neutral_life: Sign up for a Climate Neutral Life
   sign_up_here_to_start_livint_a_climate_neutral_life: Enter your details below to start the journey towards a climate neutral life.
@@ -179,14 +178,12 @@ en:
   what_is_goclimateneutral: What is GoClimateNeutral?
   this_is_how_it_works: This is how it works
   1_describe_your_lifestyle: 1. Describe Your Lifestyle
-  describe_your_lifestyle_text: Describe your lifestyle and thereby also your carbon footprint.
   2_sign_up: 2. Sign Up
   sign_up_text: Take 1 minute to register
   3_save_the_world: 3. Save the World
   save_the_world_text: We buy climate offsets for you and show you how you can reduce your climate footprint.
   its_that_simple_text: "It's that simple. Climate change is the biggest challenge of our time, but together we can do something about it. We are not claiming that this will be enough, but it's a big step in the right direction. Join us and spread the word to encourage others to be part of this movement!"
   why_goclimateneutral_head: WHY GOCLIMATENEUTRAL?
-  how_it_works_head: HOW IT WORKS
   forgot_your_password: Forgot your password?
   enter_your_email_below_and_we_will_send_you: Enter your email below and we will send you an email with instructions.
   send_me_an_email_with_instructions: Send me reset password instructions!
