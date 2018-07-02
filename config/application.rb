@@ -23,5 +23,14 @@ module ClimateNeutralLife
     I18n.available_locales = [:en, :sv, :de]
     config.i18n.fallbacks = true
     I18n.default_locale = :en
+
+    config.generators do |g|
+      g.test_framework :rspec
+      g.controller_specs false
+      g.helper_specs false
+      g.observer_specs false
+      g.routing_specs false
+      g.view_specs false
+    end
   end
 end

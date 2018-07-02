@@ -21,6 +21,10 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
 * Set environment variables.
   * Copy `.env.sample` to `.env` and add your keys to the file.
 
+# Running tests
+
+* `bin/rspec`
+
 # How do I start the server locally?
 
 * `bin/rails server`
