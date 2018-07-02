@@ -22,7 +22,7 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
 * Init the DB tables and seed required data.
   * `bin/rails db:migrate db:seed`
 * Set environment variables.
-  * Copy `.env.template` to `.env` and add your keys to the file.
+  * Copy `.env.sample` to `.env` and add your keys to the file.
 
 # How do I start the server locally?
 
