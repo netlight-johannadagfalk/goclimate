@@ -16,11 +16,8 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
   * `initdb db/goclimateneutral`
 * Start Postgres.
   * `pg_ctl -D db/goclimateneutral -l logfile start`
-* Create the DB's.
-  * `createdb goclimateneutral`
-  * `createdb goclimateneutral_test`
 * Init the DB tables and seed required data.
-  * `bin/rails db:migrate db:seed`
+  * `bin/rails db:setup db:seed`
 * Set environment variables.
   * Copy `.env.sample` to `.env` and add your keys to the file.
 
