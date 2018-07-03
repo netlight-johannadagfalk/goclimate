@@ -122,6 +122,11 @@ de:
     dazu, dies zu tun. Der Klimawandel ist eine Herausforderung, der wir alle
     gegenüber stehen, also sollten wir auch gemeinsam dagegen kämpfen.
   we_are_100_transparent: Wir sind zu 100% transparent
+  this_is_a_first_step: Dies ist ein erster Schritt.
+  this_is_a_first_step_description: >-
+    Starten Sie jetzt Ihr klimaneutrales Leben. Wir alle müssen unseren
+    Klima-Fußabdruck reduzieren, aber keine Sorge, wir helfen Ihnen, indem wir
+    Ihnen Inspirationen geben und nützliche Informationen mitteilen!
   section_3_text: >-
     Wir bieten eine 100 %ige Transparenz, in welche UN- und Gold
     Standard-zertifizierte Projekte wir investieren und warum. Außerdem bieten
@@ -141,7 +146,7 @@ de:
   hardly_ever_flies: Fliege selten
   mini_impact_plan: Mini
   small_impact_plan: Medium
-  plan_price_html: '$<span id="sum">%{cost}</span><span class="subscript">/mo</span>'
+  plan_price_html: '<span id="sum">%{cost}</span><span class="subscript"> €/mo</span>'
   cost_calculation: Kostenkalkulation
   price_info_popup_content: >-
     In diesem Fall schätzen wir Ihre jährliche Klimabilanz auf %{footprint}
@@ -152,9 +157,9 @@ de:
 
     Wir investieren in Projekte, die von der UN zertifiziert sind (CDM) und
     verfügen außerdem über das Label Gold Standard (u.a. von Greenpeace und
-    WWF). Diese Projekte kosten ca. $%{price_per_tonne} pro Tonne - daher kostet
-    Sie dies $%{price_per_month} pro Monat.
-  you_will_offset_for: 'Sie kompensieren mit $%{cost}/month'
+    WWF). Diese Projekte kosten ca. %{price_per_tonne} € pro Tonne - daher
+    kostet Sie dies %{price_per_month} € pro Monat.
+  you_will_offset_for: 'Sie kompensieren mit %{cost} €/monat'
   custom_impact_plan: Individuell
   mostly_vegetarian: Überwiegend vegetarische Ernährung
   one_fuel_efficient_car: Ein verbrauchsarmes Auto
@@ -186,15 +191,6 @@ de:
   thats_it: Das ist es!
   read_more_how_we_calculate_offset_plans_html: 'Erfahren Sie mehr über unsere Berechnung für %{href}.'
   offset_plans: Kompensationspläne
-  but_i_want_to_enter_more_details: Aber...ich will weitere Angaben machen
-  calculating_your_exact_footprint_html: >-
-    Ihre genaue Klimabilanz zu berechnen ist um einiges komplizierter, als nur
-    eine der vorgegebenen Vorlagen auszuwählen. Man benötigt eine Menge an Daten
-    darüber, was Sie essen, wie und wohin Sie sich fortbewegen und wie Sie
-    leben. Unsere Vorlagen sind jedoch gute Schätzungen und Sie müssen sich
-    keine Gedanken machen, Ihre Klimabilanz damit nicht auszugleichen. Wenn Sie
-    mehr Details möchten, gibt es %{href}. Damit können Sie eine Option
-    auswählen und dann Ihre jährliche Klimabilanz hier eingeben. 
   tonnes_co2_per_year: Tonnen CO2/Jahr
   sign_up_for_a_climate_neutral_life: Anmelden für ein klimaneutrales Leben
   sign_up_here_to_start_livint_a_climate_neutral_life: Geben Sie Ihre Daten ein und starten Sie Ihr klimaneutrales Leben
@@ -223,7 +219,7 @@ de:
     kann, würden wir uns freuen, wenn Sie Anderen von GoClimateNeutral erzählen,
     damit auch sie ein klimaneutrales Leben führen können!
   one_extra_month_for_every_friend_html: >-
-    Wir schenken Ihnen <b>1 klimaneutralen Monat</b> (im Wert von $10) für jeden
+    Wir schenken Ihnen <b>1 klimaneutralen Monat</b> (im Wert von 1 €) für jeden
     neuen Freund, den Sie werben!
   share_on_facebook: Auf Facebook teilen
   share_on_twitter: Auf Twitter teilen
@@ -298,7 +294,6 @@ de:
   what_is_goclimateneutral: Was ist GoClimateNeutral?
   this_is_how_it_works: So funktioniert's
   1_describe_your_lifestyle: 1. Lifestyle beschreiben
-  describe_your_lifestyle_text: Beschreiben Sie Ihren Lifestyle und somit Ihren ökologischen Fußabdruck
   2_sign_up: 2. Anmelden
   sign_up_text: 'Nehmen Sie sich 1 Minute, um sich anzumelden'
   3_save_the_world: 3. Rette die Welt
@@ -312,7 +307,6 @@ de:
     Schließen Sie sich uns an und ermutigen Sie Andere, sich auch dieser
     Bewegung anzuschließen!
   why_goclimateneutral_head: WARUM GOCLIMATENEUTRAL?
-  how_it_works_head: SO FUNKTIONIERT'S
   forgot_your_password: Passwort vergessen?
   enter_your_email_below_and_we_will_send_you: Geben Sie Ihre E-Mail Adresse ein und wir senden Ihnen eine Info-Mail.
   send_me_an_email_with_instructions: Anleitung zum Zurücksetzen des Passworts zusenden!
@@ -351,6 +345,38 @@ de:
   im_in: Ich bin dabei!
   1_people: 1 Person
   x_people: '%{number} Personen'
+  press: Presse
+  where_will_my_money_be_used: Wo wird mein Geld eingesetzt?
+  good_to_know: Sie können beruhigt sein.
+  why_trust_1: >-
+    Alle Klimaprojekte, in die wir investieren, werden sorgfältig von Dritten
+    geprüft.  
+  why_trust_2: 'Wir bieten völlige Transparenz, um Ihnen zu zeigen, wo Ihr Geld landet.'
+  why_trust_3: >-
+    Wir sind eine Non-Profit Organisation - wir wollen einfach alles dafür tun,
+    den Klimawandel zu stoppen.
+  why_trust_4: >-
+    Es ist ganz leicht, Ihre Anmeldung für den Klimaausgleich wieder aufzuheben,
+    wenn Sie das möchten. 
+  why_trust_5: >-
+    Wenn Sie Ihre Anmeldung für den Klimaausgleich innerhalb von 60 Tagen
+    rückgängig machen möchten, erstatten wir Ihnen Ihr Geld zurück. 
+  we_invest_in_un_climate_projects_that_are_gold_standard_certified: >-
+    Wir investieren in Projekte, die sowohl eine UN Zertifizierung als auch eine
+    Gold Standard Zertifizierung aufweisen. Beispiele solcher Projekte finden
+    Sie weiter unten. 
+  thai_solar_carousel_description: >-
+    Mehr als 90% der Elektrizität, die in Thailand in das Stromnetz eingespeist
+    wird, wurde mit fossilen Brennstoffen erzeugt. Wir haben in diesen Solarpark
+    investiert, der saubere und erneuerbare Energie für Thailands Stromnetz
+    liefert.
+  nanyang_danjiang_carousel_description: >-
+    Indem traditionelle Kohleöfen durch saubere solarbetriebene Küchenherde
+    ersetzt werden, können die CO2-Emissionen reduziert und somit die
+    Lebensqualität für 50.000 ländliche Haushalte verbessert werden. 
+  dak_pone_carousel_description: >-
+    Mit dem Dak Pone Hydro Projekt werden Dieselgeneratoren und Holzöfen durch
+    saubere, nachhaltige Hydroenergie ersetzt.
   faq: FAQ
   answer: Antwort
   read_more_on_frequently_asked_questions: Lesen Sie mehr in unseren FAQs
@@ -729,6 +755,22 @@ de:
           <b><a
           href='https://www.goclimateneutral.org/blog/category/investment/'>in
           unserem Blog zum Thema Investitionen nachlesen</a></b>.
+      q19:
+        question: 'Wie kann ich meine Anmeldung annullieren? '
+        answer: >
+          Sie können ganz einfach Ihre Anmeldung rückgängig machen, indem Sie
+          auf "Cancel Climate Plan" auf der Seite mit den Zahlungsdaten klicken:
+          <a
+          href='https://en.goclimateneutral.org/users/edit/payment'>https://en.goclimateneutral.org/users/edit/payment</a>
+      q20:
+        question: Wie werden meine Kartendaten gespeichert und behandelt?
+        answer: >-
+          Wir nutzen Stripe (<a
+          href="https://stripe.com/">https://stripe.com/</a>) als Zahlsystem.
+          Stripe ist einer der größten Online-Zahlungsanbieter. Alle Kartendaten
+          werden vollständig von Stripe verarbeitet - voll verschlüsselt
+          natürlich. Ihre Kartendaten landen zu keinem Zeitpunkt auf unseren
+          Servern, sondern werden direkt von Stripe verarbeitet. 
   activerecord:
     errors:
       models:
@@ -752,5 +794,39 @@ de:
     Sie möchten die Emissionen eines Fluges oder für den Lifestyle Ihrer
     Mitarbeiter kompensieren? Wir helfen gerne. Kontaktieren Sie uns über <a
     href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a>
-  business: Unternehmen
-  consumer: Privatpersonen
+  business: UNTERNEHMEN
+  consumer: PRIVATPERSONEN
+  thats_amazing_from_the_bottom_of_our_hearts: 'Das ist großartig! '
+  year: Jahr
+  years: Jahr
+  welcome:
+    intro: >-
+      Der Klimawandel ist eine der größten Herausforderungen unserer Zeit.
+      Gemeinsam können wir es schaffen, die Bremse zu ziehen und unseren
+      Planeten zu retten, aber wir müssen sofort handeln. Sie jetzt können Teil
+      der Lösung werden, indem Sie Ihre Emissionen ausgleichen. Und das geht mit
+      GoClimateNeutral am einfachsten. 
+    what_is_gcn_text: >-
+      Wir investieren in UN-zertifizierte Klimaprojekte und zeigen Ihnen, wie
+      Sie ganz einfach Ihre Klimabilanz verbessern können. Auf diese Weise
+      tragen wir dazu bei, den Klimawandel zu verlangsamen und den Planeten zu
+      retten. 
+    lets_save_our_planet_header: |
+      Weniger ist mehr!
+    lets_save_our_planet_text: >-
+      Jede Tonne an CO2, die eingespart wird, bedeutet mehr von den Dingen, die
+      wir auf diesem Planeten so sehr lieben. Hier können Sie sehen, was wir
+      bisher gemeinsam erreicht haben.
+    call_to_actions:
+      tell_me_more: Ich will mehr erfahren!
+      im_ready_to_sign_up: Ich möchte mich anmelden!
+      i_want_to_contribute: Ich will meinen Beitrag leisten!
+    how_it_works:
+      describe_your_lifestyle_text: >-
+        Nutzen Sie unseren Klimarechner, um Ihre ungefähre Klimabilanz zu
+        errechnen.
+      sign_up_text: 'Melden Sie sich an, um jeden Monat Ihre Emissionen auszugleichen.'
+      save_our_planet_header: 3. Die Erde retten
+      save_our_planet_text: >-
+        Seien Sie Teil unserer Community, in der wir nicht länger den
+        Klimawandel fördern. 
