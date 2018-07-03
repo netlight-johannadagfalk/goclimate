@@ -23,7 +23,8 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
 
 # Running tests
 
-* `bin/rspec`
+* Watch for updates and continuosly run relevant specs: `bin/guard`
+* To run just once: `bin/rspec`
 
 # How do I start the server locally?
 
