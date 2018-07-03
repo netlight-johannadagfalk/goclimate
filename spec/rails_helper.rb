@@ -51,4 +51,18 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.before(:each, type: :feature) do
+    ActiveRecord::Base.connection.reset_pk_sequence!('lifestyle_choices')
+    ActiveRecord::Base.connection.reset_pk_sequence!('projects')
+    Rails.application.load_seed
+  end
 end
+
+Capybara.server = :puma, { Silent: true }
+
+Capybara.register_driver :firefox_headless do |app|
+  options = ::Selenium::WebDriver::Firefox::Options.new.tap { |o| o.args << '--headless' }
+  Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
+end
+Capybara.javascript_driver = :firefox_headless

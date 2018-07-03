@@ -23,13 +23,7 @@ $(document).ready(function() {
 	};
 
 	if($('#card-element').length) {
-
-		if (location.hostname === "localhost") {
-			var stripe = Stripe('pk_test_a1OlA12lwmhYeYTK77LvdqIe');
-		} else {
-			var stripe = Stripe('pk_live_3HlQg5UTUX1iwEVSuH9Hk6bI');
-		}
-
+		var stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
 		var elements = stripe.elements();
 			
 		var style = {
