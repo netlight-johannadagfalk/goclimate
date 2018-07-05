@@ -122,6 +122,11 @@ de:
     dazu, dies zu tun. Der Klimawandel ist eine Herausforderung, der wir alle
     gegenüber stehen, also sollten wir auch gemeinsam dagegen kämpfen.
   we_are_100_transparent: Wir sind zu 100% transparent
+  this_is_a_first_step: Dies ist ein erster Schritt.
+  this_is_a_first_step_description: >-
+    Starten Sie jetzt Ihr klimaneutrales Leben. Wir alle müssen unseren
+    Klima-Fußabdruck reduzieren, aber keine Sorge, wir helfen Ihnen, indem wir
+    Ihnen Inspirationen geben und nützliche Informationen mitteilen!
   section_3_text: >-
     Wir bieten eine 100 %ige Transparenz, in welche UN- und Gold
     Standard-zertifizierte Projekte wir investieren und warum. Außerdem bieten
@@ -152,8 +157,8 @@ de:
 
     Wir investieren in Projekte, die von der UN zertifiziert sind (CDM) und
     verfügen außerdem über das Label Gold Standard (u.a. von Greenpeace und
-    WWF). Diese Projekte kosten ca. %{price_per_tonne} € pro Tonne - daher kostet
-    Sie dies %{price_per_month} € pro Monat.
+    WWF). Diese Projekte kosten ca. %{price_per_tonne} € pro Tonne - daher
+    kostet Sie dies %{price_per_month} € pro Monat.
   you_will_offset_for: 'Sie kompensieren mit %{cost} €/monat'
   custom_impact_plan: Individuell
   mostly_vegetarian: Überwiegend vegetarische Ernährung
@@ -341,6 +346,37 @@ de:
   1_people: 1 Person
   x_people: '%{number} Personen'
   press: Presse
+  where_will_my_money_be_used: Wo wird mein Geld eingesetzt?
+  good_to_know: Sie können beruhigt sein.
+  why_trust_1: >-
+    Alle Klimaprojekte, in die wir investieren, werden sorgfältig von Dritten
+    geprüft.  
+  why_trust_2: 'Wir bieten völlige Transparenz, um Ihnen zu zeigen, wo Ihr Geld landet.'
+  why_trust_3: >-
+    Wir sind eine Non-Profit Organisation - wir wollen einfach alles dafür tun,
+    den Klimawandel zu stoppen.
+  why_trust_4: >-
+    Es ist ganz leicht, Ihre Anmeldung für den Klimaausgleich wieder aufzuheben,
+    wenn Sie das möchten. 
+  why_trust_5: >-
+    Wenn Sie Ihre Anmeldung für den Klimaausgleich innerhalb von 60 Tagen
+    rückgängig machen möchten, erstatten wir Ihnen Ihr Geld zurück. 
+  we_invest_in_un_climate_projects_that_are_gold_standard_certified: >-
+    Wir investieren in Projekte, die sowohl eine UN Zertifizierung als auch eine
+    Gold Standard Zertifizierung aufweisen. Beispiele solcher Projekte finden
+    Sie weiter unten. 
+  thai_solar_carousel_description: >-
+    Mehr als 90% der Elektrizität, die in Thailand in das Stromnetz eingespeist
+    wird, wurde mit fossilen Brennstoffen erzeugt. Wir haben in diesen Solarpark
+    investiert, der saubere und erneuerbare Energie für Thailands Stromnetz
+    liefert.
+  nanyang_danjiang_carousel_description: >-
+    Indem traditionelle Kohleöfen durch saubere solarbetriebene Küchenherde
+    ersetzt werden, können die CO2-Emissionen reduziert und somit die
+    Lebensqualität für 50.000 ländliche Haushalte verbessert werden. 
+  dak_pone_carousel_description: >-
+    Mit dem Dak Pone Hydro Projekt werden Dieselgeneratoren und Holzöfen durch
+    saubere, nachhaltige Hydroenergie ersetzt.
   faq: FAQ
   answer: Antwort
   read_more_on_frequently_asked_questions: Lesen Sie mehr in unseren FAQs
@@ -719,6 +755,22 @@ de:
           <b><a
           href='https://www.goclimateneutral.org/blog/category/investment/'>in
           unserem Blog zum Thema Investitionen nachlesen</a></b>.
+      q19:
+        question: 'Wie kann ich meine Anmeldung annullieren? '
+        answer: >
+          Sie können ganz einfach Ihre Anmeldung rückgängig machen, indem Sie
+          auf "Cancel Climate Plan" auf der Seite mit den Zahlungsdaten klicken:
+          <a
+          href='https://en.goclimateneutral.org/users/edit/payment'>https://en.goclimateneutral.org/users/edit/payment</a>
+      q20:
+        question: Wie werden meine Kartendaten gespeichert und behandelt?
+        answer: >-
+          Wir nutzen Stripe (<a
+          href="https://stripe.com/">https://stripe.com/</a>) als Zahlsystem.
+          Stripe ist einer der größten Online-Zahlungsanbieter. Alle Kartendaten
+          werden vollständig von Stripe verarbeitet - voll verschlüsselt
+          natürlich. Ihre Kartendaten landen zu keinem Zeitpunkt auf unseren
+          Servern, sondern werden direkt von Stripe verarbeitet. 
   activerecord:
     errors:
       models:
@@ -744,3 +796,37 @@ de:
     href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a>
   business: UNTERNEHMEN
   consumer: PRIVATPERSONEN
+  thats_amazing_from_the_bottom_of_our_hearts: 'Das ist großartig! '
+  year: Jahr
+  years: Jahr
+  welcome:
+    intro: >-
+      Der Klimawandel ist eine der größten Herausforderungen unserer Zeit.
+      Gemeinsam können wir es schaffen, die Bremse zu ziehen und unseren
+      Planeten zu retten, aber wir müssen sofort handeln. Sie jetzt können Teil
+      der Lösung werden, indem Sie Ihre Emissionen ausgleichen. Und das geht mit
+      GoClimateNeutral am einfachsten. 
+    what_is_gcn_text: >-
+      Wir investieren in UN-zertifizierte Klimaprojekte und zeigen Ihnen, wie
+      Sie ganz einfach Ihre Klimabilanz verbessern können. Auf diese Weise
+      tragen wir dazu bei, den Klimawandel zu verlangsamen und den Planeten zu
+      retten. 
+    lets_save_our_planet_header: |
+      Weniger ist mehr!
+    lets_save_our_planet_text: >-
+      Jede Tonne an CO2, die eingespart wird, bedeutet mehr von den Dingen, die
+      wir auf diesem Planeten so sehr lieben. Hier können Sie sehen, was wir
+      bisher gemeinsam erreicht haben.
+    call_to_actions:
+      tell_me_more: Ich will mehr erfahren!
+      im_ready_to_sign_up: Ich möchte mich anmelden!
+      i_want_to_contribute: Ich will meinen Beitrag leisten!
+    how_it_works:
+      describe_your_lifestyle_text: >-
+        Nutzen Sie unseren Klimarechner, um Ihre ungefähre Klimabilanz zu
+        errechnen.
+      sign_up_text: 'Melden Sie sich an, um jeden Monat Ihre Emissionen auszugleichen.'
+      save_our_planet_header: 3. Die Erde retten
+      save_our_planet_text: >-
+        Seien Sie Teil unserer Community, in der wir nicht länger den
+        Klimawandel fördern. 
