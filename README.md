@@ -1,34 +1,43 @@
-# What is this?
+# GoClimateNeutral
 
 This is the code that runs [http://goclimateneutral.org](http://goclimateneutral.org)
 
-# How do I set up my environment?
+## Requirements
 
-* Install Ruby. See `.ruby-version` for required version.
-  * [https://www.ruby-lang.org/en/downloads/](https://www.ruby-lang.org/en/downloads/)
-* Install Rails.
-  * `gem install rails`
-* Install Postgres.
-  * `brew install postgresql` 
+* Ruby and bundler
+* PostgreSQL
+* Firefox and geckodriver
+
+## Getting started
+
+* Install dependencies. 
+  * [Install Ruby](https://www.ruby-lang.org/en/documentation/installation/).
+    See `.ruby-version` for required version.
+  * `gem install bundler`
+  * `brew install postgresql geckodriver` 
+  * [Get Firefox](https://www.mozilla.org/en-US/firefox/)
 * Install project-specific gems.
   * `bundle install`  
-* Init the DB.
+* Setup the database
   * `initdb db/goclimateneutral`
-* Start Postgres.
   * `pg_ctl -D db/goclimateneutral -l logfile start`
-* Init the DB tables and seed required data.
   * `bin/rails db:setup db:seed`
 * Set environment variables.
   * Copy `.env.sample` to `.env` and add your keys to the file.
 
-# How do I start the server locally?
+## Running tests
+
+* Watch for updates and continuosly run relevant specs: `bin/guard`
+* To run just once: `bin/rspec`
+
+## Running the development server
 
 * `bin/rails server`
 * Surf to [http://localhost:3000](http://localhost:3000)
 
-# Troubleshooting
+## Troubleshooting
 
-## Reseting your database
+### Reseting your database
 
 If you need to reset your database:
 
