@@ -1,11 +1,26 @@
 $(document).ready(function() {
 
 
+	function scrollToAnchor(aid){
+		var aTag = $(aid);
+		$('html,body').animate({scrollTop: aTag.offset().top},'slow');
+	};
+
+	if($('#error_explanation').length) {
+		scrollToAnchor('#error_explanation');
+	};
+	$('#scroll-to-second-section').on('click', function (e) {
+		scrollToAnchor('#second-section');
+	});
+	$('#scroll-to-third-section').on('click', function (e) {
+		scrollToAnchor('#third-section');
+	});
+
 	if($('#new-card-div').length) {
 		$('#add-new-card').click(function() {
 			$('#new-card-div').removeClass("hidden");
 		});
-	}
+	};
 
 	if($('#card-element').length) {
 

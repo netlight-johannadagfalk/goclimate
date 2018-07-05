@@ -9,8 +9,7 @@
   <div class="cover-container">
   <%= render "shared/header" %>
     <div class="inner cover">
-      <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-      <!-- <h3 class="cover-heading"><%=t 'one_extra_month_for_every_friend_html' %></h3> -->
+      <a id="show-video" href=""><span class="glyphicon" aria-hidden="true"><%= image_tag "play.png" %></span></a>
       <h3 class="cover-heading"><%= @social_quote %></h3>
       
       <% if @sharing %>
@@ -30,9 +29,14 @@
       <% else %>
         <p class="welcome"><%=t 'climate_change_is_the_greatest_challange' %></p>
         <p class="lead lead-btn">
-          <a href="/step_1_choose_plan" class="btn btn-lg btn-success"><%=t 'i_want_to_know_more' %></a>
+          <a href="/#choose-plan" class="btn btn-lg btn-success"><%=t 'i_want_to_know_more' %></a>
         </p>
       <% end %>
     </div>
   </div>
 </div>
+
+
+<%= render "shared/video_modal" %>
+
+

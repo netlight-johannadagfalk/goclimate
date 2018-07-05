@@ -12,10 +12,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
 
+    if params[:choices].nil? || !params[:choices].include?(",")
+      redirect_to "/#choose-plan" and return
+    end
+
     @plan = get_plan params[:choices]
     @currency = currency_for_user
 
     super
+  end
+
+  def sign_up_2
+    new
   end
 
   # POST /resource
@@ -336,7 +344,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def get_stripe_plan plan, error_path
     
     plan_id = generate_plan_id plan
-    plan_name = generate_plan_name plan
+    product_name = generate_product_name plan
 
     begin
         stripe_plan = Stripe::Plan.retrieve(plan_id)
@@ -344,11 +352,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       begin 
 
         stripe_plan = Stripe::Plan.create(
-          :name => plan_name,
           :id => plan_id,
           :interval => "month",
           :currency => currency_for_user,
-          :amount => (plan.to_f * 100).round
+          :amount => (plan.to_f * 100).round,
+          :product => {
+            :name => product_name,
+          }
         )
       rescue Stripe::StripeError => e
         flash[:error] = e.message
@@ -359,10 +369,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def generate_plan_id plan
-    "climate_offset_" + plan.to_s + "_" + currency_for_user + "_monthly"
+    "climate_offset_" + plan.to_s.gsub(/[.,]/, "_") + "_" + currency_for_user + "_monthly"
   end
 
-  def generate_plan_name plan
+  def generate_product_name plan
     "Climate Offset " + plan.to_s + " " + currency_for_user + " Monthly"
   end
 

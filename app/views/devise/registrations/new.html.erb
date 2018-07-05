@@ -1,73 +1,147 @@
 
-      <div class="site-wrapper-inner solo-inner-wrapper site-wrapper-first">
-
+      <div class="site-wrapper-inner site-wrapper-first">
         <div class="cover-container">
+          <%= render "shared/header" %>
+          <div class="inner cover">
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            <h1 class="cover-heading"><%=t 'where_will_my_money_be_used' %></h1>
+            <p class="lead"><%=t 'we_invest_in_un_climate_projects_that_are_gold_standard_certified' %></p>
 
-          
-      <%= render "shared/header" %>
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="8000">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
 
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
 
-      <div class="inner cover">
-      <h1 class="cover-heading"><%=t 'sign_up_for_a_climate_neutral_life' %></h1>
-      <p class="lead"><%=t 'you_will_offset_for', cost: @plan %>. <%=t 'sign_up_here_to_start_livint_a_climate_neutral_life' %></p>
-      <span class="glyphicon glyphicon glyphicon-hand-down" aria-hidden="true"></span>
-      
-      <% if flash[:error].present? %>
-        <div id="error_explanation">
-          <p><%= flash[:error] %></p>
-        </div>
-      <% end %>
+              <div class="item active">
+                <%= image_tag "carousel/thai_solar.jpg", class: "small" %>
+                <%= image_tag "carousel/thai_solar_2.jpg", class: "big" %>
+                <div class="carousel-caption">
+                  <h3>Thai Solar</h3>
+                  <p><%=t 'thai_solar_carousel_description' %></p>
+                </div>
+              </div>
 
-      <%= form_for(resource, as: resource_name, validate: true, url: registration_path(resource_name), html: {id: "payment-form", :class => "form-horizontal"}) do |f| %>
-        <%= devise_error_messages! %>
+              <div class="item">
+                <%= image_tag "carousel/nanyang.jpg", class: "small" %>
+                <%= image_tag "carousel/nanyang_2.jpg", class: "big" %>
+                <div class="carousel-caption">
+                  <h3>Nanyang Danjiang River Solar Cooker Project</h3>
+                  <p><%=t 'nanyang_danjiang_carousel_description' %></p>
+                </div>
+              </div>
 
-        <%= hidden_field(:user, :choices, :value => params[:choices]) %>
+              <div class="item">
+                <%= image_tag "carousel/dak_pone.jpg", class: "small" %>
+                <%= image_tag "carousel/dak_pone_2.jpg", class: "big" %>
+                <div class="carousel-caption">
+                  <h3>Dak Pone Hydro Power</h3>
+                  <p><%=t 'dak_pone_carousel_description' %></p>
+                </div>
+              </div>
 
-        <div class="form-group">
-          <div class="col-sm-1"></div>
-          <label for="email" class="col-sm-4 control-label padding-top"><%=t 'email' %></label>
-          <div class="col-sm-4">
-            <%= f.email_field :email, autofocus: true, id: "email", class: "form-control" %>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
           </div>
         </div>
-   
-        <div class="form-group">
-          <div class="col-sm-1"></div>
-          <label for="password" class="col-sm-4 control-label padding-top"><%=t 'password' %></label>
-          <div class="col-sm-4">
-          <%= f.password_field :password, autocomplete: "off", id: "password", class: "form-control" %>
-          </div>
-        </div>
- 
-        <%= hidden_field(:user, :stripe_customer_id, :value => "") %>
-
-        <div class="form-group stripe-form-group">
-          <div class="col-sm-1"></div>
-          <label for="card-element" class="col-sm-4 control-label"><%=t 'credit_or_debit_card' %></label>
-          <div id="card-element" class="col-sm-4 form-control">
-          <!-- a Stripe Element will be inserted here. -->
-          </div>
-        </div>
-
-        <div id="card-errors"></div>
-
-        <div class="form-group">
-          <div class="col-sm-1"></div>
-          <label class="col-sm-4 control-label"></label>
-          <div class="col-sm-4 "><span class="glyphicon glyphicon glyphicon-lock secured-by-stripe" aria-hidden="true"></span>Secured by Stripe</div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-sm-2"></div>
-          <div class="col-sm-offset-3 col-sm-3">
-          <button id="register-button" type="submit" class="btn btn-success" onclick="this.disabled=true; this.value='Submitting...'; $('#payment-form').submit();"><%=t 'go_climate_neutral' %></button>
-          </div>
-        </div>
-
-      <% end %>
-
-
+        <a id="scroll-to-second-section"><span class="glyphicon glyphicon-chevron-down glyphicon-plan-first" aria-hidden="true"></span></a>
       </div>
 
-    </div>
+      <div id="second-section" class="site-wrapper-inner site-wrapper-second">
+        <div class="cover-container">
+          <div class="inner cover">
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+            <h1 class="cover-heading"><%=t 'good_to_know' %></h1>
+            
+            <div class="trust">
+              <ul class="trust lead">
+                <li><%=t 'why_trust_1' %></li>
+                <li><%=t 'why_trust_2' %></li>
+                <li><%=t 'why_trust_4' %></li>
+                <li><%=t 'why_trust_5' %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <a id="scroll-to-third-section"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+      </div>
+
+      <div id="third-section" class="site-wrapper-inner site-wrapper-third">
+        <div class="cover-container">
+          <div class="inner cover">
+            <h1 class="cover-heading"><%=t 'sign_up_for_a_climate_neutral_life' %></h1>
+            <p class="lead"><%=t 'you_will_offset_for', cost: @plan %>. <%=t 'sign_up_here_to_start_livint_a_climate_neutral_life' %></p>
+            <span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span>
+      
+            <% if flash[:error].present? %>
+              <div id="error_explanation">
+                <p><%= flash[:error] %></p>
+              </div>
+            <% end %>
+
+            <%= form_for(resource, as: resource_name, validate: true, url: registration_path(resource_name), html: {id: "payment-form", :class => "form-horizontal"}) do |f| %>
+              <%= devise_error_messages! %>
+
+              <%= hidden_field(:user, :choices, :value => params[:choices]) %>
+
+              <div class="form-group">
+                <div class="col-sm-1"></div>
+                <label for="email" class="col-sm-4 control-label padding-top"><%=t 'email' %></label>
+                <div class="col-sm-4">
+                  <%= f.email_field :email, autofocus: false, id: "email", class: "form-control" %>
+                </div>
+              </div>
+         
+              <div class="form-group">
+                <div class="col-sm-1"></div>
+                <label for="password" class="col-sm-4 control-label padding-top"><%=t 'password' %></label>
+                <div class="col-sm-4">
+                <%= f.password_field :password, autocomplete: "off", id: "password", class: "form-control" %>
+                </div>
+              </div>
+       
+              <%= hidden_field(:user, :stripe_customer_id, :value => "") %>
+
+              <div class="form-group stripe-form-group">
+                <div class="col-sm-1"></div>
+                <label for="card-element" class="col-sm-4 control-label"><%=t 'credit_or_debit_card' %></label>
+                <div id="card-element" class="col-sm-4 form-control">
+                <!-- a Stripe Element will be inserted here. -->
+                </div>
+              </div>
+
+              <div id="card-errors"></div>
+
+              <div class="form-group">
+                <div class="col-sm-1"></div>
+                <label class="col-sm-4 control-label"></label>
+                <div class="col-sm-4 "><span class="glyphicon glyphicon glyphicon-lock secured-by-stripe" aria-hidden="true"></span>Secured by Stripe</div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-offset-3 col-sm-3">
+                <button id="register-button" type="submit" class="btn btn-success" onclick="this.disabled=true; this.value='Submitting...'; $('#payment-form').submit();"><%=t 'go_climate_neutral' %></button>
+                </div>
+              </div>
+
+            <% end %>
+
+        <p class="last plan-faq"><a href="/faq"><%=t 'faq_questions.questions.q18.question' %> <%=t 'faq_questions.questions.q19.question' %> <%=t 'faq_questions.questions.q20.question' %> <%=t 'read_more_on_frequently_asked_questions' %></a>.</p>
+
+        </div>
+      </div>
     </div>

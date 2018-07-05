@@ -2,7 +2,7 @@ sv:
   goclimateneutral_org: GoClimateNeutral.org
   goclimateneutral_url: https://sv.goclimateneutral.org/
   site_title: GoClimateNeutral.org
-  welcome_to_a_climate_neutral_life: Välkommen till ett klimatneutralt liv!
+  welcome_to_a_climate_neutral_life: Lev ett klimatneutralt liv!
   climate_change_is_the_greatest_challange: "Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Tillsammans kan vi bromsa klimatförändringarna och rädda världen, OM vi agerar nu."
   log_in: LOGGA IN
   log_out: LOGGA UT
@@ -35,10 +35,10 @@ sv:
   general_questions_html: 'Om du har frågor om GoClimateNeutral eller har idéer om hur vi kan förbättra tjänsten, hör gärna av dig till oss på: <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a> eller ring oss på <a href="tel:+46706084374">+46706084374</a>.'
   general_questions_press_html: Har du pressfrågor eller vill ha tag på ytterligare material, maila <a href="mailto:press@goclimateneutral.org">press@goclimateneutral.org</a>
   general_questions_payments_html: Har du frågor om betalningar eller teknik, maila <a href="mailto:payments@goclimateneutral.org">payments@goclimateneutral.org</a>
-  general_questions_facebook_html: 'Du hittar oss på facebook här: <a href="https://www.facebook.com/GoClimateNeutral">GoClimateNeutral</a>.'
-  general_questions_twitter_html: Twittra gärna med oss på kontot <a href="https://twitter.com/goclimateneutrl">@goclimateneutrl</a>.
+  general_questions_facebook_html: 'Du hittar oss på facebook här: <a href="https://www.facebook.com/GoClimateNeutral" target="_blank">GoClimateNeutral</a>.'
+  general_questions_twitter_html: Twittra gärna med oss på kontot <a href="https://twitter.com/goclimateneutrl" target="_blank">@goclimateneutrl</a>.
   about_us: Om oss
-  about_us_intro: GoClimateNeutral skapades 2017 med syfte att hjälpa så många som möjligt att leva ett klimatneutralt liv och därmed vara med och bromsa klimatförändringarna. Vi klimatkompenserar för din livsstil samtidigt som vi tipsar om vad du kan göra för att minimera ditt totala fotavtryck på vår planet och därigenom bidra till att göra världen lite bättre.
+  about_us_intro: GoClimateNeutral skapades som ett 2017 med syfte att hjälpa så många som möjligt att leva ett klimatneutralt liv och därmed vara med och bromsa klimatförändringarna. Vi är ett icke vinstdrivande företag med 100% transparant bokföring (GoClimateNeutral Sweden AB, Org.nummer 559130-6583).
   about_us_why_do_we_exist: Varför finns GoClimateNeutral?
   about_us_why_do_we_exist_text: En dag kommer våra barn ställa oss till svars för vad vi gjorde eller varför vi inte gjorde mer åt klimatförändringarna trots att vi var medvetna om att situationen var så allvarlig. Det är den största anledningen till att vi skapade GoClimateNeutral. Den dag våra barn frågar oss om vår medverkan vill vi kunna svara att vi gjorde allt vi bara kunde för att bromsa klimatförändringarna för att ge dem och deras generation en bättre framtid. 
   about_us_how_do_we_stop_climate_change: Hur bromsar vi klimatförändringar?
@@ -47,17 +47,19 @@ sv:
   about_us_who_are_we: Vilka är vi?
   about_us_who_are_we_kalle: "Till vardags VD på Booli.se. Utbildad civilingenjör samt ekonom. Tycker om vegansk kladdkaka och söta djur på internet."
   about_us_who_are_we_cissi: "Marknadsförare samt CSR-ansvarig på ett internationellt sportföretag. Utbildad ekonom och har läst kurser inom miljöområdet. Miljönörd och trädgårdsodlingsgeni."
-  about_us_who_are_we_henrik_html: 'Agil & Lean coach. Bakom bland annat <a href="https://youtu.be/3CM_KkDuzGQ">A friendly guide to Climate Change</a>, <a href="http://climate.crisp.se/">Climate Crisplet</a> och <a href="http://carbonmanifesto.org/">Carbon Manifesto</a>.'
+  about_us_who_are_we_henrik_html: 'Agil & Lean coach. Bakom bland annat <a href="https://youtu.be/3CM_KkDuzGQ" target="_blank">A friendly guide to Climate Change</a>, <a href="http://climate.crisp.se/" target="_blank">Climate Crisplet</a> och <a href="http://carbonmanifesto.org/" target="_blank">Carbon Manifesto</a>.'
   blog: Blogg
   section_1_go_climate_neutral: Lev ett klimatneutralt liv!
   section_1_text: Vi investerar i FN-certifierade klimatprojekt åt dig varje månad och tipsar om hur du kan minska ditt klimatavtryck - på så sätt bidrar du till att bromsa klimatförändringarna och rädda världen.
-  its_fun_to_do_it_together: Det är roligare att rädda världen tillsammans!
+  its_fun_to_do_it_together: Det är roligt att rädda världen tillsammans!
   section_2_text: Genom att leva klimatneutralt med oss så inspirerar du andra att göra samma sak. Klimatförändringar är en utmaning som vi står inför tillsammans, och vi måste lösa den tillsammans också.
-  we_are_100_transparent: Vi är 100% transparenta
-  section_3_text: Vi är 100% transparenta med vilka både FN-certifierade och Gold Standard-märkta klimatprojekt dina pengar investeras i och varför. Vi är även 100% transparenta med mängden koldioxid som försvinner från atmosfären tack vare dig samt hur mycket vi får bort totalt.
-  we_are_975_effective: Vi är väldigt klimateffektiva
+  we_are_100_transparent: Vi är 100% transparenta.
+  this_is_a_first_step: Det här är ett första steg.
+  this_is_a_first_step_description: Kom igång med ett klimatneutralt liv nu. Vi kommer alla även behöva minska våra klimatutsläpp, något som vi hjälper till med genom tips och inspiration längs vägen.
+  section_3_text: Vi är 100% transparenta med vilka både FN-certifierade och Gold Standard-märkta klimatprojekt dina pengar investeras i och varför.
+  we_are_975_effective: Vi hjälper dig bli maximalt klimateffektiv.
   section_4_text: Vi investerar i de mest effektiva certifierade klimatprojekt som vi kan hitta, så att dina pengar gör så stor nytta för planeten som möjligt.
-  start_by_choosing_plan: Börja med att beskriva din klimatpåverkan
+  start_by_choosing_plan: Börja med att beskriva din klimatpåverkan.
   section_5_text: Vad har du för livsstil? Välj ett alternativ nedan eller knappa in en anpassad variant som passar dig bättre.
   vegan: Äter helt växtbaserat
   no_car: Ingen bil
@@ -67,7 +69,7 @@ sv:
   plan_price_html: '<span id="sum">%{cost}</span> <span class="subscript">kr/mån</span>'
   cost_calculation: Kostnadsberäkning
   price_info_popup_content: Detta val räknar vi ger ett årligt utsläpp på %{footprint} ton CO<sub>2</sub>. Eftersom kalkylen är ungefärlig klimatkompenserar vi för dubbelt så många ton, alltså %{footprint_x2} ton C0<sub>2</sub>, så att du kan vara säker på att du lever klimatneutralt varje månad. <br>Vi klimatkompenserar i projekt som är FN-certifierade (CDM) samt har kvalitetsmärkningen Gold Standard (skapad av bland annat WWF och Greenpeace). Dessa projekt kostar ca %{price_per_tonne} kr/ton - och därför landar detta val på %{price_per_month} kr/mån.
-  you_will_offset_for: Du kommer klimatkompensera för %{cost} kr/mån
+  you_will_offset_for: Att ta ansvar för dina klimatutsläpp kostar %{cost} kr/mån
   custom_impact_plan: Anpassad
   mostly_vegetarian: Äter mest vegetariskt
   one_fuel_efficient_car: En bränslesnål bil
@@ -99,10 +101,6 @@ sv:
   thats_it: Nu så!
   read_more_how_we_calculate_offset_plans_html: Läs mer om hur vi räknar ut våra %{href}.
   offset_plans: kompensationsplaner
-  read_more_about_how_we_choose_climet_projects_html: Läs mer om hur vi väljer ut %{href}.
-  but_i_want_to_enter_more_details: Men.. jag vill räkna mer detaljerat på mitt klimatavtryck!
-  calculating_your_exact_footprint_html: Att beräkna ett exakt klimatavtryck är väldigt svårt - mycket svårare än att bara välja ett alternativ här ovan - och kräver att man skriver in stora mängder data i krångliga formulär. Man behöver skriva in och beräkna hur långt man rör sig varje dag och med vilka transportmedel, detaljer om vad man äter och vart maten kommer ifrån, och energispecifikationer från ens bostad och jobb. Men även om vi tycker att alternativen ovan är en rätt bra uppskattning, så finns även möjligheten att använda %{href} och sen skriva in en exakt siffra här
-  lots_of_advanced_calculators_out_there: en av många klimatkalkylatorer där ute
   tonnes_co2_per_year: ton CO2/år
   sign_up_for_a_climate_neutral_life: Här börjar ditt klimatneutrala liv!
   sign_up_here_to_start_livint_a_climate_neutral_life: Skriv in dina uppgifter nedan för att börja resan mot ett klimatneutralt liv.
@@ -114,7 +112,7 @@ sv:
   your_payment_details_have_been_updated: Dina inställningar har uppdaterats
   no_card_registered: Inget kort registrerat
   climate_plan: Kompensation
-  go_climate_neutral: Jag vill rädda världen!
+  go_climate_neutral: Skapa prenumeration
   log_in_to_see_how_we_are_doing: Logga in för att se hur det går i vår kamp med att försöka ställa klimatet till rätta igen.
   you_have_lived_climate_neutral_for_one_month: Du har levt klimatneutralt i %{months} månad.
   you_have_lived_climate_neutral_for_more_months: Du har levt klimatneutralt i %{months} månader.
@@ -139,7 +137,7 @@ sv:
   our_projects: Våra klimatinvesteringar
   our_investments_in_climate_projects: Våra investeringar i klimatprojekt
   our_investments_in_climate_projects_intro_html: 'Vi investerar i FN-certifierade klimatprojekt (CDM) som dessutom har certifieringen Gold Standard. När man väljer FN-certifierade Gold Standard-projekt har man FNs alla medlemsstater och 80 miljöorganisationer i ryggen - bland annat Världsnaturfonden. 
-            <br><br>Gold Standard har även fokus på andra hållbarhetsaspekter än klimatet - som att minska fattigdom och bidra till renare luft och vatten - vilket redovisas genom FNs agenda 2030-mål. Du kan hitta mer information om projekten på <a href="http://UNFCCC.int">UNFCCS webbsida</a> respektive <a href="https://www.goldstandard.org/">Gold Standards webbsida</a>.
+            <br><br>Gold Standard har även fokus på andra hållbarhetsaspekter än klimatet - som att minska fattigdom och bidra till renare luft och vatten - vilket redovisas genom FNs agenda 2030-mål. Du kan hitta mer information om projekten på <a href="http://UNFCCC.int" target="_blank">UNFCCS webbsida</a> respektive <a href="https://www.goldstandard.org/" target="_blank">Gold Standards webbsida</a>.
             <br><br>Alla klimatprojekt verifieras av en oberoende tredje part, t ex TÜV och DNV. Alla granskningsprotokoll är offentliga. Projekten inspekteras kontinuerligt under projekttiden för att garantera att verklig klimatnytta uppnås.'
   climate_project_we_have_invested_in: Klimatprojekt vi investerat i tillsammans
   project_certification_info_html: '<b>CDM+GS:</b> FN-certifierade (CDM) projekt som dessutom har certifieringen Gold Standard (GS).<br><b>CDM:</b> Innan augusti 2017 investerade vi även i projekt som visserligen var FN-certifierade (CDM) men inte hade certifieringen Gold Standard.'
@@ -177,17 +175,15 @@ sv:
   update: Uppdatera
   other_language_site: https://en.goclimateneutral.org
   other_language: In English
-  why_goclimateneutral: Varför GoClimateNeutral?
-  this_is_how_it_works: Så här funkar det
+  what_is_goclimateneutral: Vad är GoClimateNeutral?
+  this_is_how_it_works: Så här funkar det.
   1_describe_your_lifestyle: 1. Välj din livsstil
-  describe_your_lifestyle_text: Välj den livsstil som är mest lik din egna.
   2_sign_up: 2. Registrera dig
   sign_up_text: Registrera dig i vårt enkla formulär.
   3_save_the_world: 3. Rädda världen
   save_the_world_text: Vi köper klimatkompensation åt dig varje månad och tipsar om hur du kan minska ditt klimatavtryck.
   its_that_simple_text: Så här enkelt är det att komma igång. Klimatförändringarna är den största utmaningen som vår generation stått inför och vi kan göra någonting åt det tillsammans. Vi säger inte att det här räcker, men det är ett stort steg i rätt riktning. Hoppa på nu och sprid ordet så bidrar det till att ännu fler hänger med!
   why_goclimateneutral_head: VARFÖR GOCLIMATENEUTRAL?
-  how_it_works_head: SÅ FUNKAR DET
   forgot_your_password: Glömt ditt lösenord?
   enter_your_email_below_and_we_will_send_you: Skriv in din e-post nedan så mailar vi dig instruktioner.
   send_me_an_email_with_instructions: Skicka ett mail till mig!
@@ -217,6 +213,18 @@ sv:
   im_in: Ja, tack!
   1_people: 1 person
   x_people: '%{number} personer'
+  press: Press
+  where_will_my_money_be_used: Var kommer mina pengar användas?
+  good_to_know: Du kan känna dig trygg.
+  why_trust_1: Alla klimatprojekt vi investerar i granskas noggrant av tredje part
+  why_trust_2: Vi är helt transparenta med var dina pengar tar vägen
+  why_trust_3: Vi är inte vinstdrivande - vi vill bara försöka stoppa klimatförändringarna
+  why_trust_4: Det är superenkelt att avsluta din prenumeration om du skulle ångra dig
+  why_trust_5: Om du ångrar dig inom 60 dagar får du pengarna tillbaka
+  we_invest_in_un_climate_projects_that_are_gold_standard_certified: Vi investerar i klimatprojekt som är certifierade av både FN och Gold Standard. Se några exempel på projekt vi investerat i här nedan.
+  thai_solar_carousel_description: Över 90% av elförsörjningen i Thailand kommer från fossila bränslen. Vi har investerat i det här solkraftverket som förser det Thailandska elnätet med förnyelsebar solel.
+  nanyang_danjiang_carousel_description: Genom att ersätta kol- och vedeldade kokkärl med rena solupphettade kärl - så minskas CO2-utsläpp och livskvaliten för 50 000 hushåll förbättras.
+  dak_pone_carousel_description: Dak Pone Hydro project ersätter diselgeneratorer och ved-eldad värme med förnyelsebar energi i form av vattenkraft.
   faq: Frågor & Svar
   answer: Svar
   read_more_on_frequently_asked_questions: Läs mer på vår sida med frågor och svar
@@ -230,13 +238,13 @@ sv:
         <br><br>
         <img class='alignnone wp-image-264 size-large' src='https://www.goclimateneutral.org/blog/wp-content/uploads/2017/08/Skärmavbild-2017-10-31-kl.-21.00.57-1-1024x660.png' />
         <br>
-        I teorin är klimatneutralitet när skillnaden är noll mellan de utsläpp du själv orsakar och de utsläpp som du tar bort från atomsfären alternativt de utsläpp du förhindrar att de släpps ut i atmosfären. Utmaningen med klimatneutralitet är dels att kunna beräkna det exakta klimatavtrycket för respektive individ, dels att hitta mätbara och bra sätt att ta bort utsläpp från atmosfären alternativt mätbara och bra sätt att förhindra att mer utsläpp släpps ut i atmosfären (se <a href='https://www.goclimateneutral.org/faq#collapseq4id'>Fungerar verkligen klimatkompensation?</a>).
+        I teorin är klimatneutralitet när skillnaden är noll mellan de utsläpp du själv orsakar och de utsläpp som du tar bort från atomsfären alternativt de utsläpp du förhindrar att de släpps ut i atmosfären. Utmaningen med klimatneutralitet är dels att kunna beräkna det exakta klimatavtrycket för respektive individ, dels att hitta mätbara och bra sätt att ta bort utsläpp från atmosfären alternativt mätbara och bra sätt att förhindra att mer utsläpp släpps ut i atmosfären (se <a href='https://sv.goclimateneutral.org/faq#collapseq4id'>Fungerar verkligen klimatkompensation?</a>).
         <br><br>
         När det gäller att mäta ens eget klimatavtryck så finns det väldigt avancerade sätt att göra det på. Vi har valt en enkel uppskattning för att göra det så okomplicerat som möjligt att börja göra något åt klimatförändringarna utan att behöva lägga ner massa tid i koldioxidkalkylatorer där man måste ange exakta flygresor, antal körda mil, förbrukade kWh etc.
         <br><br>
-        Det finns många avancerade kalkylatorer fritt tillgängliga på internet som ger mer precisa uppskattningar som <a href='https://www.klimatkalkylatorn.se'>https://www.klimatkalkylatorn.se</a> och <a href='http://www.klimatkontot.se'>http://www.klimatkontot.se</a>. Det alla kalkylatorer har gemensamt är att de bygger på uppskattningar och generaliseringar, vilket i sig gör att värdet du får för dina utsläpp alltid är ungefärliga. Det finns t ex ingen kalkylator som tar hänsyn till om du har byggt ett nytt hus förra året och på så sätt orsakat stora utsläpp i form av byggmaterial. Kalkylatorerna tar inte heller hänsyn till vad skillnaden är om du köpte din elbil begagnad eller ny samt om du exempelvis tankar den med grön el hemma, men med annan el på jobbet. Anledningen är att en sådan kalkylator skulle bli extremt komplex och tidskrävande att använda - och ändå inte perfekt.
+        Det finns många avancerade kalkylatorer fritt tillgängliga på internet som ger mer precisa uppskattningar som <a href='https://www.klimatkalkylatorn.se' target='_blank'>https://www.klimatkalkylatorn.se</a> och <a href='http://www.klimatkontot.se' target='_blank'>http://www.klimatkontot.se</a>. Det alla kalkylatorer har gemensamt är att de bygger på uppskattningar och generaliseringar, vilket i sig gör att värdet du får för dina utsläpp alltid är ungefärliga. Det finns t ex ingen kalkylator som tar hänsyn till om du har byggt ett nytt hus förra året och på så sätt orsakat stora utsläpp i form av byggmaterial. Kalkylatorerna tar inte heller hänsyn till vad skillnaden är om du köpte din elbil begagnad eller ny samt om du exempelvis tankar den med grön el hemma, men med annan el på jobbet. Anledningen är att en sådan kalkylator skulle bli extremt komplex och tidskrävande att använda - och ändå inte perfekt.
         <br><br>
-        Finns det då mätbara och bra sätt att ta bort utsläpp från atmosfären alternativt mätbara och bra sätt att förhindra att mer utsläpp släpps ut i atmosfären? Ja, det gör det! Vi har valt att investera i CDM och Gold Standard-certifierade klimatprojekt, du kan läsa mer om hur det fungerar här i svaret på frågan <a href='https://www.goclimateneutral.org/faq#collapseq4id'>fungerar verkligen klimatkompensation?</a>.
+        Finns det då mätbara och bra sätt att ta bort utsläpp från atmosfären alternativt mätbara och bra sätt att förhindra att mer utsläpp släpps ut i atmosfären? Ja, det gör det! Vi har valt att investera i CDM och Gold Standard-certifierade klimatprojekt, du kan läsa mer om hur det fungerar här i svaret på frågan <a href='https://sv.goclimateneutral.org/faq#collapseq4id'>fungerar verkligen klimatkompensation?</a>.
         <br><br>
         Så är det ändå helt omöjligt att betrakta sig själv som klimatneutral när man inte kan beräkna sitt exakta koldioxidavtryck? Nej, vi tycker inte det. Ingen skulle tjäna på att det skulle vara omöjligt att få kalla sig klimatneutral. För att säkra att våra användare är klimatneutrala i så stor utsträckning vi bara kan är våra profiler utformade så att du kompenserar för mer än dubbelt så mycket av den totala påverkan av ditt levnadssätt. Då finns en buffert som kompenserar för de grova uppskattningarna i klimatkalkylen som vi tycker känns rimlig. Med en dubbelt så stor kompensation bör vi vara på den säkra sidan, och med allra största sannolikhet till och med vara klimatpositiva.
         <br><br>
@@ -278,7 +286,7 @@ sv:
         <br><br>
         Hur kan du veta att projekten vi investerar i - och pengarna du betalar - faktiskt bidrar till verklig klimatnytta? Jo, för att säkerställa det finns flera olika organ som granskar klimatprojekt. De största standarderna är CDM (som FN ligger bakom), Gold Standard (som bland annat Greenpeace och WWF ligger bakom), Plan Vivo, VCS och Fair Trade. Även utsläppsrätter är en klimatkompensationsåtgärd, men de är förenade med rätt stor osäkerhet när det gäller klimatnytta (kan ändras framöver).
         <br><br>
-        På GoClimateNeutral har vi gått från att kompensera i FN-certifierade projekt (CDM) till att <b>investera i projekt som både är FN-certifierade och dessutom har kvalitetsstämpeln Gold Standard</b>. Dessa projekt är dyrare, men håller en högre kvalitetsnivå och är hårdare granskade av oberoende parter än projekten som bara är FN-certifierade. Du kan läsa mer om Gold Standard här: <a href='https://www.goldstandard.org/'>https://www.goldstandard.org/</a>
+        På GoClimateNeutral har vi gått från att kompensera i FN-certifierade projekt (CDM) till att <b>investera i projekt som både är FN-certifierade och dessutom har kvalitetsstämpeln Gold Standard</b>. Dessa projekt är dyrare, men håller en högre kvalitetsnivå och är hårdare granskade av oberoende parter än projekten som bara är FN-certifierade. Du kan läsa mer om Gold Standard här: <a href='https://www.goldstandard.org/' target='_blank'>https://www.goldstandard.org/</a>
         <br><br>
         Det är också viktigt att investera i projekt som redan är genomförda (med hjälp av lånat kapital) och verifierade. Detta för att man först då kan se att verklig klimatnytta faktiskt har åstadkommits, till skillnad från i projekt där klimatnyttan bara är något som man hoppas åstadkomma framöver.
         <br><br>
@@ -321,7 +329,7 @@ sv:
         Har du åsikter om den här frågan? Gå gärna in på vår blogg och kommentera eller ställ frågor: <a href='https://www.goclimateneutral.org/blog/ar-det-inte-viktigare-att-minska-sina-utslapp-an-att-klimatkompensera/'>https://www.goclimateneutral.org/blog/ar-det-inte-viktigare-att-minska-sina-utslapp-an-att-klimatkompensera/</a>"
       q7:
         question: Det här känns som ett avlatsbrev, kan jag verkligen köpa mig fri från ansvar?
-        answer: Nej, det kan du inte. Att börja engagera sig i klimatfrågan och att göra det genom att betala för klimatkompensation ser vi som ett första steg. Det har även visat sig att när man tittar på företag som klimatkompenserar så reducerar de sina utsläpp mer än de som inte klimatkompenserar.<br><br>“The typical offset buyer directly slashed almost 17% of their scope 1 emissions while the typical non-offset buyer reduced scope 1 emissions by less than 5%.” - <a href='http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf'>http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf</a><br><br>Vi tror att det här även gäller privatpersoner, att de som registrerar sig på GoClimateNeutral.org och betalar för att få bort utsläpp i atmosfären varje månad - även kommer att reducera sina utsläpp mer än om de inte registrerade sig alls.
+        answer: Nej, det kan du inte. Att börja engagera sig i klimatfrågan och att göra det genom att betala för klimatkompensation ser vi som ett första steg. Det har även visat sig att när man tittar på företag som klimatkompenserar så reducerar de sina utsläpp mer än de som inte klimatkompenserar.<br><br>“The typical offset buyer directly slashed almost 17% of their scope 1 emissions while the typical non-offset buyer reduced scope 1 emissions by less than 5%.” - <a href='http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf' target='_blank'>http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf</a><br><br>Vi tror att det här även gäller privatpersoner, att de som registrerar sig på GoClimateNeutral.org och betalar för att få bort utsläpp i atmosfären varje månad - även kommer att reducera sina utsläpp mer än om de inte registrerade sig alls.
       q8:
         question: Vad är ett klimatprojekt?
         answer: Ett klimatprojekt är ett projekt som gör klimatnytta med hjälp av de pengar som investeras i det. Ett projekt kan exempelvis vara att bygga ett vindkraftverk som genererar energi så att mindre el används från kolkraftverk, att distribuera effektiva spisar så att mindre träd behöver huggas ner och eldas upp eller att byta ut en hel flotta med bussar från diesel till el.
@@ -334,7 +342,7 @@ sv:
         <br><br>
         Det är tydligt att man inte kan välja vilket klimatprojekt som helst att kompensera på grund av detta. Vi investerar därför bara i de mest trovärdiga och hårt granskade projekten, projekt som både är CDM-certiferade (som FN-ligger bakom) och dessutom har certifieringen Gold Standard (som bland annat WWF och Greenpeace står bakom). Då har man FNs alla medlemsstater och ca 90 miljöorganisationer i ryggen. Därtill tredjepartsverifieras alla dessa projekt av bland annat TÜV och DNV och alla deras protokoll är offentliga och följer projekten under hela projekttiden.
         <br><br>
-        Förutom att välja hårt tredje-partsgranskade projket som är CDM- och Gold Standard-certifierade så har vi även valt att kompensera för dubbla ens beräknade utsläpp för att vara på den säkra sidan om något mot förmodan skulle gå fel i klimatprojekten. Vi sprider även investeringarna i olika klimatprojekt för att ytterligare öka säkerheten med att vi åstadkommer riktig klimatnytta.
+        Förutom att välja hårt tredje-partsgranskade projekt som är CDM- och Gold Standard-certifierade så har vi även valt att kompensera för dubbla ens beräknade utsläpp för att vara på den säkra sidan om något mot förmodan skulle gå fel i klimatprojekten. Vi sprider även investeringarna i olika klimatprojekt för att ytterligare öka säkerheten med att vi åstadkommer riktig klimatnytta.
         <br><br>
         Har du åsikter om den här frågan? Gå gärna in på vår blogg och kommentera eller ställ frågor: <a href='https://www.goclimateneutral.org/blog/hur-kan-jag-vara-saker-pa-att-er-klimatkompensationen-gors-i-tillforlitliga-projekt/'>https://www.goclimateneutral.org/blog/hur-kan-jag-vara-saker-pa-att-er-klimatkompensationen-gors-i-tillforlitliga-projekt/</a>"
       q10:
@@ -353,12 +361,12 @@ sv:
         Har du åsikter om den här frågan? Gå gärna in på vår blogg och kommentera eller ställ frågor: <a href='https://www.goclimateneutral.org/blog/hur-kan-det-vara-sa-billigt-att-klimatkompensera/'>https://www.goclimateneutral.org/blog/hur-kan-det-vara-sa-billigt-att-klimatkompensera/</a>"
       q11:
         question: Är verkligen människan orsaken till klimatförändringarna?
-        answer: "Ja. Om du är osäker, läs mer här: <a href='https://www.bloomberg.com/graphics/2015-whats-warming-the-world/'>https://www.bloomberg.com/graphics/2015-whats-warming-the-world/</a>"
+        answer: "Ja. Om du är osäker, läs mer här: <a href='https://www.bloomberg.com/graphics/2015-whats-warming-the-world/' target='_blank'>https://www.bloomberg.com/graphics/2015-whats-warming-the-world/</a>"
       q12:
         question: Hindrar inte klimatkompensation en omställning till ett hållbart samhälle?
-        answer: "Nej, precis tvärt om faktiskt! Vi tror att klimatkompensation är ett utmärkt första steg många kan ta för att sedan hjälpa till och öka hastigheten att ställa om till ett hållbart sammhälle. 
+        answer: "Nej, precis tvärt om faktiskt! Vi tror att klimatkompensation är ett utmärkt första steg många kan ta för att sedan hjälpa till och öka hastigheten att ställa om till ett hållbart samhälle. 
         <br><br>
-        Beteendeforskning har visat att om man kan få människor att ta ett första – men inte obetydligt – steg i rätt riktning, exempelvis för klimatet via klimatkompensation, så är det väldigt mycket större sannolikhet att de personerna tar fler och större steg i samma riktning senare. Detta kallas foot-in-the-door-technique och är en stark bidragande orsak till att vi vill göra det så enkelt som möjligt för så många som möjligt att komma igång och göra något positivt för klimatet. Vi har sett många exempel på och är övertygade om att de allra flesta som registrerar sig på tjänsten, även vill ta nästa steg och hjälpa till att öka hastigheten på omställningen till ett hållbart sammhälle."
+        Beteendeforskning har visat att om man kan få människor att ta ett första – men inte obetydligt – steg i rätt riktning, exempelvis för klimatet via klimatkompensation, så är det väldigt mycket större sannolikhet att de personerna tar fler och större steg i samma riktning senare. Detta kallas foot-in-the-door-technique och är en stark bidragande orsak till att vi vill göra det så enkelt som möjligt för så många som möjligt att komma igång och göra något positivt för klimatet. Vi har sett många exempel på och är övertygade om att de allra flesta som registrerar sig på tjänsten, även vill ta nästa steg och hjälpa till att öka hastigheten på omställningen till ett hållbart samhälle."
       q13: 
         question: Har klimatkompensation även andra positiva effekter?
         answer: Ja, det har visat sig att företag som klimatkompenserar även minskar sina utsläpp mer än företag som inte klimatkompenserar. Vi tror att klimatkompensation kan ha samma effekt på privatpersoner – att privatpersoner som klimatkompenserar även minskar sin klimatbelastning på sikt tack vare ändrade vanor. När man registrerat sig på vår tjänst så försöker vi inspirera och uppmuntra till att minska ens klimatpåverkan. 
@@ -367,16 +375,22 @@ sv:
         answer: Nej. Vi behöver CO2 för att leva på jorden. Men när vi pumpar upp miljontals ton CO2 från jordens inre varje dag och släpper ut i atmosfären så har det visat sig att det får konsekvenser i form av att vår planet blir varmare. Och det i sin tur kommer att leda till torka, vattenbrist, svält och eventuellt krig. Naturskyddsföreningen tror att vi kommer ha 200 miljoner klimatflyktingar 2050.
       q15:
         question: Kommer ni plocka ut vinst på det här projektet?
-        answer: "Vi vill göra allt för att uppnå maximal klimatnytta och har inte några planer på att plocka ut någon vinst. Om det däremot skulle visa sig att vi kan uppnå ännu mer klimatnytta framöver genom att sätta upp vinst-mål, så kommer vi göra det. Klimatnyttan går före allt för oss. <br><br>Än så länge har vi lagt ner tusentals timmar utan betalning och vinst på projektet, men vi hoppas på sikt att kunna betala ut lön till någon eller några för att göra projektet mer långsiktigt och därmed kunna göra ännu mer nytta för planeten. <br><br>Om vi någon gång skulle plocka ut lön eller vinst så kommer vi vara 100% transparenta med det, du kan redan idag följa alla ekonomiska detaljer om vår verksamhet här: <a href='https://www.goclimateneutral.org/100_percent_transparency'>https://www.goclimateneutral.org/100_percent_transparency</a>"
+        answer: "Vi vill göra allt för att uppnå maximal klimatnytta och har inte några planer på att plocka ut någon vinst. Om det däremot skulle visa sig att vi kan uppnå ännu mer klimatnytta framöver genom att sätta upp vinst-mål, så kommer vi göra det. Klimatnyttan går före allt för oss. <br><br>Än så länge har vi lagt ner tusentals timmar utan betalning och vinst på projektet, men vi hoppas på sikt att kunna betala ut lön till någon eller några för att göra projektet mer långsiktigt och därmed kunna göra ännu mer nytta för planeten. <br><br>Om vi någon gång skulle plocka ut lön eller vinst så kommer vi vara 100% transparenta med det, du kan redan idag följa alla ekonomiska detaljer om vår verksamhet här: <a href='https://sv.goclimateneutral.org/100_percent_transparency'>https://sv.goclimateneutral.org/100_percent_transparency</a>"
       q16:
         question: När klimatkrisen är över, kommer GoClimateNeutral.org att lägga ner då?
         answer: Ja! Tjohoo!
       q17:
         question: Hur beräknar vi klimatavtryck?
-        answer: Att räkna på klimatavtryck är väldigt komplicerat och kan aldrig bli exakt. Oavsett hur noggrant man räknar behöver alltid många antaganden göras. <br><br>Istället för att använda en komplicerad modell har vi valt att räkna grovt utifrån de tre val som påverkar ditt klimatavtryck mest; vad du äter, vilken bil du har och hur mycket du kör, samt hur mycket du flyger. Även om alla klimatkalkylatorer är ungefärliga, så blir vår enkla variant kanske mer grov än andra. Därför har vi valt att kompensera för dubbelt så mycket av det uträknade klimatavtrycket i vår tjänst, så att man trots att kalkylatorn är enkel ska kunna vara säker på att man lever ett klimatneutralt liv.<br><br>De olika alternativens koldioxidutsläppsnivåer baseras på de utmärkta kalkylatorna på myclimate.com och carbonstory.org. Vill du ta reda på ditt klimatavtryck lite mer exakt så finns det <b><a href='https://www.google.se/search?safe=active&q=carbon+footprint+calculator&cad=h'>väldigt många bra kalkylatorer där ute</a></b>.
+        answer: Att räkna på klimatavtryck är väldigt komplicerat och kan aldrig bli exakt. Oavsett hur noggrant man räknar behöver alltid många antaganden göras. <br><br>Istället för att använda en komplicerad modell har vi valt att räkna grovt utifrån de tre val som påverkar ditt klimatavtryck mest; vad du äter, vilken bil du har och hur mycket du kör, samt hur mycket du flyger. Även om alla klimatkalkylatorer är ungefärliga, så blir vår enkla variant kanske mer grov än andra. Därför har vi valt att kompensera för dubbelt så mycket av det uträknade klimatavtrycket i vår tjänst, så att man trots att kalkylatorn är enkel ska kunna vara säker på att man lever ett klimatneutralt liv.<br><br>De olika alternativens koldioxidutsläppsnivåer baseras på de utmärkta kalkylatorna på myclimate.com och carbonstory.org. Vill du ta reda på ditt klimatavtryck lite mer exakt så finns det <b><a href='https://www.google.se/search?safe=active&q=carbon+footprint+calculator&cad=h' target='_blank'>väldigt många bra kalkylatorer där ute</a></b>.
       q18:
         question: Hur får jag reda på vilka klimatprojekt som vi investerar i?
         answer: Vi tror på full transparens i allt vi gör. Alla klimatkompensationsprojekt som vi investerar i redovisas på förstasidan när du loggar in på ditt konto. Du kan dessutom läsa om dem på <b><a href='https://www.goclimateneutral.org/blog/category/investment/'>bloggen under kategorin investeringar</a></b>.
+      q19:
+        question: Hur avslutar jag min prenumeration?
+        answer: "Det är superenkelt, man stänger av sin prenumeration genom att välja 'cancel climate plan' på sidan där man hanterar sina betalningsinställningar: <a href='https://sv.goclimateneutral.org/users/edit/payment'>https://sv.goclimateneutral.org/users/edit/payment</a>"
+      q20:
+        question: Hur hanteras mina kortuppgifter?
+        answer: Vi använder vi oss av Stripe (<a href="https://stripe.com/se">stripe.com</a>) som betalningsleverantör, som är en av de största betalningsleverantörerna på nätet. Kortuppgifterna och betalningarna hanteras helt och hållet av dem - helt krypterat förstås. Kortuppgifterna hamnar aldrig på våra eller någon annans servrar, utan hanteras endast utav Stripe.
   activerecord:
     errors:
       models:
@@ -389,3 +403,27 @@ sv:
                 taken: Användaren finns redan registrerad hos oss, prova med en annan e-postadress!
                 blank: E-postfältet ser tomt ut!
                 invalid: E-postadressen ser konstig ut, prova igen!
+  climate_neutral_users_right_now: klimatneutrala användare just nu
+  ton_co2_less_in_atmosphere: ton CO2 mindre i atmosfären
+  for_companies: För företag
+  for_companies_text_html: Vill du klimatkompensera för en flygresa eller för alla era anställda? Vi hjälper dig gärna. Hör av dig till <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> direkt så berättar vi mer.
+  business: FÖRETAG
+  consumer: PRIVATPERSON
+  thats_amazing_from_the_bottom_of_our_hearts: Vilket är fantastiskt! Från djupet av våra hjärtan
+  year: år
+  years: år
+
+  welcome:
+    intro: Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Tillsammans kan vi bromsa klimatförändringarna och rädda världen, OM vi agerar nu. Genom att kompensera för ditt klimatavtryck kan du bli en del av lösningen.
+    what_is_gcn_text: Vi investerar i FN-certifierade klimatprojekt och tipsar dig om enkla sätt att minska ditt klimatavtryck. På så sätt kan vi bidra till att bromsa klimatförändringarna och rädda världen.
+    lets_save_our_planet_header: Mindre är mer!
+    lets_save_our_planet_text: Varje ton CO2 mindre i atmosfären betyder mer av allt som vi tycker om med den här planeten. Här är vad vi åstadkommit än så länge.
+    call_to_actions:
+      tell_me_more: Berätta mer!
+      im_ready_to_sign_up: Jag är redo!
+      i_want_to_contribute: Jag vill vara med och bidra!
+    how_it_works:
+      describe_your_lifestyle_text: Använd vår kalkylator för att beräkna ditt ungefärliga klimatavtryck.
+      sign_up_text: Registrera dig för att kompensera för ditt klimatavtryck. 
+      save_our_planet_header: 3. Rädda vår planet
+      save_our_planet_text: Bli en av alla oss som vill vara med och stoppa klimatförändringarna.

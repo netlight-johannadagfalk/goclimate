@@ -78,18 +78,18 @@
               <ul>
                 <li><%=t 'investments_in_climate_projects' %>: <%= @cost_in_sek %> sek</li>
                 <li><%=t 'salary_costs' %>: 0 sek</li>
-                <li><%=t 'other_operating_expenses' %>: 6185 sek</li>
-                <li><%=t 'total' %>: <%= @cost_in_sek + 6185 %> sek</li>
+                <li><%=t 'other_operating_expenses' %>: <%= @other_operating_expanses %> sek</li>
+                <li><%=t 'total' %>: <%= @cost_in_sek + @other_operating_expanses %> sek</li>
               </ul>
               <h4><%=t 'result' %></h4>
               <ul>
-                <li><%=t 'result_that_will_be_invested_for_the_climate' %>: <%= @payouts_in_sek - (@cost_in_sek + 6185) %> sek</li>
+                <li><%=t 'result_that_will_be_invested_for_the_climate' %>: <%= @results %> sek</li>
               </ul>
               <h4><%=t 'other_kpis' %></h4>
               <ul>
                 <li><%=t 'number_of_users' %>: <%= @unique_climate_neutral_users %> st</li>
                 <li><%=t 'number_of_ton_that_has_been_offset' %>: <%= @total_carbon_offset %> ton C02</li>
-                <li><%= link_to I18n.t('you_can_read_more_details_about_our_costs_here'), 'https://docs.google.com/spreadsheets/d/1RzUCaVqTTxJYjfUMeh3KlTxBpiATy2ViPO3m0LHGpG8/' %>.</li>
+                <li><%= link_to I18n.t('you_can_read_more_details_about_our_costs_here'), 'https://docs.google.com/spreadsheets/d/1RzUCaVqTTxJYjfUMeh3KlTxBpiATy2ViPO3m0LHGpG8/', target: "_blank" %>.</li>
               </ul>
               
             </div>

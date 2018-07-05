@@ -5,57 +5,54 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'rails', '~> 5.2.0'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.0.beta1'
-# Use sqlite3 as the database for Active Record
-gem 'pg'
-# Use Puma as the app server
+# Environment
+gem 'pg', '~> 1.0'
 gem 'puma', '~> 3.7'
-# Use SCSS for stylesheets
-gem 'sass-rails', github: "rails/sass-rails"
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'rack-reverse-proxy', '~> 0.12.0', require: 'rack/reverse_proxy'
+gem 'bootsnap', '~> 1.3'
 
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+# Authentication
+gem 'devise', '~> 4.4.3'
+gem 'devise-i18n', '~> 1.6.2'
+gem 'omniauth', '~> 1.8.1'
 
-gem 'jquery-rails'
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
-gem 'devise'
-gem 'omniauth'
-gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
-gem 'country_select'
-gem 'sendgrid-ruby'
-gem 'devise-i18n'
-gem 'client_side_validations'
-gem 'font-awesome-rails'
-gem 'gon'
-gem 'seed_dump'
-gem 'intercom-rails'
-gem 'rollbar'
+# I18n
+gem 'http_accept_language', '~> 2.1.1'
+
+# Views
+gem 'country_select', '~> 3.1.1'
+gem 'client_side_validations', '~> 11.1.2'
+gem 'gon', '~> 6.2.0'
+gem 'jbuilder', '~> 2.7.0'
+
+# Assets
+gem 'uglifier', '>= 1.3.0'
+gem 'sass-rails', github: "rails/sass-rails"
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'jquery-rails', '~> 4.3.1'
+gem 'font-awesome-rails', '~> 4.7.0'
+
+# Third-party integrations
+gem 'stripe', git: 'https://github.com/stripe/stripe-ruby', ref: 'f6484e3'
+gem 'sendgrid-ruby', '~> 4.3.1'
+gem 'rollbar', '~> 2.16.2'
+
+# Utilities
+gem 'seed_dump', '~> 3.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.7.0'
+  gem 'capybara', '~> 3.3'
   gem 'selenium-webdriver'
   gem 'rb-readline'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -69,4 +66,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-

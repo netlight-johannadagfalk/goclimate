@@ -13,9 +13,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <% if controller_name == "welcome" && action_name == "index" %>
-          <li><a href="/#why_goclimateneutral"><%=t 'why_goclimateneutral_head' %></a></li>
-          <li><a href="/#this_is_how_it_works"><%=t 'how_it_works_head' %></a></li>
+        <% if controller_name == "welcome" && (action_name == "index" || action_name == "index_all_in_one") %>
+          <li><a href="/companies"><%= t('business') %></a></li>
+          <li><a href="/companies">|</a></li>
+          <li><a href="/"><%= t('consumer') %></a></li>
         <% else %> 
           <li><a href="/">GOCLIMATENEUTRAL.ORG</a></li>
         <% end %>
@@ -36,10 +37,11 @@
         <% else %>
           <li><%= link_to(I18n.t('log_in'), new_user_session_url)%></li>
           <li class="dropdown languages">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= I18n.locale == :sv ? image_tag('SE.png') : image_tag('US.png') %><span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=  image_tag('languages/' + I18n.locale.to_s + '.png') %><span class="caret"></span></a>
               <ul class="dropdown-menu languages">
-                <li><a href="https://sv.goclimateneutral.org/"><%= image_tag 'SE.png' %> SV</a></li>
-                <li><a href="https://en.goclimateneutral.org/"><%= image_tag 'US.png' %> EN</a></li>
+                <li><a href="https://sv.goclimateneutral.org/"><%= image_tag 'languages/sv.png' %> SV</a></li>
+                <li><a href="https://en.goclimateneutral.org/"><%= image_tag 'languages/en.png' %> EN</a></li>
+                <li><a href="https://de.goclimateneutral.org/"><%= image_tag 'languages/de.png' %> DE</a></li>
               </ul>
           </li>
         <% end %>
@@ -56,10 +58,14 @@
         <% else %>
           <li><%= link_to(I18n.t('log_in'), new_user_session_url)%></li>
           <li role="separator" class="divider"></li>
-          <% if I18n.locale == :sv %>
-            <li><a href="https://en.goclimateneutral.org/"><%= image_tag 'US.png' %> IN ENGLISH</a></li>
-          <% else %>
-            <li><a href="https://sv.goclimateneutral.org/"><%= image_tag 'SE.png' %> PÅ SVENSKA</a></li>
+          <% if I18n.locale != :en %>
+            <li><a href="https://en.goclimateneutral.org/"><%= image_tag 'languages/en.png' %> IN ENGLISH</a></li>
+          <% end %>
+          <% if I18n.locale != :de %>
+            <li><a href="https://de.goclimateneutral.org/"><%= image_tag 'languages/de.png' %> AUF DEUTSCH</a></li>
+          <% end %>
+          <% if I18n.locale != :sv %>
+            <li><a href="https://sv.goclimateneutral.org/"><%= image_tag 'languages/sv.png' %> PÅ SVENSKA</a></li>
           <% end %>
         <% end %>
       </ul>

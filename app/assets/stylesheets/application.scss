@@ -171,7 +171,7 @@ ul.nav.nav-tabs li.active a {
   background-size: cover;
   background-position:center;
 }
-.site-wrapper-second {
+.site-wrapper-second, .site-wrapper-fourth {
   background-color: #fff;
   background-repeat:no-repeat;
   background-size: cover; 
@@ -221,11 +221,16 @@ ul.nav.nav-tabs li.active a {
 .form-group div {
   text-align: left;
 }
+.site-wrapper .glyphicon-chevron-down, .site-wrapper .glyphicon-chevron-right, .site-wrapper .glyphicon-chevron-left {
+  font-size: 40px;
+}
 .site-wrapper .glyphicon-chevron-down {
-    padding-top: 110px;
-    font-size: 40px;
-    width: 23px;
-    text-align: left;
+  padding-top: 110px;
+  width: 23px;
+  text-align: left;  
+}
+.site-wrapper .glyphicon-chevron-down.after-video {
+  padding-top: 20px;
 }
 .site-wrapper .glyphicon-chevron-down.glyphicon-plan-first {
     padding-top: 0px;
@@ -268,6 +273,9 @@ ul.nav.nav-tabs li.active a {
 }
 .row.stats.last {
   padding-bottom: 50px;
+}
+.welcome .stats h1.big-number {
+  font-size: 90px;
 }
 .dashboard .stats.total-offset h1 {
   font-size: 95px;
@@ -437,6 +445,7 @@ div.profile {
 }
 .embed-container-wrapper { 
   max-height: 600px;
+  padding-top: 20px;
   margin: auto;
 }
 .embed-container { 
@@ -495,6 +504,12 @@ div.profile {
   #current-card {
     text-align: left;
   }
+  .carousel-inner img.small {
+    display: block;
+  }
+  .carousel-inner img.big {
+    display: none;
+  }
 }
 @media (max-width: 768px) {
     .nav > li > a > img {
@@ -525,6 +540,15 @@ div.profile {
     }
     table.our-projects {
       width: 270px;
+      display: block;
+    }
+    .carousel-inner p {
+      line-height: 110%;
+    }
+    .carousel-inner img.small {
+      display: none;
+    }
+    .carousel-inner img.big {
       display: block;
     }
 }
@@ -583,6 +607,9 @@ td.form.select {
     padding: 20px;
     margin: 0;
 }
+.giftcard .the-price {
+  box-shadow: none;
+}
 .plan-faq {
   padding-top: 30px;
 }
@@ -624,6 +651,25 @@ table.our-projects th {
 }
 .welcome-press h3 {
   margin-top: 50px;
+}
+
+.carousel-inner {
+  margin: 0 auto;
+  max-width: 800px;
+}
+div.trust {
+  display: inline-block;
+  margin: 0 auto;
+}
+ul.trust {
+  text-align: left;
+  margin: 0 auto;
+}
+.form-horizontal.giftcard .control-label {
+  padding-top: 12px;
+}
+.form-horizontal.giftcard textarea {
+  width: 200px;
 }
 
 
@@ -693,6 +739,61 @@ table.our-projects th {
     font-weight: bold;
     text-align: center;
 }
+
+/***** Modal *****/
+ 
+.welcome-index, .welcome-start, .users, .welcome-klimatkompensera {
+
+  .modal-backdrop.in {
+      filter: alpha(opacity=7);
+      opacity: 0.7;
+  }
+   
+  .modal-content {
+      background: none;
+      border: 0;
+      -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
+      -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+  }
+   
+  .modal-body {
+      padding: 0 25px 25px 25px;
+  }
+   
+  .modal-header {
+      padding: 25px 25px 15px 25px;
+      text-align: right;
+  }
+   
+  .modal-header, .modal-footer {
+      border: 0;
+  }
+   
+  .modal-header .close {
+      float: none;
+      margin: 0;
+      font-size: 60px;
+      color: #fff;
+      font-weight: 300;
+      text-shadow: none;
+      opacity: 1;
+  }
+  .welcome .modal.fade .modal-dialog {
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+       -moz-transition: -moz-transform 0.3s ease-out;
+         -o-transition: -o-transform 0.3s ease-out;
+            transition: transform 0.3s ease-out;
+  }
+
+  .welcome .modal.in .modal-dialog {
+
+  }
+
+  .modal-header {
+    padding: 0px;
+  }
+}
+
 
 /*
  * Social Buttons for Bootstrap

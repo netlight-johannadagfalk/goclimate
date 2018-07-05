@@ -26,8 +26,22 @@ class User < ApplicationRecord
   def language
     if stripe_events.first.currency == "sek"
       :sv
+    elsif stripe_events.first.currency == "eur" 
+      :de
     else
       :en
     end
+  end
+
+  def update_without_password(params, *options)
+
+    if params[:password].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation) if params[:password_confirmation].blank?
+    end
+
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
   end
 end

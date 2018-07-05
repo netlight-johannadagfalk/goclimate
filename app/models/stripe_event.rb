@@ -12,12 +12,14 @@ class StripeEvent < ApplicationRecord
     StripeEvent.where(stripe_object: "charge").where(paid: true).where(currency: "sek").sum("stripe_amount").to_i / 100 
   end
 
-  def self.total_in_sek
-    (total_payments_sek_part + total_payments_usd_part * 8.7).round
+  def self.total_payments_eur_part
+    StripeEvent.where(stripe_object: "charge").where(paid: true).where(currency: "eur").sum("stripe_amount").to_i / 100 
   end
 
-  def self.total_in_usd
-    (total_payments_usd_part + total_payments_sek_part / 8.7).round
+  def self.total_in_sek
+    (total_payments_sek_part + 
+      total_payments_usd_part * LifestyleChoice::SEK_PER_USD +
+      total_payments_eur_part * LifestyleChoice::SEK_PER_EUR).round
   end
 
   def self.try_updating_events user

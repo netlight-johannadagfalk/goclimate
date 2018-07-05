@@ -25,22 +25,9 @@ class Mailer
     personalization.substitutions = Substitution.new(key: '%thank_you_for_saving_our_planet%', value: I18n.t('thank_you_for_saving_our_planet'))
     personalization.substitutions = Substitution.new(key: '%you_have_lived_a_climate_neutral_life_for%', value: I18n.t('you_have_lived_a_climate_neutral_life_for'))
 
-    personalization.substitutions = Substitution.new(key: '%number_of_months%', value: climate_neutral_months.to_s)
-
-    if climate_neutral_months == 1
-        personalization.substitutions = Substitution.new(key: '%months%', value: I18n.t('month'))
-    else
-        personalization.substitutions = Substitution.new(key: '%months%', value: I18n.t('months'))
-    end
-
-    personalization.substitutions = Substitution.new(key: '%together_we_have_offset%', value: I18n.t('together_we_have_offset'))
-    personalization.substitutions = Substitution.new(key: '%tonnes%', value: total_carbon_offset.to_s)
-    personalization.substitutions = Substitution.new(key: '%tonnes_CO2%', value: I18n.t('tonnes_CO2'))
-
     personalization.substitutions = Substitution.new(key: '%goclimateneutral_and_this_planet_loves_you%', value: I18n.t('goclimateneutral_and_this_planet_loves_you'))
 
     personalization.substitutions = Substitution.new(key: '%the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible%', value: I18n.t('the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible'))
-
 
     personalization.substitutions = Substitution.new(key: '%goclimateneutral_url%', value: I18n.t('goclimateneutral_url'))
 
@@ -55,10 +42,29 @@ class Mailer
     
     personalization.substitutions = Substitution.new(key: '%learn_more_about_what_we_have_achieved_here%', value: I18n.t('learn_more_about_what_we_have_achieved_here'))
 
+    if climate_neutral_months % 12 == 0
+        if climate_neutral_months / 12 == 1
+            personalization.substitutions = Substitution.new(key: '%years%', value: I18n.t('year'))
+        else
+            personalization.substitutions = Substitution.new(key: '%years%', value: I18n.t('years'))
+        end
+        personalization.substitutions = Substitution.new(key: '%number_of_years%', value: (climate_neutral_months / 12).to_s)
+        personalization.substitutions = Substitution.new(key: '%thats_amazing_from_the_bottom_of_our_hearts%', value: I18n.t('thats_amazing_from_the_bottom_of_our_hearts'))        
+        mail.template_id = '4498dcc9-8fec-4f18-a92f-e9ef82a3fa59'
+    else 
+        if climate_neutral_months == 1
+            personalization.substitutions = Substitution.new(key: '%months%', value: I18n.t('month'))
+        else
+            personalization.substitutions = Substitution.new(key: '%months%', value: I18n.t('months'))
+        end
+        personalization.substitutions = Substitution.new(key: '%number_of_months%', value: climate_neutral_months.to_s)
+        personalization.substitutions = Substitution.new(key: '%together_we_have_offset%', value: I18n.t('together_we_have_offset'))
+        personalization.substitutions = Substitution.new(key: '%tonnes%', value: total_carbon_offset.to_s)
+        personalization.substitutions = Substitution.new(key: '%tonnes_CO2%', value: I18n.t('tonnes_CO2'))
+        mail.template_id = '3401db51-a0df-4dd2-8f9c-d3dfd3c64430'
+    end
+
     mail.personalizations = personalization
-
-    mail.template_id = '3401db51-a0df-4dd2-8f9c-d3dfd3c64430'
-
     mail.reply_to = Email.new(email: 'info@goclimateneutral.org')
 
     # puts JSON.pretty_generate(mail.to_json)

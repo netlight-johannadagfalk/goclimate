@@ -31,6 +31,16 @@
                   <% end %>
                 <% end %>
 
+              <% elsif @currency == "eur" %>
+                
+                <% (2...@plan+10).each do |i| %>
+                  <% if i == @plan.to_i %>
+                    <option value="<%= i %>" selected=1><%= i %> €/month</option>
+                  <% else %>
+                    <option value="<%= i %>"> <%= i %> €/month</option>
+                  <% end %>
+                <% end %>
+
               <% end %>
             </select>
           </div>
