@@ -21,4 +21,21 @@ RSpec.feature "Registrations", type: :feature, js: true do
 
     expect(page).to have_text "Welcome to a climate neutral life"
   end
+
+  scenario "User signs in" do
+    create(:user)
+
+    # Homepage
+    visit "/"
+    click_link "LOG IN"
+
+    # sign in page
+    fill_in "Email", with: "test@test.com"
+    fill_in "Password", with: "password"
+    click_button "LOG IN"
+
+    # Wait for dashboard to render
+    find('.dashboard-index', wait: 20)
+    expect(page).to have_text "We have accomplished a lot together!"
+  end
 end
