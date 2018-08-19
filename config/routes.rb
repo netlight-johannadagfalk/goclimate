@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'users/edit/payment', to: 'users/registrations#payment', as: 'payment'
     get 'users/edit/threedsecure', to: 'users/registrations#threedsecure', as: 'threedsecure'
-    get 'users/sign_up_2', to: 'users/registrations#sign_up_2', as: 'sign_up_2'
   end
   devise_for :users, controllers: {
   	sessions: 'users/sessions',

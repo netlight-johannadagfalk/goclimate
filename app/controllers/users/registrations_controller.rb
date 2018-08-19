@@ -22,10 +22,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-  def sign_up_2
-    new
-  end
-
   # POST /resource
   def create
 
