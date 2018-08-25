@@ -1,6 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>id:</strong>
+  <%= @invoice.id %>
+</p>
+
+<p>
+  <strong>project id:</strong>
+  <%= @invoice.project.id if !@invoice.project.nil? %>
+</p>
+
+<p>
   <strong>Amount in sek:</strong>
   <%= @invoice.amount_in_sek %>
 </p>

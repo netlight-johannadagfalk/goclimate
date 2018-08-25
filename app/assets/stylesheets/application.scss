@@ -95,8 +95,9 @@ ul.nav.nav-tabs li.active a {
 .nav.nav-tabs .active {
   font-weight: bold;
 }
-.projects, .lifestyle_choices, .invoices {
+.projects div.site-wrapper, .lifestyle_choices div.site-wrapper, .invoices div.site-wrapper {
   color: #fff;
+  background-color: grey;
 }
 .projects a, .lifestyle_choices a, .invoices a {
   color: blue;

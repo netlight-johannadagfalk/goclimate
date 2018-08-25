@@ -7,9 +7,10 @@
 <h1>Total spent: <%= @total_sek_spent %> SEK</h1>
 </div>
 
-<table>
+<table class="table">
   <thead>
     <tr>
+      <th>Id</th>
       <th>Name</th>
       <th>Link</th>
       <th>Image url</th>
@@ -30,6 +31,7 @@
   <tbody>
     <% @projects.each do |project| %>
       <tr>
+        <td><%= project.id %></td>
         <td><%= project.name %></td>
         <td><%= project.link %></td>
         <td><%= project.image_url %></td>

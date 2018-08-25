@@ -2,9 +2,12 @@
 
 <h1>Invoices</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
+      <th>Id</th>
+      <th>Project Id</th>
+      <th>Project Name</th>
       <th>Amount in sek</th>
       <th>Carbon offset</th>
       <th>Att</th>
@@ -18,6 +21,9 @@
   <tbody>
     <% @invoices.each do |invoice| %>
       <tr>
+        <td><%= invoice.id %></td>
+        <td><%= invoice.project.id if !invoice.project.nil? %></td>
+        <td><%= invoice.project.name if !invoice.project.nil? %></td>
         <td><%= invoice.amount_in_sek %></td>
         <td><%= invoice.carbon_offset %></td>
         <td><%= invoice.att %></td>
