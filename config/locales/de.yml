@@ -830,3 +830,7 @@ de:
       save_our_planet_text: >-
         Seien Sie Teil unserer Community, in der wir nicht länger den
         Klimawandel fördern. 
+  number:
+    format:
+      delimiter: ' '
+      separator: ','

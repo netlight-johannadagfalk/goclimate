@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-md-4">
                       <p><%=t 'amount_of_carbon_i_have_offset' %>:</p> 
-                      <h1><%= @my_carbon_offset %> <%=t 'tonnes' %></h1>
+                      <h1><%= number_with_delimiter(@my_carbon_offset) %> <%=t 'tonnes' %></h1>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-md-4">
                       <p><%=t 'amount_of_carbon_we_have_offset' %>:</p>
-                      <h1><%= @total_carbon_offset %> <%=t 'tonnes' %></h1>
+                      <h1><%= number_with_delimiter(@total_carbon_offset) %> <%=t 'tonnes' %></h1>
                     </div>
                     <div class="col-md-2"></div>
                   </div>
@@ -122,7 +122,7 @@
             <div class="row stats total-offset">
                 <div class="col-md-12">
                   <p><%=t 'total_carbon_offset_by_us' %>:</p> 
-                  <h1><%= @total_carbon_offset %> <%=t 'tonnes_CO2' %></h1>
+                  <h1><%= number_with_delimiter(@total_carbon_offset) %> <%=t 'tonnes_CO2' %></h1>
                   <p><%=t 'thank_you_so_much_everyone_for_helping_to_save_the_world' %></p> 
                 </div>
             </div>

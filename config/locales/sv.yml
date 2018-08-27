@@ -427,3 +427,7 @@ sv:
       sign_up_text: Registrera dig för att kompensera för ditt klimatavtryck. 
       save_our_planet_header: 3. Rädda vår planet
       save_our_planet_text: Bli en av alla oss som vill vara med och stoppa klimatförändringarna.
+  number:
+    format:
+      delimiter: ' '
+      separator: ','
