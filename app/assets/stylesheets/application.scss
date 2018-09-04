@@ -12,6 +12,7 @@
  *
  *= require_self
  *= require font-awesome
+ *= require components/impact_calculator_fields
  */
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
@@ -162,7 +163,7 @@ ul.nav.nav-tabs li.active a {
     width: 100%;
 }
 .site-wrapper-inner {
-    min-height: 90vh;
+    min-height: 70vh;
 }
 .site-wrapper-inner.solo-inner-wrapper {
     min-height: 100vh;
@@ -580,7 +581,6 @@ td.form.select {
     text-align: left;
   }
   .panel-body {
-    padding: 20px;
     text-align: left;
   }
 }
@@ -600,7 +600,6 @@ td.form.select {
     padding-right: 10px;
 }
 .panel-body {
-    padding: 0px;
     text-align: center;
 }
 .price-info-helper {
@@ -617,27 +616,10 @@ td.form.select {
     color: #d3d3d3;
     padding-top: 0px;
 }
-.the-price {
-    background-color: rgba(220,220,220,.17);
-    box-shadow: 0 1px 0 #dcdcdc, inset 0 1px 0 #fff;
-    padding: 20px;
-    margin: 0;
-}
-.giftcard .the-price {
-  box-shadow: none;
-}
 .plan-faq {
   padding-top: 30px;
 }
-.the-price h1 {
-    line-height: 1em;
-    padding: 0;
-    margin: 0;
-}
 
-.subscript {
-    font-size: 25px;
-}
 .users h3 {
     line-height: 150%;
     margin: 0 auto;

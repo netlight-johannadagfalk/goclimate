@@ -137,16 +137,9 @@ de:
     Wir investieren in die effektivsten zertifizierten Klimaprojekte, die wir
     finden können, damit Ihr Beitrag den größtmöglichen positiven Effekt auf das
     Klima haben kann. 
-  start_by_choosing_plan: Beschreiben Sie Ihre Auswirkungen auf das Klima
-  section_5_text: >-
-    Wie sieht Ihr Lebensstil aus? Wählen Sie eine der unten aufgeführten
-    Optionen oder geben Sie Ihre individuellen Angaben ein.
   vegan: Pflanzliche Ernährung
   no_car: Kein Auto
   hardly_ever_flies: Fliege selten
-  mini_impact_plan: Mini
-  small_impact_plan: Medium
-  plan_price_html: '<span id="sum">%{cost}</span><span class="subscript"> €/mo</span>'
   cost_calculation: Kostenkalkulation
   price_info_popup_content: >-
     In diesem Fall schätzen wir Ihre jährliche Klimabilanz auf %{footprint}
@@ -160,12 +153,9 @@ de:
     WWF). Diese Projekte kosten ca. %{price_per_tonne} € pro Tonne - daher
     kostet Sie dies %{price_per_month} € pro Monat.
   you_will_offset_for: 'Sie kompensieren mit %{cost} €/monat'
-  custom_impact_plan: Individuell
   mostly_vegetarian: Überwiegend vegetarische Ernährung
   one_fuel_efficient_car: Ein verbrauchsarmes Auto
   flies_sometimes: Fliege gelegentlich
-  this_is_me: Das bin ich!
-  yep_me: Trifft zu!
   vegetarian: Vegetarische Ernährung
   sometimes_vegetarian: Häufig vegetarische Ernährung
   meat_eater: 'Fleischesser, kaum Rindfleisch'
@@ -188,7 +178,6 @@ de:
   flies_long_distance_3_time_year: Fliege 3 Mal/Jahr lange Distanzen
   flies_long_distance_6_time_year: Fliege 6 Mal/Jahr lange Distanzen
   flies_long_distance_12_time_year: Fliege 12 Mal/Jahr lange Distanzen
-  thats_it: Das ist es!
   read_more_how_we_calculate_offset_plans_html: 'Erfahren Sie mehr über unsere Berechnung für %{href}.'
   offset_plans: Kompensationspläne
   tonnes_co2_per_year: Tonnen CO2/Jahr
