@@ -68,34 +68,4 @@ $(document).ready(function() {
 	$('.im-in-button').on('click', function (e) {
 		scrollToAnchor('#choose-plan');
 	});
-	$('.i-want-to-know-more-button').on('click', function (e) {
-		scrollToAnchor('#i-want-to-know-more');
-	});
-
-
-	$('#videoModal').modal('show');
-
-	$('#show-video').on('click', function (e) {
-		e.preventDefault();
-		$('#videoModal').modal('show');
-		ga('send', {
-			hitType: 'event',
-			eventAction: 'viewVideo'
-		});
-	});
-
-	$('#videoModal').on('hidden.bs.modal', function (e) {
-		var $frame = $('iframe');
-
-		// saves the current iframe source
-		var vidsrc = $frame.attr('src');
-
-		// sets the source to nothing, stopping the video
-		$frame.attr('src', '');
-
-		// sets it back to the correct link so that it reloads immediately on the next window open
-		$frame.attr('src', vidsrc);
-
-	});
-
 });
