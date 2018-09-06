@@ -405,7 +405,13 @@ sv:
   years: år
 
   welcome:
+    caption_line_1: Kompensera din klimatpåverkan
+    caption_line_2: Bli en klimathjälte idag
     intro: Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Tillsammans kan vi bromsa klimatförändringarna och rädda världen, OM vi agerar nu. Genom att kompensera för ditt klimatavtryck kan du bli en del av lösningen.
+    calculator:
+      title: Räkna ut din klimatpåverkan för att komma igång
+      submit: Kompensera min påverkan
+      per_month: /mån
     what_is_gcn_text: Vi investerar i FN-certifierade klimatprojekt och tipsar dig om enkla sätt att minska ditt klimatavtryck. På så sätt kan vi bidra till att bromsa klimatförändringarna och rädda världen.
     lets_save_our_planet_header: Mindre är mer!
     lets_save_our_planet_text: Varje ton CO2 mindre i atmosfären betyder mer av allt som vi tycker om med den här planeten. Här är vad vi åstadkommit än så länge.

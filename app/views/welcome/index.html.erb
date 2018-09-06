@@ -54,7 +54,7 @@
 
                   <div class="impact-calculator-fields--price">
                     <% if locale == :en %>$<% end %><span id="sum" class="impact-calculator-fields--price-sum">x</span>
-                    <% if locale == :sv %>kr<% elsif locale == :de %>€<% end %>/mo
+                    <% if locale == :sv %>kr<% elsif locale == :de %>€<% end %><%=t 'welcome.calculator.per_month' %>
                     <span class="glyphicon glyphicon-question-sign price-info-helper" 
                           data-html="true" 
                           aria-hidden="true" 
