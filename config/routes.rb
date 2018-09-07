@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   get 'about', to: 'welcome#about'
   get 'contact', to: 'welcome#contact'
   get 'faq', to: 'welcome#faq'
-  get 'friendlyguide', to: 'welcome#friendlyguide'
   get 'press', to: 'welcome#press'
   get '100_percent_transparency', to: 'welcome#transparency'
   get 'our_projects', to: 'welcome#our_projects'
@@ -34,4 +33,5 @@ Rails.application.routes.draw do
 
   # Redirects for old routes
   get 'klimatkompensera', to: redirect('/')
+  get 'friendlyguide', to: redirect('/')
 end
