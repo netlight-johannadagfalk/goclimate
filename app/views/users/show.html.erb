@@ -39,4 +39,6 @@
 
 <%= render "shared/video_modal" %>
 
-
+<% content_for :javascript_tags do %>
+  <%= javascript_include_tag 'users' %>
+<% end %>

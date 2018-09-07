@@ -13,9 +13,7 @@
     <meta name="theme-color" content="#ffffff">
 
     <%= javascript_include_tag 'application' %>
-    <% if Rails.application.assets.find_asset(params[:controller]).present? %>
-      <%= javascript_include_tag params[:controller] %>
-    <% end %>
+    <%= yield :javascript_tags %>
     <%= stylesheet_link_tag 'application' %>
     <%= include_gon %>
 
