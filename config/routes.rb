@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
 
   resources :invoices
   resources :lifestyle_choices
@@ -31,6 +32,4 @@ Rails.application.routes.draw do
   resources :subscriptions
 
   get '/blog' => redirect("https://www.goclimateneutral.org/blog/")
-
-  root 'welcome#index'
 end
