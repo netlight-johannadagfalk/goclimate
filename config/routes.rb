@@ -26,10 +26,12 @@ Rails.application.routes.draw do
   get '100_percent_transparency', to: 'welcome#transparency'
   get 'our_projects', to: 'welcome#our_projects'
   get 'companies', to: 'welcome#companies'
-  get 'klimatkompensera', to: 'welcome#klimatkompensera'
   get 'admin', to: 'admin#index'
 
   resources :subscriptions
 
   get '/blog' => redirect("https://www.goclimateneutral.org/blog/")
+
+  # Redirects for old routes
+  get 'klimatkompensera', to: redirect('/')
 end
