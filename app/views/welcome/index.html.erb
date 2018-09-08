@@ -7,8 +7,7 @@
         <div class="inner cover">
           <div class="col-xs-12 col-md-8">
 
-            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-            <h1 class="cover-heading">
+            <h1 class="cover-heading top">
               <%=t 'welcome.caption_line_1' %><br>
               <%=t 'welcome.caption_line_2' %>
             </h1>
@@ -151,7 +150,7 @@
             <div class="row stats">
               <div class="col-md-2"></div>
               <div class="col-md-8">
-                <h1 class="big-number"><%= @total_carbon_offset %></h1>
+                <h1 class="big-number"><%= number_with_delimiter(@total_carbon_offset) %></h1>
                 <p><%=t 'ton_co2_less_in_atmosphere' %></p>
               </div>
               <div class="col-md-2"></div>

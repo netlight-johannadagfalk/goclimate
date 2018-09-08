@@ -129,6 +129,10 @@ ul.nav.nav-tabs li.active a {
 .welcome-our_projects h1 {
   margin-bottom: 40px;
 }
+.welcome .cover-heading {
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
 #error_explanation {
   color: red;
 }
@@ -741,7 +745,7 @@ ul.trust {
 
 /***** Modal *****/
  
-.welcome-index, .welcome-start, .users, .welcome-klimatkompensera {
+.welcome-index, .welcome-start, .users {
 
   .modal-backdrop.in {
       filter: alpha(opacity=7);

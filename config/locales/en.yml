@@ -385,14 +385,14 @@ en:
   years: years
 
   welcome:
-    caption_line_1: Offset your climate impact
-    caption_line_2: Become a climate hero today
+    caption_line_1: Together we can save our climate.
+    caption_line_2: Become a climate hero today!
     intro: Climate change is the greatest challenge of our time. Together we have a chance to hit the brakes and save our planet, but we have to act now. By offsetting your climate impact, you can become part of the solution right now.
     calculator:
       title: Calculate your climate impact to get started
       submit: Offset my impact
       per_month: /mo
-    what_is_gcn_text: We invest in UN certified climate offset projects and highlight easy ways to reduce your climate footprint. In this way we help slow down climate change and contribute to saving our planet.
+    what_is_gcn_text: We support UN certified climate offset projects and highlight easy ways to reduce your climate footprint. In this way we help slow down climate change and contribute to saving our planet.
     lets_save_our_planet_header: Less is more!
     lets_save_our_planet_text: Every ton CO2 less in the atmosphere means more of all the things we love on this planet. Here's what we've achieved together so far.
     call_to_actions:
