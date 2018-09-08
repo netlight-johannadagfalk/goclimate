@@ -13,7 +13,7 @@
     <meta name="theme-color" content="#ffffff">
 
     <%= javascript_include_tag 'application' %>
-    <%= javascript_include_tag params[:controller] %>
+    <%= yield :javascript_tags %>
     <%= stylesheet_link_tag 'application' %>
     <%= include_gon %>
 
