@@ -10,7 +10,7 @@ jobs:
       - image: circleci/ruby:2.4.4-node-browsers
         environment:
           PGHOST: 127.0.0.1
-          PGUSER: myapp-test
+          PGUSER: myapp
           RAILS_ENV: test
       - image: circleci/postgres:9.5-alpine
         environment:
