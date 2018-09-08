@@ -25,9 +25,6 @@ class WelcomeController < ApplicationController
   def faq
   end
 
-  def friendlyguide
-  end
-
   def press
     @press_images = Dir.glob("app/assets/images/press/*.*")
     @press_social_images = Dir.glob("app/assets/images/press_social/*.*")
