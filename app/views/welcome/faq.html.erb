@@ -65,3 +65,7 @@
   <%= render "shared/footer" %>
 
 </div>
+
+<% content_for :javascript_tags do %>
+  <%= javascript_include_tag 'welcome' %>
+<% end %>
