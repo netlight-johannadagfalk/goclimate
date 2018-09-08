@@ -59,23 +59,15 @@ sv:
   section_3_text: Vi är 100% transparenta med vilka både FN-certifierade och Gold Standard-märkta klimatprojekt dina pengar investeras i och varför.
   we_are_975_effective: Vi hjälper dig bli maximalt klimateffektiv.
   section_4_text: Vi investerar i de mest effektiva certifierade klimatprojekt som vi kan hitta, så att dina pengar gör så stor nytta för planeten som möjligt.
-  start_by_choosing_plan: Börja med att beskriva din klimatpåverkan.
-  section_5_text: Vad har du för livsstil? Välj ett alternativ nedan eller knappa in en anpassad variant som passar dig bättre.
   vegan: Äter helt växtbaserat
   no_car: Ingen bil
   hardly_ever_flies: Flyger nästan aldrig
-  mini_impact_plan: Liten
-  small_impact_plan: Mellan
-  plan_price_html: '<span id="sum">%{cost}</span> <span class="subscript">kr/mån</span>'
   cost_calculation: Kostnadsberäkning
   price_info_popup_content: Detta val räknar vi ger ett årligt utsläpp på %{footprint} ton CO<sub>2</sub>. Eftersom kalkylen är ungefärlig klimatkompenserar vi för dubbelt så många ton, alltså %{footprint_x2} ton C0<sub>2</sub>, så att du kan vara säker på att du lever klimatneutralt varje månad. <br>Vi klimatkompenserar i projekt som är FN-certifierade (CDM) samt har kvalitetsmärkningen Gold Standard (skapad av bland annat WWF och Greenpeace). Dessa projekt kostar ca %{price_per_tonne} kr/ton - och därför landar detta val på %{price_per_month} kr/mån.
   you_will_offset_for: Att ta ansvar för dina klimatutsläpp kostar %{cost} kr/mån
-  custom_impact_plan: Anpassad
   mostly_vegetarian: Äter mest vegetariskt
   one_fuel_efficient_car: En bränslesnål bil
   flies_sometimes: Flyger ibland
-  this_is_me: Ja!
-  yep_me: Ja, jag!
   vegetarian: Äter helt vegetariskt
   sometimes_vegetarian: Äter ofta vegetariskt
   meat_eater: Köttätare, men inte så mycket rött kött
@@ -98,7 +90,6 @@ sv:
   flies_long_distance_3_time_year: Flyger längre distanser 3 ggr/år
   flies_long_distance_6_time_year: Flyger längre distanser 6 ggr/år
   flies_long_distance_12_time_year: Flyger längre distanser 12 ggr/år
-  thats_it: Nu så!
   read_more_how_we_calculate_offset_plans_html: Läs mer om hur vi räknar ut våra %{href}.
   offset_plans: kompensationsplaner
   tonnes_co2_per_year: ton CO2/år
@@ -414,7 +405,13 @@ sv:
   years: år
 
   welcome:
+    caption_line_1: Kompensera din klimatpåverkan
+    caption_line_2: Bli en klimathjälte idag
     intro: Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Tillsammans kan vi bromsa klimatförändringarna och rädda världen, OM vi agerar nu. Genom att kompensera för ditt klimatavtryck kan du bli en del av lösningen.
+    calculator:
+      title: Räkna ut din klimatpåverkan för att komma igång
+      submit: Kompensera min påverkan
+      per_month: /mån
     what_is_gcn_text: Vi investerar i FN-certifierade klimatprojekt och tipsar dig om enkla sätt att minska ditt klimatavtryck. På så sätt kan vi bidra till att bromsa klimatförändringarna och rädda världen.
     lets_save_our_planet_header: Mindre är mer!
     lets_save_our_planet_text: Varje ton CO2 mindre i atmosfären betyder mer av allt som vi tycker om med den här planeten. Här är vad vi åstadkommit än så länge.

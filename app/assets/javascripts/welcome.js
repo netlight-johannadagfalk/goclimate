@@ -68,7 +68,4 @@ $(document).ready(function() {
 	$('.im-in-button').on('click', function (e) {
 		scrollToAnchor('#choose-plan');
 	});
-	$('.i-want-to-know-more-button').on('click', function (e) {
-		scrollToAnchor('#i-want-to-know-more');
-	});
 });

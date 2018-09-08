@@ -59,23 +59,15 @@ en:
   section_3_text: We are 100% transparent in which both UN and Gold Standard-certified climate offset projects we invest in, and why.
   we_are_975_effective: We are very climate efficient.
   section_4_text: We invest in the most effective certified climate offset projects we can find, so that your money slows down climate change as much as possible.
-  start_by_choosing_plan: Start by describing your climate impact.
-  section_5_text: What is your way of living? Select an option below or enter a custom one that better corresponds to your lifestyle.
   vegan: Plant-based diet
   no_car: No car
   hardly_ever_flies: Hardly ever flies
-  mini_impact_plan: Mini
-  small_impact_plan: Medium
-  plan_price_html: '$<span id="sum">%{cost}</span><span class="subscript">/mo</span>'
   cost_calculation: Cost calculation
   price_info_popup_content: With this choice we estimate a yearly climate footprint of %{footprint} tonne CO<sub>2</sub>. Since the number is approximate we offset for twice as many tonnes, so %{footprint_x2} tonne C0<sub>2</sub>. This way you can be sure you live climate neutral every month.<br>We invest in projects that are UN-certified (CDM) and also have the quality label Gold Standard (created among others by Greenpeace and WWF). These project cost about $%{price_per_tonne} per tonne - so this choice end up at $%{price_per_month} per month.
   you_will_offset_for: To take responsibility for your climate footprint costs $%{cost}/month
-  custom_impact_plan: Custom
   mostly_vegetarian: Eat mostly vegetarian food
   one_fuel_efficient_car: One Fuel Efficient Car
   flies_sometimes: Flies Sometimes
-  this_is_me: This is me!
-  yep_me: Yep, me!
   vegetarian: Vegetarian diet
   sometimes_vegetarian: Often vegetarian diet
   meat_eater: Meat Eater, not so much beef
@@ -98,7 +90,6 @@ en:
   flies_long_distance_3_time_year: Fly long distance 3 time/year
   flies_long_distance_6_time_year: Fly long distance 6 time/year
   flies_long_distance_12_time_year: Fly long distance 12 time/year
-  thats_it: That's it!
   read_more_how_we_calculate_offset_plans_html: Read more on how we calculate the %{href}.
   offset_plans: offset plans
   tonnes_co2_per_year: tonnes CO2/year
@@ -394,7 +385,13 @@ en:
   years: years
 
   welcome:
-    intro: Climate change is the greatest challenge of our time. Together we have a chance to hit the brakes and save our planet, but we have to act now. By offsetting your climate impact, you can become part of the solution right now. GoClimateNeutral is the simplest way to do this.
+    caption_line_1: Offset your climate impact
+    caption_line_2: Become a climate hero today
+    intro: Climate change is the greatest challenge of our time. Together we have a chance to hit the brakes and save our planet, but we have to act now. By offsetting your climate impact, you can become part of the solution right now.
+    calculator:
+      title: Calculate your climate impact to get started
+      submit: Offset my impact
+      per_month: /mo
     what_is_gcn_text: We invest in UN certified climate offset projects and highlight easy ways to reduce your climate footprint. In this way we help slow down climate change and contribute to saving our planet.
     lets_save_our_planet_header: Less is more!
     lets_save_our_planet_text: Every ton CO2 less in the atmosphere means more of all the things we love on this planet. Here's what we've achieved together so far.

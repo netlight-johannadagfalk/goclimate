@@ -4,7 +4,7 @@ RSpec.feature "Registrations", type: :feature, js: true do
   scenario "New user registers" do
     # Homepage
     visit "/"
-    click_link "That's it!"
+    click_link "Offset my impact"
 
     # Sign up page
     fill_in "Email", with: "test@example.com"
