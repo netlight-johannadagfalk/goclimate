@@ -1,8 +1,9 @@
 class Mailer
 
   require 'sendgrid-ruby'
-  include SendGrid
   require 'json'
+  include SendGrid
+  include ActionView::Helpers::NumberHelper
 
   def send_one_more_month_email user
 
@@ -59,7 +60,7 @@ class Mailer
         end
         personalization.substitutions = Substitution.new(key: '%number_of_months%', value: climate_neutral_months.to_s)
         personalization.substitutions = Substitution.new(key: '%together_we_have_offset%', value: I18n.t('together_we_have_offset'))
-        personalization.substitutions = Substitution.new(key: '%tonnes%', value: total_carbon_offset.to_s)
+        personalization.substitutions = Substitution.new(key: '%tonnes%', value: number_with_delimiter(total_carbon_offset))
         personalization.substitutions = Substitution.new(key: '%tonnes_CO2%', value: I18n.t('tonnes_CO2'))
         mail.template_id = '3401db51-a0df-4dd2-8f9c-d3dfd3c64430'
     end
