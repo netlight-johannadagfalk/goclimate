@@ -23,3 +23,11 @@ guard :rspec, cmd: "bin/rspec --format doc" do
   # Rails config changes
   watch(rails.spec_helper) { rspec.spec_dir }
 end
+
+guard :rubocop, all_on_start: false do
+  watch(%r{.+\.rb$})
+  watch(%r{.+\.rake$})
+  watch("Gemfile")
+  watch("Rakefile")
+  watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
+end

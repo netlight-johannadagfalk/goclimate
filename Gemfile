@@ -54,6 +54,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rb-readline'
   gem 'dotenv-rails'
+  gem 'rubocop', require: false
 end
 
 group :development do
@@ -65,6 +66,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'guard'
   gem 'guard-rspec', require: false
+  gem 'guard-rubocop', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
