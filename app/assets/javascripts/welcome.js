@@ -49,6 +49,8 @@ $(document).ready(function() {
 			planSum();
 	});
 
+	planSum();
+	
 	//for faq links
 	$('.panel-title a').on('click', function (e) {
 	   window.location.hash = e.target.hash + "id";
