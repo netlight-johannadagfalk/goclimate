@@ -12,8 +12,8 @@ Rails.application.routes.draw do
     get 'users/edit/threedsecure', to: 'users/registrations#threedsecure', as: 'threedsecure'
   end
   devise_for :users, controllers: {
-  	sessions: 'users/sessions',
-  	registrations: 'users/registrations'
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
   }
   resources :users, :only => [:show]
 

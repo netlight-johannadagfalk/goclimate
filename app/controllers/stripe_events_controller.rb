@@ -1,6 +1,6 @@
 class StripeEventsController < ApplicationController
   before_action :set_stripe_event, only: [:show, :edit, :update, :destroy]
-  before_action do 
+  before_action do
     redirect_to new_user_session_path unless current_user && current_user.id == 2
   end
 
@@ -65,13 +65,14 @@ class StripeEventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_stripe_event
-      @stripe_event = StripeEvent.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def stripe_event_params
-      params.require(:stripe_event).permit(:stripe_event_id, :stripe_customer_id, :stripe_object, :stripe_status, :stripe_amount, :stripe_created)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_stripe_event
+    @stripe_event = StripeEvent.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def stripe_event_params
+    params.require(:stripe_event).permit(:stripe_event_id, :stripe_customer_id, :stripe_object, :stripe_status, :stripe_amount, :stripe_created)
+  end
 end

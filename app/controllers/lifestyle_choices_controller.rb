@@ -2,7 +2,7 @@ class LifestyleChoicesController < ApplicationController
   before_action :set_lifestyle_choice, only: [:show, :edit, :update, :destroy]
 
   before_action :authenticate_user!
-  before_action do 
+  before_action do
     redirect_to new_user_session_path unless current_user && current_user.id == 2
   end
 
@@ -67,13 +67,14 @@ class LifestyleChoicesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lifestyle_choice
-      @lifestyle_choice = LifestyleChoice.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def lifestyle_choice_params
-      params.require(:lifestyle_choice).permit(:name, :category, :version, :co2)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_lifestyle_choice
+    @lifestyle_choice = LifestyleChoice.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def lifestyle_choice_params
+    params.require(:lifestyle_choice).permit(:name, :category, :version, :co2)
+  end
 end

@@ -1,12 +1,10 @@
 class Mailer
-
   require 'sendgrid-ruby'
   require 'json'
   include SendGrid
   include ActionView::Helpers::NumberHelper
 
   def send_one_more_month_email user
-
     climate_neutral_months = StripeEvent.payments(user).where(paid: true).count
     total_carbon_offset = Project.total_carbon_offset
 
@@ -14,7 +12,7 @@ class Mailer
     mail.from = Email.new(email: 'info@goclimateneutral.org', name: 'GoClimateNeutral.org')
 
     I18n.locale = user.language
-    
+
     personalization = Personalization.new
     personalization.to = Email.new(email: user.email)
     personalization.subject = I18n.t('thank_you')
@@ -40,29 +38,29 @@ class Mailer
 
     personalization.substitutions = Substitution.new(key: '%facebook_share_url%', value: share_url + "?share=fb")
     personalization.substitutions = Substitution.new(key: '%twitter_share_url%', value: share_url + "?share=tw")
-    
+
     personalization.substitutions = Substitution.new(key: '%learn_more_about_what_we_have_achieved_here%', value: I18n.t('learn_more_about_what_we_have_achieved_here'))
 
     if climate_neutral_months % 12 == 0
-        if climate_neutral_months / 12 == 1
-            personalization.substitutions = Substitution.new(key: '%years%', value: I18n.t('year'))
-        else
-            personalization.substitutions = Substitution.new(key: '%years%', value: I18n.t('years'))
-        end
-        personalization.substitutions = Substitution.new(key: '%number_of_years%', value: (climate_neutral_months / 12).to_s)
-        personalization.substitutions = Substitution.new(key: '%thats_amazing_from_the_bottom_of_our_hearts%', value: I18n.t('thats_amazing_from_the_bottom_of_our_hearts'))        
-        mail.template_id = '4498dcc9-8fec-4f18-a92f-e9ef82a3fa59'
-    else 
-        if climate_neutral_months == 1
-            personalization.substitutions = Substitution.new(key: '%months%', value: I18n.t('month'))
-        else
-            personalization.substitutions = Substitution.new(key: '%months%', value: I18n.t('months'))
-        end
-        personalization.substitutions = Substitution.new(key: '%number_of_months%', value: climate_neutral_months.to_s)
-        personalization.substitutions = Substitution.new(key: '%together_we_have_offset%', value: I18n.t('together_we_have_offset'))
-        personalization.substitutions = Substitution.new(key: '%tonnes%', value: number_with_delimiter(total_carbon_offset))
-        personalization.substitutions = Substitution.new(key: '%tonnes_CO2%', value: I18n.t('tonnes_CO2'))
-        mail.template_id = '3401db51-a0df-4dd2-8f9c-d3dfd3c64430'
+      if climate_neutral_months / 12 == 1
+        personalization.substitutions = Substitution.new(key: '%years%', value: I18n.t('year'))
+      else
+        personalization.substitutions = Substitution.new(key: '%years%', value: I18n.t('years'))
+      end
+      personalization.substitutions = Substitution.new(key: '%number_of_years%', value: (climate_neutral_months / 12).to_s)
+      personalization.substitutions = Substitution.new(key: '%thats_amazing_from_the_bottom_of_our_hearts%', value: I18n.t('thats_amazing_from_the_bottom_of_our_hearts'))
+      mail.template_id = '4498dcc9-8fec-4f18-a92f-e9ef82a3fa59'
+    else
+      if climate_neutral_months == 1
+        personalization.substitutions = Substitution.new(key: '%months%', value: I18n.t('month'))
+      else
+        personalization.substitutions = Substitution.new(key: '%months%', value: I18n.t('months'))
+      end
+      personalization.substitutions = Substitution.new(key: '%number_of_months%', value: climate_neutral_months.to_s)
+      personalization.substitutions = Substitution.new(key: '%together_we_have_offset%', value: I18n.t('together_we_have_offset'))
+      personalization.substitutions = Substitution.new(key: '%tonnes%', value: number_with_delimiter(total_carbon_offset))
+      personalization.substitutions = Substitution.new(key: '%tonnes_CO2%', value: I18n.t('tonnes_CO2'))
+      mail.template_id = '3401db51-a0df-4dd2-8f9c-d3dfd3c64430'
     end
 
     mail.personalizations = personalization
@@ -76,16 +74,14 @@ class Mailer
     puts response.status_code
     puts response.body
     puts response.headers
-
   end
 
   def send_payment_failed_email user
-
     mail = Mail.new
     mail.from = Email.new(email: 'info@goclimateneutral.org', name: 'GoClimateNeutral.org')
 
     I18n.locale = user.language
-    
+
     personalization = Personalization.new
     personalization.to = Email.new(email: user.email)
     personalization.subject = I18n.t('the_payment_unfortunately_failed')
@@ -119,6 +115,5 @@ class Mailer
     puts response.status_code
     puts response.body
     puts response.headers
-
   end
 end

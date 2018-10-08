@@ -8,10 +8,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     edit_user_registration_path(resource)
   end
 
-
   # GET /resource/sign_up
   def new
-
     if params[:choices].nil? || !params[:choices].include?(",")
       redirect_to "/#choose-plan" and return
     end
@@ -24,30 +22,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-
     @plan = get_plan params[:user][:choices]
     choices = params[:user][:choices].split(",").map(&:to_i)
 
     begin
-
       if params[:user][:choices].nil? || params[:user][:choices].match(/\d+,\d+,\d+,\d/).nil?
         flash[:error] = I18n.t('something_went_wrong_go_back_one_step_and_try_again')
-        redirect_to new_user_registration_path({choices: params[:user][:choices]}) and return
+        redirect_to new_user_registration_path({ choices: params[:user][:choices] }) and return
       end
 
       if params[:user][:email].nil? || params[:user][:email].length < 4
         flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.blank')
-        redirect_to new_user_registration_path({choices: params[:user][:choices]}) and return
+        redirect_to new_user_registration_path({ choices: params[:user][:choices] }) and return
       end
 
       if params[:user][:password].nil? || params[:user][:password].length < 6
         flash[:error] = I18n.t('activerecord.errors.models.user.attributes.password.blank')
-        redirect_to new_user_registration_path({choices: params[:user][:choices]}) and return
+        redirect_to new_user_registration_path({ choices: params[:user][:choices] }) and return
       end
 
       if params[:stripeSource].nil?
         flash[:error] = "Oops, an error occured, please try again!"
-        redirect_to new_user_registration_path({choices: params[:user][:choices]}) and return
+        redirect_to new_user_registration_path({ choices: params[:user][:choices] }) and return
       end
 
       user = User.find_for_authentication(email: params[:user][:email])
@@ -57,36 +53,40 @@ class Users::RegistrationsController < Devise::RegistrationsController
           user.delete
         else
           flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.taken')
-          redirect_to new_user_registration_path({choices: params[:user][:choices]}) and return
+          redirect_to new_user_registration_path({ choices: params[:user][:choices] }) and return
         end
       end
 
       customer = Stripe::Customer.create(
         :email => params[:user][:email],
-        :source  => params[:stripeSource]
+        :source => params[:stripeSource]
       )
 
       # 3dsecure is required
       if params[:threeDSecure] == "required"
-        source = Stripe::Source.create({
-          amount: (@plan.to_f * 100).round,
-          currency: currency_for_user,
-          type: 'three_d_secure',
-          three_d_secure: {
-            customer: customer.id,
-            card: params[:stripeSource]
-          },
-          redirect: {
-            return_url: threedsecure_url + "?email=" + params[:user][:email] + "&plan=" + @plan.to_s + "&choices=" + params[:user][:choices] + "&customer=" + customer.id
-          },
-        })
+        source = Stripe::Source.create(
+          {
+            amount: (@plan.to_f * 100).round,
+            currency: currency_for_user,
+            type: 'three_d_secure',
+            three_d_secure:
+              {
+                customer: customer.id,
+                card: params[:stripeSource]
+              },
+            redirect:
+              {
+                return_url: threedsecure_url + "?email=" + params[:user][:email] + "&plan=" + @plan.to_s + "&choices=" + params[:user][:choices] + "&customer=" + customer.id
+              },
+          }
+        )
 
         # Checking if verification is still required
         # -> https://stripe.com/docs/sources/three-d-secure
         unless ((source.redirect.status == "succeeded" || source.redirect.status == "not_required") && source.three_d_secure.authenticated == false) || source.status == "failed"
-          user = User.new({email: params[:user][:email], password: params[:user][:password]})
+          user = User.new({ email: params[:user][:email], password: params[:user][:password] })
           user.save
-          
+
           choices.each do |choice_id|
             user.lifestyle_choices << LifestyleChoice.find(choice_id)
           end
@@ -103,17 +103,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
         :customer => customer.id,
         :plan => plan.id,
       )
-
     rescue Stripe::CardError => e
-        body = e.json_body
-        err  = body[:error]
-        flash[:error] = "Something went wrong with the payment"
-        flash[:error] = "The payment failed: #{err[:message]}" if err[:message]
-        redirect_to new_user_registration_path({choices: params[:user][:choices]}) and return
+      body = e.json_body
+      err  = body[:error]
+      flash[:error] = "Something went wrong with the payment"
+      flash[:error] = "The payment failed: #{err[:message]}" if err[:message]
+      redirect_to new_user_registration_path({ choices: params[:user][:choices] }) and return
     end
 
     super
-    
+
     User.where('lower(email) = ?', params[:user][:email].downcase).update_all(stripe_customer_id: customer.id)
 
     user = User.find_for_authentication(email: params[:user][:email])
@@ -124,7 +123,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def threedsecure
-
     user = User.find_for_authentication(email: params[:email])
     plan = get_stripe_plan params[:plan], new_user_registration_path
     source = Stripe::Source.retrieve(params['source'])
@@ -134,19 +132,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
       if !params[:updatecard].nil? && params[:updatecard] == "1"
         redirect_to payment_path and return
-      else   
+      else
         user.delete
-        redirect_to new_user_registration_path({choices: params[:choices]}) and return
+        redirect_to new_user_registration_path({ choices: params[:choices] }) and return
       end
 
     end
 
-    charge = Stripe::Charge.create({
-      amount: plan.amount,
-      currency: plan.currency,
-      source: params['source'],
-      customer: params[:customer]
-    })
+    charge = Stripe::Charge.create(
+      {
+        amount: plan.amount,
+        currency: plan.currency,
+        source: params['source'],
+        customer: params[:customer]
+      }
+    )
 
     User.where('lower(email) = ?', params[:email].downcase).update_all(stripe_customer_id: params[:customer])
 
@@ -186,10 +186,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if customer.default_source.nil?
       @current_card = nil
-    else 
+    else
 
       current_source = customer.sources.retrieve(customer.default_source)
-      
+
       if current_source.object == "source" && current_source.type == "three_d_secure"
         @current_card = "XXXX XXXX XXXX XXXX"
       elsif current_source.object == "source"
@@ -201,16 +201,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if customer["subscriptions"]["total_count"] == 0
       @plan = 0
-    else 
+    else
       @plan = customer["subscriptions"]["data"][0]["plan"]["amount"] / 100
     end
-
   end
-
 
   # PUT /resource
   def update
-
     @plan = params[:user][:plan]
 
     if !params[:stripeSource].nil?
@@ -222,21 +219,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
         customer = Stripe::Customer.create(
           :email => current_user.email,
-          :source  => params[:stripeSource]
+          :source => params[:stripeSource]
         )
 
-        source = Stripe::Source.create({
-          amount: (@plan.to_f * 100).round,
-          currency: currency_for_user,
-          type: 'three_d_secure',
-          three_d_secure: {
-            customer: customer.id,
-            card: params[:stripeSource]
-          },
-          redirect: {
-            return_url: threedsecure_url + "?email=" + current_user.email + "&plan=" + @plan.to_s + "&updatecard=1" + "&customer=" + customer.id
-          },
-        })
+        source = Stripe::Source.create(
+          {
+            amount: (@plan.to_f * 100).round,
+            currency: currency_for_user,
+            type: 'three_d_secure',
+            three_d_secure: {
+              customer: customer.id,
+              card: params[:stripeSource]
+            },
+            redirect: {
+              return_url: threedsecure_url + "?email=" + current_user.email + "&plan=" + @plan.to_s + "&updatecard=1" + "&customer=" + customer.id
+            },
+          }
+        )
 
         # Checking if verification is still required
         # -> https://stripe.com/docs/sources/three-d-secure
@@ -244,10 +243,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
           redirect_to source.redirect.url and return
         end
 
-      end 
+      end
 
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-      card = customer.sources.create({:source => params[:stripeSource]})
+      card = customer.sources.create({ :source => params[:stripeSource] })
       customer.default_source = card.id
       customer.save
     end
@@ -261,7 +260,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           subscription = Stripe::Subscription.retrieve(customer["subscriptions"]["data"][0]["id"])
           subscription.delete
         end
-      else 
+      else
 
         if customer["subscriptions"]["total_count"] == 0 && @plan.to_i > 1
           plan = get_stripe_plan @plan, new_subscription_path
@@ -338,15 +337,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def get_stripe_plan plan, error_path
-    
     plan_id = generate_plan_id plan
     product_name = generate_product_name plan
 
     begin
-        stripe_plan = Stripe::Plan.retrieve(plan_id)
-    rescue      
-      begin 
-
+      stripe_plan = Stripe::Plan.retrieve(plan_id)
+    rescue
+      begin
         stripe_plan = Stripe::Plan.create(
           :id => plan_id,
           :interval => "month",
@@ -371,5 +368,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def generate_product_name plan
     "Climate Offset " + plan.to_s + " " + currency_for_user + " Monthly"
   end
-
 end

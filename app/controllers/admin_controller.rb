@@ -1,7 +1,6 @@
 class AdminController < ApplicationController
-
   before_action :authenticate_user!
-  before_action do 
+  before_action do
     redirect_to new_user_session_path unless current_user && (current_user.id == 2 || current_user == 129)
   end
 
@@ -18,7 +17,7 @@ class AdminController < ApplicationController
     @new_users.sort
 
     @new_users_mean = Hash.new
-    @new_users.each do |date, number_of_users|
+    @new_users.each do |date, _|
       mean = 0
       (0..14).each do |i|
         if !@new_users[(date.to_date - i).to_s].nil?
@@ -27,8 +26,6 @@ class AdminController < ApplicationController
       end
       mean = mean / 14
       @new_users_mean[date] = mean
-    end    
-
+    end
   end
-
 end

@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   before_action :authenticate_user!
-  before_action do 
+  before_action do
     redirect_to new_user_session_path unless current_user && current_user.id == 2
   end
 
@@ -69,13 +69,14 @@ class ProjectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = Project.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def project_params
-      params.require(:project).permit(:name, :link, :image_url, :blog_url, :longitude, :latitude, :carbon_offset, :country, :offset_type, :cost_in_sek, :date_bought, :certificate_url, :invoice_url)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project
+    @project = Project.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def project_params
+    params.require(:project).permit(:name, :link, :image_url, :blog_url, :longitude, :latitude, :carbon_offset, :country, :offset_type, :cost_in_sek, :date_bought, :certificate_url, :invoice_url)
+  end
 end
