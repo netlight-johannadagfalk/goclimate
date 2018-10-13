@@ -21,14 +21,4 @@ $(document).ready(function() {
 	setTimeout(function() {
         $(".alert").slideUp(1000);
     }, 5000);
-
-	// Bootstrap tooltip iOS hack: https://github.com/twbs/bootstrap/pull/22481/commits/d40c7f1494c3385b60d3d9eed7ce0f36862042d9
-    // if this is a touch-enabled device we add extra
-    // empty mouseover listeners to the body's immediate children;
-    // only needed because of broken event delegation on iOS
-    // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
-    if ('ontouchstart' in document.documentElement &&
-       !$(parent).closest(Selector.NAVBAR_NAV).length) {
-      $('body').children().on('mouseover', null, $.noop)
-    }
 });
