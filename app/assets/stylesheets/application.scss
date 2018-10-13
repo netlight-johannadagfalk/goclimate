@@ -577,6 +577,8 @@ div.profile {
       display: block;
     }
 }
+/* fixes iOS bootstrap tooltip bug: https://github.com/twbs/bootstrap/issues/16028; */
+@supports (-webkit-overflow-scrolling: touch) { /* CSS specific to iOS devices */ body{ cursor:pointer; } }
 
 td.form.select {
     padding: 3px;
