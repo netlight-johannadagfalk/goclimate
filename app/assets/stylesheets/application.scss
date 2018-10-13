@@ -534,6 +534,9 @@ div.profile {
   }
 }
 @media (max-width: 768px) {
+    .site-wrapper-first .inner {
+      padding: 0px 30px;
+    }
     .nav > li > a > img {
       margin-bottom: 3px;
     }
@@ -607,7 +610,7 @@ td.form.select {
 .panel-body {
     text-align: center;
 }
-.price-info-helper {
+#price-info-helper span {
     cursor: pointer;
     font-size: 14px;
     top: -10px;

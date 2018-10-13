@@ -31,7 +31,7 @@ $(document).ready(function() {
 		data_content = data_content.replace('%{price_per_month}', rounded_price_with_buffer);
 
 		$('.custom-plan-price #sum').text(rounded_price_with_buffer);
-		$('.custom-plan-price .price-info-helper').attr('data-content', data_content);
+		$('#price-info-helper').attr('data-content', data_content);
 		$('.popover-content').html(data_content);
 		$('#custom-plan').attr("href", "/users/sign_up?choices=" + base_cost + "," + food + "," + car + "," + flying + "," + people);
 	};
