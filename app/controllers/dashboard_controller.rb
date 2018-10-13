@@ -43,7 +43,7 @@ class DashboardController < ApplicationController
     else
       @social_quote = I18n.t('i_have_lived_climate_neutral_for_more_months_join_me', months: @my_neutral_months)
     end
-    @encoded_social_quote = URI.encode(@social_quote + ' -> ' + I18n.t('goclimateneutral_url'))
+    @encoded_social_quote = CGI.escape(@social_quote + ' -> ' + I18n.t('goclimateneutral_url'))
 
     @should_show_share_popup = current_user.last_seen_at < 24.hour.ago
   end

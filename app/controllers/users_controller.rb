@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     end
 
     @sharing = params[:share].nil? ? false : true
-    @encoded_social_quote = URI.encode(@social_quote + ' -> ' + I18n.t('goclimateneutral_url'))
+    @encoded_social_quote = CGI.escape(@social_quote + ' -> ' + I18n.t('goclimateneutral_url'))
 
     render layout: "user"
   end

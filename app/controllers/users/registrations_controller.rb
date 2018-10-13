@@ -139,7 +139,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     end
 
-    charge = Stripe::Charge.create(
+    Stripe::Charge.create(
       {
         amount: plan.amount,
         currency: plan.currency,
@@ -323,7 +323,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  def after_sign_up_path_for(resource)
+  def after_sign_up_path_for(_resource)
     dashboard_index_path + "?registered=1"
   end
 

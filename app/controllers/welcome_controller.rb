@@ -2,7 +2,7 @@ class WelcomeController < ApplicationController
   def index
     @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
     @total_carbon_offset = Project.total_carbon_offset
-    @lifestyle_choice_co2 = LifestyleChoice.get_lifestyle_choice_co2
+    @lifestyle_choice_co2 = LifestyleChoice.lifestyle_choice_co2
     gon.lifestyle_choice_co2 = @lifestyle_choice_co2
     gon.locale = I18n.locale
     gon.SEK_PER_TONNE = LifestyleChoice::SEK_PER_TONNE
