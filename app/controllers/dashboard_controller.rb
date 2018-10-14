@@ -18,7 +18,7 @@ class DashboardController < ApplicationController
     @my_carbon_offset = (@my_amount_invested_sek / LifestyleChoice::SEK_PER_TONNE.to_f).round(1)
 
     @my_neutral_months = StripeEvent.payments(current_user).where(paid: true).count
-    @my_neutral_months = @my_neutral_months == 0 ? 1 : @my_neutral_months
+    @my_neutral_months = 1 if @my_neutral_months == 0
 
     @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
 

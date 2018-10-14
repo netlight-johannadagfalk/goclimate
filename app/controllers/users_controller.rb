@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @neutral_months = StripeEvent.payments(@user).where(paid: true).count
-    @neutral_months = @neutral_months == 0 ? 1 : @neutral_months
+    @neutral_months = 1 if @neutral_months == 0
 
     if @user.user_name.nil?
       if @neutral_months == 1
@@ -18,7 +18,12 @@ class UsersController < ApplicationController
       end
     end
 
-    @sharing = params[:share].nil? ? false : true
+    if params[:share].nil?
+      @sharing = false
+    else
+      @sharing = true
+    end
+
     @encoded_social_quote = CGI.escape(@social_quote + ' -> ' + I18n.t('goclimateneutral_url'))
 
     render layout: "user"
