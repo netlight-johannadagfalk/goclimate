@@ -37,30 +37,37 @@ $(document).ready(function() {
 	};
 
 	$('#food').change(function() {
-			planSum();
+		planSum();
 	});
 	$('#car').change(function() {
-			planSum();
+		planSum();
 	});
 	$('#flying').change(function() {
-			planSum();
+		planSum();
 	});
 	$('#people').change(function() {
-			planSum();
+		planSum();
 	});
 
 	planSum();
 	
 	//for faq links
 	$('.panel-title a').on('click', function (e) {
-	   window.location.hash = e.target.hash + "id";
+		window.location.hash = e.target.hash + "id";
 	});
 	var anchor = window.location.hash.replace("id", "");
 	$(anchor).collapse('show');
 
 	$(function () {
-			$('[data-toggle="popover"]').popover();
+		$('[data-toggle="popover"]').popover();
 	});
+	//cursor: pointer; fixes iOS bootstrap tooltip bug: https://github.com/twbs/bootstrap/issues/16028;
+	$('#price-info-helper').on('show.bs.popover', function () {
+	 	$("body").css("cursor", "pointer");
+	});
+	$('#price-info-helper').on('hide.bs.popover', function () {
+	 	$("body").css("cursor", "default");
+	})
 
 	function scrollToAnchor(aid){
 		var aTag = $(aid);
