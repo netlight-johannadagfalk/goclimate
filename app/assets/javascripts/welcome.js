@@ -31,34 +31,43 @@ $(document).ready(function() {
 		data_content = data_content.replace('%{price_per_month}', rounded_price_with_buffer);
 
 		$('.custom-plan-price #sum').text(rounded_price_with_buffer);
-		$('.custom-plan-price .price-info-helper').attr('data-content', data_content);
+		$('#price-info-helper').attr('data-content', data_content);
 		$('.popover-content').html(data_content);
 		$('#custom-plan').attr("href", "/users/sign_up?choices=" + base_cost + "," + food + "," + car + "," + flying + "," + people);
 	};
 
 	$('#food').change(function() {
-			planSum();
+		planSum();
 	});
 	$('#car').change(function() {
-			planSum();
+		planSum();
 	});
 	$('#flying').change(function() {
-			planSum();
+		planSum();
 	});
 	$('#people').change(function() {
-			planSum();
+		planSum();
 	});
 
+	planSum();
+	
 	//for faq links
 	$('.panel-title a').on('click', function (e) {
-	   window.location.hash = e.target.hash + "id";
+		window.location.hash = e.target.hash + "id";
 	});
 	var anchor = window.location.hash.replace("id", "");
 	$(anchor).collapse('show');
 
 	$(function () {
-			$('[data-toggle="popover"]').popover();
+		$('[data-toggle="popover"]').popover();
 	});
+	//cursor: pointer; fixes iOS bootstrap tooltip bug: https://github.com/twbs/bootstrap/issues/16028;
+	$('#price-info-helper').on('show.bs.popover', function () {
+	 	$("body").css("cursor", "pointer");
+	});
+	$('#price-info-helper').on('hide.bs.popover', function () {
+	 	$("body").css("cursor", "default");
+	})
 
 	function scrollToAnchor(aid){
 		var aTag = $(aid);

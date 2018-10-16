@@ -472,7 +472,7 @@ div.profile {
 }
 .embed-container { 
   position: relative; 
-  padding-bottom: 56.25%; 
+  padding-bottom: 72%; 
   max-width: 639px;
   margin: 0 auto;
   overflow: hidden;
@@ -534,6 +534,9 @@ div.profile {
   }
 }
 @media (max-width: 768px) {
+    .site-wrapper-first .inner {
+      padding: 0px 30px;
+    }
     .nav > li > a > img {
       margin-bottom: 3px;
     }
@@ -574,7 +577,6 @@ div.profile {
       display: block;
     }
 }
-
 td.form.select {
     padding: 3px;
 } 
@@ -607,7 +609,7 @@ td.form.select {
 .panel-body {
     text-align: center;
 }
-.price-info-helper {
+#price-info-helper span {
     cursor: pointer;
     font-size: 14px;
     top: -10px;
