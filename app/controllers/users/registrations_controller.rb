@@ -1,4 +1,4 @@
-class Users
+module Users
   class RegistrationsController < Devise::RegistrationsController
     # before_action :configure_sign_up_params, only: [:create]
     # before_action :configure_account_update_params, only: [:update]
@@ -100,7 +100,7 @@ class Users
 
         Stripe::Subscription.create(
           :customer => customer.id,
-          :plan => plan.id,
+          :plan => plan.id
         )
       rescue Stripe::CardError => e
         body = e.json_body
@@ -152,9 +152,9 @@ class Users
         :items => [
           {
             :plan => plan.id
-          },
+          }
         ],
-        :trial_end => 1.month.from_now.to_i,
+        :trial_end => 1.month.from_now.to_i
       )
 
       if !params[:updatecard].nil? && params[:updatecard] == "1"
@@ -264,7 +264,7 @@ class Users
 
             Stripe::Subscription.create(
               :customer => customer.id,
-              :plan => plan.id,
+              :plan => plan.id
             )
           else
             current_plan = customer["subscriptions"]["data"][0]["plan"]["amount"] / 100

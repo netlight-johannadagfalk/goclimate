@@ -36,10 +36,10 @@ class LifestyleChoice < ApplicationRecord
       if lifestyle_choice.category == "people"
         people = lifestyle_choice.co2.to_i
       else
-        tonne_co2 = tonne_co2 + lifestyle_choice.co2
+        tonne_co2 += lifestyle_choice.co2
       end
     end
-    tonne_co2 = tonne_co2 * people
+    tonne_co2 *= people
     tonne_co2
   end
 

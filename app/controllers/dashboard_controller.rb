@@ -36,7 +36,7 @@ class DashboardController < ApplicationController
                             .group("users.country")
                             .order(Arel.sql("COUNT(1) DESC"))
 
-    @projects = Project.all.order(created_at: :desc).limit(5);
+    @projects = Project.all.order(created_at: :desc).limit(5)
 
     if @my_neutral_months == 1
       @social_quote = I18n.t('i_have_lived_climate_neutral_for_one_month_join_me', months: @my_neutral_months)

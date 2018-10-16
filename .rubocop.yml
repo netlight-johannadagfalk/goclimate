@@ -3,6 +3,18 @@ inherit_from: .rubocop_todo.yml
 Style/ConditionalAssignment:
   EnforcedStyle: assign_inside_condition
 
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/Documentation:
+  Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/StringLiterals:
+  Enabled: false
+
 AllCops:
   Exclude:
     - 'db/**/*'

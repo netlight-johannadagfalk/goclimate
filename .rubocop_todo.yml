@@ -54,27 +54,6 @@ Style/ConditionalAssignment:
   Exclude:
     - 'config/initializers/devise.rb'
 
-# Offense count: 28
-Style/Documentation:
-  Enabled: false
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/EmptyLiteral:
-  Exclude:
-    - 'app/controllers/admin_controller.rb'
-
-# Offense count: 12
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: compact, expanded
-Style/EmptyMethod:
-  Exclude:
-    - 'app/controllers/invoices_controller.rb'
-    - 'app/controllers/lifestyle_choices_controller.rb'
-    - 'app/controllers/projects_controller.rb'
-    - 'app/controllers/stripe_events_controller.rb'
-    - 'app/controllers/welcome_controller.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -206,49 +185,6 @@ Style/RescueStandardError:
   Exclude:
     - 'app/controllers/users/registrations_controller.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-Style/SelfAssignment:
-  Exclude:
-    - 'app/controllers/admin_controller.rb'
-    - 'app/models/lifestyle_choice.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AllowAsExpressionSeparator.
-Style/Semicolon:
-  Exclude:
-    - 'app/controllers/dashboard_controller.rb'
-
-# Offense count: 175
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Enabled: false
-
-# Offense count: 10
-# Cop supports --auto-correct.
-# Configuration parameters: MinSize.
-# SupportedStyles: percent, brackets
-Style/SymbolArray:
-  EnforcedStyle: brackets
-
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInArguments:
-  Exclude:
-    - 'app/controllers/users/registrations_controller.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInArrayLiteral:
-  Exclude:
-    - 'app/controllers/users/registrations_controller.rb'
 
 # Offense count: 201
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.

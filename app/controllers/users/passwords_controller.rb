@@ -1,4 +1,4 @@
-class Users
+module Users
   class PasswordsController < Devise::PasswordsController
     # GET /resource/password/new
     # def new
