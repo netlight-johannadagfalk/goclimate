@@ -1,0 +1,16 @@
+<div class="site-wrapper-inner site-wrapper-first">
+
+  <div class="cover-container">
+    <%= render "shared/header" %>
+
+    <div class="inner cover">
+      <h1>Gift cards</h1>
+      <p><%= link_to "3 months", new_gift_card_path(subscription_months_to_gift: 3) %></p>
+      <p><%= link_to "6 months", new_gift_card_path(subscription_months_to_gift: 6) %></p>
+      <p><%= link_to "One year", new_gift_card_path(subscription_months_to_gift: 12) %></p>
+    </div>
+  </div>
+
+</div>
+
+<%= render "shared/footer" %>

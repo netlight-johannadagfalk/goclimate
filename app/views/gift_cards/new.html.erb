@@ -1,0 +1,25 @@
+<div class="site-wrapper-inner site-wrapper-first">
+
+  <div class="cover-container">
+    <%= render "shared/header" %>
+
+    <div class="inner cover">
+      <h1>Gift card for <%= @subscription_months_to_gift %></h1>
+      <%= form_for :gift_card, url: {action: :create} do |f| %>
+        <script
+          src="https://checkout.stripe.com/checkout.js"
+          class="stripe-button"
+          data-key="<%= ENV['PUBLISHABLE_KEY'] %>"
+          data-amount="999"
+          data-name="GoClimateNeutral"
+          data-description="Gift card for <%= @subscription_months_to_gift %> months"
+          data-locale="<%= I18n.locale %>"
+          data-label="Purchase Gift Card">
+        </script>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+<%= render "shared/footer" %>

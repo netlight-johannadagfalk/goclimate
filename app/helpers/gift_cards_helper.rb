@@ -1,0 +1,2 @@
+module GiftCardsHelper
+end
