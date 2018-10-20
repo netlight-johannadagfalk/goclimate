@@ -15,6 +15,9 @@ Style/SymbolArray:
 Style/StringLiterals:
   Enabled: false
 
+Style/NumericPredicate:
+  Enabled: false
+
 AllCops:
   Exclude:
     - 'db/**/*'
