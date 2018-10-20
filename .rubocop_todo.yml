@@ -70,14 +70,6 @@ Style/IfUnlessModifier:
     - 'app/models/lifestyle_choice.rb'
     - 'config/initializers/rollbar.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, MinBodyLength.
-# SupportedStyles: skip_modifier_ifs, always
-Style/Next:
-  Exclude:
-    - 'app/models/stripe_event.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: Strict.

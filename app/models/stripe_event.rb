@@ -45,25 +45,23 @@ class StripeEvent < ApplicationRecord
       paid_charge = event_object.object == "charge" && event_object.paid == true
       failed_charge = event_object.object == "charge" && event_object.paid == false
 
-      if (paid_charge || failed_charge) && StripeEvent.where(stripe_event_id: event_object.id).empty?
-        if User.find_by_stripe_customer_id(event_object.customer).present?
+      next unless (paid_charge || failed_charge) && StripeEvent.where(stripe_event_id: event_object.id).empty?
+      next unless User.find_by_stripe_customer_id(event_object.customer).present?
 
-          StripeEvent.create(
-            stripe_event_id: event_object.id,
-            stripe_customer_id: event_object.customer,
-            stripe_object: event_object.object,
-            stripe_amount: event_object.amount,
-            paid: event_object.paid,
-            currency: event_object.currency,
-            stripe_created: event_object.created
-          )
-          u = User.find_by_stripe_customer_id event_object.customer
-          if paid_charge
-            Mailer.new.send_one_more_month_email u
-          elsif failed_charge
-            Mailer.new.send_payment_failed_email u
-          end
-        end
+      StripeEvent.create(
+        stripe_event_id: event_object.id,
+        stripe_customer_id: event_object.customer,
+        stripe_object: event_object.object,
+        stripe_amount: event_object.amount,
+        paid: event_object.paid,
+        currency: event_object.currency,
+        stripe_created: event_object.created
+      )
+      u = User.find_by_stripe_customer_id event_object.customer
+      if paid_charge
+        Mailer.new.send_one_more_month_email u
+      elsif failed_charge
+        Mailer.new.send_payment_failed_email u
       end
     end
   end
