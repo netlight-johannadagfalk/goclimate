@@ -22,7 +22,7 @@ class AdminController < ApplicationController
     @new_users.each do |date, _|
       mean = 0
       (0..14).each do |i|
-        if !@new_users[(date.to_date - i).to_s].nil?
+        if @new_users[(date.to_date - i).to_s].present?
           mean += @new_users[(date.to_date - i).to_s]
         end
       end

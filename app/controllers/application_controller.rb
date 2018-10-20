@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
       I18n.locale = :sv
     end
 
-    if !params[:locale].nil?
+    if params[:locale].present?
       I18n.locale = params[:locale]
     end
   end

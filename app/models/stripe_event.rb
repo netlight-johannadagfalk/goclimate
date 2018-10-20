@@ -46,7 +46,7 @@ class StripeEvent < ApplicationRecord
       failed_charge = event_object.object == "charge" && event_object.paid == false
 
       if (paid_charge || failed_charge) && StripeEvent.where(stripe_event_id: event_object.id).empty?
-        if !User.find_by_stripe_customer_id(event_object.customer).nil?
+        if User.find_by_stripe_customer_id(event_object.customer).present?
 
           StripeEvent.create(
             stripe_event_id: event_object.id,

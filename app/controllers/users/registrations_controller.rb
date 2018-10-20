@@ -51,7 +51,7 @@ module Users
 
         user = User.find_for_authentication(email: params[:user][:email])
 
-        if !user.nil?
+        if user.present?
           if user.stripe_customer_id.nil?
             user.delete
           else
@@ -209,7 +209,7 @@ module Users
     def update
       @plan = params[:user][:plan]
 
-      if !params[:stripeSource].nil?
+      if params[:stripeSource].present?
 
         if params[:threeDSecure] == "required"
 
@@ -248,7 +248,7 @@ module Users
         customer.save
       end
 
-      if !@plan.nil?
+      if @plan.present?
 
         customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
 
