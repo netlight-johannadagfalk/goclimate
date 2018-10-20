@@ -70,15 +70,6 @@ Style/IfUnlessModifier:
     - 'app/models/lifestyle_choice.rb'
     - 'config/initializers/rollbar.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: implicit, explicit
-Style/RescueStandardError:
-  Exclude:
-    - 'app/controllers/users/registrations_controller.rb'
-
-
 # Offense count: 201
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https

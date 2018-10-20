@@ -339,7 +339,7 @@ module Users
 
       begin
         stripe_plan = Stripe::Plan.retrieve(plan_id)
-      rescue
+      rescue Stripe::StripeError
         begin
           stripe_plan = Stripe::Plan.create(
             id: plan_id,
