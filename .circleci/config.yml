@@ -4,17 +4,8 @@
 #
 version: 2.1
 
-executors:
-  app:
-    docker:
-      - image: circleci/ruby:2.5.1-node-browsers
-        environment:
-          PGHOST: 127.0.0.1
-          PGUSER: myapp
-          RAILS_ENV: test
-
 commands:
-  setupdependencies:
+  setupapp:
     steps:
       # https://support.circleci.com/hc/en-us/articles/360004086734-error-while-loading-shared-libraries-libgconf-2-so-4-cannot-open-shared-object-file-No-such-file-or-directory
       - run:
@@ -42,8 +33,12 @@ commands:
 
 jobs:
   rspec:
-    executor: app
     docker:
+      - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: myapp
+          RAILS_ENV: test
       - image: circleci/postgres:9.5-alpine
         environment:
           POSTGRES_USER: myapp
@@ -56,7 +51,7 @@ jobs:
       # - image: circleci/postgres:9.4
 
     steps:
-      - setupdependencies
+      - setupapp
         
       - run:
           name: Wait for database to become available
@@ -70,9 +65,10 @@ jobs:
           name: Run Rspec
           command: bin/rspec
   rubocop:
-    executor: app
+    docker:
+      - image: circleci/ruby:2.5.1-node-browsers
     steps:
-      - setupdependencies
+      - setupapp
 
       - run:
           name: Run Rubocop
