@@ -9,8 +9,8 @@ use Rack::ReverseProxy do
   reverse_proxy_options preserve_host: true
 
   # Forward the path /test* to http://example.com/test*
-  reverse_proxy(/^\/blog(\/.*)$/, 'http://goclimateneutral.nilver.se$1')
-  reverse_proxy(/^\/wp-admin(\/.*)$/, 'http://goclimateneutral.nilver.se/wp-admin$1')
+  reverse_proxy(%r{^/blog(/.*)$}, 'http://goclimateneutral.nilver.se$1')
+  reverse_proxy(%r{^/wp-admin(/.*)$}, 'http://goclimateneutral.nilver.se/wp-admin$1')
 end
 
 run Rails.application

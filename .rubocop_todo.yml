@@ -70,15 +70,6 @@ Style/IfUnlessModifier:
     - 'app/models/lifestyle_choice.rb'
     - 'config/initializers/rollbar.rb'
 
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, AllowInnerSlashes.
-# SupportedStyles: slashes, percent_r, mixed
-Style/RegexpLiteral:
-  Exclude:
-    - 'Guardfile'
-    - 'config.ru'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

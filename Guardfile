@@ -27,8 +27,8 @@ guard :rspec, cmd: "bin/rspec --format doc" do
 end
 
 guard :rubocop, all_on_start: false do
-  watch(%r{.+\.rb$})
-  watch(%r{.+\.rake$})
+  watch(/.+\.rb$/)
+  watch(/.+\.rake$/)
   watch("Gemfile")
   watch("Rakefile")
   watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
