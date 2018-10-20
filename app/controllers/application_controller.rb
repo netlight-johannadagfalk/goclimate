@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -5,7 +7,7 @@ class ApplicationController < ActionController::Base
   after_action :set_last_seen_at, if: proc { user_signed_in? }
 
   unless Rails.application.config.consider_all_requests_local
-    rescue_from ActionController::RoutingError, with: -> { render_404  }
+    rescue_from ActionController::RoutingError, with: -> { render_404 }
   end
 
   def render_404
@@ -16,7 +18,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-
     I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
 
     if request.host.include? "en.goclimateneutral.org"
@@ -27,26 +28,24 @@ class ApplicationController < ActionController::Base
       I18n.locale = :sv
     end
 
-    if !params[:locale].nil?
+    if params[:locale].present?
       I18n.locale = params[:locale]
     end
-
   end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(*)
     session["user_return_to"] || dashboard_index_path
   end
 
   def blog
-    redirect_to "https://www.goclimateneutral.org/blog#{request.fullpath.gsub('/blog','')}", :status => :moved_permanently
+    redirect_to "https://www.goclimateneutral.org/blog#{request.fullpath.gsub('/blog', '')}", status: :moved_permanently
   end
 
   def currency_for_user
-    
     if user_signed_in? && !current_user.stripe_events.first.nil?
       currency = current_user.currency
     else
-      if I18n.locale == :sv 
+      if I18n.locale == :sv
         currency = "sek"
       elsif I18n.locale == :en
         currency = "usd"
@@ -59,7 +58,7 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-  
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:stripe_customer_id, :user_name, :country])
     devise_parameter_sanitizer.permit(:account_update, keys: [:user_name, :country])

@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
 
   before_action :authenticate_user!
-  before_action do 
+  before_action do
     redirect_to new_user_session_path unless current_user && current_user.id == 2
   end
 
@@ -67,13 +69,14 @@ class InvoicesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_invoice
-      @invoice = Invoice.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def invoice_params
-      params.require(:invoice).permit(:amount_in_sek, :carbon_offset, :att, :company_name, :adress, :org_nr, :project_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_invoice
+    @invoice = Invoice.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def invoice_params
+    params.require(:invoice).permit(:amount_in_sek, :carbon_offset, :att, :company_name, :adress, :org_nr, :project_id)
+  end
 end
