@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LifestyleChoicesController < ApplicationController
   before_action :set_lifestyle_choice, only: [:show, :edit, :update, :destroy]
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StripeEventsController < ApplicationController
   before_action :set_stripe_event, only: [:show, :edit, :update, :destroy]
   before_action do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StripePayout < ApplicationRecord
   def self.update_payouts
     require "stripe"

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WelcomeController < ApplicationController
   def index
     @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count

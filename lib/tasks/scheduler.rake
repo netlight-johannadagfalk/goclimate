@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 task :update_stripe_events => :environment do
   puts "Update StripeEvents..."
   StripeEvent.update_events

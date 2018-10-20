@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Mailer
   require 'sendgrid-ruby'
   require 'json'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :newsletter do
   desc "prints csv content of swedish emails to be imported in sendgrid for newsletter list. Usage: 'rake newsletter:swedish_emails['2018-07-13']' where 2018-07-13 is the last import"
   task :swedish_emails, [:from_date] => [:environment] do |_, args|

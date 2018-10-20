@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Project < ApplicationRecord
   def self.total_carbon_offset
     cdm_project_cost = Project.where("offset_type = 'CDM'").sum("cost_in_sek")
