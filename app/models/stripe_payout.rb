@@ -8,7 +8,7 @@ class StripePayout < ApplicationRecord
     list = Stripe::Payout.list(limit: 100)
     last_id = ""
 
-    while !list["data"].empty?
+    until list["data"].empty?
 
       list["data"].each do |p|
         if StripePayout.where(stripe_payout_id: p.id).empty?
