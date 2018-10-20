@@ -21,7 +21,7 @@ class Mailer
     personalization.headers = Header.new(key: 'X-Test', value: 'True')
     personalization.headers = Header.new(key: 'X-Mock', value: 'False')
 
-    mail.asm = ASM.new(group_id: 16739)
+    mail.asm = ASM.new(group_id: 16_739)
 
     personalization.substitutions = Substitution.new(key: '%thank_you_for_saving_our_planet%', value: I18n.t('thank_you_for_saving_our_planet'))
     personalization.substitutions = Substitution.new(key: '%you_have_lived_a_climate_neutral_life_for%', value: I18n.t('you_have_lived_a_climate_neutral_life_for'))
@@ -90,7 +90,7 @@ class Mailer
     personalization.headers = Header.new(key: 'X-Test', value: 'True')
     personalization.headers = Header.new(key: 'X-Mock', value: 'False')
 
-    mail.asm = ASM.new(group_id: 16739)
+    mail.asm = ASM.new(group_id: 16_739)
 
     personalization.substitutions = Substitution.new(key: '%goclimateneutral_url%', value: I18n.t('goclimateneutral_url'))
 
