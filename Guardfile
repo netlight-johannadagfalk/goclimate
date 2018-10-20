@@ -15,7 +15,7 @@ guard :rspec, cmd: "bin/rspec --format doc" do
   dsl.watch_spec_files_for(ruby.lib_files)
 
   # Rails files
-  rails = dsl.rails(view_extensions: %w(erb))
+  rails = dsl.rails(view_extensions: %w[erb])
   dsl.watch_spec_files_for(rails.app_files)
 
   watch(rails.controllers) { |m| rspec.spec.call("requests/#{m[1]}") }

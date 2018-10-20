@@ -70,13 +70,6 @@ Style/IfUnlessModifier:
     - 'app/models/lifestyle_choice.rb'
     - 'config/initializers/rollbar.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'Guardfile'
-
 # Offense count: 4
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, AllowInnerSlashes.
