@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-  resources :users, :only => [:show]
+  resources :users, only: [:show]
 
   get '/users' => 'dashboard#index', as: :user_root
   get 'about', to: 'welcome#about'

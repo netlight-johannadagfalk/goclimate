@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-task :update_stripe_events => :environment do
+task update_stripe_events: :environment do
   puts "Update StripeEvents..."
   StripeEvent.update_events
   puts "done."
 end
 
-task :update_stripe_payouts => :environment do
+task update_stripe_payouts: :environment do
   puts "Update StripePayouts..."
   StripePayout.update_payouts
   puts "done."

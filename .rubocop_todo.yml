@@ -52,21 +52,6 @@ Style/GuardClause:
   Exclude:
     - 'app/controllers/application_controller.rb'
 
-# Offense count: 34
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
-# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
-Style/HashSyntax:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/errors_controller.rb'
-    - 'app/controllers/users/registrations_controller.rb'
-    - 'config/environment.rb'
-    - 'config/environments/production.rb'
-    - 'config/initializers/stripe.rb'
-    - 'config/routes.rb'
-    - 'lib/tasks/scheduler.rake'
-
 # Offense count: 3
 Style/IfInsideElse:
   Exclude:

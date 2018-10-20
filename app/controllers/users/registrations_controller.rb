@@ -61,8 +61,8 @@ module Users
         end
 
         customer = Stripe::Customer.create(
-          :email => params[:user][:email],
-          :source => params[:stripeSource]
+          email: params[:user][:email],
+          source: params[:stripeSource]
         )
 
         # 3dsecure is required
@@ -101,8 +101,8 @@ module Users
         return if plan == false
 
         Stripe::Subscription.create(
-          :customer => customer.id,
-          :plan => plan.id
+          customer: customer.id,
+          plan: plan.id
         )
       rescue Stripe::CardError => e
         body = e.json_body
@@ -150,13 +150,13 @@ module Users
       User.where('lower(email) = ?', params[:email].downcase).update_all(stripe_customer_id: params[:customer])
 
       Stripe::Subscription.create(
-        :customer => params[:customer],
-        :items => [
+        customer: params[:customer],
+        items: [
           {
-            :plan => plan.id
+            plan: plan.id
           }
         ],
-        :trial_end => 1.month.from_now.to_i
+        trial_end: 1.month.from_now.to_i
       )
 
       if !params[:updatecard].nil? && params[:updatecard] == "1"
@@ -217,8 +217,8 @@ module Users
           customer.delete
 
           customer = Stripe::Customer.create(
-            :email => current_user.email,
-            :source => params[:stripeSource]
+            email: current_user.email,
+            source: params[:stripeSource]
           )
 
           source = Stripe::Source.create(
@@ -243,7 +243,7 @@ module Users
         end
 
         customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-        card = customer.sources.create(:source => params[:stripeSource])
+        card = customer.sources.create(source: params[:stripeSource])
         customer.default_source = card.id
         customer.save
       end
@@ -265,8 +265,8 @@ module Users
             return if plan == false
 
             Stripe::Subscription.create(
-              :customer => customer.id,
-              :plan => plan.id
+              customer: customer.id,
+              plan: plan.id
             )
           else
             current_plan = customer["subscriptions"]["data"][0]["plan"]["amount"] / 100
@@ -342,12 +342,12 @@ module Users
       rescue
         begin
           stripe_plan = Stripe::Plan.create(
-            :id => plan_id,
-            :interval => "month",
-            :currency => currency_for_user,
-            :amount => (plan.to_f * 100).round,
-            :product => {
-              :name => product_name
+            id: plan_id,
+            interval: "month",
+            currency: currency_for_user,
+            amount: (plan.to_f * 100).round,
+            product: {
+              name: product_name
             }
           )
         rescue Stripe::StripeError => e

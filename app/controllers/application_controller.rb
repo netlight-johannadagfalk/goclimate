@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def blog
-    redirect_to "https://www.goclimateneutral.org/blog#{request.fullpath.gsub('/blog', '')}", :status => :moved_permanently
+    redirect_to "https://www.goclimateneutral.org/blog#{request.fullpath.gsub('/blog', '')}", status: :moved_permanently
   end
 
   def currency_for_user
