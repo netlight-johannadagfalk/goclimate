@@ -70,17 +70,6 @@ Style/IfUnlessModifier:
     - 'app/models/lifestyle_choice.rb'
     - 'config/initializers/rollbar.rb'
 
-# Offense count: 9
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: require_parentheses, require_no_parentheses, require_no_parentheses_except_multiline
-Style/MethodDefParentheses:
-  Exclude:
-    - 'app/controllers/users/registrations_controller.rb'
-    - 'app/models/lifestyle_choice.rb'
-    - 'app/models/mailer.rb'
-    - 'app/models/stripe_event.rb'
-
 # Offense count: 6
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

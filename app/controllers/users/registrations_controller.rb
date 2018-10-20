@@ -168,7 +168,7 @@ module Users
       end
     end
 
-    def get_plan choices
+    def get_plan(choices)
       choices = choices.split(",").map(&:to_i)
       LifestyleChoice.get_lifestyle_choice_price choices
     end
@@ -333,7 +333,7 @@ module Users
       resource.update_without_password(params)
     end
 
-    def get_stripe_plan plan, error_path
+    def get_stripe_plan(plan, error_path)
       plan_id = generate_plan_id plan
       product_name = generate_product_name plan
 
@@ -359,11 +359,11 @@ module Users
       stripe_plan
     end
 
-    def generate_plan_id plan
+    def generate_plan_id(plan)
       "climate_offset_" + plan.to_s.gsub(/[.,]/, "_") + "_" + currency_for_user + "_monthly"
     end
 
-    def generate_product_name plan
+    def generate_product_name(plan)
       "Climate Offset " + plan.to_s + " " + currency_for_user + " Monthly"
     end
   end

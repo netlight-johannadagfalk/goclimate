@@ -8,7 +8,7 @@ class LifestyleChoice < ApplicationRecord
   SEK_PER_USD = 8.5
   SEK_PER_EUR = 10
 
-  def self.get_lifestyle_choice_price choices
+  def self.get_lifestyle_choice_price(choices)
     if choices == []
       return "x"
     end
@@ -29,7 +29,7 @@ class LifestyleChoice < ApplicationRecord
     rounded_price_with_buffer
   end
 
-  def self.lifestyle_choice_tonnes choices
+  def self.lifestyle_choice_tonnes(choices)
     tonne_co2 = 0
     people = 1
     choices.each do |choice|

@@ -6,7 +6,7 @@ class Mailer
   include SendGrid
   include ActionView::Helpers::NumberHelper
 
-  def send_one_more_month_email user
+  def send_one_more_month_email(user)
     climate_neutral_months = StripeEvent.payments(user).where(paid: true).count
     total_carbon_offset = Project.total_carbon_offset
 
@@ -78,7 +78,7 @@ class Mailer
     puts response.headers
   end
 
-  def send_payment_failed_email user
+  def send_payment_failed_email(user)
     mail = Mail.new
     mail.from = Email.new(email: 'info@goclimateneutral.org', name: 'GoClimateNeutral.org')
 

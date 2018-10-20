@@ -23,7 +23,7 @@ class StripeEvent < ApplicationRecord
       total_payments_eur_part * LifestyleChoice::SEK_PER_EUR).round
   end
 
-  def self.try_updating_events user
+  def self.try_updating_events(user)
     tries = 0
     loop do
       tries += 1
