@@ -405,6 +405,9 @@ sv:
   year: år
   years: år
 
+  navigation:
+    gift_cards: Presentkort
+
   welcome:
     caption_line_1: Tillsammans räddar vi klimatet.
     caption_line_2: Kompensera dina utsläpp idag!

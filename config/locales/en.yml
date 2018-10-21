@@ -385,6 +385,9 @@ en:
   year: year
   years: years
 
+  navigation:
+    gift_cards: Gift Cards
+
   welcome:
     caption_line_1: Together we can save our climate.
     caption_line_2: Offset your emissions today!
