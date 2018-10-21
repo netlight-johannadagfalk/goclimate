@@ -29,12 +29,12 @@ RSpec.feature "Registrations", type: :feature, js: true do
 
     # Homepage
     visit "/"
-    click_link "LOG IN"
+    click_link "Log In"
 
     # sign in page
     fill_in "Email", with: "test@test.com"
     fill_in "Password", with: "password"
-    click_button "LOG IN"
+    click_button "Log In"
 
     # Wait for dashboard to render
     find('.dashboard-index', wait: 20)

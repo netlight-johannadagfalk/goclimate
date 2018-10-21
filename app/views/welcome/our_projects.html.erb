@@ -38,7 +38,7 @@
                           <td><%= image_tag project.image_url, height: "50" %></td>
                           <td><a href ="<%= project.blog_url %>"><%= project.name %></a></td>
                           <td><%= project.country %></td>
-                          <td><a href="https://www.google.com/maps/preview/@<%= project.latitude %>,<%= project.longitude %>,8z" target="_blank">Google Maps</a></td>
+                          <td><a href="https://www.google.com/maps?z=15&t=k&q=loc:<%= project.latitude %>+<%= project.longitude %>" target="_blank">Google Maps</a></td>
                           <% if project.certificate_url.nil? || project.certificate_url.empty? %>
                             <td>-</td>
                           <% else %>
