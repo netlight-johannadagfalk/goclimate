@@ -1,0 +1,57 @@
+/* Overrides for Bootstrap navbar component */
+.navbar.navbar-default.navbar-goclimateneutral {
+  background-color: transparent;
+  border-color: transparent;
+
+  .navbar-brand {
+    height: auto;
+
+    img {
+      height: 50px;
+    }
+  }
+
+  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: transparent;
+  }
+  .navbar-nav > li > a {
+    line-height: 30px;
+    padding: 0;
+    margin: 25px 15px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .navbar-collapse {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .navbar-toggle {
+    margin: 23px 15px 23px 0;
+  }
+
+  .dropdown-menu {
+    min-width: 110px;
+    left: 0;
+    right: 0;
+    margin: auto auto;
+    position: absolute;
+    text-align: center;
+  }
+  .dropdown-menu > li > a {
+    padding: 3px 0px;
+  }
+  .dropdown img {
+    margin-top: -4px;
+  }
+
+  .fat-menu {
+    min-width: 118px;
+  }
+  .languages {
+    min-width: 60px;
+  }
+}

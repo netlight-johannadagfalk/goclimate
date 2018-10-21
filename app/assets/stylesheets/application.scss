@@ -13,6 +13,7 @@
  *= require_self
  *= require font-awesome
  *= require components/impact_calculator_fields
+ *= require components/navbar_goclimateneutral
  *= require bootstrap-social
  */
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
@@ -416,42 +417,6 @@ p.lead a {
 } 
 .lead.last-text {
   margin-top: 40px;
-}
-.navbar.navbar-default {
-  background-color: transparent;
-  border-color: transparent;
-}
-.navbar {
-  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-    background-color: transparent;
-  }
-  .navbar-nav > li > a {
-    padding: 11px 20px 11px 0px;
-  }
-  .navbar-collapse {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  .dropdown-menu {
-    min-width: 110px;
-    left: 0;
-    right: 0;
-    margin: auto auto;
-    position: absolute;
-    text-align: center;
-  }
-  .dropdown-menu > li > a {
-    padding: 3px 0px;
-  }
-  .dropdown img {
-    margin-top: -4px;
-  }
-  .fat-menu {
-    min-width: 118px;
-  }
-  .languages {
-    min-width: 60px;
-  }
 }
 div.profile {
   padding-bottom: 40px;

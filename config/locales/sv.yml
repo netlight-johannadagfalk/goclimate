@@ -4,8 +4,8 @@ sv:
   site_title: GoClimateNeutral.org
   welcome_to_a_climate_neutral_life: Lev ett klimatneutralt liv!
   climate_change_is_the_greatest_challange: "Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Tillsammans kan vi bromsa klimatförändringarna och rädda världen, OM vi agerar nu."
-  log_in: LOGGA IN
-  log_out: LOGGA UT
+  log_in: Logga In
+  log_out: Logga Ut
   settings: Inställningar
   ok_i_want_to_know_more: Ok, jag är intresserad!
   i_want_to_know_more: Jag vill veta mer!
@@ -400,8 +400,7 @@ sv:
   ton_co2_less_in_atmosphere: ton CO2 mindre i atmosfären
   for_companies: För företag
   for_companies_text_html: Vill du klimatkompensera för en flygresa eller för alla era anställda? Vi hjälper dig gärna. Hör av dig till <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> direkt så berättar vi mer.
-  business: FÖRETAG
-  consumer: PRIVATPERSON
+  business: För företag
   thats_amazing_from_the_bottom_of_our_hearts: Vilket är fantastiskt! Från djupet av våra hjärtan
   year: år
   years: år
