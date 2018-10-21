@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LifestyleChoice < ApplicationRecord
   has_and_belongs_to_many :users
 
@@ -6,13 +8,12 @@ class LifestyleChoice < ApplicationRecord
   SEK_PER_USD = 8.5
   SEK_PER_EUR = 10
 
-  def self.get_lifestyle_choice_price choices
-
+  def self.get_lifestyle_choice_price(choices)
     if choices == []
       return "x"
     end
 
-    tonne_co2 = get_lifestyle_choice_tonnes choices
+    tonne_co2 = lifestyle_choice_tonnes choices
 
     if I18n.locale == :en
       price = tonne_co2 * SEK_PER_TONNE / SEK_PER_USD / 12
@@ -26,9 +27,9 @@ class LifestyleChoice < ApplicationRecord
     end
 
     rounded_price_with_buffer
-  end 
+  end
 
-  def self.get_lifestyle_choice_tonnes choices
+  def self.lifestyle_choice_tonnes(choices)
     tonne_co2 = 0
     people = 1
     choices.each do |choice|
@@ -37,28 +38,18 @@ class LifestyleChoice < ApplicationRecord
       if lifestyle_choice.category == "people"
         people = lifestyle_choice.co2.to_i
       else
-        tonne_co2 = tonne_co2 + lifestyle_choice.co2
+        tonne_co2 += lifestyle_choice.co2
       end
     end
-    tonne_co2 = tonne_co2 * people
+    tonne_co2 *= people
     tonne_co2
   end
 
-  def self.get_lifestyle_choice_co2
+  def self.lifestyle_choice_co2
     lifestyle_choice_co2 = []
     LifestyleChoice.all.each do |choice|
       lifestyle_choice_co2[choice.id] = choice.co2
     end
     lifestyle_choice_co2
-  end
-
-  def self.get_price_per_tonne
-    if I18n.locale == :en
-      (SEK_PER_TONNE / SEK_PER_USD).round(1)
-    elsif I18n.locale == :de
-      (SEK_PER_TONNE / SEK_PER_EUR).round(1)
-    else
-      SEK_PER_TONNE
-    end
   end
 end

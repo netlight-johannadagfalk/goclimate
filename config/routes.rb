@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'welcome#index'
 
@@ -12,10 +14,10 @@ Rails.application.routes.draw do
     get 'users/edit/threedsecure', to: 'users/registrations#threedsecure', as: 'threedsecure'
   end
   devise_for :users, controllers: {
-  	sessions: 'users/sessions',
-  	registrations: 'users/registrations'
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
   }
-  resources :users, :only => [:show]
+  resources :users, only: [:show]
 
   get '/users' => 'dashboard#index', as: :user_root
   get 'about', to: 'welcome#about'

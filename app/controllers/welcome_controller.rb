@@ -1,9 +1,10 @@
-class WelcomeController < ApplicationController
+# frozen_string_literal: true
 
+class WelcomeController < ApplicationController
   def index
     @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
     @total_carbon_offset = Project.total_carbon_offset
-    @lifestyle_choice_co2 = LifestyleChoice.get_lifestyle_choice_co2
+    @lifestyle_choice_co2 = LifestyleChoice.lifestyle_choice_co2
     gon.lifestyle_choice_co2 = @lifestyle_choice_co2
     gon.locale = I18n.locale
     gon.SEK_PER_TONNE = LifestyleChoice::SEK_PER_TONNE
@@ -38,10 +39,9 @@ class WelcomeController < ApplicationController
     @projects = Project.all.order(date_bought: :desc)
     @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
     @total_carbon_offset = Project.total_carbon_offset
-    @cost_in_sek = Project.sum (:cost_in_sek)
-    @other_operating_expanses = 20579 # as of 180808 - found in https://docs.google.com/spreadsheets/d/1RzUCaVqTTxJYjfUMeh3KlTxBpiATy2ViPO3m0LHGpG8/edit#gid=0
+    @cost_in_sek = Project.sum(:cost_in_sek)
+    @other_operating_expanses = 20_579 # as of 180808 - found in https://docs.google.com/spreadsheets/d/1RzUCaVqTTxJYjfUMeh3KlTxBpiATy2ViPO3m0LHGpG8/edit#gid=0
     @payouts_in_sek = (StripePayout.sum(:amount) / 100) + Invoice.sum(:amount_in_sek)
     @results = @payouts_in_sek - (@cost_in_sek + @other_operating_expanses)
   end
-
 end
