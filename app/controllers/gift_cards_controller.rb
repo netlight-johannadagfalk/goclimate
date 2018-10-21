@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GiftCardsController < ApplicationController
   def index
   end
