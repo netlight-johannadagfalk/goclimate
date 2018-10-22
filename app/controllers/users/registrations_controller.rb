@@ -163,6 +163,7 @@ module Users
         flash[:notice] = I18n.t('your_payment_details_have_been_updated')
         redirect_to payment_path and return
       else
+        flash[:notice] = I18n.t('devise.registrations.signed_up')
         sign_in user
         redirect_to user_root_url and return
       end
