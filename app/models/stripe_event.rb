@@ -23,16 +23,6 @@ class StripeEvent < ApplicationRecord
       total_payments_eur_part * LifestyleChoice::SEK_PER_EUR).round
   end
 
-  def self.try_updating_events(user)
-    tries = 0
-    loop do
-      tries += 1
-      StripeEvent.update_events
-      break if StripeEvent.payments(user).count != 0 || tries > 3
-      sleep(5)
-    end
-  end
-
   def self.update_events
     require "stripe"
     Stripe.api_key = ENV['SECRET_KEY']
