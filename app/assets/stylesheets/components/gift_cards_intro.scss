@@ -1,0 +1,30 @@
+.gift-cards-intro {
+  h1, h2 {
+    margin: 0;
+  }
+
+  &__header-row {
+    margin-bottom: 20px;
+  }
+
+  &__intro-row {
+    font-size: 18px;
+
+    p {
+      line-height: 1.5;
+    }
+  }
+
+  &__choose-row {
+    margin-bottom: 30px;
+  }
+
+  &__details-row {
+    margin-bottom: 30px;
+  }
+
+  &__price {
+    font-size: 18px;
+    font-weight: bold;
+  }
+}

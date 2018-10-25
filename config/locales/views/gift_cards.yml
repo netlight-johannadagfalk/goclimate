@@ -1,0 +1,21 @@
+en:
+  views:
+    gift_cards:
+      index:
+        header: Let your next gift be a climate neutral life
+        intro:
+          Looking for a gift for someone who already has everything?  Want
+          to help spread the word of something we can all do to fight
+          climate change? Our climate offset gift cards are a perfect start
+          to a climate neutral life.
+        choose_header: Choose your climate offset gift card
+        3_months_header: 3 months
+        3_months_description: 3 months of climate neutrality.
+        3_months_cta: Get a 3 months gift card
+        6_months_header: 6 months
+        6_months_description: Half a year of climate neutrality.
+        6_months_cta: Get a 6 months gift card
+        12_months_header: 12 months
+        12_months_description: One full year of climate neutrality.
+        12_months_cta: Get a 12 months gift card
+        details_html: "Gift cards are based on the average climate impact for Swedish residents (11 tonnes CO<sub>2</sub>eq)."

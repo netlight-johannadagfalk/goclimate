@@ -4,6 +4,9 @@ require 'gift_cards_checkout'
 
 class GiftCardsController < ApplicationController
   def index
+    @gift_card_3_months = SubscriptionMonthsGiftCard.new(3, 'sek')
+    @gift_card_6_months = SubscriptionMonthsGiftCard.new(6, 'sek')
+    @gift_card_12_months = SubscriptionMonthsGiftCard.new(12, 'sek')
   end
 
   def new

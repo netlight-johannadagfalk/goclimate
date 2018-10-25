@@ -1,13 +1,101 @@
-<div class="site-wrapper-inner site-wrapper-first">
-
+<div class="site-wrapper-first">
   <div class="cover-container">
     <%= render "shared/header" %>
 
-    <div class="inner cover">
-      <h1>Gift cards</h1>
-      <p><%= link_to "3 months", new_gift_card_path(subscription_months_to_gift: 3) %></p>
-      <p><%= link_to "6 months", new_gift_card_path(subscription_months_to_gift: 6) %></p>
-      <p><%= link_to "One year", new_gift_card_path(subscription_months_to_gift: 12) %></p>
+    <div class="inner">
+      <div class="container gift-cards-intro">
+        <div class="row gift-cards-intro__header-row">
+          <div class="col-xs-10 col-xs-offset-1">
+            <h1><%= t 'views.gift_cards.index.header' %></h1>
+          </div>
+        </div>
+        <div class="row gift-cards-intro__intro-row">
+          <div class="col-xs-12">
+            <p><%= t 'views.gift_cards.index.intro' %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="site-wrapper-second">
+  <div class="cover-container">
+    <div class="inner">
+      <div class="container gift-cards-intro">
+        <div class="row gift-cards-intro__choose-row">
+          <div class="col-xs-12">
+            <h2><%= t 'views.gift_cards.index.choose_header' %></h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-4">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <%= t 'views.gift_cards.index.3_months_header' %>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <p><%= t 'views.gift_cards.index.3_months_description' %></p>
+                <p class="gift-cards-intro__price"><%= price_string(@gift_card_3_months.price, @gift_card_3_months.currency) %></p>
+              </div>
+              <div class="panel-footer">
+                <p>
+                  <%= link_to 'Get a 3 months gift card',
+                    new_gift_card_path(subscription_months_to_gift: 3),
+                    class: 'btn btn-success' %>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h6 class="panel-title">
+                  <%= t 'views.gift_cards.index.6_months_header' %>
+                </h6>
+              </div>
+              <div class="panel-body">
+                <p><%= t 'views.gift_cards.index.6_months_description' %></p>
+                <p class="gift-cards-intro__price"><%= price_string(@gift_card_6_months.price, @gift_card_6_months.currency) %></p>
+              </div>
+              <div class="panel-footer">
+                <p>
+                  <%= link_to 'Get a 6 months gift card',
+                    new_gift_card_path(subscription_months_to_gift: 6),
+                    class: 'btn btn-success' %>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h12 class="panel-title">
+                  <%= t 'views.gift_cards.index.12_months_header' %>
+                </h12>
+              </div>
+              <div class="panel-body">
+                <p><%= t 'views.gift_cards.index.12_months_description' %></p>
+                <p class="gift-cards-intro__price"><%= price_string(@gift_card_12_months.price, @gift_card_12_months.currency) %></p>
+              </div>
+              <div class="panel-footer">
+                <p>
+                  <%= link_to 'Get a 12 months gift card',
+                    new_gift_card_path(subscription_months_to_gift: 12),
+                    class: 'btn btn-success' %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row gift-cards-intro__details-row">
+          <div class="col-xs-12">
+            <p><%= t 'views.gift_cards.index.details_html' %></p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

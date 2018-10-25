@@ -14,6 +14,7 @@
  *= require font-awesome
  *= require components/impact_calculator_fields
  *= require components/navbar_goclimateneutral
+ *= require components/gift_cards_intro
  *= require bootstrap-social
  */
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
@@ -79,6 +80,7 @@ input {
 }
 .inner {
   padding: 50px 30px;
+  overflow: hidden; /* Respect height for floating children */
 }
 ul.nav.nav-tabs li.active a {
   background-color: #edf7f6;
