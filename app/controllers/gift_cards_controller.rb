@@ -7,7 +7,9 @@ class GiftCardsController < ApplicationController
   end
 
   def new
-    @subscription_months_to_gift = params[:subscription_months_to_gift]
+    @gift_card = SubscriptionMonthsGiftCard.new(
+      params[:subscription_months_to_gift].to_i, 'sek'
+    )
   end
 
   def create
