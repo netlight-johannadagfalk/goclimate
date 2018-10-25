@@ -6,6 +6,7 @@
     <div class="inner cover">
       <h1>Gift card for <%= @subscription_months_to_gift %></h1>
       <%= form_for :gift_card, url: {action: :create} do |f| %>
+        <%= hidden_field_tag :subscription_months_to_gift, @subscription_months_to_gift %>
         <script
           src="https://checkout.stripe.com/checkout.js"
           class="stripe-button"
