@@ -6,10 +6,6 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if StripeEvent.payments(current_user).count == 0 && Rails.env.production?
-      StripeEvent.try_updating_events current_user
-    end
-
     @total_carbon_offset = Project.total_carbon_offset
 
     my_amount_invested_usd_part = StripeEvent.payments(current_user).where(paid: true).where(currency: "usd").sum("stripe_amount").to_i / 100

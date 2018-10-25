@@ -4,8 +4,8 @@ sv:
   site_title: GoClimateNeutral.org
   welcome_to_a_climate_neutral_life: Lev ett klimatneutralt liv!
   climate_change_is_the_greatest_challange: "Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Tillsammans kan vi bromsa klimatförändringarna och rädda världen, OM vi agerar nu."
-  log_in: Logga In
-  log_out: Logga Ut
+  log_in: Logga in
+  log_out: Logga ut
   settings: Inställningar
   ok_i_want_to_know_more: Ok, jag är intresserad!
   i_want_to_know_more: Jag vill veta mer!
@@ -38,7 +38,7 @@ sv:
   general_questions_facebook_html: 'Du hittar oss på facebook här: <a href="https://www.facebook.com/GoClimateNeutral" target="_blank">GoClimateNeutral</a>.'
   general_questions_twitter_html: Twittra gärna med oss på kontot <a href="https://twitter.com/goclimateneutrl" target="_blank">@goclimateneutrl</a>.
   about_us: Om oss
-  about_us_intro: GoClimateNeutral skapades som ett 2017 med syfte att hjälpa så många som möjligt att leva ett klimatneutralt liv och därmed vara med och bromsa klimatförändringarna. Vi är ett icke vinstdrivande företag med 100% transparant bokföring (GoClimateNeutral Sweden AB, Org.nummer 559130-6583).
+  about_us_intro: GoClimateNeutral skapades 2017 med syfte att hjälpa så många som möjligt att leva ett klimatneutralt liv och därmed vara med och bromsa klimatförändringarna. Vi är ett icke vinstdrivande företag med 100% transparant bokföring (GoClimateNeutral Sweden AB, Org.nummer 559130-6583).
   about_us_why_do_we_exist: Varför finns GoClimateNeutral?
   about_us_why_do_we_exist_text: En dag kommer våra barn ställa oss till svars för vad vi gjorde eller varför vi inte gjorde mer åt klimatförändringarna trots att vi var medvetna om att situationen var så allvarlig. Det är den största anledningen till att vi skapade GoClimateNeutral. Den dag våra barn frågar oss om vår medverkan vill vi kunna svara att vi gjorde allt vi bara kunde för att bromsa klimatförändringarna för att ge dem och deras generation en bättre framtid. 
   about_us_how_do_we_stop_climate_change: Hur bromsar vi klimatförändringar?
@@ -127,12 +127,12 @@ sv:
   number_of_climate_neutral_months_for_all_users: Antal klimatneutrala månader för alla användare
   number_of_climate_neutral_users_right_now: Antal klimatneutrala användare just nu
   total_climate_offset_project_investments: Total summa som vi klimatkompenserat för
-  our_projects: Våra klimatinvesteringar
-  our_investments_in_climate_projects: Våra investeringar i klimatprojekt
-  our_investments_in_climate_projects_intro_html: 'Vi investerar i FN-certifierade klimatprojekt (CDM) som dessutom har certifieringen Gold Standard. När man väljer FN-certifierade Gold Standard-projekt har man FNs alla medlemsstater och 80 miljöorganisationer i ryggen - bland annat Världsnaturfonden. 
+  our_projects: Våra klimatprojekt
+  our_investments_in_climate_projects: Våra klimatprojekt
+  our_investments_in_climate_projects_intro_html: 'Vi stöttar FN-certifierade klimatprojekt (CDM) som har certifieringen Gold Standard. När man väljer FN-certifierade Gold Standard-projekt har man FNs alla medlemsstater och 80 miljöorganisationer i ryggen - bland annat Världsnaturfonden. 
             <br><br>Gold Standard har även fokus på andra hållbarhetsaspekter än klimatet - som att minska fattigdom och bidra till renare luft och vatten - vilket redovisas genom FNs agenda 2030-mål. Du kan hitta mer information om projekten på <a href="http://UNFCCC.int" target="_blank">UNFCCS webbsida</a> respektive <a href="https://www.goldstandard.org/" target="_blank">Gold Standards webbsida</a>.
             <br><br>Alla klimatprojekt verifieras av en oberoende tredje part, t ex TÜV och DNV. Alla granskningsprotokoll är offentliga. Projekten inspekteras kontinuerligt under projekttiden för att garantera att verklig klimatnytta uppnås.'
-  climate_project_we_have_invested_in: Klimatprojekt vi investerat i tillsammans
+  climate_project_we_have_invested_in: Klimatprojekt vi stöttat tillsammans
   project_certification_info_html: '<b>CDM+GS:</b> FN-certifierade (CDM) projekt som dessutom har certifieringen Gold Standard (GS).<br><b>CDM:</b> Innan augusti 2017 investerade vi även i projekt som visserligen var FN-certifierade (CDM) men inte hade certifieringen Gold Standard.'
   i_want_to_contribute: Okej, jag vill bidra!
   project_name: Namn på projekt

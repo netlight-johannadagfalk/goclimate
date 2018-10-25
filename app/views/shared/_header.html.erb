@@ -51,8 +51,8 @@
       <ul class="nav navbar-nav navbar-right hidden-sm hidden-md hidden-lg">
         <% if user_signed_in? %> 
           <li role="separator" class="divider"></li>
-          <li><a href="<%= dashboard_index_path %>">DASHBOARD</a></li>
-          <li><a href="<%= edit_user_registration_path %>"><%= t('settings').upcase %></a></li>
+          <li><a href="<%= dashboard_index_path %>">Dashboard</a></li>
+          <li><a href="<%= edit_user_registration_path %>"><%= t('settings') %></a></li>
           <li role="separator" class="divider"></li> 
           <li><%= link_to(I18n.t('log_out'), destroy_user_session_path, :method => :delete) %></li>
         <% else %>

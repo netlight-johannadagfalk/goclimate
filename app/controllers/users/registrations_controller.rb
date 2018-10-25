@@ -14,7 +14,8 @@ module Users
     # GET /resource/sign_up
     def new
       if params[:choices].nil? || !params[:choices].include?(",")
-        redirect_to "/#choose-plan" && return
+        redirect_to "/#choose-plan"
+        return
       end
 
       @plan = get_plan params[:choices]
@@ -31,22 +32,26 @@ module Users
       begin
         if params[:user][:choices].nil? || params[:user][:choices].match(/\d+,\d+,\d+,\d/).nil?
           flash[:error] = I18n.t('something_went_wrong_go_back_one_step_and_try_again')
-          redirect_to new_user_registration_path(choices: params[:user][:choices]) && return
+          redirect_to new_user_registration_path(choices: params[:user][:choices])
+          return
         end
 
         if params[:user][:email].nil? || params[:user][:email].length < 4
           flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.blank')
-          redirect_to new_user_registration_path(choices: params[:user][:choices]) && return
+          redirect_to new_user_registration_path(choices: params[:user][:choices])
+          return
         end
 
         if params[:user][:password].nil? || params[:user][:password].length < 6
           flash[:error] = I18n.t('activerecord.errors.models.user.attributes.password.blank')
-          redirect_to new_user_registration_path(choices: params[:user][:choices]) && return
+          redirect_to new_user_registration_path(choices: params[:user][:choices])
+          return
         end
 
         if params[:stripeSource].nil?
           flash[:error] = "Oops, an error occured, please try again!"
-          redirect_to new_user_registration_path(choices: params[:user][:choices]) && return
+          redirect_to new_user_registration_path(choices: params[:user][:choices])
+          return
         end
 
         user = User.find_for_authentication(email: params[:user][:email])
@@ -56,7 +61,8 @@ module Users
             user.delete
           else
             flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.taken')
-            redirect_to new_user_registration_path(choices: params[:user][:choices]) && return
+            redirect_to new_user_registration_path(choices: params[:user][:choices])
+            return
           end
         end
 
@@ -92,7 +98,8 @@ module Users
               user.lifestyle_choices << LifestyleChoice.find(choice_id)
             end
 
-            redirect_to source.redirect.url && return
+            redirect_to source.redirect.url
+            return
           end
         end
 
@@ -109,7 +116,8 @@ module Users
         err  = body[:error]
         flash[:error] = "Something went wrong with the payment"
         flash[:error] = "The payment failed: #{err[:message]}" if err[:message]
-        redirect_to new_user_registration_path(choices: params[:user][:choices]) && return
+        redirect_to new_user_registration_path(choices: params[:user][:choices])
+        return
       end
 
       super
@@ -132,12 +140,13 @@ module Users
         flash[:error] = "Something went wrong with the payment, please check if your card is chargable and try again."
 
         if !params[:updatecard].nil? && params[:updatecard] == "1"
-          redirect_to payment_path && return
+          redirect_to payment_path
         else
           user.delete
-          redirect_to new_user_registration_path(choices: params[:choices]) && return
+          redirect_to new_user_registration_path(choices: params[:choices])
         end
 
+        return
       end
 
       Stripe::Charge.create(
@@ -161,10 +170,11 @@ module Users
 
       if !params[:updatecard].nil? && params[:updatecard] == "1"
         flash[:notice] = I18n.t('your_payment_details_have_been_updated')
-        redirect_to payment_path && return
+        redirect_to payment_path
       else
+        flash[:notice] = I18n.t('devise.registrations.signed_up')
         sign_in user
-        redirect_to user_root_url && return
+        redirect_to user_root_url
       end
     end
 
@@ -237,7 +247,8 @@ module Users
           # Checking if verification is still required
           # -> https://stripe.com/docs/sources/three-d-secure
           unless ((source.redirect.status == "succeeded" || source.redirect.status == "not_required") && source.three_d_secure.authenticated == false) || source.status == "failed"
-            redirect_to source.redirect.url && return
+            redirect_to source.redirect.url
+            return
           end
 
         end
@@ -284,7 +295,8 @@ module Users
 
       if !params[:stripeSource].nil? || !params[:user][:plan].nil?
         flash[:notice] = I18n.t('your_payment_details_have_been_updated')
-        redirect_to payment_path && return
+        redirect_to payment_path
+        return
       end
 
       if !params[:user][:country].nil? && params[:user][:country] == ""

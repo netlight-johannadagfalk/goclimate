@@ -22,22 +22,33 @@ RSpec.feature "Registrations", type: :feature, js: true do
     find('.dashboard-index', wait: 20)
 
     expect(page).to have_text "Welcome to a climate neutral life"
+    expect(page).to have_text "We have accomplished a lot together!"
   end
 
-  scenario "User signs in" do
-    create(:user)
-
+  scenario "New user registers with a 3dsecure card" do
     # Homepage
     visit "/"
-    click_link "Log In"
+    click_link "Offset my impact"
 
-    # sign in page
-    fill_in "Email", with: "test@test.com"
+    # Sign up page
+    fill_in "Email", with: "test2@example.com"
     fill_in "Password", with: "password"
-    click_button "Log In"
+    within_frame(0) do
+      find('input[name=cardnumber]').send_keys('4000000000003063')
+      find('input[name=exp-date]').send_keys '522'
+      find('input[name=cvc]').send_keys '123'
+    end
+    click_button "Go Climate Neutral!"
 
-    # Wait for dashboard to render
+    # Wait for 3dsecure page to render
+    find('#test-source-authorize-3ds', wait: 20)
+
+    click_button "Authorize Test Payment"
+
+    # Wait for success page to render
     find('.dashboard-index', wait: 20)
+
+    expect(page).to have_text "Welcome to a climate neutral life"
     expect(page).to have_text "We have accomplished a lot together!"
   end
 end
