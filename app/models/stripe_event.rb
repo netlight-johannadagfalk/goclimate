@@ -48,10 +48,13 @@ class StripeEvent < ApplicationRecord
         stripe_created: event_object.created
       )
       u = User.find_by_stripe_customer_id event_object.customer
-      if paid_charge
-        Mailer.new.send_one_more_month_email u
-      elsif failed_charge
-        Mailer.new.send_payment_failed_email u
+
+      if Rails.env.production?
+        if paid_charge
+          Mailer.new.send_one_more_month_email u
+        elsif failed_charge
+          Mailer.new.send_payment_failed_email u
+        end
       end
     end
   end

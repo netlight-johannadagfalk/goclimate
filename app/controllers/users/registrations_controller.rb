@@ -224,12 +224,8 @@ module Users
         if params[:threeDSecure] == "required"
 
           customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-          customer.delete
-
-          customer = Stripe::Customer.create(
-            email: current_user.email,
-            source: params[:stripeSource]
-          )
+          customer.source = params[:stripeSource]
+          customer.save
 
           source = Stripe::Source.create(
             amount: (@plan.to_f * 100).round,
