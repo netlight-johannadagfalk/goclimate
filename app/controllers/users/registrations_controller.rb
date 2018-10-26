@@ -191,27 +191,32 @@ module Users
     def payment
       @currency = currency_for_user
 
-      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+      if current_user.stripe_customer_id.present?
+        customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
 
-      if customer.default_source.nil?
-        @current_card = nil
-      else
+        if customer.default_source.nil?
+          @current_card = nil
+        else
 
-        current_source = customer.sources.retrieve(customer.default_source)
+          current_source = customer.sources.retrieve(customer.default_source)
 
-        if current_source.object == "source" && current_source.type == "three_d_secure"
-          @current_card = "XXXX XXXX XXXX XXXX"
-        elsif current_source.object == "source"
-          @current_card = "XXXX XXXX XXXX " + current_source.card.last4
-        elsif current_source.object == "card"
-          @current_card = "XXXX XXXX XXXX " + current_source.last4
+          if current_source.object == "source" && current_source.type == "three_d_secure"
+            @current_card = "XXXX XXXX XXXX XXXX"
+          elsif current_source.object == "source"
+            @current_card = "XXXX XXXX XXXX " + current_source.card.last4
+          elsif current_source.object == "card"
+            @current_card = "XXXX XXXX XXXX " + current_source.last4
+          end
         end
-      end
 
-      if customer["subscriptions"]["total_count"] == 0
-        @plan = 0
+        if customer["subscriptions"]["total_count"] == 0
+          @plan = 0
+        else
+          @plan = customer["subscriptions"]["data"][0]["plan"]["amount"] / 100
+        end
       else
-        @plan = customer["subscriptions"]["data"][0]["plan"]["amount"] / 100
+        @current_card = "XXXX XXXX XXXX XXXX"
+        @plan = 0
       end
     end
 
@@ -220,6 +225,14 @@ module Users
       @plan = params[:user][:plan]
 
       if params[:stripeSource].present?
+
+        if current_user.stripe_customer_id.nil?
+          customer = Stripe::Customer.create(
+            email: current_user.email
+          )
+          current_user.stripe_customer_id = customer.id
+          current_user.save
+        end
 
         if params[:threeDSecure] == "required"
 
