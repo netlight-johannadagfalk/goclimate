@@ -67,15 +67,12 @@ class Mailer
 
     mail.personalizations = personalization
     mail.reply_to = Email.new(email: 'info@goclimateneutral.org')
-
-    # puts JSON.pretty_generate(mail.to_json)
-    puts mail.to_json
-
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
-    response = sg.client.mail._('send').post(request_body: mail.to_json)
-    puts response.status_code
-    puts response.body
-    puts response.headers
+
+    # only send the email if we are in production environment
+    return unless Rails.env.production?
+
+    sg.client.mail._('send').post(request_body: mail.to_json)
   end
 
   def send_payment_failed_email(user)
@@ -109,13 +106,11 @@ class Mailer
 
     mail.reply_to = Email.new(email: 'info@goclimateneutral.org')
 
-    # puts JSON.pretty_generate(mail.to_json)
-    puts mail.to_json
-
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
-    response = sg.client.mail._('send').post(request_body: mail.to_json)
-    puts response.status_code
-    puts response.body
-    puts response.headers
+
+    # only send the email if we are in production environment
+    return unless Rails.env.production?
+
+    sg.client.mail._('send').post(request_body: mail.to_json)
   end
 end
