@@ -67,11 +67,11 @@ class Mailer
 
     mail.personalizations = personalization
     mail.reply_to = Email.new(email: 'info@goclimateneutral.org')
-    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
 
     # only send the email if we are in production environment
     return unless Rails.env.production?
 
+    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
     sg.client.mail._('send').post(request_body: mail.to_json)
   end
 
@@ -106,11 +106,10 @@ class Mailer
 
     mail.reply_to = Email.new(email: 'info@goclimateneutral.org')
 
-    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
-
     # only send the email if we are in production environment
     return unless Rails.env.production?
 
+    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
     sg.client.mail._('send').post(request_body: mail.to_json)
   end
 end
