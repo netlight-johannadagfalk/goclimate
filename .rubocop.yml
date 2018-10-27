@@ -18,6 +18,10 @@ Style/StringLiterals:
 Style/NumericPredicate:
   Enabled: false
 
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
 AllCops:
   Exclude:
     - 'db/**/*'
