@@ -8,8 +8,8 @@ RSpec.describe LifestyleChoice do
       lc1 = create(:lifestyle_choice)
       lc2 = create(:lifestyle_choice)
 
-      plan = LifestyleChoice.stripe_plan ""
-      expect(plan).to eq("x")
+      plan = LifestyleChoice.stripe_plan ''
+      expect(plan).to eq('x')
 
       plan = LifestyleChoice.stripe_plan "#{lc1.id}, #{lc2.id}"
       expect(plan).to eq(2.4)

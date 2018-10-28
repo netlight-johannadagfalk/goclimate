@@ -187,8 +187,8 @@ module Users
       @currency = currency_for_user
 
       if current_user.stripe_customer_id.nil?
-        @current_card = "no payment method"
-        @plan = LifestyleChoice.stripe_plan current_user.lifestyle_choices.map(&:id).join(",")
+        @current_card = 'no payment method'
+        @plan = LifestyleChoice.stripe_plan current_user.lifestyle_choices.map(&:id).join(',')
         return
       end
 
