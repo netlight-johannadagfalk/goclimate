@@ -18,7 +18,7 @@ module Users
         return
       end
 
-      @plan = get_plan params[:choices]
+      @plan = LifestyleChoice.stripe_plan params[:choices]
       @currency = currency_for_user
 
       super
@@ -26,7 +26,7 @@ module Users
 
     # POST /resource
     def create
-      @plan = get_plan params[:user][:choices]
+      @plan = LifestyleChoice.stripe_plan params[:user][:choices]
       choices = params[:user][:choices].split(',').map(&:to_i)
 
       begin
@@ -178,11 +178,6 @@ module Users
       end
     end
 
-    def get_plan(choices)
-      choices = choices.split(',').map(&:to_i)
-      LifestyleChoice.get_lifestyle_choice_price choices
-    end
-
     # GET /resource/edit
     def edit
       super
@@ -191,12 +186,17 @@ module Users
     def payment
       @currency = currency_for_user
 
+      if current_user.stripe_customer_id.nil?
+        @current_card = "no payment method"
+        @plan = LifestyleChoice.stripe_plan current_user.lifestyle_choices.map(&:id).join(",")
+        return
+      end
+
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
 
       if customer.default_source.nil?
         @current_card = nil
       else
-
         current_source = customer.sources.retrieve(customer.default_source)
 
         if current_source.object == 'source' && current_source.type == 'three_d_secure'
@@ -221,15 +221,19 @@ module Users
 
       if params[:stripeSource].present?
 
+        if current_user.stripe_customer_id.nil?
+          customer = Stripe::Customer.create(
+            email: current_user.email
+          )
+          current_user.stripe_customer_id = customer.id
+          current_user.save
+        end
+
         if params[:threeDSecure] == 'required'
 
           customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-          customer.delete
-
-          customer = Stripe::Customer.create(
-            email: current_user.email,
-            source: params[:stripeSource]
-          )
+          customer.source = params[:stripeSource]
+          customer.save
 
           source = Stripe::Source.create(
             amount: (@plan.to_f * 100).round,

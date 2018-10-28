@@ -52,4 +52,9 @@ class LifestyleChoice < ApplicationRecord
     end
     lifestyle_choice_co2
   end
+
+  def self.stripe_plan(choices)
+    choices = choices.split(",").map(&:to_i)
+    get_lifestyle_choice_price choices
+  end
 end
