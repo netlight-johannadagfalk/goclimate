@@ -22,7 +22,7 @@ namespace :newsletter do
     p swedish_users.count
   end
 
-  desc "renders newsletter emails for english csv file"
+  desc 'renders newsletter emails for english csv file'
   task :other_emails, [:from_date] => [:environment] do |_, args|
     latest_added_users = User.where("created_at > '" + args[:from_date] + "'")
 

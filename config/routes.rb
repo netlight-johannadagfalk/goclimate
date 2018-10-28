@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   resources :subscriptions
 
-  get '/blog' => redirect("https://www.goclimateneutral.org/blog/")
+  get '/blog' => redirect('https://www.goclimateneutral.org/blog/')
 
   # Redirects for old routes
   get 'klimatkompensera', to: redirect('/')

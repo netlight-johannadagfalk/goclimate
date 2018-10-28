@@ -28,6 +28,6 @@ class UsersController < ApplicationController
 
     @encoded_social_quote = CGI.escape(@social_quote + ' -> ' + I18n.t('goclimateneutral_url'))
 
-    render layout: "user"
+    render layout: 'user'
   end
 end

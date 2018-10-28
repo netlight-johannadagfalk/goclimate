@@ -10,7 +10,7 @@ class LifestyleChoice < ApplicationRecord
 
   def self.get_lifestyle_choice_price(choices)
     if choices == []
-      return "x"
+      return 'x'
     end
 
     tonne_co2 = lifestyle_choice_tonnes choices
@@ -35,7 +35,7 @@ class LifestyleChoice < ApplicationRecord
     choices.each do |choice|
       lifestyle_choice = LifestyleChoice.find choice
 
-      if lifestyle_choice.category == "people"
+      if lifestyle_choice.category == 'people'
         people = lifestyle_choice.co2.to_i
       else
         tonne_co2 += lifestyle_choice.co2
@@ -54,7 +54,7 @@ class LifestyleChoice < ApplicationRecord
   end
 
   def self.stripe_plan(choices)
-    choices = choices.split(",").map(&:to_i)
+    choices = choices.split(',').map(&:to_i)
     get_lifestyle_choice_price choices
   end
 end

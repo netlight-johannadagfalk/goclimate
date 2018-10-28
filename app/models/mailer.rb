@@ -36,10 +36,10 @@ class Mailer
     personalization.substitutions = Substitution.new(key: '%to_stop_recieving_these_emails%', value: I18n.t('to_stop_recieving_these_emails'))
     personalization.substitutions = Substitution.new(key: '%click_here%', value: I18n.t('click_here'))
 
-    share_url = I18n.t('goclimateneutral_url') + "users/" + user.id.to_s
+    share_url = I18n.t('goclimateneutral_url') + 'users/' + user.id.to_s
 
-    personalization.substitutions = Substitution.new(key: '%facebook_share_url%', value: share_url + "?share=fb")
-    personalization.substitutions = Substitution.new(key: '%twitter_share_url%', value: share_url + "?share=tw")
+    personalization.substitutions = Substitution.new(key: '%facebook_share_url%', value: share_url + '?share=fb')
+    personalization.substitutions = Substitution.new(key: '%twitter_share_url%', value: share_url + '?share=tw')
 
     personalization.substitutions = Substitution.new(key: '%learn_more_about_what_we_have_achieved_here%', value: I18n.t('learn_more_about_what_we_have_achieved_here'))
 
