@@ -7,13 +7,13 @@ class AdminController < ApplicationController
   end
 
   def index
-    @total_co2_bought = Project.all.sum("carbon_offset")
+    @total_co2_bought = Project.all.sum('carbon_offset')
     @total_co2_consumed = Project.total_carbon_offset
-    @total_sek_spent = Project.all.sum("cost_in_sek")
+    @total_sek_spent = Project.all.sum('cost_in_sek')
     @payouts_in_sek = (StripePayout.sum(:amount) / 100) + Invoice.sum(:amount_in_sek)
 
     @new_users = {}
-    User.group("date(created_at)").count.each do |date, number_of_users|
+    User.group('date(created_at)').count.each do |date, number_of_users|
       @new_users[date.to_s] = number_of_users
     end
     @new_users.sort

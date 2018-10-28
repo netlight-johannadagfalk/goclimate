@@ -12,9 +12,6 @@ Style/Documentation:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
-Style/StringLiterals:
-  Enabled: false
-
 Style/NumericPredicate:
   Enabled: false
 
