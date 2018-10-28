@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   resources :subscriptions
   resources :gift_cards, only: [:index, :new, :create]
 
-  get '/blog' => redirect("https://www.goclimateneutral.org/blog/")
+  get '/blog' => redirect('https://www.goclimateneutral.org/blog/')
 
   # Redirects for old routes
   get 'klimatkompensera', to: redirect('/')

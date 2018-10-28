@@ -36,10 +36,10 @@ class Mailer
     personalization.substitutions = Substitution.new(key: '%to_stop_recieving_these_emails%', value: I18n.t('to_stop_recieving_these_emails'))
     personalization.substitutions = Substitution.new(key: '%click_here%', value: I18n.t('click_here'))
 
-    share_url = I18n.t('goclimateneutral_url') + "users/" + user.id.to_s
+    share_url = I18n.t('goclimateneutral_url') + 'users/' + user.id.to_s
 
-    personalization.substitutions = Substitution.new(key: '%facebook_share_url%', value: share_url + "?share=fb")
-    personalization.substitutions = Substitution.new(key: '%twitter_share_url%', value: share_url + "?share=tw")
+    personalization.substitutions = Substitution.new(key: '%facebook_share_url%', value: share_url + '?share=fb')
+    personalization.substitutions = Substitution.new(key: '%twitter_share_url%', value: share_url + '?share=tw')
 
     personalization.substitutions = Substitution.new(key: '%learn_more_about_what_we_have_achieved_here%', value: I18n.t('learn_more_about_what_we_have_achieved_here'))
 
@@ -68,14 +68,11 @@ class Mailer
     mail.personalizations = personalization
     mail.reply_to = Email.new(email: 'info@goclimateneutral.org')
 
-    # puts JSON.pretty_generate(mail.to_json)
-    puts mail.to_json
+    # only send the email if we are in production environment
+    return unless Rails.env.production?
 
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
-    response = sg.client.mail._('send').post(request_body: mail.to_json)
-    puts response.status_code
-    puts response.body
-    puts response.headers
+    sg.client.mail._('send').post(request_body: mail.to_json)
   end
 
   def send_payment_failed_email(user)
@@ -109,13 +106,10 @@ class Mailer
 
     mail.reply_to = Email.new(email: 'info@goclimateneutral.org')
 
-    # puts JSON.pretty_generate(mail.to_json)
-    puts mail.to_json
+    # only send the email if we are in production environment
+    return unless Rails.env.production?
 
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
-    response = sg.client.mail._('send').post(request_body: mail.to_json)
-    puts response.status_code
-    puts response.body
-    puts response.headers
+    sg.client.mail._('send').post(request_body: mail.to_json)
   end
 end

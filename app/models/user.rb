@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
-  has_many :stripe_events, class_name: "StripeEvent", primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
+  has_many :stripe_events, class_name: 'StripeEvent', primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
   has_and_belongs_to_many :lifestyle_choices
 
   def country_name
@@ -13,12 +13,12 @@ class User < ApplicationRecord
       c = ISO3166::Country[country]
       c.translations[I18n.locale.to_s] || country.name
     else
-      "Unknown"
+      'Unknown'
     end
   end
 
   def number_of_neutral_months
-    StripeEvent.where(stripe_object: "charge").where(stripe_customer_id: stripe_customer_id).where(paid: true).count
+    StripeEvent.where(stripe_object: 'charge').where(stripe_customer_id: stripe_customer_id).where(paid: true).count
   end
 
   def currency
@@ -26,9 +26,9 @@ class User < ApplicationRecord
   end
 
   def language
-    if stripe_events.first.currency == "sek"
+    if stripe_events.first.currency == 'sek'
       :sv
-    elsif stripe_events.first.currency == "eur"
+    elsif stripe_events.first.currency == 'eur'
       :de
     else
       :en

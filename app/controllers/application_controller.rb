@@ -19,12 +19,11 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
-
-    if request.host.include? "en.goclimateneutral.org"
+    if request.host.include?('en.goclimateneutral.org')
       I18n.locale = :en
-    elsif request.host.include? "de.goclimateneutral.org"
+    elsif request.host.include?('de.goclimateneutral.org')
       I18n.locale = :de
-    elsif request.host.include? "sv.goclimateneutral.org"
+    elsif request.host.include?('sv.goclimateneutral.org')
       I18n.locale = :sv
     end
 
@@ -34,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(*)
-    session["user_return_to"] || dashboard_index_path
+    session['user_return_to'] || dashboard_index_path
   end
 
   def blog
@@ -46,11 +45,11 @@ class ApplicationController < ActionController::Base
       currency = current_user.currency
     else
       if I18n.locale == :sv
-        currency = "sek"
+        currency = 'sek'
       elsif I18n.locale == :en
-        currency = "usd"
+        currency = 'usd'
       elsif I18n.locale == :de
-        currency = "eur"
+        currency = 'eur'
       end
 
     end

@@ -2,15 +2,15 @@
 
 class StripePayout < ApplicationRecord
   def self.update_payouts
-    require "stripe"
+    require 'stripe'
     Stripe.api_key = ENV['SECRET_KEY']
 
     list = Stripe::Payout.list(limit: 100)
-    last_id = ""
+    last_id = ''
 
-    until list["data"].empty?
+    until list['data'].empty?
 
-      list["data"].each do |p|
+      list['data'].each do |p|
         if StripePayout.where(stripe_payout_id: p.id).empty?
           StripePayout.create(
             stripe_payout_id: p.id,

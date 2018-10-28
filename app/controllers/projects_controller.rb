@@ -12,8 +12,8 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
-    @total_co2 = Project.all.sum("carbon_offset")
-    @total_sek_spent = Project.all.sum("cost_in_sek")
+    @total_co2 = Project.all.sum('carbon_offset')
+    @total_sek_spent = Project.all.sum('cost_in_sek')
   end
 
   # GET /projects/1

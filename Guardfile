@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-guard :rspec, cmd: "bin/rspec --format doc" do
-  require "guard/rspec/dsl"
+guard :rspec, cmd: 'bin/rspec --format doc' do
+  require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
 
   # RSpec files
@@ -19,17 +19,15 @@ guard :rspec, cmd: "bin/rspec --format doc" do
   dsl.watch_spec_files_for(rails.app_files)
 
   watch(rails.controllers) { |m| rspec.spec.call("requests/#{m[1]}") }
-  watch(rails.view_dirs) { |m| rspec.spec.call("features/#{m[1]}") }
-  watch(rails.layouts) { |m| rspec.spec.call("features/#{m[1]}") }
 
   # Rails config changes
   watch(rails.spec_helper) { rspec.spec_dir }
 end
 
-guard :rubocop, all_on_start: false do
+guard :rubocop, all_on_start: false, cli: '--extra-details --display-style-guide' do
   watch(/.+\.rb$/)
   watch(/.+\.rake$/)
-  watch("Gemfile")
-  watch("Rakefile")
+  watch('Gemfile')
+  watch('Rakefile')
   watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
 end
