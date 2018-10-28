@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe LifestyleChoice do
-  describe 'get plan' do
+  describe '.stripe_plan' do
     it 'returns the price plan given a number of lifestyle choices' do
       lc1 = create(:lifestyle_choice)
       lc2 = create(:lifestyle_choice)
