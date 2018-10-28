@@ -13,12 +13,12 @@ module Users
 
     # GET /resource/sign_up
     def new
-      if params[:choices].nil? || !params[:choices].include?(",")
-        redirect_to "/#choose-plan"
+      if params[:choices].nil? || !params[:choices].include?(',')
+        redirect_to '/#choose-plan'
         return
       end
 
-      @plan = get_plan(params[:choices])
+      @plan = LifestyleChoice.stripe_plan(params[:choices])
       @currency = currency_for_user
 
       super
@@ -26,8 +26,8 @@ module Users
 
     # POST /resource
     def create
-      @plan = get_plan(params[:user][:choices])
-      choices = params[:user][:choices].split(",").map(&:to_i)
+      @plan = LifestyleChoice.stripe_plan(params[:user][:choices])
+      choices = params[:user][:choices].split(',').map(&:to_i)
 
       begin
         if params[:user][:choices].nil? || params[:user][:choices].match(/\d+,\d+,\d+,\d/).nil?
@@ -49,7 +49,7 @@ module Users
         end
 
         if params[:stripeSource].nil?
-          flash[:error] = "Oops, an error occured, please try again!"
+          flash[:error] = 'Oops, an error occured, please try again!'
           redirect_to new_user_registration_path(choices: params[:user][:choices])
           return
         end
@@ -72,7 +72,7 @@ module Users
         )
 
         # 3dsecure is required
-        if params[:threeDSecure] == "required"
+        if params[:threeDSecure] == 'required'
           source = Stripe::Source.create(
             amount: (@plan.to_f * 100).round,
             currency: currency_for_user,
@@ -84,13 +84,13 @@ module Users
               },
             redirect:
               {
-                return_url: threedsecure_url + "?email=" + params[:user][:email] + "&plan=" + @plan.to_s + "&choices=" + params[:user][:choices] + "&customer=" + customer.id
+                return_url: threedsecure_url + '?email=' + params[:user][:email] + '&plan=' + @plan.to_s + '&choices=' + params[:user][:choices] + '&customer=' + customer.id
               }
           )
 
           # Checking if verification is still required
           # -> https://stripe.com/docs/sources/three-d-secure
-          unless ((source.redirect.status == "succeeded" || source.redirect.status == "not_required") && source.three_d_secure.authenticated == false) || source.status == "failed"
+          unless ((source.redirect.status == 'succeeded' || source.redirect.status == 'not_required') && source.three_d_secure.authenticated == false) || source.status == 'failed'
             user = User.new(email: params[:user][:email], password: params[:user][:password])
             user.save
 
@@ -114,7 +114,7 @@ module Users
       rescue Stripe::CardError => e
         body = e.json_body
         err  = body[:error]
-        flash[:error] = "Something went wrong with the payment"
+        flash[:error] = 'Something went wrong with the payment'
         flash[:error] = "The payment failed: #{err[:message]}" if err[:message]
         redirect_to new_user_registration_path(choices: params[:user][:choices])
         return
@@ -136,10 +136,10 @@ module Users
       plan = get_stripe_plan(params[:plan], new_user_registration_path)
       source = Stripe::Source.retrieve(params['source'])
 
-      if source.status == "failed"
-        flash[:error] = "Something went wrong with the payment, please check if your card is chargable and try again."
+      if source.status == 'failed'
+        flash[:error] = 'Something went wrong with the payment, please check if your card is chargable and try again.'
 
-        if !params[:updatecard].nil? && params[:updatecard] == "1"
+        if !params[:updatecard].nil? && params[:updatecard] == '1'
           redirect_to payment_path
         else
           user.delete
@@ -168,7 +168,7 @@ module Users
         trial_end: 1.month.from_now.to_i
       )
 
-      if !params[:updatecard].nil? && params[:updatecard] == "1"
+      if !params[:updatecard].nil? && params[:updatecard] == '1'
         flash[:notice] = I18n.t('your_payment_details_have_been_updated')
         redirect_to payment_path
       else
@@ -176,11 +176,6 @@ module Users
         sign_in(user)
         redirect_to user_root_url
       end
-    end
-
-    def get_plan(choices)
-      choices = choices.split(",").map(&:to_i)
-      LifestyleChoice.get_lifestyle_choice_price(choices)
     end
 
     # GET /resource/edit
@@ -191,27 +186,32 @@ module Users
     def payment
       @currency = currency_for_user
 
+      if current_user.stripe_customer_id.nil?
+        @current_card = 'no payment method'
+        @plan = LifestyleChoice.stripe_plan current_user.lifestyle_choices.map(&:id).join(',')
+        return
+      end
+
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
 
       if customer.default_source.nil?
         @current_card = nil
       else
-
         current_source = customer.sources.retrieve(customer.default_source)
 
-        if current_source.object == "source" && current_source.type == "three_d_secure"
-          @current_card = "XXXX XXXX XXXX XXXX"
-        elsif current_source.object == "source"
-          @current_card = "XXXX XXXX XXXX " + current_source.card.last4
-        elsif current_source.object == "card"
-          @current_card = "XXXX XXXX XXXX " + current_source.last4
+        if current_source.object == 'source' && current_source.type == 'three_d_secure'
+          @current_card = 'XXXX XXXX XXXX XXXX'
+        elsif current_source.object == 'source'
+          @current_card = 'XXXX XXXX XXXX ' + current_source.card.last4
+        elsif current_source.object == 'card'
+          @current_card = 'XXXX XXXX XXXX ' + current_source.last4
         end
       end
 
-      if customer["subscriptions"]["total_count"] == 0
+      if customer['subscriptions']['total_count'] == 0
         @plan = 0
       else
-        @plan = customer["subscriptions"]["data"][0]["plan"]["amount"] / 100
+        @plan = customer['subscriptions']['data'][0]['plan']['amount'] / 100
       end
     end
 
@@ -221,15 +221,19 @@ module Users
 
       if params[:stripeSource].present?
 
-        if params[:threeDSecure] == "required"
+        if current_user.stripe_customer_id.nil?
+          customer = Stripe::Customer.create(
+            email: current_user.email
+          )
+          current_user.stripe_customer_id = customer.id
+          current_user.save
+        end
+
+        if params[:threeDSecure] == 'required'
 
           customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-          customer.delete
-
-          customer = Stripe::Customer.create(
-            email: current_user.email,
-            source: params[:stripeSource]
-          )
+          customer.source = params[:stripeSource]
+          customer.save
 
           source = Stripe::Source.create(
             amount: (@plan.to_f * 100).round,
@@ -240,13 +244,13 @@ module Users
               card: params[:stripeSource]
             },
             redirect: {
-              return_url: threedsecure_url + "?email=" + current_user.email + "&plan=" + @plan.to_s + "&updatecard=1" + "&customer=" + customer.id
+              return_url: threedsecure_url + '?email=' + current_user.email + '&plan=' + @plan.to_s + '&updatecard=1' + '&customer=' + customer.id
             }
           )
 
           # Checking if verification is still required
           # -> https://stripe.com/docs/sources/three-d-secure
-          unless ((source.redirect.status == "succeeded" || source.redirect.status == "not_required") && source.three_d_secure.authenticated == false) || source.status == "failed"
+          unless ((source.redirect.status == 'succeeded' || source.redirect.status == 'not_required') && source.three_d_secure.authenticated == false) || source.status == 'failed'
             redirect_to source.redirect.url
             return
           end
@@ -263,14 +267,14 @@ module Users
 
         customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
 
-        if @plan == "cancel"
-          if customer["subscriptions"]["total_count"] > 0
-            subscription = Stripe::Subscription.retrieve(customer["subscriptions"]["data"][0]["id"])
+        if @plan == 'cancel'
+          if customer['subscriptions']['total_count'] > 0
+            subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
             subscription.delete
           end
         else
 
-          if customer["subscriptions"]["total_count"] == 0 && @plan.to_i > 1
+          if customer['subscriptions']['total_count'] == 0 && @plan.to_i > 1
             plan = get_stripe_plan(@plan, new_subscription_path)
 
             return if plan == false
@@ -280,13 +284,13 @@ module Users
               plan: plan.id
             )
           else
-            current_plan = customer["subscriptions"]["data"][0]["plan"]["amount"] / 100
+            current_plan = customer['subscriptions']['data'][0]['plan']['amount'] / 100
 
             if @plan != current_plan
-              subscription = Stripe::Subscription.retrieve(customer["subscriptions"]["data"][0]["id"])
+              subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
               stripe_plan = get_stripe_plan(@plan, new_subscription_path)
               return if stripe_plan == false
-              subscription.plan = stripe_plan["id"]
+              subscription.plan = stripe_plan['id']
               subscription.save
             end
           end
@@ -299,7 +303,7 @@ module Users
         return
       end
 
-      if !params[:user][:country].nil? && params[:user][:country] == ""
+      if !params[:user][:country].nil? && params[:user][:country] == ''
         params[:user][:country] = nil
       end
       super
@@ -333,7 +337,7 @@ module Users
 
     # The path used after sign up.
     def after_sign_up_path_for(_resource)
-      dashboard_index_path + "?registered=1"
+      dashboard_index_path + '?registered=1'
     end
 
     # The path used after sign up for inactive accounts.
@@ -355,7 +359,7 @@ module Users
         begin
           stripe_plan = Stripe::Plan.create(
             id: plan_id,
-            interval: "month",
+            interval: 'month',
             currency: currency_for_user,
             amount: (plan.to_f * 100).round,
             product: {
@@ -372,11 +376,11 @@ module Users
     end
 
     def generate_plan_id(plan)
-      "climate_offset_" + plan.to_s.gsub(/[.,]/, "_") + "_" + currency_for_user + "_monthly"
+      'climate_offset_' + plan.to_s.gsub(/[.,]/, '_') + '_' + currency_for_user + '_monthly'
     end
 
     def generate_product_name(plan)
-      "Climate Offset " + plan.to_s + " " + currency_for_user + " Monthly"
+      'Climate Offset ' + plan.to_s + ' ' + currency_for_user + ' Monthly'
     end
   end
 end

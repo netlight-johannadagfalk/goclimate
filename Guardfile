@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-guard :rspec, cmd: "bin/rspec --format doc" do
-  require "guard/rspec/dsl"
+guard :rspec, cmd: 'bin/rspec --format doc' do
+  require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
 
   # RSpec files
@@ -27,7 +27,7 @@ end
 guard :rubocop, all_on_start: false, cli: '--extra-details --display-style-guide' do
   watch(/.+\.rb$/)
   watch(/.+\.rake$/)
-  watch("Gemfile")
-  watch("Rakefile")
+  watch('Gemfile')
+  watch('Rakefile')
   watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
 end
