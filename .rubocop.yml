@@ -6,6 +6,22 @@ Style/ConditionalAssignment:
 Style/EmptyMethod:
   EnforcedStyle: expanded
 
+Style/MethodCallWithArgsParentheses:
+  Enabled: true
+  IgnoredMethods:
+    - require
+    - require_relative
+    - puts
+    - rescue_from
+    - render
+    - redirect_to
+  Exclude:
+    - 'spec/**/*'
+    - 'config/**/*'
+    - '**/*.jbuilder'
+    - 'Gemfile'
+    - 'config.ru'
+
 Style/Documentation:
   Enabled: false
 

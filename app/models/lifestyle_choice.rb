@@ -13,7 +13,7 @@ class LifestyleChoice < ApplicationRecord
       return 'x'
     end
 
-    tonne_co2 = lifestyle_choice_tonnes choices
+    tonne_co2 = lifestyle_choice_tonnes(choices)
 
     if I18n.locale == :en
       price = tonne_co2 * SEK_PER_TONNE / SEK_PER_USD / 12
@@ -33,7 +33,7 @@ class LifestyleChoice < ApplicationRecord
     tonne_co2 = 0
     people = 1
     choices.each do |choice|
-      lifestyle_choice = LifestyleChoice.find choice
+      lifestyle_choice = LifestyleChoice.find(choice)
 
       if lifestyle_choice.category == 'people'
         people = lifestyle_choice.co2.to_i
