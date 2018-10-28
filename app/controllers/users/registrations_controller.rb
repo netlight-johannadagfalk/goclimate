@@ -18,7 +18,7 @@ module Users
         return
       end
 
-      @plan = get_plan params[:choices]
+      @plan = get_plan(params[:choices])
       @currency = currency_for_user
 
       super
@@ -26,7 +26,7 @@ module Users
 
     # POST /resource
     def create
-      @plan = get_plan params[:user][:choices]
+      @plan = get_plan(params[:user][:choices])
       choices = params[:user][:choices].split(",").map(&:to_i)
 
       begin
@@ -103,7 +103,7 @@ module Users
           end
         end
 
-        plan = get_stripe_plan @plan, new_user_registration_path
+        plan = get_stripe_plan(@plan, new_user_registration_path)
 
         return if plan == false
 
@@ -133,7 +133,7 @@ module Users
 
     def threedsecure
       user = User.find_for_authentication(email: params[:email])
-      plan = get_stripe_plan params[:plan], new_user_registration_path
+      plan = get_stripe_plan(params[:plan], new_user_registration_path)
       source = Stripe::Source.retrieve(params['source'])
 
       if source.status == "failed"
@@ -173,14 +173,14 @@ module Users
         redirect_to payment_path
       else
         flash[:notice] = I18n.t('devise.registrations.signed_up')
-        sign_in user
+        sign_in(user)
         redirect_to user_root_url
       end
     end
 
     def get_plan(choices)
       choices = choices.split(",").map(&:to_i)
-      LifestyleChoice.get_lifestyle_choice_price choices
+      LifestyleChoice.get_lifestyle_choice_price(choices)
     end
 
     # GET /resource/edit
@@ -271,7 +271,7 @@ module Users
         else
 
           if customer["subscriptions"]["total_count"] == 0 && @plan.to_i > 1
-            plan = get_stripe_plan @plan, new_subscription_path
+            plan = get_stripe_plan(@plan, new_subscription_path)
 
             return if plan == false
 
@@ -284,7 +284,7 @@ module Users
 
             if @plan != current_plan
               subscription = Stripe::Subscription.retrieve(customer["subscriptions"]["data"][0]["id"])
-              stripe_plan = get_stripe_plan @plan, new_subscription_path
+              stripe_plan = get_stripe_plan(@plan, new_subscription_path)
               return if stripe_plan == false
               subscription.plan = stripe_plan["id"]
               subscription.save
@@ -346,8 +346,8 @@ module Users
     end
 
     def get_stripe_plan(plan, error_path)
-      plan_id = generate_plan_id plan
-      product_name = generate_product_name plan
+      plan_id = generate_plan_id(plan)
+      product_name = generate_product_name(plan)
 
       begin
         stripe_plan = Stripe::Plan.retrieve(plan_id)

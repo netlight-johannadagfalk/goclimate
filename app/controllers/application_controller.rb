@@ -20,11 +20,11 @@ class ApplicationController < ActionController::Base
   def set_locale
     I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
 
-    if request.host.include? "en.goclimateneutral.org"
+    if request.host.include?("en.goclimateneutral.org")
       I18n.locale = :en
-    elsif request.host.include? "de.goclimateneutral.org"
+    elsif request.host.include?("de.goclimateneutral.org")
       I18n.locale = :de
-    elsif request.host.include? "sv.goclimateneutral.org"
+    elsif request.host.include?("sv.goclimateneutral.org")
       I18n.locale = :sv
     end
 
