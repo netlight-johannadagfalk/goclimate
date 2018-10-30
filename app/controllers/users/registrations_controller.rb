@@ -221,46 +221,55 @@ module Users
 
       if params[:stripeSource].present?
 
-        if current_user.stripe_customer_id.nil?
-          customer = Stripe::Customer.create(
-            email: current_user.email
-          )
-          current_user.stripe_customer_id = customer.id
-          current_user.save
-        end
-
-        if params[:threeDSecure] == 'required'
-
-          customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-          customer.source = params[:stripeSource]
-          customer.save
-
-          source = Stripe::Source.create(
-            amount: (@plan.to_f * 100).round,
-            currency: currency_for_user,
-            type: 'three_d_secure',
-            three_d_secure: {
-              customer: customer.id,
-              card: params[:stripeSource]
-            },
-            redirect: {
-              return_url: threedsecure_url + '?email=' + current_user.email + '&plan=' + @plan.to_s + '&updatecard=1' + '&customer=' + customer.id
-            }
-          )
-
-          # Checking if verification is still required
-          # -> https://stripe.com/docs/sources/three-d-secure
-          unless ((source.redirect.status == 'succeeded' || source.redirect.status == 'not_required') && source.three_d_secure.authenticated == false) || source.status == 'failed'
-            redirect_to source.redirect.url
-            return
+        begin
+          if current_user.stripe_customer_id.nil?
+            customer = Stripe::Customer.create(
+              email: current_user.email
+            )
+            current_user.stripe_customer_id = customer.id
+            current_user.save
           end
 
-        end
+          if params[:threeDSecure] == 'required'
 
-        customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-        card = customer.sources.create(source: params[:stripeSource])
-        customer.default_source = card.id
-        customer.save
+            customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+            customer.source = params[:stripeSource]
+            customer.save
+
+            source = Stripe::Source.create(
+              amount: (@plan.to_f * 100).round,
+              currency: currency_for_user,
+              type: 'three_d_secure',
+              three_d_secure: {
+                customer: customer.id,
+                card: params[:stripeSource]
+              },
+              redirect: {
+                return_url: threedsecure_url + '?email=' + current_user.email + '&plan=' + @plan.to_s + '&updatecard=1' + '&customer=' + customer.id
+              }
+            )
+
+            # Checking if verification is still required
+            # -> https://stripe.com/docs/sources/three-d-secure
+            unless ((source.redirect.status == 'succeeded' || source.redirect.status == 'not_required') && source.three_d_secure.authenticated == false) || source.status == 'failed'
+              redirect_to source.redirect.url
+              return
+            end
+
+          end
+
+          customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+          card = customer.sources.create(source: params[:stripeSource])
+          customer.default_source = card.id
+          customer.save
+        rescue Stripe::CardError => e
+          body = e.json_body
+          err  = body[:error]
+          flash[:error] = 'Something went wrong with the update of payment method'
+          flash[:error] = "The payment failed: #{err[:message]}" if err[:message]
+          redirect_to payment_path
+          return
+        end
       end
 
       if @plan.present?

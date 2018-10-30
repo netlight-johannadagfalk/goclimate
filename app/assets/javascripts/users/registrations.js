@@ -22,6 +22,22 @@ $(document).ready(function() {
 		});
 	};
 
+	$('#plan').on('change', function() {
+	  	hideCurrentCard();
+	});
+
+	if($('#plan').length) {
+		hideCurrentCard();
+	 };
+
+	function hideCurrentCard(){
+	 	if($('#plan').find(":selected").val() == "cancel") {
+	  		$('#current-card-group').hide();
+	  	} else {
+	  		$('#current-card-group').show();
+	  	}
+	 };
+
 	if($('#card-element').length) {
 		var stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
 		var elements = stripe.elements();
