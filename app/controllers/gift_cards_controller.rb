@@ -16,7 +16,6 @@ class GiftCardsController < ApplicationController
   end
 
   def create
-
     @number_of_months = params[:subscription_months_to_gift]
     @email = params[:stripeEmail]
 
@@ -25,9 +24,8 @@ class GiftCardsController < ApplicationController
     )
 
     stripe_charge = GiftCardsCheckout.new(params[:stripeToken], @gift_card).checkout
-    @filename = "Your_gift_card_" + stripe_charge["id"] + ".pdf"
+    @filename = 'Your_gift_card_' + stripe_charge['id'] + '.pdf'
 
     GiftCardMailer.with(email: @email, number_of_months: @number_of_months, filename: @filename).gift_card_email.deliver_now
-
   end
 end

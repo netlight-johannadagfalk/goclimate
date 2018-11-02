@@ -8,6 +8,8 @@ RSpec.feature 'Gift cards', type: :feature, js: true do
     visit '/gift_cards'
     click_link '3 months'
 
+    count = ActionMailer::Base.deliveries.count
+
     # Checkout page
     click_button 'Purchase Gift Card'
     within_frame(0) do
@@ -21,7 +23,9 @@ RSpec.feature 'Gift cards', type: :feature, js: true do
     # Wait for success page to render
     find('.gift_cards-create', wait: 20)
 
+    expect(ActionMailer::Base.deliveries.count).to eq(count + 1)
+
     # Confirmation page
-    expect(page).to have_text 'Here\'s your gift card'
+    expect(page).to have_text 'Thank you for bying a gift card!'
   end
 end
