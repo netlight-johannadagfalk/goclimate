@@ -10,7 +10,7 @@ class GiftCardMailer < ApplicationMailer
     mail(
       to: email,
       subject: I18n.t('gift_card_email_subject'),
-      asm: { group_id: 16_739 }
+      asm: { group_id: 21_453 }
     )
   end
 end

@@ -164,7 +164,7 @@
             height="100%"
             valign="top"
             bgcolor="#edf7f6">
-            <h1 style="text-align: center;"><span><%=t 'views.gift_card_mailer.thank_you_for_buying_gift_card' %></span></h1>
+            <h1 style="text-align: center;"><span><%=t 'thank_you_for_saving_our_planet' %></span></h1>
         </td>
       </tr>
     </table>
@@ -179,22 +179,42 @@
 	<tbody>
 		<tr>
 			<td bgcolor="#edf7f6" role="module-content" style="padding: 0px 0px 0px 0px;">
-			<div style="text-align: center;"><%=t 'views.gift_card_mailer.you_have_purchased_a_gift_card_with' %></div>
+			<div style="text-align: center;"><%=t 'you_have_lived_a_climate_neutral_life_for' %></div>
 
-			<div style="text-align: center;"><span style="font-size:72px;"><%= @number_of_months %></span></div>
+			<div style="text-align: center;"><span style="font-size:72px;"><%= @climate_neutral_months %></span></div>
 
-			<div style="text-align: center;"><%=t 'views.gift_card_mailer.climate_neutral_months' %>.</div>
-
-			<div style="text-align: center;">&nbsp;</div>
-			
-			
-			<div style="text-align: center;">&nbsp;</div>
-
+			<div style="text-align: center;"><%= @months %>.</div>
 
 			<div style="text-align: center;">&nbsp;</div>
 
-			<div style="text-align: center;"><%=t 'views.gift_card_mailer.you_can_find_the_gift_card_as_an_attachmtent_to_this_mail' %></div>
+			<div style="text-align: center;"><%=t 'together_we_have_offset' %></div>
 
+			<div style="text-align: center;">&nbsp;</div>
+
+      <div style="text-align: center;"><span style="font-size:72px;"><%= @total_carbon_offset %></span></div>
+
+			<div style="text-align: center;"><%=t 'tonnes_CO2' %>.</div>
+
+			<div style="text-align: center;">&nbsp;</div>
+
+			<div style="text-align: center;"><br>
+			<%=t 'goclimateneutral_and_this_planet_loves_you' %></div>
+
+			<div style="text-align: center;">&nbsp;</div>
+
+			<div style="text-align: center;">&nbsp;</div>
+
+			<div style="text-align: center;"><%=t 'the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible' %></div>
+
+			<div style="text-align: center;">&nbsp;</div>
+
+			<div style="text-align: center;"><a href="<%= @facebook_share_url %>"><span class="sg-image" data-imagelibrary="%7B%22link%22%3A%22%22%2C%22src%22%3A%22https%3A//marketing-image-production.s3.amazonaws.com/uploads/e24affd5c95e7842e4ccf3116967938350f56047a93062d380ac2fada1bbb7d4326848f6dee4c120c7378623756a56d428dc636e2231c3a3131a7f5f2be07b37.png%22%2C%22alt_text%22%3A%22%22%2C%22height%22%3A%2248%22%2C%22width%22%3A%22244%22%2C%22widthPercent%22%3A100%2C%22isResponsive%22%3Afalse%2C%22classes%22%3A%7B%22sg-image%22%3A1%7D%7D"><img alt="" border="0" class="max-width" height="48" src="https://marketing-image-production.s3.amazonaws.com/uploads/e24affd5c95e7842e4ccf3116967938350f56047a93062d380ac2fada1bbb7d4326848f6dee4c120c7378623756a56d428dc636e2231c3a3131a7f5f2be07b37.png" style="color: rgb(0, 0, 0); text-decoration: none; font-family: Helvetica, arial, sans-serif; font-size: 16px;" width="244"></span></a><a href="<%= @twitter_share_url %>"><span class="sg-image" data-imagelibrary="%7B%22link%22%3A%22%22%2C%22src%22%3A%22https%3A//marketing-image-production.s3.amazonaws.com/uploads/afc85575a5650eabee5626dc57e78f611de7703b9fbafe802c8311bc9dba3898669a26516453953af2c8020d83a5f73e095395fe6a374356e5f7a9d61c24aeb0.png%22%2C%22alt_text%22%3A%22%22%2C%22height%22%3A%2248%22%2C%22width%22%3A%22244%22%2C%22widthPercent%22%3A100%2C%22isResponsive%22%3Afalse%2C%22classes%22%3A%7B%22sg-image%22%3A1%7D%7D"><img alt="" border="0" class="max-width" height="48" src="https://marketing-image-production.s3.amazonaws.com/uploads/afc85575a5650eabee5626dc57e78f611de7703b9fbafe802c8311bc9dba3898669a26516453953af2c8020d83a5f73e095395fe6a374356e5f7a9d61c24aeb0.png" style="color: rgb(0, 0, 0); text-decoration: none; font-family: Helvetica, arial, sans-serif; font-size: 16px;" width="244"></span></a></div>
+
+			<div style="text-align: center;">&nbsp;</div>
+
+			<div style="text-align: center;">&nbsp;</div>
+
+			<div style="text-align: center;"><a href="<%=t 'goclimateneutral_url' %>dashboard/index"><%=t 'learn_more_about_what_we_have_achieved_here' %></a></div>
 
 			<div style="text-align: center;">&nbsp;</div>
 
