@@ -51,8 +51,7 @@ class StripeEvent < ApplicationRecord
 
       if paid_charge
         number_of_payments = StripeEvent.payments(u).where(paid: true).count
-
-        if number_of_payments / 12 == 0
+        if number_of_payments % 12 == 0
           SubscriptionMailer.with(email: u.email).one_more_year_email.deliver_now
         else
           SubscriptionMailer.with(email: u.email).one_more_month_email.deliver_now

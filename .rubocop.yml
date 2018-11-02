@@ -35,6 +35,10 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
 
+Metrics/LineLength:
+  Exclude:
+    - 'spec/**/*.rb'
+    
 AllCops:
   Exclude:
     - 'db/**/*'

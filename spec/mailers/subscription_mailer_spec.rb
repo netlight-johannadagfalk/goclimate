@@ -20,7 +20,7 @@ RSpec.describe SubscriptionMailer, type: :mailer do
     end
 
     it 'renders the receiver email' do
-      expect(mail.to).to eql(['test@test.com'])
+      expect(mail.to).to eql([@u.email])
     end
 
     it 'renders the sender email' do
@@ -48,7 +48,7 @@ RSpec.describe SubscriptionMailer, type: :mailer do
     end
 
     it 'renders the receiver email' do
-      expect(mail.to).to eql(['test@test.com'])
+      expect(mail.to).to eql([@u.email])
     end
 
     it 'renders the sender email' do
@@ -72,14 +72,14 @@ RSpec.describe SubscriptionMailer, type: :mailer do
     end
 
     it 'renders the receiver email' do
-      expect(mail.to).to eql(['test@test.com'])
+      expect(mail.to).to eql([@u.email])
     end
 
     it 'renders the sender email' do
       expect(mail.from).to eql(['info@goclimateneutral.org'])
     end
 
-    it 'matches number of months' do
+    it 'renders a payment has failed text' do
       expect(mail.body.encoded).to match('Unfortunately your payment has failed')
     end
   end
