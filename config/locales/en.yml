@@ -412,3 +412,14 @@ en:
     format:
       delimiter: ','
       separator: '.'
+  we_have_sent_you_an_email_with_the_gift_card: We have sent an email with the gift card to the email-adress you entered
+  thank_you_for_helping_us_trying_to_stop_climate_change: Thank you for helping us trying to stop climate change. If you are not a monthly subscriber yet, please consider signing up at
+  this_mail_was_sent_by: This email was sent by
+  to_stop_recieving_these_emails: To stop recieving these emails
+  best_regards: Best regards
+  views:
+    gift_card_mailer:
+      thank_you_for_buying_gift_card: Thank you for bying a gift card!
+      you_have_purchased_a_gift_card_with: You have purchased a gift card for
+      climate_neutral_months: climate neutral months
+      you_can_find_the_gift_card_as_an_attachmtent_to_this_mail: You can find the gift card as an attachment to this email. Please contact us if you have any questions by replying to this email. Thank you again!

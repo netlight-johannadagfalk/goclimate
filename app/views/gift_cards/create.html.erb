@@ -4,7 +4,14 @@
     <%= render "shared/header" %>
 
     <div class="inner cover">
-      <h1>Here's your gift card</h1>
+      <h1><%=t 'views.gift_card_mailer.thank_you_for_buying_gift_card' %></h1>
+
+      <h3><%=t 'views.gift_card_mailer.you_have_purchased_a_gift_card_with' %> <%= @number_of_months %> <%=t 'views.gift_card_mailer.climate_neutral_months' %>.</h3>
+
+      <h3><%=t 'we_have_sent_you_an_email_with_the_gift_card' %>: <%= @email %></h3>
+
+      <p><%=t 'thank_you_for_helping_us_trying_to_stop_climate_change' %>: <%= link_to('GoClimateNeutral.org', '/') %></p>
+
     </div>
   </div>
 </div>

@@ -42,7 +42,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Third-party integrations
 gem 'rollbar', '~> 2.16.2'
-gem 'sendgrid-ruby', '~> 4.3.1'
+gem 'sendgrid-actionmailer', '~> 2.0.0'
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby', ref: 'f6484e3'
 
 # Utilities
