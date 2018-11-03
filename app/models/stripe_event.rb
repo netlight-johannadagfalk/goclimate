@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StripeEvent < ApplicationRecord
-  belongs_to :user, class_name: 'User', primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
+  belongs_to :user, class_name: 'User', primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id', required: false
 
   scope :payments, ->(user = nil) { where(stripe_object: 'charge').where(stripe_customer_id: user.stripe_customer_id) }
 
@@ -36,7 +36,9 @@ class StripeEvent < ApplicationRecord
       failed_charge = event_object.object == 'charge' && event_object.paid == false
 
       next unless (paid_charge || failed_charge) && StripeEvent.where(stripe_event_id: event_object.id).empty?
-      next unless User.find_by_stripe_customer_id(event_object.customer).present?
+
+      # if we find a new stripe event with the stripe_customer_id not belonging to one of our users, we assume it is from a gift card
+      gift_card = User.find_by_stripe_customer_id(event_object.customer).nil?
 
       StripeEvent.create(
         stripe_event_id: event_object.id,
@@ -45,8 +47,12 @@ class StripeEvent < ApplicationRecord
         stripe_amount: event_object.amount,
         paid: event_object.paid,
         currency: event_object.currency,
-        stripe_created: event_object.created
+        stripe_created: event_object.created,
+        gift_card: gift_card
       )
+
+      next if gift_card
+
       u = User.find_by_stripe_customer_id(event_object.customer)
 
       if paid_charge

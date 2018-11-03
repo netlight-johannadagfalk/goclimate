@@ -4,15 +4,15 @@ require 'rails_helper'
 
 RSpec.feature 'Sessions', type: :feature, js: true do
   scenario 'User signs in' do
-    create(:user)
+    user = create(:user)
 
     # Homepage
     visit '/'
     click_link 'Log In'
 
     # sign in page
-    fill_in 'Email', with: 'test@test.com'
-    fill_in 'Password', with: 'password'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
     click_button 'Log In'
 
     # Wait for dashboard to render
