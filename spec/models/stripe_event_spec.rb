@@ -11,13 +11,11 @@ RSpec.describe StripeEvent do
     it 'inserts one stripeevent if event a Gift Card' do
       @u = create(:user, stripe_customer_id: nil)
       expect(Stripe::Event).to receive(:list).with(limit: 1000).and_return(JSON.parse('{"object": "list","data": [{"id": "evt_1DSOhgHwuhGySQCdbfGo5Bsz","object": "event","api_version": "2018-05-21","created": 1541249896,"data": {"object":{"id":"ch_1DSOhfHwuhGySQCdlVpJYYwn","object":"charge","amount":22000,"amount_refunded":0,"application":null,"application_fee":null,"balance_transaction":"txn_1DSOhgHwuhGySQCdbrszdsyi","captured":true,"created":1541249895,"currency":"sek","customer":null,"description":"Gift Card 3 months","destination":null,"dispute":null,"failure_code":null,"failure_message":null,"fraud_details":{},"invoice":null,"livemode":false,"metadata":{},"on_behalf_of":null,"order":null,"outcome":{"network_status":"approved_by_network","reason":null,"risk_level":"normal","risk_score":49,"seller_message":"Payment complete.","type":"authorized"},"paid":true,"payment_intent":null,"receipt_email":null,"receipt_number":null,"refunded":false,"refunds":{"object":"list","data":[],"has_more":false,"total_count":0,"url":"/v1/charges/ch_1DSOhfHwuhGySQCdlVpJYYwn/refunds"},"review":null,"shipping":null,"source":{"id":"card_1DSOhcHwuhGySQCdqmQcEMmx","object":"card","address_city":null,"address_country":null,"address_line1":null,"address_line1_check":null,"address_line2":null,"address_state":null,"address_zip":null,"address_zip_check":null,"brand":"Visa","country":"US","customer":null,"cvc_check":"pass","dynamic_last4":null,"exp_month":11,"exp_year":2019,"fingerprint":"AFDR1kTX598pXWiQ","funding":"credit","last4":"4242","metadata":{},"name":"kalle.nilver@gmail.com","tokenization_method":null},"source_transfer":null,"statement_descriptor":null,"status":"succeeded","transfer_group":null}},"livemode": false,"pending_webhooks": 0,"request": {"id":"req_39TIfEf7bRrdY8","idempotency_key":null},"type": "charge.succeeded"}]}', object_class: OpenStruct))
-      expect(Project.total_carbon_offset).to eq(0)
       StripeEvent.update_events
       expect(StripeEvent.count).to eq(1)
       expect(StripeEvent.last.stripe_event_id).to eq('ch_1DSOhfHwuhGySQCdlVpJYYwn')
       expect(StripeEvent.last.gift_card).to eq(true)
       expect(StripeEvent.last.stripe_customer_id).to eq(nil)
-      expect(Project.total_carbon_offset).to eq(5)
     end
 
     it 'inserts one stripeevent if event is a charge and is paid' do
