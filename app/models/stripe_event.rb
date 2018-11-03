@@ -38,7 +38,7 @@ class StripeEvent < ApplicationRecord
       next unless (paid_charge || failed_charge) && StripeEvent.where(stripe_event_id: event_object.id).empty?
 
       # if we find a new stripe event with the stripe_customer_id not belonging to one of our users, we assume it is from a gift card
-      gift_card = User.find_by_stripe_customer_id(event_object.customer).nil?
+      gift_card = event_object.customer.nil? || User.find_by_stripe_customer_id(event_object.customer).nil?
 
       StripeEvent.create(
         stripe_event_id: event_object.id,
