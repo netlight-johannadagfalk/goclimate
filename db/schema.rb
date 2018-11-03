@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_03_114809) do
+ActiveRecord::Schema.define(version: 2018_11_03_173403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2018_11_03_114809) do
     t.string "currency"
     t.boolean "paid"
     t.boolean "gift_card", default: false, null: false
+    t.string "description"
   end
 
   create_table "stripe_payouts", force: :cascade do |t|

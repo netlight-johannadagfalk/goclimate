@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'gift_cards_checkout'
+
 class StripeEvent < ApplicationRecord
   belongs_to :user, class_name: 'User', primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id', required: false
 
@@ -34,11 +36,11 @@ class StripeEvent < ApplicationRecord
 
       paid_charge = event_object.object == 'charge' && event_object.paid == true
       failed_charge = event_object.object == 'charge' && event_object.paid == false
+      new_stripe_charge = (paid_charge || failed_charge) && StripeEvent.where(stripe_event_id: event_object.id).empty?
 
-      next unless (paid_charge || failed_charge) && StripeEvent.where(stripe_event_id: event_object.id).empty?
+      next unless new_stripe_charge
 
-      # if we find a new stripe event with the stripe_customer_id not belonging to one of our users, we assume it is from a gift card
-      gift_card = event_object.customer.nil? || User.find_by_stripe_customer_id(event_object.customer).nil?
+      gift_card = event_object.description.present? && event_object.description.include?(GiftCardsCheckout::STRIPE_DESCRIPTION_BASE)
 
       StripeEvent.create(
         stripe_event_id: event_object.id,
@@ -48,22 +50,25 @@ class StripeEvent < ApplicationRecord
         paid: event_object.paid,
         currency: event_object.currency,
         stripe_created: event_object.created,
-        gift_card: gift_card
+        gift_card: gift_card,
+        description: event_object.description
       )
 
-      next if gift_card
+      user = User.find_by_stripe_customer_id(event_object.customer)
 
-      u = User.find_by_stripe_customer_id(event_object.customer)
+      next if gift_card
+      next if event_object.customer.nil?
+      next if user.nil?
 
       if paid_charge
-        number_of_payments = StripeEvent.payments(u).where(paid: true).count
+        number_of_payments = StripeEvent.payments(user).where(paid: true).count
         if number_of_payments % 12 == 0
-          SubscriptionMailer.with(email: u.email).one_more_year_email.deliver_now
+          SubscriptionMailer.with(email: user.email).one_more_year_email.deliver_now
         else
-          SubscriptionMailer.with(email: u.email).one_more_month_email.deliver_now
+          SubscriptionMailer.with(email: user.email).one_more_month_email.deliver_now
         end
       elsif failed_charge
-        SubscriptionMailer.with(email: u.email).payment_failed_email.deliver_now
+        SubscriptionMailer.with(email: user.email).payment_failed_email.deliver_now
       end
     end
   end

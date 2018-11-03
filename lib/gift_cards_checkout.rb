@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class GiftCardsCheckout
+  STRIPE_DESCRIPTION_BASE = 'Gift Card'
+
   attr_reader :stripe_token, :gift_card
 
   def initialize(stripe_token, gift_card)
@@ -13,7 +15,7 @@ class GiftCardsCheckout
       source: @stripe_token,
       amount: @gift_card.price,
       currency: @gift_card.currency,
-      description: "Gift Card #{@gift_card.number_of_months} months"
+      description: "#{STRIPE_DESCRIPTION_BASE} #{@gift_card.number_of_months} months"
     )
   end
 end
