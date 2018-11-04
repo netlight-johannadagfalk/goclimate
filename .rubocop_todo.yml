@@ -23,20 +23,20 @@ Metrics/BlockNesting:
 # Offense count: 1
 # Configuration parameters: CountComments.
 Metrics/ClassLength:
-  Max: 285
+  Max: 290
 
 # Offense count: 4
 Metrics/CyclomaticComplexity:
-  Max: 22
+  Max: 23
 
 # Offense count: 16
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
-  Max: 82
+  Max: 85
 
 # Offense count: 7
 Metrics/PerceivedComplexity:
-  Max: 24
+  Max: 25
 
 # Offense count: 1
 # Cop supports --auto-correct.
