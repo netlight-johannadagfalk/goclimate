@@ -5,10 +5,22 @@ require 'rails_helper'
 RSpec.describe GiftCardMailer, type: :mailer do
   describe '.gift_card_email' do
     it 'sends an email' do
-      expect { GiftCardMailer.with(email: 'test@example.com', number_of_months: '3', filename: 'filename.pdf').gift_card_email.deliver_now }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      expect do
+        GiftCardMailer.with(
+          email: 'test@example.com',
+          number_of_months: '3',
+          filename: 'filename.pdf'
+        ).gift_card_email.deliver_now
+      end.to change { ActionMailer::Base.deliveries.count }.by(1)
     end
 
-    let(:mail) { GiftCardMailer.with(email: 'test@example.com', number_of_months: '3', filename: 'filename.pdf').gift_card_email }
+    let(:mail) do
+      GiftCardMailer.with(
+        email: 'test@example.com',
+        number_of_months: '3',
+        filename: 'filename.pdf'
+      ).gift_card_email
+    end
 
     it 'renders the subject' do
       expect(mail.subject).to eql(I18n.t('gift_card_email_subject'))
