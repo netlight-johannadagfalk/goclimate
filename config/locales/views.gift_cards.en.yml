@@ -18,3 +18,8 @@ en:
         12_months_description: One full year of climate neutrality.
         12_months_cta: Get a 12 months gift card
         details_html: "Gift cards are based on the average climate impact for Swedish residents (11 tonnes CO<sub>2</sub>eq)."
+      new:
+        your_gift_card_order: Your Gift Card Order
+        we_will_send_you_pdf: We will send you the gift card as a PDF to the email-adress you specify during checkout.
+        gift_card_for_x_months: Gift card for %{months} months
+

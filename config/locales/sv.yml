@@ -154,6 +154,9 @@ sv:
   total_carbon_offset_by_us: Totalt har vi minskat utsläpp på
   tonnes_CO2: ton CO2
   tonnes: ton
+  type: Typ
+  price: Pris
+  proceed_to_checkout: Till betalningssidan
   thank_you_so_much_everyone_for_helping_to_save_the_world: Otroligt stort tack för att du är med och räddar världen! Du är bäst!
   latest_carbon_offset_projects: Senaste projekten vi stöttat
   offset: Kompensation
