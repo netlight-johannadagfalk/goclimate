@@ -274,6 +274,12 @@ module Users
 
       if @plan.present?
 
+        if current_user.stripe_customer_id.nil?
+          flash[:notice] = I18n.t('something_went_wrong_with_the_credit_card_please_submit_it_again')
+          redirect_to payment_path
+          return
+        end
+
         customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
 
         if @plan == 'cancel'

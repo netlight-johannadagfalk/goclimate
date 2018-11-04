@@ -103,6 +103,7 @@ sv:
   add_new_card: Nytt kort
   edit_card: ändra kort
   your_payment_details_have_been_updated: Dina inställningar har uppdaterats
+  something_went_wrong_with_the_credit_card_please_submit_it_again: Någon gick fel med ditt kort, testa gärna att lägga till det igen.
   no_card_registered: Inget kort registrerat
   climate_plan: Kompensation
   go_climate_neutral: Skapa prenumeration
