@@ -4,11 +4,11 @@ module ApplicationHelper
   def price_string(amount, currency)
     case currency
     when 'sek'
-      "#{amount / 100} kr"
+      "#{amount} kr"
     when 'eur'
-      "#{amount / 100} €"
+      "#{amount} €"
     when 'usd'
-      "$#{amount / 100}"
+      "$#{amount}"
     end
   end
 end
