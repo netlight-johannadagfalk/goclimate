@@ -15,7 +15,7 @@
         </tr>
         <tr>
           <td><%=t 'price' %>:</td>
-          <td><%= @gift_card.price / 100 %> kr</td>
+          <td><%= price_string(@gift_card.price, 'sek') %></td>
         </tr>
       </table>
 
