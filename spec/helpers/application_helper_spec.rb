@@ -6,7 +6,7 @@ RSpec.describe ApplicationHelper, type: :helper do
   describe '#price_string' do
     context 'for SEK' do
       it 'generates a localized string' do
-        string = helper.price_string(1300, 'sek')
+        string = helper.price_string(13, 'sek')
 
         expect(string).to eq('13 kr')
       end
@@ -14,7 +14,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     context 'for EUR' do
       it 'generates a localized string' do
-        string = helper.price_string(1300, 'eur')
+        string = helper.price_string(13, 'eur')
 
         expect(string).to eq('13 €')
       end
@@ -22,7 +22,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     context 'for USD' do
       it 'generates a localized string' do
-        string = helper.price_string(1300, 'usd')
+        string = helper.price_string(13, 'usd')
 
         expect(string).to eq('$13')
       end

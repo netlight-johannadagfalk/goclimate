@@ -18,7 +18,7 @@ RSpec.describe GiftCardMailer, type: :mailer do
       GiftCardMailer.with(
         email: 'test@example.com',
         number_of_months: '3',
-        filename: 'filename.pdf'
+        filename: 'testfilename.pdf'
       ).gift_card_email
     end
 
@@ -36,6 +36,14 @@ RSpec.describe GiftCardMailer, type: :mailer do
 
     it 'matches number of months' do
       expect(mail.body.encoded).to match('3 climate neutral months.')
+    end
+
+    it 'has the correct attatchment' do
+      expect(mail.attachments.size).to eql(1)
+      attachment = mail.attachments[0]
+      expect(attachment).to be_a_kind_of(Mail::Part)
+      expect(attachment.content_type).to be_start_with('application/pdf;')
+      expect(attachment.filename).to eql('testfilename.pdf')
     end
   end
 end

@@ -11,7 +11,7 @@ RSpec.feature 'Gift cards', type: :feature, js: true do
     count = ActionMailer::Base.deliveries.count
 
     # Checkout page
-    click_button 'Purchase Gift Card'
+    click_button 'Proceed to checkout'
     within_frame(0) do
       find('input[placeholder=Email]').send_keys('featurespec@example.com')
       find('input[placeholder="Card number"]').send_keys('4242424242424242')

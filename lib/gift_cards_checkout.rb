@@ -13,7 +13,7 @@ class GiftCardsCheckout
   def checkout
     Stripe::Charge.create(
       source: @stripe_token,
-      amount: @gift_card.price,
+      amount: @gift_card.price * 100,
       currency: @gift_card.currency,
       description: "#{STRIPE_DESCRIPTION_BASE} #{@gift_card.number_of_months} months"
     )

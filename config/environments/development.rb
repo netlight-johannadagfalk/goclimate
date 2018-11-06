@@ -63,9 +63,5 @@ Rails.application.configure do
 
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  config.action_mailer.delivery_method = :sendgrid_actionmailer
-  config.action_mailer.sendgrid_actionmailer_settings = {
-    api_key: ENV['SENDGRID_API_KEY'],
-    raise_delivery_errors: true
-  }
+  config.action_mailer.delivery_method = :file
 end

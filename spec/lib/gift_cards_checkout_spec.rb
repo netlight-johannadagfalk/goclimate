@@ -34,7 +34,7 @@ RSpec.describe GiftCardsCheckout do
       subject.checkout
 
       expect(Stripe::Charge).to have_received(:create)
-        .with(hash_including(amount: gift_card.price))
+        .with(hash_including(amount: gift_card.price * 100))
     end
 
     it 'creates Stripe charge with gift card currency as the currency' do

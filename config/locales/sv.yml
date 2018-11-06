@@ -154,6 +154,9 @@ sv:
   total_carbon_offset_by_us: Totalt har vi minskat utsläpp på
   tonnes_CO2: ton CO2
   tonnes: ton
+  type: Typ
+  price: Pris
+  proceed_to_checkout: Till betalningssidan
   thank_you_so_much_everyone_for_helping_to_save_the_world: Otroligt stort tack för att du är med och räddar världen! Du är bäst!
   latest_carbon_offset_projects: Senaste projekten vi stöttat
   offset: Kompensation
@@ -406,7 +409,7 @@ sv:
   years: år
 
   navigation:
-    gift_cards: Presentkort
+    gift_cards: Gåvokort
 
   welcome:
     caption_line_1: Tillsammans räddar vi klimatet.
@@ -432,15 +435,15 @@ sv:
     format:
       delimiter: ' '
       separator: ','
-  we_have_sent_you_an_email_with_the_gift_card: Vi har skickat ett mail med presentkortet till e-postadressen du angav
+  we_have_sent_you_an_email_with_the_gift_card: Vi har skickat ett mail med gåvokortet till e-postadressen du angav
   thank_you_for_helping_us_trying_to_stop_climate_change: Tack för att du hjälper oss att försöka stoppa klimatförändringarna! Om du inte lever klimatneutralt med oss än, spana gärna in det här
   this_mail_was_sent_by: Det här mailet skickades av
   to_stop_recieving_these_emails: För att sluta få de här mailen
   best_regards: Vänliga hälsningar
-  gift_card_email_subject: Ditt presentkort
+  gift_card_email_subject: Ditt gåvokort
   views:
     gift_card_mailer:
-      thank_you_for_buying_gift_card: Tack för att du köpt ett presentkort!
-      you_have_purchased_a_gift_card_with: Du har köpt ett presentkort på
+      thank_you_for_buying_gift_card: Tack för att du köpt ett gåvokort!
+      you_have_purchased_a_gift_card_with: Du har köpt ett gåvokort på
       climate_neutral_months: månaders klimatneutralt liv
-      you_can_find_the_gift_card_as_an_attachmtent_to_this_mail: Vi skickar med presentkortet som en bilaga till det här mailet. Hör gärna av dig om du har några frågor genom att svara på det här mailet. Tack igen, du är bäst!
+      you_can_find_the_gift_card_as_an_attachmtent_to_this_mail: Vi skickar med gåvokortet som en bilaga till det här mailet. Hör gärna av dig om du har några frågor genom att svara på det här mailet. Tack igen, du är bäst!

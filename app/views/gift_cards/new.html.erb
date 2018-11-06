@@ -4,20 +4,34 @@
     <%= render "shared/header" %>
 
     <div class="inner cover">
-      <h1>Gift card for <%= @gift_card.number_of_months %> months</h1>
-      <p><%= @gift_card.price / 100 %> kr</p>
+      <h1><%=t 'views.gift_cards.new.your_gift_card_order' %></h1>
+
+      <p><%=t 'views.gift_cards.new.we_will_send_you_pdf' %></p>
+
+      <table class="table checkout-table">
+        <tr>
+          <td><%=t 'type' %>:</td>
+          <td><%= @gift_card.number_of_months %> <%=t 'months' %></td>
+        </tr>
+        <tr>
+          <td><%=t 'price' %>:</td>
+          <td><%= price_string(@gift_card.price, @currency) %></td>
+        </tr>
+      </table>
+
+
       <%= form_for :gift_card, url: {action: :create} do |f| %>
         <%= hidden_field_tag :subscription_months_to_gift, @gift_card.number_of_months %>
         <script
           src="https://checkout.stripe.com/checkout.js"
           class="stripe-button"
           data-key="<%= ENV['PUBLISHABLE_KEY'] %>"
-          data-amount="<%= @gift_card.price %>"
-          data-currency="sek"
+          data-amount="<%= @gift_card.price * 100 %>"
+          data-currency=<%= @currency %>
           data-name="GoClimateNeutral"
-          data-description="Gift card for <%= @gift_card.number_of_months %> months"
+          data-description="<%=t 'views.gift_cards.new.gift_card_for_x_months', months: @gift_card.number_of_months %>"
           data-locale="<%= I18n.locale %>"
-          data-label="Purchase Gift Card">
+          data-label="<%=t 'proceed_to_checkout' %>">
         </script>
       <% end %>
     </div>

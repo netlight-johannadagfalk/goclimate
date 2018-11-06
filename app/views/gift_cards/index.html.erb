@@ -11,7 +11,7 @@
         </div>
         <div class="row gift-cards-intro__intro-row">
           <div class="col-xs-12">
-            <p><%= t 'views.gift_cards.index.intro' %></p>
+            <p class="lead"><%= t 'views.gift_cards.index.intro' %></p>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
               </div>
               <div class="panel-footer">
                 <p>
-                  <%= link_to 'Get a 3 months gift card',
+                  <%= link_to I18n.t('views.gift_cards.index.3_months_cta'),
                     new_gift_card_path(subscription_months_to_gift: 3),
                     class: 'btn btn-success' %>
                 </p>
@@ -62,7 +62,7 @@
               </div>
               <div class="panel-footer">
                 <p>
-                  <%= link_to 'Get a 6 months gift card',
+                  <%= link_to I18n.t('views.gift_cards.index.6_months_cta'),
                     new_gift_card_path(subscription_months_to_gift: 6),
                     class: 'btn btn-success' %>
                 </p>
@@ -82,7 +82,7 @@
               </div>
               <div class="panel-footer">
                 <p>
-                  <%= link_to 'Get a 12 months gift card',
+                  <%= link_to I18n.t('views.gift_cards.index.6_months_cta'),
                     new_gift_card_path(subscription_months_to_gift: 12),
                     class: 'btn btn-success' %>
                 </p>
