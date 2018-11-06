@@ -27,16 +27,32 @@ RSpec.describe SubscriptionMonthsGiftCard do
       expect(gift_card.price).to eq(440)
     end
 
-    it 'rounds to something'
-
     context 'with USD' do
-      it 'uses conversion rates correctly'
-      it 'rounds to something'
+      it 'calculates price correctly for 3 months' do
+        gift_card = SubscriptionMonthsGiftCard.new(3, 'usd')
+
+        expect(gift_card.price).to eq(27)
+      end
+
+      it 'calculates price correctly for 6 months' do
+        gift_card = SubscriptionMonthsGiftCard.new(6, 'usd')
+
+        expect(gift_card.price).to eq(54)
+      end
     end
 
     context 'with EUR' do
-      it 'uses conversion rates correctly'
-      it 'rounds to something'
+      it 'calculates price correctly for 3 months' do
+        gift_card = SubscriptionMonthsGiftCard.new(3, 'eur')
+
+        expect(gift_card.price).to eq(21)
+      end
+
+      it 'calculates price correctly for 6 months' do
+        gift_card = SubscriptionMonthsGiftCard.new(6, 'eur')
+
+        expect(gift_card.price).to eq(42)
+      end
     end
   end
 end
