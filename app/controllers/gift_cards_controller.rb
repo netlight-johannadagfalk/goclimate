@@ -25,7 +25,17 @@ class GiftCardsController < ApplicationController
       params[:subscription_months_to_gift].to_i, currency
     )
 
-    stripe_charge = GiftCardsCheckout.new(params[:stripeToken], @gift_card).checkout
+    begin
+      stripe_charge = GiftCardsCheckout.new(params[:stripeToken], @gift_card).checkout
+    rescue Stripe::CardError => e
+      body = e.json_body
+      err  = body[:error]
+      flash[:error] = 'Something went wrong with the payment'
+      flash[:error] = "The payment unfortunately failed: #{err[:message]}." if err[:message]
+      redirect_to new_gift_card_path(subscription_months_to_gift: @number_of_months)
+      return
+    end
+
     @filename = 'Your_gift_card_' + stripe_charge['id'] + '.pdf'
 
     GiftCardMailer.with(email: @email, number_of_months: @number_of_months, filename: @filename).gift_card_email.deliver_now

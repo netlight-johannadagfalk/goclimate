@@ -19,6 +19,12 @@
         </tr>
       </table>
 
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+          <p>We are currently not supporting 3dsecure-cards, but we're working on it! Check back soon!</p>
+        </div>
+      <% end %>
 
       <%= form_for :gift_card, url: {action: :create} do |f| %>
         <%= hidden_field_tag :subscription_months_to_gift, @gift_card.number_of_months %>
