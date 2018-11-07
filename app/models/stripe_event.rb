@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+require 'gift_cards_checkout'
+
 class StripeEvent < ApplicationRecord
-  belongs_to :user, class_name: 'User', primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
+  belongs_to :user, class_name: 'User', primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id', required: false
 
   scope :payments, ->(user = nil) { where(stripe_object: 'charge').where(stripe_customer_id: user.stripe_customer_id) }
 
@@ -34,9 +36,11 @@ class StripeEvent < ApplicationRecord
 
       paid_charge = event_object.object == 'charge' && event_object.paid == true
       failed_charge = event_object.object == 'charge' && event_object.paid == false
+      new_stripe_charge = (paid_charge || failed_charge) && StripeEvent.where(stripe_event_id: event_object.id).empty?
 
-      next unless (paid_charge || failed_charge) && StripeEvent.where(stripe_event_id: event_object.id).empty?
-      next unless User.find_by_stripe_customer_id(event_object.customer).present?
+      next unless new_stripe_charge
+
+      gift_card = event_object.description.present? && event_object.description.include?(GiftCardsCheckout::STRIPE_DESCRIPTION_BASE)
 
       StripeEvent.create(
         stripe_event_id: event_object.id,
@@ -45,14 +49,26 @@ class StripeEvent < ApplicationRecord
         stripe_amount: event_object.amount,
         paid: event_object.paid,
         currency: event_object.currency,
-        stripe_created: event_object.created
+        stripe_created: event_object.created,
+        gift_card: gift_card,
+        description: event_object.description
       )
-      u = User.find_by_stripe_customer_id(event_object.customer)
+
+      user = User.find_by_stripe_customer_id(event_object.customer)
+
+      next if gift_card
+      next if event_object.customer.nil?
+      next if user.nil?
 
       if paid_charge
-        Mailer.new.send_one_more_month_email(u)
+        number_of_payments = StripeEvent.payments(user).where(paid: true).count
+        if number_of_payments % 12 == 0
+          SubscriptionMailer.with(email: user.email).one_more_year_email.deliver_now
+        else
+          SubscriptionMailer.with(email: user.email).one_more_month_email.deliver_now
+        end
       elsif failed_charge
-        Mailer.new.send_payment_failed_email(u)
+        SubscriptionMailer.with(email: user.email).payment_failed_email.deliver_now
       end
     end
   end

@@ -76,6 +76,8 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       end
 
       scenario 'User updates a 3dsecure card' do
+        count_emails_sent = ActionMailer::Base.deliveries.count
+
         # Go to payment settings page
         click_link 'test@example.com'
         click_link 'Settings'
@@ -86,6 +88,10 @@ RSpec.feature 'Registrations', type: :feature, js: true do
 
         # update events
         StripeEvent.update_events
+
+        # an email should have been sent
+        expect(ActionMailer::Base.deliveries.count).to eq(count_emails_sent + 1)
+
         neutral_months = StripeEvent.payments(User.find_by_email('test@example.com')).where(paid: true).count
         expect(neutral_months).to be(1)
 
@@ -109,6 +115,9 @@ RSpec.feature 'Registrations', type: :feature, js: true do
         StripeEvent.update_events
         neutral_months = StripeEvent.payments(User.find_by_email('test@example.com')).where(paid: true).count
         expect(neutral_months).to be(2)
+
+        # another email should have been sent
+        expect(ActionMailer::Base.deliveries.count).to eq(count_emails_sent + 2)
       end
     end
   end

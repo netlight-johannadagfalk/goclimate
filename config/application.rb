@@ -19,9 +19,6 @@ module ClimateNeutralLife
 
     config.assets.paths << Rails.root.join('vendor', 'assets')
 
-    # Where the I18n library should search for translation files
-    I18n.load_path += Dir[Rails.root.join('locale', '*.{rb,yml}')]
-
     # Whitelist locales available for the application
     I18n.available_locales = [:en, :sv, :de]
     config.i18n.fallbacks = true

@@ -1,0 +1,128 @@
+{
+    "data": [
+        {
+            "api_version": "2018-05-21",
+            "created": 1541177568,
+            "data": {
+                "object": {
+                    "amount": 500,
+                    "amount_refunded": 0,
+                    "application": null,
+                    "application_fee": null,
+                    "balance_transaction": "txn_1DS5t6HwuhGySQCd5GOjhxnx",
+                    "captured": true,
+                    "created": 1541177567,
+                    "currency": "usd",
+                    "customer": "customer_test_id",
+                    "description": null,
+                    "destination": null,
+                    "dispute": null,
+                    "failure_code": null,
+                    "failure_message": null,
+                    "fraud_details": {},
+                    "id": "test_charge_id_2",
+                    "invoice": null,
+                    "livemode": false,
+                    "metadata": {},
+                    "object": "charge",
+                    "on_behalf_of": null,
+                    "order": null,
+                    "outcome": {
+                        "network_status": "approved_by_network",
+                        "reason": null,
+                        "risk_level": "normal",
+                        "risk_score": 31,
+                        "rule": "allow_if_liability_shift__enabled",
+                        "seller_message": "Payment complete.",
+                        "type": "authorized"
+                    },
+                    "paid": false,
+                    "payment_intent": null,
+                    "receipt_email": null,
+                    "receipt_number": null,
+                    "refunded": false,
+                    "refunds": {
+                        "data": [],
+                        "has_more": false,
+                        "object": "list",
+                        "total_count": 0,
+                        "url": "/v1/charges/ch_1DS5t5HwuhGySQCdOWnW23bt/refunds"
+                    },
+                    "review": null,
+                    "shipping": null,
+                    "source": {
+                        "amount": 500,
+                        "client_secret": "src_client_secret_DttgF3UYxJkfYT2vFcOLznQS",
+                        "created": 1541177568,
+                        "currency": "usd",
+                        "flow": "redirect",
+                        "id": "src_1DS5t3HwuhGySQCdUL6pAOJG",
+                        "livemode": false,
+                        "metadata": {},
+                        "object": "source",
+                        "owner": {
+                            "address": {
+                                "city": null,
+                                "country": null,
+                                "line1": "",
+                                "line2": null,
+                                "postal_code": null,
+                                "state": null
+                            },
+                            "email": null,
+                            "name": null,
+                            "phone": null,
+                            "verified_address": null,
+                            "verified_email": null,
+                            "verified_name": null,
+                            "verified_phone": null
+                        },
+                        "redirect": {
+                            "failure_reason": null,
+                            "return_url": "http://127.0.0.1:43799/users/edit/threedsecure?email=test@example.com&plan=5&updatecard=1&customer=cus_DttghuQmPDcww6",
+                            "status": "succeeded",
+                            "url": "https://hooks.stripe.com/redirect/authenticate/src_1DS5t3HwuhGySQCdUL6pAOJG?client_secret=src_client_secret_DttgF3UYxJkfYT2vFcOLznQS"
+                        },
+                        "statement_descriptor": null,
+                        "status": "consumed",
+                        "three_d_secure": {
+                            "address_line1_check": null,
+                            "address_zip_check": null,
+                            "authenticated": true,
+                            "brand": "Visa",
+                            "card": "src_1DS5t0HwuhGySQCdsCDwlyNp",
+                            "country": "US",
+                            "customer": "cus_DttghuQmPDcww6",
+                            "cvc_check": "pass",
+                            "dynamic_last4": null,
+                            "exp_month": 5,
+                            "exp_year": 2022,
+                            "fingerprint": "nzH1WYKwGPJtfUhD",
+                            "funding": "credit",
+                            "last4": "3063",
+                            "name": null,
+                            "three_d_secure": "required",
+                            "tokenization_method": null
+                        },
+                        "type": "three_d_secure",
+                        "usage": "single_use"
+                    },
+                    "source_transfer": null,
+                    "statement_descriptor": null,
+                    "status": "succeeded",
+                    "transfer_group": null
+                }
+            },
+            "id": "test_event_id_2",
+            "livemode": false,
+            "object": "event",
+            "pending_webhooks": 0,
+            "request": {
+                "id": "req_LWExH85eS5Hg1f",
+                "idempotency_key": null
+            },
+            "type": "charge.succeeded"
+        }
+    ],
+    "object": "list"
+}
