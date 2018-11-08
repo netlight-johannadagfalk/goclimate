@@ -304,7 +304,9 @@ module Users
             if @plan != current_plan
               subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
               stripe_plan = get_stripe_plan(@plan, new_subscription_path)
+
               return if stripe_plan == false
+
               subscription.plan = stripe_plan['id']
               subscription.save
             end
