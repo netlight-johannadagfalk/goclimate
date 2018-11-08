@@ -26,6 +26,6 @@ RSpec.feature 'Gift cards', type: :feature, js: true do
     expect(ActionMailer::Base.deliveries.count).to eq(count + 1)
 
     # Confirmation page
-    expect(page).to have_text 'Thank you for bying a gift card!'
+    expect(page).to have_text 'Thank you for buying a gift card!'
   end
 end
