@@ -41,7 +41,7 @@ gem 'sass-rails', github: 'rails/sass-rails'
 gem 'uglifier', '>= 1.3.0'
 
 # Third-party integrations
-gem 'rollbar', '~> 2.16.2'
+gem 'rollbar', '~> 2.18'
 gem 'sendgrid-actionmailer', '~> 2.0.0'
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby', ref: 'f6484e3'
 
