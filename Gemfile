@@ -31,7 +31,7 @@ gem 'http_accept_language', '~> 2.1.1'
 gem 'client_side_validations', '~> 11.1.2'
 gem 'country_select', '~> 3.1.1'
 gem 'gon', '~> 6.2.0'
-gem 'jbuilder', '~> 2.7.0'
+gem 'jbuilder', '~> 2.8.0'
 
 # Assets
 gem 'bootstrap-sass', '~> 3.3.6'
