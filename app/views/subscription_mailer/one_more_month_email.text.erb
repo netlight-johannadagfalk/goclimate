@@ -2,7 +2,7 @@
 
 <%=t 'you_have_lived_a_climate_neutral_life_for' %> <%= @climate_neutral_months %> <%= @months %>.
 
-<%=t 'together_we_have_offset' %> <%= @total_carbon_offset %> <%=t 'tonnes_CO2' %>.
+<%=t 'together_we_have_offset' %> <%= number_with_delimiter(@total_carbon_offset) %> <%=t 'tonnes_CO2' %>.
 
 <%=t 'goclimateneutral_and_this_planet_loves_you' %>
 
