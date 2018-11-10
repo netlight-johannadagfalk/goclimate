@@ -14,7 +14,9 @@ $(document).ready(function() {
 		shareFacebook();
 	});
 
-	$('#videoModal').modal('show');
+    if(window.location.href.indexOf("share") == -1) {
+		$('#videoModal').modal('show');
+    };
 
 	$('#show-video').on('click', function (e) {
 		e.preventDefault();
