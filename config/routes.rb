@@ -30,7 +30,11 @@ Rails.application.routes.draw do
   get 'admin', to: 'admin#index'
 
   resources :subscriptions
-  resources :gift_cards, only: [:index, :new, :create]
+  resources :gift_cards, only: [:index, :new, :create] do
+    collection do
+      get 'thank_you'
+    end
+  end
 
   get '/blog' => redirect('https://www.goclimateneutral.org/blog/')
 
