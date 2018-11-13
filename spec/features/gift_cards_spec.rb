@@ -21,7 +21,7 @@ RSpec.feature 'Gift cards', type: :feature, js: true do
     end
 
     # Wait for success page to render
-    find('.gift_cards-create', wait: 20)
+    find('.gift_cards-thank_you', wait: 20)
 
     expect(ActionMailer::Base.deliveries.count).to eq(count + 1)
 

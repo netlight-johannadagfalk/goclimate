@@ -44,7 +44,8 @@
                 <p>
                   <%= link_to I18n.t('views.gift_cards.index.3_months_cta'),
                     new_gift_card_path(subscription_months_to_gift: 3),
-                    class: 'btn btn-success' %>
+                    class: 'btn btn-success',
+                    id: 'choose-3-months' %>
                 </p>
               </div>
             </div>
@@ -64,7 +65,8 @@
                 <p>
                   <%= link_to I18n.t('views.gift_cards.index.6_months_cta'),
                     new_gift_card_path(subscription_months_to_gift: 6),
-                    class: 'btn btn-success' %>
+                    class: 'btn btn-success',
+                    id: 'choose-6-months' %>
                 </p>
               </div>
             </div>
@@ -84,7 +86,8 @@
                 <p>
                   <%= link_to I18n.t('views.gift_cards.index.12_months_cta'),
                     new_gift_card_path(subscription_months_to_gift: 12),
-                    class: 'btn btn-success' %>
+                    class: 'btn btn-success',
+                    id: 'choose-12-months' %>
                 </p>
               </div>
             </div>
@@ -102,3 +105,15 @@
 </div>
 
 <%= render "shared/footer" %>
+
+<script type="text/javascript">
+document.getElementById('choose-3-months').addEventListener('click', function() {
+  ga('send', 'event', 'Gift Cards', 'Choose', 'Gift Card 3 months');
+});
+document.getElementById('choose-6-months').addEventListener('click', function() {
+  ga('send', 'event', 'Gift Cards', 'Choose', 'Gift Card 6 months');
+});
+document.getElementById('choose-12-months').addEventListener('click', function() {
+  ga('send', 'event', 'Gift Cards', 'Choose', 'Gift Card 12 months');
+});
+</script>
