@@ -320,9 +320,8 @@ module Users
         return
       end
 
-      if !params[:user][:country].nil? && params[:user][:country] == ''
-        params[:user][:country] = nil
-      end
+      params[:user][:country] = nil if params[:user][:country] == ''
+
       super
     end
 
