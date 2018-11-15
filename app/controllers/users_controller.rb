@@ -16,7 +16,9 @@ class UsersController < ApplicationController
       elsif @neutral_months == 1
         I18n.t('name_have_lived_climate_neutral_for_one_month_join_me', months: @neutral_months, name: @user.user_name)
       else
-        I18n.t('name_have_lived_climate_neutral_for_more_months_join_me', months: @neutral_months, name: @user.user_name)
+        I18n.t(
+          'name_have_lived_climate_neutral_for_more_months_join_me', months: @neutral_months, name: @user.user_name
+        )
       end
 
     @sharing = params[:share].present?

@@ -84,7 +84,8 @@ module Users
               },
             redirect:
               {
-                return_url: threedsecure_url + '?email=' + params[:user][:email] + '&plan=' + @plan.to_s + '&choices=' + params[:user][:choices] + '&customer=' + customer.id
+                return_url: threedsecure_url + '?email=' + params[:user][:email] + '&plan=' + @plan.to_s +
+                            '&choices=' + params[:user][:choices] + '&customer=' + customer.id
               }
           )
 
@@ -246,7 +247,8 @@ module Users
                 card: params[:stripeSource]
               },
               redirect: {
-                return_url: threedsecure_url + '?email=' + current_user.email + '&plan=' + @plan.to_s + '&updatecard=1' + '&customer=' + customer.id
+                return_url: threedsecure_url + '?email=' + current_user.email + '&plan=' + @plan.to_s +
+                            '&updatecard=1' + '&customer=' + customer.id
               }
             )
 
