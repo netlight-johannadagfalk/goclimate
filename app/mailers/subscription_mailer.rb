@@ -12,11 +12,12 @@ class SubscriptionMailer < ApplicationMailer
     @facebook_share_url = share_url + '?share=fb'
     @twitter_share_url = share_url + '?share=tw'
 
-    if @climate_neutral_months == 1
-      @months = I18n.t('month')
-    else
-      @months = I18n.t('months')
-    end
+    @months =
+      if @climate_neutral_months == 1
+        I18n.t('month')
+      else
+        I18n.t('months')
+      end
 
     mail(
       to: user.email,
@@ -36,11 +37,12 @@ class SubscriptionMailer < ApplicationMailer
     @facebook_share_url = share_url + '?share=fb'
     @twitter_share_url = share_url + '?share=tw'
 
-    if @climate_neutral_years == 1
-      @years = I18n.t('year')
-    else
-      @years = I18n.t('years')
-    end
+    @years =
+      if @climate_neutral_years == 1
+        I18n.t('year')
+      else
+        I18n.t('years')
+      end
 
     mail(
       to: user.email,

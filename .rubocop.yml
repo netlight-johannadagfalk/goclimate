@@ -1,8 +1,5 @@
 inherit_from: .rubocop_todo.yml
 
-Style/ConditionalAssignment:
-  EnforcedStyle: assign_inside_condition
-
 Style/EmptyMethod:
   EnforcedStyle: expanded
 

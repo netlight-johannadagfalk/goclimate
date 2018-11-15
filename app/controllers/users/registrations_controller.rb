@@ -208,11 +208,12 @@ module Users
         end
       end
 
-      if customer['subscriptions']['total_count'] == 0
-        @plan = 0
-      else
-        @plan = customer['subscriptions']['data'][0]['plan']['amount'] / 100
-      end
+      @plan =
+        if customer['subscriptions']['total_count'] == 0
+          0
+        else
+          customer['subscriptions']['data'][0]['plan']['amount'] / 100
+        end
     end
 
     # PUT /resource
