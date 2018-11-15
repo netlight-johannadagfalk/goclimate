@@ -39,12 +39,6 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 25
 
-# Offense count: 1
-# Configuration parameters: MinBodyLength.
-Style/GuardClause:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-
 # Offense count: 3
 Style/IfInsideElse:
   Exclude:

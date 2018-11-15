@@ -18,18 +18,18 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
-    if request.host.include?('en.goclimateneutral.org')
-      I18n.locale = :en
-    elsif request.host.include?('de.goclimateneutral.org')
-      I18n.locale = :de
-    elsif request.host.include?('sv.goclimateneutral.org')
-      I18n.locale = :sv
-    end
-
-    if params[:locale].present?
-      I18n.locale = params[:locale]
-    end
+    I18n.locale =
+      if params[:locale].present?
+        params[:locale]
+      elsif request.host.include?('en.goclimateneutral.org')
+        :en
+      elsif request.host.include?('de.goclimateneutral.org')
+        :de
+      elsif request.host.include?('sv.goclimateneutral.org')
+        :sv
+      else
+        http_accept_language.compatible_language_from(I18n.available_locales)
+      end
   end
 
   def after_sign_in_path_for(*)
