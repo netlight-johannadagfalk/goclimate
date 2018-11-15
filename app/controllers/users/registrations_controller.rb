@@ -288,29 +288,26 @@ module Users
             subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
             subscription.delete
           end
+        elsif customer['subscriptions']['total_count'] == 0 && @plan.to_i > 1
+          plan = get_stripe_plan(@plan, new_subscription_path)
+
+          return if plan == false
+
+          Stripe::Subscription.create(
+            customer: customer.id,
+            plan: plan.id
+          )
         else
+          current_plan = customer['subscriptions']['data'][0]['plan']['amount'] / 100
 
-          if customer['subscriptions']['total_count'] == 0 && @plan.to_i > 1
-            plan = get_stripe_plan(@plan, new_subscription_path)
+          if @plan != current_plan
+            subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
+            stripe_plan = get_stripe_plan(@plan, new_subscription_path)
 
-            return if plan == false
+            return if stripe_plan == false
 
-            Stripe::Subscription.create(
-              customer: customer.id,
-              plan: plan.id
-            )
-          else
-            current_plan = customer['subscriptions']['data'][0]['plan']['amount'] / 100
-
-            if @plan != current_plan
-              subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
-              stripe_plan = get_stripe_plan(@plan, new_subscription_path)
-
-              return if stripe_plan == false
-
-              subscription.plan = stripe_plan['id']
-              subscription.save
-            end
+            subscription.plan = stripe_plan['id']
+            subscription.save
           end
         end
       end
