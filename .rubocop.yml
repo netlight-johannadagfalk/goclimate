@@ -33,6 +33,7 @@ Metrics/BlockLength:
     - 'feature'
     - 'describe'
     - 'context'
+    - 'draw'
 
 Metrics/LineLength:
   Max: 120
