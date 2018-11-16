@@ -9,9 +9,7 @@ class LifestyleChoice < ApplicationRecord
   SEK_PER_EUR = 10
 
   def self.get_lifestyle_choice_price(choices)
-    if choices == []
-      return 'x'
-    end
+    return 'x' if choices == []
 
     tonne_co2 = lifestyle_choice_tonnes(choices)
 

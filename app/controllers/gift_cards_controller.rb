@@ -38,7 +38,11 @@ class GiftCardsController < ApplicationController
 
     @filename = 'Your_gift_card_' + stripe_charge['id'] + '.pdf'
 
-    GiftCardMailer.with(email: @email, number_of_months: @number_of_months, filename: @filename).gift_card_email.deliver_now
+    GiftCardMailer.with(
+      email: @email,
+      number_of_months: @number_of_months,
+      filename: @filename
+    ).gift_card_email.deliver_now
 
     redirect_to thank_you_gift_cards_path, flash: { number_of_months: @number_of_months, email: @email }
   end

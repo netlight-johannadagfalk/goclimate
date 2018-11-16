@@ -1,8 +1,5 @@
 inherit_from: .rubocop_todo.yml
 
-Style/ConditionalAssignment:
-  EnforcedStyle: assign_inside_condition
-
 Style/EmptyMethod:
   EnforcedStyle: expanded
 
@@ -32,8 +29,15 @@ Style/NumericPredicate:
   Enabled: false
 
 Metrics/BlockLength:
-  Exclude:
-    - 'spec/**/*.rb'
+  ExcludedMethods:
+    - 'feature'
+    - 'describe'
+    - 'context'
+    - 'draw'
+    - 'configure'
+
+Metrics/LineLength:
+  Max: 120
 
 AllCops:
   Exclude:

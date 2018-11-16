@@ -55,7 +55,13 @@ RSpec.describe StripeEvent do
 
     context 'when 1 existing paid charge already exists' do
       before do
-        create(:stripe_event, stripe_customer_id: 'customer_test_id', paid: true, stripe_object: 'charge', currency: 'usd')
+        create(
+          :stripe_event,
+          stripe_customer_id: 'customer_test_id',
+          paid: true,
+          stripe_object: 'charge',
+          currency: 'usd'
+        )
       end
 
       it 'sends one more month email' do
@@ -71,11 +77,19 @@ RSpec.describe StripeEvent do
 
     context 'when 11 existing paid charges already exist' do
       before do
-        create_list(:stripe_event, 11, stripe_customer_id: 'customer_test_id', paid: true, stripe_object: 'charge', currency: 'usd')
+        create_list(
+          :stripe_event,
+          11,
+          stripe_customer_id: 'customer_test_id',
+          paid: true,
+          stripe_object: 'charge',
+          currency: 'usd'
+        )
       end
 
       it 'sends one more year email' do
-        expect(SubscriptionMailer).to receive_message_chain(:with, :one_more_year_email, :deliver_now).and_return(SubscriptionMailer.with(email: user.email))
+        expect(SubscriptionMailer).to receive_message_chain(:with, :one_more_year_email, :deliver_now)
+          .and_return(SubscriptionMailer.with(email: user.email))
 
         StripeEvent.update_events
 
@@ -85,7 +99,8 @@ RSpec.describe StripeEvent do
 
     context 'when Stripe returns list including event with no Stripe customer' do
       before do
-        allow(Stripe::Event).to receive(:list).and_return(stripe_json_fixture('stripe_events_list_no_stripe_customer.json'))
+        allow(Stripe::Event).to receive(:list)
+          .and_return(stripe_json_fixture('stripe_events_list_no_stripe_customer.json'))
       end
 
       it 'does not send email' do

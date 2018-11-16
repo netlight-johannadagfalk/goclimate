@@ -18,18 +18,18 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
-    if request.host.include?('en.goclimateneutral.org')
-      I18n.locale = :en
-    elsif request.host.include?('de.goclimateneutral.org')
-      I18n.locale = :de
-    elsif request.host.include?('sv.goclimateneutral.org')
-      I18n.locale = :sv
-    end
-
-    if params[:locale].present?
-      I18n.locale = params[:locale]
-    end
+    I18n.locale =
+      if params[:locale].present?
+        params[:locale]
+      elsif request.host.include?('en.goclimateneutral.org')
+        :en
+      elsif request.host.include?('de.goclimateneutral.org')
+        :de
+      elsif request.host.include?('sv.goclimateneutral.org')
+        :sv
+      else
+        http_accept_language.compatible_language_from(I18n.available_locales)
+      end
   end
 
   def after_sign_in_path_for(*)
@@ -42,18 +42,14 @@ class ApplicationController < ActionController::Base
 
   def currency_for_user
     if user_signed_in? && !current_user.stripe_events.first.nil?
-      currency = current_user.currency
-    else
-      if I18n.locale == :sv
-        currency = 'sek'
-      elsif I18n.locale == :en
-        currency = 'usd'
-      elsif I18n.locale == :de
-        currency = 'eur'
-      end
-
+      current_user.currency
+    elsif I18n.locale == :sv
+      'sek'
+    elsif I18n.locale == :en
+      'usd'
+    elsif I18n.locale == :de
+      'eur'
     end
-    currency
   end
 
   protected

@@ -84,7 +84,8 @@ module Users
               },
             redirect:
               {
-                return_url: threedsecure_url + '?email=' + params[:user][:email] + '&plan=' + @plan.to_s + '&choices=' + params[:user][:choices] + '&customer=' + customer.id
+                return_url: threedsecure_url + '?email=' + params[:user][:email] + '&plan=' + @plan.to_s +
+                            '&choices=' + params[:user][:choices] + '&customer=' + customer.id
               }
           )
 
@@ -208,11 +209,12 @@ module Users
         end
       end
 
-      if customer['subscriptions']['total_count'] == 0
-        @plan = 0
-      else
-        @plan = customer['subscriptions']['data'][0]['plan']['amount'] / 100
-      end
+      @plan =
+        if customer['subscriptions']['total_count'] == 0
+          0
+        else
+          customer['subscriptions']['data'][0]['plan']['amount'] / 100
+        end
     end
 
     # PUT /resource
@@ -245,7 +247,8 @@ module Users
                 card: params[:stripeSource]
               },
               redirect: {
-                return_url: threedsecure_url + '?email=' + current_user.email + '&plan=' + @plan.to_s + '&updatecard=1' + '&customer=' + customer.id
+                return_url: threedsecure_url + '?email=' + current_user.email + '&plan=' + @plan.to_s +
+                            '&updatecard=1' + '&customer=' + customer.id
               }
             )
 
@@ -287,29 +290,26 @@ module Users
             subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
             subscription.delete
           end
+        elsif customer['subscriptions']['total_count'] == 0 && @plan.to_i > 1
+          plan = get_stripe_plan(@plan, new_subscription_path)
+
+          return if plan == false
+
+          Stripe::Subscription.create(
+            customer: customer.id,
+            plan: plan.id
+          )
         else
+          current_plan = customer['subscriptions']['data'][0]['plan']['amount'] / 100
 
-          if customer['subscriptions']['total_count'] == 0 && @plan.to_i > 1
-            plan = get_stripe_plan(@plan, new_subscription_path)
+          if @plan != current_plan
+            subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
+            stripe_plan = get_stripe_plan(@plan, new_subscription_path)
 
-            return if plan == false
+            return if stripe_plan == false
 
-            Stripe::Subscription.create(
-              customer: customer.id,
-              plan: plan.id
-            )
-          else
-            current_plan = customer['subscriptions']['data'][0]['plan']['amount'] / 100
-
-            if @plan != current_plan
-              subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
-              stripe_plan = get_stripe_plan(@plan, new_subscription_path)
-
-              return if stripe_plan == false
-
-              subscription.plan = stripe_plan['id']
-              subscription.save
-            end
+            subscription.plan = stripe_plan['id']
+            subscription.save
           end
         end
       end
@@ -320,9 +320,8 @@ module Users
         return
       end
 
-      if !params[:user][:country].nil? && params[:user][:country] == ''
-        params[:user][:country] = nil
-      end
+      params[:user][:country] = nil if params[:user][:country] == ''
+
       super
     end
 

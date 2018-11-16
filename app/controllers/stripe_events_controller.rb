@@ -75,6 +75,8 @@ class StripeEventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def stripe_event_params
-    params.require(:stripe_event).permit(:stripe_event_id, :stripe_customer_id, :stripe_object, :stripe_status, :stripe_amount, :stripe_created)
+    params.require(:stripe_event).permit(
+      :stripe_event_id, :stripe_customer_id, :stripe_object, :stripe_status, :stripe_amount, :stripe_created
+    )
   end
 end

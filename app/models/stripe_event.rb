@@ -3,7 +3,7 @@
 require 'gift_cards_checkout'
 
 class StripeEvent < ApplicationRecord
-  belongs_to :user, class_name: 'User', primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id', required: false
+  belongs_to :user, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id', required: false
 
   scope :payments, ->(user = nil) { where(stripe_object: 'charge').where(stripe_customer_id: user.stripe_customer_id) }
 
@@ -40,7 +40,8 @@ class StripeEvent < ApplicationRecord
 
       next unless new_stripe_charge
 
-      gift_card = event_object.description.present? && event_object.description.include?(GiftCardsCheckout::STRIPE_DESCRIPTION_BASE)
+      gift_card = event_object.description.present? &&
+                  event_object.description.include?(GiftCardsCheckout::STRIPE_DESCRIPTION_BASE)
 
       StripeEvent.create(
         stripe_event_id: event_object.id,
