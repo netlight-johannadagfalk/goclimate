@@ -156,7 +156,7 @@
             <div class="row stats">
               <div class="col-md-2"></div>
               <div class="col-md-8">
-                <h1 class="big-number"><%= number_with_delimiter(@total_carbon_offset) %></h1>
+                <h1 id="total-carbon-offset" class="big-number" data="<%= @total_carbon_offset %>">0</h1>
                 <p><%=t 'ton_co2_less_in_atmosphere' %></p>
               </div>
               <div class="col-md-2"></div>
