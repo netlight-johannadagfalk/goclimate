@@ -78,8 +78,11 @@ $(document).ready(function() {
 		scrollToAnchor('#choose-plan');
 	});
 
+	$('#total-carbon-offset').text('0');
+	$('#total-users').text('0');
 	$('#total-carbon-offset').appear();
-	$('#total-carbon-offset').one('appear', function(event, _) {
+	$('#total-users').appear();
+	function countNumberUp(numberToCountUp){
 		var separator;
 
 		if (gon.locale == 'en') {
@@ -92,11 +95,17 @@ $(document).ready(function() {
 			separator: separator
 		};
 
-		var numAnim = new CountUp('total-carbon-offset', 1, $('#total-carbon-offset').attr('data'), 0, 1, options);
+		var numAnim = new CountUp(numberToCountUp, 1, $('#' + numberToCountUp).attr('data'), 0, 1, options);
 		if (!numAnim.error) {
 			numAnim.start();
 		} else {
 			console.error(numAnim.error);
 		};
+	}
+	$('#total-carbon-offset').one('appear', function(event, _) {
+		countNumberUp('total-carbon-offset');
+	});
+	$('#total-users').one('appear', function(event, _) {
+		countNumberUp('total-users');
 	});
 });
