@@ -15,6 +15,8 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require rails.validations
+//= require countUp
+//= require jquery.appear
 $(document).ready(function() {
 	$('.dropdown-toggle').dropdown();
 

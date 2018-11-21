@@ -155,9 +155,13 @@
             <p class="lead"><%=t 'welcome.lets_save_our_planet_text' %></p>
             <div class="row stats">
               <div class="col-md-2"></div>
-              <div class="col-md-8">
-                <h1 class="big-number"><%= number_with_delimiter(@total_carbon_offset) %></h1>
+              <div class="col-md-4">
+                <h1 id="total-carbon-offset" class="big-number" data="<%= @total_carbon_offset %>"><%= number_with_delimiter(@total_carbon_offset) %></h1>
                 <p><%=t 'ton_co2_less_in_atmosphere' %></p>
+              </div>
+              <div class="col-md-4">
+                <h1 id="total-users" class="big-number" data="<%= @unique_climate_neutral_users %>"><%= number_with_delimiter(@unique_climate_neutral_users) %></h1>
+                <p><%=t 'climate_neutral_users_right_now' %></p>
               </div>
               <div class="col-md-2"></div>
             </div>
