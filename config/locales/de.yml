@@ -150,8 +150,8 @@ de:
 
     Wir investieren in Projekte, die von der UN zertifiziert sind (CDM) und
     verfügen außerdem über das Label Gold Standard (u.a. von Greenpeace und
-    WWF). Diese Projekte kosten %{price_per_tonne} € pro Tonne - daher
-    kostet Sie dies %{price_per_month} € pro Monat.
+    WWF). Diese Projekte kosten %{price_per_tonne} € pro Tonne - daher kostet
+    Sie dies %{price_per_month} € pro Monat.
   you_will_offset_for: 'Sie kompensieren mit %{cost} €/monat'
   mostly_vegetarian: Überwiegend vegetarische Ernährung
   one_fuel_efficient_car: Ein verbrauchsarmes Auto
@@ -266,6 +266,7 @@ de:
     >>
   tonnes_CO2: Tonnen CO2
   tonnes: Tonnen
+  proceed_to_checkout: Proceed to checkout
   thank_you_so_much_everyone_for_helping_to_save_the_world: 'Vielen Dank an alle, die helfen, die Welt zu retten! Sie sind großartig!'
   latest_carbon_offset_projects: Die jüngsten Klimaprojekte
   offset: Kompensation
