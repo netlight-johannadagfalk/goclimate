@@ -1,14 +1,14 @@
 <%=t 'thank_you_for_saving_our_planet' %>
 
-<%=t 'you_have_lived_a_climate_neutral_life_for' %> <%= @climate_neutral_years %> <%= @years %>.
+<%=t 'you_have_lived_a_climate_neutral_life_for' %> <%= @climate_neutral_years %> <%= years(@climate_neutral_years) %>.
 
 <%=t 'together_we_have_offset' %> <%= number_with_delimiter(@total_carbon_offset) %> <%=t 'tonnes_CO2' %>.
 
 <%=t 'goclimateneutral_and_this_planet_loves_you' %>
 
 <%=t 'the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible' %>
-Facebook: <%= @facebook_share_url %>
-Twitter: <%= @twitter_share_url %>
+Facebook: <%= facebook_share_url(@user) %>
+Twitter: <%= twitter_share_url(@user) %>
 
 <%=t 'learn_more_about_what_we_have_achieved_here' %>
 <%=t 'goclimateneutral_url' %>dashboard/index
