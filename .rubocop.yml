@@ -12,6 +12,7 @@ Style/MethodCallWithArgsParentheses:
     - rescue_from
     - render
     - redirect_to
+    - mail
   Exclude:
     - 'spec/**/*'
     - 'config/**/*'

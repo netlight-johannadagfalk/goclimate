@@ -9,15 +9,9 @@ RSpec.describe SubscriptionMailer, type: :mailer do
     create(:stripe_event, stripe_customer_id: 'test_id', paid: true, stripe_object: 'charge')
   end
 
-  describe '.one_more_month_email' do
-    subject(:mail) { SubscriptionMailer.with(email: user.email).one_more_month_email }
-
+  shared_examples 'subscription email' do
     it 'sends an email' do
       expect { mail.deliver_now }.to change { ActionMailer::Base.deliveries.count }.by(1)
-    end
-
-    it 'renders the subject' do
-      expect(mail.subject).to eql('Thank you!')
     end
 
     it 'renders the receiver email' do
@@ -26,6 +20,20 @@ RSpec.describe SubscriptionMailer, type: :mailer do
 
     it 'renders the sender email' do
       expect(mail.from).to eql(['info@goclimateneutral.org'])
+    end
+
+    it 'sets Sendgrid unsubscribe group' do
+      expect(mail['asm'].value).to eq('{:group_id=>16739}')
+    end
+  end
+
+  describe '.one_more_month_email' do
+    subject(:mail) { SubscriptionMailer.with(email: user.email).one_more_month_email }
+
+    it_behaves_like 'subscription email'
+
+    it 'renders the subject' do
+      expect(mail.subject).to eql('Thank you!')
     end
 
     it 'matches number of months' do
@@ -40,20 +48,10 @@ RSpec.describe SubscriptionMailer, type: :mailer do
       create_list(:stripe_event, 12, stripe_customer_id: 'test_id', paid: true, stripe_object: 'charge')
     end
 
-    it 'sends an email' do
-      expect { mail.deliver_now }.to change { ActionMailer::Base.deliveries.count }.by(1)
-    end
+    it_behaves_like 'subscription email'
 
     it 'renders the subject' do
       expect(mail.subject).to eql('Thank you!')
-    end
-
-    it 'renders the receiver email' do
-      expect(mail.to).to eql([user.email])
-    end
-
-    it 'renders the sender email' do
-      expect(mail.from).to eql(['info@goclimateneutral.org'])
     end
 
     it 'matches number of months' do
@@ -64,20 +62,10 @@ RSpec.describe SubscriptionMailer, type: :mailer do
   describe '.payment_failed_email' do
     subject(:mail) { SubscriptionMailer.with(email: user.email).payment_failed_email }
 
-    it 'sends an email' do
-      expect { mail.deliver_now }.to change { ActionMailer::Base.deliveries.count }.by(1)
-    end
+    it_behaves_like 'subscription email'
 
     it 'renders the subject' do
       expect(mail.subject).to eql('Unfortunately your payment has failed')
-    end
-
-    it 'renders the receiver email' do
-      expect(mail.to).to eql([user.email])
-    end
-
-    it 'renders the sender email' do
-      expect(mail.from).to eql(['info@goclimateneutral.org'])
     end
 
     it 'renders a payment has failed text' do
