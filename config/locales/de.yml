@@ -110,6 +110,10 @@ de:
     friendly guide to Climate Change</a>, <a
     href="http://climate.crisp.se/">Climate Crisplet</a> und <a
     href="http://carbonmanifesto.org/">Carbon Manifesto</a>
+  about_us_who_are_we_pernilla: >-
+    User Experience Designer bei Valtech, Social Design Enthusiast und immer
+    bereit für die nächste Herausforderung.
+  about_us_who_are_we_stefan: Agiler Team- und Organisationscoach. Etwas zu idealistischer Pragmatiker.
   blog: Blog
   section_1_go_climate_neutral: Anmelden!
   section_1_text: >-
@@ -189,6 +193,7 @@ de:
   add_new_card: Neue Karte hinzufügen
   edit_card: Kartendetails bearbeiten
   your_payment_details_have_been_updated: Ihre Einstellungen wurden aktualisiert
+  something_went_wrong_with_the_credit_card_please_submit_it_again: Bei der Kreditkarte ist ein Fehler aufgetreten. Versuchen Sie es erneut.
   no_card_registered: Keine Karte registriert
   climate_plan: Klimaplan
   go_climate_neutral: Anmelden!
@@ -266,6 +271,9 @@ de:
     >>
   tonnes_CO2: Tonnen CO2
   tonnes: Tonnen
+  type: Dauer
+  price: Preis
+  proceed_to_checkout: Zur Kasse
   thank_you_so_much_everyone_for_helping_to_save_the_world: 'Vielen Dank an alle, die helfen, die Welt zu retten! Sie sind großartig!'
   latest_carbon_offset_projects: Die jüngsten Klimaprojekte
   offset: Kompensation
@@ -784,13 +792,20 @@ de:
   thats_amazing_from_the_bottom_of_our_hearts: Das ist großartig! Von ganzem Herzen
   year: Jahr
   years: Jahr
+  navigation:
+    gift_cards: Gutscheine
   welcome:
+    caption_line_1: Gemeinsam können wir unser Klima retten.
+    caption_line_2: Kompensieren Sie Ihre Emissionen noch heute!
     intro: >-
       Der Klimawandel ist eine der größten Herausforderungen unserer Zeit.
       Gemeinsam können wir es schaffen, die Bremse zu ziehen und unseren
       Planeten zu retten, aber wir müssen sofort handeln. Sie jetzt können Teil
       der Lösung werden, indem Sie Ihre Emissionen ausgleichen. Und das geht mit
       GoClimateNeutral am einfachsten. 
+    calculator:
+      title: Legen Sie los und berechnen Sie Ihre Auswirkungen auf das Klima.
+      submit: Meine Emissionen ausgleichen
     what_is_gcn_text: >-
       Wir investieren in UN-zertifizierte Klimaprojekte und zeigen Ihnen, wie
       Sie ganz einfach Ihre Klimabilanz verbessern können. Auf diese Weise
@@ -819,3 +834,46 @@ de:
     format:
       delimiter: ' '
       separator: ','
+  we_have_sent_you_an_email_with_the_gift_card: >-
+    Wir haben eine E-Mail mit dem Gutschein an die von Ihnen eingegebene
+    E-Mail-Adresse gesendet.
+  thank_you_for_helping_us_trying_to_stop_climate_change: >-
+    Vielen Dank, dass Sie uns dabei helfen, den Klimawandel zu stoppen. Wenn Sie
+    noch kein Monatsabo haben, würden wir uns freuen, wenn Sie dies in Erwägung
+    ziehen. 
+  best_regards: Freundliche Grüße
+  gift_card_email_subject: Ihr Gutschein
+  views:
+    gift_card_mailer:
+      thank_you_for_buying_gift_card: 'Vielen Dank, dass Sie einen Gutschein gekauft haben!'
+      you_have_purchased_a_gift_card_with: Sie haben einen Gutschein gekauft für
+      climate_neutral_months: klimaneutrale Monate
+      you_can_find_the_gift_card_as_an_attachmtent_to_this_mail: >-
+        Sie finden den Gutschein als Anhang zu dieser E-Mail. Bitte antworten
+        Sie auf diese Mail, wenn Sie noch weitere Fragen haben. Danke nochmal!
+    gift_cards:
+      index:
+        header: Ihr nächstes Geschenk könnte ein klimaneutrales Leben sein
+        intro: >-
+          Suchen Sie nach einem Geschenk für jemanden, der bereits alles hat?
+          Möchten Sie uns helfen, etwas gegen den Klimawandel zu tun? Versuchen
+          Sie es mit unseren Geschenkgutscheinen!
+        choose_header: Wählen Sie Ihren Gutschein
+        3_months_header: 3 Monate
+        3_months_description: 3 Monate Klimaneutralität.
+        3_months_cta: Kaufen Sie einen 3-Monats-Gutschein
+        6_months_header: 6 Monate
+        6_months_description: Ein halbes Jahr Klimaneutralität.
+        6_months_cta: Kaufen Sie einen 6-Monats-Gutschein
+        12_months_header: 12 Monate
+        12_months_description: Ein ganzes Jahr Klimaneutralität.
+        12_months_cta: Kaufen Sie einen 12-Monats-Gutschein
+        details_html: >-
+          Die Gutscheine basieren auf den durchschnittlichen Emissionen der
+          schwedischen Bevölkerung (11 Tonnen CO <sub>2</sub> -Äq).
+      new:
+        your_gift_card_order: Ihre Gutscheinbestellung
+        we_will_send_you_pdf: >-
+          Wir senden Ihnen den Gutschein als PDF an die von Ihnen angegebene
+          E-Mail-Adresse.
+        gift_card_for_x_months: 'Geschenkkarte für % {Monate} Monate'
