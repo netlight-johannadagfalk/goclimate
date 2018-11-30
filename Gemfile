@@ -73,3 +73,9 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# PDF generation gem.
+# Note that wkhtmltopdf is a native dependency.
+# Watch out for deployment issues because of that.
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'

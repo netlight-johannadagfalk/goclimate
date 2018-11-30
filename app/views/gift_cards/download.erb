@@ -1,0 +1,25 @@
+<!--
+  This is the actual gift card. It can be rendered as both html and PDF, thanks
+  to the magic of https://github.com/mileszs/wicked_pdf
+-->
+<div>
+  <!--
+    Best to embed the css here because PDF generating is done by a separate tool (wkhtmltopdf)
+    and it's tricky to figure how that tool will find our separate css files.
+   -->
+  <style scoped>
+    h1 {
+      color: FireBrick;
+      font-size: 72px;
+    }
+  </style>
+
+  <!-- TODO localize the texts below -->
+  <h1>Congrats, <%= session[:recipient] %>!</h1>
+  <h1>You have received <%= session[:number_of_months] %> climate neutral months via GoClimateNeutral.org </h1>
+  <!--
+    Hardcoded full path to the image file,
+    because I haven't figured out how to get relative paths to work with wkhtmltopdf
+  -->
+  <img src="https://www.goclimateneutral.org/android-chrome-192x192.png">
+</div>
