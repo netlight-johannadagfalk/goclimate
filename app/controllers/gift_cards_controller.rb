@@ -20,7 +20,8 @@ class GiftCardsController < ApplicationController
       # See https://github.com/mileszs/wicked_pdf for a description of the params below.
       format.pdf do
         render  pdf: "GoClimateNeutral-GiftCard", # Filename, excluding .pdf extension.
-                orientation: "landscape"
+                orientation: "landscape",
+                encoding: "UTF-8"
                 #, disposition: "attachment"
       end
     end
