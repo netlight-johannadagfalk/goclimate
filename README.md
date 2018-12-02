@@ -35,6 +35,11 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
 * `bin/rails server`
 * Surf to [http://localhost:3000](http://localhost:3000)
 
+## Stopping the development server
+
+* `lsof -i :3000`
+* Kill the process
+
 ## Troubleshooting
 
 ### Reseting your database
