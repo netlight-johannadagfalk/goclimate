@@ -8,9 +8,10 @@
     and it's tricky to figure how that tool will find our separate css files.
    -->
   <style scoped>
-      p {
+      .text {
         color: #444444;
         font-family: 'Raleway', sans-serif;
+        margin-top: 100px;
       }
 
       .content {
@@ -21,21 +22,33 @@
       }
 
       .logo {
-        margin-top: 30px;
+        margin-top: 40px;
       }
 
       .congrats {
-        margin-top: 30px;
-        font-size: 120px;
+        font-size: 140px;
       }
 
       .you-have-received {
-        margin-top: 30px;
-        font-size: 120px;
+        font-size: 140px;
       }
 
       .message {
-        margin-top: 30px;
+        font-size: 90px;
+        white-space: pre-wrap;
+        background: lightgrey;
+        margin-left: 400px;
+        margin-right: 400px;
+        border-radius: 50px;
+        padding: 50px;
+      }
+
+      .thanks {
+        margin-top: 240px;
+        font-size: 90px;
+      }
+
+      .link {
         font-size: 90px;
       }
   </style>
@@ -46,30 +59,28 @@
 
   <div class="content">
     <div class="logo">
-      <%= image_tag wicked_pdf_asset_base64('goclimateneutral_logo.svg'), size: "435x250" %>
+      <%= image_tag wicked_pdf_asset_base64('goclimateneutral_logo.svg'), size: "609x350" %>
     </div>
 
-    <div class="congrats">
-      <p>Congrats, <%= session[:recipient] %>!</p>
+    <!-- TODO localize the texts below -->
+
+    <div class="text congrats">
+      Congratulations <%= session[:recipient] %>
     </div>
 
-    <div class="you-have-received">
-      <p>
-        You have received <%= session[:number_of_months] %> climate neutral months via GoClimateNeutral.org
-      </p>
+    <div class="text you-have-received">
+      You have received <%= session[:number_of_months] %> climate neutral months<br>
+      via Go Climate Neutral
     </div>
 
-    <div class="message">
-      <p>
-        <%= session[:message] %>
-      </p>
+    <div class="text message"><%= session[:message] %></div>
+
+    <div class="text thanks">
+      Thank you for helping to save our planet!
+    </div>
+
+    <div class="text link">
+      <a href="http://localhost:3000">GoClimateNeutral.org</a>
     </div>
   </div>
-
-
-  <!-- TODO localize the texts below -->
-  <!--
-    Hardcoded full path to the image file,
-    because I haven't figured out how to get relative paths to work with wkhtmltopdf
-  -->
 </div>
