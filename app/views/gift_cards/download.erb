@@ -8,18 +8,58 @@
     and it's tricky to figure how that tool will find our separate css files.
    -->
   <style scoped>
-    h1 {
-      color: FireBrick;
-      font-size: 72px;
-    }
+      p {
+        color: #444444;
+        font-family: 'Raleway', sans-serif;
+      }
+
+      .content {
+        position: absolute;
+        top: 10px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .logo {
+        margin-top: 30px;
+      }
+
+      .congrats {
+        margin-top: 30px;
+        font-size: 120px;
+      }
+
+      .you-have-received {
+        margin-top: 30px;
+        font-size: 120px;
+      }
   </style>
 
+  <div class="background">
+    <%= image_tag wicked_pdf_asset_base64('background-illustrated.png'), size: "4100x2800"%>
+  </div>
+
+  <div class="content">
+    <div class="logo">
+      <%= image_tag wicked_pdf_asset_base64('goclimateneutral_logo.svg'), size: "435x250" %>
+    </div>
+
+    <div class="congrats">
+      <p>Congrats, <%= session[:recipient] %>!</p>
+    </div>
+
+    <div class="you-have-received">
+      <p>
+        You have received <%= session[:number_of_months] %> climate neutral months via GoClimateNeutral.org
+      </p>
+    </div>
+
+  </div>
+
+
   <!-- TODO localize the texts below -->
-  <h1>Congrats, <%= session[:recipient] %>!</h1>
-  <h1>You have received <%= session[:number_of_months] %> climate neutral months via GoClimateNeutral.org </h1>
   <!--
     Hardcoded full path to the image file,
     because I haven't figured out how to get relative paths to work with wkhtmltopdf
   -->
-  <img src="https://www.goclimateneutral.org/android-chrome-192x192.png">
 </div>
