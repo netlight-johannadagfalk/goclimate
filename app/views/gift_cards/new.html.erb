@@ -27,10 +27,14 @@
       <% end %>
 
       <%= form_for :gift_card, url: {action: :create} do |f| %>
+          <!-- TODO localize the texts below -->
           <div>
-            <!-- TODO localize the text below -->
             <label>Who is the gift card for?</label>
-            <%= f.text_field :recipient, autofocus: true, placeholder: "name"%>
+            <div><%= f.text_field :recipient, autofocus: true, placeholder: "name"%></div>
+          </div>
+          <div>
+            <label>Write a personal message</label>
+            <div><%= f.text_area :message, autofocus: true, placeholder: "personal message"%></div>
           </div>
 
         <%= hidden_field_tag :subscription_months_to_gift, @gift_card.number_of_months %>
