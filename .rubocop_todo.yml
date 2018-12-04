@@ -19,7 +19,6 @@ Metrics/AbcSize:
     - 'app/controllers/welcome_controller.rb'
     - 'app/mailers/gift_card_mailer.rb'
     - 'app/models/lifestyle_choice.rb'
-    - 'app/models/stripe_event.rb'
     - 'app/models/stripe_payout.rb'
 
 # Offense count: 2
@@ -27,7 +26,6 @@ Metrics/AbcSize:
 # ExcludedMethods: refine
 Metrics/BlockLength:
   Exclude:
-    - 'app/models/stripe_event.rb'
     - 'lib/tasks/newsletter.rake'
 
 # Offense count: 1
@@ -47,7 +45,6 @@ Metrics/ClassLength:
 Metrics/CyclomaticComplexity:
   Exclude:
     - 'app/controllers/users/registrations_controller.rb'
-    - 'app/models/stripe_event.rb'
 
 # Offense count: 2
 # Configuration parameters: Max, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
@@ -67,7 +64,6 @@ Metrics/MethodLength:
     - 'app/controllers/users/registrations_controller.rb'
     - 'app/controllers/users_controller.rb'
     - 'app/models/lifestyle_choice.rb'
-    - 'app/models/stripe_event.rb'
     - 'app/models/stripe_payout.rb'
 
 # Offense count: 5
@@ -75,4 +71,3 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Exclude:
     - 'app/controllers/users/registrations_controller.rb'
-    - 'app/models/stripe_event.rb'
