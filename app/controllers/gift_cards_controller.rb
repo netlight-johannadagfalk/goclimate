@@ -15,18 +15,16 @@ class GiftCardsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        render :layout => 'giftcard'
+        render layout: 'giftcard'
       end
       # See https://github.com/mileszs/wicked_pdf for a description of the params below.
       format.pdf do
-        render  pdf: "GoClimateNeutral-GiftCard", # Filename, excluding .pdf extension.
-                orientation: "landscape",
-                encoding: "UTF-8",
+        render  pdf: 'GoClimateNeutral-GiftCard', # Filename, excluding .pdf extension.
+                orientation: 'landscape',
+                encoding: 'UTF-8',
                 zoom: 4
-                #, disposition: "attachment"
       end
     end
-
   end
 
   def new

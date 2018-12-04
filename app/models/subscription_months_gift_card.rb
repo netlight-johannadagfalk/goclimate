@@ -7,7 +7,6 @@ class SubscriptionMonthsGiftCard
   attr_reader :number_of_months, :currency, :recipient, :message
   attr_writer :recipient, :message
 
-
   def initialize(number_of_months, currency)
     @number_of_months = number_of_months
     @currency = currency
