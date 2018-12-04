@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
+# Note that while this class is named `StripeEvent`, its attributes, usage and
+# behavior really only relates to charges in Stripe. It should be thought of as
+# if it was named `StripeCharge`.
+
 require 'gift_cards_checkout'
-require 'stripe_events_consumer'
 
 class StripeEvent < ApplicationRecord
   belongs_to :user, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id', required: false
@@ -38,9 +41,5 @@ class StripeEvent < ApplicationRecord
     (total_payments_sek_part +
       total_payments_usd_part * LifestyleChoice::SEK_PER_USD +
       total_payments_eur_part * LifestyleChoice::SEK_PER_EUR).round
-  end
-
-  def self.update_events
-    StripeEventsConsumer.new.fetch_and_process
   end
 end
