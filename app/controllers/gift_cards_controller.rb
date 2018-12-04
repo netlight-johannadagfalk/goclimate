@@ -22,7 +22,7 @@ class GiftCardsController < ApplicationController
         render  pdf: 'GoClimateNeutral-GiftCard', # Filename, excluding .pdf extension.
                 orientation: 'landscape',
                 encoding: 'UTF-8',
-                zoom: 4
+                zoom: 0.78125 # See if this creates consistent zoom across platforms. https://github.com/wkhtmltopdf/wkhtmltopdf/issues/2184
       end
     end
   end
