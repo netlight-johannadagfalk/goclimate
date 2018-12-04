@@ -21,7 +21,8 @@ class GiftCardsController < ApplicationController
       format.pdf do
         render  pdf: "GoClimateNeutral-GiftCard", # Filename, excluding .pdf extension.
                 orientation: "landscape",
-                encoding: "UTF-8"
+                encoding: "UTF-8",
+                zoom: 4
                 #, disposition: "attachment"
       end
     end
