@@ -15,6 +15,7 @@ class GiftCardsController < ApplicationController
     @number_of_months = session[:number_of_months]
 
     respond_to do |format|
+      # The html version is really only exposed for testing purposes.
       format.html do
         render layout: 'giftcard'
       end
