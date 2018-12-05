@@ -65,15 +65,15 @@
     <!-- TODO localize the texts below -->
 
     <div class="text congrats">
-      Congratulations <%= session[:recipient] %>
+      Congratulations <%= @recipient %>
     </div>
 
     <div class="text you-have-received">
-      You have received <%= session[:number_of_months] %> climate neutral months<br>
+      You have received <%= @number_of_months %> climate neutral months<br>
       via Go Climate Neutral
     </div>
 
-    <div class="text message"><%= session[:message] %></div>
+    <div class="text message"><%= @message %></div>
 
     <div class="text thanks">
       Thank you for helping to save our planet!

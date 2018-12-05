@@ -10,8 +10,9 @@ class GiftCardsController < ApplicationController
   end
 
   def download
-    # download.html shows the html version of the giftcard,
-    # download.pdf downloads an equivalent PDF.
+    @recipient = session[:recipient]
+    @message = session[:message]
+    @number_of_months = session[:number_of_months]
 
     respond_to do |format|
       format.html do
@@ -64,12 +65,26 @@ class GiftCardsController < ApplicationController
       return
     end
 
-    @filename = 'Your_gift_card_' + stripe_charge['id'] + '.pdf'
+    pdf = WickedPdf.new.pdf_from_string(
+      ApplicationController.render(
+        template: 'gift_cards/download',
+        layout: 'giftcard',
+        assigns: {
+          recipient: @recipient,
+          message: @message,
+          number_of_months: @number_of_months
+        }
+      ),
+      orientation: 'landscape',
+      encoding: 'UTF-8',
+      zoom: 1.25
+    )
 
     GiftCardMailer.with(
       email: @email,
       number_of_months: @number_of_months,
-      filename: @filename
+      filename: 'GoClimateNeutral-GiftCard.pdf',
+      file: pdf
     ).gift_card_email.deliver_now
 
     redirect_to thank_you_gift_cards_path, flash: { number_of_months: @number_of_months, email: @email }
