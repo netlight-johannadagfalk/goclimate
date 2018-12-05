@@ -9,6 +9,26 @@ class GiftCardsController < ApplicationController
     @gift_card_12_months = SubscriptionMonthsGiftCard.new(12, currency)
   end
 
+  def download
+    @recipient = session[:recipient]
+    @message = session[:message]
+    @number_of_months = session[:number_of_months]
+
+    respond_to do |format|
+      format.html do
+        render layout: 'giftcard'
+      end
+      # See https://github.com/mileszs/wicked_pdf for a description of the params below.
+      format.pdf do
+        render  pdf: 'GoClimateNeutral-GiftCard', # Filename, excluding .pdf extension.
+                orientation: 'landscape',
+                encoding: 'UTF-8',
+                disposition: 'attachment',
+                zoom: 1.25 # Experimenting to find right zoom for A4 in prod (inconsistent with localhost unfortunately)
+      end
+    end
+  end
+
   def new
     @gift_card = SubscriptionMonthsGiftCard.new(
       params[:subscription_months_to_gift].to_i, currency
@@ -19,6 +39,16 @@ class GiftCardsController < ApplicationController
   def create
     @number_of_months = params[:subscription_months_to_gift]
     @email = params[:stripeEmail]
+    @recipient = params[:gift_card][:recipient]
+    @message = params[:gift_card][:message]
+
+    # storing recipient in session variable because
+    # it is used in download.pdf later, and I don't know how to pass params to that.
+    # I'm sure there's a better way...
+    session[:recipient] = @recipient
+    session[:message] = @message
+    session[:number_of_months] = @number_of_months
+
     @currency = currency
 
     @gift_card = SubscriptionMonthsGiftCard.new(
@@ -26,7 +56,7 @@ class GiftCardsController < ApplicationController
     )
 
     begin
-      stripe_charge = GiftCardsCheckout.new(params[:stripeToken], @gift_card).checkout
+      GiftCardsCheckout.new(params[:stripeToken], @gift_card).checkout
     rescue Stripe::CardError => e
       body = e.json_body
       err  = body[:error]
@@ -36,12 +66,26 @@ class GiftCardsController < ApplicationController
       return
     end
 
-    @filename = 'Your_gift_card_' + stripe_charge['id'] + '.pdf'
+    pdf = WickedPdf.new.pdf_from_string(
+      ApplicationController.render(
+        template: 'gift_cards/download',
+        layout: 'giftcard',
+        assigns: {
+          recipient: @recipient,
+          message: @message,
+          number_of_months: @number_of_months
+        }
+      ),
+      orientation: 'landscape',
+      encoding: 'UTF-8',
+      zoom: 1.25
+    )
 
     GiftCardMailer.with(
       email: @email,
       number_of_months: @number_of_months,
-      filename: @filename
+      filename: 'GoClimateNeutral-GiftCard.pdf',
+      file: pdf
     ).gift_card_email.deliver_now
 
     redirect_to thank_you_gift_cards_path, flash: { number_of_months: @number_of_months, email: @email }

@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get 'companies', to: 'welcome#companies'
   get 'admin', to: 'admin#index'
 
+  get 'gift_cards/download', to: 'gift_cards#download'
+
   resources :subscriptions
   resources :gift_cards, only: [:index, :new, :create] do
     collection do

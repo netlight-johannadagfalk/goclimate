@@ -6,7 +6,7 @@ class GiftCardMailer < ApplicationMailer
     @number_of_months = params[:number_of_months]
     filename = params[:filename]
 
-    attachments[filename] = File.read(@number_of_months + '_months_' + I18n.locale.to_s + '.pdf')
+    attachments[filename] = params[:file]
     mail(
       to: email,
       subject: I18n.t('gift_card_email_subject'),
