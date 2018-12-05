@@ -23,6 +23,7 @@ class GiftCardsController < ApplicationController
         render  pdf: 'GoClimateNeutral-GiftCard', # Filename, excluding .pdf extension.
                 orientation: 'landscape',
                 encoding: 'UTF-8',
+                disposition: 'attachment',
                 zoom: 1.25 # Experimenting to find right zoom for A4 in prod (inconsistent with localhost unfortunately)
       end
     end
