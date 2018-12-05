@@ -445,8 +445,22 @@ en:
         12_months_cta: Get a 12 months gift card
         details_html: "Gift cards are based on the average climate impact for Swedish residents (11 tonnes CO<sub>2</sub>eq)."
       new:
-        your_gift_card_order: Your Gift Card Order
-        we_will_send_you_pdf: We will send you the gift card as a PDF to the email-adress you specify during checkout.
-        gift_card_for_x_months: Gift card for %{months} months
-
+        your_gift_card_order: Your gift card order
+        write_a_message: Please write a personal message to include on the gift certificate.
+        sample_message: "Example: Hi Mom, here is gift for you! /Jenny"
+        we_will_send_you_pdf:
+          After payment, we will email the gift card to you as a PDF file.
+          Then you can give the gift card to the recipient in whatever way you like.
+        gift_card_for_x_months: Gift card for %{months} months.
+      download:
+        gift_card_x_climate_neutral_months: "Gift card: %{months} climate neutral months"
+        via_go_climate_neutral: "via <a href='http://GoClimateNeutral.org'>GoClimateNeutral.org</a>"
+        about_go_climate_neutral:
+          <a href='http://GoClimateNeutral.org'>GoClimateNeutral.org</a> supports climate projects and gives inspiration and
+          advice on how to reduce your climate footprint. The projects you support are UN-certified climate projects
+          (CDM) that are also Gold Standard-certified, supported by all the members of the UN and 80 different
+          environmental NGOs - among them WWF. Together, we contribute to stopping climate change and save the world.
+          The calculation is based on an average climate footprint of 11 ton CO<sub>2</sub>eq per person and year.
+        do_you_want_to_continue: Do you want to continue living a climate neutral life after the gift card has expired?
+        register: Come to <a href="http://goclimateneutral.org">GoClimateNeutral.org</a> and register!
 

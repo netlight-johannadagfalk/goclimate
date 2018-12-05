@@ -12,6 +12,9 @@
         color: #444444;
         font-family: 'Raleway', sans-serif;
         margin-top: 20px;
+        margin-left: 100px;
+        margin-right: 100px;
+
       }
 
       .content {
@@ -25,31 +28,17 @@
         margin-top: 20px;
       }
 
-      .congrats {
-        font-size: 40px;
-      }
-
-      .you-have-received {
-        font-size: 40px;
-      }
-
       .message {
-        font-size: 30px;
+        font-size: 25px;
         white-space: pre-wrap;
-        background: #ffffff;
         margin-left: 200px;
         margin-right: 200px;
         border-radius: 25px;
         padding: 50px;
       }
 
-      .thanks {
-        margin-top: 80px;
-        font-size: 30px;
-      }
-
-      .link {
-        font-size: 30px;
+      .message:not(:empty) {
+        background: #ffffff;
       }
 
       a:link, a:visited {
@@ -57,11 +46,10 @@
         text-decoration: none;
       }
 
-
   </style>
 
   <div class="background">
-    <%= image_tag wicked_pdf_asset_base64('background-illustrated.png'), size: "1025x700"%>
+    <%= image_tag wicked_pdf_asset_base64('gift-card-background.png'), size: "1025x700"%>
   </div>
 
   <div class="content">
@@ -69,25 +57,24 @@
       <%= image_tag wicked_pdf_asset_base64('goclimateneutral_logo.svg'), size: "174x100" %>
     </div>
 
-    <!-- TODO localize the texts below -->
-
-    <div class="text congrats">
-      Congratulations <%= @recipient %>
+    <div class="text" style="font-size: 35px;">
+      <%=t 'views.gift_cards.download.gift_card_x_climate_neutral_months', months: @number_of_months %>
     </div>
 
-    <div class="text you-have-received">
-      You have received <%= @number_of_months %> climate neutral months<br>
-      via Go Climate Neutral
+    <div class="text" style="font-size: 25px;">
+      <%= raw t 'views.gift_cards.download.via_go_climate_neutral' %>
     </div>
 
     <div class="text message"><%= @message %></div>
 
-    <div class="text thanks">
-      Thank you for helping to save our planet!
+    <div class="text" style="font-size: 18px;">
+      <%= raw t 'views.gift_cards.download.about_go_climate_neutral' %>
     </div>
 
-    <div class="text link">
-      <a href="http://goclimateneutral.org">GoClimateNeutral.org</a>
+    <div class="text" style="font-size: 18px;">
+      <%= t 'views.gift_cards.download.do_you_want_to_continue' %> <br>
+      <%= raw t 'views.gift_cards.download.register' %>
     </div>
+
   </div>
 </div>
