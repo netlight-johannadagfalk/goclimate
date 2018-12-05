@@ -10,8 +10,7 @@ class GiftCardMailer < ApplicationMailer
     mail(
       to: email,
       subject: I18n.t('gift_card_email_subject'),
-      # TODO: Handle differing ASM groups in different enviornments
-      asm: { group_id: Rails.env.staging? ? 8345 : 21_453 }
+      asm: { group_id: 21_453 }
     )
   end
 end
