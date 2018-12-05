@@ -29,12 +29,13 @@
       }
 
       .message {
-        font-size: 25px;
+        font-size: 20px;
         white-space: pre-wrap;
         margin-left: 200px;
         margin-right: 200px;
         border-radius: 25px;
-        padding: 50px;
+        padding: 10px;
+        margin-bottom: 50px;
       }
 
       .message:not(:empty) {
@@ -61,7 +62,7 @@
       <%=t 'views.gift_cards.download.gift_card_x_climate_neutral_months', months: @number_of_months %>
     </div>
 
-    <div class="text" style="font-size: 25px;">
+    <div class="text" style="font-size: 20px;">
       <%= raw t 'views.gift_cards.download.via_go_climate_neutral' %>
     </div>
 
