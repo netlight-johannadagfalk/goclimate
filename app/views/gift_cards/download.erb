@@ -57,31 +57,23 @@
       <%= image_tag wicked_pdf_asset_base64('goclimateneutral_logo.svg'), size: "174x100" %>
     </div>
 
-    <!-- TODO localize the texts below -->
-
     <div class="text" style="font-size: 35px;">
-      Gåvokort: <%= @number_of_months %> klimatneutrala månader<br>
+      <%=t 'views.gift_cards.download.gift_card_x_climate_neutral_months', months: @number_of_months %>
     </div>
 
     <div class="text" style="font-size: 25px;">
-      via <a href="http://goclimateneutral.org">GoClimateNeutral.org</a>
+      <%= raw t 'views.gift_cards.download.via_go_climate_neutral' %>
     </div>
 
     <div class="text message"><%= @message %></div>
 
     <div class="text" style="font-size: 18px;">
-      <a href="http://goclimateneutral.org">GoClimateNeutral.org</a> stöttar klimatprojekt och tipsar och inspirerar
-      om enkla sätt att minska ditt klimatavtryck. Projekten som du stöttar
-      är FN-certifierade klimatprojekt (CDM) med märkningen Gold Standard och
-      har FNs alla medlemsstater och 80 miljöorganisationer i ryggen
-      - bland annat Världsnaturfonden.
-      På så sätt kan vi bidra till att bromsa klimatförändringarna och rädda världen.
-      Beräkningen bygger på genomsnittligt klimatavtryck på 11 ton CO<sub>2</sub>eq per person och år.
+      <%= raw t 'views.gift_cards.download.about_go_climate_neutral' %>
     </div>
 
     <div class="text" style="font-size: 18px;">
-      Vill du fortsätta att leva klimatneutralt efter att gåvokortet gått ut?<br>
-      Gå in på <a href="http://goclimateneutral.org">GoClimateNeutral.org</a> och registrera dig!
+      <%= t 'views.gift_cards.download.do_you_want_to_continue' %> <br>
+      <%= raw t 'views.gift_cards.download.register' %>
     </div>
 
   </div>
