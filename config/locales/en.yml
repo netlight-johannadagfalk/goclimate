@@ -446,6 +446,8 @@ en:
         details_html: "Gift cards are based on the average climate impact for Swedish residents (11 tonnes CO<sub>2</sub>eq)."
       new:
         your_gift_card_order: Your gift card order
+        write_a_message: Please write a personal message to include on the gift certificate.
+        sample_message: "Example: Hi Mom, here is gift for you! /Jenny"
         we_will_send_you_pdf: We will email the gift card to you as a PDF file.
         gift_card_for_x_months: Gift card for %{months} months.
       download:
