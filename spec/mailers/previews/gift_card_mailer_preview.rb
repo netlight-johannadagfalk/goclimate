@@ -5,7 +5,18 @@ class GiftCardMailerPreview < ActionMailer::Preview
   include WickedPdf::WickedPdfHelper::Assets
 
   def gift_card_email
-    pdf = WickedPdf.new.pdf_from_string(
+    GiftCardMailer.with(
+      email: 'test@example.com',
+      number_of_months: '3',
+      filename: 'giftcard.pdf',
+      file: gift_card_pdf
+    ).gift_card_email
+  end
+
+  private
+
+  def gift_card_pdf
+    WickedPdf.new.pdf_from_string(
       ApplicationController.render(
         template: 'gift_cards/download',
         layout: 'giftcard',
@@ -19,6 +30,5 @@ class GiftCardMailerPreview < ActionMailer::Preview
       encoding: 'UTF-8',
       zoom: 1.25
     )
-    GiftCardMailer.with(email: 'test@example.com', number_of_months: '3', filename: 'giftcard.pdf', file: pdf).gift_card_email
   end
 end

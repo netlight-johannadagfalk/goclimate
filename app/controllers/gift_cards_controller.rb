@@ -55,7 +55,7 @@ class GiftCardsController < ApplicationController
     )
 
     begin
-      stripe_charge = GiftCardsCheckout.new(params[:stripeToken], @gift_card).checkout
+      GiftCardsCheckout.new(params[:stripeToken], @gift_card).checkout
     rescue Stripe::CardError => e
       body = e.json_body
       err  = body[:error]
