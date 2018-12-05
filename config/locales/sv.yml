@@ -463,5 +463,5 @@ sv:
         details_html: "Gåvokorten är baserade på en medelsvensks klimatavtryck - 11 ton CO<sub>2</sub>eq. För att vara på säkra sidan - och för att våran planet behöver det - så dubblar vi även alla våra uträkningar och bygger därför kalkylerna ovan på utsläpp på 22 ton CO<sub>2</sub>eq."
       new:
         your_gift_card_order: Ditt gåvokort
-        we_will_send_you_pdf: Vi kommer att mejla en PDF till dig på e-postadressen du skriver in i nästa steg.
+        we_will_send_you_pdf: Vi kommer att mejla gåvokortet till dig som en PDF fil.
         gift_card_for_x_months: Gåvokort på %{months} månader
