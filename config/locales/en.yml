@@ -454,14 +454,14 @@ en:
         gift_card_for_x_months: Gift card for %{months} months.
         click_here_for_an_example: "Click here for an example"
       download:
-        gift_card_x_climate_neutral_months: "Gift card: %{months} climate neutral months"
-        via_go_climate_neutral: "via <a href='http://GoClimateNeutral.org'>GoClimateNeutral.org</a>"
+        gift_card: "Gift card"
+        gift_card_x_climate_neutral_months: "%{months} climate neutral months"
         about_go_climate_neutral:
           <a href='http://GoClimateNeutral.org'>GoClimateNeutral.org</a> supports climate projects and gives inspiration and
           advice on how to reduce your climate footprint. The projects you support are UN-certified climate projects
           (CDM) that are also Gold Standard-certified, supported by all the members of the UN and 80 different
           environmental NGOs - among them WWF. Together, we contribute to stopping climate change and save the world.
-          The calculation is based on an average climate footprint of 11 ton CO<sub>2</sub>eq per person and year.
+        calculation_based_on_html: "Calculation based on an average climate footprint of 11 ton CO<sub>2</sub>eq per person and year"
         do_you_want_to_continue: Do you want to continue living a climate neutral life after the gift card has expired?
         register: Come to <a href="http://goclimateneutral.org">GoClimateNeutral.org</a> and register!
       example:
