@@ -119,7 +119,7 @@ class GiftCardsController < ApplicationController
                 template: 'gift_cards/gift_card',
                 encoding: 'UTF-8',
                 disposition: disposition,
-                zoom: 1.5 # Experimented to find right zoom for A4 in prod (inconsistent with localhost unfortunately)
+                zoom: 1.25 # Experimented to find right zoom for A4 in prod (inconsistent with localhost unfortunately)
       end
       # Landscape:
       #   zoom: 1.25 for staging environment
