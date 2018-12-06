@@ -471,15 +471,15 @@ sv:
         gift_card_for_x_months: Gåvokort på %{months} månader
         click_here_for_an_example: Klicka här för ett exempel
       download:
-        gift_card_x_climate_neutral_months: "Gåvokort: %{months} klimatneutrala månader"
-        via_go_climate_neutral: "via <a href='http://GoClimateNeutral.org'>GoClimateNeutral.org</a>"
+        gift_card: "Gåvokort"
+        gift_card_x_climate_neutral_months: "%{months} klimatneutrala månader"
         about_go_climate_neutral:
-          <a href='http://GoClimateNeutral.org'>GoClimateNeutral.org</a> stöttar klimatprojekt och tipsar och inspirerar om enkla sätt att minska
-          ditt klimatavtryck. Projekten som du stöttar är FN-certifierade klimatprojekt (CDM)
-          med märkningen Gold Standard och har FNs alla medlemsstater och 80 miljöorganisationer
-          i ryggen - bland annat Världsnaturfonden. Tillsammans bidrar vi till att
-          bromsa klimatförändringarna och rädda världen. Beräkningen bygger
-          på genomsnittligt klimatavtryck på 11 ton CO<sub>2</sub>eq per person och år.
+          <a href='http://GoClimateNeutral.org'>GoClimateNeutral.org</a> stöttar klimatprojekt och tipsar
+          och inspirerar om enkla sätt att minska klimatpåverkan.
+          Projekten är FN-certifierade (CDM) med märkningen Gold Standard och har
+          FNs alla medlemsstater och 80 miljöorganisationer i ryggen - bland annat Världsnaturfonden.
+          Genom denna gåva bidrar du till att bromsa klimatförändringarna.
+        calculation_based_on_html: "Beräkningen bygger på genomsnittligt klimatavtryck på 11 ton CO<sub>2</sub>eq per person och år"
         do_you_want_to_continue: Vill du fortsätta att leva klimatneutralt efter att gåvokortet gått ut?
         register: Gå in på <a href="http://goclimateneutral.org">GoClimateNeutral.org</a> och registrera dig!
       example:

@@ -114,13 +114,19 @@ class GiftCardsController < ApplicationController
       # See https://github.com/mileszs/wicked_pdf for a description of the params.
       format.pdf do
         render  pdf: 'GoClimateNeutral-GiftCard', # Filename, excluding .pdf extension.
-                orientation: 'landscape',
+                orientation: 'portrait',
                 layout: 'giftcard',
                 template: 'gift_cards/gift_card',
                 encoding: 'UTF-8',
                 disposition: disposition,
                 zoom: 1.25 # Experimented to find right zoom for A4 in prod (inconsistent with localhost unfortunately)
       end
+      # Landscape:
+      #   zoom: 1.25 for staging environment
+      #   zoom: 3.9 for localhost
+      # Portrait:
+      #   zoom: 1.92?  for staging environment
+      #   zoom: 6 for localhost
     end
   end
 
