@@ -9,25 +9,26 @@ class GiftCardsController < ApplicationController
     @gift_card_12_months = SubscriptionMonthsGiftCard.new(12, currency)
   end
 
+  # This is a preview version of the gift card. Includes sample text and a big EXAMPLE stamp.
+  # Optionally, you can include a subscription_months_to_gift query param.
+  def example
+    @message = t('views.gift_cards.example.message_html')
+    @number_of_months = params[:subscription_months_to_gift].to_i
+    if (@number_of_months == 0) then
+      @number_of_months = 6
+    end
+    @example = true
+
+    render_gift_card(true)
+  end
+
+  # This is to download the actual gift card PDF
   def download
     @recipient = session[:recipient]
     @message = session[:message]
     @number_of_months = session[:number_of_months]
 
-    respond_to do |format|
-      # The html version is really only exposed for testing purposes.
-      format.html do
-        render layout: 'giftcard'
-      end
-      # See https://github.com/mileszs/wicked_pdf for a description of the params below.
-      format.pdf do
-        render  pdf: 'GoClimateNeutral-GiftCard', # Filename, excluding .pdf extension.
-                orientation: 'landscape',
-                encoding: 'UTF-8',
-                disposition: 'attachment',
-                zoom: 1.25 # Experimenting to find right zoom for A4 in prod (inconsistent with localhost unfortunately)
-      end
-    end
+    render_gift_card(false)
   end
 
   def new
@@ -69,7 +70,7 @@ class GiftCardsController < ApplicationController
 
     pdf = WickedPdf.new.pdf_from_string(
       ApplicationController.render(
-        template: 'gift_cards/download',
+        template: 'gift_cards/gift_card',
         layout: 'giftcard',
         assigns: {
           recipient: @recipient,
@@ -100,6 +101,30 @@ class GiftCardsController < ApplicationController
   end
 
   private
+
+  # Render the current gift card using pdf or html depending on requested format.
+  # If inline_pdf is true, PDFs will be shown in the page. Otherwise they will be downloaded as attachment.
+  def render_gift_card(inline_pdf)
+    disposition = inline_pdf == true ? "inline" : "attachment"
+
+    respond_to do |format|
+      # The html version is intended for preview and testing purposes.
+      format.html do
+        render template: 'gift_cards/gift_card', layout: 'giftcard'
+      end
+      # The "real" gift card is a PDF, below.
+      # See https://github.com/mileszs/wicked_pdf for a description of the params.
+      format.pdf do
+        render  pdf: 'GoClimateNeutral-GiftCard', # Filename, excluding .pdf extension.
+                orientation: 'landscape',
+                layout: 'giftcard',
+                template: 'gift_cards/gift_card',
+                encoding: 'UTF-8',
+                disposition: disposition,
+                zoom: 1.25 # Experimented to find right zoom for A4 in prod (inconsistent with localhost unfortunately)
+      end
+    end
+  end
 
   def currency
     if I18n.locale == :en
