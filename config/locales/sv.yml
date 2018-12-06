@@ -464,11 +464,12 @@ sv:
       new:
         your_gift_card_order: Ditt gåvokort
         write_a_message: Skriv gärna ett personligt meddelande att ta med på gåvokortet.
-        sample_message: "Exempel: Hej Mamma! Här är ett gåvokort till dig! /Jenny"
+        sample_message_html: "Exempel:\nHej Mamma! Här är ett gåvokort till dig! /Jenny"
         we_will_send_you_pdf:
           Efter betalning kommer vi att mejla gåvokortet till dig som en PDF fil.
           Sen kan du ge gåvokortet till mottagaren på det sätt som passar dig.
         gift_card_for_x_months: Gåvokort på %{months} månader
+        click_here_for_an_example: Klicka här för ett exempel
       download:
         gift_card_x_climate_neutral_months: "Gåvokort: %{months} klimatneutrala månader"
         via_go_climate_neutral: "via <a href='http://GoClimateNeutral.org'>GoClimateNeutral.org</a>"
@@ -481,6 +482,9 @@ sv:
           på genomsnittligt klimatavtryck på 11 ton CO<sub>2</sub>eq per person och år.
         do_you_want_to_continue: Vill du fortsätta att leva klimatneutralt efter att gåvokortet gått ut?
         register: Gå in på <a href="http://goclimateneutral.org">GoClimateNeutral.org</a> och registrera dig!
+      example:
+        message_html: "Hej Mamma!\nVisst känns det bra att hjälpa klimatet?\n/Lisa"
+        example: "Exempel"
 
 
 

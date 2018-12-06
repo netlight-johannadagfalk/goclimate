@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get 'admin', to: 'admin#index'
 
   get 'gift_cards/download', to: 'gift_cards#download'
+  get 'gift_cards/example', to: 'gift_cards#example'
 
   resources :subscriptions
   resources :gift_cards, only: [:index, :new, :create] do
