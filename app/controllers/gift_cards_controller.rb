@@ -14,9 +14,7 @@ class GiftCardsController < ApplicationController
   def example
     @message = t('views.gift_cards.example.message_html')
     @number_of_months = params[:subscription_months_to_gift].to_i
-    if (@number_of_months == 0) then
-      @number_of_months = 6
-    end
+    @number_of_months = 6 if @number_of_months == 0
     @example = true
 
     render_gift_card(true)
@@ -105,7 +103,7 @@ class GiftCardsController < ApplicationController
   # Render the current gift card using pdf or html depending on requested format.
   # If inline_pdf is true, PDFs will be shown in the page. Otherwise they will be downloaded as attachment.
   def render_gift_card(inline_pdf)
-    disposition = inline_pdf == true ? "inline" : "attachment"
+    disposition = inline_pdf == true ? 'inline' : 'attachment'
 
     respond_to do |format|
       # The html version is intended for preview and testing purposes.
