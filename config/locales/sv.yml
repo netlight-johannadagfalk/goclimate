@@ -485,6 +485,8 @@ sv:
       example:
         message_html: "Hej Mamma!\nVisst känns det bra att hjälpa klimatet?\n/Lisa"
         example: "Exempel"
+      thank_you:
+        download_the_gift_card_here: Ladda ner gåvokortet här
 
 
 

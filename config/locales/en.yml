@@ -467,4 +467,6 @@ en:
       example:
         message_html: "Hi Mom,\nDoesn't it feel great to help the climate?\nEnjoy this gift! /Lisa"
         example: "Example"
+      thank_you:
+        download_the_gift_card_here: Download the gift card here
 
