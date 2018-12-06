@@ -25,12 +25,9 @@
 
     }
     .content {
-      /* Don't know how to use a relative url for the background setting below */
-      background: url('https://www.goclimateneutral.org/gift-card-background.png');
-      background-size: 1025px 700px;
-      left: 0px;
+      position: absolute;
+      top: 10px;
       width: 1025px;
-      height: 700px;
       text-align: center;
     }
 
@@ -58,9 +55,8 @@
     }
 
     .boxedIn {
-      border: 2px solid darkgray;
+      border: 2px solid #4e4e4e;
       box-shadow: 5px 5px lightgray;
-      border-radius: 10px;
     }
 
     .exampleStamp {
@@ -76,7 +72,11 @@
 
   </style>
 
-  <div class="content boxedIn">
+  <div class="background boxedIn" style="width: 1025px; height: 700px;">
+    <%= image_tag wicked_pdf_asset_base64('gift-card-background.png'), size: "1025x700"%>
+  </div>
+
+  <div class="content">
     <div class="logo">
       <%= image_tag wicked_pdf_asset_base64('goclimateneutral_logo.svg'), size: "174x100" %>
     </div>
