@@ -66,7 +66,7 @@ class GiftCardsController < ApplicationController
     pdf = WickedPdf.new.pdf_from_string(
       ApplicationController.render(
         template: 'gift_cards/gift_card',
-        layout: 'giftcard',
+        layout: 'gift_card_layout',
         assigns: {
           message: @message,
           number_of_months: @number_of_months
@@ -104,14 +104,14 @@ class GiftCardsController < ApplicationController
     respond_to do |format|
       # The html version is intended for preview and testing purposes.
       format.html do
-        render template: 'gift_cards/gift_card', layout: 'giftcard'
+        render template: 'gift_cards/gift_card', layout: 'gift_card_layout'
       end
       # The "real" gift card is a PDF, below.
       # See https://github.com/mileszs/wicked_pdf for a description of the params.
       format.pdf do
         render  pdf: 'GoClimateNeutral-GiftCard', # Filename, excluding .pdf extension.
                 orientation: 'portrait',
-                layout: 'giftcard',
+                layout: 'gift_card_layout',
                 template: 'gift_cards/gift_card',
                 encoding: 'UTF-8',
                 disposition: disposition,
