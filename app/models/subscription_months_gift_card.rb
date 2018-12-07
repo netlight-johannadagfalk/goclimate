@@ -5,7 +5,6 @@ class SubscriptionMonthsGiftCard
     BigDecimal(11) * LifestyleChoice::SEK_PER_TONNE / 12 * 2
 
   attr_reader :number_of_months, :currency, :message
-  attr_writer :message
 
   def initialize(number_of_months, currency)
     @number_of_months = number_of_months
