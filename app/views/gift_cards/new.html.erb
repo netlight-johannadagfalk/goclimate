@@ -10,7 +10,7 @@
       <%= form_for :gift_card, url: {action: :create} do |f| %>
         <div>
           <label><%=t 'views.gift_cards.new.write_a_message' %> </label>
-          <div><%= f.text_area :message, autofocus: true, rows: 4, cols: 40, placeholder: t('views.gift_cards.new.sample_message_html')%></div>
+          <div><%= f.text_area :message, rows: 4, cols: 40, placeholder: t('views.gift_cards.new.sample_message_html')%></div>
         </div>
 
         <p><%=t 'views.gift_cards.new.we_will_send_you_pdf' %></p>
