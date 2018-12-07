@@ -14,6 +14,7 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
   * [Install Ruby](https://www.ruby-lang.org/en/documentation/installation/).
     See `.ruby-version` for required version.
   * `gem install bundler`
+    * Note that this will also install native dependency `wkhtmltopdf` (a binary needed for PDF generation). See Gemfile.
   * `brew install postgresql geckodriver` 
   * [Get Firefox](https://www.mozilla.org/en-US/firefox/)
 * Install project-specific gems.

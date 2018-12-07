@@ -77,5 +77,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # PDF generation gem.
 # Note that wkhtmltopdf is a native dependency.
 # Watch out for deployment issues because of that.
+# Looks like the wkhtmltopdf-binary gem installs the dependency automatically, but you never know.
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
