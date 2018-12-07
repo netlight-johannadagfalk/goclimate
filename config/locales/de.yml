@@ -884,11 +884,11 @@ de:
         we_will_send_you_pdf: >-
           Wir senden Ihnen den Gutschein als PDF an die von Ihnen angegebene
           E-Mail-Adresse.
-        gift_card_for_x_months: 'Geschenkkarte für % {Monate} Monate'
+        gift_card_for_x_months: 'Geschenkkarte für %{months} Monate'
         click_here_for_an_example: Klicken Sie hier für ein Beispiel
       download:
         gift_card: Gutschein
-        gift_card_x_climate_neutral_months: '% {Monate} klimaneutrale Monate'
+        gift_card_x_climate_neutral_months: '%{months} klimaneutrale Monate'
         about_go_climate_neutral: >-
           <a href='http://GoClimateNeutral.org'>GoClimateNeutral.org</a>
           unterstützt Klimaprojekte und gibt Anregungen und Tipps, wie Sie Ihren
