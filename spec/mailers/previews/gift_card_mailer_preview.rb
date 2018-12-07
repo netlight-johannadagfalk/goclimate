@@ -21,7 +21,6 @@ class GiftCardMailerPreview < ActionMailer::Preview
         template: 'gift_cards/download',
         layout: 'giftcard',
         assigns: {
-          recipient: 'Nisse',
           message: 'God jul!',
           number_of_months: 12
         }

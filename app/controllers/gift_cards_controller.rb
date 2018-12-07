@@ -22,7 +22,6 @@ class GiftCardsController < ApplicationController
 
   # This is to download the actual gift card PDF
   def download
-    @recipient = session[:recipient]
     @message = session[:message]
     @number_of_months = session[:number_of_months]
 
@@ -39,13 +38,11 @@ class GiftCardsController < ApplicationController
   def create
     @number_of_months = params[:subscription_months_to_gift]
     @email = params[:stripeEmail]
-    @recipient = params[:gift_card][:recipient]
     @message = params[:gift_card][:message]
 
-    # storing recipient in session variable because
+    # storing message in session variable because
     # it is used in download.pdf later, and I don't know how to pass params to that.
     # I'm sure there's a better way...
-    session[:recipient] = @recipient
     session[:message] = @message
     session[:number_of_months] = @number_of_months
 
@@ -71,7 +68,6 @@ class GiftCardsController < ApplicationController
         template: 'gift_cards/gift_card',
         layout: 'giftcard',
         assigns: {
-          recipient: @recipient,
           message: @message,
           number_of_months: @number_of_months
         }
