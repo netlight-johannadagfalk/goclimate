@@ -99,7 +99,7 @@ class GiftCardsController < ApplicationController
   # Render the current gift card using pdf or html depending on requested format.
   # If inline_pdf is true, PDFs will be shown in the page. Otherwise they will be downloaded as attachment.
   def render_gift_card(inline_pdf)
-    disposition = inline_pdf == true ? 'inline' : 'attachment'
+    disposition = inline_pdf ? 'inline' : 'attachment'
 
     respond_to do |format|
       # The html version is intended for preview and testing purposes.
@@ -115,14 +115,8 @@ class GiftCardsController < ApplicationController
                 template: 'gift_cards/gift_card',
                 encoding: 'UTF-8',
                 disposition: disposition,
-                zoom: 1.25 # Experimented to find right zoom for A4 in prod (inconsistent with localhost unfortunately)
+                zoom: 1.25 # Not environment-consistent unfortunately. 1.25 for staging/prod. 3.9 for localhost.
       end
-      # Landscape:
-      #   zoom: 1.25 for staging environment
-      #   zoom: 3.9 for localhost
-      # Portrait:
-      #   zoom: 1.92?  for staging environment
-      #   zoom: 6 for localhost
     end
   end
 
