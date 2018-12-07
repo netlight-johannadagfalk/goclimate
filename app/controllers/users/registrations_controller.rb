@@ -309,6 +309,7 @@ module Users
             return if stripe_plan == false
 
             subscription.plan = stripe_plan['id']
+            subscription.prorate = false
             subscription.save
           end
         end
