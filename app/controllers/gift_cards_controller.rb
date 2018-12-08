@@ -38,7 +38,7 @@ class GiftCardsController < ApplicationController
   def create
     @number_of_months = params[:subscription_months_to_gift]
     @email = params[:stripeEmail]
-    @message = params[:gift_card][:message]
+    @message = params[:message]
 
     # storing message in session variable because
     # it is used in download.pdf later, and I don't know how to pass params to that.
