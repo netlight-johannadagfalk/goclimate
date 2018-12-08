@@ -114,7 +114,7 @@ class GiftCardsController < ApplicationController
                 template: 'gift_cards/gift_card',
                 encoding: 'UTF-8',
                 disposition: disposition,
-                zoom: 1.25 # Not environment-consistent unfortunately. 1.25 for staging/prod. 3.9 for localhost.
+                zoom: 1.25
       end
     end
   end
