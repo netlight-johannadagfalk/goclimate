@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'gift_cards_checkout'
+require 'gift_card_certificate_pdf_generator'
 
 class GiftCardsController < ApplicationController
   def index
@@ -13,20 +14,25 @@ class GiftCardsController < ApplicationController
   # This is a preview version of the gift card. Includes sample text and a big EXAMPLE stamp.
   # Optionally, you can include a subscription_months_to_gift query param.
   def example
-    @message = t('views.gift_cards.example.message_html')
-    @number_of_months = params[:subscription_months_to_gift].to_i
-    @number_of_months = 6 if @number_of_months == 0
-    @example = true
+    number_of_months = params[:subscription_months_to_gift].present? ? params[:subscription_months_to_gift] : 6
 
-    render_gift_card(true)
+    pdf = GiftCardCertificatePDFGenerator.new(
+      message: t('views.gift_cards.example.message_html'),
+      number_of_months: number_of_months,
+      example: true
+    ).generate_pdf
+
+    send_data pdf, filename: 'GoClimateNeutral Gift Card.pdf', type: :pdf, disposition: :inline
   end
 
   # This is to download the actual gift card PDF
   def download
-    @message = session[:message]
-    @number_of_months = session[:number_of_months].to_i
+    pdf = GiftCardCertificatePDFGenerator.new(
+      message: session[:message],
+      number_of_months: session[:number_of_months].to_i
+    ).generate_pdf
 
-    render_gift_card(false)
+    send_data pdf, filename: 'GoClimateNeutral Gift Card.pdf', type: :pdf
   end
 
   def new
@@ -64,17 +70,10 @@ class GiftCardsController < ApplicationController
       return
     end
 
-    pdf = WickedPdf.new.pdf_from_string(
-      ApplicationController.render(
-        template: 'gift_cards/gift_card',
-        layout: false,
-        assigns: {
-          message: @message,
-          number_of_months: @number_of_months
-        }
-      ),
-      orientation: 'portrait'
-    )
+    pdf = GiftCardCertificatePDFGenerator.new(
+      message: @message,
+      number_of_months: @number_of_months
+    ).generate_pdf
 
     GiftCardMailer.with(
       email: @email,
@@ -93,27 +92,6 @@ class GiftCardsController < ApplicationController
   end
 
   private
-
-  # Render the current gift card using pdf or html depending on requested format.
-  # If inline_pdf is true, PDFs will be shown in the page. Otherwise they will be downloaded as attachment.
-  def render_gift_card(inline_pdf)
-    disposition = inline_pdf ? 'inline' : 'attachment'
-
-    respond_to do |format|
-      # The html version is intended for preview and testing purposes.
-      format.html do
-        render template: 'gift_cards/gift_card', layout: false
-      end
-      # The "real" gift card is a PDF, below.
-      # See https://github.com/mileszs/wicked_pdf for a description of the params.
-      format.pdf do
-        render  pdf: 'GoClimateNeutral-GiftCard', # Filename, excluding .pdf extension.
-                orientation: 'portrait',
-                template: 'gift_cards/gift_card',
-                disposition: disposition
-      end
-    end
-  end
 
   def currency
     if I18n.locale == :en
