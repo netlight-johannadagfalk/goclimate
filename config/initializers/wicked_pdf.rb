@@ -17,8 +17,8 @@ WickedPdf.config = {
   #   or
   # exe_path: Gem.bin_path('wkhtmltopdf-binary', 'wkhtmltopdf')
 
-  # Layout file to be used for all PDFs
-  # (but can be overridden in `render :pdf` calls)
-  layout: false,
-  dpi: 300
+  layout: false, # Use no layout for PDF's by default
+  encoding: 'UTF-8',
+  dpi: 300,
+  zoom: 1.25
 }

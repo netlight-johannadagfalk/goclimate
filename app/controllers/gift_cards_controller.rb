@@ -72,9 +72,7 @@ class GiftCardsController < ApplicationController
           number_of_months: @number_of_months
         }
       ),
-      orientation: 'portrait',
-      encoding: 'UTF-8',
-      zoom: 1.25
+      orientation: 'portrait'
     )
 
     GiftCardMailer.with(
@@ -112,9 +110,7 @@ class GiftCardsController < ApplicationController
         render  pdf: 'GoClimateNeutral-GiftCard', # Filename, excluding .pdf extension.
                 orientation: 'portrait',
                 template: 'gift_cards/gift_card',
-                encoding: 'UTF-8',
-                disposition: disposition,
-                zoom: 1.25
+                disposition: disposition
       end
     end
   end
