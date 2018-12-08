@@ -25,9 +25,7 @@ class GiftCardMailerPreview < ActionMailer::Preview
           number_of_months: 12
         }
       ),
-      orientation: 'landscape',
-      encoding: 'UTF-8',
-      zoom: 1.25
+      orientation: 'portrait'
     )
   end
 end

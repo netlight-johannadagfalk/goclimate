@@ -6,16 +6,15 @@
     <div class="inner cover">
       <h1><%=t 'views.gift_cards.new.your_gift_card_order' %></h1>
 
-
-      <%= form_for :gift_card, url: {action: :create} do |f| %>
+      <%= form_tag action: :create do %>
         <div>
           <label><%=t 'views.gift_cards.new.write_a_message' %> </label>
-          <div><%= f.text_area :message, rows: 4, cols: 40, placeholder: t('views.gift_cards.new.sample_message_html')%></div>
+          <div><%= text_area_tag :message, '', rows: 4, cols: 40, placeholder: t('views.gift_cards.new.sample_message_html')%></div>
         </div>
 
         <p><%=t 'views.gift_cards.new.we_will_send_you_pdf' %></p>
 
-        <p><%= link_to t('views.gift_cards.new.click_here_for_an_example'), gift_cards_example_path + "?subscription_months_to_gift=" + params[:subscription_months_to_gift]%></p>
+        <p><%= link_to t('views.gift_cards.new.click_here_for_an_example'), example_gift_cards_path(subscription_months_to_gift: params[:subscription_months_to_gift]) %></p>
 
         <table class="table checkout-table">
           <tr>

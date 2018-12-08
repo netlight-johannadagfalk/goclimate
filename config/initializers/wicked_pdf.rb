@@ -11,13 +11,14 @@
 # https://github.com/mileszs/wicked_pdf/blob/master/README.md
 
 WickedPdf.config = {
-  # Path to the wkhtmltopdf executable: This usually isn't needed if using
-  # one of the wkhtmltopdf-binary family of gems.
+  # Path to the wkhtmltopdf executable: This shouldn't be needed since we're
+  # using the wkhtmltopdf-binary gem.
   # exe_path: '/usr/local/bin/wkhtmltopdf',
   #   or
   # exe_path: Gem.bin_path('wkhtmltopdf-binary', 'wkhtmltopdf')
 
-  # Layout file to be used for all PDFs
-  # (but can be overridden in `render :pdf` calls)
-  # layout: 'pdf.html',
+  layout: false, # Use no layout for PDF's by default
+  encoding: 'UTF-8',
+  dpi: 300,
+  zoom: 1.25
 }

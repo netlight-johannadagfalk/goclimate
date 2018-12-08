@@ -29,13 +29,12 @@ Rails.application.routes.draw do
   get 'companies', to: 'welcome#companies'
   get 'admin', to: 'admin#index'
 
-  get 'gift_cards/download', to: 'gift_cards#download'
-  get 'gift_cards/example', to: 'gift_cards#example'
-
   resources :subscriptions
   resources :gift_cards, only: [:index, :new, :create] do
     collection do
       get 'thank_you'
+      get 'download'
+      get 'example'
     end
   end
 

@@ -38,7 +38,7 @@ class GiftCardsController < ApplicationController
   def create
     @number_of_months = params[:subscription_months_to_gift]
     @email = params[:stripeEmail]
-    @message = params[:gift_card][:message]
+    @message = params[:message]
 
     # storing message in session variable because
     # it is used in download.pdf later, and I don't know how to pass params to that.
@@ -66,15 +66,13 @@ class GiftCardsController < ApplicationController
     pdf = WickedPdf.new.pdf_from_string(
       ApplicationController.render(
         template: 'gift_cards/gift_card',
-        layout: 'gift_card_layout',
+        layout: false,
         assigns: {
           message: @message,
           number_of_months: @number_of_months
         }
       ),
-      orientation: 'portrait',
-      encoding: 'UTF-8',
-      zoom: 1.25
+      orientation: 'portrait'
     )
 
     GiftCardMailer.with(
@@ -104,18 +102,15 @@ class GiftCardsController < ApplicationController
     respond_to do |format|
       # The html version is intended for preview and testing purposes.
       format.html do
-        render template: 'gift_cards/gift_card', layout: 'gift_card_layout'
+        render template: 'gift_cards/gift_card', layout: false
       end
       # The "real" gift card is a PDF, below.
       # See https://github.com/mileszs/wicked_pdf for a description of the params.
       format.pdf do
         render  pdf: 'GoClimateNeutral-GiftCard', # Filename, excluding .pdf extension.
                 orientation: 'portrait',
-                layout: 'gift_card_layout',
                 template: 'gift_cards/gift_card',
-                encoding: 'UTF-8',
-                disposition: disposition,
-                zoom: 1.25 # Not environment-consistent unfortunately. 1.25 for staging/prod. 3.9 for localhost.
+                disposition: disposition
       end
     end
   end
