@@ -72,7 +72,7 @@ class GiftCardsController < ApplicationController
           number_of_months: @number_of_months
         }
       ),
-      orientation: 'landscape',
+      orientation: 'portrait',
       encoding: 'UTF-8',
       zoom: 1.25
     )
