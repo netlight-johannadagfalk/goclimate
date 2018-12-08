@@ -3,6 +3,13 @@
 class GiftCardCertificatePDFGenerator
   attr_reader :message, :number_of_months, :example
 
+  def self.from_certificate(certificate)
+    new(
+      message: certificate.message,
+      number_of_months: certificate.number_of_months
+    )
+  end
+
   def initialize(attributes)
     @message = attributes[:message]
     @number_of_months = attributes[:number_of_months]

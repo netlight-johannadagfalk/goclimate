@@ -35,10 +35,7 @@ class GiftCardsController < ApplicationController
         GiftCardCertificate.new(message: session[:message], number_of_months: session[:number_of_months].to_i)
       end
 
-    pdf = GiftCardCertificatePDFGenerator.new(
-      message: certificate.message,
-      number_of_months: certificate.number_of_months
-    ).generate_pdf
+    pdf = GiftCardCertificatePDFGenerator.from_certificate(certificate).generate_pdf
 
     send_data pdf, filename: 'GoClimateNeutral Gift Card.pdf', type: :pdf
   end
@@ -72,10 +69,7 @@ class GiftCardsController < ApplicationController
       return
     end
 
-    pdf = GiftCardCertificatePDFGenerator.new(
-      message: @gift_card_certificate.message,
-      number_of_months: @gift_card_certificate.number_of_months
-    ).generate_pdf
+    pdf = GiftCardCertificatePDFGenerator.from_certificate(@gift_card_certificate).generate_pdf
 
     GiftCardMailer.with(
       email: email,
