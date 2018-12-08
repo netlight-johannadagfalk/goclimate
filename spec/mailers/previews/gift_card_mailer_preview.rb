@@ -8,8 +8,7 @@ class GiftCardMailerPreview < ActionMailer::Preview
     GiftCardMailer.with(
       email: 'test@example.com',
       number_of_months: '3',
-      filename: 'giftcard.pdf',
-      file: gift_card_pdf
+      gift_card_pdf: gift_card_pdf
     ).gift_card_email
   end
 
@@ -18,11 +17,11 @@ class GiftCardMailerPreview < ActionMailer::Preview
   def gift_card_pdf
     WickedPdf.new.pdf_from_string(
       ApplicationController.render(
-        template: 'gift_cards/download',
-        layout: 'giftcard',
+        template: 'gift_cards/gift_card',
+        layout: false,
         assigns: {
           message: 'God jul!',
-          number_of_months: 12
+          number_of_months: 3
         }
       ),
       orientation: 'portrait'

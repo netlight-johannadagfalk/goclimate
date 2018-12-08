@@ -79,8 +79,7 @@ class GiftCardsController < ApplicationController
     GiftCardMailer.with(
       email: @email,
       number_of_months: @number_of_months,
-      filename: 'GoClimateNeutral-GiftCard.pdf',
-      file: pdf
+      gift_card_pdf: pdf
     ).gift_card_email.deliver_now
 
     redirect_to thank_you_gift_cards_path, flash: { number_of_months: @number_of_months, email: @email }
