@@ -12,14 +12,6 @@ RSpec.describe GiftCard do
       expect(certificate).to_not be_valid
     end
 
-    it 'validates key to be present' do
-      certificate = build(:gift_card)
-
-      certificate.key = nil
-
-      expect(certificate).to_not be_valid
-    end
-
     it 'validates key to look like a SHA1 (40 hex characters)' do
       certificate = build(:gift_card)
 
@@ -35,13 +27,22 @@ RSpec.describe GiftCard do
 
       expect(certificate).to_not be_valid
     end
+  end
 
-    it 'validates message to be present' do
-      certificate = build(:gift_card)
+  describe 'callbacks' do
+    it 'generates key when creating new certificates' do
+      certificate = GiftCard.create(number_of_months: 6, message: 'test')
 
-      certificate.message = nil
+      expect(certificate.key).to be_present
+    end
 
-      expect(certificate).to_not be_valid
+    it 'does not overwrite key when changing existing certificates' do
+      certificate = create(:gift_card_certificate)
+
+      expect do
+        certificate.message = 'Something else'
+        certificate.save
+      end.to_not(change { certificate.key })
     end
   end
 end

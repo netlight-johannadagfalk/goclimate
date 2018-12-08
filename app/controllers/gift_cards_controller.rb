@@ -27,37 +27,39 @@ class GiftCardsController < ApplicationController
 
   # This is to download the actual gift card PDF
   def download
+    certificate =
+      if (certificate_key = params[:key])
+        GiftCardCertificate.find_by_key(certificate_key)
+      else
+        # TODO: Remove this once deployed and sessions have been given time to become irrelevant
+        GiftCardCertificate.new(message: session[:message], number_of_months: session[:number_of_months].to_i)
+      end
+
     pdf = GiftCardCertificatePDFGenerator.new(
-      message: session[:message],
-      number_of_months: session[:number_of_months].to_i
+      message: certificate.message,
+      number_of_months: certificate.number_of_months
     ).generate_pdf
 
     send_data pdf, filename: 'GoClimateNeutral Gift Card.pdf', type: :pdf
   end
 
   def new
-    @gift_card = SubscriptionMonthsGiftCard.new(
-      params[:subscription_months_to_gift].to_i, currency
-    )
+    @gift_card = gift_card_from_params
+    @gift_card_certificate = GiftCardCertificate.new
     @currency = currency
   end
 
   def create
-    @number_of_months = params[:subscription_months_to_gift].to_i
-    @email = params[:stripeEmail]
-    @message = params[:message]
-
-    # storing message in session variable because
-    # it is used in download.pdf later, and I don't know how to pass params to that.
-    # I'm sure there's a better way...
-    session[:message] = @message
-    session[:number_of_months] = @number_of_months
-
+    @gift_card = gift_card_from_params
+    @gift_card_certificate = gift_card_certificate_from_params
     @currency = currency
 
-    @gift_card = SubscriptionMonthsGiftCard.new(
-      params[:subscription_months_to_gift].to_i, currency
-    )
+    email = params[:stripeEmail]
+
+    # As we're halfway through a payment process and we expect this to always
+    # be valid, better to fail early so we detect any edge cases rather than
+    # silently showing validation errors.
+    @gift_card_certificate.save!
 
     begin
       GiftCardsCheckout.new(params[:stripeToken], @gift_card).checkout
@@ -66,32 +68,52 @@ class GiftCardsController < ApplicationController
       err  = body[:error]
       flash[:error] = 'Something went wrong with the payment'
       flash[:error] = "The payment unfortunately failed: #{err[:message]}." if err[:message]
-      redirect_to new_gift_card_path(subscription_months_to_gift: @number_of_months)
+      redirect_to new_gift_card_path(subscription_months_to_gift: params[:subscription_months_to_gift])
       return
     end
 
     pdf = GiftCardCertificatePDFGenerator.new(
-      message: @message,
-      number_of_months: @number_of_months
+      message: @gift_card_certificate.message,
+      number_of_months: @gift_card_certificate.number_of_months
     ).generate_pdf
 
     GiftCardMailer.with(
-      email: @email,
-      number_of_months: @number_of_months,
+      email: email,
+      number_of_months: @gift_card.number_of_months,
       gift_card_pdf: pdf
     ).gift_card_email.deliver_now
 
-    redirect_to thank_you_gift_cards_path, flash: { number_of_months: @number_of_months, email: @email }
+    redirect_to(
+      thank_you_gift_cards_path,
+      flash: {
+        number_of_months: @gift_card.number_of_months,
+        email: @email,
+        certificate_key: @gift_card_certificate.key
+      }
+    )
   end
 
   def thank_you
     @number_of_months = flash[:number_of_months].to_i
     @email = flash[:email]
+    @certificate_key = flash[:certificate_key]
 
     redirect_to gift_cards_path if @number_of_months.nil?
   end
 
   private
+
+  def gift_card_from_params
+    SubscriptionMonthsGiftCard.new(
+      params[:subscription_months_to_gift].to_i, currency
+    )
+  end
+
+  def gift_card_certificate_from_params
+    gift_card_certificate = GiftCardCertificate.new(params.require(:gift_card_certificate).permit(:message))
+    gift_card_certificate.number_of_months = params[:subscription_months_to_gift].to_i
+    gift_card_certificate
+  end
 
   def currency
     if I18n.locale == :en

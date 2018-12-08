@@ -7,10 +7,12 @@
       <h1><%=t 'views.gift_cards.new.your_gift_card_order' %></h1>
 
       <%= form_tag action: :create do %>
-        <div>
-          <label><%=t 'views.gift_cards.new.write_a_message' %> </label>
-          <div><%= text_area_tag :message, '', rows: 4, cols: 40, placeholder: t('views.gift_cards.new.sample_message_html')%></div>
-        </div>
+        <%= fields_for :gift_card_certificate do |f| %>
+          <div>
+            <label><%=t 'views.gift_cards.new.write_a_message' %> </label>
+            <div><%= f.text_area :message, rows: 4, cols: 40, placeholder: t('views.gift_cards.new.sample_message_html')%></div>
+          </div>
+        <% end %>
 
         <p><%=t 'views.gift_cards.new.we_will_send_you_pdf' %></p>
 
