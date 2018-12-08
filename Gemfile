@@ -48,6 +48,12 @@ gem 'stripe', git: 'https://github.com/stripe/stripe-ruby', ref: 'f6484e3'
 # Utilities
 gem 'seed_dump', '~> 3.2'
 
+# PDF generation
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+# wklhtmltopdf-binary provides binaries for Linux and macOS. If this fails you
+# will have to install wkhtmltopdf manually.
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 3.3'
@@ -73,10 +79,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-# PDF generation gem.
-# Note that wkhtmltopdf is a native dependency.
-# Watch out for deployment issues because of that.
-# Looks like the wkhtmltopdf-binary gem installs the dependency automatically, but you never know.
-gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
