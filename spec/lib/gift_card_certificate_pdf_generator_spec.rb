@@ -57,7 +57,7 @@ RSpec.describe GiftCardCertificatePDFGenerator do
     it 'renders with correct template' do
       subject.generate_pdf
 
-      expect(ApplicationController).to have_received(:render).with(hash_including(template: 'gift_cards/gift_card'))
+      expect(ApplicationController).to have_received(:render).with(hash_including(template: 'pdfs/gift_card'))
     end
 
     it 'renders with no layout' do

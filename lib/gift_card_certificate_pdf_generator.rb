@@ -12,7 +12,7 @@ class GiftCardCertificatePDFGenerator
   def generate_pdf
     WickedPdf.new.pdf_from_string(
       ApplicationController.render(
-        template: 'gift_cards/gift_card',
+        template: 'pdfs/gift_card',
         layout: false,
         assigns: {
           message: @message,
