@@ -79,8 +79,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
         count_emails_sent = ActionMailer::Base.deliveries.count
 
         # Go to payment settings page
-        click_link 'test@example.com'
-        click_link 'Settings'
+        visit '/users/edit'
         find('.registrations-edit', wait: 20)
         click_link 'Payment Settings'
         find('.registrations-payment', wait: 20)
