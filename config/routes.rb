@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'partners/bokanerja'
   root 'welcome#index'
 
   resources :invoices
