@@ -136,6 +136,14 @@ ul.nav.nav-tabs li.active a {
   line-height: 1.5;
   margin-bottom: 25px;
 }
+.legal p {
+  margin-bottom: 20px;
+}
+div.legal {
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+}
 #error_explanation {
   color: red;
 }
@@ -400,6 +408,16 @@ p.lead a {
     .form-group input { 
         text-align: left; 
     }
+    input#privacy { 
+        width: 25px; 
+    }
+    input[type="checkbox"] + label {
+        font-weight: normal;
+    }
+    input[type="checkbox"] + label a {
+        text-decoration: underline;
+    }
+    
     .form-horizontal {
         margin-top: 20px;
         margin-bottom: 50px;
