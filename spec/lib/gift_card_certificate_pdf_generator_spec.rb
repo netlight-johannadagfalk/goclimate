@@ -5,7 +5,7 @@ require 'gift_card_certificate_pdf_generator'
 
 RSpec.describe GiftCardCertificatePDFGenerator do
   describe '#from_certificate' do
-    let(:certificate) { build(:gift_card_certificate) }
+    let(:certificate) { build(:gift_card) }
 
     it 'uses message from certificate' do
       generator = GiftCardCertificatePDFGenerator.from_certificate(certificate)

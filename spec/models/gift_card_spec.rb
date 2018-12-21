@@ -37,7 +37,7 @@ RSpec.describe GiftCard do
     end
 
     it 'does not overwrite key when changing existing certificates' do
-      certificate = create(:gift_card_certificate)
+      certificate = create(:gift_card)
 
       expect do
         certificate.message = 'Something else'

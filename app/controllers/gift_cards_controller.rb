@@ -29,10 +29,10 @@ class GiftCardsController < ApplicationController
   def download
     certificate =
       if (certificate_key = params[:key])
-        GiftCardCertificate.find_by_key(certificate_key)
+        GiftCard.find_by_key(certificate_key)
       else
         # TODO: Remove this once deployed and sessions have been given time to become irrelevant
-        GiftCardCertificate.new(message: session[:message], number_of_months: session[:number_of_months].to_i)
+        GiftCard.new(message: session[:message], number_of_months: session[:number_of_months].to_i)
       end
 
     pdf = GiftCardCertificatePDFGenerator.from_certificate(certificate).generate_pdf
@@ -42,7 +42,7 @@ class GiftCardsController < ApplicationController
 
   def new
     @gift_card = gift_card_from_params
-    @gift_card_certificate = GiftCardCertificate.new
+    @gift_card_certificate = GiftCard.new
     @currency = currency
   end
 
@@ -104,7 +104,7 @@ class GiftCardsController < ApplicationController
   end
 
   def gift_card_certificate_from_params
-    gift_card_certificate = GiftCardCertificate.new(params.require(:gift_card_certificate).permit(:message))
+    gift_card_certificate = GiftCard.new(params.require(:gift_card_certificate).permit(:message))
     gift_card_certificate.number_of_months = params[:subscription_months_to_gift].to_i
     gift_card_certificate
   end
