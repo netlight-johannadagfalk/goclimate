@@ -19,7 +19,7 @@
         <table class="table checkout-table">
           <tr>
             <td><%=t 'type' %>:</td>
-            <td><%= @gift_card.number_of_months %> <%=t 'months' %></td>
+            <td><%=t 'x_months', count: @gift_card.number_of_months %></td>
           </tr>
           <tr>
             <td><%=t 'price' %>:</td>

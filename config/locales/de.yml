@@ -326,6 +326,9 @@ de:
   you_have_lived_a_climate_neutral_life_for: Sie leben ein klimaneutrales Leben seit
   months: Monaten
   month: Monat
+  x_months: 
+    one: 1 Monat
+    other: "%{count} Monaten"
   together_we_have_offset: Unsere gemeinsamen Klimakompensationen
   goclimateneutral_and_this_planet_loves_you: GoClimateNeutral.org und unser Planet lieben Sie! Sie sind großartig!
   learn_more_about_what_we_have_achieved_here: 'Erfahren Sie hier mehr darüber, was wir bereits geschafft haben >>'
@@ -849,7 +852,9 @@ de:
       thank_you_for_buying_gift_card: 'Vielen Dank, dass Sie einen Gutschein gekauft haben!'
       you_have_purchased_a_gift_card_with: Sie haben einen Gutschein gekauft für
       download_the_gift_card_here: Laden Sie den Gutschein hier herunter
-      climate_neutral_months: klimaneutrale Monate
+      climate_neutral_months: 
+        one: klimaneutral Monat
+        other: klimaneutrale Monate
       you_can_find_the_gift_card_as_an_attachmtent_to_this_mail: >-
         Sie finden den Gutschein als Anhang zu dieser E-Mail. Bitte antworten
         Sie auf diese Mail, wenn Sie noch weitere Fragen haben. Danke nochmal!
@@ -888,7 +893,9 @@ de:
         click_here_for_an_example: Klicken Sie hier für ein Beispiel
       download:
         gift_card: Gutschein
-        gift_card_x_climate_neutral_months: '%{months} klimaneutrale Monate'
+        gift_card_x_climate_neutral_months:
+          one: 1 klimaneutral Monat
+          other: '%{count} klimaneutrale Monate'
         about_go_climate_neutral: >-
           <a href='http://GoClimateNeutral.org'>GoClimateNeutral.org</a>
           unterstützt Klimaprojekte und gibt Anregungen und Tipps, wie Sie Ihren
@@ -916,3 +923,7 @@ de:
         example: Beispiel
       thank_you:
         download_the_gift_card_here: Laden Sie den Gutschein hier herunter
+        you_have_purchased_a_gift_card_with_x_climate_neutral_months: 
+          one: Sie haben einen Gutschein gekauft für 1 klimaneutral Monat
+          other: "Sie haben einen Gutschein gekauft für %{count} klimaneutrale Monate"
+

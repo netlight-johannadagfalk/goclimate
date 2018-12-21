@@ -199,6 +199,9 @@ en:
   you_have_lived_a_climate_neutral_life_for: You have lived a climate neutral life for
   months: months
   month: month
+  x_months: 
+    one: 1 month
+    other: "%{count} months"
   together_we_have_offset: Together we have offset
   goclimateneutral_and_this_planet_loves_you: GoClimateNeutral.org and this planet love you! You are the best!
   learn_more_about_what_we_have_achieved_here: Learn more about what we have achieved here >>
@@ -424,7 +427,9 @@ en:
       thank_you_for_buying_gift_card: Thank you for buying a gift card!
       you_have_purchased_a_gift_card_with: You have purchased a gift card for
       download_the_gift_card_here: Download the gift card here
-      climate_neutral_months: climate neutral months
+      climate_neutral_months: 
+        one: climate neutral month
+        other: climate neutral months
       you_can_find_the_gift_card_as_an_attachmtent_to_this_mail: You can find the gift card as an attachment to this email. Please contact us if you have any questions by replying to this email. Thank you again!
     gift_cards:
       index:
@@ -434,6 +439,9 @@ en:
           to help spread the word of something we can all do to fight
           climate change? Try out our climate gift cards!
         choose_header: Choose your climate gift card
+        1_months_header: 1 month
+        1_months_description: 1 month of climate neutrality.
+        1_months_cta: Get a 1 month gift card
         3_months_header: 3 months
         3_months_description: 3 months of climate neutrality.
         3_months_cta: Get a 3 months gift card
@@ -455,7 +463,9 @@ en:
         click_here_for_an_example: "Click here for an example"
       download:
         gift_card: "Gift card"
-        gift_card_x_climate_neutral_months: "%{months} climate neutral months"
+        gift_card_x_climate_neutral_months:
+          one: 1 climate neutral month
+          other: "%{count} climate neutral months"
         about_go_climate_neutral:
           <a href='http://GoClimateNeutral.org'>GoClimateNeutral.org</a> supports climate projects and gives inspiration and
           advice on how to reduce your climate footprint. The projects you support are UN-certified climate projects
@@ -469,4 +479,6 @@ en:
         example: "Example"
       thank_you:
         download_the_gift_card_here: Download the gift card here
-
+        you_have_purchased_a_gift_card_with_x_climate_neutral_months: 
+          one: You have purchased a gift card for 1 climate neutral month
+          other: "You have purchased a gift card for %{count} climate neutral months"
