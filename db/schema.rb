@@ -83,8 +83,6 @@ ActiveRecord::Schema.define(version: 2018_12_21_123737) do
     t.boolean "paid"
     t.boolean "gift_card", default: false, null: false
     t.string "description"
-    t.string "gift_card_receiver"
-    t.text "gift_card_message"
   end
 
   create_table "stripe_payouts", force: :cascade do |t|
