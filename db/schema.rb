@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_08_132926) do
+ActiveRecord::Schema.define(version: 2018_12_21_123737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "gift_card_certificates", force: :cascade do |t|
+  create_table "gift_cards", force: :cascade do |t|
     t.string "key"
     t.integer "number_of_months"
     t.text "message"
@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(version: 2018_12_08_132926) do
     t.boolean "paid"
     t.boolean "gift_card", default: false, null: false
     t.string "description"
+    t.string "gift_card_receiver"
+    t.text "gift_card_message"
   end
 
   create_table "stripe_payouts", force: :cascade do |t|

@@ -2,18 +2,18 @@
 
 require 'rails_helper'
 
-RSpec.describe GiftCardCertificate do
+RSpec.describe GiftCard do
   describe 'validations' do
     it 'validates key to be unique' do
-      existing = create(:gift_card_certificate)
+      existing = create(:gift_card)
 
-      certificate = GiftCardCertificate.new(key: existing.key)
+      certificate = GiftCard.new(key: existing.key)
 
       expect(certificate).to_not be_valid
     end
 
     it 'validates key to be present' do
-      certificate = build(:gift_card_certificate)
+      certificate = build(:gift_card)
 
       certificate.key = nil
 
@@ -21,7 +21,7 @@ RSpec.describe GiftCardCertificate do
     end
 
     it 'validates key to look like a SHA1 (40 hex characters)' do
-      certificate = build(:gift_card_certificate)
+      certificate = build(:gift_card)
 
       certificate.key = 'not a sha'
 
@@ -29,7 +29,7 @@ RSpec.describe GiftCardCertificate do
     end
 
     it 'validates number_of_months to be present' do
-      certificate = build(:gift_card_certificate)
+      certificate = build(:gift_card)
 
       certificate.number_of_months = nil
 
@@ -37,7 +37,7 @@ RSpec.describe GiftCardCertificate do
     end
 
     it 'validates message to be present' do
-      certificate = build(:gift_card_certificate)
+      certificate = build(:gift_card)
 
       certificate.message = nil
 
