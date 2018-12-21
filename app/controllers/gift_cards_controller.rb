@@ -4,6 +4,7 @@ require 'gift_cards_checkout'
 
 class GiftCardsController < ApplicationController
   def index
+    @gift_card_1_months = SubscriptionMonthsGiftCard.new(1, currency)
     @gift_card_3_months = SubscriptionMonthsGiftCard.new(3, currency)
     @gift_card_6_months = SubscriptionMonthsGiftCard.new(6, currency)
     @gift_card_12_months = SubscriptionMonthsGiftCard.new(12, currency)
@@ -23,7 +24,7 @@ class GiftCardsController < ApplicationController
   # This is to download the actual gift card PDF
   def download
     @message = session[:message]
-    @number_of_months = session[:number_of_months]
+    @number_of_months = session[:number_of_months].to_i
 
     render_gift_card(false)
   end
@@ -36,7 +37,7 @@ class GiftCardsController < ApplicationController
   end
 
   def create
-    @number_of_months = params[:subscription_months_to_gift]
+    @number_of_months = params[:subscription_months_to_gift].to_i
     @email = params[:stripeEmail]
     @message = params[:message]
 
@@ -86,7 +87,7 @@ class GiftCardsController < ApplicationController
   end
 
   def thank_you
-    @number_of_months = flash[:number_of_months]
+    @number_of_months = flash[:number_of_months].to_i
     @email = flash[:email]
 
     redirect_to gift_cards_path if @number_of_months.nil?
