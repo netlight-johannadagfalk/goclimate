@@ -22,9 +22,13 @@
     "RAILS_SERVE_STATIC_FILES": {
       "required": true
     },
-    "ROLLBAR_ENV": {
-      "required": true
+    "ROLLBAR_ACCESS_TOKEN": {
+      "requred": true
     },
+    "ROLLBAR_ENDPOINT": {
+      "requred": true
+    },
+    "ROLLBAR_ENV": "review",
     "SECRET_KEY": {
       "required": true
     },
@@ -32,6 +36,12 @@
       "generator": "secret"
     },
     "SENDGRID_API_KEY": {
+      "required": true
+    },
+    "HEROKU_APP_NAME": {
+      "required": true
+    },
+    "HEROKU_PARENT_APP_NAME": {
       "required": true
     }
   },
@@ -42,7 +52,12 @@
   },
   "addons": [
     "heroku-postgresql",
-    "rollbar"
+    {
+      "plan": "deployhooks:http",
+      "options": {
+        "url": "https://hooks.slack.com/services/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"
+      }
+    }
   ],
   "buildpacks": [
     {
