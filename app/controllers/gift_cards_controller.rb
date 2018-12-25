@@ -14,7 +14,7 @@ class GiftCardsController < ApplicationController
   # This is a preview version of the gift card. Includes sample text and a big EXAMPLE stamp.
   # Optionally, you can include a subscription_months_to_gift query param.
   def example
-    number_of_months = params[:subscription_months_to_gift].present? ? params[:subscription_months_to_gift].to_i : 6
+    number_of_months = (params[:subscription_months_to_gift].presence || 6).to_i
 
     pdf = GiftCardCertificatePDFGenerator.new(
       message: t('views.gift_cards.example.message_html'),
