@@ -81,7 +81,7 @@ class GiftCardsController < ApplicationController
       thank_you_gift_cards_path,
       flash: {
         number_of_months: @gift_card.number_of_months,
-        email: @email,
+        email: email,
         certificate_key: @gift_card_certificate.key
       }
     )
