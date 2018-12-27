@@ -27,5 +27,6 @@ RSpec.feature 'Gift cards', type: :feature, js: true do
 
     # Confirmation page
     expect(page).to have_text 'Thank you for buying a gift card!'
+    expect(page).to have_text 'featurespec@example.com'
   end
 end
