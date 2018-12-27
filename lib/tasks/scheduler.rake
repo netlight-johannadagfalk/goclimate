@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require 'stripe_events_consumer'
+
 task update_stripe_events: :environment do
   puts 'Update StripeEvents...'
-  StripeEvent.update_events
+  StripeEventsConsumer.new.fetch_and_process
   puts 'done.'
 end
 

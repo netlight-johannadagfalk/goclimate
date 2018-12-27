@@ -3,11 +3,11 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
-  has_many :stripe_events, class_name: 'StripeEvent', primary_key: 'stripe_customer_id',
-                           foreign_key: 'stripe_customer_id'
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  has_many :stripe_events, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
   has_and_belongs_to_many :lifestyle_choices
+
+  scope :with_active_subscription, -> { where.not(stripe_customer_id: nil) }
 
   def country_name
     if !country.nil? && !country.empty?

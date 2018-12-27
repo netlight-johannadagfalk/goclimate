@@ -26,7 +26,7 @@ class DashboardController < ApplicationController
     @my_neutral_months = StripeEvent.payments(current_user).where(paid: true).count
     @my_neutral_months = 1 if @my_neutral_months == 0
 
-    @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
+    @unique_climate_neutral_users = User.with_active_subscription.count
 
     @user_top_list = User.where("users.stripe_customer_id != ''")
                          .left_joins(:stripe_events)
