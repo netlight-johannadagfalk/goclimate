@@ -27,61 +27,61 @@ module Users
       @plan = LifestyleChoice.stripe_plan(params[:user][:choices])
       choices = params[:user][:choices].split(',').map(&:to_i)
 
-      begin
-        user = User.find_for_authentication(email: params[:user][:email])
+      user = User.find_for_authentication(email: params[:user][:email])
 
-        if user.present?
-          if user.stripe_customer_id.present?
-            flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.taken')
-            redirect_to new_user_registration_path(choices: params[:user][:choices])
-            return
-          end
-
-          user.delete
+      if user.present?
+        if user.stripe_customer_id.present?
+          flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.taken')
+          redirect_to new_user_registration_path(choices: params[:user][:choices])
+          return
         end
 
-        customer = Stripe::Customer.create(
-          email: params[:user][:email],
-          source: params[:stripeSource]
+        user.delete
+      end
+
+      customer = Stripe::Customer.create(
+        email: params[:user][:email],
+        source: params[:stripeSource]
+      )
+
+      # 3D Secure is required
+      if params[:threeDSecure] == 'required'
+        source = Stripe::Source.create(
+          amount: (@plan.to_f * 100).round,
+          currency: currency_for_user,
+          type: 'three_d_secure',
+          three_d_secure:
+            {
+              customer: customer.id,
+              card: params[:stripeSource]
+            },
+          redirect:
+            {
+              return_url: threedsecure_url + '?email=' + params[:user][:email] + '&plan=' + @plan.to_s +
+                          '&choices=' + params[:user][:choices] + '&customer=' + customer.id
+            }
         )
 
-        # 3dsecure is required
-        if params[:threeDSecure] == 'required'
-          source = Stripe::Source.create(
-            amount: (@plan.to_f * 100).round,
-            currency: currency_for_user,
-            type: 'three_d_secure',
-            three_d_secure:
-              {
-                customer: customer.id,
-                card: params[:stripeSource]
-              },
-            redirect:
-              {
-                return_url: threedsecure_url + '?email=' + params[:user][:email] + '&plan=' + @plan.to_s +
-                            '&choices=' + params[:user][:choices] + '&customer=' + customer.id
-              }
-          )
+        # Checking if verification is still required
+        # -> https://stripe.com/docs/sources/three-d-secure
+        unless ((source.redirect.status == 'succeeded' || source.redirect.status == 'not_required') && source.three_d_secure.authenticated == false) || source.status == 'failed'
+          user = User.new(email: params[:user][:email], password: params[:user][:password])
+          user.save
 
-          # Checking if verification is still required
-          # -> https://stripe.com/docs/sources/three-d-secure
-          unless ((source.redirect.status == 'succeeded' || source.redirect.status == 'not_required') && source.three_d_secure.authenticated == false) || source.status == 'failed'
-            user = User.new(email: params[:user][:email], password: params[:user][:password])
-            user.save
-
-            choices.each do |choice_id|
-              user.lifestyle_choices << LifestyleChoice.find(choice_id)
-            end
-
-            redirect_to source.redirect.url
-            return
+          choices.each do |choice_id|
+            user.lifestyle_choices << LifestyleChoice.find(choice_id)
           end
+
+          redirect_to source.redirect.url
+          return
         end
+      end
 
-        plan = get_stripe_plan(@plan, new_user_registration_path)
+      plan = get_stripe_plan(@plan, new_user_registration_path)
 
-        return if plan == false
+      return if plan == false
 
+      begin
         Stripe::Subscription.create(
           customer: customer.id,
           plan: plan.id
