@@ -95,14 +95,12 @@ module Users
         return
       end
 
-      super
+      super do |created_user|
+        created_user.update(stripe_customer_id: customer.id)
 
-      User.where('lower(email) = ?', params[:user][:email].downcase).update_all(stripe_customer_id: customer.id)
-
-      user = User.find_for_authentication(email: params[:user][:email])
-
-      choices.each do |choice_id|
-        user.lifestyle_choices << LifestyleChoice.find(choice_id)
+        choices.each do |choice_id|
+          created_user.lifestyle_choices << LifestyleChoice.find(choice_id)
+        end
       end
     end
 
