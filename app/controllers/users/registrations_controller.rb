@@ -35,13 +35,13 @@ module Users
         user = User.find_for_authentication(email: params[:user][:email])
 
         if user.present?
-          if user.stripe_customer_id.nil?
-            user.delete
-          else
+          if user.stripe_customer_id.present?
             flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.taken')
             redirect_to new_user_registration_path(choices: params[:user][:choices])
             return
           end
+
+          user.delete
         end
 
         customer = Stripe::Customer.create(
