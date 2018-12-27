@@ -4,7 +4,7 @@ require 'gift_card_certificate_pdf_generator'
 
 class GiftCardCertificatesController < ApplicationController
   def show
-    certificate = GiftCardCertificate.find_by_key(certificate_key)
+    certificate = GiftCard.find_by_key(params[:key])
     pdf = GiftCardCertificatePDFGenerator.from_certificate(certificate).generate_pdf
 
     send_data pdf, filename: 'GoClimateNeutral Gift Card.pdf', type: :pdf
