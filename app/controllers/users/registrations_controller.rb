@@ -7,6 +7,7 @@ module Users
 
     prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy, :payment]
 
+    before_action :ensure_valid_new_params, only: [:new]
     before_action :ensure_valid_create_params, only: [:create]
 
     def after_update_path_for(resource)
@@ -15,11 +16,6 @@ module Users
 
     # GET /resource/sign_up
     def new
-      if params[:choices].nil? || !params[:choices].include?(',')
-        redirect_to '/#choose-plan'
-        return
-      end
-
       @plan = LifestyleChoice.stripe_plan(params[:choices])
       @currency = currency_for_user
 
@@ -345,6 +341,10 @@ module Users
     end
 
     private
+
+    def ensure_valid_new_params
+      redirect_to '/#choose-plan' if params[:choices].nil? || !params[:choices].include?(',')
+    end
 
     def ensure_valid_create_params
       # TODO: Parameter validations should primarily be done as model
