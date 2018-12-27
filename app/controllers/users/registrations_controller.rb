@@ -7,6 +7,8 @@ module Users
 
     prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy, :payment]
 
+    before_action :ensure_valid_create_params, only: [:create]
+
     def after_update_path_for(resource)
       edit_user_registration_path(resource)
     end
@@ -30,30 +32,6 @@ module Users
       choices = params[:user][:choices].split(',').map(&:to_i)
 
       begin
-        if params[:user][:choices].nil? || params[:user][:choices].match(/\d+,\d+,\d+,\d/).nil?
-          flash[:error] = I18n.t('something_went_wrong_go_back_one_step_and_try_again')
-          redirect_to new_user_registration_path(choices: params[:user][:choices])
-          return
-        end
-
-        if params[:user][:email].nil? || params[:user][:email].length < 4
-          flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.blank')
-          redirect_to new_user_registration_path(choices: params[:user][:choices])
-          return
-        end
-
-        if params[:user][:password].nil? || params[:user][:password].length < 6
-          flash[:error] = I18n.t('activerecord.errors.models.user.attributes.password.blank')
-          redirect_to new_user_registration_path(choices: params[:user][:choices])
-          return
-        end
-
-        if params[:stripeSource].nil?
-          flash[:error] = 'Oops, an error occured, please try again!'
-          redirect_to new_user_registration_path(choices: params[:user][:choices])
-          return
-        end
-
         user = User.find_for_authentication(email: params[:user][:email])
 
         if user.present?
@@ -364,6 +342,29 @@ module Users
 
     def update_resource(resource, params)
       resource.update_without_password(params)
+    end
+
+    private
+
+    def ensure_valid_create_params
+      # TODO: Parameter validations should primarily be done as model
+      # validations, but both LifeStyleChoices and User needs refactoring for
+      # this to be possible below. Invalid parameters for anything recoverable
+      # by the initial form should also be handeled by rendering the form again
+      # rather than redirecting back to :new.
+      if params[:user][:choices].nil? || params[:user][:choices].match(/\d+,\d+,\d+,\d/).nil?
+        flash[:error] = I18n.t('something_went_wrong_go_back_one_step_and_try_again')
+        redirect_to new_user_registration_path(choices: params[:user][:choices])
+      elsif params[:user][:email].nil? || params[:user][:email].length < 4
+        flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.blank')
+        redirect_to new_user_registration_path(choices: params[:user][:choices])
+      elsif params[:user][:password].nil? || params[:user][:password].length < 6
+        flash[:error] = I18n.t('activerecord.errors.models.user.attributes.password.blank')
+        redirect_to new_user_registration_path(choices: params[:user][:choices])
+      elsif params[:stripeSource].nil?
+        flash[:error] = 'Oops, an error occured, please try again!'
+        redirect_to new_user_registration_path(choices: params[:user][:choices])
+      end
     end
 
     def get_stripe_plan(plan, error_path)
