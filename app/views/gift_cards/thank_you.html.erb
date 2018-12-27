@@ -10,7 +10,7 @@
 
       <p class="lead"><%=t 'views.gift_cards.thank_you.you_have_purchased_a_gift_card_with_x_climate_neutral_months', count: @number_of_months %></p>
 
-      <p class="lead"><%= link_to t('views.gift_cards.thank_you.download_the_gift_card_here'), download_gift_cards_path(key: @certificate_key) %></a></p>
+      <p class="lead"><%= link_to t('views.gift_cards.thank_you.download_the_gift_card_here'), gift_card_certificate_path(key: @certificate_key, format: :pdf) %></a></p>
 
       <p class="lead"><%=t 'we_have_sent_you_an_email_with_the_gift_card' %>: <%= @email %></p>
 

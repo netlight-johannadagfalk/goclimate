@@ -34,8 +34,12 @@ Rails.application.routes.draw do
   resources :gift_cards, only: [:index, :new, :create] do
     collection do
       get 'thank_you'
-      get 'download'
-      get 'example'
+
+      scope format: true, constraints: { format: :pdf } do
+        resources :gift_card_certificates, only: [:show], path: :certificates, param: :key do
+          get 'example', on: :collection
+        end
+      end
     end
   end
 
@@ -44,4 +48,6 @@ Rails.application.routes.draw do
   # Redirects for old routes
   get 'klimatkompensera', to: redirect('/')
   get 'friendlyguide', to: redirect('/')
+  get 'gift_cards/example', to: redirect(path: '/gift_cards/certificates/example.pdf')
+  get 'gift_cards/download', to: redirect { |_, r| "/gift_cards/certificates/#{r.query_parameters['key']}.pdf" }
 end

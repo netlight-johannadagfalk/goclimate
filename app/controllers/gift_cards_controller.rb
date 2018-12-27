@@ -11,35 +11,6 @@ class GiftCardsController < ApplicationController
     @gift_card_12_months = SubscriptionMonthsGiftCard.new(12, currency)
   end
 
-  # This is a preview version of the gift card. Includes sample text and a big EXAMPLE stamp.
-  # Optionally, you can include a subscription_months_to_gift query param.
-  def example
-    number_of_months = (params[:subscription_months_to_gift].presence || 6).to_i
-
-    pdf = GiftCardCertificatePDFGenerator.new(
-      message: t('views.gift_cards.example.message_html'),
-      number_of_months: number_of_months,
-      example: true
-    ).generate_pdf
-
-    send_data pdf, filename: 'GoClimateNeutral Gift Card.pdf', type: :pdf, disposition: :inline
-  end
-
-  # This is to download the actual gift card PDF
-  def download
-    certificate =
-      if (certificate_key = params[:key])
-        GiftCard.find_by_key(certificate_key)
-      else
-        # TODO: Remove this once deployed and sessions have been given time to become irrelevant
-        GiftCard.new(message: session[:message], number_of_months: session[:number_of_months].to_i)
-      end
-
-    pdf = GiftCardCertificatePDFGenerator.from_certificate(certificate).generate_pdf
-
-    send_data pdf, filename: 'GoClimateNeutral Gift Card.pdf', type: :pdf
-  end
-
   def new
     @gift_card = gift_card_from_params
     @gift_card_certificate = GiftCard.new
