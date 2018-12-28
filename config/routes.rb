@@ -27,9 +27,7 @@ Rails.application.routes.draw do
   get 'partners/bokanerja'
 
   # Dashboard
-  # TODO: Merge these into one route
-  get 'dashboard/index'
-  get '/users' => 'dashboard#index', as: :user_root
+  get 'dashboard', to: 'dashboard#index'
 
   # User profiles
   resources :users, only: [:show]
@@ -70,4 +68,6 @@ Rails.application.routes.draw do
   get 'gift_cards/example', to: redirect(path: '/gift_cards/certificates/example.pdf'), as: nil
   get 'gift_cards/download', to: redirect { |_, r| "/gift_cards/certificates/#{r.query_parameters['key']}.pdf" },
                              as: nil
+  get 'dashboard/index', to: redirect('/dashboard'), as: nil
+  get '/users', to: redirect('/dashboard'), as: nil
 end

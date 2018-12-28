@@ -147,7 +147,7 @@ module Users
       else
         flash[:notice] = I18n.t('devise.registrations.signed_up')
         sign_in(user)
-        redirect_to user_root_url
+        redirect_to dashboard_path
       end
     end
 
@@ -326,7 +326,7 @@ module Users
 
     # The path used after sign up.
     def after_sign_up_path_for(_resource)
-      dashboard_index_path + '?registered=1'
+      dashboard_path + '?registered=1'
     end
 
     # The path used after sign up for inactive accounts.
