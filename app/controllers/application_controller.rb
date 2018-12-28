@@ -6,15 +6,8 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   after_action :set_last_seen_at, if: proc { user_signed_in? }
 
-  unless Rails.application.config.consider_all_requests_local
-    rescue_from ActionController::RoutingError, with: -> { render_404 }
-  end
-
-  def render_404
-    respond_to do |format|
-      format.html { render template: 'errors/not_found', status: 404 }
-      format.all { render nothing: true, status: 404 }
-    end
+  def render_not_found
+    raise ActionController::RoutingError, 'Not found'
   end
 
   def set_locale

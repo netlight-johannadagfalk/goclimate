@@ -55,6 +55,11 @@ Rails.application.routes.draw do
     resources :stripe_events
   end
 
+  # Errors
+  match '/404', to: 'errors#not_found', via: :all
+  match '/422', to: 'errors#unprocessable_entity', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
+
   # Vanity URL redirects
   get '/blog', to: redirect('https://www.goclimateneutral.org/blog/'), as: nil
 

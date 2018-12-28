@@ -9,6 +9,7 @@ Style/MethodCallWithArgsParentheses:
     - require
     - require_relative
     - puts
+    - raise
     - rescue_from
     - render
     - redirect_to
