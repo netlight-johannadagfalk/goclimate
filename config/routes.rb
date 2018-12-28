@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   get '100_percent_transparency', to: 'welcome#transparency'
   get 'our_projects', to: 'welcome#our_projects'
   get 'companies', to: 'welcome#companies'
-  get 'admin', to: 'admin#index'
 
   # Partners
   get 'partners/bokanerja'
@@ -48,10 +47,13 @@ Rails.application.routes.draw do
   end
 
   # Admin
-  resources :invoices
-  resources :lifestyle_choices
-  resources :projects
-  resources :stripe_events
+  namespace :admin do
+    resources :invoices
+    resources :lifestyle_choices
+    resources :projects
+    resources :stripe_events
+    get 'admin', to: 'admin#index'
+  end
 
   # Vanity URL redirects
   get '/blog', to: redirect('https://www.goclimateneutral.org/blog/'), as: nil

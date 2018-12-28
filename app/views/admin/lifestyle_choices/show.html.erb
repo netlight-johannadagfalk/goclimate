@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @lifestyle_choice.name %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @lifestyle_choice.category %>
+</p>
+
+<p>
+  <strong>Version:</strong>
+  <%= @lifestyle_choice.version %>
+</p>
+
+<p>
+  <strong>Co2:</strong>
+  <%= @lifestyle_choice.co2 %>
+</p>
+
+<%= link_to 'Edit', edit_admin_lifestyle_choice_path(@lifestyle_choice) %> |
+<%= link_to 'Back', admin_lifestyle_choices_path %>
