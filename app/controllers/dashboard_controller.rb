@@ -43,9 +43,5 @@ class DashboardController < ApplicationController
                             .order(Arel.sql('COUNT(1) DESC'))
 
     @projects = Project.all.order(created_at: :desc).limit(5)
-
-    # TODO: This is view logic and should be in a helper
-    @social_quote = I18n.t('i_have_lived_climate_neutral_for_join_me', count: @my_neutral_months)
-    @encoded_social_quote = CGI.escape(@social_quote + ' -> ' + I18n.t('goclimateneutral_url'))
   end
 end
