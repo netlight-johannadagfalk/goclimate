@@ -1,26 +1,19 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'partners/bokanerja'
   root 'welcome#index'
 
-  resources :invoices
-  resources :lifestyle_choices
-  resources :projects
-  resources :stripe_events
-  get 'dashboard/index'
-
-  devise_scope :user do
-    get 'users/edit/payment', to: 'users/registrations#payment', as: 'payment'
-    get 'users/edit/threedsecure', to: 'users/registrations#threedsecure', as: 'threedsecure'
-  end
+  # Devise routes for sessions, registrations & payment
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-  resources :users, only: [:show]
+  devise_scope :user do
+    get 'users/edit/payment', to: 'users/registrations#payment', as: 'payment'
+    get 'users/edit/threedsecure', to: 'users/registrations#threedsecure', as: 'threedsecure'
+  end
 
-  get '/users' => 'dashboard#index', as: :user_root
+  # Content pages
   get 'about', to: 'welcome#about'
   get 'contact', to: 'welcome#contact'
   get 'faq', to: 'welcome#faq'
@@ -30,7 +23,18 @@ Rails.application.routes.draw do
   get 'companies', to: 'welcome#companies'
   get 'admin', to: 'admin#index'
 
-  resources :subscriptions
+  # Partners
+  get 'partners/bokanerja'
+
+  # Dashboard
+  # TODO: Merge these into one route
+  get 'dashboard/index'
+  get '/users' => 'dashboard#index', as: :user_root
+
+  # User profiles
+  resources :users, only: [:show]
+
+  # Gift cards
   resources :gift_cards, only: [:index, :new, :create] do
     collection do
       get 'thank_you'
@@ -43,11 +47,21 @@ Rails.application.routes.draw do
     end
   end
 
+  # Admin
+  resources :invoices
+  resources :lifestyle_choices
+  resources :projects
+  resources :stripe_events
+
+  # Vanity URL redirects
   get '/blog' => redirect('https://www.goclimateneutral.org/blog/')
 
-  # Redirects for old routes
+  # Redirects for old routes. To avoid broken links on the internet, don't remove these.
   get 'klimatkompensera', to: redirect('/')
   get 'friendlyguide', to: redirect('/')
   get 'gift_cards/example', to: redirect(path: '/gift_cards/certificates/example.pdf')
   get 'gift_cards/download', to: redirect { |_, r| "/gift_cards/certificates/#{r.query_parameters['key']}.pdf" }
+
+  # TODO: Remove this dead route
+  resources :subscriptions
 end
