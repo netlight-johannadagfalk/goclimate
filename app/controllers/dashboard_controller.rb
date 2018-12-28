@@ -48,6 +48,13 @@ class DashboardController < ApplicationController
     @social_quote = I18n.t('i_have_lived_climate_neutral_for_join_me', count: @my_neutral_months)
     @encoded_social_quote = CGI.escape(@social_quote + ' -> ' + I18n.t('goclimateneutral_url'))
 
+    # TODO: This is only ever true if the user navigates straight to this page
+    # and is remembered. Logging in through the login form sets last_seen_at to
+    # a current time before reaching here, and going to any other page before
+    # coming here does the same. This results in this popup showing up very
+    # seldomly making its existence not really worth it. Either remove it or
+    # change the logic to something that happens reasonably often to justify
+    # its existence.
     @should_show_share_popup = current_user.last_seen_at < 24.hour.ago
   end
 end
