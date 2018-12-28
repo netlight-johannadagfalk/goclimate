@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
-  class DashboardController < ApplicationController
-    before_action :authenticate_user!
-    before_action do
-      redirect_to new_user_session_path unless current_user && (current_user.id == 2 || current_user == 129)
-    end
-
+  class DashboardController < AdminController
     def index
       @total_co2_bought = Project.all.sum('carbon_offset')
       @total_co2_consumed = Project.total_carbon_offset

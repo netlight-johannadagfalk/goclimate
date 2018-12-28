@@ -1,13 +1,8 @@
 # frozen_string_literal: true
 
 module Admin
-  class InvoicesController < ApplicationController
+  class InvoicesController < AdminController
     before_action :set_invoice, only: [:show, :edit, :update, :destroy]
-
-    before_action :authenticate_user!
-    before_action do
-      redirect_to new_user_session_path unless current_user && current_user.id == 2
-    end
 
     # GET /invoices
     # GET /invoices.json

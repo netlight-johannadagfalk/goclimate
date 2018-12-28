@@ -1,13 +1,8 @@
 # frozen_string_literal: true
 
 module Admin
-  class LifestyleChoicesController < ApplicationController
+  class LifestyleChoicesController < AdminController
     before_action :set_lifestyle_choice, only: [:show, :edit, :update, :destroy]
-
-    before_action :authenticate_user!
-    before_action do
-      redirect_to new_user_session_path unless current_user && current_user.id == 2
-    end
 
     # GET /lifestyle_choices
     # GET /lifestyle_choices.json

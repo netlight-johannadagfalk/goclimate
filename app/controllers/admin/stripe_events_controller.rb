@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
 module Admin
-  class StripeEventsController < ApplicationController
+  class StripeEventsController < AdminController
     before_action :set_stripe_event, only: [:show, :edit, :update, :destroy]
-    before_action do
-      redirect_to new_user_session_path unless current_user && current_user.id == 2
-    end
 
     # GET /stripe_events
     # GET /stripe_events.json
