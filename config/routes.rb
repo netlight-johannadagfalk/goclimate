@@ -54,13 +54,14 @@ Rails.application.routes.draw do
   resources :stripe_events
 
   # Vanity URL redirects
-  get '/blog' => redirect('https://www.goclimateneutral.org/blog/')
+  get '/blog', to: redirect('https://www.goclimateneutral.org/blog/'), as: nil
 
   # Redirects for old routes. To avoid broken links on the internet, don't remove these.
-  get 'klimatkompensera', to: redirect('/')
-  get 'friendlyguide', to: redirect('/')
-  get 'gift_cards/example', to: redirect(path: '/gift_cards/certificates/example.pdf')
-  get 'gift_cards/download', to: redirect { |_, r| "/gift_cards/certificates/#{r.query_parameters['key']}.pdf" }
+  get 'klimatkompensera', to: redirect('/'), as: nil
+  get 'friendlyguide', to: redirect('/'), as: nil
+  get 'gift_cards/example', to: redirect(path: '/gift_cards/certificates/example.pdf'), as: nil
+  get 'gift_cards/download', to: redirect { |_, r| "/gift_cards/certificates/#{r.query_parameters['key']}.pdf" },
+                             as: nil
 
   # TODO: Remove this dead route
   resources :subscriptions
