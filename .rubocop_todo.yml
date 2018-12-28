@@ -10,7 +10,7 @@
 # Configuration parameters: Max.
 Metrics/AbcSize:
   Exclude:
-    - 'app/controllers/admin/admin_controller.rb'
+    - 'app/controllers/admin/dashboard_controller.rb'
     - 'app/controllers/application_controller.rb'
     - 'app/controllers/dashboard_controller.rb'
     - 'app/controllers/gift_cards_controller.rb'
@@ -57,7 +57,7 @@ Metrics/LineLength:
 # Configuration parameters: CountComments, Max, ExcludedMethods.
 Metrics/MethodLength:
   Exclude:
-    - 'app/controllers/admin/admin_controller.rb'
+    - 'app/controllers/admin/dashboard_controller.rb'
     - 'app/controllers/application_controller.rb'
     - 'app/controllers/dashboard_controller.rb'
     - 'app/controllers/gift_cards_controller.rb'

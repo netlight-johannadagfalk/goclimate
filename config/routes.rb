@@ -48,11 +48,11 @@ Rails.application.routes.draw do
 
   # Admin
   namespace :admin do
+    root to: 'dashboard#index'
     resources :invoices
     resources :lifestyle_choices
     resources :projects
     resources :stripe_events
-    get 'admin', to: 'admin#index'
   end
 
   # Vanity URL redirects
