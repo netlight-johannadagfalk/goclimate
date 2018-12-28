@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
-  after_action :set_last_seen_at, if: proc { user_signed_in? }
 
   def render_not_found
     raise ActionController::RoutingError, 'Not found'
@@ -50,11 +49,5 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:stripe_customer_id, :user_name, :country])
     devise_parameter_sanitizer.permit(:account_update, keys: [:user_name, :country])
-  end
-
-  private
-
-  def set_last_seen_at
-    current_user.update_attribute(:last_seen_at, Time.now)
   end
 end
