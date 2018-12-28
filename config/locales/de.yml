@@ -201,12 +201,15 @@ de:
     Der Klimawandel ist die größte Herausforderung unserer Zeit. Loggen Sie sich
     ein, um zu erfahren, wie weit wir im Kampf gegen den Klimawandel schon
     gekommen sind.
-  you_have_lived_climate_neutral_for_one_month: 'Sie sind seit %{months} Monat klimaneutral.'
-  you_have_lived_climate_neutral_for_more_months: 'Sie sind seit %{months} Monaten klimaneutral.'
-  i_have_lived_climate_neutral_for_one_month_join_me: 'Ich lebe seit %{months} Monat klimaneutral! Mach mit!'
-  i_have_lived_climate_neutral_for_more_months_join_me: 'Ich lebe seit %{months} Monaten klimaneutral! Mach mit!'
-  name_have_lived_climate_neutral_for_one_month_join_me: '%{name} lebt seit %{months} Monat klimaneutral!'
-  name_have_lived_climate_neutral_for_more_months_join_me: '%{name} lebt seit %{months} Monaten klimaneutral!'
+  you_have_lived_climate_neutral_for:
+    one: 'Sie sind seit 1 Monat klimaneutral.'
+    other: 'Sie sind seit %{months} Monaten klimaneutral.'
+  i_have_lived_climate_neutral_for_join_me:
+    one: 'Ich lebe seit 1 Monat klimaneutral! Mach mit!'
+    other: 'Ich lebe seit %{count} Monaten klimaneutral! Mach mit!'
+  name_have_lived_climate_neutral_for_join_me:
+    one: '%{name} lebt seit 1 Monat klimaneutral!'
+    other: '%{name} lebt seit %{count} Monaten klimaneutral!'
   tell_your_friends: Weitersagen!
   climate_change_is_best_faced_together: >-
     Sie sind großartig! Da man den Klimawandel am besten gemeinsam bekämpfen
@@ -262,8 +265,9 @@ de:
   cimate_hero_toplist: Topliste Klimahelden
   show_full_toplist: Gesamte Liste anzeigen
   hide_full_toplist: Gesamte Liste verbergen
-  climate_neutral_month: Klimaneutraler Monat
-  climate_neutral_months: Klimaneutrale Monate
+  climate_neutral_months:
+    one: Klimaneutraler Monat
+    other: Klimaneutrale Monate
   climate_country_toplist: Topliste Klimaländer
   total_carbon_offset_by_us: Gesamte gemeinsame Klimakompensation
   read_more_about_investments_on_our_blog: >-
@@ -324,8 +328,9 @@ de:
   click_here: klicken Sie hier
   thank_you_for_saving_our_planet: 'Vielen Dank, dass Sie unseren Planeten retten!'
   you_have_lived_a_climate_neutral_life_for: Sie leben ein klimaneutrales Leben seit
-  months: Monaten
-  month: Monat
+  months:
+    one: Monat
+    other: Monaten
   x_months: 
     one: 1 Monat
     other: "%{count} Monaten"
@@ -793,8 +798,9 @@ de:
     href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a>
   business: Unternehmen
   thats_amazing_from_the_bottom_of_our_hearts: Das ist großartig! Von ganzem Herzen
-  year: Jahr
-  years: Jahr
+  years:
+    one: Jahr
+    other: Jahr
   navigation:
     gift_cards: Gutscheine
   welcome:

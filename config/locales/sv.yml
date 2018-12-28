@@ -108,12 +108,15 @@ sv:
   climate_plan: Kompensation
   go_climate_neutral: Skapa prenumeration
   log_in_to_see_how_we_are_doing: Logga in för att se hur det går i vår kamp med att försöka ställa klimatet till rätta igen.
-  you_have_lived_climate_neutral_for_one_month: Du har levt klimatneutralt i %{months} månad.
-  you_have_lived_climate_neutral_for_more_months: Du har levt klimatneutralt i %{months} månader.
-  i_have_lived_climate_neutral_for_one_month_join_me: Nu har jag levt klimatneutralt i %{months} månad! Join me!
-  i_have_lived_climate_neutral_for_more_months_join_me: Nu har jag levt klimatneutralt i %{months} månader! Join me!
-  name_have_lived_climate_neutral_for_one_month_join_me: '%{name} har levt klimatneutralt i %{months} månad!'
-  name_have_lived_climate_neutral_for_more_months_join_me: '%{name} har levt klimatneutralt i %{months} månader!'
+  you_have_lived_climate_neutral_for:
+    one: Du har levt klimatneutralt i 1 månad.
+    other: Du har levt klimatneutralt i %{count} månader.
+  i_have_lived_climate_neutral_for_join_me:
+    one: Nu har jag levt klimatneutralt i 1 månad! Join me!
+    other: Nu har jag levt klimatneutralt i %{count} månader! Join me!
+  name_have_lived_climate_neutral_for_join_me:
+    one: '%{name} har levt klimatneutralt i 1 månad!'
+    other: '%{name} har levt klimatneutralt i %{count} månader!'
   tell_your_friends: Berätta för dina vänner!
   climate_change_is_best_faced_together: Du är en hjälte! Bäst bromsar vi klimatförändringarna tillsammans, så dela gärna det här så att vi blir fler som lever klimatneutralt!
   one_extra_month_for_every_friend_html: Vi bjuder dig på <b>1 extra klimatneutral månad</b> (värde ca 85 kr) för varje ny kompis du får att bli klimatneutral genom oss!
@@ -148,8 +151,9 @@ sv:
   cimate_hero_toplist: Topplista klimathjältar
   show_full_toplist: Visa hela toplistan
   hide_full_toplist: Göm hela toplistan
-  climate_neutral_month: klimatneutral månad
-  climate_neutral_months: klimatneutrala månader
+  climate_neutral_months:
+    one: klimatneutral månad
+    other: klimatneutrala månader
   climate_country_toplist: Topplista klimatneutrala länder
   read_more_about_investments_on_our_blog: Läs mer om projekten vi investerar i på vår blogg >>
   total_carbon_offset_by_us: Totalt har vi minskat utsläpp på
@@ -197,8 +201,9 @@ sv:
   click_here: klicka här
   thank_you_for_saving_our_planet: Tack för att du är med och räddar vår planet!
   you_have_lived_a_climate_neutral_life_for: Du har varit klimatneutral i
-  months: månader
-  month: månad
+  months:
+    one: månad
+    other: månader
   x_months: 
     one: 1 månad
     other: "%{count} månader"
@@ -408,8 +413,9 @@ sv:
   for_companies_text_html: Vill du klimatkompensera för en flygresa eller för alla era anställda? Vi hjälper dig gärna. Hör av dig till <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> direkt så berättar vi mer.
   business: För företag
   thats_amazing_from_the_bottom_of_our_hearts: Vilket är fantastiskt! Från djupet av våra hjärtan
-  year: år
-  years: år
+  years:
+    one: år
+    other: år
 
   navigation:
     gift_cards: Gåvokort

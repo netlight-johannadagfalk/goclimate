@@ -108,12 +108,15 @@ en:
   climate_plan: Climate Plan
   go_climate_neutral: Go Climate Neutral!
   log_in_to_see_how_we_are_doing: Climate change is the biggest challenge of our time. Log in to see how we are doing in our fight to stop it.
-  you_have_lived_climate_neutral_for_one_month: You have been climate neutral for %{months} month.
-  you_have_lived_climate_neutral_for_more_months: You have been climate neutral for %{months} months.
-  i_have_lived_climate_neutral_for_one_month_join_me: I have lived a climate neutral life for %{months} month! Join me!
-  i_have_lived_climate_neutral_for_more_months_join_me: I have lived a climate neutral life for %{months} months! Join me!
-  name_have_lived_climate_neutral_for_one_month_join_me: '%{name} has lived a climate neutral life for %{months} month now!'
-  name_have_lived_climate_neutral_for_more_months_join_me: '%{name} has lived a climate neutral life for %{months} months now!'
+  you_have_lived_climate_neutral_for:
+    one: You have been climate neutral for 1 month.
+    other: You have been climate neutral for %{months} months.
+  i_have_lived_climate_neutral_for_join_me:
+    one: I have lived a climate neutral life for 1 month! Join me!
+    other: I have lived a climate neutral life for %{count} months! Join me!
+  name_have_lived_climate_neutral_for_join_me:
+    one: '%{name} has lived a climate neutral life for 1 month now!'
+    other: '%{name} has lived a climate neutral life for %{count} months now!'
   tell_your_friends: Tell your friends!
   climate_change_is_best_faced_together: You are awesome! Since climate change is best faced together, it would be great if you want to share the message so that more people can start living climate neutral lives!
   one_extra_month_for_every_friend_html: We give you <b>1 extra climate neutral month</b> (worth about $10) for every new friend that beceomes climate neutral through us!
@@ -148,8 +151,9 @@ en:
   cimate_hero_toplist: Climate Hero Toplist
   show_full_toplist: Show Full Toplist
   hide_full_toplist: Hide Full Toplist
-  climate_neutral_month: climate neutral month
-  climate_neutral_months: climate neutral months
+  climate_neutral_months:
+    one: climate neutral month
+    other: climate neutral months
   climate_country_toplist: Climate Country Toplist
   total_carbon_offset_by_us: Total carbon offsets by us together
   read_more_about_investments_on_our_blog: Read more about the projects we investments in on our blog >>
@@ -197,8 +201,9 @@ en:
   click_here: click here
   thank_you_for_saving_our_planet: Thank you for saving our planet!
   you_have_lived_a_climate_neutral_life_for: You have lived a climate neutral life for
-  months: months
-  month: month
+  months:
+    one: month
+    other: months
   x_months: 
     one: 1 month
     other: "%{count} months"
@@ -388,8 +393,9 @@ en:
   for_companies_text_html: Do you want to carbon offset the emissions from a flight or for all your employees lifestyle? We would love to help. Contact us at <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> now.
   business: For Companies
   thats_amazing_from_the_bottom_of_our_hearts: That's amazing! From the bottom of our hearts
-  year: year
-  years: years
+  years:
+    one: year
+    other: years
 
   navigation:
     gift_cards: Gift Cards
