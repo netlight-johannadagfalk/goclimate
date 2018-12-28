@@ -62,7 +62,4 @@ Rails.application.routes.draw do
   get 'gift_cards/example', to: redirect(path: '/gift_cards/certificates/example.pdf'), as: nil
   get 'gift_cards/download', to: redirect { |_, r| "/gift_cards/certificates/#{r.query_parameters['key']}.pdf" },
                              as: nil
-
-  # TODO: Remove this dead route
-  resources :subscriptions
 end

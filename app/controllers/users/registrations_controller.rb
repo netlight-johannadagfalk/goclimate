@@ -263,7 +263,7 @@ module Users
             subscription.delete
           end
         elsif customer['subscriptions']['total_count'] == 0 && @plan.to_i > 1
-          plan = get_stripe_plan(@plan, new_subscription_path)
+          plan = get_stripe_plan(@plan, edit_user_registration_path)
 
           return if plan == false
 
@@ -276,7 +276,7 @@ module Users
 
           if @plan != current_plan
             subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
-            stripe_plan = get_stripe_plan(@plan, new_subscription_path)
+            stripe_plan = get_stripe_plan(@plan, edit_user_registration_path)
 
             return if stripe_plan == false
 
