@@ -28,7 +28,7 @@ class GiftCardsController < ApplicationController
     @gift_card.save!
 
     begin
-      GiftCardsCheckout.new(params[:stripeToken], @gift_card).checkout
+      GiftCardsCheckout.new(params[:stripeToken], @gift_card, email).checkout
     rescue Stripe::CardError => e
       body = e.json_body
       err  = body[:error]
@@ -37,14 +37,6 @@ class GiftCardsController < ApplicationController
       redirect_to new_gift_card_path(subscription_months_to_gift: params[:subscription_months_to_gift])
       return
     end
-
-    pdf = GiftCardCertificatePDFGenerator.from_gift_card(@gift_card).generate_pdf
-
-    GiftCardMailer.with(
-      email: email,
-      number_of_months: @gift_card.number_of_months,
-      gift_card_pdf: pdf
-    ).gift_card_email.deliver_now
 
     redirect_to(
       thank_you_gift_cards_path,
