@@ -19,23 +19,20 @@ class GiftCardsController < ApplicationController
   def create
     @gift_card = gift_card_from_params
     @currency = currency
-
-    email = params[:stripeEmail]
-
-    # As we're halfway through a payment process and we expect this to always
-    # be valid, better to fail early so we detect any edge cases rather than
-    # silently showing validation errors.
-    @gift_card.save!
-
-    @checkout = GiftCardsCheckout.new(params[:stripeToken], @gift_card, email)
+    @checkout = gift_card_checkout_from_params(@gift_card)
 
     render(:new) && return unless @checkout.checkout
+
+    # As we've already charged the customer and we expect this to always be
+    # valid, better to fail early so we detect any edge cases rather than
+    # silently showing validation errors.
+    @gift_card.save!
 
     redirect_to(
       thank_you_gift_cards_path,
       flash: {
         number_of_months: @gift_card.number_of_months,
-        email: email,
+        email: params[:stripeEmail],
         certificate_key: @gift_card.key
       }
     )
@@ -63,6 +60,10 @@ class GiftCardsController < ApplicationController
       gift_card.number_of_months = params[:subscription_months_to_gift].to_i
       gift_card.currency = currency
     end
+  end
+
+  def gift_card_checkout_from_params(gift_card)
+    GiftCardsCheckout.new(params[:stripeToken], gift_card, params[:stripeEmail])
   end
 
   def currency
