@@ -99,6 +99,8 @@ en:
   sign_up_here_to_start_livint_a_climate_neutral_life: Enter your details below to start the journey towards a climate neutral life.
   email: Email
   password: Password
+  i_accept: I accept 
+  our_privacy_policy: our Privacy policy
   credit_or_debit_card: Credit or debit card
   add_new_card: Add new card
   edit_card: edit card
@@ -379,6 +381,8 @@ en:
                 taken: The email adress already exists, try another one!
                 blank: The email-field looks empty!
                 invalid: The email looks incorrect, try again!
+              privacy_policy: 
+                accepted: You need to accept the pricacy policy
   climate_neutral_users_right_now: climate neutral users right now
   ton_co2_less_in_atmosphere: ton CO2 less in atmosphere
   for_companies: For Companies

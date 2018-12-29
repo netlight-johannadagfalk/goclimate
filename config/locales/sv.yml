@@ -99,6 +99,8 @@ sv:
   sign_up_here_to_start_livint_a_climate_neutral_life: Skriv in dina uppgifter nedan för att börja resan mot ett klimatneutralt liv.
   email: E-post
   password: Lösenord
+  i_accept: Jag godkänner
+  our_privacy_policy: intigritetspolicyn
   credit_or_debit_card: Kortuppgifter
   add_new_card: Nytt kort
   edit_card: ändra kort
@@ -399,6 +401,8 @@ sv:
                 taken: Användaren finns redan registrerad hos oss, prova med en annan e-postadress!
                 blank: E-postfältet ser tomt ut!
                 invalid: E-postadressen ser konstig ut, prova igen!
+              privacy_policy: 
+                accepted: Du behöver acceptera integritetspolocyn för att gå vidare
   climate_neutral_users_right_now: klimatneutrala användare just nu
   ton_co2_less_in_atmosphere: ton CO2 mindre i atmosfären
   for_companies: För företag

@@ -9,6 +9,9 @@ class User < ApplicationRecord
                            foreign_key: 'stripe_customer_id'
   has_and_belongs_to_many :lifestyle_choices
 
+  attr_accessor :privacy_policy
+  validates :privacy_policy, presence: true, acceptance: true
+
   def country_name
     if !country.nil? && !country.empty?
       c = ISO3166::Country[country]
