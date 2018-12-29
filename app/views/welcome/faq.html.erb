@@ -9,12 +9,10 @@
 
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<% questions = t('questions', scope: 'faq_questions') %>
-				<% count = 0 %>
 
 				<div class="panel panel-default questions-list">
 					<ol>
           	<% questions.each do |question| %>
-  	          <% count = count + 1 %>
 	            <li>
 								<a href="#collapse<%= question[0] %>id">
             			<%= question[1][:question] %>
