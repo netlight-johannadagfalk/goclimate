@@ -2,8 +2,6 @@
   <div class="cover-container">
     <%= render "shared/header" %>
 
-    <% questions = t('questions', scope: 'faq_questions') %>
-
     <div class="inner cover faq">
       <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
             
@@ -12,7 +10,7 @@
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default questions-list">
           <ol>
-            <% questions.each do |question| %>
+            <% t('questions', scope: 'faq_questions').each do |question| %>
               <li>
                 <a href="#collapse<%= question[0] %>id">
                   <%= question[1][:question] %>
@@ -22,7 +20,7 @@
           </ol>
         </div>
 
-        <% questions.each.with_index(1) do |question, count| %>
+        <% t('questions', scope: 'faq_questions').each.with_index(1) do |question, count| %>
           <div id="collapse<%= question[0] %>id" ></div>
 
            <div class="panel panel-default">
