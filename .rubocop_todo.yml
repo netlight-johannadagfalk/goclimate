@@ -13,7 +13,6 @@ Metrics/AbcSize:
     - 'app/controllers/admin/dashboard_controller.rb'
     - 'app/controllers/application_controller.rb'
     - 'app/controllers/dashboard_controller.rb'
-    - 'app/controllers/gift_cards_controller.rb'
     - 'app/controllers/users/registrations_controller.rb'
     - 'app/controllers/welcome_controller.rb'
     - 'app/models/lifestyle_choice.rb'
@@ -57,7 +56,6 @@ Metrics/MethodLength:
   Exclude:
     - 'app/controllers/admin/dashboard_controller.rb'
     - 'app/controllers/dashboard_controller.rb'
-    - 'app/controllers/gift_cards_controller.rb'
     - 'app/controllers/users/registrations_controller.rb'
     - 'app/models/stripe_payout.rb'
 

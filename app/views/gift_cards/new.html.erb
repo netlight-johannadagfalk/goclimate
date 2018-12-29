@@ -29,10 +29,10 @@
           </tr>
         </table>
 
-        <% if flash[:error].present? %>
+        <% if @checkout.present? && @checkout.errors.any? %>
             <div id="error_explanation">
-              <p><%= flash[:error] %></p>
-              <p>We are currently not supporting 3dsecure-cards, but we're working on it! Check back soon!</p>
+              <p>The payment unfortunately failed: <%= @checkout.errors.values.join(' ') %></p>
+              <p>We are currently not supporting 3D Secure cards (Verified by VISA/MasterCard SecureCode), but we're working on it! Check back soon!</p>
             </div>
         <% end %>
 

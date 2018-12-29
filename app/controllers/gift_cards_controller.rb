@@ -27,16 +27,9 @@ class GiftCardsController < ApplicationController
     # silently showing validation errors.
     @gift_card.save!
 
-    begin
-      GiftCardsCheckout.new(params[:stripeToken], @gift_card, email).checkout
-    rescue Stripe::CardError => e
-      body = e.json_body
-      err  = body[:error]
-      flash[:error] = 'Something went wrong with the payment'
-      flash[:error] = "The payment unfortunately failed: #{err[:message]}." if err[:message]
-      redirect_to new_gift_card_path(subscription_months_to_gift: params[:subscription_months_to_gift])
-      return
-    end
+    @checkout = GiftCardsCheckout.new(params[:stripeToken], @gift_card, email)
+
+    render(:new) && return unless @checkout.checkout
 
     redirect_to(
       thank_you_gift_cards_path,

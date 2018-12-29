@@ -34,6 +34,10 @@ RSpec.describe GiftCardsCheckout do
       allow(GiftCardMailer).to receive_message_chain(:with, :gift_card_email, :deliver_now)
     end
 
+    it 'returns true when successful' do
+      expect(subject.checkout).to be true
+    end
+
     describe 'Stripe charges' do
       it 'creates Stripe charge with the provided token' do
         subject.checkout
@@ -94,6 +98,32 @@ RSpec.describe GiftCardsCheckout do
         subject.checkout
 
         expect(GiftCardCertificatePDFGenerator).to have_received(:from_gift_card).with(gift_card)
+      end
+    end
+
+    context 'when card gets declined' do
+      let(:card_error) do
+        Stripe::CardError.new('Your card was declined.', nil, 'card_declined')
+      end
+
+      before do
+        allow(Stripe::Charge).to receive(:create).and_raise(card_error)
+      end
+
+      it 'adds error to errors hash' do
+        subject.checkout
+
+        expect(subject.errors).to include(card_declined: 'Your card was declined.')
+      end
+
+      it 'does not send confirmation email' do
+        subject.checkout
+
+        expect(GiftCardMailer).to_not have_received(:with)
+      end
+
+      it 'returns false' do
+        expect(subject.checkout).to be false
       end
     end
   end
