@@ -26,11 +26,32 @@
         <div class="row gift-cards-intro__choose-row">
           <div class="col-xs-12">
             <h2><%= t 'views.gift_cards.index.choose_header' %></h2>
-            <p><%= link_to t('views.gift_cards.new.click_here_for_an_example'), example_gift_cards_path %></p>
+            <p><%= link_to t('views.gift_cards.new.click_here_for_an_example'), example_gift_card_certificates_path(format: :pdf) %></p>
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-12 col-md-4">
+          <div class="col-xs-12 col-md-3">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <%= t 'views.gift_cards.index.1_months_header' %>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <p><%= t 'views.gift_cards.index.1_months_description' %></p>
+                <p class="gift-cards-intro__price"><%= price_string(@gift_card_1_months.price, @gift_card_1_months.currency) %></p>
+              </div>
+              <div class="panel-footer">
+                <p>
+                  <%= link_to I18n.t('views.gift_cards.index.1_months_cta'),
+                    new_gift_card_path(subscription_months_to_gift: 1),
+                    class: 'btn btn-success btn-choose-gift-card',
+                    id: 'choose-1-months' %>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
             <div class="panel panel-success">
               <div class="panel-heading">
                 <h3 class="panel-title">
@@ -45,13 +66,13 @@
                 <p>
                   <%= link_to I18n.t('views.gift_cards.index.3_months_cta'),
                     new_gift_card_path(subscription_months_to_gift: 3),
-                    class: 'btn btn-success',
+                    class: 'btn btn-success btn-choose-gift-card',
                     id: 'choose-3-months' %>
                 </p>
               </div>
             </div>
           </div>
-          <div class="col-xs-12 col-md-4">
+          <div class="col-xs-12 col-md-3">
             <div class="panel panel-success">
               <div class="panel-heading">
                 <h6 class="panel-title">
@@ -66,13 +87,13 @@
                 <p>
                   <%= link_to I18n.t('views.gift_cards.index.6_months_cta'),
                     new_gift_card_path(subscription_months_to_gift: 6),
-                    class: 'btn btn-success',
+                    class: 'btn btn-success btn-choose-gift-card',
                     id: 'choose-6-months' %>
                 </p>
               </div>
             </div>
           </div>
-          <div class="col-xs-12 col-md-4">
+          <div class="col-xs-12 col-md-3">
             <div class="panel panel-success">
               <div class="panel-heading">
                 <h12 class="panel-title">
@@ -87,7 +108,7 @@
                 <p>
                   <%= link_to I18n.t('views.gift_cards.index.12_months_cta'),
                     new_gift_card_path(subscription_months_to_gift: 12),
-                    class: 'btn btn-success',
+                    class: 'btn btn-success btn-choose-gift-card',
                     id: 'choose-12-months' %>
                 </p>
               </div>
@@ -108,6 +129,9 @@
 <%= render "shared/footer" %>
 
 <script type="text/javascript">
+document.getElementById('choose-1-months').addEventListener('click', function() {
+  ga('send', 'event', 'Gift Cards', 'Choose', 'Gift Card 1 months');
+});
 document.getElementById('choose-3-months').addEventListener('click', function() {
   ga('send', 'event', 'Gift Cards', 'Choose', 'Gift Card 3 months');
 });

@@ -1,0 +1,147 @@
+<!doctype html>
+<!--
+  This is the actual gift card. It can be rendered as both html and PDF, thanks
+  to the magic of https://github.com/mileszs/wicked_pdf
+
+  And yes, it needs to be called .erb rather than .html.erb, or else PDF doesn't work.
+
+  This view uses the following variables:
+    @example = true if we should include a big fat EXAMPLE stamp across the gift card
+    @message = the personal message to show (can be empty)
+    @number_of_months = how many months we are offsetting
+-->
+<html>
+  <head>
+    <meta charset='utf-8' />
+  </head>
+  <body>
+
+<div>
+  <!--
+    Best to embed the css here because PDF generating is done by a separate tool (wkhtmltopdf)
+    and it's tricky to figure how that tool will find our separate css files.
+   -->
+  <style scoped>
+    .text {
+      color: #444444;
+      font-family: 'Raleway', sans-serif;
+      margin-top: 10px;
+      margin-left: 20px;
+      margin-right: 20px;
+
+    }
+    .content {
+      position: absolute;
+      top: 10px;
+      text-align: center;
+    }
+
+    .marginTop {
+      margin-top: 50px;
+    }
+
+    .logo {
+      margin-top: 60px;
+    }
+
+    .logoColor {
+      color: #768a78;
+    }
+
+    .message {
+      font-size: 20px;
+      white-space: pre-wrap;
+      margin-left: 50px;
+      margin-right: 50px;
+      border-radius: 25px;
+      padding: 10px;
+      margin-bottom: 50px;
+    }
+
+    .message:not(:empty) {
+      background: #ffffff;
+    }
+
+    a:link, a:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .exampleStamp {
+      position: absolute;
+      top: 540px;
+      left: 90px;
+      color: red;
+      font-size: 100px;
+      font-family: "Impact", Sans-serif;
+      font-weight: bold;
+      opacity: 0.3;
+      transform: rotate(-15deg);
+    }
+
+    /* Mostly for layout testing */
+    .box {
+      border: 0px solid #4e4e4e;
+    }
+
+    .grayText {
+      color: gray;
+    }
+
+    .footer {
+      position: absolute;
+      text-align: center;
+      width: 680px;
+      top: 820px;
+    }
+
+  </style>
+
+
+
+  <div class="background box" style="width: 700px; height: 1025px; background-color: white;">
+    <%= image_tag wicked_pdf_asset_base64('gift-card-background.png'), size: "700x800"%>
+  </div>
+
+  <div class="content" style="width: 700px; height: 1025px">
+    <div class="logo">
+      <%= image_tag wicked_pdf_asset_base64('goclimateneutral_logo.svg'), size: "230x132" %>
+    </div>
+
+    <div class="text logoColor marginTop" style="font-size: 25px;">
+      <%=t 'views.gift_cards.download.gift_card' %>
+    </div>
+
+    <div class="text marginTop" style="font-size: 45px;">
+      <%=t 'views.gift_cards.download.gift_card_x_climate_neutral_months', count: @number_of_months %>
+    </div>
+
+    <div class="text grayText" style="font-size: 12px;">
+      <%=t 'views.gift_cards.download.calculation_based_on_html' %>
+    </div>
+
+    <div class="text message marginTop"><%= @message %></div>
+
+    <% if @example == true %>
+        <div class="exampleStamp">
+          <%= t 'views.gift_cards.example.example' %>
+        </div>
+    <% end %>
+
+  </div>
+
+  <div class="footer">
+    <div class="text grayText" style="font-size: 14px;">
+      <%= raw t 'views.gift_cards.download.about_go_climate_neutral' %>
+    </div>
+
+    <div class="text grayText" style="font-size: 14px;">
+      <%= t 'views.gift_cards.download.do_you_want_to_continue' %> <br>
+      <%= raw t 'views.gift_cards.download.register' %>
+    </div>
+  </div>
+
+</div>
+
+  </body>
+</html>

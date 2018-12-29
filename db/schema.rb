@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_03_173403) do
+ActiveRecord::Schema.define(version: 2018_12_28_173519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "gift_cards", force: :cascade do |t|
+    t.string "key"
+    t.integer "number_of_months"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "invoices", force: :cascade do |t|
     t.integer "amount_in_sek"
@@ -101,7 +109,6 @@ ActiveRecord::Schema.define(version: 2018_11_03_173403) do
     t.string "stripe_customer_id"
     t.string "user_name"
     t.string "country"
-    t.datetime "last_seen_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

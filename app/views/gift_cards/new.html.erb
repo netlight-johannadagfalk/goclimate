@@ -7,19 +7,21 @@
       <h1><%=t 'views.gift_cards.new.your_gift_card_order' %></h1>
 
       <%= form_tag action: :create do %>
-        <div>
-          <label><%=t 'views.gift_cards.new.write_a_message' %> </label>
-          <div><%= text_area_tag :message, '', rows: 4, cols: 40, placeholder: t('views.gift_cards.new.sample_message_html')%></div>
-        </div>
+        <%= fields_for :gift_card_certificate do |f| %>
+          <div>
+            <label><%=t 'views.gift_cards.new.write_a_message' %> </label>
+            <div><%= f.text_area :message, rows: 4, cols: 40, placeholder: t('views.gift_cards.new.sample_message_html')%></div>
+          </div>
+        <% end %>
 
         <p><%=t 'views.gift_cards.new.we_will_send_you_pdf' %></p>
 
-        <p><%= link_to t('views.gift_cards.new.click_here_for_an_example'), example_gift_cards_path(subscription_months_to_gift: params[:subscription_months_to_gift]) %></p>
+        <p><%= link_to t('views.gift_cards.new.click_here_for_an_example'), example_gift_card_certificates_path(subscription_months_to_gift: params[:subscription_months_to_gift], format: :pdf) %></p>
 
         <table class="table checkout-table">
           <tr>
             <td><%=t 'type' %>:</td>
-            <td><%= @gift_card.number_of_months %> <%=t 'months' %></td>
+            <td><%=t 'x_months', count: @gift_card.number_of_months %></td>
           </tr>
           <tr>
             <td><%=t 'price' %>:</td>

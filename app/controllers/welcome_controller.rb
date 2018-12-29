@@ -2,7 +2,7 @@
 
 class WelcomeController < ApplicationController
   def index
-    @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
+    @unique_climate_neutral_users = User.with_active_subscription.count
     @total_carbon_offset = Project.total_carbon_offset
     @lifestyle_choice_co2 = LifestyleChoice.lifestyle_choice_co2
     gon.lifestyle_choice_co2 = @lifestyle_choice_co2
@@ -37,10 +37,10 @@ class WelcomeController < ApplicationController
 
   def transparency
     @projects = Project.all.order(date_bought: :desc)
-    @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
+    @unique_climate_neutral_users = User.with_active_subscription.count
     @total_carbon_offset = Project.total_carbon_offset
     @cost_in_sek = Project.sum(:cost_in_sek)
-    @other_operating_expanses = 73_246 # as of 181031 - found in https://docs.google.com/spreadsheets/d/1RzUCaVqTTxJYjfUMeh3KlTxBpiATy2ViPO3m0LHGpG8/edit#gid=0
+    @other_operating_expanses = 169_403 # as of 181221 - found in https://docs.google.com/spreadsheets/d/1RzUCaVqTTxJYjfUMeh3KlTxBpiATy2ViPO3m0LHGpG8/edit#gid=0
     @payouts_in_sek = (StripePayout.sum(:amount) / 100) + Invoice.sum(:amount_in_sek)
     @results = @payouts_in_sek - (@cost_in_sek + @other_operating_expanses)
   end

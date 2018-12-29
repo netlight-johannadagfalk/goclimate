@@ -22,7 +22,6 @@ gem 'rack-reverse-proxy', '~> 0.12.0', require: 'rack/reverse_proxy'
 # Authentication
 gem 'devise', '~> 4.4.3'
 gem 'devise-i18n', '~> 1.6.2'
-gem 'omniauth', '~> 1.8.1'
 
 # I18n
 gem 'http_accept_language', '~> 2.1.1'
@@ -71,6 +70,7 @@ group :development do
   gem 'guard'
   gem 'guard-rspec', require: false
   gem 'guard-rubocop', require: false
+  gem 'pry-byebug' # Drop `binding.pry` anywhere you want to start debugging
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'

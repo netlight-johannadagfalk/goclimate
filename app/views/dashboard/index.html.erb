@@ -1,12 +1,8 @@
 <%= render "shared/facebook_script" %>
 <%= render "shared/twitter_script" %>
 <%= javascript_tag do %>
-  window.facebookQuote = '<%= @social_quote %>';
+  window.facebookQuote = '<%= I18n.t('i_have_lived_climate_neutral_for_join_me', count: @my_neutral_months) %>';
   window.urlToShare = '<%=t 'goclimateneutral_url' %>'
-<% end %>
-
-<% if @should_show_share_popup %>
-  <%= render "shared/share_popup" %>
 <% end %>
 
       <div class="site-wrapper-inner site-wrapper-first">
@@ -69,14 +65,7 @@
                         <%= count == 11 ? "<div id='user_toplist_collapsed' class='collapse'>".html_safe : "" %>
 
                         <li class="text-left<%= user.id == current_user.id ? " my-stat" : "" %>">
-                          
-                            
-                          <% if user_neutral_months == 1 %>
-                            <%= user_name %> (<%= user_neutral_months %> <%=t 'climate_neutral_month' %>)
-                          <% else %>
-                            <%= user_name %> (<%= user_neutral_months %> <%=t 'climate_neutral_months' %>)
-                          <% end %>
-
+                          <%= user_name %> (<%= user_neutral_months %> <%=t 'climate_neutral_months', count: user_neutral_months %>)
                         </li>                          
 
                       <% end %>
@@ -99,11 +88,7 @@
                       <% count = country.count %>
                       <% country_name = country.country_name || "Unknown" %>
                       <li class="text-left<%= country_name == current_user.country_name ? " my-stat" : "" %>">
-                      <% if count == 1 %>
-                          <%= country_name %> (<%= count %> <%=t 'climate_neutral_month' %>)
-                        <% else %>
-                          <%= country_name %> (<%= count %> <%=t 'climate_neutral_months' %>)
-                        <% end %>
+                        <%= country_name %> (<%= count %> <%=t 'climate_neutral_months', count: count %>)
                       </li>  
                     <% end %>
                     </ol>
@@ -159,13 +144,9 @@
           <div class="inner cover">
             <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
             <h3 class="cover-heading">
-        <% if @my_neutral_months == 1 %>
-          <%=t 'you_have_lived_climate_neutral_for_one_month', months: @my_neutral_months %>
-        <% else %>
-          <%=t 'you_have_lived_climate_neutral_for_more_months', months: @my_neutral_months %>
-        <% end %>
-        <%=t 'good_job' %>
-      </h3>
+              <%=t 'you_have_lived_climate_neutral_for', count: @my_neutral_months %>
+              <%=t 'good_job' %>
+            </h3>
       <p><%=t 'climate_change_is_best_faced_together' %></p>
       <p> </p>
       <div>
@@ -175,7 +156,7 @@
             <a class="btn btn-social btn-lg btn-facebook" id="share-facebook-bottom"><span class="fa fa-facebook"></span> <%=t 'share_on_facebook' %></a>
           </div>
           <div class="col-sm-5">
-            <a class="btn btn-social btn-lg btn-twitter" href="https://twitter.com/intent/tweet?text=<%= @encoded_social_quote %>" data-size="large"><span class="fa fa-twitter"></span> <%=t 'share_on_twitter' %></a>
+            <a class="btn btn-social btn-lg btn-twitter" href="https://twitter.com/intent/tweet?text=<%= encoded_social_quote(@my_neutral_months) %>" data-size="large"><span class="fa fa-twitter"></span> <%=t 'share_on_twitter' %></a>
           </div>
           <div class="col-sm-1"></div>
       </div>

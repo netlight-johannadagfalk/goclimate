@@ -26,7 +26,7 @@ class DashboardController < ApplicationController
     @my_neutral_months = StripeEvent.payments(current_user).where(paid: true).count
     @my_neutral_months = 1 if @my_neutral_months == 0
 
-    @unique_climate_neutral_users = User.distinct.pluck(:stripe_customer_id).count
+    @unique_climate_neutral_users = User.with_active_subscription.count
 
     @user_top_list = User.where("users.stripe_customer_id != ''")
                          .left_joins(:stripe_events)
@@ -43,15 +43,5 @@ class DashboardController < ApplicationController
                             .order(Arel.sql('COUNT(1) DESC'))
 
     @projects = Project.all.order(created_at: :desc).limit(5)
-
-    @social_quote =
-      if @my_neutral_months == 1
-        I18n.t('i_have_lived_climate_neutral_for_one_month_join_me', months: @my_neutral_months)
-      else
-        I18n.t('i_have_lived_climate_neutral_for_more_months_join_me', months: @my_neutral_months)
-      end
-    @encoded_social_quote = CGI.escape(@social_quote + ' -> ' + I18n.t('goclimateneutral_url'))
-
-    @should_show_share_popup = current_user.last_seen_at < 24.hour.ago
   end
 end

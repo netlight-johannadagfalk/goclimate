@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 class GiftCardMailer < ApplicationMailer
-  def gift_card_email
-    email = params[:email]
-    @number_of_months = params[:number_of_months]
-    filename = params[:filename]
+  default asm: { group_id: 21_453 }
 
-    attachments[filename] = params[:file]
+  def gift_card_email
+    @number_of_months = params[:number_of_months]
+
+    attachments['GoClimateNeutral Gift Card.pdf'] = params[:gift_card_pdf]
+
     mail(
-      to: email,
-      subject: I18n.t('gift_card_email_subject'),
-      asm: { group_id: 21_453 }
+      to: params[:email],
+      subject: I18n.t('gift_card_email_subject')
     )
   end
 end

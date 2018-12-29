@@ -8,9 +8,9 @@
 
       <h1 class="cover-heading"><%=t 'views.gift_card_mailer.thank_you_for_buying_gift_card' %></h1>
 
-      <p class="lead"><%=t 'views.gift_card_mailer.you_have_purchased_a_gift_card_with' %> <%= @number_of_months %> <%=t 'views.gift_card_mailer.climate_neutral_months' %>.</p>
+      <p class="lead"><%=t 'views.gift_cards.thank_you.you_have_purchased_a_gift_card_with_x_climate_neutral_months', count: @number_of_months %></p>
 
-      <p class="lead"><a href="/gift_cards/download.pdf"><%=t 'views.gift_cards.thank_you.download_the_gift_card_here'%></a></p>
+      <p class="lead"><%= link_to t('views.gift_cards.thank_you.download_the_gift_card_here'), gift_card_certificate_path(key: @certificate_key, format: :pdf) %></a></p>
 
       <p class="lead"><%=t 'we_have_sent_you_an_email_with_the_gift_card' %>: <%= @email %></p>
 

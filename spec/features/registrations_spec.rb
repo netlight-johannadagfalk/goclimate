@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'stripe_events_consumer'
 
 RSpec.feature 'Registrations', type: :feature, js: true do
   scenario 'New user registers' do
@@ -79,15 +80,14 @@ RSpec.feature 'Registrations', type: :feature, js: true do
         count_emails_sent = ActionMailer::Base.deliveries.count
 
         # Go to payment settings page
-        click_link 'test@example.com'
-        click_link 'Settings'
+        visit '/users/edit'
         find('.registrations-edit', wait: 20)
         click_link 'Payment Settings'
         find('.registrations-payment', wait: 20)
         expect(page).to have_text 'Payment Settings'
 
         # update events
-        StripeEvent.update_events
+        StripeEventsConsumer.new.fetch_and_process
 
         # an email should have been sent
         expect(ActionMailer::Base.deliveries.count).to eq(count_emails_sent + 1)
@@ -112,7 +112,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
         find('.registrations-payment', wait: 20)
 
         # update events
-        StripeEvent.update_events
+        StripeEventsConsumer.new.fetch_and_process
         neutral_months = StripeEvent.payments(User.find_by_email('test@example.com')).where(paid: true).count
         expect(neutral_months).to be(2)
 

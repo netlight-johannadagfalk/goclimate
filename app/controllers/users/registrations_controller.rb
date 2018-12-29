@@ -7,17 +7,15 @@ module Users
 
     prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy, :payment]
 
+    before_action :ensure_valid_new_params, only: [:new]
+    before_action :ensure_valid_create_params, only: [:create]
+
     def after_update_path_for(resource)
       edit_user_registration_path(resource)
     end
 
     # GET /resource/sign_up
     def new
-      if params[:choices].nil? || !params[:choices].include?(',')
-        redirect_to '/#choose-plan'
-        return
-      end
-
       @plan = LifestyleChoice.stripe_plan(params[:choices])
       @currency = currency_for_user
 
@@ -29,85 +27,61 @@ module Users
       @plan = LifestyleChoice.stripe_plan(params[:user][:choices])
       choices = params[:user][:choices].split(',').map(&:to_i)
 
-      begin
-        if params[:user][:choices].nil? || params[:user][:choices].match(/\d+,\d+,\d+,\d/).nil?
-          flash[:error] = I18n.t('something_went_wrong_go_back_one_step_and_try_again')
+      user = User.find_for_authentication(email: params[:user][:email])
+
+      if user.present?
+        if user.stripe_customer_id.present?
+          flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.taken')
           redirect_to new_user_registration_path(choices: params[:user][:choices])
           return
         end
 
-        if params[:user][:email].nil? || params[:user][:email].length < 4
-          flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.blank')
-          redirect_to new_user_registration_path(choices: params[:user][:choices])
-          return
-        end
+        user.delete
+      end
 
-        if params[:user][:password].nil? || params[:user][:password].length < 6
-          flash[:error] = I18n.t('activerecord.errors.models.user.attributes.password.blank')
-          redirect_to new_user_registration_path(choices: params[:user][:choices])
-          return
-        end
+      customer = Stripe::Customer.create(
+        email: params[:user][:email],
+        source: params[:stripeSource]
+      )
 
-        if params[:stripeSource].nil?
-          flash[:error] = 'Oops, an error occured, please try again!'
-          redirect_to new_user_registration_path(choices: params[:user][:choices])
-          return
-        end
-
-        user = User.find_for_authentication(email: params[:user][:email])
-
-        if user.present?
-          if user.stripe_customer_id.nil?
-            user.delete
-          else
-            flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.taken')
-            redirect_to new_user_registration_path(choices: params[:user][:choices])
-            return
-          end
-        end
-
-        customer = Stripe::Customer.create(
-          email: params[:user][:email],
-          source: params[:stripeSource]
+      # 3D Secure is required
+      if params[:threeDSecure] == 'required'
+        source = Stripe::Source.create(
+          amount: (@plan.to_f * 100).round,
+          currency: currency_for_user,
+          type: 'three_d_secure',
+          three_d_secure:
+            {
+              customer: customer.id,
+              card: params[:stripeSource]
+            },
+          redirect:
+            {
+              return_url: threedsecure_url + '?email=' + params[:user][:email] + '&plan=' + @plan.to_s +
+                          '&choices=' + params[:user][:choices] + '&customer=' + customer.id
+            }
         )
 
-        # 3dsecure is required
-        if params[:threeDSecure] == 'required'
-          source = Stripe::Source.create(
-            amount: (@plan.to_f * 100).round,
-            currency: currency_for_user,
-            type: 'three_d_secure',
-            three_d_secure:
-              {
-                customer: customer.id,
-                card: params[:stripeSource]
-              },
-            redirect:
-              {
-                return_url: threedsecure_url + '?email=' + params[:user][:email] + '&plan=' + @plan.to_s +
-                            '&choices=' + params[:user][:choices] + '&customer=' + customer.id
-              }
-          )
+        # Checking if verification is still required
+        # -> https://stripe.com/docs/sources/three-d-secure
+        unless ((source.redirect.status == 'succeeded' || source.redirect.status == 'not_required') && source.three_d_secure.authenticated == false) || source.status == 'failed'
+          user = User.new(email: params[:user][:email], password: params[:user][:password])
+          user.save
 
-          # Checking if verification is still required
-          # -> https://stripe.com/docs/sources/three-d-secure
-          unless ((source.redirect.status == 'succeeded' || source.redirect.status == 'not_required') && source.three_d_secure.authenticated == false) || source.status == 'failed'
-            user = User.new(email: params[:user][:email], password: params[:user][:password])
-            user.save
-
-            choices.each do |choice_id|
-              user.lifestyle_choices << LifestyleChoice.find(choice_id)
-            end
-
-            redirect_to source.redirect.url
-            return
+          choices.each do |choice_id|
+            user.lifestyle_choices << LifestyleChoice.find(choice_id)
           end
+
+          redirect_to source.redirect.url
+          return
         end
+      end
 
-        plan = get_stripe_plan(@plan, new_user_registration_path)
+      plan = get_stripe_plan(@plan, new_user_registration_path)
 
-        return if plan == false
+      return if plan == false
 
+      begin
         Stripe::Subscription.create(
           customer: customer.id,
           plan: plan.id
@@ -121,14 +95,12 @@ module Users
         return
       end
 
-      super
+      super do |created_user|
+        created_user.update(stripe_customer_id: customer.id)
 
-      User.where('lower(email) = ?', params[:user][:email].downcase).update_all(stripe_customer_id: customer.id)
-
-      user = User.find_for_authentication(email: params[:user][:email])
-
-      choices.each do |choice_id|
-        user.lifestyle_choices << LifestyleChoice.find(choice_id)
+        choices.each do |choice_id|
+          created_user.lifestyle_choices << LifestyleChoice.find(choice_id)
+        end
       end
     end
 
@@ -175,7 +147,7 @@ module Users
       else
         flash[:notice] = I18n.t('devise.registrations.signed_up')
         sign_in(user)
-        redirect_to user_root_url
+        redirect_to dashboard_path
       end
     end
 
@@ -291,7 +263,7 @@ module Users
             subscription.delete
           end
         elsif customer['subscriptions']['total_count'] == 0 && @plan.to_i > 1
-          plan = get_stripe_plan(@plan, new_subscription_path)
+          plan = get_stripe_plan(@plan, edit_user_registration_path)
 
           return if plan == false
 
@@ -304,7 +276,7 @@ module Users
 
           if @plan != current_plan
             subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
-            stripe_plan = get_stripe_plan(@plan, new_subscription_path)
+            stripe_plan = get_stripe_plan(@plan, edit_user_registration_path)
 
             return if stripe_plan == false
 
@@ -354,7 +326,7 @@ module Users
 
     # The path used after sign up.
     def after_sign_up_path_for(_resource)
-      dashboard_index_path + '?registered=1'
+      dashboard_path + '?registered=1'
     end
 
     # The path used after sign up for inactive accounts.
@@ -364,6 +336,33 @@ module Users
 
     def update_resource(resource, params)
       resource.update_without_password(params)
+    end
+
+    private
+
+    def ensure_valid_new_params
+      redirect_to '/#choose-plan' if params[:choices].nil? || !params[:choices].include?(',')
+    end
+
+    def ensure_valid_create_params
+      # TODO: Parameter validations should primarily be done as model
+      # validations, but both LifeStyleChoices and User needs refactoring for
+      # this to be possible below. Invalid parameters for anything recoverable
+      # by the initial form should also be handeled by rendering the form again
+      # rather than redirecting back to :new.
+      if params[:user][:choices].nil? || params[:user][:choices].match(/\d+,\d+,\d+,\d/).nil?
+        flash[:error] = I18n.t('something_went_wrong_go_back_one_step_and_try_again')
+        redirect_to new_user_registration_path(choices: params[:user][:choices])
+      elsif params[:user][:email].nil? || params[:user][:email].length < 4
+        flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.blank')
+        redirect_to new_user_registration_path(choices: params[:user][:choices])
+      elsif params[:user][:password].nil? || params[:user][:password].length < 6
+        flash[:error] = I18n.t('activerecord.errors.models.user.attributes.password.blank')
+        redirect_to new_user_registration_path(choices: params[:user][:choices])
+      elsif params[:stripeSource].nil?
+        flash[:error] = 'Oops, an error occured, please try again!'
+        redirect_to new_user_registration_path(choices: params[:user][:choices])
+      end
     end
 
     def get_stripe_plan(plan, error_path)

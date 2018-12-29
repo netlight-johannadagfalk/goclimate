@@ -1,0 +1,74 @@
+      <div class="site-wrapper-inner site-wrapper-first">
+
+        <div class="cover-container">
+
+          <%= render "shared/header" %>
+
+          <div class="inner cover">
+            <span class="glyphicon glyphicon-plane" aria-hidden="true"></span>
+            <h1 class="cover-heading">Klimatkompensera din flygresa!</h1>
+            <p class="lead">GoClimateNeutral.org hjälper BokaNerjas kunder att klimatkompensera sina flygresor. Välj att du vill klimatkompensera när du bokar din resa på <%= link_to 'bokanerja.se', 'https://www.bokanerja.se/' %> så fixar BokaNerja och vi resten!<br><br><br><br><br><br></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-wrapper-inner site-wrapper-second">
+        <div class="cover-container">
+          <div class="inner cover">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            <div class="row stats offset-projects">
+                <div class="col-md-12">
+                    <h1 class="cover-heading">Klimatprojekt som BokaNerja har stöttat</h1>
+                    <p class="lead">BokaNerjas kunder har stöttat följande klimatprojekt när de klimatkompenserat sina flygresor.</p>
+                    <div class="table-responsive">
+                      <table class="table table-striped our-projects">
+                        <tbody>
+                        <tr>
+                          <th></th>
+                          <th><%=t 'project_name' %></th>
+                          <th><%=t 'country' %></th>
+                          <th><%=t 'map' %></th>
+                          <th><%=t 'our_investment_certificate' %></th>
+                          <th><%=t 'date_of_our_investment' %></th>
+                          <th><%=t 'more_info_on_blog' %></th>
+                        </tr>
+                        <% @projects.each do |project| %>  
+                        <tr>
+                          <td><%= image_tag project.image_url, height: "50" %></td>
+                          <td><a href ="<%= project.blog_url %>"><%= project.name %></a></td>
+                          <td><%= project.country %></td>
+                          <td><a href="https://www.google.com/maps?z=15&t=k&q=loc:<%= project.latitude %>+<%= project.longitude %>" target="_blank">Google Maps</a></td>
+                          <% if project.certificate_url.nil? || project.certificate_url.empty? %>
+                            <td>-</td>
+                          <% else %>
+                            <td><a href="<%= project.certificate_url %>"><%=t 'certificate' %></a></td>
+                          <% end %>
+                          <td><%= project.date_bought.to_date %></td>
+                          <td><a href ="<%= project.blog_url %>"><%=t 'read_more' %></a></td>
+                        </tr>
+                        </tbody>
+                      <% end %>
+                    </table>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="second-section" class="site-wrapper-inner site-wrapper-third">
+        <div class="cover-container">
+          <div class="inner cover">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            <h1 class="cover-heading"><%=t 'we_are_100_transparent' %></h1>
+            <p class="lead"><%=t 'section_3_text' %></p>
+            <p class="lead">Kontakta gärna oss om du har några frågor: <%= link_to 'info@goclimateneutral.org', 'mailto:info@goclimateneutral.org' %></p>
+          </div>
+        </div>
+      </div>
+
+      <%= render "shared/footer" %>
+
+<% content_for :javascript_tags do %>
+  <%= javascript_include_tag 'welcome' %>
+<% end %>
