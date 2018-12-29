@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :stripe_events, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
   has_and_belongs_to_many :lifestyle_choices
   scope :with_active_subscription, -> { where.not(stripe_customer_id: nil) }
-  validates :privacy_policy, presence: true, acceptance: true
+  validates :privacy_policy, acceptance: true
 
   attr_accessor :privacy_policy
 
