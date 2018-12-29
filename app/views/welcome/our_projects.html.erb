@@ -35,7 +35,7 @@
                         </tr>
                         <% @projects.each do |project| %>  
                         <tr>
-                          <td><%= image_tag project.image_url, height: "50" %></td>
+                          <td><%= image_tag project.image_url, height: "50", alt: "" %></td>
                           <td><a href ="<%= project.blog_url %>"><%= project.name %></a></td>
                           <td><%= project.country %></td>
                           <td><a href="https://www.google.com/maps?z=15&t=k&q=loc:<%= project.latitude %>+<%= project.longitude %>" target="_blank">Google Maps</a></td>

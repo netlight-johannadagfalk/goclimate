@@ -18,7 +18,7 @@
 	            <% @press_images.each do |image| %>
 	            	<% image_name = "#{image.split('/').last}" %>
 				   	<tr>
-				   		<td><a href="<%= image_path("press/" + image_name) %>"><%= image_tag "press/" + image_name, height: "150"  %></a></td>
+				   		<td><a href="<%= image_path("press/" + image_name) %>"><%= image_tag "press/" + image_name, height: "150", alt: "" %></a></td>
 				   		<td><%= link_to image_name, image_path("press/" + image_name) %></td>
 				   	</tr>
 				<% end %>
@@ -30,7 +30,7 @@
 	            <% @press_social_images.each do |image| %>
 	            	<% image_name = "#{image.split('/').last}" %>
 				   	<tr>
-				   		<td><a href="<%= image_path("press_social/" + image_name) %>"><%= image_tag "press_social/" + image_name, height: "150"  %></a></td>
+				   		<td><a href="<%= image_path("press_social/" + image_name) %>"><%= image_tag "press_social/" + image_name, height: "150", alt: "" %></a></td>
 				   		<td><%= link_to image_name, image_path("press_social/" + image_name) %></td>
 				   	</tr>
 				<% end %>
