@@ -1,7 +1,7 @@
 <%= render "shared/facebook_script" %>
 <%= render "shared/twitter_script" %>
 <%= javascript_tag do %>
-  window.facebookQuote = '<%= @social_quote %>';
+  window.facebookQuote = '<%= social_quote_for(@user.user_name, @neutral_months) %>';
   window.urlToShare = '<%=t 'goclimateneutral_url' %>users/<%= @user.id %>'
 <% end %>
 
@@ -10,7 +10,7 @@
   <%= render "shared/header" %>
     <div class="inner cover">
       <a id="show-video" href=""><span class="glyphicon" aria-hidden="true"><%= image_tag "play.png" %></span></a>
-      <h3 class="cover-heading"><%= @social_quote %></h3>
+      <h3 class="cover-heading"><%= social_quote_for(@user.user_name, @neutral_months) %></h3>
       
       <% if @sharing %>
         <p><%=t 'climate_change_is_best_faced_together' %></p>
@@ -21,7 +21,7 @@
                 <a class="btn btn-social btn-lg btn-facebook" id="share-facebook-bottom"><span class="fa fa-facebook"></span> <%=t 'share_on_facebook' %></a>
               </div>
               <div class="col-sm-5">
-                <a class="btn btn-social btn-lg btn-twitter" href="https://twitter.com/intent/tweet?text=<%= @encoded_social_quote %>" data-size="large"><span class="fa fa-twitter"></span> <%=t 'share_on_twitter' %></a>
+                <a class="btn btn-social btn-lg btn-twitter" href="https://twitter.com/intent/tweet?text=<%= encoded_social_quote_for(@user.user_name, @neutral_months) %>" data-size="large"><span class="fa fa-twitter"></span> <%=t 'share_on_twitter' %></a>
               </div>
               <div class="col-sm-1"></div>
           </div>

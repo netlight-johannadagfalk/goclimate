@@ -1,6 +1,6 @@
 <%=t 'thank_you_for_saving_our_planet' %>
 
-<%=t 'you_have_lived_a_climate_neutral_life_for' %> <%= @climate_neutral_years %> <%= years(@climate_neutral_years) %>.
+<%=t 'you_have_lived_a_climate_neutral_life_for' %> <%= @climate_neutral_years %> <%=t 'years', count: @climate_neutral_years %>.
 
 <%=t 'together_we_have_offset' %> <%= number_with_delimiter(@total_carbon_offset) %> <%=t 'tonnes_CO2' %>.
 

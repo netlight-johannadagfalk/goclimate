@@ -179,7 +179,7 @@
 			<td bgcolor="#edf7f6" role="module-content" style="padding: 0px 0px 0px 0px;">
 			<div style="text-align: center;"><%=t 'you_have_lived_a_climate_neutral_life_for' %></div>
 
-			<div style="text-align: center;"><span style="font-size:72px;"><%= @climate_neutral_years %> <%= years(@climate_neutral_years) %></span></div>
+			<div style="text-align: center;"><span style="font-size:72px;"><%= @climate_neutral_years %> <%=t 'years', count: @climate_neutral_years %></span></div>
 
 <div style="text-align: center;">&nbsp;</div>
 

@@ -32,5 +32,7 @@ module ClimateNeutralLife
       g.routing_specs false
       g.view_specs false
     end
+
+    config.exceptions_app = routes
   end
 end

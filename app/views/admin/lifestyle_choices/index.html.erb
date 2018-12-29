@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lifestyle Choices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Version</th>
+      <th>Co2</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lifestyle_choices.each do |lifestyle_choice| %>
+      <tr>
+        <td><%= lifestyle_choice.name %></td>
+        <td><%= lifestyle_choice.category %></td>
+        <td><%= lifestyle_choice.version %></td>
+        <td><%= lifestyle_choice.co2 %></td>
+        <td><%= link_to 'Show', [:admin, lifestyle_choice] %></td>
+        <td><%= link_to 'Edit', edit_admin_lifestyle_choice_path(lifestyle_choice) %></td>
+        <td><%= link_to 'Destroy', [:admin, lifestyle_choice], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lifestyle Choice', new_admin_lifestyle_choice_path %>

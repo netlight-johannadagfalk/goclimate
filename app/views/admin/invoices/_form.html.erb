@@ -1,0 +1,52 @@
+<%= form_for([:admin, invoice]) do |f| %>
+  <% if invoice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+      <ul>
+      <% invoice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :project_id %>
+    <%= f.number_field :project_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amount_in_sek %>
+    <%= f.number_field :amount_in_sek %>
+  </div>
+
+  <div class="field">
+    <%= f.label :carbon_offset %>
+    <%= f.number_field :carbon_offset %>
+  </div>
+
+  <div class="field">
+    <%= f.label :att %>
+    <%= f.text_field :att %>
+  </div>
+
+  <div class="field">
+    <%= f.label :company_name %>
+    <%= f.text_field :company_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :adress %>
+    <%= f.text_field :adress %>
+  </div>
+
+  <div class="field">
+    <%= f.label :org_nr %>
+    <%= f.text_field :org_nr %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
