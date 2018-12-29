@@ -3,10 +3,10 @@
 class GiftCardCertificatePDFGenerator
   attr_reader :message, :number_of_months, :example
 
-  def self.from_certificate(certificate)
+  def self.from_gift_card(gift_card)
     new(
-      message: certificate.message,
-      number_of_months: certificate.number_of_months
+      message: gift_card.message,
+      number_of_months: gift_card.number_of_months
     )
   end
 

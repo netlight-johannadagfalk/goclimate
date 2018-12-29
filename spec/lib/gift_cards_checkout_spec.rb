@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'gift_cards_checkout'
 
 RSpec.describe GiftCardsCheckout do
-  let(:gift_card) { SubscriptionMonthsGiftCard.new(3, 'SEK') }
+  let(:gift_card) { GiftCard.new(number_of_months: 3, currency: 'sek') }
 
   describe '#initialize' do
     it 'uses provided token and subscription months to gift' do
