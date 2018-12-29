@@ -2,47 +2,47 @@
   <div class="cover-container">
     <%= render "shared/header" %>
 
-		<% questions = t('questions', scope: 'faq_questions') %>
+    <% questions = t('questions', scope: 'faq_questions') %>
 
     <div class="inner cover faq">
-			<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+      <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
             
-			<h1 class="cover-heading"><%=t 'faq' %></h1>
+      <h1 class="cover-heading"><%=t 'faq' %></h1>
 
-			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-				<div class="panel panel-default questions-list">
-					<ol>
-          	<% questions.each do |question| %>
-	            <li>
-								<a href="#collapse<%= question[0] %>id">
-            			<%= question[1][:question] %>
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default questions-list">
+          <ol>
+            <% questions.each do |question| %>
+              <li>
+                <a href="#collapse<%= question[0] %>id">
+                  <%= question[1][:question] %>
                 </a>
-							</li>
+              </li>
             <% end %>
           </ol>
         </div>
 
-				<% questions.each.with_index(1) do |question, count| %>
-					<div id="collapse<%= question[0] %>id" ></div>
+        <% questions.each.with_index(1) do |question, count| %>
+          <div id="collapse<%= question[0] %>id" ></div>
 
-					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="<%= question[0] %>">
-							<h4 class="panel-title">
-								<a role="button" data-toggle="collapse" href="#collapse<%= question[0] %>" aria-expanded="true" aria-controls="collapse<%= question[0] %>">
-									<%= count %>. <%= question[1][:question] %>
-								</a>
-							</h4>
-						</div>
+           <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="<%= question[0] %>">
+              <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapse<%= question[0] %>" aria-expanded="true" aria-controls="collapse<%= question[0] %>">
+                  <%= count %>. <%= question[1][:question] %>
+                </a>
+               </h4>
+            </div>
 
-						<div id="collapse<%= question[0] %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="<%= question[0] %>">
-							<div class="panel-body"><%= raw question[1][:answer] %></div>
-					  </div>
-					</div>
+            <div id="collapse<%= question[0] %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="<%= question[0] %>">
+              <div class="panel-body"><%= raw question[1][:answer] %></div>
+            </div>
+          </div>
 
-					<br>
-				<% end %>
-			</div>
-		</div>
+          <br>
+        <% end %>
+      </div>
+    </div>
   </div>
   
   <%= render "shared/footer" %>
