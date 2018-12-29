@@ -23,10 +23,8 @@
         </div>
 
 				<% questions = t('questions', scope: 'faq_questions') %>
-				<% count = 0 %>
 
-				<% questions.each do |question| %>
-					<% count = count + 1 %>
+				<% questions.each.with_index(1) do |question, count| %>
 
 					<div id="collapse<%= question[0] %>id" ></div>
 
