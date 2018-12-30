@@ -110,7 +110,7 @@ en:
   log_in_to_see_how_we_are_doing: Climate change is the biggest challenge of our time. Log in to see how we are doing in our fight to stop it.
   you_have_lived_climate_neutral_for:
     one: You have been climate neutral for 1 month.
-    other: You have been climate neutral for %{months} months.
+    other: You have been climate neutral for %{count} months.
   i_have_lived_climate_neutral_for_join_me:
     one: I have lived a climate neutral life for 1 month! Join me!
     other: I have lived a climate neutral life for %{count} months! Join me!

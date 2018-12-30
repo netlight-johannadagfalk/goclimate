@@ -203,7 +203,7 @@ de:
     gekommen sind.
   you_have_lived_climate_neutral_for:
     one: 'Sie sind seit 1 Monat klimaneutral.'
-    other: 'Sie sind seit %{months} Monaten klimaneutral.'
+    other: 'Sie sind seit %{count} Monaten klimaneutral.'
   i_have_lived_climate_neutral_for_join_me:
     one: 'Ich lebe seit 1 Monat klimaneutral! Mach mit!'
     other: 'Ich lebe seit %{count} Monaten klimaneutral! Mach mit!'
