@@ -20,6 +20,8 @@
       <th>Longitude</th>
       <th>Latitude</th>
       <th>Carbon offset</th>
+      <th>Carbon offset reserved</th>
+      <th>Carbon offset left</th>
       <th>Cost in SEK</th>
       <th>Date bought</th>
       <th>Country</th>
@@ -41,6 +43,8 @@
         <td><%= project.longitude %></td>
         <td><%= project.latitude %></td>
         <td><%= project.carbon_offset %></td>
+        <td><%= project.invoice.sum(:carbon_offset) %></td>
+        <td><%= (project.carbon_offset.presence || 0) - project.invoice.sum(:carbon_offset) %></td>
         <td><%= project.cost_in_sek %></td>
         <td><%= project.date_bought %></td>
         <td><%= project.country %></td>
