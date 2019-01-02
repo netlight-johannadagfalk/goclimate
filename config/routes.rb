@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '100_percent_transparency', to: 'welcome#transparency'
   get 'our_projects', to: 'welcome#our_projects'
   get 'companies', to: 'welcome#companies'
+  get 'privacy_policy', to: 'welcome#privacy_policy'
 
   # Partners
   get 'partners/bokanerja'

@@ -4,7 +4,7 @@
           <%= render "shared/header" %>
           <div class="inner cover">
             <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-            <h1 class="cover-heading"><%=t 'where_will_my_money_be_used' %></h1>
+            <h1><%=t 'where_will_my_money_be_used' %></h1>
             <p class="lead"><%=t 'we_invest_in_un_climate_projects_that_are_gold_standard_certified' %></p>
 
             <div id="carousel-with-projects" class="carousel slide" data-ride="carousel" data-interval="8000">
@@ -100,16 +100,14 @@
               <%= hidden_field(:user, :choices, :value => params[:choices]) %>
 
               <div class="form-group">
-                <div class="col-sm-1"></div>
-                <label for="email" class="col-sm-4 control-label padding-top"><%=t 'email' %></label>
+                <label for="email" class="col-sm-offset-1 col-sm-4 control-label padding-top"><%=t 'email' %></label>
                 <div class="col-sm-4">
                   <%= f.email_field :email, autofocus: false, id: "email", class: "form-control" %>
                 </div>
               </div>
          
               <div class="form-group">
-                <div class="col-sm-1"></div>
-                <label for="password" class="col-sm-4 control-label padding-top"><%=t 'password' %></label>
+                <label for="password" class="col-sm-offset-1 col-sm-4 control-label padding-top"><%=t 'password' %></label>
                 <div class="col-sm-4">
                 <%= f.password_field :password, autocomplete: "off", id: "password", class: "form-control" %>
                 </div>
@@ -118,8 +116,7 @@
               <%= hidden_field(:user, :stripe_customer_id, :value => "") %>
 
               <div class="form-group stripe-form-group">
-                <div class="col-sm-1"></div>
-                <label for="card-element" class="col-sm-4 control-label"><%=t 'credit_or_debit_card' %></label>
+                <label for="card-element" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'credit_or_debit_card' %></label>
                 <div id="card-element" class="col-sm-4 form-control">
                 <!-- a Stripe Element will be inserted here. -->
                 </div>
@@ -128,14 +125,19 @@
               <div id="card-errors"></div>
 
               <div class="form-group">
-                <div class="col-sm-1"></div>
-                <label class="col-sm-4 control-label"></label>
-                <div class="col-sm-4 "><span class="glyphicon glyphicon glyphicon-lock secured-by-stripe" aria-hidden="true"></span>Secured by Stripe</div>
+                <div class="col-sm-offset-5 col-sm-4 "><span class="glyphicon glyphicon glyphicon-lock secured-by-stripe" aria-hidden="true"></span>Secured by Stripe</div>
               </div>
 
               <div class="form-group">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-offset-3 col-sm-3">
+                <div class="col-sm-offset-5 col-sm-7">
+                <%= f.check_box :privacy_policy %>
+                <label for="user_privacy_policy"><%=t 'i_accept' %> <%= link_to I18n.t('our_privacy_policy'), privacy_policy_path, target: '_blank' %></a></label>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-3">
                 <button id="register-button" type="submit" class="btn btn-success" onclick="this.disabled=true; this.value='Submitting...'; $('#payment-form').submit();"><%=t 'go_climate_neutral' %></button>
                 </div>
               </div>

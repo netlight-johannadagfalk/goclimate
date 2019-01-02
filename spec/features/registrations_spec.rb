@@ -17,6 +17,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       find('input[name=exp-date]').send_keys '522'
       find('input[name=cvc]').send_keys '123'
     end
+    check 'I accept our Privacy policy'
     click_button 'Go Climate Neutral!'
 
     # Wait for success page to render
@@ -39,6 +40,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       find('input[name=exp-date]').send_keys '522'
       find('input[name=cvc]').send_keys '123'
     end
+    check 'I accept our Privacy policy'
     click_button 'Go Climate Neutral!'
 
     # Wait for 3dsecure page to render
@@ -66,6 +68,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
           find('input[name=exp-date]').send_keys '522'
           find('input[name=cvc]').send_keys '123'
         end
+        check 'I accept our Privacy policy'
         click_button 'Go Climate Neutral!'
 
         # Wait for 3dsecure page to render

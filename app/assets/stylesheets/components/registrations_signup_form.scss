@@ -1,0 +1,26 @@
+.registrations-new {
+    .form-group input { 
+        text-align: left; 
+    }
+    input#user_privacy_policy { 
+        width: 25px;
+        margin-top: 4px;
+        transform: scale(1.3) !important;
+    }
+    input#user_privacy_policy + label {
+        font-weight: normal;
+    }
+    input#user_privacy_policy + label a {
+        text-decoration: underline;
+    }
+    .field_with_errors .message {
+        display: block;
+    }
+    .form-horizontal {
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+    .lead {
+        margin-top: 20px;
+    }
+}

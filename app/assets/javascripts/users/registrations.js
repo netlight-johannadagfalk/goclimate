@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-
 	function scrollToAnchor(aid){
 		var aTag = $(aid);
 		$('html,body').animate({scrollTop: aTag.offset().top},'slow');
@@ -72,6 +71,14 @@ $(document).ready(function() {
 		  }
 		});
 
+		$('#user_privacy_policy').click(function() {
+			if ($('#user_privacy_policy').is(':checked')) {
+		  		$('#register-button').prop('disabled', false);
+			} else {
+				$('#register-button').prop('disabled', true);
+			}
+		});
+
 		$('#payment-form').on('submit', function(event) {
 
 		  if ($('#new-card-div').length && $('#new-card-div').hasClass("hidden")) {
@@ -92,7 +99,9 @@ $(document).ready(function() {
 			      } else {
 			      	$('#card-errors').textContent = result.error.message;
 			      }
-			      $('#register-button').prop('disabled', false);
+			      if ($('#user_privacy_policy').is(':checked')) {
+			      	$('#register-button').prop('disabled', false);
+			      }
 			    } else {
 			      // Send the source to your server
 			      stripeSourceHandler(result.source);

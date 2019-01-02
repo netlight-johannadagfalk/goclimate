@@ -44,4 +44,7 @@ class WelcomeController < ApplicationController
     @payouts_in_sek = (StripePayout.sum(:amount) / 100) + Invoice.sum(:amount_in_sek)
     @results = @payouts_in_sek - (@cost_in_sek + @other_operating_expanses)
   end
+
+  def privacy_policy
+  end
 end

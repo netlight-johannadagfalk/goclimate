@@ -15,6 +15,8 @@
  *= require components/impact_calculator_fields
  *= require components/navbar_goclimateneutral
  *= require components/gift_cards_intro
+ *= require components/registrations_signup_form
+
  *= require bootstrap-social
  */
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
@@ -136,6 +138,14 @@ ul.nav.nav-tabs li.active a {
   line-height: 1.5;
   margin-bottom: 25px;
 }
+.legal p {
+  margin-bottom: 20px;
+}
+div.legal {
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+}
 #error_explanation {
   color: red;
 }
@@ -146,6 +156,8 @@ ul.nav.nav-tabs li.active a {
 }
 .field_with_errors {
   text-align: left;
+}
+.field_with_errors .message {
   color: red;
 }
 .share-buttons {
@@ -393,22 +405,7 @@ p.lead a {
         text-align: left; 
     }
     .btn {
-      margin-bottom: 100px;
-    }
-}
-.registrations-new {
-    .form-group input { 
-        text-align: left; 
-    }
-    .form-horizontal {
-        margin-top: 20px;
-        margin-bottom: 50px;
-    }
-    .lead {
-        margin-top: 20px;
-    }
-    .site-wrapper .site-wrapper-first {
-        background-image: image-url("background-illustrated.png");
+        margin-bottom: 100px;
     }
 }
 .mastfoot {
@@ -429,6 +426,7 @@ div.profile {
   color: #777777;
   margin-right: 6px;
   padding-top: 0px;
+  margin-left: 2px;
 }
 .stripe-form-group {
   margin-bottom: 0px;

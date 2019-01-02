@@ -6,8 +6,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :stripe_events, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
   has_and_belongs_to_many :lifestyle_choices
-
   scope :with_active_subscription, -> { where.not(stripe_customer_id: nil) }
+
+  # accessor and validator of :privacy_policy are only here for client side validation via the ClientSideValidations gem
+  validates :privacy_policy, acceptance: true
+  attr_accessor :privacy_policy
 
   def country_name
     if !country.nil? && !country.empty?
