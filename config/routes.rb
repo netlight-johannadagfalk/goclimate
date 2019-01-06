@@ -82,6 +82,12 @@ Rails.application.routes.draw do
 
   resource :impact_statistics, only: [:show], format: true, constraints: { format: :csv }
 
+  # User
+  namespace :users do
+    get 'receipts/index'
+    get 'receipts/show/:stripe_event_id', to: 'receipts#show', as: 'receipts_show'
+  end
+
   # Errors
   match '/404', to: 'errors#not_found', via: :all
   match '/422', to: 'errors#unprocessable_entity', via: :all
