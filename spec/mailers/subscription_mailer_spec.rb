@@ -23,7 +23,7 @@ RSpec.describe SubscriptionMailer, type: :mailer do
     end
 
     it 'sets Sendgrid unsubscribe group' do
-      expect(mail['asm'].value).to eq('{:group_id=>16739}')
+      expect(mail['asm'].value).to eq("{:group_id=>#{SENDGRID_ASM_GROUP_IDS[:subscription]}}")
     end
   end
 

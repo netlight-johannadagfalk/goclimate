@@ -5,7 +5,7 @@ class SubscriptionMailer < ApplicationMailer
   before_action { I18n.locale = @user.language }
 
   default to: -> { @user.email },
-          asm: { group_id: 16_739 }
+          asm: { group_id: SENDGRID_ASM_GROUP_IDS[:subscription] }
 
   helper :subscription_mailer
 

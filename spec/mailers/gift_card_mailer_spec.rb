@@ -46,5 +46,9 @@ RSpec.describe GiftCardMailer, type: :mailer do
       expect(attachment.filename).to eql('GoClimateNeutral Gift Card.pdf')
       expect(attachment.body).to be_present
     end
+
+    it 'sets Sendgrid unsubscribe group' do
+      expect(mail['asm'].value).to eq("{:group_id=>#{SENDGRID_ASM_GROUP_IDS[:gift_card]}}")
+    end
   end
 end
