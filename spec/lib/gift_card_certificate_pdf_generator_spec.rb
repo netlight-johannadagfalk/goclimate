@@ -4,19 +4,19 @@ require 'rails_helper'
 require 'gift_card_certificate_pdf_generator'
 
 RSpec.describe GiftCardCertificatePDFGenerator do
-  describe '#from_certificate' do
-    let(:certificate) { build(:gift_card) }
+  describe '#from_gift_card' do
+    let(:gift_card) { build(:gift_card) }
 
-    it 'uses message from certificate' do
-      generator = GiftCardCertificatePDFGenerator.from_certificate(certificate)
+    it 'uses message from gift_card' do
+      generator = GiftCardCertificatePDFGenerator.from_gift_card(gift_card)
 
-      expect(generator.message).to eq certificate.message
+      expect(generator.message).to eq gift_card.message
     end
 
-    it 'uses number_of_months from certificate' do
-      generator = GiftCardCertificatePDFGenerator.from_certificate(certificate)
+    it 'uses number_of_months from gift_card' do
+      generator = GiftCardCertificatePDFGenerator.from_gift_card(gift_card)
 
-      expect(generator.number_of_months).to eq certificate.number_of_months
+      expect(generator.number_of_months).to eq gift_card.number_of_months
     end
   end
 
