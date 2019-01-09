@@ -10,10 +10,6 @@ module Users
     before_action :ensure_valid_new_params, only: [:new]
     before_action :ensure_valid_create_params, only: [:create]
 
-    def after_update_path_for(resource)
-      edit_user_registration_path(resource)
-    end
-
     # GET /resource/sign_up
     def new
       @plan = LifestyleChoice.stripe_plan(params[:choices])
@@ -327,6 +323,10 @@ module Users
     # The path used after sign up.
     def after_sign_up_path_for(_resource)
       dashboard_path + '?registered=1'
+    end
+
+    def after_update_path_for(resource)
+      edit_user_registration_path(resource)
     end
 
     # The path used after sign up for inactive accounts.
