@@ -17,7 +17,7 @@ class GiftCardsController < ApplicationController
   end
 
   def create
-    @gift_card = gift_card_from_params
+    @gift_card = gift_card_from_form_fields
     @currency = currency
     @checkout = gift_card_checkout_from_params(@gift_card)
 
@@ -49,16 +49,15 @@ class GiftCardsController < ApplicationController
   private
 
   def new_gift_card_from_params
-    GiftCard.new.tap do |gift_card|
-      gift_card.number_of_months = params[:subscription_months_to_gift].to_i
-      gift_card.currency = currency
-    end
+    GiftCard.new(
+      number_of_months: params[:subscription_months_to_gift].to_i,
+      currency: currency
+    )
   end
 
-  def gift_card_from_params
-    GiftCard.new(params.require(:gift_card).permit(:message)).tap do |gift_card|
-      gift_card.number_of_months = params[:subscription_months_to_gift].to_i
-      gift_card.currency = currency
+  def gift_card_from_form_fields
+    new_gift_card_from_params.tap do |gift_card|
+      gift_card.attributes = params.require(:gift_card).permit(:message)
     end
   end
 
