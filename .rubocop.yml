@@ -36,6 +36,7 @@ Metrics/BlockLength:
     - 'feature'
     - 'describe'
     - 'context'
+    - 'scenario'
     - 'draw'
     - 'configure'
 
