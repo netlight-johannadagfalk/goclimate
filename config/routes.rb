@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'users/edit/payment', to: 'users/registrations#payment', as: 'payment'
     get 'users/edit/threedsecure', to: 'users/registrations#threedsecure', as: 'threedsecure'
+    get 'users/threedsecure_create', to: 'users/registrations#create', as: 'user_registration_threedsecure',
+                                     defaults: { three_d_secure: 'continue' }
   end
 
   # Content pages
