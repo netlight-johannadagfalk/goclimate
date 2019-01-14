@@ -8,7 +8,9 @@ RSpec.describe StripeEventsConsumer do
 
   describe '.fetch_and_process' do
     before do
-      allow(Stripe::Event).to receive(:list).and_return(stripe_json_fixture('events_list.json'))
+      allow(Stripe::Event).to receive(:list).and_return(
+        Stripe::Event.construct_from(stripe_json_fixture('events_list.json'))
+      )
       allow(subject).to receive(:process)
     end
 
@@ -21,7 +23,7 @@ RSpec.describe StripeEventsConsumer do
 
   describe '.process' do
     let(:user) { create(:user, stripe_customer_id: 'customer_test_id') }
-    let(:paid_charge_event) { stripe_json_fixture('paid_charge_event.json') }
+    let(:paid_charge_event) { Stripe::Event.construct_from(stripe_json_fixture('paid_charge_event.json')) }
 
     it 'creates a StripeEvent' do
       subject.process(paid_charge_event)
@@ -82,7 +84,9 @@ RSpec.describe StripeEventsConsumer do
     end
 
     context 'with gift card charge event' do
-      let(:gift_card_charge_event) { stripe_json_fixture('gift_card_charge_event.json') }
+      let(:gift_card_charge_event) do
+        Stripe::Event.construct_from(stripe_json_fixture('gift_card_charge_event.json'))
+      end
 
       it 'creates a gift card StripeEvent' do
         subject.process(gift_card_charge_event)
@@ -95,7 +99,7 @@ RSpec.describe StripeEventsConsumer do
     end
 
     context 'when Stripe returns list including unpaid charge' do
-      let(:unpaid_charge_event) { stripe_json_fixture('unpaid_charge_event.json') }
+      let(:unpaid_charge_event) { Stripe::Event.construct_from(stripe_json_fixture('unpaid_charge_event.json')) }
 
       it 'creates a StripeEvent' do
         subject.process(unpaid_charge_event)
@@ -105,7 +109,9 @@ RSpec.describe StripeEventsConsumer do
     end
 
     context 'when Stripe returns list including event with no Stripe customer' do
-      let(:paid_charge_event_no_customer) { stripe_json_fixture('paid_charge_event_no_customer.json') }
+      let(:paid_charge_event_no_customer) do
+        Stripe::Event.construct_from(stripe_json_fixture('paid_charge_event_no_customer.json'))
+      end
 
       it 'does not send email' do
         expect(SubscriptionMailer).not_to receive(:with)
