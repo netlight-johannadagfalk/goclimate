@@ -143,7 +143,7 @@ module Users
       end
     end
 
-    def create_new_threedsecure_subsctiption(customer_id, plan_id)
+    def create_new_threedsecure_subscription(customer_id, plan_id)
       subscriptions = Stripe::Subscription.list(customer: customer_id)
       subscriptions.each(&:delete)
 
