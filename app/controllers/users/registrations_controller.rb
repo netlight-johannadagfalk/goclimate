@@ -131,15 +131,7 @@ module Users
 
       User.where('lower(email) = ?', params[:email].downcase).update_all(stripe_customer_id: params[:customer])
 
-      Stripe::Subscription.create(
-        customer: params[:customer],
-        items: [
-          {
-            plan: plan.id
-          }
-        ],
-        trial_end: 1.month.from_now.to_i
-      )
+      create_new_threedsecure_subscription(params[:customer], plan.id)
 
       if !params[:updatecard].nil? && params[:updatecard] == '1'
         flash[:notice] = I18n.t('your_payment_details_have_been_updated')
@@ -149,6 +141,21 @@ module Users
         sign_in(user)
         redirect_to dashboard_path
       end
+    end
+
+    def create_new_threedsecure_subscription(customer_id, plan_id)
+      subscriptions = Stripe::Subscription.list(customer: customer_id)
+      subscriptions.each(&:delete)
+
+      Stripe::Subscription.create(
+        customer: customer_id,
+        items: [
+          {
+            plan: plan_id
+          }
+        ],
+        trial_end: 1.month.from_now.to_i
+      )
     end
 
     # GET /resource/edit
