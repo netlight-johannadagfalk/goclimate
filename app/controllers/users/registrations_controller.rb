@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'three_d_secure_verification'
+
 module Users
   class RegistrationsController < Devise::RegistrationsController
     # before_action :configure_sign_up_params, only: [:create]
@@ -29,48 +31,21 @@ module Users
         return
       end
 
-      customer =
-        if (customer_id = session.to_hash.dig('three_d_secure_handoff', 'customer_id')).present?
-          Stripe::Customer.retrieve(customer_id)
-        else
-          Stripe::Customer.create(
-            email: params[:user][:email],
-            source: params[:stripeSource]
-          )
-        end
       @plan = LifestyleChoice.stripe_plan(choices_params)
+      plan = get_stripe_plan(@plan, new_user_registration_path)
+      return if plan == false
 
-      # 3D Secure is required
-      if params[:threeDSecure] == 'required'
-        source = Stripe::Source.create(
-          amount: (@plan.to_f * 100).round,
-          currency: currency_for_user,
-          type: 'three_d_secure',
-          three_d_secure:
-            {
-              customer: customer.id,
-              card: params[:stripeSource]
-            },
-          redirect: { return_url: user_registration_threedsecure_url }
-        )
-
-        # Checking if verification is still required
-        # -> https://stripe.com/docs/sources/three-d-secure
-        unless ((source.redirect.status == 'succeeded' || source.redirect.status == 'not_required') && source.three_d_secure.authenticated == false) || source.status == 'failed'
-          session[:three_d_secure_handoff] = {
-            'sign_up_params' => sign_up_params,
-            'customer_id' => customer.id,
-            'choices' => params[:user][:choices]
-          }
-
-          redirect_to source.redirect.url
-          return
-        end
+      if params[:threeDSecure] == 'required' && (verification = create_three_d_secure_verification(plan)).verification_required?
+        session[:three_d_secure_handoff] = three_d_secure_handoff_hash
+        redirect_to verification.redirect_url
+        return
       end
 
-      plan = get_stripe_plan(@plan, new_user_registration_path)
-
-      return if plan == false
+      customer =
+        Stripe::Customer.create(
+          email: user.email,
+          source: card_source_param
+        )
 
       if params['three_d_secure'] == 'continue'
         source = Stripe::Source.retrieve(params['source'])
@@ -376,6 +351,27 @@ module Users
 
     def choices_params
       session.to_hash.dig('three_d_secure_handoff', 'choices') || params[:user][:choices]
+    end
+
+    def card_source_param
+      session.to_hash.dig('three_d_secure_handoff', 'card_source') || params[:stripeSource]
+    end
+
+    def three_d_secure_handoff_hash
+      {
+        'sign_up_params' => sign_up_params,
+        'choices' => choices_params,
+        'card_source' => card_source_param
+      }
+    end
+
+    def create_three_d_secure_verification(plan)
+      ThreeDSecureVerification.new(
+        card_source_param,
+        plan.amount,
+        plan.currency,
+        user_registration_threedsecure_url
+      )
     end
 
     def get_stripe_plan(plan, error_path)

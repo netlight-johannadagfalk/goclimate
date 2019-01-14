@@ -1,0 +1,18 @@
+{
+  "id": "src_1DsYYbHwuhGySQCdbfb4Axnw",
+  "object": "source",
+  "amount": 360,
+  "client_secret": "src_client_secret_ELF2UFftBkL5jZWGhisXpUpr",
+  "created": 1547484301,
+  "currency": "usd",
+  "flow": "redirect",
+  "livemode": false,
+  "metadata": {},
+  "owner": {"address":{"city":null,"country":null,"line1":"","line2":null,"postal_code":null,"state":null},"email":null,"name":null,"phone":null,"verified_address":null,"verified_email":null,"verified_name":null,"verified_phone":null},
+  "redirect": {"failure_reason":null,"return_url":"http://127.0.0.1:52824/users/threedsecure_create","status":"pending","url":"https://hooks.stripe.com/redirect/authenticate/src_1DsYYbHwuhGySQCdbfb4Axnw?client_secret=src_client_secret_ELF2UFftBkL5jZWGhisXpUpr"},
+  "statement_descriptor": null,
+  "status": "failed",
+  "three_d_secure": {"customer":"cus_ELF2T7hsbBjfMl","card":"src_1DsYYYHwuhGySQCdGLuza7GY","brand":"Visa","country":"US","cvc_check":"pass","exp_month":5,"exp_year":2022,"fingerprint":"nzH1WYKwGPJtfUhD","funding":"credit","last4":"3063","three_d_secure":"required","authenticated":false,"name":null,"address_line1_check":null,"address_zip_check":null,"tokenization_method":null,"dynamic_last4":null},
+  "type": "three_d_secure",
+  "usage": "single_use"
+}
