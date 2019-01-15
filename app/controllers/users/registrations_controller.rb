@@ -43,16 +43,12 @@ module Users
 
       render_errors && return unless @sign_up.sign_up
 
+      user.stripe_customer_id = @sign_up.customer.id
+      user.lifestyle_choice_ids = choices_params.split(',').map(&:to_i)
+
       # User is validated at the top of this method, so a failure here, after
       # we charged, is considered exceptional.
       user.save!
-
-      user.update(stripe_customer_id: @sign_up.customer.id)
-
-      choices = choices_params.split(',').map(&:to_i)
-      choices.each do |choice_id|
-        user.lifestyle_choices << LifestyleChoice.find(choice_id)
-      end
 
       set_flash_message!(:notice, :signed_up)
       sign_up(resource_name, user)
