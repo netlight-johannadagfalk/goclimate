@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'subscription_sign_up'
 require 'three_d_secure_verification'
 
 module Users
@@ -41,58 +42,25 @@ module Users
         return
       end
 
-      customer =
-        Stripe::Customer.create(
-          email: user.email,
-          source: card_source_param
-        )
+      @sign_up = SubscriptionSignUp.new(plan, card_source_param, user.email)
+      @sign_up.three_d_secure_source = params['source'] if params['three_d_secure'] == 'continue'
 
-      if params['three_d_secure'] == 'continue'
-        source = Stripe::Source.retrieve(params['source'])
-
-        if source.status == 'failed'
-          flash[:error] = 'Something went wrong with the payment, please check if your card is chargable and try again.'
-          redirect_to new_user_registration_path(choices: choices_params)
-          return
-        end
-
-        Stripe::Charge.create(
-          amount: plan.amount,
-          currency: plan.currency,
-          source: params['source'],
-          customer: customer.id
-        )
-
-        Stripe::Subscription.create(
-          customer: customer.id,
-          items: [
-            {
-              plan: plan.id
-            }
-          ],
-          trial_end: 1.month.from_now.to_i
-        )
-      else
-        begin
-          Stripe::Subscription.create(
-            customer: customer.id,
-            plan: plan.id
-          )
-        rescue Stripe::CardError => e
-          body = e.json_body
-          err  = body[:error]
-          flash[:error] = 'Something went wrong with the payment'
-          flash[:error] = "The payment failed: #{err[:message]}" if err[:message]
-          redirect_to new_user_registration_path(choices: params[:user][:choices])
-          return
-        end
+      begin
+        @sign_up.sign_up
+      rescue Stripe::CardError => e
+        body = e.json_body
+        err  = body[:error]
+        flash[:error] = 'Something went wrong with the payment'
+        flash[:error] = "The payment failed: #{err[:message]}" if err[:message]
+        redirect_to new_user_registration_path(choices: params[:user][:choices])
+        return
       end
 
       # User is validated at the top of this method, so a failure here, after
       # we charged, is considered exceptional.
       user.save!
 
-      user.update(stripe_customer_id: customer.id)
+      user.update(stripe_customer_id: @sign_up.customer.id)
 
       choices = choices_params.split(',').map(&:to_i)
       choices.each do |choice_id|
