@@ -88,15 +88,23 @@
             <p class="lead"><%=t 'you_will_offset_for', cost: @plan %>. <%=t 'sign_up_here_to_start_livint_a_climate_neutral_life' %></p>
             <span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span>
       
-            <% if flash[:error].present? %>
+            <% if flash[:error].present? || resource.errors.any? || (@sign_up.present? && @sign_up.errors.any?) %>
               <div id="error_explanation">
-                <p><%= flash[:error] %></p>
+                <% if flash[:error].present? %>
+                  <p><%= flash[:error] %></p>
+                <% end %>
+                <% if resource.errors.any? %>
+                  <% resource.errors.values.flatten.each do |message| %>
+                    <p><%= message %></p>
+                  <% end %>
+                <% end %>
+                <% if @sign_up.present? && @sign_up.errors.any? %>
+                  <p>The payment failed: <%= @sign_up.errors.values.join(' ') %></p>
+                <% end %>
               </div>
             <% end %>
 
             <%= form_for(resource, as: resource_name, validate: true, url: registration_path(resource_name), html: {id: "payment-form", :class => "form-horizontal"}) do |f| %>
-              <%= devise_error_messages! %>
-
               <%= hidden_field(:user, :choices, :value => params[:choices]) %>
 
               <div class="form-group">

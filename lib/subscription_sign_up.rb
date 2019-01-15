@@ -1,19 +1,26 @@
 # frozen_string_literal: true
 
 class SubscriptionSignUp
-  attr_reader :plan, :card_source, :email, :customer
+  attr_reader :plan, :card_source, :email, :customer, :errors
   attr_accessor :three_d_secure_source
 
   def initialize(plan, card_source, email)
     @plan = plan
     @card_source = card_source
     @email = email
+    @errors = {}
   end
 
   def sign_up
     create_customer
     perform_intial_three_d_secure_charge_if_applicable
     create_subscription
+
+    true
+  rescue Stripe::CardError => error
+    errors[error.code.to_sym] = error.message
+
+    false
   end
 
   private

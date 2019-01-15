@@ -26,6 +26,10 @@ RSpec.describe SubscriptionSignUp do
   end
 
   describe '.sign_up' do
+    it 'returns true indicating success' do
+      expect(subject.sign_up).to be(true)
+    end
+
     describe 'customer creation' do
       it 'creates a new customer' do
         subject.sign_up
@@ -75,6 +79,26 @@ RSpec.describe SubscriptionSignUp do
         subject.sign_up
 
         expect(Stripe::Subscription).to_not have_received(:create).with(hash_including(:trial_end))
+      end
+
+      context 'when encoutering card errors' do
+        let(:card_error) do
+          Stripe::CardError.new('Your card was declined.', nil, 'card_declined')
+        end
+
+        before do
+          allow(Stripe::Subscription).to receive(:create).and_raise(card_error)
+        end
+
+        it 'adds error to errors hash' do
+          subject.sign_up
+
+          expect(subject.errors).to include(card_declined: 'Your card was declined.')
+        end
+
+        it 'returns false' do
+          expect(subject.sign_up).to be false
+        end
       end
 
       context 'when 3D Secure source is set' do

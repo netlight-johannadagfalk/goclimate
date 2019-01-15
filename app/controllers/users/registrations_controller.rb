@@ -23,14 +23,10 @@ module Users
 
     # POST /resource
     def create
-      user = User.new(sign_up_params)
+      user = self.resource = User.new(sign_up_params)
 
       # Don't wait until after we've charged to figure out that the User record is invalid
-      unless user.valid?
-        user.clean_up_passwords
-        render :new
-        return
-      end
+      render_errors && return unless user.valid?
 
       @plan = LifestyleChoice.stripe_plan(choices_params)
       plan = get_stripe_plan(@plan, new_user_registration_path)
@@ -45,16 +41,7 @@ module Users
       @sign_up = SubscriptionSignUp.new(plan, card_source_param, user.email)
       @sign_up.three_d_secure_source = params['source'] if params['three_d_secure'] == 'continue'
 
-      begin
-        @sign_up.sign_up
-      rescue Stripe::CardError => e
-        body = e.json_body
-        err  = body[:error]
-        flash[:error] = 'Something went wrong with the payment'
-        flash[:error] = "The payment failed: #{err[:message]}" if err[:message]
-        redirect_to new_user_registration_path(choices: params[:user][:choices])
-        return
-      end
+      render_errors && return unless @sign_up.sign_up
 
       # User is validated at the top of this method, so a failure here, after
       # we charged, is considered exceptional.
@@ -301,6 +288,11 @@ module Users
     end
 
     private
+
+    def render_errors
+      resource.clean_up_passwords
+      render :new
+    end
 
     def ensure_valid_new_params
       redirect_to '/#choose-plan' if params[:choices].nil? || !params[:choices].include?(',')
