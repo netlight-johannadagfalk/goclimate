@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'subscription_sign_up'
+require 'three_d_secure_verification'
+
 module Users
   class RegistrationsController < Devise::RegistrationsController
     # before_action :configure_sign_up_params, only: [:create]
@@ -9,10 +12,6 @@ module Users
 
     before_action :ensure_valid_new_params, only: [:new]
     before_action :ensure_valid_create_params, only: [:create]
-
-    def after_update_path_for(resource)
-      edit_user_registration_path(resource)
-    end
 
     # GET /resource/sign_up
     def new
@@ -24,101 +23,49 @@ module Users
 
     # POST /resource
     def create
-      @plan = LifestyleChoice.stripe_plan(params[:user][:choices])
-      choices = params[:user][:choices].split(',').map(&:to_i)
+      user = self.resource = User.new(sign_up_params)
 
-      user = User.find_for_authentication(email: params[:user][:email])
+      # Don't wait until after we've charged to figure out that the User record is invalid
+      render_errors && return unless user.valid?
 
-      if user.present?
-        if user.stripe_customer_id.present?
-          flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.taken')
-          redirect_to new_user_registration_path(choices: params[:user][:choices])
-          return
-        end
-
-        user.delete
-      end
-
-      customer = Stripe::Customer.create(
-        email: params[:user][:email],
-        source: params[:stripeSource]
-      )
-
-      # 3D Secure is required
-      if params[:threeDSecure] == 'required'
-        source = Stripe::Source.create(
-          amount: (@plan.to_f * 100).round,
-          currency: currency_for_user,
-          type: 'three_d_secure',
-          three_d_secure:
-            {
-              customer: customer.id,
-              card: params[:stripeSource]
-            },
-          redirect:
-            {
-              return_url: threedsecure_url + '?email=' + params[:user][:email] + '&plan=' + @plan.to_s +
-                          '&choices=' + params[:user][:choices] + '&customer=' + customer.id
-            }
-        )
-
-        # Checking if verification is still required
-        # -> https://stripe.com/docs/sources/three-d-secure
-        unless ((source.redirect.status == 'succeeded' || source.redirect.status == 'not_required') && source.three_d_secure.authenticated == false) || source.status == 'failed'
-          user = User.new(email: params[:user][:email], password: params[:user][:password])
-          user.save
-
-          choices.each do |choice_id|
-            user.lifestyle_choices << LifestyleChoice.find(choice_id)
-          end
-
-          redirect_to source.redirect.url
-          return
-        end
-      end
-
+      @plan = LifestyleChoice.stripe_plan(choices_params)
       plan = get_stripe_plan(@plan, new_user_registration_path)
-
       return if plan == false
 
-      begin
-        Stripe::Subscription.create(
-          customer: customer.id,
-          plan: plan.id
-        )
-      rescue Stripe::CardError => e
-        body = e.json_body
-        err  = body[:error]
-        flash[:error] = 'Something went wrong with the payment'
-        flash[:error] = "The payment failed: #{err[:message]}" if err[:message]
-        redirect_to new_user_registration_path(choices: params[:user][:choices])
+      if params[:threeDSecure] == 'required' && (verification = create_three_d_secure_verification(plan)).verification_required?
+        session[:three_d_secure_handoff] = three_d_secure_handoff_hash
+        redirect_to verification.redirect_url
         return
       end
 
-      super do |created_user|
-        created_user.update(stripe_customer_id: customer.id)
+      @sign_up = SubscriptionSignUp.new(plan, card_source_param, user.email)
+      @sign_up.three_d_secure_source = params['source'] if params['three_d_secure'] == 'continue'
 
-        choices.each do |choice_id|
-          created_user.lifestyle_choices << LifestyleChoice.find(choice_id)
-        end
-      end
+      render_errors && return unless @sign_up.sign_up
+
+      user.stripe_customer_id = @sign_up.customer.id
+      user.lifestyle_choice_ids = choices_params.split(',').map(&:to_i)
+
+      # User is validated at the top of this method, so a failure here, after
+      # we charged, is considered exceptional.
+      user.save!
+
+      set_flash_message!(:notice, :signed_up)
+      sign_up(resource_name, user)
+
+      redirect_to after_sign_up_path_for(user)
+
+      session.delete(:three_d_secure_handoff)
     end
 
     def threedsecure
-      user = User.find_for_authentication(email: params[:email])
       plan = get_stripe_plan(params[:plan], new_user_registration_path)
       source = Stripe::Source.retrieve(params['source'])
 
       if source.status == 'failed'
         flash[:error] = 'Something went wrong with the payment, please check if your card is chargable and try again.'
 
-        if !params[:updatecard].nil? && params[:updatecard] == '1'
-          redirect_to payment_path
-        else
-          user.delete
-          redirect_to new_user_registration_path(choices: params[:choices])
-        end
-
+        redirect_to payment_path
         return
       end
 
@@ -133,14 +80,8 @@ module Users
 
       create_new_threedsecure_subscription(params[:customer], plan.id)
 
-      if !params[:updatecard].nil? && params[:updatecard] == '1'
-        flash[:notice] = I18n.t('your_payment_details_have_been_updated')
-        redirect_to payment_path
-      else
-        flash[:notice] = I18n.t('devise.registrations.signed_up')
-        sign_in(user)
-        redirect_to dashboard_path
-      end
+      flash[:notice] = I18n.t('your_payment_details_have_been_updated')
+      redirect_to payment_path
     end
 
     def create_new_threedsecure_subscription(customer_id, plan_id)
@@ -336,6 +277,10 @@ module Users
       dashboard_path + '?registered=1'
     end
 
+    def after_update_path_for(resource)
+      edit_user_registration_path(resource)
+    end
+
     # The path used after sign up for inactive accounts.
     # def after_inactive_sign_up_path_for(resource)
     #   super(resource)
@@ -347,29 +292,49 @@ module Users
 
     private
 
+    def render_errors
+      resource.clean_up_passwords
+      render :new
+    end
+
     def ensure_valid_new_params
       redirect_to '/#choose-plan' if params[:choices].nil? || !params[:choices].include?(',')
     end
 
     def ensure_valid_create_params
-      # TODO: Parameter validations should primarily be done as model
-      # validations, but both LifeStyleChoices and User needs refactoring for
-      # this to be possible below. Invalid parameters for anything recoverable
-      # by the initial form should also be handeled by rendering the form again
-      # rather than redirecting back to :new.
-      if params[:user][:choices].nil? || params[:user][:choices].match(/\d+,\d+,\d+,\d/).nil?
-        flash[:error] = I18n.t('something_went_wrong_go_back_one_step_and_try_again')
-        redirect_to new_user_registration_path(choices: params[:user][:choices])
-      elsif params[:user][:email].nil? || params[:user][:email].length < 4
-        flash[:error] = I18n.t('activerecord.errors.models.user.attributes.email.blank')
-        redirect_to new_user_registration_path(choices: params[:user][:choices])
-      elsif params[:user][:password].nil? || params[:user][:password].length < 6
-        flash[:error] = I18n.t('activerecord.errors.models.user.attributes.password.blank')
-        redirect_to new_user_registration_path(choices: params[:user][:choices])
-      elsif params[:stripeSource].nil?
-        flash[:error] = 'Oops, an error occured, please try again!'
-        redirect_to new_user_registration_path(choices: params[:user][:choices])
-      end
+      return unless choices_params.nil? && choices_params.match(/\d+,\d+,\d+,\d/).nil?
+
+      flash[:error] = I18n.t('something_went_wrong_go_back_one_step_and_try_again')
+      redirect_to new_user_registration_path(choices: params[:user][:choices])
+    end
+
+    def sign_up_params
+      session.to_hash.dig('three_d_secure_handoff', 'sign_up_params') || super
+    end
+
+    def choices_params
+      session.to_hash.dig('three_d_secure_handoff', 'choices') || params[:user][:choices]
+    end
+
+    def card_source_param
+      session.to_hash.dig('three_d_secure_handoff', 'card_source') || params[:stripeSource]
+    end
+
+    def three_d_secure_handoff_hash
+      {
+        'sign_up_params' => sign_up_params,
+        'choices' => choices_params,
+        'card_source' => card_source_param
+      }
+    end
+
+    def create_three_d_secure_verification(plan)
+      ThreeDSecureVerification.new(
+        card_source_param,
+        plan.amount,
+        plan.currency,
+        user_registration_threedsecure_url
+      )
     end
 
     def get_stripe_plan(plan, error_path)
