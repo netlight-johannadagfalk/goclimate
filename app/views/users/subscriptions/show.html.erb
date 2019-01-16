@@ -9,7 +9,7 @@
         
             <%= render "shared/user_menu" %>
 
-            <%= form_for("users", as: resource_name, url: registration_path(resource_name), html: { id: "payment-form",method: :put, :class => "form-horizontal" }) do |f| %>
+            <%= form_tag({ action: :update }, id: "payment-form", method: :put, class: "form-horizontal") do %>
 
                 <% if flash[:error].present? %>
                   <div id="error_explanation">

@@ -9,11 +9,14 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     registrations: 'users/registrations'
   }
-  devise_scope :user do
-    get 'users/edit/payment', to: 'users/registrations#payment', as: 'payment'
-    get 'users/edit/threedsecure', to: 'users/registrations#threedsecure', as: 'threedsecure'
-    get 'users/threedsecure_create', to: 'users/registrations#create', as: 'user_registration_threedsecure',
-                                     defaults: { three_d_secure: 'continue' }
+  namespace :users, as: 'user' do
+    devise_scope :user do
+      get 'threedsecure_create', to: 'registrations#create', as: 'registration_threedsecure',
+                                 defaults: { three_d_secure: 'continue' }
+    end
+
+    resource :subscription, only: [:show, :update]
+    get 'subscription/threedsecure', to: 'subscriptions#threedsecure'
   end
 
   # Content pages
@@ -73,4 +76,5 @@ Rails.application.routes.draw do
                              as: nil
   get 'dashboard/index', to: redirect('/dashboard'), as: nil
   get '/users', to: redirect('/dashboard'), as: nil
+  get '/users/edit/payment', to: redirect('/users/subscription'), as: nil
 end
