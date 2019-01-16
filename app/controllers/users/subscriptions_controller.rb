@@ -43,14 +43,6 @@ module Users
       if params[:stripeSource].present?
 
         begin
-          if current_user.stripe_customer_id.nil?
-            customer = Stripe::Customer.create(
-              email: current_user.email
-            )
-            current_user.stripe_customer_id = customer.id
-            current_user.save
-          end
-
           if params[:threeDSecure] == 'required'
 
             customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)

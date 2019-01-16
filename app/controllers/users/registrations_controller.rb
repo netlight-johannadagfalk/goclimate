@@ -26,7 +26,7 @@ module Users
       user = self.resource = User.new(sign_up_params)
 
       # Don't wait until after we've charged to figure out that the User record is invalid
-      render_errors && return unless user.valid?
+      render_errors && return unless user.valid?(:precheck)
 
       @plan = LifestyleChoice.stripe_plan(choices_params)
       plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
