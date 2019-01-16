@@ -29,8 +29,7 @@ module Users
       render_errors && return unless user.valid?
 
       @plan = LifestyleChoice.stripe_plan(choices_params)
-      plan = get_stripe_plan(@plan, new_user_registration_path)
-      return if plan == false
+      plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
 
       if params[:threeDSecure] == 'required' && (verification = create_three_d_secure_verification(plan)).verification_required?
         session[:three_d_secure_handoff] = three_d_secure_handoff_hash
@@ -59,7 +58,7 @@ module Users
     end
 
     def threedsecure
-      plan = get_stripe_plan(params[:plan], new_user_registration_path)
+      plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(params[:plan], currency_for_user)
       source = Stripe::Source.retrieve(params['source'])
 
       if source.status == 'failed'
@@ -211,9 +210,7 @@ module Users
             subscription.delete
           end
         elsif customer['subscriptions']['total_count'] == 0 && @plan.to_i > 1
-          plan = get_stripe_plan(@plan, edit_user_registration_path)
-
-          return if plan == false
+          plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
 
           Stripe::Subscription.create(
             customer: customer.id,
@@ -224,7 +221,7 @@ module Users
 
           if @plan != current_plan
             subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
-            stripe_plan = get_stripe_plan(@plan, edit_user_registration_path)
+            stripe_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
 
             return if stripe_plan == false
 
@@ -335,40 +332,6 @@ module Users
         plan.currency,
         user_registration_threedsecure_url
       )
-    end
-
-    def get_stripe_plan(plan, error_path)
-      plan_id = generate_plan_id(plan)
-      product_name = generate_product_name(plan)
-
-      begin
-        stripe_plan = Stripe::Plan.retrieve(plan_id)
-      rescue Stripe::StripeError
-        begin
-          stripe_plan = Stripe::Plan.create(
-            id: plan_id,
-            interval: 'month',
-            currency: currency_for_user,
-            amount: (plan.to_f * 100).round,
-            product: {
-              name: product_name
-            }
-          )
-        rescue Stripe::StripeError => e
-          flash[:error] = e.message
-          redirect_to error_path
-          return false
-        end
-      end
-      stripe_plan
-    end
-
-    def generate_plan_id(plan)
-      'climate_offset_' + plan.to_s.gsub(/[.,]/, '_') + '_' + currency_for_user + '_monthly'
-    end
-
-    def generate_product_name(plan)
-      'Climate Offset ' + plan.to_s + ' ' + currency_for_user + ' Monthly'
     end
   end
 end
