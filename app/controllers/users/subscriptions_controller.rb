@@ -40,12 +40,11 @@ module Users
     def update
       @plan = params[:user][:plan]
 
-      if params[:stripeSource].present?
+      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
 
+      if params[:stripeSource].present?
         begin
           if params[:threeDSecure] == 'required'
-
-            customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
             customer.source = params[:stripeSource]
             customer.save
 
@@ -69,10 +68,8 @@ module Users
               redirect_to source.redirect.url
               return
             end
-
           end
 
-          customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
           card = customer.sources.create(source: params[:stripeSource])
           customer.default_source = card.id
           customer.save
@@ -87,14 +84,11 @@ module Users
       end
 
       if @plan.present?
-
         if current_user.stripe_customer_id.nil?
           flash[:notice] = I18n.t('something_went_wrong_with_the_credit_card_please_submit_it_again')
           redirect_to user_subscription_path
           return
         end
-
-        customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
 
         if @plan == 'cancel'
           if customer['subscriptions']['total_count'] > 0
