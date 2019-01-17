@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'three_d_secure_verification'
+
 module Users
   class SubscriptionsController < ApplicationController
     before_action :authenticate_user!
@@ -38,39 +40,19 @@ module Users
     end
 
     def update
-      @plan = params[:user][:plan]
+      @plan = plan_param
 
-      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+      if params[:threeDSecure] == 'required' && (verification = create_three_d_secure_verification(@plan)).verification_required?
+        session[:three_d_secure_handoff] = three_d_secure_handoff_hash
+        redirect_to verification.redirect_url
+        return
+      end
 
-      if params[:stripeSource].present?
+      if card_source_param.present?
+        customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+
         begin
-          if params[:threeDSecure] == 'required'
-            customer.source = params[:stripeSource]
-            customer.save
-
-            source = Stripe::Source.create(
-              amount: (@plan.to_f * 100).round,
-              currency: currency_for_user,
-              type: 'three_d_secure',
-              three_d_secure: {
-                customer: customer.id,
-                card: params[:stripeSource]
-              },
-              redirect: {
-                return_url: user_subscription_threedsecure_url + '?email=' + current_user.email + '&plan=' + @plan.to_s +
-                            '&updatecard=1' + '&customer=' + customer.id
-              }
-            )
-
-            # Checking if verification is still required
-            # -> https://stripe.com/docs/sources/three-d-secure
-            unless ((source.redirect.status == 'succeeded' || source.redirect.status == 'not_required') && source.three_d_secure.authenticated == false) || source.status == 'failed'
-              redirect_to source.redirect.url
-              return
-            end
-          end
-
-          card = customer.sources.create(source: params[:stripeSource])
+          card = customer.sources.create(source: card_source_param)
           customer.default_source = card.id
           customer.save
         rescue Stripe::CardError => e
@@ -81,74 +63,78 @@ module Users
           redirect_to user_subscription_path
           return
         end
-      end
 
-      if @plan.present?
-        if current_user.stripe_customer_id.nil?
-          flash[:notice] = I18n.t('something_went_wrong_with_the_credit_card_please_submit_it_again')
-          redirect_to user_subscription_path
-          return
-        end
-
-        if @plan == 'cancel'
-          if customer['subscriptions']['total_count'] > 0
-            subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
-            subscription.delete
-          end
-        elsif customer['subscriptions']['total_count'] == 0 && @plan.to_i > 1
+        if params[:three_d_secure] == 'continue'
           plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
 
-          Stripe::Subscription.create(
-            customer: customer.id,
-            plan: plan.id
+          Stripe::Charge.create(
+            amount: plan.amount,
+            currency: plan.currency,
+            source: params['source'],
+            customer: customer.id
           )
-        else
-          current_plan = customer['subscriptions']['data'][0]['plan']['amount'] / 100
 
-          if @plan != current_plan
-            subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
-            stripe_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
-
-            return if stripe_plan == false
-
-            subscription.plan = stripe_plan['id']
-            subscription.prorate = false
-            subscription.save
-          end
+          create_new_threedsecure_subscription(customer.id, plan.id)
         end
       end
 
-      flash[:notice] = I18n.t('your_payment_details_have_been_updated')
-      redirect_to user_subscription_path
-    end
+      # Re-retrieve because 3D Secure might have changed the current subscription
+      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
 
-    def threedsecure
-      plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(params[:plan], currency_for_user)
-      source = Stripe::Source.retrieve(params['source'])
+      if @plan == 'cancel'
+        if customer['subscriptions']['total_count'] > 0
+          subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
+          subscription.delete
+        end
+      elsif customer['subscriptions']['total_count'] == 0 && @plan.to_i > 1
+        plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
 
-      if source.status == 'failed'
-        flash[:error] = 'Something went wrong with the payment, please check if your card is chargable and try again.'
+        Stripe::Subscription.create(
+          customer: customer.id,
+          plan: plan.id
+        )
+      else
+        current_plan = customer['subscriptions']['data'][0]['plan']['amount'] / 100
 
-        redirect_to user_subscription_path
-        return
+        if @plan != current_plan
+          subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
+          plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
+
+          subscription.plan = plan['id']
+          subscription.prorate = false
+          subscription.save
+        end
       end
-
-      Stripe::Charge.create(
-        amount: plan.amount,
-        currency: plan.currency,
-        source: params['source'],
-        customer: params[:customer]
-      )
-
-      User.where('lower(email) = ?', params[:email].downcase).update_all(stripe_customer_id: params[:customer])
-
-      create_new_threedsecure_subscription(params[:customer], plan.id)
 
       flash[:notice] = I18n.t('your_payment_details_have_been_updated')
       redirect_to user_subscription_path
     end
 
     private
+
+    def plan_param
+      session.to_hash.dig('three_d_secure_handoff', 'plan') || params[:user][:plan]
+    end
+
+    def card_source_param
+      session.to_hash.dig('three_d_secure_handoff', 'card_source') || params[:stripeSource]
+    end
+
+    def three_d_secure_handoff_hash
+      {
+        'plan' => @plan,
+        'card_source' => card_source_param
+      }
+    end
+
+    def create_three_d_secure_verification(monthly_amount)
+      ThreeDSecureVerification.new(
+        card_source_param,
+        (monthly_amount.to_f * 100).to_i,
+        currency_for_user,
+        user_subscription_threedsecure_url
+      )
+    end
 
     def create_new_threedsecure_subscription(customer_id, plan_id)
       subscriptions = Stripe::Subscription.list(customer: customer_id)

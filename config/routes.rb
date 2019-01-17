@@ -16,7 +16,8 @@ Rails.application.routes.draw do
     end
 
     resource :subscription, only: [:show, :update]
-    get 'subscription/threedsecure', to: 'subscriptions#threedsecure'
+    get 'subscription/threedsecure_update', to: 'subscriptions#update', as: 'subscription_threedsecure',
+                                            defaults: { three_d_secure: 'continue' }
   end
 
   # Content pages
