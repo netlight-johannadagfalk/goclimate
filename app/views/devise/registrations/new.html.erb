@@ -105,7 +105,8 @@
             <% end %>
 
             <%= form_for(resource, as: resource_name, validate: true, url: registration_path(resource_name), html: {id: "payment-form", :class => "form-horizontal"}) do |f| %>
-              <%= hidden_field(:user, :choices, :value => params[:choices]) %>
+              <%# TODO: Use nested form helpers with a generic form_for and a fields_for resource so that choices params can live outside of the user hash and be consistent across new and create actions %>
+              <%= hidden_field(:user, :choices, :value => params[:choices]) || params[:user][:choices] %>
 
               <div class="form-group">
                 <label for="email" class="col-sm-offset-1 col-sm-4 control-label padding-top"><%=t 'email' %></label>
