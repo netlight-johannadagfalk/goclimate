@@ -65,7 +65,7 @@ sv:
   no_car: Ingen bil
   hardly_ever_flies: Flyger nästan aldrig
   cost_calculation: Kostnadsberäkning
-  price_info_popup_content: Detta val räknar vi ger ett årligt utsläpp på %{footprint} ton CO<sub>2</sub>. Eftersom kalkylen är ungefärlig klimatkompenserar vi för dubbelt så många ton, alltså %{footprint_x2} ton C0<sub>2</sub>, så att du kan vara säker på att du lever klimatneutralt varje månad. <br>Vi klimatkompenserar i projekt som är FN-certifierade (CDM) samt har kvalitetsmärkningen Gold Standard (skapad av bland annat WWF och Greenpeace). Dessa projekt kostar %{price_per_tonne} kr/ton - och därför landar detta val på %{price_per_month} kr/mån.
+  price_info_popup_content: Detta val räknar vi ger ett årligt utsläpp på %{footprint} ton CO<sub>2</sub>. Eftersom kalkylen är ungefärlig klimatkompenserar vi för dubbelt så många ton, alltså %{footprint_x2} ton C0<sub>2</sub>, så att du kan vara säker på att du lever klimatneutralt varje månad. <br>Vi klimatkompenserar i projekt som är FN-certifierade (CDM) samt har kvalitetsmärkningen Gold Standard (skapad av bland annat WWF). Dessa projekt kostar %{price_per_tonne} kr/ton - och därför landar detta val på %{price_per_month} kr/mån.
   you_will_offset_for: Att ta ansvar för dina klimatutsläpp kostar %{cost} kr/mån
   mostly_vegetarian: Äter mest vegetariskt
   one_fuel_efficient_car: En bränslesnål bil
@@ -281,7 +281,7 @@ sv:
         <br><br>
         Klimatkompensation sker oftast genom olika klimatprojekt i utvecklingsländer såsom energieffektivisering eller satsning på förnybar energi som sol- och vind-anläggningar.
         <br><br>
-        För att du ska kunna vara säker på att du faktiskt åstadkommer klimatnytta när du klimatkompenserar är det bra om klimatprojekten är certifierade. Tryggast kan du vara om projekten både är certifierade av FN och har Gold Standard-certifiering (som bland annat WWF och Greenpeace ligger bakom).
+        För att du ska kunna vara säker på att du faktiskt åstadkommer klimatnytta när du klimatkompenserar är det bra om klimatprojekten är certifierade. Tryggast kan du vara om projekten både är certifierade av FN och har Gold Standard-certifiering (som bland annat WWF ligger bakom).
         <br><br>Vi på GoClimateNeutral.org hjälper dig klimatkompensera för de utsläpp din livsstil orsakar genom projekt som både är certifierade av FN och har Gold Standard-certifiering.
         <br><br>
         Har du åsikter om det här svaret? Gå gärna in på vår blogg och kommentera eller ställ frågor: <a href='https://www.goclimateneutral.org/blog/vad-ar-klimatkompensation/'>https://www.goclimateneutral.org/blog/vad-ar-klimatkompensation/</a>"
@@ -290,7 +290,7 @@ sv:
         answer: "<img alt='' class='aligncenter wp-image-227 size-large' src='https://www.goclimateneutral.org/blog/wp-content/uploads/2017/08/gold_standard_CDM-1024x626.png' /><br>
         Ja, klimatkompensation fungerar. Men för att göra största möjliga klimatnytta krävs att man väljer ut klimatprojekt med noggrannhet.
         <br><br>
-        Hur kan du veta att projekten vi investerar i - och pengarna du betalar - faktiskt bidrar till verklig klimatnytta? Jo, för att säkerställa det finns flera olika organ som granskar klimatprojekt. De största standarderna är CDM (som FN ligger bakom), Gold Standard (som bland annat Greenpeace och WWF ligger bakom), Plan Vivo, VCS och Fair Trade. Även utsläppsrätter är en klimatkompensationsåtgärd, men de är förenade med rätt stor osäkerhet när det gäller klimatnytta (kan ändras framöver).
+        Hur kan du veta att projekten vi investerar i - och pengarna du betalar - faktiskt bidrar till verklig klimatnytta? Jo, för att säkerställa det finns flera olika organ som granskar klimatprojekt. De största standarderna är CDM (som FN ligger bakom), Gold Standard (som bland annat WWF ligger bakom), Plan Vivo, VCS och Fair Trade. Även utsläppsrätter är en klimatkompensationsåtgärd, men de är förenade med rätt stor osäkerhet när det gäller klimatnytta (kan ändras framöver).
         <br><br>
         På GoClimateNeutral har vi gått från att kompensera i FN-certifierade projekt (CDM) till att <b>investera i projekt som både är FN-certifierade och dessutom har kvalitetsstämpeln Gold Standard</b>. Dessa projekt är dyrare, men håller en högre kvalitetsnivå och är hårdare granskade av oberoende parter än projekten som bara är FN-certifierade. Du kan läsa mer om Gold Standard här: <a href='https://www.goldstandard.org/' target='_blank'>https://www.goldstandard.org/</a>
         <br><br>
@@ -346,7 +346,7 @@ sv:
         <br><br>
         Det hela är ganska snårigt då vissa projekt, framförallt trädplanterings-projekt och CDM-projekt, vid upprepade granskningar visat sig inte hålla vad de lovar, och i vissa fall till och med haft negativa konsekvenser för lokalbefolkningen och miljön där projektet har genomförts. 
         <br><br>
-        Det är tydligt att man inte kan välja vilket klimatprojekt som helst att kompensera på grund av detta. Vi investerar därför bara i de mest trovärdiga och hårt granskade projekten, projekt som både är CDM-certiferade (som FN-ligger bakom) och dessutom har certifieringen Gold Standard (som bland annat WWF och Greenpeace står bakom). Då har man FNs alla medlemsstater och ca 90 miljöorganisationer i ryggen. Därtill tredjepartsverifieras alla dessa projekt av bland annat TÜV och DNV och alla deras protokoll är offentliga och följer projekten under hela projekttiden.
+        Det är tydligt att man inte kan välja vilket klimatprojekt som helst att kompensera på grund av detta. Vi investerar därför bara i de mest trovärdiga och hårt granskade projekten, projekt som både är CDM-certiferade (som FN-ligger bakom) och dessutom har certifieringen Gold Standard (som bland annat WWF står bakom). Då har man FNs alla medlemsstater och ca 90 miljöorganisationer i ryggen. Därtill tredjepartsverifieras alla dessa projekt av bland annat TÜV och DNV och alla deras protokoll är offentliga och följer projekten under hela projekttiden.
         <br><br>
         Förutom att välja hårt tredje-partsgranskade projekt som är CDM- och Gold Standard-certifierade så har vi även valt att kompensera för dubbla ens beräknade utsläpp för att vara på den säkra sidan om något mot förmodan skulle gå fel i klimatprojekten. Vi sprider även investeringarna i olika klimatprojekt för att ytterligare öka säkerheten med att vi åstadkommer riktig klimatnytta.
         <br><br>
@@ -358,7 +358,7 @@ sv:
         <br><br>
         Ett exempel, säg att en vietnamesisk by kan bygga ett vattenkraftverk som kostar 10,1 MSEK. Det är tyvärr något dyrare än att bara fortsätta köpa el från kolkraft vilket skulle kosta 10 MSEK. Och eftersom byn är väldigt fattig konstaterar man att vattenkraftverket inte kommer byggas. Men då kan man genom att putta in 0,1 MSEK från bland annat oss få kalkylen att gå ihop – och vattenkraften kan ersätta kolkraften! Så relativt lite pengar – 0.1 MSEK i det här exemplet – kan tippa över investeringen och göra så att ett 10-miljoners miljöprojektet blir av! Exemplet är något förenklat såklart, men illustrerar ändå principen.
         <br><br>
-        Själva ekonomiska mekanismen kommer från FN och Kyoto-protokollet, då man instiftade CDM-projekt och CER-krediter som det kallas. För att ytterligare stärka kvalitén på de sociala aspekterna i CDM-projekt startades rätt snart även Gold Standard Foundation av bland annat Greenpeace och WWF – som utnyttjar samma ekonomiska mekanism som CDM-projekten.
+        Själva ekonomiska mekanismen kommer från FN och Kyoto-protokollet, då man instiftade CDM-projekt och CER-krediter som det kallas. För att ytterligare stärka kvalitén på de sociala aspekterna i CDM-projekt startades rätt snart även Gold Standard Foundation av bland annat WWF – som utnyttjar samma ekonomiska mekanism som CDM-projekten.
         <br><br>
         På GoClimateNeutral.org försöker vi hitta de mest priseffektiva CDM- och Gold Standard-certifierade projekten åt dig, så att dina pengar ska kunna göra så mycket nytta som möjligt för klimatet utan att kompromissa med kvalitén.
         <br><br>
