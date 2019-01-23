@@ -4,6 +4,8 @@ class SubscriptionSignUp
   attr_reader :plan, :card_source, :email, :customer, :errors
   attr_accessor :three_d_secure_source
 
+  class ThreeDSecureSourceNotChargeableError < StandardError; end
+
   def initialize(plan, card_source, email)
     @plan = plan
     @card_source = card_source
@@ -12,11 +14,16 @@ class SubscriptionSignUp
   end
 
   def sign_up
+    assert_three_d_secure_card_is_chargeable_if_present
     create_customer
-    perform_intial_three_d_secure_charge_if_applicable
+    perform_intial_three_d_secure_charge_if_present
     create_subscription
 
     true
+  rescue ThreeDSecureSourceNotChargeableError => error
+    errors[:verification_failed] = error.message
+
+    false
   rescue Stripe::CardError => error
     errors[error.code.to_sym] = error.message
 
@@ -24,6 +31,16 @@ class SubscriptionSignUp
   end
 
   private
+
+  def assert_three_d_secure_card_is_chargeable_if_present
+    return unless @three_d_secure_source.present?
+
+    source = Stripe::Source.retrieve(@three_d_secure_source)
+
+    return if source.status == 'chargeable'
+
+    raise ThreeDSecureSourceNotChargeableError, 'Card verification was not successful.'
+  end
 
   def create_customer
     @customer =
@@ -33,7 +50,7 @@ class SubscriptionSignUp
       )
   end
 
-  def perform_intial_three_d_secure_charge_if_applicable
+  def perform_intial_three_d_secure_charge_if_present
     return unless @three_d_secure_source.present?
 
     Stripe::Charge.create(

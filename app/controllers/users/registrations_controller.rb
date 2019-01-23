@@ -15,6 +15,7 @@ module Users
 
     # GET /resource/sign_up
     def new
+      @choices = params[:choices]
       @plan = LifestyleChoice.stripe_plan(params[:choices])
       @currency = currency_for_user
 
@@ -28,6 +29,7 @@ module Users
       # Don't wait until after we've charged to figure out that the User record is invalid
       render_errors && return unless user.valid?
 
+      @choices = choices_params
       @plan = LifestyleChoice.stripe_plan(choices_params)
       plan = get_stripe_plan(@plan, new_user_registration_path)
       return if plan == false

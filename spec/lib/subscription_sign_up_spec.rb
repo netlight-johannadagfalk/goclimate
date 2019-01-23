@@ -109,6 +109,10 @@ RSpec.describe SubscriptionSignUp do
 
         before do
           subject.three_d_secure_source = three_d_secure_source
+
+          allow(Stripe::Source).to receive(:retrieve).and_return(
+            Stripe::Source.construct_from(stripe_json_fixture('source_three_d_secure_chargeable.json'))
+          )
         end
 
         it 'performs a first charge to the 3D Secure source' do
@@ -149,6 +153,30 @@ RSpec.describe SubscriptionSignUp do
 
           expect(Stripe::Subscription).to have_received(:create)
             .with hash_including(trial_end: 1.month.from_now.to_i)
+        end
+
+        context 'when 3D Secure source is not chargeable after verification' do
+          before do
+            allow(Stripe::Source).to receive(:retrieve).and_return(
+              Stripe::Source.construct_from(stripe_json_fixture('source_three_d_secure_failed.json'))
+            )
+          end
+
+          it 'adds error to errors hash' do
+            subject.sign_up
+
+            expect(subject.errors).to include(verification_failed: 'Card verification was not successful.')
+          end
+
+          it 'does not create any stale customers in Stripe' do
+            subject.sign_up
+
+            expect(Stripe::Customer).to_not have_received(:create)
+          end
+
+          it 'returns false' do
+            expect(subject.sign_up).to be(false)
+          end
         end
       end
     end
