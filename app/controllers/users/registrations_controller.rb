@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'subscription_sign_up'
+require 'subscription_manager'
 require 'three_d_secure_verification'
 
 module Users
@@ -37,12 +37,12 @@ module Users
         return
       end
 
-      @sign_up = SubscriptionSignUp.new(plan, card_source_param, user.email)
-      @sign_up.three_d_secure_source = params['source'] if params['three_d_secure'] == 'continue'
+      @manager = SubscriptionManager.new(plan, card_source_param, user.email)
+      @manager.three_d_secure_source = params['source'] if params['three_d_secure'] == 'continue'
 
-      render_errors && return unless @sign_up.sign_up
+      render_errors && return unless @manager.sign_up
 
-      user.stripe_customer_id = @sign_up.customer.id
+      user.stripe_customer_id = @manager.customer.id
       user.lifestyle_choice_ids = choices_params.split(',').map(&:to_i)
 
       # User is validated at the top of this method, so a failure here, after

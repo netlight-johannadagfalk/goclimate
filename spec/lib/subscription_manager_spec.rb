@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'subscription_sign_up'
+require 'subscription_manager'
 
-RSpec.describe SubscriptionSignUp do
+RSpec.describe SubscriptionManager do
   let(:plan) { Stripe::Plan.construct_from(stripe_json_fixture('plan.json')) }
   let(:card_source) { 'src_CARD' }
   let(:email) { 'test@example.com' }
@@ -12,7 +12,7 @@ RSpec.describe SubscriptionSignUp do
   end
 
   subject(:sign_up) do
-    SubscriptionSignUp.new(plan, card_source, email)
+    SubscriptionManager.new(plan, card_source, email)
   end
 
   before do

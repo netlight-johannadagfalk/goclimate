@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SubscriptionSignUp
+class SubscriptionManager
   attr_reader :plan, :card_source, :email, :customer, :errors
   attr_accessor :three_d_secure_source
 
