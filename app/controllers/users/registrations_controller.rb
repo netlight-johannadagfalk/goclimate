@@ -39,10 +39,11 @@ module Users
         return
       end
 
-      @manager = SubscriptionManager.new(plan, card_source_param, user.email)
-      @manager.three_d_secure_source = params['source'] if params['three_d_secure'] == 'continue'
+      @manager = SubscriptionManager.new
 
-      render_errors && return unless @manager.sign_up
+      render_errors && return unless @manager.sign_up(
+        user.email, plan, card_source_param, params['three_d_secure'] == 'continue' ? params['source'] : nil
+      )
 
       user.stripe_customer_id = @manager.customer.id
       user.lifestyle_choice_ids = choices_params.split(',').map(&:to_i)
