@@ -12,10 +12,11 @@ module Users
 
     before_action :ensure_valid_new_params, only: [:new]
     before_action :ensure_valid_create_params, only: [:create]
+    before_action :set_choices_for_new, only: [:new]
+    before_action :set_choices_for_create, only: [:create]
 
     # GET /resource/sign_up
     def new
-      @choices = params[:choices]
       @plan = LifestyleChoice.stripe_plan(params[:choices])
       @currency = currency_for_user
 
@@ -23,27 +24,26 @@ module Users
     end
 
     # POST /resource
+    #
+    # This action is doing lots of things due to 3D Secure and the complexities
+    # of the sign up process. Simplifying too much would make it harder to
+    # understand, so we disable the Rubocop check Metrics/AbcSize instead.
+    #
+    # rubocop:disable Metrics/AbcSize
     def create
       user = self.resource = User.new(sign_up_params)
 
       # Don't wait until after we've charged to figure out that the User record is invalid
       render_errors && return unless user.valid?(:precheck)
 
-      @choices = choices_params
       @plan = LifestyleChoice.stripe_plan(choices_params)
       plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
 
-      if params[:threeDSecure] == 'required' && (verification = create_three_d_secure_verification(plan)).verification_required?
-        session[:three_d_secure_handoff] = three_d_secure_handoff_hash
-        redirect_to verification.redirect_url
-        return
-      end
+      return if redirect_to_applicable_three_d_secure_verification(plan)
 
       @manager = SubscriptionManager.new
 
-      render_errors && return unless @manager.sign_up(
-        user.email, plan, card_source_param, params['three_d_secure'] == 'continue' ? params['source'] : nil
-      )
+      render_errors && return unless sign_up_subscription(user, plan)
 
       user.stripe_customer_id = @manager.customer.id
       user.lifestyle_choice_ids = choices_params.split(',').map(&:to_i)
@@ -59,6 +59,7 @@ module Users
 
       session.delete(:three_d_secure_handoff)
     end
+    # rubocop:enable Metrics/AbcSize
 
     # GET /resource/edit
     def edit
@@ -123,6 +124,26 @@ module Users
       render :new
     end
 
+    def redirect_to_applicable_three_d_secure_verification(plan)
+      return false unless params[:threeDSecure] == 'required'
+
+      verification = ThreeDSecureVerification.new(
+        card_source_param, plan.amount, plan.currency, user_registration_threedsecure_url
+      )
+      return false unless verification.verification_required?
+
+      session[:three_d_secure_handoff] = three_d_secure_handoff_hash
+      redirect_to verification.redirect_url
+      true
+    end
+
+    def sign_up_subscription(user, plan)
+      @manager.sign_up(
+        user.email, plan, card_source_param,
+        params['three_d_secure'] == 'continue' ? params['source'] : nil
+      )
+    end
+
     def ensure_valid_new_params
       redirect_to '/#choose-plan' if params[:choices].nil? || !params[:choices].include?(',')
     end
@@ -132,6 +153,14 @@ module Users
 
       flash[:error] = I18n.t('something_went_wrong_go_back_one_step_and_try_again')
       redirect_to new_user_registration_path(choices: params[:user][:choices])
+    end
+
+    def set_choices_for_new
+      @choices = params[:choices]
+    end
+
+    def set_choices_for_create
+      @choices = choices_params
     end
 
     def sign_up_params
@@ -152,15 +181,6 @@ module Users
         'choices' => choices_params,
         'card_source' => card_source_param
       }
-    end
-
-    def create_three_d_secure_verification(plan)
-      ThreeDSecureVerification.new(
-        card_source_param,
-        plan.amount,
-        plan.currency,
-        user_registration_threedsecure_url
-      )
     end
   end
 end
