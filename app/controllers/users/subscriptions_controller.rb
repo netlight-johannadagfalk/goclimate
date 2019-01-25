@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
 require 'three_d_secure_verification'
+require 'subscription_manager'
 
 module Users
   class SubscriptionsController < ApplicationController
     before_action :authenticate_user!
+
+    # Cleanup potential 3D Secure handoff hash before starting fresh, and also after returning.
+    before_action :cleanup_three_d_secure_handoff, only: [:show]
+    after_action :cleanup_three_d_secure_handoff, only: [:update], if: -> { params[:three_d_secure] == 'continue' }
 
     def show
       @currency = currency_for_user
@@ -48,69 +53,34 @@ module Users
         return
       end
 
-      if card_source_param.present?
-        customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-
-        begin
-          card = customer.sources.create(source: card_source_param)
-          customer.default_source = card.id
-          customer.save
-        rescue Stripe::CardError => e
-          body = e.json_body
-          err  = body[:error]
-          flash[:error] = 'Something went wrong with the update of payment method'
-          flash[:error] = "The payment failed: #{err[:message]}" if err[:message]
-          redirect_to user_subscription_path
-          return
-        end
-
-        if params[:three_d_secure] == 'continue'
-          plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
-
-          Stripe::Charge.create(
-            amount: plan.amount,
-            currency: plan.currency,
-            source: params['source'],
-            customer: customer.id
-          )
-
-          create_new_threedsecure_subscription(customer.id, plan.id)
-        end
-      end
-
-      # Re-retrieve because 3D Secure might have changed the current subscription
-      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+      manager = SubscriptionManager.for_customer(current_user.stripe_customer_id)
 
       if @plan == 'cancel'
-        if customer['subscriptions']['total_count'] > 0
-          subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
-          subscription.delete
-        end
-      elsif customer['subscriptions']['total_count'] == 0 && @plan.to_i > 1
-        plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
-
-        Stripe::Subscription.create(
-          customer: customer.id,
-          plan: plan.id
-        )
-      else
-        current_plan = customer['subscriptions']['data'][0]['plan']['amount'] / 100
-
-        if @plan != current_plan
-          subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
-          plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
-
-          subscription.plan = plan['id']
-          subscription.prorate = false
-          subscription.save
-        end
+        manager.cancel
+        redirect_successful_update && return
       end
 
-      flash[:notice] = I18n.t('your_payment_details_have_been_updated')
-      redirect_to user_subscription_path
+      new_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
+
+      unless manager.update(new_plan, card_source_param, params[:three_d_secure] == 'continue' ? params[:source] : nil)
+        flash[:error] = "The payment failed: #{manager.errors.values.join(' ')}"
+        redirect_to user_subscription_path
+        return
+      end
+
+      redirect_successful_update
     end
 
     private
+
+    def cleanup_three_d_secure_handoff
+      session.delete(:three_d_secure_handoff)
+    end
+
+    def redirect_successful_update
+      flash[:notice] = I18n.t('your_payment_details_have_been_updated')
+      redirect_to user_subscription_path
+    end
 
     def plan_param
       session.to_hash.dig('three_d_secure_handoff', 'plan') || params[:user][:plan]
@@ -133,21 +103,6 @@ module Users
         (monthly_amount.to_f * 100).to_i,
         currency_for_user,
         user_subscription_threedsecure_url
-      )
-    end
-
-    def create_new_threedsecure_subscription(customer_id, plan_id)
-      subscriptions = Stripe::Subscription.list(customer: customer_id)
-      subscriptions.each(&:delete)
-
-      Stripe::Subscription.create(
-        customer: customer_id,
-        items: [
-          {
-            plan: plan_id
-          }
-        ],
-        trial_end: 1.month.from_now.to_i
       )
     end
   end
