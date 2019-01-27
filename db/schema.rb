@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_27_124502) do
+ActiveRecord::Schema.define(version: 2019_01_27_192708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_01_27_124502) do
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
-    t.string "link"
+    t.string "cdm_url"
     t.string "image_url"
     t.string "blog_url"
     t.decimal "longitude", precision: 10, scale: 6
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2019_01_27_124502) do
     t.integer "cdm_id"
     t.integer "start_block"
     t.integer "end_block"
+    t.string "gold_standard_url"
   end
 
   create_table "stripe_events", force: :cascade do |t|
