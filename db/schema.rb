@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_29_074510) do
+ActiveRecord::Schema.define(version: 2019_01_27_124502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,7 @@ ActiveRecord::Schema.define(version: 2018_12_29_074510) do
   create_table "invoices", force: :cascade do |t|
     t.integer "amount_in_sek"
     t.integer "carbon_offset"
-    t.string "att"
-    t.string "company_name"
-    t.string "adress"
-    t.string "org_nr"
+    t.string "receiver"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "project_id"
@@ -69,6 +66,10 @@ ActiveRecord::Schema.define(version: 2018_12_29_074510) do
     t.datetime "date_bought"
     t.string "invoice_url"
     t.string "certificate_url"
+    t.integer "gold_standard_id"
+    t.integer "cdm_id"
+    t.integer "start_block"
+    t.integer "end_block"
   end
 
   create_table "stripe_events", force: :cascade do |t|

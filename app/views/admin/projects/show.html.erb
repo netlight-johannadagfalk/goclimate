@@ -63,5 +63,25 @@
   <%= @project.offset_type %>
 </p>
 
+<p>
+  <strong>Gold Standard Id:</strong>
+  <%= @project.gold_standard_id %>
+</p>
+
+<p>
+  <strong>CDM Id:</strong>
+  <%= @project.cdm_id %>
+</p>
+
+<p>
+  <strong>Start block:</strong>
+  <%= @project.start_block %>
+</p>
+
+<p>
+  <strong>End block:</strong>
+  <%= @project.end_block %>
+</p>
+
 <%= link_to 'Edit', edit_admin_project_path(@project) %> |
 <%= link_to 'Back', admin_projects_path %>

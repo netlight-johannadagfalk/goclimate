@@ -10,10 +10,7 @@
       <th>Project Name</th>
       <th>Amount in sek</th>
       <th>Carbon offset</th>
-      <th>Att</th>
-      <th>Company name</th>
-      <th>Adress</th>
-      <th>Org_nr</th>
+      <th>Receiver</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,10 +23,7 @@
         <td><%= invoice.project.name if !invoice.project.nil? %></td>
         <td><%= invoice.amount_in_sek %></td>
         <td><%= invoice.carbon_offset %></td>
-        <td><%= invoice.att %></td>
-        <td><%= invoice.company_name %></td>
-        <td><%= invoice.adress %></td>
-        <td><%= invoice.org_nr %></td>
+        <td><%= invoice.receiver %></td>
         <td><%= link_to 'Show', [:admin, invoice] %></td>
         <td><%= link_to 'Edit', edit_admin_invoice_path(invoice) %></td>
         <td><%= link_to 'Destroy', [:admin, invoice], method: :delete, data: { confirm: 'Are you sure?' } %></td>

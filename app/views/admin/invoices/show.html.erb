@@ -21,23 +21,8 @@
 </p>
 
 <p>
-  <strong>Att:</strong>
-  <%= @invoice.att %>
-</p>
-
-<p>
-  <strong>Company name:</strong>
-  <%= @invoice.company_name %>
-</p>
-
-<p>
-  <strong>Adress:</strong>
-  <%= @invoice.adress %>
-</p>
-
-<p>
-  <strong>Org_nr:</strong>
-  <%= @invoice.org_nr %>
+  <strong>Receiver:</strong>
+  <%= @invoice.receiver %>
 </p>
 
 <%= link_to 'Edit', edit_admin_invoice_path(@invoice) %> |

@@ -7,7 +7,7 @@ module Admin
     # GET /invoices
     # GET /invoices.json
     def index
-      @invoices = Invoice.all
+      @invoices = Invoice.all.order(:id)
     end
 
     # GET /invoices/1
@@ -74,7 +74,7 @@ module Admin
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
       params.require(:invoice).permit(
-        :amount_in_sek, :carbon_offset, :att, :company_name, :adress, :org_nr, :project_id
+        :amount_in_sek, :carbon_offset, :reciever, :project_id
       )
     end
   end
