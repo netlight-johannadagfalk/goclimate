@@ -8,6 +8,10 @@ class User < ApplicationRecord
   has_and_belongs_to_many :lifestyle_choices
   scope :with_active_subscription, -> { where.not(stripe_customer_id: nil) }
 
+  # Validates on default contexts :create and :update. Use any other context,
+  # e.g. valid?(:precheck) to skip before stripe_customer_id is known.
+  validates_presence_of :stripe_customer_id, on: [:create, :update]
+
   # accessor and validator of :privacy_policy are only here for client side validation via the ClientSideValidations gem
   validates :privacy_policy, acceptance: true
   attr_accessor :privacy_policy

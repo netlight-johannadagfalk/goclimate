@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'subscription_sign_up'
+require 'subscription_manager'
 require 'three_d_secure_verification'
 
 module Users
@@ -12,10 +12,11 @@ module Users
 
     before_action :ensure_valid_new_params, only: [:new]
     before_action :ensure_valid_create_params, only: [:create]
+    before_action :set_choices_for_new, only: [:new]
+    before_action :set_choices_for_create, only: [:create]
 
     # GET /resource/sign_up
     def new
-      @choices = params[:choices]
       @plan = LifestyleChoice.stripe_plan(params[:choices])
       @currency = currency_for_user
 
@@ -23,29 +24,28 @@ module Users
     end
 
     # POST /resource
+    #
+    # This action is doing lots of things due to 3D Secure and the complexities
+    # of the sign up process. Simplifying too much would make it harder to
+    # understand, so we disable the Rubocop check Metrics/AbcSize instead.
+    #
+    # rubocop:disable Metrics/AbcSize
     def create
       user = self.resource = User.new(sign_up_params)
 
       # Don't wait until after we've charged to figure out that the User record is invalid
-      render_errors && return unless user.valid?
+      render_errors && return unless user.valid?(:precheck)
 
-      @choices = choices_params
       @plan = LifestyleChoice.stripe_plan(choices_params)
-      plan = get_stripe_plan(@plan, new_user_registration_path)
-      return if plan == false
+      plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
 
-      if params[:threeDSecure] == 'required' && (verification = create_three_d_secure_verification(plan)).verification_required?
-        session[:three_d_secure_handoff] = three_d_secure_handoff_hash
-        redirect_to verification.redirect_url
-        return
-      end
+      return if redirect_to_applicable_three_d_secure_verification(plan)
 
-      @sign_up = SubscriptionSignUp.new(plan, card_source_param, user.email)
-      @sign_up.three_d_secure_source = params['source'] if params['three_d_secure'] == 'continue'
+      @manager = SubscriptionManager.new
 
-      render_errors && return unless @sign_up.sign_up
+      render_errors && return unless sign_up_subscription(user, plan)
 
-      user.stripe_customer_id = @sign_up.customer.id
+      user.stripe_customer_id = @manager.customer.id
       user.lifestyle_choice_ids = choices_params.split(',').map(&:to_i)
 
       # User is validated at the top of this method, so a failure here, after
@@ -59,190 +59,15 @@ module Users
 
       session.delete(:three_d_secure_handoff)
     end
-
-    def threedsecure
-      plan = get_stripe_plan(params[:plan], new_user_registration_path)
-      source = Stripe::Source.retrieve(params['source'])
-
-      if source.status == 'failed'
-        flash[:error] = 'Something went wrong with the payment, please check if your card is chargable and try again.'
-
-        redirect_to payment_path
-        return
-      end
-
-      Stripe::Charge.create(
-        amount: plan.amount,
-        currency: plan.currency,
-        source: params['source'],
-        customer: params[:customer]
-      )
-
-      User.where('lower(email) = ?', params[:email].downcase).update_all(stripe_customer_id: params[:customer])
-
-      create_new_threedsecure_subscription(params[:customer], plan.id)
-
-      flash[:notice] = I18n.t('your_payment_details_have_been_updated')
-      redirect_to payment_path
-    end
-
-    def create_new_threedsecure_subscription(customer_id, plan_id)
-      subscriptions = Stripe::Subscription.list(customer: customer_id)
-      subscriptions.each(&:delete)
-
-      Stripe::Subscription.create(
-        customer: customer_id,
-        items: [
-          {
-            plan: plan_id
-          }
-        ],
-        trial_end: 1.month.from_now.to_i
-      )
-    end
+    # rubocop:enable Metrics/AbcSize
 
     # GET /resource/edit
     def edit
       super
     end
 
-    def payment
-      @currency = currency_for_user
-
-      if current_user.stripe_customer_id.nil?
-        @current_card = 'no payment method'
-        @plan = LifestyleChoice.stripe_plan(current_user.lifestyle_choices.map(&:id).join(','))
-        return
-      end
-
-      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-
-      if customer.default_source.nil?
-        @current_card = nil
-      else
-        current_source = customer.sources.retrieve(customer.default_source)
-
-        if current_source.object == 'source' && current_source.type == 'three_d_secure'
-          @current_card = 'XXXX XXXX XXXX XXXX'
-        elsif current_source.object == 'source'
-          @current_card = 'XXXX XXXX XXXX ' + current_source.card.last4
-        elsif current_source.object == 'card'
-          @current_card = 'XXXX XXXX XXXX ' + current_source.last4
-        end
-      end
-
-      @plan =
-        if customer['subscriptions']['total_count'] == 0
-          0
-        else
-          customer['subscriptions']['data'][0]['plan']['amount'] / 100
-        end
-    end
-
     # PUT /resource
     def update
-      @plan = params[:user][:plan]
-
-      if params[:stripeSource].present?
-
-        begin
-          if current_user.stripe_customer_id.nil?
-            customer = Stripe::Customer.create(
-              email: current_user.email
-            )
-            current_user.stripe_customer_id = customer.id
-            current_user.save
-          end
-
-          if params[:threeDSecure] == 'required'
-
-            customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-            customer.source = params[:stripeSource]
-            customer.save
-
-            source = Stripe::Source.create(
-              amount: (@plan.to_f * 100).round,
-              currency: currency_for_user,
-              type: 'three_d_secure',
-              three_d_secure: {
-                customer: customer.id,
-                card: params[:stripeSource]
-              },
-              redirect: {
-                return_url: threedsecure_url + '?email=' + current_user.email + '&plan=' + @plan.to_s +
-                            '&updatecard=1' + '&customer=' + customer.id
-              }
-            )
-
-            # Checking if verification is still required
-            # -> https://stripe.com/docs/sources/three-d-secure
-            unless ((source.redirect.status == 'succeeded' || source.redirect.status == 'not_required') && source.three_d_secure.authenticated == false) || source.status == 'failed'
-              redirect_to source.redirect.url
-              return
-            end
-
-          end
-
-          customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-          card = customer.sources.create(source: params[:stripeSource])
-          customer.default_source = card.id
-          customer.save
-        rescue Stripe::CardError => e
-          body = e.json_body
-          err  = body[:error]
-          flash[:error] = 'Something went wrong with the update of payment method'
-          flash[:error] = "The payment failed: #{err[:message]}" if err[:message]
-          redirect_to payment_path
-          return
-        end
-      end
-
-      if @plan.present?
-
-        if current_user.stripe_customer_id.nil?
-          flash[:notice] = I18n.t('something_went_wrong_with_the_credit_card_please_submit_it_again')
-          redirect_to payment_path
-          return
-        end
-
-        customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-
-        if @plan == 'cancel'
-          if customer['subscriptions']['total_count'] > 0
-            subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
-            subscription.delete
-          end
-        elsif customer['subscriptions']['total_count'] == 0 && @plan.to_i > 1
-          plan = get_stripe_plan(@plan, edit_user_registration_path)
-
-          return if plan == false
-
-          Stripe::Subscription.create(
-            customer: customer.id,
-            plan: plan.id
-          )
-        else
-          current_plan = customer['subscriptions']['data'][0]['plan']['amount'] / 100
-
-          if @plan != current_plan
-            subscription = Stripe::Subscription.retrieve(customer['subscriptions']['data'][0]['id'])
-            stripe_plan = get_stripe_plan(@plan, edit_user_registration_path)
-
-            return if stripe_plan == false
-
-            subscription.plan = stripe_plan['id']
-            subscription.prorate = false
-            subscription.save
-          end
-        end
-      end
-
-      if !params[:stripeSource].nil? || !params[:user][:plan].nil?
-        flash[:notice] = I18n.t('your_payment_details_have_been_updated')
-        redirect_to payment_path
-        return
-      end
-
       params[:user][:country] = nil if params[:user][:country] == ''
 
       super
@@ -279,8 +104,8 @@ module Users
       dashboard_path + '?registered=1'
     end
 
-    def after_update_path_for(resource)
-      edit_user_registration_path(resource)
+    def after_update_path_for(_resource)
+      edit_user_registration_path
     end
 
     # The path used after sign up for inactive accounts.
@@ -299,6 +124,26 @@ module Users
       render :new
     end
 
+    def redirect_to_applicable_three_d_secure_verification(plan)
+      return false unless params[:threeDSecure] == 'required'
+
+      verification = ThreeDSecureVerification.new(
+        card_source_param, plan.amount, plan.currency, user_registration_threedsecure_url
+      )
+      return false unless verification.verification_required?
+
+      session[:three_d_secure_handoff] = three_d_secure_handoff_hash
+      redirect_to verification.redirect_url
+      true
+    end
+
+    def sign_up_subscription(user, plan)
+      @manager.sign_up(
+        user.email, plan, card_source_param,
+        params['three_d_secure'] == 'continue' ? params['source'] : nil
+      )
+    end
+
     def ensure_valid_new_params
       redirect_to '/#choose-plan' if params[:choices].nil? || !params[:choices].include?(',')
     end
@@ -308,6 +153,14 @@ module Users
 
       flash[:error] = I18n.t('something_went_wrong_go_back_one_step_and_try_again')
       redirect_to new_user_registration_path(choices: params[:user][:choices])
+    end
+
+    def set_choices_for_new
+      @choices = params[:choices]
+    end
+
+    def set_choices_for_create
+      @choices = choices_params
     end
 
     def sign_up_params
@@ -328,49 +181,6 @@ module Users
         'choices' => choices_params,
         'card_source' => card_source_param
       }
-    end
-
-    def create_three_d_secure_verification(plan)
-      ThreeDSecureVerification.new(
-        card_source_param,
-        plan.amount,
-        plan.currency,
-        user_registration_threedsecure_url
-      )
-    end
-
-    def get_stripe_plan(plan, error_path)
-      plan_id = generate_plan_id(plan)
-      product_name = generate_product_name(plan)
-
-      begin
-        stripe_plan = Stripe::Plan.retrieve(plan_id)
-      rescue Stripe::StripeError
-        begin
-          stripe_plan = Stripe::Plan.create(
-            id: plan_id,
-            interval: 'month',
-            currency: currency_for_user,
-            amount: (plan.to_f * 100).round,
-            product: {
-              name: product_name
-            }
-          )
-        rescue Stripe::StripeError => e
-          flash[:error] = e.message
-          redirect_to error_path
-          return false
-        end
-      end
-      stripe_plan
-    end
-
-    def generate_plan_id(plan)
-      'climate_offset_' + plan.to_s.gsub(/[.,]/, '_') + '_' + currency_for_user + '_monthly'
-    end
-
-    def generate_product_name(plan)
-      'Climate Offset ' + plan.to_s + ' ' + currency_for_user + ' Monthly'
     end
   end
 end

@@ -1,4 +1,4 @@
             <ul class="nav nav-tabs nav-justified">
-              <li role="presentation" <%== action_name == "edit" ? "class='active'" : "" %>><%= link_to t('edit_settings'), edit_user_registration_path %></li>
-              <li role="presentation" <%== action_name == "payment" ? "class='active'" : "" %>><%= link_to t('payment_settings'), payment_path %></li>
+              <li role="presentation" <%== current_page?(controller: 'registrations', action: "edit") ? "class='active'" : "" %>><%= link_to t('edit_settings'), edit_user_registration_path %></li>
+              <li role="presentation" <%== current_page?(controller: 'subscriptions', action: "show") ? "class='active'" : "" %>><%= link_to t('payment_settings'), user_subscription_path %></li>
             </ul>

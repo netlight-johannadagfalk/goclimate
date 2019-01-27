@@ -30,7 +30,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     visit '/users/edit'
     find('.registrations-edit', wait: 20)
     click_link 'Payment Settings'
-    find('.registrations-payment', wait: 20)
+    find('.subscriptions-show', wait: 20)
 
     expect(page).to have_text 'Payment Settings'
 
@@ -44,7 +44,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     click_button 'Update'
 
     # Wait for payment page to render
-    find('.registrations-payment', wait: 20)
+    find('.subscriptions-show', wait: 20)
   end
 
   context 'User with 3D Secure card' do
@@ -78,7 +78,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       visit '/users/edit'
       find('.registrations-edit', wait: 20)
       click_link 'Payment Settings'
-      find('.registrations-payment', wait: 20)
+      find('.subscriptions-show', wait: 20)
 
       expect(page).to have_text 'Payment Settings'
 
@@ -96,7 +96,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       click_button 'Authorize Test Payment'
 
       # Wait for payment page to render
-      find('.registrations-payment', wait: 20)
+      find('.subscriptions-show', wait: 20)
     end
   end
 end

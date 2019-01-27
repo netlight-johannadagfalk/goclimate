@@ -88,7 +88,7 @@
             <p class="lead"><%=t 'you_will_offset_for', cost: @plan %>. <%=t 'sign_up_here_to_start_livint_a_climate_neutral_life' %></p>
             <span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span>
       
-            <% if flash[:error].present? || resource.errors.any? || (@sign_up.present? && @sign_up.errors.any?) %>
+            <% if flash[:error].present? || resource.errors.any? || (@manager.present? && @manager.errors.any?) %>
               <div id="error_explanation">
                 <% if flash[:error].present? %>
                   <p><%= flash[:error] %></p>
@@ -98,8 +98,8 @@
                     <p><%= message %></p>
                   <% end %>
                 <% end %>
-                <% if @sign_up.present? && @sign_up.errors.any? %>
-                  <p>The payment failed: <%= @sign_up.errors.values.join(' ') %></p>
+                <% if @manager.present? && @manager.errors.any? %>
+                  <p>The payment failed: <%= @manager.errors.values.join(' ') %></p>
                 <% end %>
               </div>
             <% end %>

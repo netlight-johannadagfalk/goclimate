@@ -4,7 +4,7 @@
           <label for="plan" class="col-sm-4 control-label padding-top"><%=t 'climate_plan' %></label>
           <div class="col-sm-4">
             <select id="plan" name="user[plan]" class="form-control input-sm">
-              <% if action_name == "payment" %>
+              <% if current_page?(controller: 'subscriptions', action: 'show') %>
                 <% if @plan == "canceled" %>
                   <option value="" selected=1>-</option>
                 <% else %>
