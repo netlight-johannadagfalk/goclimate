@@ -11,11 +11,9 @@
 Metrics/AbcSize:
   Exclude:
     - 'app/controllers/admin/dashboard_controller.rb'
-    - 'app/controllers/dashboard_controller.rb'
 
 # Offense count: 2
 # Configuration parameters: CountComments, Max, ExcludedMethods.
 Metrics/MethodLength:
   Exclude:
     - 'app/controllers/admin/dashboard_controller.rb'
-    - 'app/controllers/dashboard_controller.rb'
