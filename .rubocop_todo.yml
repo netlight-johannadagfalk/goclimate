@@ -13,35 +13,9 @@ Metrics/AbcSize:
     - 'app/controllers/admin/dashboard_controller.rb'
     - 'app/controllers/application_controller.rb'
     - 'app/controllers/dashboard_controller.rb'
-    - 'app/controllers/users/subscriptions_controller.rb'
     - 'app/controllers/welcome_controller.rb'
     - 'app/models/lifestyle_choice.rb'
     - 'app/models/stripe_payout.rb'
-
-# Offense count: 1
-# Configuration parameters: CountBlocks, Max.
-Metrics/BlockNesting:
-  Exclude:
-    - 'app/controllers/users/subscriptions_controller.rb'
-
-# Offense count: 1
-# Configuration parameters: CountComments, Max.
-Metrics/ClassLength:
-  Exclude:
-    - 'app/controllers/users/subscriptions_controller.rb'
-
-# Offense count: 3
-# Configuration parameters: Max.
-Metrics/CyclomaticComplexity:
-  Exclude:
-    - 'app/controllers/users/subscriptions_controller.rb'
-
-# Offense count: 2
-# Configuration parameters: Max, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Metrics/LineLength:
-  Exclude:
-    - 'app/controllers/users/subscriptions_controller.rb'
 
 # Offense count: 7
 # Configuration parameters: CountComments, Max, ExcludedMethods.
@@ -49,11 +23,4 @@ Metrics/MethodLength:
   Exclude:
     - 'app/controllers/admin/dashboard_controller.rb'
     - 'app/controllers/dashboard_controller.rb'
-    - 'app/controllers/users/subscriptions_controller.rb'
     - 'app/models/stripe_payout.rb'
-
-# Offense count: 3
-# Configuration parameters: Max.
-Metrics/PerceivedComplexity:
-  Exclude:
-    - 'app/controllers/users/subscriptions_controller.rb'
