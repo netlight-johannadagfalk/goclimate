@@ -22,7 +22,9 @@
                 <div id="current-card-group" class="form-group">
                   <div class="col-sm-1"></div>
                   <label for="current-card" class="col-sm-4 control-label padding-top"><%=t 'credit_or_debit_card' %></label>
-                  <p id="current-card" class="col-sm-4 control-label"><%= @current_card.nil? ? t('no_card_registered') : @current_card %> (<a id="add-new-card" href="#"><%= @current_card.nil? ? t('add_new_card') : t('edit_card') %></a>)</p>
+                  <p id="current-card" class="col-sm-4 control-label">
+                    <%= @current_source.nil? ? t('no_card_registered') : masked_card_number(@current_source) %> (<a id="add-new-card" href="#"><%= @current_source.nil? ? t('add_new_card') : t('edit_card') %></a>)
+                  </p>
                 </div>
 
                 <%= hidden_field(:user, :stripe_customer_id, :value => "") %>

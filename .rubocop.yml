@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 Style/EmptyMethod:
   EnforcedStyle: expanded
 
@@ -39,6 +37,7 @@ Metrics/BlockLength:
     - 'scenario'
     - 'draw'
     - 'configure'
+    - 'namespace'
 
 Metrics/LineLength:
   Max: 120

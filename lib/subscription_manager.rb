@@ -2,7 +2,6 @@
 
 class SubscriptionManager
   attr_reader :customer, :errors
-  attr_accessor :three_d_secure_source
 
   class ThreeDSecureSourceNotChargeableError < StandardError; end
 

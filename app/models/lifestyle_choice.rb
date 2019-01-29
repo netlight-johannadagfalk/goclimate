@@ -12,19 +12,7 @@ class LifestyleChoice < ApplicationRecord
     return 'x' if choices == []
 
     tonne_co2 = lifestyle_choice_tonnes(choices)
-
-    if I18n.locale == :en
-      price = tonne_co2 * SEK_PER_TONNE / SEK_PER_USD / 12
-      rounded_price_with_buffer = (price * BUFFER_SIZE).round(1)
-    elsif I18n.locale == :de
-      price = tonne_co2 * SEK_PER_TONNE / SEK_PER_EUR / 12
-      rounded_price_with_buffer = (price * BUFFER_SIZE).round(1)
-    else
-      price = tonne_co2 * SEK_PER_TONNE / 12
-      rounded_price_with_buffer = (price * BUFFER_SIZE / 5).ceil * 5
-    end
-
-    rounded_price_with_buffer
+    rounded_price_with_buffer(tonne_co2)
   end
 
   def self.lifestyle_choice_tonnes(choices)
@@ -54,5 +42,19 @@ class LifestyleChoice < ApplicationRecord
   def self.stripe_plan(choices)
     choices = choices.split(',').map(&:to_i)
     get_lifestyle_choice_price(choices)
+  end
+
+  private_class_method def self.rounded_price_with_buffer(tonne_co2)
+    case I18n.locale
+    when :en
+      price = tonne_co2 * SEK_PER_TONNE / SEK_PER_USD / 12
+      (price * BUFFER_SIZE).round(1)
+    when :de
+      price = tonne_co2 * SEK_PER_TONNE / SEK_PER_EUR / 12
+      (price * BUFFER_SIZE).round(1)
+    else
+      price = tonne_co2 * SEK_PER_TONNE / 12
+      (price * BUFFER_SIZE / 5).ceil * 5
+    end
   end
 end

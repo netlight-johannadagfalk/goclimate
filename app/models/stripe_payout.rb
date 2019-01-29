@@ -2,9 +2,6 @@
 
 class StripePayout < ApplicationRecord
   def self.update_payouts
-    require 'stripe'
-    Stripe.api_key = ENV['SECRET_KEY']
-
     list = Stripe::Payout.list(limit: 100)
     last_id = ''
 
