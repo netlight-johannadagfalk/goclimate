@@ -39,6 +39,7 @@ Metrics/BlockLength:
     - 'scenario'
     - 'draw'
     - 'configure'
+    - 'namespace'
 
 Metrics/LineLength:
   Max: 120

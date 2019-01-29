@@ -19,13 +19,6 @@ Metrics/AbcSize:
     - 'app/models/stripe_payout.rb'
 
 # Offense count: 1
-# Configuration parameters: CountComments, Max, ExcludedMethods.
-# ExcludedMethods: refine
-Metrics/BlockLength:
-  Exclude:
-    - 'lib/tasks/newsletter.rake'
-
-# Offense count: 1
 # Configuration parameters: CountBlocks, Max.
 Metrics/BlockNesting:
   Exclude:
