@@ -14,7 +14,6 @@ Metrics/AbcSize:
     - 'app/controllers/application_controller.rb'
     - 'app/controllers/dashboard_controller.rb'
     - 'app/controllers/welcome_controller.rb'
-    - 'app/models/lifestyle_choice.rb'
 
 # Offense count: 7
 # Configuration parameters: CountComments, Max, ExcludedMethods.
