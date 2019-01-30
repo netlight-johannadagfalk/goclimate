@@ -21,8 +21,9 @@ class ImpactStatistics
 
   def to_csv
     CSV.generate do |csv|
-      csv << %w[
-        week_of subscriber_payments_tonnes gift_cards_tonnes invoices_tonnes total_sold_tonnes bought_projects_tonnes
+      csv << [
+        'Week of', 'Subscriber Payments (tonnes)', 'Gift Cards (tonnes)', 'Invoices (tonnes)', 'Total sold (tonnes)',
+        'Bought Projects (tonnes)'
       ]
 
       weeks.each do |week_start, fields|
