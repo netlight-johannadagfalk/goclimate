@@ -8,7 +8,7 @@ module Users
     before_action :authenticate_user!
 
     # Cleanup potential 3D Secure handoff hash before starting fresh, and also after returning.
-    before_action :cleanup_three_d_secure_handoff, only: [:show]
+    before_action :cleanup_three_d_secure_handoff, only: [:update], if: -> { params[:three_d_secure] != 'continue' }
     after_action :cleanup_three_d_secure_handoff, only: [:update], if: -> { params[:three_d_secure] == 'continue' }
 
     def show
@@ -57,7 +57,7 @@ module Users
       )
       return false unless verification.verification_required?
 
-      session[:three_d_secure_handoff] = three_d_secure_handoff_hash
+      set_three_d_secure_handoff
       redirect_to verification.redirect_url
       true
     end
@@ -75,10 +75,6 @@ module Users
       redirect_to user_subscription_path
     end
 
-    def cleanup_three_d_secure_handoff
-      session.delete(:three_d_secure_handoff)
-    end
-
     def redirect_successful_update
       flash[:notice] = I18n.t('your_payment_details_have_been_updated')
       redirect_to user_subscription_path
@@ -92,11 +88,15 @@ module Users
       session.to_hash.dig('three_d_secure_handoff', 'card_source') || params[:stripeSource]
     end
 
-    def three_d_secure_handoff_hash
-      {
-        'plan' => @plan,
+    def set_three_d_secure_handoff
+      session[:three_d_secure_handoff] = {
+        'plan' => plan_param,
         'card_source' => card_source_param
       }
+    end
+
+    def cleanup_three_d_secure_handoff
+      session.delete(:three_d_secure_handoff)
     end
   end
 end

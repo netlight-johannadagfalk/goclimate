@@ -15,6 +15,10 @@ module Users
     before_action :set_choices_for_new, only: [:new]
     before_action :set_choices_for_create, only: [:create]
 
+    # Cleanup potential 3D Secure handoff hash before starting fresh, and also after returning.
+    before_action :cleanup_three_d_secure_handoff, only: [:create], if: -> { params[:three_d_secure] != 'continue' }
+    after_action :cleanup_three_d_secure_handoff, only: [:create], if: -> { params[:three_d_secure] == 'continue' }
+
     # GET /resource/sign_up
     def new
       @plan = LifestyleChoice.stripe_plan(params[:choices])
@@ -25,9 +29,9 @@ module Users
 
     # POST /resource
     #
-    # This action is doing lots of things due to 3D Secure and the complexities
-    # of the sign up process. Simplifying too much would make it harder to
-    # understand, so we disable the Rubocop check Metrics/AbcSize instead.
+    # This action is doing lots of things due to the complexities of the sign
+    # up process. Simplifying too much would make it harder to understand, so
+    # we disable the Rubocop check Metrics/AbcSize instead.
     #
     # rubocop:disable Metrics/AbcSize
     def create
@@ -56,8 +60,6 @@ module Users
       sign_up(resource_name, user)
 
       redirect_to after_sign_up_path_for(user)
-
-      session.delete(:three_d_secure_handoff)
     end
     # rubocop:enable Metrics/AbcSize
 
@@ -132,7 +134,7 @@ module Users
       )
       return false unless verification.verification_required?
 
-      session[:three_d_secure_handoff] = three_d_secure_handoff_hash
+      set_three_d_secure_handoff
       redirect_to verification.redirect_url
       true
     end
@@ -175,12 +177,16 @@ module Users
       session.to_hash.dig('three_d_secure_handoff', 'card_source') || params[:stripeSource]
     end
 
-    def three_d_secure_handoff_hash
-      {
+    def set_three_d_secure_handoff
+      session[:three_d_secure_handoff] = {
         'sign_up_params' => sign_up_params,
         'choices' => choices_params,
         'card_source' => card_source_param
       }
+    end
+
+    def cleanup_three_d_secure_handoff
+      session.delete(:three_d_secure_handoff)
     end
   end
 end
