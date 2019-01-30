@@ -59,7 +59,7 @@ jobs:
 
       - run:
           name: Setup database
-          command: bin/rake db:setup db:seed
+          command: bin/rake db:create db:schema:load
 
       - run:
           name: Run Rspec
