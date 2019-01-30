@@ -10,6 +10,12 @@ class StripeEvent < ApplicationRecord
   belongs_to :user, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id', required: false
 
   scope :payments, ->(user = nil) { where(stripe_object: 'charge').where(stripe_customer_id: user.stripe_customer_id) }
+  scope :paid_charges, -> { where(stripe_object: 'charge', paid: true) }
+  scope :for_subscriptions, -> { where(gift_card: false) }
+  scope :for_gift_cards, -> { where(gift_card: true) }
+  scope :in_sek, -> { where(currency: 'sek') }
+  scope :in_usd, -> { where(currency: 'usd') }
+  scope :in_eur, -> { where(currency: 'eur') }
 
   def self.create_from_stripe_charge(charge, gift_card = false)
     create(
