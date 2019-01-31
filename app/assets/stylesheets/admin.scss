@@ -1,0 +1,30 @@
+.admin {
+  .site-wrapper {
+    input {
+      color: #000;
+    }
+    a {
+      color: blue;
+      padding: 5px;
+    }
+  }
+
+  div.site-wrapper {
+    color: #fff;
+    background-color: grey;
+    padding: 50px 50px 0;
+  }
+
+  &.dashboard {
+    text-align: left;
+
+    table {
+      background-color: #fff;
+    }
+
+    td, th {
+      color: #000;
+      padding: 0px 5px 0px 5px;
+    }
+  }
+}

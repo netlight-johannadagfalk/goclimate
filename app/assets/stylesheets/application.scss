@@ -102,32 +102,6 @@ ul.nav.nav-tabs li.active a {
 .nav.nav-tabs .active {
   font-weight: bold;
 }
-.projects div.site-wrapper, .lifestyle_choices div.site-wrapper, .invoices div.site-wrapper {
-  color: #fff;
-  background-color: grey;
-}
-.projects a, .lifestyle_choices a, .invoices a {
-  color: blue;
-  padding: 5px;
-}
-.admin.dashboard div.site-wrapper {
-  background-color: #fff;
-}
-.admin.dashboard {
-  color: #000;
-  width: 100%;
-  background-color: #fff;
-  text-align: left;
-}
-.admin.dashboard div {
-  padding-left: 50px;
-}
-.admin.dashboard td {
-  padding: 0px 5px 0px 5px;
-}
-.projects input, .lifestyle_choices input, .invoices input {
-  color: #000;
-}
 .welcome-our_projects .site-wrapper-first .inner, .welcome-transparency .site-wrapper-first .inner {
    padding-bottom: 180px;
 }

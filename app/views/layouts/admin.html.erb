@@ -6,10 +6,38 @@
     <%= javascript_include_tag 'application' %>
     <%= yield :javascript_tags %>
     <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag 'admin' %>
     <%= include_gon %>
   </head>
 
   <body class="admin <%= controller_name + " " + controller_name + "-" + action_name %>">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to 'GoClimateNeutral Admin', admin_root_path, class: 'navbar-brand' %>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li<% if controller_name == 'invoices' %> class="active"<% end %>>
+              <%= link_to 'Invoices', admin_invoices_path %></a>
+            </li>
+            <li<% if controller_name == 'projects' %> class="active"<% end %>>
+              <%= link_to 'Projects', admin_projects_path %></a>
+            </li>
+            <li<% if controller_name == 'lifestyle_choices' %> class="active"<% end %>>
+              <%= link_to 'Lifestyle Choices', admin_lifestyle_choices_path %></a>
+            </li>
+            <li<% if controller_name == 'stripe_events' %> class="active"<% end %>>
+              <%= link_to 'Stripe Events', admin_stripe_events_path %></a>
+            </li>
+          </ul>
+        </div>
+    </nav>
     <div class="site-wrapper">
       <%= yield %>
     </div>
