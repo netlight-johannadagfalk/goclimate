@@ -6,8 +6,12 @@ FactoryBot.define do
     password { 'password' }
     stripe_customer_id { 'cus_TEST' }
 
-    # There currently isn't any way of telling whether users have active
-    # subscriptions, so all users are considered active
-    factory :user_with_active_subscription
+    factory :user_with_ended_subscription do
+      subscription_end_at 2.days.ago
+    end
+
+    factory :user_with_subscription_ending_in_future do
+      subscription_end_at 2.days.from_now
+    end
   end
 end

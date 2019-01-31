@@ -13,6 +13,8 @@ class StripeEventsConsumer
     case event_object.object
     when 'charge'
       process_charge(event_object)
+    when 'subscription'
+      User.find_by_stripe_customer_id(event_object.customer).update_from_stripe_subscription(event_object)
     end
   end
 
