@@ -424,6 +424,12 @@ en:
       sign_up_text: Sign up to offset your carbon footprint on a monthly basis.
       save_our_planet_header: 3. Save Our Planet
       save_our_planet_text: Be part of our community of people who no longer contribute to climate change.
+    form:
+      label:
+        people: People count
+        food: Food habits
+        car: Car habits
+        flying: Flying habits
   number:
     format:
       delimiter: ','

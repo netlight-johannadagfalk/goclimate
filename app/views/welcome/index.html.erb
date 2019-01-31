@@ -24,8 +24,8 @@
 
               </div>
               <div class="panel-body custom-plan-price">
-
                 <div class="impact-calculator-fields">
+                  <label class="sr-only" for="people"><%= t('welcome.form.label.people') %></label>
                   <select id="people" class="form-control input-sm impact-calculator-fields--lifestyle-choice">
                     <% LifestyleChoice.where(category: :people).where("version != 0").order(:co2).each do |people| %>
                       <% if people.co2.to_i == 1 %>
@@ -35,16 +35,22 @@
                       <% end %>
                     <% end %>
                   </select>
+
+                  <label class="sr-only" for="food"><%= t('welcome.form.label.food') %></label>
                   <select id="food" class="form-control input-sm impact-calculator-fields--lifestyle-choice">
                     <% LifestyleChoice.where(category: :food).where("version != 0").order(:co2).each do |choice| %>
                       <option value="<%= choice.id %>"><%=t choice.name %></option>
                     <% end %>
                   </select>
+
+                  <label class="sr-only" for="car"><%= t('welcome.form.label.car') %></label>
                   <select id="car" class="form-control input-sm impact-calculator-fields--lifestyle-choice">
                     <% LifestyleChoice.where(category: :car).each do |choice| %>
                       <option value="<%= choice.id %>"><%=t choice.name %></option>
                     <% end %>
                   </select>
+
+                  <label class="sr-only" for="flying"><%= t('welcome.form.label.flying') %></label>
                   <select id="flying" class="form-control input-sm impact-calculator-fields--lifestyle-choice">
                     <% LifestyleChoice.where(category: :flying).each do |choice| %>
                       <option value="<%= choice.id %>"><%=t choice.name %></option>
