@@ -14,11 +14,7 @@ module Admin
     private
 
     def new_users
-      new_users = {}
-      User.group('date(created_at)').count.each do |date, number_of_users|
-        new_users[date.to_s] = number_of_users
-      end
-      new_users.sort
+      User.order('date(created_at)').group('date(created_at)').count.transform_keys(&:to_s)
     end
 
     def new_users_mean(new_users)
@@ -31,6 +27,7 @@ module Admin
         mean /= 14
         new_users_mean[date] = mean
       end
+      new_users_mean
     end
   end
 end
