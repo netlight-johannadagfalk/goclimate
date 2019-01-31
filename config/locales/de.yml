@@ -839,7 +839,13 @@ de:
       save_our_planet_header: 3. Die Erde retten
       save_our_planet_text: >-
         Seien Sie Teil unserer Community, in der wir nicht länger den
-        Klimawandel fördern. 
+        Klimawandel fördern.
+    form:
+      label:
+        people: Leute zählen
+        food: Essgewohnheiten
+        car: Gewohnheiten des Autos
+        flying: Fluggewohnheiten
   number:
     format:
       delimiter: ' '
