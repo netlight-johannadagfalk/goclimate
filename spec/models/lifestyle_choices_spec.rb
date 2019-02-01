@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe LifestyleChoice do
   describe '.stripe_plan' do
-    let!(:choice1) { create(:lifestyle_choice) }
-    let!(:choice2) { create(:lifestyle_choice) }
+    let!(:choice1) { create(:lifestyle_choice, co2: 1) }
+    let!(:choice2) { create(:lifestyle_choice, co2: 2) }
 
     it 'returns x when no plans are specified' do
       plan = described_class.stripe_plan('')
