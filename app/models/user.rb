@@ -57,13 +57,13 @@ class User < ApplicationRecord
   end
 
   def update_from_stripe_subscription(stripe_subscription)
-    self.subscription_end_at = subscription_ended_at_from_stripe_subscription(stripe_subscription)
+    self.subscription_end_at = subscription_end_at_from_stripe(stripe_subscription)
     save if changed?
   end
 
   private
 
-  def subscription_ended_at_from_stripe_subscription(stripe_subscription)
+  def subscription_end_at_from_stripe(stripe_subscription)
     Time.at(stripe_subscription.ended_at) if stripe_subscription.ended_at.present?
   end
 end
