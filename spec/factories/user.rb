@@ -7,11 +7,11 @@ FactoryBot.define do
     stripe_customer_id { 'cus_TEST' }
 
     factory :user_with_ended_subscription do
-      subscription_end_at 2.days.ago
+      subscription_end_at { 2.days.ago }
     end
 
     factory :user_with_subscription_ending_in_future do
-      subscription_end_at 2.days.from_now
+      subscription_end_at { 2.days.from_now }
     end
   end
 end
