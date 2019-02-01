@@ -14,7 +14,7 @@ class StripeEventsConsumer
     when 'charge'
       process_charge(event_object)
     when 'subscription'
-      User.find_by_stripe_customer_id(event_object.customer).update_from_stripe_subscription(event_object)
+      update_user(event_object)
     end
   end
 
@@ -23,13 +23,27 @@ class StripeEventsConsumer
   def process_charge(charge)
     return if StripeEvent.exists?(stripe_event_id: charge.id)
 
+    Rails.logger.debug("Creating StripeEvent for charge #{charge.id}")
+
     gift_card_charge = charge_is_for_gift_card?(charge)
 
     StripeEvent.create_from_stripe_charge(charge, gift_card_charge)
 
+    Rails.logger.info("Created StripeEvent for charge #{charge.id}")
+
     return if gift_card_charge
 
     send_payment_email(charge)
+  end
+
+  def update_user(subscription)
+    return unless (user = User.find_by_stripe_customer_id(subscription.customer))
+
+    Rails.logger.debug("Updating User #{user.id} from subscription #{subscription.id}")
+
+    return unless user.update_from_stripe_subscription(subscription)
+
+    Rails.logger.info("Updated User #{user.id} from subscription #{subscription.id}")
   end
 
   def charge_is_for_gift_card?(charge)
