@@ -6,7 +6,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   has_many :stripe_events, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
   has_and_belongs_to_many :lifestyle_choices
-  scope :with_active_subscription, -> { where.not(stripe_customer_id: nil) }
+  scope :with_active_subscription, lambda {
+    where(subscription_end_at: nil).or(where('subscription_end_at >= ?', Time.now))
+  }
 
   # Validates on default contexts :create and :update. Use any other context,
   # e.g. valid?(:precheck) to skip before stripe_customer_id is known.
@@ -52,5 +54,16 @@ class User < ApplicationRecord
     result = update_attributes(params, *options)
     clean_up_passwords
     result
+  end
+
+  def update_from_stripe_subscription(stripe_subscription)
+    self.subscription_end_at = subscription_end_at_from_stripe(stripe_subscription)
+    save if changed?
+  end
+
+  private
+
+  def subscription_end_at_from_stripe(stripe_subscription)
+    Time.at(stripe_subscription.ended_at) if stripe_subscription.ended_at.present?
   end
 end
