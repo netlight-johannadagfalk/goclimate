@@ -33,7 +33,7 @@ module Users
       @manager = SubscriptionManager.for_customer(current_user.stripe_customer_id)
 
       if @plan == 'cancel'
-        manager.cancel
+        @manager.cancel
         redirect_successful_update && return
       end
 
