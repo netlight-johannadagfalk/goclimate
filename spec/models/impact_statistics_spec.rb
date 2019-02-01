@@ -41,55 +41,52 @@ RSpec.describe ImpactStatistics do
 
   describe '#initialize' do
     it 'sets subscriber_payments_tonnes for week with subscription payments' do
-      statistics = ImpactStatistics.new
+      statistics = described_class.new
 
       expect(statistics.weeks).to include('2019-01-28' => hash_including(subscriber_payments_tonnes: 21))
     end
 
     it 'sets gift_cards_tonnes for weeks with gift card payments' do
-      statistics = ImpactStatistics.new
+      statistics = described_class.new
 
       expect(statistics.weeks).to include('2019-01-28' => hash_including(gift_cards_tonnes: 21))
     end
 
     it 'sets invoices_tonnes for weeks with invoices' do
-      statistics = ImpactStatistics.new
+      statistics = described_class.new
 
       expect(statistics.weeks).to include('2019-01-28' => hash_including(invoices_tonnes: 40))
     end
 
     it 'sets total_sold_tonnes for weeks with sold tonnes' do
-      statistics = ImpactStatistics.new
+      statistics = described_class.new
 
       expect(statistics.weeks).to include('2019-01-28' => hash_including(total_sold_tonnes: 82))
     end
 
     it 'sets bought_projects_tonnes for weeks with projects' do
-      statistics = ImpactStatistics.new
+      statistics = described_class.new
 
       expect(statistics.weeks).to include('2019-01-28' => hash_including(bought_projects_tonnes: 200))
     end
 
     it 'adds empty weeks between start and end of period' do
-      statistics = ImpactStatistics.new
+      statistics = described_class.new
 
       expect(statistics.weeks.keys).to include('2019-01-21')
     end
 
     it 'sorts keys of weeks hash' do
-      statistics = ImpactStatistics.new
+      statistics = described_class.new
 
       expect(statistics.weeks.keys).to eq(['2019-01-14', '2019-01-21', '2019-01-28'])
     end
 
     it 'sets 0 for any missing field' do
-      statistics = ImpactStatistics.new
+      statistics = described_class.new
 
       expect(statistics.weeks).to include('2019-01-21' => hash_including(
-        subscriber_payments_tonnes: 0,
-        gift_cards_tonnes: 0,
-        invoices_tonnes: 0,
-        total_sold_tonnes: 0,
+        subscriber_payments_tonnes: 0, gift_cards_tonnes: 0, invoices_tonnes: 0, total_sold_tonnes: 0,
         bought_projects_tonnes: 0
       ))
     end

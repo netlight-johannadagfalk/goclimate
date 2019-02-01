@@ -4,13 +4,13 @@ require 'rails_helper'
 require 'three_d_secure_verification'
 
 RSpec.describe ThreeDSecureVerification do
+  subject(:verification) { described_class.new(card_source, amount, currency, return_url) }
+
   let(:amount) { 500 }
   let(:currency) { 'sek' }
   let(:card_source) { 'src_CARD' }
   let(:three_d_secure_source) { 'src_THREEDSECURE' }
   let(:return_url) { 'return_url' }
-
-  subject(:verification) { ThreeDSecureVerification.new(card_source, amount, currency, return_url) }
 
   describe '.new' do
     before do
@@ -20,38 +20,38 @@ RSpec.describe ThreeDSecureVerification do
     end
 
     it 'creates 3D Secure source' do
-      ThreeDSecureVerification.new(card_source, amount, currency, return_url)
+      described_class.new(card_source, amount, currency, return_url)
 
       expect(Stripe::Source).to have_received(:create)
     end
 
     it 'sets amount for 3D Secure source to given amount' do
-      ThreeDSecureVerification.new(card_source, amount, currency, return_url)
+      described_class.new(card_source, amount, currency, return_url)
 
       expect(Stripe::Source).to have_received(:create).with hash_including(amount: amount)
     end
 
     it 'sets currency for 3D Secure source given currency' do
-      ThreeDSecureVerification.new(card_source, amount, currency, return_url)
+      described_class.new(card_source, amount, currency, return_url)
 
       expect(Stripe::Source).to have_received(:create).with hash_including(currency: currency)
     end
 
     it 'sets type for 3D Secure source to three_d_secure' do
-      ThreeDSecureVerification.new(card_source, amount, currency, return_url)
+      described_class.new(card_source, amount, currency, return_url)
 
       expect(Stripe::Source).to have_received(:create).with hash_including(type: 'three_d_secure')
     end
 
     it 'uses its Stripe source as card for 3D Secure source' do
-      ThreeDSecureVerification.new(card_source, amount, currency, return_url)
+      described_class.new(card_source, amount, currency, return_url)
 
       expect(Stripe::Source).to have_received(:create)
         .with hash_including(three_d_secure: hash_including(card: card_source))
     end
 
     it 'sets 3D Secure return url to provided url' do
-      ThreeDSecureVerification.new(card_source, amount, currency, return_url)
+      described_class.new(card_source, amount, currency, return_url)
 
       expect(Stripe::Source).to have_received(:create)
         .with hash_including(redirect: hash_including(return_url: return_url))
@@ -67,7 +67,7 @@ RSpec.describe ThreeDSecureVerification do
       end
 
       it 'returns true' do
-        expect(subject.verification_required?).to be(true)
+        expect(verification.verification_required?).to be(true)
       end
     end
 
@@ -79,7 +79,7 @@ RSpec.describe ThreeDSecureVerification do
       end
 
       it 'returns false' do
-        expect(subject.verification_required?).to be(false)
+        expect(verification.verification_required?).to be(false)
       end
     end
 
@@ -91,7 +91,7 @@ RSpec.describe ThreeDSecureVerification do
       end
 
       it 'returns false' do
-        expect(subject.verification_required?).to be(false)
+        expect(verification.verification_required?).to be(false)
       end
     end
   end
@@ -104,7 +104,7 @@ RSpec.describe ThreeDSecureVerification do
     end
 
     it 'returns redirect url from retrieved 3D Secure source' do
-      expect(subject.redirect_url).to eq(source.redirect.url)
+      expect(verification.redirect_url).to eq(source.redirect.url)
     end
   end
 end

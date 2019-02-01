@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'stripe_extensions/plan'
 
-RSpec.describe StripeExtensions::Stripe::Plan do
+RSpec.describe StripeExtensions::Plan do
   describe '#retrieve_or_create_climate_offset_plan' do
     let(:monthly_amount) { 3.6 }
     let(:currency) { 'usd' }

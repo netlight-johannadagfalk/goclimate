@@ -47,7 +47,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     find('.subscriptions-show', wait: 20)
   end
 
-  context 'User with 3D Secure card' do
+  context 'when using 3D Secure card' do
     scenario 'Register and update card' do
       # Homepage
       visit '/'

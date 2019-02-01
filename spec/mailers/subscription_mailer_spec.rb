@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe SubscriptionMailer, type: :mailer do
   let(:user) { create(:user, stripe_customer_id: 'test_id') }
 
-  before :each do
+  before do
     create(:stripe_event, stripe_customer_id: 'test_id', paid: true, stripe_object: 'charge')
   end
 
@@ -44,7 +44,7 @@ RSpec.describe SubscriptionMailer, type: :mailer do
   describe '.one_more_year_email' do
     subject(:mail) { SubscriptionMailer.with(email: user.email).one_more_year_email }
 
-    before :each do
+    before do
       create_list(:stripe_event, 12, stripe_customer_id: 'test_id', paid: true, stripe_object: 'charge')
     end
 

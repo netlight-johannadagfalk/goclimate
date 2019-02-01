@@ -61,6 +61,7 @@ group :development, :test do
   gem 'rb-readline'
   gem 'rspec-rails', '~> 3.7'
   gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
 end
 

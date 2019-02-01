@@ -1,5 +1,10 @@
-Style/EmptyMethod:
-  EnforcedStyle: expanded
+require: rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'vendor/**/*'
 
 Style/MethodCallWithArgsParentheses:
   Enabled: true
@@ -20,15 +25,6 @@ Style/MethodCallWithArgsParentheses:
     - 'Gemfile'
     - 'config.ru'
 
-Style/Documentation:
-  Enabled: false
-
-Style/SymbolArray:
-  EnforcedStyle: brackets
-
-Style/NumericPredicate:
-  Enabled: false
-
 Metrics/BlockLength:
   ExcludedMethods:
     - 'feature'
@@ -39,6 +35,18 @@ Metrics/BlockLength:
     - 'configure'
     - 'namespace'
 
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/Documentation:
+  Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/NumericPredicate:
+  Enabled: false
+
 Metrics/LineLength:
   Max: 120
 
@@ -48,8 +56,24 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Max: 20
 
-AllCops:
+RSpec/NestedGroups:
+  Max: 5
+
+RSpec/MessageChain:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/MultipleExpectations:
   Exclude:
-    - 'db/**/*'
-    - 'bin/**/*'
-    - 'vendor/**/*'
+    - 'spec/features/**/*'
+
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/features/**/*'
+
+Capybara/FeatureMethods:
+  EnabledMethods:
+    - 'feature'
+    - 'scenario'
