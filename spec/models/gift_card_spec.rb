@@ -7,9 +7,9 @@ RSpec.describe GiftCard do
     it 'validates key to be unique' do
       existing = create(:gift_card)
 
-      gift_card = GiftCard.new(key: existing.key)
+      gift_card = described_class.new(key: existing.key)
 
-      expect(gift_card).to_not be_valid
+      expect(gift_card).not_to be_valid
     end
 
     it 'validates key to look like a SHA1 (40 hex characters)' do
@@ -17,7 +17,7 @@ RSpec.describe GiftCard do
 
       gift_card.key = 'not a sha'
 
-      expect(gift_card).to_not be_valid
+      expect(gift_card).not_to be_valid
     end
 
     it 'validates number_of_months to be present' do
@@ -25,13 +25,13 @@ RSpec.describe GiftCard do
 
       gift_card.number_of_months = nil
 
-      expect(gift_card).to_not be_valid
+      expect(gift_card).not_to be_valid
     end
   end
 
   describe 'callbacks' do
     it 'generates key when creating new gift card' do
-      gift_card = GiftCard.create(number_of_months: 6, message: 'test')
+      gift_card = described_class.create(number_of_months: 6, message: 'test')
 
       expect(gift_card.key).to be_present
     end
@@ -42,20 +42,20 @@ RSpec.describe GiftCard do
       expect do
         gift_card.message = 'Something else'
         gift_card.save
-      end.to_not(change { gift_card.key })
+      end.not_to change(gift_card, :key)
     end
   end
 
   describe '#price' do
     it 'calculates price correctly for 3 months' do
-      gift_card = GiftCard.new(number_of_months: 3, currency: 'sek')
+      gift_card = described_class.new(number_of_months: 3, currency: 'sek')
 
       # 11 tons/year * 40 kr/ton / 12 months * 2 * 3 months
       expect(gift_card.price).to eq(220)
     end
 
     it 'calculates price correctly for 6 months' do
-      gift_card = GiftCard.new(number_of_months: 6, currency: 'sek')
+      gift_card = described_class.new(number_of_months: 6, currency: 'sek')
 
       # 11 tons/year * 40 kr/ton / 12 months * 2 * 6 months
       expect(gift_card.price).to eq(440)
@@ -63,13 +63,13 @@ RSpec.describe GiftCard do
 
     context 'with USD' do
       it 'calculates price correctly for 3 months' do
-        gift_card = GiftCard.new(number_of_months: 3, currency: 'usd')
+        gift_card = described_class.new(number_of_months: 3, currency: 'usd')
 
         expect(gift_card.price).to eq(27)
       end
 
       it 'calculates price correctly for 6 months' do
-        gift_card = GiftCard.new(number_of_months: 6, currency: 'usd')
+        gift_card = described_class.new(number_of_months: 6, currency: 'usd')
 
         expect(gift_card.price).to eq(54)
       end
@@ -77,13 +77,13 @@ RSpec.describe GiftCard do
 
     context 'with EUR' do
       it 'calculates price correctly for 3 months' do
-        gift_card = GiftCard.new(number_of_months: 3, currency: 'eur')
+        gift_card = described_class.new(number_of_months: 3, currency: 'eur')
 
         expect(gift_card.price).to eq(21)
       end
 
       it 'calculates price correctly for 6 months' do
-        gift_card = GiftCard.new(number_of_months: 6, currency: 'eur')
+        gift_card = described_class.new(number_of_months: 6, currency: 'eur')
 
         expect(gift_card.price).to eq(42)
       end

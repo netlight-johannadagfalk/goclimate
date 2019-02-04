@@ -4,39 +4,43 @@ require 'rails_helper'
 require 'stripe_events_consumer'
 
 RSpec.describe StripeEventsConsumer do
-  subject { StripeEventsConsumer.new }
+  subject(:consumer) { described_class.new }
 
-  describe '.fetch_and_process' do
+  describe '#fetch_and_process' do
     before do
       allow(Stripe::Event).to receive(:list).and_return(
         Stripe::Event.construct_from(stripe_json_fixture('events_list.json'))
       )
-      allow(subject).to receive(:process)
     end
 
     it 'fetches and processes events' do
-      subject.fetch_and_process
-
-      expect(subject).to have_received(:process).once
+      expect do
+        consumer.fetch_and_process
+      end.to change(StripeEvent, :count).by 1
     end
   end
 
-  describe '.process' do
+  describe '#process' do
     let(:user) { create(:user, stripe_customer_id: 'customer_test_id') }
 
     describe 'with charge event' do
       let(:paid_charge_event) { Stripe::Event.construct_from(stripe_json_fixture('paid_charge_event.json')) }
 
       it 'creates a StripeEvent' do
-        subject.process(paid_charge_event)
+        consumer.process(paid_charge_event)
 
         expect(StripeEvent.last.stripe_event_id).to eq('test_charge_id')
+      end
+
+      it 'sets gift card flag to false' do
+        consumer.process(paid_charge_event)
+
         expect(StripeEvent.last.gift_card).to eq(false)
       end
 
       it 'does not create duplicate events when called twice' do
-        subject.process(paid_charge_event)
-        subject.process(paid_charge_event)
+        consumer.process(paid_charge_event)
+        consumer.process(paid_charge_event)
 
         expect(StripeEvent.count).to eq(1)
       end
@@ -56,10 +60,7 @@ RSpec.describe StripeEventsConsumer do
           expect(SubscriptionMailer).to receive_message_chain(:with, :one_more_month_email, :deliver_now)
             .and_return(SubscriptionMailer.with(email: user.email))
 
-          subject.process(paid_charge_event)
-
-          expect(StripeEvent.count).to eq(2)
-          expect(StripeEvent.last.gift_card).to eq(false)
+          consumer.process(paid_charge_event)
         end
       end
 
@@ -79,9 +80,7 @@ RSpec.describe StripeEventsConsumer do
           expect(SubscriptionMailer).to receive_message_chain(:with, :one_more_year_email, :deliver_now)
             .and_return(SubscriptionMailer.with(email: user.email))
 
-          subject.process(paid_charge_event)
-
-          expect(StripeEvent.count).to eq(12)
+          consumer.process(paid_charge_event)
         end
       end
 
@@ -91,11 +90,26 @@ RSpec.describe StripeEventsConsumer do
         end
 
         it 'creates a gift card StripeEvent' do
-          subject.process(gift_card_charge_event)
+          consumer.process(gift_card_charge_event)
 
           expect(StripeEvent.count).to eq(1)
-          expect(StripeEvent.last.stripe_event_id).to eq('ch_1DSOhfHwuhGySQCdlVpJYYwn')
+        end
+
+        it 'sets gift card flag to true' do
+          consumer.process(gift_card_charge_event)
+
           expect(StripeEvent.last.gift_card).to eq(true)
+        end
+
+        it 'sets stripe event id' do
+          consumer.process(gift_card_charge_event)
+
+          expect(StripeEvent.last.stripe_event_id).to eq('ch_1DSOhfHwuhGySQCdlVpJYYwn')
+        end
+
+        it 'does not set stripe customer id' do
+          consumer.process(gift_card_charge_event)
+
           expect(StripeEvent.last.stripe_customer_id).to eq(nil)
         end
       end
@@ -104,7 +118,7 @@ RSpec.describe StripeEventsConsumer do
         let(:unpaid_charge_event) { Stripe::Event.construct_from(stripe_json_fixture('unpaid_charge_event.json')) }
 
         it 'creates a StripeEvent' do
-          subject.process(unpaid_charge_event)
+          consumer.process(unpaid_charge_event)
 
           expect(StripeEvent.last.stripe_event_id).to eq('test_charge_id_2')
         end
@@ -116,12 +130,9 @@ RSpec.describe StripeEventsConsumer do
         end
 
         it 'does not send email' do
-          expect(SubscriptionMailer).not_to receive(:with)
-          emails = ActionMailer::Base.deliveries.count
-
-          subject.process(paid_charge_event_no_customer)
-
-          expect(ActionMailer::Base.deliveries.count).to eq(emails)
+          expect do
+            consumer.process(paid_charge_event_no_customer)
+          end.not_to(change { ActionMailer::Base.deliveries.count })
         end
       end
     end
@@ -137,7 +148,7 @@ RSpec.describe StripeEventsConsumer do
 
       it 'updates user from subscription' do
         expect do
-          subject.process(subscription_event)
+          consumer.process(subscription_event)
         end.to(change { User.find(user.id).subscription_end_at })
       end
     end

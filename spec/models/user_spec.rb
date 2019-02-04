@@ -12,7 +12,7 @@ RSpec.describe User do
       end
 
       it 'includes it' do
-        expect(User.with_active_subscription.count).to eq(1)
+        expect(described_class.with_active_subscription.count).to eq(1)
       end
     end
 
@@ -22,7 +22,7 @@ RSpec.describe User do
       end
 
       it 'includes it' do
-        expect(User.with_active_subscription.count).to eq(1)
+        expect(described_class.with_active_subscription.count).to eq(1)
       end
     end
 
@@ -32,7 +32,7 @@ RSpec.describe User do
       end
 
       it 'does not include it' do
-        expect(User.with_active_subscription.count).to eq(0)
+        expect(described_class.with_active_subscription.count).to eq(0)
       end
     end
   end
@@ -57,7 +57,7 @@ RSpec.describe User do
     it 'saves updates' do
       user.update_from_stripe_subscription(cancelled_subscription)
 
-      expect(user.changed?).to_not be(true)
+      expect(user.changed?).not_to be(true)
     end
 
     it 'does not save to database when nothing changed' do
@@ -65,7 +65,7 @@ RSpec.describe User do
 
       user.update_from_stripe_subscription(current_subscription)
 
-      expect(user).to_not have_received(:save)
+      expect(user).not_to have_received(:save)
     end
 
     context 'when user has cancelled subscription before' do

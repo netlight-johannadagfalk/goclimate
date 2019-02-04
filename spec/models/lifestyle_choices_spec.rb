@@ -4,14 +4,17 @@ require 'rails_helper'
 
 RSpec.describe LifestyleChoice do
   describe '.stripe_plan' do
-    it 'returns the price plan given a number of lifestyle choices' do
-      lc1 = create(:lifestyle_choice)
-      lc2 = create(:lifestyle_choice)
+    let!(:choice1) { create(:lifestyle_choice, co2: 1) }
+    let!(:choice2) { create(:lifestyle_choice, co2: 2) }
 
-      plan = LifestyleChoice.stripe_plan ''
+    it 'returns x when no plans are specified' do
+      plan = described_class.stripe_plan('')
+
       expect(plan).to eq('x')
+    end
 
-      plan = LifestyleChoice.stripe_plan "#{lc1.id}, #{lc2.id}"
+    it 'returns the price plan given a number of lifestyle choices' do
+      plan = described_class.stripe_plan("#{choice1.id}, #{choice2.id}")
       expect(plan).to eq(2.4)
     end
   end
