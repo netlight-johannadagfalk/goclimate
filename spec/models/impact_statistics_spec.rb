@@ -35,7 +35,7 @@ RSpec.describe ImpactStatistics do
                                     stripe_amount: 8_00, # 8 EUR = 2 tonnes
                                     currency: 'eur')
   end
-  let!(:invoice) { create(:invoice, created_at: Date.new(2019, 1, 29), carbon_offset: 40) }
+  let!(:invoice) { create(:invoice, created_at: Date.new(2019, 1, 29), carbon_offset: 40, project: project) }
   let!(:project) { create(:project, created_at: Date.new(2019, 1, 29), carbon_offset: 200) }
   let!(:past_project) { create(:project, created_at: Date.new(2019, 1, 16), carbon_offset: 100) }
 
