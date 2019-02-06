@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.5.1'
+ruby '2.6.1'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
@@ -20,15 +20,15 @@ gem 'rack-reverse-proxy', '~> 0.12.0', require: 'rack/reverse_proxy'
 # gem 'redis', '~> 3.0'
 
 # Authentication
-gem 'devise', '~> 4.4.3'
-gem 'devise-i18n', '~> 1.6.2'
+gem 'devise', '~> 4.5.0'
+gem 'devise-i18n', '~> 1.7.1'
 
 # I18n
 gem 'http_accept_language', '~> 2.1.1'
 
 # Views
-gem 'client_side_validations', '~> 11.1.2'
-gem 'country_select', '~> 3.1.1'
+gem 'client_side_validations', '~> 12.1.0'
+gem 'country_select', '~> 4.0.0'
 gem 'gon', '~> 6.2.0'
 gem 'jbuilder', '~> 2.8.0'
 
@@ -41,7 +41,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Third-party integrations
 gem 'rollbar', '~> 2.18'
-gem 'sendgrid-actionmailer', '~> 2.0.0'
+gem 'sendgrid-actionmailer', '~> 2.2.1'
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby', ref: 'f6484e3'
 
 # Utilities
