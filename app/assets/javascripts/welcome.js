@@ -50,13 +50,6 @@ $(document).ready(function() {
 	});
 
 	planSum();
-	
-	//for faq links
-	$('.panel-title a').on('click', function (e) {
-		window.location.hash = e.target.hash + 'id';
-	});
-	var anchor = window.location.hash.replace('id', '');
-	$(anchor).collapse('show');
 
 	$(function () {
 		$('[data-toggle="popover"]').popover();
@@ -91,7 +84,7 @@ $(document).ready(function() {
 			separator = ' ';
 		}
 
-		options = { 
+		options = {
 			separator: separator
 		};
 
