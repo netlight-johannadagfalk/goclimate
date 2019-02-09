@@ -36,18 +36,13 @@ $(document).ready(function() {
 		$('#custom-plan').attr('href', '/users/sign_up?choices=' + base_cost + ',' + food + ',' + car + ',' + flying + ',' + people);
 	};
 
-	$('#food').change(function() {
-		planSum();
-	});
-	$('#car').change(function() {
-		planSum();
-	});
-	$('#flying').change(function() {
-		planSum();
-	});
-	$('#people').change(function() {
-		planSum();
-	});
+	var impactCalculatorFields = document.querySelectorAll('#food, #car, #flying, #people');
+
+	for (var i = 0; i < impactCalculatorFields.length; i++) {
+		impactCalculatorFields[i].addEventListener('change', function() {
+			planSum();
+		});
+	}
 
 	planSum();
 
