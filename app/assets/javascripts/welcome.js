@@ -57,14 +57,18 @@ $(document).ready(function() {
 	 	$('body').css('cursor', 'default');
 	});
 
-	function scrollToAnchor(aid){
-		var aTag = $(aid);
-		$('html,body').animate({scrollTop: aTag.offset().top},'slow');
+	function scrollToAnchor(elSelector) {
+		var el = document.querySelector(elSelector);
+		el.scrollIntoView({behavior: "smooth", block: "center"});
 	};
 
-	$('.im-in-button').on('click', function (e) {
-		scrollToAnchor('#choose-plan');
-	});
+	var scrollToAnchorButtons = document.getElementsByClassName('im-in-button');
+	for (var i = 0; i < scrollToAnchorButtons.length; i++) {
+		scrollToAnchorButtons[i].addEventListener('click', function(event) {
+			event.preventDefault();
+			scrollToAnchor(event.target.hash);
+		});
+	}
 
 	$('#total-carbon-offset').text('0');
 	$('#total-users').text('0');
