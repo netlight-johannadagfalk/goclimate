@@ -1,6 +1,24 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  # API. Available on subdomain `api.` in production and under path `/api` in other environments.
+  api = proc do
+    namespace 'api', path: '', defaults: { subdomain: ENV['HEROKU_ENV'] == 'production' ? 'api' : false } do
+      namespace 'v1', defaults: { format: :json }, constraints: { format: :json } do
+        resource :flight_emissions, only: [:show]
+      end
+
+      resource :documentations, only: [:show], path: 'docs'
+    end
+
+    # Other routes should not match for the api subdomain, so catch everything
+    # else and return not found. This only makes a difference in production
+    # where the subdomain is actually used.
+    match '/', to: 'errors#not_found', via: :all
+    match '*path', to: 'errors#not_found', via: :all
+  end
+  ENV['HEROKU_ENV'] == 'production' ? constraints(subdomain: 'api', &api) : scope('/api', &api)
+
   root 'welcome#index'
 
   # Devise routes for sessions, registrations & payment
