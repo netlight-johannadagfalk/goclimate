@@ -74,15 +74,15 @@
               <table class="table table-condensed">
                 <tr>
                   <td><%=t 'climate_offset_from_users' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@payouts_from_users_2019) %> SEK</td>
+                  <td class="text-right"><%= number_with_delimiter(@payouts_from_users2019) %> SEK</td>
                 </tr>
                 <tr>
                   <td><%=t 'climate_offset_from_companies' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@invoiced_2019) %> SEK</td>
+                  <td class="text-right"><%= number_with_delimiter(@invoiced2019) %> SEK</td>
                 </tr>
                 <tr>
                   <td><%=t 'total' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@invoiced_2019 + @payouts_from_users_2019) %> SEK</td>
+                  <td class="text-right"><%= number_with_delimiter(@invoiced2019 + @payouts_from_users2019) %> SEK</td>
                 </tr>
               </table>
 
@@ -90,7 +90,7 @@
               <table class="table table-condensed">
                 <tr>
                   <td><%=t 'investments_in_climate_projects' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@project_cost_in_sek_2019) %> SEK</td>
+                  <td class="text-right"><%= number_with_delimiter(@project_cost_in_sek2019) %> SEK</td>
                 </tr>
                 <tr>
                   <td><%=t 'salary_costs' %></td>
@@ -98,11 +98,11 @@
                 </tr>
                 <tr>
                   <td><%=t 'other_operating_expenses' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@other_operating_expenses_2019) %> SEK</td>
+                  <td class="text-right"><%= number_with_delimiter(@other_operating_expenses2019) %> SEK</td>
                 </tr>
                 <tr>
                   <td><%=t 'total' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@project_cost_in_sek_2019 + @other_operating_expenses_2019) %> SEK</td>
+                  <td class="text-right"><%= number_with_delimiter(@project_cost_in_sek2019 + @other_operating_expenses2019) %> SEK</td>
                 </tr>
               </table>
 
@@ -110,7 +110,7 @@
               <table class="table table-condensed">
                 <tr>
                   <td><%=t 'result_that_will_be_invested_for_the_climate' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@results_2019) %> SEK</td>
+                  <td class="text-right"><%= number_with_delimiter(@results2019) %> SEK</td>
                 </tr>
               </table>
 
