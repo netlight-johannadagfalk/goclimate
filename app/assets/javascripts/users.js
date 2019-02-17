@@ -1,6 +1,4 @@
 $(document).ready(function() {
-	$('#shareModal').modal();
-
 	function shareFacebook() {
 		FB.ui({
 		  method: 'share',
