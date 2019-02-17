@@ -10,9 +10,6 @@ $(document).ready(function() {
 		  hashtag: '#goclimateneutral'
 		}, function(response){});
 	}
-	$('#share-facebook-popup').click(function() {
-		shareFacebook();
-	});
 
 	$('#share-facebook-bottom').click(function() {
 		shareFacebook();
