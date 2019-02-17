@@ -11,9 +11,11 @@ $(document).ready(function() {
 		}, function(response){});
 	}
 
-	$('#share-facebook-bottom').click(function() {
+	var shareFacebookButton = document.getElementById('share-facebook-bottom');
+	shareFacebookButton.addEventListener('click', function(event) {
+		event.preventDefault();
 		shareFacebook();
-	});
+	}, false);
 
 	$('#user_toplist_collapsed').on('hidden.bs.collapse', function () {
 	  $('#user_toplist_open_link').show();
