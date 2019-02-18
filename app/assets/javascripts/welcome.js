@@ -57,9 +57,9 @@ $(document).ready(function() {
 	 	$('body').css('cursor', 'default');
 	});
 
-	function scrollToAnchor(elSelector) {
-		var el = document.querySelector(elSelector);
-		el.scrollIntoView({behavior: "smooth", block: "center"});
+	function scrollToAnchor(elementSelector) {
+		var element = document.querySelector(elementSelector);
+		element.scrollIntoView({behavior: "smooth", block: "center"});
 	};
 
 	var scrollToAnchorButtons = document.getElementsByClassName('im-in-button');
