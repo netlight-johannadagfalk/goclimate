@@ -36,27 +36,15 @@ $(document).ready(function() {
 		$('#custom-plan').attr('href', '/users/sign_up?choices=' + base_cost + ',' + food + ',' + car + ',' + flying + ',' + people);
 	};
 
-	$('#food').change(function() {
-		planSum();
-	});
-	$('#car').change(function() {
-		planSum();
-	});
-	$('#flying').change(function() {
-		planSum();
-	});
-	$('#people').change(function() {
-		planSum();
-	});
+	var impactCalculatorFields = document.querySelectorAll('#food, #car, #flying, #people');
+
+	for (var i = 0; i < impactCalculatorFields.length; i++) {
+		impactCalculatorFields[i].addEventListener('change', function() {
+			planSum();
+		});
+	}
 
 	planSum();
-	
-	//for faq links
-	$('.panel-title a').on('click', function (e) {
-		window.location.hash = e.target.hash + 'id';
-	});
-	var anchor = window.location.hash.replace('id', '');
-	$(anchor).collapse('show');
 
 	$(function () {
 		$('[data-toggle="popover"]').popover();
@@ -69,14 +57,18 @@ $(document).ready(function() {
 	 	$('body').css('cursor', 'default');
 	});
 
-	function scrollToAnchor(aid){
-		var aTag = $(aid);
-		$('html,body').animate({scrollTop: aTag.offset().top},'slow');
+	function scrollToAnchor(elementSelector) {
+		var element = document.querySelector(elementSelector);
+		element.scrollIntoView({behavior: "smooth", block: "center"});
 	};
 
-	$('.im-in-button').on('click', function (e) {
-		scrollToAnchor('#choose-plan');
-	});
+	var scrollToAnchorButtons = document.getElementsByClassName('im-in-button');
+	for (var i = 0; i < scrollToAnchorButtons.length; i++) {
+		scrollToAnchorButtons[i].addEventListener('click', function(event) {
+			event.preventDefault();
+			scrollToAnchor(event.target.hash);
+		});
+	}
 
 	$('#total-carbon-offset').text('0');
 	$('#total-users').text('0');
@@ -91,7 +83,7 @@ $(document).ready(function() {
 			separator = ' ';
 		}
 
-		options = { 
+		options = {
 			separator: separator
 		};
 

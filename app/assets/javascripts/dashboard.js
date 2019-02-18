@@ -1,7 +1,4 @@
 $(document).ready(function() {
-	$('#shareModal').modal();
-
-
 	function shareFacebook() {
 		FB.ui({
 		  method: 'share',
@@ -10,13 +7,12 @@ $(document).ready(function() {
 		  hashtag: '#goclimateneutral'
 		}, function(response){});
 	}
-	$('#share-facebook-popup').click(function() {
-		shareFacebook();
-	});
 
-	$('#share-facebook-bottom').click(function() {
+	var shareFacebookButton = document.getElementById('share-facebook-bottom');
+	shareFacebookButton.addEventListener('click', function(event) {
+		event.preventDefault();
 		shareFacebook();
-	});
+	}, false);
 
 	$('#user_toplist_collapsed').on('hidden.bs.collapse', function () {
 	  $('#user_toplist_open_link').show();
