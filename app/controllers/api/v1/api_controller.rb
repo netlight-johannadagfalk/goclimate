@@ -2,7 +2,9 @@
 
 module Api
   module V1
-    class ApiController < ApplicationController
+    class ApiController < ActionController::API
+      include ActionController::HttpAuthentication::Basic::ControllerMethods
+
       before_action :authorize
 
       private
