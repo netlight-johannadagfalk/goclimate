@@ -93,8 +93,8 @@ Request:
       -d origin=ARN \
       -d destination=BCN \
       -d duration=12900 \
-      -d cabinClass=economy \
-      -d departureDate=2019-02-22 \
+      -d cabin_class=economy \
+      -d departure_date=2019-02-22 \
       -G
 
 Response:
