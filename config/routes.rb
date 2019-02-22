@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   api = proc do
     namespace 'api', path: '', defaults: { subdomain: ENV['HEROKU_ENV'] == 'production' ? 'api' : false } do
       namespace 'v1', defaults: { format: :json }, constraints: { format: :json } do
-        resource :flight_emissions, only: [:show]
+        resource :flight_footprint, only: [:show]
       end
 
       resource :documentations, only: [:show], path: 'docs'

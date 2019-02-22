@@ -2,11 +2,11 @@
 
 module Api
   module V1
-    class FlightEmissionsController < ApiController
+    class FlightFootprintsController < ApiController
       before_action :validate_show_params, only: :show
 
       def show
-        render json: { estimated_emissions: 1.0, details_url: root_url }
+        render json: { footprint: 1.0, details_url: root_url }
       end
 
       private

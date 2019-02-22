@@ -36,24 +36,24 @@ failure of API requests.
 
 ## Resources
 
-### Flight Emissions
+### Flight Footprint
 
-Calculates estimated emissions per passenger for flights.
+Calculates estimated footprint per passenger for flights.
 
-#### Retrieving estimated emissions
+#### Retrieving flight footprint
 
-Retrieve estimated emissions for one flight. If you need to calculate emissions
-for a trip with multiple legs, retrieve the estimated emissions for each leg
-and sum estimated emissions for each to create a total for the full trip.
+Retrieve estimated footprint for one flight. If you need to calculate footprint
+for a trip with multiple legs, retrieve the estimated footprint for each leg
+and sum estimated footprint for each to create a total for the full trip.
 
-> **🚧 PRE-RELEASE NOTE:** This endpoint currently always responds with estimated
-> emissions of 1.0 tonne CO2eq regardless of input parameters. We will start
-> doing actual calculations soon and continue to improve the accuracy of our
-> algorithm over time.
+> **🚧 PRE-RELEASE NOTE:** This endpoint currently always responds with an
+> estimated footprint of 1.0 tonne CO2eq regardless of input parameters. We
+> will start doing actual calculations soon and continue to improve the
+> accuracy of our algorithm over time.
 
 **Endpoint:**
 
-`GET /v1/flight_emissions`
+`GET /v1/flight_footprint`
 
 **Request parameters:**
 
@@ -64,9 +64,9 @@ and sum estimated emissions for each to create a total for the full trip.
 
 **Response attributes:**
 
-- **estimated_emissions**: Estimated emissions per passenger. In tonnes CO2eq.
+- **footprint**: Estimated footprint per passenger. In tonnes CO2eq.
   Current precision is one decimal point.
-- **details_url**: URL to a page with more details about the carbon emissions
+- **details_url**: URL to a page with more details about the carbon footprint.
   for this flight. Currently always the GoClimateNeutral home page, but this
   might change in the future.
 
@@ -74,7 +74,7 @@ and sum estimated emissions for each to create a total for the full trip.
 
 Request:
 
-    $ curl https://api.goclimateneutral.org/v1/flight_emissions \
+    $ curl https://api.goclimateneutral.org/v1/flight_footprint \
       -u YOUR_API_KEY: \
       -d flight=VY1266 \
       -d origin=ARN \
@@ -85,6 +85,6 @@ Request:
 Response:
 
     {
-      "estimated_emissions": 1.0,
+      "footprint": 1.0,
       "details_url": "https://www.goclimateneutral.org/"
     }
