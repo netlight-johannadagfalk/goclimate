@@ -70,7 +70,7 @@ and sum estimated footprint for each to create a total for the full trip.
 
 - **footprint**: Estimated footprint per passenger. In tonnes CO2eq.
   Current precision is one decimal point.
-- **details_url**: URL to a page with more details about the carbon footprint.
+- **details_url**: URL to a page with more details about the carbon footprint
   for this flight. Currently always the GoClimateNeutral home page, but this
   might change in the future.
 
