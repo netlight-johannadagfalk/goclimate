@@ -3,6 +3,9 @@
 module Api
   module V1
     class FlightFootprintsController < ApiController
+      REQUIRED_PARAMETERS = [:flight, :origin, :destination, :duration, :cabin_class, :departure_date].freeze
+      VALID_CABIN_CLASSES = %w[economy premium_economy business first].freeze
+
       before_action :validate_show_params, only: :show
 
       def show
@@ -16,8 +19,19 @@ module Api
       end
 
       def show_params_valid?
-        params[:flight].present? && params[:origin].present? &&
-          params[:destination].present? && params[:duration].present?
+        REQUIRED_PARAMETERS.each do |parameter|
+          return false unless params[parameter].present?
+        end
+
+        return false unless VALID_CABIN_CLASSES.include?(params[:cabin_class])
+
+        begin
+          Date.iso8601(params[:departure_date])
+        rescue ArgumentError
+          return false
+        end
+
+        true
       end
     end
   end

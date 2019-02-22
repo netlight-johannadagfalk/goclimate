@@ -61,6 +61,9 @@ and sum estimated footprint for each to create a total for the full trip.
 - **origin:** Origin airport IATA code.
 - **destination:** Destination airport IATA code.
 - **duration:** Flight duration. In seconds.
+- **cabin_class:** Cabin class. One of `economy`, `premium_economy`, `business`
+  and `first`.
+- **departure_date:** Departure date. ISO 8601 date formatted.
 
 **Response attributes:**
 
@@ -80,6 +83,8 @@ Request:
       -d origin=ARN \
       -d destination=BCN \
       -d duration=12900 \
+      -d cabinClass=economy \
+      -d departureDate=2019-02-22 \
       -G
 
 Response:

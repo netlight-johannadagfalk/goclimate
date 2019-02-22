@@ -9,7 +9,9 @@ RSpec.describe Api::V1::FlightFootprintsController do
       flight: 'VY1266',
       origin: 'ARN',
       destination: 'BCN',
-      duration: 12_900
+      duration: 12_900,
+      cabin_class: 'economy',
+      departure_date: '2019-02-22'
     }
   end
 
@@ -57,6 +59,34 @@ RSpec.describe Api::V1::FlightFootprintsController do
       it 'returns 400 Bad Request when destination is missing' do
         get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
                                         params: request_params.except(:destination)
+
+        expect(response).to have_http_status(:bad_request)
+      end
+
+      it 'returns 400 Bad Request when cabin class is missing' do
+        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+                                        params: request_params.except(:cabin_class)
+
+        expect(response).to have_http_status(:bad_request)
+      end
+
+      it 'returns 400 Bad Request when cabin class is not one of valid values' do
+        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+                                        params: request_params.merge(cabin_class: 'invalid')
+
+        expect(response).to have_http_status(:bad_request)
+      end
+
+      it 'returns 400 Bad Request when departure date is missing' do
+        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+                                        params: request_params.except(:departure_date)
+
+        expect(response).to have_http_status(:bad_request)
+      end
+
+      it 'returns 400 Bad Request when departure date is not an ISO 8601 string' do
+        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+                                        params: request_params.merge(departure_date: '0508-2019')
 
         expect(response).to have_http_status(:bad_request)
       end
