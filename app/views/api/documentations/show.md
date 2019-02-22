@@ -30,6 +30,7 @@ failure of API requests.
 **Summary of HTTP status codes used by the GoClimateNeutral API:**
 
 - **200 OK:** Request was successful.
+- **404 Not Found:** The requested resource could not be found.
 - **401 Unauthorized:** API key provided was not valid.
 - **500, 502, 503, 504:** Server errors on the GoClimateNeutral side. Only used
   in exceptional circumstances.
@@ -72,6 +73,15 @@ and sum estimated footprint for each to create a total for the full trip.
 - **details_url**: URL to a page with more details about the carbon footprint.
   for this flight. Currently always the GoClimateNeutral home page, but this
   might change in the future.
+
+**Errors:**
+
+- **invalid\_request\_error - HTTP status 400**: Request parameters are missing
+  or not valid.
+- **calculation_unsuccessful - HTTP status 404:** We are currently not able to
+  calculate an estimated footprint based on the given parameters. This is not a
+  permanent state as we continuously work to improve coverage, although
+  immediate retries are not likely to produce a different result.
 
 #### Example
 
