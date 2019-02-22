@@ -26,6 +26,9 @@ gem 'devise-i18n', '~> 1.7.1'
 # I18n
 gem 'http_accept_language', '~> 2.1.1'
 
+# Markdown
+gem 'redcarpet', '~> 3.4.0'
+
 # Views
 gem 'client_side_validations', '~> 12.1.0'
 gem 'country_select', '~> 4.0.0'
