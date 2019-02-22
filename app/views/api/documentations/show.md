@@ -58,7 +58,7 @@ and sum estimated footprint for each to create a total for the full trip.
 
 **Request parameters:**
 
-- **flight:** Flight number.
+- **flight:** Flight designator code.
 - **origin:** Origin airport IATA code.
 - **destination:** Destination airport IATA code.
 - **duration:** Flight duration. In seconds.
