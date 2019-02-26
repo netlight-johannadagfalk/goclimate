@@ -6,7 +6,7 @@ class GiftCard < ApplicationRecord
   PRICE_PER_MONTH =
     BigDecimal(11) * LifestyleChoice::SEK_PER_TONNE / 12 * 2
 
-  validates :key, uniqueness: true, format: { with: /[a-f0-9]{40}/ }
+  validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
   validates_presence_of :number_of_months
 
   before_validation :generate_key

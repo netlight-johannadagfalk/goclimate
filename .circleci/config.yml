@@ -32,6 +32,15 @@ commands:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
 jobs:
+  brakeman:
+    docker:
+      - image: circleci/ruby:2.6.1-node-browsers
+    steps:
+      - setupapp
+
+      - run:
+          name: Run Brakeman
+          command: bin/brakeman
   rspec:
     docker:
       - image: circleci/ruby:2.6.1-node-browsers
@@ -44,7 +53,7 @@ jobs:
           POSTGRES_USER: myapp
           POSTGRES_DB: myapp-test
           POSTGRES_PASSWORD: ""
-      
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -52,7 +61,7 @@ jobs:
 
     steps:
       - setupapp
-        
+
       - run:
           name: Wait for database to become available
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
@@ -77,5 +86,6 @@ workflows:
   version: 2
   all:
     jobs:
+      - brakeman
       - rspec
       - rubocop
