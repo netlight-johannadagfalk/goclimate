@@ -177,10 +177,16 @@ div.legal {
   padding: 0px 20px;
 }
 .site-wrapper-first {
+  background-color: #f3f9f9;
   background-image: image-url("background-illustrated-2.png");
-  background-repeat:no-repeat;
-  background-size: cover;
-  background-position:center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: bottom;
+}
+@media(max-width: 1000px) {
+  .site-wrapper-first {
+    background-size: 1000px;
+  }
 }
 .site-wrapper-second, .site-wrapper-fourth {
   background-color: #fff;
