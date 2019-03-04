@@ -4,6 +4,7 @@ AllCops:
   Exclude:
     - 'db/**/*'
     - 'bin/**/*'
+    - 'node_modules/**/*'
     - 'vendor/**/*'
 
 Style/MethodCallWithArgsParentheses:
