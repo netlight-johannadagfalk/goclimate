@@ -22,10 +22,17 @@ RSpec.describe Api::V1::FlightFootprintsController do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'includes estimated footprint in response' do
+    it 'includes estimated footprint in response (200 kg per flight hour, rounded to nearest 0.1 tonnes)' do
       get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
 
-      expect(response.parsed_body['footprint']).to eq(1.0)
+      expect(response.parsed_body['footprint']).to eq(0.7)
+    end
+
+    it 'includes estimated footprint in response (another example)' do
+      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+                                      params: request_params.merge(duration: 15_840)
+
+      expect(response.parsed_body['footprint']).to eq(0.9)
     end
 
     it 'includes details URL in response' do
