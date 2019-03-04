@@ -9,10 +9,17 @@ module Api
       before_action :validate_show_params, only: :show
 
       def show
-        render json: { footprint: 1.0, details_url: root_url }
+        render json: { footprint: footprint, details_url: root_url }
       end
 
       private
+
+      # This algorithm is a very simple estimate. In our own testing, a
+      # distance-based estimate is more accurate. We should switch to one as soon
+      # as we got time to build what we need for it.
+      def footprint
+        (params[:duration].to_f / 60 / 60 * 0.2).round(1)
+      end
 
       def validate_show_params
         render json: { type: :invalid_request_error }, status: 400 unless show_params_valid?
