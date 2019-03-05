@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resource :subscription, only: [:show, :update]
     get 'subscription/threedsecure_update', to: 'subscriptions#update', as: 'subscription_threedsecure',
                                             defaults: { three_d_secure: 'continue' }
+    resources :receipts, only: [:index, :show], param: :stripe_event_id
   end
 
   # Content pages
@@ -81,12 +82,6 @@ Rails.application.routes.draw do
   end
 
   resource :impact_statistics, only: [:show], format: true, constraints: { format: :csv }
-
-  # User
-  namespace :users do
-    get 'receipts/index'
-    get 'receipts/show/:stripe_event_id', to: 'receipts#show', as: 'receipts_show'
-  end
 
   # Errors
   match '/404', to: 'errors#not_found', via: :all
