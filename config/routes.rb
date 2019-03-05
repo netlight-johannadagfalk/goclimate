@@ -50,6 +50,7 @@ Rails.application.routes.draw do
 
   # Partners
   get 'partners/bokanerja'
+  get 'partners/inshapetravel'
 
   # Dashboard
   get 'dashboard', to: 'dashboard#index'
