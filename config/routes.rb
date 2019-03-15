@@ -45,8 +45,11 @@ Rails.application.routes.draw do
   get 'press', to: 'welcome#press'
   get '100_percent_transparency', to: 'welcome#transparency'
   get 'our_projects', to: 'welcome#our_projects'
-  get 'companies', to: 'welcome#companies'
   get 'privacy_policy', to: 'welcome#privacy_policy'
+  
+  # Business page with post from employee offsetting form
+  get 'business', to: 'business#index'
+  post 'business', to: 'business#thank_you'
 
   # Partners
   get 'partners/bokanerja'

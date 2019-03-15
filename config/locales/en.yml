@@ -394,9 +394,7 @@ en:
                 accepted: You need to accept the pricacy policy
   climate_neutral_users_right_now: climate neutral users right now
   ton_co2_less_in_atmosphere: ton CO2 less in atmosphere
-  for_companies: For Companies
-  for_companies_text_html: Do you want to carbon offset the emissions from a flight or for all your employees lifestyle? We would love to help. Contact us at <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> now.
-  business: For Companies
+  for_business: For Companies
   thats_amazing_from_the_bottom_of_our_hearts: That's amazing! From the bottom of our hearts
   years:
     one: year
@@ -499,3 +497,17 @@ en:
         you_have_purchased_a_gift_card_with_x_climate_neutral_months: 
           one: You have purchased a gift card for 1 climate neutral month
           other: "You have purchased a gift card for %{count} climate neutral months"
+
+  business:
+    for_companies: For Companies
+    for_companies_text_html: Do you want to offset the emissions from a flight or for all your employees? We would love to help!
+    customers_we_work_with: A few of our amazing customers
+    gcn_certified_company: GoClimateNeutral-certified company
+    gcn_certified_company_html: By offsetting for your employees you take responsibility for their climate footprint. Read more on how we <a href="">calculated the numbers here</a>.
+    equivalent_co2_offset: equivalent to 22 tonnes of CO2-emissions per employee and year
+    im_interested: I'm interested
+    we_will_contact_you_shortly: We will contact you on <b>%{email}</b> shortly with more information about the next step!
+    other_offsetting: Other Offsetting
+    other_offsetting_html:  We can help out with climate footprint calculations, one time offsets and technical integrations. Contact us at <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> to learn more.
+    number_of_employees: "Number of employees:"
+    your_email: "Your e-mail:"
