@@ -16,6 +16,7 @@ class Receipt
         template: 'pdfs/receipt',
         layout: false,
         assigns: {
+          date: @date,
           currency: @currency,
           amount: @amount
         }
