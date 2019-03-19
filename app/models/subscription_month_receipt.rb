@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Receipt
+class SubscriptionMonthReceipt
   attr_reader :date, :id, :amount, :currency
 
   def initialize(stripe_event)

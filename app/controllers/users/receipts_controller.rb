@@ -3,11 +3,13 @@
 module Users
   class ReceiptsController < ApplicationController
     def index
-      @receipts = current_user.stripe_events.map { |stripe_events| Receipt.new(stripe_events) }
+      @receipts = current_user.stripe_events.map do |stripe_events|
+        SubscriptionMonthReceipt.new(stripe_events)
+      end
     end
 
     def show
-      receipt = Receipt.new(StripeEvent.find(params[:stripe_event_id]))
+      receipt = SubscriptionMonthReceipt.new(StripeEvent.find(params[:stripe_event_id]))
       send_data receipt.generate_pdf, filename: 'receipt.pdf', type: :pdf
     end
   end
