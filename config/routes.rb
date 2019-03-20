@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resource :subscription, only: [:show, :update]
     get 'subscription/threedsecure_update', to: 'subscriptions#update', as: 'subscription_threedsecure',
                                             defaults: { three_d_secure: 'continue' }
+    resources :receipts, only: [:index, :show], param: :stripe_event_id
   end
 
   # Content pages

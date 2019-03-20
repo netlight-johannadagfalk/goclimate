@@ -25,6 +25,9 @@ class StripeEvent < ApplicationRecord
       stripe_amount: charge.amount,
       paid: charge.paid,
       currency: charge.currency,
+      # FIXME: The following stripe_created setter has never worked as
+      # charge.created is an integer while ActiveRecord expects a Time. Since
+      # it could never have been used best is probably to remove it.
       stripe_created: charge.created,
       gift_card: gift_card,
       description: charge.description

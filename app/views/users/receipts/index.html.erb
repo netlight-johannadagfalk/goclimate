@@ -1,0 +1,36 @@
+<div class="site-wrapper-inner solo-inner-wrapper site-wrapper-first">
+  <div class="cover-container">
+
+    <%= render "shared/header" %>
+
+    <div class="inner cover">
+      <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>
+    </div>
+    <div class="row">
+      <h1>Your receipts</h1>
+      <div class="col-xs-12">
+        <p class="lead">Here you can see your receipts</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-offset-4 col-xs-4">
+        <table class="table table-striped">
+          <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>link</th>
+          </tr>
+          <% @receipts.each do |receipt| %>
+            <tr>
+              <td><%= receipt.date %></td>
+              <td><%= price_string(receipt.total_amount, receipt.currency) %></td>
+              <td><%= link_to 'View reciept', user_receipt_path(receipt.stripe_event.id) %></td>
+            </tr>
+          <% end %>
+
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
