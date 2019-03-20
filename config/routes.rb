@@ -101,4 +101,5 @@ Rails.application.routes.draw do
   get 'dashboard/index', to: redirect('/dashboard'), as: nil
   get '/users', to: redirect('/dashboard'), as: nil
   get '/users/edit/payment', to: redirect('/users/subscription'), as: nil
+  get 'companies', to: redirect('/business'), as: nil
 end
