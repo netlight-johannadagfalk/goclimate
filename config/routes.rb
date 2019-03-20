@@ -48,8 +48,7 @@ Rails.application.routes.draw do
   get 'privacy_policy', to: 'welcome#privacy_policy'
 
   # Business page with post from employee offsetting form
-  get 'business', to: 'business#index'
-  post 'business', to: 'business#thank_you'
+  resource :business, only: [:new, :create]
 
   # Partners
   get 'partners/bokanerja'
