@@ -83,5 +83,5 @@ group :development do
   gem 'web-console', '>= 3.3.0'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# If we ever want to run on Windows, tzinfo-data needs to be included because Windows does not include zoneinfo files
+# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
