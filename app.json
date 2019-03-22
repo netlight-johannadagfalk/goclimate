@@ -28,7 +28,6 @@
     "ROLLBAR_ENDPOINT": {
       "requred": true
     },
-    "ROLLBAR_ENV": "review",
     "SKYLIGHT_AUTHENTICATION": {
       "required": true
     },

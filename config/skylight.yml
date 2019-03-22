@@ -1,7 +1,7 @@
 ---
 env: "<%=
     if ENV['DEPLOYMENT_ENV'] == 'pr' && ENV['HEROKU_APP_NAME'].present?
-      "pr-#{ENV['HEROKU_APP_NAME'].delete("^0-9")}"
+      "pr-#{ENV['HEROKU_APP_NAME'].delete('^0-9')}"
     else
       ENV['DEPLOYMENT_ENV'].presence || Rails.env
     end

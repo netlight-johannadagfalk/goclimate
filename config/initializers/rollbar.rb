@@ -57,9 +57,9 @@ Rollbar.configure do |config|
   # setup for Heroku. See:
   # https://devcenter.heroku.com/articles/deploying-to-a-custom-rails-environment
   config.environment =
-    if ENV['ROLLBAR_ENV'] == 'review' && ENV['HEROKU_APP_NAME'].present?
-      "review#{ENV['HEROKU_APP_NAME'].sub(ENV['HEROKU_PARENT_APP_NAME'], '')}"
+    if ENV['DEPLOYMENT_ENV'] == 'pr' && ENV['HEROKU_APP_NAME'].present?
+      "pr-#{ENV['HEROKU_APP_NAME'].delete('^0-9')}"
     else
-      ENV['ROLLBAR_ENV'].presence || Rails.env
+      ENV['DEPLOYMENT_ENV'].presence || Rails.env
     end
 end
