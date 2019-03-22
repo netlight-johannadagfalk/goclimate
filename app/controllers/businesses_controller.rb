@@ -10,6 +10,6 @@ class BusinessesController < ApplicationController
 
   def create
     @email = params[:email]
-    BusinessIntrestNoticeMailer.send_email(@email, params[:number_of_employees], I18n.locale).deliver
+    BusinessInterestMailer.notice_email(@email, params[:number_of_employees], I18n.locale).deliver
   end
 end
