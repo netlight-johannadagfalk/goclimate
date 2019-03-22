@@ -319,6 +319,10 @@ GEM
       rack-protection (= 2.0.5)
       tilt (~> 2.0)
     sixarm_ruby_unaccent (1.2.0)
+    skylight (3.1.5)
+      skylight-core (= 3.1.5)
+    skylight-core (3.1.5)
+      activesupport (>= 4.2.0)
     sort_alphabetical (1.1.0)
       unicode_utils (>= 1.2.2)
     spring (2.0.2)
@@ -397,6 +401,7 @@ DEPENDENCIES
   seed_dump (~> 3.2)
   selenium-webdriver
   sendgrid-actionmailer (~> 2.2.1)
+  skylight
   spring
   spring-watcher-listen (~> 2.0.0)
   stripe!

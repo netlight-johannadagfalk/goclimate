@@ -8,7 +8,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module ClimateNeutralLife
+module GoClimateNeutral
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
@@ -34,5 +34,8 @@ module ClimateNeutralLife
     end
 
     config.exceptions_app = routes
+
+    # Skylight
+    config.skylight.logger = Logger.new(STDOUT)
   end
 end
