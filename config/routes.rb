@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   get 'privacy_policy', to: 'welcome#privacy_policy'
 
   # Business page with post from employee offsetting form
-  resource :business, only: [:new, :create]
+  resource :business, only: [:new, :create], path_names: { new: '' }
 
   # Partners
   get 'partners/bokanerja'
