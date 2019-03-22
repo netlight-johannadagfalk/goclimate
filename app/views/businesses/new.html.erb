@@ -38,7 +38,15 @@
             <h2 class="cover-heading"><%=t 'business.gcn_certified_company' %></h2>
             <p class="lead"><%=t 'business.gcn_certified_company_html' %></p>
             <div class="container">  
-                <p class="big-number"></p>
+              <p class="big-number">
+                <% case I18n.locale when :en %>
+                  $<span id="big-number"></span> /month
+                <% when :de %>
+                  <span id="big-number"></span> €/month
+                <% when :sv %>
+                  <span id="big-number"></span> kr/månad
+                <% end %>
+              </p>
                 <p><%=t 'business.equivalent_co2_offset' %></p>
 
                 <%= form_tag(business_path, class: 'form-horizontal') do %>
@@ -82,5 +90,13 @@
 <%= render "shared/footer" %>
 
 <% content_for :javascript_tags do %>
-  <%= javascript_include_tag 'business' %>
+  <script>
+    window.addEventListener('load', function() {
+      new BusinessOffsetCalculator(
+        <%= @cost_per_tonne %>,
+        document.getElementById('number_of_employees'),
+        document.getElementById('big-number')
+      )
+    })
+  </script>
 <% end %>
