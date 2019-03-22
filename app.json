@@ -29,6 +29,10 @@
       "requred": true
     },
     "ROLLBAR_ENV": "review",
+    "SKYLIGHT_AUTHENTICATION": {
+      "required": true
+    },
+    "DEPLOYMENT_ENV": "pr",
     "SECRET_KEY": {
       "required": true
     },

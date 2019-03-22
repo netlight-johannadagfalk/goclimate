@@ -34,5 +34,8 @@ module ClimateNeutralLife
     end
 
     config.exceptions_app = routes
+
+    # Skylight
+    config.skylight.logger = Logger.new(STDOUT)
   end
 end
