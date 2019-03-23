@@ -1,0 +1,27 @@
+.businesses {
+  input.form-control {
+    float: none;
+    text-align: center;
+    margin: 0 auto;
+  }
+  div.button {
+    float: none;
+    text-align: center;
+    margin: 0 auto; 
+  }
+  div.button button {
+    float: none;
+  }
+  p.big-number {
+    line-height: 150%;
+  }
+  .site-wrapper-inner.company-logos {
+    min-height: 0px;
+  }
+  .site-wrapper-inner.company-logos .glyphicon {
+    padding-top: 0px;
+  }
+  .big-number {
+    font-size: 60px;
+  }
+}

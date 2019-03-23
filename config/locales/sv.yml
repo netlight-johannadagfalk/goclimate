@@ -414,9 +414,7 @@ sv:
                 accepted: Du behöver acceptera integritetspolocyn för att gå vidare
   climate_neutral_users_right_now: klimatneutrala användare just nu
   ton_co2_less_in_atmosphere: ton CO2 mindre i atmosfären
-  for_companies: För företag
-  for_companies_text_html: Vill du klimatkompensera för en flygresa eller för alla era anställda? Vi hjälper dig gärna. Hör av dig till <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> direkt så berättar vi mer.
-  business: För företag
+  for_business: För företag
   thats_amazing_from_the_bottom_of_our_hearts: Vilket är fantastiskt! Från djupet av våra hjärtan
   years:
     one: år
@@ -517,6 +515,21 @@ sv:
         you_have_purchased_a_gift_card_with_x_climate_neutral_months: 
           one: Du har köpt ett gåvokort på 1 månads klimatneutralt liv
           other: "Du har köpt ett gåvokort på %{count} månaders klimatneutralt liv"
+
+  business:
+    for_companies: Klimatkompensera företag
+    for_companies_text_html: Vill du klimatkompensera för en flygresa eller för alla era anställda? Vi hjälper dig gärna!
+    customers_we_work_with: Några av våra fantastiska kunder
+    gcn_certified_company: GoClimateNeutral-certifierat företag
+    gcn_certified_company_html: Genom att klimatkompensera för era anställda tar ni ansvar för alla era anställdas klimatavtryck. Läs mer om hur vi <a href="https://www.goclimateneutral.org/blog/klimatkompensera-ditt-foretag/">räknat på siffrorna här.</a>
+    equivalent_co2_offset: motsvarar 22 ton CO2-utsläpp per anställd och år
+    im_interested: Jag är intresserad
+    we_will_contact_you_shortly_html: Vi kontaktar dig inom kort på <b>%{email}</b> med information om nästa steg! Vi hörs!
+    other_offsetting: Övrig klimatkompensation
+    other_offsetting_html: "Vi kan hjälpa till med utsläppsberäkningar för tjänsteföretag, enskilda klimatkompensationer och tekniska integrationer. Hör av dig till <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> så berättar vi mer."
+    number_of_employees: "Antal anställda:"
+    your_email: "Din e-post:"
+  
 
 
 

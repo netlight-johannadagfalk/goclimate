@@ -1,0 +1,11 @@
+      <div class="site-wrapper-inner site-wrapper-first">
+        <div class="cover-container">
+          <%= render "shared/header" %>
+          <div class="inner cover">
+            <h1 class="cover-heading"><%=t('thank_you') %></h1>
+            <p class="lead"><%=t('business.we_will_contact_you_shortly_html', email: @email) %></p>
+          </div>
+        </div>
+      </div>
+
+<%= render "shared/footer" %>

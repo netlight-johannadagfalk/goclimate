@@ -17,6 +17,8 @@
 //= require rails.validations
 //= require countUp
 //= require jquery.appear
+//= require components/business_offset_calculator
+
 $(document).ready(function() {
 	$('.dropdown-toggle').dropdown();
 

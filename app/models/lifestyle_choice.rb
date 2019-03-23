@@ -4,6 +4,7 @@ class LifestyleChoice < ApplicationRecord
   has_and_belongs_to_many :users
 
   SEK_PER_TONNE = 40
+  BUSINESS_SEK_PER_TONNE = 55
   BUFFER_SIZE = 2
   SEK_PER_USD = 8.5
   SEK_PER_EUR = 10

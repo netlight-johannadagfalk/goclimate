@@ -46,8 +46,10 @@ Rails.application.routes.draw do
   get 'press', to: 'welcome#press'
   get '100_percent_transparency', to: 'welcome#transparency'
   get 'our_projects', to: 'welcome#our_projects'
-  get 'companies', to: 'welcome#companies'
   get 'privacy_policy', to: 'welcome#privacy_policy'
+
+  # Business page with post from employee offsetting form
+  resource :business, only: [:new, :create], path_names: { new: '' }
 
   # Partners
   get 'partners/bokanerja'
@@ -100,4 +102,5 @@ Rails.application.routes.draw do
   get 'dashboard/index', to: redirect('/dashboard'), as: nil
   get '/users', to: redirect('/dashboard'), as: nil
   get '/users/edit/payment', to: redirect('/users/subscription'), as: nil
+  get 'companies', to: redirect('/business'), as: nil
 end
