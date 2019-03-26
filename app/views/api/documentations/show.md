@@ -47,10 +47,9 @@ Retrieve estimated footprint for one flight. If you need to calculate footprint
 for a trip with multiple legs, retrieve the estimated footprint for each leg
 and sum estimated footprint for each to create a total for the full trip.
 
-> **🚧 PRE-RELEASE NOTE:** This endpoint currently always responds with an
-> estimated footprint of 1.0 tonne CO2eq regardless of input parameters. We
-> will start doing actual calculations soon and continue to improve the
-> accuracy of our algorithm over time.
+> **🚧 PRE-RELEASE NOTE:** This endpoint currently uses a very simple algorithm
+> for footprint calculations. We will improve the accuracy to a documented
+> precision soon.
 
 **Endpoint:**
 
