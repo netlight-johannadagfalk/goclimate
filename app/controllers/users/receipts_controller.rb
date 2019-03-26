@@ -2,6 +2,7 @@
 
 module Users
   class ReceiptsController < ApplicationController
+    before_action :authenticate_user!, only: [:index]
     before_action :set_receipt, only: [:show]
     before_action :authorize_receipt, only: [:show]
 
@@ -22,7 +23,7 @@ module Users
     end
 
     def authorize_receipt
-      render_not_found unless current_user.stripe_customer_id == @receipt.stripe_event.stripe_customer_id
+      render_not_found unless current_user&.stripe_customer_id == @receipt.stripe_event.stripe_customer_id
     end
   end
 end
