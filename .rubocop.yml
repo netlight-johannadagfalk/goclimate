@@ -35,6 +35,7 @@ Metrics/BlockLength:
     - 'draw'
     - 'configure'
     - 'namespace'
+    - 'shared_examples'
 
 Style/EmptyMethod:
   EnforcedStyle: expanded
