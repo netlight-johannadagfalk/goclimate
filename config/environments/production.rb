@@ -56,8 +56,9 @@ Rails.application.configure do
   config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
-  # when problems arise.
-  config.log_level = :debug
+  # when problems arise. API deployment uses warn as traffic is much higher in
+  # that environment.
+  config.log_level = ENV['DEPLOYMENT_ENV'] == 'api-production' ? :warn : :debug
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
