@@ -65,7 +65,7 @@ and sum estimated footprint for each to create a total for the full trip.
   - **segments[n][departure_date]:** Departure date. ISO 8601 date formatted.
 - **cabin_class:** Cabin class. One of `economy`, `premium_economy`, `business`
   and `first`.
-- **currency:** Desired currency for offset pricing. One of `EUR`, `USD`, `SEK` and `NOK`.
+- **currencies[]:** Desired currencies for offset pricing. One of `EUR`, `USD`, `SEK` and `NOK`. You can request multiple currencies by including multiple items in the currencies array.
 - _(DEPRECATED) **flight:** Flight designator code._
 - _(DEPRECATED) **origin:** Origin airport IATA code._
 - _(DEPRECATED) **destination:** Destination airport IATA code._
@@ -76,8 +76,9 @@ and sum estimated footprint for each to create a total for the full trip.
 
 - **footprint**: Estimated footprint per passenger. In tonnes CO2eq.
   Current precision is one decimal point.
-- **offset_price:** Object representing price for offsetting this flight
-  through GoClimateNeutral. Currently returns non-final prices in SEK.
+- **offset_prices[]:** Array of objects representing prices in the currencies
+  requested for offsetting this flight through GoClimateNeutral. Currently
+  returns non-final prices in SEK.
   - **amount**: Amount. In smallest denomination of currency indicated by
     **currency** (e.g. 1000 for 10.00 EUR).
   - **currency:** ISO 4217 currency code for amount specified by **amount**.
@@ -111,16 +112,18 @@ Request:
       -d 'segments[1][duration]=12900' \
       -d 'segments[1][departure_date]=2019-02-25' \
       -d 'cabin_class=economy' \
-      -d 'currency=SEK' \
+      -d 'currencies[]=SEK' \
       -G
 
 Response:
 
     {
       "footprint": 1.0,
-      "offset_price": {
-        "amount": 4000,
-        "currency": "SEK",
-      },
+      "offset_prices": [
+        {
+          "amount": 4000,
+          "currency": "SEK",
+        }
+      ],
       "details_url": "https://www.goclimateneutral.org/"
     }

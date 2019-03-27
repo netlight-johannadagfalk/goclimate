@@ -13,10 +13,12 @@ module Api
       def show
         render json: {
           footprint: footprint,
-          offset_price: {
-            amount: offset_price_amount,
-            currency: 'SEK'
-          },
+          offset_prices: [
+            {
+              amount: offset_price_amount,
+              currency: 'SEK'
+            }
+          ],
           details_url: root_url
         }
       end
@@ -65,7 +67,7 @@ module Api
 
         return false unless VALID_CABIN_CLASSES.include?(params[:cabin_class])
 
-        return false unless params[:currency].nil? || VALID_CURRENCIES.include?(params[:currency])
+        return false unless params[:currencies].nil? || params[:currencies].all? { |c| VALID_CURRENCIES.include?(c) }
 
         true
       end

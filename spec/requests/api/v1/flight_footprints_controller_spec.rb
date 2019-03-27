@@ -16,7 +16,9 @@ RSpec.describe Api::V1::FlightFootprintsController do
         }
       },
       cabin_class: 'economy',
-      currency: 'SEK'
+      currencies: [
+        'SEK'
+      ]
     }
   end
   let(:request_params_with_two_segments) do
@@ -47,19 +49,19 @@ RSpec.describe Api::V1::FlightFootprintsController do
     it 'includes offset price in response' do
       get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
 
-      expect(response.parsed_body['offset_price']).to be_present
+      expect(response.parsed_body['offset_prices'].first).to be_present
     end
 
     it 'includes offset price amount in response' do
       get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
 
-      expect(response.parsed_body['offset_price']['amount']).to eq(2800)
+      expect(response.parsed_body['offset_prices'].first['amount']).to eq(2800)
     end
 
     it 'includes offset price currency in response' do
       get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
 
-      expect(response.parsed_body['offset_price']['currency']).to eq('SEK')
+      expect(response.parsed_body['offset_prices'].first['currency']).to eq('SEK')
     end
 
     it 'includes details URL in response' do
@@ -78,7 +80,7 @@ RSpec.describe Api::V1::FlightFootprintsController do
 
       it 'returns 400 Bad Request when currency is not one of valid values' do
         get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
-                                        params: request_params.merge(currency: 'invalid')
+                                        params: request_params.merge(currencies: ['invalid'])
 
         expect(response).to have_http_status(:bad_request)
       end
