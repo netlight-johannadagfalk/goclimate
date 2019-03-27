@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     match '/', to: 'errors#not_found', via: :all
     match '*path', to: 'errors#not_found', via: :all
   end
-  ENV['HEROKU_ENV'] == 'production' ? constraints(subdomain: 'api', &api) : scope('/api', &api)
+  ENV['HEROKU_ENV'] == 'production' ? constraints(subdomain: /api|api-temporary/, &api) : scope('/api', &api)
 
   root 'welcome#index'
 
