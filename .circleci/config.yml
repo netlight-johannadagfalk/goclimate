@@ -31,6 +31,15 @@ commands:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
+  setupcodeclimate:
+    steps:
+      - run:
+          name: Download CodeClimate test reporter
+          command: |
+            mkdir -p tmp/
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
+            chmod +x ./tmp/cc-test-reporter
+
 jobs:
   brakeman:
     docker:
@@ -61,6 +70,7 @@ jobs:
 
     steps:
       - setupapp
+      - setupcodeclimate
 
       - run:
           name: Wait for database to become available
@@ -73,6 +83,13 @@ jobs:
       - run:
           name: Run Rspec
           command: bin/rspec
+
+      - run:
+          name: Upload coverage report to CodeClimate
+          command: ./tmp/cc-test-reporter after-build -t simplecov
+
+      - store_artifacts:
+          path: coverage
   rubocop:
     docker:
       - image: circleci/ruby:2.6.1-node-browsers

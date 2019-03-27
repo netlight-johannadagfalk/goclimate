@@ -84,5 +84,9 @@ group :development do
   gem 'web-console', '>= 3.3.0'
 end
 
+group :test do
+  gem 'simplecov', require: false
+end
+
 # If we ever want to run on Windows, tzinfo-data needs to be included because Windows does not include zoneinfo files
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
