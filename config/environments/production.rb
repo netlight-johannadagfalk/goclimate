@@ -23,6 +23,10 @@ Rails.application.configure do
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.headers = {
+    'Cache-Control' => 'public, max-age=315360000',
+    'Expires' => 10.year.from_now.httpdate
+  }
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -52,8 +56,9 @@ Rails.application.configure do
   config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
-  # when problems arise.
-  config.log_level = :debug
+  # when problems arise. API deployment uses warn as traffic is much higher in
+  # that environment.
+  config.log_level = ENV['DEPLOYMENT_ENV'] == 'api-production' ? :warn : :debug
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
