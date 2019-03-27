@@ -65,6 +65,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rb-readline'
   gem 'rspec-rails', '~> 3.7'
+  gem 'rspec_junit_formatter'
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
@@ -82,6 +83,10 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+end
+
+group :test do
+  gem 'simplecov', require: false
 end
 
 # If we ever want to run on Windows, tzinfo-data needs to be included because Windows does not include zoneinfo files
