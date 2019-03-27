@@ -22,3 +22,5 @@ plugins:
   rubocop:
     enabled: true
     channel: rubocop-0-66
+  fixme:
+    enabled: true
