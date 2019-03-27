@@ -82,7 +82,12 @@ jobs:
 
       - run:
           name: Run Rspec
-          command: bin/rspec
+          command: |
+            mkdir ~/reports
+            bin/rspec --format progress --format RspecJunitFormatter -o ~/reports/rspec.xml
+
+      - store_test_results:
+          path: ~/reports
 
       - run:
           name: Upload coverage report to CodeClimate

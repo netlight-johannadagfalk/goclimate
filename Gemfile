@@ -65,6 +65,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rb-readline'
   gem 'rspec-rails', '~> 3.7'
+  gem 'rspec_junit_formatter'
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
