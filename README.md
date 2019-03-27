@@ -1,5 +1,7 @@
 # GoClimateNeutral
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/711e900ab6fb4c385a19/maintainability)](https://codeclimate.com/repos/5c99da9af52fd70240006af8/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/711e900ab6fb4c385a19/test_coverage)](https://codeclimate.com/repos/5c99da9af52fd70240006af8/test_coverage)
+
 This is the code that runs [http://goclimateneutral.org](http://goclimateneutral.org)
 
 ## Requirements
