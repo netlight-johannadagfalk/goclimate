@@ -41,15 +41,6 @@ commands:
             chmod +x ./tmp/cc-test-reporter
 
 jobs:
-  brakeman:
-    docker:
-      - image: circleci/ruby:2.6.1-node-browsers
-    steps:
-      - setupapp
-
-      - run:
-          name: Run Brakeman
-          command: bin/brakeman
   rspec:
     docker:
       - image: circleci/ruby:2.6.1-node-browsers
@@ -95,19 +86,8 @@ jobs:
 
       - store_artifacts:
           path: coverage
-  rubocop:
-    docker:
-      - image: circleci/ruby:2.6.1-node-browsers
-    steps:
-      - setupapp
-
-      - run:
-          name: Run Rubocop
-          command: bin/rubocop
 workflows:
   version: 2
   all:
     jobs:
-      - brakeman
       - rspec
-      - rubocop
