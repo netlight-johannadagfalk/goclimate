@@ -47,10 +47,9 @@ Retrieve estimated footprint for one flight. If you need to calculate footprint
 for a trip with multiple legs, retrieve the estimated footprint for each leg
 and sum estimated footprint for each to create a total for the full trip.
 
-> **🚧 PRE-RELEASE NOTE:** This endpoint currently always responds with an
-> estimated footprint of 1.0 tonne CO2eq regardless of input parameters. We
-> will start doing actual calculations soon and continue to improve the
-> accuracy of our algorithm over time.
+> **🚧 PRE-RELEASE NOTE:** This endpoint currently uses a very simple algorithm
+> for footprint calculations. We will improve the accuracy to a documented
+> precision soon.
 
 **Endpoint:**
 
@@ -58,18 +57,33 @@ and sum estimated footprint for each to create a total for the full trip.
 
 **Request parameters:**
 
-- **flight:** Flight designator code.
-- **origin:** Origin airport IATA code.
-- **destination:** Destination airport IATA code.
-- **duration:** Flight duration. In seconds.
+- Segments of the flight itenireary. For each parameter below, replace n with a unique identifier for each segment of the trip. These parameters are repeated for each segment.
+  - **segments[n][flight]:** Flight designator code. 
+  - **segments[n][origin]:** Origin airport IATA code.
+  - **segments[n][destination]:** Destination airport IATA code.
+  - **segments[n][duration]:** Flight duration. In seconds.
+  - **segments[n][departure_date]:** Departure date. ISO 8601 date formatted.
 - **cabin_class:** Cabin class. One of `economy`, `premium_economy`, `business`
   and `first`.
-- **departure_date:** Departure date. ISO 8601 date formatted.
+- **currencies[]:** Desired currencies for offset pricing. One of `EUR`, `USD`, `SEK` and `NOK`. You can request multiple currencies by including multiple items in the currencies array.
+- _(DEPRECATED) **flight:** Flight designator code._
+- _(DEPRECATED) **origin:** Origin airport IATA code._
+- _(DEPRECATED) **destination:** Destination airport IATA code._
+- _(DEPRECATED) **duration:** Flight duration. In seconds._
+- _(DEPRECATED) **departure\_date:** Departure date. ISO 8601 date formatted._
 
 **Response attributes:**
 
-- **footprint**: Estimated footprint per passenger. In tonnes CO2eq.
-  Current precision is one decimal point.
+- **footprint**: Estimated footprint per passenger. In kgs CO2e.  Current
+  precision is 100 kg. We recommend displaying this number in tonnes CO2e to the
+  user.
+- **offset_prices[]:** Array of objects representing prices per passenger for
+  offsetting this flight through GoClimateNeutral. One object per currency
+  requested.
+  Currently returns non-final prices in SEK.
+  - **amount**: Amount. In smallest denomination of currency indicated by
+    **currency** (e.g. 1000 for 10.00 EUR).
+  - **currency:** ISO 4217 currency code for amount specified by **amount**.
 - **details_url**: URL to a page with more details about the carbon footprint
   for this flight. Currently always the GoClimateNeutral home page, but this
   might change in the future.
@@ -89,17 +103,29 @@ Request:
 
     $ curl https://api.goclimateneutral.org/v1/flight_footprint \
       -u YOUR_API_KEY: \
-      -d flight=VY1266 \
-      -d origin=ARN \
-      -d destination=BCN \
-      -d duration=12900 \
-      -d cabin_class=economy \
-      -d departure_date=2019-02-22 \
+      -d 'segments[0][flight]=VY1266' \
+      -d 'segments[0][origin]=ARN' \
+      -d 'segments[0][destination]=BCN' \
+      -d 'segments[0][duration]=12900' \
+      -d 'segments[0][departure_date]=2019-02-22' \
+      -d 'segments[1][flight]=VY1265' \
+      -d 'segments[1][origin]=BCN' \
+      -d 'segments[1][destination]=ARN' \
+      -d 'segments[1][duration]=12900' \
+      -d 'segments[1][departure_date]=2019-02-25' \
+      -d 'cabin_class=economy' \
+      -d 'currencies[]=SEK' \
       -G
 
 Response:
 
     {
       "footprint": 1.0,
+      "offset_prices": [
+        {
+          "amount": 4000,
+          "currency": "SEK",
+        }
+      ],
       "details_url": "https://www.goclimateneutral.org/"
     }
