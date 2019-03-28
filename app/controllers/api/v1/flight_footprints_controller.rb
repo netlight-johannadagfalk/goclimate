@@ -29,11 +29,11 @@ module Api
       # distance-based estimate is more accurate. We should switch to one as soon
       # as we got time to build what we need for it.
       def footprint
-        @footprint ||= (total_duration.to_f / 60 / 60 * 0.2).round(1)
+        @footprint ||= (total_duration.to_f / 60 / 60 * 200).to_i.round(-2)
       end
 
       def offset_price_amount
-        (footprint * LifestyleChoice::SEK_PER_TONNE).to_i * 100
+        (footprint.to_f / 1000 * LifestyleChoice::SEK_PER_TONNE).to_i * 100
       end
 
       def total_duration

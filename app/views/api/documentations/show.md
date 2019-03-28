@@ -74,11 +74,13 @@ and sum estimated footprint for each to create a total for the full trip.
 
 **Response attributes:**
 
-- **footprint**: Estimated footprint per passenger. In tonnes CO2eq.
-  Current precision is one decimal point.
-- **offset_prices[]:** Array of objects representing prices in the currencies
-  requested for offsetting this flight through GoClimateNeutral. Currently
-  returns non-final prices in SEK.
+- **footprint**: Estimated footprint per passenger. In kgs CO2e.  Current
+  precision is 100 kg. We recommend displaying this number in tonnes CO2e to the
+  user.
+- **offset_prices[]:** Array of objects representing prices per passenger for
+  offsetting this flight through GoClimateNeutral. One object per currency
+  requested.
+  Currently returns non-final prices in SEK.
   - **amount**: Amount. In smallest denomination of currency indicated by
     **currency** (e.g. 1000 for 10.00 EUR).
   - **currency:** ISO 4217 currency code for amount specified by **amount**.

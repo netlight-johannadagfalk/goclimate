@@ -43,7 +43,7 @@ RSpec.describe Api::V1::FlightFootprintsController do
     it 'includes estimated footprint in response (200 kg per flight hour, rounded to nearest 0.1 tonnes)' do
       get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
 
-      expect(response.parsed_body['footprint']).to eq(0.7)
+      expect(response.parsed_body['footprint']).to eq(700)
     end
 
     it 'includes offset price in response' do
@@ -114,14 +114,14 @@ RSpec.describe Api::V1::FlightFootprintsController do
       get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
                                       params: request_params.deep_merge(segments: { '0': { duration: 15_840 } })
 
-      expect(response.parsed_body['footprint']).to eq(0.9)
+      expect(response.parsed_body['footprint']).to eq(900)
     end
 
     it 'sums estimated footprint for each segment' do
       get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
                                       params: request_params_with_two_segments
 
-      expect(response.parsed_body['footprint']).to eq(1.4)
+      expect(response.parsed_body['footprint']).to eq(1400)
     end
 
     context 'when not providing correct attributes' do
@@ -196,7 +196,7 @@ RSpec.describe Api::V1::FlightFootprintsController do
       get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
                                       params: request_params.merge(duration: 15_840)
 
-      expect(response.parsed_body['footprint']).to eq(0.9)
+      expect(response.parsed_body['footprint']).to eq(900)
     end
 
     context 'when not providing correct attributes' do
