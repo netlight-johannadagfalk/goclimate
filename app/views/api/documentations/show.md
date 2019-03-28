@@ -120,7 +120,7 @@ Request:
 Response:
 
     {
-      "footprint": 1.0,
+      "footprint": 1400,
       "offset_prices": [
         {
           "amount": 4000,
