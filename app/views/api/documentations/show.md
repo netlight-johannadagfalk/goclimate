@@ -124,7 +124,7 @@ Response:
       "offset_prices": [
         {
           "amount": 4000,
-          "currency": "SEK",
+          "currency": "SEK"
         }
       ],
       "details_url": "https://www.goclimateneutral.org/"
