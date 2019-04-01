@@ -55,6 +55,13 @@ Rails.application.routes.draw do
   get 'partners/bokanerja'
   get 'partners/inshapetravel'
 
+  # Flight one time offsets
+  resources :flight_offsets, only: [:new, :create] do
+    collection do
+      get 'thank_you'
+    end
+  end
+
   # Dashboard
   get 'dashboard', to: 'dashboard#index'
 

@@ -67,7 +67,7 @@ RSpec.describe Api::V1::FlightFootprintsController do
     it 'includes details URL in response' do
       get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
 
-      expect(response.parsed_body['details_url']).to eq(root_url)
+      expect(response.parsed_body['details_url']).to end_with('/flight_offsets/new?offset_params=economy%2CARN%2CBCN')
     end
 
     context 'when not providing correct attributes' do

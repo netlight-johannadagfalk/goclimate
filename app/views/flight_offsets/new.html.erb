@@ -1,0 +1,28 @@
+<div class="site-wrapper-inner site-wrapper-first">
+
+  <div class="cover-container">
+    <%= render "shared/header" %>
+
+    <div class="inner cover">
+      <h1>Flight Offsets</h1>
+
+      <h2>Your itenerary</h2>
+      
+      <ul>
+        <% @offset_params.segments.each do |segment| %>
+          <li><%= segment[:origin] %> - <%= segment[:destination] %></li>
+        <% end %>
+      </ul>
+
+      <p>Cabin class: <%= @offset_params.cabin_class %></p>
+
+      <%= form_tag action: :create do %>
+
+        <%= submit_tag 'Offset my flight' %>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+<%= render "shared/footer" %>

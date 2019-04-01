@@ -19,7 +19,7 @@ module Api
               currency: 'SEK'
             }
           ],
-          details_url: root_url
+          details_url: new_flight_offset_url(params: { offset_params: offset_params })
         }
       end
 
@@ -96,6 +96,21 @@ module Api
         end
 
         true
+      end
+
+      def offset_params
+        FlightOffsetParameters.new(
+          params[:cabin_class],
+          segments_offset_params
+        ).to_s
+      end
+
+      def segments_offset_params
+        if params[:segments].present?
+          segments_params.map { |segment_params| segment_params.permit(:origin, :destination).to_h }
+        else
+          [params.permit(:origin, :destination).to_h]
+        end
       end
     end
   end

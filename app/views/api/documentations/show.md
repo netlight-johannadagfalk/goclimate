@@ -84,9 +84,7 @@ and sum estimated footprint for each to create a total for the full trip.
   - **amount**: Amount. In smallest denomination of currency indicated by
     **currency** (e.g. 1000 for 10.00 EUR).
   - **currency:** ISO 4217 currency code for amount specified by **amount**.
-- **details_url**: URL to a page with more details about the carbon footprint
-  for this flight. Currently always the GoClimateNeutral home page, but this
-  might change in the future.
+- **details_url**: URL to a page where the user can offset the flight.
 
 **Errors:**
 
@@ -127,5 +125,5 @@ Response:
           "currency": "SEK"
         }
       ],
-      "details_url": "https://www.goclimateneutral.org/"
+      "details_url": "https://www.goclimateneutral.org/flight_offsets/new?offset_params=economy%2CARN%2CBCN%2CBCN%2CARN"
     }
