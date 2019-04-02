@@ -70,6 +70,13 @@ RSpec.describe Api::V1::FlightFootprintsController do
       expect(response.parsed_body['details_url']).to end_with('/flight_offsets/new?offset_params=economy%2CARN%2CBCN')
     end
 
+    it 'allows currencies as hashes' do
+      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+                                      params: request_params.merge(currencies: { '0' => 'SEK' })
+
+      expect(response).to have_http_status(:ok)
+    end
+
     context 'when not providing correct attributes' do
       it 'returns 400 Bad Request when cabin class is not one of valid values' do
         get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),

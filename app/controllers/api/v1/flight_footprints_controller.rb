@@ -48,6 +48,14 @@ module Api
         @segments_params ||= extract_segments_params
       end
 
+      def currencies_param
+        if params[:currencies].is_a?(ActionController::Parameters)
+          params[:currencies].values
+        else
+          params[:currencies]
+        end
+      end
+
       def extract_segments_params
         segments_params = []
         params[:segments].each { |_, segment_params| segments_params << segment_params }
@@ -67,7 +75,7 @@ module Api
 
         return false unless VALID_CABIN_CLASSES.include?(params[:cabin_class])
 
-        return false unless params[:currencies].nil? || params[:currencies].all? { |c| VALID_CURRENCIES.include?(c) }
+        return false unless currencies_param.nil? || currencies_param.all? { |c| VALID_CURRENCIES.include?(c) }
 
         true
       end
