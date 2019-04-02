@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'subscription_manager'
 
 RSpec.describe SubscriptionManager do
   subject(:manager) { described_class.new }

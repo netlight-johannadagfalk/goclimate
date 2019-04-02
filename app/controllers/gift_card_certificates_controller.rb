@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'gift_card_certificate_pdf_generator'
-
 class GiftCardCertificatesController < ApplicationController
   def show
     gift_card = GiftCard.find_by_key(params[:key])

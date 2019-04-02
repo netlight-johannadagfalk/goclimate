@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'subscription_manager'
-require 'three_d_secure_verification'
-
 module Users
   class RegistrationsController < Devise::RegistrationsController
     # before_action :configure_sign_up_params, only: [:create]

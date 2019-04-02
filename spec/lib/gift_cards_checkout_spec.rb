@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'gift_cards_checkout'
-require 'gift_card_certificate_pdf_generator'
 
 RSpec.describe GiftCardsCheckout do
   let(:gift_card) { GiftCard.new(number_of_months: 3, currency: 'sek') }

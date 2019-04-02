@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'stripe_events_consumer'
 
 RSpec.describe StripeEventsConsumer do
   subject(:consumer) { described_class.new }

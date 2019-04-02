@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'gift_card_certificate_pdf_generator'
 
 RSpec.describe GiftCardCertificatePDFGenerator do
   describe '.from_gift_card' do

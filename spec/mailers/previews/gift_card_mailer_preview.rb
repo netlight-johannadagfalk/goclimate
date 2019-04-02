@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'gift_card_certificate_pdf_generator'
-
 # Preview all emails at http://localhost:3000/rails/mailers/gift_card_mailer
 class GiftCardMailerPreview < ActionMailer::Preview
   def gift_card_email

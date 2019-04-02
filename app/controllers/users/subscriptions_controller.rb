@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'three_d_secure_verification'
-require 'subscription_manager'
-
 module Users
   class SubscriptionsController < ApplicationController
     before_action :authenticate_user!

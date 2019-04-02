@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'gift_cards_checkout'
-require 'gift_card_certificate_pdf_generator'
-
 class GiftCardsController < ApplicationController
   def index
     @gift_card_1_months = GiftCard.new(number_of_months: 1, currency: currency)

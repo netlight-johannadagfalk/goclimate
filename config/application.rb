@@ -17,6 +17,10 @@ module GoClimateNeutral
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # Load lib as well as app
+    config.eager_load_paths << Rails.root.join('lib')
+    config.autoload_paths << Rails.root.join('lib')
+
     config.assets.paths << Rails.root.join('vendor', 'assets')
 
     # Whitelist locales available for the application

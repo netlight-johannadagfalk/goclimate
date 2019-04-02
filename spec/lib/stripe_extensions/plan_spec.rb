@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'stripe_extensions/plan'
 
 RSpec.describe StripeExtensions::Plan do
   describe '#retrieve_or_create_climate_offset_plan' do

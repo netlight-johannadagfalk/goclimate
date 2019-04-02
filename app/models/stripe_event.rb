@@ -4,8 +4,6 @@
 # behavior really only relates to charges in Stripe. It should be thought of as
 # if it was named `StripeCharge`.
 
-require 'gift_cards_checkout'
-
 class StripeEvent < ApplicationRecord
   belongs_to :user, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id', required: false
 

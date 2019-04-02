@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'three_d_secure_verification'
 
 RSpec.describe ThreeDSecureVerification do
   subject(:verification) { described_class.new(card_source, amount, currency, return_url) }

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'stripe_events_consumer'
 
 RSpec.feature 'Registrations', type: :feature, js: true do
   scenario 'Register and update card' do
