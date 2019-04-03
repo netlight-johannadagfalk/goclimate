@@ -130,14 +130,6 @@ RSpec.describe Api::V1::FlightFootprintsController do
 
         expect(response.parsed_body['type']).to eq('authentication_error')
       end
-
-      context 'when speedy is set' do
-        it 'returns successfully anyway' do
-          get '/api/v1/flight_footprint', params: request_params.merge(speedy: nil)
-
-          expect(response).to have_http_status(:ok)
-        end
-      end
     end
   end
 

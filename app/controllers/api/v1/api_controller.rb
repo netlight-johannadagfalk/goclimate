@@ -10,14 +10,7 @@ module Api
       private
 
       def authorize
-        render json: { type: :authentication_error }, status: 401 unless speedy_mode? || api_key_valid?
-      end
-
-      # Speedy mode is whitelisted at Cloudflare. Any requests to the API
-      # endpoints must go through the correct domain (at Cloudflare) to be
-      # routed here in production, so IP whitelisting at Cloudflare is enough.
-      def speedy_mode?
-        params.key?(:speedy)
+        render json: { type: :authentication_error }, status: 401 unless api_key_valid?
       end
 
       def api_key_valid?
