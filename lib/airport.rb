@@ -10,7 +10,8 @@ class Airport
   @airports = {}
 
   def self.import!
-    @airports = CSV.read('config/airports.dat')
+    # data comes from https://datahub.io/core/airport-codes#data
+    @airports = CSV.read('config/airports-ourairports.com.csv', encoding: 'ISO-8859–1')
                    .map { |line| from_csv(line) }
                    .to_h { |airport| [airport.iata_code, airport] }
   end
@@ -20,7 +21,7 @@ class Airport
   end
 
   def self.from_csv(line)
-    new(line[4], line[1], line[6].to_f, line[7].to_f)
+    new(line[13], line[3], line[4].to_f, line[5].to_f)
   end
   private_class_method :from_csv
 
