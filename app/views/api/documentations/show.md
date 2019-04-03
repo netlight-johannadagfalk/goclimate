@@ -47,10 +47,6 @@ Retrieve estimated footprint for one flight. If you need to calculate footprint
 for a trip with multiple legs, retrieve the estimated footprint for each leg
 and sum estimated footprint for each to create a total for the full trip.
 
-> **🚧 PRE-RELEASE NOTE:** This endpoint currently uses a very simple algorithm
-> for footprint calculations. We will improve the accuracy to a documented
-> precision soon.
-
 **Endpoint:**
 
 `GET /v1/flight_footprint`
