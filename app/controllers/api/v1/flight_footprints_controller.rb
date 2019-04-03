@@ -40,7 +40,7 @@ module Api
       end
 
       def set_cache_headers
-        expires_in(rand(7.days.to_i..14.days.to_i), public: true)
+        expires_in(rand(7.days.to_i..14.days.to_i), private: true)
       end
 
       def validate_currencies_param

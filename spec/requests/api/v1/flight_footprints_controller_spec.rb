@@ -39,22 +39,22 @@ RSpec.describe Api::V1::FlightFootprintsController do
     it 'sets Cache-control headers' do
       get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
 
-      expect(response.headers['Cache-control']).to match(/max-age=\d+, public/)
+      expect(response.headers['Cache-control']).to match(/max-age=\d+, private/)
     end
 
     it 'sets max-age to between 7 and 14 days' do
       get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
 
-      max_age = response.headers['Cache-control'].match(/max-age=(\d+), public/)[1].to_i
+      max_age = response.headers['Cache-control'].match(/max-age=(\d+), private/)[1].to_i
       expect(max_age).to be_between(7.days.to_i, 14.days.to_i)
     end
 
     it 'randomizes max-age within range' do
       get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
-      first_max_age = response.headers['Cache-control'].match(/max-age=(\d+), public/)[1].to_i
+      first_max_age = response.headers['Cache-control'].match(/max-age=(\d+), private/)[1].to_i
 
       get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
-      second_max_age = response.headers['Cache-control'].match(/max-age=(\d+), public/)[1].to_i
+      second_max_age = response.headers['Cache-control'].match(/max-age=(\d+), private/)[1].to_i
 
       expect(first_max_age).not_to eq(second_max_age)
     end
