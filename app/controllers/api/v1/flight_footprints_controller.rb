@@ -8,6 +8,7 @@ module Api
 
       before_action :validate_currencies_param, only: :show
       before_action :set_and_validate_footprint, only: :show
+      before_action :set_cache_headers, only: :show
 
       def show
         render json: {
@@ -36,6 +37,10 @@ module Api
         @footprint = FlightFootprint.new(footprint_params)
 
         render json: { type: :invalid_request_error }, status: 400 unless @footprint.valid?
+      end
+
+      def set_cache_headers
+        expires_in(rand(7.days.to_i..14.days.to_i), public: true)
       end
 
       def validate_currencies_param
