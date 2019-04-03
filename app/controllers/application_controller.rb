@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def url_options
     # API runs on a separate subdomain in production, so make sure the default
     # subdomain is always `www` for route helpers
-    return { subdomain: 'www' }.merge(super) if ENV['HEROKU_ENV'] == 'production'
+    return super.merge(subdomain: 'www') if ENV['HEROKU_ENV'] == 'production'
 
     super
   end
