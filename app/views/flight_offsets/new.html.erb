@@ -10,7 +10,7 @@
       
       <ul>
         <% @offset_params.segments.each do |segment| %>
-          <li><%= segment[:origin] %> - <%= segment[:destination] %></li>
+          <li><%= segment.origin %> - <%= segment.destination %></li>
         <% end %>
       </ul>
 

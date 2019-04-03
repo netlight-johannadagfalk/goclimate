@@ -42,6 +42,9 @@ gem 'jquery-rails', '~> 4.3.1'
 gem 'sass-rails', github: 'rails/sass-rails'
 gem 'uglifier', '>= 1.3.0'
 
+# Geometry
+gem 'haversine'
+
 # Third-party integrations
 gem 'barnes' # Detailed monitoring on Heroku
 gem 'intercom-rails', '~> 0.4.0'

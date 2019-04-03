@@ -61,8 +61,8 @@ and sum estimated footprint for each to create a total for the full trip.
   - **segments[n][flight]:** Flight designator code. 
   - **segments[n][origin]:** Origin airport IATA code.
   - **segments[n][destination]:** Destination airport IATA code.
-  - **segments[n][duration]:** Flight duration. In seconds.
-  - **segments[n][departure_date]:** Departure date. ISO 8601 date formatted.
+  - _(DEPRECATED)_ **segments[n][duration]:** Flight duration. In seconds.
+  - _(DEPRECATED)_ **segments[n][departure_date]:** Departure date. ISO 8601 date formatted.
 - **cabin_class:** Cabin class. One of `economy`, `premium_economy`, `business`
   and `first`.
 - **currencies[]:** Desired currencies for offset pricing. One of `EUR`, `USD`, `SEK` and `NOK`. You can request multiple currencies by including multiple items in the currencies array.
@@ -104,13 +104,9 @@ Request:
       -d 'segments[0][flight]=VY1266' \
       -d 'segments[0][origin]=ARN' \
       -d 'segments[0][destination]=BCN' \
-      -d 'segments[0][duration]=12900' \
-      -d 'segments[0][departure_date]=2019-02-22' \
       -d 'segments[1][flight]=VY1265' \
       -d 'segments[1][origin]=BCN' \
       -d 'segments[1][destination]=ARN' \
-      -d 'segments[1][duration]=12900' \
-      -d 'segments[1][departure_date]=2019-02-25' \
       -d 'cabin_class=economy' \
       -d 'currencies[]=SEK' \
       -G

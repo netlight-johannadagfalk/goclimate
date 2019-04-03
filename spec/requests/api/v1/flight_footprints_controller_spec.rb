@@ -10,9 +10,7 @@ RSpec.describe Api::V1::FlightFootprintsController do
         '0': {
           flight: 'VY1266',
           origin: 'ARN',
-          destination: 'BCN',
-          duration: 12_900,
-          departure_date: '2019-02-22'
+          destination: 'BCN'
         }
       },
       cabin_class: 'economy',
@@ -26,9 +24,7 @@ RSpec.describe Api::V1::FlightFootprintsController do
       segments: { '1': {
         flight: 'VY1265',
         origin: 'BCN',
-        destination: 'ARN',
-        duration: 12_900,
-        departure_date: '2019-02-25'
+        destination: 'ARN'
       } }
     )
   end
@@ -40,10 +36,10 @@ RSpec.describe Api::V1::FlightFootprintsController do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'includes estimated footprint in response (200 kg per flight hour, rounded to nearest 0.1 tonnes)' do
+    it 'includes estimated footprint in response' do
       get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
 
-      expect(response.parsed_body['footprint']).to eq(700)
+      expect(response.parsed_body['footprint']).to eq(500)
     end
 
     it 'includes offset price in response' do
@@ -55,7 +51,7 @@ RSpec.describe Api::V1::FlightFootprintsController do
     it 'includes offset price amount in response' do
       get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
 
-      expect(response.parsed_body['offset_prices'].first['amount']).to eq(2800)
+      expect(response.parsed_body['offset_prices'].first['amount']).to eq(2000)
     end
 
     it 'includes offset price currency in response' do
@@ -117,20 +113,6 @@ RSpec.describe Api::V1::FlightFootprintsController do
   describe 'GET /v1/flight_footprint' do
     include_examples 'GET /v1/flight_footprint'
 
-    it 'includes estimated footprint in response (another example)' do
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
-                                      params: request_params.deep_merge(segments: { '0': { duration: 15_840 } })
-
-      expect(response.parsed_body['footprint']).to eq(900)
-    end
-
-    it 'sums estimated footprint for each segment' do
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
-                                      params: request_params_with_two_segments
-
-      expect(response.parsed_body['footprint']).to eq(1400)
-    end
-
     context 'when not providing correct attributes' do
       it 'returns 400 Bad Request when flight is missing' do
         get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
@@ -146,32 +128,9 @@ RSpec.describe Api::V1::FlightFootprintsController do
         expect(response).to have_http_status(:bad_request)
       end
 
-      it 'returns 400 Bad Request when duration is missing' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
-                                        params: request_params.deep_merge(segments: { '0': { duration: nil } })
-
-        expect(response).to have_http_status(:bad_request)
-      end
-
       it 'returns 400 Bad Request when destination is missing' do
         get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
                                         params: request_params.deep_merge(segments: { '0': { destination: nil } })
-
-        expect(response).to have_http_status(:bad_request)
-      end
-
-      it 'returns 400 Bad Request when departure date is missing' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
-                                        params: request_params.deep_merge(segments: { '0': { departure_date: nil } })
-
-        expect(response).to have_http_status(:bad_request)
-      end
-
-      it 'returns 400 Bad Request when departure date is not an ISO 8601 string' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
-                                        params: request_params.deep_merge(
-                                          segments: { '0': { departure_date: '0508-2019' } }
-                                        )
 
         expect(response).to have_http_status(:bad_request)
       end
@@ -199,13 +158,6 @@ RSpec.describe Api::V1::FlightFootprintsController do
 
     include_examples 'GET /v1/flight_footprint'
 
-    it 'includes estimated footprint in response (another example)' do
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
-                                      params: request_params.merge(duration: 15_840)
-
-      expect(response.parsed_body['footprint']).to eq(900)
-    end
-
     context 'when not providing correct attributes' do
       it 'returns 400 Bad Request when flight is missing' do
         get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
@@ -221,30 +173,9 @@ RSpec.describe Api::V1::FlightFootprintsController do
         expect(response).to have_http_status(:bad_request)
       end
 
-      it 'returns 400 Bad Request when duration is missing' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
-                                        params: request_params.except(:duration)
-
-        expect(response).to have_http_status(:bad_request)
-      end
-
       it 'returns 400 Bad Request when destination is missing' do
         get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
                                         params: request_params.except(:destination)
-
-        expect(response).to have_http_status(:bad_request)
-      end
-
-      it 'returns 400 Bad Request when departure date is missing' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
-                                        params: request_params.except(:departure_date)
-
-        expect(response).to have_http_status(:bad_request)
-      end
-
-      it 'returns 400 Bad Request when departure date is not an ISO 8601 string' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
-                                        params: request_params.merge(departure_date: '0508-2019')
 
         expect(response).to have_http_status(:bad_request)
       end
