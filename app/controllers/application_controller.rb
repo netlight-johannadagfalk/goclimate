@@ -5,14 +5,6 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
 
-  def url_options
-    # API runs on a separate subdomain in production, so make sure the default
-    # subdomain is always `www` for route helpers
-    return super.merge(subdomain: 'www') if ENV['HEROKU_ENV'] == 'production'
-
-    super
-  end
-
   def render_not_found
     raise ActionController::RoutingError, 'Not found'
   end

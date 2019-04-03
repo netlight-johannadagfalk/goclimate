@@ -7,6 +7,14 @@ module Api
 
       before_action :authorize
 
+      def url_options
+        # API runs on a separate subdomain in production, so make sure the default
+        # subdomain is always `www` for route helpers
+        return super.merge(subdomain: 'www') if ENV['HEROKU_ENV'] == 'production'
+
+        super
+      end
+
       private
 
       def authorize
