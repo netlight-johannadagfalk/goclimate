@@ -60,7 +60,7 @@
                       <%= image_tag project.image_url, class: 'img-circle', alt: '' %>
                     </div>
                     <div class="project-info">
-                      <%= project.name %>
+                      <a href="<%= project.blog_url %>"><%= project.name %></a>
                       <br>
                       <%= project.carbon_offset %> ton koldioxid
                     </div>
