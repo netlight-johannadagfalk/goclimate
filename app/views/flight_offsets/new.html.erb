@@ -1,28 +1,115 @@
 <div class="site-wrapper-inner site-wrapper-first">
-
   <div class="cover-container">
     <%= render "shared/header" %>
-
     <div class="inner cover">
-      <h1>Flight Offsets</h1>
+      <span class="green-leaf"><%= image_tag 'green.svg' %></span>
+      <h1 class="cover-heading">Klimatkompensera din flygresa</h1>
+      <p class="lead">Att klimatkompensera är att ta ansvar för din klimatpåverkan. Tillsammans med Blocket erbjuder vi möjligheten att klimatkompensera din flygresa i certifierade klimatprojekt.</p>
+    </div>
+    <span class="glyphicon glyphicon-chevron-down first" aria-hidden="true"></span>
+  </div>
+</div>
 
-      <h2>Your itenerary</h2>
-      
-      <ul>
-        <% @offset_params.segments.each do |segment| %>
-          <li><%= segment.origin %> - <%= segment.destination %></li>
+<div class="site-wrapper-inner site-wrapper-second">
+  <div class="cover-container">
+    <div class="inner cover">
+      <h1 class="cover-heading">Din order</h1>
+      <p class="lead"></p>
+        <table class="table">
+          <tr>
+            <th>Klimatkompensation för flyg</th>
+            <th></th>
+          </tr>
+          <tr>
+              <td>
+                <% @offset_params.segments.each do |segment| %>
+                  - <%= Airport.find(segment.origin).name %> - <%= Airport.find(segment.destination).name %></br>
+                <% end %>
+                Cabin class: <%= @offset_params.cabin_class %>
+              </td>
+              <td></td>
+            </tr>
+          <tr>
+            <td class="total">Total:</td>
+            <td class="total"><%= (@footprint.footprint.to_f / 1000).to_f %> ton koldioxid</td>
+          </tr>
+          <tr>
+            <td class="total">Summa:</td>
+            <td class="total"><%= (@price / 100).to_f %> SEK</td>
+          </tr>
+        </table>
+
+      </div>
+
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <h4>Hit går pengarna</h4>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            Vi investerar i tredjepartsgranskade och FN-certifierade klimatprojekt med den extra certifieringen Gold Standard. Här är våra två senaste projekt.
+              <div class="row projects">
+                <% @projects.each do |project| %>
+                  <div class="col-sm-6">
+                    <div class="crop">
+                      <%= image_tag project.image_url, class: 'img-circle', alt: '' %>
+                    </div>
+                    <div class="project-info">
+                      <%= project.name %>
+                      <br>
+                      <%= project.carbon_offset %> ton koldioxid
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+      <div class="row">
+        <h1 class="cover-heading">Din order</h1>
+        <%= form_tag({action: :create}, {id: "payment-form", :class => "form-horizontal"}) do |f| %>
+
+          <div class="form-group">
+            <label for="email" class="col-sm-offset-1 col-sm-4 control-label padding-top"><%=t 'email' %></label>
+            <div class="col-sm-4">
+              <%= text_field :email, autofocus: false, id: "email", class: "form-control" %>
+            </div>
+          </div>
+     
+          <%= hidden_field(:user, :stripe_customer_id, :value => "") %>
+
+          <div class="form-group stripe-form-group">
+            <label for="card-element" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'credit_or_debit_card' %></label>
+            <div id="card-element" class="col-sm-4 form-control">
+            <!-- a Stripe Element will be inserted here. -->
+            </div>
+          </div>
+
+          <div id="card-errors"></div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-5 col-sm-4 "><span class="glyphicon glyphicon glyphicon-lock secured-by-stripe" aria-hidden="true"></span>Secured by Stripe</div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="col-sm-offset-5 col-sm-3">
+            <button id="register-button" type="submit" class="btn btn-success" onclick="this.disabled=true; this.value='Submitting...'; $('#payment-form').submit();">Klimatkompensera</button>
+            </div>
+          </div>
+
         <% end %>
-      </ul>
-
-      <p>Cabin class: <%= @offset_params.cabin_class %></p>
-
-      <%= form_tag action: :create do %>
-
-        <%= submit_tag 'Offset my flight' %>
-      <% end %>
+      </div>
     </div>
   </div>
-
 </div>
 
 <%= render "shared/footer" %>
