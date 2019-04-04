@@ -28,6 +28,15 @@ RSpec.describe Api::V1::FlightFootprintsController do
       } }
     )
   end
+  let(:request_params_with_not_found_airport) do
+    request_params.merge(
+      segments: { '0': {
+        flight: 'VY1266',
+        origin: 'XXX',
+        destination: 'BCN'
+      } }
+    )
+  end
 
   shared_examples 'GET /v1/flight_footprint' do
     it 'returns 200 OK for successful requests' do
@@ -109,6 +118,20 @@ RSpec.describe Api::V1::FlightFootprintsController do
                                         params: request_params.merge(currencies: ['invalid'])
 
         expect(response).to have_http_status(:bad_request)
+      end
+
+      it 'returns 404 when airport code is not found' do
+        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+                                        params: request_params_with_not_found_airport
+
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'returns Calculation Unsuccessful when airport code is not found' do
+        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+                                        params: request_params_with_not_found_airport
+
+        expect(JSON.parse(response.body)).to eq('type' => 'calculation_unsuccessful')
       end
     end
 

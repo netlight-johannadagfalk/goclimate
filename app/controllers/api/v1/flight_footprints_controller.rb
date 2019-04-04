@@ -21,6 +21,8 @@ module Api
           ],
           details_url: new_flight_offset_url(params: { offset_params: offset_params })
         }
+      rescue Airport::NotFoundError
+        render json: { type: :calculation_unsuccessful }, status: 404
       end
 
       private
