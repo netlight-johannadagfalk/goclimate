@@ -11,7 +11,7 @@ class Airport
 
   def self.import!
     # data comes from https://datahub.io/core/airport-codes#data
-    @airports = CSV.read('config/airports-ourairports.com.csv', encoding: 'ISO-8859–1')
+    @airports = CSV.read('config/airports-ourairports.com.csv')
                    .map { |line| from_csv(line) }
                    .compact
                    .to_h { |airport| [airport.iata_code, airport] }
