@@ -18,6 +18,7 @@ class GenericFlightFootprint
     s:           280.39,       # Average seat number
     cw: {                      # Cabin class weight
       economy:   0.800,
+      premium_economy: 0.9,
       business:  1.54,
       first:     2.40
     }.freeze
@@ -30,6 +31,7 @@ class GenericFlightFootprint
     s:           158.44,       # Average seat number
     cw: {                      # Cabin class weight
       economy:   0.960,
+      premium_economy: 1.0,
       business:  1.26,
       first:     2.40
     }.freeze
