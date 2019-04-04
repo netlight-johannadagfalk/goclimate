@@ -78,9 +78,17 @@
         <%= form_tag({action: :create}, {id: "payment-form", :class => "form-horizontal"}) do |f| %>
 
           <div class="form-group">
-            <label for="email" class="col-sm-offset-1 col-sm-4 control-label padding-top"><%=t 'email' %></label>
-            <div class="col-sm-4">
-              <%= text_field :email, autofocus: false, id: "email", class: "form-control" %>
+            <label for="email" class="col-sm-offset-1 col-sm-4 control-label padding-top">Din beställning</label>
+            <div class="col-sm-4 padding-top">
+              <%= (@footprint.footprint.to_f / 1000).to_f %> ton koldioxid
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="email" class="col-sm-offset-1 col-sm-4 control-label padding-top">Summa</label>
+            <div class="col-sm-4 padding-top">
+               <%= (@price / 100).to_f %> SEK
             </div>
           </div>
      
