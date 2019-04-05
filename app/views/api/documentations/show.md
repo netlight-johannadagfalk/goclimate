@@ -54,9 +54,9 @@ and sum estimated footprint for each to create a total for the full trip.
 **Request parameters:**
 
 - Segments of the flight itenireary. For each parameter below, replace n with a unique identifier for each segment of the trip. These parameters are repeated for each segment.
-  - **segments[n][flight]:** Flight designator code. 
   - **segments[n][origin]:** Origin airport IATA code.
   - **segments[n][destination]:** Destination airport IATA code.
+  - _(DEPRECATED)_ **segments[n][flight]:** Flight designator code. 
   - _(DEPRECATED)_ **segments[n][duration]:** Flight duration. In seconds.
   - _(DEPRECATED)_ **segments[n][departure_date]:** Departure date. ISO 8601 date formatted.
 - **cabin_class:** Cabin class. One of `economy`, `premium_economy`, `business`

@@ -160,11 +160,11 @@ RSpec.describe Api::V1::FlightFootprintsController do
     include_examples 'GET /v1/flight_footprint'
 
     context 'when not providing correct attributes' do
-      it 'returns 400 Bad Request when flight is missing' do
+      it 'returns 200 ok when flight is missing' do
         get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
                                         params: request_params.deep_merge(segments: { '0': { flight: nil } })
 
-        expect(response).to have_http_status(:bad_request)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'returns 400 Bad Request when origin is missing' do
@@ -179,13 +179,6 @@ RSpec.describe Api::V1::FlightFootprintsController do
                                         params: request_params.deep_merge(segments: { '0': { destination: nil } })
 
         expect(response).to have_http_status(:bad_request)
-      end
-
-      it 'responds with error type when parameters are missing' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
-                                        params: request_params.deep_merge(segments: { '0': { flight: nil } })
-
-        expect(response.parsed_body['type']).to eq('invalid_request_error')
       end
     end
   end
@@ -205,11 +198,11 @@ RSpec.describe Api::V1::FlightFootprintsController do
     include_examples 'GET /v1/flight_footprint'
 
     context 'when not providing correct attributes' do
-      it 'returns 400 Bad Request when flight is missing' do
+      it 'returns 200 Ok when flight is missing' do
         get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
                                         params: request_params.except(:flight)
 
-        expect(response).to have_http_status(:bad_request)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'returns 400 Bad Request when origin is missing' do
@@ -224,13 +217,6 @@ RSpec.describe Api::V1::FlightFootprintsController do
                                         params: request_params.except(:destination)
 
         expect(response).to have_http_status(:bad_request)
-      end
-
-      it 'responds with error type when parameters are missing' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
-                                        params: request_params.except(:flight)
-
-        expect(response.parsed_body['type']).to eq('invalid_request_error')
       end
     end
   end

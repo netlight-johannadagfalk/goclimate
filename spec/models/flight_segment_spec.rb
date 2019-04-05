@@ -17,16 +17,6 @@ RSpec.describe FlightSegment do
     end
   end
 
-  describe '#flight' do
-    it 'validates presence' do
-      segment = described_class.new
-
-      segment.validate
-
-      expect(segment.errors).to include(:flight)
-    end
-  end
-
   describe '#origin' do
     it 'validates presence' do
       segment = described_class.new

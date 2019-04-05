@@ -8,7 +8,7 @@ class FlightSegment
   validates_presence_of :flight, :origin, :destination
 
   def initialize(attributes = {})
-    @flight = attributes[:flight]
+    @flight = attributes[:flight].nil? ? 'NA' : attributes[:flight]
     @origin = attributes[:origin]
     @destination = attributes[:destination]
     @duration = attributes[:duration].to_i
