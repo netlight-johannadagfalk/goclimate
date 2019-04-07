@@ -75,10 +75,10 @@ module Api
 
       def segments
         if params[:segments].nil?
-          [FlightSegment.new(params.permit(:flight, :origin, :destination, :duration))]
+          [FlightSegment.new(params.permit(:origin, :destination))]
         else
           params[:segments].values.map do |segment_params|
-            FlightSegment.new(segment_params.slice(:flight, :origin, :destination, :duration))
+            FlightSegment.new(segment_params.slice(:origin, :destination))
           end
         end
       end

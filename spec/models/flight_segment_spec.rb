@@ -4,10 +4,6 @@ require 'rails_helper'
 
 RSpec.describe FlightSegment do
   describe '#initialize' do
-    it 'sets flight designator' do
-      expect(described_class.new(flight: 'VY1266').flight).to eq('VY1266')
-    end
-
     it 'sets origin' do
       expect(described_class.new(origin: 'ARN').origin).to eq('ARN')
     end

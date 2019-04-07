@@ -3,20 +3,17 @@
 class FlightSegment
   include ActiveModel::Model
 
-  attr_reader :flight, :origin, :destination, :duration
+  attr_reader :origin, :destination
 
-  validates_presence_of :flight, :origin, :destination
+  validates_presence_of :origin, :destination
 
   def initialize(attributes = {})
-    @flight = attributes[:flight].nil? ? 'NA' : attributes[:flight]
     @origin = attributes[:origin]
     @destination = attributes[:destination]
-    @duration = attributes[:duration].to_i
   end
 
   def ==(other)
-    flight == other.flight &&
-      origin == other.origin &&
+    origin == other.origin &&
       destination == other.destination
   end
 end
