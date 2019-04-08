@@ -5,7 +5,7 @@ class GenericFlightFootprint
   PLF          = 0.77          # Passenger load factor
   CF           = 0.951         # Cargo factor
   P            = 0.51          # Pre-production factor
-  M            = 2.7           # Multiplier for non-CO2 emission effects
+  M            = 2             # Multiplier for non-emission effects
   EF           = 3.150         # Emission factor (kg CO2e per kg fuel)
   DC_550       = 50            # Detour constant (< 550 km)
   DC_550_5500  = 100           # Detour constant (550 km - 5500 km)
