@@ -25,13 +25,14 @@
                 <% @offset_params.segments.each do |segment| %>
                   - <%= Airport.find(segment.origin).name %> - <%= Airport.find(segment.destination).name %></br>
                 <% end %>
-                Cabin class: <%= @offset_params.cabin_class %>
+                Cabin class: <%= @offset_params.cabin_class %></br>
+                Antal personer: <%= @num_persons %>
               </td>
               <td></td>
             </tr>
           <tr>
             <td class="total">Total:</td>
-            <td class="total"><%= (@footprint.footprint.to_f / 1000).to_f %> ton koldioxid</td>
+            <td class="total"><%= @total_footprint %> ton koldioxid</td>
           </tr>
           <tr>
             <td class="total">Summa:</td>
@@ -72,21 +73,28 @@
       </div>
     </div>
 
-
       <div class="row">
         <h1 class="cover-heading">Din order</h1>
         <%= form_tag({action: :create}, {id: "payment-form", :class => "form-horizontal"}) do |f| %>
 
+          <!--
           <div class="form-group">
-            <label for="email" class="col-sm-offset-1 col-sm-4 control-label padding-top">Din beställning</label>
+            <label for="num-persons" class="col-sm-offset-1 col-sm-4 control-label padding-top">Antal personer</label>
+            <div class="col-sm-4">
+              <%= select_tag('num-persons', options_for_select(1...45, @num_persons), 'class' => 'form-control') %>
+            </div>
+          </div>
+          -->
+
+          <div class="form-group">
+            <label for="footprint" class="col-sm-offset-1 col-sm-4 control-label padding-top">Din beställning</label>
             <div class="col-sm-4 padding-top">
-              <%= (@footprint.footprint.to_f / 1000).to_f %> ton koldioxid
+              <%= @total_footprint %> ton koldioxid
             </div>
           </div>
 
-
           <div class="form-group">
-            <label for="email" class="col-sm-offset-1 col-sm-4 control-label padding-top">Summa</label>
+            <label for="price" class="col-sm-offset-1 col-sm-4 control-label padding-top">Summa</label>
             <div class="col-sm-4 padding-top">
                <%= (@price / 100).to_f %> SEK
             </div>
@@ -119,5 +127,13 @@
     </div>
   </div>
 </div>
+
+<% content_for :javascript_tags do %>
+  <script type="text/javascript">
+    var STRIPE_PUBLISHABLE_KEY = "<%= ENV['PUBLISHABLE_KEY'] %>"
+  </script>
+  <%= javascript_include_tag 'users/registrations' %>
+<% end %>
+
 
 <%= render "shared/footer" %>
