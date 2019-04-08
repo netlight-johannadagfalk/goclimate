@@ -10,6 +10,14 @@ authentication, and verbs.
 [rest]: https://developer.mozilla.org/en-US/docs/Glossary/REST
 [json]: http://www.json.org/
 
+## Calculation Model
+
+The GoClimateNeutral API uses IATA-airport codes of a route to calculate the 
+CO2-emissions. You can read more about how the 
+calculation is done [here][pdf].
+
+[pdf]: https://www.goclimateneutral.org/blog/wp-content/uploads/2019/04/Calculations-in-GoClimateNeutral-Flight-Footprint-API.pdf
+
 ## Authentication
 
 The GoClimateNeutral API uses API keys to authenticate requests. Get your API
