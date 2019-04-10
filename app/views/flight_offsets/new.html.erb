@@ -75,16 +75,11 @@
 
       <div class="row">
         <h1 class="cover-heading">Din order</h1>
-        <%= form_tag({action: :create}, {id: "payment-form", :class => "form-horizontal"}) do |f| %>
-
-          <!--
-          <div class="form-group">
-            <label for="num-persons" class="col-sm-offset-1 col-sm-4 control-label padding-top">Antal personer</label>
-            <div class="col-sm-4">
-              <%= select_tag('num-persons', options_for_select(1...45, @num_persons), 'class' => 'form-control') %>
-            </div>
-          </div>
-          -->
+        <%= form_tag(flight_offsets_path, id: "payment-form", class: "form-horizontal") do %>
+          <%= hidden_field_tag :amount, @price %>
+          <%= hidden_field_tag :currency, 'sek' %>
+          <%= hidden_field_tag :offset_params, params[:offset_params] %>
+          <%= hidden_field_tag :num_persons, params[:num_persons] %>
 
           <div class="form-group">
             <label for="footprint" class="col-sm-offset-1 col-sm-4 control-label padding-top">Din beställning</label>
@@ -99,8 +94,6 @@
                <%= @price / 100 %> SEK
             </div>
           </div>
-     
-          <%= hidden_field(:user, :stripe_customer_id, :value => "") %>
 
           <div class="form-group stripe-form-group">
             <label for="card-element" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'credit_or_debit_card' %></label>
@@ -109,7 +102,9 @@
             </div>
           </div>
 
-          <div id="card-errors"></div>
+          <div id="card-errors">
+            <%= @checkout.errors.values.join(', ') if @checkout&.errors&.any? %>
+          </div>
 
           <div class="form-group">
             <div class="col-sm-offset-5 col-sm-4 "><span class="glyphicon glyphicon glyphicon-lock secured-by-stripe" aria-hidden="true"></span>Secured by Stripe</div>
@@ -118,22 +113,27 @@
 
           <div class="form-group">
             <div class="col-sm-offset-5 col-sm-3">
-            <button id="register-button" type="submit" class="btn btn-success" onclick="this.disabled=true; this.value='Submitting...'; $('#payment-form').submit();">Klimatkompensera</button>
+            <input id="register-button" type="submit" value="Klimatkompensera" class="btn btn-success">
             </div>
           </div>
-
         <% end %>
       </div>
     </div>
   </div>
 </div>
 
+<%= render "shared/footer" %>
+
 <% content_for :javascript_tags do %>
   <script type="text/javascript">
     var STRIPE_PUBLISHABLE_KEY = "<%= ENV['PUBLISHABLE_KEY'] %>"
+
+    window.addEventListener('DOMContentLoaded', function() {
+      new OffsetPaymentForm(
+        document.getElementById('payment-form'),
+        document.getElementById('card-errors'),
+        document.getElementById('register-button')
+      );
+    })
   </script>
-  <%= javascript_include_tag 'users/registrations' %>
 <% end %>
-
-
-<%= render "shared/footer" %>

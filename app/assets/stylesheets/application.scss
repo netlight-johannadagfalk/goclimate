@@ -308,7 +308,7 @@ div.legal {
     div {
         padding: 0px;
     }
-    input {
+    input[type=text], input[type=email], input[type=password] {
         color: #777;
         width: 200px;
         margin-top: 5px;

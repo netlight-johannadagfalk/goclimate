@@ -18,6 +18,7 @@
 //= require countUp
 //= require jquery.appear
 //= require components/business_offset_calculator
+//= require components/offset_payment_form
 
 $(document).ready(function() {
 	$('.dropdown-toggle').dropdown();

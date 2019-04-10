@@ -58,6 +58,8 @@ Rails.application.routes.draw do
   # Flight one time offsets
   resources :flight_offsets, only: [:new, :create] do
     collection do
+      get 'threedsecure_create', to: 'flight_offsets#create', as: 'threedsecure',
+                                 defaults: { three_d_secure: 'continue' }
       get 'thank_you'
 
       scope format: true, constraints: { format: :pdf } do
