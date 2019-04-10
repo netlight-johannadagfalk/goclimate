@@ -59,6 +59,10 @@ Rails.application.routes.draw do
   resources :flight_offsets, only: [:new, :create] do
     collection do
       get 'thank_you'
+
+      scope format: true, constraints: { format: :pdf } do
+        resources :offset_certificates, only: [:show], path: :certificates, param: :key
+      end
     end
   end
 

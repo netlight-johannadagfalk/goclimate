@@ -32,11 +32,11 @@
             </tr>
           <tr>
             <td class="total">Total:</td>
-            <td class="total"><%= @total_footprint %> ton koldioxid</td>
+            <td class="total"><%= number_with_precision @total_footprint, :precision => 2 %> ton koldioxid</td>
           </tr>
           <tr>
             <td class="total">Summa:</td>
-            <td class="total"><%= (@price / 100).to_f %> SEK</td>
+            <td class="total"><%= (@price / 100) %> SEK</td>
           </tr>
         </table>
 
@@ -89,14 +89,14 @@
           <div class="form-group">
             <label for="footprint" class="col-sm-offset-1 col-sm-4 control-label padding-top">Din beställning</label>
             <div class="col-sm-4 padding-top">
-              <%= @total_footprint %> ton koldioxid
+              <%= number_with_precision @total_footprint, :precision => 2 %> ton koldioxid
             </div>
           </div>
 
           <div class="form-group">
             <label for="price" class="col-sm-offset-1 col-sm-4 control-label padding-top">Summa</label>
             <div class="col-sm-4 padding-top">
-               <%= (@price / 100).to_f %> SEK
+               <%= @price / 100 %> SEK
             </div>
           </div>
      

@@ -17,5 +17,7 @@ class FlightOffsetsController < ApplicationController
   end
 
   def thank_you
+    @certificate_key = flash[:amount_co2] || 'NA'
+    @stripe_event_id = '123'
   end
 end
