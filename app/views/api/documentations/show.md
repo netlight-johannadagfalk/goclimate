@@ -69,7 +69,7 @@ and sum estimated footprint for each to create a total for the full trip.
   - _(DEPRECATED)_ **segments[n][departure_date]:** Departure date. ISO 8601 date formatted.
 - **cabin_class:** Cabin class. One of `economy`, `premium_economy`, `business`
   and `first`.
-- **currencies[]:** Desired currencies for offset pricing. One of `EUR`, `USD`, `SEK` and `NOK`. You can request multiple currencies by including multiple items in the currencies array.
+- **currencies[]:** Desired currencies for offset pricing. One of `EUR`, `USD`, `SEK` and `NOK`. You can request multiple currencies by including multiple items in the currencies array. You may also use an identifier for every currency (i.e `currencies[n]=NOK`).
 - _(DEPRECATED) **flight:** Flight designator code._
 - _(DEPRECATED) **origin:** Origin airport IATA code._
 - _(DEPRECATED) **destination:** Destination airport IATA code._
