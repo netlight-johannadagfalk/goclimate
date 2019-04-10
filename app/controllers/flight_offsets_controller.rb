@@ -7,7 +7,7 @@ class FlightOffsetsController < ApplicationController
 
     footprint = FlightFootprint.new(cabin_class: @offset_params.cabin_class, segments: @offset_params.segments)
 
-    @total_footprint = (footprint.footprint.to_f / 1000).to_f * @num_persons
+    @total_footprint = BigDecimal(footprint.footprint) / 1000 * @num_persons
     @price = (@total_footprint * LifestyleChoice::SEK_PER_TONNE).to_i * 100
     @projects = Project.order(id: :desc).limit(2)
   end
