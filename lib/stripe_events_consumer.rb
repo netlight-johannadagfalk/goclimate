@@ -25,13 +25,11 @@ class StripeEventsConsumer
 
     Rails.logger.debug("Creating StripeEvent for charge #{charge.id}")
 
-    gift_card_charge = charge_is_for_gift_card?(charge)
-
-    StripeEvent.create_from_stripe_charge(charge, gift_card_charge)
+    event = StripeEvent.create_from_stripe_charge(charge)
 
     Rails.logger.info("Created StripeEvent for charge #{charge.id}")
 
-    return if gift_card_charge
+    return if event.gift_card? || event.flight_offset?
 
     send_payment_email(charge)
   end
@@ -44,11 +42,6 @@ class StripeEventsConsumer
     return unless user.update_from_stripe_subscription(subscription)
 
     Rails.logger.info("Updated User #{user.id} from subscription #{subscription.id}")
-  end
-
-  def charge_is_for_gift_card?(charge)
-    charge.description.present? &&
-      charge.description.include?(GiftCardsCheckout::STRIPE_DESCRIPTION_BASE)
   end
 
   def send_payment_email(charge)

@@ -25,7 +25,7 @@ RSpec.describe ImpactStatistics do
                                     currency: 'sek')
   end
   let!(:gift_card_payment_usd) do
-    # 80 USD is the lowest cost evenly dividable by our cost in tonnes = 17 tonnes
+    # 80 USD is the lowest cost evenly divisible by our cost in tonnes = 17 tonnes
     create(:stripe_event_gift_card, created_at: Date.new(2019, 1, 30),
                                     stripe_amount: 80_00,
                                     currency: 'usd')
@@ -34,6 +34,11 @@ RSpec.describe ImpactStatistics do
     create(:stripe_event_gift_card, created_at: Date.new(2019, 1, 31),
                                     stripe_amount: 8_00, # 8 EUR = 2 tonnes
                                     currency: 'eur')
+  end
+  let!(:flight_offset_payment_sek) do
+    create(:stripe_event_flight_offset, created_at: Date.new(2019, 1, 29),
+                                        stripe_amount: 40_00, # 40 SEK = 1 tonne
+                                        currency: 'sek')
   end
   let!(:invoice) { create(:invoice, created_at: Date.new(2019, 1, 29), carbon_offset: 40, project: project) }
   let!(:project) { create(:project, created_at: Date.new(2019, 1, 29), carbon_offset: 200) }
@@ -52,6 +57,12 @@ RSpec.describe ImpactStatistics do
       expect(statistics.weeks).to include('2019-01-28' => hash_including(gift_cards_tonnes: 21))
     end
 
+    it 'sets flight_offsets_tonnes for weeks with flight offsets payments' do
+      statistics = described_class.new
+
+      expect(statistics.weeks).to include('2019-01-28' => hash_including(flight_offsets_tonnes: 1))
+    end
+
     it 'sets invoices_tonnes for weeks with invoices' do
       statistics = described_class.new
 
@@ -61,7 +72,7 @@ RSpec.describe ImpactStatistics do
     it 'sets total_sold_tonnes for weeks with sold tonnes' do
       statistics = described_class.new
 
-      expect(statistics.weeks).to include('2019-01-28' => hash_including(total_sold_tonnes: 82))
+      expect(statistics.weeks).to include('2019-01-28' => hash_including(total_sold_tonnes: 83))
     end
 
     it 'sets bought_projects_tonnes for weeks with projects' do

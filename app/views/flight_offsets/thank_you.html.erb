@@ -10,15 +10,16 @@
 
       <p class="lead">Du har klimatkompenserat din flygresa och därmed tagit ansvar för de klimatutsläpp som flygresan orsakat.</p>
 
-      <p class="lead"><%= link_to 'Ladda ner certifikatet för klimatkompensationen här.', offset_certificate_path(key: @certificate_key, format: :pdf) %></a></p>
+      <p class="lead"><%= link_to 'Ladda ner ditt certifikat', flight_offset_certificates_path(@offset, format: :pdf) %></a></p>
 
 
       <p class="lead"><%=t 'thank_you_for_helping_us_trying_to_stop_climate_change' %>: <%= link_to('GoClimateNeutral.org', '/') %></p>
-
-      <p class="lead last"><%= link_to 'Vill du ha kvitto? Ladda ner det här.', user_receipt_path(@stripe_event_id) %></a></p>
-
     </div>
   </div>
 </div>
 
 <%= render "shared/footer" %>
+
+<script type="text/javascript">
+ga('send', 'event', 'Flight Offsets', 'Purchased');
+</script>

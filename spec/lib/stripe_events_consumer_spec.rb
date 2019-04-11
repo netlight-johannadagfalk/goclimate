@@ -97,7 +97,7 @@ RSpec.describe StripeEventsConsumer do
         it 'sets gift card flag to true' do
           consumer.process(gift_card_charge_event)
 
-          expect(StripeEvent.last.gift_card).to eq(true)
+          expect(StripeEvent.last.gift_card?).to eq(true)
         end
 
         it 'sets stripe event id' do
@@ -108,6 +108,36 @@ RSpec.describe StripeEventsConsumer do
 
         it 'does not set stripe customer id' do
           consumer.process(gift_card_charge_event)
+
+          expect(StripeEvent.last.stripe_customer_id).to eq(nil)
+        end
+      end
+
+      context 'with flight offset charge event' do
+        let(:flight_offset_charge_event) do
+          Stripe::Event.construct_from(stripe_json_fixture('flight_offset_charge_event.json'))
+        end
+
+        it 'creates a flight offset StripeEvent' do
+          consumer.process(flight_offset_charge_event)
+
+          expect(StripeEvent.count).to eq(1)
+        end
+
+        it 'sets flight offset flag to true' do
+          consumer.process(flight_offset_charge_event)
+
+          expect(StripeEvent.last.flight_offset?).to eq(true)
+        end
+
+        it 'sets stripe event id' do
+          consumer.process(flight_offset_charge_event)
+
+          expect(StripeEvent.last.stripe_event_id).to eq('ch_1DSOhfHwuhGySQCdlVpJYYwn')
+        end
+
+        it 'does not set stripe customer id' do
+          consumer.process(flight_offset_charge_event)
 
           expect(StripeEvent.last.stripe_customer_id).to eq(nil)
         end

@@ -56,12 +56,15 @@ Rails.application.routes.draw do
   get 'partners/inshapetravel'
 
   # Flight one time offsets
-  resources :flight_offsets, only: [:new, :create] do
+  resources :flight_offsets, only: [:new, :create], param: :key do
     collection do
+      get 'threedsecure_create', to: 'flight_offsets#create', as: 'threedsecure',
+                                 defaults: { three_d_secure: 'continue' }
+    end
+    member do
       get 'thank_you'
-
       scope format: true, constraints: { format: :pdf } do
-        resources :offset_certificates, only: [:show], path: :certificates, param: :key
+        resource :flight_offset_certificates, only: [:show], path: :certificate
       end
     end
   end

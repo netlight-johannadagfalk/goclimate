@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_31_123928) do
+ActiveRecord::Schema.define(version: 2019_04_11_142034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "flight_offsets", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "key"
+    t.integer "co2e"
+    t.integer "charged_amount"
+    t.string "charged_currency"
+    t.string "email"
+    t.string "stripe_charge_id"
+    t.index ["key"], name: "index_flight_offsets_on_key"
+  end
 
   create_table "gift_cards", force: :cascade do |t|
     t.string "key"
@@ -86,6 +98,7 @@ ActiveRecord::Schema.define(version: 2019_01_31_123928) do
     t.boolean "paid"
     t.boolean "gift_card", default: false, null: false
     t.string "description"
+    t.boolean "flight_offset", default: false, null: false
   end
 
   create_table "stripe_payouts", force: :cascade do |t|
