@@ -9,13 +9,14 @@ class StripeEvent < ApplicationRecord
 
   scope :payments, ->(user = nil) { where(stripe_object: 'charge').where(stripe_customer_id: user.stripe_customer_id) }
   scope :paid_charges, -> { where(stripe_object: 'charge', paid: true) }
-  scope :for_subscriptions, -> { where(gift_card: false) }
+  scope :for_subscriptions, -> { where(gift_card: false, flight_offset: false) }
   scope :for_gift_cards, -> { where(gift_card: true) }
+  scope :for_flight_offsets, -> { where(flight_offset: true) }
   scope :in_sek, -> { where(currency: 'sek') }
   scope :in_usd, -> { where(currency: 'usd') }
   scope :in_eur, -> { where(currency: 'eur') }
 
-  def self.create_from_stripe_charge(charge, gift_card = false)
+  def self.create_from_stripe_charge(charge)
     create(
       stripe_event_id: charge.id,
       stripe_customer_id: charge.customer,
@@ -27,7 +28,8 @@ class StripeEvent < ApplicationRecord
       # charge.created is an integer while ActiveRecord expects a Time. Since
       # it could never have been used best is probably to remove it.
       stripe_created: charge.created,
-      gift_card: gift_card,
+      gift_card: charge.description&.include?(GiftCardsCheckout::STRIPE_DESCRIPTION_BASE) || false,
+      flight_offset: charge.description&.include?(FlightOffsetCheckout::STRIPE_DESCRIPTION) || false,
       description: charge.description
     )
   end

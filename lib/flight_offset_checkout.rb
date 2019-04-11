@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FlightOffsetCheckout
+  STRIPE_DESCRIPTION = 'Flight offset'
+
   attr_reader :source, :amount, :currency, :errors, :charge
 
   def initialize(source, amount, currency)
@@ -25,7 +27,7 @@ class FlightOffsetCheckout
       source: @source,
       amount: @amount,
       currency: @currency,
-      description: 'Flight offset'
+      description: STRIPE_DESCRIPTION
     )
   end
 end

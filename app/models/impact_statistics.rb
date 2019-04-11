@@ -10,6 +10,7 @@ class ImpactStatistics
 
     merge_field(:subscriber_payments_tonnes, subscribers_payments_tonnes)
     merge_field(:gift_cards_tonnes, gift_cards_tonnes)
+    merge_field(:flight_offsets_tonnes, flight_offsets_tonnes)
     merge_field(:invoices_tonnes, invoices_tonnes)
     merge_field(:bought_projects_tonnes, bought_projects_tonnes)
 
@@ -53,6 +54,10 @@ class ImpactStatistics
     payment_tonnes(StripeEvent.paid_charges.for_gift_cards)
   end
 
+  def flight_offsets_tonnes
+    payment_tonnes(StripeEvent.paid_charges.for_flight_offsets)
+  end
+
   def invoices_tonnes
     sum_by_week(Invoice, :carbon_offset)
   end
@@ -66,6 +71,7 @@ class ImpactStatistics
       values[:total_sold_tonnes] =
         (values[:subscriber_payments_tonnes] || 0) +
         (values[:gift_cards_tonnes] || 0) +
+        (values[:flight_offsets_tonnes] || 0) +
         (values[:invoices_tonnes] || 0)
     end
   end
