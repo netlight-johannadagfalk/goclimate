@@ -25,6 +25,6 @@ class GiftCard < ApplicationRecord
   private
 
   def generate_key
-    self.key = Digest::SHA1.hexdigest("#{Time.now}#{number_of_months}#{message}") unless key.present?
+    self.key = SecureRandom.hex(20) unless key.present?
   end
 end

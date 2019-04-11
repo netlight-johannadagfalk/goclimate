@@ -13,8 +13,8 @@ class FlightOffsetsController < ApplicationController
 
     footprint = FlightFootprint.new(cabin_class: @offset_params.cabin_class, segments: @offset_params.segments)
 
-    @total_footprint = BigDecimal(footprint.footprint) / 1000 * @num_persons
-    @price = (@total_footprint * LifestyleChoice::SEK_PER_TONNE).to_i * 100
+    @total_footprint = footprint.footprint * @num_persons
+    @price = (BigDecimal(@total_footprint) / 1000 * LifestyleChoice::SEK_PER_TONNE).to_i * 100
     @projects = Project.order(id: :desc).limit(2)
   end
 
@@ -26,6 +26,13 @@ class FlightOffsetsController < ApplicationController
       render :new
       return
     end
+
+    @offset = FlightOffset.create!(
+      params.permit(:co2e, :email)
+            .merge(charged_amount: @checkout.charge.amount,
+                   charged_currency: @checkout.charge.currency,
+                   stripe_charge_id: @checkout.charge.id)
+    )
 
     redirect_to action: :thank_you
   end

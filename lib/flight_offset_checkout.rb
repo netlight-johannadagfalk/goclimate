@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FlightOffsetCheckout
-  attr_reader :source, :amount, :currency, :errors
+  attr_reader :source, :amount, :currency, :errors, :charge
 
   def initialize(source, amount, currency)
     @source = source
@@ -11,7 +11,7 @@ class FlightOffsetCheckout
   end
 
   def checkout
-    charge
+    perform_charge
     true
   rescue Stripe::CardError => error
     errors[error.code.to_sym] = error.message
@@ -20,8 +20,8 @@ class FlightOffsetCheckout
 
   private
 
-  def charge
-    Stripe::Charge.create(
+  def perform_charge
+    @charge = Stripe::Charge.create(
       source: @source,
       amount: @amount,
       currency: @currency,

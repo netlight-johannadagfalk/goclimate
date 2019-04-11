@@ -10,6 +10,7 @@ RSpec.feature 'Flight offset', type: :feature, js: true do
     expect(page).to have_text('Barcelona')
     expect(page).to have_text('economy')
 
+    fill_in 'email', with: 'test@example.com'
     within_frame(0) do
       find('input[name=cardnumber]').send_keys('4242424242424242')
       find('input[name=exp-date]').send_keys '522'
@@ -32,6 +33,7 @@ RSpec.feature 'Flight offset', type: :feature, js: true do
       expect(page).to have_text('Barcelona')
       expect(page).to have_text('economy')
 
+      fill_in 'email', with: 'test@example.com'
       within_frame(0) do
         find('input[name=cardnumber]').send_keys('4000000000003063')
         find('input[name=exp-date]').send_keys '522'

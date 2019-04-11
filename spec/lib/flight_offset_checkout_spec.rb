@@ -26,13 +26,20 @@ RSpec.describe FlightOffsetCheckout do
   describe '#checkout' do
     subject(:checkout) { described_class.new('token', 4000, 'SEK') }
 
+    let(:stripe_charge) { instance_double(Stripe::Charge) }
+
     before do
-      allow(Stripe::Charge).to receive(:create)
-        .and_return(instance_double(Stripe::Charge))
+      allow(Stripe::Charge).to receive(:create).and_return(stripe_charge)
     end
 
     it 'returns true when successful' do
       expect(checkout.checkout).to be true
+    end
+
+    it 'sets charge to received Stripe::Charge' do
+      checkout.checkout
+
+      expect(checkout.charge).to eq(stripe_charge)
     end
 
     describe 'Stripe charges' do
