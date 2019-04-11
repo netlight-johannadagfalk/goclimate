@@ -92,6 +92,7 @@ class ImpactStatistics
     @weeks.each do |_, fields|
       fields[:subscriber_payments_tonnes] = 0 if fields[:subscriber_payments_tonnes].nil?
       fields[:gift_cards_tonnes] = 0 if fields[:gift_cards_tonnes].nil?
+      fields[:flight_offsets_tonnes] = 0 if fields[:flight_offsets_tonnes].nil?
       fields[:invoices_tonnes] = 0 if fields[:invoices_tonnes].nil?
       fields[:total_sold_tonnes] = 0 if fields[:total_sold_tonnes].nil?
       fields[:bought_projects_tonnes] = 0 if fields[:bought_projects_tonnes].nil?
