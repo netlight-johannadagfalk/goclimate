@@ -8,6 +8,10 @@ class FlightOffset < ApplicationRecord
 
   before_validation :generate_key
 
+  def to_param
+    key
+  end
+
   private
 
   def generate_key

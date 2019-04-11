@@ -111,11 +111,11 @@
     </div>
 
     <div class="text logoColor marginTop" style="font-size: 25px;">
-      Du har klimatkompenserat
+      Klimatkompensation
     </div>
 
     <div class="text" style="font-size: 45px;">
-      <%= @amount_co2 %> ton koldioxid
+      <%= co2e_string(@flight_offset.co2e) %>
     </div>
 
     <div class="text logoColor mediumMarginTop" style="font-size: 25px;">
@@ -124,10 +124,7 @@
     </div>
 
     <div class="text logoColor marginTop" style="font-size: 14px;">
-      GCN order id: 123123</br>
-      Datum: <%= Date.today %></br>
-      Kompensation: <%= @amount_co2 %> ton CO<sub>2</sub>eq</br>
-      Projekttyp: CDM + Gold Standard
+      Datum: <%= @flight_offset.created_at.in_time_zone('Europe/Stockholm').to_date %></br>
     </div>
   </div>
 

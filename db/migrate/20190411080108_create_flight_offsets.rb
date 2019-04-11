@@ -1,7 +1,8 @@
 class CreateFlightOffsets < ActiveRecord::Migration[5.2]
   def change
     create_table :flight_offsets do |t|
-      t.string :key
+      t.timestamps
+      t.string :key, index: true
       t.integer :co2e
       t.integer :charged_amount
       t.string :charged_currency

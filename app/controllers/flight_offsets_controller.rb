@@ -28,18 +28,18 @@ class FlightOffsetsController < ApplicationController
     end
 
     @offset = FlightOffset.create!(
-      params.permit(:co2e, :email)
-            .merge(charged_amount: @checkout.charge.amount,
-                   charged_currency: @checkout.charge.currency,
-                   stripe_charge_id: @checkout.charge.id)
+      co2e: co2e_param,
+      email: email_param,
+      charged_amount: @checkout.charge.amount,
+      charged_currency: @checkout.charge.currency,
+      stripe_charge_id: @checkout.charge.id
     )
 
-    redirect_to action: :thank_you
+    redirect_to thank_you_flight_offset_path(@offset)
   end
 
   def thank_you
-    @certificate_key = flash[:amount_co2] || 'NA'
-    @stripe_event_id = '123'
+    @offset = FlightOffset.find_by_key!(params[:key])
   end
 
   private
@@ -76,11 +76,21 @@ class FlightOffsetsController < ApplicationController
     session.to_hash.dig('three_d_secure_handoff', 'currency') || params[:currency]
   end
 
+  def co2e_param
+    session.to_hash.dig('three_d_secure_handoff', 'co2e') || params[:co2e]
+  end
+
+  def email_param
+    session.to_hash.dig('three_d_secure_handoff', 'email') || params[:email]
+  end
+
   def set_three_d_secure_handoff
     session[:three_d_secure_handoff] = {
       'card_source' => card_source_param,
       'amount' => amount_param,
-      'currency' => currency_param
+      'currency' => currency_param,
+      'co2e' => co2e_param,
+      'email' => email_param
     }
   end
 

@@ -74,4 +74,12 @@ RSpec.describe FlightOffset do
       end.not_to change(flight_offset, :key)
     end
   end
+
+  describe '#to_param' do
+    it 'returns key' do
+      offset = create(:flight_offset)
+
+      expect(offset.to_param).to eq(offset.key)
+    end
+  end
 end

@@ -16,12 +16,15 @@ ActiveRecord::Schema.define(version: 2019_04_11_080108) do
   enable_extension "plpgsql"
 
   create_table "flight_offsets", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "key"
     t.integer "co2e"
     t.integer "charged_amount"
     t.string "charged_currency"
     t.string "email"
     t.string "stripe_charge_id"
+    t.index ["key"], name: "index_flight_offsets_on_key"
   end
 
   create_table "gift_cards", force: :cascade do |t|
