@@ -20,17 +20,21 @@ class ImpactStatistics
     sort_weeks
   end
 
-  def to_csv
+  def to_csv # rubocop:disable Metrics/MethodLength
     CSV.generate do |csv|
       csv << [
-        'Week of', 'Subscriber Payments (tonnes)', 'Gift Cards (tonnes)', 'Invoices (tonnes)', 'Total sold (tonnes)',
+        'Week of', 'Subscriber Payments (tonnes)', 'Gift Cards (tonnes)',
+        'Flight Offsets (tonnes)', 'Invoices (tonnes)', 'Total sold (tonnes)',
         'Bought Projects (tonnes)'
       ]
 
       weeks.each do |week_start, fields|
         csv << [
-          week_start, fields[:subscriber_payments_tonnes].round(2), fields[:gift_cards_tonnes].round(2),
-          fields[:invoices_tonnes].round(2), fields[:total_sold_tonnes].round(2),
+          week_start, fields[:subscriber_payments_tonnes].round(2),
+          fields[:gift_cards_tonnes].round(2),
+          fields[:flight_offsets_tonnes].round(2),
+          fields[:invoices_tonnes].round(2),
+          fields[:total_sold_tonnes].round(2),
           fields[:bought_projects_tonnes].round(2)
         ]
       end
