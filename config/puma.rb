@@ -25,7 +25,7 @@ environment ENV.fetch('RAILS_ENV') { 'development' }
 #
 # Don't use clustered mode in development as this makes debugging sessions timeout.
 #
-workers ENV.fetch('WEB_CONCURRENCY') { Rails.env.development? ? 0 : 2 }
+workers ENV.fetch('WEB_CONCURRENCY') { ENV['RAILS_ENV'] == 'production' ? 2 : 0 }
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code
