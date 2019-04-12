@@ -539,3 +539,11 @@ sv:
     other_offsetting_html: "Vi kan hjälpa till med utsläppsberäkningar för tjänsteföretag, enskilda klimatkompensationer och tekniska integrationer. Hör av dig till <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> så berättar vi mer."
     number_of_employees: "Antal anställda:"
     your_email: "Din e-post:"
+
+  mailers:
+    flight_offset:
+      subject: Ditt certifikat
+      thank_you: Tack för att du klimatkompenserat din flygresa!
+      you_have_offset: Du har kompenserat för
+      tonnes_co2e: ton koldioxid
+      certificate_is_attached: Ditt certifikat hittar du som en bilaga i det här mailet. Hör gärna av dig om du har några frågor genom att svara på det här mailet. Tack igen, du är bäst!

@@ -6,6 +6,7 @@ class FlightOffsetsController < ApplicationController
   after_action :cleanup_three_d_secure_handoff, only: [:create], if: -> { params[:three_d_secure] == 'continue' }
 
   before_action :handle_three_d_secure, only: [:create]
+  before_action :set_sv_locale
 
   def new
     @num_persons = (params[:num_persons].presence || 1).to_i
@@ -19,7 +20,13 @@ class FlightOffsetsController < ApplicationController
   end
 
   def create
-    @checkout = FlightOffsetCheckout.new(stripe_source, amount_param, currency_param)
+    @checkout = FlightOffsetCheckout.new(
+      stripe_source: stripe_source,
+      amount: amount_param,
+      currency: currency_param,
+      co2e: co2e_param,
+      email: email_param
+    )
 
     unless @checkout.checkout
       new
@@ -27,13 +34,7 @@ class FlightOffsetsController < ApplicationController
       return
     end
 
-    @offset = FlightOffset.create!(
-      co2e: co2e_param,
-      email: email_param,
-      charged_amount: @checkout.charge.amount,
-      charged_currency: @checkout.charge.currency,
-      stripe_charge_id: @checkout.charge.id
-    )
+    @offset = @checkout.offset
 
     redirect_to thank_you_flight_offset_path(@offset)
   end
@@ -54,6 +55,11 @@ class FlightOffsetsController < ApplicationController
 
     set_three_d_secure_handoff
     redirect_to verification.redirect_url
+  end
+
+  # These views and mailers are only localized to Swedish for now, so force sv locale
+  def set_sv_locale
+    I18n.locale = :sv
   end
 
   def stripe_source
