@@ -45,9 +45,17 @@ RSpec.describe FlightOffsetCheckout do
     let(:co2e) { 1000 }
     let(:email) { 'test@example.com' }
     let(:stripe_charge) { Stripe::Charge.construct_from(id: 'charge_id', amount: 4000, currency: 'sek') }
+    let(:fake_pdf) { 'fake pdf' }
+    let(:certificate_generator_stub) do
+      instance_double(FlightOffsetCertificatePDFGenerator).tap do |pdf_generator|
+        allow(pdf_generator).to receive(:generate_pdf).and_return(fake_pdf)
+      end
+    end
 
     before do
       allow(Stripe::Charge).to receive(:create).and_return(stripe_charge)
+      allow(FlightOffsetCertificatePDFGenerator).to receive(:new).and_return(certificate_generator_stub)
+      allow(FlightOffsetMailer).to receive_message_chain(:with, :flight_offset_email, :deliver_now)
     end
 
     it 'returns true when successful' do
@@ -141,6 +149,32 @@ RSpec.describe FlightOffsetCheckout do
             checkout.checkout
           end.to raise_error(ActiveRecord::RecordInvalid)
         end
+      end
+    end
+
+    describe 'confirmation email' do
+      it 'sends confirmation email' do
+        expect(FlightOffsetMailer).to receive_message_chain(:with, :flight_offset_email, :deliver_now)
+
+        checkout.checkout
+      end
+
+      it 'sets FlightOffset for mailer' do
+        checkout.checkout
+
+        expect(FlightOffsetMailer).to have_received(:with).with(hash_including(flight_offset: checkout.offset))
+      end
+
+      it 'includes a generated pdf in sent email' do
+        checkout.checkout
+
+        expect(FlightOffsetMailer).to have_received(:with).with(hash_including(certificate_pdf: fake_pdf))
+      end
+
+      it 'uses gift card when generating pdf' do
+        checkout.checkout
+
+        expect(FlightOffsetCertificatePDFGenerator).to have_received(:new).with(checkout.offset)
       end
     end
 
