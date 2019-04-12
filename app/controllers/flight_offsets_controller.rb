@@ -19,7 +19,13 @@ class FlightOffsetsController < ApplicationController
   end
 
   def create
-    @checkout = FlightOffsetCheckout.new(stripe_source, amount_param, currency_param)
+    @checkout = FlightOffsetCheckout.new(
+      stripe_source: stripe_source,
+      amount: amount_param,
+      currency: currency_param,
+      co2e: co2e_param,
+      email: email_param
+    )
 
     unless @checkout.checkout
       new
@@ -27,13 +33,7 @@ class FlightOffsetsController < ApplicationController
       return
     end
 
-    @offset = FlightOffset.create!(
-      co2e: co2e_param,
-      email: email_param,
-      charged_amount: @checkout.charge.amount,
-      charged_currency: @checkout.charge.currency,
-      stripe_charge_id: @checkout.charge.id
-    )
+    @offset = @checkout.offset
 
     redirect_to thank_you_flight_offset_path(@offset)
   end
