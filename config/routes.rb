@@ -87,6 +87,11 @@ Rails.application.routes.draw do
         end
       end
     end
+    member do
+      scope format: true, constraints: { format: :pdf } do
+        resource :gift_card_receipts, only: [:show], path: :receipt, param: :key
+      end
+    end
   end
 
   # Admin
