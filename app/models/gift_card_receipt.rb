@@ -25,11 +25,11 @@ class GiftCardReceipt
   end
 
   def currency
-    curency
+    gift_card.currency
   end
 
   def total_amount
-    gift_card.price
+    BigDecimal(gift_card.price)
   end
 
   def vat_amount
