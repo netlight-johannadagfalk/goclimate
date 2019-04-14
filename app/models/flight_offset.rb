@@ -12,6 +12,10 @@ class FlightOffset < ApplicationRecord
     key
   end
 
+  def order_id
+    "GCN-FO-#{id}"
+  end
+
   private
 
   def generate_key

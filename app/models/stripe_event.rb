@@ -51,4 +51,8 @@ class StripeEvent < ApplicationRecord
       total_payments_usd_part * LifestyleChoice::SEK_PER_USD +
       total_payments_eur_part * LifestyleChoice::SEK_PER_EUR).round
   end
+
+  def order_id
+    "GCN-SE-#{stripe_event.id}"
+  end
 end

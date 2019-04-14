@@ -22,6 +22,10 @@ class GiftCard < ApplicationRecord
     end
   end
 
+  def order_id
+    "GCN-GC-#{id}"
+  end
+
   private
 
   def generate_key
