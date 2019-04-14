@@ -41,9 +41,8 @@ OffsetPaymentForm.prototype.onSubmit = function(event) {
   this.submitButton.disabled = true;
 
   this.stripe.createSource(this.card).then(function(result) {
-    this.submitButton.disabled = false;
-
     if (result.error) {
+      this.submitButton.disabled = false;
       this.cardErrorsElement.textContent = result.error.message;
       return;
     }

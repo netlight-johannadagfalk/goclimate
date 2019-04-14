@@ -12,6 +12,7 @@
 
       <p class="lead"><%= link_to 'Ladda ner ditt certifikat', flight_offset_certificates_path(@offset, format: :pdf) %></a></p>
 
+      <p class="lead">Vi har även skickat ditt certifikat till din e-postadress <%= @offset.email %>.</p>
 
       <p class="lead"><%=t 'thank_you_for_helping_us_trying_to_stop_climate_change' %>: <%= link_to('GoClimateNeutral.org', '/') %></p>
 

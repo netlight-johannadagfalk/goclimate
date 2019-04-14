@@ -3,8 +3,8 @@
 class FlightOffsetCertificatePDFGenerator
   attr_reader :flight_offset
 
-  def initialize(attributes)
-    @flight_offset = attributes[:flight_offset]
+  def initialize(flight_offset)
+    @flight_offset = flight_offset
   end
 
   def generate_pdf
