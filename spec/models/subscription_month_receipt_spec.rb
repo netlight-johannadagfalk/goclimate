@@ -72,4 +72,10 @@ RSpec.describe SubscriptionMonthReceipt do
       expect(receipt.total_amount_before_vat).to eq(BigDecimal('6.58'))
     end
   end
+
+  describe '#order_id' do
+    it 'returns an order id' do
+      expect(receipt.order_id).to eq("GCN-SE-#{stripe_event.id}")
+    end
+  end
 end

@@ -105,6 +105,10 @@
 
     <table class="table text grayText">
       <tr>
+        <td>Order ID:</td>
+        <td><%= @receipt.order_id %></td>
+      </tr>
+      <tr>
         <td>Amount:</td>
         <td><%= number_with_precision(@receipt.total_amount_before_vat, :precision => 2) %> <%= @currency %></td>
       </tr>

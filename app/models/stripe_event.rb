@@ -53,6 +53,6 @@ class StripeEvent < ApplicationRecord
   end
 
   def order_id
-    "GCN-SE-#{stripe_event.id}"
+    "GCN-SE-#{id}"
   end
 end

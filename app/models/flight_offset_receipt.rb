@@ -39,4 +39,8 @@ class FlightOffsetReceipt
   def total_amount_before_vat
     total_amount - vat_amount
   end
+
+  def order_id
+    flight_offset.order_id
+  end
 end

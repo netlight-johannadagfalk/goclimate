@@ -39,4 +39,8 @@ class SubscriptionMonthReceipt
   def total_amount_before_vat
     total_amount - vat_amount
   end
+
+  def order_id
+    stripe_event.order_id
+  end
 end
