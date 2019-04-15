@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class SubscriptionMonthReceipt
-  attr_reader :stripe_event
+class GiftCardReceipt
+  attr_reader :gift_card
 
-  def initialize(stripe_event)
-    @stripe_event = stripe_event
+  def initialize(gift_card)
+    @gift_card = gift_card
   end
 
   def generate_pdf
@@ -21,15 +21,15 @@ class SubscriptionMonthReceipt
   end
 
   def date
-    stripe_event.created_at.to_date
+    gift_card.created_at.to_date
   end
 
   def currency
-    stripe_event.currency
+    gift_card.currency
   end
 
   def total_amount
-    stripe_event.stripe_amount.to_d / 100
+    BigDecimal(gift_card.price)
   end
 
   def vat_amount
@@ -41,6 +41,6 @@ class SubscriptionMonthReceipt
   end
 
   def order_id
-    stripe_event.order_id
+    gift_card.order_id
   end
 end

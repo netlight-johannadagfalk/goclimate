@@ -40,6 +40,8 @@ class GiftCardsController < ApplicationController
     @email = flash[:email]
     @certificate_key = flash[:certificate_key]
 
+    @gift_card = GiftCard.find_by_key!(@certificate_key)
+
     redirect_to gift_cards_path if @number_of_months.nil?
   end
 

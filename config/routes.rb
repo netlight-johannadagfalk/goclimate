@@ -65,6 +65,7 @@ Rails.application.routes.draw do
       get 'thank_you'
       scope format: true, constraints: { format: :pdf } do
         resource :flight_offset_certificates, only: [:show], path: :certificate
+        resource :flight_offset_receipts, only: [:show], path: :receipt
       end
     end
   end
@@ -84,6 +85,11 @@ Rails.application.routes.draw do
         resources :gift_card_certificates, only: [:show], path: :certificates, param: :key do
           get 'example', on: :collection
         end
+      end
+    end
+    member do
+      scope format: true, constraints: { format: :pdf } do
+        resource :gift_card_receipts, only: [:show], path: :receipt, param: :key
       end
     end
   end

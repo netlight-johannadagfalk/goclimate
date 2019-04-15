@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class SubscriptionMonthReceipt
-  attr_reader :stripe_event
+class FlightOffsetReceipt
+  attr_reader :flight_offset
 
-  def initialize(stripe_event)
-    @stripe_event = stripe_event
+  def initialize(flight_offset)
+    @flight_offset = flight_offset
   end
 
   def generate_pdf
@@ -21,15 +21,15 @@ class SubscriptionMonthReceipt
   end
 
   def date
-    stripe_event.created_at.to_date
+    flight_offset.created_at.to_date
   end
 
   def currency
-    stripe_event.currency
+    flight_offset.charged_currency
   end
 
   def total_amount
-    stripe_event.stripe_amount.to_d / 100
+    flight_offset.charged_amount.to_d / 100
   end
 
   def vat_amount
@@ -41,6 +41,6 @@ class SubscriptionMonthReceipt
   end
 
   def order_id
-    stripe_event.order_id
+    flight_offset.order_id
   end
 end

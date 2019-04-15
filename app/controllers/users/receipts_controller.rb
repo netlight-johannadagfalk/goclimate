@@ -7,7 +7,10 @@ module Users
     before_action :authorize_receipt, only: [:show]
 
     def index
-      @receipts = current_user.stripe_events.map do |stripe_events|
+      receipts = current_user.stripe_events
+                             .paid_charges
+                             .order(created_at: :desc)
+      @receipts = receipts.map do |stripe_events|
         SubscriptionMonthReceipt.new(stripe_events)
       end
     end
