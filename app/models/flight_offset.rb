@@ -13,7 +13,7 @@ class FlightOffset < ApplicationRecord
   end
 
   def order_id
-    "GCN-FO-#{id}"
+    "GCN-FLIGHT-#{id}"
   end
 
   private

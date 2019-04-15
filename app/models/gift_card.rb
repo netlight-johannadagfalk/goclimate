@@ -23,7 +23,7 @@ class GiftCard < ApplicationRecord
   end
 
   def order_id
-    "GCN-GC-#{id}"
+    "GCN-GIFT-#{id}"
   end
 
   private

@@ -74,7 +74,7 @@ RSpec.describe SubscriptionMonthReceipt do
 
   describe '#order_id' do
     it 'returns an order id' do
-      expect(receipt.order_id).to eq("GCN-SE-#{offset.id}")
+      expect(receipt.order_id).to eq("GCN-MONTHLY-#{offset.id}")
     end
   end
 end

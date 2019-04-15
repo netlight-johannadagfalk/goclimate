@@ -24,7 +24,7 @@ RSpec.describe GiftCardReceipt do
 
   describe '#order_id' do
     it 'returns an order id' do
-      expect(receipt.order_id).to eq("GCN-GC-#{offset.id}")
+      expect(receipt.order_id).to eq("GCN-GIFT-#{offset.id}")
     end
   end
 

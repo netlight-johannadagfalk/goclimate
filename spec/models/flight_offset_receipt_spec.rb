@@ -54,7 +54,7 @@ RSpec.describe FlightOffsetReceipt do
 
   describe '#order_id' do
     it 'returns an order id' do
-      expect(receipt.order_id).to eq("GCN-FO-#{offset.id}")
+      expect(receipt.order_id).to eq("GCN-FLIGHT-#{offset.id}")
     end
   end
 end
