@@ -62,10 +62,6 @@ input {
   display: table-cell;
   vertical-align: top;
 }
-.cover-container {
-  margin-right: auto;
-  margin-left: auto;
-}
 .inner {
   padding: 50px 30px;
   overflow: hidden; /* Respect height for floating children */
@@ -250,7 +246,7 @@ div.legal {
   padding-left: 40px;
   padding-right: 40px;
 }
-.dashboard .cover-container h3 {
+.dashboard .site-wrapper-first h3 {
   padding: 20px;
 }
 .row.stats.last {
@@ -394,11 +390,6 @@ div.profile {
 @media (min-width: 768px) {
   .mastfoot {
     bottom: 0;
-  }
-  /* Handle the widths */
-  .mastfoot,
-  .cover-container {
-    width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
   .glyphicon-grain {
     padding-top: 80px;

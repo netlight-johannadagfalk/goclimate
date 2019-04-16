@@ -1,54 +1,48 @@
-      <div class="site-wrapper-first">
-        
-        <div class="cover-container">
-          
-          <%= render "shared/header" %>
+<div class="site-wrapper-first">
+  <%= render "shared/header" %>
+  <div class="inner">
 
-          <div class="inner">
-            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-        
-            <%= render "shared/user_menu" %>
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
 
-            <%= form_tag({ action: :update }, id: "payment-form", method: :put, class: "form-horizontal") do %>
+    <%= render "shared/user_menu" %>
 
-                <% if flash[:error].present? %>
-                  <div id="error_explanation">
-                    <p><%= flash[:error] %></p>
-                  </div>
-                <% end %>
+    <%= form_tag({ action: :update }, id: "payment-form", method: :put, class: "form-horizontal") do %>
 
-                <%= render "shared/plan" %>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
 
-                <div id="current-card-group" class="form-group">
-                  <div class="col-sm-1"></div>
-                  <label for="current-card" class="col-sm-4 control-label padding-top"><%=t 'credit_or_debit_card' %></label>
-                  <p id="current-card" class="col-sm-4 control-label">
-                    <%= @current_source.nil? ? t('no_card_registered') : masked_card_number(@current_source) %> (<a id="add-new-card" href="#"><%= @current_source.nil? ? t('add_new_card') : t('edit_card') %></a>)
-                  </p>
-                </div>
+      <%= render "shared/plan" %>
 
-                <%= hidden_field(:user, :stripe_customer_id, :value => "") %>
+      <div id="current-card-group" class="form-group">
+        <div class="col-sm-1"></div>
+        <label for="current-card" class="col-sm-4 control-label padding-top"><%=t 'credit_or_debit_card' %></label>
+        <p id="current-card" class="col-sm-4 control-label">
+          <%= @current_source.nil? ? t('no_card_registered') : masked_card_number(@current_source) %> (<a id="add-new-card" href="#"><%= @current_source.nil? ? t('add_new_card') : t('edit_card') %></a>)
+        </p>
+      </div>
 
-                <div id="new-card-div" class="form-group hidden">
-                  <div class="col-sm-1"></div>
-                  <label for="card-element" class="col-sm-4 control-label"><%=t 'add_new_card' %></label>
-                  <div id="card-element" class="col-sm-4 form-control">
-                  <!-- a Stripe Element will be inserted here. -->
-                  </div>
-                </div>
+      <%= hidden_field(:user, :stripe_customer_id, :value => "") %>
 
-                <div id="card-errors"></div>
-
-                <div class="actions">
-                  <button id="register-button" type="submit" class="btn btn-success" onclick="this.disabled=true; this.value='Submitting...'; $('#payment-form').submit();">Update</button>
-                </div>
-              <% end %>
-
-
-              </div>
-
+      <div id="new-card-div" class="form-group hidden">
+        <div class="col-sm-1"></div>
+        <label for="card-element" class="col-sm-4 control-label"><%=t 'add_new_card' %></label>
+        <div id="card-element" class="col-sm-4 form-control">
+          <!-- a Stripe Element will be inserted here. -->
         </div>
       </div>
+
+      <div id="card-errors"></div>
+
+      <div class="actions">
+        <button id="register-button" type="submit" class="btn btn-success" onclick="this.disabled=true; this.value='Submitting...'; $('#payment-form').submit();">Update</button>
+      </div>
+    <% end %>
+
+  </div>
+</div>
 
 <% content_for :javascript_tags do %>
   <script type="text/javascript">

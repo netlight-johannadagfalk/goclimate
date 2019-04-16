@@ -1,60 +1,55 @@
-
 <div class="site-wrapper-first">
-  <div class="cover-container">
-    <%= render "shared/header" %>
-    <div class="inner">
+  <%= render "shared/header" %>
+  <div class="inner">
 
-      <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-      <h1 class="cover-heading"><%=t 'log_in' %></h1>
-      <p class="lead"><%=t 'log_in_to_see_how_we_are_doing' %></p>
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    <h1 class="cover-heading"><%=t 'log_in' %></h1>
+    <p class="lead"><%=t 'log_in_to_see_how_we_are_doing' %></p>
 
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-horizontal"}) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-horizontal"}) do |f| %>
 
-        <div class="form-group">
-          <div class="col-sm-1"></div>
-          <label for="email" class="col-sm-4 control-label padding-top"><%=t 'email' %></label>
-          <div class="col-sm-4">
-            <%= f.email_field :email, autofocus: true, id: "email", class: "form-control" %>
-          </div>
+      <div class="form-group">
+        <div class="col-sm-1"></div>
+        <label for="email" class="col-sm-4 control-label padding-top"><%=t 'email' %></label>
+        <div class="col-sm-4">
+          <%= f.email_field :email, autofocus: true, id: "email", class: "form-control" %>
         </div>
+      </div>
 
 
-        <div class="form-group">
-          <div class="col-sm-1"></div>
-          <label for="password" class="col-sm-4 control-label padding-top"><%=t 'password' %></label>
-          <div class="col-sm-4">
-            <%= f.password_field :password, autofocus: true, id: "password", class: "form-control" %>
-          </div>
+      <div class="form-group">
+        <div class="col-sm-1"></div>
+        <label for="password" class="col-sm-4 control-label padding-top"><%=t 'password' %></label>
+        <div class="col-sm-4">
+          <%= f.password_field :password, autofocus: true, id: "password", class: "form-control" %>
         </div>
+      </div>
 
 
-        <% if devise_mapping.rememberable? -%>
-          <div class="form-group">
-            <div class="col-sm-offset-5 col-sm-4">
-              <div class="checkbox">
-                  <%= f.check_box :remember_me, checked: true %><%= f.label :remember_me %>
-              </div>
+      <% if devise_mapping.rememberable? -%>
+        <div class="form-group">
+          <div class="col-sm-offset-5 col-sm-4">
+            <div class="checkbox">
+                <%= f.check_box :remember_me, checked: true %><%= f.label :remember_me %>
             </div>
           </div>
-        <% end -%>
-
-        <div class="form-group">
-          <div class="col-sm-offset-5 col-sm-4">
-            <button type="submit" class="btn btn-success sign-in"><%=t 'log_in' %></button>
-          </div>
         </div>
+      <% end -%>
 
-        <div class="form-group">
-          <div class="col-sm-offset-5 col-sm-4">
-            <%= link_to t('forgot_your_password'), new_user_password_path %>
-          </div>
+      <div class="form-group">
+        <div class="col-sm-offset-5 col-sm-4">
+          <button type="submit" class="btn btn-success sign-in"><%=t 'log_in' %></button>
         </div>
-        
-      <% end %>
+      </div>
 
-    </div>
+      <div class="form-group">
+        <div class="col-sm-offset-5 col-sm-4">
+          <%= link_to t('forgot_your_password'), new_user_password_path %>
+        </div>
+      </div>
+    <% end %>
+
   </div>
-    
 </div>
 
 <%= render "shared/footer" %>

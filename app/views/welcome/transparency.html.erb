@@ -1,187 +1,184 @@
-      <div class="site-wrapper-first">
+<div class="site-wrapper-first">
+  <%= render "shared/header" %>
+  <div class="inner cover">
 
-        <div class="cover-container">
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    <h1 class="cover-heading"><%=t '100_percent_transparency' %></h1>
+    <p class="lead"><%=t '100_percent_transparency_intro' %></p>
 
-          <%= render "shared/header" %>
+  </div>
+</div>
 
-          <div class="inner cover">
-            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-            <h1 class="cover-heading"><%=t '100_percent_transparency' %></h1>
-            <p class="lead"><%=t '100_percent_transparency_intro' %></p>
+<div class="site-wrapper-second">
+  <div class="inner">
+
+    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+    <div class="row stats offset-projects">
+        <div class="col-md-12">
+            <h1 class="cover-heading"><%=t '100_percent_transparency_climate_projects' %></h1>
+            <p class="lead"><%=t '100_percent_transparency_climate_projects_intro' %></p>
+            <div class="table-responsive">
+              <table class="table table-striped our-projects">
+                <tbody>
+                <tr>
+                  <th></th>
+                  <th><%=t 'project_name' %></th>
+                  <th><%=t 'our_investment_certificate' %></th>
+                  <th><%=t 'project_invoices' %></th>
+                  <th><%=t 'date_of_our_investment' %></th>
+                  <th><%= t('tonnes_CO2').upcase_first %></th>
+                  <th><%=t 'more_info_on_blog' %></th>
+                </tr>
+                <% @projects.each do |project| %>
+                <tr>
+                  <td><%= image_tag project.image_url, height: "50", alt: "" %></td>
+                  <td><a href ="<%= project.blog_url %>"><%= project.name %></a></td>
+                  <% if project.certificate_url.nil? || project.certificate_url.empty? %>
+                    <td>-</td>
+                  <% else %>
+                    <td><a href="<%= project.certificate_url %>"><%=t 'certificate' %></a></td>
+                  <% end %>
+                  <% if project.invoice_url.nil? || project.invoice_url.empty? %>
+                    <td>-</td>
+                  <% else %>
+                    <td><a href="<%= project.invoice_url %>"><%=t 'invoice' %></a></td>
+                  <% end %>
+                  <td><%= project.date_bought.to_date %></td>
+                  <td><%= project.carbon_offset %></td>
+                  <td><a href ="<%= project.blog_url %>"><%=t 'read_more' %></a></td>
+                </tr>
+                </tbody>
+              <% end %>
+            </table>
+            <p class="lead"><%=t 'for_more_information_about_climate_projects' %> <%= link_to t('our_projects').downcase, '/our_projects' %>.</p>
           </div>
         </div>
-      </div>
+    </div>
 
-      <div class="site-wrapper-second">
-        <div class="cover-container">
-          <div class="inner">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            <div class="row stats offset-projects">
-                <div class="col-md-12">
-                    <h1 class="cover-heading"><%=t '100_percent_transparency_climate_projects' %></h1>
-                    <p class="lead"><%=t '100_percent_transparency_climate_projects_intro' %></p>
-                    <div class="table-responsive">
-                      <table class="table table-striped our-projects">
-                        <tbody>
-                        <tr>
-                          <th></th>
-                          <th><%=t 'project_name' %></th>
-                          <th><%=t 'our_investment_certificate' %></th>
-                          <th><%=t 'project_invoices' %></th>
-                          <th><%=t 'date_of_our_investment' %></th>
-                          <th><%= t('tonnes_CO2').upcase_first %></th>
-                          <th><%=t 'more_info_on_blog' %></th>
-                        </tr>
-                        <% @projects.each do |project| %>  
-                        <tr>
-                          <td><%= image_tag project.image_url, height: "50", alt: "" %></td>
-                          <td><a href ="<%= project.blog_url %>"><%= project.name %></a></td>
-                          <% if project.certificate_url.nil? || project.certificate_url.empty? %>
-                            <td>-</td>
-                          <% else %>
-                            <td><a href="<%= project.certificate_url %>"><%=t 'certificate' %></a></td>
-                          <% end %>
-                          <% if project.invoice_url.nil? || project.invoice_url.empty? %>
-                            <td>-</td>
-                          <% else %>
-                            <td><a href="<%= project.invoice_url %>"><%=t 'invoice' %></a></td>
-                          <% end %>
-                          <td><%= project.date_bought.to_date %></td>
-                          <td><%= project.carbon_offset %></td>
-                          <td><a href ="<%= project.blog_url %>"><%=t 'read_more' %></a></td>
-                        </tr>
-                        </tbody>
-                      <% end %>
-                    </table>
-                    <p class="lead"><%=t 'for_more_information_about_climate_projects' %> <%= link_to t('our_projects').downcase, '/our_projects' %>.</p>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  </div>
+</div>
 
-      <a name="this_is_how_it_works"></a>
-      <div class="site-wrapper-third">
-        <div class="cover-container">
-          <div class="inner">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            <h1 class="cover-heading"><%=t '100_percent_transparency_financial_info' %></h1>
-            <p class="lead"><%=t '100_percent_transparency_financial_info_intro' %></p>
-            <div class="financial-info">
-              <h2><%=t 'fiscal_year_2019_ongoing' %></h2>
-              <h3><%=t 'revenue' %></h3>
-              <table class="table table-condensed">
-                <tr>
-                  <td><%=t 'climate_offset_from_users' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@payouts_from_users2019) %> SEK</td>
-                </tr>
-                <tr>
-                  <td><%=t 'climate_offset_from_companies' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@invoiced2019) %> SEK</td>
-                </tr>
-                <tr>
-                  <td><%=t 'total' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@invoiced2019 + @payouts_from_users2019) %> SEK</td>
-                </tr>
-              </table>
+<a name="this_is_how_it_works"></a>
+<div class="site-wrapper-third">
+  <div class="inner">
 
-              <h3><%=t 'cost' %></h3>
-              <table class="table table-condensed">
-                <tr>
-                  <td><%=t 'investments_in_climate_projects' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@project_cost_in_sek2019) %> SEK</td>
-                </tr>
-                <tr>
-                  <td><%=t 'salary_costs' %></td>
-                  <td class="text-right">0 SEK</td>
-                </tr>
-                <tr>
-                  <td><%=t 'other_operating_expenses' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@other_operating_expenses2019) %> SEK</td>
-                </tr>
-                <tr>
-                  <td><%=t 'total' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@project_cost_in_sek2019 + @other_operating_expenses2019) %> SEK</td>
-                </tr>
-              </table>
+    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+    <h1 class="cover-heading"><%=t '100_percent_transparency_financial_info' %></h1>
+    <p class="lead"><%=t '100_percent_transparency_financial_info_intro' %></p>
+    <div class="financial-info">
+      <h2><%=t 'fiscal_year_2019_ongoing' %></h2>
+      <h3><%=t 'revenue' %></h3>
+      <table class="table table-condensed">
+        <tr>
+          <td><%=t 'climate_offset_from_users' %></td>
+          <td class="text-right"><%= number_with_delimiter(@payouts_from_users2019) %> SEK</td>
+        </tr>
+        <tr>
+          <td><%=t 'climate_offset_from_companies' %></td>
+          <td class="text-right"><%= number_with_delimiter(@invoiced2019) %> SEK</td>
+        </tr>
+        <tr>
+          <td><%=t 'total' %></td>
+          <td class="text-right"><%= number_with_delimiter(@invoiced2019 + @payouts_from_users2019) %> SEK</td>
+        </tr>
+      </table>
 
-              <h3><%=t 'result' %></h3>
-              <table class="table table-condensed">
-                <tr>
-                  <td><%=t 'result' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@results2019) %> SEK</td>
-                </tr>
-              </table>
+      <h3><%=t 'cost' %></h3>
+      <table class="table table-condensed">
+        <tr>
+          <td><%=t 'investments_in_climate_projects' %></td>
+          <td class="text-right"><%= number_with_delimiter(@project_cost_in_sek2019) %> SEK</td>
+        </tr>
+        <tr>
+          <td><%=t 'salary_costs' %></td>
+          <td class="text-right">0 SEK</td>
+        </tr>
+        <tr>
+          <td><%=t 'other_operating_expenses' %></td>
+          <td class="text-right"><%= number_with_delimiter(@other_operating_expenses2019) %> SEK</td>
+        </tr>
+        <tr>
+          <td><%=t 'total' %></td>
+          <td class="text-right"><%= number_with_delimiter(@project_cost_in_sek2019 + @other_operating_expenses2019) %> SEK</td>
+        </tr>
+      </table>
 
-              <%= link_to I18n.t('you_can_read_more_details_about_our_costs_here'), 'https://docs.google.com/spreadsheets/d/1RzUCaVqTTxJYjfUMeh3KlTxBpiATy2ViPO3m0LHGpG8/', target: "_blank" %>.
-            </div>
+      <h3><%=t 'result' %></h3>
+      <table class="table table-condensed">
+        <tr>
+          <td><%=t 'result' %></td>
+          <td class="text-right"><%= number_with_delimiter(@results2019) %> SEK</td>
+        </tr>
+      </table>
 
-            <div class="financial-info">
-              <h2><%=t 'fiscal_year_2017_2018_preliminary' %></h2>
+      <%= link_to I18n.t('you_can_read_more_details_about_our_costs_here'), 'https://docs.google.com/spreadsheets/d/1RzUCaVqTTxJYjfUMeh3KlTxBpiATy2ViPO3m0LHGpG8/', target: "_blank" %>.
+    </div>
 
-              <h3><%=t 'revenue' %></h3>
-              <table class="table table-condensed">
-                <tr>
-                  <td><%=t 'climate_offset_from_users' %></td>
-                  <td class="text-right"><%= number_with_delimiter(974_155) %> SEK</td>
-                </tr>
-                <tr>
-                  <td><%=t 'climate_offset_from_companies' %></td>
-                  <td class="text-right"><%= number_with_delimiter(1_198_984) %> SEK</td>
-                </tr>
-                <tr>
-                  <td><%=t 'total' %></td>
-                  <td class="text-right"><%= number_with_delimiter(2_173_138) %> SEK</td>
-                </tr>
-              </table>
-              
-              <h3><%=t 'cost' %></h3>
-              <table class="table table-condensed">
-                <tr>
-                  <td><%=t 'investments_in_climate_projects' %></td>
-                  <td class="text-right"><%= number_with_delimiter(-1_946_296) %> SEK</td>
-                </tr>
-                <tr>
-                  <td><%=t 'salary_costs' %></td>
-                  <td class="text-right">0 SEK</td>
-                </tr>
-                <tr>
-                  <td><%=t 'other_operating_expenses' %></td>
-                  <td class="text-right"><%= number_with_delimiter(-226_842) %> SEK</td>
-                </tr>
-                <tr>
-                  <td><%=t 'total' %></td>
-                  <td class="text-right"><%= number_with_delimiter(-2_173_138) %> SEK</td>
-                </tr>
-              </table>
+    <div class="financial-info">
+      <h2><%=t 'fiscal_year_2017_2018_preliminary' %></h2>
 
-              <h3><%=t 'result' %></h3>
-              <table class="table table-condensed">
-                <tr>
-                  <td><%=t 'result' %></td>
-                  <td class="text-right">0 SEK</td>
-                </tr>
-              </table>
+      <h3><%=t 'revenue' %></h3>
+      <table class="table table-condensed">
+        <tr>
+          <td><%=t 'climate_offset_from_users' %></td>
+          <td class="text-right"><%= number_with_delimiter(974_155) %> SEK</td>
+        </tr>
+        <tr>
+          <td><%=t 'climate_offset_from_companies' %></td>
+          <td class="text-right"><%= number_with_delimiter(1_198_984) %> SEK</td>
+        </tr>
+        <tr>
+          <td><%=t 'total' %></td>
+          <td class="text-right"><%= number_with_delimiter(2_173_138) %> SEK</td>
+        </tr>
+      </table>
 
-              <h3><%=t 'other_kpis' %></h3>
-              <table class="table">
-                <tr>
-                  <td><%=t 'number_of_users' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@unique_climate_neutral_users) %></td>
-                </tr>
-                <tr>
-                  <td><%=t 'number_of_ton_that_has_been_offset' %></td>
-                  <td class="text-right"><%= number_with_delimiter(@total_carbon_offset) %> tonne C02</td>
-                </tr>
-              </table>
+      <h3><%=t 'cost' %></h3>
+      <table class="table table-condensed">
+        <tr>
+          <td><%=t 'investments_in_climate_projects' %></td>
+          <td class="text-right"><%= number_with_delimiter(-1_946_296) %> SEK</td>
+        </tr>
+        <tr>
+          <td><%=t 'salary_costs' %></td>
+          <td class="text-right">0 SEK</td>
+        </tr>
+        <tr>
+          <td><%=t 'other_operating_expenses' %></td>
+          <td class="text-right"><%= number_with_delimiter(-226_842) %> SEK</td>
+        </tr>
+        <tr>
+          <td><%=t 'total' %></td>
+          <td class="text-right"><%= number_with_delimiter(-2_173_138) %> SEK</td>
+        </tr>
+      </table>
 
-              <%= link_to I18n.t('you_can_read_more_details_about_our_costs_here'), 'https://docs.google.com/spreadsheets/d/1RzUCaVqTTxJYjfUMeh3KlTxBpiATy2ViPO3m0LHGpG8/', target: "_blank" %>.
-              
-            </div>
-            <p class="lead"><%=t 'questions_or_comments_contact_us' %>: <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a></p>
-          </div>
-        </div>
-      </div>
+      <h3><%=t 'result' %></h3>
+      <table class="table table-condensed">
+        <tr>
+          <td><%=t 'result' %></td>
+          <td class="text-right">0 SEK</td>
+        </tr>
+      </table>
+
+      <h3><%=t 'other_kpis' %></h3>
+      <table class="table">
+        <tr>
+          <td><%=t 'number_of_users' %></td>
+          <td class="text-right"><%= number_with_delimiter(@unique_climate_neutral_users) %></td>
+        </tr>
+        <tr>
+          <td><%=t 'number_of_ton_that_has_been_offset' %></td>
+          <td class="text-right"><%= number_with_delimiter(@total_carbon_offset) %> tonne C02</td>
+        </tr>
+      </table>
+
+      <%= link_to I18n.t('you_can_read_more_details_about_our_costs_here'), 'https://docs.google.com/spreadsheets/d/1RzUCaVqTTxJYjfUMeh3KlTxBpiATy2ViPO3m0LHGpG8/', target: "_blank" %>.
+
+    </div>
+    <p class="lead"><%=t 'questions_or_comments_contact_us' %>: <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a></p>
+
+  </div>
+</div>
 
 <%= render "shared/footer" %>

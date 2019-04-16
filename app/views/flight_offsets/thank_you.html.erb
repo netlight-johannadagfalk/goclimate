@@ -1,23 +1,21 @@
 <div class="site-wrapper-first">
+  <%= render "shared/header" %>
+  <div class="inner">
 
-  <div class="cover-container">
-    <%= render "shared/header" %>
+    <span class="glyphicon glyphicon-plane" aria-hidden="true"></span>
 
-    <div class="inner">
-      <span class="glyphicon glyphicon-plane" aria-hidden="true"></span>
+    <h1 class="cover-heading">Tack!</h1>
 
-      <h1 class="cover-heading">Tack!</h1>
+    <p class="lead">Du har klimatkompenserat din flygresa och därmed tagit ansvar för de klimatutsläpp som flygresan orsakat.</p>
 
-      <p class="lead">Du har klimatkompenserat din flygresa och därmed tagit ansvar för de klimatutsläpp som flygresan orsakat.</p>
+    <p class="lead"><%= link_to 'Ladda ner ditt certifikat', flight_offset_certificates_path(@offset, format: :pdf) %></a></p>
 
-      <p class="lead"><%= link_to 'Ladda ner ditt certifikat', flight_offset_certificates_path(@offset, format: :pdf) %></a></p>
+    <p class="lead">Vi har även skickat ditt certifikat till din e-postadress <%= @offset.email %>.</p>
 
-      <p class="lead">Vi har även skickat ditt certifikat till din e-postadress <%= @offset.email %>.</p>
+    <p class="lead"><%=t 'thank_you_for_helping_us_trying_to_stop_climate_change' %>: <%= link_to('GoClimateNeutral.org', '/') %></p>
 
-      <p class="lead"><%=t 'thank_you_for_helping_us_trying_to_stop_climate_change' %>: <%= link_to('GoClimateNeutral.org', '/') %></p>
+    <p class="lead last"><%= link_to 'Ladda ner kvitto', flight_offset_receipts_path(@offset, format: :pdf) %></a></p>
 
-      <p class="lead last"><%= link_to 'Ladda ner kvitto', flight_offset_receipts_path(@offset, format: :pdf) %></a></p>
-    </div>
   </div>
 </div>
 

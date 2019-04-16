@@ -1,100 +1,98 @@
-      <div class="site-wrapper-first">
-        <div class="cover-container">
-          <%= render "shared/header" %>
-          <div class="inner cover">
-            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-            <h1 class="cover-heading"><%=t('about_us') %></h1>
-            <p class="lead"><%=t 'about_us_intro' %></p>
-          </div>
-          <span class="glyphicon glyphicon-chevron-down first" aria-hidden="true"></span>
-        </div>
+<div class="site-wrapper-first">
+  <%= render "shared/header" %>
+  <div class="inner cover">
+
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    <h1 class="cover-heading"><%=t('about_us') %></h1>
+    <p class="lead"><%=t 'about_us_intro' %></p>
+
+  </div>
+  <span class="glyphicon glyphicon-chevron-down first" aria-hidden="true"></span>
+</div>
+
+<a name="why_goclimateneutral"></a>
+<div class="site-wrapper-second">
+  <div class="inner">
+
+    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+    <h1 class="cover-heading"><%=t 'about_us_why_do_we_exist' %></h1>
+    <p class="lead"><%=t 'about_us_why_do_we_exist_text' %></p>
+
+  </div>
+  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+</div>
+
+<a name="why_goclimateneutral"></a>
+<div class="site-wrapper-third">
+  <div class="inner">
+
+    <span class="glyphicon glyphicon glyphicon-leaf" aria-hidden="true"></span>
+    <h1 class="cover-heading"><%=t 'about_us_how_do_we_stop_climate_change' %></h1>
+    <p class="lead"><%=t 'about_us_how_do_we_stop_climate_change_text' %></p>
+    <p class="lead"><%=t 'about_us_how_do_we_stop_climate_change_text_2' %></p>
+
+  </div>
+  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+</div>
+
+
+<a name="why_goclimateneutral"></a>
+<div class="site-wrapper-second">
+  <div class="inner">
+
+    <h1 class="cover-heading"><%=t 'about_us_who_are_we' %></h1>
+    <div class="row">
+
+      <div class="col-xs-12 col-md-6 profile">
+        <%= image_tag 'about/kalle.jpg', class: 'img-circle', alt: "" %>
+        <h2>Kalle Nilvér</h2>
+        <p><%=t 'about_us_who_are_we_kalle' %></p>
+        <p><b>Twitter:</b> <%= link_to 'kallenilver', 'https://twitter.com/kallenilver', target: "_blank" %></p>
+        <p><b>Telefon:</b> <%= link_to '+46706084374', 'tel:+46706084374' %></p>
       </div>
 
-      <a name="why_goclimateneutral"></a>
-      <div class="site-wrapper-second">
-        <div class="cover-container">
-          <div class="inner">
-            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-            <h1 class="cover-heading"><%=t 'about_us_why_do_we_exist' %></h1>
-            <p class="lead"><%=t 'about_us_why_do_we_exist_text' %></p>
-          </div>
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        </div>
+      <div class="col-xs-12 col-md-6 profile">
+        <%= image_tag 'about/cissi.jpg', class: 'img-circle', alt: "" %>
+        <h2>Cissi Lindén</h2>
+        <p><%=t 'about_us_who_are_we_cissi' %></p>
+        <p><b>Twitter:</b> <%= link_to 'cissilinden', 'https://twitter.com/cissilinden', target: "_blank" %></p>
+        <p><b>Telefon:</b> <%= link_to '+46705476300', 'tel:+46705476300' %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-6 profile">
+        <%= image_tag 'about/henrik.jpg', class: 'img-circle', alt: "" %>
+        <h2>Henrik Kniberg</h2>
+        <p><%=t 'about_us_who_are_we_henrik_html' %></p>
+        <p><b>Twitter:</b> <%= link_to 'henrikkniberg', 'https://twitter.com/henrikkniberg', target: "_blank" %></p>
       </div>
 
+      <div class="col-xs-12 col-md-6 profile">
+        <%= image_tag 'about/stefan.jpg', class: 'img-circle', alt: "" %>
+        <h2>Stefan Lindbohm</h2>
+        <p><%=t 'about_us_who_are_we_stefan' %></p>
+        <p><b>Twitter:</b> <%= link_to 'stefanlindbohm', 'https://twitter.com/stefanlindbohm', target: "_blank" %></p>
+      </div>
+    </div>
 
-      <a name="why_goclimateneutral"></a>
-      <div class="site-wrapper-third">
-        <div class="cover-container">
-          <div class="inner">
-            <span class="glyphicon glyphicon glyphicon-leaf" aria-hidden="true"></span>
-            <h1 class="cover-heading"><%=t 'about_us_how_do_we_stop_climate_change' %></h1>
-            <p class="lead"><%=t 'about_us_how_do_we_stop_climate_change_text' %></p>
-            <p class="lead"><%=t 'about_us_how_do_we_stop_climate_change_text_2' %></p>
-          </div>
-          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-        </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6 profile">
+        <%= image_tag 'about/lydia.jpg', class: 'img-circle', alt: "" %>
+        <h2>Lydia Watchefo</h2>
+        <p><%=t 'about_us_who_are_we_lydia' %></p>
       </div>
 
-
-      <a name="why_goclimateneutral"></a>
-      <div class="site-wrapper-second">
-        <div class="cover-container">
-          <div class="inner">
-            <h1 class="cover-heading"><%=t 'about_us_who_are_we' %></h1>
-            <div class="row">
-
-              <div class="col-xs-12 col-md-6 profile">
-                <%= image_tag 'about/kalle.jpg', class: 'img-circle', alt: "" %>
-                <h2>Kalle Nilvér</h2>
-                <p><%=t 'about_us_who_are_we_kalle' %></p>
-                <p><b>Twitter:</b> <%= link_to 'kallenilver', 'https://twitter.com/kallenilver', target: "_blank" %></p>
-                <p><b>Telefon:</b> <%= link_to '+46706084374', 'tel:+46706084374' %></p>
-              </div>
-
-              <div class="col-xs-12 col-md-6 profile">
-                <%= image_tag 'about/cissi.jpg', class: 'img-circle', alt: "" %>
-                <h2>Cissi Lindén</h2>
-                <p><%=t 'about_us_who_are_we_cissi' %></p>
-                <p><b>Twitter:</b> <%= link_to 'cissilinden', 'https://twitter.com/cissilinden', target: "_blank" %></p>
-                <p><b>Telefon:</b> <%= link_to '+46705476300', 'tel:+46705476300' %></p>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12 col-md-6 profile">
-                <%= image_tag 'about/henrik.jpg', class: 'img-circle', alt: "" %>
-                <h2>Henrik Kniberg</h2>
-                <p><%=t 'about_us_who_are_we_henrik_html' %></p>
-                <p><b>Twitter:</b> <%= link_to 'henrikkniberg', 'https://twitter.com/henrikkniberg', target: "_blank" %></p>
-              </div>
-
-              <div class="col-xs-12 col-md-6 profile">
-                <%= image_tag 'about/stefan.jpg', class: 'img-circle', alt: "" %>
-                <h2>Stefan Lindbohm</h2>
-                <p><%=t 'about_us_who_are_we_stefan' %></p>
-                <p><b>Twitter:</b> <%= link_to 'stefanlindbohm', 'https://twitter.com/stefanlindbohm', target: "_blank" %></p>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12 col-md-6 profile">
-                <%= image_tag 'about/lydia.jpg', class: 'img-circle', alt: "" %>
-                <h2>Lydia Watchefo</h2>
-                <p><%=t 'about_us_who_are_we_lydia' %></p>
-              </div>
-
-              <div class="col-xs-12 col-md-6 profile">
-                <%= image_tag 'about/evelina.jpg', class: 'img-circle', alt: "" %>
-                <h2>Evelina Utterdahl</h2>
-                <p><%=t 'about_us_who_are_we_evelina' %></p>
-                <p><b>Instagram:</b> <%= link_to 'earthwanderess', 'https://www.instagram.com/earthwanderess/', target: "_blank" %></p>
-                <p><b>Twitter:</b> <%= link_to 'earthwanderess', 'https://twitter.com/earthwanderess', target: "_blank" %></p>
-              </div>
-            </div>
-
-          </div>
-        </div>
+      <div class="col-xs-12 col-md-6 profile">
+        <%= image_tag 'about/evelina.jpg', class: 'img-circle', alt: "" %>
+        <h2>Evelina Utterdahl</h2>
+        <p><%=t 'about_us_who_are_we_evelina' %></p>
+        <p><b>Instagram:</b> <%= link_to 'earthwanderess', 'https://www.instagram.com/earthwanderess/', target: "_blank" %></p>
+        <p><b>Twitter:</b> <%= link_to 'earthwanderess', 'https://twitter.com/earthwanderess', target: "_blank" %></p>
       </div>
+    </div>
+
+  </div>
+</div>
 
 <%= render "shared/footer" %>
