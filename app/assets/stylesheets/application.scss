@@ -138,9 +138,6 @@ div.legal {
     display: table;
     width: 100%;
 }
-.site-wrapper-inner {
-    min-height: 70vh;
-}
 .site-wrapper-first {
   background-color: #f3f9f9;
   background-image: image-url("background-illustrated-2.png");
@@ -397,10 +394,6 @@ div.profile {
 @media (min-width: 768px) {
   .mastfoot {
     bottom: 0;
-  }
-  /* Start the vertical centering */
-  .site-wrapper-inner {
-    vertical-align: middle;
   }
   /* Handle the widths */
   .mastfoot,
