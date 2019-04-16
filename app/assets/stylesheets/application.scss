@@ -133,10 +133,6 @@ div.legal {
   padding: 50px;
   margin-bottom: 50px;
 }
-.cover .btn-lg {
-  padding: 10px 20px;
-  font-weight: bold;
-}
 .site-wrapper {
     min-height: 100vh;
     display: table;
@@ -144,23 +140,6 @@ div.legal {
 }
 .site-wrapper-inner {
     min-height: 70vh;
-}
-.site-wrapper-inner.solo-inner-wrapper {
-    min-height: 100vh;
-    height: 100%;
-}
-.solo-inner-wrapper {
-    .cover-container {
-        min-height: 100vh;
-        height: 100%;
-    }
-    .mastfoot {
-        margin-top: -58px;
-        background-color: transparent;
-    }
-}
-.solo-inner-wrapper .cover {
-  padding: 0px 20px;
 }
 .site-wrapper-first {
   background-color: #f3f9f9;
