@@ -11,69 +11,73 @@
 </div>
 
 <div class="site-wrapper-second">
-  <div class="inner">
+  <div class="inner inner--with-grid">
+    <div class="container">
 
-    <h1 class="cover-heading">Din order</h1>
-    <p class="lead"></p>
-      <table class="table">
-        <tr>
-          <th>Klimatkompensation för flyg</th>
-          <th></th>
-        </tr>
-        <tr>
-            <td>
-              <% @offset_params.segments.each do |segment| %>
-                - <%= Airport.find(segment.origin).name %> - <%= Airport.find(segment.destination).name %></br>
-              <% end %>
-              Cabin class: <%= @offset_params.cabin_class %></br>
-              Antal personer: <%= @num_persons %>
-            </td>
-            <td></td>
-          </tr>
-        <tr>
-          <td class="total">Total:</td>
-          <td class="total"><%= co2e_string(@total_footprint) %></td>
-        </tr>
-        <tr>
-          <td class="total">Summa:</td>
-          <td class="total"><%= (@price / 100).to_i %> SEK</td>
-        </tr>
-      </table>
+      <div class="row">
+        <div class="col-xs-12">
 
-    </div>
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <h1 class="cover-heading">Din order</h1>
+          <p class="lead"></p>
+          <table class="table">
+            <tr>
+              <th>Klimatkompensation för flyg</th>
+              <th></th>
+            </tr>
+            <tr>
+                <td>
+                  <% @offset_params.segments.each do |segment| %>
+                    - <%= Airport.find(segment.origin).name %> - <%= Airport.find(segment.destination).name %></br>
+                  <% end %>
+                  Cabin class: <%= @offset_params.cabin_class %></br>
+                  Antal personer: <%= @num_persons %>
+                </td>
+                <td></td>
+              </tr>
+            <tr>
+              <td class="total">Total:</td>
+              <td class="total"><%= co2e_string(@total_footprint) %></td>
+            </tr>
+            <tr>
+              <td class="total">Summa:</td>
+              <td class="total"><%= (@price / 100).to_i %> SEK</td>
+            </tr>
+          </table>
 
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingOne">
-          <h4 class="panel-title">
-            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              <h4>Hit går pengarna</h4>
-            </a>
-          </h4>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-          <div class="panel-body">
-            Vi investerar i tredjepartsgranskade och FN-certifierade klimatprojekt med den extra certifieringen Gold Standard. Här är våra två senaste projekt.
-              <div class="row projects">
-                <% @projects.each do |project| %>
-                  <div class="col-sm-6">
-                    <div class="crop">
-                      <%= image_tag project.image_url, class: 'img-circle', alt: '' %>
-                    </div>
-                    <div class="project-info">
-                      <a href="<%= project.blog_url %>"><%= project.name %></a>
-                      <br>
-                      <%= project.carbon_offset %> ton koldioxid
-                    </div>
-                  </div>
-                <% end %>
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <h4>Hit går pengarna</h4>
+                  </a>
+                </h4>
               </div>
+              <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  Vi investerar i tredjepartsgranskade och FN-certifierade klimatprojekt med den extra certifieringen Gold Standard. Här är våra två senaste projekt.
+                    <div class="row projects">
+                      <% @projects.each do |project| %>
+                        <div class="col-sm-6">
+                          <div class="crop">
+                            <%= image_tag project.image_url, class: 'img-circle', alt: '' %>
+                          </div>
+                          <div class="project-info">
+                            <a href="<%= project.blog_url %>"><%= project.name %></a>
+                            <br>
+                            <%= project.carbon_offset %> ton koldioxid
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                </div>
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
-
-    </div>
-    <div class="row">
 
       <%= form_tag(flight_offsets_path, id: "payment-form", class: "form-horizontal") do %>
         <%= hidden_field_tag :co2e, @total_footprint %>
@@ -83,29 +87,29 @@
         <%= hidden_field_tag :num_persons, params[:num_persons] %>
 
         <div class="form-group">
-          <label for="footprint" class="col-sm-offset-1 col-sm-4 control-label padding-top">Din beställning</label>
-          <div class="col-sm-4 padding-top">
+          <label for="footprint" class="col-sm-5 control-label padding-top">Din beställning</label>
+          <div class="col-sm-7 padding-top">
             <%= co2e_string(@total_footprint) %>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="price" class="col-sm-offset-1 col-sm-4 control-label padding-top">Summa</label>
-          <div class="col-sm-4 padding-top">
+          <label for="price" class="col-sm-5 control-label padding-top">Summa</label>
+          <div class="col-sm-7 padding-top">
              <%= (@price / 100).to_i %> SEK
           </div>
         </div>
 
         <div class="form-group">
-          <label for="email" class="col-sm-offset-1 col-sm-4 control-label padding-top">E-post</label>
-          <div class="col-sm-4">
+          <label for="email" class="col-sm-5 control-label padding-top">E-post</label>
+          <div class="col-sm-7">
             <%= email_field_tag :email, @offset&.email, class: 'form-control', required: '' %>
           </div>
         </div>
 
         <div class="form-group stripe-form-group">
-          <label for="card-element" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'credit_or_debit_card' %></label>
-          <div id="card-element" class="col-sm-4 form-control">
+          <label for="card-element" class="col-sm-5 control-label"><%=t 'credit_or_debit_card' %></label>
+          <div id="card-element" class="col-sm-7 form-control">
           <!-- a Stripe Element will be inserted here. -->
           </div>
         </div>
@@ -115,12 +119,12 @@
         </div>
 
         <div class="form-group">
-          <div class="col-sm-offset-5 col-sm-4 "><span class="glyphicon glyphicon glyphicon-lock secured-by-stripe" aria-hidden="true"></span>Secured by Stripe</div>
+          <div class="col-sm-offset-5 col-sm-7 "><span class="glyphicon glyphicon glyphicon-lock secured-by-stripe" aria-hidden="true"></span>Secured by Stripe</div>
         </div>
 
 
         <div class="form-group">
-          <div class="col-sm-offset-5 col-sm-3">
+          <div class="col-sm-offset-5 col-sm-7">
           <input id="register-button" type="submit" value="Klimatkompensera" class="btn btn-success">
           </div>
         </div>

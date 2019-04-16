@@ -62,10 +62,25 @@ input {
   display: table-cell;
   vertical-align: top;
 }
+
 .inner {
-  padding: 50px 30px;
+  padding: 50px 15px;
   overflow: hidden; /* Respect height for floating children */
+
+  /* Simpler would be if all inner:s just had grids in them, but changing all
+   * pages is something best done in steps */
+  &--with-grid {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
+@media (max-width: 768px) {
+  .inner {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+
 ul.nav.nav-tabs li.active a {
   background-color: #edf7f6;
   border-bottom-color: #edf7f6;
@@ -199,6 +214,8 @@ div.legal {
 .form-group div {
   text-align: left;
 }
+
+/* Glyphicon chevron overrides */
 .site-wrapper .glyphicon-chevron-down, .site-wrapper .glyphicon-chevron-right, .site-wrapper .glyphicon-chevron-left {
   font-size: 40px;
 }
@@ -207,12 +224,18 @@ div.legal {
   width: 23px;
   text-align: left;  
 }
+@media (max-width: 767px) {
+  .site-wrapper .glyphicon-chevron-down {
+    padding-top: 0;
+  }
+}
 .site-wrapper .glyphicon-chevron-down.after-video {
   padding-top: 20px;
 }
 .site-wrapper .glyphicon-chevron-down.glyphicon-plan-first {
     padding-top: 0px;
 }
+
 .welcome .lead-btn.more-info {
   padding-top: 0px;
   padding-bottom: 0px;
@@ -268,7 +291,8 @@ div.legal {
     }
     input[type=text], input[type=email], input[type=password] {
         color: #777;
-        width: 200px;
+        width: 100%;
+        max-width: 300px;
         margin-top: 5px;
     }
     select {
@@ -279,9 +303,10 @@ div.legal {
 
 }
 #card-element {
-    background-color: #fff;
-    width: 300px;
-    padding-left: 10px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 300px;
+  padding-left: 12px;
 }
 #current-card {
   margin-left: -13px;
@@ -422,53 +447,49 @@ div.profile {
     display: none;
   }
 }
-@media (max-width: 768px) {
-    .site-wrapper-first .inner {
-      padding: 0px 30px;
-    }
-    .nav > li > a > img {
-      margin-bottom: 3px;
-    }
+@media (max-width: 767px) {
+  .nav > li > a > img {
+    margin-bottom: 3px;
+  }
 
-    .form-group {
-        select, input {
-          display: inline;
-          margin: 0 auto;
-        }
-        #card-element {
-          margin: 0 auto;
-          width: 300px;
-        }
-        div {
-          text-align: center;
-        }
-    }
-    #card-errors {
-      margin-left: 0px;
-    }
-    .share-buttons {
-      width: auto;
-    }
-    .faq .panel {
-      max-width: 300px;
-    }
-    table.our-projects {
-      width: 270px;
-      display: block;
-    }
-    .carousel-inner p {
-      line-height: 110%;
-    }
-    .carousel-inner img.small {
-      display: none;
-    }
-    .carousel-inner img.big {
-      display: block;
-    }
-    .welcome .stats h1.big-number {
-      font-size: 60px;
-      margin-bottom: 5px;
-    }
+  .form-group {
+      select, input {
+        display: inline;
+        margin: 0 auto;
+      }
+      #card-element {
+        margin: 0 auto;
+      }
+      div {
+        text-align: center;
+      }
+  }
+  #card-errors {
+    margin-left: 0px;
+  }
+  .share-buttons {
+    width: auto;
+  }
+  .faq .panel {
+    max-width: 300px;
+  }
+  table.our-projects {
+    width: 270px;
+    display: block;
+  }
+  .carousel-inner p {
+    line-height: 110%;
+  }
+  .carousel-inner img.small {
+    display: none;
+  }
+  .carousel-inner img.big {
+    display: block;
+  }
+  .welcome .stats h1.big-number {
+    font-size: 60px;
+    margin-bottom: 5px;
+  }
 }
 td.form.select {
     padding: 3px;
