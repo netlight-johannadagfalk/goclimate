@@ -1,0 +1,27 @@
+body {
+  color: #444444;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+}
+
+p {
+    line-height: 200%;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+p.lead.last {
+    padding-bottom: 60px;
+}
+p.lead a {
+  font-weight: bold;
+}
+.lead.last-text {
+  margin-top: 40px;
+}
+
+a,
+a:focus,
+a:hover {
+  color: #333;
+}

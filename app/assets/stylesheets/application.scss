@@ -12,6 +12,7 @@
  *
  *= require_self
  *= require font-awesome
+ *= require type
  *= require components/impact_calculator_fields
  *= require components/navbar_goclimateneutral
  *= require components/gift_cards_intro
@@ -26,24 +27,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-a,
-a:focus,
-a:hover {
-  color: #333;
-}
 html,
 body {
   height: 100%;
-}
-body {
-  color: #444444;
-  text-align: center;
-  font-family: 'Raleway', sans-serif;
-}
-p {
-    line-height: 200%;
-    margin: 0 auto;
-    max-width: 600px;
 }
 p.lead-btn, p.alert, p.warning, p.info, p.notice {
    max-width: none;
@@ -377,12 +363,6 @@ input#plan {
     margin-top: 0px;
     width: 75px;
 }
-p.lead.last {
-    padding-bottom: 60px;
-}
-p.lead a {
-  font-weight: bold;
-}
 .registrations-edit {
     .form-group input { 
         text-align: left; 
@@ -398,9 +378,6 @@ p.lead a {
 .mastfoot .inner {
     padding: 15px;
 } 
-.lead.last-text {
-  margin-top: 40px;
-}
 div.profile {
   padding-bottom: 40px;
 }
