@@ -23,7 +23,7 @@
           <tr>
               <td>
                 <% @offset_params.segments.each do |segment| %>
-                  - <%= Airport.find(segment.origin).name %> - <%= Airport.find(segment.destination).name %></br>
+                  - <%= Airport.find(segment.origin).name_sv %> - <%= Airport.find(segment.destination).name_sv %></br>
                 <% end %>
                 Cabin class: <%= @offset_params.cabin_class %></br>
                 Antal personer: <%= @num_persons %>
