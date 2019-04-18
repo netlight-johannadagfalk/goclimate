@@ -13,6 +13,7 @@
  *= require_self
  *= require font-awesome
  *= require type
+ *= require panels
  *= require components/impact_calculator_fields
  *= require components/navbar_goclimateneutral
  *= require components/gift_cards_intro
@@ -139,10 +140,6 @@ div.legal {
 }
 .btn-social {
   margin-bottom: 20px;
-}
-.panel.questions-list {
-  padding: 50px;
-  margin-bottom: 50px;
 }
 .site-wrapper {
     min-height: 100vh;
@@ -351,10 +348,6 @@ div.legal {
 .blog_investment_link {
   margin-top: 40px;
 }
-.faq .panel img {
-  width: 100%;
-  height: 100%;
-}
 input#plan {
     margin-top: 0px;
     width: 75px;
@@ -433,9 +426,6 @@ div.profile {
         float: left;
     }
   }
-  .faq .panel {
-    max-width: 600px;
-  }
   #current-card {
     text-align: left;
   }
@@ -469,9 +459,6 @@ div.profile {
   .share-buttons {
     width: auto;
   }
-  .faq .panel {
-    max-width: 300px;
-  }
   table.our-projects {
     width: 270px;
     display: block;
@@ -493,24 +480,6 @@ div.profile {
 td.form.select {
     padding: 3px;
 } 
-.faq {
-  .panel-group {
-    margin-top: 40px;
-  }
-  .panel {
-    text-align: left;
-  }
-  .panel-body {
-    text-align: left;
-  }
-}
-.panel {
-    text-align: center;
-    max-width: 300px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-}
-.panel:hover { box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 1px 5px rgba(130, 130, 130, 0.35); }
 .plan .row {
     margin-left: 15px;
     margin-right: 15px;
@@ -518,9 +487,6 @@ td.form.select {
 .plan .col-md-3 {
     padding-left: 10px;
     padding-right: 10px;
-}
-.panel-body {
-    text-align: center;
 }
 #price-info-helper span {
     cursor: pointer;
