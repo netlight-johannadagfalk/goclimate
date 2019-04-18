@@ -17,11 +17,10 @@
       <%= render "shared/plan" %>
 
       <div id="current-card-group" class="form-group">
-        <div class="col-sm-1"></div>
-        <label for="current-card" class="col-sm-4 control-label padding-top"><%=t 'credit_or_debit_card' %></label>
-        <p id="current-card" class="col-sm-4 control-label">
+        <label for="current-card" class="col-sm-offset-1 col-sm-4 control-label padding-top"><%=t 'credit_or_debit_card' %></label>
+        <div id="current-card" class="col-sm-4 control-label">
           <%= @current_source.nil? ? t('no_card_registered') : masked_card_number(@current_source) %> (<a id="add-new-card" href="#"><%= @current_source.nil? ? t('add_new_card') : t('edit_card') %></a>)
-        </p>
+        </div>
       </div>
 
       <%= hidden_field(:user, :stripe_customer_id, :value => "") %>
@@ -29,8 +28,10 @@
       <div id="new-card-div" class="form-group hidden">
         <div class="col-sm-1"></div>
         <label for="card-element" class="col-sm-4 control-label"><%=t 'add_new_card' %></label>
-        <div id="card-element" class="col-sm-4 form-control">
-          <!-- a Stripe Element will be inserted here. -->
+        <div class="col-sm-4">
+          <div id="card-element" class="form-control">
+            <!-- a Stripe Element will be inserted here. -->
+          </div>
         </div>
       </div>
 

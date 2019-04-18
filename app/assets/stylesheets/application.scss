@@ -127,9 +127,6 @@ div.legal {
   color: red;
   margin-bottom: 10px;
 }
-.field_with_errors {
-  text-align: left;
-}
 .field_with_errors .message {
   color: red;
 }
@@ -265,10 +262,9 @@ div.legal {
   background-color: #fff;
   width: 100%;
   max-width: 300px;
-  padding-left: 12px;
+  padding: 0 0 0 12px;
 }
 #current-card {
-  margin-left: -13px;
   padding-top: 10px;
 }
 #current-card a {
@@ -337,7 +333,7 @@ div.profile {
   font-size: 13px;
   color: #777777;
   margin-right: 6px;
-  padding-top: 0px;
+  padding-top: 8px;
   margin-left: 2px;
 }
 .embed-container-wrapper { 

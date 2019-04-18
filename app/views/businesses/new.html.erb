@@ -51,14 +51,14 @@
 
         <%= form_tag(business_path, class: 'form-horizontal') do %>
           <div class="form-group">
-            <%= label_tag(:number_of_employees, t('business.number_of_employees'), class: 'col-lg-5 control-label') %>
-            <div class="col-lg-2">
+            <%= label_tag(:number_of_employees, t('business.number_of_employees'), class: 'col-sm-5 control-label') %>
+            <div class="col-sm-3">
               <%= text_field_tag(:number_of_employees, '10', class: 'form-control') %>
             </div>
           </div>
           <div class="form-group">
-            <%= label_tag(:email, t('business.your_email'), class: 'col-lg-5 control-label') %>
-            <div class="col-lg-2">
+            <%= label_tag(:email, t('business.your_email'), class: 'col-sm-5 control-label') %>
+            <div class="col-sm-3">
               <%= text_field_tag(:email, '', class: 'form-control') %>
             </div>
           </div>

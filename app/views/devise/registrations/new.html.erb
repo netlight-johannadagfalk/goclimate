@@ -123,27 +123,26 @@
 
       <%= hidden_field(:user, :stripe_customer_id, :value => "") %>
 
-      <div class="form-group stripe-form-group">
+      <div class="form-group">
         <label for="card-element" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'credit_or_debit_card' %></label>
-        <div id="card-element" class="col-sm-4 form-control">
-          <!-- a Stripe Element will be inserted here. -->
+        <div class="col-sm-4">
+          <div id="card-element" class="form-control">
+            <!-- a Stripe Element will be inserted here. -->
+          </div>
+          <span class="glyphicon glyphicon glyphicon-lock secured-by-stripe" aria-hidden="true"></span>Secured by Stripe
         </div>
       </div>
 
       <div id="card-errors"></div>
 
-      <div class="form-group">
-        <div class="col-sm-offset-5 col-sm-4 "><span class="glyphicon glyphicon glyphicon-lock secured-by-stripe" aria-hidden="true"></span>Secured by Stripe</div>
-      </div>
-
-      <div class="form-group">
+      <div class="form-group form-group-sm-centered">
         <div class="col-sm-offset-5 col-sm-7">
           <%= f.check_box :privacy_policy %>
           <label for="user_privacy_policy"><%=t 'i_accept' %> <%= link_to I18n.t('our_privacy_policy'), privacy_policy_path, target: '_blank' %></a></label>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group form-group-sm-centered">
         <div class="col-sm-offset-5 col-sm-3">
           <button id="register-button" type="submit" class="btn btn-success" onclick="this.disabled=true; this.value='Submitting...'; $('#payment-form').submit();"><%=t 'go_climate_neutral' %></button>
         </div>
