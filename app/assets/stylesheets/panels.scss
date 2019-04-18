@@ -1,11 +1,15 @@
 .panel {
-    text-align: center;
-    max-width: 300px;
-    margin: 0 auto;
-    margin-bottom: 20px;
+  text-align: center;
+  max-width: 300px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+
+  &.panel-full-width {
+    max-width: 100%;
+  }
 }
 .panel-body {
-    text-align: center;
+  text-align: center;
 }
 
 /* Question list */

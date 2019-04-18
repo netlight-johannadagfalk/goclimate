@@ -1,20 +1,10 @@
 .flight_offsets {
-  li {
-    list-style-type: none;
-  }
-  table {
-    max-width: 600px;
-    margin: 0 auto;
-  }
   th {
     font-weight: bold;
   }
   td {
     text-align: left;
     line-height: 2 !important;
-  }
-  .panel-heading {
-    background-color: white;
   }
   td.total {
     text-align: right;
@@ -23,38 +13,11 @@
   .green-leaf img {
     width: 100px;
   }
-  .flight-details {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  div.panel {
-    max-width: 600px;
+  .panel {
     text-align: left;
   }
-  div.panel .panel-body {
+  .panel .panel-body {
     text-align: left;
-  }
-  .crop {
-    width: 80px;
-    height: 80px;
-    overflow: hidden;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .crop img {
-      width: 80px;
-      height: 80px;
-      margin: 0 0 0 0;
-  }
-  div.projects {
-    margin: 40px 10px 40px 10px;
-  }
-  div.project-info {
-    margin: 10px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 2;
   }
   .lead.last {
     padding-bottom: 220px;

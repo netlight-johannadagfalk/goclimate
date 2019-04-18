@@ -5,9 +5,13 @@ body {
 }
 
 p {
-    line-height: 200%;
-    margin: 0 auto;
-    max-width: 600px;
+  line-height: 200%;
+  margin: 0 auto;
+  max-width: 600px;
+}
+.panel p {
+  margin: 0;
+  max-width: 100%;
 }
 
 p.lead.last {

@@ -15,6 +15,7 @@
  *= require type
  *= require panels
  *= require forms
+ *= require layout/content_section
  *= require components/impact_calculator_fields
  *= require components/navbar_goclimateneutral
  *= require components/gift_cards_intro
@@ -22,6 +23,7 @@
  *= require components/business_offset_form
  *= require components/receipts
  *= require components/flight_offset_form
+ *= require components/projects_teaser
 
  *= require bootstrap-social
  */
@@ -66,7 +68,7 @@ input {
 }
 
 .inner {
-  padding: 50px 15px;
+  padding: 40px 15px;
   overflow: hidden; /* Respect height for floating children */
 
   /* Simpler would be if all inner:s just had grids in them, but changing all
@@ -74,12 +76,6 @@ input {
   &--with-grid {
     padding-left: 0;
     padding-right: 0;
-  }
-}
-@media (max-width: 768px) {
-  .inner {
-    padding-top: 30px;
-    padding-bottom: 30px;
   }
 }
 
