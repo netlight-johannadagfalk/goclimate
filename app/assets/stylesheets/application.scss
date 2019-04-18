@@ -14,6 +14,7 @@
  *= require font-awesome
  *= require type
  *= require panels
+ *= require forms
  *= require components/impact_calculator_fields
  *= require components/navbar_goclimateneutral
  *= require components/gift_cards_intro
@@ -193,24 +194,6 @@ div.legal {
 .welcome-plan table.table {
   margin-bottom: 0px;
 }
-.form {
-  padding: 3.5px;
-}
-.form-tonnes {
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-.checkbox {
-  text-align: left;
-}
-.form-group .checkbox input {
-  margin-left: 0px;
-  width: auto;
-  margin-top: 4px;
-}
-.form-group div {
-  text-align: left;
-}
 
 /* Glyphicon chevron overrides */
 .site-wrapper .glyphicon-chevron-down, .site-wrapper .glyphicon-chevron-right, .site-wrapper .glyphicon-chevron-left {
@@ -254,9 +237,6 @@ div.legal {
 .glyphicon.steps {
   font-size: 100px;
 }
-.form-horizontal {
-    margin-top: 40px;
-}
 .modal-content h3 {
   padding-left: 40px;
   padding-right: 40px;
@@ -281,23 +261,6 @@ div.legal {
   padding-top: 40px;
 }
 
-.form-group {
-    div {
-        padding: 0px;
-    }
-    input[type=text], input[type=email], input[type=password] {
-        color: #777;
-        width: 100%;
-        max-width: 300px;
-        margin-top: 5px;
-    }
-    select {
-        width: 200px;
-        margin-top: 5px;
-    }
-
-
-}
 #card-element {
   background-color: #fff;
   width: 100%;
@@ -377,9 +340,6 @@ div.profile {
   padding-top: 0px;
   margin-left: 2px;
 }
-.stripe-form-group {
-  margin-bottom: 0px;
-}
 .embed-container-wrapper { 
   max-height: 600px;
   padding-top: 20px;
@@ -415,17 +375,6 @@ div.profile {
   .dropdown-toggle {
     text-align: right;
   }
-  .form-group {
-    input {
-        float: left;
-    }
-    .padding-top {
-        padding-top: 13px;
-    }
-    button {
-        float: left;
-    }
-  }
   #current-card {
     text-align: left;
   }
@@ -441,18 +390,6 @@ div.profile {
     margin-bottom: 3px;
   }
 
-  .form-group {
-      select, input {
-        display: inline;
-        margin: 0 auto;
-      }
-      #card-element {
-        margin: 0 auto;
-      }
-      div {
-        text-align: center;
-      }
-  }
   #card-errors {
     margin-left: 0px;
   }
@@ -477,9 +414,6 @@ div.profile {
     margin-bottom: 5px;
   }
 }
-td.form.select {
-    padding: 3px;
-} 
 .plan .row {
     margin-left: 15px;
     margin-right: 15px;
@@ -548,12 +482,6 @@ div.trust {
 ul.trust {
   text-align: left;
   margin: 0 auto;
-}
-.form-horizontal.giftcard .control-label {
-  padding-top: 12px;
-}
-.form-horizontal.giftcard textarea {
-  width: 200px;
 }
 .gift_cards-new {
   table {
