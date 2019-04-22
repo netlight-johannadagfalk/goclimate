@@ -19,29 +19,44 @@
 
           <h1 class="cover-heading content-section">Din order</h1>
 
-          <table class="table content-section">
-            <tr>
-              <th>Klimatkompensation för flyg</th>
-              <th></th>
-            </tr>
-            <tr>
-                <td>
-                  <% @offset_params.segments.each do |segment| %>
-                    - <%= Airport.find(segment.origin).name %> - <%= Airport.find(segment.destination).name %></br>
-                  <% end %>
-                  Cabin class: <%= @offset_params.cabin_class %></br>
-                  Antal personer: <%= @num_persons %>
-                </td>
-                <td></td>
+          <table class="content-section flight-offset-details">
+            <tbody>
+              <tr class="flight-offset-details__key-row">
+                <td colspan="2">Flyg i biljettklass <%= @offset_params.cabin_class %></th>
               </tr>
-            <tr>
-              <td class="total">Total:</td>
-              <td class="total"><%= co2e_string(@total_footprint) %></td>
-            </tr>
-            <tr>
-              <td class="total">Summa:</td>
-              <td class="total"><%= (@price / 100).to_i %> SEK</td>
-            </tr>
+              <tr>
+                <td colspan="2">
+                  <ul class="flight-offset-details__segments">
+                    <% @offset_params.segments.each do |segment| %>
+                      <li>
+                        <%= Airport.find(segment.origin).name %> -
+                        <%= Airport.find(segment.destination).name %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </td>
+              </tr>
+              <tr class="flight-offset-details__key-row">
+                <td>Klimatavtryck:</td>
+                <td>
+                  <%= co2e_string(@footprint.footprint) %>/person
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>
+                  Total <% if @num_persons > 1 %>(<%= @num_persons %> personer)<% end %>:
+                </td>
+                <td>
+                  <%= co2e_string(@total_footprint) %>
+                </td>
+              </tr>
+              <tr class="flight-offset-details__key-row">
+                <td>Summa:</td>
+                <td><%= (@price / 100).to_i %> kr</td>
+              </tr>
+            </tfoot>
           </table>
 
           <div class="panel panel-default panel-full-width content-section">
@@ -79,7 +94,7 @@
         <%= hidden_field_tag :num_persons, params[:num_persons] %>
 
         <div class="form-group">
-          <label for="footprint" class="col-sm-5 control-label padding-top">Din beställning</label>
+          <label for="footprint" class="col-sm-5 control-label padding-top">Din order</label>
           <div class="col-sm-7 padding-top">
             <%= co2e_string(@total_footprint) %>
           </div>
@@ -88,7 +103,7 @@
         <div class="form-group">
           <label for="price" class="col-sm-5 control-label padding-top">Summa</label>
           <div class="col-sm-7 padding-top">
-             <%= (@price / 100).to_i %> SEK
+             <%= (@price / 100).to_i %> kr
           </div>
         </div>
 
