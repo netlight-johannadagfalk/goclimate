@@ -44,14 +44,6 @@ hr {
 input { 
     text-align: left;
 }
-.btn-default,
-.btn-default:hover,
-.btn-default:focus {
-  color: #333;
-  text-shadow: none; /* Prevent inheritance from `body` */
-  background-color: #fff;
-  border: 1px solid #fff;
-}
 .btn-social {
   width: 242px;
 }
@@ -76,6 +68,10 @@ input {
   &--with-grid {
     padding-left: 0;
     padding-right: 0;
+  }
+
+  &--bottom-padding {
+    padding-bottom: 150px;
   }
 }
 
