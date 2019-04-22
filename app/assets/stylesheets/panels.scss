@@ -7,6 +7,12 @@
   &.panel-full-width {
     max-width: 100%;
   }
+
+  &.panel-left-align {
+    &, .panel-body {
+      text-align: left;
+    }
+  }
 }
 .panel-body {
   text-align: center;
