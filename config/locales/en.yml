@@ -35,7 +35,6 @@ en:
   questions_or_comments_contact_us: Questions or Comments? Please drop us a line at
   general_questions_html: 'For questions about GoClimateNeutral or if you have ideas on how we can improve the site, please drop us a line at <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a> or give us a call at <a href="tel:+46706084374">+46706084374</a>.'
   general_questions_press_html: If you have PR-related questions send us an email at <a href="mailto:press@goclimateneutral.org">press@goclimateneutral.org</a>
-  general_questions_payments_html: If you have any questions about payments och technology-reletad questions, email us at <a href="mailto:payments@goclimateneutral.org">payments@goclimateneutral.org</a>
   general_questions_facebook_html: 'You can find us on Facebook here: <a href="https://www.facebook.com/GoClimateNeutral" target="_blank">GoClimateNeutral</a>'
   general_questions_twitter_html: 'You can find us on twitter here: <a href="https://twitter.com/goclimateneutrl" target="_blank">@goclimateneutrl</a>'
   about_us: About us
@@ -483,13 +482,10 @@ en:
           one: 1 climate neutral month
           other: "%{count} climate neutral months"
         about_go_climate_neutral:
-          <a href='http://GoClimateNeutral.org'>GoClimateNeutral.org</a> supports climate projects and gives inspiration and
-          advice on how to reduce your climate footprint. The projects you support are UN-certified climate projects
-          (CDM) that are also Gold Standard-certified, supported by all the members of the UN and 80 different
-          environmental NGOs - among them WWF. Together, we contribute to stopping climate change and save the world.
-        calculation_based_on_html: "Calculation based on an average climate footprint of 11 ton CO<sub>2</sub>eq per person and year"
-        do_you_want_to_continue: Do you want to continue living a climate neutral life after the gift card has expired?
-        register: Come to <a href="http://goclimateneutral.org">GoClimateNeutral.org</a> and register!
+          <a href='http://GoClimateNeutral.org'>GoClimateNeutral</a> supports climate projects and gives inspiration and advice on how to reduce your climate footprint. All supported projects are found within the framework of UN (CDM) and certified by Gold Standard, established by WWF and about 80 other international NGOs. Together we contribute to stop climate change and save the world!
+        calculation_based_on_html: "Calculation based on the average climate footprint of 11 tonnes CO<sub>2</sub>eq per person and year x 2."
+        do_you_want_to_continue: If you want to continue living a climate neutral life after this gift card has expired,
+        register: visit <a href="http://goclimateneutral.org">GoClimateNeutral.org</a> and register!
       example:
         message_html: "Hi Mom,\nDoesn't it feel great to help the climate?\nEnjoy this gift! /Lisa"
         example: "Example"

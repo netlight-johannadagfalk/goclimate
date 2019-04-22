@@ -10,8 +10,8 @@ class Airport
   @airports = {}
 
   def self.import!
-    # data comes from https://datahub.io/core/airport-codes#data
-    @airports = CSV.read('config/airports-ourairports.com.csv')
+    # Update this file with `rake update_airports_csv`
+    @airports = CSV.read('config/airports.csv', headers: true)
                    .map { |line| from_csv(line) }
                    .compact
                    .to_h { |airport| [airport.iata_code, airport] }
@@ -22,13 +22,14 @@ class Airport
   end
 
   def self.from_csv(line)
-    new(line[13], line[3], line[4].to_f, line[5].to_f) unless line[2] == 'closed'
+    new(line['iata_code'], line['name'], line['name_sv'], line['latitude'].to_f, line['longitude'].to_f)
   end
   private_class_method :from_csv
 
-  def initialize(iata_code, name, latitude, longitude)
+  def initialize(iata_code, name, name_sv, latitude, longitude)
     @iata_code = iata_code
     @name = name
+    @name_sv = name_sv
     @latitude = latitude
     @longitude = longitude
   end
@@ -38,6 +39,10 @@ class Airport
       latitude, longitude,
       other.latitude, other.longitude
     ).to_kilometers.round
+  end
+
+  def name_sv
+    @name_sv.presence || name
   end
 end
 
