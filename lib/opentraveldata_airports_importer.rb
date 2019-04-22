@@ -28,7 +28,7 @@ class OpentraveldataAirportsImporter
     # characters. CSV doesn't allow setting quote_char to nil, so use $ which
     # is hopefully unlikely as a name.
     @por_public_airports ||= CSV.parse(@por_public_csv, headers: true, col_sep: '^', quote_char: '$')
-                                .select { |line| line['fcode'] == 'AIRP' || line['fcode'] == 'AIRF' }
+                                .select { |line| %w[AIRP AIRF AIRQ].include?(line['fcode']) }
   end
 
   def parse_swedish_name(alt_name_section)
