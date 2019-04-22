@@ -1,7 +1,6 @@
 
         <div class="form-group">
-          <div class="col-sm-1"></div>
-          <label for="plan" class="col-sm-4 control-label padding-top"><%=t 'climate_plan' %></label>
+          <label for="plan" class="col-sm-offset-1 col-sm-4 control-label padding-top"><%=t 'climate_plan' %></label>
           <div class="col-sm-4">
             <select id="plan" name="user[plan]" class="form-control input-sm">
               <% if current_page?(controller: 'subscriptions', action: 'show') %>

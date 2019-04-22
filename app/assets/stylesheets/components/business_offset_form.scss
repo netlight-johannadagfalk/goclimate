@@ -1,9 +1,4 @@
 .businesses {
-  input.form-control {
-    float: none;
-    text-align: center;
-    margin: 0 auto;
-  }
   div.button {
     float: none;
     text-align: center;
@@ -15,10 +10,10 @@
   p.big-number {
     line-height: 150%;
   }
-  .site-wrapper-inner.company-logos {
+  .company-logos {
     min-height: 0px;
   }
-  .site-wrapper-inner.company-logos .glyphicon {
+  .company-logos .glyphicon {
     padding-top: 0px;
   }
   .big-number {

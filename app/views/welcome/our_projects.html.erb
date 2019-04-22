@@ -1,76 +1,73 @@
-      <div class="site-wrapper-inner site-wrapper-first">
+<div class="site-wrapper-first">
+  <%= render "shared/header" %>
+  <div class="inner">
 
-        <div class="cover-container">
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    <h1 class="cover-heading"><%=t 'our_investments_in_climate_projects' %></h1>
+    <p class="lead"><%=t 'our_investments_in_climate_projects_intro_html' %></p>
 
-          <%= render "shared/header" %>
+  </div>
+</div>
 
-          <div class="inner cover">
-            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-            <h1 class="cover-heading"><%=t 'our_investments_in_climate_projects' %></h1>
-            <p class="lead"><%=t 'our_investments_in_climate_projects_intro_html' %></p>
+<div class="site-wrapper-second">
+  <div class="inner">
+
+    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+    <div class="row stats offset-projects">
+        <div class="col-md-12">
+            <h1 class="cover-heading"><%=t 'climate_project_we_have_invested_in' %></h1>
+            <div class="table-responsive">
+              <table class="table table-striped our-projects">
+                <tbody>
+                <tr>
+                  <th></th>
+                  <th><%=t 'project_name' %></th>
+                  <th><%=t 'country' %></th>
+                  <th><%=t 'map' %></th>
+                  <th><%=t 'our_investment_certificate' %></th>
+                  <th><%=t 'date_of_our_investment' %></th>
+                  <th><%=t 'project_certification' %></th>
+                  <th><%= t('tonnes_CO2').upcase_first %></th>
+                  <th><%=t 'more_info_on_blog' %></th>
+                </tr>
+                <% @projects.each do |project| %>
+                <tr>
+                  <td><%= image_tag project.image_url, height: "50", alt: "" %></td>
+                  <td><a href ="<%= project.blog_url %>"><%= project.name %></a></td>
+                  <td><%= project.country %></td>
+                  <td><a href="https://www.google.com/maps?z=15&t=k&q=loc:<%= project.latitude %>+<%= project.longitude %>" target="_blank">Google Maps</a></td>
+                  <% if project.certificate_url.nil? || project.certificate_url.empty? %>
+                    <td>-</td>
+                  <% else %>
+                    <td><a href="<%= project.certificate_url %>"><%=t 'certificate' %></a></td>
+                  <% end %>
+                  <td><%= project.date_bought.to_date %></td>
+                  <td><%= project.offset_type %><span class="glyphicon glyphicon-question-sign certification-info-helper" data-html="true" aria-hidden="true" data-toggle="popover" data-container="body" title="<%=t 'project_certification' %>" data-placement="auto down" data-content="<%=t 'project_certification_info_html' %>"></span></td>
+                  <td><%= project.carbon_offset %></td>
+                  <td><a href ="<%= project.blog_url %>"><%=t 'read_more' %></a></td>
+                </tr>
+                </tbody>
+              <% end %>
+            </table>
           </div>
         </div>
-      </div>
+    </div>
 
-      <div class="site-wrapper-inner site-wrapper-second">
-        <div class="cover-container">
-          <div class="inner cover">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            <div class="row stats offset-projects">
-                <div class="col-md-12">
-                    <h1 class="cover-heading"><%=t 'climate_project_we_have_invested_in' %></h1>
-                    <div class="table-responsive">
-                      <table class="table table-striped our-projects">
-                        <tbody>
-                        <tr>
-                          <th></th>
-                          <th><%=t 'project_name' %></th>
-                          <th><%=t 'country' %></th>
-                          <th><%=t 'map' %></th>
-                          <th><%=t 'our_investment_certificate' %></th>
-                          <th><%=t 'date_of_our_investment' %></th>
-                          <th><%=t 'project_certification' %></th>
-                          <th><%= t('tonnes_CO2').upcase_first %></th>
-                          <th><%=t 'more_info_on_blog' %></th>
-                        </tr>
-                        <% @projects.each do |project| %>  
-                        <tr>
-                          <td><%= image_tag project.image_url, height: "50", alt: "" %></td>
-                          <td><a href ="<%= project.blog_url %>"><%= project.name %></a></td>
-                          <td><%= project.country %></td>
-                          <td><a href="https://www.google.com/maps?z=15&t=k&q=loc:<%= project.latitude %>+<%= project.longitude %>" target="_blank">Google Maps</a></td>
-                          <% if project.certificate_url.nil? || project.certificate_url.empty? %>
-                            <td>-</td>
-                          <% else %>
-                            <td><a href="<%= project.certificate_url %>"><%=t 'certificate' %></a></td>
-                          <% end %>
-                          <td><%= project.date_bought.to_date %></td>
-                          <td><%= project.offset_type %><span class="glyphicon glyphicon-question-sign certification-info-helper" data-html="true" aria-hidden="true" data-toggle="popover" data-container="body" title="<%=t 'project_certification' %>" data-placement="auto down" data-content="<%=t 'project_certification_info_html' %>"></span></td>
-                          <td><%= project.carbon_offset %></td>
-                          <td><a href ="<%= project.blog_url %>"><%=t 'read_more' %></a></td>
-                        </tr>
-                        </tbody>
-                      <% end %>
-                    </table>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  </div>
+</div>
 
-      <div id="second-section" class="site-wrapper-inner site-wrapper-third">
-        <div class="cover-container">
-          <div class="inner cover">
-          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            <h1 class="cover-heading"><%=t 'we_are_100_transparent' %></h1>
-            <p class="lead"><%=t 'section_3_text' %></p>
-            <p class="lead lead-btn">
-              <a href="/#choose-plan" class="btn btn-lg btn-success"><%=t 'i_want_to_contribute' %></a>
-            </p>
-          </div>
-        </div>
-      </div>
+<div id="second-section" class="site-wrapper-third">
+  <div class="inner">
+
+    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+    <h1 class="cover-heading"><%=t 'we_are_100_transparent' %></h1>
+    <p class="lead"><%=t 'section_3_text' %></p>
+    <p class="lead lead-btn">
+      <a href="/#choose-plan" class="btn btn-lg btn-success"><%=t 'i_want_to_contribute' %></a>
+    </p>
+
+  </div>
+</div>
 
 <%= render "shared/footer" %>
 

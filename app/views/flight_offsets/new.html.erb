@@ -1,130 +1,147 @@
-<div class="site-wrapper-inner site-wrapper-first">
-  <div class="cover-container">
-    <%= render "shared/header" %>
-    <div class="inner cover">
-      <span class="green-leaf"><%= image_tag 'green.svg' %></span>
-      <h1 class="cover-heading">Klimatkompensera din flygresa</h1>
-      <p class="lead">Att klimatkompensera är att ta ansvar för din klimatpåverkan. Tillsammans med Blocket erbjuder vi möjligheten att klimatkompensera din flygresa i certifierade klimatprojekt.</p>
-    </div>
-    <span class="glyphicon glyphicon-chevron-down first" aria-hidden="true"></span>
+<div class="site-wrapper-first">
+  <%= render "shared/header" %>
+  <div class="inner">
+
+    <span class="green-leaf"><%= image_tag 'green.svg', style: 'width: 100px' %></span>
+    <h1 class="cover-heading">Klimatkompensera din flygresa</h1>
+    <p class="lead">
+      Att klimatkompensera är att ta ansvar för ditt klimatavtryck.
+      Tillsammans med Blocket erbjuder vi möjligheten att klimatkompensera för din flygresa.
+    </p>
   </div>
+  <span class="glyphicon glyphicon-chevron-down first" aria-hidden="true"></span>
 </div>
 
-<div class="site-wrapper-inner site-wrapper-second">
-  <div class="cover-container">
-    <div class="inner cover">
-      <h1 class="cover-heading">Din order</h1>
-      <p class="lead"></p>
-        <table class="table">
-          <tr>
-            <th>Klimatkompensation för flyg</th>
-            <th></th>
-          </tr>
-          <tr>
-              <td>
-                <% @offset_params.segments.each do |segment| %>
-                  - <%= Airport.find(segment.origin).name_sv %> - <%= Airport.find(segment.destination).name_sv %></br>
-                <% end %>
-                Cabin class: <%= @offset_params.cabin_class %></br>
-                Antal personer: <%= @num_persons %>
-              </td>
-              <td></td>
-            </tr>
-          <tr>
-            <td class="total">Total:</td>
-            <td class="total"><%= co2e_string(@total_footprint) %></td>
-          </tr>
-          <tr>
-            <td class="total">Summa:</td>
-            <td class="total"><%= (@price / 100).to_i %> SEK</td>
-          </tr>
-        </table>
-
-      </div>
-
-      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingOne">
-          <h4 class="panel-title">
-            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              <h4>Hit går pengarna</h4>
-            </a>
-          </h4>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-          <div class="panel-body">
-            Vi investerar i tredjepartsgranskade och FN-certifierade klimatprojekt med den extra certifieringen Gold Standard. Här är våra två senaste projekt.
-              <div class="row projects">
-                <% @projects.each do |project| %>
-                  <div class="col-sm-6">
-                    <div class="crop">
-                      <%= image_tag project.image_url, class: 'img-circle', alt: '' %>
-                    </div>
-                    <div class="project-info">
-                      <a href="<%= project.blog_url %>"><%= project.name %></a>
-                      <br>
-                      <%= project.carbon_offset %> ton koldioxid
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="site-wrapper-second">
+  <div class="inner inner--with-grid">
+    <div class="container">
 
       <div class="row">
-        <%= form_tag(flight_offsets_path, id: "payment-form", class: "form-horizontal") do %>
-          <%= hidden_field_tag :co2e, @total_footprint %>
-          <%= hidden_field_tag :amount, @price %>
-          <%= hidden_field_tag :currency, 'sek' %>
-          <%= hidden_field_tag :offset_params, params[:offset_params] %>
-          <%= hidden_field_tag :num_persons, params[:num_persons] %>
+        <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
 
-          <div class="form-group">
-            <label for="footprint" class="col-sm-offset-1 col-sm-4 control-label padding-top">Din beställning</label>
-            <div class="col-sm-4 padding-top">
-              <%= co2e_string(@total_footprint) %>
+          <h1 class="cover-heading content-section">Din order</h1>
+
+          <table class="content-section flight-offset-details">
+            <tbody>
+              <tr class="flight-offset-details__key-row">
+                <td colspan="2">Flyg i biljettklass <%= @offset_params.cabin_class %></th>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <ul class="flight-offset-details__segments">
+                    <% @offset_params.segments.each do |segment| %>
+                      <li>
+                        <%= Airport.find(segment.origin).name %> -
+                        <%= Airport.find(segment.destination).name %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </td>
+              </tr>
+              <tr class="flight-offset-details__key-row">
+                <td>Klimatavtryck:</td>
+                <td>
+                  <%= co2e_string(@footprint.footprint) %>/person
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>
+                  Total <% if @num_persons > 1 %>(<%= @num_persons %> personer)<% end %>:
+                </td>
+                <td>
+                  <%= co2e_string(@total_footprint) %>
+                </td>
+              </tr>
+              <tr class="flight-offset-details__key-row">
+                <td>Summa:</td>
+                <td><%= (@price / 100).to_i %> kr</td>
+              </tr>
+            </tfoot>
+          </table>
+
+          <div class="panel panel-default panel-full-width panel-left-align content-section">
+            <div class="panel-heading">
+              <h4 class="panel-title">Hit går pengarna</h4>
+            </div>
+            <div class="panel-body">
+              <p>
+                Vi investerar i tredjepartsgranskade och FN-certifierade
+                klimatprojekt med den extra certifieringen Gold Standard.
+                Projekten minskar utsläpp motsvarande din flygresas
+                klimatavtryck och bidrar till den globala omställningen till
+                förnyelsebar energiproduktion. Här är våra två senaste projekt.
+              </p> <div class="projects-teaser">
+                <div class="projects-teaser__project-container">
+                  <% @projects.each do |project| %>
+                    <div class="projects-teaser__project">
+                      <div class="projects-teaser__project-image" style="background-image: url('<%= project.image_url %>')">
+                      </div>
+                      <div class="projects-teaser__project-info">
+                        <p><strong><%= project.name %></strong></p>
+                        <p><%= project.carbon_offset %> ton koldioxid</p>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+                <p class="projects-teaser__all-projects-link"><%= link_to 'Se alla våra projekt', our_projects_path %></p>
+              </div>
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="price" class="col-sm-offset-1 col-sm-4 control-label padding-top">Summa</label>
-            <div class="col-sm-4 padding-top">
-               <%= (@price / 100).to_i %> SEK
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="email" class="col-sm-offset-1 col-sm-4 control-label padding-top">E-post</label>
-            <div class="col-sm-4">
-              <%= email_field_tag :email, @offset&.email, class: 'form-control', required: '' %>
-            </div>
-          </div>
-
-          <div class="form-group stripe-form-group">
-            <label for="card-element" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'credit_or_debit_card' %></label>
-            <div id="card-element" class="col-sm-4 form-control">
-            <!-- a Stripe Element will be inserted here. -->
-            </div>
-          </div>
-
-          <div id="card-errors">
-            <%= @checkout.errors.values.join(', ') if @checkout&.errors&.any? %>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-offset-5 col-sm-4 "><span class="glyphicon glyphicon glyphicon-lock secured-by-stripe" aria-hidden="true"></span>Secured by Stripe</div>
-          </div>
-
-
-          <div class="form-group">
-            <div class="col-sm-offset-5 col-sm-3">
-            <input id="register-button" type="submit" value="Klimatkompensera" class="btn btn-success">
-            </div>
-          </div>
-        <% end %>
+        </div>
       </div>
+
+      <%= form_tag(flight_offsets_path, id: "payment-form", class: "form-horizontal") do %>
+        <%= hidden_field_tag :co2e, @total_footprint %>
+        <%= hidden_field_tag :amount, @price %>
+        <%= hidden_field_tag :currency, 'sek' %>
+        <%= hidden_field_tag :offset_params, params[:offset_params] %>
+        <%= hidden_field_tag :num_persons, params[:num_persons] %>
+
+        <div class="form-group">
+          <label for="footprint" class="col-sm-5 control-label padding-top">Din order</label>
+          <div class="col-sm-7 padding-top">
+            <%= co2e_string(@total_footprint) %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="price" class="col-sm-5 control-label padding-top">Summa</label>
+          <div class="col-sm-7 padding-top">
+             <%= (@price / 100).to_i %> kr
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="col-sm-5 control-label padding-top">E-post</label>
+          <div class="col-sm-7">
+            <%= email_field_tag :email, @offset&.email, class: 'form-control', required: '' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="card-element" class="col-sm-5 control-label"><%=t 'credit_or_debit_card' %></label>
+          <div class="col-sm-7">
+            <div id="card-element" class="form-control">
+              <!-- a Stripe Element will be inserted here. -->
+            </div>
+            <span class="glyphicon glyphicon glyphicon-lock secured-by-stripe" aria-hidden="true"></span>Secured by Stripe
+          </div>
+        </div>
+
+        <div id="card-errors">
+          <%= @checkout.errors.values.join(', ') if @checkout&.errors&.any? %>
+        </div>
+
+        <div class="form-group form-group-sm-centered">
+          <div class="col-sm-offset-5 col-sm-7">
+            <input id="register-button" type="submit" value="Klimatkompensera" class="btn btn-success">
+          </div>
+        </div>
+      <% end %>
+
     </div>
   </div>
 </div>

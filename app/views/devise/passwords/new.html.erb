@@ -1,35 +1,30 @@
+<div class="site-wrapper-first">
+  <%= render "shared/header" %>
+  <div class="inner">
 
-<div class="site-wrapper-inner solo-inner-wrapper site-wrapper-first">
-  <div class="cover-container">
-    <%= render "shared/header" %>
-    <div class="inner cover">
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    <h1 class="cover-heading"><%=t 'forgot_your_password' %></h1>
+    <p class="lead"><%=t 'enter_your_email_below_and_we_will_send_you' %></p>
 
-      <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-      <h1 class="cover-heading"><%=t 'forgot_your_password' %></h1>
-      <p class="lead"><%=t 'enter_your_email_below_and_we_will_send_you' %></p>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-horizontal" }) do |f| %>
+      <%= devise_error_messages! %>
 
-
-	<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-horizontal" }) do |f| %>
-		<%= devise_error_messages! %>
-
-		<div class="form-group">
-		  <div class="col-sm-1"></div>
-		  <label for="email" class="col-sm-4 control-label padding-top"><%=t 'email' %></label>
-		  <div class="col-sm-4">
-		    <%= f.email_field :email, autofocus: true, id: "email", class: "form-control" %>
-		  </div>
-		</div>
+      <div class="form-group">
+        <div class="col-sm-1"></div>
+        <label for="email" class="col-sm-4 control-label padding-top"><%=t 'email' %></label>
+        <div class="col-sm-4">
+          <%= f.email_field :email, autofocus: true, id: "email", class: "form-control" %>
+        </div>
+      </div>
 
 
-		<div class="form-group">
-		  <div class="col-sm-offset-5 col-sm-4">
-		    <button type="submit" class="btn btn-success sign-in"><%=t 'send_me_an_email_with_instructions' %></button>
-		  </div>
-		</div>
-
+      <div class="form-group">
+        <div class="col-sm-offset-5 col-sm-4">
+          <button type="submit" class="btn btn-success sign-in"><%=t 'send_me_an_email_with_instructions' %></button>
+        </div>
+      </div>
     <% end %>
 
-    </div>
   </div>
 </div>
 

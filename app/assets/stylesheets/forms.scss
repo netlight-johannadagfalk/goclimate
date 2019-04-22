@@ -1,0 +1,87 @@
+.form {
+  padding: 3.5px;
+}
+
+.form-tonnes {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.checkbox {
+  text-align: left;
+}
+
+.form-group .checkbox input {
+  margin-left: 0px;
+  width: auto;
+  margin-top: 4px;
+}
+
+.form-group {
+  text-align: left;
+}
+
+.form-horizontal {
+  margin-top: 40px;
+}
+
+.form-group {
+  input[type=text], input[type=email], input[type=password] {
+    color: #777;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 5px;
+  }
+
+  select {
+    width: 200px;
+    margin-top: 5px;
+  }
+
+  @media (min-width: 768px) {
+    input {
+      float: left;
+    }
+
+    .padding-top {
+      padding-top: 13px;
+    }
+
+    button {
+      float: left;
+    }
+  }
+
+  @media (max-width: 767px) {
+    select, input {
+      display: inline;
+      margin: 0 auto;
+    }
+
+    #card-element {
+      margin: 0 auto;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .form-control {
+    max-width: 100% !important;
+  }
+
+  .form-group-sm-centered {
+    text-align: center;
+  }
+}
+
+td.form.select {
+  padding: 3px;
+} 
+
+/* Gift cards */
+.form-horizontal.giftcard .control-label {
+  padding-top: 12px;
+}
+.form-horizontal.giftcard textarea {
+  width: 200px;
+}

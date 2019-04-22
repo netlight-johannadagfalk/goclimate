@@ -12,13 +12,18 @@
  *
  *= require_self
  *= require font-awesome
+ *= require type
+ *= require panels
+ *= require forms
+ *= require layout/content_section
  *= require components/impact_calculator_fields
  *= require components/navbar_goclimateneutral
  *= require components/gift_cards_intro
  *= require components/registrations_signup_form
  *= require components/business_offset_form
  *= require components/receipts
- *= require components/flight_offset_form
+ *= require components/flight_offset_details
+ *= require components/projects_teaser
 
  *= require bootstrap-social
  */
@@ -26,24 +31,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-a,
-a:focus,
-a:hover {
-  color: #333;
-}
 html,
 body {
   height: 100%;
-}
-body {
-  color: #444444;
-  text-align: center;
-  font-family: 'Raleway', sans-serif;
-}
-p {
-    line-height: 200%;
-    margin: 0 auto;
-    max-width: 600px;
 }
 p.lead-btn, p.alert, p.warning, p.info, p.notice {
    max-width: none;
@@ -53,14 +43,6 @@ hr {
 }
 input { 
     text-align: left;
-}
-.btn-default,
-.btn-default:hover,
-.btn-default:focus {
-  color: #333;
-  text-shadow: none; /* Prevent inheritance from `body` */
-  background-color: #fff;
-  border: 1px solid #fff;
 }
 .btn-social {
   width: 242px;
@@ -76,14 +58,23 @@ input {
   display: table-cell;
   vertical-align: top;
 }
-.cover-container {
-  margin-right: auto;
-  margin-left: auto;
-}
+
 .inner {
-  padding: 50px 30px;
+  padding: 40px 15px;
   overflow: hidden; /* Respect height for floating children */
+
+  /* Simpler would be if all inner:s just had grids in them, but changing all
+   * pages is something best done in steps */
+  &--with-grid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &--bottom-padding {
+    padding-bottom: 150px;
+  }
 }
+
 ul.nav.nav-tabs li.active a {
   background-color: #edf7f6;
   border-bottom-color: #edf7f6;
@@ -128,9 +119,6 @@ div.legal {
   color: red;
   margin-bottom: 10px;
 }
-.field_with_errors {
-  text-align: left;
-}
 .field_with_errors .message {
   color: red;
 }
@@ -143,38 +131,10 @@ div.legal {
 .btn-social {
   margin-bottom: 20px;
 }
-.panel.questions-list {
-  padding: 50px;
-  margin-bottom: 50px;
-}
-.cover .btn-lg {
-  padding: 10px 20px;
-  font-weight: bold;
-}
 .site-wrapper {
     min-height: 100vh;
     display: table;
     width: 100%;
-}
-.site-wrapper-inner {
-    min-height: 70vh;
-}
-.site-wrapper-inner.solo-inner-wrapper {
-    min-height: 100vh;
-    height: 100%;
-}
-.solo-inner-wrapper {
-    .cover-container {
-        min-height: 100vh;
-        height: 100%;
-    }
-    .mastfoot {
-        margin-top: -58px;
-        background-color: transparent;
-    }
-}
-.solo-inner-wrapper .cover {
-  padding: 0px 20px;
 }
 .site-wrapper-first {
   background-color: #f3f9f9;
@@ -223,31 +183,19 @@ div.legal {
 .welcome-plan table.table {
   margin-bottom: 0px;
 }
-.form {
-  padding: 3.5px;
-}
-.form-tonnes {
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-.checkbox {
-  text-align: left;
-}
-.form-group .checkbox input {
-  margin-left: 0px;
-  width: auto;
-  margin-top: 4px;
-}
-.form-group div {
-  text-align: left;
-}
+
+/* Glyphicon chevron overrides */
 .site-wrapper .glyphicon-chevron-down, .site-wrapper .glyphicon-chevron-right, .site-wrapper .glyphicon-chevron-left {
   font-size: 40px;
 }
 .site-wrapper .glyphicon-chevron-down {
   padding-top: 110px;
-  width: 23px;
   text-align: left;  
+}
+@media (max-width: 767px) {
+  .site-wrapper .glyphicon-chevron-down {
+    padding-top: 0;
+  }
 }
 .site-wrapper .glyphicon-chevron-down.after-video {
   padding-top: 20px;
@@ -255,6 +203,7 @@ div.legal {
 .site-wrapper .glyphicon-chevron-down.glyphicon-plan-first {
     padding-top: 0px;
 }
+
 .welcome .lead-btn.more-info {
   padding-top: 0px;
   padding-bottom: 0px;
@@ -277,9 +226,6 @@ div.legal {
 .glyphicon.steps {
   font-size: 100px;
 }
-.form-horizontal {
-    margin-top: 40px;
-}
 .modal-content h3 {
   padding-left: 40px;
   padding-right: 40px;
@@ -288,7 +234,7 @@ div.legal {
   padding-left: 40px;
   padding-right: 40px;
 }
-.dashboard .cover-container h3 {
+.dashboard .site-wrapper-first h3 {
   padding: 20px;
 }
 .row.stats.last {
@@ -304,29 +250,13 @@ div.legal {
   padding-top: 40px;
 }
 
-.form-group {
-    div {
-        padding: 0px;
-    }
-    input[type=text], input[type=email], input[type=password] {
-        color: #777;
-        width: 200px;
-        margin-top: 5px;
-    }
-    select {
-        width: 200px;
-        margin-top: 5px;
-    }
-
-
-}
 #card-element {
-    background-color: #fff;
-    width: 300px;
-    padding-left: 10px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 300px;
+  padding: 0 0 0 12px;
 }
 #current-card {
-  margin-left: -13px;
   padding-top: 10px;
 }
 #current-card a {
@@ -369,19 +299,9 @@ div.legal {
 .blog_investment_link {
   margin-top: 40px;
 }
-.faq .panel img {
-  width: 100%;
-  height: 100%;
-}
 input#plan {
     margin-top: 0px;
     width: 75px;
-}
-p.lead.last {
-    padding-bottom: 60px;
-}
-p.lead a {
-  font-weight: bold;
 }
 .registrations-edit {
     .form-group input { 
@@ -398,9 +318,6 @@ p.lead a {
 .mastfoot .inner {
     padding: 15px;
 } 
-.lead.last-text {
-  margin-top: 40px;
-}
 div.profile {
   padding-bottom: 40px;
 }
@@ -408,11 +325,8 @@ div.profile {
   font-size: 13px;
   color: #777777;
   margin-right: 6px;
-  padding-top: 0px;
+  padding-top: 8px;
   margin-left: 2px;
-}
-.stripe-form-group {
-  margin-bottom: 0px;
 }
 .embed-container-wrapper { 
   max-height: 600px;
@@ -442,35 +356,12 @@ div.profile {
   .mastfoot {
     bottom: 0;
   }
-  /* Start the vertical centering */
-  .site-wrapper-inner {
-    vertical-align: middle;
-  }
-  /* Handle the widths */
-  .mastfoot,
-  .cover-container {
-    width: 100%; /* Must be percentage or pixels for horizontal alignment */
-  }
   .glyphicon-grain {
     padding-top: 80px;
     padding-bottom: 30px;
   }
   .dropdown-toggle {
     text-align: right;
-  }
-  .form-group {
-    input {
-        float: left;
-    }
-    .padding-top {
-        padding-top: 13px;
-    }
-    button {
-        float: left;
-    }
-  }
-  .faq .panel {
-    max-width: 600px;
   }
   #current-card {
     text-align: left;
@@ -482,75 +373,35 @@ div.profile {
     display: none;
   }
 }
-@media (max-width: 768px) {
-    .site-wrapper-first .inner {
-      padding: 0px 30px;
-    }
-    .nav > li > a > img {
-      margin-bottom: 3px;
-    }
+@media (max-width: 767px) {
+  .nav > li > a > img {
+    margin-bottom: 3px;
+  }
 
-    .form-group {
-        select, input {
-          display: inline;
-          margin: 0 auto;
-        }
-        #card-element {
-          margin: 0 auto;
-          width: 300px;
-        }
-        div {
-          text-align: center;
-        }
-    }
-    #card-errors {
-      margin-left: 0px;
-    }
-    .share-buttons {
-      width: auto;
-    }
-    .faq .panel {
-      max-width: 300px;
-    }
-    table.our-projects {
-      width: 270px;
-      display: block;
-    }
-    .carousel-inner p {
-      line-height: 110%;
-    }
-    .carousel-inner img.small {
-      display: none;
-    }
-    .carousel-inner img.big {
-      display: block;
-    }
-    .welcome .stats h1.big-number {
-      font-size: 60px;
-      margin-bottom: 5px;
-    }
-}
-td.form.select {
-    padding: 3px;
-} 
-.faq {
-  .panel-group {
-    margin-top: 40px;
+  #card-errors {
+    margin-left: 0px;
   }
-  .panel {
-    text-align: left;
+  .share-buttons {
+    width: auto;
   }
-  .panel-body {
-    text-align: left;
+  table.our-projects {
+    width: 270px;
+    display: block;
+  }
+  .carousel-inner p {
+    line-height: 110%;
+  }
+  .carousel-inner img.small {
+    display: none;
+  }
+  .carousel-inner img.big {
+    display: block;
+  }
+  .welcome .stats h1.big-number {
+    font-size: 60px;
+    margin-bottom: 5px;
   }
 }
-.panel {
-    text-align: center;
-    max-width: 300px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-}
-.panel:hover { box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 1px 5px rgba(130, 130, 130, 0.35); }
 .plan .row {
     margin-left: 15px;
     margin-right: 15px;
@@ -558,9 +409,6 @@ td.form.select {
 .plan .col-md-3 {
     padding-left: 10px;
     padding-right: 10px;
-}
-.panel-body {
-    text-align: center;
 }
 #price-info-helper span {
     cursor: pointer;
@@ -622,12 +470,6 @@ div.trust {
 ul.trust {
   text-align: left;
   margin: 0 auto;
-}
-.form-horizontal.giftcard .control-label {
-  padding-top: 12px;
-}
-.form-horizontal.giftcard textarea {
-  width: 200px;
 }
 .gift_cards-new {
   table {

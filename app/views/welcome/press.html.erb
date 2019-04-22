@@ -1,44 +1,38 @@
-<div class="site-wrapper-inner site-wrapper-first">
-  <div class="cover-container">
-    
-    <%= render "shared/header" %>
+<div class="site-wrapper-first">
+  <%= render "shared/header" %>
+  <div class="inner">
 
-    <div class="inner cover">
-        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-        
-            <h1 class="cover-heading"><%=t 'press' %></h1>
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
 
-            <p class="lead text-left"><%=t 'general_questions_press_html' %></p>
-            <p class="lead text-left"><%=t 'press_credits' %></p>
-            
-            
-            <h3><%=t 'press_images' %></h3>
+    <h1 class="cover-heading"><%=t 'press' %></h1>
 
-            <table class="press">
-	            <% @press_images.each do |image| %>
-	            	<% image_name = "#{image.split('/').last}" %>
-				   	<tr>
-				   		<td><a href="<%= image_path("press/" + image_name) %>"><%= image_tag "press/" + image_name, height: "150", alt: "" %></a></td>
-				   		<td><%= link_to image_name, image_path("press/" + image_name) %></td>
-				   	</tr>
-				<% end %>
-			</table>
+    <p class="lead text-left"><%=t 'general_questions_press_html' %></p>
+    <p class="lead text-left"><%=t 'press_credits' %></p>
 
-			<h3><%=t 'press_social_images' %></h3>
+    <h3><%=t 'press_images' %></h3>
 
-            <table class="press">
-	            <% @press_social_images.each do |image| %>
-	            	<% image_name = "#{image.split('/').last}" %>
-				   	<tr>
-				   		<td><a href="<%= image_path("press_social/" + image_name) %>"><%= image_tag "press_social/" + image_name, height: "150", alt: "" %></a></td>
-				   		<td><%= link_to image_name, image_path("press_social/" + image_name) %></td>
-				   	</tr>
-				<% end %>
-			</table>
+    <table class="press">
+      <% @press_images.each do |image| %>
+        <% image_name = "#{image.split('/').last}" %>
+        <tr>
+          <td><a href="<%= image_path("press/" + image_name) %>"><%= image_tag "press/" + image_name, height: "150", alt: "" %></a></td>
+          <td><%= link_to image_name, image_path("press/" + image_name) %></td>
+        </tr>
+      <% end %>
+    </table>
 
+    <h3><%=t 'press_social_images' %></h3>
 
+    <table class="press">
+      <% @press_social_images.each do |image| %>
+        <% image_name = "#{image.split('/').last}" %>
+        <tr>
+          <td><a href="<%= image_path("press_social/" + image_name) %>"><%= image_tag "press_social/" + image_name, height: "150", alt: "" %></a></td>
+          <td><%= link_to image_name, image_path("press_social/" + image_name) %></td>
+        </tr>
+      <% end %>
+    </table>
 
-    </div>
   </div>
 </div>
 

@@ -1,0 +1,39 @@
+.projects-teaser {
+  &__project-container {
+    overflow: auto;
+    margin: 20px 0;
+  }
+
+  &__project {
+    float: left;
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  &__project-image {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-size: cover;
+  }
+
+  &__project-info {
+    margin: 10px 10px 0;
+    text-align: center;
+  }
+
+  &__all-projects-link {
+    text-align: center;
+  }
+
+  @media (min-width: 500px) {
+    &__project {
+      width: 50%;
+    }
+
+    &__all-projects-link {
+      text-align: left;
+    }
+  }
+}
