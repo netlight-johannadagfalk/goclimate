@@ -33,7 +33,7 @@ RSpec.describe OpentraveldataAirportsImporter do
     it 'includes airports from provided csv' do
       importer.import
 
-      expect(read_csv.map { |line| line['iata_code'] }).to contain_exactly('ARN', 'ZRH', 'AFA', 'AHH')
+      expect(read_csv.map { |line| line['iata_code'] }).to contain_exactly('ARN', 'ZRH', 'AFA', 'AHH', 'MSN')
     end
 
     it 'imports names' do
