@@ -1,7 +1,7 @@
 en:
-  goclimateneutral_org: GoClimateNeutral.org
+  goclimateneutral_org: GoClimateNeutral
   goclimateneutral_url: https://en.goclimateneutral.org/
-  site_title: GoClimateNeutral.org
+  site_title: GoClimateNeutral
   welcome_to_a_climate_neutral_life: Go Climate Neutral!
   climate_change_is_the_greatest_challange: Climate change is the greatest challenge of our time. Together we have a chance to give our children the future on this planet that they deserve. But we have to act now.
   log_in: Log In
@@ -211,7 +211,7 @@ en:
     one: 1 month
     other: "%{count} months"
   together_we_have_offset: Together we have offset
-  goclimateneutral_and_this_planet_loves_you: GoClimateNeutral.org and this planet love you! You are the best!
+  goclimateneutral_and_this_planet_loves_you: GoClimateNeutral and this planet love you! You are the best!
   learn_more_about_what_we_have_achieved_here: Learn more about what we have achieved here >>
   thank_you: Thank you!
   the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible: 'Please consider sharing this with your friends, the more people that become climate neutral, the bigger the chance that we succeed in slowing down climate change!'
@@ -262,7 +262,7 @@ en:
         <br>
         Yes. If you, with money contributions, remove as much emissions from the atmosphere as you cause - you can call yourself climate neutral. It might sound provoking and unfair that you can just pay money to get to call yourself climate neutral, but the good news is that it's possible to achieve great climate benefits with relatively small amounts of money. Enough benefits that most people easily can reduce emissions -  through climate projects in developing countries - more than the emissions they cause by their own lifestyle.
         <br><br>
-        But at the same time, it's not enough to help others reduce their emissions if we are to succeed in stopping climate change. We must simultaneously also reduce our own emissions. Therefore we at GoClimateNeutral.org see the investment in climate projects only as a first step in the right direction. But after that step has been taken we must also reduce our own emissions.
+        But at the same time, it's not enough to help others reduce their emissions if we are to succeed in stopping climate change. We must simultaneously also reduce our own emissions. Therefore we at GoClimateNeutral see the investment in climate projects only as a first step in the right direction. But after that step has been taken we must also reduce our own emissions.
         <br><br>
         Unfortunately it's often rather hard for most people to reduce their climate footprint since a change in lifestyle often is needed - for instance if you are to sell your car or stop flying. And big changes in habits and lifestyle has proven very hard for us humans to do. Therefore we have chosen to make it simple for people to contribute to slow down climate change by investing in climate projects. When this first step is taken we want to inspire all our users to gradually slow down their own climate footprint.
         <br><br>
@@ -281,7 +281,7 @@ en:
         <br><br>
         To be on the safe side that you actually achieve climate benefit when you carbon offset - the climate projects should be reliably certified. The most reliable projects are both UN and Gold Standard-certified (that WWF is behind among others).
         <br><br>
-        At GoClimateNeutral.org we help you offset your emissions that your lifestyle causes through projects that are both UN and Gold Standard-certified."
+        At GoClimateNeutral we help you offset your emissions that your lifestyle causes through projects that are both UN and Gold Standard-certified."
       q4:
         question: Does carbon offsetting really make a difference? 
         answer: "<img alt='' class='aligncenter wp-image-227 size-large' src='https://www.goclimateneutral.org/blog/wp-content/uploads/2017/08/gold_standard_CDM-1024x626.png' /><br>
@@ -295,9 +295,9 @@ en:
         <br><br>
         By investing in CDM- and Gold Standard-certified projects - and also only invest in projects that are already completed and verified - you can be sure that your money has contributed to real climate benefit - and that your carbon offsetting works."
       q5:
-        question: Why should I put my money in GoClimateNeutral.org? Isn’t better to invest in offsetting projects myself without intermediaries?
+        question: Why should I put my money in GoClimateNeutral? Isn’t better to invest in offsetting projects myself without intermediaries?
         answer: "<img alt='' class='alignnone wp-image-270 size-large' src='https://www.goclimateneutral.org/blog/wp-content/uploads/2017/10/bra-klimatprojekt-1024x723.png' /><br>
-        There are two main reasons why we think you should use GoClimateNeutral.org. Firstly, we can help you do as much good for the climate as possible with your money. The carbon offset market is unfortunately rather complex and not very easy to get an overview of. There are different standards for climate projects, completely different types of projects and the price per ton - which is not always easy to find - can vary a lot between different projects. 
+        There are two main reasons why we think you should use GoClimateNeutral. Firstly, we can help you do as much good for the climate as possible with your money. The carbon offset market is unfortunately rather complex and not very easy to get an overview of. There are different standards for climate projects, completely different types of projects and the price per ton - which is not always easy to find - can vary a lot between different projects. 
         <br><br>
         Finding your way around the projects and understanding where your money does as much good for the climate as possible is hard, and this is where we can help. Doing this together we can also get better prices - since the price also varies a lot depending on the volume you want to offset.
         <br><br>
@@ -307,7 +307,7 @@ en:
       q6:
         question: Is it not more important to reduce emissions than to offset?
         answer: "<img alt='' class='alignnone wp-image-270 size-large' src='https://www.goclimateneutral.org/blog/wp-content/uploads/2018/01/reduce_climate_emissions-1024x693.png' /><br>
-        The short answer is yes. It is more reliable and therefore better to not release anything at all than to emit and then offset for what you emitted. At GoClimateNeutral.org, carbon offseting is used as a way to get as many people as possible to take a first step in the fight against climate change, but we do not suggest it's enough in the long term or more important. However, it is an important first step that is easy for many people to take.
+        The short answer is yes. It is more reliable and therefore better to not release anything at all than to emit and then offset for what you emitted. At GoClimateNeutral, carbon offseting is used as a way to get as many people as possible to take a first step in the fight against climate change, but we do not suggest it's enough in the long term or more important. However, it is an important first step that is easy for many people to take.
         <br><br>
         At the same time it is obviously better to release 1 ton of CO2 and offset 2 tonnes of CO2 - and thus have the net effect of preventing 1 ton of CO2 to be released in the atmosphere - than not emit nor offset anything.
         <br><br>
@@ -318,7 +318,7 @@ en:
         <br><br>
         'The typical offset buyer directly slashed almost 17% of their scope 1 emissions while the typical non-offset buyer reduced scope 1 emissions by less than 5%.' - <a href='http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf' target='_blank'>http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf</a>
         <br><br>
-        We believe that this also applies to individuals. We believe that those who sign up for GoClimateNeutral.org and pay to remove emissions from the atmosphere every month will also reduce their emissions caused by their way of living more than if they did not register at all."
+        We believe that this also applies to individuals. We believe that those who sign up for GoClimateNeutral and pay to remove emissions from the atmosphere every month will also reduce their emissions caused by their way of living more than if they did not register at all."
       q8:
         question: What is a climate offsetting project?
         answer: An offsetting project reduces emissions from reaching the atmosphere with the money invested in it. For example, it can be a wind turbine park that generates renewable energy to avoid using fossil based electricity, distributing effective stoves so that less trees needs to be chopped down and burned, or it can be a project that replaces a whole fleet of buses on diesel to electricity.
@@ -329,7 +329,7 @@ en:
         <br><br>
         Even though most of the projects out there are really excellent, some projects and standards have repeatedly failed to keep what they promise, and in some cases even had negative effects for local people and for the environment where the project was carried out.
         <br><br>
-        Therefore, it is clear to us at GoClimateNeutral.org that we cannot choose any project to invest in in order to become climate neutral. We therefore only invest in the most credible and thoroughly reviewed projects, projects that are both CDM certified (that the UN is behing) and in addition have the Gold Standard certification (which WWF among others are behind). When you invest in these projects, you have the UN's all Member States and about 90 environmental organizations behind you. In addition, third parties verifies all of these projects, including TÜV and DNV, and all their protocols are public and follow the projects throughout the project lifespan.
+        Therefore, it is clear to us at GoClimateNeutral that we cannot choose any project to invest in in order to become climate neutral. We therefore only invest in the most credible and thoroughly reviewed projects, projects that are both CDM certified (that the UN is behing) and in addition have the Gold Standard certification (which WWF among others are behind). When you invest in these projects, you have the UN's all Member States and about 90 environmental organizations behind you. In addition, third parties verifies all of these projects, including TÜV and DNV, and all their protocols are public and follow the projects throughout the project lifespan.
         <br><br>
         In addition to choosing thoroughly third-party reviewed projects, which is CDM and Gold Standard certified, we also offset for double the calculated emissions - to be on the safe side if something would go wrong with the climate projects we invest in. We also spread investments in various climate projects to further increase the sureness that the money achieve as much good as possible."
       q10:
@@ -341,7 +341,7 @@ en:
         <br><br>
         The economical mechanism is originated from the UN and the Kyoto-protocol, where CDM-projects and CER-credits as they are called were initatied. To futher strengthen the quality on the social aspects of the CDM-projects pretty soon Gold Standard Foundation was founded by WWF among others. 
         <br><br>
-        At GoClimateNeutral.org we try to find the most price effective CDM and Gold Standard certified projects for you, so that your money can do as much impact for the climate as possible.'
+        At GoClimateNeutral we try to find the most price effective CDM and Gold Standard certified projects for you, so that your money can do as much impact for the climate as possible.'
       q11:
         question: Are humans really the cause of climate change?
         answer: "Yes. If you're unsure, read more here: <a href='https://www.bloomberg.com/graphics/2015-whats-warming-the-world/' target='_blank'>https://www.bloomberg.com/graphics/2015-whats-warming-the-world/</a>"
@@ -364,7 +364,7 @@ en:
         <br><br>
         If, at any time, we would like to pay a salary or profit, we will be 100% transparent with it. You can already follow all the financial details of our business here: <a href='https://en.goclimateneutral.org/100_percent_transparency'>https://en.goclimateneutral.org/100_percent_transparency</a>"
       q16:
-        question: When the climate crisis is over, will GoClimateNeutral.org shut down?
+        question: When the climate crisis is over, will GoClimateNeutral shut down?
         answer: Yes. And we will then invite you all for a glas of champagne!
       q17:
         question: How do we calculate the carbon footprints?
@@ -482,10 +482,10 @@ en:
           one: 1 climate neutral month
           other: "%{count} climate neutral months"
         about_go_climate_neutral:
-          <a href='http://GoClimateNeutral.org'>GoClimateNeutral</a> supports climate projects and gives inspiration and advice on how to reduce your climate footprint. All supported projects are found within the framework of UN (CDM) and certified by Gold Standard, established by WWF and about 80 other international NGOs. Together we contribute to stop climate change and save the world!
+          <a href='http://www.goclimateneutral.org'>GoClimateNeutral</a> supports climate projects and gives inspiration and advice on how to reduce your climate footprint. All supported projects are found within the framework of UN (CDM) and certified by Gold Standard, established by WWF and about 80 other international NGOs. Together we contribute to stop climate change and save the world!
         calculation_based_on_html: "Calculation based on the average climate footprint of 11 tonnes CO<sub>2</sub>eq per person and year x 2."
         do_you_want_to_continue: If you want to continue living a climate neutral life after this gift card has expired,
-        register: visit <a href="http://goclimateneutral.org">GoClimateNeutral.org</a> and register!
+        register: visit <a href="http://www.goclimateneutral.org">GoClimateNeutral</a> and register!
       example:
         message_html: "Hi Mom,\nDoesn't it feel great to help the climate?\nEnjoy this gift! /Lisa"
         example: "Example"

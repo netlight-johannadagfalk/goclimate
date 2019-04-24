@@ -12,7 +12,7 @@
 
     <p class="lead"><%=t 'we_have_sent_you_an_email_with_the_gift_card' %>: <%= @email %></p>
 
-    <p class="lead"><%=t 'thank_you_for_helping_us_trying_to_stop_climate_change' %>: <%= link_to('GoClimateNeutral.org', '/') %></p>
+    <p class="lead"><%=t 'thank_you_for_helping_us_trying_to_stop_climate_change' %>: <%= link_to('GoClimateNeutral', '/') %></p>
 
     <p class="lead last"><%= link_to t('views.gift_cards.thank_you.download_receipt_here'), gift_card_receipts_path(@gift_card, format: :pdf) %></a></p>
 
