@@ -17,11 +17,13 @@ sv:
   for_more_information_about_climate_projects: För mer information om klimatprojekten, läs mer på sidan om
   100_percent_transparency_financial_info: 100% transparens - finansiell information
   100_percent_transparency_financial_info_intro: GoClimateNeutral Sweden AB (organisationsnummer 559130-6583) startades 2017 med fokus på socialt företagande med enda ambition och mål att bromsa klimatförändringarna så snabbt som möjligt. Vi har ett förlängt räkenskapsår och vår första årsredovisning kommer innefatta perioden maj 2017- december 2018. Årsredovisningen kommer att publiceras här nedan när den är klar.
-  fiscal_year_2017_2018_preliminary: Räkenskapsåret 2017-2018 - preliminärt resultat
+  fiscal_year_2017_2018: Räkenskapsåret 2017-2018
   fiscal_year_2019_ongoing: Räkenskapsåret 2019 - pågående
   revenue: Intäkter
   cost: Kostnader
   result: Resultat
+  all_of_the_result_were_carried_forward: Resultatet överförs i nästa års räkning för maximal klimatnytta
+  auditor: Revisor
   climate_offset_from_users: Klimatkompensation från användare
   climate_offset_from_companies: Klimatkompensation från företag
   investments_in_climate_projects: Investeringar i klimatprojekt
@@ -38,7 +40,7 @@ sv:
   general_questions_facebook_html: 'Du hittar oss på facebook här: <a href="https://www.facebook.com/GoClimateNeutral" target="_blank">GoClimateNeutral</a>.'
   general_questions_twitter_html: Twittra gärna med oss på kontot <a href="https://twitter.com/goclimateneutrl" target="_blank">@goclimateneutrl</a>.
   about_us: Om oss
-  about_us_intro: GoClimateNeutral skapades 2017 med syfte att hjälpa så många som möjligt att leva ett klimatneutralt liv och därmed vara med och bromsa klimatförändringarna. Vi har 100% transparant bokföring så att du ska kunna veta exakt vart dina pengar går någonstans. Företagsnamnet är GoClimateNeutral Sweden AB och vårt org.nummer är 559130-6583.
+  about_us_intro: GoClimateNeutral skapades 2017 med syfte att hjälpa så många som möjligt att leva ett klimatneutralt liv och därmed vara med och bromsa klimatförändringarna. Vi har 100% transparent bokföring så att du ska kunna veta exakt vart dina pengar går någonstans. Företagsnamnet är GoClimateNeutral Sweden AB och vårt org.nummer är 559130-6583.
   about_us_why_do_we_exist: Varför finns GoClimateNeutral?
   about_us_why_do_we_exist_text: En dag kommer våra barn ställa oss till svars för vad vi gjorde eller varför vi inte gjorde mer åt klimatförändringarna trots att vi var medvetna om att situationen var så allvarlig. Det är den största anledningen till att vi skapade GoClimateNeutral. Den dag våra barn frågar oss om vår medverkan vill vi kunna svara att vi gjorde allt vi bara kunde för att bromsa klimatförändringarna för att ge dem och deras generation en bättre framtid. 
   about_us_how_do_we_stop_climate_change: Hur bromsar vi klimatförändringar?
@@ -101,7 +103,7 @@ sv:
   email: E-post
   password: Lösenord
   i_accept: Jag godkänner
-  our_privacy_policy: intigritetspolicyn
+  our_privacy_policy: integritetspolicyn
   credit_or_debit_card: Kortuppgifter
   add_new_card: Nytt kort
   edit_card: ändra kort
@@ -152,8 +154,8 @@ sv:
   project_certification: Projektcertifiering
   read_more: Läs mer
   cimate_hero_toplist: Topplista klimathjältar
-  show_full_toplist: Visa hela toplistan
-  hide_full_toplist: Göm hela toplistan
+  show_full_toplist: Visa hela topplistan
+  hide_full_toplist: Göm hela topplistan
   climate_neutral_months:
     one: klimatneutral månad
     other: klimatneutrala månader

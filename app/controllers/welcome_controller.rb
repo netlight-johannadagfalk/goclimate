@@ -40,18 +40,20 @@ class WelcomeController < ApplicationController
     @unique_climate_neutral_users = User.with_active_subscription.count
     @total_carbon_offset = Project.total_carbon_offset
 
-    # as of 190131 - found in https://docs.google.com/spreadsheets/d/1RzUCaVqTTxJYjfUMeh3KlTxBpiATy2ViPO3m0LHGpG8/edit#gid=0
-    @project_cost_in_sek2019 = -350_250
-    @other_operating_expenses2019 = -28_258
+    # as of 190425 - found in https://docs.google.com/spreadsheets/d/1RzUCaVqTTxJYjfUMeh3KlTxBpiATy2ViPO3m0LHGpG8/edit#gid=0
+    @project_cost_in_sek2019 = (-1_732_325 * 0.8).round # exklude VAT
+    @salaries_cost_in_sek2019 = -69_181
+    @other_operating_expenses2019 = (-28_258 * 0.8).round # exklude VAT
 
-    # as of 190131 - found at fortnox.se
-    @invoiced2019 = 170_196
+    # as of 190425 - found at fortnox.se
+    @invoiced2019 = (392_996 * 0.8).round # exklude VAT
 
     @payouts_from_users2019 = (StripePayout.where('extract(year from created_at) = 2019').sum(:amount) / 100)
-    @results2019 = @payouts_from_users2019 +
-                   @invoiced2019 +
-                   (@project_cost_in_sek2019 +
-                    @other_operating_expenses2019)
+
+    @total_revenue = @invoiced2019 + @payouts_from_users2019
+    @total_cost = @project_cost_in_sek2019 + @other_operating_expenses2019 + @salaries_cost_in_sek2019
+    @results2019 = @total_revenue + @total_cost
+
   end
 
   def privacy_policy
