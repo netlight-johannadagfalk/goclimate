@@ -591,7 +591,7 @@ de:
           href='http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf'
           target='_blank'>http://moderncms.ecosystemmarketplace.com/repository/moderncms_documents/buyers_report_-_032015.pdf</a>
           <br><br> Wir glauben, dass dies auch für Privatpersonen zutrifft und
-          dass Leute, die sich bei GoClimateNeutral registrieren und dafür
+          dass Leute, die sich bei GoClimateNeutral.org registrieren und dafür
           zahlen, Emissionen in der Atmosphäre zu reduzieren, auch eher ihren
           eigenen CO2-Ausstoß reduzieren als Leute, die sich nicht
           registrieren. 
@@ -917,7 +917,7 @@ de:
           führen?
         register: >-
           Gehen Sie auf <a
-          href="http://goclimateneutral.org">GoClimateNeutral</a> und
+          href="http://goclimateneutral.org">GoClimateNeutral.org</a> und
           registrieren Sie sich!
       example:
         message_html: |-
