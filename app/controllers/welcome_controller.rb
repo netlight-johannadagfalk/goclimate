@@ -49,11 +49,8 @@ class WelcomeController < ApplicationController
     @invoiced2019 = (392_996 * 0.8).round # exklude VAT
 
     @payouts_from_users2019 = (StripePayout.where('extract(year from created_at) = 2019').sum(:amount) / 100)
-
     @total_revenue = @invoiced2019 + @payouts_from_users2019
     @total_cost = @project_cost_in_sek2019 + @other_operating_expenses2019 + @salaries_cost_in_sek2019
-    @results2019 = @total_revenue + @total_cost
-
   end
 
   def privacy_policy
