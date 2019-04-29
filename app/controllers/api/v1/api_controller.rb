@@ -22,8 +22,12 @@ module Api
       end
 
       def api_key_valid?
-        # We only have one API customer so hard-code check their API key
-        authenticate_with_http_basic { |username, _| username == '***REMOVED***' }
+        # We only have a few API customers so hard-code check their API key
+        api_keys = ['***REMOVED***', # ***REMOVED***
+                    '***REMOVED***', # ***REMOVED***
+                    '***REMOVED***'] # ***REMOVED***
+
+        authenticate_with_http_basic { |username, _| api_keys.include?(username) }
       end
     end
   end
