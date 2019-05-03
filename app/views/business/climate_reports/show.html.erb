@@ -1,0 +1,138 @@
+<div class="site-wrapper-first">
+  <%= render "shared/header" %>
+  <div class="inner inner--with-grid">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-xs-12">
+
+          <h1 class="cover-heading">Here's your footprint</h1>
+          <p class="lead"><%=t 'business.for_companies_text_html' %></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="glyphicon glyphicon-chevron-down first" aria-hidden="true"></span>
+</div>
+
+<div class="site-wrapper-second">
+  <div class="inner inner--with-grid">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+
+          <h1 class="cover-heading content-section">Offset your footprint and get your full climate report</h1>
+          <p class="lead content-section"><%=t 'business.for_companies_text_html' %></p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="site-wrapper-third">
+  <div class="inner inner--with-grid">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+
+          <h1 class="cover-heading content-section">Din order</h1>
+
+          <table class="content-section flight-offset-details">
+            <tbody>
+              <tr>
+                <td>- Carbon offseting</td>
+                <td>X tonnes carbon dioxide</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  - Climate report
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="flight-offset-details__key-row">
+                <td>Sum:</td>
+                <td>X kr</td>
+              </tr>
+            </tfoot>
+          </table>
+
+          <div class="panel panel-default panel-full-width panel-left-align content-section">
+            <div class="panel-heading">
+              <h4 class="panel-title">Hit går pengarna</h4>
+            </div>
+            <div class="panel-body">
+              <p>
+                Vi investerar i tredjepartsgranskade och FN-certifierade
+                klimatprojekt med den extra certifieringen Gold Standard.
+                Projekten minskar utsläpp motsvarande din flygresas
+                klimatavtryck och bidrar till den globala omställningen till
+                förnyelsebar energiproduktion. Här är våra två senaste projekt.
+              </p> <div class="projects-teaser">
+                <div class="projects-teaser__project-container">
+                  <% @projects.each do |project| %>
+                    <div class="projects-teaser__project">
+                      <div class="projects-teaser__project-image" style="background-image: url('<%= project.image_url %>')">
+                      </div>
+                      <div class="projects-teaser__project-info">
+                        <p><strong><%= project.name %></strong></p>
+                        <p><%= project.carbon_offset %> ton koldioxid</p>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+                <p class="projects-teaser__all-projects-link"><%= link_to 'Se alla våra projekt', our_projects_path %></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="site-wrapper-second">
+  <div class="inner inner--with-grid">
+    <div class="container">
+
+      <%= form_tag(business_climate_report_invoice_path, method: :post, id: "payment-form", class: "form-horizontal content-section") do %>
+        <div class="form-group">
+          <label for="address" class="col-sm-5 control-label padding-top">Address</label>
+          <div class="col-sm-7">
+            <%= text_area_tag :address, '', class: 'form-control', required: '' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="vat_number" class="col-sm-5 control-label padding-top">VAT number</label>
+          <div class="col-sm-7">
+            <%= email_field_tag :vat_number, '', class: 'form-control' %> Optional
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="col-sm-5 control-label padding-top">Email</label>
+          <div class="col-sm-7">
+            <%= email_field_tag :email, '', class: 'form-control' %> Leave empty to receive your invoice by mail.
+          </div>
+        </div>
+
+        <div class="form-group form-group-sm-centered">
+          <div class="col-sm-offset-5 col-sm-7">
+            <input type="submit" value="Sign up" class="btn btn-success">
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<%= render "shared/footer" %>

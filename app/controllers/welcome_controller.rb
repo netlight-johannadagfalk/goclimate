@@ -17,7 +17,7 @@ class WelcomeController < ApplicationController
   def about
   end
 
-  def companies
+  def business
   end
 
   def contact

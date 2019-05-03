@@ -1,0 +1,164 @@
+<div class="site-wrapper-first site-wrapper-first--nav-only">
+  <%= render "shared/header" %>
+</div>
+
+<div class="site-wrapper-second">
+  <div class="inner inner--with-grid">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-xs-12">
+
+          <h1 class="cover-heading">Calculation for your last full year</h1>
+          <p class="lead"><%=t 'business.for_companies_text_html' %></p>
+
+        </div>
+      </div>
+
+      <%= form_tag(business_climate_reports_path, method: :post, class: "form-horizontal") do %>
+        <div class="row">
+          <div class="col-sm-offset-5 col-sm-7">
+            <h3 class="text-left">General information</h3>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="company_name" class="col-sm-5 control-label padding-top">Company name</label>
+          <div class="col-sm-7">
+            <%= text_field_tag :company_name, '', class: 'form-control', required: '' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="country" class="col-sm-5 control-label padding-top">Country</label>
+          <div class="col-sm-7">
+            <%= country_select '', :country,
+              { include_blank: true, selected: 'SE', priority_countries: %w[SE NO DK FI DE GB US] },
+              { autofocus: true, id: "country", class: 'form-control' } %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-offset-5 col-sm-7">
+            <h3 class="text-left">Energy</h3>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="electricity_consumption" class="col-sm-5 control-label padding-top">Electricity consumption</label>
+          <div class="col-sm-7">
+            <%= number_field_tag :electricity_consumption, '', class: 'form-control', required: '' %> kWh
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="heating" class="col-sm-5 control-label padding-top">Heating</label>
+          <div class="col-sm-7">
+            <%= number_field_tag :heating, '', class: 'form-control', required: '' %> kWh
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-offset-5 col-sm-7">
+            <h3 class="text-left">Business trips</h3>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="flight_hours" class="col-sm-5 control-label padding-top">Flight hours</label>
+          <div class="col-sm-7">
+            <%= number_field_tag :flight_hours, '', class: 'form-control', required: '' %> h
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="car_distance" class="col-sm-5 control-label padding-top">Distance by car including taxi</label>
+          <div class="col-sm-7">
+            <%= number_field_tag :car_distance, '', class: 'form-control', required: '' %> kilometers
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-offset-5 col-sm-7">
+            <h3 class="text-left">Food</h3>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="meals" class="col-sm-5 control-label padding-top">Number of meals</label>
+          <div class="col-sm-7">
+            <%= number_field_tag :meals, '', class: 'form-control', required: '' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="meals" class="col-sm-5 control-label padding-top">Vegetarian meals</label>
+          <div class="col-sm-7">
+            <%= number_field_tag :meals, '', class: 'form-control', required: '' %> %
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-offset-5 col-sm-7">
+            <h3 class="text-left">Material</h3>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="purchased_computers" class="col-sm-5 control-label padding-top">Purchased computers</label>
+          <div class="col-sm-7">
+            <%= number_field_tag :purchased_computers, '', class: 'form-control', required: '' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="purchased_phones" class="col-sm-5 control-label padding-top">Purchased phones/tablets</label>
+          <div class="col-sm-7">
+            <%= number_field_tag :purchased_phones, '', class: 'form-control', required: '' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="purchased_monitors" class="col-sm-5 control-label padding-top">Purchased monitors</label>
+          <div class="col-sm-7">
+            <%= number_field_tag :purchased_monitors, '', class: 'form-control', required: '' %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-offset-5 col-sm-7">
+            <h3 class="text-left">Other</h3>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="other" class="col-sm-5 control-label padding-top">Other footprint</label>
+          <div class="col-sm-7">
+            <%= number_field_tag :other, '', class: 'form-control', required: '' %> tonnes CO2e
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-offset-5 col-sm-7">
+            <h3 class="text-left">Contact</h3>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="contact_email" class="col-sm-5 control-label padding-top">Contact email</label>
+          <div class="col-sm-7">
+            <%= email_field_tag :contact_email, '', class: 'form-control', required: '' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-5 col-sm-7">
+            <%= button_tag 'See my business footprint', class: 'btn btn-success', required: '' %>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+  <span class="glyphicon glyphicon-chevron-down first" aria-hidden="true"></span>
+</div>
