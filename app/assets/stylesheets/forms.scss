@@ -52,6 +52,10 @@
       margin: 0 auto;
     }
 
+    .form-control {
+      font-size: 16px; /* 16px is the smallest Safari on iPhone will allow without zooming */
+    }
+
     #card-element {
       margin: 0 auto;
     }
