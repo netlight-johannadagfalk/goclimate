@@ -9,8 +9,9 @@
       <div class="row">
         <div class="col-xs-12">
 
-          <h1 class="cover-heading">Calculation for your last full year</h1>
-          <p class="lead"><%=t 'business.for_companies_text_html' %></p>
+          <h1 class="cover-heading">
+            Estimate your business footprint
+          </h1>
 
         </div>
       </div>
@@ -43,6 +44,13 @@
               <%= country_select '', :country,
                 { include_blank: true, priority_countries: %w[SE NO DK FI DE GB US] },
                 { autofocus: true, id: "country", class: 'form-control', required: '' } %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="calculation_period" class="col-sm-5 control-label">Calculation period</label>
+            <div class="col-sm-7">
+              <%= text_field_tag :calculation_period, '', class: 'form-control', required: '', value: '2018' %>
             </div>
           </div>
         </div>
