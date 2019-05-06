@@ -25,6 +25,7 @@ module Api
         # We only have a few API customers so hard-code check their API key
         api_keys = ['***REMOVED***', # ***REMOVED***
                     '***REMOVED***', # ***REMOVED***
+                    '***REMOVED***', # ***REMOVED***
                     '***REMOVED***'] # ***REMOVED***
 
         authenticate_with_http_basic { |username, _| api_keys.include?(username) }
