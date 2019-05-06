@@ -108,14 +108,14 @@
       <%= hidden_field(:user, :choices, :value => @choices) %>
 
       <div class="form-group">
-        <label for="email" class="col-sm-offset-1 col-sm-4 control-label padding-top"><%=t 'email' %></label>
+        <label for="email" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'email' %></label>
         <div class="col-sm-4">
           <%= f.email_field :email, autofocus: false, id: "email", class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="password" class="col-sm-offset-1 col-sm-4 control-label padding-top"><%=t 'password' %></label>
+        <label for="password" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'password' %></label>
         <div class="col-sm-4">
           <%= f.password_field :password, autocomplete: "off", id: "password", class: "form-control" %>
         </div>

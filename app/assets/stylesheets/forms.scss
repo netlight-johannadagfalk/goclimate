@@ -26,25 +26,19 @@
 }
 
 .form-group {
-  input[type=text], input[type=email], input[type=password], input[type=number], textarea {
+  .form-control, .input-group {
     color: #777;
     width: 100%;
     max-width: 300px;
-    margin-top: 5px;
   }
 
-  select {
-    width: 200px;
-    margin-top: 5px;
+  .input-group .form-control {
+    max-width: none;
   }
 
   @media (min-width: 768px) {
     input {
       float: left;
-    }
-
-    .padding-top {
-      padding-top: 13px;
     }
 
     button {
@@ -65,7 +59,7 @@
 }
 
 @media (max-width: 767px) {
-  .form-control {
+  .form-control, .input-group {
     max-width: 100% !important;
   }
 
