@@ -2,6 +2,8 @@
 
 module Business
   class ClimateReportsController < ApplicationController
+    before_action :force_en_locale # Business pages are English only for now
+
     def show
       @projects = Project.order(id: :desc).limit(2)
     end

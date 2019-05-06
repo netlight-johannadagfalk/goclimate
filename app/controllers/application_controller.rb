@@ -24,6 +24,14 @@ class ApplicationController < ActionController::Base
       end
   end
 
+  def force_sv_locale
+    I18n.locale = :sv
+  end
+
+  def force_en_locale
+    I18n.locale = :en
+  end
+
   def after_sign_in_path_for(*)
     session['user_return_to'] || dashboard_path
   end
