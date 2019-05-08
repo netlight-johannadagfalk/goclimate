@@ -51,6 +51,17 @@ Rails.application.routes.draw do
   # Business page with post from employee offsetting form
   resource :business, only: [:new, :create], path_names: { new: '' }
 
+  get 'business_beta', to: 'welcome#business'
+  namespace :business do
+    resources :climate_reports, only: [:show, :new, :create], param: :key do
+      member do
+        resource :climate_report_invoice, only: [:create], path: 'invoice' do
+          get 'thank_you'
+        end
+      end
+    end
+  end
+
   # Partners
   get 'partners/bokanerja'
   get 'partners/inshapetravel'

@@ -1,0 +1,71 @@
+<div class="site-wrapper-first">
+  <%= render "shared/header" %>
+  <div class="inner">
+
+    <h1 class="cover-heading"><%=t('business.for_companies') %></h1>
+    <p class="lead"><%=t 'business.for_companies_text_html' %></p>
+
+  </div>
+  <span class="glyphicon glyphicon-chevron-down first" aria-hidden="true"></span>
+</div>
+
+<div class="site-wrapper-second company-logos">
+  <div class="inner">
+
+    <h4 class="cover-heading"><%=t 'business.customers_we_work_with' %>:</h4>
+    <div class="row">
+      <div class="col-lg-4">
+        <%= image_tag "companies/norrsken.png", width: "300", alt: "norrsken company logo" %>
+      </div>
+      <div class="col-lg-4">
+        <%= image_tag "companies/netlight.png", width: "300", alt: "netlight company logo" %>
+      </div>
+      <div class="col-lg-4">
+        <%= image_tag "companies/mentimeter.png", width: "300", alt: "mentimeter company logo" %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="site-wrapper-third">
+  <div class="inner">
+
+    <div class="content-section">
+      <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+      <h2 class="cover-heading">
+        Become a climate friendly business
+      </h2>
+      <p class="lead">
+        Get a climate report for your business and offset the footprint you
+        can't yet reduce. Our calculator for businesses covers all sources of
+        emissions for most service companies and offsetting your footprint
+        requires no work on your part–we'll take care of choosing the most
+        effective climate projects.
+      </p>
+    </div>
+    <div class="content-section">
+      <p>
+        <%= link_to 'Estimate my business footprint', new_business_climate_report_path, class: 'btn btn-lg btn-success' %>
+      </p>
+    </div>
+    <div class="content-section">
+      <p>
+        Our calculator works for most service companies. If you have any
+        specific needs, just get in touch and we'll be more than happy to help.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="site-wrapper-second">
+  <div class="inner">
+
+    <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+    <h2 class="cover-heading"><%=t 'business.other_offsetting' %></h2>
+    <p class="lead"><%=t 'business.other_offsetting_html' %></p>
+
+  </div>
+</div>
+
+<%= render "shared/footer" %>

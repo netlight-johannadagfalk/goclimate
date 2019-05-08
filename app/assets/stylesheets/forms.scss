@@ -26,25 +26,19 @@
 }
 
 .form-group {
-  input[type=text], input[type=email], input[type=password] {
+  .form-control, .input-group {
     color: #777;
     width: 100%;
     max-width: 300px;
-    margin-top: 5px;
   }
 
-  select {
-    width: 200px;
-    margin-top: 5px;
+  .input-group .form-control {
+    max-width: none;
   }
 
   @media (min-width: 768px) {
     input {
       float: left;
-    }
-
-    .padding-top {
-      padding-top: 13px;
     }
 
     button {
@@ -58,6 +52,10 @@
       margin: 0 auto;
     }
 
+    .form-control {
+      font-size: 16px; /* 16px is the smallest Safari on iPhone will allow without zooming */
+    }
+
     #card-element {
       margin: 0 auto;
     }
@@ -65,7 +63,7 @@
 }
 
 @media (max-width: 767px) {
-  .form-control {
+  .form-control, .input-group {
     max-width: 100% !important;
   }
 

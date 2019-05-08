@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class WelcomeController < ApplicationController
+  before_action :force_en_locale, only: [:business] # Business pages are English only for now
+
   def index
     @unique_climate_neutral_users = User.with_active_subscription.count
     @total_carbon_offset = Project.total_carbon_offset
@@ -17,7 +19,7 @@ class WelcomeController < ApplicationController
   def about
   end
 
-  def companies
+  def business
   end
 
   def contact

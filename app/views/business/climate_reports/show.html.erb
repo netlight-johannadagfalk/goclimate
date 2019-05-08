@@ -1,0 +1,153 @@
+<div class="site-wrapper-first">
+  <%= render "shared/header" %>
+  <div class="inner inner--with-grid">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-xs-12">
+
+          <h1 class="cover-heading">
+            Your business footprint
+          </h1>
+          <p class="lead">
+            Your business footprint for the reporting period X is X tonnes
+            carbon dioxide. That's X tonnes per employee.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="glyphicon glyphicon-chevron-down first" aria-hidden="true"></span>
+</div>
+
+<div class="site-wrapper-second">
+  <div class="inner inner--with-grid">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+
+          <h1 class="cover-heading">Offset your footprint and get your climate report</h1>
+          <p class="lead">
+            Offsetting your footprint is a way of taking responsibility for the
+            impact your business has on the climate. You will also get a
+            climate report for use in your reporting as well as further
+            understanding and reductions of your footprint.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="site-wrapper-third">
+  <div class="inner inner--with-grid">
+    <div class="container">
+
+      <div class="row content-section">
+        <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+
+          <h1 class="cover-heading content-section">Your order</h1>
+
+          <table class="content-section flight-offset-details">
+            <tbody>
+              <tr>
+                <td colspan="2">
+                  <ul class="flight-offset-details__segments">
+                    <li>Carbon offsetting: X tonnes carbon dioxide</li>
+                    <li>Climate report</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="flight-offset-details__key-row">
+                <td>Sum:</td>
+                <td>X kr</td>
+              </tr>
+            </tfoot>
+          </table>
+
+          <div class="panel panel-default panel-full-width panel-left-align content-section">
+            <div class="panel-heading">
+              <h4 class="panel-title">This is how the money is used</h4>
+            </div>
+            <div class="panel-body">
+              <p>
+                We support UN certified climate projects that are also Gold
+                Standard certified. The projects reduce emissions equivalent
+                to your business' footprint and contribute to the global
+                transition to renewable energy production. Here's our two
+                latest projects.
+              </p> <div class="projects-teaser">
+                <div class="projects-teaser__project-container">
+                  <% @projects.each do |project| %>
+                    <div class="projects-teaser__project">
+                      <div class="projects-teaser__project-image" style="background-image: url('<%= project.image_url %>')">
+                      </div>
+                      <div class="projects-teaser__project-info">
+                        <p><strong><%= project.name %></strong></p>
+                        <p><%= project.carbon_offset %> tonnes carbon dioxide</p>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+                <p class="projects-teaser__all-projects-link"><%= link_to 'See all our projects', our_projects_path %></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <%= form_tag(business_climate_report_invoice_path, method: :post, id: "payment-form", class: "form-horizontal content-section") do %>
+        <div class="form-group">
+          <label for="address" class="col-sm-5 control-label">Invoice address</label>
+          <div class="col-sm-7">
+            <%= text_area_tag :address, '', class: 'form-control', required: '' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="vat_number" class="col-sm-5 control-label">VAT number (optional)</label>
+          <div class="col-sm-7">
+            <%= email_field_tag :vat_number, '', class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="col-sm-5 control-label">Invoice email (optional)</label>
+          <div class="col-sm-7">
+            <%= email_field_tag :email, '', class: 'form-control' %>
+          </div>
+          <div class="col-sm-offset-5 col-sm-7">
+            <span id="helpBlock" class="help-block text-left">
+              Provide an email address to receive your invoice via email.
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group form-group-sm-centered">
+          <div class="col-sm-offset-5 col-sm-7">
+            <input type="submit" value="Sign up" class="btn btn-success">
+          </div>
+        </div>
+      <% end %>
+
+      <div class="content-section">
+        <p>
+          We'll get in touch when your current reporting period is about to end
+          and it's time to update your footprint estimation to keep carbon
+          offsetting for your business footprint. Unless you at that point
+          choose to update your footprint calculation and renew your
+          subscription, we won't send any further invoices.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%= render "shared/footer" %>
