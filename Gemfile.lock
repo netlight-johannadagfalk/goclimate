@@ -386,6 +386,7 @@ DEPENDENCIES
   byebug
   capybara (~> 3.3)
   client_side_validations (~> 12.1.0)
+  countries (~> 3.0.0)
   country_select (~> 4.0.0)
   devise (~> 4.5.0)
   devise-i18n (~> 1.7.1)
