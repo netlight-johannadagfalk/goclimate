@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_11_142034) do
+ActiveRecord::Schema.define(version: 2019_05_07_124641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "climate_reports", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "key"
+    t.string "company_name"
+    t.string "contact_email"
+    t.integer "employees"
+    t.string "country"
+    t.string "calculation_period"
+    t.integer "electricity_consumption"
+    t.integer "heating"
+    t.integer "number_of_servers"
+    t.integer "flight_hours"
+    t.integer "car_distance"
+    t.integer "meals"
+    t.integer "meals_vegetarian_share"
+    t.integer "purchased_computers"
+    t.integer "purchased_phones"
+    t.integer "purchased_monitors"
+    t.integer "other_co2e"
+    t.index ["key"], name: "index_climate_reports_on_key"
+  end
 
   create_table "flight_offsets", force: :cascade do |t|
     t.datetime "created_at", null: false

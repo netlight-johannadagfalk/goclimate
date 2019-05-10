@@ -23,7 +23,17 @@
         </div>
       </div>
 
-      <%= form_tag(business_climate_reports_path, method: :post, class: "form-horizontal") do %>
+      <%= form_for [:business, @report], html: { class: "form-horizontal" } do |f| %>
+        <% if @report.errors.any? %>
+          <%# This is a panel because alerts are currently scripted to be dismissed automatically %>
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <% @report.errors.full_messages.each do |message| %>
+                <p><%= message %></p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
         <div class="content-section">
           <div class="row">
             <div class="col-sm-offset-5 col-sm-7">
@@ -34,30 +44,30 @@
           <div class="form-group">
             <label for="company_name" class="col-sm-5 control-label">Company name</label>
             <div class="col-sm-7">
-              <%= text_field_tag :company_name, '', class: 'form-control', required: '' %>
+              <%= f.text_field :company_name, class: 'form-control', required: '' %>
             </div>
           </div>
 
           <div class="form-group">
             <label for="employees" class="col-sm-5 control-label">Number of employees</label>
             <div class="col-sm-7">
-              <%= number_field_tag :employees, '', class: 'form-control', required: '' %>
+              <%= f.number_field :employees, class: 'form-control', required: '' %>
             </div>
           </div>
 
           <div class="form-group">
             <label for="country" class="col-sm-5 control-label">Country</label>
             <div class="col-sm-7">
-              <%= country_select '', :country,
+              <%= f.country_select :country,
                 { include_blank: true, priority_countries: %w[SE NO DK FI DE GB US] },
-                { id: 'country', autofocus: true, id: "country", class: 'form-control', required: '' } %>
+                { id: 'country', class: 'form-control', required: '' } %>
             </div>
           </div>
 
           <div class="form-group">
             <label for="calculation_period" class="col-sm-5 control-label">Calculation period</label>
             <div class="col-sm-7">
-              <%= text_field_tag :calculation_period, '', class: 'form-control', required: '', value: '2018' %>
+              <%= f.text_field :calculation_period, class: 'form-control', required: '' %>
             </div>
           </div>
         </div>
@@ -73,7 +83,7 @@
             <label for="electricity_consumption" class="col-sm-5 control-label">Electricity consumption</label>
             <div class="col-sm-7">
               <div class="input-group">
-                <%= number_field_tag :electricity_consumption, '', class: 'form-control', required: '' %>
+                <%= f.number_field :electricity_consumption, class: 'form-control' %>
                 <div class="input-group-addon">kWh</div>
               </div>
             </div>
@@ -83,7 +93,7 @@
             <label for="heating" class="col-sm-5 control-label">Heating</label>
             <div class="col-sm-7">
               <div class="input-group">
-                <%= number_field_tag :heating, '', class: 'form-control', required: '' %>
+                <%= f.number_field :heating, class: 'form-control' %>
                 <div class="input-group-addon">kWh</div>
               </div>
             </div>
@@ -92,7 +102,7 @@
           <div class="form-group">
             <label for="heating" class="col-sm-5 control-label">Average number of active servers</label>
             <div class="col-sm-7">
-              <%= number_field_tag :number_of_servers, '', class: 'form-control', required: '' %>
+              <%= f.number_field :number_of_servers, class: 'form-control' %>
             </div>
           </div>
         </div>
@@ -108,7 +118,7 @@
             <label for="flight_hours" class="col-sm-5 control-label">Total flight hours</label>
             <div class="col-sm-7">
               <div class="input-group">
-                <%= number_field_tag :flight_hours, '', class: 'form-control', required: '' %>
+                <%= f.number_field :flight_hours, class: 'form-control' %>
                 <div class="input-group-addon">hours</div>
               </div>
             </div>
@@ -118,7 +128,7 @@
             <label for="car_distance" class="col-sm-5 control-label">Distance by car &amp; taxi</label>
             <div class="col-sm-7">
               <div class="input-group">
-                <%= number_field_tag :car_distance, '', class: 'form-control', required: '' %>
+                <%= f.number_field :car_distance, class: 'form-control' %>
                 <div class="input-group-addon">kilometers</div>
               </div>
             </div>
@@ -135,7 +145,7 @@
           <div class="form-group">
             <label for="meals" class="col-sm-5 control-label">Number of meals</label>
             <div class="col-sm-7">
-              <%= number_field_tag :meals, '', class: 'form-control', required: '' %>
+              <%= f.number_field :meals, class: 'form-control' %>
             </div>
           </div>
 
@@ -143,7 +153,7 @@
             <label for="meals" class="col-sm-5 control-label">Share of vegetarian meals</label>
             <div class="col-sm-7">
               <div class="input-group">
-                <%= number_field_tag :meals, '', class: 'form-control', required: '', min: 0, max: 100 %>
+                <%= f.number_field :meals_vegetarian_share, class: 'form-control', min: 0, max: 100 %>
                 <div class="input-group-addon">%</div>
               </div>
             </div>
@@ -160,21 +170,21 @@
           <div class="form-group">
             <label for="purchased_computers" class="col-sm-5 control-label">Purchased computers</label>
             <div class="col-sm-7">
-              <%= number_field_tag :purchased_computers, '', class: 'form-control', required: '' %>
+              <%= f.number_field :purchased_computers, class: 'form-control' %>
             </div>
           </div>
 
           <div class="form-group">
             <label for="purchased_phones" class="col-sm-5 control-label">Purchased phones/tablets</label>
             <div class="col-sm-7">
-              <%= number_field_tag :purchased_phones, '', class: 'form-control', required: '' %>
+              <%= f.number_field :purchased_phones, class: 'form-control' %>
             </div>
           </div>
 
           <div class="form-group">
             <label for="purchased_monitors" class="col-sm-5 control-label">Purchased monitors</label>
             <div class="col-sm-7">
-              <%= number_field_tag :purchased_monitors, '', class: 'form-control', required: '' %>
+              <%= f.number_field :purchased_monitors, class: 'form-control' %>
             </div>
           </div>
         </div>
@@ -187,10 +197,10 @@
           </div>
 
           <div class="form-group">
-            <label for="other" class="col-sm-5 control-label">Other footprint (optional)</label>
+            <label for="other" class="col-sm-5 control-label">Other footprint</label>
             <div class="col-sm-7">
               <div class="input-group">
-                <%= number_field_tag :other, '', class: 'form-control', step: '0.1' %>
+                <%= f.number_field :other_co2e, class: 'form-control', step: '0.1' %>
                 <div class="input-group-addon">tonnes CO2e</div>
               </div>
             </div>
@@ -207,7 +217,7 @@
           <div class="form-group">
             <label for="contact_email" class="col-sm-5 control-label">Contact email</label>
             <div class="col-sm-7">
-              <%= email_field_tag :contact_email, '', class: 'form-control', required: '' %>
+              <%= f.email_field :contact_email, class: 'form-control', required: '' %>
             </div>
           </div>
         </div>
@@ -215,7 +225,7 @@
         <div class="content-section">
           <div class="form-group">
             <div class="col-sm-offset-5 col-sm-7">
-              <%= button_tag 'See my business footprint', class: 'btn btn-success', required: '' %>
+              <%= f.submit 'See my business footprint', class: 'btn btn-success' %>
             </div>
           </div>
         </div>

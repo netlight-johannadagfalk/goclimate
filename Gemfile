@@ -19,6 +19,9 @@ gem 'rack-reverse-proxy', '~> 0.12.0', require: 'rack/reverse_proxy'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 
+# Domains
+gem 'countries', '~> 3.0.0'
+
 # Authentication
 gem 'devise', '~> 4.5.0'
 gem 'devise-i18n', '~> 1.7.1'

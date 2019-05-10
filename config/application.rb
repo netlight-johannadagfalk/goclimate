@@ -18,8 +18,9 @@ module GoClimateNeutral
     # -- all .rb files in that directory are automatically loaded.
 
     # Load lib as well as app
-    config.eager_load_paths << Rails.root.join('lib')
-    config.autoload_paths << Rails.root.join('lib')
+    custom_paths = %w[lib app/models/validators].map { |path| Rails.root.join(path) }
+    config.eager_load_paths.push(*custom_paths)
+    config.autoload_paths.push(*custom_paths)
 
     config.assets.paths << Rails.root.join('vendor', 'assets')
 
