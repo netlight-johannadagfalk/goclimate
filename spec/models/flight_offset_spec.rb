@@ -60,13 +60,13 @@ RSpec.describe FlightOffset do
       expect(flight_offset.errors).to have_key(:key)
     end
 
-    it 'generates key when creating new gift card' do
+    it 'generates key when creating new flight offset' do
       flight_offset = create(:flight_offset)
 
       expect(flight_offset.key).to be_present
     end
 
-    it 'does not overwrite key when changing existing gift card' do
+    it 'does not overwrite key when changing existing flight offset' do
       flight_offset = create(:flight_offset)
 
       expect do
