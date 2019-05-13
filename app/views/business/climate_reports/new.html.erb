@@ -58,9 +58,8 @@
           <div class="form-group">
             <label for="country" class="col-sm-5 control-label">Country</label>
             <div class="col-sm-7">
-              <%= f.country_select :country,
-                { include_blank: true, priority_countries: %w[SE NO DK FI DE GB US] },
-                { id: 'country', class: 'form-control', required: '' } %>
+              <span class="form-control-static" style="display: block;">Sweden</span>
+              <%= f.hidden_field :country, id: 'country' %>
             </div>
           </div>
 
