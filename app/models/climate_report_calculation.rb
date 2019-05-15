@@ -15,6 +15,13 @@ class ClimateReportCalculation < ApplicationRecord
     create(climate_report: climate_report)
   end
 
+  def total_emissions
+    electricity_consumption_emissions + heating_emissions + servers_emissions +
+      flight_emissions + car_emissions + meals_emissions +
+      purchased_computers_emissions + purchased_phones_emissions +
+      purchased_monitors_emissions + other_emissions
+  end
+
   private
 
   def perform_calcuation

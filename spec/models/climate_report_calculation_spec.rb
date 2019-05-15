@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe ClimateReportCalculation do
+  subject(:calculation) { described_class.create_from_climate_report(climate_report) }
+
   let(:climate_report) do
     create(
       :climate_report,
@@ -129,6 +131,12 @@ RSpec.describe ClimateReportCalculation do
       it 'sets purchased monitors emissions to 0' do
         expect(created_calculation.purchased_monitors_emissions).to eq(0)
       end
+    end
+  end
+
+  describe '#total_emissions' do
+    it 'sums emissions from each emission area' do
+      expect(calculation.total_emissions).to eq(6_681)
     end
   end
 
