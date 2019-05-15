@@ -7,6 +7,7 @@ module Business
     def show
       @report = ClimateReport.find_by_key!(params[:key])
       @projects = Project.order(id: :desc).limit(2)
+      @offset_price = calculate_offset_price
     end
 
     def new
@@ -21,10 +22,16 @@ module Business
         return
       end
 
+      ClimateReportCalculation.create_from_climate_report(@report)
+
       redirect_to action: :show, key: @report.key
     end
 
     private
+
+    def calculate_offset_price
+      (BigDecimal(@report.calculation.total_emissions) / 1000 * LifestyleChoice::BUSINESS_SEK_PER_TONNE).ceil
+    end
 
     def climate_report_params
       params.require(:climate_report).permit(

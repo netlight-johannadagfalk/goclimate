@@ -10,8 +10,13 @@
             Your business footprint
           </h1>
           <p class="lead">
-            Your business footprint for the reporting period X is X tonnes
-            carbon dioxide. That's X tonnes per employee.
+          Your business footprint for the reporting period <%= @report.calculation_period %> is
+          <%= co2e_string(@report.calculation.total_emissions, omit_unit: true) %>
+          tonnes carbon dioxide. That's
+          <%= co2e_string(
+            BigDecimal(@report.calculation.total_emissions / @report.employees),
+            omit_unit: true) %>
+          tonnes per employee.
           </p>
 
         </div>
@@ -57,7 +62,11 @@
               <tr>
                 <td colspan="2">
                   <ul class="flight-offset-details__segments">
-                    <li>Carbon offsetting: X tonnes carbon dioxide</li>
+                    <li>
+                      Carbon offsetting: 
+                      <%= co2e_string(@report.calculation.total_emissions, omit_unit: true) %>
+                      tonnes carbon dioxide
+                    </li>
                     <li>Climate report</li>
                   </ul>
                 </td>
@@ -66,7 +75,7 @@
             <tfoot>
               <tr class="flight-offset-details__key-row">
                 <td>Sum:</td>
-                <td>X kr</td>
+                <td><%= @offset_price %> kr</td>
               </tr>
             </tfoot>
           </table>
