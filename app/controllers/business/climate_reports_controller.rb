@@ -21,6 +21,8 @@ module Business
         return
       end
 
+      ClimateReportCalculation.create_from_climate_report(@report)
+
       redirect_to action: :show, key: @report.key
     end
 

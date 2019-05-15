@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ClimateReport < ApplicationRecord
+  has_one :climate_report_calculation
+
   validates_presence_of :company_name, :contact_email, :employees, :country, :calculation_period
   validates :contact_email, email: true
   validates :country, country: true
