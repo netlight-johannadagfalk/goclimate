@@ -6,7 +6,7 @@
     <h1 class="cover-heading">Klimatkompensera din flygresa</h1>
     <p class="lead">
       Att klimatkompensera är att ta ansvar för ditt klimatavtryck.
-      Tillsammans med Blocket erbjuder vi möjligheten att klimatkompensera för din flygresa.
+      Vi erbjuder möjligheten att klimatkompensera din flygresa i certifierade klimatprojekt.
     </p>
   </div>
   <span class="glyphicon glyphicon-chevron-down first" aria-hidden="true"></span>
@@ -41,7 +41,7 @@
               <tr class="flight-offset-details__key-row">
                 <td>Klimatavtryck:</td>
                 <td>
-                  <%= co2e_string(@footprint.footprint) %>/person
+                  <%= co2e_string(@footprint_per_person) %>/person
                 </td>
               </tr>
             </tbody>

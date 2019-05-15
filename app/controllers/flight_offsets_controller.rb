@@ -12,9 +12,9 @@ class FlightOffsetsController < ApplicationController
     @num_persons = (params[:num_persons].presence || 1).to_i
     @offset_params = FlightOffsetParameters.from_s(params[:offset_params])
 
-    @footprint = FlightFootprint.new(cabin_class: @offset_params.cabin_class, segments: @offset_params.segments)
+    @footprint_per_person = footprint_per_person
+    @total_footprint = @footprint_per_person * @num_persons
 
-    @total_footprint = @footprint.footprint * @num_persons
     @price = (BigDecimal(@total_footprint) / 1000 * LifestyleChoice::SEK_PER_TONNE).to_i * 100
     @projects = Project.order(id: :desc).limit(2)
   end
@@ -97,5 +97,13 @@ class FlightOffsetsController < ApplicationController
 
   def cleanup_three_d_secure_handoff
     session.delete(:three_d_secure_handoff)
+  end
+
+  def footprint_per_person
+    # footprint_per_person param is for partners with own co2 calculation
+    # only used temporarily by flygresor.se
+    return params[:footprint_per_person].to_i if params[:footprint_per_person].present?
+
+    FlightFootprint.new(cabin_class: @offset_params.cabin_class, segments: @offset_params.segments).footprint
   end
 end
