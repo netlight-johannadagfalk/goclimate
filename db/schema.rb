@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_14_115121) do
+ActiveRecord::Schema.define(version: 2019_05_15_141411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,19 @@ ActiveRecord::Schema.define(version: 2019_05_14_115121) do
     t.integer "purchased_monitors_emissions"
     t.integer "other_emissions"
     t.index ["climate_report_id"], name: "index_climate_report_calculations_on_climate_report_id"
+  end
+
+  create_table "climate_report_invoices", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "climate_report_id"
+    t.text "invoice_address"
+    t.string "vat_number"
+    t.string "invoice_email"
+    t.integer "co2e"
+    t.integer "amount"
+    t.string "currency"
+    t.index ["climate_report_id"], name: "index_climate_report_invoices_on_climate_report_id"
   end
 
   create_table "climate_reports", force: :cascade do |t|

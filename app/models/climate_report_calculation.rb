@@ -11,8 +11,8 @@ class ClimateReportCalculation < ApplicationRecord
 
   before_validation :perform_calcuation, on: :create
 
-  def self.create_from_climate_report(climate_report)
-    create(climate_report: climate_report)
+  def self.create_from_climate_report!(climate_report)
+    create!(climate_report: climate_report)
   end
 
   def total_emissions
@@ -123,6 +123,6 @@ class ClimateReportCalculation < ApplicationRecord
   end
 
   def set_other_emissions
-    self.other_emissions = climate_report.other_co2e
+    self.other_emissions = climate_report.other_co2e || 0
   end
 end
