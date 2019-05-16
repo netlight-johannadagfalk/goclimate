@@ -7,5 +7,9 @@ FactoryBot.define do
     employees { 4 }
     country { 'se' }
     calculation_period { '2018' }
+
+    trait :ten_tonnes do
+      other_co2e { 10_000 }
+    end
   end
 end

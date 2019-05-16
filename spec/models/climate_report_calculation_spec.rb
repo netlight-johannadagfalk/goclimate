@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ClimateReportCalculation do
-  subject(:calculation) { described_class.create_from_climate_report(climate_report) }
+  subject(:calculation) { described_class.create_from_climate_report!(climate_report) }
 
   let(:climate_report) do
     create(
@@ -23,7 +23,7 @@ RSpec.describe ClimateReportCalculation do
   end
 
   def validate_presence_of(attribute)
-    calculation = described_class.create_from_climate_report(climate_report)
+    calculation = described_class.create_from_climate_report!(climate_report)
 
     calculation.send("#{attribute}=", nil)
     calculation.validate
@@ -31,8 +31,8 @@ RSpec.describe ClimateReportCalculation do
     expect(calculation.errors.keys).to include(attribute)
   end
 
-  describe '.create_from_climate_report' do
-    subject(:created_calculation) { described_class.create_from_climate_report(climate_report) }
+  describe '.create_from_climate_report!' do
+    subject(:created_calculation) { described_class.create_from_climate_report!(climate_report) }
 
     it 'saves record' do
       expect(created_calculation.persisted?).to be true
@@ -93,7 +93,7 @@ RSpec.describe ClimateReportCalculation do
 
     context 'with climate report without optional fields' do
       subject(:created_calculation) do
-        described_class.create_from_climate_report(create(:climate_report))
+        described_class.create_from_climate_report!(create(:climate_report))
       end
 
       it 'sets electricity emissions to 0' do

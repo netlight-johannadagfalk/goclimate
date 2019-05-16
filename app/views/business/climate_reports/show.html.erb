@@ -75,7 +75,7 @@
             <tfoot>
               <tr class="flight-offset-details__key-row">
                 <td>Sum:</td>
-                <td><%= @offset_price %> kr</td>
+                <td><%= price_string(@invoice.amount, 'sek') %></td>
               </tr>
             </tfoot>
           </table>
@@ -112,25 +112,35 @@
         </div>
       </div>
 
-      <%= form_tag(business_climate_report_invoice_path, method: :post, id: "payment-form", class: "form-horizontal content-section") do %>
+      <%= form_for [:business, @report, @invoice], url: business_climate_report_invoice_path(@report, @invoice), html: { id: "payment-form", class: "form-horizontal content-section" } do |f| %>
+        <% if @invoice.errors.any? %>
+          <%# This is a panel because alerts are currently scripted to be dismissed automatically %>
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <% @invoice.errors.full_messages.each do |message| %>
+                <p><%= message %></p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
         <div class="form-group">
           <label for="address" class="col-sm-5 control-label">Invoice address</label>
           <div class="col-sm-7">
-            <%= text_area_tag :address, '', class: 'form-control', required: '' %>
+            <%= f.text_area :invoice_address, class: 'form-control', required: '' %>
           </div>
         </div>
 
         <div class="form-group">
           <label for="vat_number" class="col-sm-5 control-label">VAT number (optional)</label>
           <div class="col-sm-7">
-            <%= email_field_tag :vat_number, '', class: 'form-control' %>
+            <%= f.text_field :vat_number, class: 'form-control' %>
           </div>
         </div>
 
         <div class="form-group">
           <label for="email" class="col-sm-5 control-label">Invoice email (optional)</label>
           <div class="col-sm-7">
-            <%= email_field_tag :email, '', class: 'form-control' %>
+            <%= f.email_field :invoice_email, class: 'form-control' %>
           </div>
           <div class="col-sm-offset-5 col-sm-7">
             <span id="helpBlock" class="help-block text-left">
