@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>ID:</strong>
+  <%= @invoice.id %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @invoice.climate_report.company_name %>
+</p>
+
+<p>
+  <strong>Contact email:</strong>
+  <%= @invoice.climate_report.contact_email %>
+</p>
+
+<p>
+  <strong>Carbon offset:</strong>
+  <%= @invoice.co2e %> kg co2e
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= price_string(@invoice.amount, @invoice.currency, lowest_denominator: true) %>
+</p>
+
+<p>
+  <strong>Invoice address:</strong>
+</p>
+<pre><%= @invoice.invoice_address %></pre>
+
+<p>
+  <strong>VAT number:</strong>
+  <%= @invoice.vat_number %>
+</p>
+
+<p>
+  <strong>Invoice email:</strong>
+  <% if @invoice.invoice_email.present? %>
+    <%= @invoice.invoice_email %>
+  <% else %>
+    <i>Send invoice via mail</i>
+  <% end %>
+</p>
+
+<%= link_to 'Back', admin_climate_report_invoices_path %>

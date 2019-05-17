@@ -112,6 +112,7 @@ Rails.application.routes.draw do
     resources :lifestyle_choices
     resources :projects
     resources :stripe_events
+    resources :climate_report_invoices, only: [:index, :show]
   end
 
   resource :impact_statistics, only: [:show], format: true, constraints: { format: :csv }
