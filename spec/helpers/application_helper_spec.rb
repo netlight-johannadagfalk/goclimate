@@ -21,5 +21,17 @@ RSpec.describe ApplicationHelper, type: :helper do
 
       expect(string).to eq('$13')
     end
+
+    it 'generates a localized string for SEK in lowest denominator' do
+      string = helper.price_string(1300, 'sek', lowest_denominator: true)
+
+      expect(string).to eq('13 kr')
+    end
+
+    it 'generates a localized string for SEK in lowest denominator with fractions' do
+      string = helper.price_string(1350, 'sek', lowest_denominator: true)
+
+      expect(string).to eq('13:50 kr')
+    end
   end
 end
