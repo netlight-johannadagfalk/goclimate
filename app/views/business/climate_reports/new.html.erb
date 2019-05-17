@@ -37,7 +37,7 @@
         <div class="content-section">
           <div class="row">
             <div class="col-sm-offset-5 col-sm-7">
-              <h3 class="text-left">General information</h3>
+              <h3 class="text-left">1. General information</h3>
             </div>
           </div>
 
@@ -49,7 +49,10 @@
           </div>
 
           <div class="form-group">
-            <label for="climate_report_employees" class="col-sm-5 control-label">Number of employees</label>
+            <label for="climate_report_employees" class="col-sm-5 control-label">
+              Number of employees 
+              <a class="business-tooltip" data-toggle="tooltip" title="Estimated full time employees or equivalent. This is used so that we can estimate your energy usage if you don't have specific kWh-numbers availible, and for calculating emissions per emloyee and similar statistical values.">[?]</a>
+            </label>
             <div class="col-sm-7">
               <%= f.number_field :employees, class: 'form-control', required: '' %>
             </div>
@@ -66,7 +69,10 @@
           </div>
 
           <div class="form-group">
-            <label for="climate_report_country" class="col-sm-5 control-label">Country</label>
+            <label for="climate_report_country" class="col-sm-5 control-label">
+              Country
+              <a class="business-tooltip" data-toggle="tooltip" title="Our Business footprint calculator availible in Sweden so far. Contact us at info@goclimateneutral.org if you are interested business footprint calculations for other countries and we would love to help you!">[?]</a>
+            </label>
             <div class="col-sm-7">
               <span class="form-control-static" style="display: block;">Sweden</span>
               <%= f.hidden_field :country, id: 'country' %>
@@ -74,7 +80,10 @@
           </div>
 
           <div class="form-group">
-            <label for="climate_report_calculation_period" class="col-sm-5 control-label">Calculation period</label>
+            <label for="climate_report_calculation_period" class="col-sm-5 control-label">
+              Calculation period
+              <a class="business-tooltip" data-toggle="tooltip" title="The period that you want to do the footprint calculation for. '2018', '2019 Q1', '2019-06' or similar.">[?]</a>
+            </label>
             <div class="col-sm-7">
               <%= f.text_field :calculation_period, class: 'form-control', required: '' %>
             </div>
@@ -93,13 +102,17 @@
 
         <div class="content-section">
           <div class="row">
-            <div class="col-sm-offset-5 col-sm-7">
-              <h3 class="text-left">Energy</h3>
+            <div class="col-sm-offset-5 col-sm-6">
+              <h3 class="text-left">2. Energy</h3>
+              <p class="description">The energy consumption of a business is often the largest source of a service business climate footprint. This calculator takes the three most commonly largest energy sources into account; electricity, heating and the amount of servers running.</p>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="climate_report_electricity_consumption" class="col-sm-5 control-label">Electricity consumption</label>
+            <label for="climate_report_electricity_consumption" class="col-sm-5 control-label">
+              Electricity consumption
+              <a class="business-tooltip" data-toggle="tooltip" title="The electricity consumed during the period in kWh. This number is often specified on the electricity bills you pay every month or quarter. If electricity is included in the rent, ask your landlord if they measure each tenants specific usage or if they can estimate the consumption for you. If not, our average numbers can be used.">[?]</a>
+            </label>
             <div class="col-sm-5">
               <div class="input-group">
                 <%= f.number_field :electricity_consumption, class: 'form-control' %>
@@ -127,7 +140,10 @@
           </div>
 
           <div class="form-group">
-            <label for="climate_report_heating" class="col-sm-5 control-label">District heating</label>
+            <label for="climate_report_heating" class="col-sm-5 control-label">
+              Heating
+              <a class="business-tooltip" data-toggle="tooltip" title="90% of the heating used in Sweden is district heating and is often of similar size as the eletricity. It is most commonly found in the heating bill, but if that is not available, ask your tenant if they have any numbers availible of your usage. If not, our average numbers can be used.">[?]</a>
+            </label>
             <div class="col-sm-5">
               <div class="input-group">
                 <%= f.number_field :heating, class: 'form-control' %>
@@ -143,8 +159,11 @@
           </div>
 
           <div class="form-group">
-            <label for="climate_report_number_of_servers" class="col-sm-5 control-label">Average number of active servers</label>
-            <div class="col-sm-7">
+            <label for="climate_report_number_of_servers" class="col-sm-5 control-label">
+              Average number of active servers
+              <a class="business-tooltip" data-toggle="tooltip" title="The average number of active servers during the time period.">[?]</a>
+            </label>
+            <div class="col-sm-5">
               <%= f.number_field :number_of_servers, class: 'form-control' %>
               <div class="checkbox">
                 <label>
@@ -171,14 +190,18 @@
 
         <div class="content-section">
           <div class="row">
-            <div class="col-sm-offset-5 col-sm-7">
-              <h3 class="text-left">Business trips</h3>
+            <div class="col-sm-offset-5 col-sm-6">
+              <h3 class="text-left">3. Business trips</h3>
+              <p class="description">Business travel can be a large source of a business climate footprint, especielly if many long distance trips are made or if you have salespeople on the road.</p>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="climate_report_flight_hours" class="col-sm-5 control-label">Total flight hours</label>
-            <div class="col-sm-7">
+            <label for="climate_report_flight_hours" class="col-sm-5 control-label">
+              Total flight hours
+              <a class="business-tooltip" data-toggle="tooltip" title="Estimated number of flight hours in total. If 10 people fly 2 hours back and forth, the total would be 40 hours here. If you have a more specific number calculated already for this, you can put it in the Other-field at the end of this form.">[?]</a>
+            </label>
+            <div class="col-sm-5">
               <div class="input-group">
                 <%= f.number_field :flight_hours, class: 'form-control' %>
                 <div class="input-group-addon">hours</div>
@@ -187,8 +210,11 @@
           </div>
 
           <div class="form-group">
-            <label for="climate_report_car_distance" class="col-sm-5 control-label">Distance by car &amp; taxi</label>
-            <div class="col-sm-7">
+            <label for="climate_report_car_distance" class="col-sm-5 control-label">
+              Distance by car &amp; taxi
+              <a class="business-tooltip" data-toggle="tooltip" title="Estimated distance driven by car and taxi. Electrical milage can be excluded. Lower consumption vehicles like diesel, ethanol and hybrid can be lowered if desiered to correspond to the milages of an average petrol car. If your hybrids consume 50% as much as a petrol car and you drive 20 miles, enter 10 miles here.">[?]</a>
+            </label>
+            <div class="col-sm-5">
               <div class="input-group">
                 <%= f.number_field :car_distance, class: 'form-control' %>
                 <div class="input-group-addon">kilometers</div>
@@ -199,20 +225,27 @@
 
         <div class="content-section">
           <div class="row">
-            <div class="col-sm-offset-5 col-sm-7">
-              <h3 class="text-left">Food</h3>
+            <div class="col-sm-offset-5 col-sm-6">
+              <h3 class="text-left">4. Food</h3>
+              <p class="description">Depending on the type of business and the type of food served, food can be a large source of a business climate footprint.</p>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="climate_report_meals" class="col-sm-5 control-label">Number of meals</label>
-            <div class="col-sm-7">
+            <label for="climate_report_meals" class="col-sm-5 control-label">
+              Number of meals
+              <a class="business-tooltip" data-toggle="tooltip" title="The estimated number of meals served during the period. This includes all full meals that the business pays for.">[?]</a>
+            </label>
+            <div class="col-sm-5">
               <%= f.number_field :meals, class: 'form-control' %>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="climate_report_meals_vegetarian_share" class="col-sm-5 control-label">Share of vegetarian meals</label>
+            <label for="climate_report_meals_vegetarian_share" class="col-sm-5 control-label">
+              Share of vegetarian meals
+              <a class="business-tooltip" data-toggle="tooltip" title="The estimated share of vegetarian meals. With a veg-first policy, this is probably around 95%, without it's probably around 10%.">[?]</a>
+            </label>
             <div class="col-sm-7">
               <div class="input-group">
                 <%= f.number_field :meals_vegetarian_share, class: 'form-control', min: 0, max: 100 %>
@@ -224,8 +257,9 @@
 
         <div class="content-section">
           <div class="row">
-            <div class="col-sm-offset-5 col-sm-7">
-              <h3 class="text-left">Material</h3>
+            <div class="col-sm-offset-5 col-sm-6">
+              <h3 class="text-left">5. Material</h3>
+              <p class="description">Below is fields for the electronics bought during the period. Electronics often have a factor 10x larger climate footprint then most other material bought, like shirts or furniture. If large amounts of other material then electronics have been bought, like lots of furniture if the business has moved during the period, it can be calculated seperatly and entered in the Other-field at the end of this form.</p>
             </div>
           </div>
 
@@ -253,8 +287,9 @@
 
         <div class="content-section">
           <div class="row">
-            <div class="col-sm-offset-5 col-sm-7">
-              <h3 class="text-left">Other</h3>
+            <div class="col-sm-offset-5 col-sm-6">
+              <h3 class="text-left">6. Other</h3>
+              <p class="description">It's hard to capture a business all emissions in one form. Most companies have other sources of emissions that might be large, but not very common. Is your business orgaizing events with speakers from all around the world that are flown in? Do you have consultants that need to commute long distances every week to get to your customers? Calculate and enter the emissions below. If you need help with calculations, feel free to contact us at info@goclimateneutral.org.</p>
             </div>
           </div>
 
@@ -278,8 +313,10 @@
 
         <div class="content-section">
           <div class="row">
-            <div class="col-sm-offset-5 col-sm-7">
-              <h3 class="text-left">Contact</h3>
+            <div class="col-sm-offset-5 col-sm-6">
+              <h3 class="text-left">7. Contact</h3>
+              <p class="description">To be able to get a link to the climate report we create you need to enter your e-mail adress.</p>
+            </div>
             </div>
           </div>
 
