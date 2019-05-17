@@ -1,0 +1,15 @@
+Företag: <%= @climate_report.company_name %>
+Kontakt: <%= @climate_report.contact_email %>
+Antal ton: <%= co2e_string(@climate_report.invoice.co2e, omit_unit: true) %>
+Pris: <%= price_string(@climate_report.invoice.amount, @climate_report.invoice.currency, lowest_denominator: true) %>
+Fakturaadress:
+<%= @climate_report.invoice.invoice_address %>
+
+Momsnummer: <%= @climate_report.invoice.vat_number %>
+<% if @climate_report.invoice.invoice_email.present? %>
+Fakturamail: <%= @climate_report.invoice.invoice_email.presence %>
+<% else %>
+Faktura via brev
+<% end %>
+
+<%= admin_climate_report_invoice_url(@climate_report.invoice) %>

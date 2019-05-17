@@ -7,7 +7,7 @@ class BusinessesController < ApplicationController
 
   def create
     @email = params[:email]
-    BusinessInterestMailer.notice_email(@email, params[:number_of_employees], I18n.locale).deliver
+    BusinessMailer.employee_offset_notice_email(@email, params[:number_of_employees], I18n.locale).deliver
   end
 
   private
