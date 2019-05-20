@@ -510,3 +510,6 @@ en:
     other_offsetting_html:  We can help out with climate footprint calculations, one time offsets and technical integrations. Contact us at <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> to learn more.
     number_of_employees: "Number of employees:"
     your_email: "Your e-mail:"
+    climate_reports:
+      estimate_your_business_footprint: Estimate your business footprint
+      estimate_your_business_footprint_intro: Estimating your business climate footprint is the first step when taking responsiblity for the climate emissions that your business causes. After completing this form, we will calculate your total business climate footprint, and you will be able to offset the emissions in certified climate projects. 

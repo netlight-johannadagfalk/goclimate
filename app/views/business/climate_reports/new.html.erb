@@ -10,14 +10,10 @@
         <div class="col-xs-12">
 
           <h1 class="cover-heading">
-            Estimate your business footprint
+            <%=t 'business.climate_reports.estimate_your_business_footprint' %>
           </h1>
           <p class="lead">
-            Estimating your footprint is the first step to reducing and taking
-            responsiblity for your climate impact. Because getting an estimate
-            requires a few numbers from different parts of your business
-            activities, we recommend going through the areas below one by one
-            before submitting all numbers.
+            <%=t 'business.climate_reports.estimate_your_business_footprint_intro' %>
           </p>
 
         </div>
@@ -51,7 +47,7 @@
           <div class="form-group">
             <label for="climate_report_employees" class="col-sm-5 control-label">
               Number of employees 
-              <a class="business-tooltip" data-toggle="tooltip" title="Estimated full time employees or equivalent. This is used so that we can estimate your energy usage if you don't have specific kWh-numbers availible, and for calculating emissions per emloyee and similar statistical values.">[?]</a>
+              <a class="business-tooltip" data-toggle="tooltip" title="Estimated full-time employees or equivalent. This is used so that we can estimate your energy usage if you don't have specific kWh-numbers availible, and for calculating emissions per emloyee and other statistical values. Example: 2 people working full-time and 2 people working 50% would be equal to 3 full-time employees.">[?]</a>
             </label>
             <div class="col-sm-7">
               <%= f.number_field :employees, class: 'form-control', required: '' %>
@@ -71,7 +67,7 @@
           <div class="form-group">
             <label for="climate_report_country" class="col-sm-5 control-label">
               Country
-              <a class="business-tooltip" data-toggle="tooltip" title="Our Business footprint calculator availible in Sweden so far. Contact us at info@goclimateneutral.org if you are interested business footprint calculations for other countries and we would love to help you!">[?]</a>
+              <a class="business-tooltip" data-toggle="tooltip" title="Our Business footprint calculator is only availible in Sweden so far. This means that we unfortunately can't support swedish companies with offices in other contries either. Contact us at info@goclimateneutral.org if you are interested in business footprint calculations with offices in other countries - we would love to help!">[?]</a>
             </label>
             <div class="col-sm-7">
               <span class="form-control-static" style="display: block;">Sweden</span>
@@ -142,7 +138,7 @@
           <div class="form-group">
             <label for="climate_report_heating" class="col-sm-5 control-label">
               Heating
-              <a class="business-tooltip" data-toggle="tooltip" title="90% of the heating used in Sweden is district heating and is often of similar size as the eletricity. It is most commonly found in the heating bill, but if that is not available, ask your tenant if they have any numbers availible of your usage. If not, our average numbers can be used.">[?]</a>
+              <a class="business-tooltip" data-toggle="tooltip" title="90% of the heating used in Sweden is district heating and is often of similar size as the eletricity in terms of kWh used. It is most commonly found in the heating bill, but if that is not available, ask your landlord if they have any numbers available of your usage. If not, our average numbers can be used.">[?]</a>
             </label>
             <div class="col-sm-5">
               <div class="input-group">
@@ -161,7 +157,7 @@
           <div class="form-group">
             <label for="climate_report_number_of_servers" class="col-sm-5 control-label">
               Average number of active servers
-              <a class="business-tooltip" data-toggle="tooltip" title="The average number of active servers during the time period.">[?]</a>
+              <a class="business-tooltip" data-toggle="tooltip" title="The average number of active servers during the time period. For example, if you had 4 servers running for half of the period and 2 for the rest, enter 3 as the average">[?]</a>
             </label>
             <div class="col-sm-5">
               <%= f.number_field :number_of_servers, class: 'form-control' %>
@@ -199,7 +195,7 @@
           <div class="form-group">
             <label for="climate_report_flight_hours" class="col-sm-5 control-label">
               Total flight hours
-              <a class="business-tooltip" data-toggle="tooltip" title="Estimated number of flight hours in total. If 10 people fly 2 hours back and forth, the total would be 40 hours here. If you have a more specific number calculated already for this, you can put it in the Other-field at the end of this form.">[?]</a>
+              <a class="business-tooltip" data-toggle="tooltip" title="Estimated number of flight hours in total. For example, if 10 people fly 2 hours back and forth, the total would be 40 hours here.">[?]</a>
             </label>
             <div class="col-sm-5">
               <div class="input-group">
@@ -244,7 +240,7 @@
           <div class="form-group">
             <label for="climate_report_meals_vegetarian_share" class="col-sm-5 control-label">
               Share of vegetarian meals
-              <a class="business-tooltip" data-toggle="tooltip" title="The estimated share of vegetarian meals. With a veg-first policy, this is probably around 95%, without it's probably around 10%.">[?]</a>
+              <a class="business-tooltip" data-toggle="tooltip" title="The estimated share of vegetarian meals. Without a veg-first policy, this is probably around 10% (the number of vegetarians/vegans in Sweden according to Djurens Rätt).">[?]</a>
             </label>
             <div class="col-sm-7">
               <div class="input-group">
@@ -259,7 +255,7 @@
           <div class="row">
             <div class="col-sm-offset-5 col-sm-6">
               <h3 class="text-left">5. Material</h3>
-              <p class="description">Below is fields for the electronics bought during the period. Electronics often have a factor 10x larger climate footprint then most other material bought, like shirts or furniture. If large amounts of other material then electronics have been bought, like lots of furniture if the business has moved during the period, it can be calculated seperatly and entered in the Other-field at the end of this form.</p>
+              <p class="description">Electronics often have a factor 10x larger climate footprint then most other material bought, like shirts or furniture. If large amounts of other material then electronics have been bought, like lots of furniture if the business has moved during the period, it can be calculated seperatly and entered in the Other-field at the end of this form.</p>
             </div>
           </div>
 

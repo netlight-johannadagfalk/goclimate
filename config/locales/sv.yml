@@ -540,6 +540,8 @@ sv:
     other_offsetting_html: "Vi kan hjälpa till med utsläppsberäkningar för tjänsteföretag, enskilda klimatkompensationer och tekniska integrationer. Hör av dig till <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> så berättar vi mer."
     number_of_employees: "Antal anställda:"
     your_email: "Din e-post:"
+    climate_reports:
+      estimate_your_business_footprint: Beräkna ditt företags klimatutsläpp
 
   mailers:
     flight_offset:
