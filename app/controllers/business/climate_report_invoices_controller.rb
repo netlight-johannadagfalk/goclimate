@@ -15,6 +15,8 @@ module Business
         return
       end
 
+      BusinessMailer.business_signup_notice_email(@report).deliver_now
+
       redirect_to action: :thank_you
     end
 

@@ -75,7 +75,7 @@
             <tfoot>
               <tr class="flight-offset-details__key-row">
                 <td>Sum:</td>
-                <td><%= price_string(@invoice.amount, 'sek') %></td>
+                <td><%= price_string(@invoice.amount, 'sek', lowest_denominator: true) %></td>
               </tr>
             </tfoot>
           </table>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Climate Report Invoices</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Company</th>
+      <th>Contact email</th>
+      <th>Carbon offset</th>
+      <th>Amount</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invoices.each do |invoice| %>
+      <tr>
+        <td><%= invoice.id %></td>
+        <td><%= invoice.climate_report.company_name %></td>
+        <td><%= invoice.climate_report.contact_email %></td>
+        <td><%= invoice.co2e %> kg co2e</td>
+        <td><%= price_string(invoice.amount, invoice.currency, lowest_denominator: true) %></td>
+        <td><%= link_to 'Show', [:admin, invoice] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
