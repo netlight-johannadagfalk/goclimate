@@ -53,7 +53,12 @@
 
 td.form.select {
   padding: 3px;
-} 
+}
+
+.form-group .description {
+  text-align: left;
+  padding-bottom: 20px;
+}
 
 /* Gift cards */
 .form-horizontal.giftcard .control-label {

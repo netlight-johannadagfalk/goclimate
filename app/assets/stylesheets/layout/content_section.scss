@@ -5,4 +5,13 @@
   & + .content-section {
     margin-top: 40px;
   }
+
+  /* TODO: Move these rules out to its own dedicated styling or move usage to generic typography styling */
+  .description {
+    padding-bottom: 20px;
+    text-align: left;
+  }
+  .tooltip-inner {
+    width: 300px; 
+  }
 }
