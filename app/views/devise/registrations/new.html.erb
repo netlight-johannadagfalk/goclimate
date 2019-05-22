@@ -137,8 +137,12 @@
 
       <div class="form-group form-group-sm-centered">
         <div class="col-sm-offset-5 col-sm-7">
-          <%= f.check_box :privacy_policy %>
-          <label for="user_privacy_policy"><%=t 'i_accept' %> <%= link_to I18n.t('our_privacy_policy'), privacy_policy_path, target: '_blank' %></a></label>
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :privacy_policy %>
+              <%=t 'i_accept' %> <%= link_to I18n.t('our_privacy_policy'), privacy_policy_path, target: '_blank', class: 'privacy-policy-link' %></a>
+            </label>
+          </div>
         </div>
       </div>
 

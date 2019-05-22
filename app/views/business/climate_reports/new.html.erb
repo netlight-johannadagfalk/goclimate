@@ -42,21 +42,31 @@
           </div>
 
           <div class="form-group">
-            <label for="company_name" class="col-sm-5 control-label">Company name</label>
+            <label for="climate_report_company_name" class="col-sm-5 control-label">Company name</label>
             <div class="col-sm-7">
               <%= f.text_field :company_name, class: 'form-control', required: '' %>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="employees" class="col-sm-5 control-label">Number of employees</label>
+            <label for="climate_report_employees" class="col-sm-5 control-label">Number of employees</label>
             <div class="col-sm-7">
               <%= f.number_field :employees, class: 'form-control', required: '' %>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="country" class="col-sm-5 control-label">Country</label>
+            <label for="climate_report_office_area" class="col-sm-5 control-label">Office area</label>
+            <div class="col-sm-7">
+              <div class="input-group">
+                <%= f.number_field :office_area, class: 'form-control' %>
+                <div class="input-group-addon">m<sup>2</sup></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="climate_report_country" class="col-sm-5 control-label">Country</label>
             <div class="col-sm-7">
               <span class="form-control-static" style="display: block;">Sweden</span>
               <%= f.hidden_field :country, id: 'country' %>
@@ -64,9 +74,19 @@
           </div>
 
           <div class="form-group">
-            <label for="calculation_period" class="col-sm-5 control-label">Calculation period</label>
+            <label for="climate_report_calculation_period" class="col-sm-5 control-label">Calculation period</label>
             <div class="col-sm-7">
               <%= f.text_field :calculation_period, class: 'form-control', required: '' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-5 control-label">Your name and logo on our site</label>
+            <div class="col-sm-5 checkbox">
+              <label>
+                <%= f.check_box :consent_to_show_publicly %>
+                We're OK with our name and logo being shown on the GoClimateNeutral site, for example in top lists
+              </label>
             </div>
           </div>
         </div>
@@ -79,29 +99,72 @@
           </div>
 
           <div class="form-group">
-            <label for="electricity_consumption" class="col-sm-5 control-label">Electricity consumption</label>
-            <div class="col-sm-7">
+            <label for="climate_report_electricity_consumption" class="col-sm-5 control-label">Electricity consumption</label>
+            <div class="col-sm-5">
               <div class="input-group">
                 <%= f.number_field :electricity_consumption, class: 'form-control' %>
                 <div class="input-group-addon">kWh</div>
               </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="heating" class="col-sm-5 control-label">Heating</label>
-            <div class="col-sm-7">
-              <div class="input-group">
-                <%= f.number_field :heating, class: 'form-control' %>
-                <div class="input-group-addon">kWh</div>
+              <div class="checkbox">
+                <label>
+                  <%= f.check_box :use_electricity_averages, onchange: 'document.getElementById("climate_report_electricity_consumption").disabled = this.checked' %>
+                  We don't have access to electricity consumption—use average values
+                </label>
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="heating" class="col-sm-5 control-label">Average number of active servers</label>
+            <label class="col-sm-5 control-label">Green electricity</label>
+            <div class="col-sm-5">
+              <div class="checkbox">
+                <label>
+                  <%= f.check_box :green_electricity %>
+                  We have a contract for green or nuclear electricity
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="climate_report_heating" class="col-sm-5 control-label">District heating</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <%= f.number_field :heating, class: 'form-control' %>
+                <div class="input-group-addon">kWh</div>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <%= f.check_box :use_heating_averages, onchange: 'document.getElementById("climate_report_heating").disabled = this.checked' %>
+                  We don't have access to district heating consumption—use average values
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="climate_report_number_of_servers" class="col-sm-5 control-label">Average number of active servers</label>
             <div class="col-sm-7">
               <%= f.number_field :number_of_servers, class: 'form-control' %>
+              <div class="checkbox">
+                <label>
+                  <%= f.check_box :servers_green_electricity %>
+                  Our servers use green electricity
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="climate_report_number_of_cloud_servers" class="col-sm-5 control-label">Average number of active cloud servers</label>
+            <div class="col-sm-7">
+              <%= f.number_field :number_of_cloud_servers, class: 'form-control' %>
+              <div class="checkbox">
+                <label>
+                  <%= f.check_box :cloud_servers_green_electricity %>
+                  Our cloud servers use green electricity
+                </label>
+              </div>
             </div>
           </div>
         </div>
@@ -114,7 +177,7 @@
           </div>
 
           <div class="form-group">
-            <label for="flight_hours" class="col-sm-5 control-label">Total flight hours</label>
+            <label for="climate_report_flight_hours" class="col-sm-5 control-label">Total flight hours</label>
             <div class="col-sm-7">
               <div class="input-group">
                 <%= f.number_field :flight_hours, class: 'form-control' %>
@@ -124,7 +187,7 @@
           </div>
 
           <div class="form-group">
-            <label for="car_distance" class="col-sm-5 control-label">Distance by car &amp; taxi</label>
+            <label for="climate_report_car_distance" class="col-sm-5 control-label">Distance by car &amp; taxi</label>
             <div class="col-sm-7">
               <div class="input-group">
                 <%= f.number_field :car_distance, class: 'form-control' %>
@@ -142,14 +205,14 @@
           </div>
 
           <div class="form-group">
-            <label for="meals" class="col-sm-5 control-label">Number of meals</label>
+            <label for="climate_report_meals" class="col-sm-5 control-label">Number of meals</label>
             <div class="col-sm-7">
               <%= f.number_field :meals, class: 'form-control' %>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="meals" class="col-sm-5 control-label">Share of vegetarian meals</label>
+            <label for="climate_report_meals_vegetarian_share" class="col-sm-5 control-label">Share of vegetarian meals</label>
             <div class="col-sm-7">
               <div class="input-group">
                 <%= f.number_field :meals_vegetarian_share, class: 'form-control', min: 0, max: 100 %>
@@ -167,21 +230,21 @@
           </div>
 
           <div class="form-group">
-            <label for="purchased_computers" class="col-sm-5 control-label">Purchased computers</label>
+            <label for="climate_report_purchased_computers" class="col-sm-5 control-label">Purchased computers</label>
             <div class="col-sm-7">
               <%= f.number_field :purchased_computers, class: 'form-control' %>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="purchased_phones" class="col-sm-5 control-label">Purchased phones/tablets</label>
+            <label for="climate_report_purchased_phones" class="col-sm-5 control-label">Purchased phones/tablets</label>
             <div class="col-sm-7">
               <%= f.number_field :purchased_phones, class: 'form-control' %>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="purchased_monitors" class="col-sm-5 control-label">Purchased monitors</label>
+            <label for="climate_report_purchased_monitors" class="col-sm-5 control-label">Purchased monitors</label>
             <div class="col-sm-7">
               <%= f.number_field :purchased_monitors, class: 'form-control' %>
             </div>
@@ -196,12 +259,19 @@
           </div>
 
           <div class="form-group">
-            <label for="other" class="col-sm-5 control-label">Other footprint</label>
+            <label for="climate_report_other_co2e" class="col-sm-5 control-label">Other footprint</label>
             <div class="col-sm-7">
               <div class="input-group">
-                <%= f.number_field :other_co2e, class: 'form-control', step: '0.1' %>
-                <div class="input-group-addon">tonnes CO2e</div>
+                <%= f.number_field :other_co2e, class: 'form-control' %>
+                <div class="input-group-addon">kg CO2e</div>
               </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="climate_report_other_specification" class="col-sm-5 control-label">Specify other footprint</label>
+            <div class="col-sm-7">
+              <%= f.text_area :other_specification, class: 'form-control', step: '0.1' %>
             </div>
           </div>
         </div>
@@ -214,7 +284,7 @@
           </div>
 
           <div class="form-group">
-            <label for="contact_email" class="col-sm-5 control-label">Contact email</label>
+            <label for="climate_report_contact_email" class="col-sm-5 control-label">Contact email</label>
             <div class="col-sm-7">
               <%= f.email_field :contact_email, class: 'form-control', required: '' %>
             </div>

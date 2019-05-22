@@ -11,12 +11,6 @@
   text-align: left;
 }
 
-.form-group .checkbox input {
-  margin-left: 0px;
-  width: auto;
-  margin-top: 4px;
-}
-
 .form-group {
   text-align: left;
 }
@@ -36,22 +30,7 @@
     max-width: none;
   }
 
-  @media (min-width: 768px) {
-    input {
-      float: left;
-    }
-
-    button {
-      float: left;
-    }
-  }
-
   @media (max-width: 767px) {
-    select, input {
-      display: inline;
-      margin: 0 auto;
-    }
-
     .form-control {
       font-size: 16px; /* 16px is the smallest Safari on iPhone will allow without zooming */
     }
