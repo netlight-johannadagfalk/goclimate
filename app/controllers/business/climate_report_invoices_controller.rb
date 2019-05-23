@@ -2,7 +2,6 @@
 
 module Business
   class ClimateReportInvoicesController < ApplicationController
-    before_action :force_en_locale # Business pages are English only for now
 
     def create
       @report = ClimateReport.find_by_key(params[:key])

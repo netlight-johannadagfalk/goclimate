@@ -10,10 +10,10 @@
         <div class="col-xs-12">
 
           <h1 class="cover-heading">
-            <%=t 'business.climate_reports.estimate_your_business_footprint' %>
+            <%=t 'business.climate_reports.business_footprint_header' %>
           </h1>
           <p class="lead">
-            <%=t 'business.climate_reports.estimate_your_business_footprint_intro' %>
+            <%=t 'business.climate_reports.business_footprint_intro' %>
           </p>
 
         </div>
@@ -33,21 +33,32 @@
         <div class="content-section">
           <div class="row">
             <div class="col-sm-offset-5 col-sm-7">
-              <h3 class="text-left">1. General information</h3>
+              <h3 class="text-left">1. <%=t 'business.climate_reports.general_information' %></h3>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="climate_report_company_name" class="col-sm-5 control-label">Company name</label>
+            <label for="climate_report_company_name" class="col-sm-5 control-label"><%=t 'business.climate_reports.company_name' %></label>
             <div class="col-sm-7">
               <%= f.text_field :company_name, class: 'form-control', required: '' %>
             </div>
           </div>
 
           <div class="form-group">
+            <label for="climate_report_country" class="col-sm-5 control-label">
+              <%=t 'business.climate_reports.country' %>
+              <a class="business-tooltip" data-toggle="tooltip" title="<%=t 'business.climate_reports.country_tooltip' %>">[?]</a>
+            </label>
+            <div class="col-sm-7">
+              <span class="form-control-static" style="display: block;"><%=t 'business.climate_reports.sweden' %></span>
+              <%= f.hidden_field :country, id: 'country' %>
+            </div>
+          </div>
+
+          <div class="form-group">
             <label for="climate_report_employees" class="col-sm-5 control-label">
-              Number of employees 
-              <a class="business-tooltip" data-toggle="tooltip" title="Estimated full-time employees or equivalent. This is used so that we can estimate your energy usage if you don't have specific kWh-numbers availible, and for calculating emissions per emloyee and other statistical values. Example: 2 people working full-time and 2 people working 50% would be equal to 3 full-time employees.">[?]</a>
+              <%=t 'business.climate_reports.number_of_employees' %> 
+              <a class="business-tooltip" data-toggle="tooltip" title="<%=t 'business.climate_reports.number_of_employees_tooltip' %>">[?]</a>
             </label>
             <div class="col-sm-7">
               <%= f.number_field :employees, class: 'form-control', required: '' %>
@@ -55,7 +66,10 @@
           </div>
 
           <div class="form-group">
-            <label for="climate_report_office_area" class="col-sm-5 control-label">Office area</label>
+            <label for="climate_report_office_area" class="col-sm-5 control-label">
+            <%=t 'business.climate_reports.office_area' %>
+            <a class="business-tooltip" data-toggle="tooltip" title="<%=t 'business.climate_reports.office_area_tooltip' %>">[?]</a>
+          </label>
             <div class="col-sm-7">
               <div class="input-group">
                 <%= f.number_field :office_area, class: 'form-control' %>
@@ -65,20 +79,9 @@
           </div>
 
           <div class="form-group">
-            <label for="climate_report_country" class="col-sm-5 control-label">
-              Country
-              <a class="business-tooltip" data-toggle="tooltip" title="Our Business footprint calculator is only availible in Sweden so far. This means that we unfortunately can't support swedish companies with offices in other contries either. Contact us at info@goclimateneutral.org if you are interested in business footprint calculations with offices in other countries - we would love to help!">[?]</a>
-            </label>
-            <div class="col-sm-7">
-              <span class="form-control-static" style="display: block;">Sweden</span>
-              <%= f.hidden_field :country, id: 'country' %>
-            </div>
-          </div>
-
-          <div class="form-group">
             <label for="climate_report_calculation_period" class="col-sm-5 control-label">
-              Calculation period
-              <a class="business-tooltip" data-toggle="tooltip" title="The period that you want to do the footprint calculation for. '2018', '2019 Q1', '2019-06' or similar.">[?]</a>
+              <%=t 'business.climate_reports.calculation_period' %>
+              <a class="business-tooltip" data-toggle="tooltip" title="<%=t 'business.climate_reports.calculation_period_tooltip' %>">[?]</a>
             </label>
             <div class="col-sm-7">
               <%= f.text_field :calculation_period, class: 'form-control', required: '' %>
@@ -86,11 +89,14 @@
           </div>
 
           <div class="form-group">
-            <label class="col-sm-5 control-label">Your name and logo on our site</label>
+            <label class="col-sm-5 control-label">
+              <%=t 'business.climate_reports.name_and_logo' %>
+              <a class="business-tooltip" data-toggle="tooltip" title="<%=t 'business.climate_reports.name_and_logo_tooltip' %>">[?]</a>
+            </label>
             <div class="col-sm-5 checkbox">
               <label>
                 <%= f.check_box :consent_to_show_publicly %>
-                We're OK with our name and logo being shown on the GoClimateNeutral site, for example in top lists
+                <%=t 'business.climate_reports.ok_with_showing_logo' %>
               </label>
             </div>
           </div>
@@ -99,15 +105,15 @@
         <div class="content-section">
           <div class="row">
             <div class="col-sm-offset-5 col-sm-6">
-              <h3 class="text-left">2. Energy</h3>
-              <p class="description">The energy consumption of a business is often the largest source of a service business climate footprint. This calculator takes the three most commonly largest energy sources into account; electricity, heating and the amount of servers running.</p>
+              <h3 class="text-left">2. <%=t 'business.climate_reports.energy_header' %></h3>
+              <p class="description"><%=t 'business.climate_reports.energy_intro' %></p>
             </div>
           </div>
 
           <div class="form-group">
             <label for="climate_report_electricity_consumption" class="col-sm-5 control-label">
-              Electricity consumption
-              <a class="business-tooltip" data-toggle="tooltip" title="The electricity consumed during the period in kWh. This number is often specified on the electricity bills you pay every month or quarter. If electricity is included in the rent, ask your landlord if they measure each tenants specific usage or if they can estimate the consumption for you. If not, our average numbers can be used.">[?]</a>
+              <%=t 'business.climate_reports.electricity_consumption' %>
+              <a class="business-tooltip" data-toggle="tooltip" title="<%=t 'business.climate_reports.electricity_consumption_tooltip' %>">[?]</a>
             </label>
             <div class="col-sm-5">
               <div class="input-group">
@@ -117,19 +123,22 @@
               <div class="checkbox">
                 <label>
                   <%= f.check_box :use_electricity_averages, onchange: 'document.getElementById("climate_report_electricity_consumption").disabled = this.checked' %>
-                  We don't have access to electricity consumption—use average values
+                  <%=t 'business.climate_reports.use_average_values' %>
                 </label>
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-sm-5 control-label">Green electricity</label>
+            <label class="col-sm-5 control-label">
+              <%=t 'business.climate_reports.green_electricity' %>
+              <a class="business-tooltip" data-toggle="tooltip" title="<%=t 'business.climate_reports.green_electricity_tooltip' %>">[?]</a>
+            </label>
             <div class="col-sm-5">
               <div class="checkbox">
                 <label>
                   <%= f.check_box :green_electricity %>
-                  We have a contract for green or nuclear electricity
+                  <%=t 'business.climate_reports.green_electricity_text' %>
                 </label>
               </div>
             </div>
@@ -137,8 +146,8 @@
 
           <div class="form-group">
             <label for="climate_report_heating" class="col-sm-5 control-label">
-              Heating
-              <a class="business-tooltip" data-toggle="tooltip" title="90% of the heating used in Sweden is district heating and is often of similar size as the eletricity in terms of kWh used. It is most commonly found in the heating bill, but if that is not available, ask your landlord if they have any numbers available of your usage. If not, our average numbers can be used.">[?]</a>
+              <%=t 'business.climate_reports.heating' %>
+              <a class="business-tooltip" data-toggle="tooltip" title="<%=t 'business.climate_reports.heating_tooltip' %>">[?]</a>
             </label>
             <div class="col-sm-5">
               <div class="input-group">
@@ -148,7 +157,7 @@
               <div class="checkbox">
                 <label>
                   <%= f.check_box :use_heating_averages, onchange: 'document.getElementById("climate_report_heating").disabled = this.checked' %>
-                  We don't have access to district heating consumption—use average values
+                  <%=t 'business.climate_reports.use_average_values' %>
                 </label>
               </div>
             </div>
@@ -156,29 +165,35 @@
 
           <div class="form-group">
             <label for="climate_report_number_of_servers" class="col-sm-5 control-label">
-              Average number of active servers
-              <a class="business-tooltip" data-toggle="tooltip" title="The average number of active servers during the time period. For example, if you had 4 servers running for half of the period and 2 for the rest, enter 3 as the average">[?]</a>
+              <%=t 'business.climate_reports.average_number_of_servers' %>
+
+              <a class="business-tooltip" data-toggle="tooltip" title="<%=t 'business.climate_reports.average_number_of_servers_tooltip' %>">[?]</a>
             </label>
             <div class="col-sm-5">
               <%= f.number_field :number_of_servers, class: 'form-control' %>
               <div class="checkbox">
                 <label>
                   <%= f.check_box :servers_green_electricity %>
-                  Our servers use green electricity
+                  <%=t 'business.climate_reports.servers_green_electricity' %>
                 </label>
+                <a href="https://www.goclimateneutral.org/blog/the-carbon-footprint-of-servers/#green-electricity" target="_blank">(<%=t 'business.climate_reports.how_do_i_know' %>)</a>
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="climate_report_number_of_cloud_servers" class="col-sm-5 control-label">Average number of active cloud servers</label>
+            <label for="climate_report_number_of_cloud_servers" class="col-sm-5 control-label">
+              <%=t 'business.climate_reports.number_of_cloud_servers' %>
+              <a class="business-tooltip" data-toggle="tooltip" title="<%=t 'business.climate_reports.number_of_cloud_servers_tooltip' %>">[?]</a>
+            </label>
             <div class="col-sm-7">
               <%= f.number_field :number_of_cloud_servers, class: 'form-control' %>
               <div class="checkbox">
                 <label>
                   <%= f.check_box :cloud_servers_green_electricity %>
-                  Our cloud servers use green electricity
+                  <%=t 'business.climate_reports.cloud_servers_green_electricity' %>
                 </label>
+                <a href="https://www.goclimateneutral.org/blog/the-carbon-footprint-of-servers/#green-electricity" target="_blank">(<%=t 'business.climate_reports.how_do_i_know' %>)</a>
               </div>
             </div>
           </div>
@@ -188,14 +203,14 @@
           <div class="row">
             <div class="col-sm-offset-5 col-sm-6">
               <h3 class="text-left">3. Business trips</h3>
-              <p class="description">Business travel can be a large source of a business climate footprint, especielly if many long distance trips are made or if you have salespeople on the road.</p>
+              <p class="description">Business travel can be a large source of a business climate footprint, especielly if many long distance trips are made or if you have sales people on the road.</p>
             </div>
           </div>
 
           <div class="form-group">
             <label for="climate_report_flight_hours" class="col-sm-5 control-label">
               Total flight hours
-              <a class="business-tooltip" data-toggle="tooltip" title="Estimated number of flight hours in total. For example, if 10 people fly 2 hours back and forth, the total would be 40 hours here.">[?]</a>
+              <a class="business-tooltip" data-toggle="tooltip" title="Estimated number of flight hours in total. For example, if 10 people fly 2 hours on a one-way flight, the total would be 20 hours here. If they also take a return flight, that would make it 40 hours.">[?]</a>
             </label>
             <div class="col-sm-5">
               <div class="input-group">
