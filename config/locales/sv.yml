@@ -541,7 +541,72 @@ sv:
     number_of_employees: "Antal anställda:"
     your_email: "Din e-post:"
     climate_reports:
-      estimate_your_business_footprint: Beräkna ditt företags klimatutsläpp
+      business_footprint_header: Beräkna ditt företags klimatavtryck
+      business_footprint_intro: Att beräkna ditt företags klimatavtryck är det första steget mot att ta ansvar för de klimatutsläpp som ni orsakar. Efter att du fyllt i det här formuläret kommer vi beräkna de totala utsläppen och ge dig möjlighet att kompensera för utsläppen i certifierade klimatprojekt.
+      general_information: Företagsinformation
+      company_name: Företagsnamn
+      country: Land
+      country_tooltip: Vår företagskalkylator är bara tillgänglig för svenska företag än så länge. Det betyder att vi tyvärr inte kan utföra träffsäkra automatiska beräkningar för företag med kontor i andra länder. Kontakta gärna oss på info@goclimateneutral.org om du är intresserad av en beräkning för företag med kontor i andra länder - vi hjälper gärna till! 
+      sweden: Sverige
+      number_of_employees: Antal anställda
+      number_of_employees_tooltip: "Antal heltidsanställda eller motsvarande. Det här använder vi för att uppskatta energianvändning på kontoren om du inte har några exakta kWh-siffror tillgängligt och för att beräkna utsläpp per anställd och andra statistiska värden. Exempel: 2 anställda som jobbar heltid och 2 anställda som jobbar 50% motsvarar 3 heltidsanställda."
+      office_area: Kontorsyta
+      office_area_tooltip: Den totala ytan för era kontor. Om du inte känner till siffran så kan du lämna det här fältet tomt.
+      calculation_period: Beräkningsperiod
+      calculation_period_tooltip: Tidsperioden som du vill göra beräkningen för. Exempelvis '2018', '2019 Q1', '2019-06' eller liknande.
+      name_and_logo: Ditt företagsnamn och logga på vår sajt
+      name_and_logo_tooltip: Att visa företagsnamn och logga kanske kan övertyga andra att det är en bra ide att beräkna och kompensera sina klimatavtryck. Om du ångrar dig senare så är det bara att du hör av dig!
+      ok_with_showing_logo: Vi är OK med att visa vårt företagsnamn och logga på GoClimateNeutrals sajt.
+      energy_header: Energi
+      energy_intro: Ett företags energiförbrukning brukar ofta vara den största delen av ett företags klimatavtryck. Den här beräkningen tar hänsyn till de tre vanligtvis största delarna; elektricitet, värme och antal servrar som företaget använder. 
+      electricity_consumption: Elförbrukning
+      electricity_consumption_tooltip: Elen som förbrukas under tidsperioden i kWh. Oftast finns siffran med på elräkningen för perioden. Om elen är inkluderad i hyran kan du fråga din hyresvärd om de mäter er förbrukning separat eller om de kan uppskatta er förbrukning. Om det inte är möjligt kan ni använda våra snittvärden genom att använda kryssrutan nedanför fältet.
+      use_average_values: Vi har inte tillgång till exakta siffror - använd snittvärden
+      green_electricity: Grön el
+      green_electricity_tooltip: Med grön el menar vi el från förnyelsebara källor eller från kärnkraft.
+      green_electricity_text: Vi har grönt elavtal
+      heating: Värme
+      heating_tooltip: 90% av värmen i svenska kontor kommer från fjärrvärme och är ofta ungefär lika stor som elen i kWh. Oftast står kWh från fjärrvärmen på fakturan, och om den inte är tillgänglig så kan du fråga din hyresvärd om de har några siffror. Om du inte lyckas få tag på några siffror kan du använda våra snittvärden genom att kryssa i rutan här bredvid. Om du vet att du inte har någon separat värme så kan du skriva in 0 i det här fältet.
+      average_number_of_servers: Antalet aktiva servrar
+      average_number_of_servers_tooltip: "Antal aktiva servrar i snitt under tidsperioden hos driftspartners. Endast servrar som ej ingår i er egen elräkning och som inte är i molnet hos någon av de större moln-leverantörerna. Exempel: 4 servrar som står hos en driftspartner är aktiva under halva tidsperioden och 2 servrar är aktiva under andra halvan blir 3 servrar i snitt."
+      servers_green_electricity: Våra servrar går på 100% grön el
+      how_do_i_know: hur vet jag det?
+      number_of_cloud_servers: Antalet aktiva servrar i molnet
+      number_of_cloud_servers_tooltip: "Antalet aktiva servrar i molnet i snitt under tidsperioden. Med molnet menar vi storskaliga moln-leverantörer så som Amazon AWS, Google Cloud och Microsoft Azure. Exempel: 4 servrar som kör i molnet under halva tidsperioden och 2 servrar som är aktiva under andra halvan blir 3 servrar i snitt."
+      cloud_servers_green_electricity: Våra molnservrar kör på 100% grön el
+      business_trips: Resor
+      business_trips_intro: Resor kan vara den största delen av ett företags klimatavtryck, speciellt om man gör många långresor eller har många anställda som åker bil mycket.
+      flight_hours: Flygtimmar
+      flight_hours_tooltip: Uppskattade antalet totala flygtimmar under tidsperioden. För konsultbolag inkluderar detta flygtimmar som kunden betalar för. Till exempel, om 10 personer flyger 2 timmar så blir det 20 timmar. Om de sedan flyger tillbaka samma sträcka blir det 40 timmar.
+      hours: timmar
+      distance_car: Körsträcka med bil & taxi
+      distance_car_tooltip: Uppskattat körsträcka med bil och taxi. Sträcka i elbil behöver inte räknas med.
+      kilometers: kilometer
+      food: Mat
+      food_intro: Beroende på hur mycket mat och vilken typ av mat som ett företag serverar kan mat vara en stor del av ett företags klimatavtryck.
+      meals: Antal måltider
+      meals_tooltip: Det uppskattade antalet måltider som serverats under perioden. Det här inkluderar alla måltider som företaget betalat för.
+      meals_vegetarian_share: Andel vegetariskt
+      meals_vegetarian_share_tooltip: Den uppskattade andelen vegetariska eller veganska måltider. Utan en veg-first policy så är det här förmodligen runt 10% (andelen vegetarianer/veganer i Sverige enligt Djurens Rätt).
+      material: Inköp
+      material_intro: Elektronik har ofta en faktor 10x större klimatavtryck än andra inköp, så som möbler och kläder. Om stora mängder annat material har köpts in under perioden, som till exempel mycket möbler i samband med en flytt, kan det specificeras i övrigt-kategorin i slutet av det här formuläret.
+      purchased_computers: Köpta datorer
+      purchased_phones: Köpta telefoner/tablets
+      purchased_monitors: Köpta skärmar
+      units: st
+      other: Övrigt
+      other_intro: Det är svårt att få med ett företags alla utsläpp i ett standardiserat formulär. De flesta företag har andra utsläppskällor som kanske är stora, men inte så vanliga. Organiserar ditt företag event med föreläsare som flygs in från hela världen? Har du konsulter som behöver pendla långa sträckor varje vecka för att komma till sina kunder? Beräkna utsläppen och skriv in dem här nedanför. Om du behöver hjälp med beräkningarna, kontakta oss på info@goclimateneutral.org.
+      other_emissions: Övriga utsläpp
+      specify_other_emissions: Beskriv övriga utsläpp
+      contact: Kontakt
+      contact_intro: För att kunna skicka en länk till klimatberäkningen vi gör behöver vi en e-postadress.
+      contact_email: E-postadress
+      calculate_button: Se mitt företags klimatavtryck
+
+
+        
+      
+    
 
   mailers:
     flight_offset:

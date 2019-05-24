@@ -511,5 +511,69 @@ en:
     number_of_employees: "Number of employees:"
     your_email: "Your e-mail:"
     climate_reports:
-      estimate_your_business_footprint: Estimate your business footprint
-      estimate_your_business_footprint_intro: Estimating your business climate footprint is the first step when taking responsiblity for the climate emissions that your business causes. After completing this form, we will calculate your total business climate footprint, and you will be able to offset the emissions in certified climate projects. 
+      business_footprint_header: Estimate your business footprint
+      business_footprint_intro: Estimating your business climate footprint is the first step when taking responsiblity for the climate emissions that your business causes. After completing this form, we will calculate your total business climate footprint, and you will be able to offset the emissions in certified climate projects. 
+      general_information: General information
+      company_name: Company name
+      country: Country
+      country_tooltip: Our Business footprint calculator is only available for Swedish based businesses so far. This means that we unfortunately can't support Swedish companies with offices in other countries either. Contact us at info@goclimateneutral.org if you are interested in business footprint calculations with offices in other countries - we would love to help!
+      sweden: Sweden
+      number_of_employees: Number of employees
+      number_of_employees_tooltip: "Estimated full-time employees or equivalent. This is used so that we can estimate your energy usage if you don't have specific kWh-numbers available, and for calculating emissions per employee and other statistical values. Example: 2 people working full-time and 2 people working 50% would be equal to 3 full-time employees."
+      office_area: Office area
+      office_area_tooltip: The total area of all your offices. If you don't know the number, leave this field blank.
+      calculation_period: Calculation period
+      calculation_period_tooltip: The period that you want to do the footprint calculation for. '2018', '2019 Q1', '2019-06' or similar.
+      name_and_logo: Your business name and logo on our site
+      name_and_logo_tooltip: Showing your logo might help convince others that it's a good idea to calculate and offset their climate footprint too. And if you change your mind later, just drop us a line!
+      ok_with_showing_logo: We're OK with our name and logo being shown on the GoClimateNeutral site.
+      energy_header: Energy
+      energy_intro: The energy consumption of a business is often the largest source of a service business climate footprint. This calculator takes the three most commonly largest energy sources into account; electricity, heating and the amount of servers running.
+      electricity_consumption: Electricity consumption
+      electricity_consumption_tooltip: The electricity consumed during the period in kWh. This number is often specified on the electricity bills you pay every month or quarter. If electricity is included in the rent, ask your landlord if they measure each tenants specific usage or if they can estimate the consumption for you. If not, our average numbers can be used.
+      use_average_values: We don't have access to electricity consumption—use average values
+      green_electricity: Green electricity
+      green_electricity_tooltip: With green electricity we include electricity from renewable sources and neuclear sources.
+      green_electricity_text: We have a green electricity contract
+      heating: Heating
+      heating_tooltip: 90% of the heating used in Sweden is district heating and is often of similar size as the eletricity in terms of kWh used. It is most commonly found on the heating bill, but if that is not available, ask your landlord if they have any numbers available of your usage. If not, our average numbers can be used. If you know that you don't have any seperate heating consumption, enter a 0 here.
+      average_number_of_servers: Number of active servers
+      average_number_of_servers_tooltip: The average number of active data center servers during the time period. Exclude servers that are running on your own electricity bill and servers that are located at large scale cloud providers. For example, if you had 4 servers running at a local data center for half of the period and 2 for the rest, enter 3 as the average. This field is only for self-managed data center servers (which statistically have a larger carbon footprint then cloud servers).
+      servers_green_electricity: Our servers use 100% green electricity
+      how_do_i_know: how do I know?
+      number_of_cloud_servers: Number of active cloud servers
+      number_of_cloud_servers_tooltip: The average number of active cloud servers during the time period. With cloud we mean large scale cloud providers like Amazon AWS, Google Cloud and Microsoft Azure. If you had 4 servers running for half of the period and 2 for the rest, enter 3 as the average.
+      cloud_servers_green_electricity: Our cloud servers use green electricity
+      business_trips: Business trips
+      business_trips_intro: Business travel can be a large source of a business climate footprint, especielly if many long distance trips are made or if you have sales people on the road.
+      flight_hours: Total flight hours
+      flight_hours_tooltip: Estimated number of flight hours in total. For consultants, this includes the flights that the customer pays for. For example, if 10 people fly 2 hours on a one-way flight, the total would be 20 hours here. If they also take a return flight, that would make it 40 hours.
+      hours: hours
+      distance_car: Distance by car & taxi
+      distance_car_tooltip: Estimated distance driven by car and taxi. Electrical milage can be excluded.
+      kilometers: kilometers
+      food: Food
+      food_intro: Depending on the type of business and the type of food served, food can be a large source of a business climate footprint.
+      meals: Number of meals
+      meals_tooltip: The estimated number of meals served during the period. This includes all full meals that the business pays for.
+      meals_vegetarian_share: Share of vegetarian meals
+      meals_vegetarian_share_tooltip: The estimated share of vegetarian meals. Without a veg-first policy, this is probably around 10% (the number of vegetarians/vegans in Sweden according to Djurens Rätt).
+      material: Material
+      material_intro: Electronics often have a factor 10x larger climate footprint then most other material bought, like shirts or furniture. If large amounts of other material then electronics have been bought, like lots of furniture if the business has moved during the period, it can be calculated seperatly and entered in the Other-field at the end of this form.
+      purchased_computers: Purchased computers
+      purchased_phones: Purchased phones/tablets
+      purchased_monitors: Purchased monitors
+      units: units
+      other: Other
+      other_intro: It's hard to capture a business all emissions in one form. Most companies have other sources of emissions that might be large, but not very common. Is your business orgaizing events with speakers from all around the world that are flown in? Do you have consultants that need to commute long distances every week to get to your customers? Calculate and enter the emissions below. If you need help with calculations, feel free to contact us at info@goclimateneutral.org.
+      other_emissions: Other emissions
+      specify_other_emissions: Specify other emissions
+      contact: Contact
+      contact_intro: To be able to get a link to the climate calculation we create you need to enter your e-mail adress.
+      contact_email: Email
+      calculate_button: See my business footprint
+
+
+
+
+
