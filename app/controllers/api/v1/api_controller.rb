@@ -5,6 +5,16 @@ module Api
     class ApiController < ActionController::API
       include ActionController::HttpAuthentication::Basic::ControllerMethods
 
+      # We only have a few API customers so hard-code check their API key
+      API_KEYS = [
+        '***REMOVED***', # ***REMOVED***
+        '***REMOVED***', # ***REMOVED***
+        '***REMOVED***', # ***REMOVED***
+        '***REMOVED***', # ***REMOVED***
+        '***REMOVED***', # ***REMOVED***
+        '***REMOVED***'  # ***REMOVED***
+      ].freeze
+
       before_action :authorize
 
       def url_options
@@ -22,14 +32,7 @@ module Api
       end
 
       def api_key_valid?
-        # We only have a few API customers so hard-code check their API key
-        api_keys = ['***REMOVED***', # ***REMOVED***
-                    '***REMOVED***', # ***REMOVED***
-                    '***REMOVED***', # ***REMOVED***
-                    '***REMOVED***', # ***REMOVED***
-                    '***REMOVED***'] # ***REMOVED***
-
-        authenticate_with_http_basic { |username, _| api_keys.include?(username) }
+        authenticate_with_http_basic { |username, _| API_KEYS.include?(username) }
       end
     end
   end
