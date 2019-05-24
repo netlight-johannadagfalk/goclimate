@@ -549,7 +549,7 @@ sv:
       country_tooltip: Vår företagskalkylator är bara tillgänglig för svenska företag än så länge. Det betyder att vi tyvärr inte kan utföra träffsäkra automatiska beräkningar för företag med kontor i andra länder. Kontakta gärna oss på info@goclimateneutral.org om du är intresserad av en beräkning för företag med kontor i andra länder - vi hjälper gärna till! 
       sweden: Sverige
       number_of_employees: Antal anställda
-      number_of_employees_tooltip: "Antal heltidsanställda eller motsvarande. Det här använder vi för att uppskatta energianvändning på kontoren om du inte har några exakta kWh-siffror tillgängligt, och för att beräkna utsläpp per anställd och andra statistiska värden. Exempel: 2 anställda som jobbar heltid och 2 anställda som jobbar 50% motsvarar 3 heltidsanställda."
+      number_of_employees_tooltip: "Antal heltidsanställda eller motsvarande. Det här använder vi för att uppskatta energianvändning på kontoren om du inte har några exakta kWh-siffror tillgängligt och för att beräkna utsläpp per anställd och andra statistiska värden. Exempel: 2 anställda som jobbar heltid och 2 anställda som jobbar 50% motsvarar 3 heltidsanställda."
       office_area: Kontorsyta
       office_area_tooltip: Den totala ytan för era kontor. Om du inte känner till siffran så kan du lämna det här fältet tomt.
       calculation_period: Beräkningsperiod
@@ -558,9 +558,9 @@ sv:
       name_and_logo_tooltip: Att visa företagsnamn och logga kanske kan övertyga andra att det är en bra ide att beräkna och kompensera sina klimatavtryck. Om du ångrar dig senare så är det bara att du hör av dig!
       ok_with_showing_logo: Vi är OK med att visa vårt företagsnamn och logga på GoClimateNeutrals sajt.
       energy_header: Energi
-      energy_intro: Ett företags energiförbrukning brukar ofta vara den största delen av ett företags klimatavtryck. Den här beräkningen tar hänsyn till de tre vanligtvis största delarna; elektricitet, värme, och antal servrar som företaget använder. 
+      energy_intro: Ett företags energiförbrukning brukar ofta vara den största delen av ett företags klimatavtryck. Den här beräkningen tar hänsyn till de tre vanligtvis största delarna; elektricitet, värme och antal servrar som företaget använder. 
       electricity_consumption: Elförbrukning
-      electricity_consumption_tooltip: Elen som förbrukas under tidsperioden i kWh. Du kan ofta hitta siffran på elräkningen. Om elen är inkluderad i hyran kan du fråga din hyresvärd om de mäter er förbrukning separat eller om de kan uppskatta er förbrukning. Om det inte är möjligt kan ni använda våra snittvärden genom att använda kryssrutan nedanför fältet.
+      electricity_consumption_tooltip: Elen som förbrukas under tidsperioden i kWh. Oftast finns siffran med på elräkningen för perioden. Om elen är inkluderad i hyran kan du fråga din hyresvärd om de mäter er förbrukning separat eller om de kan uppskatta er förbrukning. Om det inte är möjligt kan ni använda våra snittvärden genom att använda kryssrutan nedanför fältet.
       use_average_values: Vi har inte tillgång till exakta siffror - använd snittvärden
       green_electricity: Grön el
       green_electricity_tooltip: Med grön el menar vi el från förnyelsebara källor eller från kärnkraft.
@@ -568,12 +568,12 @@ sv:
       heating: Värme
       heating_tooltip: 90% av värmen i svenska kontor kommer från fjärrvärme och är ofta ungefär lika stor som elen i kWh. Oftast står kWh från fjärrvärmen på fakturan, och om den inte är tillgänglig så kan du fråga din hyresvärd om de har några siffror. Om du inte lyckas få tag på några siffror kan du använda våra snittvärden genom att kryssa i rutan här bredvid. Om du vet att du inte har någon separat värme så kan du skriva in 0 i det här fältet.
       average_number_of_servers: Antalet aktiva servrar
-      average_number_of_servers_tooltip: "Antal aktiva servrar i snitt under tidsperioden hos driftspartners. Endast servrar som ej ingår i er egen elräkning och som inte är i molnet hos någon av de större moln-leverantörerna (t.ex. Amazon). Exempel: 4 servrar som står hos en driftspartner är aktiva under halva tidsperioden och 2 servrar är aktiva under andra halvan blir 3 servrar i snitt."
+      average_number_of_servers_tooltip: "Antal aktiva servrar i snitt under tidsperioden hos driftspartners. Endast servrar som ej ingår i er egen elräkning och som inte är i molnet hos någon av de större moln-leverantörerna. Exempel: 4 servrar som står hos en driftspartner är aktiva under halva tidsperioden och 2 servrar är aktiva under andra halvan blir 3 servrar i snitt."
       servers_green_electricity: Våra servrar går på 100% grön el
       how_do_i_know: hur vet jag det?
       number_of_cloud_servers: Antalet aktiva servrar i molnet
       number_of_cloud_servers_tooltip: "Antalet aktiva servrar i molnet i snitt under tidsperioden. Med molnet menar vi storskaliga moln-leverantörer så som Amazon AWS, Google Cloud och Microsoft Azure. Exempel: 4 servrar som kör i molnet under halva tidsperioden och 2 servrar som är aktiva under andra halvan blir 3 servrar i snitt."
-      cloud_servers_green_electricity: Våra molnservrar kör på grön el
+      cloud_servers_green_electricity: Våra molnservrar kör på 100% grön el
       business_trips: Resor
       business_trips_intro: Resor kan vara den största delen av ett företags klimatavtryck, speciellt om man gör många långresor eller har många anställda som åker bil mycket.
       flight_hours: Flygtimmar
