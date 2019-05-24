@@ -202,33 +202,33 @@
         <div class="content-section">
           <div class="row">
             <div class="col-sm-offset-5 col-sm-6">
-              <h3 class="text-left">3. Business trips</h3>
-              <p class="description">Business travel can be a large source of a business climate footprint, especielly if many long distance trips are made or if you have sales people on the road.</p>
+              <h3 class="text-left">3. <%=t 'business.climate_reports.business_trips' %></h3>
+              <p class="description"><%=t 'business.climate_reports.business_trips_intro' %></p>
             </div>
           </div>
 
           <div class="form-group">
             <label for="climate_report_flight_hours" class="col-sm-5 control-label">
-              Total flight hours
-              <a class="business-tooltip" data-toggle="tooltip" title="Estimated number of flight hours in total. For example, if 10 people fly 2 hours on a one-way flight, the total would be 20 hours here. If they also take a return flight, that would make it 40 hours.">[?]</a>
+              <%=t 'business.climate_reports.flight_hours' %>
+              <a class="business-tooltip" data-toggle="tooltip" title="<%=t 'business.climate_reports.flight_hours_tooltip' %>">[?]</a>
             </label>
             <div class="col-sm-5">
               <div class="input-group">
                 <%= f.number_field :flight_hours, class: 'form-control' %>
-                <div class="input-group-addon">hours</div>
+                <div class="input-group-addon"><%=t 'business.climate_reports.hours' %></div>
               </div>
             </div>
           </div>
 
           <div class="form-group">
             <label for="climate_report_car_distance" class="col-sm-5 control-label">
-              Distance by car &amp; taxi
-              <a class="business-tooltip" data-toggle="tooltip" title="Estimated distance driven by car and taxi. Electrical milage can be excluded. Lower consumption vehicles like diesel, ethanol and hybrid can be lowered if desiered to correspond to the milages of an average petrol car. If your hybrids consume 50% as much as a petrol car and you drive 20 miles, enter 10 miles here.">[?]</a>
+              <%=t 'business.climate_reports.distance_car' %>
+              <a class="business-tooltip" data-toggle="tooltip" title="<%=t 'business.climate_reports.distance_car_tooltip' %>">[?]</a>
             </label>
             <div class="col-sm-5">
               <div class="input-group">
                 <%= f.number_field :car_distance, class: 'form-control' %>
-                <div class="input-group-addon">kilometers</div>
+                <div class="input-group-addon"><%=t 'business.climate_reports.kilometers' %></div>
               </div>
             </div>
           </div>
@@ -237,15 +237,15 @@
         <div class="content-section">
           <div class="row">
             <div class="col-sm-offset-5 col-sm-6">
-              <h3 class="text-left">4. Food</h3>
-              <p class="description">Depending on the type of business and the type of food served, food can be a large source of a business climate footprint.</p>
+              <h3 class="text-left">4. <%=t 'business.climate_reports.food' %></h3>
+              <p class="description"><%=t 'business.climate_reports.food_intro' %></p>
             </div>
           </div>
 
           <div class="form-group">
             <label for="climate_report_meals" class="col-sm-5 control-label">
-              Number of meals
-              <a class="business-tooltip" data-toggle="tooltip" title="The estimated number of meals served during the period. This includes all full meals that the business pays for.">[?]</a>
+              <%=t 'business.climate_reports.meals' %>
+              <a class="business-tooltip" data-toggle="tooltip" title="<%=t 'business.climate_reports.meals_tooltip' %>">[?]</a>
             </label>
             <div class="col-sm-5">
               <%= f.number_field :meals, class: 'form-control' %>
@@ -254,8 +254,8 @@
 
           <div class="form-group">
             <label for="climate_report_meals_vegetarian_share" class="col-sm-5 control-label">
-              Share of vegetarian meals
-              <a class="business-tooltip" data-toggle="tooltip" title="The estimated share of vegetarian meals. Without a veg-first policy, this is probably around 10% (the number of vegetarians/vegans in Sweden according to Djurens Rätt).">[?]</a>
+              <%=t 'business.climate_reports.meals_vegetarian_share' %>
+              <a class="business-tooltip" data-toggle="tooltip" title="<%=t 'business.climate_reports.meals_vegetarian_share_tooltip' %>">[?]</a>
             </label>
             <div class="col-sm-7">
               <div class="input-group">
@@ -269,29 +269,38 @@
         <div class="content-section">
           <div class="row">
             <div class="col-sm-offset-5 col-sm-6">
-              <h3 class="text-left">5. Material</h3>
-              <p class="description">Electronics often have a factor 10x larger climate footprint then most other material bought, like shirts or furniture. If large amounts of other material then electronics have been bought, like lots of furniture if the business has moved during the period, it can be calculated seperatly and entered in the Other-field at the end of this form.</p>
+              <h3 class="text-left">5. <%=t 'business.climate_reports.material' %></h3>
+              <p class="description"><%=t 'business.climate_reports.material_intro' %></p>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="climate_report_purchased_computers" class="col-sm-5 control-label">Purchased computers</label>
+            <label for="climate_report_purchased_computers" class="col-sm-5 control-label"><%=t 'business.climate_reports.purchased_computers' %></label>
             <div class="col-sm-7">
-              <%= f.number_field :purchased_computers, class: 'form-control' %>
+              <div class="input-group">
+                <%= f.number_field :purchased_computers, class: 'form-control' %>
+                <div class="input-group-addon"><%=t 'business.climate_reports.units' %></div>
+              </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="climate_report_purchased_phones" class="col-sm-5 control-label">Purchased phones/tablets</label>
+            <label for="climate_report_purchased_phones" class="col-sm-5 control-label"><%=t 'business.climate_reports.purchased_phones' %></label>
             <div class="col-sm-7">
-              <%= f.number_field :purchased_phones, class: 'form-control' %>
+              <div class="input-group">
+                <%= f.number_field :purchased_phones, class: 'form-control' %>
+                <div class="input-group-addon"><%=t 'business.climate_reports.units' %></div>
+              </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="climate_report_purchased_monitors" class="col-sm-5 control-label">Purchased monitors</label>
+            <label for="climate_report_purchased_monitors" class="col-sm-5 control-label"><%=t 'business.climate_reports.purchased_monitors' %></label>
             <div class="col-sm-7">
-              <%= f.number_field :purchased_monitors, class: 'form-control' %>
+              <div class="input-group">
+                <%= f.number_field :purchased_monitors, class: 'form-control' %>
+                <div class="input-group-addon"><%=t 'business.climate_reports.units' %></div>
+              </div>
             </div>
           </div>
         </div>
@@ -299,13 +308,13 @@
         <div class="content-section">
           <div class="row">
             <div class="col-sm-offset-5 col-sm-6">
-              <h3 class="text-left">6. Other</h3>
-              <p class="description">It's hard to capture a business all emissions in one form. Most companies have other sources of emissions that might be large, but not very common. Is your business orgaizing events with speakers from all around the world that are flown in? Do you have consultants that need to commute long distances every week to get to your customers? Calculate and enter the emissions below. If you need help with calculations, feel free to contact us at info@goclimateneutral.org.</p>
+              <h3 class="text-left">6. <%=t 'business.climate_reports.other' %></h3>
+              <p class="description"><%=t 'business.climate_reports.other_intro' %></p>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="climate_report_other_co2e" class="col-sm-5 control-label">Other footprint</label>
+            <label for="climate_report_other_co2e" class="col-sm-5 control-label"><%=t 'business.climate_reports.other_emissions' %></label>
             <div class="col-sm-7">
               <div class="input-group">
                 <%= f.number_field :other_co2e, class: 'form-control' %>
@@ -315,7 +324,7 @@
           </div>
 
           <div class="form-group">
-            <label for="climate_report_other_specification" class="col-sm-5 control-label">Specify other footprint</label>
+            <label for="climate_report_other_specification" class="col-sm-5 control-label"><%=t 'business.climate_reports.specify_other_emissions' %></label>
             <div class="col-sm-7">
               <%= f.text_area :other_specification, class: 'form-control', step: '0.1' %>
             </div>
@@ -325,14 +334,14 @@
         <div class="content-section">
           <div class="row">
             <div class="col-sm-offset-5 col-sm-6">
-              <h3 class="text-left">7. Contact</h3>
-              <p class="description">To be able to get a link to the climate report we create you need to enter your e-mail adress.</p>
+              <h3 class="text-left">7. <%=t 'business.climate_reports.contact' %></h3>
+              <p class="description"><%=t 'business.climate_reports.contact_intro' %></p>
             </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="climate_report_contact_email" class="col-sm-5 control-label">Contact email</label>
+            <label for="climate_report_contact_email" class="col-sm-5 control-label"><%=t 'business.climate_reports.contact_email' %></label>
             <div class="col-sm-7">
               <%= f.email_field :contact_email, class: 'form-control', required: '' %>
             </div>
@@ -342,7 +351,7 @@
         <div class="content-section">
           <div class="form-group">
             <div class="col-sm-offset-5 col-sm-7">
-              <%= f.submit 'See my business footprint', class: 'btn btn-success' %>
+              <%= f.submit I18n.t('business.climate_reports.calculate_button'), class: 'btn btn-success' %>
             </div>
           </div>
         </div>

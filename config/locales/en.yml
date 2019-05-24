@@ -544,4 +544,36 @@ en:
       number_of_cloud_servers: Number of active cloud servers
       number_of_cloud_servers_tooltip: The average number of active cloud servers during the time period. With cloud we mean large scale cloud providers like Amazon AWS, Google Cloud and Microsoft Azure. If you had 4 servers running for half of the period and 2 for the rest, enter 3 as the average.
       cloud_servers_green_electricity: Our cloud servers use green electricity
+      business_trips: Business trips
+      business_trips_intro: Business travel can be a large source of a business climate footprint, especielly if many long distance trips are made or if you have sales people on the road.
+      flight_hours: Total flight hours
+      flight_hours_tooltip: Estimated number of flight hours in total. For consultants, this includes the flights that the customer pays for. For example, if 10 people fly 2 hours on a one-way flight, the total would be 20 hours here. If they also take a return flight, that would make it 40 hours.
+      hours: hours
+      distance_car: Distance by car & taxi
+      distance_car_tooltip: Estimated distance driven by car and taxi. Electrical milage can be excluded.
+      kilometers: kilometers
+      food: Food
+      food_intro: Depending on the type of business and the type of food served, food can be a large source of a business climate footprint.
+      meals: Number of meals
+      meals_tooltip: The estimated number of meals served during the period. This includes all full meals that the business pays for.
+      meals_vegetarian_share: Share of vegetarian meals
+      meals_vegetarian_share_tooltip: The estimated share of vegetarian meals. Without a veg-first policy, this is probably around 10% (the number of vegetarians/vegans in Sweden according to Djurens Rätt).
+      material: Material
+      material_intro: Electronics often have a factor 10x larger climate footprint then most other material bought, like shirts or furniture. If large amounts of other material then electronics have been bought, like lots of furniture if the business has moved during the period, it can be calculated seperatly and entered in the Other-field at the end of this form.
+      purchased_computers: Purchased computers
+      purchased_phones: Purchased phones/tablets
+      purchased_monitors: Purchased monitors
+      units: units
+      other: Other
+      other_intro: It's hard to capture a business all emissions in one form. Most companies have other sources of emissions that might be large, but not very common. Is your business orgaizing events with speakers from all around the world that are flown in? Do you have consultants that need to commute long distances every week to get to your customers? Calculate and enter the emissions below. If you need help with calculations, feel free to contact us at info@goclimateneutral.org.
+      other_emissions: Other emissions
+      specify_other_emissions: Specify other emissions
+      contact: Contact
+      contact_intro: To be able to get a link to the climate calculation we create you need to enter your e-mail adress.
+      contact_email: Email
+      calculate_button: See my business footprint
+
+
+
+
 

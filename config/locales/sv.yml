@@ -574,6 +574,37 @@ sv:
       number_of_cloud_servers: Antalet aktiva servrar i molnet
       number_of_cloud_servers_tooltip: "Antalet aktiva servrar i molnet i snitt under tidsperioden. Med molnet menar vi storskaliga moln-leverantörer så som Amazon AWS, Google Cloud och Microsoft Azure. Exempel: 4 servrar som kör i molnet under halva tidsperioden och 2 servrar som är aktiva under andra halvan blir 3 servrar i snitt."
       cloud_servers_green_electricity: Våra molnservrar kör på grön el
+      business_trips: Resor
+      business_trips_intro: Resor kan vara den största delen av ett företags klimatavtryck, speciellt om man gör många långresor eller har många anställda som åker bil mycket.
+      flight_hours: Flygtimmar
+      flight_hours_tooltip: Uppskattade antalet totala flygtimmar under tidsperioden. För konsultbolag inkluderar detta flygtimmar som kunden betalar för. Till exempel, om 10 personer flyger 2 timmar så blir det 20 timmar. Om de sedan flyger tillbaka samma sträcka blir det 40 timmar.
+      hours: timmar
+      distance_car: Körsträcka med bil & taxi
+      distance_car_tooltip: Uppskattat körsträcka med bil och taxi. Sträcka i elbil behöver inte räknas med.
+      kilometers: kilometer
+      food: Mat
+      food_intro: Beroende på hur mycket mat och vilken typ av mat som ett företag serverar kan mat vara en stor del av ett företags klimatavtryck.
+      meals: Antal måltider
+      meals_tooltip: Det uppskattade antalet måltider som serverats under perioden. Det här inkluderar alla måltider som företaget betalat för.
+      meals_vegetarian_share: Andel vegetariskt
+      meals_vegetarian_share_tooltip: Den uppskattade andelen vegetariska eller veganska måltider. Utan en veg-first policy så är det här förmodligen runt 10% (andelen vegetarianer/veganer i Sverige enligt Djurens Rätt).
+      material: Inköp
+      material_intro: Elektronik har ofta en faktor 10x större klimatavtryck än andra inköp, så som möbler och kläder. Om stora mängder annat material har köpts in under perioden, som till exempel mycket möbler i samband med en flytt, kan det specificeras i övrigt-kategorin i slutet av det här formuläret.
+      purchased_computers: Köpta datorer
+      purchased_phones: Köpta telefoner/tablets
+      purchased_monitors: Köpta skärmar
+      units: st
+      other: Övrigt
+      other_intro: Det är svårt att få med ett företags alla utsläpp i ett standardiserat formulär. De flesta företag har andra utsläppskällor som kanske är stora, men inte så vanliga. Organiserar ditt företag event med föreläsare som flygs in från hela världen? Har du konsulter som behöver pendla långa sträckor varje vecka för att komma till sina kunder? Beräkna utsläppen och skriv in dem här nedanför. Om du behöver hjälp med beräkningarna, kontakta oss på info@goclimateneutral.org.
+      other_emissions: Övriga utsläpp
+      specify_other_emissions: Beskriv övriga utsläpp
+      contact: Kontakt
+      contact_intro: För att kunna skicka en länk till klimatberäkningen vi gör behöver vi en e-postadress.
+      contact_email: E-postadress
+      calculate_button: Se mitt företags klimatavtryck
+
+
+        
       
     
 
