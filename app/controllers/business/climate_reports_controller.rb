@@ -2,7 +2,6 @@
 
 module Business
   class ClimateReportsController < ApplicationController
-
     def show
       @report = ClimateReport.find_by_key!(params[:key])
       @invoice = ClimateReportInvoice.new(climate_report: @report)
