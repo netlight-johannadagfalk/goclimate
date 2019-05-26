@@ -617,6 +617,12 @@ sv:
         invoice_email_text: Skriv in en e-postadress om du vill få fakturan via e-post
         order: Beställ
         well_get_in_touch_html: Vi hör av oss när nästa raporteringsperiod håller på att ta slut om ni vill uppdatera ert klimatavtryck då. Om du har några frågor om klimatkompensation eller ordern, hör gärna av dig till <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a>!
+    climate_report_invoices:
+      thank_you:
+        thank_you_text: Genom att kompensera för ditt företags klimatutsläpp, så tar du ansvar för det avtryck som ditt företag har på klimatet. 
+        well_be_in_touch: Vi hör av oss inom kort för att leverera din klimatrapport och ditt certifikat på klimatkompensationen.
+        thanks_again: Tack igen!
+
   this_is_how_the_money_is_used_header: Hit går pengarna
   this_is_how_the_money_is_used_text: Vi investerar i tredjepartsgranskade och FN-certifierade klimatprojekt med den extra certifieringen Gold Standard. Projekten minskar utsläpp motsvarande din flygresas klimatavtryck och bidrar till den globala omställningen till förnyelsebar energiproduktion. Här är våra två senaste projekt.
   tonnes_carbon_dioxide: ton koldioxid

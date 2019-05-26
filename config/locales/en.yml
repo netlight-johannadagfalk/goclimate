@@ -587,6 +587,12 @@ en:
         invoice_email_text: Provide an email address to receive your invoice via email.
         order: Order
         well_get_in_touch_html: We'll get in touch when your next reporting period is about to end and it's time to update your footprint. If you have any questions about the order, please contact us at info@goclimateneutral.org
+    climate_report_invoices:
+      thank_you:
+        thank_you_text: By offsetting your business footprint, you're taking resposibility for the impact that your business has on the climate.
+        well_be_in_touch: We will get in touch shortly to deliver your climate report.
+        thanks_again: Thanks again!
+
   this_is_how_the_money_is_used_header: This is how the money is used
   this_is_how_the_money_is_used_text: We support UN certified climate projects that are also Gold Standard certified. The projects reduce emissions equivalent to your business' footprint and contribute to the global transition to renewable energy production. Here's our two latest projects.
   tonnes_carbon_dioxide: tonnes carbon dioxide
