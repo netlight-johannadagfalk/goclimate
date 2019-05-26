@@ -61,34 +61,7 @@
             </tfoot>
           </table>
 
-          <div class="panel panel-default panel-full-width panel-left-align content-section">
-            <div class="panel-heading">
-              <h4 class="panel-title">Hit går pengarna</h4>
-            </div>
-            <div class="panel-body">
-              <p>
-                Vi investerar i tredjepartsgranskade och FN-certifierade
-                klimatprojekt med den extra certifieringen Gold Standard.
-                Projekten minskar utsläpp motsvarande din flygresas
-                klimatavtryck och bidrar till den globala omställningen till
-                förnyelsebar energiproduktion. Här är våra två senaste projekt.
-              </p> <div class="projects-teaser">
-                <div class="projects-teaser__project-container">
-                  <% @projects.each do |project| %>
-                    <div class="projects-teaser__project">
-                      <div class="projects-teaser__project-image" style="background-image: url('<%= project.image_url %>')">
-                      </div>
-                      <div class="projects-teaser__project-info">
-                        <p><strong><%= project.name %></strong></p>
-                        <p><%= project.carbon_offset %> ton koldioxid</p>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-                <p class="projects-teaser__all-projects-link"><%= link_to 'Se alla våra projekt', our_projects_path %></p>
-              </div>
-            </div>
-          </div>
+          <%= render 'shared/projects' %>
 
         </div>
       </div>

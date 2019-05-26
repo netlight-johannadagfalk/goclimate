@@ -572,6 +572,26 @@ en:
       contact_intro: To be able to get a link to the climate calculation we create you need to enter your e-mail adress.
       contact_email: Email
       calculate_button: See my business footprint
+      show:
+        header: Your business footprint
+        result: Your business footprint for the reporting period %{calculation_period} is %{total_emissions} tonnes carbon dioxide. That's %{emissions_per_employee} tonnes per employee.
+        offset_and_get_report: Offset your footprint and get your climate report
+        offset_and_get_report_text: Offsetting your footprint is a way of taking responsibility for the impact your business has on the climate. You will also get a climate report for use in your reporting as well as further understanding and reductions of your footprint.
+        your_order: Your order
+        carbon_offseting: Carbon offsetting
+        climate_report: Climate report
+        sum: Sum
+        invoice_address: Invoice address
+        vat_number: VAT number (optional)
+        invoice_email: Invoice email (optional)
+        invoice_email_text: Provide an email address to receive your invoice via email.
+        order: Order
+        well_get_in_touch_html: We'll get in touch when your next reporting period is about to end and it's time to update your footprint. If you have any questions about the order, please contact us at info@goclimateneutral.org
+  this_is_how_the_money_is_used_header: This is how the money is used
+  this_is_how_the_money_is_used_text: We support UN certified climate projects that are also Gold Standard certified. The projects reduce emissions equivalent to your business' footprint and contribute to the global transition to renewable energy production. Here's our two latest projects.
+  tonnes_carbon_dioxide: tonnes carbon dioxide
+  see_all_our_projects: See all our projects
+
 
 
 
