@@ -48,20 +48,58 @@
     </div>
     <div class="content-section">
       <p>
-        <%= link_to 'Estimate my business footprint', new_business_climate_report_path, class: 'btn btn-lg btn-success' %>
-      </p>
-    </div>
-    <div class="content-section">
-      <p>
-        Our calculator works for most service companies and is currently
-        limited to companies active in Sweden. If you have any specific needs,
-        just get in touch and we'll be more than happy to help.
+        <%= link_to I18n.t('welcome.business.calculate_footprint_button'), new_business_climate_report_path, class: 'btn btn-lg btn-success' %>
       </p>
     </div>
   </div>
+  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 </div>
 
-<div class="site-wrapper-second">
+<div class="site-wrapper-second offset-employees">
+  <div class="inner">
+
+    <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
+    <h2 class="cover-heading">2. <%=t 'welcome.business.offset_employees' %></h2>
+    <p class="lead"><%=t 'welcome.business.offset_employees_html' %></p>
+    <div class="container">
+      <p class="big-number">
+        <% case I18n.locale when :en %>
+          $<span id="big-number"></span> /month
+        <% when :de %>
+          <span id="big-number"></span> €/month
+        <% when :sv %>
+          <span id="big-number"></span> kr/månad
+        <% end %>
+      </p>
+        <p><%=t 'welcome.business.equivalent_co2_offset' %></p>
+
+        <%= form_tag(business_path, class: 'form-horizontal') do %>
+          <div class="form-group">
+            <%= label_tag(:number_of_employees, t('welcome.business.number_of_employees'), class: 'col-sm-5 control-label') %>
+            <div class="col-sm-3">
+              <%= text_field_tag(:number_of_employees, '10', class: 'form-control') %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= label_tag(:email, t('welcome.business.your_email'), class: 'col-sm-5 control-label') %>
+            <div class="col-sm-3">
+              <%= text_field_tag(:email, '', class: 'form-control') %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-offset-5 col-lg-2 button">
+              <button type="submit" class="btn btn-success"><%=t 'welcome.business.im_interested' %>!</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+</div>
+
+
+
+<div class="site-wrapper-third">
   <div class="inner">
 
     <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
@@ -72,3 +110,15 @@
 </div>
 
 <%= render "shared/footer" %>
+
+<% content_for :javascript_tags do %>
+  <script>
+    window.addEventListener('load', function() {
+      new BusinessOffsetCalculator(
+        <%= @cost_per_tonne %>,
+        document.getElementById('number_of_employees'),
+        document.getElementById('big-number')
+      )
+    })
+  </script>
+<% end %>
