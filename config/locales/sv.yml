@@ -450,6 +450,22 @@ sv:
         food: Matvanor
         car: Bilvanor
         flying: Flygvanor
+    business:
+      for_companies: Klimatkompensera ditt företag
+      for_companies_text_html: Vill du klimatkompensera ditt företags klimatavtryck eller klimatkompensera för alla era anställda? Vi hjälper dig gärna!
+      calculate_footprint: Ditt företags klimatavtryck
+      calculate_footprint_html: Beräkna ditt företags klimatavtryck, minska det du kan och klimatkompensera resten. Vi har tagit fram ett enkelt verktyg för tjänsteföretag utan egen fysisk produktion.
+      calculate_footprint_button: Beräkna mitt företags klimatavtryck
+      customers_we_work_with: Några av våra fantastiska kunder och samarbetspartners
+      offset_employees: Klimatkompensera era anställda
+      offset_employees_html: Genom att klimatkompensera för era anställda tar ni ansvar för alla era anställdas klimatavtryck. Det är ett sätt att göra stor klimatnytta samtidigt som det bidrar till att ni blir en attraktiv och ansvarstagande arbetsgivare.
+      equivalent_co2_offset: motsvarar 22 ton CO2-utsläpp per anställd och år
+      im_interested: Kontakta mig!
+      we_will_contact_you_shortly_html: Vi kontaktar dig inom kort på <b>%{email}</b> med information om nästa steg! Vi hörs!
+      other_offsetting: Övriga tjänster
+      other_offsetting_html: "Vi kan hjälpa till med utsläppsberäkningar, enskilda klimatkompensationer och tekniska integrationer. Hör av dig till <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> så berättar vi mer."
+      number_of_employees: "Antal anställda:"
+      your_email: "Din e-post:"
   number:
     format:
       delimiter: ' '
@@ -528,18 +544,6 @@ sv:
 
 
   business:
-    for_companies: Klimatkompensera företag
-    for_companies_text_html: Vill du klimatkompensera för en flygresa eller för alla era anställda? Vi hjälper dig gärna!
-    customers_we_work_with: Några av våra fantastiska kunder
-    gcn_certified_company: Klimatkompensera era anställda
-    gcn_certified_company_html: Genom att klimatkompensera för era anställda tar ni ansvar för alla era anställdas klimatavtryck. Läs mer om hur vi <a href="https://www.goclimateneutral.org/blog/klimatkompensera-ditt-foretag/">räknat på siffrorna här.</a>
-    equivalent_co2_offset: motsvarar 22 ton CO2-utsläpp per anställd och år
-    im_interested: Jag är intresserad
-    we_will_contact_you_shortly_html: Vi kontaktar dig inom kort på <b>%{email}</b> med information om nästa steg! Vi hörs!
-    other_offsetting: Övriga tjänster
-    other_offsetting_html: "Vi kan hjälpa till med utsläppsberäkningar för tjänsteföretag, enskilda klimatkompensationer och tekniska integrationer. Hör av dig till <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> så berättar vi mer."
-    number_of_employees: "Antal anställda:"
-    your_email: "Din e-post:"
     climate_reports:
       business_footprint_header: Beräkna ditt företags klimatavtryck
       business_footprint_intro: Att beräkna ditt företags klimatavtryck är det första steget mot att ta ansvar för de klimatutsläpp som ni orsakar. Efter att du fyllt i det här formuläret kommer vi beräkna de totala utsläppen och ge dig möjlighet att kompensera för utsläppen i certifierade klimatprojekt.
