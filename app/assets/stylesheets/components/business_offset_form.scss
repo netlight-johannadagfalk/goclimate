@@ -1,4 +1,4 @@
-.businesses {
+.businesses, .welcome-business {
   div.button {
     float: none;
     text-align: center;
@@ -13,8 +13,8 @@
   .company-logos {
     min-height: 0px;
   }
-  .company-logos .glyphicon {
-    padding-top: 0px;
+  .company-logos img {
+    padding-top: 50px;
   }
   .big-number {
     font-size: 60px;
