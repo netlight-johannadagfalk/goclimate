@@ -58,4 +58,15 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:stripe_customer_id, :user_name, :country])
     devise_parameter_sanitizer.permit(:account_update, keys: [:user_name, :country])
   end
+
+  def cost_per_tonne
+    case I18n.locale
+    when :sv
+      LifestyleChoice::BUSINESS_SEK_PER_TONNE
+    when :en
+      LifestyleChoice::BUSINESS_SEK_PER_TONNE / LifestyleChoice::SEK_PER_USD
+    when :de
+      LifestyleChoice::BUSINESS_SEK_PER_TONNE / LifestyleChoice::SEK_PER_EUR
+    end
+  end
 end

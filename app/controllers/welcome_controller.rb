@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class WelcomeController < ApplicationController
-
   def index
     @unique_climate_neutral_users = User.with_active_subscription.count
     @total_carbon_offset = Project.total_carbon_offset
@@ -56,16 +55,5 @@ class WelcomeController < ApplicationController
   end
 
   def privacy_policy
-  end
-
-  def cost_per_tonne
-    case I18n.locale
-    when :sv
-      LifestyleChoice::BUSINESS_SEK_PER_TONNE
-    when :en
-      LifestyleChoice::BUSINESS_SEK_PER_TONNE / LifestyleChoice::SEK_PER_USD
-    when :de
-      LifestyleChoice::BUSINESS_SEK_PER_TONNE / LifestyleChoice::SEK_PER_EUR
-    end
   end
 end
