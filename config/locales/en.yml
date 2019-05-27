@@ -520,7 +520,7 @@ en:
       general_information: General information
       company_name: Company name
       country: Country
-      country_tooltip: Our Business footprint calculator is only available for Swedish based businesses so far. This means that we unfortunately can't support Swedish companies with offices in other countries either. Contact us at info@goclimateneutral.org if you are interested in business footprint calculations with offices in other countries - we would love to help!
+      country_tooltip: Our Business footprint calculator is only available for Swedish based businesses so far. This means that we unfortunately can't support Swedish companies with offices in other countries either. Contact us at info@goclimateneutral.org if you are interested in calculations for your offices in other countries - we would love to help!
       sweden: Sweden
       number_of_employees: Number of employees
       number_of_employees_tooltip: "Estimated full-time employees or equivalent. This is used so that we can estimate your energy usage if you don't have specific kWh-numbers available, and for calculating emissions per employee and other statistical values. Example: 2 people working full-time and 2 people working 50% would be equal to 3 full-time employees."
@@ -532,7 +532,7 @@ en:
       name_and_logo_tooltip: Showing your logo might help convince others that it's a good idea to calculate and offset their climate footprint too. And if you change your mind later, just drop us a line!
       ok_with_showing_logo: We're OK with our name and logo being shown on the GoClimateNeutral site.
       energy_header: Energy
-      energy_intro: The energy consumption of a business is often the largest source of a service business climate footprint. This calculator takes the three most commonly largest energy sources into account; electricity, heating and the amount of servers running.
+      energy_intro: The energy consumption of a business is often the largest source of a service business climate footprint. This calculator takes the three most commonly largest energy consuming sources into account; electricity, heating and the amount of servers running.
       electricity_consumption: Electricity consumption
       electricity_consumption_tooltip: The electricity consumed during the period in kWh. This number is often specified on the electricity bills you pay every month or quarter. If electricity is included in the rent, ask your landlord if they measure each tenants specific usage or if they can estimate the consumption for you. If not, our average numbers can be used.
       use_average_values: We don't have access to electricity consumption—use average values
@@ -547,7 +547,7 @@ en:
       how_do_i_know: how do I know?
       number_of_cloud_servers: Number of active cloud servers
       number_of_cloud_servers_tooltip: The average number of active cloud servers during the time period. With cloud we mean large scale cloud providers like Amazon AWS, Google Cloud and Microsoft Azure. If you had 4 servers running for half of the period and 2 for the rest, enter 3 as the average.
-      cloud_servers_green_electricity: Our cloud servers use green electricity
+      cloud_servers_green_electricity: Our cloud servers use 100% green electricity
       business_trips: Business trips
       business_trips_intro: Business travel can be a large source of a business climate footprint, especielly if many long distance trips are made or if you have sales people on the road.
       flight_hours: Total flight hours
@@ -563,13 +563,13 @@ en:
       meals_vegetarian_share: Share of vegetarian meals
       meals_vegetarian_share_tooltip: The estimated share of vegetarian meals. Without a veg-first policy, this is probably around 10% (the number of vegetarians/vegans in Sweden according to Djurens Rätt).
       material: Material
-      material_intro: Electronics often have a factor 10x larger climate footprint then most other material bought, like shirts or furniture. If large amounts of other material then electronics have been bought, like lots of furniture if the business has moved during the period, it can be calculated seperatly and entered in the Other-field at the end of this form.
+      material_intro: Electronics often have a factor 10x larger climate footprint than most other material bought, like T-shirts or furniture. If large amounts of other material than electronics have been bought, like lots of furniture if the business has moved during the period, it can be calculated separately and entered in the Other-field at the end of this form.
       purchased_computers: Purchased computers
       purchased_phones: Purchased phones/tablets
       purchased_monitors: Purchased monitors
       units: units
       other: Other
-      other_intro: It's hard to capture a business all emissions in one form. Most companies have other sources of emissions that might be large, but not very common. Is your business orgaizing events with speakers from all around the world that are flown in? Do you have consultants that need to commute long distances every week to get to your customers? Calculate and enter the emissions below. If you need help with calculations, feel free to contact us at info@goclimateneutral.org.
+      other_intro: It's hard to capture a business all emissions in one form. Most companies have other sources of emissions that might be large, but not very common. Is your business organizing events with speakers from all around the world that are flown in? Do you have consultants that need to commute long distances every week to get to your customers? Calculate and enter the emissions below. If you need help with calculations, feel free to contact us at info@goclimateneutral.org.
       other_emissions: Other emissions
       specify_other_emissions: Specify other emissions
       contact: Contact
@@ -580,7 +580,7 @@ en:
         header: Your business footprint
         result: Your business footprint for the reporting period %{calculation_period} is %{total_emissions} tonnes carbon dioxide. That's %{emissions_per_employee} tonnes per employee.
         offset_and_get_report: Offset your footprint and get your climate report
-        offset_and_get_report_text: Offsetting your footprint is a way of taking responsibility for the impact your business has on the climate. You will also get a climate report for use in your reporting as well as further understanding and reductions of your footprint.
+        offset_and_get_report_text: Offsetting your footprint is a way of taking responsibility for the impact your business has on the climate. When you offset you will also receive a climate report based on the numbers you have entered. It can be used to get a bigger understanding of what kind of activities that are causing your biggest emissions and can serve as a tool to set targets for emission reductions within your company.
         your_order: Your order
         carbon_offseting: Carbon offsetting
         climate_report: Climate report
