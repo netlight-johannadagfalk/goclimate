@@ -2,8 +2,8 @@
   <%= render "shared/header" %>
   <div class="inner">
 
-    <h1 class="cover-heading"><%=t('business.for_companies') %></h1>
-    <p class="lead"><%=t 'business.for_companies_text_html' %></p>
+    <h1 class="cover-heading"><%=t('welcome.business.for_companies') %></h1>
+    <p class="lead"><%=t 'welcome.business.for_companies_text_html' %></p>
 
   </div>
   <span class="glyphicon glyphicon-chevron-down first" aria-hidden="true"></span>
@@ -12,16 +12,27 @@
 <div class="site-wrapper-second company-logos">
   <div class="inner">
 
-    <h4 class="cover-heading"><%=t 'business.customers_we_work_with' %>:</h4>
+    <h4 class="cover-heading"><%=t 'welcome.business.customers_we_work_with' %>:</h4>
     <div class="row">
       <div class="col-lg-4">
-        <%= image_tag "companies/norrsken.png", width: "300", alt: "norrsken company logo" %>
+        <%= image_tag "companies/norrsken.png", width: "300", alt: "norrsken" %>
       </div>
       <div class="col-lg-4">
-        <%= image_tag "companies/netlight.png", width: "300", alt: "netlight company logo" %>
+        <%= image_tag "companies/netlight.png", width: "300", alt: "netlight" %>
       </div>
       <div class="col-lg-4">
-        <%= image_tag "companies/mentimeter.png", width: "300", alt: "mentimeter company logo" %>
+        <%= image_tag "companies/mentimeter.png", width: "300", alt: "mentimeter" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <%= image_tag "companies/wdht.png", width: "300", alt: "wedonthavetime" %>
+      </div>
+      <div class="col-lg-4">
+        <%= image_tag "companies/blocket.png", width: "300", alt: "blocket" %>
+      </div>
+      <div class="col-lg-4">
+        <%= image_tag "companies/breakit.png", width: "300", alt: "breakit" %>
       </div>
     </div>
 
@@ -30,43 +41,84 @@
 
 <div class="site-wrapper-third">
   <div class="inner">
-
     <div class="content-section">
       <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
-      <h2 class="cover-heading">
-        Become a climate friendly business
-      </h2>
-      <p class="lead">
-        Get a climate report for your business and offset the footprint you
-        can't yet reduce. Our calculator for businesses covers all sources of
-        emissions for most service companies and offsetting your footprint
-        requires no work on your part–we'll take care of choosing the most
-        effective climate projects.
-      </p>
+      <h2 class="cover-heading"><%=t 'welcome.business.calculate_footprint' %></h2>
+      <p class="lead"><%=t 'welcome.business.calculate_footprint_html' %></p>
     </div>
     <div class="content-section">
       <p>
-        <%= link_to 'Estimate my business footprint', new_business_climate_report_path, class: 'btn btn-lg btn-success' %>
-      </p>
-    </div>
-    <div class="content-section">
-      <p>
-        Our calculator works for most service companies and is currently
-        limited to companies active in Sweden. If you have any specific needs,
-        just get in touch and we'll be more than happy to help.
+        <%= link_to I18n.t('welcome.business.calculate_footprint_button'), new_business_climate_report_path, class: 'btn btn-lg btn-success' %>
       </p>
     </div>
   </div>
+  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 </div>
 
-<div class="site-wrapper-second">
+<div class="site-wrapper-second offset-employees">
+  <div class="inner">
+
+    <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
+    <h2 class="cover-heading"><%=t 'welcome.business.offset_employees' %></h2>
+    <p class="lead"><%=t 'welcome.business.offset_employees_html' %></p>
+    <div class="container">
+      <p class="big-number">
+        <% case I18n.locale when :en %>
+          $<span id="big-number"></span> /month
+        <% when :de %>
+          <span id="big-number"></span> €/month
+        <% when :sv %>
+          <span id="big-number"></span> kr/månad
+        <% end %>
+      </p>
+        <p><%=t 'welcome.business.equivalent_co2_offset' %></p>
+
+        <%= form_tag(business_path, class: 'form-horizontal') do %>
+          <div class="form-group">
+            <%= label_tag(:number_of_employees, t('welcome.business.number_of_employees'), class: 'col-sm-5 control-label') %>
+            <div class="col-sm-3">
+              <%= text_field_tag(:number_of_employees, '10', class: 'form-control') %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= label_tag(:email, t('welcome.business.your_email'), class: 'col-sm-5 control-label') %>
+            <div class="col-sm-3">
+              <%= text_field_tag(:email, '', class: 'form-control') %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-offset-5 col-lg-2 button">
+              <button type="submit" class="btn btn-success"><%=t 'welcome.business.im_interested' %>!</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+</div>
+
+
+
+<div class="site-wrapper-third">
   <div class="inner">
 
     <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-    <h2 class="cover-heading"><%=t 'business.other_offsetting' %></h2>
-    <p class="lead"><%=t 'business.other_offsetting_html' %></p>
+    <h2 class="cover-heading"><%=t 'welcome.business.other_offsetting' %></h2>
+    <p class="lead"><%=t 'welcome.business.other_offsetting_html' %></p>
 
   </div>
 </div>
 
 <%= render "shared/footer" %>
+
+<% content_for :javascript_tags do %>
+  <script>
+    window.addEventListener('load', function() {
+      new BusinessOffsetCalculator(
+        <%= @cost_per_tonne %>,
+        document.getElementById('number_of_employees'),
+        document.getElementById('big-number')
+      )
+    })
+  </script>
+<% end %>

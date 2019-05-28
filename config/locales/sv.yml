@@ -450,6 +450,22 @@ sv:
         food: Matvanor
         car: Bilvanor
         flying: Flygvanor
+    business:
+      for_companies: Klimatkompensera ditt företag
+      for_companies_text_html: Vill du klimatkompensera ditt företags klimatavtryck eller klimatkompensera för alla era anställda? Vi hjälper dig gärna!
+      calculate_footprint: Ditt företags klimatavtryck
+      calculate_footprint_html: Beräkna ditt företags klimatavtryck, minska det du kan och klimatkompensera resten. Vi har tagit fram ett enkelt verktyg för tjänsteföretag utan egen fysisk produktion.
+      calculate_footprint_button: Beräkna mitt företags klimatavtryck
+      customers_we_work_with: Några av våra fantastiska kunder och samarbetspartners
+      offset_employees: Klimatkompensera era anställda
+      offset_employees_html: Genom att klimatkompensera för era anställdas livsstil tar ni ansvar för deras privata klimatavtryck. Det är ett sätt att göra stor klimatnytta samtidigt som det bidrar till att ni blir en attraktiv och ansvarstagande arbetsgivare.
+      equivalent_co2_offset: motsvarar 22 ton CO2-utsläpp per anställd och år
+      im_interested: Kontakta mig!
+      we_will_contact_you_shortly_html: Vi kontaktar dig inom kort på <b>%{email}</b> med information om nästa steg! Vi hörs!
+      other_offsetting: Övriga tjänster
+      other_offsetting_html: "Vi kan hjälpa till med utsläppsberäkningar, enskilda klimatkompensationer och tekniska integrationer. Hör av dig till <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> så berättar vi mer."
+      number_of_employees: "Antal anställda:"
+      your_email: "Din e-post:"
   number:
     format:
       delimiter: ' '
@@ -528,25 +544,13 @@ sv:
 
 
   business:
-    for_companies: Klimatkompensera företag
-    for_companies_text_html: Vill du klimatkompensera för en flygresa eller för alla era anställda? Vi hjälper dig gärna!
-    customers_we_work_with: Några av våra fantastiska kunder
-    gcn_certified_company: Klimatkompensera era anställda
-    gcn_certified_company_html: Genom att klimatkompensera för era anställda tar ni ansvar för alla era anställdas klimatavtryck. Läs mer om hur vi <a href="https://www.goclimateneutral.org/blog/klimatkompensera-ditt-foretag/">räknat på siffrorna här.</a>
-    equivalent_co2_offset: motsvarar 22 ton CO2-utsläpp per anställd och år
-    im_interested: Jag är intresserad
-    we_will_contact_you_shortly_html: Vi kontaktar dig inom kort på <b>%{email}</b> med information om nästa steg! Vi hörs!
-    other_offsetting: Övriga tjänster
-    other_offsetting_html: "Vi kan hjälpa till med utsläppsberäkningar för tjänsteföretag, enskilda klimatkompensationer och tekniska integrationer. Hör av dig till <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> så berättar vi mer."
-    number_of_employees: "Antal anställda:"
-    your_email: "Din e-post:"
     climate_reports:
       business_footprint_header: Beräkna ditt företags klimatavtryck
-      business_footprint_intro: Att beräkna ditt företags klimatavtryck är det första steget mot att ta ansvar för de klimatutsläpp som ni orsakar. Efter att du fyllt i det här formuläret kommer vi beräkna de totala utsläppen och ge dig möjlighet att kompensera för utsläppen i certifierade klimatprojekt.
+      business_footprint_intro: Att beräkna ditt företags klimatavtryck är det första steget mot att ta ansvar för de klimatutsläpp som ni orsakar. Efter att du har fyllt i det här formuläret får du information om era totala utsläpp, som ni sedan kan välja att kompensera för i certifierade klimatprojekt. 
       general_information: Företagsinformation
       company_name: Företagsnamn
       country: Land
-      country_tooltip: Vår företagskalkylator är bara tillgänglig för svenska företag än så länge. Det betyder att vi tyvärr inte kan utföra träffsäkra automatiska beräkningar för företag med kontor i andra länder. Kontakta gärna oss på info@goclimateneutral.org om du är intresserad av en beräkning för företag med kontor i andra länder - vi hjälper gärna till! 
+      country_tooltip: Vår företagskalkylator är bara tillgänglig för svenska företag än så länge. Det betyder att vi tyvärr inte kan utföra träffsäkra automatiska beräkningar för företag med kontor i andra länder. Kontakta gärna oss på info@goclimateneutral.org om du är intresserad av en beräkning för era kontor i andra länder - vi hjälper gärna till!
       sweden: Sverige
       number_of_employees: Antal anställda
       number_of_employees_tooltip: "Antal heltidsanställda eller motsvarande. Det här använder vi för att uppskatta energianvändning på kontoren om du inte har några exakta kWh-siffror tillgängligt och för att beräkna utsläpp per anställd och andra statistiska värden. Exempel: 2 anställda som jobbar heltid och 2 anställda som jobbar 50% motsvarar 3 heltidsanställda."
@@ -555,7 +559,7 @@ sv:
       calculation_period: Beräkningsperiod
       calculation_period_tooltip: Tidsperioden som du vill göra beräkningen för. Exempelvis '2018', '2019 Q1', '2019-06' eller liknande.
       name_and_logo: Ditt företagsnamn och logga på vår sajt
-      name_and_logo_tooltip: Att visa företagsnamn och logga kanske kan övertyga andra att det är en bra ide att beräkna och kompensera sina klimatavtryck. Om du ångrar dig senare så är det bara att du hör av dig!
+      name_and_logo_tooltip: Att visa företagsnamn och logga kan inspirera andra till att beräkna sina utsläpp och göra något åt dem. Om du ångrar dig senare så är det bara att du hör av dig!
       ok_with_showing_logo: Vi är OK med att visa vårt företagsnamn och logga på GoClimateNeutrals sajt.
       energy_header: Energi
       energy_intro: Ett företags energiförbrukning brukar ofta vara den största delen av ett företags klimatavtryck. Den här beräkningen tar hänsyn till de tre vanligtvis största delarna; elektricitet, värme och antal servrar som företaget använder. 
@@ -566,16 +570,16 @@ sv:
       green_electricity_tooltip: Med grön el menar vi el från förnyelsebara källor eller från kärnkraft.
       green_electricity_text: Vi har grönt elavtal
       heating: Värme
-      heating_tooltip: 90% av värmen i svenska kontor kommer från fjärrvärme och är ofta ungefär lika stor som elen i kWh. Oftast står kWh från fjärrvärmen på fakturan, och om den inte är tillgänglig så kan du fråga din hyresvärd om de har några siffror. Om du inte lyckas få tag på några siffror kan du använda våra snittvärden genom att kryssa i rutan här bredvid. Om du vet att du inte har någon separat värme så kan du skriva in 0 i det här fältet.
-      average_number_of_servers: Antalet aktiva servrar
+      heating_tooltip: 90% av värmen i svenska kontor kommer från fjärrvärme och är ofta ungefär lika stor som elen i kWh. Oftast står kWh från fjärrvärmen på fakturan, och om den inte är tillgänglig så kan du fråga din hyresvärd om de har några siffror. Om du inte lyckas få tag på några siffror kan du använda våra snittvärden genom att kryssa i rutan här bredvid. Om du vet att du inte har någon separat värme, dvs att ni exempelvis använder direktverkande el för uppvärmning, så kan du skriva in 0 i det här fältet.
+      average_number_of_servers: Antal aktiva servrar
       average_number_of_servers_tooltip: "Antal aktiva servrar i snitt under tidsperioden hos driftspartners. Endast servrar som ej ingår i er egen elräkning och som inte är i molnet hos någon av de större moln-leverantörerna. Exempel: 4 servrar som står hos en driftspartner är aktiva under halva tidsperioden och 2 servrar är aktiva under andra halvan blir 3 servrar i snitt."
-      servers_green_electricity: Våra servrar går på 100% grön el
+      servers_green_electricity: Våra servrar kör på 100% grön el
       how_do_i_know: hur vet jag det?
-      number_of_cloud_servers: Antalet aktiva servrar i molnet
+      number_of_cloud_servers: Antal aktiva servrar i molnet
       number_of_cloud_servers_tooltip: "Antalet aktiva servrar i molnet i snitt under tidsperioden. Med molnet menar vi storskaliga moln-leverantörer så som Amazon AWS, Google Cloud och Microsoft Azure. Exempel: 4 servrar som kör i molnet under halva tidsperioden och 2 servrar som är aktiva under andra halvan blir 3 servrar i snitt."
       cloud_servers_green_electricity: Våra molnservrar kör på 100% grön el
       business_trips: Resor
-      business_trips_intro: Resor kan vara den största delen av ett företags klimatavtryck, speciellt om man gör många långresor eller har många anställda som åker bil mycket.
+      business_trips_intro: Resor kan vara den största delen av ett företags klimatavtryck, speciellt om ni gör många långresor eller har många anställda som åker bil mycket.
       flight_hours: Flygtimmar
       flight_hours_tooltip: Uppskattade antalet totala flygtimmar under tidsperioden. För konsultbolag inkluderar detta flygtimmar som kunden betalar för. Till exempel, om 10 personer flyger 2 timmar så blir det 20 timmar. Om de sedan flyger tillbaka samma sträcka blir det 40 timmar.
       hours: timmar
@@ -599,14 +603,14 @@ sv:
       other_emissions: Övriga utsläpp
       specify_other_emissions: Beskriv övriga utsläpp
       contact: Kontakt
-      contact_intro: För att kunna skicka en länk till klimatberäkningen vi gör behöver vi en e-postadress.
+      contact_intro: För att kunna skicka en länk till redovisningen av era utsläpp behöver vi en e-postadress.
       contact_email: E-postadress
       calculate_button: Se mitt företags klimatavtryck
       show:
         header: Ditt företags klimatavtryck
-        result: Ditt företags klimatavtryck för perioden %{calculation_period} är %{total_emissions} ton koldioxid. Det är %{emissions_per_employee} ton per anställd.
+        result: Ditt företags klimatavtryck för perioden %{calculation_period} är %{total_emissions} ton koldioxid. Det motsvarar %{emissions_per_employee} ton per anställd.
         offset_and_get_report: Kompensera för ditt klimatavtryck och få en klimatrapport
-        offset_and_get_report_text: Kompensera för ditt klimatavtryck är ett sätt att ta ansvar för skadan ditt företag har på klimatet. Om du kompenserar tar vi också fram en klimatrapport till dig som du kan använda i ert fortsatta klimatarbete.
+        offset_and_get_report_text: Att klimatkompensera är ett sätt att ta ansvar för den globala uppvärmning som ditt företag bidrar till. När ni klimatkompenserar för era utsläpp tar vi även fram en klimatrapport, baserad på de uppgifter du har angett, som ni kan använda i ert fortsatta klimatarbete.
         your_order: Din order
         carbon_offseting: Klimatkompensation
         climate_report: Klimatrapport
@@ -616,7 +620,7 @@ sv:
         invoice_email: E-post för faktura (frivilligt)
         invoice_email_text: Skriv in en e-postadress om du vill få fakturan via e-post
         order: Beställ
-        well_get_in_touch_html: Vi hör av oss när nästa raporteringsperiod håller på att ta slut om ni vill uppdatera ert klimatavtryck då. Om du har några frågor om klimatkompensation eller ordern, hör gärna av dig till <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a>!
+        well_get_in_touch_html: Vi hör av oss när nästa rapporteringsperiod håller på att ta slut om ni vill uppdatera ert klimatavtryck då. Om du har några frågor om klimatkompensation eller ordern, hör gärna av dig till <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a>!
     climate_report_invoices:
       thank_you:
         thank_you_text: Genom att kompensera för ditt företags klimatutsläpp, så tar du ansvar för det avtryck som ditt företag har på klimatet. 
@@ -624,7 +628,7 @@ sv:
         thanks_again: Tack igen!
 
   this_is_how_the_money_is_used_header: Hit går pengarna
-  this_is_how_the_money_is_used_text: Vi investerar i tredjepartsgranskade och FN-certifierade klimatprojekt med den extra certifieringen Gold Standard. Projekten minskar utsläpp motsvarande din flygresas klimatavtryck och bidrar till den globala omställningen till förnyelsebar energiproduktion. Här är våra två senaste projekt.
+  this_is_how_the_money_is_used_text: "Vi stöttar tredjepartsgranskade klimatprojekt med certifieringen Gold Standard. Projekten minskar utsläpp motsvarande det beräknade klimatavtrycket och bidrar till den globala omställningen till förnyelsebar energiproduktion samt energieffektiviseringar. Här är våra två senaste projekt:"
   tonnes_carbon_dioxide: ton koldioxid
   see_all_our_projects: Se alla våra projekt
         
