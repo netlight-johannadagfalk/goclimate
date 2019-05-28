@@ -5,20 +5,26 @@ require 'rails_helper'
 RSpec.describe ClimateReportCalculation do
   subject(:calculation) { described_class.create_from_climate_report!(climate_report) }
 
+  let(:climate_report_attributes) { {} }
   let(:climate_report) do
     create(
       :climate_report,
-      electricity_consumption: 100,
-      heating: 100,
-      number_of_servers: 5,
-      flight_hours: 10,
-      car_distance: 100,
-      meals: 100,
-      meals_vegetarian_share: 72,
-      purchased_computers: 2,
-      purchased_phones: 4,
-      purchased_monitors: 2,
-      other_co2e: 37
+      {
+        employees: 10,
+        office_area: 120,
+        electricity_consumption: 100,
+        heating: 100,
+        number_of_servers: 5,
+        number_of_cloud_servers: 3,
+        flight_hours: 10,
+        car_distance: 100,
+        meals: 100,
+        meals_vegetarian_share: 72,
+        purchased_computers: 2,
+        purchased_phones: 4,
+        purchased_monitors: 2,
+        other_co2e: 37
+      }.merge(climate_report_attributes)
     )
   end
 
@@ -47,14 +53,101 @@ RSpec.describe ClimateReportCalculation do
       expect(created_calculation.electricity_consumption_emissions).to eq(33)
     end
 
+    context 'when electricity is green' do
+      let(:climate_report_attributes) do
+        { green_electricity: true }
+      end
+
+      it 'considers electricity emission free' do
+        expect(created_calculation.electricity_consumption_emissions).to eq(0)
+      end
+    end
+
+    context 'when exact electricity values are not known' do
+      let(:climate_report_attributes) do
+        { use_electricity_averages: true }
+      end
+
+      it 'calculates electricity consumption emissions using average values' do
+        # 120 sqm * 122 kwH/sqm/yr * 0.329 kg/kWh (Nordic residual mix) = 32.9 kg
+        expect(created_calculation.electricity_consumption_emissions).to eq(4817)
+      end
+    end
+
+    context 'when exact electricity values are not known and office area is not provided' do
+      let(:climate_report_attributes) do
+        {
+          office_area: nil,
+          use_electricity_averages: true
+        }
+      end
+
+      it 'calculates electricity consumption emissions using averages for both office area and consumption' do
+        # 10 employees * 15 sqm/employee * 122 kwH/sqm/yr * 0.329 kg/kWh (Nordic residual mix) = 32.9 kg
+        expect(created_calculation.electricity_consumption_emissions).to eq(6021)
+      end
+    end
+
     it 'calculates heating emissions' do
-      # 100 kWh * 0.071 kg/kWh (Stockholm Exergi) = 7.1 kg
-      expect(created_calculation.heating_emissions).to eq(8)
+      # 100 kWh * 0.06592 kg/kWh (Swedish average) = 6.6 kg
+      expect(created_calculation.heating_emissions).to eq(7)
+    end
+
+    context 'when heating consumption is not known' do
+      let(:climate_report_attributes) do
+        { use_heating_averages: true }
+      end
+
+      it 'calculates heating emissions using average values' do
+        # 120 sqm * 117 kwH/sqm/yr * 0.06592 kg/kWh (Swedish average) = 925.5 kg
+        expect(created_calculation.heating_emissions).to eq(926)
+      end
+    end
+
+    context 'when heating consumption is not known and office area is not provided' do
+      let(:climate_report_attributes) do
+        {
+          office_area: nil,
+          use_heating_averages: true
+        }
+      end
+
+      it 'calculates heating emissions using averages for both office area and consumption' do
+        # 10 employees * 15 sqm/employee * 117 kwH/sqm/yr * 0.06592 kg/kWh (Swedish average) = 1156.9 kg
+        expect(created_calculation.heating_emissions).to eq(1_157)
+      end
     end
 
     it 'calculates servers emissions' do
-      # 5 servers * 500 kg/server/year = 2500 kg
-      expect(created_calculation.servers_emissions).to eq(2_500)
+      # 5 servers * 899 kg/server/year = 4495 kg
+      expect(created_calculation.servers_emissions).to eq(4_495)
+    end
+
+    context 'when servers use green electricity' do
+      let(:climate_report_attributes) do
+        { servers_green_electricity: true }
+      end
+
+      it 'calculates server emissions with green factors' do
+        # 5 servers * 320 kg/server/year = 1600 kg
+        expect(created_calculation.servers_emissions).to eq(1_600)
+      end
+    end
+
+    it 'calculates cloud servers emissions' do
+      # 3 servers * 450 kg/server/year = 1350 kg
+      expect(created_calculation.cloud_servers_emissions).to eq(1_350)
+    end
+
+    context 'when cloud servers use green electricity' do
+      let(:climate_report_attributes) do
+        { cloud_servers_green_electricity: true }
+      end
+
+      it 'calculates server emissions with green factors' do
+        # 3 servers * 160 kg/server/year = 480 kg
+        expect(created_calculation.cloud_servers_emissions).to eq(480)
+      end
     end
 
     it 'calculates flight emissions' do
@@ -63,7 +156,7 @@ RSpec.describe ClimateReportCalculation do
     end
 
     it 'calculates car emissions' do
-      # 100 km * 0.123 kg/km (average in Sweden) = 12.3 kg
+      # 100 km * 0.122 kg/km (average in Sweden) = 12.2 kg
       expect(created_calculation.car_emissions).to eq(13)
     end
 
@@ -136,7 +229,7 @@ RSpec.describe ClimateReportCalculation do
 
   describe '#total_emissions' do
     it 'sums emissions from each emission area' do
-      expect(calculation.total_emissions).to eq(6_681)
+      expect(calculation.total_emissions).to eq(10_025)
     end
   end
 
@@ -161,6 +254,12 @@ RSpec.describe ClimateReportCalculation do
   describe '#servers_emissions' do
     it 'validates presence' do
       validate_presence_of :servers_emissions
+    end
+  end
+
+  describe '#cloud_servers_emissions' do
+    it 'validates presence' do
+      validate_presence_of :cloud_servers_emissions
     end
   end
 

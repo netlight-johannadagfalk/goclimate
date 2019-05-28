@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_20_135348) do
+ActiveRecord::Schema.define(version: 2019_05_27_135536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2019_05_20_135348) do
     t.integer "purchased_phones_emissions"
     t.integer "purchased_monitors_emissions"
     t.integer "other_emissions"
+    t.integer "cloud_servers_emissions"
     t.index ["climate_report_id"], name: "index_climate_report_calculations_on_climate_report_id"
   end
 
