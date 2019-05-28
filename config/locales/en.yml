@@ -436,9 +436,9 @@ en:
       calculate_footprint: Your business footprint
       calculate_footprint_html: Calculate the climate footprint of your business, reduce what emissions you can and offset the rest. Our calculator is made for smaller service businesses without own physical production. Questions? Contact us at <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a>!
       calculate_footprint_button: Calculate my business footprint
-      customers_we_work_with: A few of our amazing customers
+      customers_we_work_with: A few of our amazing customers and partners
       offset_employees: Offset your employees
-      offset_employees_html: By offsetting for your employees you take responsibility for their climate footprint. This is a way to do a lot of good for the climate and at the same time be an attractive and responsible employer.
+      offset_employees_html: By offsetting for your employees lifestyle you take responsibility for their climate footprint. This is a way to do a lot of good for the climate and at the same time be an attractive and responsible employer.
       equivalent_co2_offset: equivalent to 22 tonnes of CO2-emissions per employee and year
       im_interested: Contact me
       we_will_contact_you_shortly_html: We will contact you on <b>%{email}</b> shortly with more information about the next step!
