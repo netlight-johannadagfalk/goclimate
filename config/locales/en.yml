@@ -576,6 +576,7 @@ en:
       contact_intro: To be able to get a link to the climate calculation we create you need to enter your e-mail adress.
       contact_email: Email
       calculate_button: See my business footprint
+      read_more_about_calculations: Read more about the calculations here
       show:
         header: Your business footprint
         result: Your business footprint for the reporting period %{calculation_period} is %{total_emissions} tonnes carbon dioxide equivalents. That's %{emissions_per_employee} tonnes per employee.

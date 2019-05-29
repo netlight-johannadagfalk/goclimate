@@ -606,6 +606,7 @@ sv:
       contact_intro: För att kunna skicka en länk till redovisningen av era utsläpp behöver vi en e-postadress.
       contact_email: E-postadress
       calculate_button: Se mitt företags klimatavtryck
+      read_more_about_calculations: Läs mer om företagskalkylatorn här
       show:
         header: Ditt företags klimatavtryck
         result: Ditt företags klimatavtryck för perioden %{calculation_period} är %{total_emissions} ton koldioxidekvivalenter. Det motsvarar %{emissions_per_employee} ton per anställd.
