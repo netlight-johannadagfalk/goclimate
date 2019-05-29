@@ -6,6 +6,23 @@
 # though the class is looong. Take care to not add other responsibility to this
 # class as that would make its length a problem.
 class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/ClassLength
+  AVERAGE_OFFICE_AREA_PER_EMPLOYEE                 = 15 # sqm/employee
+  AVERAGE_ELECTRICITY_CONSUMPTION_PER_SQM_OFFICES  = 122 # kwH/sqm/year
+  AVERAGE_HEATING_CONSUMPTION_PER_SQM_OFFICES      = 117 # kwH/sqm/year
+  NORDIC_RESIDUAL_MIX_EMISSIONS                    = BigDecimal('0.329') # kg CO2e/kwH
+  AVERAGE_HEATING_EMISSIONS_SWEDEN                 = BigDecimal('0.06592') # kg CO2e/kwH
+  TYPICAL_SERVER_EMISSIONS                         = 899 # kg CO2e/year
+  TYPICAL_SERVER_EMISSIONS_GREEN_ELECTRICITY       = 320 # kg CO2e/year
+  TYPICAL_CLOUD_SERVER_EMISSIONS                   = 450 # kg CO2e/year
+  TYPICAL_CLOUD_SERVER_EMISSIONS_GREEN_ELECTRICITY = 160 # kg CO2e/year
+  TYPICAL_FLIGHT_EMISSIONS_PER_HOUR                = 200 # kg CO2e/flight hour
+  TYPICAL_CAR_EMISSIONS_PER_KILOMETER              = BigDecimal('0.122') # kg CO2e/km
+  TYPICAL_OMNIVORE_MEAL_EMISSIONS                  = BigDecimal('2.1') # kg CO2e/meal
+  TYPICAL_VEGETARIAN_MEAL_EMISSIONS                = BigDecimal('0.7') # kg CO2e/meal
+  TYPICAL_PURCHASED_COMPUTER_EMISSIONS             = 350 # kg CO2e/purchased computer
+  TYPICAL_PURCHASED_PHONE_EMISSIONS                = 70 # kg CO2e/purchased phone
+  TYPICAL_PURCHASED_MONITOR_EMISSIONS              = 500 # kg CO2e/purchased monitor
+
   belongs_to :climate_report
 
   validates_presence_of :climate_report, :electricity_consumption_emissions,
@@ -58,12 +75,12 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
   end
 
   def office_area_for_calculation
-    climate_report.office_area || climate_report.employees * 15
+    climate_report.office_area || climate_report.employees * AVERAGE_OFFICE_AREA_PER_EMPLOYEE
   end
 
   def electricity_consumption_for_calculation
     if climate_report.use_electricity_averages
-      (office_area_for_calculation * 122 * period_length_multiplier).ceil
+      (office_area_for_calculation * AVERAGE_ELECTRICITY_CONSUMPTION_PER_SQM_OFFICES * period_length_multiplier).ceil
     else
       climate_report.electricity_consumption
     end
@@ -71,7 +88,7 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
 
   def heating_consumption_for_calculation
     if climate_report.use_heating_averages
-      (office_area_for_calculation * 117 * period_length_multiplier).ceil
+      (office_area_for_calculation * AVERAGE_HEATING_CONSUMPTION_PER_SQM_OFFICES * period_length_multiplier).ceil
     else
       climate_report.heating
     end
@@ -87,7 +104,7 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
       return
     end
 
-    self.electricity_consumption_emissions = (BigDecimal('0.329') * electricity_consumption).ceil
+    self.electricity_consumption_emissions = (NORDIC_RESIDUAL_MIX_EMISSIONS * electricity_consumption).ceil
   end
 
   def calculate_heating_emissions
@@ -98,7 +115,7 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
       return
     end
 
-    self.heating_emissions = (BigDecimal('0.06592') * heating_consumption).ceil
+    self.heating_emissions = (AVERAGE_HEATING_EMISSIONS_SWEDEN * heating_consumption).ceil
   end
 
   def calculate_servers_emissions
@@ -109,9 +126,9 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
 
     yearly_emissions_per_server =
       if climate_report.servers_green_electricity
-        320
+        TYPICAL_SERVER_EMISSIONS_GREEN_ELECTRICITY
       else
-        899
+        TYPICAL_SERVER_EMISSIONS
       end
 
     self.servers_emissions =
@@ -126,9 +143,9 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
 
     yearly_emissions_per_server =
       if climate_report.cloud_servers_green_electricity
-        160
+        TYPICAL_CLOUD_SERVER_EMISSIONS_GREEN_ELECTRICITY
       else
-        450
+        TYPICAL_CLOUD_SERVER_EMISSIONS
       end
 
     self.cloud_servers_emissions =
@@ -141,7 +158,7 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
       return
     end
 
-    self.flight_emissions = 200 * climate_report.flight_hours
+    self.flight_emissions = TYPICAL_FLIGHT_EMISSIONS_PER_HOUR * climate_report.flight_hours
   end
 
   def calculate_car_emissions
@@ -150,7 +167,7 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
       return
     end
 
-    self.car_emissions = (BigDecimal('0.122') * climate_report.car_distance).ceil
+    self.car_emissions = (TYPICAL_CAR_EMISSIONS_PER_KILOMETER * climate_report.car_distance).ceil
   end
 
   def calculate_meals_emissions
@@ -163,7 +180,10 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
     vegetarian_meals = vegetarian_factor * climate_report.meals
     omnivore_meals = climate_report.meals - vegetarian_meals
 
-    self.meals_emissions = (BigDecimal('2.1') * omnivore_meals + BigDecimal('0.7') * vegetarian_meals).ceil
+    self.meals_emissions = (
+      TYPICAL_OMNIVORE_MEAL_EMISSIONS * omnivore_meals +
+      TYPICAL_VEGETARIAN_MEAL_EMISSIONS * vegetarian_meals
+    ).ceil
   end
 
   def calculate_purchased_computers_emissions
@@ -172,7 +192,7 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
       return
     end
 
-    self.purchased_computers_emissions = 350 * climate_report.purchased_computers
+    self.purchased_computers_emissions = TYPICAL_PURCHASED_COMPUTER_EMISSIONS * climate_report.purchased_computers
   end
 
   def calculate_purchased_phones_emissions
@@ -181,7 +201,7 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
       return
     end
 
-    self.purchased_phones_emissions = 70 * climate_report.purchased_phones
+    self.purchased_phones_emissions = TYPICAL_PURCHASED_PHONE_EMISSIONS * climate_report.purchased_phones
   end
 
   def calculate_purchased_monitors_emissions
@@ -190,7 +210,7 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
       return
     end
 
-    self.purchased_monitors_emissions = 500 * climate_report.purchased_monitors
+    self.purchased_monitors_emissions = TYPICAL_PURCHASED_MONITOR_EMISSIONS * climate_report.purchased_monitors
   end
 
   def set_other_emissions
