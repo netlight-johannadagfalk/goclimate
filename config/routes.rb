@@ -48,10 +48,7 @@ Rails.application.routes.draw do
   get 'our_projects', to: 'welcome#our_projects'
   get 'privacy_policy', to: 'welcome#privacy_policy'
 
-  # Business page with post from employee offsetting form
-  resource :business, only: [:new, :create], path_names: { new: '' }
-
-  get 'business_beta', to: 'welcome#business'
+  get 'business', to: 'welcome#business'
   namespace :business do
     resources :climate_reports, only: [:show, :new, :create], param: :key do
       member do
@@ -61,6 +58,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  # Business page with post from employee offsetting form
+  resource :business, only: [:create]
 
   # Partners
   get 'partners/bokanerja'
@@ -135,4 +135,5 @@ Rails.application.routes.draw do
   get '/users', to: redirect('/dashboard'), as: nil
   get '/users/edit/payment', to: redirect('/users/subscription'), as: nil
   get 'companies', to: redirect('/business'), as: nil
+  get 'business_beta', to: redirect('/business'), as: nil
 end
