@@ -46,13 +46,24 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
 
   # MARK: Derived values used for calculation
 
+  def period_length_multiplier
+    case climate_report.calculation_period_length
+    when 'half-year'
+      BigDecimal('0.5')
+    when 'quarter'
+      BigDecimal('0.25')
+    else
+      1
+    end
+  end
+
   def office_area_for_calculation
     climate_report.office_area || climate_report.employees * 15
   end
 
   def electricity_consumption_for_calculation
     if climate_report.use_electricity_averages
-      office_area_for_calculation * 122
+      (office_area_for_calculation * 122 * period_length_multiplier).ceil
     else
       climate_report.electricity_consumption
     end
@@ -60,7 +71,7 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
 
   def heating_consumption_for_calculation
     if climate_report.use_heating_averages
-      office_area_for_calculation * 117
+      (office_area_for_calculation * 117 * period_length_multiplier).ceil
     else
       climate_report.heating
     end
@@ -103,7 +114,8 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
         899
       end
 
-    self.servers_emissions = yearly_emissions_per_server * climate_report.number_of_servers
+    self.servers_emissions =
+      (yearly_emissions_per_server * climate_report.number_of_servers * period_length_multiplier).ceil
   end
 
   def calculate_cloud_servers_emissions
@@ -119,7 +131,8 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
         450
       end
 
-    self.cloud_servers_emissions = yearly_emissions_per_server * climate_report.number_of_cloud_servers
+    self.cloud_servers_emissions =
+      (yearly_emissions_per_server * climate_report.number_of_cloud_servers * period_length_multiplier).ceil
   end
 
   def calculate_flight_emissions

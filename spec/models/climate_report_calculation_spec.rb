@@ -225,6 +225,66 @@ RSpec.describe ClimateReportCalculation do
         expect(created_calculation.purchased_monitors_emissions).to eq(0)
       end
     end
+
+    context 'when calculation period length is half-year' do
+      let(:climate_report_attributes) do
+        {
+          calculation_period_length: 'half-year',
+          use_electricity_averages: true,
+          use_heating_averages: true
+        }
+      end
+
+      it 'calculates electricity consumption emissions using average values' do
+        # 120 sqm * 122 kwH/sqm/yr * 0.329 kg/kWh (Nordic residual mix) / 2 = 2408.3 kg
+        expect(created_calculation.electricity_consumption_emissions).to eq(2_409)
+      end
+
+      it 'calculates heating emissions using average values' do
+        # 120 sqm * 117 kwH/sqm/yr * 0.06592 kg/kWh (Swedish average) / 2 = 462.8 kg
+        expect(created_calculation.heating_emissions).to eq(463)
+      end
+
+      it 'calculates servers emissions' do
+        # 5 servers * 899 kg/server/year / 2 = 2247.5 kg
+        expect(created_calculation.servers_emissions).to eq(2248)
+      end
+
+      it 'calculates cloud servers emissions' do
+        # 3 servers * 450 kg/server/year / 2 = 675 kg
+        expect(created_calculation.cloud_servers_emissions).to eq(675)
+      end
+    end
+
+    context 'when calculation period length is half-year' do
+      let(:climate_report_attributes) do
+        {
+          calculation_period_length: 'quarter',
+          use_electricity_averages: true,
+          use_heating_averages: true
+        }
+      end
+
+      it 'calculates electricity consumption emissions using average values' do
+        # 120 sqm * 122 kwH/sqm/yr * 0.329 kg/kWh (Nordic residual mix) / 4 = 1204.1 kg
+        expect(created_calculation.electricity_consumption_emissions).to eq(1_205)
+      end
+
+      it 'calculates heating emissions using average values' do
+        # 120 sqm * 117 kwH/sqm/yr * 0.06592 kg/kWh (Swedish average) / 4 = 231.4 kg
+        expect(created_calculation.heating_emissions).to eq(232)
+      end
+
+      it 'calculates servers emissions' do
+        # 5 servers * 899 kg/server/year / 4 = 1123.8 kg
+        expect(created_calculation.servers_emissions).to eq(1124)
+      end
+
+      it 'calculates cloud servers emissions' do
+        # 3 servers * 450 kg/server/year / 4 = 337.5 kg
+        expect(created_calculation.cloud_servers_emissions).to eq(338)
+      end
+    end
   end
 
   describe '#total_emissions' do
