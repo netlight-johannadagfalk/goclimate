@@ -10,7 +10,7 @@ module Business
     end
 
     def new
-      @report = ClimateReport.new(calculation_period: '2018', country: 'SE')
+      @report = ClimateReport.new(calculation_period: '2018', calculation_period_length: 'year', country: 'SE')
     end
 
     def create

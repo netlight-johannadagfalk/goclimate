@@ -89,6 +89,20 @@ RSpec.describe ClimateReport do
     end
   end
 
+  describe '#calculation_period_length' do
+    it 'validates presence' do
+      validate_presence_of :calculation_period_length
+    end
+
+    it 'validates inclusion in year, half-year, quarter' do
+      report = described_class.new(calculation_period_length: 'foo')
+
+      report.validate
+
+      expect(report.errors.keys).to include(:calculation_period_length)
+    end
+  end
+
   describe '#meals_vegetarian_share' do
     it 'validates as percentage share of 100%'
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_27_135536) do
+ActiveRecord::Schema.define(version: 2019_05_29_072525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2019_05_27_135536) do
     t.boolean "servers_green_electricity"
     t.boolean "cloud_servers_green_electricity"
     t.text "other_specification"
+    t.text "calculation_period_length"
     t.index ["key"], name: "index_climate_reports_on_key"
   end
 

@@ -89,6 +89,21 @@
           </div>
 
           <div class="form-group">
+            <label for="climate_report_calculation_period_length" class="col-sm-5 control-label">
+              <%=t 'business.climate_reports.calculation_period_length' %>
+            </label>
+            <div class="col-sm-7">
+              <%= f.select :calculation_period_length,
+                    [
+                      [t('business.climate_reports.calculation_period_length_options.year'), 'year'],
+                      [t('business.climate_reports.calculation_period_length_options.half-year'), 'half-year'],
+                      [t('business.climate_reports.calculation_period_length_options.quarter'), 'quarter']
+                    ],
+                    {}, class: 'form-control', required: '' %>
+            </div>
+          </div>
+
+          <div class="form-group">
             <label class="col-sm-5 control-label">
               <%=t 'business.climate_reports.name_and_logo' %>
               <a class="business-tooltip" data-toggle="tooltip" title="<%=t 'business.climate_reports.name_and_logo_tooltip' %>">[?]</a>
