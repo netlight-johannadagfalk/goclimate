@@ -105,12 +105,14 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
       return
     end
 
-    if climate_report.green_electricity
-      self.electricity_consumption_emissions = (GREEN_ELECTRICITY_EMISSIONS * electricity_consumption).ceil
-      return
-    end
+    electricity_emissions =
+      if climate_report.green_electricity
+        GREEN_ELECTRICITY_EMISSIONS
+      else
+        NORDIC_RESIDUAL_MIX_EMISSIONS
+      end
 
-    self.electricity_consumption_emissions = (NORDIC_RESIDUAL_MIX_EMISSIONS * electricity_consumption).ceil
+    self.electricity_consumption_emissions = (electricity_emissions * electricity_consumption).ceil
   end
 
   def calculate_heating_emissions
