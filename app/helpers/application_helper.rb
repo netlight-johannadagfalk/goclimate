@@ -20,12 +20,17 @@ module ApplicationHelper
 
   def co2e_string(co2e, options = {})
     co2e_tonnes = BigDecimal(co2e) / 1000
-    co2e_string = co2e_tonnes.truncate(1).to_s('F')
+    co2e_string = co2e_tonnes.truncate(co2e_tonnes < 0.1 ? 2 : 1).to_s('F')
 
     if options[:omit_unit] == true
       co2e_string
     else
-      "#{co2e_string} ton koldioxid"
+      case I18n.locale
+      when :sv
+        "#{co2e_string} ton koldioxid"
+      else
+        "#{co2e_string} tonnes CO2e"
+      end
     end
   end
 

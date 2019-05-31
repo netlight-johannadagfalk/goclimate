@@ -295,6 +295,24 @@ RSpec.describe ClimateReportCalculation do
     end
   end
 
+  describe '#energy_emissions' do
+    it 'sums emissions from each emission area' do
+      expect(calculation.energy_emissions).to eq(5_885)
+    end
+  end
+
+  describe '#business_trips_emissions' do
+    it 'sums emissions from each emission area' do
+      expect(calculation.business_trips_emissions).to eq(2_013)
+    end
+  end
+
+  describe '#material_emissions' do
+    it 'sums emissions from each emission area' do
+      expect(calculation.material_emissions).to eq(1_980)
+    end
+  end
+
   describe '#climate_report' do
     it 'validates presence' do
       validate_presence_of :climate_report
