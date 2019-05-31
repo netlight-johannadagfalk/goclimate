@@ -77,13 +77,13 @@
           <div class="form-group">
             <%= label_tag(:number_of_employees, t('welcome.business.number_of_employees'), class: 'col-sm-5 control-label') %>
             <div class="col-sm-3">
-              <%= text_field_tag(:number_of_employees, '10', class: 'form-control') %>
+              <%= text_field_tag :number_of_employees, '10', class: 'form-control', required: '' %>
             </div>
           </div>
           <div class="form-group">
             <%= label_tag(:email, t('welcome.business.your_email'), class: 'col-sm-5 control-label') %>
             <div class="col-sm-3">
-              <%= text_field_tag(:email, '', class: 'form-control') %>
+              <%= email_field_tag :email, '', class: 'form-control', required: '' %>
             </div>
           </div>
           <div class="form-group">
