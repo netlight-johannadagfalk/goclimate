@@ -31,10 +31,10 @@ module Business
     def climate_report_params
       params.require(:climate_report).permit(
         :company_name, :contact_email, :employees, :office_area, :country,
-        :calculation_period, :consent_to_show_publicly,
-        :electricity_consumption, :use_electricity_averages,
-        :green_electricity, :heating, :use_heating_averages,
-        :number_of_servers, :servers_green_electricity,
+        :calculation_period, :calculation_period_length,
+        :consent_to_show_publicly, :electricity_consumption,
+        :use_electricity_averages, :green_electricity, :heating,
+        :use_heating_averages, :number_of_servers, :servers_green_electricity,
         :number_of_cloud_servers, :cloud_servers_green_electricity,
         :flight_hours, :car_distance, :meals, :meals_vegetarian_share,
         :purchased_computers, :purchased_phones, :purchased_monitors,
