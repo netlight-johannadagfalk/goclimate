@@ -21,3 +21,9 @@
 </div>
 
 <%= render "shared/footer" %>
+
+<%= intercom_script_tag(
+  custom_data: {
+    last_climate_report: @report.id
+  }
+) %>
