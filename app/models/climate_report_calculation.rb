@@ -9,6 +9,7 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
   AVERAGE_OFFICE_AREA_PER_EMPLOYEE                 = 15 # sqm/employee
   AVERAGE_ELECTRICITY_CONSUMPTION_PER_SQM_OFFICES  = 122 # kwH/sqm/year
   AVERAGE_HEATING_CONSUMPTION_PER_SQM_OFFICES      = 117 # kwH/sqm/year
+  GREEN_ELECTRICITY_EMISSIONS                      = BigDecimal('0.006') # kg CO2e/kwH for scope 3 emissions
   NORDIC_RESIDUAL_MIX_EMISSIONS                    = BigDecimal('0.329') # kg CO2e/kwH
   AVERAGE_HEATING_EMISSIONS_SWEDEN                 = BigDecimal('0.06592') # kg CO2e/kwH
   TYPICAL_SERVER_EMISSIONS                         = 899 # kg CO2e/year
@@ -99,12 +100,19 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
   def calculate_electricity_consumption_emissions
     electricity_consumption = electricity_consumption_for_calculation
 
-    if electricity_consumption.nil? || climate_report.green_electricity
+    if electricity_consumption.nil?
       self.electricity_consumption_emissions = 0
       return
     end
 
-    self.electricity_consumption_emissions = (NORDIC_RESIDUAL_MIX_EMISSIONS * electricity_consumption).ceil
+    electricity_emissions =
+      if climate_report.green_electricity
+        GREEN_ELECTRICITY_EMISSIONS
+      else
+        NORDIC_RESIDUAL_MIX_EMISSIONS
+      end
+
+    self.electricity_consumption_emissions = (electricity_emissions * electricity_consumption).ceil
   end
 
   def calculate_heating_emissions

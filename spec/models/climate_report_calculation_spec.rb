@@ -55,11 +55,13 @@ RSpec.describe ClimateReportCalculation do
 
     context 'when electricity is green' do
       let(:climate_report_attributes) do
-        { green_electricity: true }
+        { green_electricity: true,
+          electricity_consumption: 1000 }
       end
 
-      it 'considers electricity emission free' do
-        expect(created_calculation.electricity_consumption_emissions).to eq(0)
+      it 'calculates with scope 3 emissions from green electricity ' do
+        # 1000 kWh * 0.006 kg/kWh (scope 3 emissions) ceiled = 6 kg
+        expect(created_calculation.electricity_consumption_emissions).to eq(6)
       end
     end
 
