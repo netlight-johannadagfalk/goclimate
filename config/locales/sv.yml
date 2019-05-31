@@ -645,9 +645,6 @@ sv:
   this_is_how_the_money_is_used_text: "Vi stöttar tredjepartsgranskade klimatprojekt med certifieringen Gold Standard. Projekten minskar utsläpp motsvarande det beräknade klimatavtrycket och bidrar till den globala omställningen till förnyelsebar energiproduktion samt energieffektiviseringar. Här är våra två senaste projekt:"
   tonnes_carbon_dioxide: ton koldioxid
   see_all_our_projects: Se alla våra projekt
-        
-      
-    
 
   mailers:
     flight_offset:
@@ -656,3 +653,9 @@ sv:
       you_have_offset: Du har kompenserat för
       tonnes_co2e: ton koldioxid
       certificate_is_attached: Ditt certifikat hittar du som en bilaga i det här mailet. Hör gärna av dig om du har några frågor genom att svara på det här mailet. Tack igen, du är bäst!
+    business:
+      climate_report_email:
+        subject: Dela din klimatrapport med dina kollegor
+        thank_you: Tack för att du skapat en klimatrapport hos oss!
+        link_description: "För att du enkelt ska kunna dela klimatrapporten med dina kollegor och hitta tillbaka till den senare kommer här en länk som du kan använda för att hitta tillbaka till rapporten:"
+        reply_to_this_email: Svara gärna på det här mailet om du har några frågor så hjälper vi mer än gärna till!

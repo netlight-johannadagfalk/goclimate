@@ -12,6 +12,15 @@ class BusinessMailer < ApplicationMailer
     )
   end
 
+  def climate_report_email
+    @climate_report = params[:climate_report]
+
+    mail(
+      to: @climate_report.contact_email,
+      subject: I18n.t('mailers.business.climate_report_email.subject')
+    )
+  end
+
   def business_signup_notice_email(climate_report)
     @climate_report = climate_report
 

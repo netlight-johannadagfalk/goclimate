@@ -615,3 +615,10 @@ en:
   this_is_how_the_money_is_used_text: We support UN certified climate projects that are also Gold Standard certified. The projects reduce emissions equivalent to your business' footprint and contribute to the global transition to renewable energy production. Here's our two latest projects.
   tonnes_carbon_dioxide: tonnes carbon dioxide
   see_all_our_projects: See all our projects
+  mailers:
+    business:
+      climate_report_email:
+        subject: Share your climate report with your team
+        thank_you: Thank you for creating your climate report!
+        link_description: "To make it easier to share your report with your team and get back to it later, here's a link you can use to get back to the report:"
+        reply_to_this_email: If you have any questions, just reply to this email. We're happy to help!
