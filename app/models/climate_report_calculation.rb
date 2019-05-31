@@ -38,12 +38,21 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
     create!(climate_report: climate_report)
   end
 
-  def total_emissions # rubocop:disable Metrics/AbcSize
-    electricity_consumption_emissions + heating_emissions + servers_emissions +
-      cloud_servers_emissions + flight_emissions + car_emissions +
-      meals_emissions + purchased_computers_emissions +
-      purchased_phones_emissions + purchased_monitors_emissions +
-      other_emissions
+  def total_emissions
+    energy_emissions + business_trips_emissions + meals_emissions +
+      material_emissions + other_emissions
+  end
+
+  def energy_emissions
+    electricity_consumption_emissions + heating_emissions + servers_emissions + cloud_servers_emissions
+  end
+
+  def business_trips_emissions
+    flight_emissions + car_emissions
+  end
+
+  def material_emissions
+    purchased_computers_emissions + purchased_phones_emissions + purchased_monitors_emissions
   end
 
   private

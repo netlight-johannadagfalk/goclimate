@@ -32,6 +32,107 @@
         <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
           <h1 class="cover-heading"><%=t 'business.climate_reports.show.reduce_header' %></h1>
           <p class="lead"><%=t 'business.climate_reports.show.reduce_body' %></p>
+
+          <table class="table climate-report-table">
+            <tbody>
+              <% if @report.calculation.energy_emissions > 0 %>
+                <tr class="active">
+                  <th><%=t 'business.climate_reports.energy_header' %></th>
+                  <td><%= co2e_string(@report.calculation.energy_emissions) %></td>
+                </tr>
+              <% end %>
+              <% if @report.calculation.electricity_consumption_emissions > 0 %>
+                <tr>
+                  <td>- <%=t 'business.climate_reports.electricity' %></td>
+                  <td><%= co2e_string(@report.calculation.electricity_consumption_emissions) %></td>
+                </tr>
+              <% end %>
+              <% if @report.calculation.heating_emissions > 0 %>
+                <tr>
+                  <td>- <%=t 'business.climate_reports.heating' %></td>
+                  <td><%= co2e_string(@report.calculation.heating_emissions) %></td>
+                </tr>
+              <% end %>
+              <% if @report.calculation.servers_emissions > 0 %>
+                <tr>
+                  <td>- <%=t 'business.climate_reports.servers' %></td>
+                  <td><%= co2e_string(@report.calculation.servers_emissions) %></td>
+                </tr>
+              <% end %>
+              <% if @report.calculation.cloud_servers_emissions > 0 %>
+                <tr>
+                  <td>- <%=t 'business.climate_reports.cloud_servers' %></td>
+                  <td><%= co2e_string(@report.calculation.cloud_servers_emissions) %></td>
+                </tr>
+              <% end %>
+              <% if @report.calculation.business_trips_emissions > 0 %>
+                <tr class="active">
+                  <th><%=t 'business.climate_reports.business_trips' %></th>
+                  <td><%= co2e_string(@report.calculation.business_trips_emissions) %></td>
+                </tr>
+              <% end %>
+              <% if @report.calculation.flight_emissions > 0 %>
+                <tr>
+                  <td>- <%=t 'business.climate_reports.flights' %></td>
+                  <td><%= co2e_string(@report.calculation.flight_emissions) %></td>
+                </tr>
+              <% end %>
+              <% if @report.calculation.car_emissions > 0 %>
+                <tr>
+                  <td>- <%=t 'business.climate_reports.car_taxi' %></td>
+                  <td><%= co2e_string(@report.calculation.car_emissions) %></td>
+                </tr>
+              <% end %>
+              <% if @report.calculation.meals_emissions > 0 %>
+                <tr class="active">
+                  <th><%=t 'business.climate_reports.food' %></th>
+                  <td><%= co2e_string(@report.calculation.meals_emissions) %></td>
+                </tr>
+              <% end %>
+              <% if @report.calculation.material_emissions > 0 %>
+                <tr class="active">
+                  <th><%=t 'business.climate_reports.material' %></th>
+                  <td><%= co2e_string(@report.calculation.material_emissions) %></td>
+                </tr>
+              <% end %>
+              <% if @report.calculation.purchased_computers_emissions > 0 %>
+                <tr>
+                  <td>- <%=t 'business.climate_reports.purchased_computers' %></td>
+                  <td><%= co2e_string(@report.calculation.purchased_computers_emissions) %></td>
+                </tr>
+              <% end %>
+              <% if @report.calculation.purchased_phones_emissions > 0 %>
+                <tr>
+                  <td>- <%=t 'business.climate_reports.purchased_phones' %></td>
+                  <td><%= co2e_string(@report.calculation.purchased_phones_emissions) %></td>
+                </tr>
+              <% end %>
+              <% if @report.calculation.purchased_monitors_emissions > 0 %>
+                <tr>
+                  <td>- <%=t 'business.climate_reports.purchased_monitors' %></td>
+                  <td><%= co2e_string(@report.calculation.purchased_monitors_emissions) %></td>
+                </tr>
+              <% end %>
+              <% if @report.calculation.other_emissions > 0 %>
+                <tr class="active">
+                  <th><%=t 'business.climate_reports.other' %></th>
+                  <td><%= co2e_string(@report.calculation.other_emissions) %></td>
+                </tr>
+                <% if @report.other_specification.present? %>
+                  <tr>
+                    <td><%= simple_format(@report.other_specification) %></td>
+                    <td></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+            <tfoot>
+              <tr class="active">
+                <td><%=t 'business.climate_reports.total' %></td>
+                <td><%= co2e_string(@report.calculation.total_emissions) %></td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
       </div>
 

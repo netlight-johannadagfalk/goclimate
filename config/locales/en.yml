@@ -538,6 +538,7 @@ en:
       ok_with_showing_logo: We're OK with our name and logo being shown on the GoClimateNeutral site.
       energy_header: Energy
       energy_intro: The energy consumption of a business is often the largest source of a service business climate footprint. This calculator takes the three most commonly largest energy consuming sources into account; electricity, heating and the amount of servers running.
+      electricity: Electricity
       electricity_consumption: Electricity consumption
       electricity_consumption_tooltip: The electricity consumed during the period in kWh. This number is often specified on the electricity bills you pay every month or quarter. If electricity is included in the rent, ask your landlord if they measure each tenants specific usage or if they can estimate the consumption for you. If not, our average numbers can be used.
       use_average_values: We don't have access to electricity consumption—use average values
@@ -546,18 +547,22 @@ en:
       green_electricity_text: We have a green electricity contract
       heating: Heating
       heating_tooltip: 90% of the heating used in Sweden is district heating and is often of similar size as the eletricity in terms of kWh used. It is most commonly found on the heating bill, but if that is not available, ask your landlord if they have any numbers available of your usage. If not, our average numbers can be used. If you know that you don't have any seperate heating consumption, enter a 0 here.
+      servers: Servers
       average_number_of_servers: Number of active servers
       average_number_of_servers_tooltip: The average number of active data center servers during the time period. Exclude servers that are running on your own electricity bill and servers that are located at large scale cloud providers. For example, if you had 4 servers running at a local data center for half of the period and 2 for the rest, enter 3 as the average. This field is only for self-managed data center servers (which statistically have a larger carbon footprint then cloud servers).
       servers_green_electricity: Our servers use 100% green electricity
       how_do_i_know: how do I know?
+      cloud_servers: Cloud servers
       number_of_cloud_servers: Number of active cloud servers
       number_of_cloud_servers_tooltip: The average number of active cloud servers during the time period. With cloud we mean large scale cloud providers like Amazon AWS, Google Cloud and Microsoft Azure. If you had 4 servers running for half of the period and 2 for the rest, enter 3 as the average.
       cloud_servers_green_electricity: Our cloud servers use 100% green electricity
       business_trips: Business trips
       business_trips_intro: Business travel can be a large source of a business climate footprint, especielly if many long distance trips are made or if you have sales people on the road.
+      flights: Flights
       flight_hours: Total flight hours
       flight_hours_tooltip: Estimated number of flight hours in total. For consultants, this includes the flights that the customer pays for. For example, if 10 people fly 2 hours on a one-way flight, the total would be 20 hours here. If they also take a return flight, that would make it 40 hours.
       hours: hours
+      car_taxi: Car & Taxi
       distance_car: Distance by car & taxi
       distance_car_tooltip: Estimated distance driven by car and taxi. Electrical milage can be excluded.
       kilometers: kilometers
@@ -582,6 +587,7 @@ en:
       contact_email: Email
       calculate_button: See my business footprint
       read_more_about_calculations: Read more about the calculations here
+      total: Total
       show:
         header: Your business footprint
         result: Your business footprint for the reporting period %{calculation_period} is %{total_emissions} tonnes carbon dioxide equivalents. That's %{emissions_per_employee} tonnes per employee.
@@ -609,9 +615,3 @@ en:
   this_is_how_the_money_is_used_text: We support UN certified climate projects that are also Gold Standard certified. The projects reduce emissions equivalent to your business' footprint and contribute to the global transition to renewable energy production. Here's our two latest projects.
   tonnes_carbon_dioxide: tonnes carbon dioxide
   see_all_our_projects: See all our projects
-
-
-
-
-
-
