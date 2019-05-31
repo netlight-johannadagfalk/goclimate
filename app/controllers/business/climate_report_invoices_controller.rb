@@ -19,6 +19,7 @@ module Business
     end
 
     def thank_you
+      @report = ClimateReport.find_by_key(params[:key])
     end
 
     private

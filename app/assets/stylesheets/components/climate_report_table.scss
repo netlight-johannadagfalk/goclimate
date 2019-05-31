@@ -1,0 +1,16 @@
+.climate-report-table {
+  max-width: 500px;
+  margin: 0 auto;
+
+  td:first-child {
+    text-align: left;
+  }
+
+  td:last-child {
+    text-align: right;
+  }
+
+  p {
+    line-height: inherit;
+  }
+}

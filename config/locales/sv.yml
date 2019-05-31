@@ -568,6 +568,7 @@ sv:
       ok_with_showing_logo: Vi är OK med att visa vårt företagsnamn och logga på GoClimateNeutrals sajt.
       energy_header: Energi
       energy_intro: Ett företags energiförbrukning brukar ofta vara den största delen av ett företags klimatavtryck. Den här beräkningen tar hänsyn till de tre vanligtvis största delarna; elektricitet, värme och antal servrar som företaget använder. 
+      electricity: El
       electricity_consumption: Elförbrukning
       electricity_consumption_tooltip: Elen som förbrukas under tidsperioden i kWh. Oftast finns siffran med på elräkningen för perioden. Om elen är inkluderad i hyran kan du fråga din hyresvärd om de mäter er förbrukning separat eller om de kan uppskatta er förbrukning. Om det inte är möjligt kan ni använda våra snittvärden genom att använda kryssrutan nedanför fältet.
       use_average_values: Vi har inte tillgång till exakta siffror - använd snittvärden
@@ -576,18 +577,22 @@ sv:
       green_electricity_text: Vi har grönt elavtal
       heating: Värme
       heating_tooltip: 90% av värmen i svenska kontor kommer från fjärrvärme och är ofta ungefär lika stor som elen i kWh. Oftast står kWh från fjärrvärmen på fakturan, och om den inte är tillgänglig så kan du fråga din hyresvärd om de har några siffror. Om du inte lyckas få tag på några siffror kan du använda våra snittvärden genom att kryssa i rutan här bredvid. Om du vet att du inte har någon separat värme, dvs att ni exempelvis använder direktverkande el för uppvärmning, så kan du skriva in 0 i det här fältet.
+      servers: Servrar
       average_number_of_servers: Antal aktiva servrar
       average_number_of_servers_tooltip: "Antal aktiva servrar i snitt under tidsperioden hos driftspartners. Endast servrar som ej ingår i er egen elräkning och som inte är i molnet hos någon av de större moln-leverantörerna. Exempel: 4 servrar som står hos en driftspartner är aktiva under halva tidsperioden och 2 servrar är aktiva under andra halvan blir 3 servrar i snitt."
       servers_green_electricity: Våra servrar kör på 100% grön el
       how_do_i_know: hur vet jag det?
+      cloud_servers: Servrar i molnet
       number_of_cloud_servers: Antal aktiva servrar i molnet
       number_of_cloud_servers_tooltip: "Antalet aktiva servrar i molnet i snitt under tidsperioden. Med molnet menar vi storskaliga moln-leverantörer så som Amazon AWS, Google Cloud och Microsoft Azure. Exempel: 4 servrar som kör i molnet under halva tidsperioden och 2 servrar som är aktiva under andra halvan blir 3 servrar i snitt."
       cloud_servers_green_electricity: Våra molnservrar kör på 100% grön el
       business_trips: Resor
       business_trips_intro: Resor kan vara den största delen av ett företags klimatavtryck, speciellt om ni gör många långresor eller har många anställda som åker bil mycket.
+      flights: Flyg
       flight_hours: Flygtimmar
       flight_hours_tooltip: Uppskattade antalet totala flygtimmar under tidsperioden. För konsultbolag inkluderar detta flygtimmar som kunden betalar för. Till exempel, om 10 personer flyger 2 timmar så blir det 20 timmar. Om de sedan flyger tillbaka samma sträcka blir det 40 timmar.
       hours: timmar
+      car_taxi: Bil & taxi
       distance_car: Körsträcka med bil & taxi
       distance_car_tooltip: Uppskattat körsträcka med bil och taxi. Sträcka i elbil behöver inte räknas med.
       kilometers: kilometer
@@ -612,10 +617,11 @@ sv:
       contact_email: E-postadress
       calculate_button: Se mitt företags klimatavtryck
       read_more_about_calculations: Läs mer om företagskalkylatorn här
+      total: Totalt
       show:
         header: Ditt företags klimatavtryck
         result: Ditt företags klimatavtryck för perioden %{calculation_period} är %{total_emissions} ton koldioxidekvivalenter. Det motsvarar %{emissions_per_employee} ton per anställd.
-        offset_and_get_report: Kompensera för ditt klimatavtryck och få en klimatrapport
+        offset_and_get_report: Kompensera för ert klimatavtryck och få en klimatrapport
         offset_and_get_report_text: Att klimatkompensera är ett sätt att ta ansvar för den globala uppvärmning som ditt företag bidrar till. När ni klimatkompenserar för era utsläpp tar vi även fram en klimatrapport, baserad på de uppgifter du har angett, som ni kan använda i ert fortsatta klimatarbete.
         your_order: Din order
         carbon_offseting: Klimatkompensation
@@ -627,6 +633,8 @@ sv:
         invoice_email_text: Skriv in en e-postadress om du vill få fakturan via e-post
         order: Beställ
         well_get_in_touch_html: Vi hör av oss när nästa rapporteringsperiod håller på att ta slut om ni vill uppdatera ert klimatavtryck då. Om du har några frågor om klimatkompensation eller ordern, hör gärna av dig till <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a>!
+        reduce_header: Kan ni minska era utsläpp mer?
+        reduce_body: Fundera gärna igenom en extra gång om det är något av era utsläpp som ni kan minska. Vi uppmanar alla företag att ta ansvar för sina utsläpp genom att klimatkompensera, men ännu viktigare är att minska sina utsläpp så mycket man kan.
     climate_report_invoices:
       thank_you:
         thank_you_text: Genom att kompensera för ditt företags klimatutsläpp, så tar du ansvar för det avtryck som ditt företag har på klimatet. 
