@@ -584,7 +584,7 @@ sv:
       how_do_i_know: hur vet jag det?
       cloud_servers: Servrar i molnet
       number_of_cloud_servers: Antal aktiva servrar i molnet
-      number_of_cloud_servers_tooltip: "Antalet aktiva servrar i molnet i snitt under tidsperioden. Med molnet menar vi storskaliga moln-leverantörer så som Amazon AWS, Google Cloud och Microsoft Azure. Exempel: 4 servrar som kör i molnet under halva tidsperioden och 2 servrar som är aktiva under andra halvan blir 3 servrar i snitt."
+      number_of_cloud_servers_tooltip: "Antalet aktiva servrar i molnet i snitt under tidsperioden. Med molnet menar vi storskaliga moln-leverantörer så som Amazon AWS, Google Cloud och Microsoft Azure. Det här kan vara svårt att uppskatta, ibland motsvarar 1 instans i molnet bara 20% av en dedikerad server, och ibland kan 1 stor instans i molnet motsvara 2 normala servrar. Försök göra en uppskattning av instanserna motsvarande en dedikerad high-end-server. Exempel: 15 små instanser som kör i molnet under halva tidsperioden och 5 små instanser som är aktiva under andra halvan. Snittet blir då 10 instanser, och om de uppskattas till 50% av en dedikerad server, ska 5 servrar fyllas i här."
       cloud_servers_green_electricity: Våra molnservrar kör på 100% grön el
       business_trips: Resor
       business_trips_intro: Resor kan vara den största delen av ett företags klimatavtryck, speciellt om ni gör många långresor eller har många anställda som åker bil mycket.
@@ -657,5 +657,5 @@ sv:
       climate_report_email:
         subject: Dela din klimatrapport med dina kollegor
         thank_you: Tack för att du skapat en klimatrapport hos oss!
-        link_description: "För att du enkelt ska kunna dela klimatrapporten med dina kollegor och hitta tillbaka till den senare kommer här en länk som du kan använda för att hitta tillbaka till rapporten:"
+        link_description: "För att du enkelt ska kunna dela klimatrapporten med dina kollegor och hitta tillbaka till den senare kommer här en länk till rapporten:"
         reply_to_this_email: Svara gärna på det här mailet om du har några frågor så hjälper vi mer än gärna till!

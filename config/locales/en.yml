@@ -554,7 +554,7 @@ en:
       how_do_i_know: how do I know?
       cloud_servers: Cloud servers
       number_of_cloud_servers: Number of active cloud servers
-      number_of_cloud_servers_tooltip: The average number of active cloud servers during the time period. With cloud we mean large scale cloud providers like Amazon AWS, Google Cloud and Microsoft Azure. If you had 4 servers running for half of the period and 2 for the rest, enter 3 as the average.
+      number_of_cloud_servers_tooltip: "The average number of active cloud servers during the time period. With cloud we mean large scale cloud providers like Amazon AWS, Google Cloud and Microsoft Azure. This can be hard to estimate, sometimes 1 instance in the cloud is equivalent to 20% of a dedicated server, and sometimes 1 big instance is equivalent to 2 normal servers. Try to estimate the number of equivalents to one dedicated high end-server. Example: 15 small instances that are running in the cloud during half the time period and 5 running during the other half. The average becomes 10 instances, and if they are estimated to 50% of a dedicated server, 5 should be entered here."
       cloud_servers_green_electricity: Our cloud servers use 100% green electricity
       business_trips: Business trips
       business_trips_intro: Business travel can be a large source of a business climate footprint, especielly if many long distance trips are made or if you have sales people on the road.
@@ -620,5 +620,5 @@ en:
       climate_report_email:
         subject: Share your climate report with your team
         thank_you: Thank you for creating your climate report!
-        link_description: "To make it easier to share your report with your team and get back to it later, here's a link you can use to get back to the report:"
+        link_description: "To make it easier to share your report with your team and get back to it later, here's a link to the report:"
         reply_to_this_email: If you have any questions, just reply to this email. We're happy to help!
