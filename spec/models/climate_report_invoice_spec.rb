@@ -18,7 +18,7 @@ RSpec.describe ClimateReportInvoice do
     it 'calculates price from calculated co2e' do
       invoice.calculate_from_report
 
-      expect(invoice.amount).to eq(550_00) # 10 tonnes * 55 SEK per tonne = 550 SEK
+      expect(invoice.amount).to eq(1_550_00) # 10 tonnes * 55 SEK per tonne + 1000 SEK admin = 1550 SEK
     end
 
     it 'sets currency to SEK' do
