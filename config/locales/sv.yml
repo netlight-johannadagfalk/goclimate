@@ -655,7 +655,7 @@ sv:
       certificate_is_attached: Ditt certifikat hittar du som en bilaga i det här mailet. Hör gärna av dig om du har några frågor genom att svara på det här mailet. Tack igen, du är bäst!
     business:
       climate_report_email:
-        subject: Dela din klimatrapport med dina kollegor
-        thank_you: Tack för att du skapat en klimatrapport hos oss!
-        link_description: "För att du enkelt ska kunna dela klimatrapporten med dina kollegor och hitta tillbaka till den senare kommer här en länk till rapporten:"
+        subject: Dela ditt klimatavtryck med dina kollegor
+        thank_you: Tack för att du gjort en klimatuträkning hos oss!
+        link_description: "För att du enkelt ska kunna dela dina resultat med dina kollegor och hitta tillbaka till dem senare kommer här en länk till resultaten:"
         reply_to_this_email: Svara gärna på det här mailet om du har några frågor så hjälper vi mer än gärna till!
