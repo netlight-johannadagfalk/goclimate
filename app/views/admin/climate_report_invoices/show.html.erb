@@ -16,6 +16,11 @@
 </p>
 
 <p>
+  <strong>Calculation period:</strong>
+  <%= @invoice.climate_report.calculation_period %> (<%= @invoice.climate_report.calculation_period_length %>)
+</p>
+
+<p>
   <strong>Carbon offset:</strong>
   <%= @invoice.co2e %> kg co2e
 </p>
