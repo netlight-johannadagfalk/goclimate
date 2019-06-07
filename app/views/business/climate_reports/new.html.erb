@@ -305,7 +305,8 @@
             <label for="climate_report_purchased_phones" class="col-sm-5 control-label"><%=t 'business.climate_reports.purchased_phones' %></label>
             <div class="col-sm-7">
               <div class="input-group">
-                <%= f.number_field :purchased_phones, class: 'form-control' %>
+                <!-- Chrome mistakenly considers this field a phone number field for autofill and also ignores the standard 'off' value for 'autocomplete', so use non-standard and arbritrary attribute 'disabledinchrome' which actually disables autofill -->
+                <%= f.number_field :purchased_phones, class: 'form-control', autocomplete: 'disabledinchrome' %>
                 <div class="input-group-addon"><%=t 'business.climate_reports.units' %></div>
               </div>
             </div>
