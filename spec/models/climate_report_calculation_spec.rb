@@ -163,8 +163,19 @@ RSpec.describe ClimateReportCalculation do
     end
 
     it 'calculates meals emissions' do
-      # 72 vegetarian * 2.1 kg + 28 omnivore * 0.7 kg = 109,2 kg
+      # 72 vegetarian * 0.7 kg + 28 omnivore * 2.1 kg = 109,2 kg
       expect(created_calculation.meals_emissions).to eq(110)
+    end
+
+    context 'when vegetarian share is not set' do
+      let(:climate_report_attributes) do
+        { meals_vegetarian_share: nil }
+      end
+
+      it 'calclucates meals emission assuming all meals are omnivore' do
+        # 100 omnivore * 2.1 kg = 210 kg
+        expect(created_calculation.meals_emissions).to eq(210)
+      end
     end
 
     it 'calculates purchased computers emissions' do

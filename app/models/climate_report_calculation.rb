@@ -193,7 +193,7 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
       return
     end
 
-    vegetarian_factor = BigDecimal(climate_report.meals_vegetarian_share) / 100
+    vegetarian_factor = BigDecimal(climate_report.meals_vegetarian_share || 0) / 100
     vegetarian_meals = vegetarian_factor * climate_report.meals
     omnivore_meals = climate_report.meals - vegetarian_meals
 
