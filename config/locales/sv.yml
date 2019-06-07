@@ -620,7 +620,8 @@ sv:
       total: Totalt
       show:
         header: Ditt företags klimatavtryck
-        result: Ditt företags klimatavtryck för perioden %{calculation_period} är %{total_emissions} ton koldioxidekvivalenter. Det motsvarar %{emissions_per_employee} ton per anställd.
+        result: Ditt företags klimatavtryck för perioden %{calculation_period} är %{total_emissions} ton koldioxidekvivalenter.
+        result_per_employee: Det motsvarar %{emissions_per_employee} ton per anställd.
         offset_and_get_report: Kompensera för ert klimatavtryck och få en klimatrapport
         offset_and_get_report_text: Att klimatkompensera är ett sätt att ta ansvar för den globala uppvärmning som ditt företag bidrar till. När ni klimatkompenserar för era utsläpp tar vi även fram en klimatrapport, baserad på de uppgifter du har angett, som ni kan använda i ert fortsatta klimatarbete.
         your_order: Din order

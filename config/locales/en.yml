@@ -590,7 +590,8 @@ en:
       total: Total
       show:
         header: Your business footprint
-        result: Your business footprint for the reporting period %{calculation_period} is %{total_emissions} tonnes carbon dioxide equivalents. That's %{emissions_per_employee} tonnes per employee.
+        result: Your business footprint for the reporting period %{calculation_period} is %{total_emissions} tonnes carbon dioxide equivalents.
+        result_per_employee: That's %{emissions_per_employee} tonnes per employee.
         offset_and_get_report: Offset your footprint and get your climate report
         offset_and_get_report_text: Offsetting your footprint is a way of taking responsibility for the impact your business has on the climate. When you offset you will also receive a climate report based on the numbers you have entered. It can be used to get a bigger understanding of what kind of activities that are causing your biggest emissions and can serve as a tool to set targets for emission reductions within your company.
         your_order: Your order
