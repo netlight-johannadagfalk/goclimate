@@ -120,10 +120,11 @@
         <% @projects.each do |project| %>
           <h4><a href ="<%= project.blog_url %>"><%= project.name %></a></h4>
           <div><%= image_tag project.image_url, height: "150" %></div>
-          <br><%=t 'country' %></>: <%= project.country %>
-          <br><%=t 'location' %>: <a href="https://www.google.com/maps?z=15&t=k&q=loc:<%= project.latitude %>+<%= project.longitude %>" target="_blank"><%= project.latitude %>,<%= project.longitude %></a>
-          <br><a href ="<%= project.blog_url %>"><%=t 'more_info_on_our_blog' %></a>
-          <br><a href="<%= project.cdm_url %>"><%=t 'more_info_on_un_site' %></a></p>
+          <p>
+            <br><%=t 'country' %></>: <%= project.country %>
+            <br><%=t 'location' %>: <a href="https://www.google.com/maps?z=15&t=k&q=loc:<%= project.latitude %>+<%= project.longitude %>" target="_blank"><%= project.latitude %>,<%= project.longitude %></a><br>
+            <a href ="<%= project.blog_url %>"><%=t 'more_info_on_our_blog' %></a>
+          </p>
           <p>--------</p>
         <% end %>
       </div>
