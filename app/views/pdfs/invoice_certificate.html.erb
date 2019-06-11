@@ -1,0 +1,146 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset='utf-8' />
+  </head>
+  <body>
+
+<div>
+  <!--
+    Best to embed the css here because PDF generating is done by a separate tool (wkhtmltopdf)
+    and it's tricky to figure how that tool will find our separate css files.
+   -->
+  <style scoped>
+    .text {
+      color: #444444;
+      font-family: 'Raleway', sans-serif;
+      margin-top: 10px;
+      margin-left: 20px;
+      margin-right: 20px;
+
+    }
+    .content {
+      position: absolute;
+      top: 10px;
+      text-align: center;
+    }
+
+    .marginTop {
+      margin-top: 50px;
+    }
+
+    .mediumMarginTop {
+      margin-top: 25px;
+    }
+
+    .logo {
+      margin-top: 60px;
+    }
+
+    .logoColor {
+      color: #768a78;
+    }
+
+    .message {
+      font-size: 20px;
+      white-space: pre-wrap;
+      margin-left: 50px;
+      margin-right: 50px;
+      border-radius: 25px;
+      padding: 10px;
+      margin-bottom: 50px;
+    }
+
+    .message:not(:empty) {
+      background: #ffffff;
+    }
+
+    a:link, a:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .exampleStamp {
+      position: absolute;
+      top: 540px;
+      left: 90px;
+      color: red;
+      font-size: 100px;
+      font-family: "Impact", Sans-serif;
+      font-weight: bold;
+      opacity: 0.3;
+      transform: rotate(-15deg);
+    }
+
+    /* Mostly for layout testing */
+    .box {
+      border: 0px solid #4e4e4e;
+    }
+
+    .grayText {
+      color: gray;
+    }
+
+    .footer {
+      position: absolute;
+      text-align: center;
+      width: 680px;
+      top: 880px;
+    }
+    .whiteBox {
+      margin: 0 auto;
+      margin-top: 20px;
+      font-size: 14px;
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 400px;
+    }
+
+  </style>
+
+  <div class="background box" style="width: 700px; height: 1025px; background-color: white;">
+    <%= image_tag wicked_pdf_asset_base64('gift-card-background.png'), size: "700x860"%>
+  </div>
+
+  <div class="content" style="width: 700px; height: 1025px">
+    <div class="logo">
+      <%= image_tag wicked_pdf_asset_base64('goclimateneutral_logo.svg'), size: "230x132" %>
+    </div>
+
+    <div class="text marginTop" style="font-size: 25px;">
+      Certifikat klimatkompensation
+    </div>
+
+    <div class="text marginTop" style="font-size: 18px;">
+      <span class="logoColor">Härmed intygas att</span>
+      <br>
+      <span style="font-size: 40px; line-height: 1.5;"><%= @invoice.receiver %></span>
+    </div>
+
+    <div class="text" style="font-size: 18px;">
+      <span class="logoColor">har klimatkompenserat</span>
+      <br>
+      <span style="font-size: 40px; line-height: 1.5;"><%= @invoice.carbon_offset %> ton koldioxid</span>
+    </div>
+
+    <div class="text marginTop whiteBox"">
+      <strong>Projektinformation</strong>
+      </br>
+      Name: <%= @invoice.project.name %></br>
+      Country: <%= @invoice.project.country %></br>
+      Project Id: GS <%= @invoice.project.gold_standard_id %></br>
+      Projekttyp: Gold Standard
+    </div>
+  </div>
+
+  <div class="text footer">
+    <strong>Datum: <%= @invoice.created_at.in_time_zone('Europe/Stockholm').to_date %></strong>
+    </br>
+    <%= image_tag wicked_pdf_asset_base64('cissi_signature.png'), size: "356x132" %>
+  </div>
+</div>
+
+  </body>
+</html>

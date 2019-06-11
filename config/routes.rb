@@ -108,7 +108,13 @@ Rails.application.routes.draw do
   # Admin
   namespace :admin do
     root to: 'dashboard#index'
-    resources :invoices
+    resources :invoices do
+      member do
+        scope format: true, constraints: { format: :pdf } do
+          resource :invoice_certificates, only: [:show], path: :certificate
+        end
+      end
+    end
     resources :lifestyle_choices
     resources :projects
     resources :stripe_events

@@ -24,6 +24,7 @@
         <td><%= invoice.amount_in_sek %></td>
         <td><%= invoice.carbon_offset %></td>
         <td><%= invoice.receiver %></td>
+        <td><%= link_to 'Certificate', admin_invoice_certificates_url(id: invoice.id, format: :pdf) %></td>
         <td><%= link_to 'Show', [:admin, invoice] %></td>
         <td><%= link_to 'Edit', edit_admin_invoice_path(invoice) %></td>
         <td><%= link_to 'Destroy', [:admin, invoice], method: :delete, data: { confirm: 'Are you sure?' } %></td>
