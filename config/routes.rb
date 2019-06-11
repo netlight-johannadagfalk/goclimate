@@ -111,7 +111,7 @@ Rails.application.routes.draw do
     resources :invoices do
       member do
         scope format: true, constraints: { format: :pdf } do
-          resource :business_certificates, only: [:show], path: :certificate
+          resource :invoice_certificates, only: [:show], path: :certificate
         end
       end
     end

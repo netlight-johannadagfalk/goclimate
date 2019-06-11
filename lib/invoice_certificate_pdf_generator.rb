@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BusinessCertificatePDFGenerator
+class InvoiceCertificatePDFGenerator
   def initialize(invoice)
     @invoice = invoice
   end
@@ -9,7 +9,7 @@ class BusinessCertificatePDFGenerator
     I18n.with_locale(:sv) do
       WickedPdf.new.pdf_from_string(
         ApplicationController.render(
-          template: 'pdfs/business_certificate',
+          template: 'pdfs/invoice_certificate',
           layout: false,
           assigns: {
             invoice: @invoice
