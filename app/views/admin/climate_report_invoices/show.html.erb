@@ -1,54 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>ID:</strong>
-  <%= @invoice.id %>
-</p>
+<h1>Climate Report Invoice</h1>
 
-<p>
-  <strong>Company:</strong>
-  <%= @invoice.climate_report.company_name %>
-</p>
+<dl class="dl-horizontal">
+  <dt>ID:</dt>
+  <dd><%= @invoice.id %></dd>
 
-<p>
-  <strong>Contact email:</strong>
-  <%= @invoice.climate_report.contact_email %>
-</p>
+  <dt>Company:</dt>
+  <dd><%= @invoice.climate_report.company_name %></dd>
 
-<p>
-  <strong>Calculation period:</strong>
-  <%= @invoice.climate_report.calculation_period %> (<%= @invoice.climate_report.calculation_period_length %>)
-</p>
+  <dt>Contact email:</dt>
+  <dd><%= @invoice.climate_report.contact_email %></dd>
 
-<p>
-  <strong>Carbon offset:</strong>
-  <%= @invoice.co2e %> kg co2e
-</p>
+  <dt>Calculation period:</dt>
+  <dd><%= @invoice.climate_report.calculation_period %> (<%= @invoice.climate_report.calculation_period_length %>)</dd>
 
-<p>
-  <strong>Amount:</strong>
-  <%= price_string(@invoice.amount, @invoice.currency, lowest_denominator: true) %>
-</p>
+  <dt>Carbon offset:</dt>
+  <dd><%= @invoice.co2e %> kg co2e</dd>
 
-<p>
-  <strong>Invoice address:</strong>
-</p>
-<pre><%= @invoice.invoice_address %></pre>
+  <dt>Amount:</dt>
+  <dd>1 kr<%= price_string(@invoice.amount, @invoice.currency, lowest_denominator: true) %></dd>
 
-<p>
-  <strong>VAT number:</strong>
-  <%= @invoice.vat_number %>
-</p>
+  <dt>Invoice address:</dt>
+  <dd><pre><%= @invoice.invoice_address %></pre></dd>
 
-<p>
-  <strong>Invoice email:</strong>
-  <% if @invoice.invoice_email.present? %>
-    <%= @invoice.invoice_email %>
-  <% else %>
-    <i>Send invoice via mail</i>
-  <% end %>
-</p>
+  <dt>VAT number:</dt>
+  <dd><%= @invoice.vat_number %></dd>
 
-<p><%= link_to 'Go to climate report', business_climate_report_path(@invoice.climate_report) %></p>
+  <dt>Invoice email:</dt>
+  <dd>
+    <% if @invoice.invoice_email.present? %>
+      <%= @invoice.invoice_email %>
+    <% else %>
+      <i>Send invoice via mail</i>
+    <% end %>
+  </dd>
+</dl>
 
-<p><%= link_to 'Back', admin_climate_report_invoices_path %></p>
+<hr>
+
+<%= link_to 'Go to climate report', business_climate_report_path(@invoice.climate_report), class: 'btn btn-default' %>
+<%= link_to 'Back', admin_climate_report_invoices_path, class: 'btn btn-link' %>

@@ -2,24 +2,16 @@
 
 <h1>Projects</h1>
 
-<div>
-<h1>Total CO2: <%= @total_co2 %> tonnes</h1>
-<h1>Total spent: <%= @total_sek_spent %> SEK</h1>
-</div>
+<dl>
+  <dt>Total CO2</dt><dd><%= @total_co2 %> tonnes</dd>
+  <dt>Total spent</dt><dd><%= @total_sek_spent %> SEK</dd>
+</dl>
 
 <table class="table">
   <thead>
     <tr>
       <th>Id</th>
       <th>Name</th>
-      <th>CDM url</th>
-      <th>Gold Standard url</th>
-      <th>Image url</th>
-      <th>Blog url</th>
-      <th>Certificate url</th>
-      <th>Invoice url</th>
-      <th>Longitude</th>
-      <th>Latitude</th>
       <th>Carbon offset</th>
       <th>Carbon offset reserved</th>
       <th>Carbon offset left</th>
@@ -27,11 +19,9 @@
       <th>Date bought</th>
       <th>Country</th>
       <th>Offset type</th>
-      <th>Gold Standard Id</th>
-      <th>CDM id</th>
       <th>Start block</th>
       <th>End block</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -40,14 +30,6 @@
       <tr>
         <td><%= project.id %></td>
         <td><%= project.name %></td>
-        <td><%= project.cdm_url %></td>
-        <td><%= project.gold_standard_url %></td>
-        <td><%= project.image_url %></td>
-        <td><%= project.blog_url %></td>
-        <td><%= project.certificate_url %></td>
-        <td><%= project.invoice_url %></td>
-        <td><%= project.longitude %></td>
-        <td><%= project.latitude %></td>
         <td><%= project.carbon_offset %></td>
         <td><%= project.invoice.sum(:carbon_offset) %></td>
         <td><%= (project.carbon_offset.presence || 0) - project.invoice.sum(:carbon_offset) %></td>
@@ -55,18 +37,18 @@
         <td><%= project.date_bought %></td>
         <td><%= project.country %></td>
         <td><%= project.offset_type %></td>
-        <td><%= project.gold_standard_id %></td>
-        <td><%= project.cdm_id %></td>
         <td><%= project.start_block %></td>
         <td><%= project.end_block %></td>
-        <td><%= link_to 'Show', [:admin, project] %></td>
-        <td><%= link_to 'Edit', edit_admin_project_path(project) %></td>
-        <td><%= link_to 'Destroy', [:admin, project], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="admin-actions">
+          <%= link_to 'Show', [:admin, project] %> &nbsp;
+          <%= link_to 'Edit', edit_admin_project_path(project) %> &nbsp;
+          <%= link_to 'Destroy', [:admin, project], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<hr>
 
-<%= link_to 'New Project', new_admin_project_path %>
+<%= link_to 'New Project', new_admin_project_path, class: 'btn btn-default' %>

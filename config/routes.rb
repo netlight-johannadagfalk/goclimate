@@ -117,7 +117,6 @@ Rails.application.routes.draw do
     end
     resources :lifestyle_choices
     resources :projects
-    resources :stripe_events
     resources :climate_report_invoices, only: [:index, :show]
   end
 

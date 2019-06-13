@@ -1,92 +1,64 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+<h1>Project</h1>
 
-<p>
-  <strong>CDM url:</strong>
-  <%= @project.cdm_url %>
-</p>
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @project.name %></dd>
 
-<p>
-  <strong>Gold Standard url:</strong>
-  <%= @project.gold_standard_url %>
-</p>
+  <dt>CDM url:</dt>
+  <dd><%= @project.cdm_url %></dd>
 
-<p>
-  <strong>Image url:</strong>
-  <%= @project.image_url %>
-</p>
+  <dt>Gold Standard url:</dt>
+  <dd><%= @project.gold_standard_url %></dd>
 
-<p>
-  <strong>Blog url:</strong>
-  <%= @project.blog_url %>
-</p>
-<p>
-  <strong>Certificate url:</strong>
-  <%= @project.certificate_url %>
-</p>
-<p>
-  <strong>Invoice url:</strong>
-  <%= @project.invoice_url %>
-</p>
+  <dt>Image url:</dt>
+  <dd><%= @project.image_url %></dd>
 
-<p>
-  <strong>Longitude:</strong>
-  <%= @project.longitude %>
-</p>
+  <dt>Blog url:</dt>
+  <dd><%= @project.blog_url %></dd>
 
-<p>
-  <strong>Latitude:</strong>
-  <%= @project.latitude %>
-</p>
+  <dt>Certificate url:</dt>
+  <dd><%= @project.certificate_url %></dd>
 
-<p>
-  <strong>Carbon offset:</strong>
-  <%= @project.carbon_offset %>
-</p>
+  <dt>Invoice url:</dt>
+  <dd><%= @project.invoice_url %></dd>
 
-<p>
-  <strong>Cost in SEK (including VAT):</strong>
-  <%= @project.cost_in_sek %>
-</p>
+  <dt>Longitude:</dt>
+  <dd><%= @project.longitude %></dd>
 
-<p>
-  <strong>Date bought:</strong>
-  <%= @project.date_bought %>
-</p>
+  <dt>Latitude:</dt>
+  <dd><%= @project.latitude %></dd>
 
-<p>
-  <strong>Country:</strong>
-  <%= @project.country %>
-</p>
+  <dt>Carbon offset:</dt>
+  <dd><%= @project.carbon_offset %></dd>
 
-<p>
-  <strong>Offset type:</strong>
-  <%= @project.offset_type %>
-</p>
+  <dt>Cost in SEK (including VAT):</dt>
+  <dd><%= @project.cost_in_sek %></dd>
 
-<p>
-  <strong>Gold Standard Id:</strong>
-  <%= @project.gold_standard_id %>
-</p>
+  <dt>Date bought:</dt>
+  <dd><%= @project.date_bought %></dd>
 
-<p>
-  <strong>CDM Id:</strong>
-  <%= @project.cdm_id %>
-</p>
+  <dt>Country:</dt>
+  <dd><%= @project.country %></dd>
 
-<p>
-  <strong>Start block:</strong>
-  <%= @project.start_block %>
-</p>
+  <dt>Offset type:</dt>
+  <dd><%= @project.offset_type %></dd>
 
-<p>
-  <strong>End block:</strong>
-  <%= @project.end_block %>
-</p>
+  <dt>Gold Standard Id:</dt>
+  <dd><%= @project.gold_standard_id %></dd>
 
-<%= link_to 'Edit', edit_admin_project_path(@project) %> |
-<%= link_to 'Back', admin_projects_path %>
+  <dt>CDM Id:</dt>
+  <dd><%= @project.cdm_id %></dd>
+
+  <dt>Start block:</dt>
+  <dd><%= @project.start_block %></dd>
+
+  <dt>End block:</dt>
+  <dd><%= @project.end_block %></dd>
+</dl>
+
+<hr>
+
+<%= link_to 'Edit', edit_admin_project_path(@project), class: 'btn btn-default' %>
+<%= link_to 'Back', admin_projects_path, class: 'btn btn-link' %>

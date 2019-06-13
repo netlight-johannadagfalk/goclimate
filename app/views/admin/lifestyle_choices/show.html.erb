@@ -1,24 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @lifestyle_choice.name %>
-</p>
+<h1>Lifestyle Choice</h1>
 
-<p>
-  <strong>Category:</strong>
-  <%= @lifestyle_choice.category %>
-</p>
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @lifestyle_choice.name %></dd>
 
-<p>
-  <strong>Version:</strong>
-  <%= @lifestyle_choice.version %>
-</p>
+  <dt>Category:</dt>
+  <dd><%= @lifestyle_choice.category %></dd>
 
-<p>
-  <strong>Co2:</strong>
-  <%= @lifestyle_choice.co2 %>
-</p>
+  <dt>Version:</dt>
+  <dd><%= @lifestyle_choice.version %></dd>
 
-<%= link_to 'Edit', edit_admin_lifestyle_choice_path(@lifestyle_choice) %> |
-<%= link_to 'Back', admin_lifestyle_choices_path %>
+  <dt>Co2:</dt>
+  <dd><%= @lifestyle_choice.co2 %></dd>
+</dl>
+
+<hr>
+
+<%= link_to 'Edit', edit_admin_lifestyle_choice_path(@lifestyle_choice), class: 'btn btn-default' %>
+<%= link_to 'Back', admin_lifestyle_choices_path, class: 'btn btn-link' %>
