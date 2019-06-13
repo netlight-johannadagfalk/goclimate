@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_29_072525) do
+ActiveRecord::Schema.define(version: 2019_06_13_185605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,9 @@ ActiveRecord::Schema.define(version: 2019_05_29_072525) do
     t.integer "co2e"
     t.integer "amount"
     t.string "currency"
+    t.bigint "project_id"
     t.index ["climate_report_id"], name: "index_climate_report_invoices_on_climate_report_id"
+    t.index ["project_id"], name: "index_climate_report_invoices_on_project_id"
   end
 
   create_table "climate_reports", force: :cascade do |t|

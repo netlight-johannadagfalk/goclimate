@@ -2,7 +2,7 @@
 
 module Admin
   class ClimateReportInvoicesController < AdminController
-    before_action :set_invoice, only: [:show]
+    before_action :set_invoice, only: [:show, :set_project]
 
     # GET /invoices
     def index
@@ -11,6 +11,13 @@ module Admin
 
     # GET /invoices/1
     def show
+      @available_projects = Project.order(created_at: :desc).limit(5)
+    end
+
+    def set_project
+      @invoice.update(project_id: params[:project_id])
+
+      redirect_to [:admin, @invoice]
     end
 
     private

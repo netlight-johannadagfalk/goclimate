@@ -4,6 +4,7 @@ class ClimateReportInvoice < ApplicationRecord
   ADMIN_FEE_IN_SEK = 1000
 
   belongs_to :climate_report
+  belongs_to :project, optional: true
 
   validates_presence_of :invoice_address, :co2e, :amount, :currency
 

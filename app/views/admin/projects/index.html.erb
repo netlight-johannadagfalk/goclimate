@@ -13,9 +13,8 @@
       <th>Id</th>
       <th>Name</th>
       <th>Carbon offset</th>
-      <th>Carbon offset reserved</th>
-      <th>Carbon offset left</th>
-      <th>Cost in SEK</th>
+      <th>Carbon offset available</th>
+      <th>Cost</th>
       <th>Date bought</th>
       <th>Country</th>
       <th>Offset type</th>
@@ -30,11 +29,10 @@
       <tr>
         <td><%= project.id %></td>
         <td><%= project.name %></td>
-        <td><%= project.carbon_offset %></td>
-        <td><%= project.invoice.sum(:carbon_offset) %></td>
-        <td><%= (project.carbon_offset.presence || 0) - project.invoice.sum(:carbon_offset) %></td>
-        <td><%= project.cost_in_sek %></td>
-        <td><%= project.date_bought %></td>
+        <td><%= number_with_delimiter(project.carbon_offset, delimiter: ' ') %> t CO2e</td>
+        <td><%= number_with_delimiter(project.co2e_available, delimiter: ' ') %> kg CO2e</td>
+        <td><%= project.cost_in_sek %> SEK</td>
+        <td><%= project.date_bought.to_date %></td>
         <td><%= project.country %></td>
         <td><%= project.offset_type %></td>
         <td><%= project.start_block %></td>

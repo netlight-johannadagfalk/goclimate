@@ -6,22 +6,22 @@
   <dt>Name:</dt>
   <dd><%= @project.name %></dd>
 
-  <dt>CDM url:</dt>
+  <dt>CDM URL:</dt>
   <dd><%= @project.cdm_url %></dd>
 
-  <dt>Gold Standard url:</dt>
+  <dt>Gold Standard URL:</dt>
   <dd><%= @project.gold_standard_url %></dd>
 
-  <dt>Image url:</dt>
+  <dt>Image URL:</dt>
   <dd><%= @project.image_url %></dd>
 
-  <dt>Blog url:</dt>
+  <dt>Blog URL:</dt>
   <dd><%= @project.blog_url %></dd>
 
-  <dt>Certificate url:</dt>
+  <dt>Certificate URL:</dt>
   <dd><%= @project.certificate_url %></dd>
 
-  <dt>Invoice url:</dt>
+  <dt>Invoice URL:</dt>
   <dd><%= @project.invoice_url %></dd>
 
   <dt>Longitude:</dt>
@@ -31,10 +31,13 @@
   <dd><%= @project.latitude %></dd>
 
   <dt>Carbon offset:</dt>
-  <dd><%= @project.carbon_offset %></dd>
+  <dd>
+    <%= number_with_delimiter(@project.carbon_offset, delimiter: ' ') %> tonnes CO2e
+    (<%= number_with_delimiter(@project.co2e_available, delimiter: ' ') %> kg CO2e still available)
+  </dd>
 
-  <dt>Cost in SEK (including VAT):</dt>
-  <dd><%= @project.cost_in_sek %></dd>
+  <dt>Cost:</dt>
+  <dd><%= @project.cost_in_sek %> SEK (including VAT)</dd>
 
   <dt>Date bought:</dt>
   <dd><%= @project.date_bought %></dd>
@@ -45,10 +48,10 @@
   <dt>Offset type:</dt>
   <dd><%= @project.offset_type %></dd>
 
-  <dt>Gold Standard Id:</dt>
+  <dt>Gold Standard ID:</dt>
   <dd><%= @project.gold_standard_id %></dd>
 
-  <dt>CDM Id:</dt>
+  <dt>CDM ID:</dt>
   <dd><%= @project.cdm_id %></dd>
 
   <dt>Start block:</dt>

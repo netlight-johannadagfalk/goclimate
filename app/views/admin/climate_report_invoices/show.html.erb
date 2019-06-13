@@ -16,7 +16,7 @@
   <dd><%= @invoice.climate_report.calculation_period %> (<%= @invoice.climate_report.calculation_period_length %>)</dd>
 
   <dt>Carbon offset:</dt>
-  <dd><%= @invoice.co2e %> kg co2e</dd>
+  <dd><%= number_with_delimiter(@invoice.co2e, delimiter: ' ') %> kg co2e</dd>
 
   <dt>Amount:</dt>
   <dd><%= price_string(@invoice.amount, @invoice.currency, lowest_denominator: true) %></dd>
@@ -35,9 +35,34 @@
       <i>Send invoice via mail</i>
     <% end %>
   </dd>
+
+  <dt>Booked for project:</dt>
+  <dd>
+    <% if @invoice.project.present? %>
+      <%= link_to(@invoice.project.name, [:admin, @invoice.project]) %>
+    <% else %>
+      <i>Not yet booked</i>
+    <% end %>
 </dl>
 
 <hr>
+
+<% unless @invoice.project.present? %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h3>Book this invoice to a project</h3>
+      <%= form_tag set_project_admin_climate_report_invoice_path do %>
+        <div class="form-group">
+          <%= label_tag :project_id, 'Project' %>
+          <%= select_tag :project_id, project_id_options_for_select(@available_projects, @invoice.co2e), class: 'form-control', required: '', include_blank: true %>
+        </div>
+        <%= submit_tag 'Book to project', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+
+  <hr>
+<% end %>
 
 <%= link_to 'Go to climate report', business_climate_report_path(@invoice.climate_report), class: 'btn btn-default' %>
 <%= link_to 'Back', admin_climate_report_invoices_path, class: 'btn btn-link' %>
