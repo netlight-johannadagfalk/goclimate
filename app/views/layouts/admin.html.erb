@@ -9,7 +9,7 @@
     <%= include_gon %>
   </head>
 
-  <body class="admin <%= controller_name + " " + controller_name + "-" + action_name %>">
+  <body class="admin <%= controller_name + " " + controller_name + "-" + action_name %><% unless ENV['HEROKU_ENV'] == 'production' %> admin-non-production-stripes<% end %>">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">

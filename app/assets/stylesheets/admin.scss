@@ -17,6 +17,10 @@ body { min-height: 100%; }
   white-space: nowrap;
 }
 
+.admin-non-production-stripes {
+  background: repeating-linear-gradient(-45deg, #fffcf2, #fffcf2 20px, #fff 20px, #fff 40px);
+}
+
 .dl-horizontal {
   dt {
     text-align: left;
