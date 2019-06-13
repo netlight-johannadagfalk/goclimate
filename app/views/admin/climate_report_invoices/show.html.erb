@@ -6,6 +6,9 @@
   <dt>ID:</dt>
   <dd><%= @invoice.id %></dd>
 
+  <dt>Fortnox invoice:</dt>
+  <dd><%= @invoice.fortnox_id %></dd>
+
   <dt>Company:</dt>
   <dd><%= @invoice.climate_report.company_name %></dd>
 
@@ -50,13 +53,17 @@
 <% unless @invoice.project.present? %>
   <div class="panel panel-default">
     <div class="panel-body">
-      <h3>Book this invoice to a project</h3>
-      <%= form_tag set_project_admin_climate_report_invoice_path do %>
+      <h3>Connect this invoice to a project and a Fortnox invoice</h3>
+      <%= form_for [:admin, @invoice] do |f| %>
         <div class="form-group">
-          <%= label_tag :project_id, 'Project' %>
-          <%= select_tag :project_id, project_id_options_for_select(@available_projects, @invoice.co2e), class: 'form-control', required: '', include_blank: true %>
+          <%= f.label :project_id, 'Project' %>
+          <%= f.select :project_id, project_id_options_for_select(@available_projects, @invoice.co2e), {}, class: 'form-control', required: '', include_blank: true %>
         </div>
-        <%= submit_tag 'Book to project', class: 'btn btn-primary' %>
+        <div class="form-group">
+          <%= f.label :fortnox_id, 'Fortnox invoice' %>
+          <%= f.text_field :fortnox_id, class: 'form-control' %>
+        </div>
+        <%= submit_tag 'Connect', class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>
@@ -64,5 +71,6 @@
   <hr>
 <% end %>
 
+<%= link_to 'Edit', edit_admin_climate_report_invoice_path(@invoice), class: 'btn btn-default' %>
 <%= link_to 'Go to climate report', business_climate_report_path(@invoice.climate_report), class: 'btn btn-default' %>
 <%= link_to 'Back', admin_climate_report_invoices_path, class: 'btn btn-link' %>

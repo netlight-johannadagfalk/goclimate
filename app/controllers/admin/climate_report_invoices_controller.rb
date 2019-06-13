@@ -2,7 +2,7 @@
 
 module Admin
   class ClimateReportInvoicesController < AdminController
-    before_action :set_invoice, only: [:show, :set_project]
+    before_action :set_invoice, only: [:show, :edit, :update]
 
     # GET /invoices
     def index
@@ -14,10 +14,22 @@ module Admin
       @available_projects = Project.order(created_at: :desc).limit(5)
     end
 
-    def set_project
-      @invoice.update(project_id: params[:project_id])
+    # GET /invoices/1/edit
+    def edit
+    end
 
-      redirect_to [:admin, @invoice]
+    # PATCH/PUT /invoices/1
+    # PATCH/PUT /invoices/1.json
+    def update
+      respond_to do |format|
+        if @invoice.update(invoice_params)
+          format.html { redirect_to [:admin, @invoice], notice: 'Climate Report Invoice was successfully updated.' }
+          format.json { render :show, status: :ok, location: @invoice }
+        else
+          format.html { render :edit }
+          format.json { render json: @invoice.errors, status: :unprocessable_entity }
+        end
+      end
     end
 
     private
@@ -25,6 +37,13 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_invoice
       @invoice = ClimateReportInvoice.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def invoice_params
+      params.require(:climate_report_invoice).permit(
+        :fortnox_id, :project_id
+      )
     end
   end
 end

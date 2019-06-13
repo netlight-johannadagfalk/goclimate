@@ -3,11 +3,14 @@
 <h1>Invoice</h1>
 
 <dl class="dl-horizontal">
-  <dt>id:</dt>
+  <dt>ID:</dt>
   <dd><%= @invoice.id %></dd>
 
-  <dt>project id:</dt>
-  <dd><%= @invoice.project.id if !@invoice.project.nil? %></dd>
+  <dt>Fortnox invoice:</dt>
+  <dd><%= @invoice.fortnox_id %></dd>
+
+  <dt>Project:</dt>
+  <dd><%= link_to(@invoice.project.name, [:admin, @invoice.project]) if @invoice.project.present? %></dd>
 
   <dt>Amount in sek:</dt>
   <dd><%= @invoice.amount_in_sek %></dd>

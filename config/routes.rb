@@ -117,11 +117,7 @@ Rails.application.routes.draw do
     end
     resources :lifestyle_choices
     resources :projects
-    resources :climate_report_invoices, only: [:index, :show] do
-      member do
-        post :set_project
-      end
-    end
+    resources :climate_report_invoices, only: [:index, :show, :edit, :update]
     resources :climate_reports, only: [:index]
   end
 
