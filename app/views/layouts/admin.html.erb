@@ -3,6 +3,8 @@
   
   <head>
     <title><%=t 'site_title' %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
     <%= javascript_include_tag 'admin' %>
     <%= yield :javascript_tags %>
     <%= stylesheet_link_tag 'admin' %>
