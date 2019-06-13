@@ -22,7 +22,9 @@
         <td><%= invoice.climate_report.contact_email %></td>
         <td><%= invoice.co2e %> kg co2e</td>
         <td><%= price_string(invoice.amount, invoice.currency, lowest_denominator: true) %></td>
-        <td><%= link_to 'Show', [:admin, invoice] %></td>
+        <td class="admin-actions">
+          <%= link_to 'Show', [:admin, invoice] %>
+        </td>
       </tr>
     <% end %>
   </tbody>

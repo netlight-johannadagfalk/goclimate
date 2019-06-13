@@ -11,27 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :category %>
-    <%= f.text_field :category %>
+    <%= f.text_field :category, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :version %>
-    <%= f.number_field :version %>
+    <%= f.number_field :version, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :co2 %>
-    <%= f.text_field :co2 %>
+    <%= f.text_field :co2, class: 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>

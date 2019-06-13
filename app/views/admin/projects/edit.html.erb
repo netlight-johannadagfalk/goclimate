@@ -2,5 +2,7 @@
 
 <%= render 'form', project: @project %>
 
-<%= link_to 'Show', [:admin, @project] %> |
-<%= link_to 'Back', admin_projects_path %>
+<hr>
+
+<%= link_to 'Show', [:admin, @project], class: 'btn btn-default' %>
+<%= link_to 'Back', admin_projects_path, class: 'btn btn-link' %>

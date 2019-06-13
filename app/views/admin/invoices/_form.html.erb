@@ -11,27 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :project_id %>
-    <%= f.number_field :project_id %>
+    <%= f.number_field :project_id, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :amount_in_sek %>
-    <%= f.number_field :amount_in_sek %>
+    <%= f.number_field :amount_in_sek, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :carbon_offset %>
-    <%= f.number_field :carbon_offset %>
+    <%= f.number_field :carbon_offset, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :receiver %>
-    <%= f.text_field :receiver %>
+    <%= f.text_field :receiver, class: 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>

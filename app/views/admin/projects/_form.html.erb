@@ -11,97 +11,95 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :cdm_url %>
-    <%= f.text_field :cdm_url %>
+    <%= f.text_field :cdm_url, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :gold_standard_url %>
-    <%= f.text_field :gold_standard_url %>
+    <%= f.text_field :gold_standard_url, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :image_url %>
-    <%= f.text_field :image_url %>
+    <%= f.text_field :image_url, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :blog_url %>
-    <%= f.text_field :blog_url %>
+    <%= f.text_field :blog_url, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :longitude %>
-    <%= f.text_field :longitude %>
+    <%= f.text_field :longitude, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :latitude %>
-    <%= f.text_field :latitude %>
+    <%= f.text_field :latitude, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :carbon_offset %>
-    <%= f.number_field :carbon_offset %>
+    <%= f.number_field :carbon_offset, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :cost_in_sek, 'Cost in SEK (including VAT)' %>
-    <%= f.number_field :cost_in_sek %>
+    <%= f.number_field :cost_in_sek, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :date_bought %>
-    <%= f.date_field :date_bought %>
+    <%= f.date_field :date_bought, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :country %>
-    <%= f.text_field :country %>
+    <%= f.text_field :country, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :offset_type %>
-    <%= f.text_field :offset_type %>
+    <%= f.text_field :offset_type, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :certificate_url %>
-    <%= f.text_field :certificate_url %>
+    <%= f.text_field :certificate_url, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :invoice_url %>
-    <%= f.text_field :invoice_url %>
+    <%= f.text_field :invoice_url, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :gold_standard_id, 'Gold Standard Id' %>
-    <%= f.text_field :gold_standard_id %>
+    <%= f.text_field :gold_standard_id, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :cdm_id, 'CDM Id' %>
-    <%= f.text_field :cdm_id %>
+    <%= f.text_field :cdm_id, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :start_block %>
-    <%= f.text_field :start_block %>
+    <%= f.text_field :start_block, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :end_block %>
-    <%= f.text_field :end_block %>
+    <%= f.text_field :end_block, class: 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>

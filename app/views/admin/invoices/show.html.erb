@@ -1,29 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>id:</strong>
-  <%= @invoice.id %>
-</p>
+<h1>Invoice</h1>
 
-<p>
-  <strong>project id:</strong>
-  <%= @invoice.project.id if !@invoice.project.nil? %>
-</p>
+<dl class="dl-horizontal">
+  <dt>id:</dt>
+  <dd><%= @invoice.id %></dd>
 
-<p>
-  <strong>Amount in sek:</strong>
-  <%= @invoice.amount_in_sek %>
-</p>
+  <dt>project id:</dt>
+  <dd><%= @invoice.project.id if !@invoice.project.nil? %></dd>
 
-<p>
-  <strong>Carbon offset:</strong>
-  <%= @invoice.carbon_offset %>
-</p>
+  <dt>Amount in sek:</dt>
+  <dd><%= @invoice.amount_in_sek %></dd>
 
-<p>
-  <strong>Receiver:</strong>
-  <%= @invoice.receiver %>
-</p>
+  <dt>Carbon offset:</dt>
+  <dd><%= @invoice.carbon_offset %></dd>
 
-<%= link_to 'Edit', edit_admin_invoice_path(@invoice) %> |
-<%= link_to 'Back', admin_invoices_path %>
+  <dt>Receiver:</dt>
+  <dd><%= @invoice.receiver %></dd>
+</dl>
+
+<hr>
+
+<%= link_to 'Edit', edit_admin_invoice_path(@invoice), class: 'btn btn-default' %>
+<%= link_to 'Back', admin_invoices_path, class: 'btn btn-link' %>
