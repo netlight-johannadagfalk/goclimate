@@ -5,7 +5,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Id</th>
+      <th>ID</th>
+      <th>Fortnox invoice</th>
       <th>Project Id</th>
       <th>Project Name</th>
       <th>Amount in sek</th>
@@ -19,6 +20,7 @@
     <% @invoices.each do |invoice| %>
       <tr>
         <td><%= invoice.id %></td>
+        <td><%= invoice.fortnox_id %></td>
         <td><%= invoice.project.id if !invoice.project.nil? %></td>
         <td><%= invoice.project.name if !invoice.project.nil? %></td>
         <td><%= invoice.amount_in_sek %></td>

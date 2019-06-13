@@ -1,0 +1,49 @@
+<h1>Editing Climate Report Invoice</h1>
+
+<dl class="dl-horizontal">
+  <dt>ID:</dt>
+  <dd><%= @invoice.id %></dd>
+
+  <dt>Company:</dt>
+  <dd><%= @invoice.climate_report.company_name %></dd>
+
+  <dt>Calculation period:</dt>
+  <dd><%= @invoice.climate_report.calculation_period %> (<%= @invoice.climate_report.calculation_period_length %>)</dd>
+
+  <dt>Carbon offset:</dt>
+  <dd><%= number_with_delimiter(@invoice.co2e, delimiter: ' ') %> kg co2e</dd>
+
+  <dt>Amount:</dt>
+  <dd><%= price_string(@invoice.amount, @invoice.currency, lowest_denominator: true) %></dd>
+</dl>
+
+<%= form_for([:admin, @invoice]) do |f| %>
+  <% if @invoice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+      <ul>
+      <% @invoice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :fortnox_id, 'Fortnox invoice' %>
+    <%= f.text_field :fortnox_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :project_id %>
+    <%= f.number_field :project_id, class: 'form-control' %>
+  </div>
+
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>
+
+<hr>
+
+<%= link_to 'Show', [:admin, @invoice], class: 'btn btn-default' %>
+<%= link_to 'Back', admin_climate_report_invoices_path, class: 'btn btn-link' %>

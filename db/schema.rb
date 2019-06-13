@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_13_185605) do
+ActiveRecord::Schema.define(version: 2019_06_13_201556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_06_13_185605) do
     t.integer "amount"
     t.string "currency"
     t.bigint "project_id"
+    t.string "fortnox_id"
     t.index ["climate_report_id"], name: "index_climate_report_invoices_on_climate_report_id"
     t.index ["project_id"], name: "index_climate_report_invoices_on_project_id"
   end
@@ -110,6 +111,7 @@ ActiveRecord::Schema.define(version: 2019_06_13_185605) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "project_id"
+    t.string "fortnox_id"
     t.index ["project_id"], name: "index_invoices_on_project_id"
   end
 
