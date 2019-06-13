@@ -21,9 +21,10 @@
     <tr>
       <th>ID</th>
       <th>Company</th>
-      <th>Contact email</th>
+      <th>Period</th>
       <th>Carbon offset</th>
       <th>Amount</th>
+      <th>Project</th>
       <th></th>
     </tr>
   </thead>
@@ -33,9 +34,10 @@
       <tr>
         <td><%= invoice.id %></td>
         <td><%= invoice.climate_report.company_name %></td>
-        <td><%= invoice.climate_report.contact_email %></td>
-        <td><%= invoice.co2e %> kg co2e</td>
+        <td><%= invoice.climate_report.calculation_period %> (<%= invoice.climate_report.calculation_period_length %>)</td>
+        <td><%= number_with_delimiter(invoice.co2e, delimiter: ' ') %> kg co2e</td>
         <td><%= price_string(invoice.amount, invoice.currency, lowest_denominator: true) %></td>
+        <td><%= invoice.project&.name %></td>
         <td class="admin-actions">
           <%= link_to 'Show', [:admin, invoice] %>
         </td>

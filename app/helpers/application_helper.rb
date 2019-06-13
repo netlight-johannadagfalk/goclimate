@@ -40,9 +40,9 @@ module ApplicationHelper
     fractional_amount = BigDecimal(amount) / 100
 
     if fractional_amount.frac == 0
-      number_with_precision(fractional_amount, precision: 0)
+      number_with_precision(fractional_amount, delimiter: ' ', precision: 0)
     else
-      number_with_precision(fractional_amount, precision: 2, separator: ':')
+      number_with_precision(fractional_amount, delimiter: ' ', precision: 2, separator: ':')
     end
   end
 end
