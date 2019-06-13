@@ -19,7 +19,7 @@
   <dd><%= @invoice.co2e %> kg co2e</dd>
 
   <dt>Amount:</dt>
-  <dd>1 kr<%= price_string(@invoice.amount, @invoice.currency, lowest_denominator: true) %></dd>
+  <dd><%= price_string(@invoice.amount, @invoice.currency, lowest_denominator: true) %></dd>
 
   <dt>Invoice address:</dt>
   <dd><pre><%= @invoice.invoice_address %></pre></dd>
