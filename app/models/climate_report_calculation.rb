@@ -43,6 +43,10 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
       material_emissions + other_emissions
   end
 
+  def per_employee_emissions
+    (BigDecimal(total_emissions) / climate_report.employees).ceil
+  end
+
   def energy_emissions
     electricity_consumption_emissions + heating_emissions + servers_emissions + cloud_servers_emissions
   end

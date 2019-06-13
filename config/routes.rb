@@ -118,6 +118,7 @@ Rails.application.routes.draw do
     resources :lifestyle_choices
     resources :projects
     resources :climate_report_invoices, only: [:index, :show]
+    resources :climate_reports, only: [:index]
   end
 
   resource :impact_statistics, only: [:show], format: true, constraints: { format: :csv }

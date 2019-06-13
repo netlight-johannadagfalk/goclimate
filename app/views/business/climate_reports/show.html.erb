@@ -16,7 +16,7 @@
             %>
             <% if @report.employees > 1 %>
               <%=t 'business.climate_reports.show.result_per_employee', 
-                   emissions_per_employee: co2e_string(BigDecimal(@report.calculation.total_emissions / @report.employees), omit_unit: true) %>
+                   emissions_per_employee: co2e_string(@report.calculation.per_employee_emissions, omit_unit: true) %>
              <% end %>
           </p>
 
