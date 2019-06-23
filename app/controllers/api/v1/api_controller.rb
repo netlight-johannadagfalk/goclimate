@@ -12,6 +12,7 @@ module Api
         '***REMOVED***', # ***REMOVED***
         '***REMOVED***', # ***REMOVED***
         '***REMOVED***', # ***REMOVED***
+        '***REMOVED***', # ***REMOVED***
         '***REMOVED***'  # ***REMOVED***
       ].freeze
 
