@@ -65,7 +65,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
 
       # 3D Secure authorization page
       find('#test-source-authorize-3ds', wait: 20)
-      click_button 'Authorize Test Payment'
+      click_button 'Complete authentication'
 
       # Wait for success page to render
       find('.dashboard-index', wait: 20)
@@ -92,7 +92,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
 
       # Wait for 3dsecure page to render
       find('#test-source-authorize-3ds', wait: 20)
-      click_button 'Authorize Test Payment'
+      click_button 'Complete authentication'
 
       # Wait for payment page to render
       find('.subscriptions-show', wait: 20)

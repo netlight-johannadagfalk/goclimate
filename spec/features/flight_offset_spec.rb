@@ -44,7 +44,7 @@ RSpec.feature 'Flight offset', type: :feature, js: true do
 
       # 3D Secure authorization page
       find('#test-source-authorize-3ds', wait: 20)
-      click_button 'Authorize Test Payment'
+      click_button 'Complete authentication'
 
       # Wait for success page to render
       find('.flight_offsets-thank_you', wait: 20)
