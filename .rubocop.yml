@@ -19,6 +19,7 @@ Style/MethodCallWithArgsParentheses:
     - redirect_to
     - send_data
     - mail
+    - desc
   Exclude:
     - 'spec/**/*'
     - 'config/**/*'
