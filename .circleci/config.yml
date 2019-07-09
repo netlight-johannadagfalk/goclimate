@@ -17,19 +17,35 @@ commands:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          - v1-bundler-{{ checksum "Gemfile.lock" }}
           # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+          - v1-bundler-
 
       - run:
-          name: Install dependencies
+          name: Install Bundler dependencies
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
           paths:
             - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          key: v1-bundler-{{ checksum "Gemfile.lock" }}
+
+      - restore_cache:
+          keys:
+          - v1-yarn-{{ checksum "yarn.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-yarn-
+
+      - run:
+          name: Install Yarn dependencies
+          command: |
+            bin/yarn install
+
+      - save_cache:
+          paths:
+            - ./node_modules
+          key: v1-yarn-{{ checksum "yarn.lock" }}
 
   setupcodeclimate:
     steps:
@@ -68,8 +84,8 @@ jobs:
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       - run:
-          name: Setup database
-          command: bin/rake db:create db:schema:load
+          name: Setup database and build webpack
+          command: bin/rake db:create db:schema:load webpack:build
 
       - run:
           name: Run Rspec

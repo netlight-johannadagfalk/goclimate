@@ -1,7 +1,11 @@
 const path = require('path');
 const glob = require('glob');
+const fs = require('fs');
+const yaml = require('js-yaml');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const sharedConfig = yaml.safeLoad(fs.readFileSync('config/webpack.yml'))
 
 function buildNamedEntryPoints(paths) {
   const entryPoints = {};
@@ -12,7 +16,7 @@ function buildNamedEntryPoints(paths) {
 module.exports = {
   entry: buildNamedEntryPoints(glob.sync('./app/assets/bundles/*.js')),
   output: {
-    path: path.resolve('./public/bundles/'),
+    path: path.resolve(`./public/${sharedConfig.output_path}`),
     filename: '[name]-[contenthash].js'
   },
   plugins: [

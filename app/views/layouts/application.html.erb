@@ -19,6 +19,7 @@
     <%= yield :javascript_tags %>
     <%= stylesheet_link_tag 'application' %>
     <%= include_gon %>
+    <%= webpack_entrypoint_javascript_tags 'main' %>
 
     <meta property="og:type"             content="website" />
     <meta property="og:url"              content="<%=t 'goclimateneutral_url' %>" />
