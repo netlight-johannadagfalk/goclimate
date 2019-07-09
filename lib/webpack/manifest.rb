@@ -9,7 +9,7 @@ module Webpack
       @data = JSON.parse(File.read(manifest_path))
     rescue Errno::ENOENT
       raise ManifestNotFound, <<~TEXT
-        The manifest could not be found at \"#{manifest_path}\". Make sure that you've built with `yarn run build` and that paths are correctly configured.
+        The manifest could not be found at \"#{manifest_path}\". Make sure that you've built with `yarn run webpack-build` and that paths are correctly configured.
       TEXT
     end
 
