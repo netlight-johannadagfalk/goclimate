@@ -2,7 +2,8 @@
 
 module Webpack
   def self.config
-    @config ||= YAML.safe_load(Rails.root.join('config', 'webpack.yml').read).deep_symbolize_keys
+    @config ||=
+      YAML.safe_load(Rails.root.join('config', 'webpack.yml').read, aliases: true)[Rails.env].deep_symbolize_keys
   end
 
   def self.manifest

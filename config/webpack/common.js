@@ -5,7 +5,8 @@ const yaml = require('js-yaml');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const sharedConfig = yaml.safeLoad(fs.readFileSync('config/webpack.yml'))
+const env = process.env.NODE_ENV || 'development';
+const sharedConfig = yaml.safeLoad(fs.readFileSync('config/webpack.yml'))[env];
 
 function buildNamedEntryPoints(paths) {
   const entryPoints = {};
