@@ -29,6 +29,9 @@ gem 'devise-i18n', '~> 1.7.1'
 # I18n
 gem 'http_accept_language', '~> 2.1.1'
 
+# Rack proxy for Webpack integration
+gem 'rack-proxy', '~> 0.6.4'
+
 # Markdown
 gem 'redcarpet', '~> 3.4.0'
 

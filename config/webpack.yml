@@ -4,6 +4,8 @@ default: &default
 development:
   <<: *default
   watch_changes: true
+  dev_server_host: localhost
+  dev_server_port: 8080
 
 test:
   <<: *default

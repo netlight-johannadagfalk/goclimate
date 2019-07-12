@@ -7,6 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const env = process.env.NODE_ENV || 'development';
 const sharedConfig = yaml.safeLoad(fs.readFileSync('config/webpack.yml'))[env];
+const inDevServer = process.argv.find(v => v.includes('webpack-dev-server'));
 
 function buildNamedEntryPoints(paths) {
   const entryPoints = {};
@@ -18,6 +19,7 @@ module.exports = {
   entry: buildNamedEntryPoints(glob.sync('./app/assets/bundles/*.js')),
   output: {
     path: path.resolve(`./public/${sharedConfig.output_path}`),
+    publicPath: `/${sharedConfig.output_path}/`,
     filename: '[name]-[contenthash].js'
   },
   plugins: [
@@ -35,7 +37,16 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          inDevServer /* Using style-loader when running dev server allows hot updating when running with HMR */
+            ?
+              {
+                loader: 'style-loader',
+                options: {
+                  sourceMap: true
+                }
+              }
+            :
+              MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {

@@ -5,9 +5,13 @@
     "yarn": "^1.16.0"
   },
   "scripts": {
-    "build-webpack": "webpack --config config/webpack/config.js"
+    "build-webpack": "webpack --config config/webpack/config.js",
+    "webpack-dev-server": "webpack-dev-server --config config/webpack/config.js"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "style-loader": "^0.23.1",
+    "webpack-dev-server": "^3.7.2"
+  },
   "dependencies": {
     "clean-webpack-plugin": "^3.0.0",
     "compression-webpack-plugin": "^3.0.0",
