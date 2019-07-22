@@ -3,11 +3,8 @@
   <div class="inner">
 
     <span class="green-leaf"><%= image_tag 'green.svg', style: 'width: 100px' %></span>
-    <h1 class="cover-heading">Klimatkompensera din flygresa</h1>
-    <p class="lead">
-      Att klimatkompensera är att ta ansvar för ditt klimatavtryck.
-      Vi erbjuder möjligheten att klimatkompensera din flygresa i certifierade klimatprojekt.
-    </p>
+    <h1 class="cover-heading"><%=t 'views.flight_offsets.new.header' %></h1>
+    <p class="lead"><%=t 'views.flight_offsets.new.header_description' %></p>
   </div>
   <span class="glyphicon glyphicon-chevron-down first" aria-hidden="true"></span>
 </div>
@@ -19,12 +16,12 @@
       <div class="row">
         <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
 
-          <h1 class="cover-heading content-section">Din order</h1>
+          <h1 class="cover-heading content-section"><%=t 'views.flight_offsets.new.your_order' %></h1>
 
           <table class="content-section flight-offset-details">
             <tbody>
               <tr class="flight-offset-details__key-row">
-                <td colspan="2">Flyg i biljettklass <%= @offset_params.cabin_class %></th>
+                <td colspan="2"><%=t 'views.flight_offsets.new.flight_in_cabin_class' %> <%= @offset_params.cabin_class %></th>
               </tr>
               <tr>
                 <td colspan="2">
@@ -39,23 +36,23 @@
                 </td>
               </tr>
               <tr class="flight-offset-details__key-row">
-                <td>Klimatavtryck:</td>
+                <td><%=t 'views.flight_offsets.new.carbon_footprint' %>:</td>
                 <td>
-                  <%= co2e_string(@footprint_per_person) %>/person
+                  <%= co2e_string(@footprint_per_person) %>/<%=t 'views.flight_offsets.new.person' %>
                 </td>
               </tr>
             </tbody>
             <tfoot>
               <tr>
                 <td>
-                  Total <% if @num_persons > 1 %>(<%= @num_persons %> personer)<% end %>:
+                  <%=t 'views.flight_offsets.new.total' %> <% if @num_persons > 1 %>(<%= @num_persons %> <%=t 'views.flight_offsets.new.people' %>)<% end %>:
                 </td>
                 <td>
                   <%= co2e_string(@total_footprint) %>
                 </td>
               </tr>
               <tr class="flight-offset-details__key-row">
-                <td>Summa:</td>
+                <td><%=t 'views.flight_offsets.new.sum' %>:</td>
                 <td><%= (@price / 100).to_i %> kr</td>
               </tr>
             </tfoot>
@@ -74,21 +71,21 @@
         <%= hidden_field_tag :num_persons, params[:num_persons] %>
 
         <div class="form-group">
-          <label for="footprint" class="col-sm-5 control-label padding-top">Din order</label>
+          <label for="footprint" class="col-sm-5 control-label padding-top"><%=t 'views.flight_offsets.new.your_order' %></label>
           <div class="col-sm-7 padding-top">
             <%= co2e_string(@total_footprint) %>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="price" class="col-sm-5 control-label padding-top">Summa</label>
+          <label for="price" class="col-sm-5 control-label padding-top"><%=t 'views.flight_offsets.new.sum' %></label>
           <div class="col-sm-7 padding-top">
              <%= (@price / 100).to_i %> kr
           </div>
         </div>
 
         <div class="form-group">
-          <label for="email" class="col-sm-5 control-label padding-top">E-post</label>
+          <label for="email" class="col-sm-5 control-label padding-top"><%=t 'email' %></label>
           <div class="col-sm-7">
             <%= email_field_tag :email, @offset&.email, class: 'form-control', required: '' %>
           </div>

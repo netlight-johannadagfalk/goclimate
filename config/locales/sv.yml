@@ -540,8 +540,18 @@ sv:
             FNs alla medlemsstater och 80 miljöorganisationer i ryggen - bland annat Världsnaturfonden.
       do_you_want_to_continue: Vill du även kompensera för dina övriga klimatutsläpp?
       register: Gå in på <a href="http://goclimateneutral.org">GoClimateNeutral</a> och registrera dig!
-
-
+    flight_offsets:
+      new:
+        header: Klimatkompensera din flygresa
+        header_description: Att klimatkompensera är att ta ansvar för ditt klimatavtryck. Vi erbjuder möjligheten att klimatkompensera din flygresa i certifierade klimatprojekt.
+        your_order: Din order
+        flight_in_cabin_class: Flyg i biljettklass
+        carbon_footprint: Klimatavtryck
+        person: person
+        people: personer
+        total: Total
+        sum: Summa
+        your_order: Din order
   business:
     climate_reports:
       business_footprint_header: Beräkna ditt företags klimatavtryck
