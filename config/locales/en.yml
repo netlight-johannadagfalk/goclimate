@@ -522,6 +522,10 @@ en:
         total: Total
         sum: Sum
         your_order: Your order
+    shared:
+      footer:
+        jobs: 'Jobs'
+
   business:
     climate_reports:
       business_footprint_header: Estimate your business footprint

@@ -552,6 +552,10 @@ sv:
         total: Total
         sum: Summa
         your_order: Din order
+    shared:
+      footer:
+        jobs: 'Jobb'
+
   business:
     climate_reports:
       business_footprint_header: Beräkna ditt företags klimatavtryck
