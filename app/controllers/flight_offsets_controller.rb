@@ -6,7 +6,8 @@ class FlightOffsetsController < ApplicationController
   after_action :cleanup_three_d_secure_handoff, only: [:create], if: -> { params[:three_d_secure] == 'continue' }
 
   before_action :handle_three_d_secure, only: [:create]
-  before_action :force_sv_locale # These views & mailers are Swedish only for now
+  before_action :force_sv_locale # These views & mailers are Swedish and SEK only for now
+  before_action :permit_params_locale # But we want to be able to show future partners the english translation
 
   def new
     @num_persons = (params[:num_persons].presence || 1).to_i

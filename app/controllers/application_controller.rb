@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
     I18n.locale = :sv
   end
 
+  def permit_params_locale
+    I18n.locale = params[:locale] if params[:locale].present?
+  end
+
   def force_en_locale
     I18n.locale = :en
   end
