@@ -16,7 +16,8 @@ module Api
         '***REMOVED***', # ***REMOVED***
         '***REMOVED***', # ***REMOVED***
         '***REMOVED***', # ***REMOVED***
-        '***REMOVED***' # ***REMOVED***
+        '***REMOVED***', # ***REMOVED***
+        '***REMOVED***'  # ***REMOVED***
       ].freeze
 
       before_action :authorize
