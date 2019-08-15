@@ -2,10 +2,14 @@
 
 class PartnersController < ApplicationController
   def bokanerja
-    @projects = Project.order(date_bought: :desc).first(5)
+    @projects = Invoice.where(receiver: 'BokaNerja.S.L.').order(created_at: :desc).map(&:project)
   end
 
   def inshapetravel
-    @projects = Project.where(id: 18)
+    @projects = Invoice.where(receiver: 'InShape Travel').order(created_at: :desc).map(&:project)
+  end
+
+  def aob_travel
+    @projects = Invoice.where(receiver: 'AOB Travel AB').order(created_at: :desc).map(&:project)
   end
 end

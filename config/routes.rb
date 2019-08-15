@@ -65,6 +65,7 @@ Rails.application.routes.draw do
   # Partners
   get 'partners/bokanerja'
   get 'partners/inshapetravel'
+  get 'partners/aob_travel'
 
   # Flight one time offsets
   resources :flight_offsets, only: [:new, :create], param: :key do
