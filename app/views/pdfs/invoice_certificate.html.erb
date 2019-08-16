@@ -123,6 +123,10 @@
       <span class="logoColor">har klimatkompenserat</span>
       <br>
       <span style="font-size: 40px; line-height: 1.5;"><%= @invoice.carbon_offset %> ton koldioxid</span>
+      <% if @invoice.comment.present? %>
+        <br>
+        <span style="font-size: 32px; line-height: 1.5;"><%= @invoice.comment %></span>
+      <% end %>
     </div>
 
     <div class="text marginTop whiteBox"">

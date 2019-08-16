@@ -6,7 +6,9 @@ module Admin
       @invoice = Invoice.find(params[:id])
       pdf = InvoiceCertificatePDFGenerator.new(@invoice).generate_pdf
 
-      send_data pdf, filename: 'GoClimateNeutral Certificate.pdf', type: :pdf
+      send_data pdf,
+                filename: "GoClimateNeutral Certificate - #{@invoice.receiver} - #{@invoice.fortnox_id}.pdf",
+                pe: :pdf
     end
   end
 end
