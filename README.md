@@ -26,7 +26,7 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
   * `pg_ctl -D db/goclimateneutral -l logfile start`
   * `bin/rails db:setup db:seed`
 * Set environment variables.
-  * Copy `.env.sample` to `.env` and add your keys to the file.
+  * Copy `.env.sample` to `.env` and add your keys to the file. You will at least need to set the 2 keys for Stripe to get the tests passing.
 
 ## Running tests
 
