@@ -1,1 +1,1 @@
-console.log('Hello from Webpack!');
+/* Hello Webpack! */
