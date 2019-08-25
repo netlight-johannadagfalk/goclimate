@@ -13,4 +13,15 @@ module Webpack
   def self.manifest=(manifest)
     @manifest = manifest
   end
+
+  def self.compiler
+    @compiler ||= Compiler.new
+  end
+
+  def self.dev_server_running?
+    Socket.tcp(Webpack.config[:dev_server_host], Webpack.config[:dev_server_port], connect_timeout: 0.01).close
+    true
+  rescue StandardError
+    false
+  end
 end

@@ -20,6 +20,9 @@ Style/MethodCallWithArgsParentheses:
     - send_data
     - mail
     - desc
+    - info
+    - warn
+    - error
   Exclude:
     - 'spec/**/*'
     - 'config/**/*'

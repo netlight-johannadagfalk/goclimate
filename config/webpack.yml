@@ -4,6 +4,12 @@ default: &default
 development:
   <<: *default
   watch_changes: true
+  watch_files:
+    - package.json
+    - yarn.lock
+    - config/webpack.yml
+    - config/webpack/*
+    - app/assets/**/*
   dev_server_host: localhost
   dev_server_port: 8080
 
