@@ -17,7 +17,8 @@ module Api
         '***REMOVED***', # ***REMOVED***
         '***REMOVED***', # ***REMOVED***
         '***REMOVED***', # ***REMOVED***
-        '***REMOVED***'  # ***REMOVED***
+        '***REMOVED***', # ***REMOVED***
+        '***REMOVED***'  # René Inderbitzin <reneinderbitzin@me.com> via Intercom
       ].freeze
 
       before_action :authorize
