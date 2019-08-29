@@ -20,11 +20,4 @@
 //= require components/business_offset_calculator
 //= require components/business_footprint_calculator
 //= require components/offset_payment_form
-
-$(document).ready(function() {
-	$('.dropdown-toggle').dropdown();
-
-	setTimeout(function() {
-        $(".alert").slideUp(1000);
-    }, 5000);
-});
+//= require dropdown_toggle

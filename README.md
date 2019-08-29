@@ -38,6 +38,10 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
 * `bin/rails server`
 * Surf to [http://localhost:3000](http://localhost:3000)
 
+If you're doing front end work, running Webpack dev server will give you hot reloading of assets:
+
+* `bin/yarn run webpack-dev-server`
+
 ## Stopping the development server
 
 * `lsof -i :3000`
