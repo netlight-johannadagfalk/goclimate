@@ -9,17 +9,20 @@
   <dt>Fortnox invoice:</dt>
   <dd><%= @invoice.fortnox_id %></dd>
 
-  <dt>Project:</dt>
-  <dd><%= link_to(@invoice.project.name, [:admin, @invoice.project]) if @invoice.project.present? %></dd>
+  <dt>Created:</dt>
+  <dd><%= time_tag(@invoice.created_at) %></dd>
 
-  <dt>Amount in sek:</dt>
-  <dd><%= @invoice.amount_in_sek %></dd>
+  <dt>Receiver:</dt>
+  <dd><%= @invoice.receiver %></dd>
+
+  <dt>Amount</dt>
+  <dd><%= @invoice.amount_in_sek %> SEK</dd>
 
   <dt>Carbon offset:</dt>
   <dd><%= @invoice.carbon_offset %></dd>
 
-  <dt>Receiver:</dt>
-  <dd><%= @invoice.receiver %></dd>
+  <dt>Project:</dt>
+  <dd><%= link_to(@invoice.project.name, [:admin, @invoice.project]) if @invoice.project.present? %></dd>
 
   <dt>Comment (used when generating certificate):</dt>
   <dd><%= @invoice.comment %></dd>

@@ -9,6 +9,9 @@
   <dt>Fortnox invoice:</dt>
   <dd><%= @invoice.fortnox_id %></dd>
 
+  <dt>Created:</dt>
+  <dd><%= time_tag(@invoice.created_at) %></dd>
+
   <dt>Company:</dt>
   <dd><%= @invoice.climate_report.company_name %></dd>
 
