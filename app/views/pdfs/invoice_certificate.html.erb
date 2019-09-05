@@ -116,31 +116,31 @@
     <div class="text marginTop" style="font-size: 18px;">
       <span class="logoColor">Härmed intygas att</span>
       <br>
-      <span style="font-size: 40px; line-height: 1.5;"><%= @invoice.receiver %></span>
+      <span style="font-size: 40px; line-height: 1.5;"><%= @receiver %></span>
     </div>
 
     <div class="text" style="font-size: 18px;">
       <span class="logoColor">har klimatkompenserat</span>
       <br>
-      <span style="font-size: 40px; line-height: 1.5;"><%= @invoice.carbon_offset %> ton koldioxid</span>
-      <% if @invoice.comment.present? %>
+      <span style="font-size: 40px; line-height: 1.5;"><%= precise_co2e_string(@co2e) %></span>
+      <% if @comment.present? %>
         <br>
-        <span style="font-size: 32px; line-height: 1.5;"><%= @invoice.comment %></span>
+        <span style="font-size: 32px; line-height: 1.5;"><%= @comment %></span>
       <% end %>
     </div>
 
-    <div class="text marginTop whiteBox"">
+    <div class="text marginTop whiteBox">
       <strong>Projektinformation</strong>
       </br>
-      Namn: <%= @invoice.project.name %></br>
-      Land: <%= @invoice.project.country %></br>
-      Projekt ID: GS <%= @invoice.project.gold_standard_id %></br>
+      Namn: <%= @project.name %></br>
+      Land: <%= @project.country %></br>
+      Projekt ID: GS <%= @project.gold_standard_id %></br>
       Projekttyp: Gold Standard
     </div>
   </div>
 
   <div class="text footer">
-    <strong>Datum: <%= @invoice.created_at.in_time_zone('Europe/Stockholm').to_date %></strong>
+    <strong>Datum: <%= @issued_at.in_time_zone('Europe/Stockholm').to_date %></strong>
     </br>
     <%= image_tag wicked_pdf_asset_base64('cissi_signature.png'), size: "356x132" %>
   </div>

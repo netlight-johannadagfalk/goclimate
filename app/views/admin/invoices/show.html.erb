@@ -30,5 +30,7 @@
 
 <hr>
 <%= link_to 'Edit', edit_admin_invoice_path(@invoice), class: 'btn btn-default' %>
-<%= link_to 'Certificate', admin_invoice_certificates_url(id: @invoice.id, format: :pdf), class: 'btn btn-link' %>
+<% if @invoice.project.present? %>
+  <%= link_to 'Download certificate', admin_invoice_certificates_path(type: 'invoice', id: @invoice.id, format: :pdf), class: 'btn btn-default' %>
+<% end %>
 <%= link_to 'Back', admin_invoices_path, class: 'btn btn-link' %>

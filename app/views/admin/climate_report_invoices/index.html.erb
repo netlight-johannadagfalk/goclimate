@@ -44,6 +44,9 @@
         <td><%= invoice.project&.name %></td>
         <td class="admin-actions">
           <%= link_to 'Show', [:admin, invoice] %>
+          <% if invoice.project.present? %>
+            &nbsp; <%= link_to 'Certificate', admin_invoice_certificates_path(type: 'climate_report_invoice', id: invoice.id, format: :pdf) %>
+          <% end %>
         </td>
       </tr>
     <% end %>
