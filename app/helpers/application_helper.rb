@@ -34,6 +34,14 @@ module ApplicationHelper
     end
   end
 
+  def precise_co2e_string(co2e)
+    if co2e % 1000 == 0
+      I18n.translate('helpers.application.precise_co2e_string_tonnes', tonnes: co2e / 1000)
+    else
+      I18n.translate('helpers.application.precise_co2e_string_kg', co2e: co2e)
+    end
+  end
+
   private
 
   def fractional_string(amount)

@@ -7,7 +7,7 @@ module Admin
     # GET /invoices
     # GET /invoices.json
     def index
-      @invoices = Invoice.all.order(:id)
+      @invoices = Invoice.all.order(created_at: :desc)
     end
 
     # GET /invoices/1

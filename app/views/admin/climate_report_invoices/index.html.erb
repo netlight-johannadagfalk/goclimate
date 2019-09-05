@@ -21,6 +21,7 @@
     <tr>
       <th>ID</th>
       <th>Fortnox invoice</th>
+      <th>Created</th>
       <th>Company</th>
       <th>Period</th>
       <th>Carbon offset</th>
@@ -35,6 +36,7 @@
       <tr>
         <td><%= invoice.id %></td>
         <td><%= invoice.fortnox_id %></td>
+        <td><%= time_tag(invoice.created_at) %></td>
         <td><%= invoice.climate_report.company_name %></td>
         <td><%= invoice.climate_report.calculation_period %> (<%= invoice.climate_report.calculation_period_length %>)</td>
         <td><%= number_with_delimiter(invoice.co2e, delimiter: ' ') %> kg co2e</td>
@@ -42,6 +44,9 @@
         <td><%= invoice.project&.name %></td>
         <td class="admin-actions">
           <%= link_to 'Show', [:admin, invoice] %>
+          <% if invoice.project.present? %>
+            &nbsp; <%= link_to 'Certificate', admin_invoice_certificates_path(type: 'climate_report_invoice', id: invoice.id, format: :pdf) %>
+          <% end %>
         </td>
       </tr>
     <% end %>

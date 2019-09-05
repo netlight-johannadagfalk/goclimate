@@ -9,17 +9,20 @@
   <dt>Fortnox invoice:</dt>
   <dd><%= @invoice.fortnox_id %></dd>
 
-  <dt>Project:</dt>
-  <dd><%= link_to(@invoice.project.name, [:admin, @invoice.project]) if @invoice.project.present? %></dd>
+  <dt>Created:</dt>
+  <dd><%= time_tag(@invoice.created_at) %></dd>
 
-  <dt>Amount in sek:</dt>
-  <dd><%= @invoice.amount_in_sek %></dd>
+  <dt>Receiver:</dt>
+  <dd><%= @invoice.receiver %></dd>
+
+  <dt>Amount</dt>
+  <dd><%= @invoice.amount_in_sek %> SEK</dd>
 
   <dt>Carbon offset:</dt>
   <dd><%= @invoice.carbon_offset %></dd>
 
-  <dt>Receiver:</dt>
-  <dd><%= @invoice.receiver %></dd>
+  <dt>Project:</dt>
+  <dd><%= link_to(@invoice.project.name, [:admin, @invoice.project]) if @invoice.project.present? %></dd>
 
   <dt>Comment (used when generating certificate):</dt>
   <dd><%= @invoice.comment %></dd>
@@ -27,5 +30,7 @@
 
 <hr>
 <%= link_to 'Edit', edit_admin_invoice_path(@invoice), class: 'btn btn-default' %>
-<%= link_to 'Certificate', admin_invoice_certificates_url(id: @invoice.id, format: :pdf), class: 'btn btn-link' %>
+<% if @invoice.project.present? %>
+  <%= link_to 'Download certificate', admin_invoice_certificates_path(type: 'invoice', id: @invoice.id, format: :pdf), class: 'btn btn-default' %>
+<% end %>
 <%= link_to 'Back', admin_invoices_path, class: 'btn btn-link' %>

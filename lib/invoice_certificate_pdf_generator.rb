@@ -1,18 +1,39 @@
 # frozen_string_literal: true
 
 class InvoiceCertificatePDFGenerator
-  def initialize(invoice)
-    @invoice = invoice
+  attr_reader :receiver, :co2e, :issued_at, :comment, :project
+
+  def self.from_invoice(invoice)
+    new(invoice.receiver, invoice.co2e, invoice.created_at, invoice.comment, invoice.project)
   end
 
-  def generate_pdf
+  def self.from_climate_report_invoice(invoice)
+    new(
+      invoice.climate_report.company_name, invoice.co2e, invoice.created_at,
+      invoice.climate_report.calculation_period, invoice.project
+    )
+  end
+
+  def initialize(receiver, co2e, issued_at, comment, project)
+    @receiver = receiver
+    @co2e = co2e
+    @issued_at = issued_at
+    @comment = comment
+    @project = project
+  end
+
+  def generate_pdf # rubocop:disable Metrics/MethodLength
     I18n.with_locale(:sv) do
       WickedPdf.new.pdf_from_string(
         ApplicationController.render(
           template: 'pdfs/invoice_certificate',
           layout: false,
           assigns: {
-            invoice: @invoice
+            receiver: receiver,
+            co2e: co2e,
+            issued_at: issued_at,
+            comment: comment,
+            project: project
           }
         ),
         orientation: 'portrait'
