@@ -8,6 +8,6 @@ class UsersController < ApplicationController
 
     @sharing = params[:share].present?
 
-    render layout: 'user'
+    render
   end
 end
