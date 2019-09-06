@@ -2,13 +2,17 @@
 
 module Webpack
   module Helper
-    def webpack_asset_path(source)
+    def webpack_asset_path(source, options = {})
       compile_webpack if Webpack.config[:watch_changes]
 
       asset_path(
         public_path(Webpack.manifest.asset_hashed_path(source)),
-        skip_pipeline: true
+        options.merge(skip_pipeline: true)
       )
+    end
+
+    def webpack_asset_url(source)
+      webpack_asset_path(source, protocol: :request)
     end
 
     def webpack_entrypoint_javascript_tags(*entrypoints)

@@ -3,7 +3,7 @@
 
     <div class="navbar-header">
       <a class="navbar-brand" href="<%= root_path %>">
-        <%= image_tag 'goclimateneutral_logo.svg', alt: 'GoClimateNeutral' %>
+        <%= image_tag webpack_asset_path('images/goclimateneutral_logo.svg'), alt: 'GoClimateNeutral' %>
       </a>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -37,11 +37,11 @@
         <% else %>
           <li><%= link_to(I18n.t('log_in'), new_user_session_url)%></li>
           <li class="dropdown languages">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=  image_tag('languages/' + I18n.locale.to_s + '.png') %><span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=  image_tag webpack_asset_path('images/languages/' + I18n.locale.to_s + '.png') %><span class="caret"></span></a>
               <ul class="dropdown-menu languages">
-                <li><a href="https://sv.goclimateneutral.org/"><%= image_tag 'languages/sv.png' %> SV</a></li>
-                <li><a href="https://en.goclimateneutral.org/"><%= image_tag 'languages/en.png' %> EN</a></li>
-                <li><a href="https://de.goclimateneutral.org/"><%= image_tag 'languages/de.png' %> DE</a></li>
+                <li><a href="https://sv.goclimateneutral.org/"><%= image_tag webpack_asset_path('images/languages/sv.png') %> SV</a></li>
+                <li><a href="https://en.goclimateneutral.org/"><%= image_tag webpack_asset_path('images/languages/en.png') %> EN</a></li>
+                <li><a href="https://de.goclimateneutral.org/"><%= image_tag webpack_asset_path('images/languages/de.png') %> DE</a></li>
               </ul>
           </li>
         <% end %>
@@ -59,13 +59,13 @@
           <li><%= link_to(I18n.t('log_in'), new_user_session_url)%></li>
           <li role="separator" class="divider"></li>
           <% if I18n.locale != :en %>
-            <li><a href="https://en.goclimateneutral.org/"><%= image_tag 'languages/en.png' %> IN ENGLISH</a></li>
+            <li><a href="https://en.goclimateneutral.org/"><%= image_tag webpack_asset_path('images/languages/en.png') %> IN ENGLISH</a></li>
           <% end %>
           <% if I18n.locale != :de %>
-            <li><a href="https://de.goclimateneutral.org/"><%= image_tag 'languages/de.png' %> AUF DEUTSCH</a></li>
+            <li><a href="https://de.goclimateneutral.org/"><%= image_tag webpack_asset_path('images/languages/de.png') %> AUF DEUTSCH</a></li>
           <% end %>
           <% if I18n.locale != :sv %>
-            <li><a href="https://sv.goclimateneutral.org/"><%= image_tag 'languages/sv.png' %> PÅ SVENSKA</a></li>
+            <li><a href="https://sv.goclimateneutral.org/"><%= image_tag webpack_asset_path('images/languages/sv.png') %> PÅ SVENSKA</a></li>
           <% end %>
         <% end %>
       </ul>

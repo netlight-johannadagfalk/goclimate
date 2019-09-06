@@ -15,8 +15,8 @@
       <% @press_images.each do |image| %>
         <% image_name = "#{image.split('/').last}" %>
         <tr>
-          <td><a href="<%= image_path("press/" + image_name) %>"><%= image_tag "press/" + image_name, height: "150", alt: "" %></a></td>
-          <td><%= link_to image_name, image_path("press/" + image_name) %></td>
+          <td><a href="<%= webpack_asset_path("images/press/" + image_name) %>"><%= image_tag webpack_asset_path("images/press/" + image_name), height: "150", alt: "" %></a></td>
+          <td><%= link_to image_name, webpack_asset_path("images/press/" + image_name) %></td>
         </tr>
       <% end %>
     </table>
@@ -27,8 +27,8 @@
       <% @press_social_images.each do |image| %>
         <% image_name = "#{image.split('/').last}" %>
         <tr>
-          <td><a href="<%= image_path("press_social/" + image_name) %>"><%= image_tag "press_social/" + image_name, height: "150", alt: "" %></a></td>
-          <td><%= link_to image_name, image_path("press_social/" + image_name) %></td>
+          <td><a href="<%= webpack_asset_path("images/press_social/" + image_name) %>"><%= image_tag webpack_asset_path("images/press_social/" + image_name), height: "150", alt: "" %></a></td>
+          <td><%= link_to image_name, webpack_asset_path("images/press_social/" + image_name) %></td>
         </tr>
       <% end %>
     </table>
