@@ -484,6 +484,7 @@ en:
         12_months_cta: Get a 12 months gift card
         details_html: "Gift cards are based on the average climate impact for Swedish residents (11 tonnes CO<sub>2</sub>eq)."
       new:
+        intro: Personalize and pay for your gift card
         your_gift_card_order: Your gift card order
         write_a_message: Please write a personal message to include on the gift certificate.
         sample_message_html: "Example:\nHi Mom, here is a gift for you! /Jenny"

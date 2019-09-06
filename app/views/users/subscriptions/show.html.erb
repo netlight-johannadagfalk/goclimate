@@ -17,17 +17,23 @@
       <%= render "shared/plan" %>
 
       <div id="current-card-group" class="form-group">
-        <label for="current-card" class="col-sm-offset-1 col-sm-4 control-label padding-top"><%=t 'credit_or_debit_card' %></label>
+        <label for="current-card" class="col-sm-offset-1 col-sm-4 control-label">
+          <%=t 'credit_or_debit_card' %>
+        </label>
         <div id="current-card" class="col-sm-4 control-label">
-          <%= @current_source.nil? ? t('no_card_registered') : masked_card_number(@current_source) %> (<a id="add-new-card" href="#"><%= @current_source.nil? ? t('add_new_card') : t('edit_card') %></a>)
+          <% if @current_source.nil? %>
+            t('no_card_registered')
+          <% else %>
+            <%= render "shared/existing-card" %>
+          <% end %>
+          (<a id="add-new-card" href="#">
+            <%= @current_source.nil? ? t('add_new_card') : t('edit_card') %>
+          </a>)
         </div>
       </div>
 
-      <%= hidden_field(:user, :stripe_customer_id, :value => "") %>
-
-      <div id="new-card-div" class="form-group hidden">
-        <div class="col-sm-1"></div>
-        <label for="card-element" class="col-sm-4 control-label"><%=t 'add_new_card' %></label>
+      <div id="new-card-div" class="form-group not-shown">
+        <label for="card-element" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'add_new_card' %></label>
         <div class="col-sm-4">
           <div id="card-element" class="form-control">
             <!-- a Stripe Element will be inserted here. -->
@@ -38,12 +44,16 @@
       <div id="card-errors"></div>
 
       <div class="actions">
-        <button id="register-button" type="submit" class="btn btn-success" onclick="this.disabled=true; this.value='Submitting...'; $('#payment-form').submit();">Update</button>
+        <button id="register-button" type="submit" class="btn btn-success" onclick="this.disabled=true; this.value='Submitting...'; $('#payment-form').submit();">
+          <%=t 'update' %>
+        </button>
       </div>
     <% end %>
 
   </div>
 </div>
+
+<%= render "shared/footer" %>
 
 <% content_for :javascript_tags do %>
   <script type="text/javascript">

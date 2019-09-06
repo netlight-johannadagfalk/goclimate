@@ -29,6 +29,32 @@
   }
 }
 
+a.example-gift-card {
+  text-decoration: underline;
+}
+
 .btn-choose-gift-card {
   white-space: normal !important;
+}
+
+.gift-card-details {
+  max-width: 400px;
+  margin: 30px auto 5px;
+}
+
+.gift-card-details-row {
+  border-top: 1px solid #ddd;
+}
+
+.gift-card-payment {
+  max-width: 500px;
+  margin: 40px auto 0px;
+}
+
+.gift-card-message {
+  margin-bottom: 10px;
+}
+
+.text-right {
+  text-align: right;
 }
