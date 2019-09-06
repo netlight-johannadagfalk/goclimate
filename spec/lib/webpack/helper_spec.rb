@@ -17,6 +17,13 @@ RSpec.describe Webpack::Helper, type: :helper do
     end
   end
 
+  describe '#webpack_asset_url' do
+    it 'resolves assets available in manifest' do
+      expect(helper.webpack_asset_url('images/image.png'))
+        .to eq('http://test.host/bundles/images/image-5537be63869ef7671aaa321b25470c9d.png')
+    end
+  end
+
   describe '#webpack_entrypoint_javascript_tags' do
     it 'returns Javascript tags for all files for the given entrypoint' do
       expect(helper.webpack_entrypoint_javascript_tags('main', 'other')).to eq(<<~HTML.chomp)

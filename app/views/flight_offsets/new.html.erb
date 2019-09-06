@@ -2,7 +2,7 @@
   <%= render "shared/header" %>
   <div class="inner">
 
-    <span class="green-leaf"><%= image_tag 'green.svg', style: 'width: 100px' %></span>
+    <span class="green-leaf"><%= image_tag webpack_asset_path('images/green.svg'), style: 'width: 100px' %></span>
     <h1 class="cover-heading"><%=t 'views.flight_offsets.new.header' %></h1>
     <p class="lead"><%=t 'views.flight_offsets.new.header_description' %></p>
   </div>
