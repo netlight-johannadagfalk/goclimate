@@ -1,3 +1,6 @@
+<% content_for :opengraph_url do %><%=t 'goclimateneutral_url' %>users/<%= @user.id %><% end %>
+<% content_for :opengraph_title do %><%= social_quote_for(@user.user_name, @neutral_months) %><% end %>
+
 <%= render "shared/facebook_script" %>
 <%= render "shared/twitter_script" %>
 <%= javascript_tag do %>
