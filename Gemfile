@@ -45,7 +45,10 @@ gem 'jbuilder', '~> 2.8.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-rails', '~> 4.7.0'
 gem 'jquery-rails', '~> 4.3.1'
-gem 'sass-rails', github: 'rails/sass-rails'
+# This sass-rails ref points to a commit during 6.0.0.beta1. Later commits &
+# versions changes dependencies so that our Sprockets version changes which
+# casuses issues. We're moving to Webpack so lock this until we've migrated.
+gem 'sass-rails', github: 'rails/sass-rails', ref: 'ac38f1e'
 gem 'uglifier', '>= 1.3.0'
 
 # Geometry
