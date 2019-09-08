@@ -33,6 +33,12 @@
   <dt>VAT number:</dt>
   <dd><%= @invoice.vat_number %></dd>
 
+  <dt>Certificate sent at:</dt>
+  <dd><%= @invoice.certificate_sent_at %></dd>
+
+  <dt>Certificate reciever:</dt>
+  <dd><%= @invoice.certificate_reciever_email %></dd>
+
   <dt>Invoice email:</dt>
   <dd>
     <% if @invoice.invoice_email.present? %>

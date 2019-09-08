@@ -42,7 +42,7 @@ module Admin
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
       params.require(:climate_report_invoice).permit(
-        :fortnox_id, :project_id
+        :fortnox_id, :project_id, :certificate_sent_at, :certificate_reciever_email
       )
     end
   end
