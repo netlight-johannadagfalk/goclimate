@@ -41,5 +41,15 @@
     <%= f.text_field :comment, class: 'form-control' %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :certificate_sent_at %>
+    <%= f.text_field :certificate_sent_at, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :certificate_reciever_email %> (leave empty if you don't want system to send certificate)
+    <%= f.text_field :certificate_reciever_email, class: 'form-control' %>
+  </div>
+
   <%= f.submit class: 'btn btn-primary' %>
 <% end %>

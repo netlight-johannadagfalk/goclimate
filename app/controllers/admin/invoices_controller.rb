@@ -74,7 +74,7 @@ module Admin
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
       params.require(:invoice).permit(
-        :amount_in_sek, :carbon_offset, :receiver, :project_id, :fortnox_id, :comment
+        :amount_in_sek, :carbon_offset, :receiver, :project_id, :fortnox_id, :comment, :certificate_sent_at, :certificate_reciever_email
       )
     end
   end
