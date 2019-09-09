@@ -80,7 +80,7 @@ RSpec.describe SubscriptionManager do
 
     context 'when encoutering card errors' do
       let(:card_error) do
-        Stripe::CardError.new('Your card was declined.', nil, 'card_declined')
+        Stripe::CardError.new('Your card was declined.', nil, code: 'card_declined')
       end
 
       before do
@@ -309,7 +309,7 @@ RSpec.describe SubscriptionManager do
 
         context 'when encoutering card errors' do
           let(:card_error) do
-            Stripe::CardError.new('Your card was declined.', nil, 'card_declined')
+            Stripe::CardError.new('Your card was declined.', nil, code: 'card_declined')
           end
 
           before do
@@ -349,7 +349,7 @@ RSpec.describe SubscriptionManager do
 
         context 'when encoutering card errors' do
           let(:card_error) do
-            Stripe::CardError.new('Your card was declined.', nil, 'card_declined')
+            Stripe::CardError.new('Your card was declined.', nil, code: 'card_declined')
           end
 
           before do

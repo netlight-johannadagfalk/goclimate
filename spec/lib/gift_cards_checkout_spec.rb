@@ -111,7 +111,7 @@ RSpec.describe GiftCardsCheckout do
 
     context 'when card gets declined' do
       let(:card_error) do
-        Stripe::CardError.new('Your card was declined.', nil, 'card_declined')
+        Stripe::CardError.new('Your card was declined.', nil, code: 'card_declined')
       end
 
       before do
