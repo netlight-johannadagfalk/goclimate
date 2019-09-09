@@ -67,7 +67,7 @@ gem 'intercom-rails', '~> 0.4.0'
 gem 'rollbar', '~> 2.18'
 gem 'sendgrid-actionmailer', '~> 2.4.0'
 gem 'skylight'
-gem 'stripe', git: 'https://github.com/stripe/stripe-ruby', ref: 'f6484e3'
+gem 'stripe', '~> 5.1.1'
 
 # Utilities
 gem 'seed_dump', '~> 3.2'
