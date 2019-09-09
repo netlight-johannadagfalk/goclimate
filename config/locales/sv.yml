@@ -501,6 +501,7 @@ sv:
         12_months_cta: Välj 12 månaders gåvokort
         details_html: "Gåvokorten är baserade på en medelsvensks klimatavtryck - 11 ton CO<sub>2</sub>eq. För att vara på säkra sidan - och för att våran planet behöver det - så dubblar vi även alla våra uträkningar och bygger därför kalkylerna ovan på utsläpp på 22 ton CO<sub>2</sub>eq."
       new:
+        intro: Anpassa och betala för ditt gåvokort
         your_gift_card_order: Ditt gåvokort
         write_a_message: Skriv gärna ett personligt meddelande att ta med på gåvokortet.
         sample_message_html: "Exempel:\nHej Mamma! Här är ett gåvokort till dig! /Jenny"

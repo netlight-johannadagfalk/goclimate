@@ -3,52 +3,60 @@
   <div class="inner">
 
     <h1><%=t 'views.gift_cards.new.your_gift_card_order' %></h1>
-
-    <%= form_tag action: :create do %>
-      <%= fields_for :gift_card do |f| %>
-        <div>
-          <label><%=t 'views.gift_cards.new.write_a_message' %> </label>
-          <div><%= f.text_area :message, rows: 4, cols: 40, placeholder: t('views.gift_cards.new.sample_message_html')%></div>
-        </div>
-      <% end %>
-
-      <p><%=t 'views.gift_cards.new.we_will_send_you_pdf' %></p>
-
-      <p><%= link_to t('views.gift_cards.new.click_here_for_an_example'), example_gift_card_certificates_path(subscription_months_to_gift: params[:subscription_months_to_gift], format: :pdf) %></p>
-
-      <table class="table checkout-table">
-        <tr>
-          <td><%=t 'type' %>:</td>
-          <td><%=t 'x_months', count: @gift_card.number_of_months %></td>
-        </tr>
-        <tr>
-          <td><%=t 'price' %>:</td>
-          <td><%= price_string(@gift_card.price, @currency) %></td>
-        </tr>
-      </table>
-
-      <% if @checkout.present? && @checkout.errors.any? %>
-          <div id="error_explanation">
-            <p>The payment unfortunately failed: <%= @checkout.errors.values.join(' ') %></p>
-            <p>We are currently not supporting 3D Secure cards (Verified by VISA/MasterCard SecureCode), but we're working on it! Check back soon!</p>
-          </div>
-      <% end %>
-
-      <%= hidden_field_tag :subscription_months_to_gift, @gift_card.number_of_months %>
-      <script
-        src="https://checkout.stripe.com/checkout.js"
-        class="stripe-button"
-        data-key="<%= ENV['PUBLISHABLE_KEY'] %>"
-        data-amount="<%= @gift_card.price * 100 %>"
-        data-currency=<%= @currency %>
-        data-name="GoClimateNeutral"
-        data-description="<%=t 'views.gift_cards.new.gift_card_for_x_months', months: @gift_card.number_of_months %>"
-        data-locale="<%= I18n.locale %>"
-        data-label="<%=t 'proceed_to_checkout' %>">
-      </script>
+    <p class="lead"><%= t 'views.gift_cards.new.intro' %></p>
+  </div>
+</div>
+<div class="site-wrapper-second">
+  <%= form_tag(gift_cards_path, class: "form-horizontal") do %>
+    <%= fields_for :gift_card do |f| %>
+      <div>
+        <label class="gift-card-message"><%=t 'views.gift_cards.new.write_a_message' %></label>
+        <div><%= f.text_area :message, rows: 4, cols: 40, placeholder: t('views.gift_cards.new.sample_message_html')%></div>
+      </div>
     <% end %>
 
-  </div>
+    <p><%=t 'views.gift_cards.new.we_will_send_you_pdf' %></p>
+
+    <p><%= link_to t('views.gift_cards.new.click_here_for_an_example'), example_gift_card_certificates_path(subscription_months_to_gift: params[:subscription_months_to_gift], format: :pdf), class: 'example-gift-card' %></p>
+
+    <div class="gift-card-details">
+      <div class="form-group gift-card-details-row">
+        <label class="col-sm-offset-1 col-sm-4 control-label">
+          <%=t 'type' %>:
+        </label>
+        <div class="col-sm-4 control-label">
+          <%=t 'x_months', count: @gift_card.number_of_months %>
+        </div>
+      </div>
+      <div class="form-group gift-card-details-row">
+        <label class="col-sm-offset-1 col-sm-4 control-label">
+          <%=t 'price' %>:
+        </label>
+        <div class="col-sm-4 control-label">
+          <%= price_string(@gift_card.price, @currency) %>
+        </div>
+      </div>
+    </div>
+    <% if @checkout.present? && @checkout.errors.any? %>
+      <div id="error_explanation">
+        <p>The payment unfortunately failed: <%= @checkout.errors.values.join(' ') %></p>
+        <p>We are currently not supporting 3D Secure cards (Verified by VISA/MasterCard SecureCode), but we're working on it! Check back soon!</p>
+      </div>
+    <% end %>
+
+    <%= hidden_field_tag :subscription_months_to_gift, @gift_card.number_of_months %>
+    <script
+      src="https://checkout.stripe.com/checkout.js"
+      class="stripe-button"
+      data-key="<%= ENV['PUBLISHABLE_KEY'] %>"
+      data-amount="<%= @gift_card.price * 100 %>"
+      data-currency=<%= @currency %>
+    data-name="GoClimateNeutral"
+    data-description="<%=t 'views.gift_cards.new.gift_card_for_x_months', months: @gift_card.number_of_months %>"
+    data-locale="<%= I18n.locale %>"
+    data-label="<%=t 'proceed_to_checkout' %>">
+    </script>
+  <% end %>
 </div>
 
 <%= render "shared/footer" %>
