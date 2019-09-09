@@ -8,6 +8,7 @@
       <th>ID</th>
       <th>Fortnox invoice</th>
       <th>Created</th>
+      <th>Certificate Sent</th>
       <th>Receiver</th>
       <th>Carbon offset</th>
       <th>Amount</th>
@@ -22,6 +23,7 @@
         <td><%= invoice.id %></td>
         <td><%= invoice.fortnox_id %></td>
         <td><%= time_tag(invoice.created_at) %></td>
+        <td><%= time_tag(invoice.certificate_sent_at) if invoice.certificate_sent_at.present? %></td>
         <td><%= invoice.receiver %></td>
         <td><%= number_with_delimiter(invoice.carbon_offset, delimiter: ' ') %> tonnes co2e</td>
         <td><%= invoice.amount_in_sek %> SEK</td>
