@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class GiftCardCertificatePDFGenerator
+class GiftCardCertificatePdfGenerator
   attr_reader :message, :number_of_months, :example
 
   def self.from_gift_card(gift_card)

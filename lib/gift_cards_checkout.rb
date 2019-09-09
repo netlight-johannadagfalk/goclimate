@@ -33,7 +33,7 @@ class GiftCardsCheckout
   end
 
   def send_confirmation_email
-    pdf = GiftCardCertificatePDFGenerator.from_gift_card(@gift_card).generate_pdf
+    pdf = GiftCardCertificatePdfGenerator.from_gift_card(@gift_card).generate_pdf
 
     GiftCardMailer.with(
       email: @confirmation_email_recipient,

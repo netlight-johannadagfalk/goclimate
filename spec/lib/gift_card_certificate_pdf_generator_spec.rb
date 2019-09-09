@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe GiftCardCertificatePDFGenerator do
+RSpec.describe GiftCardCertificatePdfGenerator do
   describe '.from_gift_card' do
     let(:gift_card) { build(:gift_card) }
 
