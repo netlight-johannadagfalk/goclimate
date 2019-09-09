@@ -6,7 +6,7 @@ class FlightOffsetMailerPreview < ActionMailer::Preview
       email: 'test@example.com', co2e: 1000, charged_amount: 4000,
       charged_currency: 'sek', stripe_charge_id: 'fake'
     )
-    pdf = FlightOffsetCertificatePDFGenerator.new(offset).generate_pdf
+    pdf = FlightOffsetCertificatePdfGenerator.new(offset).generate_pdf
 
     FlightOffsetMailer.with(
       flight_offset: offset,

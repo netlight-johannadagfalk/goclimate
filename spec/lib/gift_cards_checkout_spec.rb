@@ -30,7 +30,7 @@ RSpec.describe GiftCardsCheckout do
 
     let(:fake_pdf) { 'fake pdf' }
     let(:pdf_generator_stub) do
-      instance_double(GiftCardCertificatePDFGenerator).tap do |pdf_generator|
+      instance_double(GiftCardCertificatePdfGenerator).tap do |pdf_generator|
         allow(pdf_generator).to receive(:generate_pdf).and_return(fake_pdf)
       end
     end
@@ -38,7 +38,7 @@ RSpec.describe GiftCardsCheckout do
     before do
       allow(Stripe::Charge).to receive(:create)
         .and_return(instance_double(Stripe::Charge))
-      allow(GiftCardCertificatePDFGenerator).to receive(:from_gift_card).and_return(pdf_generator_stub)
+      allow(GiftCardCertificatePdfGenerator).to receive(:from_gift_card).and_return(pdf_generator_stub)
       allow(GiftCardMailer).to receive_message_chain(:with, :gift_card_email, :deliver_now)
     end
 
@@ -105,7 +105,7 @@ RSpec.describe GiftCardsCheckout do
       it 'uses gift card when generating pdf' do
         checkout.checkout
 
-        expect(GiftCardCertificatePDFGenerator).to have_received(:from_gift_card).with(gift_card)
+        expect(GiftCardCertificatePdfGenerator).to have_received(:from_gift_card).with(gift_card)
       end
     end
 

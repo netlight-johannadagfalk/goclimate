@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FlightOffsetCertificatePDFGenerator
+class FlightOffsetCertificatePdfGenerator
   attr_reader :flight_offset
 
   def initialize(flight_offset)

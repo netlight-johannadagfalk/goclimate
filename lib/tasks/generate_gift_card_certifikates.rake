@@ -21,7 +21,7 @@ task :generate_gift_card_certificates, [:csv_file, :locale] => :environment do |
       message: line['message']
     }
 
-    pdf = GiftCardCertificatePDFGenerator.new(options).generate_pdf
+    pdf = GiftCardCertificatePdfGenerator.new(options).generate_pdf
     File.open(folder.join("#{line['filename']}.pdf"), 'wb') { |f| f.write(pdf) }
   end
 end

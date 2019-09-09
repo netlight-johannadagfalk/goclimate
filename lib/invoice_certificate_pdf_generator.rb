@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class InvoiceCertificatePDFGenerator
+class InvoiceCertificatePdfGenerator
   attr_reader :receiver, :co2e, :issued_at, :comment, :project
 
   def self.from_invoice(invoice)

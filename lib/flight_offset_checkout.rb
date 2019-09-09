@@ -48,7 +48,7 @@ class FlightOffsetCheckout
   def send_confirmation_email
     FlightOffsetMailer.with(
       flight_offset: @offset,
-      certificate_pdf: FlightOffsetCertificatePDFGenerator.new(@offset).generate_pdf
+      certificate_pdf: FlightOffsetCertificatePdfGenerator.new(@offset).generate_pdf
     ).flight_offset_email.deliver_now
   end
 end
