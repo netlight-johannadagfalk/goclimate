@@ -18,7 +18,7 @@ $(document).ready(function() {
   if($('#new-card-div').length) {
     $('#add-new-card').click(function(event) {
       event.preventDefault();
-      $('#new-card-div').show('fast');
+      $('#new-card-div').removeClass('hidden');
     });
   };
 
@@ -82,7 +82,7 @@ $(document).ready(function() {
 
     $('#payment-form').on('submit', function(event) {
 
-      if ($('#new-card-div').length && $('#new-card-div').hasClass("not-shown")) {
+      if ($('#new-card-div').length && $('#new-card-div').hasClass("hidden")) {
 
         var form = document.getElementById('payment-form');
         form.submit();
