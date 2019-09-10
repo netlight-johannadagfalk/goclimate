@@ -82,7 +82,7 @@ $(document).ready(function() {
 
     $('#payment-form').on('submit', function(event) {
 
-      if ($('#new-card-div').length && $('#new-card-div').hasClass("hidden")) {
+      if ($('#new-card-div').length && $('#new-card-div').hasClass("not-shown")) {
 
         var form = document.getElementById('payment-form');
         form.submit();
