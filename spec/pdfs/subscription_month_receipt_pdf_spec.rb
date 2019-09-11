@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'models/shared_example_for_receipts'
 
-RSpec.describe SubscriptionMonthReceipt do
+RSpec.describe SubscriptionMonthReceiptPdf do
   subject(:receipt) { described_class.new(offset) }
 
   let(:offset) { create(:stripe_event_monthly) }

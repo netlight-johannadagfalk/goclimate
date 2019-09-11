@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class InvoiceCertificatePdfGenerator
+class InvoiceCertificatePdf
   attr_reader :receiver, :co2e, :issued_at, :comment, :project
 
   def self.from_invoice(invoice)
@@ -22,7 +22,7 @@ class InvoiceCertificatePdfGenerator
     @project = project
   end
 
-  def generate_pdf # rubocop:disable Metrics/MethodLength
+  def render # rubocop:disable Metrics/MethodLength
     I18n.with_locale(:sv) do
       WickedPdf.new.pdf_from_string(
         ApplicationController.render(

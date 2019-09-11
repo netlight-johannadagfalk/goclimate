@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'gift_card_certificate_pdf_generator'
 require 'csv'
 require 'fileutils'
 
@@ -21,7 +20,7 @@ task :generate_gift_card_certificates, [:csv_file, :locale] => :environment do |
       message: line['message']
     }
 
-    pdf = GiftCardCertificatePdfGenerator.new(options).generate_pdf
+    pdf = GiftCardCertificatePdf.new(options).render
     File.open(folder.join("#{line['filename']}.pdf"), 'wb') { |f| f.write(pdf) }
   end
 end

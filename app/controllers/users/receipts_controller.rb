@@ -11,12 +11,12 @@ module Users
                              .paid_charges
                              .order(created_at: :desc)
       @receipts = receipts.map do |stripe_events|
-        SubscriptionMonthReceipt.new(stripe_events)
+        SubscriptionMonthReceiptPdf.new(stripe_events)
       end
     end
 
     def show
-      send_data @receipt.generate_pdf, filename: 'receipt.pdf', type: :pdf
+      send_data @receipt.render, filename: 'receipt.pdf', type: :pdf
     end
 
     private

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe GiftCardCertificatePdfGenerator do
+RSpec.describe GiftCardCertificatePdf do
   describe '.from_gift_card' do
     let(:gift_card) { build(:gift_card) }
 
@@ -45,8 +45,8 @@ RSpec.describe GiftCardCertificatePdfGenerator do
     end
   end
 
-  describe '#generate_pdf' do
-    subject(:pdf_generator) do
+  describe '#render' do
+    subject(:pdf) do
       described_class.new(message: 'test message', number_of_months: 3)
     end
 
@@ -61,55 +61,55 @@ RSpec.describe GiftCardCertificatePdfGenerator do
     end
 
     it 'generates a PDF' do
-      pdf = pdf_generator.generate_pdf
+      rendered_pdf = pdf.render
 
-      expect(pdf).to be mocked_pdf
+      expect(rendered_pdf).to be mocked_pdf
     end
 
     it 'specifies portrait orientation' do
-      pdf_generator.generate_pdf
+      pdf.render
 
       expect(mocked_wicked_pdf).to have_received(:pdf_from_string)
         .with(anything, hash_including(orientation: 'portrait'))
     end
 
     it 'uses HTML rendered from ActionController.render to WickedPDF' do
-      pdf_generator.generate_pdf
+      pdf.render
 
       expect(mocked_wicked_pdf).to have_received(:pdf_from_string).with(mocked_html, anything)
     end
 
     it 'renders with correct template' do
-      pdf_generator.generate_pdf
+      pdf.render
 
       expect(ApplicationController).to have_received(:render).with(hash_including(template: 'pdfs/gift_card'))
     end
 
     it 'renders with no layout' do
-      pdf_generator.generate_pdf
+      pdf.render
 
       expect(ApplicationController).to have_received(:render).with(hash_including(layout: false))
     end
 
     it 'renders with message in assigns' do
-      pdf_generator.generate_pdf
+      pdf.render
 
       expect(ApplicationController).to have_received(:render)
-        .with(hash_including(assigns: hash_including(message: pdf_generator.message)))
+        .with(hash_including(assigns: hash_including(message: pdf.message)))
     end
 
     it 'renders with number of months in assigns' do
-      pdf_generator.generate_pdf
+      pdf.render
 
       expect(ApplicationController).to have_received(:render)
-        .with(hash_including(assigns: hash_including(number_of_months: pdf_generator.number_of_months)))
+        .with(hash_including(assigns: hash_including(number_of_months: pdf.number_of_months)))
     end
 
     it 'renders with example in assigns' do
-      pdf_generator.generate_pdf
+      pdf.render
 
       expect(ApplicationController).to have_received(:render)
-        .with(hash_including(assigns: hash_including(example: pdf_generator.example)))
+        .with(hash_including(assigns: hash_including(example: pdf.example)))
     end
   end
 end

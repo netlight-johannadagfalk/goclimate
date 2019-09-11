@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class GiftCardCertificatePdfGenerator
+class GiftCardCertificatePdf
   attr_reader :message, :number_of_months, :example
 
   def self.from_gift_card(gift_card)
@@ -16,7 +16,7 @@ class GiftCardCertificatePdfGenerator
     @example = attributes[:example] || false
   end
 
-  def generate_pdf
+  def render
     WickedPdf.new.pdf_from_string(
       ApplicationController.render(
         template: 'pdfs/gift_card',

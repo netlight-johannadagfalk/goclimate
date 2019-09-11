@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class SubscriptionMonthReceipt
+class SubscriptionMonthReceiptPdf
   attr_reader :stripe_event
 
   def initialize(stripe_event)
     @stripe_event = stripe_event
   end
 
-  def generate_pdf
+  def render
     WickedPdf.new.pdf_from_string(
       ApplicationController.render(
         template: 'pdfs/receipt',
