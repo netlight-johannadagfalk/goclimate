@@ -1,4 +1,4 @@
-var GiftCardPayment = function(
+var StripeCardPayment = function(
   form,
   cardErrorsElement,
   submitButton,
@@ -37,7 +37,7 @@ var GiftCardPayment = function(
   this.form.addEventListener('submit', this.onSubmit.bind(this));
 }
 
-GiftCardPayment.prototype.onCardChange = function(event) {
+StripeCardPayment.prototype.onCardChange = function(event) {
   if (event.error) {
     this.cardErrorsElement.textContent = event.error.message;
   } else {
@@ -45,18 +45,18 @@ GiftCardPayment.prototype.onCardChange = function(event) {
   }
 }
 
-GiftCardPayment.prototype.enableSubmit = function() {
+StripeCardPayment.prototype.enableSubmit = function() {
   this.buttonSpinner.classList.add('hidden');
   this.submitButton.disabled = false;
 }
 
-GiftCardPayment.prototype.disableSubmit = function() {
+StripeCardPayment.prototype.disableSubmit = function() {
   this.buttonSpinner.classList.remove('hidden');
   this.submitButton.disabled = true;
 }
 
 
-GiftCardPayment.prototype.onSubmit = function(event) {
+StripeCardPayment.prototype.onSubmit = function(event) {
   event.preventDefault();
   this.disableSubmit();
 
@@ -73,7 +73,7 @@ GiftCardPayment.prototype.onSubmit = function(event) {
   }.bind(this));
 }
 
-GiftCardPayment.prototype.appendHiddenInput = function(name, value) {
+StripeCardPayment.prototype.appendHiddenInput = function(name, value) {
   var input = document.createElement('input');
   input.setAttribute('type', 'hidden');
   input.setAttribute('name', name);

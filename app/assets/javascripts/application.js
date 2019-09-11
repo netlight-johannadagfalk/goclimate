@@ -19,6 +19,5 @@
 //= require jquery.appear
 //= require components/business_offset_calculator
 //= require components/business_footprint_calculator
-//= require components/offset_payment_form
 //= require dropdown_toggle
-//= require components/gift_card_payment
+//= require components/stripe_card_payment
