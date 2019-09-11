@@ -10,6 +10,7 @@ class ClimateReport < ApplicationRecord
   validates :contact_email, email: true
   validates :country, country: true
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
+  validates :meals_vegetarian_share, inclusion: 1..100, allow_nil: true
 
   before_validation :generate_key
 
