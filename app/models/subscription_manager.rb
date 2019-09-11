@@ -50,12 +50,12 @@ class SubscriptionManager
     yield
 
     true
-  rescue ThreeDSecureSourceNotChargeableError => error
-    errors[:verification_failed] = error.message
+  rescue ThreeDSecureSourceNotChargeableError => e
+    errors[:verification_failed] = e.message
 
     false
-  rescue Stripe::CardError => error
-    errors[error.code.to_sym] = error.message
+  rescue Stripe::CardError => e
+    errors[e.code.to_sym] = e.message
 
     false
   end

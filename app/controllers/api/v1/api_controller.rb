@@ -18,10 +18,10 @@ module Api
         '***REMOVED***', # ***REMOVED***
         '***REMOVED***', # ***REMOVED***
         '***REMOVED***', # ***REMOVED***
-        '***REMOVED***', # René Inderbitzin <reneinderbitzin@me.com> via Intercom
         '***REMOVED***', # ***REMOVED***
         '***REMOVED***', # ***REMOVED***
         '***REMOVED***', # ***REMOVED***
+        '***REMOVED***'  # ***REMOVED***
       ].freeze
 
       before_action :authorize

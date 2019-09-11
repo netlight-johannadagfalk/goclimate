@@ -90,7 +90,7 @@ RSpec.describe ImpactStatistics do
     it 'sorts keys of weeks hash' do
       statistics = described_class.new
 
-      expect(statistics.weeks.keys).to eq(['2019-01-14', '2019-01-21', '2019-01-28'])
+      expect(statistics.weeks.keys).to eq(%w[2019-01-14 2019-01-21 2019-01-28])
     end
 
     it 'sets 0 for any missing field' do

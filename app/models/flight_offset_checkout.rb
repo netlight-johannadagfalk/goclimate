@@ -19,8 +19,8 @@ class FlightOffsetCheckout
     create_flight_offset_record
     send_confirmation_email
     true
-  rescue Stripe::CardError => error
-    errors[error.code.to_sym] = error.message
+  rescue Stripe::CardError => e
+    errors[e.code.to_sym] = e.message
     false
   end
 
