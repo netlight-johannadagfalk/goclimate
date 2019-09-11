@@ -105,6 +105,9 @@ class FlightOffsetsController < ApplicationController
     # only used temporarily by flygresor.se
     return params[:footprint_per_person].to_i if params[:footprint_per_person].present?
 
-    FlightFootprint.new(cabin_class: @offset_params.cabin_class, segments: @offset_params.segments).footprint
+    FootprintCalculation::FlightFootprint.new(
+      cabin_class: @offset_params.cabin_class,
+      segments: @offset_params.segments
+    ).footprint
   end
 end

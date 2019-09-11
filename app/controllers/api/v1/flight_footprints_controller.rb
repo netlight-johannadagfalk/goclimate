@@ -21,7 +21,7 @@ module Api
           ],
           details_url: new_flight_offset_url(params: { offset_params: offset_params })
         }
-      rescue Airport::NotFoundError
+      rescue FootprintCalculation::Airport::NotFoundError
         render json: { type: :calculation_unsuccessful }, status: 404
       end
 
@@ -36,7 +36,7 @@ module Api
       end
 
       def set_and_validate_footprint
-        @footprint = FlightFootprint.new(footprint_params)
+        @footprint = FootprintCalculation::FlightFootprint.new(footprint_params)
 
         render json: { type: :invalid_request_error }, status: 400 unless @footprint.valid?
       end
@@ -75,10 +75,10 @@ module Api
 
       def segments
         if params[:segments].nil?
-          [FlightSegment.new(params.permit(:origin, :destination))]
+          [FootprintCalculation::FlightSegment.new(params.permit(:origin, :destination))]
         else
           params[:segments].values.map do |segment_params|
-            FlightSegment.new(segment_params.slice(:origin, :destination))
+            FootprintCalculation::FlightSegment.new(segment_params.slice(:origin, :destination))
           end
         end
       end

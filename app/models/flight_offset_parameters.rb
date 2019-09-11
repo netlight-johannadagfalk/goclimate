@@ -5,7 +5,9 @@ class FlightOffsetParameters
 
   def self.from_s(serilized_parameters)
     cabin_class, *airports = serilized_parameters.split(',')
-    segments = airports.each_slice(2).map { |s| FlightSegment.new(origin: s[0], destination: s[1]) }
+    segments = airports.each_slice(2).map do |s|
+      FootprintCalculation::FlightSegment.new(origin: s[0], destination: s[1])
+    end
 
     new(cabin_class, segments)
   end

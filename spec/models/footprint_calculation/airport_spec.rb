@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Airport do
+RSpec.describe FootprintCalculation::Airport do
   describe 'attributes' do
     it 'has iata_code set from data file' do
       expect(described_class.find('ARN').iata_code).to eq('ARN')
@@ -33,7 +33,7 @@ RSpec.describe Airport do
     it 'raises NotFoundError when not found' do
       expect do
         described_class.find('XXX')
-      end.to raise_error(Airport::NotFoundError)
+      end.to raise_error(FootprintCalculation::Airport::NotFoundError)
     end
   end
 
