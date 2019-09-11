@@ -29,8 +29,7 @@ Rails.application.routes.draw do
   }
   namespace :users, as: 'user' do
     devise_scope :user do
-      get 'threedsecure_create', to: 'registrations#create', as: 'registration_threedsecure',
-                                 defaults: { three_d_secure: 'continue' }
+      post 'verify', to: 'registrations#verify', as: 'registration_verify'
     end
 
     resource :subscription, only: [:show, :update]
@@ -69,10 +68,6 @@ Rails.application.routes.draw do
 
   # Flight one time offsets
   resources :flight_offsets, only: [:new, :create], param: :key do
-    collection do
-      get 'threedsecure_create', to: 'flight_offsets#create', as: 'threedsecure',
-                                 defaults: { three_d_secure: 'continue' }
-    end
     member do
       get 'thank_you'
       scope format: true, constraints: { format: :pdf } do

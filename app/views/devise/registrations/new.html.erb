@@ -100,6 +100,7 @@
         <% if @manager.present? && @manager.errors.any? %>
           <p>The payment failed: <%= @manager.errors.values.join(' ') %></p>
         <% end %>
+        <p id="error-content"></p>
       </div>
     <% end %>
 
@@ -121,7 +122,8 @@
         </div>
       </div>
 
-      <%= hidden_field(:user, :stripe_customer_id, :value => "") %>
+      <%= hidden_field(:manager, :customer_id) %>
+      <%= hidden_field(:manager, :payment_intent_client_secret) %>
 
       <div class="form-group">
         <label for="card-element" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'credit_or_debit_card' %></label>
@@ -140,7 +142,10 @@
           <div class="checkbox">
             <label>
               <%= f.check_box :privacy_policy %>
-              <%=t 'i_accept' %> <%= link_to I18n.t('our_privacy_policy'), privacy_policy_path, target: '_blank', class: 'privacy-policy-link' %></a>
+              <span>
+                <%=t 'i_accept' %>
+                <%= link_to I18n.t('our_privacy_policy'), privacy_policy_path, target: '_blank', class: 'privacy-policy-link' %>
+              </span>
             </label>
           </div>
         </div>
@@ -148,7 +153,10 @@
 
       <div class="form-group form-group-sm-centered">
         <div class="col-sm-offset-5 col-sm-3">
-          <button id="register-button" type="submit" class="btn btn-success" onclick="this.disabled=true; this.value='Submitting...'; $('#payment-form').submit();"><%=t 'go_climate_neutral' %></button>
+          <button id="register-button" type="submit" class="btn btn-success">
+            <%= fa_icon "spinner", class: "hidden fa-spin", id: "button-spinner" %>
+            <%=t 'go_climate_neutral' %>
+          </button>
         </div>
       </div>
     <% end %>

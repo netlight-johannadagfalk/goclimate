@@ -64,8 +64,22 @@ end
 
 Capybara.server = :puma, { Silent: true }
 
-Capybara.register_driver :firefox_headless do |app|
-  options = ::Selenium::WebDriver::Firefox::Options.new.tap { |o| o.args << '--headless' }
-  Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
-Capybara.javascript_driver = :firefox_headless
+
+Capybara.register_driver :headless_chrome do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    'goog:chromeOptions': { args: %w[headless disable-gpu --lang=en] }
+  )
+
+  Capybara::Selenium::Driver.new app, browser: :chrome, desired_capabilities: capabilities
+end
+
+Capybara.javascript_driver = :headless_chrome
+
+# Capybara.register_driver :firefox_headless do |app|
+#   options = ::Selenium::WebDriver::Firefox::Options.new.tap { |o| o.args << '--headless' }
+#   Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
+# end
+# Capybara.javascript_driver = :firefox_headless

@@ -63,9 +63,15 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       check 'I accept our Privacy policy'
       click_button 'Go Climate Neutral!'
 
-      # 3D Secure authorization page
-      find('#test-source-authorize-3ds', wait: 20)
-      click_button 'Complete authentication'
+      # 3D Secure authorization pop up
+      find('iframe[name=__privateStripeFrame8]', wait: 20)
+      within_frame(0) do
+        find('iframe[id=challengeFrame]', wait: 20)
+        within_frame('challengeFrame') do
+          find('#test-source-authorize-3ds', wait: 20)
+          click_button 'Complete authentication'
+        end
+      end
 
       # Wait for success page to render
       find('.dashboard-index', wait: 20)

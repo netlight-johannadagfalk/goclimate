@@ -80,7 +80,7 @@ gem 'wkhtmltopdf-binary'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara', '~> 3.3'
+  gem 'capybara', '~> 3.29.0'
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'rb-readline'
@@ -88,7 +88,8 @@ group :development, :test do
   gem 'rspec_junit_formatter'
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '3.142.4'
+  gem 'webdrivers', '>= 4.1.2'
 end
 
 group :development do

@@ -15,6 +15,88 @@ $(document).ready(function() {
     scrollToAnchor('#third-section');
   });
 
+  if ($('#user_privacy_policy').length == 0 || $('#user_privacy_policy').is(':checked')) {
+    $('#register-button').prop('disabled', false);
+  } else {
+    $('#register-button').prop('disabled', true);
+  }
+
+  function formFieldsJson(params) {
+    var formParams = $('#payment-form')
+      .serializeArray()
+      .reduce(
+        function(m,o) {
+          m[o.name] = o.value;
+          return m;
+        }, {}
+      )
+    return $.extend({}, formParams, params)
+  }
+
+  function handleStripeSignUp(paymentMethod) {
+    ga('send', {
+      hitType: 'event',
+      eventAction: 'commit'
+    });
+    // Submit the form
+    $.post($('#payment-form').attr('action'),
+      formFieldsJson({ paymentMethodId: paymentMethod.id }),
+      function(backendResponse) {
+        if (backendResponse.error) {
+          console.log(backendResponse.error)
+          $('#error-content').text(backendResponse.error)
+          enableSubmit()
+        } else if (backendResponse.redirectTo) {
+          window.location.href = backendResponse.redirectTo
+        } else if (backendResponse.paymentIntentClientSecret) {
+          stripe.handleCardPayment(backendResponse.paymentIntentClientSecret)
+            .then(function(stripeResponse) {
+              if (stripeResponse.error) {
+                enableSubmit()
+                $('#card-errors').text(stripeResponse.error.message)
+              } else {
+                $.post(backendResponse.verifyPath,
+                  formFieldsJson({
+                    stripeCustomerId: backendResponse.stripeCustomerId,
+                    paymentIntentId: stripeResponse.paymentIntent.id
+                  }),
+                  function(scaBackendResponse) {
+                    if (scaBackendResponse.error) {
+                      enableSubmit()
+                      console.log(scaBackendResponse.error)
+                      $('#card-errors').text(scaBackendResponse.error)
+                    } else if (scaBackendResponse.redirectTo) {
+                      window.location.href = scaBackendResponse.redirectTo
+                      console.log('It worked with sca, redirecting to ' + scaBackendResponse.redirectTo)
+                    } else {
+                      enableSubmit()
+                      $('#error-content').text(scaBackendResponse.error)
+                      console.log("Unexpected response from server", scaBackendResponse)
+                    }
+                  })
+              }
+            })
+        } else {
+          enableSubmit()
+          $('#error-content').text(backendResponse.error)
+          console.log("Unexpected response from server", backendResponse)
+        }
+      }
+    )
+  }
+
+  function disableSubmit() {
+    $('#button-spinner').removeClass('hidden')
+    $('#register-button').prop('disabled', true);
+  }
+
+  function enableSubmit() {
+    $('#button-spinner').addClass('hidden');
+    if ($('#user_privacy_policy').length == 0 || $('#user_privacy_policy').is(':checked')) {
+      $('#register-button').prop('disabled', false);
+    }
+  }
+
   if($('#card-element').length) {
     var stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
     var elements = stripe.elements();
@@ -41,11 +123,11 @@ $(document).ready(function() {
     card.mount('#card-element');
 
     card.addEventListener('change', function(event) {
-      var displayError = document.getElementById('card-errors');
+      var displayError = $('#card-errors');
       if (event.error) {
-        displayError.textContent = event.error.message;
+        displayError.text(event.error.message)
       } else {
-        displayError.textContent = '';
+        displayError.text('')
       }
     });
 
@@ -58,7 +140,9 @@ $(document).ready(function() {
     });
 
     $('#payment-form').on('submit', function(event) {
-      stripe.createSource(card).then(function(result) {
+      disableSubmit()
+
+      stripe.createPaymentMethod('card', card).then(function(result) {
         if (result.error || 
           ($('#email').val() !== undefined && $('#email').val().length === 0) || 
           ($('#password').val() !== undefined && $('#password').val().length === 0) || 
@@ -67,44 +151,16 @@ $(document).ready(function() {
           if (result.error === undefined) {
             $('#card-errors').text("Check your email or password");
           } else {
-            $('#card-errors').textContent = result.error.message;
+            $('#card-errors').text(result.error.message)
           }
-          if ($('#user_privacy_policy').is(':checked')) {
-            $('#register-button').prop('disabled', false);
-          }
+          enableSubmit();
         } else {
           // Send the source to your server
-          stripeSourceHandler(result.source);
+          handleStripeSignUp(result.paymentMethod);
         }
       });
-
       //https://stackoverflow.com/questions/1357118/event-preventdefault-vs-return-false
       return false;
     });
-    function stripeSourceHandler(source) {
-      // Insert the source ID into the form so it gets submitted to the server
-      var form = document.getElementById('payment-form');
-      var hiddenInput = document.createElement('input');
-      hiddenInput.setAttribute('type', 'hidden');
-      hiddenInput.setAttribute('name', 'stripeSource');
-      hiddenInput.setAttribute('value', source.id);
-
-      var hiddenInput2 = document.createElement('input');
-      hiddenInput2.setAttribute('type', 'hidden');
-      hiddenInput2.setAttribute('name', 'threeDSecure');
-      hiddenInput2.setAttribute('value', source.card.three_d_secure);
-
-      form.appendChild(hiddenInput);
-      form.appendChild(hiddenInput2);
-
-      ga('send', {
-        hitType: 'event',
-        eventAction: 'commit'
-      });
-
-      // Submit the form
-      form.submit();
-    }
   }
-
 });

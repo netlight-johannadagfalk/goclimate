@@ -2,19 +2,13 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController
-    # before_action :configure_sign_up_params, only: [:create]
-    # before_action :configure_account_update_params, only: [:update]
-
     prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy, :payment]
 
     before_action :ensure_valid_new_params, only: [:new]
     before_action :ensure_valid_create_params, only: [:create]
+    before_action :ensure_valid_verify_params, only: [:verify]
     before_action :set_choices_for_new, only: [:new]
-    before_action :set_choices_for_create, only: [:create]
-
-    # Cleanup potential 3D Secure handoff hash before starting fresh, and also after returning.
-    before_action :cleanup_three_d_secure_handoff, only: [:create], if: -> { params[:three_d_secure] != 'continue' }
-    after_action :cleanup_three_d_secure_handoff, only: [:create], if: -> { params[:three_d_secure] == 'continue' }
+    before_action :set_choices_for_create, only: [:create, :verify]
 
     # GET /resource/sign_up
     def new
@@ -34,18 +28,61 @@ module Users
     def create
       user = self.resource = User.new(sign_up_params)
 
-      # Don't wait until after we've charged to figure out that the User record is invalid
-      render_errors && return unless user.valid?(:precheck)
+      render json: user.errors, status: :bad_request && return unless user.valid?(:precheck)
 
       @plan = LifestyleChoice.stripe_plan(choices_params)
-      plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
-
-      return if redirect_to_applicable_three_d_secure_verification(plan)
+      stripe_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
 
       @manager = SubscriptionManager.new
 
-      render_errors && return unless sign_up_subscription(user, plan)
+      if @manager.sign_up(user.email, stripe_plan, params[:paymentMethodId])
+        finilize_registration(user)
+      elsif @manager.payment_intent_client_secret
+        # The card requires 3d secure step in the browser
+        render_requires_3ds
+      else
+        render json: @manager.errors, status: :bad_request
+      end
+    end
+    # rubocop:enable Metrics/AbcSize
 
+    # POST /resource/verify
+    def verify
+      user = self.resource = User.new(sign_up_params)
+
+      render json: user.errors, status: :bad_request && return unless user.valid?(:precheck)
+
+      @manager = SubscriptionManager.for_customer(
+        Stripe::Customer.retrieve(params[:stripeCustomerId]),
+        Stripe::PaymentIntent.retrieve(params[:paymentIntentId])
+      )
+
+      finilize_registration(user)
+    end
+
+    # PUT /resource
+    def update
+      params[:user][:country] = nil if params[:user][:country] == ''
+
+      super
+    end
+
+    protected
+
+    def render_requires_3ds
+      render json: {
+        paymentIntentClientSecret: @manager.payment_intent_client_secret,
+        stripeCustomerId: @manager.customer.id,
+        verifyPath: user_registration_verify_path
+      }, status: :ok
+    end
+
+    def finilize_registration(user)
+      if @manager.payment_intent.status != 'succeeded'
+        render json: { payment: I18n.t('payment_failed_try_again', status: @manager.payment_intent.status) },
+               status: :bad_request
+        return
+      end
       user.stripe_customer_id = @manager.customer.id
       user.lifestyle_choice_ids = choices_params.split(',').map(&:to_i)
 
@@ -56,47 +93,8 @@ module Users
       set_flash_message!(:notice, :signed_up)
       sign_up(resource_name, user)
 
-      redirect_to after_sign_up_path_for(user)
+      render json: { redirectTo: after_sign_up_path_for(user) }, status: :created
     end
-    # rubocop:enable Metrics/AbcSize
-
-    # GET /resource/edit
-    def edit
-      super
-    end
-
-    # PUT /resource
-    def update
-      params[:user][:country] = nil if params[:user][:country] == ''
-
-      super
-    end
-
-    # DELETE /resource
-    # def destroy
-    #   super
-    # end
-
-    # GET /resource/cancel
-    # Forces the session data which is usually expired after sign
-    # in to be expired now. This is useful if the user wants to
-    # cancel oauth signing in/up in the middle of the process,
-    # removing all OAuth session data.
-    # def cancel
-    #   super
-    # end
-
-    protected
-
-    # If you have extra params to permit, append them to the sanitizer.
-    # def configure_sign_up_params
-    #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-    # end
-
-    # If you have extra params to permit, append them to the sanitizer.
-    # def configure_account_update_params
-    #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-    # end
 
     # The path used after sign up.
     def after_sign_up_path_for(_resource)
@@ -106,11 +104,6 @@ module Users
     def after_update_path_for(_resource)
       edit_user_registration_path
     end
-
-    # The path used after sign up for inactive accounts.
-    # def after_inactive_sign_up_path_for(resource)
-    #   super(resource)
-    # end
 
     def update_resource(resource, params)
       resource.update_without_password(params)
@@ -123,35 +116,22 @@ module Users
       render :new
     end
 
-    def redirect_to_applicable_three_d_secure_verification(plan)
-      return false unless params[:threeDSecure] == 'required'
-
-      verification = ThreeDSecureVerification.new(
-        card_source_param, plan.amount, plan.currency, user_registration_threedsecure_url
-      )
-      return false unless verification.verification_required?
-
-      set_three_d_secure_handoff
-      redirect_to verification.redirect_url
-      true
-    end
-
-    def sign_up_subscription(user, plan)
-      @manager.sign_up(
-        user.email, plan, card_source_param,
-        params['three_d_secure'] == 'continue' ? params['source'] : nil
-      )
-    end
-
     def ensure_valid_new_params
       redirect_to '/#choose-plan' if params[:choices].nil? || !params[:choices].include?(',')
     end
 
     def ensure_valid_create_params
-      return unless choices_params.nil? && choices_params.match(/\d+,\d+,\d+,\d/).nil?
+      ensure_valid_create_verify_param(params[:paymentMethodId])
+    end
 
-      flash[:error] = I18n.t('something_went_wrong_go_back_one_step_and_try_again')
-      redirect_to new_user_registration_path(choices: params[:user][:choices])
+    def ensure_valid_verify_params
+      ensure_valid_create_verify_param(params[:paymentIntentId])
+    end
+
+    def ensure_valid_create_verify_param(required_param)
+      return if choices_params&.match(/\d+,\d+,\d+,\d/) && required_param
+
+      render json: { error: I18n.t('something_went_wrong_go_back_one_step_and_try_again') }, status: :bad_request
     end
 
     def set_choices_for_new
@@ -162,28 +142,8 @@ module Users
       @choices = choices_params
     end
 
-    def sign_up_params
-      session.to_hash.dig('three_d_secure_handoff', 'sign_up_params') || super
-    end
-
     def choices_params
-      session.to_hash.dig('three_d_secure_handoff', 'choices') || params[:user][:choices]
-    end
-
-    def card_source_param
-      session.to_hash.dig('three_d_secure_handoff', 'card_source') || params[:stripeSource]
-    end
-
-    def set_three_d_secure_handoff
-      session[:three_d_secure_handoff] = {
-        'sign_up_params' => sign_up_params,
-        'choices' => choices_params,
-        'card_source' => card_source_param
-      }
-    end
-
-    def cleanup_three_d_secure_handoff
-      session.delete(:three_d_secure_handoff)
+      params[:user][:choices]
     end
   end
 end
