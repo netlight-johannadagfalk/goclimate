@@ -14,6 +14,11 @@
 # to test are untested. Adding tests for those could be a good idea if things
 # turns brittle in the future.
 
+require 'webpack/compiler'
+require 'webpack/development_middleware' if Rails.env.development?
+require 'webpack/helper'
+require 'webpack/manifest'
+
 module Webpack
   def self.config
     @config ||=
