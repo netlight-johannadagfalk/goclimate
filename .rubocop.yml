@@ -30,6 +30,10 @@ Style/MethodCallWithArgsParentheses:
     - 'Gemfile'
     - 'config.ru'
 
+Style/RescueModifier:
+  Exclude:
+    - 'spec/**/*'
+
 Metrics/BlockLength:
   ExcludedMethods:
     - 'feature'

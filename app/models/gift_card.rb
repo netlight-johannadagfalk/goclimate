@@ -26,6 +26,13 @@ class GiftCard < ApplicationRecord
     "GCN-GIFT-#{id}"
   end
 
+  def create_payment_intent
+    Stripe::PaymentIntent.create(
+      amount: price * 100,
+      currency: currency
+    )
+  end
+
   private
 
   def generate_key

@@ -89,4 +89,21 @@ RSpec.describe GiftCard do
       end
     end
   end
+
+  describe '#create_payment_intent' do
+    let(:payment_intent) { Stripe::PaymentIntent.construct_from(id: 'pi_123', object: 'payment_intent') }
+
+    before do
+      allow(Stripe::PaymentIntent).to receive(:create).and_return(payment_intent)
+    end
+
+    it 'creates a Stripe::PaymentIntent with amount and currency' do
+      gift_card = described_class.new(number_of_months: 6, currency: 'eur')
+
+      gift_card.create_payment_intent
+
+      expect(Stripe::PaymentIntent).to have_received(:create)
+        .with(hash_including(amount: gift_card.price * 100, currency: gift_card.currency))
+    end
+  end
 end

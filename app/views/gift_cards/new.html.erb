@@ -7,56 +7,86 @@
   </div>
 </div>
 <div class="site-wrapper-second">
-  <%= form_tag(gift_cards_path, class: "form-horizontal") do %>
-    <%= fields_for :gift_card do |f| %>
-      <div>
-        <label class="gift-card-message"><%=t 'views.gift_cards.new.write_a_message' %></label>
-        <div><%= f.text_area :message, rows: 4, cols: 40, placeholder: t('views.gift_cards.new.sample_message_html')%></div>
-      </div>
-    <% end %>
-
+  <%= form_tag(gift_cards_path, id: "payment-form", class: "form-horizontal") do %>
     <p><%=t 'views.gift_cards.new.we_will_send_you_pdf' %></p>
 
     <p><%= link_to t('views.gift_cards.new.click_here_for_an_example'), example_gift_card_certificates_path(subscription_months_to_gift: params[:subscription_months_to_gift], format: :pdf), class: 'example-gift-card' %></p>
 
     <div class="gift-card-details">
       <div class="form-group gift-card-details-row">
-        <label class="col-sm-offset-1 col-sm-4 control-label">
+        <label class="text-left col-sm-4">
           <%=t 'type' %>:
         </label>
-        <div class="col-sm-4 control-label">
+        <div class="text-right col-sm-8">
           <%=t 'x_months', count: @gift_card.number_of_months %>
         </div>
       </div>
       <div class="form-group gift-card-details-row">
-        <label class="col-sm-offset-1 col-sm-4 control-label">
+        <label class="text-left col-sm-4">
           <%=t 'price' %>:
         </label>
-        <div class="col-sm-4 control-label">
-          <%= price_string(@gift_card.price, @currency) %>
+        <div class="text-right col-sm-8">
+          <%= price_string(@gift_card.price, @gift_card.currency) %>
         </div>
       </div>
     </div>
-    <% if @checkout.present? && @checkout.errors.any? %>
-      <div id="error_explanation">
-        <p>The payment unfortunately failed: <%= @checkout.errors.values.join(' ') %></p>
-        <p>We are currently not supporting 3D Secure cards (Verified by VISA/MasterCard SecureCode), but we're working on it! Check back soon!</p>
+    <div class="gift-card-payment">
+      <%= fields_for :gift_card do |f| %>
+        <div>
+          <label class="gift-card-message"><%=t 'views.gift_cards.new.write_a_message' %></label>
+          <div><%= f.text_area :message, rows: 4, cols: 40, placeholder: t('views.gift_cards.new.sample_message_html')%></div>
+        </div>
+      <% end %>
+
+      <div>
+        <label for="email"><%=t 'email' %></label>
+        <div>
+          <%= email_field_tag :email, nil, required: '', id: "email", class: "form-control" %>
+        </div>
       </div>
-    <% end %>
+
+      <div id="current-card-group">
+        <label for="card">
+          <%=t 'credit_or_debit_card' %>
+        </label>
+        <div id="card">
+          <div id="card-element" class="form-control">
+            <!-- a Stripe Element will be inserted here. -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="card-errors"></div>
+
+    <div id="error_explanation" class="hidden"> </div>
 
     <%= hidden_field_tag :subscription_months_to_gift, @gift_card.number_of_months %>
-    <script
-      src="https://checkout.stripe.com/checkout.js"
-      class="stripe-button"
-      data-key="<%= ENV['PUBLISHABLE_KEY'] %>"
-      data-amount="<%= @gift_card.price * 100 %>"
-      data-currency=<%= @currency %>
-    data-name="GoClimateNeutral"
-    data-description="<%=t 'views.gift_cards.new.gift_card_for_x_months', months: @gift_card.number_of_months %>"
-    data-locale="<%= I18n.locale %>"
-    data-label="<%=t 'proceed_to_checkout' %>">
-    </script>
+    <%= hidden_field_tag :client_secret, @payment_intent.client_secret %>
+
+    <%= button_tag(type: 'submit', id: 'checkout-button', class: 'btn btn-success') do %>
+      <%= fa_icon "spinner", class: "hidden fa-spin", id: "button-spinner" %>
+      <%= t('views.gift_cards.new.pay') %>
+    <% end %>
+
   <% end %>
 </div>
 
 <%= render "shared/footer" %>
+
+<% content_for :javascript_tags do %>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script type="text/javascript">
+    var STRIPE_PUBLISHABLE_KEY = "<%= ENV['PUBLISHABLE_KEY'] %>"
+    window.addEventListener('DOMContentLoaded', function() {
+      new GiftCardPayment(
+        document.getElementById('payment-form'),
+        document.getElementById('card-errors'),
+        document.getElementById('checkout-button'),
+        document.getElementById('button-spinner'),
+        document.getElementById('client_secret').value,
+        '#card-element',
+      )
+    })
+  </script>
+<% end %>

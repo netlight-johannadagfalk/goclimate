@@ -5,11 +5,29 @@ require 'rails_helper'
 RSpec.describe GiftCardsCheckout do
   let(:gift_card) { GiftCard.new(number_of_months: 3, currency: 'sek') }
 
-  describe '#initialize' do
-    it 'uses provided stripe token' do
-      checkout = described_class.new('token', gift_card, 'confirmation@example.com')
+  let(:payment_intent) do
+    Stripe::PaymentIntent.construct_from(
+      id: 'pi_123',
+      object: 'payment_intent',
+      status: 'succeeded'
+    )
+  end
 
-      expect(checkout.stripe_token).to eq('token')
+  before do
+    allow(Stripe::PaymentIntent).to receive(:retrieve).and_return(payment_intent)
+  end
+
+  describe '#initialize' do
+    it 'retrieves payment intent for provided id' do
+      described_class.new('pi_123', gift_card, 'confirmation@example.com')
+
+      expect(Stripe::PaymentIntent).to have_received(:retrieve).with('pi_123')
+    end
+
+    it 'sets retrieved payment intent' do
+      checkout = described_class.new('pi_123', gift_card, 'confirmation@example.com')
+
+      expect(checkout.payment_intent).to eq(payment_intent)
     end
 
     it 'uses provided gift card' do
@@ -25,7 +43,7 @@ RSpec.describe GiftCardsCheckout do
     end
   end
 
-  describe '#checkout' do
+  describe '#finalize_checkout!' do
     subject(:checkout) { described_class.new('token', gift_card, 'confirmation@example.com') }
 
     let(:fake_pdf) { 'fake pdf' }
@@ -36,102 +54,94 @@ RSpec.describe GiftCardsCheckout do
     end
 
     before do
-      allow(Stripe::Charge).to receive(:create)
-        .and_return(instance_double(Stripe::Charge))
       allow(GiftCardCertificatePdfGenerator).to receive(:from_gift_card).and_return(pdf_generator_stub)
       allow(GiftCardMailer).to receive_message_chain(:with, :gift_card_email, :deliver_now)
     end
 
     it 'returns true when successful' do
-      expect(checkout.checkout).to be true
-    end
-
-    describe 'Stripe charges' do
-      it 'creates Stripe charge with the provided token' do
-        checkout.checkout
-
-        expect(Stripe::Charge).to have_received(:create)
-          .with(hash_including(source: 'token'))
-      end
-
-      it 'creates Stripe charge with gift card price as the amount' do
-        checkout.checkout
-
-        expect(Stripe::Charge).to have_received(:create)
-          .with(hash_including(amount: gift_card.price * 100))
-      end
-
-      it 'creates Stripe charge with gift card currency as the currency' do
-        checkout.checkout
-
-        expect(Stripe::Charge).to have_received(:create)
-          .with(hash_including(currency: gift_card.currency))
-      end
-
-      it 'creates Stripe charge with description indicating a gift card of the specified number of months' do
-        checkout.checkout
-
-        expect(Stripe::Charge).to have_received(:create)
-          .with(hash_including(description: 'Gift Card 3 months'))
-      end
+      expect(checkout.finalize_checkout!).to be true
     end
 
     describe 'confirmation email' do
       it 'sends confirmation email' do
         expect(GiftCardMailer).to receive_message_chain(:with, :gift_card_email, :deliver_now)
 
-        checkout.checkout
+        checkout.finalize_checkout!
       end
 
       it 'sends email to provided confirmation email recipient' do
-        checkout.checkout
+        checkout.finalize_checkout!
 
         expect(GiftCardMailer).to have_received(:with).with(hash_including(email: 'confirmation@example.com'))
       end
 
       it 'includes number of month in sent email' do
-        checkout.checkout
+        checkout.finalize_checkout!
 
         expect(GiftCardMailer).to have_received(:with)
           .with(hash_including(number_of_months: gift_card.number_of_months))
       end
 
       it 'includes a generated pdf in sent email' do
-        checkout.checkout
+        checkout.finalize_checkout!
 
         expect(GiftCardMailer).to have_received(:with).with(hash_including(gift_card_pdf: fake_pdf))
       end
 
       it 'uses gift card when generating pdf' do
-        checkout.checkout
+        checkout.finalize_checkout!
 
         expect(GiftCardCertificatePdfGenerator).to have_received(:from_gift_card).with(gift_card)
       end
     end
 
-    context 'when card gets declined' do
-      let(:card_error) do
-        Stripe::CardError.new('Your card was declined.', nil, code: 'card_declined')
-      end
+    context 'when email is invalid' do
+      subject(:checkout) { described_class.new('token', gift_card, 'notanemail') }
 
-      before do
-        allow(Stripe::Charge).to receive(:create).and_raise(card_error)
-      end
+      it 'adds email error to errors hash' do
+        checkout.finalize_checkout! rescue nil
 
-      it 'adds error to errors hash' do
-        checkout.checkout
-
-        expect(checkout.errors).to include(card_declined: 'Your card was declined.')
+        expect(checkout.errors).to include(email_invalid: 'Email is not valid.')
       end
 
       it 'does not send confirmation email' do
-        checkout.checkout
+        checkout.finalize_checkout! rescue nil
 
         expect(GiftCardMailer).not_to have_received(:with)
       end
 
-      it 'returns false' do
-        expect(checkout.checkout).to be false
+      it 'raises error' do
+        expect do
+          checkout.finalize_checkout!
+        end.to raise_error(GiftCardsCheckout::ValidationError)
+      end
+    end
+
+    context 'when card payment intent was not successful' do
+      let(:payment_intent) do
+        Stripe::PaymentIntent.construct_from(
+          id: 'pi_123',
+          object: 'payment_intent',
+          status: 'requires_action'
+        )
+      end
+
+      it 'adds error to errors hash' do
+        checkout.finalize_checkout! rescue nil
+
+        expect(checkout.errors).to include(payment_failed: 'Payment failed. Please try again.')
+      end
+
+      it 'does not send confirmation email' do
+        checkout.finalize_checkout! rescue nil
+
+        expect(GiftCardMailer).not_to have_received(:with)
+      end
+
+      it 'raises error' do
+        expect do
+          checkout.finalize_checkout!
+        end.to raise_error(GiftCardsCheckout::ValidationError)
       end
     end
   end

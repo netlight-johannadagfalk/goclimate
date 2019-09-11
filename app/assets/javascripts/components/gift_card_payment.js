@@ -1,0 +1,83 @@
+var GiftCardPayment = function(
+  form,
+  cardErrorsElement,
+  submitButton,
+  buttonSpinner,
+  clientSecret,
+  cardElementClass
+) {
+  this.form = form;
+  this.cardErrorsElement = cardErrorsElement;
+  this.submitButton = submitButton;
+  this.buttonSpinner = buttonSpinner;
+  this.clientSecret = clientSecret;
+  this.cardElementClass = cardElementClass;
+
+  this.stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+  this.elements = this.stripe.elements();
+
+  var style = {
+    base: {
+      fontSize: '16px',
+      color: '#000',
+      iconColor: '#666EE8',
+      color: '#31325F',
+      lineHeight: '35px',
+      fontWeight: 300,
+      '::placeholder': {
+        color: '#CFD7E0',
+      }
+    }
+  };
+
+  this.card = this.elements.create('card', {style: style, hidePostalCode: true});
+  this.card.mount(this.cardElementClass);
+  this.card.addEventListener('change', this.onCardChange.bind(this));
+
+  this.form.addEventListener('submit', this.onSubmit.bind(this));
+}
+
+GiftCardPayment.prototype.onCardChange = function(event) {
+  if (event.error) {
+    this.cardErrorsElement.textContent = event.error.message;
+  } else {
+    this.cardErrorsElement.textContent = '';
+  }
+}
+
+GiftCardPayment.prototype.enableSubmit = function() {
+  this.buttonSpinner.classList.add('hidden');
+  this.submitButton.disabled = false;
+}
+
+GiftCardPayment.prototype.disableSubmit = function() {
+  this.buttonSpinner.classList.remove('hidden');
+  this.submitButton.disabled = true;
+}
+
+
+GiftCardPayment.prototype.onSubmit = function(event) {
+  event.preventDefault();
+  this.disableSubmit();
+
+  this.stripe.handleCardPayment(this.clientSecret, this.card).then(function(result) {
+    if (result.error) {
+      this.enableSubmit();
+      this.cardErrorsElement.textContent = result.error.message;
+      return;
+    }
+
+    this.appendHiddenInput('paymentIntentId', result.paymentIntent.id);
+
+    this.form.submit();
+  }.bind(this));
+}
+
+GiftCardPayment.prototype.appendHiddenInput = function(name, value) {
+  var input = document.createElement('input');
+  input.setAttribute('type', 'hidden');
+  input.setAttribute('name', name);
+  input.setAttribute('value', value);
+
+  this.form.appendChild(input);
+}

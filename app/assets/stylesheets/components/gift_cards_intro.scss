@@ -47,12 +47,17 @@ a.example-gift-card {
 }
 
 .gift-card-payment {
-  max-width: 500px;
+  max-width: 400px;
   margin: 40px auto 0px;
-}
+  text-align: left;
 
-.gift-card-message {
-  margin-bottom: 10px;
+  label {
+    margin-top: 10px;
+  }
+
+  .form-control {
+    max-width: 300px;
+  }
 }
 
 .text-right {

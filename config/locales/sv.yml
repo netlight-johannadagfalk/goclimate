@@ -503,13 +503,15 @@ sv:
       new:
         intro: Anpassa och betala för ditt gåvokort
         your_gift_card_order: Ditt gåvokort
-        write_a_message: Skriv gärna ett personligt meddelande att ta med på gåvokortet.
+        write_a_message: Personligt meddelande
         sample_message_html: "Exempel:\nHej Mamma! Här är ett gåvokort till dig! /Jenny"
         we_will_send_you_pdf:
           Efter betalning kommer vi att mejla gåvokortet till dig som en PDF fil.
           Sen kan du ge gåvokortet till mottagaren på det sätt som passar dig.
         gift_card_for_x_months: Gåvokort på %{months} månader
         click_here_for_an_example: Klicka här för ett exempel
+        pay_with_saved_card: Betala med ditt sparade kort
+        pay: Betala
       download:
         gift_card: "Gåvokort"
         gift_card_x_climate_neutral_months:

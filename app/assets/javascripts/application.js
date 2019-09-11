@@ -21,3 +21,4 @@
 //= require components/business_footprint_calculator
 //= require components/offset_payment_form
 //= require dropdown_toggle
+//= require components/gift_card_payment

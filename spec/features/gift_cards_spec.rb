@@ -10,19 +10,16 @@ RSpec.feature 'Gift cards', type: :feature, js: true do
 
     count = ActionMailer::Base.deliveries.count
 
+    find('textarea[id=gift_card_message]').send_keys('Surprise')
+    find('input[id=email]').send_keys('featurespec@example.com')
     # Checkout page
-    click_button 'Proceed to checkout'
     within_frame(0) do
-      find('input[placeholder=Email]').send_keys('featurespec@example.com')
-      find('input[placeholder="Card number"]').send_keys('4242')
-      find('input[placeholder="Card number"]').send_keys('4242')
-      find('input[placeholder="Card number"]').send_keys('4242')
-      find('input[placeholder="Card number"]').send_keys('4242')
+      find('input[placeholder="Card number"]').send_keys('4242424242424242')
       find('input[placeholder="MM / YY"]').send_keys '5'
       find('input[placeholder="MM / YY"]').send_keys '22'
       find('input[placeholder=CVC]').send_keys '123'
-      click_button 'Pay'
     end
+    click_button 'Pay'
 
     # Wait for success page to render
     find('.gift_cards-thank_you', wait: 20)

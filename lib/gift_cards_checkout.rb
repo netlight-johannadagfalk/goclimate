@@ -1,35 +1,33 @@
 # frozen_string_literal: true
 
 class GiftCardsCheckout
+  class ValidationError < StandardError; end
+
   STRIPE_DESCRIPTION_BASE = 'Gift Card'
 
-  attr_reader :stripe_token, :gift_card, :confirmation_email_recipient, :errors
+  attr_reader :payment_intent, :gift_card, :confirmation_email_recipient, :errors
 
-  def initialize(stripe_token, gift_card, confirmation_email_recipient)
-    @stripe_token = stripe_token
+  def initialize(payment_intent_id, gift_card, confirmation_email_recipient)
+    @payment_intent = Stripe::PaymentIntent.retrieve(payment_intent_id)
     @gift_card = gift_card
     @confirmation_email_recipient = confirmation_email_recipient
     @errors = {}
   end
 
-  def checkout
-    charge
+  def finalize_checkout!
+    raise ValidationError, 'Attempt to finalize checkout after payment was made was unsuccessful' unless valid?
+
     send_confirmation_email
     true
-  rescue Stripe::CardError => error
-    errors[error.code.to_sym] = error.message
-    false
   end
 
   private
 
-  def charge
-    Stripe::Charge.create(
-      source: @stripe_token,
-      amount: @gift_card.price * 100,
-      currency: @gift_card.currency,
-      description: "#{STRIPE_DESCRIPTION_BASE} #{@gift_card.number_of_months} months"
-    )
+  def valid?
+    errors[:email_invalid] = 'Email is not valid.' unless confirmation_email_recipient.match?(/\A\S+@.+\.\S+\z/)
+    errors[:payment_failed] = 'Payment failed. Please try again.' unless payment_intent.status == 'succeeded'
+
+    errors.empty?
   end
 
   def send_confirmation_email
