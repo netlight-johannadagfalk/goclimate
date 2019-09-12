@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class FlightOffsetCertificatePdfGenerator
+class FlightOffsetCertificatePdf
   attr_reader :flight_offset
 
   def initialize(flight_offset)
     @flight_offset = flight_offset
   end
 
-  def generate_pdf
+  def render
     I18n.with_locale(:sv) do
       WickedPdf.new.pdf_from_string(
         ApplicationController.render(

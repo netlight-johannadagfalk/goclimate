@@ -6,8 +6,8 @@ RSpec.describe FlightOffsetParameters do
   let(:cabin_class) { 'economy' }
   let(:segments) do
     [
-      FlightSegment.new(origin: 'ARN', destination: 'JFK'),
-      FlightSegment.new(origin: 'JFK', destination: 'ARN')
+      FootprintCalculation::FlightSegment.new(origin: 'ARN', destination: 'JFK'),
+      FootprintCalculation::FlightSegment.new(origin: 'JFK', destination: 'ARN')
     ]
   end
   let(:serilized_paramters) { 'economy,ARN,JFK,JFK,ARN' }

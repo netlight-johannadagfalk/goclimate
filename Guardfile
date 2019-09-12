@@ -25,7 +25,7 @@ group :red_green_refactor, halt_on_fail: true do
     watch(rails.spec_helper) { rspec.spec_dir }
   end
 
-  guard :rubocop, all_on_start: false, cli: '--extra-details --display-style-guide' do
+  guard :rubocop, all_on_start: false, keep_failed: false, cli: '--extra-details --display-style-guide' do
     watch(/.+\.rb$/)
     watch(/.+\.rake$/)
     watch('Gemfile')

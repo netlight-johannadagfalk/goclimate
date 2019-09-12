@@ -19,8 +19,8 @@ class FlightOffsetCheckout
     create_flight_offset_record
     send_confirmation_email
     true
-  rescue Stripe::CardError => error
-    errors[error.code.to_sym] = error.message
+  rescue Stripe::CardError => e
+    errors[e.code.to_sym] = e.message
     false
   end
 
@@ -48,7 +48,7 @@ class FlightOffsetCheckout
   def send_confirmation_email
     FlightOffsetMailer.with(
       flight_offset: @offset,
-      certificate_pdf: FlightOffsetCertificatePdfGenerator.new(@offset).generate_pdf
+      certificate_pdf: FlightOffsetCertificatePdf.new(@offset).render
     ).flight_offset_email.deliver_now
   end
 end

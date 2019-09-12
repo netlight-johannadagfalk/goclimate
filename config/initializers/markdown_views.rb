@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class MarkdownTemplateHandler
-  def call(template)
-    "#{markdown.render(template.source).inspect}.html_safe;"
+  def call(_template, source)
+    "#{markdown.render(source).inspect}.html_safe;"
   end
 
   private

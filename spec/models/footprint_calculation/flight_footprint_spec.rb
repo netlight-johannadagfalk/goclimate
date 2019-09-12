@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe FlightFootprint do
-  let(:segments) { [FlightSegment.new(flight: 'VY1266', origin: 'ARN', destination: 'BCN')] }
+RSpec.describe FootprintCalculation::FlightFootprint do
+  let(:segments) { [FootprintCalculation::FlightSegment.new(flight: 'VY1266', origin: 'ARN', destination: 'BCN')] }
 
   describe '#initialize' do
     it 'sets cabin class' do
@@ -35,7 +35,7 @@ RSpec.describe FlightFootprint do
 
   describe '#segments' do
     it 'validates all its segments' do
-      footprint = described_class.new(segments: [FlightSegment.new])
+      footprint = described_class.new(segments: [FootprintCalculation::FlightSegment.new])
 
       footprint.validate
 
@@ -48,8 +48,8 @@ RSpec.describe FlightFootprint do
       described_class.new(
         cabin_class: 'economy',
         segments: [
-          FlightSegment.new(flight: 'VY1266', origin: 'ARN', destination: 'BCN'),
-          FlightSegment.new(flight: 'VY1265', origin: 'BCN', destination: 'ARN')
+          FootprintCalculation::FlightSegment.new(flight: 'VY1266', origin: 'ARN', destination: 'BCN'),
+          FootprintCalculation::FlightSegment.new(flight: 'VY1265', origin: 'BCN', destination: 'ARN')
         ]
       )
     end

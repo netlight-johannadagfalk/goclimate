@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe GiftCardMailer, type: :mailer do
   describe '.gift_card_email' do
     let(:mail) do
-      GiftCardMailer.with(
+      described_class.with(
         email: 'test@example.com',
         number_of_months: '3',
         gift_card_pdf: 'fake pdf contents'

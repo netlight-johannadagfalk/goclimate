@@ -28,7 +28,7 @@ RSpec.describe SubscriptionMailer, type: :mailer do
   end
 
   describe '.one_more_month_email' do
-    subject(:mail) { SubscriptionMailer.with(email: user.email).one_more_month_email }
+    subject(:mail) { described_class.with(email: user.email).one_more_month_email }
 
     it_behaves_like 'subscription email'
 
@@ -42,7 +42,7 @@ RSpec.describe SubscriptionMailer, type: :mailer do
   end
 
   describe '.one_more_year_email' do
-    subject(:mail) { SubscriptionMailer.with(email: user.email).one_more_year_email }
+    subject(:mail) { described_class.with(email: user.email).one_more_year_email }
 
     before do
       create_list(:stripe_event, 12, stripe_customer_id: 'test_id', paid: true, stripe_object: 'charge')
@@ -60,7 +60,7 @@ RSpec.describe SubscriptionMailer, type: :mailer do
   end
 
   describe '.payment_failed_email' do
-    subject(:mail) { SubscriptionMailer.with(email: user.email).payment_failed_email }
+    subject(:mail) { described_class.with(email: user.email).payment_failed_email }
 
     it_behaves_like 'subscription email'
 

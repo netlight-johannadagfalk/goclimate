@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'csv'
 
-RSpec.describe OpentraveldataAirportsImporter do
+RSpec.describe FootprintCalculation::OpentraveldataAirportsImporter do
   describe '#update' do
     subject(:importer) { described_class.new(airports_csv_path, por_public_csv) }
 

@@ -1,0 +1,66 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "0d1dc3fb7afb0a2254befa3117d85f1c72e93a839c0b845907bf83a506b81f02",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/users/registrations_controller.rb",
+      "line": 135,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(ThreeDSecureVerification.new(card_source_param, plan.amount, plan.currency, user_registration_threedsecure_url).redirect_url)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Users::RegistrationsController",
+        "method": "redirect_to_applicable_three_d_secure_verification"
+      },
+      "user_input": "ThreeDSecureVerification.new(card_source_param, plan.amount, plan.currency, user_registration_threedsecure_url).redirect_url",
+      "confidence": "High",
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "30b985f485562707071e44555e72288a1d586ef6725043491bb94da7319ecc0c",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/flight_offsets_controller.rb",
+      "line": 58,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(ThreeDSecureVerification.new(card_source_param, amount_param, currency_param, threedsecure_flight_offsets_url).redirect_url)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "FlightOffsetsController",
+        "method": "handle_three_d_secure"
+      },
+      "user_input": "ThreeDSecureVerification.new(card_source_param, amount_param, currency_param, threedsecure_flight_offsets_url).redirect_url",
+      "confidence": "High",
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "4d2b02f1c4c5fc234cfc835da0b7619de6313c1bc26dc0af088c16203ace789f",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/users/subscriptions_controller.rb",
+      "line": 58,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(ThreeDSecureVerification.new(card_source_param, (monthly_amount.to_f * 100).to_i, currency_for_user, user_subscription_threedsecure_url).redirect_url)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Users::SubscriptionsController",
+        "method": "redirect_to_applicable_three_d_secure_verification"
+      },
+      "user_input": "ThreeDSecureVerification.new(card_source_param, (monthly_amount.to_f * 100).to_i, currency_for_user, user_subscription_threedsecure_url).redirect_url",
+      "confidence": "High",
+      "note": ""
+    }
+  ],
+  "updated": "2019-09-11 16:29:42 +0200",
+  "brakeman_version": "4.6.1"
+}

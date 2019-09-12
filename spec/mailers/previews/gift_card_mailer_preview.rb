@@ -3,7 +3,7 @@
 # Preview all emails at http://localhost:3000/rails/mailers/gift_card_mailer
 class GiftCardMailerPreview < ActionMailer::Preview
   def gift_card_email
-    pdf = GiftCardCertificatePdfGenerator.new(message: 'God jul!', number_of_months: 3).generate_pdf
+    pdf = GiftCardCertificatePdf.new(message: 'God jul!', number_of_months: 3).render
 
     GiftCardMailer.with(
       email: 'test@example.com',

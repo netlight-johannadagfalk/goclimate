@@ -104,6 +104,20 @@ RSpec.describe ClimateReport do
   end
 
   describe '#meals_vegetarian_share' do
-    it 'validates as percentage share of 100%'
+    it 'validates to be not below 0' do
+      report = described_class.new(meals_vegetarian_share: -1)
+
+      report.validate
+
+      expect(report.errors.keys).to include(:meals_vegetarian_share)
+    end
+
+    it 'validates to be not above 100' do
+      report = described_class.new(meals_vegetarian_share: 101)
+
+      report.validate
+
+      expect(report.errors.keys).to include(:meals_vegetarian_share)
+    end
   end
 end

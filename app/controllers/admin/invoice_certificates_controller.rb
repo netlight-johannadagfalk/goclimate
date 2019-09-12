@@ -3,18 +3,16 @@
 module Admin
   class InvoiceCertificatesController < AdminController
     def show
-      generator =
+      pdf =
         case params[:type]
         when 'invoice'
-          InvoiceCertificatePDFGenerator.from_invoice(Invoice.find(params[:id]))
+          InvoiceCertificatePdf.from_invoice(Invoice.find(params[:id]))
         when 'climate_report_invoice'
-          InvoiceCertificatePDFGenerator.from_climate_report_invoice(ClimateReportInvoice.find(params[:id]))
+          InvoiceCertificatePdf.from_climate_report_invoice(ClimateReportInvoice.find(params[:id]))
         end
 
-      pdf = generator.generate_pdf
-
       send_data(
-        pdf,
+        pdf.render,
         filename: "GoClimateNeutral Certificate - #{generator.receiver}.pdf",
         pe: :pdf
       )

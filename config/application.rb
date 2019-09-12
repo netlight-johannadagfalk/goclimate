@@ -2,7 +2,20 @@
 
 require_relative 'boot'
 
-require 'rails/all'
+require 'active_model/railtie'
+require 'active_job/railtie'
+require 'active_record/railtie'
+require 'active_storage/engine'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'action_mailbox/engine'
+# Somehow ActionText causes an autoloader deprecation warning in test. We're
+# not currently using ActionText so let's avoid the warning for now.
+# require 'action_text/engine'
+require 'action_view/railtie'
+require 'action_cable/engine'
+require 'sprockets/railtie'
+# require 'rails/test_unit/railtie' # We're using RSpec
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -18,8 +31,7 @@ module GoClimateNeutral
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    # Load lib as well as app
-    custom_paths = %w[lib app/models/validators].map { |path| Rails.root.join(path) }
+    custom_paths = %w[app/models/validators].map { |path| Rails.root.join(path) }
     config.eager_load_paths.push(*custom_paths)
     config.autoload_paths.push(*custom_paths)
 

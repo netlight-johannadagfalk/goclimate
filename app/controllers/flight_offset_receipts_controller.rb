@@ -2,7 +2,7 @@
 
 class FlightOffsetReceiptsController < ApplicationController
   def show
-    @receipt = FlightOffsetReceipt.new(FlightOffset.find_by_key!(params[:key]))
-    send_data @receipt.generate_pdf, filename: 'receipt.pdf', type: :pdf
+    @receipt = FlightOffsetReceiptPdf.new(FlightOffset.find_by_key!(params[:key]))
+    send_data @receipt.render, filename: 'receipt.pdf', type: :pdf
   end
 end

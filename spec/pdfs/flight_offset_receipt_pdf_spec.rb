@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'models/shared_example_for_receipts'
 
-RSpec.describe FlightOffsetReceipt do
+RSpec.describe FlightOffsetReceiptPdf do
   subject(:receipt) { described_class.new(offset) }
 
   let(:offset) { create(:flight_offset) }

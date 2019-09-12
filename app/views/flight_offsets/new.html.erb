@@ -28,8 +28,8 @@
                   <ul class="flight-offset-details__segments">
                     <% @offset_params.segments.each do |segment| %>
                       <li>
-                        <%= Airport.find(segment.origin).name %> -
-                        <%= Airport.find(segment.destination).name %>
+                        <%= FootprintCalculation::Airport.find(segment.origin).name %> -
+                        <%= FootprintCalculation::Airport.find(segment.destination).name %>
                       </li>
                     <% end %>
                   </ul>

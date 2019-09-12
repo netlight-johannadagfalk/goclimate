@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe GenericFlightFootprint do
+RSpec.describe FootprintCalculation::GenericFlightFootprint do
   describe '#footprint' do
     it 'returns correct footprint for long haul flight' do
       # ARN-JFK, 6292 km -> 1167 kg co2e

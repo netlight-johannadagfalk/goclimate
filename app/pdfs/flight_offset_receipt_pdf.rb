@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class GiftCardReceipt
-  attr_reader :gift_card
+class FlightOffsetReceiptPdf
+  attr_reader :flight_offset
 
-  def initialize(gift_card)
-    @gift_card = gift_card
+  def initialize(flight_offset)
+    @flight_offset = flight_offset
   end
 
-  def generate_pdf
+  def render
     WickedPdf.new.pdf_from_string(
       ApplicationController.render(
         template: 'pdfs/receipt',
@@ -21,15 +21,15 @@ class GiftCardReceipt
   end
 
   def date
-    gift_card.created_at.to_date
+    flight_offset.created_at.to_date
   end
 
   def currency
-    gift_card.currency
+    flight_offset.charged_currency
   end
 
   def total_amount
-    BigDecimal(gift_card.price)
+    flight_offset.charged_amount.to_d / 100
   end
 
   def vat_amount
@@ -41,6 +41,6 @@ class GiftCardReceipt
   end
 
   def order_id
-    gift_card.order_id
+    flight_offset.order_id
   end
 end

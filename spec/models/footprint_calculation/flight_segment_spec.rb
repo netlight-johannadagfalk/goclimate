@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe FlightSegment do
+RSpec.describe FootprintCalculation::FlightSegment do
   describe '#initialize' do
     it 'sets origin' do
       expect(described_class.new(origin: 'ARN').origin).to eq('ARN')
