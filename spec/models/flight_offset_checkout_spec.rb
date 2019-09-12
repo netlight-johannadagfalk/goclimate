@@ -3,11 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe FlightOffsetCheckout do
-  describe '#initialize' do
-    it 'uses provided stripe token' do
-      checkout = described_class.new(stripe_source: 'token')
+  let(:payment_intent) do
+    Stripe::PaymentIntent.construct_from(stripe_json_fixture('payment_intent.json'))
+  end
 
-      expect(checkout.stripe_source).to eq('token')
+  describe '#initialize' do
+    it 'uses provided stripe payment_intent' do
+      checkout = described_class.new(payment_intent: payment_intent)
+
+      expect(checkout.payment_intent).to eq(payment_intent)
     end
 
     it 'uses provided amount' do
@@ -38,13 +42,14 @@ RSpec.describe FlightOffsetCheckout do
   describe '#checkout' do
     subject(:checkout) do
       described_class.new(
-        stripe_source: 'token', amount: 4000, currency: 'SEK', co2e: co2e, email: email
+        payment_intent: payment_intent, amount: 4000, currency: 'SEK', co2e: co2e, email: email
       )
     end
 
+    let(:amount) { 4000 }
+    let(:currency) { 'sek' }
     let(:co2e) { 1000 }
     let(:email) { 'test@example.com' }
-    let(:stripe_charge) { Stripe::Charge.construct_from(id: 'charge_id', amount: 4000, currency: 'sek') }
     let(:fake_pdf) { 'fake pdf' }
     let(:certificate_generator_stub) do
       instance_double(FlightOffsetCertificatePdf).tap do |pdf_generator|
@@ -53,49 +58,12 @@ RSpec.describe FlightOffsetCheckout do
     end
 
     before do
-      allow(Stripe::Charge).to receive(:create).and_return(stripe_charge)
       allow(FlightOffsetCertificatePdf).to receive(:new).and_return(certificate_generator_stub)
       allow(FlightOffsetMailer).to receive_message_chain(:with, :flight_offset_email, :deliver_now)
     end
 
     it 'returns true when successful' do
       expect(checkout.checkout).to be true
-    end
-
-    it 'sets charge to received Stripe::Charge' do
-      checkout.checkout
-
-      expect(checkout.charge).to eq(stripe_charge)
-    end
-
-    describe 'Stripe charges' do
-      it 'creates Stripe charge with the provided token' do
-        checkout.checkout
-
-        expect(Stripe::Charge).to have_received(:create)
-          .with(hash_including(source: 'token'))
-      end
-
-      it 'creates Stripe charge with provided price as the amount' do
-        checkout.checkout
-
-        expect(Stripe::Charge).to have_received(:create)
-          .with(hash_including(amount: 4000))
-      end
-
-      it 'creates Stripe charge with provided currency as the currency' do
-        checkout.checkout
-
-        expect(Stripe::Charge).to have_received(:create)
-          .with(hash_including(currency: 'sek'))
-      end
-
-      it 'creates Stripe charge with description indicating a gift card of the specified number of months' do
-        checkout.checkout
-
-        expect(Stripe::Charge).to have_received(:create)
-          .with(hash_including(description: 'Flight offset'))
-      end
     end
 
     describe 'FlightOffset creation' do
@@ -108,19 +76,19 @@ RSpec.describe FlightOffsetCheckout do
       it 'sets charged amount for FlightOffset' do
         checkout.checkout
 
-        expect(checkout.offset.charged_amount).to eq(stripe_charge.amount)
+        expect(checkout.offset.charged_amount).to eq(amount)
       end
 
       it 'sets charged currency for FlightOffset' do
         checkout.checkout
 
-        expect(checkout.offset.charged_currency).to eq(stripe_charge.currency)
+        expect(checkout.offset.charged_currency).to eq(currency)
       end
 
       it 'sets created Stripe charge ID for FlightOffset' do
         checkout.checkout
 
-        expect(checkout.offset.stripe_charge_id).to eq(stripe_charge.id)
+        expect(checkout.offset.stripe_charge_id).to eq(payment_intent.charges.first.id)
       end
 
       it 'sets CO2e for FlightOffset' do
@@ -171,30 +139,10 @@ RSpec.describe FlightOffsetCheckout do
         expect(FlightOffsetMailer).to have_received(:with).with(hash_including(certificate_pdf: fake_pdf))
       end
 
-      it 'uses gift card when generating pdf' do
+      it 'uses flight offset when generating pdf' do
         checkout.checkout
 
         expect(FlightOffsetCertificatePdf).to have_received(:new).with(checkout.offset)
-      end
-    end
-
-    context 'when card gets declined' do
-      let(:card_error) do
-        Stripe::CardError.new('Your card was declined.', nil, code: 'card_declined')
-      end
-
-      before do
-        allow(Stripe::Charge).to receive(:create).and_raise(card_error)
-      end
-
-      it 'adds error to errors hash' do
-        checkout.checkout
-
-        expect(checkout.errors).to include(card_declined: 'Your card was declined.')
-      end
-
-      it 'returns false' do
-        expect(checkout.checkout).to be false
       end
     end
   end

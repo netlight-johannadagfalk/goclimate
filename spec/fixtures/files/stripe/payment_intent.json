@@ -1,0 +1,149 @@
+{
+  "object" : "payment_intent",
+  "cancellation_reason" : null,
+  "id" : "pi_1FHnafHwuhGySQCdzH5H6sq7",
+  "application" : null,
+  "capture_method" : "automatic",
+  "amount_received" : 360,
+  "charges" : {
+    "object" : "list",
+    "has_more" : false,
+    "total_count" : 1,
+    "data" : [
+      {
+        "failure_message" : null,
+        "payment_intent" : "pi_1FHnafHwuhGySQCdzH5H6sq7",
+        "application_fee" : null,
+        "dispute" : null,
+        "receipt_email" : null,
+        "billing_details" : {
+          "phone" : null,
+          "name" : null,
+          "address" : {
+            "city" : null,
+            "postal_code" : null,
+            "country" : null,
+            "line2" : null,
+            "state" : null,
+            "line1" : null
+          },
+          "email" : null
+        },
+        "fraud_details" : {},
+        "receipt_number" : null,
+        "application_fee_amount" : null,
+        "statement_descriptor" : null,
+        "outcome" : {
+          "seller_message" : "Payment complete.",
+          "risk_score" : 40,
+          "reason" : null,
+          "type" : "authorized",
+          "network_status" : "approved_by_network",
+          "risk_level" : "normal"
+        },
+        "application" : null,
+        "statement_descriptor_suffix" : null,
+        "order" : null,
+        "status" : "succeeded",
+        "failure_code" : null,
+        "invoice" : "in_1FHmSmHwuhGySQCdiY4hVF1V",
+        "currency" : "usd",
+        "payment_method_details" : {
+          "type" : "card",
+          "card" : {
+            "checks" : {
+              "address_postal_code_check" : null,
+              "address_line1_check" : null,
+              "cvc_check" : null
+            },
+            "exp_year" : 2022,
+            "wallet" : null,
+            "country" : "US",
+            "brand" : "visa",
+            "three_d_secure" : null,
+            "funding" : "credit",
+            "fingerprint" : "AFDR1kTX598pXWiQ",
+            "last4" : "4242",
+            "exp_month" : 5
+          }
+        },
+        "amount_refunded" : 0,
+        "on_behalf_of" : null,
+        "destination" : null,
+        "shipping" : null,
+        "refunds" : {
+          "url" : "/v1/charges/ch_1FHnagHwuhGySQCdwdc45sCM/refunds",
+          "data" : [],
+          "object" : "list",
+          "has_more" : false,
+          "total_count" : 0
+        },
+        "transfer_data" : null,
+        "id" : "ch_1FHnagHwuhGySQCdwdc45sCM",
+        "refunded" : false,
+        "source" : {
+          "card" : {
+            "country" : "US",
+            "tokenization_method" : null,
+            "address_line1_check" : null,
+            "brand" : "Visa",
+            "dynamic_last4" : null,
+            "address_zip_check" : null,
+            "exp_year" : 2022,
+            "name" : null,
+            "cvc_check" : null,
+            "exp_month" : 5,
+            "fingerprint" : "AFDR1kTX598pXWiQ",
+            "last4" : "4242",
+            "three_d_secure" : "optional",
+            "funding" : "credit"
+          },
+          "id" : "src_1EOJWEHwuhGySQCdaiLEM4vD",
+          "object" : "source",
+          "customer" : "cus_Es3ddYx8QO05IL",
+          "metadata" : {},
+          "flow" : "none",
+          "amount" : null,
+          "statement_descriptor" : null,
+          "livemode" : false,
+          "owner" : {
+            "address" : null,
+            "name" : null,
+            "verified_address" : null,
+            "verified_phone" : null,
+            "phone" : null,
+            "verified_email" : null,
+            "email" : null,
+            "verified_name" : null
+          },
+          "status" : "chargeable",
+          "usage" : "reusable",
+          "created" : 1568276626,
+          "type" : "card",
+          "currency" : null,
+          "client_secret" : "src_client_secret_Es3d3SE1SqnJUZ3VnCPwyJPJ"
+        },
+        "payment_method" : "src_1EOJWEHwuhGySQCdaiLEM4vD",
+        "object" : "charge",
+        "customer" : "cus_Es3ddYx8QO05IL",
+        "review" : null,
+        "metadata" : {},
+        "amount" : 360,
+        "paid" : true,
+        "livemode" : false,
+        "transfer_group" : null,
+        "source_transfer" : null,
+        "receipt_url" : "https://pay.stripe.com/receipts/acct_1A09wWHwuhGySQCd/ch_1FHnagHwuhGySQCdwdc45sCM/rcpt_FnONhbJ8dwca6074ar5kz08p0tdti4U",
+        "description" : "Invoice 9EBC9FAB-0006",
+        "balance_transaction" : "txn_1FHnagHwuhGySQCd8RxxDXKn",
+        "captured" : true,
+        "created" : 1568276626
+      }
+    ],
+    "url" : "/v1/charges?payment_intent=pi_1FHnafHwuhGySQCdzH5H6sq7"
+  },
+  "application_fee_amount" : null,
+  "amount" : 360,
+  "amount_capturable" : 0,
+  "canceled_at" : null
+}

@@ -71,15 +71,15 @@
         <%= hidden_field_tag :num_persons, params[:num_persons] %>
 
         <div class="form-group">
-          <label for="footprint" class="col-sm-5 control-label padding-top"><%=t 'views.flight_offsets.new.your_order' %></label>
-          <div class="col-sm-7 padding-top">
+          <label for="footprint" class="col-sm-5 control-label"><%=t 'views.flight_offsets.new.your_order' %></label>
+          <div class="col-sm-7 form-control-static">
             <%= co2e_string(@total_footprint) %>
           </div>
         </div>
 
         <div class="form-group">
           <label for="price" class="col-sm-5 control-label padding-top"><%=t 'views.flight_offsets.new.sum' %></label>
-          <div class="col-sm-7 padding-top">
+          <div class="col-sm-7 form-control-static">
              <%= (@price / 100).to_i %> kr
           </div>
         </div>
@@ -107,7 +107,10 @@
 
         <div class="form-group form-group-sm-centered">
           <div class="col-sm-offset-5 col-sm-7">
-            <input id="register-button" type="submit" value="Klimatkompensera" class="btn btn-success">
+            <button id="register-button" type="submit" class="btn btn-success">
+              <%= fa_icon "spinner", class: "hidden fa-spin", id: "button-spinner" %>
+              Klimatkompensera
+            </input>
           </div>
         </div>
       <% end %>
@@ -123,10 +126,13 @@
     var STRIPE_PUBLISHABLE_KEY = "<%= ENV['PUBLISHABLE_KEY'] %>"
 
     window.addEventListener('DOMContentLoaded', function() {
-      new OffsetPaymentForm(
+      new StripeCardPayment(
         document.getElementById('payment-form'),
         document.getElementById('card-errors'),
-        document.getElementById('register-button')
+        document.getElementById('register-button'),
+        document.getElementById('button-spinner'),
+        "<%= @payment_intent.client_secret %>",
+        "#card-element"
       );
     })
   </script>

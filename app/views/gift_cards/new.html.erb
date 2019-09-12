@@ -62,7 +62,6 @@
     <div id="error_explanation" class="hidden"> </div>
 
     <%= hidden_field_tag :subscription_months_to_gift, @gift_card.number_of_months %>
-    <%= hidden_field_tag :client_secret, @payment_intent.client_secret %>
 
     <%= button_tag(type: 'submit', id: 'checkout-button', class: 'btn btn-success') do %>
       <%= fa_icon "spinner", class: "hidden fa-spin", id: "button-spinner" %>
@@ -79,13 +78,13 @@
   <script type="text/javascript">
     var STRIPE_PUBLISHABLE_KEY = "<%= ENV['PUBLISHABLE_KEY'] %>"
     window.addEventListener('DOMContentLoaded', function() {
-      new GiftCardPayment(
+      new StripeCardPayment(
         document.getElementById('payment-form'),
         document.getElementById('card-errors'),
         document.getElementById('checkout-button'),
         document.getElementById('button-spinner'),
-        document.getElementById('client_secret').value,
-        '#card-element',
+        "<%= @payment_intent.client_secret %>",
+        "#card-element"
       )
     })
   </script>
