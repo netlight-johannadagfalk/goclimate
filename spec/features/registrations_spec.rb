@@ -17,7 +17,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     fill_in 'Email', with: 'test@example.com'
     fill_in 'Password', with: 'password'
     within_frame(0) do
-      find('input[name=cardnumber]').send_keys('4242424242424242')
+      send_keys_to_card_field '4242424242424242'
       find('input[name=exp-date]').send_keys '522'
       find('input[name=cvc]').send_keys '123'
     end
@@ -41,7 +41,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     # Update card
     click_link 'edit card'
     within_frame(0) do
-      find('input[name=cardnumber]').send_keys('4242424242424242')
+      send_keys_to_card_field '4242424242424242'
       find('input[name=exp-date]').send_keys '522'
       find('input[name=cvc]').send_keys '123'
     end
@@ -61,7 +61,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       fill_in 'Email', with: 'test@example.com'
       fill_in 'Password', with: 'password'
       within_frame(0) do
-        find('input[name=cardnumber]').send_keys('4000000000003063')
+        send_keys_to_card_field '4000000000003063'
         find('input[name=exp-date]').send_keys '522'
         find('input[name=cvc]').send_keys '123'
       end
@@ -95,7 +95,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       # Update card
       click_link 'edit card'
       within_frame(0) do
-        find('input[name=cardnumber]').send_keys('4242424242424242')
+        send_keys_to_card_field '4242424242424242'
         find('input[name=exp-date]').send_keys '522'
         find('input[name=cvc]').send_keys '123'
       end

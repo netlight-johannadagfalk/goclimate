@@ -12,7 +12,7 @@ RSpec.feature 'Flight offset', type: :feature, js: true do
 
     fill_in 'email', with: 'test@example.com'
     within_frame(0) do
-      find('input[name=cardnumber]').send_keys('4242424242424242')
+      send_keys_to_card_field '4242424242424242'
       find('input[name=exp-date]').send_keys '522'
       find('input[name=cvc]').send_keys '123'
     end

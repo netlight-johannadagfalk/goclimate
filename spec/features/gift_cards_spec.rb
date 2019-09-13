@@ -14,7 +14,7 @@ RSpec.feature 'Gift cards', type: :feature, js: true do
     find('input[id=email]').send_keys('featurespec@example.com')
     # Checkout page
     within_frame(0) do
-      find('input[placeholder="Card number"]').send_keys('4242424242424242')
+      send_keys_to_card_field '4242424242424242'
       find('input[placeholder="MM / YY"]').send_keys '5'
       find('input[placeholder="MM / YY"]').send_keys '22'
       find('input[placeholder=CVC]').send_keys '123'
