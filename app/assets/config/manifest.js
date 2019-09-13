@@ -2,3 +2,4 @@
 //= link_directory ../javascripts .js
 //= link_directory ../stylesheets .css
 //= link users/registrations.js
+//= link users/edit-card.js

@@ -15,29 +15,6 @@ $(document).ready(function() {
     scrollToAnchor('#third-section');
   });
 
-  if($('#new-card-div').length) {
-    $('#add-new-card').click(function(event) {
-      event.preventDefault();
-      $('#new-card-div').removeClass('hidden');
-    });
-  };
-
-  $('#plan').on('change', function() {
-    hideCurrentCard();
-  });
-
-  if($('#plan').length) {
-    hideCurrentCard();
-  };
-
-  function hideCurrentCard(){
-    if($('#plan').find(":selected").val() == "cancel") {
-      $('#current-card-group').hide();
-    } else {
-      $('#current-card-group').show();
-    }
-  };
-
   if($('#card-element').length) {
     var stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
     var elements = stripe.elements();
@@ -81,34 +58,25 @@ $(document).ready(function() {
     });
 
     $('#payment-form').on('submit', function(event) {
-
-      if ($('#new-card-div').length && $('#new-card-div').hasClass("hidden")) {
-
-        var form = document.getElementById('payment-form');
-        form.submit();
-
-      } else {
-
-        stripe.createSource(card).then(function(result) {
-          if (result.error || 
-            ($('#email').val() !== undefined && $('#email').val().length === 0) || 
-            ($('#password').val() !== undefined && $('#password').val().length === 0) || 
-            $('.field_with_errors').length !== 0){
-            // Inform the user if there was an error
-            if (result.error === undefined) {
-              $('#card-errors').text("Check your email or password");
-            } else {
-              $('#card-errors').textContent = result.error.message;
-            }
-            if ($('#user_privacy_policy').is(':checked')) {
-              $('#register-button').prop('disabled', false);
-            }
+      stripe.createSource(card).then(function(result) {
+        if (result.error || 
+          ($('#email').val() !== undefined && $('#email').val().length === 0) || 
+          ($('#password').val() !== undefined && $('#password').val().length === 0) || 
+          $('.field_with_errors').length !== 0){
+          // Inform the user if there was an error
+          if (result.error === undefined) {
+            $('#card-errors').text("Check your email or password");
           } else {
-            // Send the source to your server
-            stripeSourceHandler(result.source);
+            $('#card-errors').textContent = result.error.message;
           }
-        });
-      }
+          if ($('#user_privacy_policy').is(':checked')) {
+            $('#register-button').prop('disabled', false);
+          }
+        } else {
+          // Send the source to your server
+          stripeSourceHandler(result.source);
+        }
+      });
 
       //https://stackoverflow.com/questions/1357118/event-preventdefault-vs-return-false
       return false;

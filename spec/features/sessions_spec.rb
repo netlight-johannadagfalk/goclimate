@@ -6,6 +6,10 @@ RSpec.feature 'Sessions', type: :feature, js: true do
   scenario 'User signs in' do
     user = create(:user)
 
+    if page.has_link?('user-menu')
+      click_link('user-menu')
+      click_link('Log out')
+    end
     # Homepage
     visit '/'
     click_link 'Log In'

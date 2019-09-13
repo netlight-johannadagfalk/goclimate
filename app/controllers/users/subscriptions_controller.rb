@@ -4,16 +4,13 @@ module Users
   class SubscriptionsController < ApplicationController
     before_action :authenticate_user!
 
-    # Cleanup potential 3D Secure handoff hash before starting fresh, and also after returning.
-    before_action :cleanup_three_d_secure_handoff, only: [:update], if: -> { params[:three_d_secure] != 'continue' }
-    after_action :cleanup_three_d_secure_handoff, only: [:update], if: -> { params[:three_d_secure] == 'continue' }
-
     def show
       @currency = currency_for_user
 
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
 
-      @current_source = customer.default_source.nil? ? nil : customer.sources.retrieve(customer.default_source)
+      @customer_payment_method = customer_payment_method(customer)
+      @setup_intent = Stripe::SetupIntent.create(customer: current_user.stripe_customer_id)
       @plan =
         if customer['subscriptions']['total_count'] == 0
           0
@@ -25,38 +22,38 @@ module Users
     def update
       @plan = plan_param
 
-      return if redirect_to_applicable_three_d_secure_verification(@plan)
-
-      @manager = SubscriptionManager.for_customer(current_user.stripe_customer_id)
+      @manager = SubscriptionManager.for_customer(stripe_customer)
 
       if @plan == 'cancel'
         @manager.cancel
-        redirect_successful_update && return
+        render_successful_update && return
       end
 
       new_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
 
-      redirect_with_error && return unless update_subscription(new_plan)
-
-      redirect_successful_update
+      if @manager.update(new_plan, params[:paymentMethodId])
+        render_successful_update
+      else
+        render_bad_request(@managers.errors)
+      end
     end
 
     private
 
-    def redirect_to_applicable_three_d_secure_verification(monthly_amount)
-      return false unless params[:threeDSecure] == 'required'
+    def render_bad_request(errors)
+      render json: errors, status: :bad_request
+    end
 
-      verification = ThreeDSecureVerification.new(
-        card_source_param,
-        (monthly_amount.to_f * 100).to_i,
-        currency_for_user,
-        user_subscription_threedsecure_url
-      )
-      return false unless verification.verification_required?
+    def stripe_customer
+      Stripe::Customer.retrieve(current_user.stripe_customer_id)
+    end
 
-      set_three_d_secure_handoff
-      redirect_to verification.redirect_url
-      true
+    def customer_payment_method(customer)
+      if customer.invoice_settings&.default_payment_method
+        Stripe::PaymentMethod.retrieve(customer.invoice_settings.default_payment_method)
+      elsif customer.default_source
+        customer.sources.retrieve(customer.default_source)
+      end
     end
 
     def update_subscription(new_plan)
@@ -67,33 +64,17 @@ module Users
       )
     end
 
-    def redirect_with_error
-      flash[:error] = "The payment failed: #{@manager.errors.values.join(' ')}"
-      redirect_to user_subscription_path
-    end
-
-    def redirect_successful_update
+    def render_successful_update
       flash[:notice] = I18n.t('your_payment_details_have_been_updated')
-      redirect_to user_subscription_path
+      render json: { redirectTo: user_subscription_path, notice: notice }, status: :ok
     end
 
     def plan_param
-      session.to_hash.dig('three_d_secure_handoff', 'plan') || params[:user][:plan]
+      params[:user][:plan]
     end
 
     def card_source_param
-      session.to_hash.dig('three_d_secure_handoff', 'card_source') || params[:stripeSource]
-    end
-
-    def set_three_d_secure_handoff
-      session[:three_d_secure_handoff] = {
-        'plan' => plan_param,
-        'card_source' => card_source_param
-      }
-    end
-
-    def cleanup_three_d_secure_handoff
-      session.delete(:three_d_secure_handoff)
+      params[:stripeSource]
     end
   end
 end

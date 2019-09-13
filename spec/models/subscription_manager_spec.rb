@@ -171,7 +171,7 @@ RSpec.describe SubscriptionManager do
   end
 
   context 'when customer already exists' do
-    subject(:manager) { described_class.for_customer(customer_id) }
+    subject(:manager) { described_class.for_customer(stripe_customer) }
 
     let(:customer_id) { 'cus_EXISTING' }
     let(:stripe_customer) do
@@ -179,29 +179,19 @@ RSpec.describe SubscriptionManager do
     end
     let(:stripe_subscription) { stripe_customer.subscriptions.first }
 
-    before do
-      allow(Stripe::Customer).to receive(:retrieve).and_return(stripe_customer)
-    end
-
     describe '#for_customer' do
-      it 'retrieves customer with provided customer id' do
-        described_class.for_customer(customer_id)
-
-        expect(Stripe::Customer).to have_received(:retrieve).with(customer_id)
-      end
-
       it 'returns an instance' do
-        expect(described_class.for_customer(customer_id)).to be_an_instance_of(described_class)
+        expect(described_class.for_customer(stripe_customer)).to be_an_instance_of(described_class)
       end
 
-      it 'sets retrieved customer' do
-        manager = described_class.for_customer(customer_id)
+      it 'sets provided customer' do
+        manager = described_class.for_customer(stripe_customer)
 
         expect(manager.customer).to be(stripe_customer)
       end
     end
 
-    describe '.cancel' do
+    describe '#cancel' do
       before do
         allow(stripe_subscription).to receive(:delete)
       end
@@ -213,15 +203,17 @@ RSpec.describe SubscriptionManager do
       end
     end
 
-    describe '.update' do
-      let(:new_card_source) { Stripe::Source.construct_from(id: 'src_NEW_CARD') }
-      let(:three_d_secure_source) { 'src_THREEDSECURE' }
+    describe '#update' do
+      subject(:manager) { described_class.for_customer(stripe_customer) }
+
+      let(:stripe_customer) { Stripe::Customer.construct_from(stripe_json_fixture('customer_with_subscription.json')) }
+      let(:subscription_id) { 'sub_ELX3kRY8b7Rm9e' }
+      let(:customer_id) { 'cus_ELX3rIGG1ccq1R' }
+      let(:new_payment_method_id) { 'new_payment_method_id' }
       let(:new_plan) { Stripe::Plan.construct_from(stripe_json_fixture('plan_alternative.json')) }
 
       before do
-        allow(stripe_customer).to receive(:save)
-        allow(stripe_customer.sources).to receive(:create).and_return(new_card_source)
-        allow(stripe_subscription).to receive(:save) if stripe_subscription.present?
+        allow(Stripe::Subscription).to receive(:update)
       end
 
       it 'returns true to indicate success' do
@@ -232,7 +224,7 @@ RSpec.describe SubscriptionManager do
         it 'does not update subscription' do
           manager.update(plan)
 
-          expect(stripe_subscription).not_to have_received(:save)
+          expect(Stripe::Subscription).not_to have_received(:update)
         end
 
         it 'does not create new subscription' do
@@ -243,30 +235,24 @@ RSpec.describe SubscriptionManager do
       end
 
       context 'when new plan is different than current' do
-        it 'sets new plan for subscription' do
-          manager.update(new_plan)
-
-          expect(stripe_subscription.plan).to eq(new_plan.id)
+        before do
+          allow(Stripe::Subscription).to receive(:update)
+          allow(Stripe::PaymentMethod).to receive(:attach)
         end
 
-        it 'sets prorate for subscription to false' do
+        it 'updates subscription with new plan and prorate false' do
           manager.update(new_plan)
 
-          expect(stripe_subscription.prorate).to be(false)
-        end
-
-        it 'saves subscription' do
-          manager.update(new_plan)
-
-          expect(stripe_subscription).to have_received(:save)
+          expect(Stripe::Subscription).to have_received(:update)
+            .with(subscription_id, hash_including(prorate: false, plan: new_plan.id))
         end
 
         it 'updates card before updating subscription' do
-          allow(stripe_customer).to receive(:save) do
-            expect(stripe_subscription).not_to have_received(:save)
+          allow(Stripe::Customer).to receive(:update) do
+            expect(Stripe::Subscription).not_to have_received(:update)
           end
 
-          manager.update(new_plan, new_card_source)
+          manager.update(new_plan, new_payment_method_id)
         end
       end
 
@@ -277,6 +263,8 @@ RSpec.describe SubscriptionManager do
 
         before do
           allow(Stripe::Subscription).to receive(:create).and_return(stripe_subscription)
+          allow(Stripe::Customer).to receive(:update)
+          allow(Stripe::PaymentMethod).to receive(:attach)
         end
 
         it 'creates a new subscription' do
@@ -294,148 +282,30 @@ RSpec.describe SubscriptionManager do
         it 'sets id for plan' do
           manager.update(new_plan)
 
-          expect(Stripe::Subscription).to have_received(:create).with(hash_including(plan: new_plan.id))
-        end
-
-        it 'adds 1 month trial period for created subscription when 3D Secure source is provided' do
-          # We're expecting the trial end to be set relative to now so pause time to be able to match against it
-          allow(Time).to receive(:now).and_return(Time.now)
-
-          manager.update(plan, new_card_source, three_d_secure_source)
-
           expect(Stripe::Subscription).to have_received(:create)
-            .with hash_including(trial_end: 1.month.from_now.to_i)
-        end
-
-        context 'when encoutering card errors' do
-          let(:card_error) do
-            Stripe::CardError.new('Your card was declined.', nil, code: 'card_declined')
-          end
-
-          before do
-            allow(Stripe::Subscription).to receive(:create).and_raise(card_error)
-          end
-
-          it 'adds error to errors hash' do
-            manager.update(plan)
-
-            expect(manager.errors).to include(card_declined: 'Your card was declined.')
-          end
-
-          it 'returns false' do
-            expect(manager.update(plan)).to be(false)
-          end
+            .with(hash_including(customer: stripe_customer.id, plan: new_plan.id))
         end
       end
 
-      context 'with card source provided' do
-        it 'creates new source for customer' do
-          manager.update(plan, new_card_source)
-
-          expect(stripe_customer.sources).to have_received(:create).with(hash_including(source: new_card_source))
+      context 'with payment_method_id provided' do
+        before do
+          allow(Stripe::PaymentMethod).to receive(:attach)
+          allow(Stripe::Customer).to receive(:update)
         end
 
-        it 'sets new source as new customer default' do
-          manager.update(plan, new_card_source)
+        it 'attaches payment method to customer' do
+          manager.update(plan, new_payment_method_id)
 
-          expect(stripe_customer.default_source).to eq(new_card_source.id)
+          expect(Stripe::PaymentMethod).to have_received(:attach)
+            .with(new_payment_method_id, hash_including(customer: stripe_customer.id))
         end
 
-        it 'saves updated customer' do
-          manager.update(plan, new_card_source)
+        it 'sets new payment method as customer default' do
+          manager.update(plan, new_payment_method_id)
 
-          expect(stripe_customer).to have_received(:save)
-        end
-
-        context 'when encoutering card errors' do
-          let(:card_error) do
-            Stripe::CardError.new('Your card was declined.', nil, code: 'card_declined')
-          end
-
-          before do
-            allow(stripe_customer).to receive(:save).and_raise(card_error)
-          end
-
-          it 'adds error to errors hash' do
-            manager.update(plan, new_card_source)
-
-            expect(manager.errors).to include(card_declined: 'Your card was declined.')
-          end
-
-          it 'returns false' do
-            expect(manager.update(plan, new_card_source)).to be(false)
-          end
-        end
-
-        context 'when 3D Secure source is provided' do
-          it 'creates an initial charge to complete verification' do
-            manager.update(plan, new_card_source, three_d_secure_source)
-
-            expect(Stripe::Charge).to have_received(:create)
-          end
-
-          it 'uses plan monthly cost as amount for initial charge' do
-            manager.update(plan, new_card_source, three_d_secure_source)
-
-            expect(Stripe::Charge).to have_received(:create).with hash_including(amount: plan.amount)
-          end
-
-          it 'uses plan currency as currency for initial charge' do
-            manager.update(plan, new_card_source, three_d_secure_source)
-
-            expect(Stripe::Charge).to have_received(:create).with hash_including(currency: plan.currency)
-          end
-
-          it 'uses provided 3D Secure source for initial charge' do
-            manager.update(plan, new_card_source, three_d_secure_source)
-
-            expect(Stripe::Charge).to have_received(:create).with hash_including(source: three_d_secure_source)
-          end
-
-          it 'uses created customer for initial charge' do
-            manager.update(plan, new_card_source, three_d_secure_source)
-
-            expect(Stripe::Charge).to have_received(:create).with hash_including(customer: manager.customer.id)
-          end
-
-          it 'adds 1 month trial period to skip next monthly payment' do
-            # We're expecting the trial end to be set relative to now so pause time to be able to match against it
-            allow(Time).to receive(:now).and_return(Time.now)
-
-            manager.update(plan, new_card_source, three_d_secure_source)
-
-            expect(stripe_subscription).to have_received(:save)
-          end
-
-          it 'saves subscription after adding trial period' do
-            manager.update(plan, new_card_source, three_d_secure_source)
-
-            expect(stripe_subscription).to have_received(:save)
-          end
-        end
-
-        context 'when 3D Secure source is not chargeable after verification' do
-          before do
-            allow(Stripe::Source).to receive(:retrieve).and_return(
-              Stripe::Source.construct_from(stripe_json_fixture('source_three_d_secure_failed.json'))
-            )
-          end
-
-          it 'adds error to errors hash' do
-            manager.update(plan, new_card_source, three_d_secure_source)
-
-            expect(manager.errors).to include(verification_failed: 'Card verification was not successful.')
-          end
-
-          it 'does not update default card for customer' do
-            expect do
-              manager.update(plan, new_card_source, three_d_secure_source)
-            end.not_to change(stripe_customer, :default_source)
-          end
-
-          it 'returns false' do
-            expect(manager.update(plan, new_card_source, three_d_secure_source)).to be(false)
-          end
+          expect(Stripe::Customer).to have_received(:update)
+            .with(stripe_customer.id,
+                  hash_including(invoice_settings: { default_payment_method: new_payment_method_id }))
         end
       end
     end

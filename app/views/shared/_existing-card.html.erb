@@ -1,3 +1,3 @@
-<span class="card-<%= card_brand(@current_source) %>"></span>
-<%= masked_card_number(@current_source) %>
-<span class="card-expiration"><%= card_expiration(@current_source) %></span>
+<span class="card-<%= card_brand(@customer_payment_method) %>"></span>
+<%= masked_card_number(@customer_payment_method) %>
+<span class="card-expiration"><%= card_expiration(@customer_payment_method) %></span>

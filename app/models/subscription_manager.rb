@@ -5,8 +5,8 @@ class SubscriptionManager
 
   class ThreeDSecureSourceNotChargeableError < StandardError; end
 
-  def self.for_customer(customer_id)
-    new(Stripe::Customer.retrieve(customer_id))
+  def self.for_customer(customer)
+    new(customer)
   end
 
   def initialize(customer = nil)
@@ -27,19 +27,14 @@ class SubscriptionManager
     @customer.subscriptions.each(&:delete)
   end
 
-  def update(new_plan, new_card_source = nil, three_d_secure_source = nil)
+  def update(new_plan, payment_method_id = nil)
     handle_errors_and_return_status do
-      if three_d_secure_source.present?
-        assert_chargeable_three_d_secure_source(three_d_secure_source)
-        perform_initial_charge(three_d_secure_source, new_plan)
-      end
-
-      update_default_card(new_card_source) if new_card_source.present?
+      update_default_card(payment_method_id) if payment_method_id.present?
 
       if subscription.nil?
-        create_subscription(new_plan, three_d_secure_source.present?)
-      elsif subscription.plan.id != new_plan.id || three_d_secure_source.present?
-        update_subscription(new_plan, three_d_secure_source.present?)
+        create_subscription(new_plan)
+      elsif subscription.plan.id != new_plan.id
+        update_subscription(new_plan)
       end
     end
   end
@@ -93,17 +88,17 @@ class SubscriptionManager
     )
   end
 
-  def update_subscription(new_plan, skip_next_charge = false)
-    subscription.plan = new_plan.id unless subscription.plan.id == new_plan.id
-    subscription.trial_end = 1.month.from_now.to_i if skip_next_charge
-    subscription.prorate = false
-    subscription.save
+  def update_subscription(new_plan)
+    Stripe::Subscription.update(
+      subscription.id,
+      prorate: false,
+      plan: new_plan.id
+    )
   end
 
-  def update_default_card(new_card_source)
-    card = @customer.sources.create(source: new_card_source)
-    customer.default_source = card.id
-    customer.save
+  def update_default_card(payment_method)
+    Stripe::PaymentMethod.attach(payment_method, customer: customer.id)
+    Stripe::Customer.update(customer.id, invoice_settings: { default_payment_method: payment_method })
   end
 
   def subscription

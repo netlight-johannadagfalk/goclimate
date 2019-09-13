@@ -14,6 +14,10 @@
         </div>
       <% end %>
 
+      <p id="error-content"></p>
+
+      <%= hidden_field(:setup_intent, :client_secret) %>
+
       <%= render "shared/plan" %>
 
       <div id="current-card-group" class="form-group">
@@ -21,13 +25,13 @@
           <%=t 'credit_or_debit_card' %>
         </label>
         <div id="current-card" class="col-sm-4 control-label">
-          <% if @current_source.nil? %>
+          <% if @customer_payment_method.nil? %>
             t('no_card_registered')
           <% else %>
             <%= render "shared/existing-card" %>
           <% end %>
           (<a id="add-new-card" href="#">
-            <%= @current_source.nil? ? t('add_new_card') : t('edit_card') %>
+            <%= @customer_payment_method.nil? ? t('add_new_card') : t('edit_card') %>
           </a>)
         </div>
       </div>
@@ -44,7 +48,8 @@
       <div id="card-errors"></div>
 
       <div class="actions">
-        <button id="register-button" type="submit" class="btn btn-success" onclick="this.disabled=true; this.value='Submitting...'; $('#payment-form').submit();">
+        <button id="register-button" type="submit" class="btn btn-success">
+          <%= fa_icon "spinner", class: "hidden fa-spin", id: "button-spinner" %>
           <%=t 'update' %>
         </button>
       </div>
@@ -59,5 +64,5 @@
   <script type="text/javascript">
     var STRIPE_PUBLISHABLE_KEY = "<%= ENV['PUBLISHABLE_KEY'] %>"
   </script>
-  <%= javascript_include_tag 'users/registrations' %>
+  <%= javascript_include_tag 'users/edit-card' %>
 <% end %>
