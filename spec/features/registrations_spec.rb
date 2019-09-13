@@ -6,6 +6,11 @@ RSpec.feature 'Registrations', type: :feature, js: true do
   scenario 'Register and update card' do
     # Homepage
     visit '/'
+    if page.has_link?('user-menu')
+      click_link('user-menu')
+      click_link('Log out')
+    end
+
     click_link 'Offset my impact'
 
     # Sign up page
@@ -20,7 +25,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     click_button 'Go Climate Neutral!'
 
     # Wait for success page to render
-    find('.dashboard-index', wait: 20)
+    find('.dashboard-index', wait: 30)
 
     expect(page).to have_text 'Welcome to a climate neutral life'
     expect(page).to have_text 'We have accomplished a lot together!'

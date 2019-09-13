@@ -20,7 +20,7 @@ RSpec.feature 'Flight offset', type: :feature, js: true do
     click_button 'Klimatkompensera'
 
     # Wait for success page to render
-    find('.flight_offsets-thank_you', wait: 20)
+    find('.flight_offsets-thank_you', wait: 30)
 
     expect(page).to have_text 'Tack!'
   end
