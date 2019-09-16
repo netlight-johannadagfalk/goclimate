@@ -13,7 +13,7 @@ module Admin
 
       send_data(
         pdf.render,
-        filename: "GoClimateNeutral Certificate - #{generator.receiver}.pdf",
+        filename: "GoClimateNeutral Certificate - #{pdf.receiver}.pdf",
         pe: :pdf
       )
     end
