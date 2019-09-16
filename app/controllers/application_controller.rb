@@ -73,4 +73,8 @@ class ApplicationController < ActionController::Base
       LifestyleChoice::BUSINESS_SEK_PER_TONNE / LifestyleChoice::SEK_PER_EUR
     end
   end
+
+  def handle_record_not_found
+    render 'errors/not_found', status: :not_found
+  end
 end

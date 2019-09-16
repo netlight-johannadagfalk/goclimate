@@ -81,7 +81,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
 
   # User profiles
-  resources :users, only: [:show]
+  resources :users, only: [:show], constraints: { id: /\d+/ }
 
   # Gift cards
   resources :gift_cards, only: [:index, :new, :create] do

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
+
   def show
     @user = User.find(params[:id])
     @neutral_months = StripeEvent.payments(@user).where(paid: true).count
