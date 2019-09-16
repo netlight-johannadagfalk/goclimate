@@ -1,3 +1,7 @@
+/* Rails UJS */
+import Rails from '@rails/ujs';
+Rails.start()
+
 /* Bootstrap and our code that hasn't been updated require jQuery globally */
 import jQuery from 'jquery';
 window.$ = window.jQuery = jQuery;
