@@ -105,6 +105,20 @@ RSpec.describe Api::V1::FlightFootprintsController do
       expect(response).to have_http_status(:ok)
     end
 
+    it 'allows currencies as arrays' do
+      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+                                      params: request_params.merge(currencies: ['SEK'])
+
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'allows currencies as string arrays' do
+      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+                                      params: request_params.merge(currencies: 'SEK,NOK')
+
+      expect(response).to have_http_status(:ok)
+    end
+
     context 'when not providing correct attributes' do
       it 'returns 400 Bad Request when cabin class is not one of valid values' do
         get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
@@ -116,6 +130,13 @@ RSpec.describe Api::V1::FlightFootprintsController do
       it 'returns 400 Bad Request when currency is not one of valid values' do
         get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
                                         params: request_params.merge(currencies: ['invalid'])
+
+        expect(response).to have_http_status(:bad_request)
+      end
+
+      it 'returns 400 Bad Request when currency is not on expected format' do
+        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+                                        params: request_params.merge(currencies: 'SEK;NOK')
 
         expect(response).to have_http_status(:bad_request)
       end
