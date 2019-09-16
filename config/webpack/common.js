@@ -40,10 +40,7 @@ module.exports = {
           inDevServer /* Using style-loader when running dev server allows hot updating when running with HMR */
             ?
               {
-                loader: 'style-loader',
-                options: {
-                  sourceMap: true
-                }
+                loader: 'style-loader'
               }
             :
               MiniCssExtractPlugin.loader,
