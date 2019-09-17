@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails.validations
 //= require countUp
 //= require jquery.appear
 //= require components/business_offset_calculator
