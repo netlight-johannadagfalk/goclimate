@@ -43,3 +43,4 @@ import '../stylesheets/components/projects_teaser.scss';
 /* Components */
 import '../javascripts/components/business_offset_calculator';
 import '../javascripts/components/stripe_card_payment';
+import '../javascripts/users/registrations';

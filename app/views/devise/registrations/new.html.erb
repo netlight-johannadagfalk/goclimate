@@ -168,6 +168,9 @@
 <% content_for :javascript_tags do %>
   <script type="text/javascript">
     var STRIPE_PUBLISHABLE_KEY = "<%= ENV['PUBLISHABLE_KEY'] %>"
+
+    $(document).ready(function() {
+      initializeUsersRegistrations();
+    });
   </script>
-  <%= javascript_include_tag 'users/registrations' %>
 <% end %>
