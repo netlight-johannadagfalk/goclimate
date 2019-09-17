@@ -382,4 +382,12 @@
 
 <%= render "shared/footer" %>
 
+<% content_for :javascript_tags do %>
+  <script>
+    $(document).ready(function() {
+      $('.business-tooltip').tooltip();
+    });
+  </script>
+<% end %>
+
 <%= intercom_script_tag %>

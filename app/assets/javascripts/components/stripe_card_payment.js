@@ -81,3 +81,5 @@ StripeCardPayment.prototype.appendHiddenInput = function(name, value) {
 
   this.form.appendChild(input);
 }
+
+window.StripeCardPayment = StripeCardPayment;
