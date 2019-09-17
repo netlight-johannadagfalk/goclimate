@@ -4,3 +4,6 @@ Rails.start()
 
 /* Bootstrap */
 import 'bootstrap/dist/css/bootstrap.css';
+
+/* Custom styling */
+import '../stylesheets/admin.scss';
