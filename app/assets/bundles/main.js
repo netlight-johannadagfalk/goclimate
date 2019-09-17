@@ -40,3 +40,4 @@ import '../javascripts/components/business_offset_calculator';
 import '../javascripts/components/stripe_card_payment';
 import '../javascripts/users/registrations';
 import '../javascripts/welcome';
+import '../javascripts/dashboard';

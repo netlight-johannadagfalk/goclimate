@@ -164,5 +164,9 @@
 <%= render "shared/footer" %>
 
 <% content_for :javascript_tags do %>
-  <%= javascript_include_tag 'dashboard' %>
+  <script>
+    $(document).ready(function() {
+      initializeDashboard();
+    });
+  </script>
 <% end %>
