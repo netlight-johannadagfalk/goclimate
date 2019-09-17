@@ -8,3 +8,7 @@ window.$ = window.jQuery = jQuery;
 
 /* Font Awesome */
 import 'font-awesome/scss/font-awesome.scss';
+
+/* Bootstrap */
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap';

@@ -5,10 +5,10 @@
     <title><%=t 'site_title' %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
+    <%= webpack_entrypoint_stylesheet_tags 'admin' %>
     <%= stylesheet_link_tag 'admin' %>
     <%= include_gon %>
     <%= webpack_entrypoint_javascript_tags 'admin' %>
-    <%= javascript_include_tag 'admin' %>
     <%= yield :javascript_tags %>
   </head>
 
