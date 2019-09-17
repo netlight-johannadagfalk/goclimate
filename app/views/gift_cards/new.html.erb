@@ -64,7 +64,7 @@
     <%= hidden_field_tag :subscription_months_to_gift, @gift_card.number_of_months %>
 
     <%= button_tag(type: 'submit', id: 'checkout-button', class: 'btn btn-success') do %>
-      <%= fa_icon "spinner", class: "hidden fa-spin", id: "button-spinner" %>
+      <i class="fa fa-spinner fa-spin hidden" id="button-spinner"></i>
       <%= t('views.gift_cards.new.pay') %>
     <% end %>
 

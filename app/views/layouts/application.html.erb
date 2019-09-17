@@ -20,6 +20,7 @@
     <%= stylesheet_link_tag 'application' %>
     <%= include_gon %>
     <%= webpack_entrypoint_javascript_tags 'main' %>
+    <%= webpack_entrypoint_stylesheet_tags 'main' %>
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="<%= content_for(:opengraph_url) || t('goclimateneutral_url') %>">
