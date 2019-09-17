@@ -2,7 +2,7 @@
 import Rails from '@rails/ujs';
 Rails.start()
 
-/* Bootstrap and our code that hasn't been updated require jQuery globally */
+/* Bootstrap and inline jQuery calls require jQuery globally */
 import jQuery from 'jquery';
 window.$ = window.jQuery = jQuery;
 
@@ -42,3 +42,4 @@ import '../javascripts/users/registrations';
 import '../javascripts/welcome';
 import '../javascripts/dashboard';
 import '../javascripts/users';
+import '../javascripts/users/edit_card';
