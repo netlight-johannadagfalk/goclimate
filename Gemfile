@@ -40,13 +40,6 @@ gem 'country_select', '~> 4.0.0'
 gem 'gon', '~> 6.2.0'
 gem 'jbuilder', '~> 2.9.1'
 
-# Assets
-# This sass-rails ref points to a commit during 6.0.0.beta1. Later commits &
-# versions changes dependencies so that our Sprockets version changes which
-# casuses issues. We're moving to Webpack so lock this until we've migrated.
-gem 'sass-rails', github: 'rails/sass-rails', ref: 'ac38f1e'
-gem 'uglifier', '>= 1.3.0'
-
 # Geometry
 gem 'haversine'
 
