@@ -101,12 +101,12 @@
   </style>
 
   <div class="background box" style="width: 700px; height: 1025px; background-color: white;">
-    <%= image_tag wicked_pdf_asset_base64('gift-card-background.png'), size: "700x860"%>
+    <%= image_tag wicked_pdf_file_base64('app/assets/images/gift-card-background.png'), size: "700x860"%>
   </div>
 
   <div class="content" style="width: 700px; height: 1025px">
     <div class="logo">
-      <%= image_tag wicked_pdf_asset_base64('goclimateneutral_logo.svg'), size: "230x132" %>
+      <%= image_tag wicked_pdf_file_base64('app/assets/images/goclimateneutral_logo.svg'), size: "230x132" %>
     </div>
 
     <div class="text marginTop" style="font-size: 25px;">
@@ -142,7 +142,7 @@
   <div class="text footer">
     <strong>Datum: <%= @issued_at.in_time_zone('Europe/Stockholm').to_date %></strong>
     </br>
-    <%= image_tag wicked_pdf_asset_base64('cissi_signature.png'), size: "356x132" %>
+    <%= image_tag wicked_pdf_file_base64('app/assets/images/cissi_signature.png'), size: "356x132" %>
   </div>
 </div>
 
