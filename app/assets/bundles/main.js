@@ -41,3 +41,4 @@ import '../javascripts/components/stripe_card_payment';
 import '../javascripts/users/registrations';
 import '../javascripts/welcome';
 import '../javascripts/dashboard';
+import '../javascripts/users';
