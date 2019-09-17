@@ -5,6 +5,20 @@ require 'rails_helper'
 RSpec.describe User do
   subject(:user) { build(:user) }
 
+  describe 'user_name validation' do
+    context 'with a user_name with an @ sign' do
+      subject { build(:user, user_name: 'Jod@') }
+
+      it { is_expected.to be_valid }
+    end
+
+    context 'with a user_name that is an email' do
+      subject { build(:user, user_name: 'jod@test.com') }
+
+      it { is_expected.to be_invalid }
+    end
+  end
+
   describe '.with_active_subscription' do
     context 'with user with active subscription' do
       before do
