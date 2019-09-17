@@ -15,3 +15,8 @@ import 'bootstrap';
 
 /* Social Buttons for Bootstrap */
 import 'bootstrap-social/bootstrap-social.css';
+
+/* CountUp.js */
+/* TODO: Remove once welcome.js is moved to Webpack and can import CountUp directly */
+import CountUp from 'countup.js';
+window.CountUp = CountUp;
