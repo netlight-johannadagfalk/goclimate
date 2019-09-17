@@ -19,11 +19,6 @@ import 'bootstrap';
 /* Social Buttons for Bootstrap */
 import 'bootstrap-social/bootstrap-social.css';
 
-/* CountUp.js */
-/* TODO: Remove once welcome.js is moved to Webpack and can import CountUp directly */
-import CountUp from 'countup.js';
-window.CountUp = CountUp;
-
 /* Global styling */
 import '../stylesheets/base.scss';
 import '../stylesheets/type.scss';
@@ -44,3 +39,4 @@ import '../stylesheets/components/projects_teaser.scss';
 import '../javascripts/components/business_offset_calculator';
 import '../javascripts/components/stripe_card_payment';
 import '../javascripts/users/registrations';
+import '../javascripts/welcome';
