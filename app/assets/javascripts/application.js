@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery.appear
 //= require components/business_offset_calculator
 //= require components/business_footprint_calculator
 //= require dropdown_toggle

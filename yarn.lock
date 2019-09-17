@@ -2659,6 +2659,11 @@ isobject@^3.0.0, isobject@^3.0.1:
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
+jquery-appear-original@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/jquery-appear-original/-/jquery-appear-original-0.6.2.tgz#a1341a727e15348639ea5fe2fe4ec4737a170c05"
+  integrity sha512-PxvsyDld5SthfNwL19vh4aga/2hYCK/zH90l1/aYxFAD6IyG53Y1kHt5hjaT1Ch3u6ztdHWx93olsjNXSN0gEw==
+
 jquery@^1.12.4:
   version "1.12.4"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.12.4.tgz#01e1dfba290fe73deba77ceeacb0f9ba2fec9e0c"

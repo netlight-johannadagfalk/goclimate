@@ -23,6 +23,7 @@
     "file-loader": "^4.0.0",
     "font-awesome": "^4.7.0",
     "jquery": "^1.12.4",
+    "jquery-appear-original": "^0.6.2",
     "js-yaml": "^3.13.1",
     "mini-css-extract-plugin": "^0.8.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",

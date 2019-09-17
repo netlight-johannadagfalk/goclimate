@@ -6,6 +6,9 @@ Rails.start()
 import jQuery from 'jquery';
 window.$ = window.jQuery = jQuery;
 
+/* jQuery custom appear event that triggers when element enters viewport */
+import 'jquery-appear-original';
+
 /* Font Awesome */
 import 'font-awesome/scss/font-awesome.scss';
 
