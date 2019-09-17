@@ -11,8 +11,6 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require jquery
-//= require jquery_ujs
 //= require bootstrap-sprockets
 //= require rails.validations
 //= require countUp

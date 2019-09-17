@@ -50,7 +50,6 @@ gem 'jbuilder', '~> 2.9.1'
 # staying on previous versions until we move away from the Gem dependency and
 # move to the official NPM package via Webpack.
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'jquery-rails', '~> 4.3.1'
 # This sass-rails ref points to a commit during 6.0.0.beta1. Later commits &
 # versions changes dependencies so that our Sprockets version changes which
 # casuses issues. We're moving to Webpack so lock this until we've migrated.
