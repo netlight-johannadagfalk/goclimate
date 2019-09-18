@@ -57,10 +57,14 @@ module Api
 
       # This allows API clients to either repeat currencies with
       # `currencies[]=SEK&currencies[]=NOK` or
-      # `currencies[0]=SEK&currencies[1]=NOK`
+      # `currencies[0]=SEK&currencies[1]=NOK` or
+      # `currencies=['SEK','NOK']` or
+      # `currencies='SEK,NOK'`
       def currencies_param
         if params[:currencies].is_a?(ActionController::Parameters)
           params[:currencies].values
+        elsif params[:currencies].is_a?(String)
+          params[:currencies].split(',')
         else
           params[:currencies]
         end
