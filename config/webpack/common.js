@@ -2,6 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const fs = require('fs');
 const yaml = require('js-yaml');
+const webpack = require('webpack');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -14,6 +15,17 @@ function buildNamedEntryPoints(paths) {
   paths.forEach(entryPath => entryPoints[path.basename(entryPath, '.js')] = entryPath)
   return entryPoints;
 }
+
+const cssLoaders = [
+  /* Using style-loader when running dev server allows hot updating when running with HMR */
+  (inDevServer ? { loader: 'style-loader' } : MiniCssExtractPlugin.loader),
+  {
+    loader: 'css-loader',
+    options: {
+      sourceMap: true
+    }
+  }
+];
 
 module.exports = {
   entry: buildNamedEntryPoints(glob.sync('./app/assets/bundles/*.js')),
@@ -30,29 +42,22 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name]-[contenthash].css'
+    }),
+    /* Bootstrap 3 does not import jQuery. This should not be needed once we move to Bootstrap 4. */
+    new webpack.ProvidePlugin({
+      jQuery: 'jquery'
     })
   ],
   module: {
     rules: [
       {
+        test: /\.css$/,
+        use: cssLoaders
+      },
+      {
         test: /\.scss$/,
         use: [
-          inDevServer /* Using style-loader when running dev server allows hot updating when running with HMR */
-            ?
-              {
-                loader: 'style-loader',
-                options: {
-                  sourceMap: true
-                }
-              }
-            :
-              MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
-            }
-          },
+          ...cssLoaders,
           {
             loader: 'sass-loader',
             options: {
@@ -63,7 +68,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|svg|jpg|gif|ico|mp4)$/,
+        test: /\.(png|svg|jpg|gif|ico|mp4|ttf|woff|woff2|eot)$/,
         use: [
           {
             loader: 'file-loader',

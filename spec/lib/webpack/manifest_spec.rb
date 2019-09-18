@@ -127,10 +127,8 @@ RSpec.describe Webpack::Manifest do
       end.to raise_error(Webpack::Manifest::AssetNotFound)
     end
 
-    it 'raises AssetNotFound when filetype for given entrypoint is missing' do
-      expect do
-        manifest.entrypoint_paths(['other'], 'css')
-      end.to raise_error(Webpack::Manifest::AssetNotFound)
+    it 'returns empty array when filetype for given entrypoint is missing' do
+      expect(manifest.entrypoint_paths(['other'], 'css')).to eq([])
     end
 
     it 'deduplicates files present in multiple entrypoints' do

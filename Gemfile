@@ -36,27 +36,9 @@ gem 'rack-proxy', '~> 0.6.4'
 gem 'redcarpet', '~> 3.5.0'
 
 # Views
-# client_side_validations versions 15 and 16 drop Ruby support and introduce
-# Webpacker/ES6 features that might introduce conflicts for us. Since we're
-# moving away from Sprockets we'll have to move away from this gem anyway, so
-# lock at 14.1 (with Rails 6 support) until then.
-gem 'client_side_validations', '~> 14.1.0'
 gem 'country_select', '~> 4.0.0'
 gem 'gon', '~> 6.2.0'
 gem 'jbuilder', '~> 2.9.1'
-
-# Assets
-# bootstrap-sass 3.4 and up use SassC instead of the old Ruby Sass, so we're
-# staying on previous versions until we move away from the Gem dependency and
-# move to the official NPM package via Webpack.
-gem 'bootstrap-sass', '~> 3.3.6'
-gem 'font-awesome-rails', '~> 4.7.0'
-gem 'jquery-rails', '~> 4.3.1'
-# This sass-rails ref points to a commit during 6.0.0.beta1. Later commits &
-# versions changes dependencies so that our Sprockets version changes which
-# casuses issues. We're moving to Webpack so lock this until we've migrated.
-gem 'sass-rails', github: 'rails/sass-rails', ref: 'ac38f1e'
-gem 'uglifier', '>= 1.3.0'
 
 # Geometry
 gem 'haversine'

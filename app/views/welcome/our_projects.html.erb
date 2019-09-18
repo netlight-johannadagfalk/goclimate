@@ -72,5 +72,9 @@
 <%= render "shared/footer" %>
 
 <% content_for :javascript_tags do %>
-  <%= javascript_include_tag 'welcome' %>
+  <script>
+    $(document).ready(function() {
+      $('[data-toggle="popover"]').popover();
+    });
+  </script>
 <% end %>

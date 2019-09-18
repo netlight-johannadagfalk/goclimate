@@ -1,41 +1,45 @@
-$(document).ready(function() {
-	function shareFacebook() {
-		FB.ui({
-		  method: 'share',
-		  href: window.urlToShare,
-		  quote: window.facebookQuote,
-		  hashtag: '#goclimateneutral'
-		}, function(response){});
-	}
+import $ from 'jquery';
 
-	$('#share-facebook-bottom').click(function() {
-		shareFacebook();
-	});
+function initializeUsers() {
+  function shareFacebook() {
+    FB.ui({
+      method: 'share',
+      href: window.urlToShare,
+      quote: window.facebookQuote,
+      hashtag: '#goclimateneutral'
+    }, function(response){});
+  }
 
-    if(window.location.href.indexOf("share") == -1) {
-		$('#videoModal').modal('show');
-    };
+  $('#share-facebook-bottom').click(function() {
+    shareFacebook();
+  });
 
-	$('#show-video').on('click', function (e) {
-		e.preventDefault();
-		$('#videoModal').modal('show');
-		ga('send', {
-			hitType: 'event',
-			eventAction: 'viewVideo'
-		});
-	});
+  if(window.location.href.indexOf("share") == -1) {
+    $('#videoModal').modal('show');
+  };
 
-	$('#videoModal').on('hidden.bs.modal', function (e) {
-		var $frame = $('iframe');
+  $('#show-video').on('click', function (e) {
+    e.preventDefault();
+    $('#videoModal').modal('show');
+    ga('send', {
+      hitType: 'event',
+      eventAction: 'viewVideo'
+    });
+  });
 
-		// saves the current iframe source
-		var vidsrc = $frame.attr('src');
+  $('#videoModal').on('hidden.bs.modal', function (e) {
+    var $frame = $('iframe');
 
-		// sets the source to nothing, stopping the video
-		$frame.attr('src', '');
+    // saves the current iframe source
+    var vidsrc = $frame.attr('src');
 
-		// sets it back to the correct link so that it reloads immediately on the next window open
-		$frame.attr('src', vidsrc);
+    // sets the source to nothing, stopping the video
+    $frame.attr('src', '');
 
-	});
-});
+    // sets it back to the correct link so that it reloads immediately on the next window open
+    $frame.attr('src', vidsrc);
+
+  });
+};
+
+window.initializeUsers = initializeUsers;

@@ -1,5 +1,6 @@
-$(document).ready(function() {
+import $ from 'jquery';
 
+function initializeUsersRegistrations() {
   function scrollToAnchor(aid){
     var aTag = $(aid);
     $('html,body').animate({scrollTop: aTag.offset().top},'slow');
@@ -163,4 +164,6 @@ $(document).ready(function() {
       return false;
     });
   }
-});
+};
+
+window.initializeUsersRegistrations = initializeUsersRegistrations;

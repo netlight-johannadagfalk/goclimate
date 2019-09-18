@@ -14,7 +14,7 @@ require 'action_mailbox/engine'
 # require 'action_text/engine'
 require 'action_view/railtie'
 require 'action_cable/engine'
-require 'sprockets/railtie'
+# require 'sprockets/railtie' # We're using Webpack for all assets
 # require 'rails/test_unit/railtie' # We're using RSpec
 
 # Require the gems listed in Gemfile, including any gems
@@ -34,8 +34,6 @@ module GoClimateNeutral
     custom_paths = %w[app/models/validators].map { |path| Rails.root.join(path) }
     config.eager_load_paths.push(*custom_paths)
     config.autoload_paths.push(*custom_paths)
-
-    config.assets.paths << Rails.root.join('vendor', 'assets')
 
     # Whitelist locales available for the application
     config.i18n.available_locales = [:en, :sv, :de]

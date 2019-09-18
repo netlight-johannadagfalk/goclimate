@@ -15,11 +15,10 @@
     <script>
       window.locale = "<%= I18n.locale %>"
     </script>
-    <%= javascript_include_tag 'application' %>
-    <%= yield :javascript_tags %>
-    <%= stylesheet_link_tag 'application' %>
+    <%= webpack_entrypoint_stylesheet_tags 'main' %>
     <%= include_gon %>
     <%= webpack_entrypoint_javascript_tags 'main' %>
+    <%= yield :javascript_tags %>
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="<%= content_for(:opengraph_url) || t('goclimateneutral_url') %>">
@@ -90,6 +89,13 @@
           <p class="alert"><%= alert %></p>
         <% end %>
       </div>
+      <script>
+        $(document).ready(function() {
+          setTimeout(function() {
+            $(".alert").slideUp(1000);
+          }, 5000);
+        });
+      </script>
     <% end %>
 
     <%= yield %>

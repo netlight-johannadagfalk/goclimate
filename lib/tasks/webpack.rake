@@ -7,4 +7,13 @@ namespace :webpack do
   end
 end
 
-Rake::Task['assets:precompile'].enhance(['webpack:build']) if Rake::Task.task_defined?('assets:precompile')
+# Define an empty asstes:precompile task so default assumptions about building
+# a Rails app holds true even when Sprockets is disabled. Required for the
+# Heroku Ruby buildpack to work correctly.
+unless Rake::Task.task_defined?('assets:precompile')
+  namespace :assets do
+    task :precompile
+  end
+end
+
+Rake::Task['assets:precompile'].enhance(['webpack:build'])

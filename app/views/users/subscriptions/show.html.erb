@@ -49,7 +49,7 @@
 
       <div class="actions">
         <button id="register-button" type="submit" class="btn btn-success">
-          <%= fa_icon "spinner", class: "hidden fa-spin", id: "button-spinner" %>
+          <i class="fa fa-spinner fa-spin hidden" id="button-spinner"></i>
           <%=t 'update' %>
         </button>
       </div>
@@ -63,6 +63,9 @@
 <% content_for :javascript_tags do %>
   <script type="text/javascript">
     var STRIPE_PUBLISHABLE_KEY = "<%= ENV['PUBLISHABLE_KEY'] %>"
+
+    $(document).ready(function() {
+      initializeEditCard();
+    });
   </script>
-  <%= javascript_include_tag 'users/edit-card' %>
 <% end %>

@@ -15,3 +15,5 @@ BusinessOffsetCalculator.prototype.updateNumber = function() {
 
   this.bigNumberElement.innerHTML = Math.round(price).toLocaleString(window.locale)
 }
+
+window.BusinessOffsetCalculator = BusinessOffsetCalculator;

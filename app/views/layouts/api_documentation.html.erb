@@ -11,7 +11,7 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#71ab76">
     <meta name="theme-color" content="#ffffff">
 
-    <%= stylesheet_link_tag 'documentation' %>
+    <%= webpack_entrypoint_stylesheet_tags 'api_documentation' %>
   </head>
 
   <body class="<%= "#{controller_name} #{controller_name}-#{action_name}" %>">
