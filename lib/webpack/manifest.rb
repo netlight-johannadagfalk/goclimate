@@ -29,14 +29,8 @@ module Webpack
           raise AssetNotFound, "The entrypoint \"#{entrypoint}\" is not present in manifest.json."
         end
 
-        unless @data['entrypoints'][entrypoint].key?(filetype)
-          raise AssetNotFound, <<~TEXT
-            The entrypoint \"#{entrypoint}\" does not contain any files for filetype \"#{filetype}\".
-          TEXT
-        end
-
-        @data['entrypoints'][entrypoint][filetype]
-      end.uniq
+        @data['entrypoints'][entrypoint][filetype] if @data['entrypoints'][entrypoint].key?(filetype)
+      end.compact.uniq
     end
 
     private
