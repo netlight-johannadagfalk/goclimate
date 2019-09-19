@@ -57,13 +57,7 @@
     }
   },
   "addons": [
-    "heroku-postgresql",
-    {
-      "plan": "deployhooks:http",
-      "options": {
-        "url": "https://hooks.slack.com/services/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"
-      }
-    }
+    "heroku-postgresql"
   ],
   "buildpacks": [
     {
