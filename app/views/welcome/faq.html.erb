@@ -4,7 +4,8 @@
 
     <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
 
-    <h1 class="cover-heading"><%=t 'faq' %></h1>
+    <h1 class="cover-heading"><%= title(t('faq')) %></h1>
+    <% description(t('faq')) %>
 
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default questions-list">

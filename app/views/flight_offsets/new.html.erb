@@ -3,8 +3,8 @@
   <div class="inner">
 
     <span class="green-leaf"><%= image_tag webpack_asset_path('images/green.svg'), style: 'width: 100px' %></span>
-    <h1 class="cover-heading"><%=t 'views.flight_offsets.new.header' %></h1>
-    <p class="lead"><%=t 'views.flight_offsets.new.header_description' %></p>
+    <h1 class="cover-heading"><%= title(t('views.flight_offsets.new.header')) %></h1>
+    <p class="lead"><%= description(t('views.flight_offsets.new.header_description')) %></p>
   </div>
   <span class="glyphicon glyphicon-chevron-down first" aria-hidden="true"></span>
 </div>

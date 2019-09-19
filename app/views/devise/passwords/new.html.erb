@@ -3,8 +3,8 @@
   <div class="inner">
 
     <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-    <h1 class="cover-heading"><%=t 'forgot_your_password' %></h1>
-    <p class="lead"><%=t 'enter_your_email_below_and_we_will_send_you' %></p>
+    <h1 class="cover-heading"><%= title(t('forgot_your_password')) %></h1>
+    <p class="lead"><%= description(t('enter_your_email_below_and_we_will_send_you')) %></p>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-horizontal" }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
