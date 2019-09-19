@@ -43,3 +43,4 @@ import '../javascripts/welcome';
 import '../javascripts/dashboard';
 import '../javascripts/users';
 import '../javascripts/users/edit_card';
+import '../javascripts/users/edit_user';

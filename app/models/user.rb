@@ -13,6 +13,7 @@ class User < ApplicationRecord
   # Validates on default contexts :create and :update. Use any other context,
   # e.g. valid?(:precheck) to skip before stripe_customer_id is known.
   validates_presence_of :stripe_customer_id, on: [:create, :update]
+  validates :user_name, format: { without: /.+@.+\..+/ }, allow_blank: true
 
   # accessor and validator of :privacy_policy are only here for client side validation via the ClientSideValidations gem
   validates :privacy_policy, acceptance: true

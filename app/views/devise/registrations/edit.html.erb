@@ -57,3 +57,8 @@
 </div>
 
 <%= render "shared/footer" %>
+<% content_for :javascript_tags do %>
+  <script type="text/javascript">
+    $(document).ready(initializeEditUserName);
+  </script>
+<% end %>
