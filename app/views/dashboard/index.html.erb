@@ -58,7 +58,6 @@
             <% count += 1 %>
             <% user_neutral_months = user.count %>
             <% user_name = user.user_name || "Unknown User" %>
-            <% user_name = "Unknown User" if user_name.include? "@" %>
 
             <%= count == 11 ? "<div id='user_toplist_collapsed' class='collapse'>".html_safe : "" %>
 
