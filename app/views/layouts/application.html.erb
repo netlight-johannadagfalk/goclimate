@@ -20,13 +20,15 @@
     <%= yield :javascript_tags %>
 
     <%=
-      set_meta_tags alternate: {
-        "sv" => "https://sv.goclimateneutral.org",
-        "en" => "https://en.goclimateneutral.org",
-        "de" => "https://de.goclimateneutral.org"
-      }
       display_meta_tags(
         site: 'GoClimateNeutral',
+        separator: '-',
+        reverse: true,
+        alternate: {
+          "sv" => "https://sv.goclimateneutral.org",
+          "en" => "https://en.goclimateneutral.org",
+          "de" => "https://de.goclimateneutral.org"
+        },
         og: {
           type: 'website',
           url: request.url,
