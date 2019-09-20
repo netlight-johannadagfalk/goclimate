@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale.to_s %>">
   <head>
-    <title><%=t 'site_title' %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
 
@@ -20,11 +19,22 @@
     <%= webpack_entrypoint_javascript_tags 'main' %>
     <%= yield :javascript_tags %>
 
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="<%= content_for(:opengraph_url) || t('goclimateneutral_url') %>">
-    <meta property="og:title" content="<%= content_for(:opengraph_title) || t('welcome_to_a_climate_neutral_life') %>">
-    <meta property="og:description" content="<%=t 'climate_change_is_the_greatest_challange' %>">
-    <meta property="og:image" content="<%= webpack_asset_url('images/share-image.png') %>">
+    <%=
+      set_meta_tags alternate: {
+        "sv" => "https://sv.goclimateneutral.org",
+        "en" => "https://en.goclimateneutral.org",
+        "de" => "https://de.goclimateneutral.org"
+      }
+      display_meta_tags(site: 'Go Climate Neutral',
+        og: {
+          type: 'website',
+          url: request.url,
+          title: :title,
+          description: :description,
+          image: webpack_asset_url('images/share-image.png'),
+          locale: I18n.locale,
+        })
+    %>
     <meta property="fb:app_id" content="452582378427296">
     
     <link href="https://fonts.googleapis.com/css?family=Raleway:300" rel="stylesheet">

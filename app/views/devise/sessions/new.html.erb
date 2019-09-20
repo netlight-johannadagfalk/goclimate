@@ -3,8 +3,8 @@
   <div class="inner">
 
     <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-    <h1 class="cover-heading"><%=t 'log_in' %></h1>
-    <p class="lead"><%=t 'log_in_to_see_how_we_are_doing' %></p>
+    <h1 class="cover-heading"><%= title(t('log_in')) %></h1>
+    <p class="lead"><%= description(t('log_in_to_see_how_we_are_doing')) %></p>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-horizontal"}) do |f| %>
 
