@@ -25,7 +25,8 @@
         "en" => "https://en.goclimateneutral.org",
         "de" => "https://de.goclimateneutral.org"
       }
-      display_meta_tags(site: 'Go Climate Neutral',
+      display_meta_tags(
+        site: 'GoClimateNeutral',
         og: {
           type: 'website',
           url: request.url,
@@ -33,7 +34,8 @@
           description: :description,
           image: webpack_asset_url('images/share-image.png'),
           locale: I18n.locale,
-        })
+        }
+      )
     %>
     <meta property="fb:app_id" content="452582378427296">
     
