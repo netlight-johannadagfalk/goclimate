@@ -4,14 +4,10 @@ Currency = Struct.new(:iso_code) do
   # TODO: switch this to from_region when we have region as part of the url
   def self.from_locale(locale)
     case locale
-    when :sv
-      Currency::SEK
-    when :us
-      Currency::USD
-    when :de
-      Currency::EUR
-    else
-      Currency::EUR
+    when :sv then Currency::SEK
+    when :us then Currency::USD
+    when :de then Currency::EUR
+    else Currency::USD
     end
   end
 

@@ -25,11 +25,11 @@ class GiftCardReceiptPdf
   end
 
   def currency
-    gift_card.currency
+    gift_card.currency.iso_code
   end
 
   def total_amount
-    BigDecimal(gift_card.price)
+    BigDecimal(gift_card.price.amount)
   end
 
   def vat_amount

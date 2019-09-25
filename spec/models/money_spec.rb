@@ -82,4 +82,33 @@ RSpec.describe Money do
       end
     end
   end
+
+  describe '<=>' do
+    subject(:money) { described_class.new(1_000_00, :sek) }
+
+    let(:small_amount) { described_class.new(1_00, :sek) }
+    let(:large_amount) { described_class.new(2_000_00, :sek) }
+
+    context 'when the currency is the same' do
+      it { is_expected.to be > small_amount }
+      it { is_expected.to be < large_amount }
+      it { is_expected.to be == money }
+    end
+
+    context 'when the currency differs' do
+      let(:usd_money) { described_class.new(2_000_00, :usd) }
+
+      it 'returns nil' do
+        expect(money <=> usd_money).to be_nil
+      end
+    end
+  end
+
+  describe 'amount' do
+    subject(:money) { described_class.new(1_000_00, :sek) }
+
+    it 'returns the subunit_amount / 100' do
+      expect(money.amount).to eq(1_000)
+    end
+  end
 end

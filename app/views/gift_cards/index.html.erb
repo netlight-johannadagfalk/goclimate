@@ -38,7 +38,7 @@
             </div>
             <div class="panel-body">
               <p><%= t 'views.gift_cards.index.1_months_description' %></p>
-              <p class="gift-cards-intro__price"><%= price_string(@gift_card_1_months.price, @gift_card_1_months.currency) %></p>
+              <p class="gift-cards-intro__price"><%= @gift_card_1_months.price.to_s(precision: 0) %></p>
             </div>
             <div class="panel-footer">
               <p>
@@ -59,7 +59,7 @@
             </div>
             <div class="panel-body">
               <p><%= t 'views.gift_cards.index.3_months_description' %></p>
-              <p class="gift-cards-intro__price"><%= price_string(@gift_card_3_months.price, @gift_card_3_months.currency) %></p>
+              <p class="gift-cards-intro__price"><%= @gift_card_3_months.price.to_s(precision: 0) %></p>
             </div>
             <div class="panel-footer">
               <p>
@@ -80,7 +80,7 @@
             </div>
             <div class="panel-body">
               <p><%= t 'views.gift_cards.index.6_months_description' %></p>
-              <p class="gift-cards-intro__price"><%= price_string(@gift_card_6_months.price, @gift_card_6_months.currency) %></p>
+              <p class="gift-cards-intro__price"><%= @gift_card_6_months.price.to_s(precision: 0) %></p>
             </div>
             <div class="panel-footer">
               <p>
@@ -101,7 +101,7 @@
             </div>
             <div class="panel-body">
               <p><%= t 'views.gift_cards.index.12_months_description' %></p>
-              <p class="gift-cards-intro__price"><%= price_string(@gift_card_12_months.price, @gift_card_12_months.currency) %></p>
+              <p class="gift-cards-intro__price"><%= @gift_card_12_months.price.to_s(precision: 0) %></p>
             </div>
             <div class="panel-footer">
               <p>
