@@ -9,6 +9,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 6.0.0'
+gem 'rails-i18n', '~> 6.0.0'
 
 # Environment
 gem 'bootsnap', '~> 1.3'

@@ -928,3 +928,7 @@ de:
           one: Sie haben einen Gutschein gekauft für 1 klimaneutral Monat
           other: "Sie haben einen Gutschein gekauft für %{count} klimaneutrale Monate"
 
+  models:
+    money:
+      currency_formats:
+        eur: '%{number} €'

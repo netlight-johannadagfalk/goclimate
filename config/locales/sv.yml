@@ -680,3 +680,9 @@ sv:
     application:
       precise_co2e_string_tonnes: "%{tonnes} ton koldioxid"
       precise_co2e_string_kg: "%{co2e} kg koldioxid"
+
+  models:
+    money:
+      currency_formats:
+        sek: '%{number} kr'
+        eur: '%{number} €'
