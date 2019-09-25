@@ -14,8 +14,8 @@ RSpec.describe LifestyleChoice do
     end
 
     it 'returns the price plan given a number of lifestyle choices' do
-      plan = described_class.stripe_plan("#{choice1.id}, #{choice2.id}")
-      expect(plan).to eq(2.4)
+      plan = described_class.stripe_plan("#{choice1.id}, #{choice2.id}", Currency::USD)
+      expect(plan.amount).to eq(2.4)
     end
   end
 end

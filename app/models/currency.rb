@@ -16,6 +16,10 @@ Currency = Struct.new(:iso_code) do
   rescue NameError
     nil
   end
+
+  def to_s
+    iso_code.to_s.upcase
+  end
 end
 
 Currency::SEK = Currency.new(:sek)

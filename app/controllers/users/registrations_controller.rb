@@ -12,8 +12,7 @@ module Users
 
     # GET /resource/sign_up
     def new
-      @plan = LifestyleChoice.stripe_plan(params[:choices])
-      @currency = currency_for_user
+      @current_plan_price = LifestyleChoice.stripe_plan(params[:choices], currency_for_user)
 
       super
     end
@@ -30,8 +29,8 @@ module Users
 
       render json: user.errors, status: :bad_request && return unless user.valid?(:precheck)
 
-      @plan = LifestyleChoice.stripe_plan(choices_params)
-      stripe_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan, currency_for_user)
+      @current_plan_price = LifestyleChoice.stripe_plan(choices_params, currency_for_user)
+      stripe_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@current_plan_price)
 
       @manager = SubscriptionManager.new
 

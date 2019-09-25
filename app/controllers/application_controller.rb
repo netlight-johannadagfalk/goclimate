@@ -46,13 +46,9 @@ class ApplicationController < ActionController::Base
 
   def currency_for_user
     if user_signed_in? && !current_user.stripe_events.first.nil?
-      current_user.currency
-    elsif I18n.locale == :sv
-      'sek'
-    elsif I18n.locale == :en
-      'usd'
-    elsif I18n.locale == :de
-      'eur'
+      Currency.from_iso_code(current_user.currency)
+    else
+      Currency.from_locale(I18n.locale)
     end
   end
 
