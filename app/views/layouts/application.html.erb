@@ -41,6 +41,7 @@
         accessToken: "***REMOVED***",
         captureUncaught: true,
         captureUnhandledRejections: true,
+        enabled: <%= Rollbar.configuration.enabled.to_s %>,
         payload: {
           environment: "<%= Rollbar.configuration.environment %>"
         }
