@@ -32,7 +32,8 @@ module.exports = {
   output: {
     path: path.resolve(`./public/${sharedConfig.output_path}`),
     publicPath: `/${sharedConfig.output_path}/`,
-    filename: '[name]-[contenthash].js'
+    filename: '[name]-[contenthash].js',
+    devtoolModuleFilenameTemplate: info => `${info.resource.replace('./', '').replace(/\/(?=.*\/)/g, '__').replace('.', `-${info.hash}.`)}`
   },
   plugins: [
     new WebpackAssetsManifest({
