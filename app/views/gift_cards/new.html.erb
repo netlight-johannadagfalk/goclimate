@@ -74,7 +74,6 @@
 <%= render "shared/footer" %>
 
 <% content_for :javascript_tags do %>
-  <script src="https://js.stripe.com/v3/"></script>
   <script type="text/javascript">
     var STRIPE_PUBLISHABLE_KEY = "<%= ENV['PUBLISHABLE_KEY'] %>"
     window.addEventListener('DOMContentLoaded', function() {
