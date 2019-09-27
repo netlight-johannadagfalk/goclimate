@@ -26,7 +26,7 @@
           <tr>
             <td><%= receipt.date %></td>
             <td><%= price_string(receipt.total_amount, receipt.currency) %></td>
-            <td><%= link_to 'View reciept', user_receipt_path(receipt.stripe_event.id) %></td>
+            <td><%= link_to 'View receipt', user_receipt_path(receipt.stripe_event.id) %></td>
           </tr>
         <% end %>
 

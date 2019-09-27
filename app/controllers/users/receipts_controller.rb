@@ -22,7 +22,7 @@ module Users
     private
 
     def set_receipt
-      @receipt = SubscriptionMonthReceipt.new(StripeEvent.find(params[:stripe_event_id]))
+      @receipt = SubscriptionMonthReceiptPdf.new(StripeEvent.find(params[:stripe_event_id]))
     end
 
     def authorize_receipt
