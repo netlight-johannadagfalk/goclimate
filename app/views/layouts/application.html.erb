@@ -100,13 +100,15 @@
           <p class="alert"><%= alert %></p>
         <% end %>
       </div>
-      <script>
-        $(document).ready(function() {
-          setTimeout(function() {
-            $(".alert").slideUp(1000);
-          }, 5000);
-        });
-      </script>
+      <% content_for :javascript_tags do %>
+        <script>
+          $(document).ready(function() {
+            setTimeout(function() {
+              $(".alert").slideUp(1000);
+            }, 5000);
+          });
+        </script>
+      <% end %>
     <% end %>
 
     <%= yield %>
