@@ -59,12 +59,6 @@ class GiftCardsController < ApplicationController
   end
 
   def currency
-    if I18n.locale == :en
-      'usd'
-    elsif I18n.locale == :sv
-      'sek'
-    else
-      'eur'
-    end
+    Currency.from_locale(I18n.locale)
   end
 end

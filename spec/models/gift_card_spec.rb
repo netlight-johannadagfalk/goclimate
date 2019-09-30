@@ -51,41 +51,66 @@ RSpec.describe GiftCard do
       gift_card = described_class.new(number_of_months: 3, currency: 'sek')
 
       # 11 tons/year * 40 kr/ton / 12 months * 2 * 3 months
-      expect(gift_card.price).to eq(220)
+      expect(gift_card.price).to eq(Money.from_amount(220, :sek))
     end
 
     it 'calculates price correctly for 6 months' do
       gift_card = described_class.new(number_of_months: 6, currency: 'sek')
 
       # 11 tons/year * 40 kr/ton / 12 months * 2 * 6 months
-      expect(gift_card.price).to eq(440)
+      expect(gift_card.price).to eq(Money.from_amount(440, :sek))
+    end
+
+    it 'calculates price correctly for 12 months' do
+      gift_card = described_class.new(number_of_months: 12, currency: 'sek')
+
+      # 11 tons/year * 40 kr/ton / 12 months * 2 * 6 months
+      expect(gift_card.price).to eq(Money.from_amount(880, :sek))
     end
 
     context 'with USD' do
+      it 'calculates price correctly for 1 month' do
+        gift_card = described_class.new(number_of_months: 1, currency: 'usd')
+
+        expect(gift_card.price).to eq(Money.from_amount(9, :usd))
+      end
+
       it 'calculates price correctly for 3 months' do
         gift_card = described_class.new(number_of_months: 3, currency: 'usd')
 
-        expect(gift_card.price).to eq(27)
+        expect(gift_card.price).to eq(Money.from_amount(27, :usd))
       end
 
       it 'calculates price correctly for 6 months' do
         gift_card = described_class.new(number_of_months: 6, currency: 'usd')
 
-        expect(gift_card.price).to eq(54)
+        expect(gift_card.price).to eq(Money.from_amount(54, :usd))
+      end
+
+      it 'calculates price correctly for 12 months' do
+        gift_card = described_class.new(number_of_months: 12, currency: 'usd')
+
+        expect(gift_card.price).to eq(Money.from_amount(108, :usd))
       end
     end
 
     context 'with EUR' do
+      it 'calculates price correctly for 1 month' do
+        gift_card = described_class.new(number_of_months: 1, currency: 'eur')
+
+        expect(gift_card.price).to eq(Money.from_amount(7, :eur))
+      end
+
       it 'calculates price correctly for 3 months' do
         gift_card = described_class.new(number_of_months: 3, currency: 'eur')
 
-        expect(gift_card.price).to eq(21)
+        expect(gift_card.price).to eq(Money.from_amount(21, :eur))
       end
 
       it 'calculates price correctly for 6 months' do
         gift_card = described_class.new(number_of_months: 6, currency: 'eur')
 
-        expect(gift_card.price).to eq(42)
+        expect(gift_card.price).to eq(Money.from_amount(42, :eur))
       end
     end
   end
@@ -103,7 +128,7 @@ RSpec.describe GiftCard do
       gift_card.create_payment_intent
 
       expect(Stripe::PaymentIntent).to have_received(:create)
-        .with(hash_including(amount: gift_card.price * 100, currency: gift_card.currency))
+        .with(hash_including(amount: gift_card.price.subunit_amount, currency: gift_card.currency.iso_code))
     end
   end
 end

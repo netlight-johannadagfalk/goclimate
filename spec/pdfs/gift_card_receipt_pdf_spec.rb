@@ -18,7 +18,7 @@ RSpec.describe GiftCardReceiptPdf do
 
   describe '#currency' do
     it 'returns gift card currency' do
-      expect(receipt.currency).to eq(offset.currency)
+      expect(receipt.currency).to eq(offset.currency.iso_code)
     end
   end
 

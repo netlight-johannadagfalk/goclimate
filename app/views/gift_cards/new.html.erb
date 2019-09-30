@@ -26,7 +26,7 @@
           <%=t 'price' %>:
         </label>
         <div class="text-right col-sm-8">
-          <%= price_string(@gift_card.price, @gift_card.currency) %>
+          <%= @gift_card.price.to_s(precision: 0) %>
         </div>
       </div>
     </div>
