@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>API Key</h1>
+
+<dl class="dl-horizontal">
+  <dt>Key:</dt>
+  <dd><%= @api_key.key %></dd>
+
+  <dt>Name:</dt>
+  <dd><%= @api_key.name %></dd>
+
+  <dt>Usage description:</dt>
+  <dd><%= @api_key.usage_description %></dd>
+
+  <dt>Contact name:</dt>
+  <dd><%= @api_key.contact_name %></dd>
+
+  <dt>Contact email:</dt>
+  <dd><%= @api_key.contact_email %></dd>
+</dl>
+
+<hr>
+
+<%= link_to 'Edit', edit_admin_api_key_path(@api_key), class: 'btn btn-default' %>
+<%= link_to 'Back', admin_api_keys_path, class: 'btn btn-link' %>

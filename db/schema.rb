@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_16_134422) do
+ActiveRecord::Schema.define(version: 2019_09_30_130641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "api_keys", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "key"
+    t.string "name"
+    t.text "usage_description"
+    t.string "contact_name"
+    t.string "contact_email"
+  end
 
   create_table "climate_report_calculations", force: :cascade do |t|
     t.datetime "created_at", null: false

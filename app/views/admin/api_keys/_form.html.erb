@@ -1,0 +1,35 @@
+<%= form_with(model: [:admin, api_key], local: true) do |form| %>
+  <% if api_key.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(api_key.errors.count, "error") %> prohibited this API key from being saved:</h2>
+
+      <ul>
+        <% api_key.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control', required: '' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :usage_description %>
+    <%= form.text_area :usage_description, class: 'form-control', required: '' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :contact_name %>
+    <%= form.text_field :contact_name, class: 'form-control', required: '' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :contact_email %>
+    <%= form.email_field :contact_email, class: 'form-control', required: '' %>
+  </div>
+
+  <%= form.submit 'Update API key', class: 'btn btn-primary' %>
+<% end %>

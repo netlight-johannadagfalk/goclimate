@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       end
 
       resource :documentations, only: [:show], path: 'docs'
+      resources :api_keys, only: [:new, :create], path_names: { new: '' }
     end
 
     # Other routes should not match for the api subdomain, so catch everything
@@ -100,6 +101,7 @@ Rails.application.routes.draw do
   # Admin
   namespace :admin do
     root to: 'dashboard#index'
+    resources :api_keys
     resources :invoices
     resources :lifestyle_choices
     resources :projects

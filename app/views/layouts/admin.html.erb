@@ -34,6 +34,9 @@
             <li<% if controller_name == 'projects' %> class="active"<% end %>>
               <%= link_to 'Projects', admin_projects_path %></a>
             </li>
+            <li<% if controller_name == 'api_keys' %> class="active"<% end %>>
+              <%= link_to 'API Keys', admin_api_keys_path %></a>
+            </li>
             <li<% if controller_name == 'lifestyle_choices' %> class="active"<% end %>>
               <%= link_to 'Lifestyle Choices', admin_lifestyle_choices_path %></a>
             </li>
