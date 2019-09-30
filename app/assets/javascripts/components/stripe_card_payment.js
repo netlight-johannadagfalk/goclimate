@@ -19,7 +19,6 @@ var StripeCardPayment = function(
   var style = {
     base: {
       fontSize: '16px',
-      color: '#000',
       iconColor: '#666EE8',
       color: '#31325F',
       lineHeight: '35px',
