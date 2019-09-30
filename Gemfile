@@ -48,6 +48,7 @@ gem 'barnes' # Detailed monitoring on Heroku
 gem 'intercom-rails', '~> 0.4.0'
 gem 'rollbar', '~> 2.18'
 gem 'sendgrid-actionmailer', '~> 2.4.0'
+gem 'sentry-raven'
 gem 'skylight'
 gem 'stripe', '~> 5.1.1'
 
