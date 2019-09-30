@@ -31,6 +31,9 @@
     "ROLLBAR_ENDPOINT": {
       "requred": true
     },
+    "SENTRY_DSN": {
+      "required": true
+    },
     "SKYLIGHT_AUTHENTICATION": {
       "required": true
     },
