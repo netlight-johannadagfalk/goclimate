@@ -1,20 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>GoClimateNeutral API Reference</title>
+    <title>GoClimateNeutral API</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/manifest.json">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#71ab76">
     <meta name="theme-color" content="#ffffff">
-
+    <%= csrf_meta_tags %>
     <%= webpack_entrypoint_stylesheet_tags 'api_documentation' %>
   </head>
 
-  <body class="<%= "#{controller_name} #{controller_name}-#{action_name}" %>">
+  <body class="<%= "#{controller_name} #{controller_name}-#{action_name}" %>" style="padding-top: 50px;">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">GoClimateNeutral API</span>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li<% if controller_name == 'documentations' %> class="active"<% end %>>
+              <%= link_to 'Reference', api_documentations_path %></a>
+            </li>
+            <li<% if controller_name == 'api_keys' %> class="active"<% end %>>
+              <%= link_to 'Request API Key', new_api_api_key_path %></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
     <div class="container-fluid">
 
@@ -22,5 +46,6 @@
 
     </div>
 
+    <%= webpack_entrypoint_javascript_tags 'api_documentation' %>
   </body>
 </html>

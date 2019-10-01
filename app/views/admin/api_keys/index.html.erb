@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>API Keys</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Name</th>
+      <th>Contact name</th>
+      <th>Contact email</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @api_keys.each do |api_key| %>
+      <tr>
+        <td><%= api_key.key %></td>
+        <td><%= api_key.name %></td>
+        <td><%= api_key.contact_name %></td>
+        <td><%= api_key.contact_email %></td>
+        <td class="admin-actions">
+          <%= link_to 'Show', [:admin, api_key] %> &nbsp;
+          <%= link_to 'Edit', edit_admin_api_key_path(api_key) %> &nbsp;
+          <%= link_to 'Destroy', [:admin, api_key], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<%= link_to 'New API Key', new_admin_api_key_path, class: 'btn btn-default' %>

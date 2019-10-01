@@ -21,13 +21,13 @@ calculation is done [here][pdf].
 ## Authentication
 
 The GoClimateNeutral API uses API keys to authenticate requests. Get your API
-key by [contacting us][contact].
+key by [requesting one][request].
 
 Authentication to the API is performed via [HTTP Basic Auth][basic-auth].
 Provide your API key as the basic auth username value and leave the password
 empty. Authentication is required for all endpoints.
 
-[contact]: https://www.goclimateneutral.org/contact
+[request]: ./api_keys
 [basic-auth]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication
 
 ## Errors
