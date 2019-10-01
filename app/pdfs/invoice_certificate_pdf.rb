@@ -22,7 +22,7 @@ class InvoiceCertificatePdf
     @project = project
   end
 
-  def render # rubocop:disable Metrics/MethodLength
+  def render
     WickedPdf.new.pdf_from_string(
       ApplicationController.render(
         template: 'pdfs/invoice_certificate',
