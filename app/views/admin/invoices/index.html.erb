@@ -33,7 +33,7 @@
           <%= link_to 'Edit', edit_admin_invoice_path(invoice) %> &nbsp;
           <%= link_to 'Destroy', [:admin, invoice], method: :delete, data: { confirm: 'Are you sure?' } %>
           <% if invoice.project.present? %>
-            &nbsp; <%= link_to 'Certificate', admin_invoice_certificates_path(type: 'invoice', id: invoice.id, format: :pdf) %>
+            &nbsp; <%= link_to 'Certificate', admin_invoice_certificates_path(type: 'invoice', id: invoice.id, format: :pdf, locale: :sv) %>
           <% end %>
       </td>
       </tr>

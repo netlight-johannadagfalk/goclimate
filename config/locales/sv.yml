@@ -557,6 +557,17 @@ sv:
     shared:
       footer:
         jobs: 'Jobb'
+    pdfs:
+      invoice_certificate:
+        header: Certifikat klimatkompensation
+        we_certify_that: Härmed intygas att
+        has_carbon_offset: har klimatkompenserat
+        project_information: Projektinformation
+        name: Namn
+        country: Land
+        project_id: Projekt ID
+        project_type: Projekttyp
+        date: Datum
 
   business:
     climate_reports:

@@ -23,21 +23,19 @@ class InvoiceCertificatePdf
   end
 
   def render # rubocop:disable Metrics/MethodLength
-    I18n.with_locale(:sv) do
-      WickedPdf.new.pdf_from_string(
-        ApplicationController.render(
-          template: 'pdfs/invoice_certificate',
-          layout: false,
-          assigns: {
-            receiver: receiver,
-            co2e: co2e,
-            issued_at: issued_at,
-            comment: comment,
-            project: project
-          }
-        ),
-        orientation: 'portrait'
-      )
-    end
+    WickedPdf.new.pdf_from_string(
+      ApplicationController.render(
+        template: 'pdfs/invoice_certificate',
+        layout: false,
+        assigns: {
+          receiver: receiver,
+          co2e: co2e,
+          issued_at: issued_at,
+          comment: comment,
+          project: project
+        }
+      ),
+      orientation: 'portrait'
+    )
   end
 end
