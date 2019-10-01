@@ -6,7 +6,7 @@ module Admin
 
     # GET /admin/admin/admin/api_keys
     def index
-      @api_keys = ApiKey.all
+      @api_keys = ApiKey.all.order(created_at: :desc)
     end
 
     # GET /admin/api_keys/admin/1

@@ -5,7 +5,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Key</th>
+      <th>Created</th>
       <th>Name</th>
       <th>Contact name</th>
       <th>Contact email</th>
@@ -16,7 +16,7 @@
   <tbody>
     <% @api_keys.each do |api_key| %>
       <tr>
-        <td><%= api_key.key %></td>
+        <td><%= time_tag(api_key.created_at, format: '%F %R') %></td>
         <td><%= api_key.name %></td>
         <td><%= api_key.contact_name %></td>
         <td><%= api_key.contact_email %></td>
