@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::FlightFootprintsController do
-  let(:blocket_api_key) { '***REMOVED***' }
+  let(:api_key) { create(:api_key).key }
   let(:request_params) do
     {
       segments: {
@@ -40,80 +40,80 @@ RSpec.describe Api::V1::FlightFootprintsController do
 
   shared_examples 'GET /v1/flight_footprint' do
     it 'returns 200 OK for successful requests' do
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
 
       expect(response).to have_http_status(:ok)
     end
 
     it 'sets Cache-control headers' do
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
 
       expect(response.headers['Cache-control']).to match(/max-age=\d+, private/)
     end
 
     it 'sets max-age to between 7 and 14 days' do
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
 
       max_age = response.headers['Cache-control'].match(/max-age=(\d+), private/)[1].to_i
       expect(max_age).to be_between(7.days.to_i, 14.days.to_i)
     end
 
     it 'randomizes max-age within range' do
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
       first_max_age = response.headers['Cache-control'].match(/max-age=(\d+), private/)[1].to_i
 
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
       second_max_age = response.headers['Cache-control'].match(/max-age=(\d+), private/)[1].to_i
 
       expect(first_max_age).not_to eq(second_max_age)
     end
 
     it 'includes estimated footprint in response' do
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
 
       expect(response.parsed_body['footprint']).to eq(500)
     end
 
     it 'includes offset price in response' do
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
 
       expect(response.parsed_body['offset_prices'].first).to be_present
     end
 
     it 'includes offset price amount in response' do
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
 
       expect(response.parsed_body['offset_prices'].first['amount']).to eq(2000)
     end
 
     it 'includes offset price currency in response' do
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
 
       expect(response.parsed_body['offset_prices'].first['currency']).to eq('SEK')
     end
 
     it 'includes details URL in response' do
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key), params: request_params
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
 
       expect(response.parsed_body['details_url']).to end_with('/flight_offsets/new?offset_params=economy%2CARN%2CBCN')
     end
 
     it 'allows currencies as hashes' do
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key),
                                       params: request_params.merge(currencies: { '0' => 'SEK' })
 
       expect(response).to have_http_status(:ok)
     end
 
     it 'allows currencies as arrays' do
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key),
                                       params: request_params.merge(currencies: ['SEK'])
 
       expect(response).to have_http_status(:ok)
     end
 
     it 'allows currencies as string arrays' do
-      get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key),
                                       params: request_params.merge(currencies: 'SEK,NOK')
 
       expect(response).to have_http_status(:ok)
@@ -121,35 +121,35 @@ RSpec.describe Api::V1::FlightFootprintsController do
 
     context 'when not providing correct attributes' do
       it 'returns 400 Bad Request when cabin class is not one of valid values' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+        get '/api/v1/flight_footprint', headers: auth_headers(api_key),
                                         params: request_params.merge(cabin_class: 'invalid')
 
         expect(response).to have_http_status(:bad_request)
       end
 
       it 'returns 400 Bad Request when currency is not one of valid values' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+        get '/api/v1/flight_footprint', headers: auth_headers(api_key),
                                         params: request_params.merge(currencies: ['invalid'])
 
         expect(response).to have_http_status(:bad_request)
       end
 
       it 'returns 400 Bad Request when currency is not on expected format' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+        get '/api/v1/flight_footprint', headers: auth_headers(api_key),
                                         params: request_params.merge(currencies: 'SEK;NOK')
 
         expect(response).to have_http_status(:bad_request)
       end
 
       it 'returns 404 when airport code is not found' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+        get '/api/v1/flight_footprint', headers: auth_headers(api_key),
                                         params: request_params_with_not_found_airport
 
         expect(response).to have_http_status(:not_found)
       end
 
       it 'returns Calculation Unsuccessful when airport code is not found' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+        get '/api/v1/flight_footprint', headers: auth_headers(api_key),
                                         params: request_params_with_not_found_airport
 
         expect(JSON.parse(response.body)).to eq('type' => 'calculation_unsuccessful')
@@ -182,21 +182,21 @@ RSpec.describe Api::V1::FlightFootprintsController do
 
     context 'when not providing correct attributes' do
       it 'returns 200 ok when flight is missing' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+        get '/api/v1/flight_footprint', headers: auth_headers(api_key),
                                         params: request_params.deep_merge(segments: { '0': { flight: nil } })
 
         expect(response).to have_http_status(:ok)
       end
 
       it 'returns 400 Bad Request when origin is missing' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+        get '/api/v1/flight_footprint', headers: auth_headers(api_key),
                                         params: request_params.deep_merge(segments: { '0': { origin: nil } })
 
         expect(response).to have_http_status(:bad_request)
       end
 
       it 'returns 400 Bad Request when destination is missing' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+        get '/api/v1/flight_footprint', headers: auth_headers(api_key),
                                         params: request_params.deep_merge(segments: { '0': { destination: nil } })
 
         expect(response).to have_http_status(:bad_request)
@@ -220,21 +220,21 @@ RSpec.describe Api::V1::FlightFootprintsController do
 
     context 'when not providing correct attributes' do
       it 'returns 200 Ok when flight is missing' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+        get '/api/v1/flight_footprint', headers: auth_headers(api_key),
                                         params: request_params.except(:flight)
 
         expect(response).to have_http_status(:ok)
       end
 
       it 'returns 400 Bad Request when origin is missing' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+        get '/api/v1/flight_footprint', headers: auth_headers(api_key),
                                         params: request_params.except(:origin)
 
         expect(response).to have_http_status(:bad_request)
       end
 
       it 'returns 400 Bad Request when destination is missing' do
-        get '/api/v1/flight_footprint', headers: auth_headers(blocket_api_key),
+        get '/api/v1/flight_footprint', headers: auth_headers(api_key),
                                         params: request_params.except(:destination)
 
         expect(response).to have_http_status(:bad_request)
