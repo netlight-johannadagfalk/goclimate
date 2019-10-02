@@ -16,6 +16,15 @@ class FlightOffset < ApplicationRecord
     "GCN-FLIGHT-#{id}"
   end
 
+  def charged_money
+    Money.new(charged_amount, Currency.from_iso_code(charged_currency))
+  end
+
+  def charged_money=(money)
+    self.charged_amount = money.subunit_amount
+    self.charged_currency = money.currency.iso_code.to_s
+  end
+
   private
 
   def generate_key

@@ -9,11 +9,11 @@ class LifestyleChoice < ApplicationRecord
   SEK_PER_USD = 8.5
   SEK_PER_EUR = 10
 
-  def self.get_lifestyle_choice_price(choices)
+  def self.get_lifestyle_choice_price(choices, currency)
     return 'x' if choices == []
 
     tonne_co2 = lifestyle_choice_tonnes(choices)
-    rounded_price_with_buffer(tonne_co2)
+    rounded_price_with_buffer(tonne_co2, currency)
   end
 
   def self.lifestyle_choice_tonnes(choices)
@@ -40,22 +40,20 @@ class LifestyleChoice < ApplicationRecord
     lifestyle_choice_co2
   end
 
-  def self.stripe_plan(choices)
+  def self.stripe_plan(choices, currency = nil)
     choices = choices.split(',').map(&:to_i)
-    get_lifestyle_choice_price(choices)
+    get_lifestyle_choice_price(choices, currency)
   end
 
-  private_class_method def self.rounded_price_with_buffer(tonne_co2)
-    case I18n.locale
-    when :en
-      price = tonne_co2 * SEK_PER_TONNE / SEK_PER_USD / 12
-      (price * BUFFER_SIZE).round(1)
-    when :de
-      price = tonne_co2 * SEK_PER_TONNE / SEK_PER_EUR / 12
-      (price * BUFFER_SIZE).round(1)
+  private_class_method def self.rounded_price_with_buffer(tonne_co2, currency)
+    price_in_sek = BigDecimal(tonne_co2) * SEK_PER_TONNE / 12 * BUFFER_SIZE
+    case currency
+    when Currency::USD
+      Money.from_amount((price_in_sek / SEK_PER_USD).round(1), Currency::USD)
+    when Currency::EUR
+      Money.from_amount((price_in_sek / SEK_PER_EU).round(1), Currency::EUR)
     else
-      price = tonne_co2 * SEK_PER_TONNE / 12
-      (price * BUFFER_SIZE / 5).ceil * 5
+      Money.from_amount((price_in_sek / 5).ceil * 5, Currency::SEK)
     end
   end
 end

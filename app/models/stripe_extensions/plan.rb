@@ -7,30 +7,30 @@ module StripeExtensions
     end
 
     module ClassMethods
-      def retrieve_or_create_climate_offset_plan(monthly_amount, currency)
-        retrieve(plan_id(monthly_amount, currency))
+      def retrieve_or_create_climate_offset_plan(monthly_amount)
+        retrieve(plan_id(monthly_amount))
       rescue ::Stripe::InvalidRequestError
-        create(climate_offset_plan_params(monthly_amount, currency))
+        create(climate_offset_plan_params(monthly_amount))
       end
 
       private
 
-      def climate_offset_plan_params(monthly_amount, currency)
+      def climate_offset_plan_params(monthly_amount)
         {
-          id: plan_id(monthly_amount, currency),
+          id: plan_id(monthly_amount),
           interval: 'month',
-          currency: currency,
-          amount: (monthly_amount.to_f * 100).round,
-          product: { name: product_name(monthly_amount, currency) }
+          currency: monthly_amount.currency.iso_code,
+          amount: monthly_amount.subunit_amount,
+          product: { name: product_name(monthly_amount) }
         }
       end
 
-      def plan_id(monthly_amount, currency)
-        "climate_offset_#{monthly_amount.to_s.gsub(/[.,]/, '_')}_#{currency}_monthly"
+      def plan_id(monthly_amount)
+        "climate_offset_#{monthly_amount.amount.to_s.gsub(/[.,]/, '_')}_#{monthly_amount.currency.iso_code}_monthly"
       end
 
-      def product_name(monthly_amount, currency)
-        "Climate Offset #{monthly_amount} #{currency} Monthly"
+      def product_name(monthly_amount)
+        "Climate Offset #{monthly_amount.amount} #{monthly_amount.currency.iso_code} Monthly"
       end
     end
   end

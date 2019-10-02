@@ -6,6 +6,7 @@ RSpec.describe FlightOffsetCheckout do
   let(:payment_intent) do
     Stripe::PaymentIntent.construct_from(stripe_json_fixture('payment_intent.json'))
   end
+  let(:money) { Money.new(40_00, Currency::SEK) }
 
   describe '#initialize' do
     it 'uses provided stripe payment_intent' do
@@ -15,15 +16,9 @@ RSpec.describe FlightOffsetCheckout do
     end
 
     it 'uses provided amount' do
-      checkout = described_class.new(amount: 4000)
+      checkout = described_class.new(amount: money)
 
-      expect(checkout.amount).to eq(4000)
-    end
-
-    it 'uses provided currency' do
-      checkout = described_class.new(currency: 'SEK')
-
-      expect(checkout.currency).to eq('sek')
+      expect(checkout.amount).to eq(money)
     end
 
     it 'uses provided co2e' do
@@ -42,7 +37,7 @@ RSpec.describe FlightOffsetCheckout do
   describe '#checkout' do
     subject(:checkout) do
       described_class.new(
-        payment_intent: payment_intent, amount: 4000, currency: 'SEK', co2e: co2e, email: email
+        payment_intent: payment_intent, amount: money, currency: 'SEK', co2e: co2e, email: email
       )
     end
 

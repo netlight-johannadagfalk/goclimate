@@ -11,17 +11,19 @@ class FlightOffsetsController < ApplicationController
     @footprint_per_person = footprint_per_person
     @total_footprint = @footprint_per_person * @num_persons
 
-    @price = (BigDecimal(@total_footprint) / 1000 * LifestyleChoice::SEK_PER_TONNE).to_i * 100
+    @price = calculate_price(@total_footprint)
     @projects = Project.order(id: :desc).limit(2)
 
-    @payment_intent = Stripe::PaymentIntent.create(amount: @price, currency: 'sek')
+    @payment_intent = Stripe::PaymentIntent.create(
+      amount: @price.subunit_amount,
+      currency: Currency::SEK.iso_code
+    )
   end
 
   def create
     @checkout = FlightOffsetCheckout.new(
       payment_intent: Stripe::PaymentIntent.retrieve(params[:paymentIntentId]),
-      amount: params[:amount],
-      currency: params[:currency],
+      amount: amount_from_params,
       co2e: params[:co2e],
       email: params[:email]
     )
@@ -52,5 +54,16 @@ class FlightOffsetsController < ApplicationController
       cabin_class: @offset_params.cabin_class,
       segments: @offset_params.segments
     ).footprint
+  end
+
+  def calculate_price(footprint)
+    Money.from_amount(
+      (BigDecimal(footprint) / 1000 * LifestyleChoice::SEK_PER_TONNE).to_i,
+      Currency::SEK
+    )
+  end
+
+  def amount_from_params
+    Money.from_amount(params[:amount], Currency.from_iso_code(params[:currency]))
   end
 end
