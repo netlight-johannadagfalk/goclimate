@@ -5,7 +5,7 @@ class Money
   attr_reader :subunit_amount, :currency
 
   def self.from_amount(amount, currency)
-    new((amount * 100).round, currency)
+    new((amount.to_d * 100).round, currency)
   end
 
   def initialize(subunit_amount, currency)
@@ -14,7 +14,7 @@ class Money
   end
 
   def <=>(other)
-    return nil unless currency == other.currency
+    return nil unless currency == other&.currency
 
     subunit_amount <=> other.subunit_amount
   end
@@ -39,6 +39,6 @@ class Money
       "models.money.currency_formats.#{currency.iso_code}", number: formatted_number, default: '', fallback: false
     ).presence
 
-    localized_string || "#{currency.iso_code.upcase} #{formatted_number}"
+    localized_string || "#{currency} #{formatted_number}"
   end
 end

@@ -18,7 +18,10 @@
 
       <%= hidden_field(:setup_intent, :client_secret) %>
 
-      <%= render "shared/plan" %>
+      <%=
+        render partial: "shared/plan",
+        locals: { available_plans: @available_plans, current_plan_price: @current_plan_price } 
+      %>
 
       <div id="current-card-group" class="form-group">
         <label for="current-card" class="col-sm-offset-1 col-sm-4 control-label">

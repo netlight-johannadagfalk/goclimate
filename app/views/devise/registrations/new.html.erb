@@ -84,7 +84,7 @@
   <div class="inner">
 
     <h1 class="cover-heading"><%=t 'sign_up_for_a_climate_neutral_life' %></h1>
-    <p class="lead"><%=t 'you_will_offset_for', cost: @plan %>. <%=t 'sign_up_here_to_start_livint_a_climate_neutral_life' %></p>
+    <p class="lead"><%=t 'you_will_offset_for', cost: @current_plan_price.to_s(precision: :auto) %>. <%=t 'sign_up_here_to_start_livint_a_climate_neutral_life' %></p>
     <span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span>
 
     <% if flash[:error].present? || resource.errors.any? || (@manager.present? && @manager.errors.any?) %>
