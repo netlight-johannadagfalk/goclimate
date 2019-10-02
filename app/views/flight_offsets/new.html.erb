@@ -53,7 +53,7 @@
               </tr>
               <tr class="flight-offset-details__key-row">
                 <td><%=t 'views.flight_offsets.new.sum' %>:</td>
-                <td><%= (@price / 100).to_i %> kr</td>
+                <td><%= @price.to_s(precision: :auto) %></td>
               </tr>
             </tfoot>
           </table>
@@ -65,8 +65,8 @@
 
       <%= form_tag(flight_offsets_path, id: "payment-form", class: "form-horizontal") do %>
         <%= hidden_field_tag :co2e, @total_footprint %>
-        <%= hidden_field_tag :amount, @price %>
-        <%= hidden_field_tag :currency, 'sek' %>
+        <%= hidden_field_tag :amount, @price.amount %>
+        <%= hidden_field_tag :currency, Currency::SEK.iso_code %>
         <%= hidden_field_tag :offset_params, params[:offset_params] %>
         <%= hidden_field_tag :num_persons, params[:num_persons] %>
 
@@ -80,7 +80,7 @@
         <div class="form-group">
           <label for="price" class="col-sm-5 control-label padding-top"><%=t 'views.flight_offsets.new.sum' %></label>
           <div class="col-sm-7 form-control-static">
-             <%= (@price / 100).to_i %> kr
+             <%= @price.to_s(precision: :auto) %>
           </div>
         </div>
 

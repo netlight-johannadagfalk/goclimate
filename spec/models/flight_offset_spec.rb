@@ -82,4 +82,24 @@ RSpec.describe FlightOffset do
       expect(offset.to_param).to eq(offset.key)
     end
   end
+
+  describe '#charged_money' do
+    it 'returns charged_amount and charged_currency wrapped in Money' do
+      offset = build(:flight_offset)
+
+      expect(offset.charged_money).to eq(Money.new(4200, Currency::SEK))
+    end
+  end
+
+  describe '#charged_money=' do
+    subject(:offset) { described_class.new(charged_money: Money.new(3100, Currency::USD)) }
+
+    it 'sets charged_amount' do
+      expect(offset.charged_amount).to eq(3100)
+    end
+
+    it 'sets charged_currency' do
+      expect(offset.charged_currency).to eq(Currency::USD.iso_code.to_s)
+    end
+  end
 end
