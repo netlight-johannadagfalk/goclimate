@@ -87,8 +87,8 @@
     <p class="lead"><%=t 'you_will_offset_for', cost: @current_plan_price.to_s(precision: :auto) %>. <%=t 'sign_up_here_to_start_livint_a_climate_neutral_life' %></p>
     <span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span>
 
-    <% if flash[:error].present? || resource.errors.any? || (@manager.present? && @manager.errors.any?) %>
-      <div id="error_explanation">
+    <div id="error_explanation">
+      <% if flash[:error].present? || resource.errors.any? || @manager&.errors.present? %>
         <% if flash[:error].present? %>
           <p><%= flash[:error] %></p>
         <% end %>
@@ -100,9 +100,9 @@
         <% if @manager.present? && @manager.errors.any? %>
           <p>The payment failed: <%= @manager.errors.values.join(' ') %></p>
         <% end %>
-        <p id="error-content"></p>
-      </div>
-    <% end %>
+      <% end %>
+      <p id="error-content"></p>
+    </div>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: "payment-form", :class => "form-horizontal"}) do |f| %>
       <%# TODO: Use nested form helpers with a generic form_for and a fields_for resource so that choices params can live outside of the user hash and be consistent across new and create actions %>
