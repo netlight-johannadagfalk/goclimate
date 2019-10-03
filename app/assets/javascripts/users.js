@@ -28,7 +28,7 @@ function initializeUsers() {
   });
 
   $('#videoModal').on('hidden.bs.modal', function (e) {
-    var $frame = $('iframe');
+    var $frame = $('#videoModal iframe');
 
     // saves the current iframe source
     var vidsrc = $frame.attr('src');
