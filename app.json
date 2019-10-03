@@ -25,12 +25,6 @@
     "RAILS_SERVE_STATIC_FILES": {
       "required": true
     },
-    "ROLLBAR_ACCESS_TOKEN": {
-      "requred": true
-    },
-    "ROLLBAR_ENDPOINT": {
-      "requred": true
-    },
     "SENTRY_DSN": {
       "required": true
     },
