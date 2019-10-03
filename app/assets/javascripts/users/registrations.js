@@ -40,14 +40,11 @@ function initializeUsersRegistrations() {
       eventAction: 'commit'
     });
     // Submit the form
+    $('#error-content').text('')
     $.post($('#payment-form').attr('action'),
       formFieldsJson({ paymentMethodId: paymentMethod.id }),
       function(backendResponse) {
-        if (backendResponse.error) {
-          console.log(backendResponse.error)
-          $('#error-content').text(backendResponse.error)
-          enableSubmit()
-        } else if (backendResponse.redirectTo) {
+        if (backendResponse.redirectTo) {
           window.location.href = backendResponse.redirectTo
         } else if (backendResponse.paymentIntentClientSecret) {
           stripe.handleCardPayment(backendResponse.paymentIntentClientSecret)
@@ -83,7 +80,11 @@ function initializeUsersRegistrations() {
           console.log("Unexpected response from server", backendResponse)
         }
       }
-    )
+    ).fail(function(backendResponse) {
+      console.log(backendResponse)
+      $('#error-content').text(Object.values(backendResponse.responseJSON.error).join('\n'))
+      enableSubmit()
+    })
   }
 
   function disableSubmit() {

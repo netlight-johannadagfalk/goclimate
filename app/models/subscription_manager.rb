@@ -63,7 +63,7 @@ class SubscriptionManager
 
     true
   rescue Stripe::StripeError => e
-    e[e.code&.to_sym || :generic] = e.message || e.to_s
+    errors[e.code&.to_sym || :generic] = e.message || e.to_s
     false
   end
 

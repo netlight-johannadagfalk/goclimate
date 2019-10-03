@@ -33,7 +33,7 @@ module Users
       if @manager.update(new_plan, params[:paymentMethodId])
         render_successful_update
       else
-        render_bad_request(@managers.errors)
+        render_bad_request(@manager.errors)
       end
     end
 
@@ -51,7 +51,7 @@ module Users
     end
 
     def render_bad_request(errors)
-      render json: errors, status: :bad_request
+      render json: { error: errors }, status: :bad_request
     end
 
     def stripe_customer

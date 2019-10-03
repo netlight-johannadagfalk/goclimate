@@ -40,7 +40,7 @@ module Users
         # The card requires 3d secure step in the browser
         render_requires_3ds
       else
-        render json: @manager.errors, status: :bad_request
+        render json: { error: @manager.errors }, status: :bad_request
       end
     end
     # rubocop:enable Metrics/AbcSize

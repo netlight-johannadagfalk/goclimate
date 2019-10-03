@@ -93,23 +93,19 @@ function initializeEditCard() {
     $('#payment-form').on('submit', function(event) {
       disableSubmit()
 
+      $('#error-content').text('')
       if ($('#new-card-div').hasClass("hidden")) {
         // Not changing card - only plan
         $.post($('#payment-form').attr('action'),
           formFieldsJson({}),
           function(backendResponse) {
-            if (backendResponse.error) {
-              console.log(backendResponse.error)
-              $('#error-content').text(backendResponse.error)
-              enableSubmit()
-            } else if (backendResponse.redirectTo) {
-              window.location.href = backendResponse.redirectTo
-            } else {
-              enableSubmit()
-              $('#error-content').text(backendResponse.error)
-              console.log("Unexpected response from server")
-            }
-          })
+            window.location.href = backendResponse.redirectTo
+          }
+        ).fail(function(backendResponse) {
+          console.log(backendResponse)
+          $('#error-content').text(Object.values(backendResponse.responseJSON.error).join('\n'))
+          enableSubmit()
+        })
       } else if ($('#new-card-div').length) {
         stripe.handleCardSetup($('#setup_intent_client_secret').val(), card)
           .then(function(result) {

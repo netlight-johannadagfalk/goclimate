@@ -486,7 +486,7 @@ en:
       new:
         intro: Personalize and pay for your gift card
         your_gift_card_order: Your gift card order
-        write_a_message: personal message
+        write_a_message: Personal message
         sample_message_html: "Example:\nHi Mom, here is a gift for you! /Jenny"
         we_will_send_you_pdf:
           After payment, we will email the gift card to you as a PDF file.
