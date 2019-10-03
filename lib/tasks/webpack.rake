@@ -13,6 +13,7 @@ end
 unless Rake::Task.task_defined?('assets:precompile')
   namespace :assets do
     task :precompile
+    task :clean
   end
 end
 
