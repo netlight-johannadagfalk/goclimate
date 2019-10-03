@@ -51,7 +51,7 @@ class LifestyleChoice < ApplicationRecord
     when Currency::USD
       Money.from_amount((price_in_sek / SEK_PER_USD).round(1), Currency::USD)
     when Currency::EUR
-      Money.from_amount((price_in_sek / SEK_PER_EU).round(1), Currency::EUR)
+      Money.from_amount((price_in_sek / SEK_PER_EUR).round(1), Currency::EUR)
     else
       Money.from_amount((price_in_sek / 5).ceil * 5, Currency::SEK)
     end
