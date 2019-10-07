@@ -44,6 +44,7 @@ a.example-gift-card {
 
 .gift-card-details-row {
   border-top: 1px solid #ddd;
+  padding-top: 15px;
 }
 
 .gift-card-payment {
@@ -55,8 +56,8 @@ a.example-gift-card {
     margin-top: 10px;
   }
 
-  .form-control {
-    max-width: 300px;
+  .form-control, #card-element {
+    max-width: 100%; /* Resets Bootstrap default after being overriden in other places */
   }
 }
 

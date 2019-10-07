@@ -19,7 +19,7 @@ RSpec.feature 'Gift cards', type: :feature, js: true do
       find('input[placeholder="MM / YY"]').send_keys '22'
       find('input[placeholder=CVC]').send_keys '123'
     end
-    click_button 'Pay'
+    click_button 'Purchase gift card'
 
     # Wait for success page to render
     find('.gift_cards-thank_you', wait: 20)

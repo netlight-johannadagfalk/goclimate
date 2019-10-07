@@ -510,8 +510,7 @@ sv:
           Sen kan du ge gåvokortet till mottagaren på det sätt som passar dig.
         gift_card_for_x_months: Gåvokort på %{months} månader
         click_here_for_an_example: Klicka här för ett exempel
-        pay_with_saved_card: Betala med ditt sparade kort
-        pay: Betala
+        pay: Betala gåvokortet
       download:
         gift_card: "Gåvokort"
         gift_card_x_climate_neutral_months:
