@@ -7,68 +7,68 @@
   </div>
 </div>
 <div class="site-wrapper-second">
-  <%= form_tag(gift_cards_path, id: "payment-form", class: "form-horizontal") do %>
-    <p><%=t 'views.gift_cards.new.we_will_send_you_pdf' %></p>
+  <div class="inner">
+    <%= form_tag(gift_cards_path, id: "payment-form") do %>
+      <p><%=t 'views.gift_cards.new.we_will_send_you_pdf' %></p>
 
-    <p><%= link_to t('views.gift_cards.new.click_here_for_an_example'), example_gift_card_certificates_path(subscription_months_to_gift: params[:subscription_months_to_gift], format: :pdf), class: 'example-gift-card' %></p>
+      <p><%= link_to t('views.gift_cards.new.click_here_for_an_example'), example_gift_card_certificates_path(subscription_months_to_gift: params[:subscription_months_to_gift], format: :pdf), class: 'example-gift-card' %></p>
 
-    <div class="gift-card-details">
-      <div class="form-group gift-card-details-row">
-        <label class="text-left col-sm-4">
-          <%=t 'type' %>:
-        </label>
-        <div class="text-right col-sm-8">
-          <%=t 'x_months', count: @gift_card.number_of_months %>
+      <div class="gift-card-details form-horizontal">
+        <div class="form-group gift-card-details-row">
+          <label class="text-left col-xs-4">
+            <%=t 'type' %>:
+          </label>
+          <div class="text-right col-xs-8">
+            <%=t 'x_months', count: @gift_card.number_of_months %>
+          </div>
         </div>
-      </div>
-      <div class="form-group gift-card-details-row">
-        <label class="text-left col-sm-4">
-          <%=t 'price' %>:
-        </label>
-        <div class="text-right col-sm-8">
-          <%= @gift_card.price.to_s(precision: 0) %>
-        </div>
-      </div>
-    </div>
-    <div class="gift-card-payment">
-      <%= fields_for :gift_card do |f| %>
-        <div>
-          <label class="gift-card-message"><%=t 'views.gift_cards.new.write_a_message' %></label>
-          <div><%= f.text_area :message, rows: 4, cols: 40, placeholder: t('views.gift_cards.new.sample_message_html')%></div>
-        </div>
-      <% end %>
-
-      <div>
-        <label for="email"><%=t 'email' %></label>
-        <div>
-          <%= email_field_tag :email, nil, required: '', id: "email", class: "form-control" %>
-        </div>
-      </div>
-
-      <div id="current-card-group">
-        <label for="card">
-          <%=t 'credit_or_debit_card' %>
-        </label>
-        <div id="card">
-          <div id="card-element" class="form-control">
-            <!-- a Stripe Element will be inserted here. -->
+        <div class="form-group gift-card-details-row">
+          <label class="text-left col-xs-4">
+            <%=t 'price' %>:
+          </label>
+          <div class="text-right col-xs-8">
+            <%= @gift_card.price.to_s(precision: 0) %>
           </div>
         </div>
       </div>
-    </div>
+      <div class="gift-card-payment">
+        <%= fields_for :gift_card do |f| %>
+          <div class="form-group">
+            <%= f.label :message, t('views.gift_cards.new.write_a_message'), class: 'gift-card-message' %>
+            <%= f.text_area :message, rows: 4, cols: 40, class: 'form-control', placeholder: t('views.gift_cards.new.sample_message_html') %>
+          </div>
+        <% end %>
 
-    <div id="card-errors"></div>
+        <div class="form-group">
+          <%= label_tag :email, t('email') %>
+          <%= email_field_tag :email, nil, required: '', id: "email", class: "form-control" %>
+        </div>
 
-    <div id="error_explanation" class="hidden"> </div>
+        <div id="current-card-group" class="form-group">
+          <label for="card">
+            <%=t 'credit_or_debit_card' %>
+          </label>
+          <div id="card">
+            <div id="card-element" class="form-control">
+              <!-- a Stripe Element will be inserted here. -->
+            </div>
+          </div>
+        </div>
 
-    <%= hidden_field_tag :subscription_months_to_gift, @gift_card.number_of_months %>
+        <div id="card-errors"></div>
 
-    <%= button_tag(type: 'submit', id: 'checkout-button', class: 'btn btn-success') do %>
-      <i class="fa fa-spinner fa-spin hidden" id="button-spinner"></i>
-      <%= t('views.gift_cards.new.pay') %>
+        <div id="error_explanation" class="hidden"> </div>
+
+        <%= hidden_field_tag :subscription_months_to_gift, @gift_card.number_of_months %>
+
+        <%= button_tag(type: 'submit', id: 'checkout-button', class: 'btn btn-success btn-block') do %>
+          <i class="fa fa-spinner fa-spin hidden" id="button-spinner"></i>
+          <%= t('views.gift_cards.new.pay') %>
+        <% end %>
+      </div>
+
     <% end %>
-
-  <% end %>
+  </div>
 </div>
 
 <%= render "shared/footer" %>
