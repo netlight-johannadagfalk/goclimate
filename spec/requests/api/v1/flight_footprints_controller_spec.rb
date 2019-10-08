@@ -175,6 +175,16 @@ RSpec.describe Api::V1::FlightFootprintsController do
         expect(response.parsed_body['type']).to eq('authentication_error')
       end
     end
+
+    context 'when providing malformed authorization' do
+      it 'returns 401 Unauthorized' do
+        get '/api/v1/flight_footprint', headers: {
+          'HTTP_AUTHORIZATION' => 'Basic malformed'
+        }
+
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
   end
 
   describe 'GET /v1/flight_footprint' do
