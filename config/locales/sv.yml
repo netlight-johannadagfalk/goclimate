@@ -662,6 +662,8 @@ sv:
         well_get_in_touch_html: Vi hör av oss när nästa rapporteringsperiod håller på att ta slut om ni vill uppdatera ert klimatavtryck då. Om du har några frågor om klimatkompensation eller ordern, hör gärna av dig till <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a>!
         reduce_header: Kan ni minska era utsläpp mer?
         reduce_body: Fundera gärna igenom en extra gång om det är något av era utsläpp som ni kan minska. Vi uppmanar alla företag att ta ansvar för sina utsläpp genom att klimatkompensera, men ännu viktigare är att minska sina utsläpp så mycket man kan.
+        safety_factor: säkerhetsfaktor
+        safety_factor_explanation: För att säkerställa att klimatkompensationen gör motsvarande klimatnytta som de beräknade klimatutsläppen så använder vi en säkerhetsfaktor på två vid köp av klimatkompensation hos oss.
     climate_report_invoices:
       thank_you:
         thank_you_text: Genom att kompensera för ditt företags klimatutsläpp, så tar du ansvar för det avtryck som ditt företag har på klimatet. 

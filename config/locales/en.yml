@@ -632,6 +632,8 @@ en:
         well_get_in_touch_html: We'll get in touch when your next reporting period is about to end and it's time to update your footprint. If you have any questions about the order, please contact us at info@goclimateneutral.org
         reduce_header: Can you reduce your emissions more?
         reduce_body: Please think through one extra time if there is anything of your emissions you can reduce. We encourage all businesses to take responsibility for their emissions by carbon offsetting, but even more important is to reduce your emissions as much as possible.
+        safety_factor: safety factor
+        safety_factor_explanation: To make sure that the impact of the carbon offsetting corresponds to the calculated emissions, we use a safety factor of two when purchasing carbon offsets from us.
     climate_report_invoices:
       thank_you:
         thank_you_text: By offsetting your business footprint, you're taking resposibility for the impact that your business has on the climate.
