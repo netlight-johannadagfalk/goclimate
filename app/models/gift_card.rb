@@ -3,6 +3,8 @@
 require 'digest'
 
 class GiftCard < ApplicationRecord
+  attribute :currency, :currency
+
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
   validates_presence_of :number_of_months
 
@@ -21,14 +23,6 @@ class GiftCard < ApplicationRecord
       amount: price.subunit_amount,
       currency: currency.iso_code
     )
-  end
-
-  def currency
-    Currency.from_iso_code(@currency)
-  end
-
-  def currency=(curr)
-    @currency = curr.respond_to?(:iso_code) ? curr.iso_code : curr
   end
 
   private

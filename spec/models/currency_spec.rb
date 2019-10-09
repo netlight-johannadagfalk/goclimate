@@ -11,6 +11,14 @@ RSpec.describe Currency do
     it 'returns nil when currency is not defined' do
       expect(described_class.from_iso_code(:xxx)).to be_nil
     end
+
+    it 'returns nil when given nil' do
+      expect(described_class.from_iso_code(nil)).to be_nil
+    end
+
+    it 'returns nil when given an empty string' do
+      expect(described_class.from_iso_code('')).to be_nil
+    end
   end
 
   describe '.from_locale' do
