@@ -59,14 +59,15 @@ en:
   we_are_100_transparent: We are 100% transparent.
   this_is_a_first_step: This is a first step.
   this_is_a_first_step_description: Get started with a climate neutral life now. We will also all need to reduce our climate footprint, but don't worry, we'll help by sharing inspiration and useful information!
-  section_3_text: We are 100% transparent in which both UN and Gold Standard-certified climate offset projects we invest in, and why.
+  section_3_text: We are 100% transparent about which Gold Standard-certified climate offset projects we invest in, and why.
   we_are_975_effective: We are very climate efficient.
   section_4_text: We invest in the most effective certified climate offset projects we can find, so that your money slows down climate change as much as possible.
   vegan: Plant-based diet
   no_car: No car
   hardly_ever_flies: Hardly ever flies
   cost_calculation: Cost calculation
-  price_info_popup_content: With this choice we estimate a yearly climate footprint of %{footprint} tonne CO<sub>2</sub>. Since the number is approximate we offset for twice as many tonnes, so %{footprint_x2} tonne C0<sub>2</sub>. This way you can be sure you live climate neutral every month.<br>We invest in projects that are UN-certified (CDM) and also have the quality label Gold Standard (created among others by WWF). These project cost $%{price_per_tonne} per tonne - so this choice end up at $%{price_per_month} per month.
+  price_info_popup_content: With this choice we estimate a yearly climate footprint of %{footprint} tonne CO<sub>2</sub>. Since the number is approximate we offset for twice as many tonnes, so %{footprint_x2} tonne C0<sub>2</sub>. This way you can be sure you live climate neutral every month.<br>We invest in projects that are 
+  -certified (CDM) and also have the quality label Gold Standard (created among others by WWF). These project cost $%{price_per_tonne} per tonne - so this choice end up at $%{price_per_month} per month.
   you_will_offset_for: To take responsibility for your climate footprint costs %{cost}/month
   mostly_vegetarian: Eat mostly vegetarian food
   one_fuel_efficient_car: One Fuel Efficient Car
@@ -136,8 +137,9 @@ en:
   total_climate_offset_project_investments: Total climate offset project investments
   our_projects: Our Climate Projects
   our_investments_in_climate_projects: Our Climate Projects
-  our_investments_in_climate_projects_intro_html: 'We support UN-certified climate projects (CDM) that are also Gold Standard-certified. When you choose UN-certified Gold Standard projects you have all the members of the UN and 80 different environment NGOs behind you - among them WWF.
-    <br><br>Gold Standard also focuses on other sustainability aspects than the climate - reducing poverty and contributing to cleaner air and water - which is reported through the UN 2030 Sustainable Development Goals. You can find more information about the projects on <a href="http://UNFCCC.int" target="_blank">the UNFCCC website</a> and <a href="https://www.goldstandard.org/" target="_blank">the Gold Standards website</a>.
+  our_investments_in_climate_projects_intro_html: 'We support Gold Standard-certified climate projects. When you choose Gold Standard projects you have 80 different environment NGOs behind you - among them WWF.
+    <br><br>Gold Standard also focuses on other sustainability aspects than the climate - reducing poverty and contributing to cleaner air and water - which is reported through the 
+    2030 Sustainable Development Goals. You can find more information about the projects on <a href="http://UNFCCC.int" target="_blank">the UNFCCC website</a> and <a href="https://www.goldstandard.org/" target="_blank">the Gold Standards website</a>.
     <br><br>All climate projects are verified by an independent third party, such as TÜV and DNV. All the protocols are public and follow the projects during the project time to be able to guarantee that real climate benefit is obtained.'
   climate_project_we_have_invested_in: The Climate Projects we have invested in together
   project_certification_info_html: '<b>CDM+GS:</b> UN-certified (CDM) projects that are also certified with Gold Standard (GS).<br><b>CDM:</b> Before August 2017 we invested in projects that were UN-certified, but did not have the Gold Standard certification.'
@@ -227,7 +229,7 @@ en:
   why_trust_2: We are completely transparent with were your money ends up
   why_trust_4: It's super easy to cancel your climate offset plan if you want to
   why_trust_5: If you regret your offset plan within 60 days we will give you your money back
-  we_invest_in_un_climate_projects_that_are_gold_standard_certified: We invest in climate projects that are both UN and Gold Standard certified. See some examples of projects we invested in below.
+  we_invest_in_un_climate_projects_that_are_gold_standard_certified: We invest in climate projects that are Gold Standard certified. See some examples of projects we invested in below.
   thai_solar_carousel_description: Over 90% of electricity consumed in Thailand’s grid is supplied by fossil fuel. We have invested in this solar plant that supplies clean renewable electricity to the Thailand grid.
   nanyang_danjiang_carousel_description: By replacing traditional coal-fired cooking stoves with clean solar cookers CO2-emissions are reduced and the quality of life of 50.000 rural household are improved.
   dak_pone_carousel_description: The Dak Pone Hydro project replaces diesel generators and wood-fired heating with clean sustainable hydro energy.
@@ -278,9 +280,9 @@ en:
         <br><br>
         Carbon offsetting is often made possible by climate projects in developing countries - for instance energy efficiency projects or wind or solar plants.
         <br><br>
-        To be on the safe side that you actually achieve climate benefit when you carbon offset - the climate projects should be reliably certified. The most reliable projects are both UN and Gold Standard-certified (that WWF is behind among others).
+        To be on the safe side that you actually achieve climate benefit when you carbon offset - the climate projects should be reliably certified. The most reliable projects are Gold Standard-certified (and therefore supported by WWF).
         <br><br>
-        At GoClimateNeutral we help you offset your emissions that your lifestyle causes through projects that are both UN and Gold Standard-certified."
+        At GoClimateNeutral we help offset your lifestyle emissions, through projects that are Gold Standard-certified."
       q4:
         question: Does carbon offsetting really make a difference? 
         answer: "<img alt='' class='aligncenter wp-image-227 size-large' src='https://www.goclimateneutral.org/blog/wp-content/uploads/2017/08/gold_standard_CDM-1024x626.png' /><br>
@@ -288,7 +290,7 @@ en:
         <br><br>
         So, how can you be sure that the money we invest actually contributes to real climate benefit? Well, there are several different organisation that approves and certifies climate projects to ensure this. The largest standards are CDM (which the UN is behind), Gold Standard (which WWF among others are behind), Plan Vivio, VCS and Fair Trade. Emissions trading also used to be a way to carbon offset, but is no longer an effective way to achieve real and lasting climate benefit.
         <br><br>
-        We at GoClimateNeutral has gone from doing carbon offseting in UN-certified projects (CDM) to investing in projects that are both UN-certified and also certified by Gold Standard Foundation. These projects are more expensive, but keeps a higher quality and are more audited by independent third parties than the projects that are only UN-certified. You can read more about Gold Standard here: <a href='https://www.goldstandard.org/' target='_blank'>https://www.goldstandard.org/</a>
+        We at GoClimateNeutral have gone from doing carbon offseting in UN-certified projects (CDM) to investing in projects that are certified by Gold Standard Foundation. These projects are more expensive, but have higher quality than the projects that are only UN-certified. You can read more about Gold Standard here: <a href='https://www.goldstandard.org/' target='_blank'>https://www.goldstandard.org/</a>
         <br><br>
         It is also important to invest in projects that are already completed. If the projects are completed, third parties can verify the actual climate benefit achieved - unlike in projects where climate benefits are just something that someone hopes to achieve in the future.
         <br><br>
@@ -328,7 +330,7 @@ en:
         <br><br>
         Even though most of the projects out there are really excellent, some projects and standards have repeatedly failed to keep what they promise, and in some cases even had negative effects for local people and for the environment where the project was carried out.
         <br><br>
-        Therefore, it is clear to us at GoClimateNeutral that we cannot choose any project to invest in in order to become climate neutral. We therefore only invest in the most credible and thoroughly reviewed projects, projects that are both CDM certified (that the UN is behing) and in addition have the Gold Standard certification (which WWF among others are behind). When you invest in these projects, you have the UN's all Member States and about 90 environmental organizations behind you. In addition, third parties verifies all of these projects, including TÜV and DNV, and all their protocols are public and follow the projects throughout the project lifespan.
+        Therefore, it is clear to us at GoClimateNeutral that we cannot choose any project to invest in in order to become climate neutral. We therefore only invest in the most credible and thoroughly reviewed projects, projects that have the Gold Standard certification (which WWF stands behind, among others). When you invest in these projects, you have 80 environmental organizations behind you. In addition, third parties verifies all of these projects, including TÜV and DNV, and all their protocols are public and follow the projects throughout the project lifespan.
         <br><br>
         In addition to choosing thoroughly third-party reviewed projects, which is CDM and Gold Standard certified, we also offset for double the calculated emissions - to be on the safe side if something would go wrong with the climate projects we invest in. We also spread investments in various climate projects to further increase the sureness that the money achieve as much good as possible."
       q10:
@@ -410,7 +412,7 @@ en:
       title: Calculate your climate impact to get started
       submit: Offset my impact
       per_month: /mo
-    what_is_gcn_text: We support UN certified climate offset projects and highlight easy ways to reduce your climate footprint. In this way we help slow down climate change and contribute to saving our planet.
+    what_is_gcn_text: We support Gold Standard certified climate offset projects and highlight easy ways to reduce your climate footprint. In this way we help slow down climate change and contribute to saving our planet.
     lets_save_our_planet_header: Less is more!
     lets_save_our_planet_text: Every ton CO2 less in the atmosphere means more of all the things we love on this planet. And the more people we are, the bigger impact we will have.
     call_to_actions:
@@ -499,7 +501,7 @@ en:
           one: 1 climate neutral month
           other: "%{count} climate neutral months"
         about_go_climate_neutral:
-          <a href='http://www.goclimateneutral.org'>GoClimateNeutral</a> supports climate projects and gives inspiration and advice on how to reduce your climate footprint. All supported projects are found within the framework of UN (CDM) and certified by Gold Standard, established by WWF and about 80 other international NGOs. Together we contribute to stop climate change and save the world!
+          <a href='http://www.goclimateneutral.org'>GoClimateNeutral</a> supports climate projects and gives inspiration and advice on how to reduce your climate footprint. All supported projects are certified by Gold Standard, established by WWF and about 80 other international NGOs. Together we contribute to stop climate change and save the world!
         calculation_based_on_html: "Calculation based on the average climate footprint of 11 tonnes CO<sub>2</sub>eq per person and year x 2."
         do_you_want_to_continue: If you want to continue living a climate neutral life after this gift card has expired,
         register: visit <a href="http://www.goclimateneutral.org">GoClimateNeutral.org</a> and register!
@@ -639,7 +641,7 @@ en:
         thanks_again: Thanks again!
 
   this_is_how_the_money_is_used_header: This is how the money is used
-  this_is_how_the_money_is_used_text: We support UN certified climate projects that are also Gold Standard certified. The projects reduce emissions equivalent to your business' footprint and contribute to the global transition to renewable energy production. Here's our two latest projects.
+  this_is_how_the_money_is_used_text: We support Gold Standard certified climate projects. The projects reduce emissions equivalent to your business' footprint and contribute to the global transition to renewable energy production. Here's our two latest projects.
   tonnes_carbon_dioxide: tonnes carbon dioxide
   see_all_our_projects: See all our projects
   mailers:
