@@ -12,6 +12,8 @@ Currency = Struct.new(:iso_code) do
   end
 
   def self.from_iso_code(iso_code)
+    return nil unless iso_code.present?
+
     "Currency::#{iso_code.upcase}".constantize
   rescue NameError
     nil

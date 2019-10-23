@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'shared_examples/models/types/currency_type_spec'
 
 RSpec.describe GiftCard do
+  include_examples 'currency attributes', [:currency]
+
   describe 'validations' do
     it 'validates key to be unique' do
       existing = create(:gift_card)
