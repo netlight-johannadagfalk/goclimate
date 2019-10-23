@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
     @total_carbon_offset = Project.total_carbon_offset
     @lifestyle_choice_co2 = LifestyleChoice.lifestyle_choice_co2
     gon.lifestyle_choice_co2 = @lifestyle_choice_co2
-    gon.locale = I18n.locale
+    gon.currency = current_region.currency.iso_code
     gon.SEK_PER_TONNE = LifestyleChoice::SEK_PER_TONNE
     gon.BUFFER_SIZE = LifestyleChoice::BUFFER_SIZE
     gon.SEK_PER_USD = LifestyleChoice::SEK_PER_USD

@@ -804,7 +804,7 @@ de:
     calculator:
       title: Legen Sie los und berechnen Sie Ihre Auswirkungen auf das Klima.
       submit: Meine Emissionen ausgleichen
-      per_month: / mo
+      per_month: /mo
     what_is_gcn_text: >-
       Wir investieren in UN-zertifizierte Klimaprojekte und zeigen Ihnen, wie
       Sie ganz einfach Ihre Klimabilanz verbessern können. Auf diese Weise
@@ -932,3 +932,6 @@ de:
     money:
       currency_formats:
         eur: '%{number} €'
+    currency:
+      suffix:
+        eur: ' €'

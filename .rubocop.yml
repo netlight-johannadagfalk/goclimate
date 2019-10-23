@@ -44,6 +44,8 @@ Metrics/BlockLength:
     - 'configure'
     - 'namespace'
     - 'shared_examples'
+  Exclude:
+    - 'config/routes.rb'
 
 Style/EmptyMethod:
   EnforcedStyle: expanded

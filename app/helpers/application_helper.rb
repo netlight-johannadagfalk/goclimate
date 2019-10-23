@@ -42,6 +42,12 @@ module ApplicationHelper
     end
   end
 
+  def url_for_region(region)
+    return root_url(region: region) unless request.get?
+
+    url_for(request.query_parameters.merge(region: region))
+  end
+
   private
 
   def fractional_string(amount)

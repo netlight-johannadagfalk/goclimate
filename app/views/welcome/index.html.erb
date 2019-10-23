@@ -55,8 +55,7 @@
                 </select>
 
                 <div class="impact-calculator-fields--price">
-                  <% if locale == :en %>$<% end %><span id="sum" class="impact-calculator-fields--price-sum">x</span>
-                  <% if locale == :sv %>kr<% elsif locale == :de %>€<% end %><%=t 'welcome.calculator.per_month' %>
+                  <%= current_region.currency.prefix %><span id="sum" class="impact-calculator-fields--price-sum">x</span><%= current_region.currency.suffix %><%=t 'welcome.calculator.per_month' %>
 
                   <a id="price-info-helper"
                       data-html="true"

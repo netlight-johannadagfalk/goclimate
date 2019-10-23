@@ -36,12 +36,14 @@
             </li>
         <% else %>
           <li><%= link_to(I18n.t('log_in'), new_user_session_url)%></li>
-          <li class="dropdown languages">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=  image_tag webpack_asset_path('images/languages/' + I18n.locale.to_s + '.png') %><span class="caret"></span></a>
-              <ul class="dropdown-menu languages">
-                <li><a href="https://sv.goclimateneutral.org/"><%= image_tag webpack_asset_path('images/languages/sv.png') %> SV</a></li>
-                <li><a href="https://en.goclimateneutral.org/"><%= image_tag webpack_asset_path('images/languages/en.png') %> EN</a></li>
-                <li><a href="https://de.goclimateneutral.org/"><%= image_tag webpack_asset_path('images/languages/de.png') %> DE</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= image_tag webpack_asset_path("images/regions/#{current_region.icon}.png") %><span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="<%= url_for_region(Region::Europe) %>"><%= image_tag webpack_asset_path("images/regions/#{Region::Europe.icon}.png") %> Europe</a></li>
+                <li><a href="<%= url_for_region(Region::Germany) %>"><%= image_tag webpack_asset_path("images/regions/#{Region::Germany.icon}.png") %> Deutschland</a></li>
+                <li><a href="<%= url_for_region(Region::Sweden) %>"><%= image_tag webpack_asset_path("images/regions/#{Region::Sweden.icon}.png") %> Sverige</a></li>
+                <li><a href="<%= url_for_region(Region::USA) %>"><%= image_tag webpack_asset_path("images/regions/#{Region::USA.icon}.png") %> United States</a></li>
+                <li><a href="<%= url_for_region(Region::Europe) %>"><%= image_tag webpack_asset_path("images/regions/world.png") %> Rest of the World</a></li>
               </ul>
           </li>
         <% end %>
@@ -65,15 +67,11 @@
         <% else %>
           <li><%= link_to(I18n.t('log_in'), new_user_session_url)%></li>
           <li role="separator" class="divider"></li>
-          <% if I18n.locale != :en %>
-            <li><a href="https://en.goclimateneutral.org/"><%= image_tag webpack_asset_path('images/languages/en.png') %> IN ENGLISH</a></li>
-          <% end %>
-          <% if I18n.locale != :de %>
-            <li><a href="https://de.goclimateneutral.org/"><%= image_tag webpack_asset_path('images/languages/de.png') %> AUF DEUTSCH</a></li>
-          <% end %>
-          <% if I18n.locale != :sv %>
-            <li><a href="https://sv.goclimateneutral.org/"><%= image_tag webpack_asset_path('images/languages/sv.png') %> PÅ SVENSKA</a></li>
-          <% end %>
+          <li><a href="<%= url_for_region(Region::Europe) %>"><%= image_tag webpack_asset_path("images/regions/#{Region::Europe.icon}.png") %> Europe</a></li>
+          <li><a href="<%= url_for_region(Region::Germany) %>"><%= image_tag webpack_asset_path("images/regions/#{Region::Germany.icon}.png") %> Deutschland</a></li>
+          <li><a href="<%= url_for_region(Region::Sweden) %>"><%= image_tag webpack_asset_path("images/regions/#{Region::Sweden.icon}.png") %> Sverige</a></li>
+          <li><a href="<%= url_for_region(Region::USA) %>"><%= image_tag webpack_asset_path("images/regions/#{Region::USA.icon}.png") %> United States</a></li>
+          <li><a href="<%= url_for_region(Region::Europe) %>"><%= image_tag webpack_asset_path("images/regions/world.png") %> Rest of the World</a></li>
         <% end %>
       </ul>
 

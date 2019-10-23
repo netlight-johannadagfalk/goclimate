@@ -20,30 +20,4 @@ RSpec.describe Currency do
       expect(described_class.from_iso_code('')).to be_nil
     end
   end
-
-  describe '.from_locale' do
-    context 'when given :sv' do
-      subject { described_class.from_locale(:sv) }
-
-      it { is_expected.to be == Currency::SEK }
-    end
-
-    context 'when given :en' do
-      subject { described_class.from_locale(:en) }
-
-      it { is_expected.to be == Currency::USD }
-    end
-
-    context 'when given :de' do
-      subject { described_class.from_locale(:de) }
-
-      it { is_expected.to be == Currency::EUR }
-    end
-
-    context 'when given any other locale' do
-      subject { described_class.from_locale(:uk) }
-
-      it { is_expected.to be == Currency::USD }
-    end
-  end
 end

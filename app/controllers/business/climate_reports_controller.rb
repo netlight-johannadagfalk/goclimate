@@ -22,7 +22,7 @@ module Business
       end
 
       ClimateReportCalculation.create_from_climate_report!(@report)
-      BusinessMailer.with(climate_report: @report).climate_report_email.deliver_now
+      BusinessMailer.with(climate_report: @report, region: current_region).climate_report_email.deliver_now
 
       redirect_to action: :show, key: @report.key
     end

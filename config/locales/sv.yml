@@ -697,3 +697,6 @@ sv:
       currency_formats:
         sek: '%{number} kr'
         eur: '%{number} €'
+    currency:
+      suffix:
+        sek: ' kr'

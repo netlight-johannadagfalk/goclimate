@@ -2,6 +2,8 @@ import $ from 'jquery';
 import CountUp from 'countup.js';
 
 function initializeWelcome() {
+  var signUpUrl = $('#custom-plan').attr('href').split('?')[0];
+
   function planSum(){
     var food = parseInt($('#food').val());
     var car = parseInt($('#car').val());
@@ -13,11 +15,11 @@ function initializeWelcome() {
     tonne_co2 = tonne_co2 * gon.lifestyle_choice_co2[people]
     var rounded_price_with_buffer = 0;
 
-    if (gon.locale === 'en') {
+    if (gon.currency === 'usd') {
       var price = tonne_co2 * gon.SEK_PER_TONNE / gon.SEK_PER_USD / 12;
       var rounded_price_with_buffer = Math.round((price * gon.BUFFER_SIZE) * 10) / 10;
       var price_per_tonne = Math.round((gon.SEK_PER_TONNE / gon.SEK_PER_USD) * 10) / 10;
-    } else if (gon.locale === 'de') {
+    } else if (gon.currency === 'eur') {
       var price = tonne_co2 * gon.SEK_PER_TONNE / gon.SEK_PER_EUR / 12;
       var rounded_price_with_buffer = Math.round((price * gon.BUFFER_SIZE) * 10) / 10;
       var price_per_tonne = Math.round((gon.SEK_PER_TONNE / gon.SEK_PER_EUR) * 10) / 10;
@@ -35,7 +37,7 @@ function initializeWelcome() {
     $('.custom-plan-price #sum').text(rounded_price_with_buffer);
     $('#price-info-helper').attr('data-content', data_content);
     $('.popover-content').html(data_content);
-    $('#custom-plan').attr('href', '/users/sign_up?choices=' + base_cost + ',' + food + ',' + car + ',' + flying + ',' + people);
+    $('#custom-plan').attr('href', signUpUrl + '?choices=' + base_cost + ',' + food + ',' + car + ',' + flying + ',' + people);
   };
 
   var impactCalculatorFields = document.querySelectorAll('#food, #car, #flying, #people');

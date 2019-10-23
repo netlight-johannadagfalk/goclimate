@@ -1,16 +1,6 @@
 # frozen_string_literal: true
 
 Currency = Struct.new(:iso_code) do
-  # TODO: switch this to from_region when we have region as part of the url
-  def self.from_locale(locale)
-    case locale
-    when :sv then Currency::SEK
-    when :us then Currency::USD
-    when :de then Currency::EUR
-    else Currency::USD
-    end
-  end
-
   def self.from_iso_code(iso_code)
     return nil unless iso_code.present?
 
@@ -21,6 +11,14 @@ Currency = Struct.new(:iso_code) do
 
   def to_s
     iso_code.to_s.upcase
+  end
+
+  def prefix
+    I18n.translate("models.currency.prefix.#{iso_code}", default: '', fallback: false)
+  end
+
+  def suffix
+    I18n.translate("models.currency.suffix.#{iso_code}", default: '', fallback: false)
   end
 end
 
