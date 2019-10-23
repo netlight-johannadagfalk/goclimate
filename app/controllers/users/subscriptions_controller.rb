@@ -37,14 +37,17 @@ module Users
     private
 
     def available_plans(current_plan_price)
-      plan_price = current_plan_price&.amount || 0
-      if customer_currency == Currency::SEK
-        (10...plan_price + 300).step(5)
-      else
-        (2...plan_price + 30)
-      end
-        .to_a.push(plan_price).sort
-        .map { |amount| Money.from_amount(amount, customer_currency) }
+      starting_plan_price = current_plan_price&.amount || 0
+      plans =
+        if customer_currency == Currency::SEK
+          (10...starting_plan_price + 300).step(5)
+        else
+          (2...starting_plan_price + 30)
+        end.to_a
+
+      plans.push(current_plan_price.amount) if current_plan_price.present? && !plans.include?(current_plan_price.amount)
+
+      plans.sort.map { |amount| Money.from_amount(amount, customer_currency) }
     end
 
     def render_bad_request(errors)
