@@ -660,3 +660,7 @@ en:
       currency_formats:
         usd: '$%{number}'
         eur: '€%{number}'
+    currency:
+      prefix:
+        usd: $
+        eur: €

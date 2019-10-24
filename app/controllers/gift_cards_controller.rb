@@ -2,10 +2,10 @@
 
 class GiftCardsController < ApplicationController
   def index
-    @gift_card_1_months = GiftCard.new(number_of_months: 1, currency: currency)
-    @gift_card_3_months = GiftCard.new(number_of_months: 3, currency: currency)
-    @gift_card_6_months = GiftCard.new(number_of_months: 6, currency: currency)
-    @gift_card_12_months = GiftCard.new(number_of_months: 12, currency: currency)
+    @gift_card_1_months = GiftCard.new(number_of_months: 1, currency: current_region.currency)
+    @gift_card_3_months = GiftCard.new(number_of_months: 3, currency: current_region.currency)
+    @gift_card_6_months = GiftCard.new(number_of_months: 6, currency: current_region.currency)
+    @gift_card_12_months = GiftCard.new(number_of_months: 12, currency: current_region.currency)
   end
 
   def new
@@ -48,7 +48,7 @@ class GiftCardsController < ApplicationController
   def new_gift_card_from_params
     GiftCard.new(
       number_of_months: params[:subscription_months_to_gift].to_i,
-      currency: currency
+      currency: current_region.currency
     )
   end
 
@@ -56,9 +56,5 @@ class GiftCardsController < ApplicationController
     new_gift_card_from_params.tap do |gift_card|
       gift_card.attributes = params.require(:gift_card).permit(:message)
     end
-  end
-
-  def currency
-    Currency.from_locale(I18n.locale)
   end
 end

@@ -14,6 +14,7 @@ class BusinessMailer < ApplicationMailer
 
   def climate_report_email
     @climate_report = params[:climate_report]
+    @region = params[:region]
 
     mail(
       to: @climate_report.contact_email,

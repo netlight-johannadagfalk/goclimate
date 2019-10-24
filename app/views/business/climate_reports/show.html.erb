@@ -196,7 +196,7 @@
         </div>
       </div>
 
-      <%= form_for [:business, @report, @invoice], url: business_climate_report_invoice_path(@report, @invoice), html: { id: "payment-form", class: "form-horizontal content-section" } do |f| %>
+      <%= form_for @invoice, url: business_climate_report_invoice_path(@report), html: { id: "payment-form", class: "form-horizontal content-section" } do |f| %>
         <% if @invoice.errors.any? %>
           <%# This is a panel because alerts are currently scripted to be dismissed automatically %>
           <div class="panel panel-danger">
