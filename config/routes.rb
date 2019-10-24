@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  # Handle legacy locale subdomains. Doing this in Cloudflare requires a paid
+  # account for the extra page rules which we currently want to avoid.
+  match '(*path)', to: redirect { |_, request| "//www.goclimateneutral.org/se#{request.fullpath}" },
+                   via: [:get, :post], constraints: { host: 'sv.goclimateneutral.org' }
+  match '(*path)', to: redirect { |_, request| "//www.goclimateneutral.org/de#{request.fullpath}" },
+                   via: [:get, :post], constraints: { host: 'de.goclimateneutral.org' }
+  match '(*path)', to: redirect { |_, request| "//www.goclimateneutral.org/us#{request.fullpath}" },
+                   via: [:get, :post], constraints: { host: 'en.goclimateneutral.org' }
+
   # API. Available on subdomain `api.` in production and under path `/api` in other environments.
   api = proc do
     namespace 'api', path: '', defaults: { subdomain: ENV['HEROKU_ENV'] == 'production' ? 'api' : false } do

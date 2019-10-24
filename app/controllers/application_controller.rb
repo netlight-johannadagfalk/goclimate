@@ -19,11 +19,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_region
-    # TODO: Remove handling of locale subdomains after they're configured to redirect to new region URL's
-    return Region::USA if request.host.include?('en.goclimateneutral.org')
-    return Region::EuropeGerman if request.host.include?('de.goclimateneutral.org')
-    return Region::Sweden if request.host.include?('sv.goclimateneutral.org')
-
     Region.from_slug(params[:region])
   end
 
