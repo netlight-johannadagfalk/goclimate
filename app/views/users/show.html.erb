@@ -12,7 +12,7 @@
   <%= render "shared/header" %>
   <div class="inner">
 
-    <a id="show-video" href=""><span class="glyphicon" aria-hidden="true"><%= image_tag webpack_asset_path("images/play.png") %></span></a>
+    <a id="show-video" href=""><span class="glyphicon glyphicon-large" aria-hidden="true"><%= image_tag webpack_asset_path("images/play.png") %></span></a>
     <h3 class="cover-heading"><%= social_quote_for(@user.user_name, @neutral_months) %></h3>
 
     <% if @sharing %>

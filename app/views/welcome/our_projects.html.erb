@@ -2,7 +2,7 @@
   <%= render "shared/header" %>
   <div class="inner">
 
-    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-large glyphicon-globe" aria-hidden="true"></span>
     <h1 class="cover-heading"><%= title(t('our_investments_in_climate_projects')) %></h1>
     <p class="lead"><%= description(t('our_investments_in_climate_projects_intro_html')) %></p>
 
@@ -12,7 +12,7 @@
 <div class="site-wrapper-second">
   <div class="inner">
 
-    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-large glyphicon-ok" aria-hidden="true"></span>
     <div class="row stats offset-projects">
         <div class="col-md-12">
             <h1 class="cover-heading"><%=t 'climate_project_we_have_invested_in' %></h1>
@@ -42,7 +42,7 @@
                     <td><a href="<%= project.certificate_url %>"><%=t 'certificate' %></a></td>
                   <% end %>
                   <td><%= project.date_bought.to_date %></td>
-                  <td><%= project.offset_type %><span class="glyphicon glyphicon-question-sign certification-info-helper" data-html="true" aria-hidden="true" data-toggle="popover" data-container="body" title="<%=t 'project_certification' %>" data-placement="auto down" data-content="<%=t 'project_certification_info_html' %>"></span></td>
+                  <td><%= project.offset_type %><span class="glyphicon glyphicon-large glyphicon-question-sign certification-info-helper" data-html="true" aria-hidden="true" data-toggle="popover" data-container="body" title="<%=t 'project_certification' %>" data-placement="auto down" data-content="<%=t 'project_certification_info_html' %>"></span></td>
                   <td><%= project.carbon_offset %></td>
                   <td><a href ="<%= project.blog_url %>"><%=t 'read_more' %></a></td>
                 </tr>
@@ -59,7 +59,7 @@
 <div id="second-section" class="site-wrapper-third">
   <div class="inner">
 
-    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-large glyphicon-search" aria-hidden="true"></span>
     <h1 class="cover-heading"><%=t 'we_are_100_transparent' %></h1>
     <p class="lead"><%=t 'section_3_text' %></p>
     <p class="lead lead-btn">
