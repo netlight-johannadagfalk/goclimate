@@ -523,6 +523,10 @@ en:
         total: Total
         sum: Sum
     shared:
+      header:
+        region_recommendation:
+          select_country: Select your country or region so that we can show the best information for you.
+          continue_button: "Continue to %{region}"
       footer:
         jobs: 'Jobs'
     pdfs:

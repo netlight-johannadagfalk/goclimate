@@ -34,6 +34,7 @@ import '../stylesheets/components/business_offset_form.scss';
 import '../stylesheets/components/receipts.scss';
 import '../stylesheets/components/flight_offset_details.scss';
 import '../stylesheets/components/projects_teaser.scss';
+import '../stylesheets/components/region_recommendation.scss';
 
 /* Components */
 import '../javascripts/components/business_offset_calculator';
