@@ -28,7 +28,16 @@ input {
 
 .inner {
   padding: 40px 15px;
-  overflow: hidden; /* Respect height for floating children */
+
+  /* Clearfix */
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
 
   /* Simpler would be if all inner:s just had grids in them, but changing all
    * pages is something best done in steps */
@@ -192,7 +201,7 @@ div.legal {
   padding-top: 30px;
     padding-bottom: 50px;
 }
-.glyphicon {
+.glyphicon-large {
     padding-top: 25px;
     font-size: 150px;
     color: #bbd2bd;

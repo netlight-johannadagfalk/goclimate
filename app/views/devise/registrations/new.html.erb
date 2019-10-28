@@ -2,7 +2,7 @@
   <%= render "shared/header" %>
   <div class="inner">
 
-    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-large glyphicon-question-sign" aria-hidden="true"></span>
     <h1><%= title(t('where_will_my_money_be_used')) %></h1>
     <p class="lead"><%= description(t('we_invest_in_un_climate_projects_that_are_gold_standard_certified')) %></p>
 
@@ -47,24 +47,24 @@
 
         <!-- Controls -->
         <a class="left carousel-control" href="#carousel-with-projects" role="button" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-large glyphicon-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
         <a class="right carousel-control" href="#carousel-with-projects" role="button" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-large glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
       </div>
     </div>
 
   </div>
-  <a id="scroll-to-second-section"><span class="glyphicon glyphicon-chevron-down glyphicon-plan-first" aria-hidden="true"></span></a>
+  <a id="scroll-to-second-section"><span class="glyphicon glyphicon-large glyphicon-chevron-down glyphicon-plan-first" aria-hidden="true"></span></a>
 </div>
 
 <div id="second-section" class="site-wrapper-second">
   <div class="inner">
 
-    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-large glyphicon-thumbs-up" aria-hidden="true"></span>
     <h1 class="cover-heading"><%=t 'good_to_know' %></h1>
 
     <div class="trust">
@@ -77,7 +77,7 @@
     </div>
 
   </div>
-  <a id="scroll-to-third-section"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+  <a id="scroll-to-third-section"><span class="glyphicon glyphicon-large glyphicon-chevron-down" aria-hidden="true"></span></a>
 </div>
 
 <div id="third-section" class="site-wrapper-third">
@@ -85,7 +85,7 @@
 
     <h1 class="cover-heading"><%=t 'sign_up_for_a_climate_neutral_life' %></h1>
     <p class="lead"><%=t 'you_will_offset_for', cost: @current_plan_price.to_s(precision: :auto) %>. <%=t 'sign_up_here_to_start_livint_a_climate_neutral_life' %></p>
-    <span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-large glyphicon-hand-down" aria-hidden="true"></span>
 
     <div id="error_explanation">
       <% if flash[:error].present? || resource.errors.any? || @manager&.errors.present? %>
@@ -131,7 +131,7 @@
           <div id="card-element" class="form-control">
             <!-- a Stripe Element will be inserted here. -->
           </div>
-          <span class="glyphicon glyphicon glyphicon-lock secured-by-stripe" aria-hidden="true"></span>Secured by Stripe
+          <span class="glyphicon glyphicon-large glyphicon glyphicon-lock secured-by-stripe" aria-hidden="true"></span>Secured by Stripe
         </div>
       </div>
 

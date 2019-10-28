@@ -555,6 +555,10 @@ sv:
         total: Total
         sum: Summa
     shared:
+      header:
+        region_recommendation:
+          select_country: Välj ditt land eller område så att vi kan visa information som passar bäst för dig.
+          continue_button: "Fortsätt till %{region}"
       footer:
         jobs: 'Jobb'
     pdfs:
