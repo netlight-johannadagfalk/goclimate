@@ -137,10 +137,12 @@ sv:
   our_projects: Våra klimatprojekt
   our_investments_in_climate_projects: Våra klimatprojekt
   our_investments_in_climate_projects_intro_html: 'Vi stöttar Gold Standard-certifierade klimatprojekt. När man väljer Gold Standard projekt har man 80 miljöorganisationer i ryggen - bland annat Världsnaturfonden. 
-            <br><br>Gold Standard har även fokus på andra hållbarhetsaspekter än klimatet - som att minska fattigdom och bidra till renare luft och vatten - vilket redovisas genom FNs agenda 2030-mål. Du kan hitta mer information om projekten på <a href="http://UNFCCC.int" target="_blank">UNFCCCs webbsida</a> respektive <a href="https://www.goldstandard.org/" target="_blank">Gold Standards webbsida</a>.
+            <br><br>Gold Standard har även fokus på andra hållbarhetsaspekter än klimatet - som att minska fattigdom och bidra till renare luft och vatten - vilket redovisas genom FNs agenda 2030-mål. Du kan hitta mer information om projekten på <a href="https://www.goldstandard.org/" target="_blank">Gold Standards webbsida</a>.
             <br><br>Alla klimatprojekt verifieras av en oberoende tredje part, t ex TÜV och DNV. Alla granskningsprotokoll är offentliga. Projekten inspekteras kontinuerligt under projekttiden för att garantera att verklig klimatnytta uppnås.'
   climate_project_we_have_invested_in: Klimatprojekt vi stöttat tillsammans
-  project_certification_info_html: '<b>CDM+GS:</b> FN-certifierade (CDM) projekt som dessutom har certifieringen Gold Standard (GS).<br><b>CDM:</b> Innan augusti 2017 investerade vi även i projekt som visserligen var FN-certifierade (CDM) men inte hade certifieringen Gold Standard.'
+  project_certification_info_html: '<b>GS:</b> Gold Standard-certifierade klimatprojekt.<br>
+            <b>CDM+GS:</b> FN-certifierade (CDM) projekt som dessutom har certifieringen Gold Standard (GS).<br>
+            <b>CDM:</b> Innan augusti 2017 investerade vi även i projekt som visserligen var FN-certifierade (CDM) men inte hade certifieringen Gold Standard.'
   i_want_to_contribute: Okej, jag vill bidra!
   project_name: Namn på projekt
   map: Karta
@@ -250,7 +252,7 @@ sv:
         <br><br>
         Det finns många avancerade kalkylatorer fritt tillgängliga på internet som ger mer precisa uppskattningar som <a href='https://www.klimatkalkylatorn.se' target='_blank'>https://www.klimatkalkylatorn.se</a> och <a href='http://www.klimatkontot.se' target='_blank'>http://www.klimatkontot.se</a>. Det alla kalkylatorer har gemensamt är att de bygger på uppskattningar och generaliseringar, vilket i sig gör att värdet du får för dina utsläpp alltid är ungefärliga. Det finns t ex ingen kalkylator som tar hänsyn till om du har byggt ett nytt hus förra året och på så sätt orsakat stora utsläpp i form av byggmaterial. Kalkylatorerna tar inte heller hänsyn till vad skillnaden är om du köpte din elbil begagnad eller ny samt om du exempelvis tankar den med grön el hemma, men med annan el på jobbet. Anledningen är att en sådan kalkylator skulle bli extremt komplex och tidskrävande att använda - och ändå inte perfekt.
         <br><br>
-        Finns det då mätbara och bra sätt att ta bort utsläpp från atmosfären alternativt mätbara och bra sätt att förhindra att mer utsläpp släpps ut i atmosfären? Ja, det gör det! Vi har valt att investera i CDM och Gold Standard-certifierade klimatprojekt, du kan läsa mer om hur det fungerar här i svaret på frågan <a href='https://sv.goclimateneutral.org/faq#collapseq4id'>fungerar verkligen klimatkompensation?</a>.
+        Finns det då mätbara och bra sätt att ta bort utsläpp från atmosfären alternativt mätbara och bra sätt att förhindra att mer utsläpp släpps ut i atmosfären? Ja, det gör det! Vi har valt att investera i Gold Standard-certifierade klimatprojekt, du kan läsa mer om hur det fungerar här i svaret på frågan <a href='https://sv.goclimateneutral.org/faq#collapseq4id'>fungerar verkligen klimatkompensation?</a>.
         <br><br>
         Så är det ändå helt omöjligt att betrakta sig själv som klimatneutral när man inte kan beräkna sitt exakta koldioxidavtryck? Nej, vi tycker inte det. Ingen skulle tjäna på att det skulle vara omöjligt att få kalla sig klimatneutral. För att säkra att våra användare är klimatneutrala i så stor utsträckning vi bara kan är våra profiler utformade så att du kompenserar för mer än dubbelt så mycket av den totala påverkan av ditt levnadssätt. Då finns en buffert som kompenserar för de grova uppskattningarna i klimatkalkylen som vi tycker känns rimlig. Med en dubbelt så stor kompensation bör vi vara på den säkra sidan, och med allra största sannolikhet till och med vara klimatpositiva.
         <br><br>
@@ -296,7 +298,7 @@ sv:
         <br><br>
         Det är också viktigt att investera i projekt som redan är genomförda (med hjälp av lånat kapital) och verifierade. Detta för att man först då kan se att verklig klimatnytta faktiskt har åstadkommits, till skillnad från i projekt där klimatnyttan bara är något som man hoppas åstadkomma framöver.
         <br><br>
-        Genom att investera i CDM- och Gold Standard-certifierade projekt - och dessutom investera i projekt som redan är utförda och verifierade - kan man vara säker på att man bidragit till verklig klimatnytta med sina pengar - och att ens klimatkompensation därmed fungerar.
+        Genom att investera i Gold Standard-certifierade projekt - och dessutom investera i projekt som redan är utförda och verifierade - kan man vara säker på att man bidragit till verklig klimatnytta med sina pengar - och att ens klimatkompensation därmed fungerar.
         <br><br>
         Vad är det då som menas med att ett projekt tillför verklig klimatnytta? Jo, i klimatbranschen definierar man verklig klimatnytta med att ett antal kriterier ska uppfyllas av klimatprojekten:
         <br><br>
@@ -348,7 +350,7 @@ sv:
         <br><br>
         Det är tydligt att man inte kan välja vilket klimatprojekt som helst att kompensera på grund av detta. Vi investerar därför bara i de mest trovärdiga och hårt granskade projekten, projekt som har certifieringen Gold Standard (som bland annat WWF står bakom). Då har man ca 80 miljöorganisationer i ryggen. Därtill tredjepartsverifieras alla dessa projekt av bland annat TÜV och DNV och alla deras protokoll är offentliga och följer projekten under hela projekttiden.
         <br><br>
-        Förutom att välja hårt tredje-partsgranskade projekt som är CDM- och Gold Standard-certifierade så har vi även valt att kompensera för dubbla ens beräknade utsläpp för att vara på den säkra sidan om något mot förmodan skulle gå fel i klimatprojekten. Vi sprider även investeringarna i olika klimatprojekt för att ytterligare öka säkerheten med att vi åstadkommer riktig klimatnytta.
+        Förutom att välja hårt tredje-partsgranskade projekt som är Gold Standard-certifierade så har vi även valt att kompensera för dubbla ens beräknade utsläpp för att vara på den säkra sidan om något mot förmodan skulle gå fel i klimatprojekten. Vi sprider även investeringarna i olika klimatprojekt för att ytterligare öka säkerheten med att vi åstadkommer riktig klimatnytta.
         <br><br>
         Har du åsikter om den här frågan? Gå gärna in på vår blogg och kommentera eller ställ frågor: <a href='https://www.goclimateneutral.org/blog/hur-kan-jag-vara-saker-pa-att-er-klimatkompensationen-gors-i-tillforlitliga-projekt/'>https://www.goclimateneutral.org/blog/hur-kan-jag-vara-saker-pa-att-er-klimatkompensationen-gors-i-tillforlitliga-projekt/</a>"
       q10:
@@ -358,9 +360,9 @@ sv:
         <br><br>
         Ett exempel, säg att en vietnamesisk by kan bygga ett vattenkraftverk som kostar 10,1 MSEK. Det är tyvärr något dyrare än att bara fortsätta köpa el från kolkraft vilket skulle kosta 10 MSEK. Och eftersom byn är väldigt fattig konstaterar man att vattenkraftverket inte kommer byggas. Men då kan man genom att putta in 0,1 MSEK från bland annat oss få kalkylen att gå ihop – och vattenkraften kan ersätta kolkraften! Så relativt lite pengar – 0.1 MSEK i det här exemplet – kan tippa över investeringen och göra så att ett 10-miljoners miljöprojektet blir av! Exemplet är något förenklat såklart, men illustrerar ändå principen.
         <br><br>
-        Själva ekonomiska mekanismen kommer från FN och Kyoto-protokollet, då man instiftade CDM-projekt och CER-krediter som det kallas. För att ytterligare stärka kvalitén på de sociala aspekterna i CDM-projekt startades rätt snart även Gold Standard Foundation av bland annat WWF – som utnyttjar samma ekonomiska mekanism som CDM-projekten.
+        Själva ekonomiska mekanismen kommer från FN och Kyoto-protokollet, då man instiftade CDM-projekt och CER-krediter som det kallas. För att ytterligare stärka kvalitén på de sociala aspekterna i CDM-projekt startades rätt snart även Gold Standard Foundation av bland annat WWF – som utnyttjar samma mekanism för additionalitet som CDM-projekten, men inte accepterar de projekttyper som inte går i linje med Parisavtalets 1,5-gradersmål.
         <br><br>
-        På GoClimateNeutral försöker vi hitta de mest priseffektiva CDM- och Gold Standard-certifierade projekten åt dig, så att dina pengar ska kunna göra så mycket nytta som möjligt för klimatet utan att kompromissa med kvalitén.
+        På GoClimateNeutral försöker vi hitta de mest priseffektiva Gold Standard-certifierade projekten åt dig, så att dina pengar ska kunna göra så mycket nytta som möjligt för klimatet utan att kompromissa med kvalitén.
         <br><br>
         Och i de projekten så blir det helt enkelt väldigt billigt att göra stor verifierbar klimatnytta.
         <br><br>
@@ -517,7 +519,7 @@ sv:
           other: "%{count} klimatneutrala månader"
         about_go_climate_neutral:
           <a href='http://www.goclimateneutral.org'>GoClimateNeutral</a> stöttar klimatprojekt och tipsar
-          och inspirerar om enkla sätt att minska klimatpåverkan.
+          och inspirerar om enkla sätt att minska sin klimatpåverkan.
           Projekten är Gold Standard-certifierade och har
           80 miljöorganisationer i ryggen - bland annat Världsnaturfonden.
           Genom denna gåva bidrar du till att bromsa klimatförändringarna.
