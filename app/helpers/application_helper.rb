@@ -42,10 +42,10 @@ module ApplicationHelper
     end
   end
 
-  def url_for_region(region)
-    return root_url(region: region) unless request.get?
+  def url_for_region(region, options = {})
+    return root_url(region: region, **options) unless request.get?
 
-    url_for(request.query_parameters.merge(region: region))
+    url_for(request.query_parameters.merge(region: region, **options))
   end
 
   private

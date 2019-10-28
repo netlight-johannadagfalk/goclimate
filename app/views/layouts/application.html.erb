@@ -16,6 +16,12 @@
         site: 'GoClimateNeutral',
         separator: '-',
         reverse: true,
+        alternate: {
+           'sv-SE' => url_for_region(Region::Sweden, only_path: false),
+           'en-US' => url_for_region(Region::USA, only_path: false),
+           'de' => url_for_region(Region::Germany, only_path: false),
+           'x-default' => url_for_region(nil, only_path: false)
+         },
         og: {
           type: 'website',
           url: request.url,
