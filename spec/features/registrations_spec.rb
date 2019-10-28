@@ -69,12 +69,11 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       click_button 'Go Climate Neutral!'
 
       # 3D Secure authorization pop up
-      find('iframe[name=__privateStripeFrame8]', wait: 20)
-      within_frame(0) do
-        find('iframe[id=challengeFrame]', wait: 20)
-        within_frame('challengeFrame') do
-          find('#test-source-authorize-3ds', wait: 20)
-          click_button 'Complete authentication'
+      within_frame(find('iframe[name=__privateStripeFrame8]', wait: 20)) do
+        within_frame(find('iframe[id=challengeFrame]', wait: 20)) do
+          # For some unknown reason, the Capybara click method does not work
+          # within this iframe in Firefox, but evaluating JS that clicks does.
+          find('#test-source-authorize-3ds', wait: 20).evaluate_script('this.click()')
         end
       end
 
