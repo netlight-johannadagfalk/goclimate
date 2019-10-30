@@ -7,6 +7,8 @@ AllCops:
     - 'node_modules/**/*'
     - 'vendor/**/*'
 
+# DSL & test convenience exceptions
+
 Style/MethodCallWithArgsParentheses:
   Enabled: true
   IgnoredMethods:
@@ -47,17 +49,21 @@ Metrics/BlockLength:
   Exclude:
     - 'config/routes.rb'
 
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/features/**/*'
+
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/features/**/*'
+
+# Customized cops
+
 Style/EmptyMethod:
   EnforcedStyle: expanded
 
-Style/Documentation:
-  Enabled: false
-
 Style/SymbolArray:
   EnforcedStyle: brackets
-
-Style/NumericPredicate:
-  Enabled: false
 
 Metrics/LineLength:
   Max: 120
@@ -71,21 +77,24 @@ Metrics/AbcSize:
 RSpec/NestedGroups:
   Max: 5
 
+Capybara/FeatureMethods:
+  EnabledMethods:
+    - 'feature'
+    - 'scenario'
+
+# Disabled cops
+
+Style/Documentation:
+  Enabled: false
+
+Style/FormatStringToken:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
 RSpec/MessageChain:
   Enabled: false
 
 RSpec/LetSetup:
   Enabled: false
-
-RSpec/MultipleExpectations:
-  Exclude:
-    - 'spec/features/**/*'
-
-RSpec/ExampleLength:
-  Exclude:
-    - 'spec/features/**/*'
-
-Capybara/FeatureMethods:
-  EnabledMethods:
-    - 'feature'
-    - 'scenario'
