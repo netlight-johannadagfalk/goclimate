@@ -14,7 +14,7 @@ gem 'rails-i18n', '~> 6.0.0'
 # Environment
 gem 'bootsnap', '~> 1.3'
 gem 'pg', '~> 1.0'
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 4.2'
 gem 'rack-reverse-proxy', '~> 0.12.0', require: 'rack/reverse_proxy'
 
 # Use Redis adapter to run Action Cable in production
