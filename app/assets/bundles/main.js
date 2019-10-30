@@ -6,9 +6,6 @@ Rails.start()
 import jQuery from 'jquery';
 window.$ = window.jQuery = jQuery;
 
-/* jQuery custom appear event that triggers when element enters viewport */
-import 'jquery-appear-original';
-
 /* Font Awesome */
 import 'font-awesome/scss/font-awesome.scss';
 
@@ -38,6 +35,7 @@ import '../stylesheets/components/region_recommendation.scss';
 
 /* Components */
 import '../javascripts/components/business_offset_calculator';
+import '../javascripts/components/counting_number';
 import '../javascripts/components/stripe_card_payment';
 import '../javascripts/users/registrations';
 import '../javascripts/welcome';
