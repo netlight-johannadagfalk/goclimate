@@ -73,8 +73,7 @@ group :development, :test do
   gem 'rspec_junit_formatter'
   gem 'rubocop', '~> 0.74.0', require: false
   gem 'rubocop-rspec', require: false
-  gem 'selenium-webdriver', '3.142.4'
-  gem 'webdrivers', '>= 4.1.2'
+  gem 'selenium-webdriver'
 end
 
 group :development do
