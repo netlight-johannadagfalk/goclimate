@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.6.3'
+ruby '2.6.5'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
@@ -71,7 +71,7 @@ group :development, :test do
   gem 'rb-readline'
   gem 'rspec-rails', '~> 3.7'
   gem 'rspec_junit_formatter'
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 0.74.0', require: false
   gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver', '3.142.4'
   gem 'webdrivers', '>= 4.1.2'
