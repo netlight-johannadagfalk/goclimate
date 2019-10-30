@@ -1,28 +1,28 @@
 import { CountUp } from 'countup.js';
 
-var CountingNumber = function(numberElement) {
-  if (typeof IntersectionObserver == 'undefined') { return }
+class CountingNumber {
+  constructor(numberElement) {
+    if (typeof IntersectionObserver === 'undefined') { return; }
 
-  this.numberElement = numberElement;
-  this.intersectionObserver = new IntersectionObserver(this.countUp.bind(this));
+    this.numberElement = numberElement;
+    this.intersectionObserver = new IntersectionObserver(this.countUp.bind(this));
 
-  this.intersectionObserver.observe(this.numberElement);
-  this.numberElement.innerText = '0';
-};
+    this.intersectionObserver.observe(this.numberElement);
+    this.numberElement.innerText = '0';
+  }
 
-CountingNumber.prototype.countUp = function() {
-  new CountUp(this.numberElement, this.numberElement.dataset.targetNumber, {
-    separator: this.separatorForLocale(),
-    duration: 1
-  }).start();
-};
+  countUp() {
+    new CountUp(this.numberElement, this.numberElement.dataset.targetNumber, {
+      separator: CountingNumber.separatorForLocale(),
+      duration: 1
+    }).start();
+  }
 
-CountingNumber.prototype.separatorForLocale = function() {
-  if (window.locale == 'en') {
-    return ',';
-  } else {
+  static separatorForLocale() {
+    if (window.locale === 'en') { return ','; }
+
     return ' ';
   }
-};
+}
 
 window.CountingNumber = CountingNumber;
