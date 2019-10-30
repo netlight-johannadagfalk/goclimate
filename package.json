@@ -5,7 +5,7 @@
     "yarn": "^1.16.0"
   },
   "scripts": {
-    "build-webpack": "webpack --config config/webpack/config.js",
+    "build": "webpack --config config/webpack/config.js",
     "webpack-dev-server": "webpack-dev-server --config config/webpack/config.js"
   },
   "devDependencies": {
