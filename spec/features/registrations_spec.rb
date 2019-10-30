@@ -6,10 +6,6 @@ RSpec.feature 'Registrations', type: :feature, js: true do
   scenario 'Register and update card' do
     # Homepage
     visit '/'
-    if page.has_link?('user-menu')
-      click_link('user-menu')
-      click_link('Log out')
-    end
 
     click_link 'Offset my impact'
 
