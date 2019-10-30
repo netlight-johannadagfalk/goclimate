@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.6.3'
+ruby '2.6.5'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
@@ -14,7 +14,7 @@ gem 'rails-i18n', '~> 6.0.0'
 # Environment
 gem 'bootsnap', '~> 1.3'
 gem 'pg', '~> 1.0'
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 4.2'
 gem 'rack-reverse-proxy', '~> 0.12.0', require: 'rack/reverse_proxy'
 
 # Use Redis adapter to run Action Cable in production
@@ -50,7 +50,7 @@ gem 'intercom-rails', '~> 0.4.0'
 gem 'sendgrid-actionmailer', '~> 2.4.0'
 gem 'sentry-raven'
 gem 'skylight'
-gem 'stripe', '~> 5.1.1'
+gem 'stripe', '~> 5.7.1'
 
 # Utilities
 gem 'seed_dump', '~> 3.2'
@@ -71,15 +71,14 @@ group :development, :test do
   gem 'rb-readline'
   gem 'rspec-rails', '~> 3.7'
   gem 'rspec_junit_formatter'
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 0.76.0', require: false
   gem 'rubocop-rspec', require: false
-  gem 'selenium-webdriver', '3.142.4'
-  gem 'webdrivers', '>= 4.1.2'
+  gem 'selenium-webdriver'
 end
 
 group :development do
   gem 'brakeman'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'guard'
   gem 'guard-rspec', require: false

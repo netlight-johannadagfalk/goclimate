@@ -155,14 +155,21 @@
       <div class="col-md-2"></div>
 
       <div class="col-md-4">
-        <h1 id="total-carbon-offset" class="big-number" data="<%= @total_carbon_offset %>"><%= number_with_delimiter(@total_carbon_offset) %></h1>
+        <h1 id="total-carbon-offset" class="big-number" data-target-number="<%= @total_carbon_offset %>"><%= number_with_delimiter(@total_carbon_offset) %></h1>
         <p><%=t 'ton_co2_less_in_atmosphere' %></p>
       </div>
 
       <div class="col-md-4">
-        <h1 id="total-users" class="big-number" data="<%= @unique_climate_neutral_users %>"><%= number_with_delimiter(@unique_climate_neutral_users) %></h1>
+        <h1 id="total-users" class="big-number" data-target-number="<%= @unique_climate_neutral_users %>"><%= number_with_delimiter(@unique_climate_neutral_users) %></h1>
         <p><%=t 'climate_neutral_users_right_now' %></p>
       </div>
+
+      <% content_for :javascript_tags do %>
+        <script>
+          new CountingNumber(document.querySelector('#total-carbon-offset'));
+          new CountingNumber(document.querySelector('#total-users'));
+        </script>
+      <% end %>
 
       <div class="col-md-2"></div>
     </div>

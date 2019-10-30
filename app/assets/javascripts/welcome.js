@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import CountUp from 'countup.js';
 
 function initializeWelcome() {
   var signUpUrl = $('#custom-plan').attr('href').split('?')[0];
@@ -72,37 +71,6 @@ function initializeWelcome() {
       scrollToAnchor(event.target.hash);
     });
   }
-
-  $('#total-carbon-offset').text('0');
-  $('#total-users').text('0');
-  $('#total-carbon-offset').appear();
-  $('#total-users').appear();
-  function countNumberUp(numberToCountUp){
-    var separator;
-
-    if (gon.locale == 'en') {
-      separator = ',';
-    } else {
-      separator = ' ';
-    }
-
-    var options = {
-      separator: separator
-    };
-
-    var numAnim = new CountUp(numberToCountUp, 1, $('#' + numberToCountUp).attr('data'), 0, 1, options);
-    if (!numAnim.error) {
-      numAnim.start();
-    } else {
-      console.error(numAnim.error);
-    };
-  }
-  $('#total-carbon-offset').one('appear', function(event, _) {
-    countNumberUp('total-carbon-offset');
-  });
-  $('#total-users').one('appear', function(event, _) {
-    countNumberUp('total-users');
-  });
 };
 
 window.initializeWelcome = initializeWelcome;
