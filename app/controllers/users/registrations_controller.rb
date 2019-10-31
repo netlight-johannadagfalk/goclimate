@@ -108,6 +108,10 @@ module Users
       resource.update_without_password(params)
     end
 
+    def canonical_query_params
+      super + [:choices]
+    end
+
     private
 
     def render_errors

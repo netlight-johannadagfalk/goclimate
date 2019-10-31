@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
-  helper_method :current_region
+  helper_method :current_region, :canonical_url
 
   protected
 
@@ -14,12 +14,22 @@ class ApplicationController < ActionController::Base
     super.merge(region: current_region.slug)
   end
 
+  def canonical_query_params
+    []
+  end
+
   def render_not_found
     raise ActionController::RoutingError, 'Not found'
   end
 
   def current_region
     Region.from_slug(params[:region])
+  end
+
+  def canonical_url
+    @canonical_url ||= url_for(
+      protocol: 'https', host: 'www.goclimateneutral.org', port: nil, **canonical_query_params_for_request
+    )
   end
 
   def force_sv_locale
@@ -66,5 +76,11 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     I18n.locale = current_region.locale
+  end
+
+  def canonical_query_params_for_request
+    request.query_parameters.to_h
+           .transform_keys(&:to_sym)
+           .filter { |param, _| canonical_query_params.include?(param) }
   end
 end

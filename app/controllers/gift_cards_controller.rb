@@ -43,6 +43,12 @@ class GiftCardsController < ApplicationController
     redirect_to gift_cards_path if @number_of_months.nil?
   end
 
+  protected
+
+  def canonical_query_params
+    super + [:subscription_months_to_gift]
+  end
+
   private
 
   def new_gift_card_from_params

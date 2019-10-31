@@ -66,4 +66,10 @@ class FlightOffsetsController < ApplicationController
   def amount_from_params
     Money.from_amount(params[:amount], Currency.from_iso_code(params[:currency]))
   end
+
+  protected
+
+  def canonical_query_params
+    super + [:offset_params]
+  end
 end
