@@ -32,8 +32,6 @@ group :ruby, halt_on_fail: true do
 
     # RSpec files
     rspec = dsl.rspec
-    watch(rspec.spec_helper) { rspec.spec_dir }
-    watch(rspec.spec_support) { rspec.spec_dir }
     watch(rspec.spec_files)
 
     # Ruby files
@@ -45,9 +43,6 @@ group :ruby, halt_on_fail: true do
     dsl.watch_spec_files_for(rails.app_files)
 
     watch(rails.controllers) { |m| rspec.spec.call("requests/#{m[1]}") }
-
-    # Rails config changes
-    watch(rails.spec_helper) { rspec.spec_dir }
   end
 
   guard :rubocop, all_on_start: false, keep_failed: false, cli: '--extra-details --display-style-guide' do
