@@ -40,9 +40,9 @@ RSpec.describe ImpactStatistics do
                                         stripe_amount: 40_00, # 40 SEK = 1 tonne
                                         currency: 'sek')
   end
-  let!(:invoice) { create(:invoice, created_at: Date.new(2019, 1, 29), co2e: 40000, project: project) }
-  let!(:project) { create(:project, created_at: Date.new(2019, 1, 29), carbon_offset: 200) }
-  let!(:past_project) { create(:project, created_at: Date.new(2019, 1, 16), carbon_offset: 100) }
+  let!(:invoice) { create(:invoice, created_at: Date.new(2019, 1, 29), co2e: 40_000, project: project) }
+  let!(:project) { create(:project, created_at: Date.new(2019, 1, 29), co2e: 200_000) }
+  let!(:past_project) { create(:project, created_at: Date.new(2019, 1, 16), co2e: 100_000) }
 
   describe '#initialize' do
     it 'sets subscriber_payments_tonnes for week with subscription payments' do

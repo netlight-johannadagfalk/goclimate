@@ -8,7 +8,7 @@ module Admin
     # GET /projects.json
     def index
       @projects = Project.all.order(id: :desc)
-      @total_co2 = Project.all.sum('carbon_offset')
+      @total_co2 = Project.all.sum('co2e') / 1000
       @total_sek_spent = Project.all.sum('cost_in_sek')
     end
 

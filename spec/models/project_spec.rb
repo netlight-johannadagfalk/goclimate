@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Project do
-  subject(:project) { described_class.create(carbon_offset: 10) }
+  subject(:project) { described_class.create(co2e: 10000) }
 
   describe '#co2e' do
     it 'returns carbon offset in kilos' do
