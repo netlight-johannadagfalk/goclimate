@@ -19,6 +19,9 @@ checks:
 plugins:
   brakeman:
     enabled: true
+  eslint:
+    enabled: true
+    channel: eslint-5
   rubocop:
     enabled: true
     channel: rubocop-0-66

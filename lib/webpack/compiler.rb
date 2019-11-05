@@ -12,7 +12,7 @@ module Webpack
 
       Rails.logger.info 'Compiling Webpack'
 
-      output, status = Open3.capture2e('yarn run build-webpack')
+      output, status = Open3.capture2e('yarn run build')
       @last_compile_digest = current_digest
 
       raise WebpackCompilationError, "Webpack compilation failed\n\n#{indent_output(output)}" unless status.success?

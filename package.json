@@ -5,16 +5,23 @@
     "yarn": "^1.16.0"
   },
   "scripts": {
-    "build-webpack": "webpack --config config/webpack/config.js",
+    "build": "webpack --config config/webpack/config.js",
     "webpack-dev-server": "webpack-dev-server --config config/webpack/config.js"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "style-loader": "^1.0.0",
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/runtime": "^7.6.3",
     "@rails/ujs": "^6.0.0",
+    "babel-loader": "^8.0.6",
+    "babel-preset-airbnb": "^4.1.0",
     "bootstrap": "^3.4.1",
     "bootstrap-social": "^5.1.1",
     "compression-webpack-plugin": "^3.0.0",

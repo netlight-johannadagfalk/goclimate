@@ -3,7 +3,7 @@
 desc 'Build webpack'
 namespace :webpack do
   task :build do
-    system('./bin/yarn run build-webpack')
+    system('./bin/yarn run build')
   end
 end
 
