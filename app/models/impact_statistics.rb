@@ -67,11 +67,11 @@ class ImpactStatistics # rubocop:disable Metrics/ClassLength
   end
 
   def invoices_tonnes
-    sum_by_week(Invoice, :carbon_offset)
+    sum_by_week(Invoice, :co2e).transform_values { |co2e| co2e / 1000 }
   end
 
   def bought_projects_tonnes
-    sum_by_week(Project, :carbon_offset)
+    sum_by_week(Project, :co2e).transform_values { |co2e| co2e / 1000 }
   end
 
   def set_total_sold_tonnes

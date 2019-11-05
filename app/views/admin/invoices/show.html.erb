@@ -19,7 +19,7 @@
   <dd><%= @invoice.amount_in_sek %> SEK</dd>
 
   <dt>Carbon offset:</dt>
-  <dd><%= @invoice.carbon_offset %></dd>
+  <dd><%= @invoice.co2e %> kg co2e</dd>
 
   <dt>Project:</dt>
   <dd><%= link_to(@invoice.project.name, [:admin, @invoice.project]) if @invoice.project.present? %></dd>
