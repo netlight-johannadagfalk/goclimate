@@ -9,7 +9,7 @@ class PartnersController < ApplicationController
     @projects = Invoice.where(receiver: 'InShape Travel').order(created_at: :desc).map(&:project)
   end
 
-  def aob_travel
+  def flygcity
     @projects = Invoice.where(receiver: 'AOB Travel AB').order(created_at: :desc).map(&:project)
   end
 end
