@@ -5,6 +5,7 @@ module Admin
     layout 'admin'
 
     before_action :authorize_user
+    before_action :permit_params_locale
     around_action :set_time_zone
 
     private
