@@ -126,8 +126,9 @@ always select freely from all ideas based on what outcome we currently focus on.
     * Note that this will also install native dependency `wkhtmltopdf` (a binary needed for PDF generation). See Gemfile.
   * `brew install postgresql geckodriver` 
   * [Get Firefox](https://www.mozilla.org/en-US/firefox/)
-* Install project-specific gems.
-  * `bundle install`  
+* Install project-specific dependencies.
+  * `bundle install`
+  * `bin/yarn install`
 * Setup the database
   * `initdb db/goclimateneutral`
   * `pg_ctl -D db/goclimateneutral -l logfile start`
