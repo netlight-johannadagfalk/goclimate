@@ -79,8 +79,10 @@ and sum estimated footprint for each to create a total for the full trip.
   Currently returns non-final prices in SEK.
   - **amount**: Amount. In smallest denomination of currency indicated by
     **currency** (e.g. 1000 for 10.00 EUR).
-  - **currency:** ISO 4217 currency code for amount specified by **amount**.
-- **details_url**: URL to a page where the user can offset the flight.
+  - **currency**: ISO 4217 currency code for amount specified by **amount**.
+  - **offset\_url**: URL to a page where the user can offset the flight in **currency**.
+  - **locale**: ISO 639-1 locale of the offset page.
+- _(DEPRECATED) **details\_url**: URL to a page where the user can offset the flight. Use **offset\_prices[][offset\_url]** instead._
 
 **Errors:**
 
@@ -103,6 +105,7 @@ Request:
       -d 'segments[1][destination]=ARN' \
       -d 'cabin_class=economy' \
       -d 'currencies[]=SEK' \
+      -d 'currencies[]=USD' \
       -G
 
 Response:
@@ -113,7 +116,16 @@ Response:
         {
           "amount": 4000,
           "currency": "SEK"
+          "offset_url":"https://www.goclimateneutral.org/se/flight_offsets/new?offset_params=economy%2CARN%2CBCN%2CBCN%2CARN",
+          "locale":"sv"
+        },
+        {
+          "amount":400,
+          "currency":"USD",
+          "offset_url":"https://www.goclimateneutral.org/us/flight_offsets/new?offset_params=economy%2CARN%2CBCN%2CBCN%2CARN",
+          "locale":"en_US"
         }
       ],
       "details_url": "https://www.goclimateneutral.org/flight_offsets/new?offset_params=economy%2CARN%2CBCN%2CBCN%2CARN"
     }
+
