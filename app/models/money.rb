@@ -19,6 +19,14 @@ class Money
     subunit_amount <=> other.subunit_amount
   end
 
+  def *(other)
+    Money.new((subunit_amount * other).round, currency)
+  end
+
+  def ceil(precision = nil)
+    Money.new(subunit_amount.ceil(precision || -2), currency)
+  end
+
   def amount
     BigDecimal(subunit_amount) / 100
   end

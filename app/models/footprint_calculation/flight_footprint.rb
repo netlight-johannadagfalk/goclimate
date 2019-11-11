@@ -17,7 +17,7 @@ module FootprintCalculation
     end
 
     def footprint
-      @footprint ||= (total_footprint.to_f / 100).ceil * 100
+      @footprint ||= GreenhouseGases.new(total_footprint.ceil(-2))
     end
 
     private

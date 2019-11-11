@@ -12,7 +12,7 @@ module Api
 
       def show
         render json: {
-          footprint: footprint,
+          footprint: footprint.co2e,
           offset_prices: offset_prices,
           details_url: new_flight_offset_url(offset_params: offset_params, region: Region::Sweden)
         }
@@ -24,9 +24,11 @@ module Api
 
       def offset_prices
         regions.map do |region|
+          price = footprint.consumer_price(region.currency)
+
           {
-            amount: offset_price_amount,
-            currency: region.currency.iso_code.upcase,
+            amount: price.subunit_amount,
+            currency: price.currency.iso_code.upcase,
             offset_url: new_flight_offset_url(offset_params: offset_params, region: region),
             locale: region.locale
           }
@@ -35,10 +37,6 @@ module Api
 
       def footprint
         @footprint.footprint
-      end
-
-      def offset_price_amount
-        (footprint.to_f / 1000 * LifestyleChoice::SEK_PER_TONNE).to_i * 100
       end
 
       def set_and_validate_footprint

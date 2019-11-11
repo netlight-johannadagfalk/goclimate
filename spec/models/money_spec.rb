@@ -104,6 +104,29 @@ RSpec.describe Money do
     end
   end
 
+  describe '*' do
+    it 'multiplies with given number' do
+      expect(described_class.new(40_00, :sek) * BigDecimal('1.5'))
+        .to eq(described_class.new(60_00, :sek))
+    end
+
+    it 'rounds multiplied numbers' do
+      money = described_class.new(40_00, :sek) * 1.232
+
+      expect(money.subunit_amount).to be_an(Integer)
+    end
+  end
+
+  describe 'ceil' do
+    it 'rounds up to major unit' do
+      expect(described_class.new(5_75, :sek).ceil).to eq(described_class.new(6_00, :sek))
+    end
+
+    it 'allows setting precision' do
+      expect(described_class.new(5_75, :sek).ceil(-1)).to eq(described_class.new(5_80, :sek))
+    end
+  end
+
   describe 'amount' do
     subject(:money) { described_class.new(1_000_00, :sek) }
 
