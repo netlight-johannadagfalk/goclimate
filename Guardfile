@@ -56,6 +56,7 @@ end
 
 group :javascript do
   guard :eslint do
-    watch(/^(?!node_modules).+\.js/)
+    watch(/^app.+\.js/)
+    watch(/^config.+\.js/)
   end
 end
