@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class FlightOffsetsController < ApplicationController
-  before_action :force_sv_locale # These views & mailers are Swedish and SEK only for now
-  before_action :permit_params_locale # But we want to be able to show future partners the english translation
-
   def new
     @num_persons = (params[:num_persons].presence || 1).to_i
     @offset_params = FlightOffsetParameters.from_s(params[:offset_params])
@@ -11,12 +8,12 @@ class FlightOffsetsController < ApplicationController
     @footprint_per_person = footprint_per_person
     @total_footprint = @footprint_per_person * @num_persons
 
-    @price = calculate_price(@total_footprint)
+    @price = @total_footprint.consumer_price(current_region.currency)
     @projects = Project.order(id: :desc).limit(2)
 
     @payment_intent = Stripe::PaymentIntent.create(
       amount: @price.subunit_amount,
-      currency: Currency::SEK.iso_code
+      currency: @price.currency
     )
   end
 
@@ -48,19 +45,12 @@ class FlightOffsetsController < ApplicationController
   def footprint_per_person
     # footprint_per_person param is for partners with own co2 calculation
     # only used temporarily by flygresor.se
-    return params[:footprint_per_person].to_i if params[:footprint_per_person].present?
+    return GreenhouseGases.new(params[:footprint_per_person].to_i) if params[:footprint_per_person].present?
 
     FootprintCalculation::FlightFootprint.new(
       cabin_class: @offset_params.cabin_class,
       segments: @offset_params.segments
     ).footprint
-  end
-
-  def calculate_price(footprint)
-    Money.from_amount(
-      (BigDecimal(footprint) / 1000 * LifestyleChoice::SEK_PER_TONNE).to_i,
-      Currency::SEK
-    )
   end
 
   def amount_from_params

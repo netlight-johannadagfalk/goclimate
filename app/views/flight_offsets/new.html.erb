@@ -38,7 +38,7 @@
               <tr class="flight-offset-details__key-row">
                 <td><%=t 'views.flight_offsets.new.carbon_footprint' %>:</td>
                 <td>
-                  <%= co2e_string(@footprint_per_person) %>/<%=t 'views.flight_offsets.new.person' %>
+                  <%= @footprint_per_person.to_s(precision: :auto) %>/<%=t 'views.flight_offsets.new.person' %>
                 </td>
               </tr>
             </tbody>
@@ -48,7 +48,7 @@
                   <%=t 'views.flight_offsets.new.total' %> <% if @num_persons > 1 %>(<%= @num_persons %> <%=t 'views.flight_offsets.new.people' %>)<% end %>:
                 </td>
                 <td>
-                  <%= co2e_string(@total_footprint) %>
+                  <%= @total_footprint.to_s(precision: :auto) %>
                 </td>
               </tr>
               <tr class="flight-offset-details__key-row">
@@ -73,7 +73,7 @@
         <div class="form-group">
           <label for="footprint" class="col-sm-5 control-label"><%=t 'views.flight_offsets.new.your_order' %></label>
           <div class="col-sm-7 form-control-static">
-            <%= co2e_string(@total_footprint) %>
+            <%= @total_footprint.to_s(precision: :auto) %>
           </div>
         </div>
 

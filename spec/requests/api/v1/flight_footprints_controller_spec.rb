@@ -92,10 +92,38 @@ RSpec.describe Api::V1::FlightFootprintsController do
       expect(response.parsed_body['offset_prices'].first['currency']).to eq('SEK')
     end
 
-    it 'includes details URL in response' do
+    # This points to the Swedish site because that's the only one we had when
+    # this was launched.
+    it 'includes details URL to Swedish site in response' do
       get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
 
-      expect(response.parsed_body['details_url']).to end_with('/flight_offsets/new?offset_params=economy%2CARN%2CBCN')
+      expect(response.parsed_body['details_url']).to end_with('se/flight_offsets/new?offset_params=economy%2CARN%2CBCN')
+    end
+
+    it 'includes offset_url for region' do
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
+
+      expect(response.parsed_body['offset_prices'].first['offset_url'])
+        .to end_with('se/flight_offsets/new?offset_params=economy%2CARN%2CBCN')
+    end
+
+    it 'includes locale for region' do
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
+
+      expect(response.parsed_body['offset_prices'].first['locale']).to eq('sv-SE')
+    end
+
+    it 'includes offset url in response' do
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
+
+      expect(response.parsed_body['offset_prices'].first['offset_url']).to include('se/flight_offsets')
+    end
+
+    it 'includes the currencies requested' do
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key),
+                                      params: request_params.merge(currencies: %w[SEK USD])
+
+      expect(response.parsed_body['offset_prices'].count).to eq(2)
     end
 
     it 'allows currencies as hashes' do

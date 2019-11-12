@@ -55,7 +55,7 @@ RSpec.describe FootprintCalculation::FlightFootprint do
     end
 
     it 'calculates footprint for all segments, ceiled to nearest 100 kg' do
-      expect(footprint.footprint).to eq(1000)
+      expect(footprint.footprint).to eq(GreenhouseGases.new(1000))
     end
   end
 end

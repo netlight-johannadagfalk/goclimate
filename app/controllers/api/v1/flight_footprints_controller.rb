@@ -12,14 +12,9 @@ module Api
 
       def show
         render json: {
-          footprint: footprint,
-          offset_prices: [
-            {
-              amount: offset_price_amount,
-              currency: 'SEK'
-            }
-          ],
-          details_url: new_flight_offset_url(params: { offset_params: offset_params })
+          footprint: footprint.co2e,
+          offset_prices: offset_prices,
+          details_url: new_flight_offset_url(offset_params: offset_params, region: Region::Sweden)
         }
       rescue FootprintCalculation::Airport::NotFoundError
         render json: { type: :calculation_unsuccessful }, status: 404
@@ -27,12 +22,21 @@ module Api
 
       private
 
-      def footprint
-        @footprint.footprint
+      def offset_prices
+        regions.map do |region|
+          price = footprint.consumer_price(region.currency)
+
+          {
+            amount: price.subunit_amount,
+            currency: price.currency.iso_code.upcase,
+            offset_url: new_flight_offset_url(offset_params: offset_params, region: region),
+            locale: region.logical_locale
+          }
+        end
       end
 
-      def offset_price_amount
-        (footprint.to_f / 1000 * LifestyleChoice::SEK_PER_TONNE).to_i * 100
+      def footprint
+        @footprint.footprint
       end
 
       def set_and_validate_footprint
@@ -51,6 +55,11 @@ module Api
         render json: { type: :invalid_request_error }, status: 400
       end
 
+      def regions
+        currencies = currencies_param.map { |p| Currency.from_iso_code(p) }
+        Region.all.filter { |r| currencies.include?(r.currency) }
+      end
+
       def footprint_params
         params.permit(:cabin_class).merge(segments: segments)
       end
@@ -60,14 +69,14 @@ module Api
       # `currencies[0]=SEK&currencies[1]=NOK` or
       # `currencies=['SEK','NOK']` or
       # `currencies='SEK,NOK'`
+      #
+      # Not requesting a currency defaults to SEK to follow original behavior
       def currencies_param
-        if params[:currencies].is_a?(ActionController::Parameters)
-          params[:currencies].values
-        elsif params[:currencies].is_a?(String)
-          params[:currencies].split(',')
-        else
-          params[:currencies]
-        end
+        return params[:currencies].values if params[:currencies].is_a?(ActionController::Parameters)
+
+        return params[:currencies].split(',') if params[:currencies].is_a?(String)
+
+        params[:currencies] || ['SEK']
       end
 
       def offset_params

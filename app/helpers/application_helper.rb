@@ -2,6 +2,8 @@
 
 module ApplicationHelper
   def price_string(amount, currency, options = {})
+    Rails.logger.warn 'DEPRECATION: Use Money#to_s instead of ApplicationHelper#price_string'
+
     lowest_denominator = options.delete(:lowest_denominator) || false
 
     case currency
@@ -19,6 +21,8 @@ module ApplicationHelper
   end
 
   def co2e_string(co2e, options = {})
+    Rails.logger.warn 'DEPRECATION: Use GreenhouseGases#to_s instead of ApplicationHelper#co2e_string'
+
     co2e_tonnes = BigDecimal(co2e) / 1000
     co2e_string = co2e_tonnes.truncate(co2e_tonnes < 0.1 ? 2 : 1).to_s('F')
 
@@ -35,11 +39,9 @@ module ApplicationHelper
   end
 
   def precise_co2e_string(co2e)
-    if co2e % 1000 == 0
-      I18n.translate('helpers.application.precise_co2e_string_tonnes', tonnes: co2e / 1000)
-    else
-      I18n.translate('helpers.application.precise_co2e_string_kg', co2e: co2e)
-    end
+    Rails.logger.warn 'DEPRECATION: Use GreenhouseGases#to_s instead of ApplicationHelper#precise_co2e_string'
+
+    GreenhouseGases.new(co2e).to_s
   end
 
   def url_for_region(region, options = {})

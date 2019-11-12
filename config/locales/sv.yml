@@ -706,3 +706,10 @@ sv:
     currency:
       suffix:
         sek: ' kr'
+    greenhouse_gases:
+      tonnes:
+        one: "%{count} ton koldioxid"
+        other: "%{count} ton koldioxid"
+      kg:
+        one: "%{count} kg koldioxid"
+        other: "%{count} kg koldioxid"
