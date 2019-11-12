@@ -30,7 +30,7 @@ module Api
             amount: price.subunit_amount,
             currency: price.currency.iso_code.upcase,
             offset_url: new_flight_offset_url(offset_params: offset_params, region: region),
-            locale: region.locale
+            locale: region.logical_locale
           }
         end
       end

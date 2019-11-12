@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Region = Struct.new(:name, :slug, :locale, :currency, :icon, :country_codes) do
+Region = Struct.new(:name, :slug, :locale, :logical_locale, :currency, :icon, :country_codes) do
   def self.all
     [Region::Europe, Region::Germany, Region::Sweden, Region::USA].freeze
   end
@@ -20,7 +20,7 @@ Region = Struct.new(:name, :slug, :locale, :currency, :icon, :country_codes) do
   end
 end
 
-Region::Europe = Region.new('Europe', nil, :en, Currency::EUR, 'eu').freeze
-Region::Germany = Region.new('Deutschland', 'de', :de, Currency::EUR, 'de', %w[DE]).freeze
-Region::Sweden = Region.new('Sverige', 'se', :sv, Currency::SEK, 'se', %w[SE]).freeze
-Region::USA = Region.new('United States', 'us', :en, Currency::USD, 'us', %w[US]).freeze
+Region::Europe = Region.new('Europe', nil, :en, 'en', Currency::EUR, 'eu').freeze
+Region::Germany = Region.new('Deutschland', 'de', :de, 'de-DE', Currency::EUR, 'de', %w[DE]).freeze
+Region::Sweden = Region.new('Sverige', 'se', :sv, 'sv-SE', Currency::SEK, 'se', %w[SE]).freeze
+Region::USA = Region.new('United States', 'us', :en, 'en-US', Currency::USD, 'us', %w[US]).freeze

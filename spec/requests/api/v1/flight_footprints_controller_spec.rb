@@ -110,7 +110,7 @@ RSpec.describe Api::V1::FlightFootprintsController do
     it 'includes locale for region' do
       get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
 
-      expect(response.parsed_body['offset_prices'].first['locale']).to eq('sv')
+      expect(response.parsed_body['offset_prices'].first['locale']).to eq('sv-SE')
     end
 
     it 'includes offset url in response' do

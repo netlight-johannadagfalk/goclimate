@@ -18,9 +18,9 @@
         reverse: true,
         canonical: canonical_url,
         alternate: {
-           'sv-SE' => url_for_region(Region::Sweden, only_path: false),
-           'en-US' => url_for_region(Region::USA, only_path: false),
-           'de' => url_for_region(Region::Germany, only_path: false),
+           Region::Sweden.logical_locale => url_for_region(Region::Sweden, only_path: false),
+           Region::USA.logical_locale => url_for_region(Region::USA, only_path: false),
+           Region::Germany.logical_locale => url_for_region(Region::Germany, only_path: false),
            'x-default' => url_for_region(nil, only_path: false)
          },
         og: {
