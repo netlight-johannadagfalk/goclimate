@@ -554,6 +554,15 @@ sv:
         people: personer
         total: Total
         sum: Summa
+        submit: Klimatkompensera
+      thank_you:
+        header: Tack!
+        lead: Genom att klimatkompensera har du tagit ansvar för din flygresas klimatavtryck.
+        download_certificate: Ladda ner ditt certifikat
+        download_receipt: Ladda ner kvitto
+        we_have_sent_an_email: Vi har skickat ditt certifikat till e-postadressen som du angav.
+        did_you_know_lifestyle: Du vet väl att du kan klimatkompensera för hela din livsstil via oss?
+        read_more_and_subscribe: Läs mer och bli medlem
     shared:
       header:
         region_recommendation:
@@ -562,6 +571,12 @@ sv:
       footer:
         jobs: 'Jobb'
     pdfs:
+      flight_offset_certificate:
+        header: Klimatkompensation
+        lead: Genom att klimatkompensera har du tagit ansvar för din flygresas klimatavtryck. Stort tack!
+        order_id: Order ID
+        date: Datum
+        project_type: Projekttyp
       invoice_certificate:
         header: Certifikat klimatkompensation
         we_certify_that: Härmed intygas att
