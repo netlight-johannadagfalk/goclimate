@@ -64,9 +64,9 @@
       </div>
 
       <%= form_tag(flight_offsets_path, id: "payment-form", class: "form-horizontal") do %>
-        <%= hidden_field_tag :co2e, @total_footprint %>
+        <%= hidden_field_tag :co2e, @total_footprint.co2e %>
         <%= hidden_field_tag :amount, @price.amount %>
-        <%= hidden_field_tag :currency, Currency::SEK.iso_code %>
+        <%= hidden_field_tag :currency, @price.currency.iso_code %>
         <%= hidden_field_tag :offset_params, params[:offset_params] %>
         <%= hidden_field_tag :num_persons, params[:num_persons] %>
 
