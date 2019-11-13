@@ -147,6 +147,14 @@ RSpec.describe Api::V1::FlightFootprintsController do
       expect(response).to have_http_status(:ok)
     end
 
+    # This one is here to follow original behavior, which Finn is dependent on.
+    it 'returns offset prices in SEK when speficying a currency with no regions' do
+      get '/api/v1/flight_footprint', headers: auth_headers(api_key),
+                                      params: request_params.merge(currencies: %w[NOK])
+
+      expect(response.parsed_body['offset_prices'].first['currency']).to eq('SEK')
+    end
+
     context 'when not providing correct attributes' do
       it 'returns 400 Bad Request when cabin class is not one of valid values' do
         get '/api/v1/flight_footprint', headers: auth_headers(api_key),
