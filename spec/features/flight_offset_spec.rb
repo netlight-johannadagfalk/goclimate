@@ -17,11 +17,11 @@ RSpec.feature 'Flight offset', type: :feature, js: true do
       find('input[name=cvc]').send_keys '123'
     end
 
-    click_button 'Klimatkompensera'
+    click_button 'Offset your flight'
 
     # Wait for success page to render
     find('.flight_offsets-thank_you', wait: 30)
 
-    expect(page).to have_text 'Tack!'
+    expect(page).to have_text 'Thank you!'
   end
 end

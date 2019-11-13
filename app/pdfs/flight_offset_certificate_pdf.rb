@@ -8,17 +8,15 @@ class FlightOffsetCertificatePdf
   end
 
   def render
-    I18n.with_locale(:sv) do
-      WickedPdf.new.pdf_from_string(
-        ApplicationController.render(
-          template: 'pdfs/flight_offset_certificate',
-          layout: false,
-          assigns: {
-            flight_offset: @flight_offset
-          }
-        ),
-        orientation: 'portrait'
-      )
-    end
+    WickedPdf.new.pdf_from_string(
+      ApplicationController.render(
+        template: 'pdfs/flight_offset_certificate',
+        layout: false,
+        assigns: {
+          flight_offset: @flight_offset
+        }
+      ),
+      orientation: 'portrait'
+    )
   end
 end

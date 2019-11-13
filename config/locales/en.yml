@@ -515,6 +515,14 @@ en:
         you_have_purchased_a_gift_card_with_x_climate_neutral_months: 
           one: You have purchased a gift card for 1 climate neutral month
           other: "You have purchased a gift card for %{count} climate neutral months"
+    offset_certificates:
+      about_go_climate_neutral:
+        <a href='http://www.goclimateneutral.org'>GoClimateNeutral</a> supports
+        climate projects and provides tips and inspiration on easy ways to
+        reduce your carbon footprint. Our projects are Gold Standard certified
+        and are supported by 80 environmental organizations - including the WWF.
+      do_you_want_to_continue: Do you want to offset your full carbon footprint?
+      register: Visit <a href="http://goclimateneutral.org">GoClimateNeutral</a> to register!
     flight_offsets:
       new:
         header: Offset your flight
@@ -525,6 +533,15 @@ en:
         people: people
         total: Total
         sum: Sum
+        submit: Offset your flight
+      thank_you:
+        header: Thank you!
+        lead: By offsetting, you have taken responsibility for your flight's carbon footprint.
+        download_certificate: Download your certificate
+        download_receipt: Download your receipt
+        we_have_sent_an_email: We've sent an email with the certificate to the email address you entered.
+        did_you_know_lifestyle: Did you know that we can help you offset your full carbon footprint?
+        read_more_and_subscribe: Read more and subscribe
     shared:
       header:
         region_recommendation:
@@ -533,6 +550,12 @@ en:
       footer:
         jobs: 'Jobs'
     pdfs:
+      flight_offset_certificate:
+        header: Carbon Offset Certificate
+        lead: By offsetting, you've taken responsibility for your flight's carbon footprint. Thank you!
+        order_id: Order ID
+        date: Date
+        project_type: Project type
       invoice_certificate:
         header: Carbon Offset Certificate
         we_certify_that: We hereby certify that
@@ -650,6 +673,15 @@ en:
   tonnes_carbon_dioxide: tonnes carbon dioxide
   see_all_our_projects: See all our projects
   mailers:
+    flight_offset:
+      subject: Your certificate
+      thank_you: Thank you for offsetting your flight!
+      you_have_offset: You have offset
+      tonnes_co2e: tonnes CO2e
+      certificate_is_attached:
+        Your certificate is attached to this email. If you have any questions,
+        just hit reply on this email–we're happy to help! Thank you again,
+        you're the best!
     business:
       climate_report_email:
         subject: Share your climate footprint with your team
