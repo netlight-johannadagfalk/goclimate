@@ -56,7 +56,9 @@ module Api
       end
 
       def regions
-        currencies = currencies_param.map { |p| Currency.from_iso_code(p) }
+        currencies = currencies_param.map { |p| Currency.from_iso_code(p) }.compact
+        currencies = [Currency::SEK] if currencies.empty? # Follows original behavior of the API
+
         Region.all.filter { |r| currencies.include?(r.currency) }
       end
 
@@ -69,14 +71,12 @@ module Api
       # `currencies[0]=SEK&currencies[1]=NOK` or
       # `currencies=['SEK','NOK']` or
       # `currencies='SEK,NOK'`
-      #
-      # Not requesting a currency defaults to SEK to follow original behavior
       def currencies_param
         return params[:currencies].values if params[:currencies].is_a?(ActionController::Parameters)
 
         return params[:currencies].split(',') if params[:currencies].is_a?(String)
 
-        params[:currencies] || ['SEK']
+        params[:currencies] || []
       end
 
       def offset_params
