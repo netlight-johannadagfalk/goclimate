@@ -21,7 +21,8 @@ class GiftCard < ApplicationRecord
   def create_payment_intent
     Stripe::PaymentIntent.create(
       amount: price.subunit_amount,
-      currency: currency.iso_code
+      currency: currency.iso_code,
+      description: "Gift Card #{number_of_months} months"
     )
   end
 

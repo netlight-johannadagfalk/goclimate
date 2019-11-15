@@ -13,7 +13,8 @@ class FlightOffsetsController < ApplicationController
 
     @payment_intent = Stripe::PaymentIntent.create(
       amount: @price.subunit_amount,
-      currency: @price.currency
+      currency: @price.currency,
+      description: 'Flight offset'
     )
   end
 
