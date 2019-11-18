@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-# Note that while this class is named `StripeEvent`, its attributes, usage and
-# behavior really only relates to charges in Stripe. It should be thought of as
-# if it was named `StripeCharge`.
-
-class StripeEvent < ApplicationRecord
+class CardCharge < ApplicationRecord
   belongs_to :user, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id', required: false
 
   scope :payments, ->(user = nil) { where(stripe_customer_id: user.stripe_customer_id) }
@@ -16,14 +12,11 @@ class StripeEvent < ApplicationRecord
   scope :in_usd, -> { where(currency: 'usd') }
   scope :in_eur, -> { where(currency: 'eur') }
 
-  # TODO: Remove after rename is complete
-  self.primary_key = :id
-
   def self.create_from_stripe_charge(charge)
     create(
-      stripe_event_id: charge.id,
+      stripe_charge_id: charge.id,
       stripe_customer_id: charge.customer,
-      stripe_amount: charge.amount,
+      amount: charge.amount,
       paid: charge.paid,
       currency: charge.currency,
       gift_card: charge.description&.include?(GiftCardsCheckout::STRIPE_DESCRIPTION_BASE) || false,
@@ -33,15 +26,15 @@ class StripeEvent < ApplicationRecord
   end
 
   def self.total_payments_usd_part
-    StripeEvent.where(paid: true).where(currency: 'usd').sum('stripe_amount').to_i / 100
+    where(paid: true).where(currency: 'usd').sum('amount').to_i / 100
   end
 
   def self.total_payments_sek_part
-    StripeEvent.where(paid: true).where(currency: 'sek').sum('stripe_amount').to_i / 100
+    where(paid: true).where(currency: 'sek').sum('amount').to_i / 100
   end
 
   def self.total_payments_eur_part
-    StripeEvent.where(paid: true).where(currency: 'eur').sum('stripe_amount').to_i / 100
+    where(paid: true).where(currency: 'eur').sum('amount').to_i / 100
   end
 
   def self.total_in_sek

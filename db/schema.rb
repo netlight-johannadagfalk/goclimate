@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_16_080855) do
+ActiveRecord::Schema.define(version: 2019_11_18_124719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,24 +37,6 @@ ActiveRecord::Schema.define(version: 2019_11_16_080855) do
     t.string "description"
     t.boolean "flight_offset", default: false, null: false
   end
-
-  # Temporarily added during migration of the above table so tests can run
-  execute <<~SQL
-    CREATE OR REPLACE VIEW stripe_events AS
-    SELECT
-      cc.id,
-      cc.created_at,
-      cc.updated_at,
-      cc.stripe_charge_id AS stripe_event_id,
-      cc.stripe_customer_id,
-      cc.amount AS stripe_amount,
-      cc.currency,
-      cc.paid,
-      cc.gift_card,
-      cc.description,
-      cc.flight_offset
-    FROM card_charges cc
-  SQL
 
   create_table "climate_report_calculations", force: :cascade do |t|
     t.datetime "created_at", null: false

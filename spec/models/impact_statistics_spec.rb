@@ -4,41 +4,41 @@ require 'rails_helper'
 
 RSpec.describe ImpactStatistics do
   let!(:subscriber_payment_sek) do
-    create(:stripe_event_monthly, created_at: Date.new(2019, 1, 29),
-                                  stripe_amount: 80_00, # 80 SEK = 2 tonnes
-                                  currency: 'sek')
+    create(:card_charge_monthly, created_at: Date.new(2019, 1, 29),
+                                 amount: 80_00, # 80 SEK = 2 tonnes
+                                 currency: 'sek')
   end
   let!(:subscriber_payment_usd) do
     # 80 USD is the lowest cost evenly dividable by our cost in tonnes = 17 tonnes
-    create(:stripe_event_monthly, created_at: Date.new(2019, 1, 30),
-                                  stripe_amount: 80_00,
-                                  currency: 'usd')
+    create(:card_charge_monthly, created_at: Date.new(2019, 1, 30),
+                                 amount: 80_00,
+                                 currency: 'usd')
   end
   let!(:subscriber_payment_eur) do
-    create(:stripe_event_monthly, created_at: Date.new(2019, 1, 31),
-                                  stripe_amount: 8_00, # 8 EUR = 2 tonnes
-                                  currency: 'eur')
+    create(:card_charge_monthly, created_at: Date.new(2019, 1, 31),
+                                 amount: 8_00, # 8 EUR = 2 tonnes
+                                 currency: 'eur')
   end
   let!(:gift_card_payment_sek) do
-    create(:stripe_event_gift_card, created_at: Date.new(2019, 1, 29),
-                                    stripe_amount: 80_00, # 80 SEK = 2 tonnes
-                                    currency: 'sek')
+    create(:card_charge_gift_card, created_at: Date.new(2019, 1, 29),
+                                   amount: 80_00, # 80 SEK = 2 tonnes
+                                   currency: 'sek')
   end
   let!(:gift_card_payment_usd) do
     # 80 USD is the lowest cost evenly divisible by our cost in tonnes = 17 tonnes
-    create(:stripe_event_gift_card, created_at: Date.new(2019, 1, 30),
-                                    stripe_amount: 80_00,
-                                    currency: 'usd')
+    create(:card_charge_gift_card, created_at: Date.new(2019, 1, 30),
+                                   amount: 80_00,
+                                   currency: 'usd')
   end
   let!(:gift_card_payment_eur) do
-    create(:stripe_event_gift_card, created_at: Date.new(2019, 1, 31),
-                                    stripe_amount: 8_00, # 8 EUR = 2 tonnes
-                                    currency: 'eur')
+    create(:card_charge_gift_card, created_at: Date.new(2019, 1, 31),
+                                   amount: 8_00, # 8 EUR = 2 tonnes
+                                   currency: 'eur')
   end
   let!(:flight_offset_payment_sek) do
-    create(:stripe_event_flight_offset, created_at: Date.new(2019, 1, 29),
-                                        stripe_amount: 40_00, # 40 SEK = 1 tonne
-                                        currency: 'sek')
+    create(:card_charge_flight_offset, created_at: Date.new(2019, 1, 29),
+                                       amount: 40_00, # 40 SEK = 1 tonne
+                                       currency: 'sek')
   end
   let!(:invoice) { create(:invoice, created_at: Date.new(2019, 1, 29), co2e: 40_000, project: project) }
   let!(:project) { create(:project, created_at: Date.new(2019, 1, 29), co2e: 200_000) }

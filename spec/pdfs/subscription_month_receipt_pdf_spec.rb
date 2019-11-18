@@ -4,29 +4,29 @@ require 'rails_helper'
 require 'models/shared_example_for_receipts'
 
 RSpec.describe SubscriptionMonthReceiptPdf do
-  subject(:receipt) { described_class.new(offset) }
+  subject(:receipt) { described_class.new(charge) }
 
-  let(:offset) { create(:stripe_event_monthly) }
+  let(:charge) { create(:card_charge_monthly) }
 
   it_behaves_like 'a receipt'
 
   describe '#initialize' do
     it 'initializes with provided stripe event' do
-      receipt = described_class.new(offset)
+      receipt = described_class.new(charge)
 
-      expect(receipt.stripe_event).to be(offset)
+      expect(receipt.card_charge).to be(charge)
     end
   end
 
   describe '#date' do
-    it 'uses StripeEvent object created_at for returned date' do
-      expect(receipt.date).to eq(offset.created_at.to_date)
+    it 'uses CardCharge object created_at for returned date' do
+      expect(receipt.date).to eq(charge.created_at.to_date)
     end
   end
 
   describe '#currency' do
     it 'returns Stripe event currency' do
-      expect(receipt.currency).to eq(offset.currency)
+      expect(receipt.currency).to eq(charge.currency)
     end
   end
 
@@ -36,7 +36,7 @@ RSpec.describe SubscriptionMonthReceiptPdf do
     end
 
     it 'returns amount from Stripe event' do
-      offset.stripe_amount = 800
+      charge.amount = 800
 
       expect(receipt.total_amount).to eq(8)
     end
@@ -48,13 +48,13 @@ RSpec.describe SubscriptionMonthReceiptPdf do
     end
 
     it 'returns amount based on 25% VAT on total amount in Stripe' do
-      offset.stripe_amount = 800
+      charge.amount = 800
 
       expect(receipt.vat_amount).to eq(BigDecimal('1.60'))
     end
 
     it 'rounds VAT amount to nearest 2 decimals' do
-      offset.stripe_amount = 822
+      charge.amount = 822
 
       expect(receipt.vat_amount).to eq(BigDecimal('1.64'))
     end
@@ -66,7 +66,7 @@ RSpec.describe SubscriptionMonthReceiptPdf do
     end
 
     it 'returns total amount minus VAT amount' do
-      offset.stripe_amount = 822
+      charge.amount = 822
 
       expect(receipt.total_amount_before_vat).to eq(BigDecimal('6.58'))
     end
@@ -74,7 +74,7 @@ RSpec.describe SubscriptionMonthReceiptPdf do
 
   describe '#order_id' do
     it 'returns an order id' do
-      expect(receipt.order_id).to eq("GCN-MONTHLY-#{offset.id}")
+      expect(receipt.order_id).to eq("GCN-MONTHLY-#{charge.id}")
     end
   end
 end

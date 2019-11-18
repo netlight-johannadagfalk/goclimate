@@ -43,7 +43,7 @@ Rails.application.routes.draw do
       end
 
       resource :subscription, only: [:show, :update]
-      resources :receipts, only: [:index, :show], param: :stripe_event_id
+      resources :receipts, only: [:index, :show], param: :card_charge_id
     end
 
     # Content pages

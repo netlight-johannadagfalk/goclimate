@@ -55,15 +55,15 @@ class ImpactStatistics # rubocop:disable Metrics/ClassLength
   end
 
   def subscribers_payments_tonnes
-    payment_tonnes(StripeEvent.paid_charges.for_subscriptions)
+    payment_tonnes(CardCharge.paid_charges.for_subscriptions)
   end
 
   def gift_cards_tonnes
-    payment_tonnes(StripeEvent.paid_charges.for_gift_cards)
+    payment_tonnes(CardCharge.paid_charges.for_gift_cards)
   end
 
   def flight_offsets_tonnes
-    payment_tonnes(StripeEvent.paid_charges.for_flight_offsets)
+    payment_tonnes(CardCharge.paid_charges.for_flight_offsets)
   end
 
   def invoices_tonnes
@@ -107,28 +107,28 @@ class ImpactStatistics # rubocop:disable Metrics/ClassLength
     @weeks = @weeks.sort.to_h
   end
 
-  def payment_tonnes(stripe_events)
-    payment_amounts_total(stripe_events)
+  def payment_tonnes(card_charges)
+    payment_amounts_total(card_charges)
       .transform_values { |sek_amount| sek_amount / 100 / LifestyleChoice::SEK_PER_TONNE }
   end
 
-  def payment_amounts_total(stripe_events)
-    payment_amounts_sek(stripe_events)
-      .merge(payment_amounts_usd_in_sek(stripe_events)) { |_, v1, v2| v1 + v2 }
-      .merge(payment_amounts_eur_in_sek(stripe_events)) { |_, v1, v2| v1 + v2 }
+  def payment_amounts_total(card_charges)
+    payment_amounts_sek(card_charges)
+      .merge(payment_amounts_usd_in_sek(card_charges)) { |_, v1, v2| v1 + v2 }
+      .merge(payment_amounts_eur_in_sek(card_charges)) { |_, v1, v2| v1 + v2 }
   end
 
-  def payment_amounts_sek(stripe_events)
-    sum_by_week(stripe_events.in_sek, :stripe_amount)
+  def payment_amounts_sek(card_charges)
+    sum_by_week(card_charges.in_sek, :amount)
   end
 
-  def payment_amounts_usd_in_sek(stripe_events)
-    sum_by_week(stripe_events.in_usd, :stripe_amount)
+  def payment_amounts_usd_in_sek(card_charges)
+    sum_by_week(card_charges.in_usd, :amount)
       .transform_values { |usd_amount| usd_amount * LifestyleChoice::SEK_PER_USD }
   end
 
-  def payment_amounts_eur_in_sek(stripe_events)
-    sum_by_week(stripe_events.in_eur, :stripe_amount)
+  def payment_amounts_eur_in_sek(card_charges)
+    sum_by_week(card_charges.in_eur, :amount)
       .transform_values { |eur_amount| eur_amount * LifestyleChoice::SEK_PER_EUR }
   end
 

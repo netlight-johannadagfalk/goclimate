@@ -16,6 +16,12 @@ RSpec.describe FlightOffsetReceiptPdf do
     end
   end
 
+  describe '#date' do
+    it 'uses FlightOffset created_at for returned date' do
+      expect(receipt.date).to eq(offset.created_at.to_date)
+    end
+  end
+
   describe '#currency' do
     it 'returns Flight offset currency' do
       expect(receipt.currency).to eq(offset.charged_currency)

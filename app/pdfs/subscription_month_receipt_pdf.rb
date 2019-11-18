@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class SubscriptionMonthReceiptPdf
-  attr_reader :stripe_event
+  attr_reader :card_charge
 
-  def initialize(stripe_event)
-    @stripe_event = stripe_event
+  def initialize(card_charge)
+    @card_charge = card_charge
   end
 
   def render
@@ -21,15 +21,15 @@ class SubscriptionMonthReceiptPdf
   end
 
   def date
-    stripe_event.created_at.to_date
+    card_charge.created_at.to_date
   end
 
   def currency
-    stripe_event.currency
+    card_charge.currency
   end
 
   def total_amount
-    stripe_event.stripe_amount.to_d / 100
+    card_charge.amount.to_d / 100
   end
 
   def vat_amount
@@ -41,6 +41,6 @@ class SubscriptionMonthReceiptPdf
   end
 
   def order_id
-    stripe_event.order_id
+    card_charge.order_id
   end
 end
