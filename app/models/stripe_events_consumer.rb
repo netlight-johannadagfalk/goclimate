@@ -59,7 +59,7 @@ class StripeEventsConsumer
   end
 
   def send_payment_successful_email(user)
-    number_of_payments = CardCharge.payments(user).where(paid: true).count
+    number_of_payments = user.number_of_neutral_months
     if number_of_payments % 12 == 0
       SubscriptionMailer.with(email: user.email).one_more_year_email.deliver_now
     else

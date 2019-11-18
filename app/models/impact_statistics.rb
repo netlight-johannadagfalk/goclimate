@@ -55,15 +55,15 @@ class ImpactStatistics # rubocop:disable Metrics/ClassLength
   end
 
   def subscribers_payments_tonnes
-    payment_tonnes(CardCharge.paid_charges.for_subscriptions)
+    payment_tonnes(CardCharge.paid.for_subscriptions)
   end
 
   def gift_cards_tonnes
-    payment_tonnes(CardCharge.paid_charges.for_gift_cards)
+    payment_tonnes(CardCharge.paid.for_gift_cards)
   end
 
   def flight_offsets_tonnes
-    payment_tonnes(CardCharge.paid_charges.for_flight_offsets)
+    payment_tonnes(CardCharge.paid.for_flight_offsets)
   end
 
   def invoices_tonnes

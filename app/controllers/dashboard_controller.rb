@@ -29,19 +29,19 @@ class DashboardController < ApplicationController
   end
 
   def my_amount_invested_sek_part
-    CardCharge.payments(current_user).where(paid: true).where(currency: 'sek').sum('amount').to_i / 100
+    current_user.card_charges.for_subscriptions.paid.in_sek.sum('amount').to_i / 100
   end
 
   def my_amount_invested_usd_part
-    CardCharge.payments(current_user).where(paid: true).where(currency: 'usd').sum('amount').to_i / 100
+    current_user.card_charges.for_subscriptions.paid.in_usd.sum('amount').to_i / 100
   end
 
   def my_amount_invested_eur_part
-    CardCharge.payments(current_user).where(paid: true).where(currency: 'eur').sum('amount').to_i / 100
+    current_user.card_charges.for_subscriptions.paid.in_eur.sum('amount').to_i / 100
   end
 
   def my_neutral_months
-    months = CardCharge.payments(current_user).where(paid: true).count
+    months = current_user.number_of_neutral_months
     months == 0 ? 1 : months
   end
 

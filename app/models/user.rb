@@ -29,7 +29,7 @@ class User < ApplicationRecord
   end
 
   def number_of_neutral_months
-    CardCharge.where(stripe_customer_id: stripe_customer_id, paid: true).count
+    @number_of_neutral_months ||= card_charges.for_subscriptions.paid.count
   end
 
   def currency

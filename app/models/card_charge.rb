@@ -3,8 +3,7 @@
 class CardCharge < ApplicationRecord
   belongs_to :user, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id', required: false
 
-  scope :payments, ->(user = nil) { where(stripe_customer_id: user.stripe_customer_id) }
-  scope :paid_charges, -> { where(paid: true) }
+  scope :paid, -> { where(paid: true) }
   scope :for_subscriptions, -> { where(gift_card: false, flight_offset: false) }
   scope :for_gift_cards, -> { where(gift_card: true) }
   scope :for_flight_offsets, -> { where(flight_offset: true) }

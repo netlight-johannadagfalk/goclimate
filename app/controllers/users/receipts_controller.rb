@@ -7,7 +7,7 @@ module Users
     before_action :authorize_receipt, only: [:show]
 
     def index
-      charges = current_user.card_charges.paid_charges.order(created_at: :desc)
+      charges = current_user.card_charges.paid.order(created_at: :desc)
 
       @receipts = charges.map do |charge|
         SubscriptionMonthReceiptPdf.new(charge)
