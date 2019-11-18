@@ -50,7 +50,6 @@ RSpec.describe StripeEventsConsumer do
             :stripe_event,
             stripe_customer_id: 'customer_test_id',
             paid: true,
-            stripe_object: 'charge',
             currency: 'usd'
           )
         end
@@ -70,7 +69,6 @@ RSpec.describe StripeEventsConsumer do
             11,
             stripe_customer_id: 'customer_test_id',
             paid: true,
-            stripe_object: 'charge',
             currency: 'usd'
           )
         end

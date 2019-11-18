@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_04_125430) do
+ActiveRecord::Schema.define(version: 2019_11_16_080855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,37 @@ ActiveRecord::Schema.define(version: 2019_11_04_125430) do
     t.string "contact_name"
     t.string "contact_email"
   end
+
+  create_table "card_charges", force: :cascade do |t|
+    t.string "stripe_charge_id"
+    t.string "stripe_customer_id"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "currency"
+    t.boolean "paid"
+    t.boolean "gift_card", default: false, null: false
+    t.string "description"
+    t.boolean "flight_offset", default: false, null: false
+  end
+
+  # Temporarily added during migration of the above table so tests can run
+  execute <<~SQL
+    CREATE OR REPLACE VIEW stripe_events AS
+    SELECT
+      cc.id,
+      cc.created_at,
+      cc.updated_at,
+      cc.stripe_charge_id AS stripe_event_id,
+      cc.stripe_customer_id,
+      cc.amount AS stripe_amount,
+      cc.currency,
+      cc.paid,
+      cc.gift_card,
+      cc.description,
+      cc.flight_offset
+    FROM card_charges cc
+  SQL
 
   create_table "climate_report_calculations", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -167,22 +198,6 @@ ActiveRecord::Schema.define(version: 2019_11_04_125430) do
     t.integer "start_block"
     t.integer "end_block"
     t.string "gold_standard_url"
-  end
-
-  create_table "stripe_events", force: :cascade do |t|
-    t.string "stripe_event_id"
-    t.string "stripe_customer_id"
-    t.string "stripe_object"
-    t.string "stripe_status"
-    t.integer "stripe_amount"
-    t.datetime "stripe_created"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "currency"
-    t.boolean "paid"
-    t.boolean "gift_card", default: false, null: false
-    t.string "description"
-    t.boolean "flight_offset", default: false, null: false
   end
 
   create_table "stripe_payouts", force: :cascade do |t|

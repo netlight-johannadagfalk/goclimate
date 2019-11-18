@@ -5,7 +5,6 @@ FactoryBot.define do
     stripe_event.sequence(:stripe_customer_id) { |n| n }
 
     factory :stripe_event_paid_charge do
-      stripe_object { 'charge' }
       currency { 'sek' }
       paid { true }
 
