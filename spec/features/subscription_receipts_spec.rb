@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.feature 'Subscription receipts', type: :feature, js: true do
   before do
     User.create!(email: 'test@example.com', password: 'password', stripe_customer_id: 'cus_TEST')
-    StripeEvent.create!(stripe_customer_id: 'cus_TEST', stripe_object: 'charge', paid: true)
+    StripeEvent.create!(stripe_customer_id: 'cus_TEST', paid: true)
   end
 
   scenario 'Download receipt' do

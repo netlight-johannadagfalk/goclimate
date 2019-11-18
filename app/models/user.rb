@@ -29,7 +29,7 @@ class User < ApplicationRecord
   end
 
   def number_of_neutral_months
-    StripeEvent.where(stripe_object: 'charge').where(stripe_customer_id: stripe_customer_id).where(paid: true).count
+    StripeEvent.where(stripe_customer_id: stripe_customer_id, paid: true).count
   end
 
   def currency

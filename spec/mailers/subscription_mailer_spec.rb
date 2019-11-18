@@ -6,7 +6,7 @@ RSpec.describe SubscriptionMailer, type: :mailer do
   let(:user) { create(:user, stripe_customer_id: 'test_id') }
 
   before do
-    create(:stripe_event, stripe_customer_id: 'test_id', paid: true, stripe_object: 'charge')
+    create(:stripe_event, stripe_customer_id: 'test_id', paid: true)
   end
 
   shared_examples 'subscription email' do
@@ -45,7 +45,7 @@ RSpec.describe SubscriptionMailer, type: :mailer do
     subject(:mail) { described_class.with(email: user.email).one_more_year_email }
 
     before do
-      create_list(:stripe_event, 12, stripe_customer_id: 'test_id', paid: true, stripe_object: 'charge')
+      create_list(:stripe_event, 12, stripe_customer_id: 'test_id', paid: true)
     end
 
     it_behaves_like 'subscription email'
