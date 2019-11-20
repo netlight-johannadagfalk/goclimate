@@ -29,26 +29,26 @@ class DashboardController < ApplicationController
   end
 
   def my_amount_invested_sek_part
-    StripeEvent.payments(current_user).where(paid: true).where(currency: 'sek').sum('stripe_amount').to_i / 100
+    current_user.card_charges.for_subscriptions.paid.in_sek.sum('amount').to_i / 100
   end
 
   def my_amount_invested_usd_part
-    StripeEvent.payments(current_user).where(paid: true).where(currency: 'usd').sum('stripe_amount').to_i / 100
+    current_user.card_charges.for_subscriptions.paid.in_usd.sum('amount').to_i / 100
   end
 
   def my_amount_invested_eur_part
-    StripeEvent.payments(current_user).where(paid: true).where(currency: 'eur').sum('stripe_amount').to_i / 100
+    current_user.card_charges.for_subscriptions.paid.in_eur.sum('amount').to_i / 100
   end
 
   def my_neutral_months
-    months = StripeEvent.payments(current_user).where(paid: true).count
+    months = current_user.number_of_neutral_months
     months == 0 ? 1 : months
   end
 
   def user_top_list
     User.where("users.stripe_customer_id != ''")
-        .left_joins(:stripe_events)
-        .where('stripe_events.paid = true')
+        .left_joins(:card_charges)
+        .where('card_charges.paid = true')
         .select('users.id, users.user_name, COUNT(1)')
         .group('users.id')
         .order(Arel.sql('COUNT(1) DESC'))
@@ -56,8 +56,8 @@ class DashboardController < ApplicationController
 
   def country_top_list
     User.where("users.stripe_customer_id != ''")
-        .left_joins(:stripe_events)
-        .where('stripe_events.paid = true')
+        .left_joins(:card_charges)
+        .where('card_charges.paid = true')
         .select('users.country, COUNT(1)')
         .group('users.country')
         .order(Arel.sql('COUNT(1) DESC'))

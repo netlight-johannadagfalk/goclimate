@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
-  has_many :stripe_events, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
+  has_many :card_charges, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
   has_and_belongs_to_many :lifestyle_choices
   scope :with_active_subscription, lambda {
     where(subscription_end_at: nil).or(where('subscription_end_at >= ?', Time.now))
@@ -29,17 +29,17 @@ class User < ApplicationRecord
   end
 
   def number_of_neutral_months
-    StripeEvent.where(stripe_customer_id: stripe_customer_id, paid: true).count
+    @number_of_neutral_months ||= card_charges.for_subscriptions.paid.count
   end
 
   def currency
-    stripe_events.first.currency
+    card_charges.first.currency
   end
 
   def language
-    if stripe_events.first.currency == 'sek'
+    if card_charges.first.currency == 'sek'
       :sv
-    elsif stripe_events.first.currency == 'eur'
+    elsif card_charges.first.currency == 'eur'
       :de
     else
       :en

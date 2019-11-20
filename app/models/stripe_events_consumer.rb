@@ -21,13 +21,13 @@ class StripeEventsConsumer
   private
 
   def process_charge(charge)
-    return if StripeEvent.exists?(stripe_event_id: charge.id)
+    return if CardCharge.exists?(stripe_charge_id: charge.id)
 
-    Rails.logger.debug("Creating StripeEvent for charge #{charge.id}")
+    Rails.logger.debug("Creating CardCharge for charge #{charge.id}")
 
-    event = StripeEvent.create_from_stripe_charge(charge)
+    event = CardCharge.create_from_stripe_charge(charge)
 
-    Rails.logger.info("Created StripeEvent for charge #{charge.id}")
+    Rails.logger.info("Created CardCharge for charge #{charge.id}")
 
     return if event.gift_card? || event.flight_offset?
 
@@ -59,7 +59,7 @@ class StripeEventsConsumer
   end
 
   def send_payment_successful_email(user)
-    number_of_payments = StripeEvent.payments(user).where(paid: true).count
+    number_of_payments = user.number_of_neutral_months
     if number_of_payments % 12 == 0
       SubscriptionMailer.with(email: user.email).one_more_year_email.deliver_now
     else

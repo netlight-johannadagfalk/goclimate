@@ -53,7 +53,7 @@ Our domain consists of:
 | Model                 | Description                                         |
 | ----------------------|-----------------------------------------------------|
 | `User`                | A registered user. Account creation is currently only possible by signing up for a subscription, but you can cancel and still keep the account. |
-| `StripeEvent`         | For most intents and purposes, `StripeEvent`s are successful charges. It's used for calculating number of subscribed months for a subscriber along with statistics for us as whole. |
+| `CardCharge`          | Charges for purchases of an offset product.         |
 
 ## Coding guidelines
 

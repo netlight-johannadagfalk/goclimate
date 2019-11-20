@@ -10,14 +10,14 @@ class SubscriptionMailer < ApplicationMailer
   helper :subscription_mailer
 
   def one_more_month_email
-    @climate_neutral_months = StripeEvent.payments(@user).where(paid: true).count
+    @climate_neutral_months = @user.number_of_neutral_months
     @total_carbon_offset = Project.total_carbon_offset
 
     mail subject: I18n.t('thank_you')
   end
 
   def one_more_year_email
-    @climate_neutral_years = StripeEvent.payments(@user).where(paid: true).count / 12
+    @climate_neutral_years = @user.number_of_neutral_months / 12
     @total_carbon_offset = Project.total_carbon_offset
 
     mail subject: I18n.t('thank_you')

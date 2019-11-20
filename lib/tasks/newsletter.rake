@@ -8,7 +8,7 @@ namespace :newsletter do
     latest_added_users = User.where("created_at > '" + args[:from_date] + "'")
 
     swedish_users = latest_added_users.map do |u|
-      if u.stripe_events.first.nil?
+      if u.card_charges.first.nil?
         u.email
       elsif u.language == :sv
         u.email
@@ -29,7 +29,7 @@ namespace :newsletter do
     latest_added_users = User.where("created_at > '" + args[:from_date] + "'")
 
     other_users = latest_added_users.map do |u|
-      if u.stripe_events.first.nil?
+      if u.card_charges.first.nil?
         nil
       elsif u.language != :sv
         u.email

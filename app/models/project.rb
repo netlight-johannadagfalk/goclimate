@@ -7,7 +7,7 @@ class Project < ApplicationRecord
   def self.total_carbon_offset
     cdm_project_cost = Project.where("offset_type = 'CDM'").sum('cost_in_sek')
     cdm_project_tonnes = Project.where("offset_type = 'CDM'").sum('co2e') / 1000
-    user_offset = ((StripeEvent.total_in_sek - cdm_project_cost) / LifestyleChoice::SEK_PER_TONNE).round +
+    user_offset = ((CardCharge.total_in_sek - cdm_project_cost) / LifestyleChoice::SEK_PER_TONNE).round +
                   cdm_project_tonnes
 
     user_offset + (BigDecimal(ClimateReportInvoice.sum(:co2e) + Invoice.sum(:co2e)) / 1000).ceil

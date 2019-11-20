@@ -5,10 +5,6 @@ RSpec.shared_examples 'a receipt' do
     it 'returns a date' do
       expect(receipt.date).to be_a(Date)
     end
-
-    it 'uses offset object created_at for returned date' do
-      expect(receipt.date).to eq(offset.created_at.to_date)
-    end
   end
 
   describe '#total_amount' do

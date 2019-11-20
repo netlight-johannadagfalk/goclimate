@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe User do
   subject(:user) { build(:user) }
 
-  describe 'user_name validation' do
+  describe '#user_name' do
     context 'with a user_name with an @ sign' do
       subject { build(:user, user_name: 'Jod@') }
 
@@ -16,6 +16,34 @@ RSpec.describe User do
       subject { build(:user, user_name: 'jod@test.com') }
 
       it { is_expected.to be_invalid }
+    end
+  end
+
+  describe '#number_of_neutral_months' do
+    context 'with no card charges' do
+      it 'returns 0' do
+        expect(user.number_of_neutral_months).to eq(0)
+      end
+    end
+
+    context 'with card charges' do
+      before do
+        create_list(:card_charge_monthly, 3, stripe_customer_id: user.stripe_customer_id)
+      end
+
+      it 'returns the count of current charges' do
+        expect(user.number_of_neutral_months).to eq(3)
+      end
+    end
+
+    context 'with card charges for other products' do
+      before do
+        create_list(:card_charge_gift_card, 3, stripe_customer_id: user.stripe_customer_id)
+      end
+
+      it 'returns 0' do
+        expect(user.number_of_neutral_months).to eq(0)
+      end
     end
   end
 
