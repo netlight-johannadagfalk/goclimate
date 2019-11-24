@@ -2,20 +2,17 @@
 
 module Admin
   class InvoiceCertificatesController < AdminController
-    def show
-      pdf = certificate_pdf
+    before_action :set_invoice_and_pdf
 
+    def show
       send_data(
-        pdf.render,
-        filename: "GoClimateNeutral Certificate - #{pdf.receiver}.pdf",
+        @pdf.render,
+        filename: "GoClimateNeutral Certificate - #{@pdf.receiver}.pdf",
         type: :pdf
       )
     end
 
     def send_email
-      @pdf = certificate_pdf
-      @invoice = certificate_invoice
-
       InvoiceCertificateMailer.with(
         email: @invoice.certificate_reciever_email,
         reciever: @pdf.receiver,
@@ -25,21 +22,14 @@ module Admin
       @invoice.update(certificate_sent_at: Time.now)
     end
 
-    def certificate_invoice
+    def set_invoice_and_pdf
       case params[:type]
       when 'invoice'
-        Invoice.find(params[:id])
+        @invoice = Invoice.find(params[:id])
+        @pdf = InvoiceCertificatePdf.from_invoice(@invoice)
       when 'climate_report_invoice'
-        ClimateReportInvoice.find(params[:id])
-      end
-    end
-
-    def certificate_pdf
-      case params[:type]
-      when 'invoice'
-        InvoiceCertificatePdf.from_invoice(Invoice.find(params[:id]))
-      when 'climate_report_invoice'
-        InvoiceCertificatePdf.from_climate_report_invoice(ClimateReportInvoice.find(params[:id]))
+        @invoice = ClimateReportInvoice.find(params[:id])
+        @pdf = InvoiceCertificatePdf.from_climate_report_invoice(@invoice)
       end
     end
   end

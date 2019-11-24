@@ -132,8 +132,9 @@ Rails.application.routes.draw do
     resources :projects
     resources :climate_report_invoices, only: [:index, :show, :edit, :update]
     resources :climate_reports, only: [:index]
-    resource :invoice_certificates, only: [:show] do
-      get 'send_email', on: :collection
+    resource :invoice_certificates, only: [:show], format: true, constraints: { format: :pdf }
+    resource :invoice_certificates, only: [] do
+      post 'send_email', on: :collection
     end
   end
 
