@@ -5,7 +5,7 @@ module Api
     class ApiController < ActionController::API
       include ActionController::HttpAuthentication::Basic::ControllerMethods
 
-      before_action :authorize
+      before_action :set_cors_headers, :authorize
 
       def url_options
         # API runs on a separate subdomain in production, so make sure the default
@@ -19,6 +19,10 @@ module Api
 
       def authorize
         render json: { type: :authentication_error }, status: 401 unless api_key_valid?
+      end
+
+      def set_cors_headers
+        headers['Access-Control-Allow-Origin'] = '*'
       end
 
       def api_key_valid?
