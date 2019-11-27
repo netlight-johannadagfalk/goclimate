@@ -7,6 +7,7 @@ class ClimateReportInvoice < ApplicationRecord
   belongs_to :project, optional: true
 
   validates_presence_of :invoice_address, :co2e, :amount, :currency
+  validates :certificate_reciever_email, email: true
 
   def calculate_from_report
     self.co2e = climate_report.calculation.total_emissions * LifestyleChoice::BUFFER_SIZE

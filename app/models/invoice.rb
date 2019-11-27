@@ -2,4 +2,5 @@
 
 class Invoice < ApplicationRecord
   belongs_to :project
+  validates :certificate_reciever_email, email: true
 end
