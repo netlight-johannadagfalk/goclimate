@@ -77,7 +77,7 @@ module Admin
     def project_params
       params.require(:project).permit(
         :name, :cdm_url, :image_url, :blog_url, :longitude, :latitude,
-        :carbon_offset, :country, :offset_type, :cost_in_sek, :date_bought,
+        :co2e, :country, :offset_type, :cost_in_sek, :date_bought,
         :certificate_url, :invoice_url, :gold_standard_id, :cdm_id,
         :start_block, :end_block, :gold_standard_url
       )
