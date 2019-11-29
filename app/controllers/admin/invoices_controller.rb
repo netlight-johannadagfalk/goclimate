@@ -73,10 +73,11 @@ module Admin
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(
-        :amount_in_sek, :co2e, :receiver, :project_id, :fortnox_id, :comment, :certificate_sent_at,
-        :certificate_reciever_email
-      )
+      params
+        .require(:invoice)
+        .permit(:amount_in_sek, :co2e, :receiver, :project_id, :fortnox_id, :comment, :certificate_sent_at,
+                :certificate_reciever_email)
+        .delete_if { |_, value| value.blank? }
     end
   end
 end
