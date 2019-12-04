@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GiftCardsController < ApplicationController
-  before_action :ensure_months_parameter, only: [:new]
+  before_action :validate_months_parameter, only: [:new]
 
   def index
     @gift_card_1_months = GiftCard.new(number_of_months: 1, currency: current_region.currency)
@@ -53,8 +53,8 @@ class GiftCardsController < ApplicationController
 
   private
 
-  def ensure_months_parameter
-    redirect_to gift_cards_path unless params[:subscription_months_to_gift].present?
+  def validate_months_parameter
+    redirect_to gift_cards_path unless [1, 3, 6, 12].include?(params[:subscription_months_to_gift].to_i)
   end
 
   def new_gift_card_from_params
