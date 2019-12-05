@@ -53,20 +53,20 @@ sv:
   about_us_who_are_we_evelina: Föreläsare och frilansskribent inom hållbarhet och hållbart resande. Klimataktivist och vegan som älskar att vandra.
   blog: Blogg
   section_1_go_climate_neutral: Lev ett klimatneutralt liv!
-  section_1_text: Vi investerar i Gold Standard-certifierade klimatprojekt åt dig varje månad och tipsar om hur du kan minska ditt klimatavtryck - på så sätt bidrar du till att bromsa klimatförändringarna och rädda världen.
+  section_1_text: Vi investerar i klimatprojekt åt dig varje månad och tipsar om hur du kan minska ditt klimatavtryck - på så sätt bidrar du till att bromsa klimatförändringarna och rädda världen. Alla klimatprojekt vi stöttar uppfyller FNs krav för klimatprojekt och har dessutom kvalitetsstämpeln Gold Standard.
   its_fun_to_do_it_together: Det är roligt att rädda världen tillsammans!
   section_2_text: Genom att leva klimatneutralt med oss så inspirerar du andra att göra samma sak. Klimatförändringar är en utmaning som vi står inför tillsammans, och vi måste lösa den tillsammans också.
   we_are_100_transparent: Vi är 100% transparenta.
   this_is_a_first_step: Det här är ett första steg.
   this_is_a_first_step_description: Kom igång med ett klimatneutralt liv nu. Vi kommer alla även behöva minska våra klimatutsläpp, något som vi hjälper till med genom tips och inspiration längs vägen.
-  section_3_text: Vi är 100% transparenta med vilka Gold Standard-certifierade klimatprojekt dina pengar investeras i och varför.
+  section_3_text: Vi är 100% transparenta med vilka både FN-certifierade och Gold Standard-märkta klimatprojekt dina pengar investeras i och varför.
   we_are_975_effective: Vi hjälper dig bli maximalt klimateffektiv.
   section_4_text: Vi investerar i de mest effektiva certifierade klimatprojekt som vi kan hitta, så att dina pengar gör så stor nytta för planeten som möjligt.
   vegan: Äter helt växtbaserat
   no_car: Ingen bil
   hardly_ever_flies: Flyger nästan aldrig
   cost_calculation: Kostnadsberäkning
-  price_info_popup_content: Detta val räknar vi ger ett årligt utsläpp på %{footprint} ton CO<sub>2</sub>. Eftersom kalkylen är ungefärlig klimatkompenserar vi för dubbelt så många ton, alltså %{footprint_x2} ton C0<sub>2</sub>, så att du kan vara säker på att du lever klimatneutralt varje månad. <br>Vi klimatkompenserar i projekt som har kvalitetsmärkningen Gold Standard (skapad av bland annat WWF). Dessa projekt kostar %{price_per_tonne} kr/ton - och därför landar detta val på %{price_per_month} kr/mån.
+  price_info_popup_content: Detta val räknar vi ger ett årligt utsläpp på %{footprint} ton CO<sub>2</sub>. Eftersom kalkylen är ungefärlig klimatkompenserar vi för dubbelt så många ton, alltså %{footprint_x2} ton C0<sub>2</sub>, så att du kan vara säker på att du lever klimatneutralt varje månad. <br>Vi klimatkompenserar i projekt som är FN- och Gold Standard-certifierade (en certifiering skapad av bland annat WWF). Dessa projekt kostar %{price_per_tonne} kr/ton - och därför landar detta val på %{price_per_month} kr/mån.
   you_will_offset_for: Att ta ansvar för dina klimatutsläpp kostar %{cost}/mån
   mostly_vegetarian: Äter mest vegetariskt
   one_fuel_efficient_car: En bränslesnål bil
@@ -136,8 +136,8 @@ sv:
   total_climate_offset_project_investments: Total summa som vi klimatkompenserat för
   our_projects: Våra klimatprojekt
   our_investments_in_climate_projects: Våra klimatprojekt
-  our_investments_in_climate_projects_intro_html: 'Vi stöttar Gold Standard-certifierade klimatprojekt. När man väljer Gold Standard projekt har man 80 miljöorganisationer i ryggen - bland annat Världsnaturfonden. 
-            <br><br>Gold Standard har även fokus på andra hållbarhetsaspekter än klimatet - som att minska fattigdom och bidra till renare luft och vatten - vilket redovisas genom FNs agenda 2030-mål. Du kan hitta mer information om projekten på <a href="https://www.goldstandard.org/" target="_blank">Gold Standards webbsida</a>.
+  our_investments_in_climate_projects_intro_html: 'Vi stöttar FN- och Gold Standard-certifierade klimatprojekt. När man väljer FN- och Gold Standard-certifierade projekt har man FNs alla medlemsstater och 80 miljöorganisationer i ryggen - bland annat Världsnaturfonden. 
+            <br><br>Gold Standard har även fokus på andra hållbarhetsaspekter än klimatet - som att minska fattigdom och bidra till renare luft och vatten - vilket redovisas genom FNs agenda 2030-mål. Du kan hitta mer information om projekten på <a href="http://UNFCCC.int" target="_blank">UNFCCCs webbsida</a> respektive <a href="https://www.goldstandard.org/" target="_blank">Gold Standards webbsida</a>.
             <br><br>Alla klimatprojekt verifieras av en oberoende tredje part, t ex TÜV och DNV. Alla granskningsprotokoll är offentliga. Projekten inspekteras kontinuerligt under projekttiden för att garantera att verklig klimatnytta uppnås.'
   climate_project_we_have_invested_in: Klimatprojekt vi stöttat tillsammans
   project_certification_info_html: '<b>GS:</b> Gold Standard-certifierade klimatprojekt.<br>
@@ -229,7 +229,7 @@ sv:
   why_trust_2: Vi är helt transparenta med var dina pengar tar vägen
   why_trust_4: Ingen bindningstid och dessutom superenkelt att avsluta
   why_trust_5: Om du ångrar dig inom 60 dagar får du pengarna tillbaka
-  we_invest_in_un_climate_projects_that_are_gold_standard_certified: Vi investerar i klimatprojekt som är certifierade av Gold Standard. Se några exempel på projekt vi investerat i här nedan.
+  we_invest_in_un_climate_projects_that_are_gold_standard_certified: Vi investerar i klimatprojekt som är certifierade av både FN och Gold Standard. Se några exempel på projekt vi investerat i här nedan.
   thai_solar_carousel_description: Över 90% av elförsörjningen i Thailand kommer från fossila bränslen. Vi har investerat i det här solkraftverket som förser det Thailandska elnätet med förnyelsebar solel.
   nanyang_danjiang_carousel_description: Genom att ersätta kol- och vedeldade kokkärl med rena solupphettade kärl - så minskas CO2-utsläpp och livskvaliten för 50 000 hushåll förbättras.
   dak_pone_carousel_description: Dak Pone Hydro project ersätter diselgeneratorer och ved-eldad värme med förnyelsebar energi i form av vattenkraft.
@@ -283,8 +283,8 @@ sv:
         <br><br>
         Klimatkompensation sker oftast genom olika klimatprojekt i utvecklingsländer såsom energieffektivisering eller satsning på förnybar energi som sol- och vind-anläggningar.
         <br><br>
-        För att du ska kunna vara säker på att du faktiskt åstadkommer klimatnytta när du klimatkompenserar är det bra om klimatprojekten är certifierade. Tryggast kan du vara om projekten är Gold Standard-certifierade (som bland annat WWF ligger bakom).
-        <br><br>Vi på GoClimateNeutral hjälper dig klimatkompensera för de utsläpp din livsstil orsakar genom projekt som har Gold Standard-certifiering.
+        För att du ska kunna vara säker på att du faktiskt åstadkommer klimatnytta när du klimatkompenserar är det bra om klimatprojekten är certifierade. Tryggast kan du vara om projekten har en hög ribba för certifieringen, och det bästa alternativet där idag är Gold Standard-certifiering (som bland annat WWF ligger bakom).
+        <br><br>Vi på GoClimateNeutral hjälper dig klimatkompensera för de utsläpp din livsstil orsakar genom projekt som har FN- och Gold Standard-certifiering.
         <br><br>
         Har du åsikter om det här svaret? Gå gärna in på vår blogg och kommentera eller ställ frågor: <a href='https://www.goclimateneutral.org/blog/vad-ar-klimatkompensation/'>https://www.goclimateneutral.org/blog/vad-ar-klimatkompensation/</a>"
       q4:
@@ -294,7 +294,7 @@ sv:
         <br><br>
         Hur kan du veta att projekten vi investerar i - och pengarna du betalar - faktiskt bidrar till verklig klimatnytta? Jo, för att säkerställa det finns flera olika organ som granskar klimatprojekt. De största standarderna är CDM (som FN ligger bakom), Gold Standard (som bland annat WWF ligger bakom), Plan Vivo, VCS och Fair Trade. Även utsläppsrätter är en klimatkompensationsåtgärd, men de är förenade med rätt stor osäkerhet när det gäller klimatnytta (kan ändras framöver).
         <br><br>
-        På GoClimateNeutral har vi gått från att kompensera i FN-certifierade projekt (CDM) till att <b>investera i projekt som är Gold Standard-certifierade</b>. Dessa projekt är dyrare, men håller en högre kvalitetsnivå än projekten som bara är FN-certifierade. Du kan läsa mer om Gold Standard här: <a href='https://www.goldstandard.org/' target='_blank'>https://www.goldstandard.org/</a>
+        På GoClimateNeutral har vi gått från att kompensera i FN-certifierade projekt (CDM) till att <b>investera i projekt som både uppfyller FNs krav och dessutom har kvalitetsstämpeln Gold Standard</b>. Dessa projekt är dyrare, men håller en högre kvalitetsnivå och är hårdare granskade av oberoende parter än projekten som bara är FN-certifierade. Du kan läsa mer om Gold Standard här: <a href='https://www.goldstandard.org/' target='_blank'>https://www.goldstandard.org/</a>
         <br><br>
         Det är också viktigt att investera i projekt som redan är genomförda (med hjälp av lånat kapital) och verifierade. Detta för att man först då kan se att verklig klimatnytta faktiskt har åstadkommits, till skillnad från i projekt där klimatnyttan bara är något som man hoppas åstadkomma framöver.
         <br><br>
@@ -348,7 +348,7 @@ sv:
         <br><br>
         Det hela är ganska snårigt då vissa projekt, framförallt trädplanterings-projekt och CDM-projekt, vid upprepade granskningar visat sig inte hålla vad de lovar, och i vissa fall till och med haft negativa konsekvenser för lokalbefolkningen och miljön där projektet har genomförts. 
         <br><br>
-        Det är tydligt att man inte kan välja vilket klimatprojekt som helst att kompensera på grund av detta. Vi investerar därför bara i de mest trovärdiga och hårt granskade projekten, projekt som har certifieringen Gold Standard (som bland annat WWF står bakom). Då har man ca 80 miljöorganisationer i ryggen. Därtill tredjepartsverifieras alla dessa projekt av bland annat TÜV och DNV och alla deras protokoll är offentliga och följer projekten under hela projekttiden.
+        Det är tydligt att man inte kan välja vilket klimatprojekt som helst att kompensera på grund av detta. Vi investerar därför bara i de mest trovärdiga och hårt granskade projekten, projekt som både uppfyller FNs krav för klimatprojekt och dessutom har certifieringen Gold Standard (som bland annat WWF står bakom). Då har man FNs alla medlemsstater och ca 90 miljöorganisationer i ryggen. Därtill tredjepartsverifieras alla dessa projekt av bland annat TÜV och DNV och alla deras protokoll är offentliga och följer projekten under hela projekttiden.
         <br><br>
         Förutom att välja hårt tredje-partsgranskade projekt som är Gold Standard-certifierade så har vi även valt att kompensera för dubbla ens beräknade utsläpp för att vara på den säkra sidan om något mot förmodan skulle gå fel i klimatprojekten. Vi sprider även investeringarna i olika klimatprojekt för att ytterligare öka säkerheten med att vi åstadkommer riktig klimatnytta.
         <br><br>
@@ -432,7 +432,7 @@ sv:
       title: Räkna ut din klimatpåverkan för att komma igång
       submit: Kompensera min påverkan
       per_month: /mån
-    what_is_gcn_text: Vi stöttar Gold Standard-certifierade klimatprojekt och tipsar dig om enkla sätt att minska ditt klimatavtryck. På så sätt kan vi bidra till att bromsa klimatförändringarna och rädda världen.
+    what_is_gcn_text: Vi stöttar klimatprojekt med certifieringar som FN och Världsnaturfonden står bakom - och tipsar dig om enkla sätt att minska ditt klimatavtryck. På så sätt kan vi bidra till att bromsa klimatförändringarna och rädda världen.
     lets_save_our_planet_header: Mindre är mer!
     lets_save_our_planet_text: Varje ton CO2 mindre i atmosfären betyder mer av allt som vi tycker om med den här planeten. Ju fler vi är, desto större chans har vi att lyckas.
     call_to_actions:
@@ -520,8 +520,8 @@ sv:
         about_go_climate_neutral:
           <a href='http://www.goclimateneutral.org'>GoClimateNeutral</a> stöttar klimatprojekt och tipsar
           och inspirerar om enkla sätt att minska sin klimatpåverkan.
-          Projekten är Gold Standard-certifierade och har
-          80 miljöorganisationer i ryggen - bland annat Världsnaturfonden.
+          Projekten är FN- och Gold Standard-certifierade och har
+          FNs alla medlemsstater och 80 miljöorganisationer i ryggen - bland annat Världsnaturfonden.
           Genom denna gåva bidrar du till att bromsa klimatförändringarna.
         calculation_based_on_html: "Beräkningen bygger på genomsnittligt klimatavtryck på 11 ton CO<sub>2</sub>eq per person och år"
         do_you_want_to_continue: Vill du fortsätta att leva klimatneutralt efter att gåvokortet gått ut?
@@ -539,8 +539,8 @@ sv:
       about_go_climate_neutral:
             <a href='http://www.goclimateneutral.org'>GoClimateNeutral</a> stöttar klimatprojekt och tipsar
             och inspirerar om enkla sätt att minska klimatpåverkan.
-            Projekten är Gold Standard-certifierade och har
-            80 miljöorganisationer i ryggen - bland annat Världsnaturfonden.
+            Projekten är FN- och Gold Standard-certifierade och har
+            FNs alla medlemsstater och 80 miljöorganisationer i ryggen - bland annat Världsnaturfonden.
       do_you_want_to_continue: Vill du även kompensera för dina övriga klimatutsläpp?
       register: Gå in på <a href="http://goclimateneutral.org">GoClimateNeutral</a> och registrera dig!
     flight_offsets:
