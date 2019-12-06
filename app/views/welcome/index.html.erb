@@ -87,30 +87,48 @@
   </div>
 </div>
 
-<div id="i-want-to-know-more" class="site-wrapper-second">
+<div class="site-wrapper-third">
   <div class="inner">
 
-    <h1 class="cover-heading"><%=t 'what_is_goclimateneutral' %></h1>
-    <p class="lead"><%=t 'welcome.what_is_gcn_text' %></p>
+    <h1 class="cover-heading"><%=t 'welcome.statistics_header' %></h1>
 
-    <div class='embed-container-wrapper'>
-      <div class='embed-container'>
-        <% if I18n.locale == :sv %>
-          <iframe src='https://player.vimeo.com/video/241825913' align='top' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-        <% else %>
-          <iframe src='https://player.vimeo.com/video/246406263' align='top' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-        <% end %>
+    <div class="row stats">
+      <div class="col-md-2"></div>
+
+      <div class="col-md-4">
+        <p style="margin-bottom: 20px;">
+          <%=t 'welcome.users_prefix' %>
+          <br>
+          <span id="total-users" class="big-number" data-target-number="<%= @unique_climate_neutral_users %>"><%= number_with_delimiter(@unique_climate_neutral_users) %></span>
+          <br>
+          <%=t 'welcome.users_suffix' %>
+        </p>
       </div>
-    </div>
 
-    <p class="lead lead-btn more-info last-text">
-      <a class="im-in-button btn btn-lg btn-success" href="#choose-plan"><%=t 'welcome.call_to_actions.im_ready_to_sign_up' %></a>
-    </p>
+      <div class="col-md-4">
+        <p style="margin-bottom: 20px;">
+          <%=t 'welcome.tonnes_prefix' %>
+          <br>
+          <span id="total-carbon-offset" class="big-number" data-target-number="<%= @total_carbon_offset %>"><%= number_with_delimiter(@total_carbon_offset) %></span>
+          <br>
+          <%=t 'welcome.tonnes_suffix' %>
+        </p>
+      </div>
+
+      <% content_for :javascript_tags do %>
+        <script>
+          new CountingNumber(document.querySelector('#total-carbon-offset'));
+          new CountingNumber(document.querySelector('#total-users'));
+        </script>
+      <% end %>
+
+      <div class="col-md-2"></div>
+    </div>
 
   </div>
 </div>
 
-<div class="site-wrapper-third">
+<div class="site-wrapper-second">
   <div class="inner">
 
     <h1 class="cover-heading"><%=t 'this_is_how_it_works' %></h1>
@@ -144,38 +162,24 @@
   </div>
 </div>
 
-<div id="second-section" class="site-wrapper-second">
+<div class="site-wrapper-third">
   <div class="inner">
 
-    <span class="glyphicon glyphicon-large glyphicon-thumbs-up" aria-hidden="true"></span>
-    <h1 class="cover-heading"><%=t 'welcome.lets_save_our_planet_header' %></h1>
-    <p class="lead"><%=t 'welcome.lets_save_our_planet_text' %></p>
+    <h1 class="cover-heading"><%=t 'what_is_goclimateneutral' %></h1>
+    <p class="lead"><%=t 'welcome.what_is_gcn_text' %></p>
 
-    <div class="row stats">
-      <div class="col-md-2"></div>
-
-      <div class="col-md-4">
-        <h1 id="total-carbon-offset" class="big-number" data-target-number="<%= @total_carbon_offset %>"><%= number_with_delimiter(@total_carbon_offset) %></h1>
-        <p><%=t 'ton_co2_less_in_atmosphere' %></p>
+    <div class='embed-container-wrapper'>
+      <div class='embed-container'>
+        <% if I18n.locale == :sv %>
+          <iframe src='https://player.vimeo.com/video/241825913' align='top' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        <% else %>
+          <iframe src='https://player.vimeo.com/video/246406263' align='top' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        <% end %>
       </div>
-
-      <div class="col-md-4">
-        <h1 id="total-users" class="big-number" data-target-number="<%= @unique_climate_neutral_users %>"><%= number_with_delimiter(@unique_climate_neutral_users) %></h1>
-        <p><%=t 'climate_neutral_users_right_now' %></p>
-      </div>
-
-      <% content_for :javascript_tags do %>
-        <script>
-          new CountingNumber(document.querySelector('#total-carbon-offset'));
-          new CountingNumber(document.querySelector('#total-users'));
-        </script>
-      <% end %>
-
-      <div class="col-md-2"></div>
     </div>
 
     <p class="lead lead-btn more-info last-text">
-      <a class="im-in-button btn btn-lg btn-success" href="#choose-plan"><%=t 'welcome.call_to_actions.i_want_to_contribute' %></a>
+      <a class="im-in-button btn btn-lg btn-success" href="#choose-plan"><%=t 'welcome.call_to_actions.im_ready_to_sign_up' %></a>
     </p>
 
   </div>

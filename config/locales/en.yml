@@ -389,7 +389,7 @@ en:
               privacy_policy: 
                 accepted: You need to accept the pricacy policy
   climate_neutral_users_right_now: climate neutral users right now
-  ton_co2_less_in_atmosphere: ton CO2 less in atmosphere
+  ton_co2_less_in_atmosphere: tonnes CO2 less in atmosphere
   for_business: For Business
   thats_amazing_from_the_bottom_of_our_hearts: That's amazing! From the bottom of our hearts
   years:
@@ -408,8 +408,11 @@ en:
       submit: Offset my impact
       per_month: /mo
     what_is_gcn_text: We support Gold Standard certified climate offset projects and highlight easy ways to reduce your climate footprint. In this way we help slow down climate change and contribute to saving our planet.
-    lets_save_our_planet_header: Less is more!
-    lets_save_our_planet_text: Every ton CO2 less in the atmosphere means more of all the things we love on this planet. And the more people we are, the bigger impact we will have.
+    statistics_header: Every person makes a difference!
+    users_prefix: We're currently
+    users_suffix: climate neutral users
+    tonnes_prefix: Together we've reduced
+    tonnes_suffix: tonnes CO2 from the atmosphere
     call_to_actions:
       tell_me_more: Tell me more!
       im_ready_to_sign_up: I'm ready to sign up!
