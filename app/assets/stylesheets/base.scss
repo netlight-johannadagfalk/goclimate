@@ -223,8 +223,9 @@ div.legal {
 .row.stats.last {
   padding-bottom: 50px;
 }
-.welcome .stats h1.big-number {
+.welcome .stats .big-number {
   font-size: 90px;
+  line-height: 100%;
 }
 .dashboard .stats.total-offset h1 {
   font-size: 95px;
@@ -377,7 +378,7 @@ div.profile {
   .carousel-inner img.big {
     display: block;
   }
-  .welcome .stats h1.big-number {
+  .welcome .stats .big-number {
     font-size: 60px;
     margin-bottom: 5px;
   }
