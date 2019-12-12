@@ -39,6 +39,10 @@ function initializeUsersRegistrations() {
       hitType: 'event',
       eventAction: 'commit'
     });
+    gtag('event', 'conversion', {
+      'send_to': 'AW-823228700/-nQJCJXUrrcBEJzyxYgD'
+    });
+
     // Submit the form
     $('#error-content').text('')
     $.post($('#payment-form').attr('action'),
