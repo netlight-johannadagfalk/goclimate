@@ -1,3 +1,6 @@
+<% set_meta_tags og: { image: webpack_asset_path('images/giftcards_en.jpg') } if I18n.locale == :en %>
+<% set_meta_tags og: { image: webpack_asset_path('images/giftcards_sv.jpg') } if I18n.locale == :sv %>
+
 <div class="site-wrapper-first">
   <%= render "shared/header" %>
   <div class="inner">
