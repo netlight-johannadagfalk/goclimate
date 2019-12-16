@@ -18,6 +18,13 @@ calculation is done [here][pdf].
 
 [pdf]: https://www.goclimateneutral.org/blog/wp-content/uploads/2019/04/Calculations-in-GoClimateNeutral-Flight-Footprint-API.pdf
 
+## Client libraries
+
+We do not provide official client libraries. However, here's a list of
+community libraries:
+
+- [climate_neutral by codeboten](https://github.com/codeboten/climate_neutral) (Python)
+
 ## Authentication
 
 The GoClimateNeutral API uses API keys to authenticate requests. Get your API
