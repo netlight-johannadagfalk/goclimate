@@ -1,10 +1,31 @@
-<div class="site-wrapper-first">
+<div class="site-wrapper-first site-wrapper-first--no-trees">
   <%= render "shared/header" %>
   <div class="inner">
 
-    <span class="glyphicon glyphicon-large glyphicon-globe" aria-hidden="true"></span>
-    <h1 class="cover-heading"><%= title(t('our_investments_in_climate_projects')) %></h1>
-    <p class="lead"><%= description(t('our_investments_in_climate_projects_intro_html')) %></p>
+    <h1 class="cover-heading"><%= title(t('views.our_projects.map_header')) %></h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+          <div class="projects-map">
+            <%= image_tag webpack_asset_path('images/world_epsg_32663.png'), class: 'map' %>
+            <% @projects.drop(1).each do |project| %>
+              <div class="projects-map__marker" data-latitude="<%= project.latitude %>" data-longitude="<%= project.longitude %>" title="<%= "#{project.name}, #{project.country}" %>"></div>
+            <% end %>
+            <div class="projects-map__marker projects-map__marker--callout" data-latitude="<%= @projects.first.latitude %>" data-longitude="<%= @projects.first.longitude %>" style="background-image: url('<%= @projects.first.image_url %>')" title="<%= "#{@projects.first.name}, #{@projects.first.country}" %>"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% content_for :javascript_tags do %>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var markers = document.querySelectorAll('.projects-map__marker');
+          for (var i = 0; i < markers.length; i++) {
+            new ProjectsMapMarker(markers[i]);
+          }
+        });
+      </script>
+    <% end %>
 
   </div>
 </div>
@@ -56,7 +77,17 @@
   </div>
 </div>
 
-<div id="second-section" class="site-wrapper-third">
+<div class="site-wrapper-third">
+  <div class="inner">
+
+    <span class="glyphicon glyphicon-large glyphicon-globe" aria-hidden="true"></span>
+    <h1 class="cover-heading"><%= title(t('our_investments_in_climate_projects')) %></h1>
+    <p class="lead"><%= description(t('our_investments_in_climate_projects_intro_html')) %></p>
+
+  </div>
+</div>
+
+<div id="second-section" class="site-wrapper-second">
   <div class="inner">
 
     <span class="glyphicon glyphicon-large glyphicon-search" aria-hidden="true"></span>

@@ -564,6 +564,8 @@ en:
         project_id: Project ID
         project_type: Project type
         date: Date
+    our_projects:
+      map_header: Here's where our money makes an impact!
 
   business:
     climate_reports:

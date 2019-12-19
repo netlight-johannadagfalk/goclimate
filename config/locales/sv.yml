@@ -585,6 +585,8 @@ sv:
         project_id: Projekt ID
         project_type: Projekttyp
         date: Datum
+    our_projects:
+      map_header: Här gör våra pengar klimatnytta!
 
   business:
     climate_reports:
