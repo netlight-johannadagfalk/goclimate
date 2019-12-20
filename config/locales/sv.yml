@@ -583,7 +583,7 @@ sv:
         project_type: Projekttyp
         date: Datum
     our_projects:
-      map_header: Här gör våra pengar klimatnytta!
+      map_header: Här gör vi klimatnytta!
       about_our_projects: |
         GoClimateNeutral väljer ut projekt bland de som har certifierats av Gold Standard. Det innebär att projekten gått igenom en noggrann kontroll, backad av WWF och andra internationella organisationer, så att de gör verklig nytta och bidrar till FNs hållbarhetsmål.
 
