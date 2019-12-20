@@ -82,7 +82,7 @@
 
     <span class="glyphicon glyphicon-large glyphicon-globe" aria-hidden="true"></span>
     <h1 class="cover-heading"><%= title(t('our_investments_in_climate_projects')) %></h1>
-    <p class="lead"><%= description(t('our_investments_in_climate_projects_intro_html')) %></p>
+    <%= simple_format(description(t('views.our_projects.about_our_projects')), class: 'lead') %>
 
   </div>
 </div>
