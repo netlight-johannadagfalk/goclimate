@@ -1,5 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<% if @previous.present? %>
+  <%= link_to '← Previous', admin_climate_report_invoice_path(@previous), class: 'btn btn-default' %>
+<% end %>
+<% if @next.present? %>
+  <%= link_to 'Next →', admin_climate_report_invoice_path(@next), class: 'btn btn-default' %>
+<% end %>
+
 <h1>Climate Report Invoice</h1>
 
 <dl class="dl-horizontal">

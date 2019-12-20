@@ -13,6 +13,8 @@ module Admin
     # GET /invoices/1
     # GET /invoices/1.json
     def show
+      @previous = Invoice.where('created_at < ?', @invoice.created_at).order(created_at: :desc).first
+      @next = Invoice.where('created_at > ?', @invoice.created_at).order(created_at: :asc).first
     end
 
     # GET /invoices/new

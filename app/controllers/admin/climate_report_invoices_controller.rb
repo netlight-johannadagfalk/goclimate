@@ -12,6 +12,8 @@ module Admin
     # GET /invoices/1
     def show
       @available_projects = Project.order(created_at: :desc).limit(5)
+      @previous = ClimateReportInvoice.where('created_at < ?', @invoice.created_at).order(created_at: :desc).first
+      @next = ClimateReportInvoice.where('created_at > ?', @invoice.created_at).order(created_at: :asc).first
     end
 
     # GET /invoices/1/edit
