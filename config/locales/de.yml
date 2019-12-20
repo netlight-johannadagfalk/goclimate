@@ -32,12 +32,17 @@ de:
     Fokus auf soziales Unternehmertum und das alleinige Ziel gegründet, den
     Klimawandel so schnell wie möglich zu verlangsamen. Wir haben ein
     verlängertes Geschäftsjahr und unser erster Jahresbericht wird den Zeitraum
-    Mai 2017 bis Dezember 2018 umfassen. Der Jahresbericht wird hier veröffentlicht.
+    Mai 2017 bis Dezember 2018 umfassen. Der Jahresbericht wird hier
+    veröffentlicht.
   fiscal_year_2017_2018: Geschäftsjahr 2017-2018
   fiscal_year_2019_ongoing: Geschäftsjahr 2019 - ongoing
   revenue: Einnahmen
   cost: Ausgaben
   result: Ergebnis
+  all_of_the_result_were_carried_forward: >-
+    Für einen maximalen Klimaeffekt wurden die Überschüsse ins nächste Jahr
+    übernommen.
+  auditor: Prüfer
   climate_offset_from_users: Klimaausgleichssumme unserer Nutzer
   climate_offset_from_companies: Klimaausgleichssumme Unternehmen
   investments_in_climate_projects: Investitionen in Klimaprojekte
@@ -106,6 +111,14 @@ de:
     href="http://climate.crisp.se/">Climate Crisplet</a> und <a
     href="http://carbonmanifesto.org/">Carbon Manifesto</a>
   about_us_who_are_we_stefan: Agiler Team- und Organisationscoach. Etwas zu idealistischer Pragmatiker.
+  about_us_who_are_we_alexandra: >
+    Umweltwissenschaftler mit langjähriger internationaler Erfahrung.
+    Angetrieben von Neugierde und dem Willen, die Welt zu retten - einen Schritt
+    nach dem anderen. Sie tanzen und laufen durch den Wald, um neue Energie zu
+    tanken.
+  about_us_who_are_we_evelina: >
+    Ist öffentliche Rednerin und freie Autorin im Bereich Nachhaltigkeit und
+    nachhaltiges Reisen. Klimaaktivistin und Veganerin, die gerne wandert.
   blog: Blog
   we_are_100_transparent: Wir sind zu 100% transparent
   this_is_a_first_step: Dies ist ein erster Schritt.
@@ -130,9 +143,9 @@ de:
     klimaneutral zu sein. 
 
     Wir investieren in Projekte, die von der UN zertifiziert sind (CDM) und
-    verfügen außerdem über das Label Gold Standard (u.a. von WWF). Diese Projekte
-    kosten %{price_per_tonne} € pro Tonne - daher kostet
-    Sie dies %{price_per_month} € pro Monat.
+    verfügen außerdem über das Label Gold Standard (u.a. von WWF). Diese
+    Projekte kosten %{price_per_tonne} € pro Tonne - daher kostet Sie dies
+    %{price_per_month} € pro Monat.
   you_will_offset_for: 'Sie kompensieren mit %{cost}/monat'
   mostly_vegetarian: Überwiegend vegetarische Ernährung
   one_fuel_efficient_car: Ein verbrauchsarmes Auto
@@ -166,6 +179,8 @@ de:
   sign_up_here_to_start_livint_a_climate_neutral_life: Geben Sie Ihre Daten ein und starten Sie Ihr klimaneutrales Leben
   email: E-Mail
   password: Passwort
+  i_accept: Ich akzeptiere
+  our_privacy_policy: unsere Datenschutzerklärung
   credit_or_debit_card: Kredit- oder Debitkarte
   add_new_card: Neue Karte hinzufügen
   edit_card: Kartendetails bearbeiten
@@ -179,10 +194,10 @@ de:
     ein, um zu erfahren, wie weit wir im Kampf gegen den Klimawandel schon
     gekommen sind.
   you_have_lived_climate_neutral_for:
-    one: 'Sie sind seit 1 Monat klimaneutral.'
+    one: Sie sind seit 1 Monat klimaneutral.
     other: 'Sie sind seit %{count} Monaten klimaneutral.'
   i_have_lived_climate_neutral_for_join_me:
-    one: 'Ich lebe seit 1 Monat klimaneutral! Mach mit!'
+    one: Ich lebe seit 1 Monat klimaneutral! Mach mit!
     other: 'Ich lebe seit %{count} Monaten klimaneutral! Mach mit!'
   name_have_lived_climate_neutral_for_join_me:
     one: '%{name} lebt seit 1 Monat klimaneutral!'
@@ -292,9 +307,9 @@ de:
   months:
     one: Monat
     other: Monaten
-  x_months: 
+  x_months:
     one: 1 Monat
-    other: "%{count} Monaten"
+    other: '%{count} Monaten'
   together_we_have_offset: Unsere gemeinsamen Klimakompensationen
   goclimateneutral_and_this_planet_loves_you: GoClimateNeutral und unser Planet lieben Sie! Sie sind großartig!
   learn_more_about_what_we_have_achieved_here: 'Erfahren Sie hier mehr darüber, was wir bereits geschafft haben >>'
@@ -353,8 +368,8 @@ de:
           Klimaneutralität regeln (PAS 2060 und ISO 14021). Für Privatpersonen
           kennen wir jedoch keine solchen Standards. Daher gibt es verschiedene
           Auffassungen darüber, was es bedeutet, als Einzelperson als
-          klimaneutral angesehen zu werden. <br><br> <img alt='' class='alignnone
-          wp-image-264 size-large'
+          klimaneutral angesehen zu werden. <br><br> <img alt=''
+          class='alignnone wp-image-264 size-large'
           src='https://www.goclimateneutral.org/blog/wp-content/uploads/2018/02/climate-neutral-1024x526.png'
           /> <br> Rein rechnerisch bedeutet Klimaneutralität, dass die Menge an
           Emissionen, die man verursacht, und der Menge an Emissionen, die man
@@ -420,20 +435,19 @@ de:
           man verursacht. <br><br> Andererseits reicht es natürlich nicht, nur
           Anderen dabei zu helfen, deren Emissionen zu reduzieren, wenn wir den
           Klimawandel wirklich stoppen möchten. Wir müssen natürlich auch unsere
-          eigenen Emissionen reduzieren. Daher sehen wir bei
-          GoClimateNeutral die Investitionen in Klimaprojekte nur als einen
-          ersten Schritt in die richtige Richtung. Danach müssen wir alle auch
-          unsere eigenen Emissionen reduzieren. <br><br> Leider ist es für die
-          meisten Leute eher schwierig, ihren persönliche Klimabilanz zu
-          verändern, da man dafür häufig seinen Lebensstil anpassen muss - zum
-          Beispiel wenn man sein Auto verkaufen muss oder nicht mehr so viel
-          fliegen möchte. Und für uns Menschen haben sich Veränderungen von
-          Gewohnheiten und des Lebensstils als sehr schwierig erwiesen. Aus
-          diesem Grund haben wir uns dafür entschieden, es den Menschen
-          möglichst einfach zu machen, in Klimaprojekte zu investieren, um damit
-          den Klimawandel zu verlangsamen. Nach diesem ersten Schritt möchten
-          wir alle unsere Nutzer dazu ermutigen, auch ihre eigenen Emissionen zu
-          reduzieren.
+          eigenen Emissionen reduzieren. Daher sehen wir bei GoClimateNeutral
+          die Investitionen in Klimaprojekte nur als einen ersten Schritt in die
+          richtige Richtung. Danach müssen wir alle auch unsere eigenen
+          Emissionen reduzieren. <br><br> Leider ist es für die meisten Leute
+          eher schwierig, ihren persönliche Klimabilanz zu verändern, da man
+          dafür häufig seinen Lebensstil anpassen muss - zum Beispiel wenn man
+          sein Auto verkaufen muss oder nicht mehr so viel fliegen möchte. Und
+          für uns Menschen haben sich Veränderungen von Gewohnheiten und des
+          Lebensstils als sehr schwierig erwiesen. Aus diesem Grund haben wir
+          uns dafür entschieden, es den Menschen möglichst einfach zu machen, in
+          Klimaprojekte zu investieren, um damit den Klimawandel zu
+          verlangsamen. Nach diesem ersten Schritt möchten wir alle unsere
+          Nutzer dazu ermutigen, auch ihre eigenen Emissionen zu reduzieren.
            <br><br> Menschen erst einen kleinen Schritt machen zu lassen und dann größere Veränderungen vorzunehmen nennt man auch "Fuß-in-der-Tür"-Technik. Mehr darüber finden Sie bei:  https://de.wikipedia.org/wiki/Persuasive_Kommunikation#Foot-in-the-door-Technik <br><br> Darum glauben wir, dass es wichtig ist, so viele Menschen wie möglich jetzt dazu zu bringen, einen ersten Schritt zu tun, und dass das sowohl einfach sowie eine positive Erfahrung sein muss. Man wird nun mal öfter größere Veränderungen in seinem Leben umsetzen, wenn man erst einmal einen Schritt in die richtige Richtung gegangen ist. 
       q3:
         question: Was bedeutet CO2-Kompensation?
@@ -457,9 +471,8 @@ de:
           positiven Klimaeffekt zu erzielen, sollten diese Projekte verlässliche
           Zertifizierungen aufweisen können. Die verlässlichsten sind UN- und
           Gold Standard-zertifizierte Projekte (dahinter stehen u.a. WWF). 
-          <br><br> Wir bei GoClimateNeutral helfen Ihnen mit
-          UN- und Gold Standard-zertifizierten Projekten, Ihre Emissionen zu
-          verringern.
+          <br><br> Wir bei GoClimateNeutral helfen Ihnen mit UN- und Gold
+          Standard-zertifizierten Projekten, Ihre Emissionen zu verringern.
       q4:
         question: 'Bringt CO2-Kompensation überhaupt etwas? '
         answer: >-
@@ -471,16 +484,15 @@ de:
           sicher sein, dass wir mit unserem Geld auch wirklich etwas Gutes für
           das Klima tun? Es gibt verschiedene Organisationen, die Projekte aus
           genau diesem Grund prüfen und zertifizieren. Die höchsten Standards
-          gibt es bei CDM (hinter dem die UN steckt), Gold Standard, Plan Vivio, 
-          VCS und Fair Trade. Auch der
-          Emissionshandel war eine Zeit lang eine Möglichkeit zur
-          CO2-Kompensation, ist jedoch mittlerweile keine effektive Maßnahme
-          mehr für echten und nachhaltigen Klimaschutz. <br><br> Wir bei
-          GoClimateNeutral konzentrieren uns mittlerweile nicht mehr nur auf
-          UN-zertifizierte Projekte (CDM) sondern auf solche, die außerdem die
-          Zertifizierung der Gold Standard Foundation haben. Diese Projekte sind
-          zwar teurer, bieten allerdings eine bessere Qualität und werden besser
-          durch unabhängige Dritte überwacht als Projekte, die nur
+          gibt es bei CDM (hinter dem die UN steckt), Gold Standard, Plan
+          Vivio,  VCS und Fair Trade. Auch der Emissionshandel war eine Zeit
+          lang eine Möglichkeit zur CO2-Kompensation, ist jedoch mittlerweile
+          keine effektive Maßnahme mehr für echten und nachhaltigen Klimaschutz.
+          <br><br> Wir bei GoClimateNeutral konzentrieren uns mittlerweile nicht
+          mehr nur auf UN-zertifizierte Projekte (CDM) sondern auf solche, die
+          außerdem die Zertifizierung der Gold Standard Foundation haben. Diese
+          Projekte sind zwar teurer, bieten allerdings eine bessere Qualität und
+          werden besser durch unabhängige Dritte überwacht als Projekte, die nur
           UN-zertifiziert sind. Weitere Infos zum Gold Standard finden Sie hier:
           <a
           href='https://www.goldstandard.org/'>https://www.goldstandard.org/</a>
@@ -495,15 +507,14 @@ de:
           CO2-Ausgleich funktioniert.  
       q5:
         question: >-
-          Warum sollte ich Geld in GoClimateNeutral investieren? Ist es
-          nicht besser, wenn ich selbst in Klimaprojekte ohne Vermittler
-          investiere?
+          Warum sollte ich Geld in GoClimateNeutral investieren? Ist es nicht
+          besser, wenn ich selbst in Klimaprojekte ohne Vermittler investiere?
         answer: >-
           <img alt='' class='alignnone wp-image-270 size-large'
           src='https://www.goclimateneutral.org/blog/wp-content/uploads/2017/10/bra-klimatprojekt-1024x723.png'
           /><br> Es gibt zwei Hauptgründe, weshalb wir glauben, dass Sie
-          GoClimateNeutral nutzen sollten. Erstens helfen wir Ihnen dabei,
-          so viel Gutes wie möglich für das Klima zu tun. Der Markt für
+          GoClimateNeutral nutzen sollten. Erstens helfen wir Ihnen dabei, so
+          viel Gutes wie möglich für das Klima zu tun. Der Markt für
           Klimakompensation ist leider recht komplex und man kann sich nur
           schwer einen Überblick verschaffen. Es gibt verschiedenste Standards
           für Klimaprojekte, völlig unterschiedliche Arten von Projekten und die
@@ -532,10 +543,10 @@ de:
           src='https://www.goclimateneutral.org/blog/wp-content/uploads/2018/01/reduce_climate_emissions-1024x693.png'
           /><br> Die kurze Antwort lautet: Ja. Es ist verlässlicher und somit
           besser, gar nicht erst Emissionen zu verursachen, als sie im Nachgang
-          auszugleichen. Wir bei GoClimateNeutral sehen den CO2-Ausgleich
-          aber als einen ersten Schritt an, so viele Menschen wie möglich dazu
-          zu kriegen, etwas gegen den Klimawandel zu tun. Wir behaupten nicht,
-          dass dies auf lange Sicht ausreicht bzw. wichtiger ist. Es ist ein
+          auszugleichen. Wir bei GoClimateNeutral sehen den CO2-Ausgleich aber
+          als einen ersten Schritt an, so viele Menschen wie möglich dazu zu
+          kriegen, etwas gegen den Klimawandel zu tun. Wir behaupten nicht, dass
+          dies auf lange Sicht ausreicht bzw. wichtiger ist. Es ist ein
           wichtiger erster Schritt, den viele Menschen einfach machen können.
           <br><br> Gleichzeitig ist es natürlich besser, eine Tonne an CO2
           freizusetzen und zwei Tonnen CO2 auszugleichen, da man so unterm
@@ -556,9 +567,11 @@ de:
           schaffen. <br><br> 'Der typische Käufer von CO2-Kompensation reduziert
           seine sogenannten Scope 1 Emissionen fast um 17% während Leute, die
           keine Kompensation kaufen, ihre Scope 1 Emissionen lediglich um
-          weniger als 5% reduzieren.' - <a href='https://www.goclimateneutral.org/blog/wp-content/uploads/2019/11/buyers-report-032015-pdf.pdf' target='_blank'>Ecosystems Marketplace - THE BOTTOM LINE</a>
-          <br><br> Wir glauben, dass dies auch für Privatpersonen zutrifft und
-          dass Leute, die sich bei GoClimateNeutral.org registrieren und dafür
+          weniger als 5% reduzieren.' - <a
+          href='https://www.goclimateneutral.org/blog/wp-content/uploads/2019/11/buyers-report-032015-pdf.pdf'
+          target='_blank'>Ecosystems Marketplace - THE BOTTOM LINE</a> <br><br>
+          Wir glauben, dass dies auch für Privatpersonen zutrifft und dass
+          Leute, die sich bei GoClimateNeutral.org registrieren und dafür
           zahlen, Emissionen in der Atmosphäre zu reduzieren, auch eher ihren
           eigenen CO2-Ausstoß reduzieren als Leute, die sich nicht
           registrieren. 
@@ -585,19 +598,19 @@ de:
           die nicht halten, was sie versprechen, oder in manchen Fällen sogar
           negative Auswirkungen auf die lokale Bevölkerung und das Umfeld haben,
           in dem das Projekt umgesetzt wird. <br><br> Aus diesem Grund suchen
-          wir uns bei GoClimateNeutral die Projekte gut aus und investieren
-          nur in die zuverlässigsten und am besten geprüften Projekte - solche,
-          die sowohl die CDM-Zertifizierung (UN) als auch die Gold
-          Standard-Zertifizierung (u.a. WWF) erhalten haben. Wenn
-          Sie in diese Projekte investieren, haben Sie alle UN-Mitgliedsstaaten
-          und ca. 90 weitere Umweltorganisationen im Rücken. Diese Projekte
-          werden zudem von Dritten wie TÜV und DNV verifiziert. Alle Protokolle
-          sind öffentlich und werden das gesamte Projekt über auf dem neuesten
-          Stand gehalten. <br><br> Wir wählen nicht nur Projekte aus, die
-          geprüft und zertifiziert sind, sondern kompensieren auch die doppelte
-          Menge an Emissionen - um auf der sicheren Seite zu sein, falls doch
-          einmal etwas mit den Klimaprojekten, in die wir investieren, schief
-          gehen sollte. Außerdem verteilen wir die Investitionen in mehrere
+          wir uns bei GoClimateNeutral die Projekte gut aus und investieren nur
+          in die zuverlässigsten und am besten geprüften Projekte - solche, die
+          sowohl die CDM-Zertifizierung (UN) als auch die Gold
+          Standard-Zertifizierung (u.a. WWF) erhalten haben. Wenn Sie in diese
+          Projekte investieren, haben Sie alle UN-Mitgliedsstaaten und ca. 90
+          weitere Umweltorganisationen im Rücken. Diese Projekte werden zudem
+          von Dritten wie TÜV und DNV verifiziert. Alle Protokolle sind
+          öffentlich und werden das gesamte Projekt über auf dem neuesten Stand
+          gehalten. <br><br> Wir wählen nicht nur Projekte aus, die geprüft und
+          zertifiziert sind, sondern kompensieren auch die doppelte Menge an
+          Emissionen - um auf der sicheren Seite zu sein, falls doch einmal
+          etwas mit den Klimaprojekten, in die wir investieren, schief gehen
+          sollte. Außerdem verteilen wir die Investitionen in mehrere
           Klimaprojekte, um so viel Gutes wie möglich mit Ihrem Geld erreichen
           zu können. 
       q10:
@@ -621,10 +634,10 @@ de:
           stammt von der UN und dem Kyoto-Protokoll, wo die sogenannten
           CDM-Projekte und CER-Credits entstanden. Um die Qualität der sozialen
           Aspekte der CDM-Projekte noch zu stärken, wurde bald die Gold Standard
-          Foundation von WWF u.a. gegründet. <br><br> Bei
-          GoClimateNeutral versuchen wir die kosteneffektivsten CDM- und
-          Gold Standard-Projekte zu finden, damit Ihr Geld so viel positiven
-          Einfluss wie möglich auf das Klima nehmen kann. 
+          Foundation von WWF u.a. gegründet. <br><br> Bei GoClimateNeutral
+          versuchen wir die kosteneffektivsten CDM- und Gold Standard-Projekte
+          zu finden, damit Ihr Geld so viel positiven Einfluss wie möglich auf
+          das Klima nehmen kann. 
       q11:
         question: Sind Menschen wirklich schuld am Klimawandel?
         answer: >-
@@ -673,15 +686,14 @@ de:
         question: Macht GoClimateNeutral Gewinne mit diesem Projekt?
         answer: >-
           Wir möchten alles tun, um den Klimawandel so weit wie möglich zu
-          stoppen. Wenn wir jedoch
-          zukünftig die Chancen, den Klimawandel zu stoppen, durch Gewinnziele
-          steigern können, werden wir das tun. Den Klimawandel zu stoppen, ist
-          unser höchstes Ziel. <br><br> Bis zum heutigen Zeitpunkt haben wir
-          bereits tausende Stunden ohne Bezahlung oder Profit in dieses Projekt
-          gesteckt. <br><br> Sollten wir
-          irgendwann Gewinn machen, werden wir zu
-          100% transparent sein, was das angeht. Auch jetzt können Sie schon
-          alle finanziellen Details hier einsehen: <a
+          stoppen. Wenn wir jedoch zukünftig die Chancen, den Klimawandel zu
+          stoppen, durch Gewinnziele steigern können, werden wir das tun. Den
+          Klimawandel zu stoppen, ist unser höchstes Ziel. <br><br> Bis zum
+          heutigen Zeitpunkt haben wir bereits tausende Stunden ohne Bezahlung
+          oder Profit in dieses Projekt gesteckt. <br><br> Sollten wir
+          irgendwann Gewinn machen, werden wir zu 100% transparent sein, was das
+          angeht. Auch jetzt können Sie schon alle finanziellen Details hier
+          einsehen: <a
           href='https://en.goclimateneutral.org/100_percent_transparency'>https://en.goclimateneutral.org/100_percent_transparency</a>
       q16:
         question: >-
@@ -746,14 +758,11 @@ de:
               invalid: >-
                 Scheinbar ist ein Fehler aufgetreten, versuchen Sie es noch
                 einmal!
+            privacy_policy:
+              accepted: Sie müssen die Datenschutzerklärung akzeptieren
   climate_neutral_users_right_now: Klimaneutrale Nutzer zum jetzigen Zeitpunkt
   ton_co2_less_in_atmosphere: Tonnen CO2 weniger in der Atmosphäre
-  for_companies: Für Unternehmen
-  for_companies_text_html: >
-    Sie möchten die Emissionen eines Fluges oder für den Lifestyle Ihrer
-    Mitarbeiter kompensieren? Wir helfen gerne. Kontaktieren Sie uns über <a
-    href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a>
-  business: Unternehmen
+  for_business: Für Unternehmen
   thats_amazing_from_the_bottom_of_our_hearts: Das ist großartig! Von ganzem Herzen
   years:
     one: Jahr
@@ -778,12 +787,11 @@ de:
       Sie ganz einfach Ihre Klimabilanz verbessern können. Auf diese Weise
       tragen wir dazu bei, den Klimawandel zu verlangsamen und den Planeten zu
       retten. 
-    lets_save_our_planet_header: |
-      Weniger ist mehr!
-    lets_save_our_planet_text: >-
-      Jede Tonne an CO2, die eingespart wird, bedeutet mehr von den Dingen, die
-      wir auf diesem Planeten so sehr lieben. Hier können Sie sehen, was wir
-      bisher gemeinsam erreicht haben.
+    statistics_header: Jeder Einzelne macht einen Unterschied!
+    users_prefix: Aktuell sind wir
+    users_suffix: klimaneutrale Nutzer
+    tonnes_prefix: Gemeinsam haben wir
+    tonnes_suffix: Tonnen CO2 in der Atmosphäre reduziert
     call_to_actions:
       tell_me_more: Ich will mehr erfahren!
       im_ready_to_sign_up: Ich möchte mich anmelden!
@@ -803,6 +811,40 @@ de:
         food: Essgewohnheiten
         car: Gewohnheiten des Autos
         flying: Fluggewohnheiten
+    business:
+      for_companies: Klimakompensation für Ihr Unternehmen
+      for_companies_text_html: >
+        Möchten Sie die Emissionen eines Fluges oder für alle Ihre Mitarbeiter
+        kompensieren? Wir helfen Ihnen gerne weiter!
+      calculate_footprint: Der Fußabdruck Ihres Unternehmens
+      calculate_footprint_html: >
+        Berechnen Sie die Klimabilanz Ihres Unternehmens, reduzieren Sie so
+        viele Emissionen wie möglich und kompensieren Sie den Rest. Unser
+        Rechner ist für kleinere Dienstleistungsunternehmen ohne eigene
+        physische Produktion konzipiert. Fragen? Kontaktieren Sie uns unter <a
+        href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a>!
+      calculate_footprint_button: Fußabdruck meines Unternehmens berechnen
+      customers_we_work_with: Einige unserer wundervollen Kunden und Partner
+      offset_employees: Kompensieren Sie die Emissionen Ihrer Mitarbeiter
+      offset_employees_html: >
+        Durch die CO2-Kompensation des Lebensstils Ihrer Mitarbeiter übernehmen
+        Sie Verantwortung für deren Klimabilanz. Auf diese Weise kann man viel
+        Gutes für das Klima tun und gleichzeitig ein attraktiver und
+        verantwortungsvoller Arbeitgeber sein.
+      equivalent_co2_offset: |
+        entspricht 22 Tonnen CO2-Emissionen pro Mitarbeiter und Jahr.
+      im_interested: Kontaktieren Sie mich
+      we_will_contact_you_shortly_html: >
+        Wir werden Sie unter <b>%{email}</b> in Kürze mit weiteren Informationen
+        zum nächsten Schritt kontaktieren!
+      other_offsetting: Weitere Leistungen
+      other_offsetting_html: >
+        Wir können Ihnen bei Klimabilanzberechnungen, einmaligen Kompensationen
+        und technischen Integrationen helfen. Kontaktieren Sie uns unter <a
+        href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a>,
+        um mehr zu erfahren.
+      number_of_employees: 'Anzahl Mitarbeiter:'
+      your_email: 'Ihre E-Mail:'
   number:
     format:
       delimiter: ' '
@@ -821,7 +863,7 @@ de:
       thank_you_for_buying_gift_card: 'Vielen Dank, dass Sie einen Gutschein gekauft haben!'
       you_have_purchased_a_gift_card_with: Sie haben einen Gutschein gekauft für
       download_the_gift_card_here: Laden Sie den Gutschein hier herunter
-      climate_neutral_months: 
+      climate_neutral_months:
         one: klimaneutral Monat
         other: klimaneutrale Monate
       you_can_find_the_gift_card_as_an_attachmtent_to_this_mail: >-
@@ -835,6 +877,9 @@ de:
           Möchten Sie uns helfen, etwas gegen den Klimawandel zu tun? Versuchen
           Sie es mit unseren Geschenkgutscheinen!
         choose_header: Wählen Sie Ihren Gutschein
+        1_months_header: 1 Monat
+        1_months_description: 1 Monat Klimaneutralität.
+        1_months_cta: Kaufen Sie einen 1-Monats-Gutschein
         3_months_header: 3 Monate
         3_months_description: 3 Monate Klimaneutralität.
         3_months_cta: Kaufen Sie einen 3-Monats-Gutschein
@@ -848,6 +893,7 @@ de:
           Die Gutscheine basieren auf den durchschnittlichen Emissionen der
           schwedischen Bevölkerung (11 Tonnen CO <sub>2</sub> -Äq).
       new:
+        intro: Kaufen und personalisieren Sie Ihren Gutschein
         your_gift_card_order: Ihre Gutscheinbestellung
         write_a_message: >-
           Bitte schreiben Sie eine persönliche Nachricht, die auf dem Gutschein
@@ -860,6 +906,7 @@ de:
           E-Mail-Adresse.
         gift_card_for_x_months: 'Geschenkkarte für %{months} Monate'
         click_here_for_an_example: Klicken Sie hier für ein Beispiel
+        pay: Gutschein kaufen
       download:
         gift_card: Gutschein
         gift_card_x_climate_neutral_months:
@@ -892,14 +939,356 @@ de:
         example: Beispiel
       thank_you:
         download_the_gift_card_here: Laden Sie den Gutschein hier herunter
-        you_have_purchased_a_gift_card_with_x_climate_neutral_months: 
+        download_receipt_here: Hier können Sie die Quittung herunterladen
+        you_have_purchased_a_gift_card_with_x_climate_neutral_months:
           one: Sie haben einen Gutschein gekauft für 1 klimaneutral Monat
-          other: "Sie haben einen Gutschein gekauft für %{count} klimaneutrale Monate"
+          other: 'Sie haben einen Gutschein gekauft für %{count} klimaneutrale Monate'
+    offset_certificates:
+      about_go_climate_neutral: >-
+        <a href='http://www.goclimateneutral.org'>GoClimateNeutral</a>
+        unterstützt Klimaprojekte und gibt Tipps und Anregungen, wie Sie Ihren
+        CO2-Fußabdruck reduzieren können. Unsere Projekte sind Gold Standard
+        zertifiziert und werden von 80 Umweltorganisationen unterstützt -
+        darunter der WWF.
+      do_you_want_to_continue: Möchten Sie Ihre gesamte CO2-Bilanz kompensieren?
+      register: >-
+        Gehen Sie auf <a href="http://goclimateneutral.org">GoClimateNeutral</a>
+        , um sich zu registrieren!
+    flight_offsets:
+      new:
+        header: Kompensieren Sie Ihren Flug
+        header_description: >
+          CO2-Kompensation bedeutet, die Verantwortung für Ihren ökologischen
+          Fußabdruck zu übernehmen. Wir bieten Ihnen die Möglichkeit, Ihren Flug
+          mit zertifizierten Klimaprojekten zu kompensieren.
+        your_order: Ihre Bestellung
+        flight_in_cabin_class: Flug in Kabinenklasse
+        person: Person
+        people: Personen
+        total: Insgesamt
+        sum: Summe
+        submit: Kompensieren Sie Ihre Flüge!
+      thank_you:
+        header: Vielen Dank!
+        lead: >-
+          Durch die Kompensation haben Sie die Verantwortung für die CO2-Bilanz
+          Ihres Fluges übernommen.
+        download_certificate: Laden Sie Ihr Zertifikat herunter
+        download_receipt: Laden Sie Ihre Quittung herunter
+        we_have_sent_an_email: >-
+          Wir haben Ihnen Ihr Zertifikat an die von Ihnen angegebene
+          E-Mail-Adresse geschickt.
+        did_you_know_lifestyle: >-
+          Wussten Sie, dass wir Ihnen dabei helfen können, Ihren gesamten
+          CO2-Fußabdruck zu kompensieren?
+        read_more_and_subscribe: Hier können Sie mehr erfahren und sich registrieren
+    shared:
+      header:
+        region_recommendation:
+          select_country: >-
+            Wählen Sie Ihr Land oder Ihre Region aus, damit wir Ihnen die besten
+            Informationen anzeigen können.
+          continue_button: 'Weiter nach %{region}'
+      footer:
+        jobs: Jobs
+    pdfs:
+      flight_offset_certificate:
+        header: Klimaschutzzertifikat
+        lead: >-
+          Durch die Kompensation haben Sie die Verantwortung für die CO2-Bilanz
+          Ihres Fluges übernommen. Vielen Dank!
+        order_id: Auftragsnummer
+        date: Datum
+        project_type: Projektart
+      invoice_certificate:
+        header: |
+          Klimaschutzzertifikat
+        we_certify_that: 'Wir zertifizieren hiermit, dass'
+        has_carbon_offset: kompensierte
+        project_information: Projektinformation
+        name: Name
+        country: Land
+        project_id: Projekt ID
+        project_type: Projektart
+        date: Datum
+  business:
+    climate_reports:
+      business_footprint_header: Schätzen Sie Ihre Unternehmensemissionen
+      business_footprint_intro: >
+        Die Schätzung Ihres geschäftlichen Fußabdrucks ist der erste Schritt, um
+        die Verantwortung für die Klimaemissionen zu übernehmen, die Ihr
+        Unternehmen verursacht. Nach dem Ausfüllen dieses Formulars berechnen
+        wir Ihre gesamten Unternehmensemissionen und Sie können diese Emissionen
+        dann in zertifizierten Klimaprojekten kompensieren.
+      general_information: Allgemeine Informationen
+      company_name: Name des Unternehmens
+      country: Land
+      country_tooltip: >
+        Unser Rechner für Emissionen von Unternehmen ist bisher nur für in
+        Schweden ansässige Unternehmen verfügbar. Das bedeutet, dass wir
+        schwedische Unternehmen mit Niederlassungen im Ausland leider auch nicht
+        unterstützen können. Kontaktieren Sie uns unter
+        info@goclimateneutral.org, wenn Sie an Berechnungen für Ihre Büros im
+        Ausland interessiert sind - wir helfen Ihnen gerne weiter!
+      sweden: Schweden
+      number_of_employees: Anzahl Mitarbeiter
+      number_of_employees_tooltip: >
+        Geschätzte Anzahl der Vollzeitbeschäftigten oder Äquivalent. Diese Zahl
+        wird verwendet, um Ihren Energieverbrauch abzuschätzen, wenn Sie keine
+        spezifischen kWh-Zahlen zur Verfügung haben, und um die Emissionen pro
+        Mitarbeiter und andere statistische Werte zu berechnen. Beispiel: 2
+        Vollzeitbeschäftigte und 2 Personen mit 50% wären gleich 3
+        Vollzeitbeschäftigte.
+      office_area: Bürofläche
+      office_area_tooltip: >-
+        Gesamte Fläche all Ihrer Büros. Wenn Sie die genaue Zahl nicht wissen,
+        lassen Sie dieses Feld bitte frei.
+      calculation_period: Berechnungszeitraum
+      calculation_period_tooltip: >-
+        Zeitraum für den Sie die CO2-Kalkulation durchführen möchten.  "2018",
+        "2019 Q1" o.ä. Sie können Jahre, Halbjahre oder Quartale als Zeitraum
+        angeben.
+      calculation_period_length: Länge des Berechnungszeitraumes
+      calculation_period_length_options:
+        year: Jahr
+        half-year: Halbjahr
+        quarter: Quartal
+      name_and_logo: Unternehmensname und -logo
+      name_and_logo_tooltip: >
+        Ihr Logo zu zeigen, kann dazu beitragen, andere davon zu überzeugen,
+        auch deren Klimabilanz zu berechnen und zu kompensieren. Und wenn Sie
+        Ihre Meinung später ändern, schreiben Sie uns einfach eine Nachricht!
+      ok_with_showing_logo: >
+        Wir sind damit einverstanden, dass unser Name und unser Logo auf der
+        GoClimateNeutral-Website angezeigt werden.
+      energy_header: Energieverbrauch
+      energy_intro: >
+        Der Energieverbrauch eines Unternehmens ist oft die größte Quelle für
+        die Emissionen eines Dienstleistungsunternehmens. Dieser Rechner
+        berücksichtigt die drei am häufigsten verwendeten energieverbrauchenden
+        Quellen: Strom, Heizung und die Anzahl der laufenden Server.
+      electricity: Strom
+      electricity_consumption: Stromverbrauch
+      electricity_consumption_tooltip: >
+        Der während des angegebenen Zeitraums verbrauchte Strom in kWh. Dies
+        wird meist auf den Stromrechnungen angegeben, die Sie jeden Monat oder
+        jedes Quartal erhalten. Wenn der Strom im Mietpreis inbegriffen ist,
+        fragen Sie Ihren Vermieter, ob er den spezifischen Verbrauch jedes
+        Mieters misst oder ob er den Verbrauch für Sie schätzen kann. Wenn
+        nicht, können unsere Durchschnittszahlen verwendet werden.
+      use_average_values: >
+        Wir haben keinen Daten zu unserem Stromverbrauch. Verwenden Sie
+        Durchschnittswerte.
+      green_electricity: Ökostrom
+      green_electricity_tooltip: |+
+        Mit Ökostrom beziehen wir Strom aus erneuerbaren und nuklearen Quellen.
 
+      green_electricity_text: Wir beziehen Ökostrom
+      heating: Heizung
+      heating_tooltip: >
+        90% der Beheizung in Schweden stammt aus Fernwärme und ist im Bezug auf
+        die verbrauchten kWh ungefähr gleichauf mit dem Stromverbrauch. Die
+        Daten dazu sind normalerweise auf der Heizungsrechnung zu finden.
+        Sollten diese Zahlen nicht verfügbar sein, fragen Sie Ihren Vermieter,
+        ob er Sie Ihnen zur Verfügung stellen kann. Wenn nicht, können unsere
+        Durchschnittszahlen verwendet werden. Wenn Sie wissen, dass Sie keinen
+        zusätzlichen Wärmeverbrauch haben, geben Sie hier 0 ein.
+      servers: Server
+      average_number_of_servers: Anzahl aktiver Server
+      average_number_of_servers_tooltip: >
+        Die durchschnittliche Anzahl der aktiven Rechenzentrumsserver während
+        des Zeitraums. Ausgenommen sind Server, die auf Ihrer eigenen
+        Stromrechnung laufen und Server, die sich bei großen Cloud-Anbietern
+        befinden. Wenn Sie beispielsweise 4 Server in einem lokalen
+        Rechenzentrum für die Hälfte der Zeit und 2 für den Rest betrieben
+        haben, geben Sie 3 als Durchschnitt ein. Dieses Feld ist nur für
+        selbstverwaltete Rechenzentrumsserver vorgesehen (die statistisch
+        gesehen einen größeren CO2-Fußabdruck haben als Cloud-Server).
+      servers_green_electricity: Unsere Server laufen zu 100% mit Oköstrom
+      cloud_servers: Cloud-Server
+      number_of_cloud_servers: Anzahl aktiver Cloud-Server
+      number_of_cloud_servers_tooltip: >
+        Die durchschnittliche Anzahl der aktiven Cloud-Server während des
+        Zeitraums. Darunter verstehen wir große Cloud-Anbieter wie Amazon AWS,
+        Google Cloud und Microsoft Azure. Dies kann schwer einzuschätzen sein,
+        manchmal entspricht 1 Instanz in der Cloud 20% eines dedizierten Servers
+        und manchmal entspricht 1 große Instanz 2 normalen Servern. Versuchen
+        Sie, die Anzahl der Äquivalente zu einem dedizierten High-End-Server zu
+        schätzen. Beispiel: Es laufen 15 kleine Instanzen in der Cloud während
+        der ersten Hälfte der Zeitspanne und 5 während der anderen Hälfte. Der
+        Durchschnitt beträgt 10 Instanzen, und wenn sie auf 50% eines
+        dedizierten Servers geschätzt werden, sollten hier 5 eingetragen werden.
+      cloud_servers_green_electricity: Unsere Cloud-Server laufen zu 100% mit Oköstrom
+      business_trips: Geschäftsreisen
+      business_trips_intro: >
+        Geschäftsreisen können eine großen Anteil an den Emissionen eines
+        Unternehmens ausmachen, insbesondere wenn viele Langstreckenreisen
+        unternommen werden oder wenn Ihre Vertriebsmitarbeiter viel unterwegs
+        sind.
+      flights: Flüge
+      flight_hours: Flugstunden
+      flight_hours_tooltip: >
+        Geschätzte Anzahl der Flugstunden insgesamt. Für Berater sind dies die
+        Flüge, für die der Kunde zahlt. Zum Beispiel, wenn 10 Personen 2 Stunden
+        auf einem One-Way-Flug fliegen, wäre die Summe hier 20 Stunden. Wenn sie
+        auch einen Rückflug nehmen, wären es 40 Stunden.
+      hours: Stunden
+      car_taxi: Auto & Taxi
+      distance_car: Entfernung Auto & Taxi
+      distance_car_tooltip: >-
+        Geschätzte Entfernung mit Auto oder Taxi. Elektrofahrzeuge werden hier
+        nicht einbezogen.
+      kilometers: Kilometer
+      food: Essen
+      food_intro: >
+        Abhängig von der Art des Unternehmens und der Art der Speisen können
+        Lebensmittel eine große Quelle für den Fußabdruck eines Unternehmens
+        sein.
+      meals: Anzahl Mahlzeiten
+      meals_tooltip: >
+        Die geschätzte Anzahl der während des Zeitraums servierten Mahlzeiten.
+        Dazu gehören alle Mahlzeiten, die das Unternehmen bezahlt.
+      meals_vegetarian_share: Anteil vegetarischer Mahlzeiten
+      meals_vegetarian_share_tooltip: >-
+        Der geschätzte Anteil an vegetarischen Mahlzeiten. In den meisten Fällen
+        sind das wahrscheinlich etwa 10% (die Anzahl der Vegetarier/Veganer in
+        Schweden nach Djurens Rätt).
+      material: Material
+      material_intro: >
+        Elektronik hat oft eine 10x größeren Klimabilanz als die meisten anderen
+        gekauften Materialien, wie T-Shirts oder Möbel. Wenn große Mengen an
+        anderem Material als Elektronik gekauft wurden, wie z.B. viele Möbel,
+        weil das Unternehmen während der Periode umgezogen ist, kann dies
+        separat berechnet und am Ende dieses Formulars in das Feld "Sonstiges"
+        eingetragen werden.
+      purchased_computers: Gekaufte Computer
+      purchased_phones: Gekaufte Telefone/Tablets
+      purchased_monitors: Gekaufte Monitore
+      other: Sonstiges
+      other_intro: >
+        Es ist schwierig, alle Emissionen eines Unternehmens in einer Form zu
+        erfassen. Die meisten Unternehmen haben andere Emissionsquellen, die
+        zwar groß, aber nicht sehr verbreitet sind. Organisiert Ihr Unternehmen
+        Veranstaltungen mit Referenten aus der ganzen Welt, die eingeflogen
+        werden? Haben Sie Berater, die jede Woche lange Wege zurücklegen müssen,
+        um zu Ihren Kunden zu gelangen? Berechnen Sie dieses  Emissionen, indem
+        Sie sie unten eingeben. Wenn Sie Hilfe bei der Kalkulation benötigen,
+        können Sie sich gerne schreiben: info@goclimateneutral.org 
+      other_emissions: Andere Emissionen
+      specify_other_emissions: Spezifizieren Sie die anderen Emissionen
+      contact: Kontakt
+      contact_intro: >-
+        Um einen Link zur von uns erstellten Klimaberechnung zu erhalten, müssen
+        Sie Ihre E-Mail-Adresse eingeben.
+      contact_email: E-Mail
+      calculate_button: Die Emissionen meines Unternehmens ansehen
+      read_more_about_calculations: Mehr über die Berechnung finden Sie hier
+      total: Gesamt
+      show:
+        header: Die Emissionen Ihres Unternehmens
+        result: >
+          Der Fußabdruck Ihres Unternehmens für die Berichtsperiode
+          %{calculation_period} beträgt %{total_emissions} Tonnen
+          CO2-Äquivalente.
+        result_per_employee: 'Das sind %{emissions_per_employee} Tonnen pro Mitarbeiter.'
+        offset_and_get_report: |
+          Kompensieren Sie Ihren Fußabdruck und erhalten Sie Ihren Klimabericht.
+        offset_and_get_report_text: >-
+          Die Kompensation Ihrer Emissionen ist eine Möglichkeit, Verantwortung
+          für die Auswirkungen Ihres Unternehmens auf das Klima zu übernehmen.
+          Wenn Sie den Ausgleich vornehmen, erhalten Sie auch einen
+          Klimabericht, der auf den von Ihnen eingegebenen Zahlen basiert.
+          Dieser ist hilfreich, um ein besseres Verständnis dafür zu erhalten,
+          welche Aktivitäten die größten Emissionen verursachen, und er kann als
+          Werkzeug dienen, um Ziele für die Emissionsreduzierung in Ihrem
+          Unternehmen festzulegen.
+        your_order: Ihre Bestellung
+        carbon_offseting: CO2-Kompensation
+        climate_report: Klimabericht
+        sum: Summe
+        invoice_address: Rechnungsadresse
+        vat_number: Umsatzsteuer-ID (optional)
+        invoice_email: Rechnungs-E-Mail (optional)
+        invoice_email_text: >-
+          Geben Sie eine E-Mail-Adresse an, um Ihre Rechnung per E-Mail zu
+          erhalten.
+        order: Bestellung
+        well_get_in_touch_html: >-
+          Wir werden uns mit Ihnen in Verbindung setzen, wenn Ihr nächster
+          Berichtszeitraum zu Ende geht und es an der Zeit ist, Ihren Fußabdruck
+          neu zu berechnen. Wenn Sie Fragen zur Bestellung haben, kontaktieren
+          Sie uns bitte unter info@goclimateneutral.org
+        reduce_header: Können Sie Ihre Emissionen noch stärker reduzieren?
+        reduce_body: >-
+          Bitte denken Sie noch einmal darüber nach, ob Sie noch etwas tun
+          können, um Ihre Emissionen zu reduzieren. Wir ermutigen alle
+          Unternehmen, Verantwortung für ihre Emissionen durch CO2-Kompensation
+          zu übernehmen, aber noch wichtiger ist es, die Emissionen so weit wie
+          möglich zu reduzieren.
+        safety_factor: Sicherheitsfaktor
+        safety_factor_explanation: >
+          Um sicherzustellen, dass die Auswirkungen der CO2-Kompensation den
+          berechneten Emissionen entsprechen, verwenden wir für Ihren Kauf von
+          CO2-Kompensationen bei uns einen Sicherheitsfaktor von zwei.
+    climate_report_invoices:
+      thank_you:
+        thank_you_text: >-
+
+          Indem Sie den Fußabdruck Ihres Unternehmens ausgleichen, übernehmen
+          Sie die Verantwortung für die Auswirkungen, die Ihr Unternehmen auf
+          das Klima hat.
+        well_be_in_touch: >-
+          Wir werden uns in Kürze mit Ihnen in Verbindung setzen, um Ihnen Ihren
+          Klimabericht zukommen zu lassen.
+        thanks_again: Nochmals vielen Dank!
+  this_is_how_the_money_is_used_header: So wird das Geld verwendet
+  this_is_how_the_money_is_used_text: >-
+    Wir unterstützen UN-zertifizierte Klimaprojekte, die ebenfalls nach Gold
+    Standard zertifiziert sind. Die Projekte reduzieren die Emissionen in Höhe
+    des Fußabdrucks Ihres Unternehmens und tragen global zum Umstieg auf
+    erneuerbare Energien bei. Hier sind unsere beiden neuesten Projekte.
+  tonnes_carbon_dioxide: Tonnen Kohlendioxid
+  see_all_our_projects: Alle unsere Projekte ansehen
+  mailers:
+    flight_offset:
+      subject: Ihr Zertifikat
+      thank_you: 'Danke, dass Sie Ihren Flug kompensiert haben!'
+      you_have_offset: Sie haben
+      tonnes_co2e: Tonnen CO2 kompensiert
+      certificate_is_attached: >
+        Ihr Zertifikat ist an diese E-Mail angehängt. Wenn Sie Fragen haben,
+        antworten Sie einfach auf diese E-Mail - wir helfen Ihnen gerne weiter!
+        Nochmals vielen Dank, Sie sind großartig!
+    business:
+      climate_report_email:
+        subject: Teilen Sie Ihre Klimabilanz mit Ihrem Team.
+        thank_you: |
+          Vielen Dank für die Berechnung Ihrer Klimabilanz!
+        link_description: >-
+          Um es einfacher zu machen, die Ergebnisse mit Ihrem Team zu teilen und
+          später darauf zurückzukommen, gibt es hier einen Link zu den
+          Ergebnissen:
+        reply_to_this_email: >-
+          Wenn Sie Fragen haben, antworten Sie einfach auf diese E-Mail. Wir
+          helfen Ihnen gerne weiter!
+  helpers:
+    application:
+      precise_co2e_string_tonnes: '%{tonnes} Tonnen CO2-Äquivalent'
+      precise_co2e_string_kg: '%{co2e} Kilogramm CO2-Äquivalent'
   models:
     money:
       currency_formats:
+        usd: |
+          $%{number}
         eur: '%{number} €'
     currency:
-      suffix:
-        eur: ' €'
+      prefix:
+        usd: $
+        eur: €
+    greenhouse_gases:
+      tonnes:
+        one: '%{count} Tonnen CO2e'
+        other: '%{count} Tonnen CO2e'
+      kg:
+        one: '%{count} kg CO2e'
+        other: '%{count} kg CO2e'
