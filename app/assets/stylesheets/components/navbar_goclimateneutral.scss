@@ -18,16 +18,22 @@
   .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background-color: transparent;
   }
+  .navbar-nav > li > a, .navbar-nav > li > .navbar-inner {
+    margin: 25px 15px;
+  }
   .navbar-nav > li > a {
     line-height: 30px;
     padding: 0;
-    margin: 25px 15px;
     color: #444;
 
     &:hover {
       text-decoration: underline;
       color: #444;
     }
+  }
+  .navbar-nav .btn {
+    margin-top: -2px;
+    margin-bottom: -2px;
   }
 
   .navbar-collapse {

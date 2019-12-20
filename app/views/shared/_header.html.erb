@@ -36,6 +36,7 @@
             </li>
         <% else %>
           <li><%= link_to(I18n.t('log_in'), new_user_session_url)%></li>
+          <li><div class="navbar-inner"><%= link_to(I18n.t('views.shared.header.sign_up'), root_url, class: 'btn btn-success')%></div></li>
         <% end %>
       </ul>
       <% content_for :javascript_tags do %>
@@ -56,6 +57,7 @@
           <li><%= link_to(I18n.t('log_out'), destroy_user_session_path, :method => :delete) %></li>
         <% else %>
           <li><%= link_to(I18n.t('log_in'), new_user_session_url)%></li>
+          <li><div class="navbar-inner"><%= link_to(I18n.t('views.shared.header.sign_up'), root_url, class: 'btn btn-success')%></div></li>
         <% end %>
       </ul>
 
