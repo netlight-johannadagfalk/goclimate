@@ -69,7 +69,7 @@ ul.nav.nav-tabs li.active a {
 .nav.nav-tabs .active {
   font-weight: bold;
 }
-.welcome-our_projects .site-wrapper-first .inner, .welcome-transparency .site-wrapper-first .inner {
+.welcome-transparency .site-wrapper-first .inner {
    padding-bottom: 180px;
 }
 .welcome-our_projects h1 {
@@ -124,6 +124,10 @@ div.legal {
 
   &--nav-only {
     background-position: top;
+  }
+
+  &--no-trees {
+    background-image: none;
   }
 }
 @media(max-width: 1000px) {

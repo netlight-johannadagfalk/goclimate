@@ -131,9 +131,6 @@ sv:
   total_climate_offset_project_investments: Total summa som vi klimatkompenserat för
   our_projects: Våra klimatprojekt
   our_investments_in_climate_projects: Våra klimatprojekt
-  our_investments_in_climate_projects_intro_html: 'Vi stöttar FN- och Gold Standard-certifierade klimatprojekt. När man väljer FN- och Gold Standard-certifierade projekt har man FNs alla medlemsstater och 80 miljöorganisationer i ryggen - bland annat Världsnaturfonden. 
-            <br><br>Gold Standard har även fokus på andra hållbarhetsaspekter än klimatet - som att minska fattigdom och bidra till renare luft och vatten - vilket redovisas genom FNs agenda 2030-mål. Du kan hitta mer information om projekten på <a href="http://UNFCCC.int" target="_blank">UNFCCCs webbsida</a> respektive <a href="https://www.goldstandard.org/" target="_blank">Gold Standards webbsida</a>.
-            <br><br>Alla klimatprojekt verifieras av en oberoende tredje part, t ex TÜV och DNV. Alla granskningsprotokoll är offentliga. Projekten inspekteras kontinuerligt under projekttiden för att garantera att verklig klimatnytta uppnås.'
   climate_project_we_have_invested_in: Klimatprojekt vi stöttat tillsammans
   project_certification_info_html: '<b>GS:</b> Gold Standard-certifierade klimatprojekt.<br>
             <b>CDM+GS:</b> FN-certifierade (CDM) projekt som dessutom har certifieringen Gold Standard (GS).<br>
@@ -585,6 +582,12 @@ sv:
         project_id: Projekt ID
         project_type: Projekttyp
         date: Datum
+    our_projects:
+      map_header: Här gör våra pengar klimatnytta!
+      about_our_projects: |
+        GoClimateNeutral väljer ut projekt bland de som har certifierats av Gold Standard. Det innebär att projekten gått igenom en noggrann kontroll, backad av WWF och andra internationella organisationer, så att de gör verklig nytta och bidrar till FNs hållbarhetsmål.
+
+        Vi väljer projekt av olika karaktär, för att bredda vår påverkan. Vi tittar på var projekten genomförs, av vem, när och hur. Vissa projekt är billiga och då kan vi få många ton för pengarna, andra är lite dyrare och då kan vi bidra med att stimulera hållbar utveckling inom ett specifikt område. Vi förklarar resonemanget bakom våra val, och du kan själv titta på alla detaljer om projekten på den här sidan och på <a href="https://www.goldstandard.org/">Gold Standards hemsida</a>.
 
   business:
     climate_reports:
