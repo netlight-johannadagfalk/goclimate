@@ -30,8 +30,8 @@ function initializeWelcome() {
 
     var data_content = gon.price_info_popup_content.replace('%{footprint}', Math.round(tonne_co2 * 10) / 10);
     data_content = data_content.replace('%{footprint_x2}', Math.round(tonne_co2 * 10) / 10 * 2);
-    data_content = data_content.replace('%{price_per_tonne}', price_per_tonne);
-    data_content = data_content.replace('%{price_per_month}', rounded_price_with_buffer);
+    data_content = data_content.replace('%{price_per_tonne}', gon.currency_prefix + price_per_tonne + gon.currency_suffix);
+    data_content = data_content.replace('%{price_per_month}', gon.currency_prefix + rounded_price_with_buffer + gon.currency_suffix);
 
     $('.custom-plan-price #sum').text(rounded_price_with_buffer);
     $('#price-info-helper').attr('data-content', data_content);
