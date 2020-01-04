@@ -47,7 +47,7 @@ module Admin
         .require(:climate_report_invoice)
         .permit(:fortnox_id, :project_id, :certificate_sent_at, :certificate_reciever_email)
         .delete_if { |_, value| value.blank? }
-        .tap { |params| params[:certificate_sent_at] = Time.now if params[:certificate_sent_at] == "now" }
+        .tap { |params| params[:certificate_sent_at] = Time.now if params[:certificate_sent_at] == 'now' }
     end
   end
 end
