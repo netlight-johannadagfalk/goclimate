@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'Subscription receipts', type: :feature, js: true do
   before do
-    User.create!(email: 'test@example.com', password: 'password', stripe_customer_id: 'cus_TEST')
+    User.create!(email: 'test@example.com', password: 'password', stripe_customer_id: 'cus_TEST', region: 'us')
     CardCharge.create!(stripe_customer_id: 'cus_TEST', paid: true)
   end
 

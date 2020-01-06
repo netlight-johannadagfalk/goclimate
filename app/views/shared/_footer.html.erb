@@ -16,13 +16,13 @@
         <%= link_to t('blog'), "https://www.goclimateneutral.org/blog/" %>
       <div class="dropup" style="display: inline-block;">
         <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <%= image_tag webpack_asset_path("images/regions/#{current_region.icon}.png") %>
+          <%= image_tag webpack_asset_path("images/regions/#{current_region.id}.png") %>
           <%= current_region.name %>
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
           <% Region.all.filter { |r| r != current_region }.each do |region| %>
-            <li><a href="<%= url_for_region(region) %>"><%= image_tag webpack_asset_path("images/regions/#{region.icon}.png") %> <%= region.name %></a></li>
+            <li><a href="<%= url_for_region(region) %>"><%= image_tag webpack_asset_path("images/regions/#{region.id}.png") %> <%= region.name %></a></li>
           <% end %>
           <li><a href="<%= url_for_region(Region::Europe) %>"><%= image_tag webpack_asset_path("images/regions/world.png") %> Rest of the World</a></li>
         </ul>

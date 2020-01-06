@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe SubscriptionMailer, type: :mailer do
-  let(:user) { create(:user, stripe_customer_id: 'test_id') }
+  let(:user) { create(:user, stripe_customer_id: 'test_id', region: 'us') }
 
   before do
     create(:card_charge, stripe_customer_id: 'test_id', paid: true)

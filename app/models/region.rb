@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
-Region = Struct.new(:name, :slug, :locale, :logical_locale, :currency, :icon, :country_codes) do
+Region = Struct.new(:id, :name, :slug, :locale, :logical_locale, :currency, :country_codes) do
   def self.all
     [Region::Europe, Region::Germany, Region::Sweden, Region::USA].freeze
+  end
+
+  def self.find(id)
+    all.find { |region| region.id == id }
   end
 
   def self.from_slug(slug)
@@ -20,7 +24,7 @@ Region = Struct.new(:name, :slug, :locale, :logical_locale, :currency, :icon, :c
   end
 end
 
-Region::Europe = Region.new('Europe', nil, :en, 'en', Currency::EUR, 'eu').freeze
-Region::Germany = Region.new('Deutschland', 'de', :de, 'de-DE', Currency::EUR, 'de', %w[DE]).freeze
-Region::Sweden = Region.new('Sverige', 'se', :sv, 'sv-SE', Currency::SEK, 'se', %w[SE]).freeze
-Region::USA = Region.new('United States', 'us', :en, 'en-US', Currency::USD, 'us', %w[US]).freeze
+Region::Europe = Region.new('eu', 'Europe', nil, :en, 'en', Currency::EUR).freeze
+Region::Germany = Region.new('de', 'Deutschland', 'de', :de, 'de-DE', Currency::EUR, %w[DE]).freeze
+Region::Sweden = Region.new('se', 'Sverige', 'se', :sv, 'sv-SE', Currency::SEK, %w[SE]).freeze
+Region::USA = Region.new('us', 'United States', 'us', :en, 'en-US', Currency::USD, %w[US]).freeze
