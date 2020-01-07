@@ -6,6 +6,9 @@
   <dt>Name:</dt>
   <dd><%= @project.name %></dd>
 
+  <dt>Short description (shown with link to blog):</dt>
+  <dd><%= simple_format(@project.short_description) %></dd>
+
   <dt>CDM URL:</dt>
   <dd><%= @project.cdm_url %></dd>
 
