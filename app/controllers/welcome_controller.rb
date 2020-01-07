@@ -28,10 +28,6 @@ class WelcomeController < ApplicationController
     @press_social_images = Dir.glob('app/assets/images/press_social/*.*')
   end
 
-  def our_projects
-    @projects = Project.all.order(date_bought: :desc)
-  end
-
   def transparency
     @projects = Project.all.order(date_bought: :desc)
     @unique_climate_neutral_users = User.with_active_subscription.count

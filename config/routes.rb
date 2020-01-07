@@ -52,8 +52,9 @@ Rails.application.routes.draw do
     get 'faq', to: 'welcome#faq'
     get 'press', to: 'welcome#press'
     get '100_percent_transparency', to: 'welcome#transparency', as: 'transparency'
-    get 'our_projects', to: 'welcome#our_projects'
     get 'privacy_policy', to: 'welcome#privacy_policy'
+
+    resources :projects, path: 'our_projects', only: [:index]
 
     get 'business', to: 'welcome#business'
     namespace :business do
