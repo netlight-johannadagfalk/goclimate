@@ -6,7 +6,8 @@ class Project < ApplicationRecord
 
   attribute :co2e, :greenhouse_gases
 
-  validates_presence_of :name, :co2e, :date_bought, :latitude, :longitude, :image_url, :blog_url
+  validates_presence_of :name, :co2e, :date_bought, :latitude, :longitude, :image_url, :blog_url, :short_description
+  validates :offset_type, inclusion: %w[GS CDM+GS CDM], allow_nil: true
 
   def self.total_carbon_offset
     cdm_project_cost = Project.where("offset_type = 'CDM'").sum('cost_in_sek')
@@ -23,5 +24,9 @@ class Project < ApplicationRecord
 
   def co2e_available
     co2e - co2e_reserved
+  end
+
+  def map_url
+    "https://www.google.com/maps?z=15&t=k&q=loc:#{latitude}+#{longitude}"
   end
 end

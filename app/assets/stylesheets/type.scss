@@ -4,11 +4,20 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+.text-size-normal {
+  font-size: 14px;
+}
+
 p {
   line-height: 200%;
   margin: 0 auto;
   max-width: 600px;
 }
+
+.no-max-width p {
+  max-width: none;
+}
+
 .panel p {
   margin: 0;
   max-width: 100%;

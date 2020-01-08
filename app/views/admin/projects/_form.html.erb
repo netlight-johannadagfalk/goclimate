@@ -74,7 +74,7 @@
 
   <div class="form-group">
     <%= f.label :offset_type %>
-    <%= f.text_field :offset_type, class: 'form-control' %>
+    <%= f.select :offset_type, ['GS', 'CDM+GS', 'CDM'], { include_blank: true }, class: 'form-control' %>
   </div>
 
   <div class="form-group">

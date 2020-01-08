@@ -75,12 +75,14 @@ module Admin
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(
-        :name, :cdm_url, :image_url, :blog_url, :longitude, :latitude,
-        :co2e, :country, :offset_type, :cost_in_sek, :date_bought,
-        :certificate_url, :invoice_url, :gold_standard_id, :cdm_id,
-        :start_block, :end_block, :gold_standard_url, :short_description
-      )
+      params
+        .require(:project)
+        .permit(
+          :name, :cdm_url, :image_url, :blog_url, :longitude, :latitude,
+          :co2e, :country, :offset_type, :cost_in_sek, :date_bought,
+          :certificate_url, :invoice_url, :gold_standard_id, :cdm_id,
+          :start_block, :end_block, :gold_standard_url, :short_description
+        ).transform_values { |value| value.blank? ? nil : value }
     end
   end
 end

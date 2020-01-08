@@ -29,4 +29,14 @@ RSpec.describe Project do
       expect(project.co2e_available).to eq(GreenhouseGases.new(6000))
     end
   end
+
+  describe '#map_url' do
+    subject(:project) { create(:project, latitude: 59.33172, longitude: 18.06695) }
+
+    it 'generates Google Maps URL based on coordinates' do
+      expect(project.map_url).to eq(<<~URL.chomp)
+        https://www.google.com/maps?z=15&t=k&q=loc:59.33172+18.06695
+      URL
+    end
+  end
 end
