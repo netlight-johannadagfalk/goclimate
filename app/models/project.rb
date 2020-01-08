@@ -4,6 +4,8 @@ class Project < ApplicationRecord
   has_many :invoices
   has_many :climate_report_invoices
 
+  validates_presence_of :name, :co2e, :date_bought, :latitude, :longitude, :image_url, :blog_url
+
   def self.total_carbon_offset
     cdm_project_cost = Project.where("offset_type = 'CDM'").sum('cost_in_sek')
     cdm_project_tonnes = Project.where("offset_type = 'CDM'").sum('co2e') / 1000
