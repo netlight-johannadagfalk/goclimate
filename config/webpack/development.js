@@ -19,7 +19,7 @@ module.exports = {
     port: sharedConfig.dev_server_port,
     contentBase: false, /* Don't serve static files with webpack-dev-server */
     overlay: true, /* Display build warnings in open browsers */
-    liveReload: false /* Use HMR for full live updating instead: yarn run webpack-dev-server --hot */
+    hot: true
   },
   cache: true
 }

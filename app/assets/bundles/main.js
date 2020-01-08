@@ -33,6 +33,7 @@ import '../stylesheets/components/flight_offset_details.scss';
 import '../stylesheets/components/projects_teaser.scss';
 import '../stylesheets/components/projects_map.scss';
 import '../stylesheets/components/region_recommendation.scss';
+import '../stylesheets/components/tonnes_label.scss';
 
 /* Components */
 import '../javascripts/components/business_offset_calculator';

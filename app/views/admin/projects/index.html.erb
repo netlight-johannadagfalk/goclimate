@@ -29,8 +29,8 @@
       <tr>
         <td><%= project.id %></td>
         <td><%= project.name %></td>
-        <td><%= number_with_delimiter(project.co2e, delimiter: ' ') %> kg CO2e</td>
-        <td><%= number_with_delimiter(project.co2e_available, delimiter: ' ') %> kg CO2e</td>
+        <td><%= project.co2e %></td>
+        <td><%= project.co2e_available %></td>
         <td><%= project.cost_in_sek %> SEK</td>
         <td><%= project.date_bought.to_date %></td>
         <td><%= project.country %></td>

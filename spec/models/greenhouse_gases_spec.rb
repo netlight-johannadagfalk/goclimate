@@ -32,6 +32,24 @@ RSpec.describe GreenhouseGases do
     end
   end
 
+  describe '/' do
+    it 'divides with number' do
+      expect(described_class.new(1000) / 2).to eq(described_class.new(500))
+    end
+  end
+
+  describe '+' do
+    it 'sums with other GreenhouseGases object' do
+      expect(described_class.new(1000) + described_class.new(500)).to eq(described_class.new(1500))
+    end
+  end
+
+  describe '=' do
+    it 'subtracts other GreenhouseGases object' do
+      expect(described_class.new(1000) - described_class.new(500)).to eq(described_class.new(500))
+    end
+  end
+
   describe '#to_s' do
     it 'uses tonnes when evenly divisible by tonnes' do
       expect(described_class.new(1000).to_s).to eq('1 tonne CO2e')

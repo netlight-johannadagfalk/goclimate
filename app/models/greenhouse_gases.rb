@@ -44,6 +44,18 @@ class GreenhouseGases
     GreenhouseGases.new(co2e * other)
   end
 
+  def /(other)
+    GreenhouseGases.new(co2e / other)
+  end
+
+  def +(other)
+    GreenhouseGases.new(co2e + other.co2e)
+  end
+
+  def -(other)
+    GreenhouseGases.new(co2e - other.co2e)
+  end
+
   def to_s(options = {})
     if options[:precision] == :auto
       rounded_tonnes = (BigDecimal(co2e) / 1000).round(co2e < 100 ? 2 : 1)

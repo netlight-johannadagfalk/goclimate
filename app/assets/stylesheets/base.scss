@@ -75,7 +75,7 @@ ul.nav.nav-tabs li.active a {
 .welcome-our_projects h1 {
   margin-bottom: 40px;
 }
-.welcome .cover-heading, .gift_cards .cover-heading {
+.cover-heading {
   line-height: 1.5;
   margin-bottom: 25px;
 }
@@ -291,9 +291,6 @@ input#plan {
 .registrations-edit {
     .form-group input { 
         text-align: left; 
-    }
-    .btn {
-        margin-bottom: 100px;
     }
 }
 .mastfoot {
@@ -515,4 +512,29 @@ ul.trust {
   .modal-header {
     padding: 0px;
   }
+}
+
+.img-circle-cropped {
+  border: 0;
+  border-radius: 50%;
+  background: center / cover;
+
+  &:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+}
+
+.margin-1-line {
+  margin-top: 1em;
+}
+
+.section-label {
+  padding: 5px 8px;
+  border: 0;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #3c763d;
+  background: #bbd2bd;
 }
