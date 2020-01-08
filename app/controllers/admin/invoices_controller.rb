@@ -79,7 +79,7 @@ module Admin
         .require(:invoice)
         .permit(:amount_in_sek, :co2e, :receiver, :project_id, :fortnox_id, :comment, :certificate_sent_at,
                 :certificate_reciever_email)
-        .delete_if { |_, value| value.blank? }
+        .transform_values { |value| value.blank? ? nil : value }
         .tap { |params| params[:certificate_sent_at] = Time.now if params[:certificate_sent_at] == 'now' }
     end
   end
