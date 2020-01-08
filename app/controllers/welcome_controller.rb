@@ -29,7 +29,6 @@ class WelcomeController < ApplicationController
   end
 
   def transparency
-    @projects = Project.all.order(date_bought: :desc)
     @unique_climate_neutral_users = User.with_active_subscription.count
     @total_carbon_offset = Project.total_carbon_offset
 
