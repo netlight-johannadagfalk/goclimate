@@ -131,9 +131,6 @@ en:
   our_projects: Our Climate Projects
   our_investments_in_climate_projects: Our Climate Projects
   climate_project_we_have_invested_in: The Climate Projects we have invested in together
-  project_certification_info_html: '<b>GS:</b> Gold Standard-certified projects.<br>
-    <b>CDM+GS:</b> UN-certified (CDM) projects that are also certified with Gold Standard (GS).<br>
-    <b>CDM:</b> Before August 2017 we invested in projects that were UN-certified, but did not have the Gold Standard certification.'
   i_want_to_contribute: Ok, I want to contribute!
   project_name: Project name
   map: Map
@@ -142,7 +139,6 @@ en:
   certificate: Certificate
   invoice: Invoice
   date_of_our_investment: Date of Investment
-  project_certification: Project Certification
   read_more: More info
   cimate_hero_toplist: Climate Hero Toplist
   show_full_toplist: Show Full Toplist

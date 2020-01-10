@@ -24,8 +24,10 @@
             <%=l @latest_project.date_bought.to_date %> &bull;
             <%= @latest_project.country %> &bull;
             <%=t "models.project.offset_type.#{@latest_project.offset_type}" %> &bull;
-            <%= link_to t('views.projects.index.map_link'), @latest_project.map_url, target: '_blank' %> &bull;
-            <%= link_to t('views.projects.index.certificate_link'), @latest_project.certificate_url, target: '_blank' %>
+            <%= link_to t('views.projects.index.map_link'), @latest_project.map_url, target: '_blank' %>
+            <% if @latest_project.certificate_url.present? %>
+              &bull; <%= link_to t('views.projects.index.certificate_link'), @latest_project.certificate_url, target: '_blank' %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -61,59 +63,52 @@
       </script>
     <% end %>
 
-  </div>
-</div>
+    <div class="container margin-1-line">
+      <div class="row stats offset-projects">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+          <% @projects.each do |project| %>
+            <div class="panel panel-default panel-full-width panel-left-align">
+              <div id="project-<%= project.id %>" class="list-group projects-list-item">
+                <div class="list-group-item projects-list-item--heading" onclick="document.querySelector('#project-<%= project.id %>').classList.toggle('projects-list-item__expanded');">
+                  <div class="img-circle-cropped projects-list-item--image" style="background-image: url('<%= project.image_url %>');"></div>
+                  <h2>
+                    <%= project.name %>
+                    <span class="tonnes-label">
+                      <span class="tonnes-label--number"><%= number_with_delimiter(project.co2e.tonnes.to_i) %></span>
+                      <span class="tonnes-label--unit"><%=t 'views.shared.tonnes_co2e', count: project.co2e.tonnes.to_i %></span>
+                    </span>
+                  </h2>
+                  <div class="projects-list-item--chevron">
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="list-group-item projects-list-item--details">
+                  <%=
+                    simple_format(project.short_description, class: 'lead')
+                      .sub(/<\/p>\z/, " &nbsp; #{link_to t('views.projects.index.read_more_link'), project.blog_url, class: 'text-size-normal'}</p>").html_safe
+                    %>
 
-<div class="site-wrapper-third">
-  <div class="inner">
-
-    <span class="glyphicon glyphicon-large glyphicon-ok" aria-hidden="true"></span>
-    <div class="row stats offset-projects">
-        <div class="col-md-12">
-            <h1 class="cover-heading"><%=t 'climate_project_we_have_invested_in' %></h1>
-            <div class="table-responsive">
-              <table class="table our-projects">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th><%=t 'project_name' %></th>
-                    <th><%=t 'country' %></th>
-                    <th><%=t 'map' %></th>
-                    <th><%=t 'our_investment_certificate' %></th>
-                    <th><%=t 'date_of_our_investment' %></th>
-                    <th><%=t 'project_certification' %></th>
-                    <th><%= t('tonnes_CO2').upcase_first %></th>
-                    <th><%=t 'more_info_on_blog' %></th>
-                  </tr>
-                </thead>
-                <tbody>
-                <% @projects.each do |project| %>
-                  <tr>
-                    <td><%= image_tag project.image_url, height: "50", alt: "" %></td>
-                    <td><a href ="<%= project.blog_url %>"><%= project.name %></a></td>
-                    <td><%= project.country %></td>
-                    <td><%= link_to 'Google Maps', project.map_url, target: '_blank' %></td>
-                    <% if project.certificate_url.nil? || project.certificate_url.empty? %>
-                      <td>-</td>
-                    <% else %>
-                      <td><a href="<%= project.certificate_url %>"><%=t 'certificate' %></a></td>
+                  <div class="margin-1-line">
+                    <%=l project.date_bought.to_date %> &bull;
+                    <%= project.country %> &bull;
+                    <%=t "models.project.offset_type.#{project.offset_type}" %> &bull;
+                    <%= link_to t('views.projects.index.map_link'), project.map_url, target: '_blank' %>
+                    <% if project.certificate_url.present? %>
+                      &bull; <%= link_to t('views.projects.index.certificate_link'), project.certificate_url, target: '_blank' %>
                     <% end %>
-                    <td><%= project.date_bought.to_date %></td>
-                    <td><%= project.offset_type %><span class="glyphicon glyphicon-large glyphicon-question-sign certification-info-helper" data-html="true" aria-hidden="true" data-toggle="popover" data-container="body" title="<%=t 'project_certification' %>" data-placement="auto down" data-content="<%=t 'project_certification_info_html' %>"></span></td>
-                    <td><%= project.co2e.tonnes.to_i %></td>
-                    <td><a href ="<%= project.blog_url %>"><%=t 'read_more' %></a></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
         </div>
+      </div>
     </div>
 
   </div>
 </div>
 
-<div class="site-wrapper-second">
+<div class="site-wrapper-third">
   <div class="inner">
 
     <span class="glyphicon glyphicon-large glyphicon-globe" aria-hidden="true"></span>
@@ -123,7 +118,7 @@
   </div>
 </div>
 
-<div id="second-section" class="site-wrapper-third">
+<div id="second-section" class="site-wrapper-second">
   <div class="inner">
 
     <span class="glyphicon glyphicon-large glyphicon-search" aria-hidden="true"></span>
