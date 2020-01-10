@@ -132,9 +132,6 @@ sv:
   our_projects: Våra klimatprojekt
   our_investments_in_climate_projects: Våra klimatprojekt
   climate_project_we_have_invested_in: Klimatprojekt vi stöttat tillsammans
-  project_certification_info_html: '<b>GS:</b> Gold Standard-certifierade klimatprojekt.<br>
-            <b>CDM+GS:</b> FN-certifierade (CDM) projekt som dessutom har certifieringen Gold Standard (GS).<br>
-            <b>CDM:</b> Innan augusti 2017 investerade vi även i projekt som visserligen var FN-certifierade (CDM) men inte hade certifieringen Gold Standard.'
   i_want_to_contribute: Okej, jag vill bidra!
   project_name: Namn på projekt
   map: Karta
@@ -143,7 +140,6 @@ sv:
   certificate: Certifikat
   invoice: Faktura/Kvitto
   date_of_our_investment: Datum för investering
-  project_certification: Projektcertifiering
   read_more: Läs mer
   cimate_hero_toplist: Topplista klimathjältar
   show_full_toplist: Visa hela topplistan
