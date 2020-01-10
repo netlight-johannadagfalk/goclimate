@@ -162,7 +162,43 @@
   </div>
 </div>
 
-<div class="site-wrapper-third">
+<div class="site-wrapper-first site-wrapper-first--no-trees">
+  <div class="inner">
+    <h1 class="cover-heading"><%=t 'views.welcome.index.our_projects_header' %></h1>
+    <p class="lead" style="margin-bottom: 60px;"><%=t 'views.welcome.index.our_projects_lead' %></p>
+
+    <span class="section-label"><%=t 'views.projects.index.latest_project' %></span>
+    <h1 class="cover-heading">
+      <%= @latest_project.name %>
+      <span class="tonnes-label">
+        <span class="tonnes-label--number"><%= number_with_delimiter(@latest_project.co2e.tonnes.to_i) %></span>
+        <span class="tonnes-label--unit"><%=t 'views.shared.tonnes_co2e', count: @latest_project.co2e.tonnes.to_i %></span>
+      </span>
+    </h1>
+    <div class="container text-left no-max-width">
+      <div class="row">
+        <div class="col-xs-8 col-xs-offset-2 col-md-3 col-md-offset-1 col-md-push-7">
+          <div class="img-circle-cropped" style="background-image: url('<%= @latest_project.image_url %>'); max-width: 300px; margin: 0 auto 15px;">
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-7 col-md-pull-3">
+          <%=
+            simple_format(@latest_project.short_description, class: 'lead')
+              .sub(/<\/p>\z/, " &nbsp; #{link_to t('views.projects.index.read_more_link'), @latest_project.blog_url, class: 'text-size-normal'}</p>").html_safe
+            %>
+          <div class="margin-1-line">
+            <%=l @latest_project.date_bought.to_date %> &bull;
+            <%= @latest_project.country %> &bull;
+            <%=t "models.project.offset_type.#{@latest_project.offset_type}" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="lead last-text"><%= link_to t('views.welcome.index.our_projects_link'), projects_path, class: 'btn btn-default' %></p>
+  </div>
+</div>
+
+<div class="site-wrapper-second">
   <div class="inner">
 
     <h1 class="cover-heading"><%=t 'what_is_goclimateneutral' %></h1>

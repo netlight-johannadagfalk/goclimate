@@ -5,6 +5,8 @@ class WelcomeController < ApplicationController
     @unique_climate_neutral_users = User.with_active_subscription.count
     @total_carbon_offset = Project.total_carbon_offset
     @lifestyle_choice_co2 = LifestyleChoice.lifestyle_choice_co2
+    @latest_project = Project.order(date_bought: :desc).first
+
     gon.lifestyle_choice_co2 = @lifestyle_choice_co2
     gon.price_info_popup_content = I18n.t('price_info_popup_content')
     gon_currency_params
