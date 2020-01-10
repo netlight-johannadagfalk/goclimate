@@ -592,6 +592,11 @@ sv:
           GoClimateNeutral väljer ut projekt bland de som har certifierats av Gold Standard. Det innebär att projekten gått igenom en noggrann kontroll, backad av WWF och andra internationella organisationer, så att de gör verklig nytta och bidrar till FNs hållbarhetsmål.
 
           Vi väljer projekt av olika karaktär, för att bredda vår påverkan. Vi tittar på var projekten genomförs, av vem, när och hur. Vissa projekt är billiga och då kan vi få många ton för pengarna, andra är lite dyrare och då kan vi bidra med att stimulera hållbar utveckling inom ett specifikt område. Vi förklarar resonemanget bakom våra val, och du kan själv titta på alla detaljer om projekten på den här sidan och på <a href="https://www.goldstandard.org/">Gold Standards hemsida</a>.
+    welcome:
+      index:
+        our_projects_header: Våra klimatprojekt
+        our_projects_lead: För oss är det avgörande att dina pengar hamnar i rätta händer. Därför väljer vi att bara stötta tredjepartsgranskade klimatprojekt som har certifieringen Gold Standard. Projekten bidrar till den globala omställningen till förnybar energi och FN:s hållbarhetsmål.
+        our_projects_link: Läs mer om våra klimatprojekt
 
   business:
     climate_reports:

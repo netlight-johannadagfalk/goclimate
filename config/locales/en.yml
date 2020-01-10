@@ -571,6 +571,11 @@ en:
           GoClimateNeutral selects projects that have been certified by Gold Standard. This means that the projects have undergone careful scrutiny, backed by WWF and other international organisations, so that they have a real impact and contribute to the UN's sustainability goals.
 
           We choose projects of different kinds, to broaden our impact. We look at where the projects are implemented, by whom, when and how. Some projects are cheap and that means we can get many tonnes of CO2 for the money, others are a bit more expensive but then we can help stimulate sustainable development in a specific area. We explain the reasoning behind our choices, and you can look at all the details about the projects on this page and on the <a href="https://www.goldstandard.org/">Gold Standard website</a>.
+    welcome:
+      index:
+        our_projects_header: Our Climate Projects
+        our_projects_lead: It's crucial for us that your money only ever ends up in the right hands. To guarantee that, we support Gold Standard certified projects that have been verified by third parties. The projects contribute to the global transition to renewable energy and the UN Sustainable Development Goals.
+        our_projects_link: Read more about our climate projects
 
   business:
     climate_reports:
