@@ -612,7 +612,7 @@ sv:
       office_area: Kontorsyta
       office_area_tooltip: Den totala ytan för era kontor. Om du inte känner till siffran så kan du lämna det här fältet tomt.
       calculation_period: Beräkningsperiod
-      calculation_period_tooltip: Namn på tidsperioden som du vill göra beräkningen för. Exempelvis '2018', '2019 Q1' eller liknande. Vi stödjer helår, halvår och kvartal som tidsperioder.
+      calculation_period_tooltip: Namn på tidsperioden som du vill göra beräkningen för. Exempelvis '2018', '2019 Q1' eller liknande. Vi stödjer helår, halvår och kvartal som tidsperioder. Det går även bra att beräkna utsläppen för ett brutet räkenskapsår, angå då exempelvis 'april 2020 - mars 2021' och välj helår nedan.
       calculation_period_length: Beräkningsperiodens längd
       calculation_period_length_options:
         year: Helår

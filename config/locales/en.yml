@@ -591,7 +591,7 @@ en:
       office_area: Office area
       office_area_tooltip: The total area of all your offices. If you don't know the number, leave this field blank.
       calculation_period: Calculation period
-      calculation_period_tooltip: Name of the time period that you want to do the footprint calculation for. '2018', '2019 Q1' or similar. We support years, half-years and quarters as time periods.
+      calculation_period_tooltip: Name of the time period that you want to do the footprint calculation for. '2018', '2019 Q1' or similar. We support years, half-years and quarters as time periods. You can do the calculation for fiscal years not starting in January as well.
       calculation_period_length: Calculation period length
       calculation_period_length_options:
         year: Year
