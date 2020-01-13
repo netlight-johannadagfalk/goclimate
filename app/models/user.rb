@@ -15,6 +15,8 @@ class User < ApplicationRecord
   validates_presence_of :stripe_customer_id, on: [:create, :update]
   validates :user_name, format: { without: /.+@.+\..+/ }, allow_blank: true
 
+  attribute :region, :region
+
   # accessor and validator of :privacy_policy are only here for client side validation via the ClientSideValidations gem
   validates :privacy_policy, acceptance: true
   attr_accessor :privacy_policy
@@ -28,22 +30,16 @@ class User < ApplicationRecord
     end
   end
 
+  def language
+    region.locale
+  end
+
   def number_of_neutral_months
     @number_of_neutral_months ||= card_charges.for_subscriptions.paid.count
   end
 
   def currency
     card_charges.first.currency
-  end
-
-  def language
-    if card_charges.first.currency == 'sek'
-      :sv
-    elsif card_charges.first.currency == 'eur'
-      :de
-    else
-      :en
-    end
   end
 
   def update_without_password(params, *options)
