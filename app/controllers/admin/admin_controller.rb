@@ -11,7 +11,7 @@ module Admin
     private
 
     def authorize_user
-      render_not_found unless current_user && [2, 4, 129, 3994].include?(current_user.id)
+      render_not_found unless current_user && [2, 4, 129, 3994, 4686].include?(current_user.id)
     end
 
     def set_time_zone(&block) # rubocop:disable AccessorMethodName
