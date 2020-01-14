@@ -312,7 +312,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     statsd-ruby (1.4.0)
-    stripe (5.7.1)
+    stripe (5.13.0)
     thor (1.0.1)
     thread_safe (0.3.6)
     tzinfo (1.2.6)
@@ -382,7 +382,7 @@ DEPENDENCIES
   skylight
   spring
   spring-watcher-listen (~> 2.0.0)
-  stripe (~> 5.7.1)
+  stripe (~> 5.13)
   web-console (>= 3.3.0)
   wicked_pdf
   wkhtmltopdf-binary

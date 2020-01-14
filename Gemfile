@@ -50,7 +50,7 @@ gem 'intercom-rails', '~> 0.4.0'
 gem 'sendgrid-actionmailer', '~> 2.4.0'
 gem 'sentry-raven'
 gem 'skylight'
-gem 'stripe', '~> 5.7.1'
+gem 'stripe', '~> 5.13'
 
 # Utilities
 gem 'seed_dump', '~> 3.2'
