@@ -2,7 +2,7 @@
 
 module FootprintCalculation
   class GenericFlightFootprint
-    # rubocop:disable Layout/AlignHash
+    # rubocop:disable Layout/HashAlignment
     PLF          = 0.77          # Passenger load factor
     CF           = 0.951         # Cargo factor
     P            = 0.51          # Pre-production factor
@@ -37,7 +37,7 @@ module FootprintCalculation
         first:     2.40
       }.freeze
     }.freeze
-    # rubocop:enable Layout/AlignHash
+    # rubocop:enable Layout/HashAlignment
 
     def initialize(distance, cabin_class)
       @distance = distance

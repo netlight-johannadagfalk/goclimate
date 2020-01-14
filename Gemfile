@@ -71,7 +71,7 @@ group :development, :test do
   gem 'rb-readline'
   gem 'rspec-rails', '~> 3.7'
   gem 'rspec_junit_formatter'
-  gem 'rubocop', '~> 0.76.0', require: false
+  gem 'rubocop', '~> 0.79.0', require: false
   gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
 end
