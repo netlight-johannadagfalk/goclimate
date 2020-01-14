@@ -25,7 +25,7 @@ gem 'countries', '~> 3.0.0'
 
 # Authentication
 gem 'devise', '~> 4.7.1'
-gem 'devise-i18n', '~> 1.8.1'
+gem 'devise-i18n', '~> 1.9.0'
 
 # I18n
 gem 'http_accept_language', '~> 2.1.1'
