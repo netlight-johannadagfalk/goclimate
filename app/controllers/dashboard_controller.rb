@@ -49,9 +49,11 @@ class DashboardController < ApplicationController
     User.where("users.stripe_customer_id != ''")
         .left_joins(:card_charges)
         .where('card_charges.paid = true')
+        .where("users.user_name is not null and users.user_name != ''")
         .select('users.id, users.user_name, COUNT(1)')
         .group('users.id')
         .order(Arel.sql('COUNT(1) DESC'))
+        .limit(1000)
   end
 
   def country_top_list
