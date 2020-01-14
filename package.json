@@ -27,7 +27,7 @@
     "compression-webpack-plugin": "^3.0.0",
     "countup.js": "^2.0.4",
     "css-loader": "^3.0.0",
-    "file-loader": "^4.0.0",
+    "file-loader": "^5.0.2",
     "font-awesome": "^4.7.0",
     "jquery": "^1.12.4",
     "js-yaml": "^3.13.1",
