@@ -65,7 +65,7 @@ Style/EmptyMethod:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
 
 Metrics/MethodLength:

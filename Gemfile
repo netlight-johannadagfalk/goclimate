@@ -25,7 +25,7 @@ gem 'countries', '~> 3.0.0'
 
 # Authentication
 gem 'devise', '~> 4.7.1'
-gem 'devise-i18n', '~> 1.8.1'
+gem 'devise-i18n', '~> 1.9.0'
 
 # I18n
 gem 'http_accept_language', '~> 2.1.1'
@@ -38,7 +38,7 @@ gem 'redcarpet', '~> 3.5.0'
 
 # Views
 gem 'country_select', '~> 4.0.0'
-gem 'gon', '~> 6.2.0'
+gem 'gon', '~> 6.3.2'
 gem 'jbuilder', '~> 2.9.1'
 
 # Geometry
@@ -50,14 +50,14 @@ gem 'intercom-rails', '~> 0.4.0'
 gem 'sendgrid-actionmailer', '~> 2.4.0'
 gem 'sentry-raven'
 gem 'skylight'
-gem 'stripe', '~> 5.7.1'
+gem 'stripe', '~> 5.13'
 
 # Utilities
 gem 'seed_dump', '~> 3.2'
 
 # PDF generation
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary', '0.12.4' # Later versions don't work on CircleCI
 # wklhtmltopdf-binary provides binaries for Linux and macOS. If this fails you
 # will have to install wkhtmltopdf manually.
 
@@ -65,13 +65,13 @@ gem 'meta-tags'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara', '~> 3.29.0'
+  gem 'capybara', '~> 3.30'
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'rb-readline'
   gem 'rspec-rails', '~> 3.7'
   gem 'rspec_junit_formatter'
-  gem 'rubocop', '~> 0.76.0', require: false
+  gem 'rubocop', '~> 0.79.0', require: false
   gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
 end
