@@ -57,7 +57,7 @@ gem 'seed_dump', '~> 3.2'
 
 # PDF generation
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary', '0.12.4' # Later versions don't work on CircleCI
 # wklhtmltopdf-binary provides binaries for Linux and macOS. If this fails you
 # will have to install wkhtmltopdf manually.
 
