@@ -16,16 +16,16 @@
     <h1 class="cover-heading"><%=t '100_percent_transparency_financial_info' %></h1>
     <p class="lead"><%=t '100_percent_transparency_financial_info_intro' %></p>
     <div class="financial-info">
-      <h2><%=t 'fiscal_year_2019_ongoing' %></h2>
+      <h2><%=t 'fiscal_year_2020_ongoing' %></h2>
       <h3><%=t 'revenue' %></h3>
       <table class="table table-condensed">
         <tr>
           <td><%=t 'climate_offset_from_users' %></td>
-          <td class="text-right"><%= number_with_delimiter(@payouts_from_users2019) %> SEK</td>
+          <td class="text-right"><%= number_with_delimiter(@payouts_from_users2020) %> SEK</td>
         </tr>
         <tr>
-          <td><%=t 'climate_offset_from_companies' %></td>
-          <td class="text-right"><%= number_with_delimiter(@invoiced2019) %> SEK</td>
+          <td><%=t 'revenue_from_companies' %></td>
+          <td class="text-right"><%= number_with_delimiter(@invoiced2020) %> SEK</td>
         </tr>
         <tr>
           <td><%=t 'total' %></td>
@@ -37,15 +37,15 @@
       <table class="table table-condensed">
         <tr>
           <td><%=t 'investments_in_climate_projects' %></td>
-          <td class="text-right"><%= number_with_delimiter(@project_cost_in_sek2019) %> SEK</td>
+          <td class="text-right"><%= number_with_delimiter(@project_cost_in_sek2020) %> SEK</td>
         </tr>
         <tr>
           <td><%=t 'salary_costs' %></td>
-          <td class="text-right"><%= number_with_delimiter(@salaries_cost_in_sek2019) %> SEK</td>
+          <td class="text-right"><%= number_with_delimiter(@salaries_cost_in_sek2020) %> SEK</td>
         </tr>
         <tr>
           <td><%=t 'other_operating_expenses' %></td>
-          <td class="text-right"><%= number_with_delimiter(@other_operating_expenses2019) %> SEK</td>
+          <td class="text-right"><%= number_with_delimiter(@other_operating_expenses2020) %> SEK</td>
         </tr>
         <tr>
           <td><%=t 'total' %></td>
@@ -65,50 +65,62 @@
     </div>
 
     <div class="financial-info">
-      <h2><%=t 'fiscal_year_2017_2018' %></h2>
+      <h2><%=t 'fiscal_years' %> 2017-2019</h2>
 
 
       <h3><%= t('auditor') %></h3>
       <p>Alexander Lyckow, PwC</p>
 
-      <h3><%= t('financials') %></h3>
+      <h3><%= t('financials') %> (in SEK)</h3>
 
       <h4><%=t 'revenue' %></h4>
-      <table class="table table-condensed">
+      <table class="table table-condensed text-nowrap">
         <tr>
-          <td><%=t 'climate_offset_from_users' %></td>
-          <td class="text-right"><%= number_with_delimiter(974_155) %> SEK</td>
+          <th><%=t 'year' %></th>
+          <th class="text-right text-nowrap">2017-2018</th>
+          <th class="text-right">2019(prel)</th>
         </tr>
         <tr>
-          <td><%=t 'climate_offset_from_companies' %></td>
-          <td class="text-right"><%= number_with_delimiter(1_198_984) %> SEK</td>
+          <td><%=t 'climate_offset_from_users' %></td>
+          <td class="text-right text-nowrap"><%= number_with_delimiter(974_155) %></td>
+          <td class="text-right text-nowrap"><%= number_with_delimiter(3_639_000) %></td>
+        </tr>
+        <tr>
+          <td><%=t 'revenue_from_companies' %></td>
+          <td class="text-right"><%= number_with_delimiter(1_198_984) %></td>
+          <td class="text-right"><%= number_with_delimiter(1_911_300) %></td>
         </tr>
         <tr>
           <td><%=t 'total' %></td>
-          <td class="text-right"><%= number_with_delimiter(2_173_138) %> SEK</td>
+          <td class="text-right"><%= number_with_delimiter(2_173_138) %></td>
+          <td class="text-right"><%= number_with_delimiter(5_550_300) %></td>
         </tr>
       </table>
 
       <h4><%=t 'cost' %></h4>
-      <table class="table table-condensed">
+      <table class="table table-condensed text-nowrap">
         <tr>
           <td><%=t 'investments_in_climate_projects' %></td>
-          <td class="text-right"><%= number_with_delimiter(-1_830_670) %> SEK</td>
+          <td class="text-right"><%= number_with_delimiter(-1_830_670) %></td>
+          <td class="text-right"><%= number_with_delimiter(-3_153_900) %></td>
         </tr>
         <tr>
           <td><%=t 'salary_costs' %></td>
-          <td class="text-right">0 SEK</td>
+          <td class="text-right">0</td>
+          <td class="text-right"><%= number_with_delimiter(-1_290_600) %></td>
         </tr>
         <tr>
           <td><%=t 'other_operating_expenses' %></td>
-          <td class="text-right"><%= number_with_delimiter(-256_844) %> SEK</td>
+          <td class="text-right"><%= number_with_delimiter(-256_844) %></td>
+          <td class="text-right"><%= number_with_delimiter(-949_600) %></td>
         </tr>
         <tr>
           <td><%=t 'total' %></td>
-          <td class="text-right"><%= number_with_delimiter(-2_087_514) %> SEK</td>
+          <td class="text-right"><%= number_with_delimiter(-2_087_514) %></td>
+          <td class="text-right"><%= number_with_delimiter(-5_394_100) %></td>
         </tr>
         <tr>
-          <td colspan="2">
+          <td colspan="3">
             <%= link_to I18n.t('you_can_read_more_details_about_our_costs_here'), 'https://docs.google.com/spreadsheets/d/1RzUCaVqTTxJYjfUMeh3KlTxBpiATy2ViPO3m0LHGpG8/edit#gid=0', target: "_blank" %>
           </td>
         </tr>
@@ -116,10 +128,11 @@
 
 
       <h4><%=t 'result' %></h4>
-      <table class="table table-condensed">
+      <table class="table table-condensed text-nowrap">
         <tr>
-          <td><%=t 'result' %></td>
-          <td class="text-right"><%= number_with_delimiter(48_018) %> SEK</td>
+          <td style="width:345px"><%=t 'result' %></td>
+          <td class="text-right"><%= number_with_delimiter(48_018) %></td>
+          <td class="text-right"><%= number_with_delimiter(157_700) %></td>
         </tr>
       </table>
 

@@ -34,8 +34,8 @@ de:
     verlängertes Geschäftsjahr und unser erster Jahresbericht wird den Zeitraum
     Mai 2017 bis Dezember 2018 umfassen. Der Jahresbericht wird hier
     veröffentlicht.
-  fiscal_year_2017_2018: Geschäftsjahr 2017-2018
-  fiscal_year_2019_ongoing: Geschäftsjahr 2019 - ongoing
+  fiscal_years: Geschäftsjahr
+  fiscal_year_2020_ongoing: Geschäftsjahr 2020 (ongoing)
   revenue: Einnahmen
   cost: Ausgaben
   result: Ergebnis
@@ -44,7 +44,7 @@ de:
     übernommen.
   auditor: Prüfer
   climate_offset_from_users: Klimaausgleichssumme unserer Nutzer
-  climate_offset_from_companies: Klimaausgleichssumme Unternehmen
+  revenue_from_companies: Einnahmen Unternehmen
   investments_in_climate_projects: Investitionen in Klimaprojekte
   salary_costs: Lohnkosten
   other_operating_expenses: Sonstige Betriebsausgaben
