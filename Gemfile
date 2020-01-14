@@ -38,7 +38,7 @@ gem 'redcarpet', '~> 3.5.0'
 
 # Views
 gem 'country_select', '~> 4.0.0'
-gem 'gon', '~> 6.2.0'
+gem 'gon', '~> 6.3.2'
 gem 'jbuilder', '~> 2.9.1'
 
 # Geometry
