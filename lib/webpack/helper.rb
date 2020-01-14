@@ -16,10 +16,12 @@ module Webpack
     end
 
     def webpack_entrypoint_javascript_tags(*entrypoints)
+      options = entrypoints.last.is_a?(Hash) ? entrypoints.pop : {}
+
       compile_webpack if Webpack.config[:watch_changes]
 
       paths = Webpack.manifest.entrypoint_paths(entrypoints, 'js').map { |path| public_path(path) }
-      javascript_include_tag(*paths, skip_pipeline: true)
+      javascript_include_tag(*paths, skip_pipeline: true, **options)
     end
 
     def webpack_entrypoint_stylesheet_tags(*entrypoints)
