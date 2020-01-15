@@ -13,8 +13,7 @@ var StripeCardPayment = function(
   this.clientSecret = clientSecret;
   this.cardElementClass = cardElementClass;
 
-  this.stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
-  this.elements = this.stripe.elements();
+  this.elements = window.stripe.elements({ locale: window.locale });
 
   var style = {
     base: {
@@ -59,7 +58,7 @@ StripeCardPayment.prototype.onSubmit = function(event) {
   event.preventDefault();
   this.disableSubmit();
 
-  this.stripe.handleCardPayment(this.clientSecret, this.card).then(function(result) {
+  window.stripe.handleCardPayment(this.clientSecret, this.card).then(function(result) {
     if (result.error) {
       this.enableSubmit();
       this.cardErrorsElement.textContent = result.error.message;

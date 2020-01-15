@@ -89,8 +89,7 @@ function initializeUsersRegistrations() {
   }
 
   if($('#card-element').length) {
-    var stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
-    var elements = stripe.elements();
+    var elements = window.stripe.elements({ locale: window.locale });
 
     var style = {
       base: {
