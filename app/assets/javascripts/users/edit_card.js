@@ -43,9 +43,7 @@ function initializeEditCard() {
 
   function enableSubmit() {
     $('#button-spinner').addClass('hidden');
-    if ($('#user_privacy_policy').length == 0 || $('#user_privacy_policy').is(':checked')) {
-      $('#register-button').prop('disabled', false);
-    }
+    $('#register-button').prop('disabled', false);
   }
 
   if($('#card-element').length) {
