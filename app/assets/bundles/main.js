@@ -2,6 +2,14 @@
 import Rails from '@rails/ujs';
 Rails.start()
 
+/* Stimulus */
+import { Application } from 'stimulus';
+import { definitionsFromContext } from 'stimulus/webpack-helpers';
+
+const application = Application.start();
+const context = require.context('../javascripts/controllers', true, /\.js$/);
+application.load(definitionsFromContext(context));
+
 /* Bootstrap and inline jQuery calls require jQuery globally */
 import jQuery from 'jquery';
 window.$ = window.jQuery = jQuery;
