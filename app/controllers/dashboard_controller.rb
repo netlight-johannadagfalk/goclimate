@@ -4,6 +4,7 @@ require 'uri'
 
 class DashboardController < ApplicationController
   before_action :authenticate_user!
+  before_action :flash_when_registered
 
   def index
     @total_carbon_offset = Project.total_carbon_offset
@@ -19,6 +20,10 @@ class DashboardController < ApplicationController
   end
 
   private
+
+  def flash_when_registered
+    flash.now[:notice] = t('devise.registrations.signed_up') if params[:registered]
+  end
 
   def my_amount_invested_sek
     (

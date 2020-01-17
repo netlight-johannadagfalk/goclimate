@@ -17,7 +17,7 @@ module Users
     end
 
     def update
-      @manager = SubscriptionManager.for_customer(@stripe_customer)
+      @manager = SubscriptionManager.new(@stripe_customer)
 
       if plan_param == 'cancel'
         @manager.cancel

@@ -521,6 +521,17 @@ ul.trust {
   margin-top: 1em;
 }
 
+.hidden-when-empty:empty {
+  display: none;
+}
+
+/* This rule seem to have a brown color from Bootstrap, but should be red
+ * according to the documentation. It's also not specific enough to override
+ * commonly used other rules, so set !important. */
+.text-warning {
+  color: #eb1c26 !important;
+}
+
 .section-label {
   padding: 5px 8px;
   border: 0;

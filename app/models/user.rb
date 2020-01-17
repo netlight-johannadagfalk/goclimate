@@ -10,9 +10,6 @@ class User < ApplicationRecord
     where(subscription_end_at: nil).or(where('subscription_end_at >= ?', Time.now))
   }
 
-  # Validates on default contexts :create and :update. Use any other context,
-  # e.g. valid?(:precheck) to skip before stripe_customer_id is known.
-  validates_presence_of :stripe_customer_id, on: [:create, :update]
   validates :user_name, format: { without: /.+@.+\..+/ }, allow_blank: true
 
   attribute :region, :region
@@ -20,6 +17,10 @@ class User < ApplicationRecord
   # accessor and validator of :privacy_policy are only here for client side validation via the ClientSideValidations gem
   validates :privacy_policy, acceptance: true
   attr_accessor :privacy_policy
+
+  def stripe_customer
+    Stripe::Customer.retrieve(stripe_customer_id) if stripe_customer_id.present?
+  end
 
   def country_name
     if !country.nil? && !country.empty?
