@@ -33,7 +33,7 @@ RSpec.describe FootprintCalculation::OpentraveldataAirportsImporter do
     it 'includes airports from provided csv' do
       importer.import
 
-      expect(read_csv.map { |line| line['iata_code'] }).to contain_exactly('ARN', 'ZRH', 'AFA', 'AHH', 'MSN')
+      expect(read_csv.map { |line| line['iata_code'] }).to contain_exactly('ARN', 'ZRH', 'AFA', 'AHH', 'MSN', 'TYO')
     end
 
     it 'imports names' do

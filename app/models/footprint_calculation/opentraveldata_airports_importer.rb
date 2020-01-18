@@ -19,6 +19,12 @@ module FootprintCalculation
             line['latitude'], line['longitude']
           ]
         end
+        # some api-users search for 'TYO', which is a iata code for Tokyo city,
+        # not an airport - and therefore not in public airport files.
+        # With this ugly hack we allow searches for 'TYO'.
+        # TODO: put our own data in a separate CSV and run the import
+        # for both CSV's in case we get more custom data
+        csv << ['TYO', 'Tokyo', 'Tokyo', 35.6895, 139.69171] unless por_public_airports.include?('TYO^')
       end
     end
 
