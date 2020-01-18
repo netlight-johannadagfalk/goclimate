@@ -21,9 +21,11 @@ plugins:
     enabled: true
   eslint:
     enabled: true
-    channel: eslint-5
+    channel: eslint-6
+    config:
+      config: .eslintrc.json
   rubocop:
     enabled: true
-    channel: rubocop-0-66
+    channel: rubocop-0-76
   fixme:
     enabled: true
