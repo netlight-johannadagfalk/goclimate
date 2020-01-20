@@ -58,19 +58,6 @@ function initializeWelcome() {
   $('#price-info-helper').on('hide.bs.popover', function () {
     $('body').css('cursor', 'default');
   });
-
-  function scrollToAnchor(elementSelector) {
-    var element = document.querySelector(elementSelector);
-    element.scrollIntoView({behavior: "smooth", block: "center"});
-  };
-
-  var scrollToAnchorButtons = document.getElementsByClassName('im-in-button');
-  for (var i = 0; i < scrollToAnchorButtons.length; i++) {
-    scrollToAnchorButtons[i].addEventListener('click', function(event) {
-      event.preventDefault();
-      scrollToAnchor(event.target.hash);
-    });
-  }
 };
 
 window.initializeWelcome = initializeWelcome;

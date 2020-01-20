@@ -9,7 +9,7 @@
     <%= form_tag({ action: :update }, id: "payment-form", method: :put, class: "form-horizontal") do %>
 
       <% if flash[:error].present? %>
-        <div id="error_explanation">
+        <div id="error_explanation" data-controller="scroll-here">
           <p><%= flash[:error] %></p>
         </div>
       <% end %>

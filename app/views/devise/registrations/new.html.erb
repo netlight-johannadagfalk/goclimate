@@ -58,7 +58,7 @@
     </div>
 
   </div>
-  <a id="scroll-to-second-section"><span class="glyphicon glyphicon-large glyphicon-chevron-down glyphicon-plan-first" aria-hidden="true"></span></a>
+  <a href="#second-section" data-controller="scroll-to" data-action="scroll-to#scroll"><span class="glyphicon glyphicon-large glyphicon-chevron-down glyphicon-plan-first" aria-hidden="true"></span></a>
 </div>
 
 <div id="second-section" class="site-wrapper-second">
@@ -77,7 +77,7 @@
     </div>
 
   </div>
-  <a id="scroll-to-third-section"><span class="glyphicon glyphicon-large glyphicon-chevron-down" aria-hidden="true"></span></a>
+  <a href="#third-section" data-controller="scroll-to" data-action="scroll-to#scroll"><span class="glyphicon glyphicon-large glyphicon-chevron-down" aria-hidden="true"></span></a>
 </div>
 
 <div id="third-section" class="site-wrapper-third">
@@ -87,7 +87,7 @@
     <p class="lead"><%=t 'you_will_offset_for', cost: @current_plan_price.to_s(precision: :auto) %>. <%=t 'sign_up_here_to_start_livint_a_climate_neutral_life' %></p>
     <span class="glyphicon glyphicon-large glyphicon-hand-down" aria-hidden="true"></span>
 
-    <div id="error_explanation">
+    <div id="error_explanation" data-controller="scroll-here">
       <% if flash[:error].present? || resource.errors.any? || @manager&.errors.present? %>
         <% if flash[:error].present? %>
           <p><%= flash[:error] %></p>
