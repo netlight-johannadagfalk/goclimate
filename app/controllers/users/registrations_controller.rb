@@ -2,61 +2,42 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController
-    prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy, :payment]
-
-    before_action :ensure_valid_new_params, only: [:new]
-    before_action :ensure_valid_create_params, only: [:create]
-    before_action :ensure_valid_verify_params, only: [:verify]
-    before_action :set_choices_for_new, only: [:new]
-    before_action :set_choices_for_create, only: [:create, :verify]
+    before_action :set_lifestyle_choice_ids, only: [:new, :create]
+    before_action :set_user, only: [:create]
+    before_action :set_stripe_plan, only: [:create]
+    before_action :set_subscription_manager, only: [:create]
+    skip_before_action :require_no_authentication, only: [:create]
 
     # GET /resource/sign_up
     def new
-      @current_plan_price = LifestyleChoice.stripe_plan(params[:choices], current_region.currency)
-
-      super
+      @user = User.new(region: current_region.id)
+      @current_plan_price = LifestyleChoice.get_lifestyle_choice_price(@lifestyle_choice_ids, current_region.currency)
     end
 
     # POST /resource
     #
-    # This action is doing lots of things due to the complexities of the sign
-    # up process. Simplifying too much would make it harder to understand, so
-    # we disable the Rubocop check Metrics/AbcSize instead.
+    # This gets posted to from Javascript and can be retried after errors at
+    # multiple points, hence lots of guards for different cases here.
     #
-    # rubocop:disable Metrics/AbcSize
-    def create
-      user = self.resource = User.new(sign_up_params)
+    # Rubocop warnings disabled because the "but no simpler" part of that
+    # Einstein quote "As simple as possible, but no simpler".
+    def create # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+      render_user_invalid_json && return unless @user.save
+      sign_in(resource_name, @user, force: true) # Force because we have updated the password
 
-      render json: user.errors, status: :bad_request && return unless user.valid?(:precheck)
+      @manager.sign_up(@user.email, @stripe_plan, params[:payment_method_id])
 
-      @current_plan_price = LifestyleChoice.stripe_plan(choices_params, current_region.currency)
-      stripe_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@current_plan_price)
-
-      @manager = SubscriptionManager.new
-
-      if @manager.sign_up(user.email, stripe_plan, params[:paymentMethodId])
-        finilize_registration(user)
-      elsif @manager.payment_intent_client_secret
-        # The card requires 3d secure step in the browser
-        render_requires_3ds
-      else
-        render json: { error: @manager.errors }, status: :bad_request
+      if @manager.customer.present? && @user.stripe_customer_id != @manager.customer.id
+        @user.update!(stripe_customer_id: @manager.customer.id)
       end
-    end
-    # rubocop:enable Metrics/AbcSize
 
-    # POST /resource/verify
-    def verify
-      user = self.resource = User.new(sign_up_params)
-
-      render json: user.errors, status: :bad_request && return unless user.valid?(:precheck)
-
-      @manager = SubscriptionManager.for_customer(
-        Stripe::Customer.retrieve(params[:stripeCustomerId]),
-        Stripe::PaymentIntent.retrieve(params[:paymentIntentId])
-      )
-
-      finilize_registration(user)
+      if @manager.errors.any?
+        render_signup_failed_json
+      elsif @manager.payment_verification_required?
+        render_verification_required_json
+      else
+        render_success_json
+      end
     end
 
     # PUT /resource
@@ -67,33 +48,6 @@ module Users
     end
 
     protected
-
-    def render_requires_3ds
-      render json: {
-        paymentIntentClientSecret: @manager.payment_intent_client_secret,
-        stripeCustomerId: @manager.customer.id,
-        verifyPath: user_registration_verify_path
-      }, status: :ok
-    end
-
-    def finilize_registration(user)
-      if @manager.payment_intent.status != 'succeeded'
-        render json: { payment: I18n.t('payment_failed_try_again', status: @manager.payment_intent.status) },
-               status: :bad_request
-        return
-      end
-      user.stripe_customer_id = @manager.customer.id
-      user.lifestyle_choice_ids = choices_params.split(',').map(&:to_i)
-
-      # User is validated at the top of this method, so a failure here, after
-      # we charged, is considered exceptional.
-      user.save!
-
-      set_flash_message!(:notice, :signed_up)
-      sign_up(resource_name, user)
-
-      render json: { redirectTo: after_sign_up_path_for(user) }, status: :created
-    end
 
     # The path used after sign up.
     def after_sign_up_path_for(_resource)
@@ -108,45 +62,74 @@ module Users
       resource.update_without_password(params)
     end
 
+    def sign_up_params
+      super.merge(lifestyle_choice_ids: @lifestyle_choice_ids)
+    end
+
     def canonical_query_params
       super + [:choices]
     end
 
     private
 
-    def render_errors
-      resource.clean_up_passwords
-      render :new
+    def set_lifestyle_choice_ids
+      unless params[:choices]&.match(/\d+,\d+,\d+,\d/)
+        respond_to do |format|
+          format.html { redirect_to '/#choose-plan' }
+          format.json do
+            render status: 400,
+                   json: error_json('Something went wrong. Please start over and try again.')
+          end
+        end
+        return
+      end
+
+      @lifestyle_choice_ids = params[:choices].split(',').map(&:to_i)
     end
 
-    def ensure_valid_new_params
-      redirect_to '/#choose-plan' if params[:choices].nil? || !params[:choices].include?(',')
+    def set_user
+      @user =
+        if current_user.present?
+          current_user.tap { |u| u.attributes = sign_up_params }
+        else
+          User.new(sign_up_params)
+        end
     end
 
-    def ensure_valid_create_params
-      ensure_valid_create_verify_param(params[:paymentMethodId])
+    def set_stripe_plan
+      plan_price = LifestyleChoice.get_lifestyle_choice_price(@lifestyle_choice_ids, @user.region.currency)
+      @stripe_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(plan_price)
     end
 
-    def ensure_valid_verify_params
-      ensure_valid_create_verify_param(params[:paymentIntentId])
+    def set_subscription_manager
+      @manager = SubscriptionManager.new(@user.stripe_customer)
     end
 
-    def ensure_valid_create_verify_param(required_param)
-      return if choices_params&.match(/\d+,\d+,\d+,\d/) && required_param
-
-      render json: { error: I18n.t('something_went_wrong_go_back_one_step_and_try_again') }, status: :bad_request
+    def render_user_invalid_json
+      render status: :bad_request, json: error_json(@user.errors.full_messages.join(', '))
     end
 
-    def set_choices_for_new
-      @choices = params[:choices]
+    def render_signup_failed_json
+      render status: :bad_request, json: error_json(@manager.errors.values.join(', '))
     end
 
-    def set_choices_for_create
-      @choices = choices_params
+    def render_verification_required_json
+      render json: {
+        next_step: :verification_required,
+        payment_intent_client_secret: @manager.latest_payment_intent.client_secret,
+        success_url: after_sign_up_path_for(@user)
+      }
     end
 
-    def choices_params
-      params[:user][:choices]
+    def render_success_json
+      render json: {
+        next_step: :redirect,
+        success_url: after_sign_up_path_for(@user)
+      }
+    end
+
+    def error_json(message)
+      { error: { message: message } }
     end
   end
 end

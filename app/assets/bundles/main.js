@@ -1,6 +1,7 @@
 /* eslint-disable import/first */
 
 /* Polyfills */
+import 'whatwg-fetch';
 import 'core-js/features/promise';
 
 /* Polyfills for Stimulus */
@@ -16,7 +17,8 @@ import 'eventlistener-polyfill';
 
 /* Rails UJS */
 import Rails from '@rails/ujs';
-Rails.start()
+
+Rails.start();
 
 /* Stimulus */
 import { Application } from 'stimulus';
@@ -28,7 +30,9 @@ application.load(definitionsFromContext(context));
 
 /* Bootstrap and inline jQuery calls require jQuery globally */
 import jQuery from 'jquery';
-window.$ = window.jQuery = jQuery;
+
+window.jQuery = jQuery;
+window.$ = jQuery;
 
 /* Font Awesome */
 import 'font-awesome/scss/font-awesome.scss';
@@ -65,7 +69,6 @@ import '../javascripts/components/business_offset_calculator';
 import '../javascripts/components/counting_number';
 import '../javascripts/components/projects_map_marker';
 import '../javascripts/components/stripe_card_payment';
-import '../javascripts/users/registrations';
 import '../javascripts/welcome';
 import '../javascripts/dashboard';
 import '../javascripts/users';

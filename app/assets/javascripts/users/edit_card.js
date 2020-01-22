@@ -43,14 +43,11 @@ function initializeEditCard() {
 
   function enableSubmit() {
     $('#button-spinner').addClass('hidden');
-    if ($('#user_privacy_policy').length == 0 || $('#user_privacy_policy').is(':checked')) {
-      $('#register-button').prop('disabled', false);
-    }
+    $('#register-button').prop('disabled', false);
   }
 
   if($('#card-element').length) {
-    var stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
-    var elements = stripe.elements();
+    var elements = window.stripe.elements({ locale: window.locale });
 
     var style = {
       base: {
@@ -98,7 +95,7 @@ function initializeEditCard() {
           enableSubmit()
         })
       } else if ($('#new-card-div').length) {
-        stripe.handleCardSetup($('#setup_intent_client_secret').val(), card)
+        window.stripe.handleCardSetup($('#setup_intent_client_secret').val(), card)
           .then(function(result) {
             if (result.error) {
               $('#card-errors').text(result.error.message);

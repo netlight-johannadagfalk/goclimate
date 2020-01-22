@@ -154,6 +154,7 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script>
       window.locale = "<%= I18n.locale %>"
+      window.stripe = Stripe("<%= ENV['PUBLISHABLE_KEY'] %>");
     </script>
     <%= include_gon %>
     <%= webpack_entrypoint_javascript_tags 'main', onerror: 'throw "Loading Javascript " + this.src + " failed"' %>

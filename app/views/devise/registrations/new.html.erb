@@ -87,62 +87,42 @@
     <p class="lead"><%=t 'you_will_offset_for', cost: @current_plan_price.to_s(precision: :auto) %>. <%=t 'sign_up_here_to_start_livint_a_climate_neutral_life' %></p>
     <span class="glyphicon glyphicon-large glyphicon-hand-down" aria-hidden="true"></span>
 
-    <div id="error_explanation" data-controller="scroll-here">
-      <% if flash[:error].present? || resource.errors.any? || @manager&.errors.present? %>
-        <% if flash[:error].present? %>
-          <p><%= flash[:error] %></p>
-        <% end %>
-        <% if resource.errors.any? %>
-          <% resource.errors.values.flatten.each do |message| %>
-            <p><%= message %></p>
-          <% end %>
-        <% end %>
-        <% if @manager.present? && @manager.errors.any? %>
-          <p>The payment failed: <%= @manager.errors.values.join(' ') %></p>
-        <% end %>
-      <% end %>
-      <p id="error-content"></p>
-    </div>
+    <%= form_with url: registration_path(resource_name, format: :json), html: { id: "payment-form", class: "form-horizontal", data: { controller: 'registration-form', action: 'registration-form#submit' } } do |f| %>
+      <%= f.hidden_field(:choices, :value => params[:choices]) %>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: "payment-form", :class => "form-horizontal"}) do |f| %>
-      <%# TODO: Use nested form helpers with a generic form_for and a fields_for resource so that choices params can live outside of the user hash and be consistent across new and create actions %>
-      <%= hidden_field(:user, :choices, :value => @choices) %>
-      <%= hidden_field(:user, :region, :value => current_region.id) %>
+      <%= fields_for @user do |user_form| %>
+        <%= user_form.hidden_field :region %>
 
-      <div class="form-group">
-        <label for="email" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'email' %></label>
-        <div class="col-sm-4">
-          <%= f.email_field :email, required: true, id: "email", class: "form-control" %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="password" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'password' %></label>
-        <div class="col-sm-4">
-          <%= f.password_field :password, required: true, minlength: '6', maxlength: '128', autocomplete: "off", id: "password", class: "form-control" %>
-        </div>
-      </div>
-
-      <%= hidden_field(:manager, :customer_id) %>
-      <%= hidden_field(:manager, :payment_intent_client_secret) %>
-
-      <div class="form-group">
-        <label for="card-element" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'credit_or_debit_card' %></label>
-        <div class="col-sm-4">
-          <div id="card-element" class="form-control">
-            <!-- a Stripe Element will be inserted here. -->
+        <div class="form-group">
+          <label for="email" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'email' %></label>
+          <div class="col-sm-4">
+            <%= user_form.email_field :email, required: true, id: "email", class: "form-control" %>
           </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'password' %></label>
+          <div class="col-sm-4">
+            <%= user_form.password_field :password, required: true, minlength: '6', maxlength: '128', autocomplete: "off", id: "password", class: "form-control" %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="form-group" data-controller="stripe-card-element" data-target="registration-form.stripeCardElement">
+        <label for="card" class="col-sm-offset-1 col-sm-4 control-label"><%=t 'credit_or_debit_card' %></label>
+        <div class="col-sm-4">
+          <div id="card" class="form-control" data-target="stripe-card-element.container"></div>
+          <div class="help-block text-warning hidden-when-empty" data-target="stripe-card-element.errors"></div>
           <span class="glyphicon glyphicon-large glyphicon glyphicon-lock secured-by-stripe" aria-hidden="true"></span>Secured by Stripe
+          <%= f.hidden_field :payment_method_id, 'data-target': 'stripe-card-element.paymentMethodField' %>
         </div>
       </div>
-
-      <div id="card-errors"></div>
 
       <div class="form-group form-group-sm-centered">
         <div class="col-sm-offset-5 col-sm-7">
           <div class="checkbox">
             <label>
-              <%= f.check_box :privacy_policy %>
+              <%= f.check_box :privacy_policy, 'data-target': 'registration-form.privacyPolicyAgreement', 'data-action': 'change->registration-form#updateSubmitButton' %>
               <span>
                 <%=t 'i_accept' %>
                 <%= link_to I18n.t('our_privacy_policy'), privacy_policy_path, target: '_blank', class: 'privacy-policy-link' %>
@@ -154,8 +134,9 @@
 
       <div class="form-group form-group-sm-centered">
         <div class="col-sm-offset-5 col-sm-3">
-          <button id="register-button" type="submit" class="btn btn-success">
-            <i class="fa fa-spinner fa-spin hidden" id="button-spinner"></i>
+          <p class="text-warning hidden-when-empty" data-target="registration-form.errorMessage"></p>
+          <button id="register-button" type="submit" class="btn btn-success" data-target="registration-form.submitButton">
+            <i class="fa fa-spinner fa-spin hidden" data-target="registration-form.loadingIndicator"></i>
             <%=t 'go_climate_neutral' %>
           </button>
         </div>
@@ -165,13 +146,3 @@
     <p class="last plan-faq"><a href="/faq"><%=t 'faq_questions.questions.q18.question' %> <%=t 'faq_questions.questions.q19.question' %> <%=t 'faq_questions.questions.q20.question' %> <%=t 'read_more_on_frequently_asked_questions' %></a>.</p>
   </div>
 </div>
-
-<% content_for :javascript_tags do %>
-  <script type="text/javascript">
-    var STRIPE_PUBLISHABLE_KEY = "<%= ENV['PUBLISHABLE_KEY'] %>"
-
-    $(document).ready(function() {
-      initializeUsersRegistrations();
-    });
-  </script>
-<% end %>
