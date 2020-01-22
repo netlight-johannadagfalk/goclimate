@@ -92,6 +92,9 @@
                     <%=l project.date_bought.to_date %> &bull;
                     <%= project.country %> &bull;
                     <%=t "models.project.offset_type.#{project.offset_type}" %> &bull;
+                    <% if project.certificate_url.present? %>
+                      <%= link_to t('views.projects.index.invoice'), project.invoice_url, target: '_blank' %> &bull;
+                    <% end %>
                     <%= link_to t('views.projects.index.map_link'), project.map_url, target: '_blank' %>
                     <% if project.certificate_url.present? %>
                       &bull; <%= link_to t('views.projects.index.certificate_link'), project.certificate_url, target: '_blank' %>
