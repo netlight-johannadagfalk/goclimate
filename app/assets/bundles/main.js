@@ -1,3 +1,19 @@
+/* eslint-disable import/first */
+
+/* Polyfills */
+import 'core-js/features/promise';
+
+/* Polyfills for Stimulus */
+import 'core-js/features/array/find';
+import 'core-js/features/array/find-index';
+import 'core-js/features/array/from';
+import 'core-js/features/map';
+import 'core-js/features/object/assign';
+import 'core-js/features/set';
+import 'element-closest';
+import 'mutation-observer-inner-html-shim';
+import 'eventlistener-polyfill';
+
 /* Rails UJS */
 import Rails from '@rails/ujs';
 Rails.start()
