@@ -60,6 +60,8 @@ RSpec.configure do |config|
     ActiveRecord::Base.connection.reset_pk_sequence!('projects')
     Rails.application.load_seed
   end
+
+  config.include ActiveSupport::Testing::TimeHelpers
 end
 
 Capybara.server = :puma, { Silent: true }
