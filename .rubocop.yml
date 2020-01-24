@@ -18,6 +18,7 @@ Style/MethodCallWithArgsParentheses:
     - raise
     - rescue_from
     - render
+    - head
     - redirect_to
     - send_data
     - mail

@@ -124,6 +124,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :webhooks do
+    resource :stripe_events, only: [:create]
+  end
+
   # Admin
   namespace :admin do
     root to: 'dashboard#index'
