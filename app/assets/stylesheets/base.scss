@@ -290,12 +290,18 @@ input#plan {
         text-align: left; 
     }
 }
+.prefooter {
+  background-color: #f3f9f9;
+}
+.prefooter .inner {
+  padding: 50px;
+}
 .mastfoot {
   position: relative;
   background-color: #fff;
 }
 .mastfoot .inner {
-    padding: 15px;
+    padding: 30px;
 } 
 div.profile {
   padding-bottom: 40px;

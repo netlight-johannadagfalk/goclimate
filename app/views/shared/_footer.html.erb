@@ -1,6 +1,7 @@
-  <div class="mastfoot">
+<%= render "shared/prefooter" %>
+
+<div class="mastfoot">
     <div class="inner">
-      <p>---</p>
       <p>
         <%= link_to t('about_us'), about_path %> |
         <%= link_to t('100_percent_transparency'), transparency_path %> |
@@ -27,7 +28,6 @@
           <li><a href="<%= url_for_region(Region::Europe) %>"><%= image_tag webpack_asset_path("images/regions/world.png") %> Rest of the World</a></li>
         </ul>
       </div>
-      <p>---</p>
       <p>© <%= Time.current.year %> GoClimateNeutral</p>
     </div>
   </div>
