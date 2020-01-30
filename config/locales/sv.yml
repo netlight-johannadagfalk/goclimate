@@ -562,7 +562,12 @@ sv:
           continue_button: "Fortsätt till %{region}"
         sign_up: Registrera
       footer:
+        short_intro: GoClimateNeutral grundades 2017 med enda målet att göra det enklare att leva ett klimatneutralt liv. 
         jobs: 'Jobb'
+        headers:
+          make_a_difference: Gör skillnad
+          explore: Utforska
+          about: Om
       tonnes_co2e:
         one: ton koldioxid
         other: ton koldioxid
