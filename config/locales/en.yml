@@ -542,7 +542,12 @@ en:
           continue_button: "Continue to %{region}"
         sign_up: Sign up
       footer:
+        short_intro: GoClimateNeutral is a social company with the sole purpose of making it easier to start living a climate neutral life.
         jobs: 'Jobs'
+        headers:
+          make_a_difference: Make a difference
+          explore: Explore
+          about: About
       tonnes_co2e:
         one: tonne CO2e
         other: tonnes CO2e
