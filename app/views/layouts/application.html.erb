@@ -92,7 +92,7 @@
       <script>
         fbq('track', 'Purchase', {
           currency: "<%= current_region.currency %>",
-          value: <%= current_user.stripe_customer.subscriptions.first.plan.amount.to_f / 100 %>
+          value: <%= current_user.subscription_amount %>
         });
         gtag('event', 'conversion', {'send_to': 'AW-823228700/-nQJCJXUrrcBEJzyxYgD'});
       </script>
