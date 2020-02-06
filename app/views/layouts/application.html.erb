@@ -90,7 +90,10 @@
 
     <% if params[:registered].to_i == 1 %>
       <script>
-        fbq('track', 'Purchase');
+        fbq('track', 'Purchase', {
+          currency: "<%= current_region.currency %>",
+          value: <%= current_user.subscription_amount %>
+        });
         gtag('event', 'conversion', {'send_to': 'AW-823228700/-nQJCJXUrrcBEJzyxYgD'});
       </script>
     <% end %>

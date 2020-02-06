@@ -22,6 +22,10 @@ class User < ApplicationRecord
     Stripe::Customer.retrieve(stripe_customer_id) if stripe_customer_id.present?
   end
 
+  def subscription_amount
+    stripe_customer.subscriptions.first.plan.amount.to_f / 100
+  end
+
   def country_name
     if !country.nil? && !country.empty?
       c = ISO3166::Country[country]
