@@ -93,19 +93,18 @@ Rails.application.routes.draw do
     resources :users, only: [:show], constraints: { id: /\d+/ }
 
     # Gift cards
-    resources :gift_cards, only: [:index, :new, :create] do
+    resources :gift_cards, only: [:index, :new, :create], param: :key do
       collection do
+        get 'example/certificate', to: 'gift_card_certificates#example', format: true, constraints: { format: :pdf }
+      end
+
+      member do
         get 'thank_you'
 
         scope format: true, constraints: { format: :pdf } do
-          resources :gift_card_certificates, only: [:show], path: :certificates, param: :key do
-            get 'example', on: :collection
+          resource :gift_card_certificates, only: [:show], path: :certificate do
           end
-        end
-      end
-      member do
-        scope format: true, constraints: { format: :pdf } do
-          resource :gift_card_receipts, only: [:show], path: :receipt, param: :key
+          resource :gift_card_receipts, only: [:show], path: :receipt
         end
       end
     end
@@ -114,8 +113,13 @@ Rails.application.routes.draw do
     defaults region: nil do
       get 'klimatkompensera', to: redirect('%{region}/'), as: nil
       get 'friendlyguide', to: redirect('%{region}/'), as: nil
-      get 'gift_cards/example', to: redirect(path: '%{region}/gift_cards/certificates/example.pdf'), as: nil
-      get 'gift_cards/download', to: redirect('%{region}/gift_cards/certificates/%{key}.pdf'), as: nil
+      get 'gift_cards/thank_you', as: nil, to: redirect(status: 302) { |path_params, request|
+        raise ActionController::RoutingError, 'Not Found' unless request.flash[:certificate_key].present?
+
+        "#{path_params[:region]}/gift_cards/#{request.flash[:certificate_key]}/thank_you"
+      }
+      get 'gift_cards/certificates/example', to: redirect(path: '%{region}/gift_cards/example/certificate.pdf'), as: nil
+      get 'gift_cards/certificates/:key', to: redirect(path: '%{region}/gift_cards/%{key}/certificate.pdf'), as: nil
       get 'dashboard/index', to: redirect('%{region}/dashboard'), as: nil
       get '/users', to: redirect('%{region}/dashboard'), as: nil
       get '/users/edit/payment', to: redirect('%{region}/users/subscription'), as: nil
