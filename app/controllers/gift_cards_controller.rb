@@ -26,23 +26,16 @@ class GiftCardsController < ApplicationController
     @gift_card.save!
 
     redirect_to(
-      thank_you_gift_cards_path,
+      thank_you_gift_card_path(@gift_card),
       flash: {
-        number_of_months: @gift_card.number_of_months,
-        email: params[:email],
-        certificate_key: @gift_card.key
+        email: params[:email]
       }
     )
   end
 
   def thank_you
-    @number_of_months = flash[:number_of_months].to_i
+    @gift_card = GiftCard.find_by_key!(params[:key])
     @email = flash[:email]
-    @certificate_key = flash[:certificate_key]
-
-    @gift_card = GiftCard.find_by_key!(@certificate_key)
-
-    redirect_to gift_cards_path if @number_of_months.nil?
   end
 
   protected

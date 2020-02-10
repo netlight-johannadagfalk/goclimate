@@ -11,7 +11,7 @@
     <%= form_tag(gift_cards_path, id: "payment-form") do %>
       <p><%=t 'views.gift_cards.new.we_will_send_you_pdf' %></p>
 
-      <p><%= link_to t('views.gift_cards.new.click_here_for_an_example'), example_gift_card_certificates_path(subscription_months_to_gift: params[:subscription_months_to_gift], format: :pdf), class: 'example-gift-card' %></p>
+      <p><%= link_to t('views.gift_cards.new.click_here_for_an_example'), example_certificate_gift_cards_path(subscription_months_to_gift: params[:subscription_months_to_gift], format: :pdf), class: 'example-gift-card' %></p>
 
       <div class="gift-card-details form-horizontal">
         <div class="form-group gift-card-details-row">

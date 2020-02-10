@@ -26,6 +26,10 @@ class GiftCard < ApplicationRecord
     )
   end
 
+  def to_param
+    key
+  end
+
   private
 
   def price_per_month
