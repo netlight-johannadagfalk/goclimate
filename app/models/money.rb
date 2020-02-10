@@ -9,6 +9,9 @@ class Money
   end
 
   def initialize(subunit_amount, currency)
+    raise ArgumentError, 'Amount cannot be nil' if subunit_amount.nil?
+    raise ArgumentError, 'Currency cannot be nil' if currency.nil?
+
     @subunit_amount = subunit_amount
     @currency = currency.is_a?(Symbol) ? Currency.from_iso_code(currency) : currency
   end
@@ -48,5 +51,9 @@ class Money
     ).presence
 
     localized_string || "#{currency} #{formatted_number}"
+  end
+
+  def inspect
+    I18n.with_locale(:en) { "#{currency} #{ActiveSupport::NumberHelper.number_to_currency(amount, format: '%n')}" }
   end
 end
