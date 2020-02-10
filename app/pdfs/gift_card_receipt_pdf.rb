@@ -29,7 +29,7 @@ class GiftCardReceiptPdf
   end
 
   def total_amount
-    BigDecimal(gift_card.price.amount)
+    BigDecimal(gift_card.calculate_current_price.amount)
   end
 
   def vat_amount

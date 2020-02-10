@@ -27,7 +27,7 @@
             <%=t 'price' %>:
           </label>
           <div class="text-right col-xs-8">
-            <%= @gift_card.price.to_s(precision: 0) %>
+            <%= @gift_card.calculate_current_price.to_s(precision: 0) %>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ require 'digest'
 
 class GiftCard < ApplicationRecord
   attribute :currency, :currency
+  attribute :co2e, :greenhouse_gases
 
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
   validates_presence_of :number_of_months
@@ -11,6 +12,21 @@ class GiftCard < ApplicationRecord
   before_validation :generate_key
 
   def price
+    value = super
+    Money.new(value, currency) if value.present?
+  end
+
+  def price=(price)
+    if price.is_a?(Money)
+      self.currency = price.currency
+      super(price.subunit_amount)
+      return
+    end
+
+    super(price)
+  end
+
+  def calculate_current_price
     Money.from_amount((price_per_month * number_of_months).to_i, currency)
   end
 
@@ -20,7 +36,7 @@ class GiftCard < ApplicationRecord
 
   def create_payment_intent
     Stripe::PaymentIntent.create(
-      amount: price.subunit_amount,
+      amount: calculate_current_price.subunit_amount,
       currency: currency.iso_code,
       description: "Gift Card #{number_of_months} months"
     )
