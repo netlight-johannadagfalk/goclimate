@@ -69,4 +69,8 @@ class GreenhouseGases
       I18n.translate('models.greenhouse_gases.kg', count: co2e)
     end
   end
+
+  def inspect
+    I18n.with_locale(:en) { to_s }
+  end
 end
