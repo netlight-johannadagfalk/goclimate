@@ -33,9 +33,6 @@ class GiftCardsController < ApplicationController
 
   def thank_you
     @gift_card = GiftCard.find_by_key!(params[:key])
-    # The following line keeps compatibility while deploying, remove after this
-    # has been in production a few hours or more
-    @email = @gift_card.customer_email || flash[:email]
   end
 
   protected
@@ -61,12 +58,6 @@ class GiftCardsController < ApplicationController
     attributes = params.require(:gift_card).permit(
       :number_of_months, :customer_email, :message, :payment_intent_id
     ).to_h.symbolize_keys
-
-    # The following keeps compatibility for forms loaded before this deploy.
-    # Remove after this has been in production for a few hours or more.
-    attributes[:number_of_months] ||= params[:subscription_months_to_gift]
-    attributes[:customer_email] ||= params[:email]
-    attributes[:payment_intent_id] ||= params[:paymentIntentId]
 
     GiftCard.new(currency: current_region.currency, **attributes)
   end

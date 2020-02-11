@@ -13,10 +13,6 @@ class GiftCard < ApplicationRecord
   after_initialize :set_co2e_and_price_if_new
   before_validation :generate_key
 
-  def calculate_current_price
-    Money.from_amount((price_per_month * number_of_months).to_i, currency)
-  end
-
   def create_payment_intent
     payment_intent = Stripe::PaymentIntent.create(
       amount: price.subunit_amount,
@@ -68,6 +64,10 @@ class GiftCard < ApplicationRecord
     # Average for Sweden * buffer / 12 months per year * number of months
     tonnes = 11.0 * 2 / 12 * number_of_months
     GreenhouseGases.new((tonnes * 1000).round)
+  end
+
+  def calculate_current_price
+    Money.from_amount((price_per_month * number_of_months).to_i, currency)
   end
 
   def price_per_month
