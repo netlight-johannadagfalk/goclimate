@@ -11,6 +11,10 @@ module Business
 
     def new
       @report = ClimateReport.new(calculation_period: '2018', calculation_period_length: 'year', country: 'SE')
+
+      return unless params[:based_on].present? && (report_base = ClimateReport.find_by_key(params[:based_on]))
+
+      @report.attributes = @report.attributes.merge(report_base.attributes)
     end
 
     def create

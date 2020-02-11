@@ -704,6 +704,7 @@ sv:
         reduce_body: Fundera gärna igenom en extra gång om det är något av era utsläpp som ni kan minska. Vi uppmanar alla företag att ta ansvar för sina utsläpp genom att klimatkompensera, men ännu viktigare är att minska sina utsläpp så mycket man kan.
         safety_factor: säkerhetsfaktor
         safety_factor_explanation: För att säkerställa att klimatkompensationen gör motsvarande klimatnytta som de beräknade klimatutsläppen så använder vi en säkerhetsfaktor på två vid köp av klimatkompensation hos oss.
+        new_based_on_this: Gör en ny beräkning baserad på värdena i den här rapporten
     climate_report_invoices:
       thank_you:
         thank_you_text: Genom att kompensera för ditt företags klimatutsläpp, så tar du ansvar för det avtryck som ditt företag har på klimatet. 
