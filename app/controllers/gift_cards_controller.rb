@@ -17,25 +17,25 @@ class GiftCardsController < ApplicationController
 
   def create
     @gift_card = gift_card_from_form_fields
-    @checkout = GiftCardsCheckout.new(params[:paymentIntentId], @gift_card, params[:email])
+    @payment_intent = Stripe::PaymentIntent.retrieve(@gift_card.payment_intent_id)
+
+    render(:new) && return unless @payment_intent.status == 'succeeded'
 
     # As we've already charged the customer in the browser and we expect this
     # to always be valid, better to fail early so we detect any edge cases
     # rather than silently showing validation errors.
-    @checkout.finalize_checkout!
+    @gift_card.paid_at = Time.now
     @gift_card.save!
+    @gift_card.send_confirmation_email
 
-    redirect_to(
-      thank_you_gift_card_path(@gift_card),
-      flash: {
-        email: params[:email]
-      }
-    )
+    redirect_to thank_you_gift_card_path(@gift_card)
   end
 
   def thank_you
     @gift_card = GiftCard.find_by_key!(params[:key])
-    @email = flash[:email]
+    # The following line keeps compatibility while deploying, remove after this
+    # has been in production a few hours or more
+    @email = @gift_card.customer_email || flash[:email]
   end
 
   protected
@@ -58,8 +58,16 @@ class GiftCardsController < ApplicationController
   end
 
   def gift_card_from_form_fields
-    new_gift_card_from_params.tap do |gift_card|
-      gift_card.attributes = params.require(:gift_card).permit(:message)
-    end
+    attributes = params.require(:gift_card).permit(
+      :number_of_months, :customer_email, :message, :payment_intent_id
+    ).to_h.symbolize_keys
+
+    # The following keeps compatibility for forms loaded before this deploy.
+    # Remove after this has been in production for a few hours or more.
+    attributes[:number_of_months] ||= params[:subscription_months_to_gift]
+    attributes[:customer_email] ||= params[:email]
+    attributes[:payment_intent_id] ||= params[:paymentIntentId]
+
+    GiftCard.new(currency: current_region.currency, **attributes)
   end
 end

@@ -6,6 +6,86 @@ require 'shared_examples/models/types/currency_type_spec'
 RSpec.describe GiftCard do
   include_examples 'currency attributes', [:currency]
 
+  describe '#initialize' do
+    context 'when new' do
+      it 'sets co2e correctly for 3 months' do
+        gift_card = described_class.new(number_of_months: 3)
+
+        expect(gift_card.co2e).to eq(GreenhouseGases.new(5_500))
+      end
+
+      it 'sets co2e correctly for 6 months' do
+        gift_card = described_class.new(number_of_months: 6)
+
+        expect(gift_card.co2e).to eq(GreenhouseGases.new(11_000))
+      end
+
+      it 'sets price' do
+        gift_card = described_class.new(number_of_months: 6, currency: :sek)
+        expect(gift_card.price).to eq(Money.new(440_00, :sek))
+      end
+
+      it 'allows setting price explicitly' do
+        gift_card = described_class.new(number_of_months: 1, price: 60_00, currency: :sek)
+
+        expect(gift_card.price).to eq(Money.new(60_00, :sek))
+      end
+
+      it 'allows setting co2e explicitly' do
+        gift_card = described_class.new(number_of_months: 1, co2e: 8_000)
+
+        expect(gift_card.co2e).to eq(GreenhouseGases.new(8_000))
+      end
+    end
+  end
+
+  describe '#send_confirmation_email' do
+    subject(:gift_card) { build(:gift_card, customer_email: 'customer@example.com') }
+
+    let(:fake_pdf) { 'fake pdf' }
+    let(:pdf_generator_stub) do
+      instance_double(GiftCardCertificatePdf).tap do |pdf_generator|
+        allow(pdf_generator).to receive(:render).and_return(fake_pdf)
+      end
+    end
+
+    before do
+      allow(GiftCardCertificatePdf).to receive(:from_gift_card).and_return(pdf_generator_stub)
+      allow(GiftCardMailer).to receive_message_chain(:with, :gift_card_email, :deliver_now)
+    end
+
+    it 'sends confirmation email' do
+      expect(GiftCardMailer).to receive_message_chain(:with, :gift_card_email, :deliver_now)
+
+      gift_card.send_confirmation_email
+    end
+
+    it 'sends email to provided confirmation email recipient' do
+      gift_card.send_confirmation_email
+
+      expect(GiftCardMailer).to have_received(:with).with(hash_including(email: 'customer@example.com'))
+    end
+
+    it 'includes number of month in sent email' do
+      gift_card.send_confirmation_email
+
+      expect(GiftCardMailer).to have_received(:with)
+        .with(hash_including(number_of_months: gift_card.number_of_months))
+    end
+
+    it 'includes a generated pdf in sent email' do
+      gift_card.send_confirmation_email
+
+      expect(GiftCardMailer).to have_received(:with).with(hash_including(gift_card_pdf: fake_pdf))
+    end
+
+    it 'uses gift card when generating pdf' do
+      gift_card.send_confirmation_email
+
+      expect(GiftCardCertificatePdf).to have_received(:from_gift_card).with(gift_card)
+    end
+  end
+
   describe 'validations' do
     it 'validates key to be unique' do
       existing = create(:gift_card)
@@ -176,6 +256,14 @@ RSpec.describe GiftCard do
 
       expect(Stripe::PaymentIntent).to have_received(:create)
         .with(hash_including(description: 'Gift Card 6 months'))
+    end
+
+    it 'sets payment intent ID' do
+      gift_card = build(:gift_card)
+
+      gift_card.create_payment_intent
+
+      expect(gift_card.payment_intent_id).to eq('pi_123')
     end
   end
 end

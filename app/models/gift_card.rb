@@ -7,9 +7,41 @@ class GiftCard < ApplicationRecord
   attribute :co2e, :greenhouse_gases
 
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
-  validates_presence_of :number_of_months
+  validates :customer_email, email: true
+  validates_presence_of :key, :number_of_months, :price, :currency, :customer_email, :co2e, :payment_intent_id
 
+  after_initialize :set_co2e_and_price_if_new
   before_validation :generate_key
+
+  def calculate_current_price
+    Money.from_amount((price_per_month * number_of_months).to_i, currency)
+  end
+
+  def create_payment_intent
+    payment_intent = Stripe::PaymentIntent.create(
+      amount: price.subunit_amount,
+      currency: currency.iso_code,
+      description: "Gift Card #{number_of_months} months"
+    )
+
+    self.payment_intent_id = payment_intent.id
+
+    payment_intent
+  end
+
+  def send_confirmation_email
+    pdf = GiftCardCertificatePdf.from_gift_card(self).render
+
+    GiftCardMailer.with(
+      email: customer_email,
+      number_of_months: number_of_months,
+      gift_card_pdf: pdf
+    ).gift_card_email.deliver_now
+  end
+
+  def order_id
+    "GCN-GIFT-#{id}"
+  end
 
   def price
     value = super
@@ -26,27 +58,17 @@ class GiftCard < ApplicationRecord
     super(price)
   end
 
-  def calculate_current_price
-    Money.from_amount((price_per_month * number_of_months).to_i, currency)
-  end
-
-  def order_id
-    "GCN-GIFT-#{id}"
-  end
-
-  def create_payment_intent
-    Stripe::PaymentIntent.create(
-      amount: calculate_current_price.subunit_amount,
-      currency: currency.iso_code,
-      description: "Gift Card #{number_of_months} months"
-    )
-  end
-
   def to_param
     key
   end
 
   private
+
+  def calculate_co2e
+    # Average for Sweden * buffer / 12 months per year * number of months
+    tonnes = 11.0 * 2 / 12 * number_of_months
+    GreenhouseGases.new((tonnes * 1000).round)
+  end
 
   def price_per_month
     avg_tonnes_per_year = BigDecimal(11) # Average tonnes co2 per person and year
@@ -74,6 +96,13 @@ class GiftCard < ApplicationRecord
                          1
                        end
     LifestyleChoice::SEK_PER_TONNE / sek_per_currency
+  end
+
+  def set_co2e_and_price_if_new
+    return unless new_record? && number_of_months.present?
+
+    self.co2e ||= calculate_co2e
+    self.price ||= calculate_current_price if currency.present?
   end
 
   def generate_key

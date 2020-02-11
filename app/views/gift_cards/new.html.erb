@@ -8,7 +8,7 @@
 </div>
 <div class="site-wrapper-second">
   <div class="inner">
-    <%= form_tag(gift_cards_path, id: "payment-form") do %>
+    <%= form_with model: @gift_card, id: "payment-form" do |f| %>
       <p><%=t 'views.gift_cards.new.we_will_send_you_pdf' %></p>
 
       <p><%= link_to t('views.gift_cards.new.click_here_for_an_example'), example_certificate_gift_cards_path(subscription_months_to_gift: params[:subscription_months_to_gift], format: :pdf), class: 'example-gift-card' %></p>
@@ -27,21 +27,19 @@
             <%=t 'price' %>:
           </label>
           <div class="text-right col-xs-8">
-            <%= @gift_card.calculate_current_price.to_s(precision: 0) %>
+            <%= @gift_card.price.to_s(precision: 0) %>
           </div>
         </div>
       </div>
       <div class="gift-card-payment">
-        <%= fields_for :gift_card do |f| %>
-          <div class="form-group">
-            <%= f.label :message, t('views.gift_cards.new.write_a_message'), class: 'gift-card-message' %>
-            <%= f.text_area :message, rows: 4, cols: 40, class: 'form-control', placeholder: t('views.gift_cards.new.sample_message_html') %>
-          </div>
-        <% end %>
+        <div class="form-group">
+          <%= f.label :message, t('views.gift_cards.new.write_a_message'), class: 'gift-card-message' %>
+          <%= f.text_area :message, rows: 4, cols: 40, class: 'form-control', placeholder: t('views.gift_cards.new.sample_message_html') %>
+        </div>
 
         <div class="form-group">
           <%= label_tag :email, t('email') %>
-          <%= email_field_tag :email, nil, required: '', id: "email", class: "form-control" %>
+          <%= f.email_field :customer_email, required: '', id: "email", class: "form-control" %>
         </div>
 
         <div id="current-card-group" class="form-group">
@@ -59,9 +57,10 @@
 
         <div id="error_explanation" class="hidden"> </div>
 
-        <%= hidden_field_tag :subscription_months_to_gift, @gift_card.number_of_months %>
+        <%= f.hidden_field :number_of_months %>
+        <%= f.hidden_field :payment_intent_id %>
 
-        <%= button_tag(type: 'submit', id: 'checkout-button', class: 'btn btn-success btn-block') do %>
+        <%= button_tag type: 'submit', id: 'checkout-button', class: 'btn btn-success btn-block' do %>
           <i class="fa fa-spinner fa-spin hidden" id="button-spinner"></i>
           <%= t('views.gift_cards.new.pay') %>
         <% end %>
