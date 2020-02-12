@@ -138,7 +138,9 @@ RSpec.describe GiftCard do
   end
 
   describe '#create_payment_intent' do
-    let(:payment_intent) { Stripe::PaymentIntent.construct_from(id: 'pi_123', object: 'payment_intent') }
+    let(:payment_intent) do
+      Stripe::PaymentIntent.construct_from(id: 'pi_123', object: 'payment_intent', amount: 1000, currency: 'sek')
+    end
 
     before do
       allow(Stripe::PaymentIntent).to receive(:create).and_return(payment_intent)
@@ -180,25 +182,61 @@ RSpec.describe GiftCard do
     end
 
     context 'when payment intent already exists' do
+      subject(:gift_card) { build(:gift_card, price: 1000, currency: :sek, payment_intent_id: payment_intent.id) }
+
       before do
         allow(Stripe::PaymentIntent).to receive(:retrieve).and_return(payment_intent)
       end
 
       it 'does not create additional payment intents' do
-        gift_card = build(:gift_card, payment_intent_id: payment_intent.id)
-
         gift_card.create_payment_intent
 
         expect(Stripe::PaymentIntent).not_to have_received(:create)
+      end
+
+      context 'when existing payment intent is for an incorrect amount' do
+        let(:payment_intent) do
+          Stripe::PaymentIntent.construct_from(
+            id: 'pi_123', object: 'payment_intent', status: 'requires_payment_method', amount: 4444, currency: 'sek'
+          )
+        end
+
+        it 'raises InvalidPaymentIntent' do
+          gift_card = build(:gift_card, price: 1000, currency: :sek, payment_intent_id: payment_intent.id)
+
+          expect do
+            gift_card.finalize
+          end.to raise_error(GiftCard::InvalidPaymentIntent)
+        end
+      end
+
+      context 'when existing payment intent is for an incorrect amount' do
+        let(:payment_intent) do
+          Stripe::PaymentIntent.construct_from(
+            id: 'pi_123', object: 'payment_intent', status: 'requires_payment_method', amount: 1000, currency: 'xxx'
+          )
+        end
+
+        it 'raises InvalidPaymentIntent' do
+          gift_card = build(:gift_card, price: 1000, currency: :sek, payment_intent_id: payment_intent.id)
+
+          expect do
+            gift_card.finalize
+          end.to raise_error(GiftCard::InvalidPaymentIntent)
+        end
       end
     end
   end
 
   describe '#finalize' do
-    subject(:gift_card) { build(:gift_card, paid_at: nil, payment_intent_id: payment_intent.id) }
+    subject(:gift_card) do
+      build(:gift_card, price: 1000, currency: :sek, paid_at: nil, payment_intent_id: payment_intent.id)
+    end
 
     let(:payment_intent) do
-      Stripe::PaymentIntent.construct_from(id: 'pi_123', object: 'payment_intent', status: 'succeeded')
+      Stripe::PaymentIntent.construct_from(
+        id: 'pi_123', object: 'payment_intent', status: 'succeeded', amount: 1000, currency: 'sek'
+      )
     end
 
     before do
@@ -222,7 +260,9 @@ RSpec.describe GiftCard do
     end
 
     context 'when already marked as paid' do
-      subject(:gift_card) { build(:gift_card, paid_at: 1.hour.ago, payment_intent_id: payment_intent.id) }
+      subject(:gift_card) do
+        build(:gift_card, price: 1000, currency: 'sek', paid_at: 1.hour.ago, payment_intent_id: payment_intent.id)
+      end
 
       it 'returns true' do
         expect(gift_card.finalize).to be(true)
@@ -243,7 +283,9 @@ RSpec.describe GiftCard do
 
     context 'when payment intent is not yet successful' do
       let(:payment_intent) do
-        Stripe::PaymentIntent.construct_from(id: 'pi_123', object: 'payment_intent', status: 'requires_payment_method')
+        Stripe::PaymentIntent.construct_from(
+          id: 'pi_123', object: 'payment_intent', status: 'requires_payment_method', amount: 1000, currency: 'sek'
+        )
       end
 
       it 'returns false' do
@@ -260,6 +302,34 @@ RSpec.describe GiftCard do
         gift_card.finalize
 
         expect(GiftCardMailer).not_to have_received(:with)
+      end
+    end
+
+    context 'when payment intent is for an incorrect amount' do
+      let(:payment_intent) do
+        Stripe::PaymentIntent.construct_from(
+          id: 'pi_123', object: 'payment_intent', status: 'requires_payment_method', amount: 4444, currency: 'sek'
+        )
+      end
+
+      it 'raises InvalidPaymentIntent' do
+        expect do
+          gift_card.finalize
+        end.to raise_error(GiftCard::InvalidPaymentIntent)
+      end
+    end
+
+    context 'when payment intent is for an incorrect amount' do
+      let(:payment_intent) do
+        Stripe::PaymentIntent.construct_from(
+          id: 'pi_123', object: 'payment_intent', status: 'requires_payment_method', amount: 1000, currency: 'xxx'
+        )
+      end
+
+      it 'raises InvalidPaymentIntent' do
+        expect do
+          gift_card.finalize
+        end.to raise_error(GiftCard::InvalidPaymentIntent)
       end
     end
   end

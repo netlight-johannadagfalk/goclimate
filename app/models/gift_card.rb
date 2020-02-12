@@ -3,12 +3,16 @@
 require 'digest'
 
 class GiftCard < ApplicationRecord
+  class InvalidPaymentIntent < StandardError; end
+
   attribute :currency, :currency
   attribute :co2e, :greenhouse_gases
 
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
   validates :customer_email, email: true
-  validates_presence_of :key, :number_of_months, :price, :currency, :customer_email, :co2e, :payment_intent_id
+  validates_presence_of :key, :number_of_months, :price, :currency, :customer_email, :co2e
+  # Allow checking validation with payment_intent_id ignored, e.g. valid?(:without_payment_intent_id)
+  validates_presence_of :payment_intent_id, on: [:create, :update]
 
   after_initialize :set_co2e_and_price_if_new
   before_validation :generate_key
@@ -24,7 +28,7 @@ class GiftCard < ApplicationRecord
 
     self.payment_intent_id = @payment_intent.id
 
-    payment_intent
+    @payment_intent
   end
 
   def finalize
@@ -54,6 +58,12 @@ class GiftCard < ApplicationRecord
     return nil if @payment_intent.nil? && payment_intent_id.nil?
 
     @payment_intent ||= Stripe::PaymentIntent.retrieve(payment_intent_id)
+
+    unless @payment_intent.amount == price.subunit_amount && @payment_intent.currency == currency.iso_code.to_s
+      raise InvalidPaymentIntent
+    end
+
+    @payment_intent
   end
 
   def price

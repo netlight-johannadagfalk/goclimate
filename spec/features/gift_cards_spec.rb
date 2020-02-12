@@ -11,7 +11,7 @@ RSpec.feature 'Gift cards', type: :feature, js: true do
     count = ActionMailer::Base.deliveries.count
 
     find('textarea[id=gift_card_message]').send_keys('Surprise')
-    find('input[id=email]').send_keys('featurespec@example.com')
+    find('input[id=gift_card_customer_email]').send_keys('featurespec@example.com')
     # Checkout page
     within_frame(0) do
       send_keys_to_card_field '4242424242424242'
