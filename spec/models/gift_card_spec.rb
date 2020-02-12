@@ -4,6 +4,18 @@ require 'rails_helper'
 require 'shared_examples/models/types/currency_type_spec'
 
 RSpec.describe GiftCard do
+  let(:fake_pdf) { 'fake pdf' }
+  let(:pdf_generator_stub) do
+    instance_double(GiftCardCertificatePdf).tap do |pdf_generator|
+      allow(pdf_generator).to receive(:render).and_return(fake_pdf)
+    end
+  end
+
+  before do
+    allow(GiftCardCertificatePdf).to receive(:from_gift_card).and_return(pdf_generator_stub)
+    allow(GiftCardMailer).to receive_message_chain(:with, :gift_card_email, :deliver_now)
+  end
+
   include_examples 'currency attributes', [:currency]
 
   describe 'callback behavior' do
@@ -160,34 +172,100 @@ RSpec.describe GiftCard do
     end
 
     it 'sets payment intent ID' do
-      gift_card = build(:gift_card)
+      gift_card = described_class.new(number_of_months: 6, currency: 'eur')
 
       gift_card.create_payment_intent
 
       expect(gift_card.payment_intent_id).to eq('pi_123')
     end
+
+    context 'when payment intent already exists' do
+      before do
+        allow(Stripe::PaymentIntent).to receive(:retrieve).and_return(payment_intent)
+      end
+
+      it 'does not create additional payment intents' do
+        gift_card = build(:gift_card, payment_intent_id: payment_intent.id)
+
+        gift_card.create_payment_intent
+
+        expect(Stripe::PaymentIntent).not_to have_received(:create)
+      end
+    end
   end
 
-  describe '#send_confirmation_email' do
-    subject(:gift_card) { build(:gift_card, customer_email: 'customer@example.com') }
+  describe '#finalize' do
+    subject(:gift_card) { build(:gift_card, paid_at: nil, payment_intent_id: payment_intent.id) }
 
-    let(:fake_pdf) { 'fake pdf' }
-    let(:pdf_generator_stub) do
-      instance_double(GiftCardCertificatePdf).tap do |pdf_generator|
-        allow(pdf_generator).to receive(:render).and_return(fake_pdf)
-      end
+    let(:payment_intent) do
+      Stripe::PaymentIntent.construct_from(id: 'pi_123', object: 'payment_intent', status: 'succeeded')
     end
 
     before do
-      allow(GiftCardCertificatePdf).to receive(:from_gift_card).and_return(pdf_generator_stub)
-      allow(GiftCardMailer).to receive_message_chain(:with, :gift_card_email, :deliver_now)
+      allow(Stripe::PaymentIntent).to receive(:retrieve).and_return(payment_intent)
+    end
+
+    it 'sets paid_at to now' do
+      gift_card.finalize
+
+      expect(gift_card.paid_at).to be_within(1.second).of(Time.now)
     end
 
     it 'sends confirmation email' do
       expect(GiftCardMailer).to receive_message_chain(:with, :gift_card_email, :deliver_now)
 
-      gift_card.send_confirmation_email
+      gift_card.finalize
     end
+
+    it 'returns true when successful' do
+      expect(gift_card.finalize).to be(true)
+    end
+
+    context 'when already marked as paid' do
+      subject(:gift_card) { build(:gift_card, paid_at: 1.hour.ago, payment_intent_id: payment_intent.id) }
+
+      it 'returns true' do
+        expect(gift_card.finalize).to be(true)
+      end
+
+      it 'does not change paid_at' do
+        expect do
+          gift_card.finalize
+        end.not_to change(gift_card, :paid_at)
+      end
+
+      it 'does not send further emails' do
+        gift_card.finalize
+
+        expect(GiftCardMailer).not_to have_received(:with)
+      end
+    end
+
+    context 'when payment intent is not yet successful' do
+      let(:payment_intent) do
+        Stripe::PaymentIntent.construct_from(id: 'pi_123', object: 'payment_intent', status: 'requires_payment_method')
+      end
+
+      it 'returns false' do
+        expect(gift_card.finalize).to be(false)
+      end
+
+      it 'does not set paid_at' do
+        gift_card.finalize
+
+        expect(gift_card.paid_at).to be_nil
+      end
+
+      it 'does not send confirmation email' do
+        gift_card.finalize
+
+        expect(GiftCardMailer).not_to have_received(:with)
+      end
+    end
+  end
+
+  describe '#send_confirmation_email' do
+    subject(:gift_card) { build(:gift_card, customer_email: 'customer@example.com') }
 
     it 'sends email to provided confirmation email recipient' do
       gift_card.send_confirmation_email

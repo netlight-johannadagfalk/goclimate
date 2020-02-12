@@ -14,15 +14,26 @@ class GiftCard < ApplicationRecord
   before_validation :generate_key
 
   def create_payment_intent
-    payment_intent = Stripe::PaymentIntent.create(
+    return payment_intent if payment_intent.present?
+
+    @payment_intent = Stripe::PaymentIntent.create(
       amount: price.subunit_amount,
       currency: currency.iso_code,
       description: "Gift Card #{number_of_months} months"
     )
 
-    self.payment_intent_id = payment_intent.id
+    self.payment_intent_id = @payment_intent.id
 
     payment_intent
+  end
+
+  def finalize
+    return true if paid_at.present?
+    return false unless payment_intent&.status == 'succeeded'
+
+    update(paid_at: Time.now)
+    send_confirmation_email
+    true
   end
 
   def send_confirmation_email
@@ -37,6 +48,12 @@ class GiftCard < ApplicationRecord
 
   def order_id
     "GCN-GIFT-#{id}"
+  end
+
+  def payment_intent
+    return nil if @payment_intent.nil? && payment_intent_id.nil?
+
+    @payment_intent ||= Stripe::PaymentIntent.retrieve(payment_intent_id)
   end
 
   def price

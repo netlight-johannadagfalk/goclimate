@@ -80,7 +80,7 @@
         document.getElementById('card-errors'),
         document.getElementById('checkout-button'),
         document.getElementById('button-spinner'),
-        "<%= @payment_intent.client_secret %>",
+        "<%= @gift_card.payment_intent.client_secret %>",
         "#card-element"
       )
     })

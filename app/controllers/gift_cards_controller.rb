@@ -12,21 +12,14 @@ class GiftCardsController < ApplicationController
 
   def new
     @gift_card = new_gift_card_from_params
-    @payment_intent = @gift_card.create_payment_intent
+    @gift_card.create_payment_intent
   end
 
   def create
     @gift_card = gift_card_from_form_fields
-    @payment_intent = Stripe::PaymentIntent.retrieve(@gift_card.payment_intent_id)
-
-    render(:new) && return unless @payment_intent.status == 'succeeded'
-
-    # As we've already charged the customer in the browser and we expect this
-    # to always be valid, better to fail early so we detect any edge cases
-    # rather than silently showing validation errors.
-    @gift_card.paid_at = Time.now
     @gift_card.save!
-    @gift_card.send_confirmation_email
+
+    render(:new) && return unless @gift_card.finalize
 
     redirect_to thank_you_gift_card_path(@gift_card)
   end
