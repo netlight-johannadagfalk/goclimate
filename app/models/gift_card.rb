@@ -23,7 +23,8 @@ class GiftCard < ApplicationRecord
     @payment_intent = Stripe::PaymentIntent.create(
       amount: price.subunit_amount,
       currency: currency.iso_code,
-      description: "Gift Card #{number_of_months} months"
+      description: "Gift Card #{number_of_months} months",
+      metadata: { checkout_object: 'gift_card' }
     )
 
     self.payment_intent_id = @payment_intent.id
@@ -48,6 +49,15 @@ class GiftCard < ApplicationRecord
       number_of_months: number_of_months,
       gift_card_pdf: pdf
     ).gift_card_email.deliver_now
+  end
+
+  def update_from_payment_intent(payment_intent)
+    @payment_intent = payment_intent
+
+    case @payment_intent.status
+    when 'succeeded'
+      finalize
+    end
   end
 
   def order_id

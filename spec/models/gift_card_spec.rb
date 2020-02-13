@@ -173,6 +173,15 @@ RSpec.describe GiftCard do
         .with(hash_including(description: 'Gift Card 6 months'))
     end
 
+    it 'sets metadata pointing to this gift card' do
+      gift_card = described_class.new(number_of_months: 6, currency: 'eur')
+
+      gift_card.create_payment_intent
+
+      expect(Stripe::PaymentIntent).to have_received(:create)
+        .with(hash_including(metadata: hash_including(checkout_object: 'gift_card')))
+    end
+
     it 'sets payment intent ID' do
       gift_card = described_class.new(number_of_months: 6, currency: 'eur')
 
