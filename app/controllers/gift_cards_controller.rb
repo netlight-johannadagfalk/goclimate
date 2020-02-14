@@ -2,6 +2,8 @@
 
 class GiftCardsController < ApplicationController
   before_action :validate_months_parameter, only: [:new]
+  before_action :clear_gift_card_in_checkout, except: [:create]
+  after_action :set_gift_card_in_checkout, only: [:create]
 
   def index
     @gift_card_1_months = GiftCard.new(number_of_months: 1, currency: current_region.currency)
@@ -12,30 +14,23 @@ class GiftCardsController < ApplicationController
 
   def new
     @gift_card = new_gift_card_from_params
-    @payment_intent = @gift_card.create_payment_intent
   end
 
   def create
     @gift_card = gift_card_from_form_fields
-    @payment_intent = Stripe::PaymentIntent.retrieve(@gift_card.payment_intent_id)
 
-    render(:new) && return unless @payment_intent.status == 'succeeded'
+    render_validation_errors_json && return unless @gift_card.valid?(:without_payment_intent_id)
 
-    # As we've already charged the customer in the browser and we expect this
-    # to always be valid, better to fail early so we detect any edge cases
-    # rather than silently showing validation errors.
-    @gift_card.paid_at = Time.now
+    @gift_card.create_payment_intent
     @gift_card.save!
-    @gift_card.send_confirmation_email
 
-    redirect_to thank_you_gift_card_path(@gift_card)
+    render_payment_intent_json
   end
 
   def thank_you
     @gift_card = GiftCard.find_by_key!(params[:key])
-    # The following line keeps compatibility while deploying, remove after this
-    # has been in production a few hours or more
-    @email = @gift_card.customer_email || flash[:email]
+
+    render_not_found unless @gift_card.finalize
   end
 
   protected
@@ -45,6 +40,20 @@ class GiftCardsController < ApplicationController
   end
 
   private
+
+  def render_payment_intent_json
+    render json: {
+      payment_intent_client_secret: @gift_card.payment_intent.client_secret,
+      success_url: thank_you_gift_card_path(@gift_card)
+    }
+  end
+
+  def render_validation_errors_json
+    render(
+      status: :bad_request,
+      json: { error: { message: @gift_card.errors.full_messages.join(', ') } }
+    )
+  end
 
   def validate_months_parameter
     redirect_to gift_cards_path unless [1, 3, 6, 12].include?(params[:subscription_months_to_gift].to_i)
@@ -62,12 +71,26 @@ class GiftCardsController < ApplicationController
       :number_of_months, :customer_email, :message, :payment_intent_id
     ).to_h.symbolize_keys
 
-    # The following keeps compatibility for forms loaded before this deploy.
-    # Remove after this has been in production for a few hours or more.
-    attributes[:number_of_months] ||= params[:subscription_months_to_gift]
-    attributes[:customer_email] ||= params[:email]
-    attributes[:payment_intent_id] ||= params[:paymentIntentId]
+    # Don't create duplicate GiftCards if previous attempts weren't yet finalized
+    if (gift_card = gift_card_in_checkout)
+      gift_card.attributes = gift_card.attributes.merge(attributes)
+      return gift_card
+    end
 
     GiftCard.new(currency: current_region.currency, **attributes)
+  end
+
+  def gift_card_in_checkout
+    return unless session[:gift_card_in_checkout].present?
+
+    GiftCard.where(id: session[:gift_card_in_checkout], paid_at: nil).first
+  end
+
+  def set_gift_card_in_checkout
+    session[:gift_card_in_checkout] = @gift_card.id
+  end
+
+  def clear_gift_card_in_checkout
+    session[:gift_card_in_checkout] = nil
   end
 end

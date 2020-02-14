@@ -3,30 +3,42 @@
 require 'digest'
 
 class GiftCard < ApplicationRecord
+  class InvalidPaymentIntent < StandardError; end
+
   attribute :currency, :currency
   attribute :co2e, :greenhouse_gases
 
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
   validates :customer_email, email: true
-  validates_presence_of :key, :number_of_months, :price, :currency, :customer_email, :co2e, :payment_intent_id
+  validates_presence_of :key, :number_of_months, :price, :currency, :customer_email, :co2e
+  # Allow checking validation with payment_intent_id ignored, e.g. valid?(:without_payment_intent_id)
+  validates_presence_of :payment_intent_id, on: [:create, :update]
 
   after_initialize :set_co2e_and_price_if_new
   before_validation :generate_key
 
-  def calculate_current_price
-    Money.from_amount((price_per_month * number_of_months).to_i, currency)
-  end
-
   def create_payment_intent
-    payment_intent = Stripe::PaymentIntent.create(
+    return payment_intent if payment_intent.present?
+
+    @payment_intent = Stripe::PaymentIntent.create(
       amount: price.subunit_amount,
       currency: currency.iso_code,
-      description: "Gift Card #{number_of_months} months"
+      description: "Gift Card #{number_of_months} months",
+      metadata: { checkout_object: 'gift_card' }
     )
 
-    self.payment_intent_id = payment_intent.id
+    self.payment_intent_id = @payment_intent.id
 
-    payment_intent
+    @payment_intent
+  end
+
+  def finalize
+    return true if paid_at.present?
+    return false unless payment_intent&.status == 'succeeded'
+
+    update(paid_at: Time.now)
+    send_confirmation_email
+    true
   end
 
   def send_confirmation_email
@@ -39,8 +51,29 @@ class GiftCard < ApplicationRecord
     ).gift_card_email.deliver_now
   end
 
+  def update_from_payment_intent(payment_intent)
+    @payment_intent = payment_intent
+
+    case @payment_intent.status
+    when 'succeeded'
+      finalize
+    end
+  end
+
   def order_id
     "GCN-GIFT-#{id}"
+  end
+
+  def payment_intent
+    return nil if @payment_intent.nil? && payment_intent_id.nil?
+
+    @payment_intent ||= Stripe::PaymentIntent.retrieve(payment_intent_id)
+
+    unless @payment_intent.amount == price.subunit_amount && @payment_intent.currency == currency.iso_code.to_s
+      raise InvalidPaymentIntent
+    end
+
+    @payment_intent
   end
 
   def price
@@ -68,6 +101,10 @@ class GiftCard < ApplicationRecord
     # Average for Sweden * buffer / 12 months per year * number of months
     tonnes = 11.0 * 2 / 12 * number_of_months
     GreenhouseGases.new((tonnes * 1000).round)
+  end
+
+  def calculate_current_price
+    Money.from_amount((price_per_month * number_of_months).to_i, currency)
   end
 
   def price_per_month

@@ -25,7 +25,9 @@ export default class StripeCardElementController extends Controller {
   }
 
   invalidatePaymentMethodField() {
-    this.paymentMethodFieldTarget.value = '';
+    if (this.hasPaymentMethodFieldTarget) {
+      this.paymentMethodFieldTarget.value = '';
+    }
   }
 
   populatePaymentMethodField() {

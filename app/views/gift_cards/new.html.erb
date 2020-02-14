@@ -8,7 +8,7 @@
 </div>
 <div class="site-wrapper-second">
   <div class="inner">
-    <%= form_with model: @gift_card, id: "payment-form" do |f| %>
+    <%= form_with model: @gift_card, format: :json, html: { 'data-controller': 'checkout-form', 'data-action': 'checkout-form#submit' } do |f| %>
       <p><%=t 'views.gift_cards.new.we_will_send_you_pdf' %></p>
 
       <p><%= link_to t('views.gift_cards.new.click_here_for_an_example'), example_certificate_gift_cards_path(subscription_months_to_gift: params[:subscription_months_to_gift], format: :pdf), class: 'example-gift-card' %></p>
@@ -39,29 +39,23 @@
 
         <div class="form-group">
           <%= label_tag :email, t('email') %>
-          <%= f.email_field :customer_email, required: '', id: "email", class: "form-control" %>
+          <%= f.email_field :customer_email, required: '', class: "form-control" %>
         </div>
 
-        <div id="current-card-group" class="form-group">
+        <div class="form-group" data-controller="stripe-card-element" data-target="checkout-form.stripeCardElement">
           <label for="card">
             <%=t 'credit_or_debit_card' %>
           </label>
-          <div id="card">
-            <div id="card-element" class="form-control">
-              <!-- a Stripe Element will be inserted here. -->
-            </div>
-          </div>
+          <div class="form-control" data-target="stripe-card-element.container"></div>
+          <div class="help-block text-warning hidden-when-empty" data-target="stripe-card-element.errors"></div>
         </div>
 
-        <div id="card-errors"></div>
-
-        <div id="error_explanation" class="hidden"> </div>
+        <p class="text-warning hidden-when-empty" data-target="checkout-form.errorMessage"></p>
 
         <%= f.hidden_field :number_of_months %>
-        <%= f.hidden_field :payment_intent_id %>
 
-        <%= button_tag type: 'submit', id: 'checkout-button', class: 'btn btn-success btn-block' do %>
-          <i class="fa fa-spinner fa-spin hidden" id="button-spinner"></i>
+        <%= button_tag type: 'submit', 'data-target': 'checkout-form.submitButton', class: 'btn btn-success btn-block' do %>
+          <i class="fa fa-spinner fa-spin hidden" data-target="checkout-form.loadingIndicator"></i>
           <%= t('views.gift_cards.new.pay') %>
         <% end %>
       </div>
@@ -71,18 +65,3 @@
 </div>
 
 <%= render "shared/footer" %>
-
-<% content_for :javascript_tags do %>
-  <script type="text/javascript">
-    window.addEventListener('DOMContentLoaded', function() {
-      new StripeCardPayment(
-        document.getElementById('payment-form'),
-        document.getElementById('card-errors'),
-        document.getElementById('checkout-button'),
-        document.getElementById('button-spinner'),
-        "<%= @payment_intent.client_secret %>",
-        "#card-element"
-      )
-    })
-  </script>
-<% end %>

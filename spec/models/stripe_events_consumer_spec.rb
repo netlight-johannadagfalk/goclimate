@@ -179,5 +179,39 @@ RSpec.describe StripeEventsConsumer do
         end.to(change { User.find(user.id).subscription_end_at })
       end
     end
+
+    describe 'with payment intent event' do
+      let(:event) { Stripe::Event.construct_from(stripe_json_fixture('event_payment_intent_successful.json')) }
+
+      it 'does nothing if no gift card owns the payment intent' do
+        expect do
+          consumer.process(event)
+        end.not_to raise_error
+      end
+
+      context 'when gift card exists' do
+        let(:gift_card) do
+          create(
+            :gift_card,
+            payment_intent_id: event.data.object.id,
+            price: event.data.object.amount,
+            currency: event.data.object.currency
+          )
+        end
+
+        before do
+          gift_card # Trigger creation of gift card
+          # Stub out slow PDF generation
+          allow_any_instance_of(GiftCardCertificatePdf).to receive(:render).and_return('fake pdf') # rubocop:disable RSpec/AnyInstance
+        end
+
+        it 'finalizes Gift Card' do
+          consumer.process(event)
+
+          gift_card.reload
+          expect(gift_card.paid_at).to be_present
+        end
+      end
+    end
   end
 end
