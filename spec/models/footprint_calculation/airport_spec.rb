@@ -37,6 +37,32 @@ RSpec.describe FootprintCalculation::Airport do
     end
   end
 
+  describe '.search' do
+    it 'returns airports including the provided string' do
+      results = described_class.search('Arlanda')
+
+      expect(results).to include(described_class.find('ARN'))
+    end
+
+    it 'is case insensitive' do
+      results = described_class.search('arlanda')
+
+      expect(results).to include(described_class.find('ARN'))
+    end
+
+    it 'returns airport with IATA code equal to provided string' do
+      results = described_class.search('arn')
+
+      expect(results).to include(described_class.find('ARN'))
+    end
+
+    it 'returns airport matched by code first in list' do
+      results = described_class.search('arn')
+
+      expect(results.first).to eq(described_class.find('ARN'))
+    end
+  end
+
   describe '#distance_to' do
     let(:arn) { described_class.find('ARN') }
     let(:jfk) { described_class.find('JFK') }

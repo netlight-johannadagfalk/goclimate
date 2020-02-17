@@ -5,9 +5,7 @@ import 'whatwg-fetch';
 import 'core-js/features/promise';
 
 /* Polyfills for Stimulus */
-import 'core-js/features/array/find';
-import 'core-js/features/array/find-index';
-import 'core-js/features/array/from';
+import 'core-js/features/array';
 import 'core-js/features/map';
 import 'core-js/features/object/assign';
 import 'core-js/features/set';
