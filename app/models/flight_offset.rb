@@ -7,6 +7,7 @@ class FlightOffset < ApplicationRecord
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
 
   before_validation :generate_key
+  before_save :set_renamed_fields
 
   def to_param
     key
@@ -26,6 +27,13 @@ class FlightOffset < ApplicationRecord
   end
 
   private
+
+  def set_renamed_fields
+    return unless has_attribute?(:price)
+
+    self.price = charged_amount
+    self.currency = charged_currency
+  end
 
   def generate_key
     self.key = SecureRandom.hex(20) unless key.present?
