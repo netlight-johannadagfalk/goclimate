@@ -19,20 +19,22 @@ class FlightOffsetsController < ApplicationController
   end
 
   def create
-    @checkout = FlightOffsetCheckout.new(
-      payment_intent: Stripe::PaymentIntent.retrieve(params[:paymentIntentId]),
-      amount: amount_from_params,
+    payment_intent = Stripe::PaymentIntent.retrieve(params[:paymentIntentId])
+
+    @offset = FlightOffset.new(
+      payment_intent_id: payment_intent.id,
+      price: amount_from_params,
       co2e: params[:co2e],
       email: params[:email]
     )
 
-    unless @checkout.checkout
+    unless @offset.save
       new
       render :new
       return
     end
 
-    @offset = @checkout.offset
+    @offset.send_confirmation_email
 
     redirect_to thank_you_flight_offset_path(@offset)
   end

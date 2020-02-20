@@ -3,11 +3,21 @@
 require 'securerandom'
 
 class FlightOffset < ApplicationRecord
-  validates_presence_of :co2e, :charged_amount, :charged_currency, :email, :stripe_charge_id
+  attribute :currency, :currency
+  attribute :co2e, :greenhouse_gases
+
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
+  validates :email, email: true
+  validates_presence_of :co2e, :price, :currency, :email, :payment_intent_id
 
   before_validation :generate_key
-  before_save :set_renamed_fields
+
+  def send_confirmation_email
+    FlightOffsetMailer.with(
+      flight_offset: self,
+      certificate_pdf: FlightOffsetCertificatePdf.new(self).render
+    ).flight_offset_email.deliver_now
+  end
 
   def to_param
     key
@@ -17,23 +27,22 @@ class FlightOffset < ApplicationRecord
     "GCN-FLIGHT-#{id}"
   end
 
-  def charged_money
-    Money.new(charged_amount, Currency.from_iso_code(charged_currency))
+  def price
+    value = super
+    Money.new(value, currency) if value.present?
   end
 
-  def charged_money=(money)
-    self.charged_amount = money.subunit_amount
-    self.charged_currency = money.currency.iso_code.to_s
+  def price=(price)
+    if price.is_a?(Money)
+      self.currency = price.currency
+      super(price.subunit_amount)
+      return
+    end
+
+    super(price)
   end
 
   private
-
-  def set_renamed_fields
-    return unless has_attribute?(:price)
-
-    self.price = charged_amount
-    self.currency = charged_currency
-  end
 
   def generate_key
     self.key = SecureRandom.hex(20) unless key.present?

@@ -25,11 +25,11 @@ class FlightOffsetReceiptPdf
   end
 
   def currency
-    flight_offset.charged_currency
+    flight_offset.currency
   end
 
   def total_amount
-    flight_offset.charged_amount.to_d / 100
+    flight_offset.price.subunit_amount.to_d / 100
   end
 
   def vat_amount

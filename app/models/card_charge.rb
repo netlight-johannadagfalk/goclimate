@@ -19,7 +19,7 @@ class CardCharge < ApplicationRecord
       paid: charge.paid,
       currency: charge.currency,
       gift_card: charge.description&.include?('Gift Card') || false,
-      flight_offset: charge.description&.include?(FlightOffsetCheckout::STRIPE_DESCRIPTION) || false,
+      flight_offset: charge.description&.include?('Flight offset') || false,
       description: charge.description
     )
   end

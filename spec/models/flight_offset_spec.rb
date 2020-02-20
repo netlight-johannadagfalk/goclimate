@@ -3,6 +3,46 @@
 require 'rails_helper'
 
 RSpec.describe FlightOffset do
+  describe '#send_confirmation_email' do
+    subject(:flight_offset) { create(:flight_offset) }
+
+    let(:fake_pdf) { 'fake pdf' }
+    let(:certificate_generator_stub) do
+      instance_double(FlightOffsetCertificatePdf).tap do |pdf_generator|
+        allow(pdf_generator).to receive(:render).and_return(fake_pdf)
+      end
+    end
+
+    before do
+      allow(FlightOffsetCertificatePdf).to receive(:new).and_return(certificate_generator_stub)
+      allow(FlightOffsetMailer).to receive_message_chain(:with, :flight_offset_email, :deliver_now)
+    end
+
+    it 'sends confirmation email' do
+      expect(FlightOffsetMailer).to receive_message_chain(:with, :flight_offset_email, :deliver_now)
+
+      flight_offset.send_confirmation_email
+    end
+
+    it 'sets FlightOffset for mailer' do
+      flight_offset.send_confirmation_email
+
+      expect(FlightOffsetMailer).to have_received(:with).with(hash_including(flight_offset: flight_offset))
+    end
+
+    it 'includes a generated pdf in sent email' do
+      flight_offset.send_confirmation_email
+
+      expect(FlightOffsetMailer).to have_received(:with).with(hash_including(certificate_pdf: fake_pdf))
+    end
+
+    it 'uses flight offset when generating pdf' do
+      flight_offset.send_confirmation_email
+
+      expect(FlightOffsetCertificatePdf).to have_received(:new).with(flight_offset)
+    end
+  end
+
   describe '#co2e' do
     it 'validates presence' do
       flight_offset = described_class.new
@@ -11,19 +51,43 @@ RSpec.describe FlightOffset do
     end
   end
 
-  describe '#charged_amount' do
+  describe '#price' do
     it 'validates presence' do
       flight_offset = described_class.new
       flight_offset.validate
-      expect(flight_offset.errors).to have_key(:charged_amount)
+      expect(flight_offset.errors).to have_key(:price)
+    end
+
+    it 'returns a Money' do
+      flight_offset = build(:flight_offset, price: 100_00, currency: :sek)
+
+      expect(flight_offset.price).to eq(Money.new(100_00, :sek))
     end
   end
 
-  describe '#charged_currency' do
+  describe '#price=' do
+    it 'sets currency when provided with a Money' do
+      flight_offset = build(:flight_offset)
+
+      flight_offset.price = Money.new(150_00, :sek)
+
+      expect(flight_offset.currency).to eq(Currency::SEK)
+    end
+
+    it 'sets price as subunit amount when provided with a Money' do
+      flight_offset = build(:flight_offset)
+
+      flight_offset.price = Money.new(200_00, :sek)
+
+      expect(flight_offset.price_before_type_cast).to eq(200_00)
+    end
+  end
+
+  describe '#currency' do
     it 'validates presence' do
       flight_offset = described_class.new
       flight_offset.validate
-      expect(flight_offset.errors).to have_key(:charged_currency)
+      expect(flight_offset.errors).to have_key(:currency)
     end
   end
 
@@ -35,11 +99,11 @@ RSpec.describe FlightOffset do
     end
   end
 
-  describe '#stripe_charge_id' do
+  describe '#payment_intent_id' do
     it 'validates presence' do
       flight_offset = described_class.new
       flight_offset.validate
-      expect(flight_offset.errors).to have_key(:stripe_charge_id)
+      expect(flight_offset.errors).to have_key(:payment_intent_id)
     end
   end
 
@@ -80,26 +144,6 @@ RSpec.describe FlightOffset do
       offset = create(:flight_offset)
 
       expect(offset.to_param).to eq(offset.key)
-    end
-  end
-
-  describe '#charged_money' do
-    it 'returns charged_amount and charged_currency wrapped in Money' do
-      offset = build(:flight_offset)
-
-      expect(offset.charged_money).to eq(Money.new(4200, Currency::SEK))
-    end
-  end
-
-  describe '#charged_money=' do
-    subject(:offset) { described_class.new(charged_money: Money.new(3100, Currency::USD)) }
-
-    it 'sets charged_amount' do
-      expect(offset.charged_amount).to eq(3100)
-    end
-
-    it 'sets charged_currency' do
-      expect(offset.charged_currency).to eq(Currency::USD.iso_code.to_s)
     end
   end
 end
