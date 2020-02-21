@@ -50,6 +50,8 @@ class StripeEventsConsumer
     case payment_intent.metadata.checkout_object
     when 'gift_card'
       GiftCard.find_by_payment_intent_id(payment_intent.id)&.update_from_payment_intent(payment_intent)
+    when 'flight_offset'
+      FlightOffset.find_by_payment_intent_id(payment_intent.id)&.update_from_payment_intent(payment_intent)
     end
   end
 

@@ -2,62 +2,72 @@
 
 class FlightOffsetsController < ApplicationController
   def new
-    @num_persons = (params[:num_persons].presence || 1).to_i
-    @offset_params = FlightOffsetParameters.from_s(params[:offset_params])
-
+    @flight_footprint = flight_footprint_from_params
+    @num_persons = num_persons_from_params
     @footprint_per_person = footprint_per_person
-    @total_footprint = @footprint_per_person * @num_persons
 
-    @price = @total_footprint.consumer_price(current_region.currency)
-    @projects = Project.order(id: :desc).limit(2)
-
-    @payment_intent = Stripe::PaymentIntent.create(
-      amount: @price.subunit_amount,
-      currency: @price.currency,
-      description: 'Flight offset'
+    @offset = FlightOffset.new(
+      co2e: @footprint_per_person * @num_persons,
+      currency: current_region.currency
     )
+
+    @projects = Project.order(id: :desc).limit(2)
   end
 
   def create
-    payment_intent = Stripe::PaymentIntent.retrieve(params[:paymentIntentId])
-
     @offset = FlightOffset.new(
-      payment_intent_id: payment_intent.id,
-      price: amount_from_params,
-      co2e: params[:co2e],
-      email: params[:email]
+      params.require(:flight_offset).permit(:co2e, :currency, :email)
     )
 
-    unless @offset.save
-      new
-      render :new
-      return
-    end
+    render_validation_errors_json && return unless @offset.valid?(:without_payment_intent_id)
 
-    @offset.send_confirmation_email
+    @offset.create_payment_intent
+    @offset.save!
 
-    redirect_to thank_you_flight_offset_path(@offset)
+    render_payment_intent_json
   end
 
   def thank_you
     @offset = FlightOffset.find_by_key!(params[:key])
+
+    render_not_found unless @offset.finalize
   end
 
   private
+
+  def render_payment_intent_json
+    render json: {
+      payment_intent_client_secret: @offset.payment_intent.client_secret,
+      success_url: thank_you_flight_offset_path(@offset)
+    }
+  end
+
+  def render_validation_errors_json
+    render(
+      status: :bad_request,
+      json: { error: { message: @offset.errors.full_messages.join(', ') } }
+    )
+  end
+
+  def flight_footprint_from_params
+    offset_params = FlightOffsetParameters.from_s(params[:offset_params])
+
+    FootprintCalculation::FlightFootprint.new(
+      cabin_class: offset_params.cabin_class,
+      segments: offset_params.segments
+    )
+  end
+
+  def num_persons_from_params
+    (params[:num_persons].presence || 1).to_i
+  end
 
   def footprint_per_person
     # footprint_per_person param is for partners with own co2 calculation
     # only used temporarily by flygresor.se
     return GreenhouseGases.new(params[:footprint_per_person].to_i) if params[:footprint_per_person].present?
 
-    FootprintCalculation::FlightFootprint.new(
-      cabin_class: @offset_params.cabin_class,
-      segments: @offset_params.segments
-    ).footprint
-  end
-
-  def amount_from_params
-    Money.from_amount(params[:amount], Currency.from_iso_code(params[:currency]))
+    @flight_footprint.footprint
   end
 
   protected

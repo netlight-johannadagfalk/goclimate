@@ -3,7 +3,6 @@ import { Controller } from 'stimulus';
 export default class CheckoutFormController extends Controller {
   initialize() {
     this.loading = false;
-    this.updateSubmitButton();
   }
 
   submit(event) {

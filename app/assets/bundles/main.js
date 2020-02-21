@@ -68,7 +68,6 @@ import '../stylesheets/components/tonnes_label.scss';
 import '../javascripts/components/business_offset_calculator';
 import '../javascripts/components/counting_number';
 import '../javascripts/components/projects_map_marker';
-import '../javascripts/components/stripe_card_payment';
 import '../javascripts/welcome';
 import '../javascripts/dashboard';
 import '../javascripts/users';

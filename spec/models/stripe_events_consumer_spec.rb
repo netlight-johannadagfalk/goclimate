@@ -180,7 +180,7 @@ RSpec.describe StripeEventsConsumer do
       end
     end
 
-    describe 'with payment intent event' do
+    describe 'with payment intent event for gift card' do
       let(:event) { Stripe::Event.construct_from(stripe_json_fixture('event_payment_intent_successful.json')) }
 
       it 'does nothing if no gift card owns the payment intent' do
@@ -210,6 +210,40 @@ RSpec.describe StripeEventsConsumer do
 
           gift_card.reload
           expect(gift_card.paid_at).to be_present
+        end
+      end
+    end
+
+    describe 'with payment intent event for flight offset' do
+      let(:event) { Stripe::Event.construct_from(stripe_json_fixture('event_payment_intent_flight_offset_successful.json')) }
+
+      it 'does nothing if no flight offset owns the payment intent' do
+        expect do
+          consumer.process(event)
+        end.not_to raise_error
+      end
+
+      context 'when gift card exists' do
+        let(:offset) do
+          create(
+            :flight_offset,
+            payment_intent_id: event.data.object.id,
+            price: event.data.object.amount,
+            currency: event.data.object.currency
+          )
+        end
+
+        before do
+          offset # Trigger creation of gift card
+          # Stub out slow PDF generation
+          allow_any_instance_of(FlightOffsetCertificatePdf).to receive(:render).and_return('fake pdf') # rubocop:disable RSpec/AnyInstance
+        end
+
+        it 'finalizes flight offset' do
+          consumer.process(event)
+
+          offset.reload
+          expect(offset.paid_at).to be_present
         end
       end
     end
