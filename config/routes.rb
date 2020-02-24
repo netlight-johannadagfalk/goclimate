@@ -76,7 +76,12 @@ Rails.application.routes.draw do
     get 'partners/flygcity'
 
     # Flight one time offsets
-    resources :flight_offsets, only: [:new, :create], param: :key do
+    resources :flight_footprints, path: 'flights', only: [:new, :create], path_names: { new: '' } do
+      collection do
+        resources :airport_suggestions, only: [:index], format: true, constraints: { format: :json }
+      end
+    end
+    resources :flight_offsets, only: [:index, :new, :create], param: :key do
       member do
         get 'thank_you'
         scope format: true, constraints: { format: :pdf } do

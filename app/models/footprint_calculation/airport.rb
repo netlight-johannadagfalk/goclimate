@@ -22,6 +22,24 @@ module FootprintCalculation
       @airports[iata_code] || raise(NotFoundError)
     end
 
+    def self.search(query)
+      results = @airports.values.filter do |airport|
+        airport.iata_code.start_with?(query.upcase) ||
+          airport.name.downcase.include?(query.downcase)
+      end
+
+      iata_code_results = []
+
+      results.delete_if do |result|
+        if result.iata_code.start_with?(query.upcase)
+          iata_code_results << result
+          true
+        end
+      end
+
+      iata_code_results + results
+    end
+
     def self.from_csv(line)
       new(line['iata_code'], line['name'], line['name_sv'], line['latitude'].to_f, line['longitude'].to_f)
     end
@@ -44,6 +62,10 @@ module FootprintCalculation
 
     def name_sv
       @name_sv.presence || name
+    end
+
+    def inspect
+      @iata_code
     end
   end
 end

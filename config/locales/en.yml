@@ -518,12 +518,23 @@ en:
         and are supported by 80 environmental organizations - including the WWF.
       do_you_want_to_continue: Do you want to offset your full carbon footprint?
       register: Visit <a href="http://goclimateneutral.org">GoClimateNeutral</a> to register!
+    flight_footprints:
+      new:
+        flight_details: Your flight details
+        from: From
+        to: To
+        roundtrip: Roundtrip
+        connections: Connections
+        connections_return: Connections on return trip
+        add_connection: Add connection
+        cabin_class: Cabin class
     flight_offsets:
       new:
         header: Offset your flight
         header_description: To carbon offset is to take responsiblity for your climate footprint. We offer the possibility to offset your flight in certified climate projects.
         your_order: Your order
         flight_in_cabin_class: Flight in cabin class
+        carbon_footprint: Carbon footprint
         person: person
         people: people
         total: Total
