@@ -3,11 +3,59 @@
 require 'securerandom'
 
 class FlightOffset < ApplicationRecord
-  validates_presence_of :co2e, :charged_amount, :charged_currency, :email, :stripe_charge_id
-  validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
+  class InvalidPaymentIntentError < StandardError; end
 
+  attribute :currency, :currency
+  attribute :co2e, :greenhouse_gases
+
+  validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
+  validates :email, email: true
+  validates_presence_of :co2e, :price, :currency, :email
+  # Allow checking validation with payment_intent_id ignored, e.g. valid?(:without_payment_intent_id)
+  validates_presence_of :payment_intent_id, on: [:create, :update]
+
+  after_initialize :set_price_if_unset
   before_validation :generate_key
-  before_save :set_renamed_fields
+
+  def create_payment_intent
+    return payment_intent if payment_intent.present?
+
+    @payment_intent = Stripe::PaymentIntent.create(
+      amount: price.subunit_amount,
+      currency: currency.iso_code,
+      description: 'Flight offset',
+      metadata: { checkout_object: 'flight_offset' }
+    )
+
+    self.payment_intent_id = @payment_intent.id
+
+    @payment_intent
+  end
+
+  def finalize
+    return true if paid_at.present?
+    return false unless payment_intent&.status == 'succeeded'
+
+    update(paid_at: Time.now)
+    send_confirmation_email
+    true
+  end
+
+  def send_confirmation_email
+    FlightOffsetMailer.with(
+      flight_offset: self,
+      certificate_pdf: FlightOffsetCertificatePdf.new(self).render
+    ).flight_offset_email.deliver_now
+  end
+
+  def update_from_payment_intent(payment_intent)
+    @payment_intent = payment_intent
+
+    case @payment_intent.status
+    when 'succeeded'
+      finalize
+    end
+  end
 
   def to_param
     key
@@ -17,22 +65,37 @@ class FlightOffset < ApplicationRecord
     "GCN-FLIGHT-#{id}"
   end
 
-  def charged_money
-    Money.new(charged_amount, Currency.from_iso_code(charged_currency))
+  def payment_intent
+    return nil if @payment_intent.nil? && payment_intent_id.nil?
+
+    @payment_intent ||= Stripe::PaymentIntent.retrieve(payment_intent_id)
+
+    unless @payment_intent.amount == price.subunit_amount && @payment_intent.currency == currency.iso_code.to_s
+      raise InvalidPaymentIntentError
+    end
+
+    @payment_intent
   end
 
-  def charged_money=(money)
-    self.charged_amount = money.subunit_amount
-    self.charged_currency = money.currency.iso_code.to_s
+  def price
+    value = super
+    Money.new(value, currency) if value.present?
+  end
+
+  def price=(price)
+    if price.is_a?(Money)
+      self.currency = price.currency
+      super(price.subunit_amount)
+      return
+    end
+
+    super(price)
   end
 
   private
 
-  def set_renamed_fields
-    return unless has_attribute?(:price)
-
-    self.price = charged_amount
-    self.currency = charged_currency
+  def set_price_if_unset
+    self.price ||= co2e.consumer_price(currency) if co2e.present? && currency.present?
   end
 
   def generate_key

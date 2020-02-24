@@ -24,13 +24,13 @@ RSpec.describe FlightOffsetReceiptPdf do
 
   describe '#currency' do
     it 'returns Flight offset currency' do
-      expect(receipt.currency).to eq(offset.charged_currency)
+      expect(receipt.currency).to eq(offset.currency)
     end
   end
 
   describe '#total_amount' do
     it 'returns amount from Flight Offset' do
-      offset.charged_amount = 800
+      offset.price = 800
 
       expect(receipt.total_amount).to eq(8)
     end
@@ -38,13 +38,13 @@ RSpec.describe FlightOffsetReceiptPdf do
 
   describe '#vat_amount' do
     it 'returns amount based on 25% VAT on charged amount in flight offset' do
-      offset.charged_amount = 800
+      offset.price = 800
 
       expect(receipt.vat_amount).to eq(BigDecimal('1.60'))
     end
 
     it 'rounds VAT amount to nearest 2 decimals' do
-      offset.charged_amount = 822
+      offset.price = 822
 
       expect(receipt.vat_amount).to eq(BigDecimal('1.64'))
     end
@@ -52,7 +52,7 @@ RSpec.describe FlightOffsetReceiptPdf do
 
   describe '#total_amount_before_vat' do
     it 'returns total amount minus VAT amount' do
-      offset.charged_amount = 822
+      offset.price = 822
 
       expect(receipt.total_amount_before_vat).to eq(BigDecimal('6.58'))
     end
