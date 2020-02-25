@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Flight offsets</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Created</th>
+      <th>Paid</th>
+      <th>Price</th>
+      <th>CO2e</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @flight_offsets.each do |flight_offset| %>
+      <tr>
+        <td><%= flight_offset.created_at %></td>
+        <td><%= flight_offset.paid_at %></td>
+        <td><%= flight_offset.price %></td>
+        <td><%= flight_offset.co2e %></td>
+        <td><%= flight_offset.email %></td>
+        <td class="admin-actions">
+          <%= link_to 'Show', [:admin, flight_offset] %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<%= link_to 'New Flight offset', new_admin_flight_offset_path, class: 'btn btn-default' %>

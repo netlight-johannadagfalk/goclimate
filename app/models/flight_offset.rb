@@ -11,8 +11,6 @@ class FlightOffset < ApplicationRecord
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
   validates :email, email: true
   validates_presence_of :co2e, :price, :currency, :email
-  # Allow checking validation with payment_intent_id ignored, e.g. valid?(:without_payment_intent_id)
-  validates_presence_of :payment_intent_id, on: [:create, :update]
 
   after_initialize :set_price_if_unset
   before_validation :generate_key

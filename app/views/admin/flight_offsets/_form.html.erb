@@ -1,0 +1,29 @@
+<%= form_for([:admin, flight_offset]) do |f| %>
+  <% if flight_offset.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(flight_offset.errors.count, "error") %> prohibited this flight offset from being saved:</h2>
+
+      <ul>
+      <% flight_offset.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    Use <%= link_to 'our flights calculator', new_flight_footprint_path %> to get the co2e value
+  </p>
+
+  <div class="form-group">
+    <%= f.label :co2e, 'CO2e' %> (in kg CO2e)
+    <%= f.number_field :co2e, value: f.object.co2e&.co2e, required: '', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, required: '', class: 'form-control' %>
+  </div>
+
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>

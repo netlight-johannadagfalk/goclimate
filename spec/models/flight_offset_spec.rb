@@ -333,14 +333,6 @@ RSpec.describe FlightOffset do
     end
   end
 
-  describe '#payment_intent_id' do
-    it 'validates presence' do
-      flight_offset = described_class.new
-      flight_offset.validate
-      expect(flight_offset.errors).to have_key(:payment_intent_id)
-    end
-  end
-
   describe '#key' do
     it 'validates key to be unique' do
       existing = create(:flight_offset, key: 'a9993e364706816aba3e25717850c26c9cd0d89d')
