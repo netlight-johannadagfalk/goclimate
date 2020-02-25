@@ -29,6 +29,7 @@
               <a href="#" class="dropdown-toggle" id="user-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.user_name.nil? || current_user.user_name.empty? ? current_user.email : current_user.user_name %><span class="caret"></span> </a> 
               <ul class="dropdown-menu" aria-labelledby="user-menu"> 
                 <li><a href="<%= dashboard_path %>">Dashboard</a></li>
+                <li><%= link_to t('views.shared.header.navigation.offset_flight'), new_flight_footprint_path %></li>
                 <li><a href="<%= edit_user_registration_path %>"><%=t 'settings' %></a></li>
                 <li role="separator" class="divider"></li> 
                 <li><%= link_to(I18n.t('log_out'), destroy_user_session_path, :method => :delete) %></li> 

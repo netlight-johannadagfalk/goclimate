@@ -550,6 +550,8 @@ en:
         read_more_and_subscribe: Read more and subscribe
     shared:
       header:
+        navigation:
+          offset_flight: Offset flight emissions
         region_recommendation:
           select_country: Select your country or region so that we can show the best information for you.
           continue_button: "Continue to %{region}"

@@ -570,6 +570,8 @@ sv:
         read_more_and_subscribe: Läs mer och bli medlem
     shared:
       header:
+        navigation:
+          offset_flight: Kompensera flygresa
         region_recommendation:
           select_country: Välj ditt land eller område så att vi kan visa information som passar bäst för dig.
           continue_button: "Fortsätt till %{region}"
