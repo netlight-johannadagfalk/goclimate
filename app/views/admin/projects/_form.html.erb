@@ -54,7 +54,7 @@
 
   <div class="form-group">
     <%= f.label :co2e %> (in kg CO2e)
-    <%= f.number_field :co2e, value: f.object.co2e.co2e, class: 'form-control' %>
+    <%= f.number_field :co2e, value: f.object.co2e&.co2e, class: 'form-control' %>
   </div>
 
   <div class="form-group">
