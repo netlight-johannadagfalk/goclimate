@@ -21,8 +21,9 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :email %>
+    <%= f.label :email %> (recipient of certificate)
     <%= f.text_field :email, required: '', class: 'form-control' %>
+    <span class="help-block">Will not send an email, though ¯\_(ツ)_/¯.</span>
   </div>
 
   <%= f.submit class: 'btn btn-primary' %>
