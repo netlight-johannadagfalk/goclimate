@@ -6,7 +6,7 @@
   },
   "scripts": {
     "build": "webpack --config config/webpack/config.js",
-    "webpack-dev-server": "webpack-dev-server --config config/webpack/config.js"
+    "dev": "webpack-dev-server --config config/webpack/config.js"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",

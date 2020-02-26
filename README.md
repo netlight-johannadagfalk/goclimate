@@ -126,20 +126,18 @@ always select freely from all ideas based on what outcome we currently focus on.
     * Note that this will also install native dependency `wkhtmltopdf` (a binary needed for PDF generation). See Gemfile.
   * `brew install postgresql geckodriver` 
   * [Get Firefox](https://www.mozilla.org/en-US/firefox/)
-* Install project-specific dependencies.
-  * `bundle install`
-  * `bin/yarn install`
 * Setup the database
   * `initdb db/goclimateneutral`
   * `pg_ctl -D db/goclimateneutral -l logfile start`
-  * `bin/rails db:setup db:seed`
 * Set environment variables.
   * Copy `.env.sample` to `.env` and add your keys to the file. You will at least need to set the 2 keys for Stripe to get the tests passing.
+* Run the setup command that installs project-specific dependencies.
+  * `bin/setup`
 
 ## Developing
 
 * Run the development server: `bin/rails server`
-* If you're doing front-end work, Webpack dev server gives you hot realoding of JS & CSS: `bin/yarn run webpack-dev-server`
+* If you're doing front-end work, Webpack dev server gives you hot realoding of JS & CSS: `bin/yarn dev`
 * Watch for updates and continuosly run relevant specs & linters: `bin/guard`
 * Run Ruby tests: `bin/rspec`
 * Run Ruby linter: `bin/rubocop`
