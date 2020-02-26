@@ -7,10 +7,28 @@ This is the code that runs [http://goclimateneutral.org](http://goclimateneutral
 ## What the app does
 
 GoClimateNeutral makes it easy for everyone to take meaningful action for the
-climate. Read more about the goals & vision at [our DNA page on
-Notion](https://www.notion.so/goclimateneutral/DNA-f97c8cd8d8ea4640bc2a8f9af19e4bd0).
-See also strategy & current focus areas on [the Big Picture board on
-Trello](https://trello.com/b/2MQUzhNh/big-picture).
+climate.
+
+## Contributing
+
+Work is primarily focused on reaching outcomes of the theme that our internal
+team currently focuses on.
+
+As an external collaborator, we welcome you to open issues or, if you're
+proficient in Ruby, work on tech improvments that are marked ready to work on
+in GitHub Issues. We ask you to not work on new features without first
+coordinating with us, as new features introduce maintenance that we need to
+take into account.
+
+### Reporting issues & feature ideas
+
+- Report technical debt and refactorings as issues here on GitHub.
+- Please share any product ideas with us at info@goclimateneutral.org. We keep
+  a list of ideas on an internal idea board.
+
+Keep in mind that none of these are "backlogs" in the traditional sense (we
+have no backlogs). We only commit to work when we're about to start it and
+always select freely from all ideas based on what outcome we currently focus on.
 
 ## The domain & models
 
@@ -24,10 +42,10 @@ Our domain consists of:
 
 | Model                 | Description                                         |
 | ----------------------|-----------------------------------------------------|
-| Greenhouse gases      | An amount of greenhouse gases, either estimated emissions or offset amount. We use the term `co2e` and always store this in kg's |
+| `GreenhouseGases`     | An amount of greenhouse gases, either estimated emissions or offset amount. We use the term `co2e` and always store this in kg's |
 | `Project`             | A carbon offsetting project. These are the credits we sell through our products. |
-| Money                 | An amount and a currency. Amounts are stored and processed as smallest units (cents/öres). |
-| Region                | A named region with a combination of language and currency. Each region corresponds to their own base URL for SEO reasons. (Not yet implemented.) |
+| `Money`               | An amount and a currency. Amounts are stored and processed as smallest units (cents/öres). |
+| `Region`              | A named region with a combination of language and currency. Each region corresponds to their own base URL for SEO reasons. (Not yet implemented.) |
 
 ### Calculators
 
@@ -86,38 +104,15 @@ what](https://chris.beams.io/posts/git-commit/).
 Follow linter config (open a PR with rule changes if you disagree) and write
 tests according to [Better Specs](http://www.betterspecs.org).
 
-## Contributing
+## Getting started
 
-Work is primarily focused on reaching outcomes of the theme we currently
-focus on. See [Produktutveckling on Trello](https://trello.com/b/7PE8N0si).
-
-If you have slack time or need a break, pick any tech story from issues here
-on GitHub, or pick up something from [Produktidéer on
-Trello](https://trello.com/b/oNCHkN2R). Remember to always keep
-non-prioritied work isolated and without introducing maintenance costs.
-
-### Pull Requests
-
-Open a Pull Request and ask for a review from at least one other person. After
-review, merge your own code and make sure it deploys well. We tend to do
-regular merges as opposed to rebase/squashes to keep history intact.
-
-### Reporting issues & feature ideas
-
-- Report technical debt and refactorings as issues here on GitHub.
-- Product ideas go to [Produktidéer on Trello](https://trello.com/b/oNCHkN2R).
-
-Keep in mind that none of these are "backlogs" in the traditional sense (we
-have no backlogs). We only commit to work when we're about to start it and
-always select freely from all ideas based on what outcome we currently focus on.
-
-## Requirements
+### Requirements
 
 * Ruby and bundler (see `.ruby-version`)
 * PostgreSQL
 * Firefox and geckodriver
 
-## Getting started
+### Setup
 
 * Install dependencies. 
   * [Install Ruby](https://www.ruby-lang.org/en/documentation/installation/).
@@ -163,3 +158,11 @@ If you need to reset your database:
 
 * `lsof -i :3000`
 * Kill the process
+
+## License
+
+All source code and assets are © GoClimateNeutral. All rights reserved.
+
+We are considering opening up our source code with an open source license, but
+have not yet found the right license. If you have any experience or
+suggestions, please open an issue.
