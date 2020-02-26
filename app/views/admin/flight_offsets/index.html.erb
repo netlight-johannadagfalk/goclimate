@@ -19,8 +19,8 @@
   <tbody>
     <% @flight_offsets.each do |flight_offset| %>
       <tr>
-        <td><%= flight_offset.created_at %></td>
-        <td><%= flight_offset.paid_at %></td>
+        <td><%= time_tag(flight_offset.created_at, format: '%F %R') %></td>
+        <td><%= time_tag(flight_offset.paid_at, format: '%F %R') if flight_offset.paid_at.present? %></td>
         <td><%= flight_offset.price %></td>
         <td><%= flight_offset.co2e %></td>
         <td><%= flight_offset.email %></td>
