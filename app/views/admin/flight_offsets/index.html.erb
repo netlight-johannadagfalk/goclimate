@@ -23,7 +23,7 @@
         <td><%= flight_offset.co2e %></td>
         <td><%= flight_offset.email %></td>
         <td class="admin-actions">
-          <%= link_to 'Show', [:admin, flight_offset] %>
+          <%= link_to 'Show', admin_flight_offset_path(flight_offset.id) %>
         </td>
       </tr>
     <% end %>
