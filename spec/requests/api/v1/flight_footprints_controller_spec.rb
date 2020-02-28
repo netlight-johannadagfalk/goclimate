@@ -38,6 +38,20 @@ RSpec.describe Api::V1::FlightFootprintsController do
     )
   end
 
+  describe 'OPTIONS /v1/flight_footprint' do
+    it 'responds as with 200 OK' do
+      process :options, '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
+
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'responds with CORS headers' do
+      process :options, '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
+
+      expect(response.headers['Access-Control-Allow-Origin']).to eq('*')
+    end
+  end
+
   shared_examples 'GET /v1/flight_footprint' do
     it 'returns 200 OK for successful requests' do
       get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params

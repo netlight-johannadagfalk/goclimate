@@ -7,6 +7,10 @@ module Api
 
       before_action :set_cors_headers, :authorize
 
+      def cors_preflight
+        head :ok
+      end
+
       def url_options
         # API runs on a separate subdomain in production, so make sure the default
         # subdomain is always `www` for route helpers

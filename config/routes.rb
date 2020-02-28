@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   api = proc do
     namespace 'api', path: '', defaults: { subdomain: ENV['HEROKU_ENV'] == 'production' ? 'api' : false } do
       namespace 'v1', defaults: { format: :json }, constraints: { format: :json } do
+        match '*path', via: [:options], to: 'api#cors_preflight', as: nil
         resource :flight_footprint, only: [:show]
       end
 
