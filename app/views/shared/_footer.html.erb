@@ -6,11 +6,11 @@
         <div class="col-xs-12 col-sm-3 col-sm-offset-0 col-md-4 col-md-offset-1 text-left">
           <p><b>GoClimateNeutral</b></p>
           <p class="line-height-small"><%= t('views.shared.footer.short_intro') %></p>
-          <p>
-            <%= link_to 'Twitter', 'https://twitter.com/goclimateneutrl', target: "_blank" %> |
-            <%= link_to 'Instagram', 'https://www.instagram.com/goclimateneutral/', target: "_blank" %> |
-            <%= link_to 'Facebook', 'https://www.facebook.com/GoClimateNeutral', target: "_blank" %>
-          </p>
+          <ul class="list-unstyled social-media-icons">
+            <li><%= link_to raw('<i class="fa fa-2x fa-twitter" aria-hidden="true"></i>'), 'https://twitter.com/goclimateneutrl', target: "_blank" %></li>
+            <li><%= link_to raw('<i class="fa fa-2x fa-instagram" aria-hidden="true"></i>'), 'https://www.instagram.com/goclimateneutral/', target: "_blank" %></li>
+            <li><%= link_to raw('<i class="fa fa-2x fa-facebook" aria-hidden="true"></i>'), 'https://www.facebook.com/GoClimateNeutral', target: "_blank" %></li>
+          </ul>
         </div>
         <div class="col-xs-12 col-sm-3 col-md-2 text-left">
           <p><b><%= t('views.shared.footer.headers.make_a_difference') %></b></p>

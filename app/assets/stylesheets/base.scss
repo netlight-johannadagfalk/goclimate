@@ -298,11 +298,23 @@ input#plan {
 }
 .mastfoot {
   position: relative;
-  background-color: #fff;
+  background-color: #444;
+  color: #fff;
+}
+.mastfoot a, .mastfoot a:visited, .mastfoot a:hover {
+  color: #fff;
 }
 .mastfoot .inner {
-    padding: 30px;
+    padding: 70px 40px;
 } 
+.mastfoot .social-media-icons li {
+  display: inline-block;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+.mastfoot .dropdown-menu > li > a {
+  color: #333;
+}
 div.profile {
   padding-bottom: 40px;
 }
