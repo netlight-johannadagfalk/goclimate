@@ -1,47 +1,31 @@
 # frozen_string_literal: true
 
 namespace :newsletter do
-  desc <<~TEXT
-    prints csv content of swedish emails to be imported in sendgrid for newsletter list. Usage: 'rake newsletter:swedish_emails['2018-07-13']' where 2018-07-13 is the last import"
-  TEXT
-  task :swedish_emails, [:from_date] => [:environment] do |_, args|
-    latest_added_users = User.where("created_at > '" + args[:from_date] + "'")
+  desc 'prints csv content of all swedish emails to be imported in sendgrid for newsletter list'
+  task swedish_emails: :environment do
+    swedish_users = User.where(region: Region::Sweden)
 
-    swedish_users = latest_added_users.map do |u|
-      if u.card_charges.first.nil?
-        u.email
-      elsif u.language == :sv
-        u.email
+    CSV.open('swedish_emails.csv', 'w') do |csv|
+      csv << ['email']
+      swedish_users.each do |user|
+        csv << [user.email]
       end
-    end.compact
-
-    csv_content = "email\n"
-    swedish_users.each do |email|
-      csv_content += email + "\n"
     end
 
-    print csv_content
-    p swedish_users.count
+    p 'Wrote ' + swedish_users.count.to_s + ' emails to swedish_emails.csv'
   end
 
-  desc 'renders newsletter emails for english csv file'
-  task :other_emails, [:from_date] => [:environment] do |_, args|
-    latest_added_users = User.where("created_at > '" + args[:from_date] + "'")
+  desc 'prints csv content of all swedish emails to be imported in sendgrid for newsletter list'
+  task english_emails: :environment do
+    english_users = User.where.not(region: Region::Sweden)
 
-    other_users = latest_added_users.map do |u|
-      if u.card_charges.first.nil?
-        nil
-      elsif u.language != :sv
-        u.email
+    CSV.open('english_emails.csv', 'w') do |csv|
+      csv << ['email']
+      english_users.each do |user|
+        csv << [user.email]
       end
-    end.compact
-
-    csv_content = "email\n"
-    other_users.each do |email|
-      csv_content += email + "\n"
     end
 
-    print csv_content
-    p other_users.count
+    p 'Wrote ' + english_users.count.to_s + ' emails to english_emails.csv'
   end
 end
