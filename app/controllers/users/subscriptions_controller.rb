@@ -59,7 +59,7 @@ module Users
     end
 
     def customer_currency
-      Currency.from_iso_code(@stripe_customer.currency)
+      Currency.from_iso_code(@stripe_customer.currency) || current_region.currency
     end
 
     def customer_payment_method(customer)
