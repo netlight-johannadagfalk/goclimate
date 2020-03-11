@@ -2,7 +2,7 @@
 
 require 'digest'
 
-class GiftCard < ApplicationRecord
+class GiftCard < ApplicationRecord # rubocop:todo Metrics/ClassLength
   class InvalidPaymentIntent < StandardError; end
 
   attribute :currency, :currency

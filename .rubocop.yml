@@ -99,3 +99,13 @@ RSpec/MessageChain:
 
 RSpec/LetSetup:
   Enabled: false
+
+# Pending for 1.0--revisit when upgrading
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true

@@ -15,7 +15,7 @@ RSpec.shared_examples 'a receipt' do
 
   describe '#vat_amount' do
     it 'returns a BigDecimal' do
-      expect(receipt.total_amount).to be_a(BigDecimal)
+      expect(receipt.vat_amount).to be_a(BigDecimal)
     end
   end
 
