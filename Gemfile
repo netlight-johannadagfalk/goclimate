@@ -39,7 +39,7 @@ gem 'redcarpet', '~> 3.5.0'
 # Views
 gem 'country_select', '~> 4.0.0'
 gem 'gon', '~> 6.3.2'
-gem 'jbuilder', '~> 2.9.1'
+gem 'jbuilder', '~> 2.9'
 
 # Geometry
 gem 'haversine'
@@ -56,7 +56,7 @@ gem 'stripe', '~> 5.13'
 gem 'seed_dump', '~> 3.2'
 
 # PDF generation
-gem 'wicked_pdf'
+gem 'wicked_pdf', '~> 1.4'
 gem 'wkhtmltopdf-binary', '0.12.4' # Later versions don't work on CircleCI
 # wklhtmltopdf-binary provides binaries for Linux and macOS. If this fails you
 # will have to install wkhtmltopdf manually.
@@ -91,7 +91,8 @@ group :development do
 end
 
 group :test do
-  gem 'simplecov', require: false
+  # Locked at 0.17 until CodeClimate reporter supports 0.18
+  gem 'simplecov', '~> 0.17.1', require: false
 end
 
 # If we ever want to run on Windows, tzinfo-data needs to be included because Windows does not include zoneinfo files
