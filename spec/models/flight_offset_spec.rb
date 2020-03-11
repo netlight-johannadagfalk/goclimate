@@ -113,7 +113,7 @@ RSpec.describe FlightOffset do
         end
       end
 
-      context 'when existing payment intent is for an incorrect amount' do
+      context 'when existing payment intent is for an incorrect currency' do
         let(:payment_intent) do
           Stripe::PaymentIntent.construct_from(
             id: 'pi_123', object: 'payment_intent', status: 'requires_payment_method', amount: 1000, currency: 'xxx'
@@ -222,7 +222,7 @@ RSpec.describe FlightOffset do
       end
     end
 
-    context 'when payment intent is for an incorrect amount' do
+    context 'when payment intent is for an incorrect currency' do
       let(:payment_intent) do
         Stripe::PaymentIntent.construct_from(
           id: 'pi_123', object: 'payment_intent', status: 'requires_payment_method', amount: 1000, currency: 'xxx'

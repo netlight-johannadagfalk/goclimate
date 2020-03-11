@@ -269,7 +269,7 @@ RSpec.describe ClimateReportCalculation do
       end
     end
 
-    context 'when calculation period length is half-year' do
+    context 'when calculation period length is quarter' do
       let(:climate_report_attributes) do
         {
           calculation_period_length: 'quarter',

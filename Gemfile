@@ -39,7 +39,7 @@ gem 'redcarpet', '~> 3.5.0'
 # Views
 gem 'country_select', '~> 4.0.0'
 gem 'gon', '~> 6.3.2'
-gem 'jbuilder', '~> 2.9.1'
+gem 'jbuilder', '~> 2.9'
 
 # Geometry
 gem 'haversine'
@@ -47,7 +47,7 @@ gem 'haversine'
 # Third-party integrations
 gem 'barnes' # Detailed monitoring on Heroku
 gem 'intercom-rails', '~> 0.4.0'
-gem 'sendgrid-actionmailer', '~> 2.4.0'
+gem 'sendgrid-actionmailer', '~> 3.0'
 gem 'sentry-raven'
 gem 'skylight'
 gem 'stripe', '~> 5.13'
@@ -56,7 +56,7 @@ gem 'stripe', '~> 5.13'
 gem 'seed_dump', '~> 3.2'
 
 # PDF generation
-gem 'wicked_pdf'
+gem 'wicked_pdf', '~> 1.4'
 gem 'wkhtmltopdf-binary', '0.12.4' # Later versions don't work on CircleCI
 # wklhtmltopdf-binary provides binaries for Linux and macOS. If this fails you
 # will have to install wkhtmltopdf manually.
@@ -71,7 +71,7 @@ group :development, :test do
   gem 'rb-readline'
   gem 'rspec-rails', '~> 3.7'
   gem 'rspec_junit_formatter'
-  gem 'rubocop', '~> 0.79.0', require: false
+  gem 'rubocop', '~> 0.80.1', require: false
   gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
 end
@@ -91,7 +91,8 @@ group :development do
 end
 
 group :test do
-  gem 'simplecov', require: false
+  # Locked at 0.17 until CodeClimate reporter supports 0.18
+  gem 'simplecov', '~> 0.17.1', require: false
 end
 
 # If we ever want to run on Windows, tzinfo-data needs to be included because Windows does not include zoneinfo files

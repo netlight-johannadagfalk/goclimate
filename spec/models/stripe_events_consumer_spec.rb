@@ -215,7 +215,9 @@ RSpec.describe StripeEventsConsumer do
     end
 
     describe 'with payment intent event for flight offset' do
-      let(:event) { Stripe::Event.construct_from(stripe_json_fixture('event_payment_intent_flight_offset_successful.json')) }
+      let(:event) do
+        Stripe::Event.construct_from(stripe_json_fixture('event_payment_intent_flight_offset_successful.json'))
+      end
 
       it 'does nothing if no flight offset owns the payment intent' do
         expect do
