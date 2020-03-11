@@ -280,8 +280,8 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
-    sendgrid-actionmailer (2.4.2)
-      mail (~> 2.5)
+    sendgrid-actionmailer (3.0.0)
+      mail (~> 2.7)
       sendgrid-ruby (~> 6.0)
     sendgrid-ruby (6.1.1)
       ruby_http_client (~> 3.4.0)
@@ -376,7 +376,7 @@ DEPENDENCIES
   rubocop-rspec
   seed_dump (~> 3.2)
   selenium-webdriver
-  sendgrid-actionmailer (~> 2.4.0)
+  sendgrid-actionmailer (~> 3.0)
   sentry-raven
   simplecov (~> 0.17.1)
   skylight
