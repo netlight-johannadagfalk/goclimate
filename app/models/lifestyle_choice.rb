@@ -6,8 +6,6 @@ class LifestyleChoice < ApplicationRecord
   SEK_PER_TONNE = 40
   BUSINESS_SEK_PER_TONNE = 55
   BUFFER_SIZE = 2
-  SEK_PER_USD = 8.5
-  SEK_PER_EUR = 10
 
   def self.get_lifestyle_choice_price(choices, currency)
     return 'x' if choices == []
@@ -48,9 +46,9 @@ class LifestyleChoice < ApplicationRecord
     price_in_sek = BigDecimal(tonne_co2) * SEK_PER_TONNE / 12 * BUFFER_SIZE
     case currency
     when Currency::USD
-      Money.from_amount((price_in_sek / SEK_PER_USD).round(1), Currency::USD)
+      Money.from_amount((price_in_sek / Currency::SEK_PER_USD).round(1), Currency::USD)
     when Currency::EUR
-      Money.from_amount((price_in_sek / SEK_PER_EUR).round(1), Currency::EUR)
+      Money.from_amount((price_in_sek / Currency::SEK_PER_EUR).round(1), Currency::EUR)
     else
       Money.from_amount((price_in_sek / 5).ceil * 5, Currency::SEK)
     end

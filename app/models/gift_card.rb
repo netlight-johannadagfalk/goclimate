@@ -126,9 +126,9 @@ class GiftCard < ApplicationRecord # rubocop:todo Metrics/ClassLength
   def price_per_tonne
     sek_per_currency = case currency
                        when Currency::USD
-                         LifestyleChoice::SEK_PER_USD
+                         Currency::SEK_PER_USD
                        when Currency::EUR
-                         LifestyleChoice::SEK_PER_EUR
+                         Currency::SEK_PER_EUR
                        else
                          1
                        end

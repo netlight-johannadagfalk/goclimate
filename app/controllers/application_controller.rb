@@ -62,9 +62,9 @@ class ApplicationController < ActionController::Base
     when Currency::SEK
       LifestyleChoice::BUSINESS_SEK_PER_TONNE
     when Currency::USD
-      LifestyleChoice::BUSINESS_SEK_PER_TONNE / LifestyleChoice::SEK_PER_USD
+      LifestyleChoice::BUSINESS_SEK_PER_TONNE / Currency::SEK_PER_USD
     when Currency::EUR
-      LifestyleChoice::BUSINESS_SEK_PER_TONNE / LifestyleChoice::SEK_PER_EUR
+      LifestyleChoice::BUSINESS_SEK_PER_TONNE / Currency::SEK_PER_EUR
     end
   end
 

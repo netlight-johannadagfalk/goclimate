@@ -124,12 +124,12 @@ class ImpactStatistics # rubocop:disable Metrics/ClassLength
 
   def payment_amounts_usd_in_sek(card_charges)
     sum_by_week(card_charges.in_usd, :amount)
-      .transform_values { |usd_amount| usd_amount * LifestyleChoice::SEK_PER_USD }
+      .transform_values { |usd_amount| usd_amount * Currency::SEK_PER_USD }
   end
 
   def payment_amounts_eur_in_sek(card_charges)
     sum_by_week(card_charges.in_eur, :amount)
-      .transform_values { |eur_amount| eur_amount * LifestyleChoice::SEK_PER_EUR }
+      .transform_values { |eur_amount| eur_amount * Currency::SEK_PER_EUR }
   end
 
   def sum_by_week(relation, field)
