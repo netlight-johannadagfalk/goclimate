@@ -548,6 +548,8 @@ sv:
         connections_return: Mellanlandningar på hemresan
         add_connection: Lägg till mellanlandning
         cabin_class: Biljettklass
+        number_of_tickets: Antal biljetter
+        not_a_valid_input: Ogiltigt värde
     flight_offsets:
       new:
         header: Klimatkompensera din flygresa

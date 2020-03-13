@@ -528,6 +528,8 @@ en:
         connections_return: Connections on return trip
         add_connection: Add connection
         cabin_class: Cabin class
+        number_of_tickets: Number of tickets
+        not_a_valid_input: This is not a valid input
     flight_offsets:
       new:
         header: Offset your flight

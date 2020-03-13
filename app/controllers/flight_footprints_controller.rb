@@ -8,7 +8,7 @@ class FlightFootprintsController < ApplicationController
     render json: {
       footprint: footprint.footprint.to_s(precision: :auto),
       price: footprint.footprint.consumer_price(current_region.currency).to_s,
-      offset_path: new_flight_offset_path(offset_params: offset_params)
+      offset_path: new_flight_offset_path(offset_params: offset_params, num_persons: params[:num_persons])
     }
   rescue FootprintCalculation::Airport::NotFoundError
     head :bad_request
@@ -28,7 +28,7 @@ class FlightFootprintsController < ApplicationController
   end
 
   def footprint_params
-    params.permit(:cabin_class).merge(segments: segments)
+    params.permit(:cabin_class, :num_persons).merge(segments: segments)
   end
 
   def segments
