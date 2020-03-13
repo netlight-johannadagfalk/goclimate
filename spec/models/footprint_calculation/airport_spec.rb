@@ -9,11 +9,11 @@ RSpec.describe FootprintCalculation::Airport do
     end
 
     it 'has name set from data file' do
-      expect(described_class.find('ARN').name).to eq('Stockholm Arlanda Airport')
+      expect(described_class.find('ARN').name).to eq('Stockholm Arlanda Airport, Stockholm')
     end
 
     it 'has Swedish name set from data file' do
-      expect(described_class.find('ARN').name_sv).to eq('Stockholm-Arlanda flygplats')
+      expect(described_class.find('ARN').name_sv).to eq('Stockholm-Arlanda flygplats, Stockholm')
     end
 
     it 'has latitude set from data file' do
