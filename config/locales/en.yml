@@ -551,6 +551,7 @@ en:
     shared:
       header:
         navigation:
+          flights: Flights
           offset_flight: Offset flight emissions
         region_recommendation:
           select_country: Select your country or region so that we can show the best information for you.

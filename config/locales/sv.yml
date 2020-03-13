@@ -571,6 +571,7 @@ sv:
     shared:
       header:
         navigation:
+          flights: Flygresor
           offset_flight: Kompensera flygresa
         region_recommendation:
           select_country: Välj ditt land eller område så att vi kan visa information som passar bäst för dig.
