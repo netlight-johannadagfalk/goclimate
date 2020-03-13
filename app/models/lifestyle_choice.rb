@@ -28,8 +28,7 @@ class LifestyleChoice < ApplicationRecord
         tonne_co2 += lifestyle_choice.co2
       end
     end
-    tonne_co2 *= people
-    tonne_co2
+    tonne_co2 * people
   end
 
   def self.lifestyle_choice_co2
