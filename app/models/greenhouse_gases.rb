@@ -10,6 +10,8 @@ class GreenhouseGases
   attr_reader :co2e
 
   def initialize(co2e)
+    raise ArgumentError, 'co2e must be an Integer' unless co2e.is_a?(Integer)
+
     @co2e = co2e
   end
 
