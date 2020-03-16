@@ -23,8 +23,12 @@ import { Application } from 'stimulus';
 import { definitionsFromContext } from 'stimulus/webpack-helpers';
 
 const application = Application.start();
-const context = require.context('../javascripts/controllers', true, /\.js$/);
-application.load(definitionsFromContext(context));
+application.load(definitionsFromContext(
+  require.context('../shared/controllers', true, /\.js$/)
+));
+application.load(definitionsFromContext(
+  require.context('../main/controllers', true, /\.js$/)
+));
 
 /* Bootstrap and inline jQuery calls require jQuery globally */
 import jQuery from 'jquery';
