@@ -25,3 +25,6 @@ end
 Currency::SEK = Currency.new(:sek)
 Currency::EUR = Currency.new(:eur)
 Currency::USD = Currency.new(:usd)
+
+Currency::SEK_PER_USD = 8.5
+Currency::SEK_PER_EUR = 10

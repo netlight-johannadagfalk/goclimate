@@ -56,7 +56,7 @@ class WelcomeController < ApplicationController
     gon.currency_suffix = current_region.currency.suffix
     gon.SEK_PER_TONNE = LifestyleChoice::SEK_PER_TONNE
     gon.BUFFER_SIZE = LifestyleChoice::BUFFER_SIZE
-    gon.SEK_PER_USD = LifestyleChoice::SEK_PER_USD
-    gon.SEK_PER_EUR = LifestyleChoice::SEK_PER_EUR
+    gon.SEK_PER_USD = Currency::SEK_PER_USD
+    gon.SEK_PER_EUR = Currency::SEK_PER_EUR
   end
 end

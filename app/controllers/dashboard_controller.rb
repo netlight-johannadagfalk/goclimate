@@ -28,8 +28,8 @@ class DashboardController < ApplicationController
   def my_amount_invested_sek
     (
       my_amount_invested_sek_part +
-      my_amount_invested_usd_part * LifestyleChoice::SEK_PER_USD +
-      my_amount_invested_eur_part * LifestyleChoice::SEK_PER_EUR
+      my_amount_invested_usd_part * Currency::SEK_PER_USD +
+      my_amount_invested_eur_part * Currency::SEK_PER_EUR
     ).round
   end
 
