@@ -22,6 +22,7 @@ gem 'rack-reverse-proxy', '~> 0.12.0', require: 'rack/reverse_proxy'
 
 # Domains
 gem 'countries', '~> 3.0.0'
+gem 'dentaku', '~> 3.3.4'
 
 # Authentication
 gem 'devise', '~> 4.7.1'

@@ -88,6 +88,7 @@ GEM
       countries (~> 3.0)
       sort_alphabetical (~> 1.0)
     crass (1.0.6)
+    dentaku (3.3.4)
     devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -349,6 +350,7 @@ DEPENDENCIES
   capybara (~> 3.30)
   countries (~> 3.0.0)
   country_select (~> 4.0.0)
+  dentaku (~> 3.3.4)
   devise (~> 4.7.1)
   devise-i18n (~> 1.9.0)
   dotenv-rails

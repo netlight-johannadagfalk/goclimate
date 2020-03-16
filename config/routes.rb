@@ -144,6 +144,11 @@ Rails.application.routes.draw do
     resources :api_keys
     resources :invoices
     resources :lifestyle_choices
+    resources :lifestyle_calculators, only: [:index, :show, :new, :create] do
+      member do
+        resource :lifestyle_calculator_preview, path: :preview, only: [:create]
+      end
+    end
     resources :projects
     resources :flight_offsets, only: [:index, :show, :new, :create]
     resources :climate_report_invoices, only: [:index, :show, :edit, :update]
