@@ -14,18 +14,21 @@ module FootprintCalculation
     def initialize(attributes = {})
       @cabin_class = attributes[:cabin_class]
       @segments = attributes[:segments]
+      @num_persons = (attributes[:num_persons].presence || 1).to_i
     end
 
     def footprint
-      @footprint ||= GreenhouseGases.new(total_footprint.ceil(-2))
+      @footprint ||= GreenhouseGases.new(total_footprint)
     end
 
     private
 
     def total_footprint
-      @segments.map do |segment|
+      segments = @segments.map do |segment|
         GenericFlightFootprint.new(segment_distance(segment), @cabin_class.to_sym).footprint
-      end.sum
+      end.sum.ceil(-2)
+
+      segments * @num_persons
     end
 
     def segment_distance(segment)

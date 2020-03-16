@@ -117,11 +117,19 @@
               </div>
             </div>
 
+            <div class="form-group" data-target="flight-footprint-form.personsFormGroup">
+              <label class="control-label">
+              <%=t 'views.flight_footprints.new.number_of_tickets' %>
+              </label>
+              <input type="number" name="num_persons" min="1" value="1" class="form-control" data-action="input->flight-footprint-form#update blur->flight-footprint-form#update">
+              <span class="help-block hidden" data-target="flight-footprint-form.personsMessage"><%=t 'views.flight_footprints.new.not_a_valid_input' %></span>
+            </div>
+
             <div class="form-group">
               <dl>
                 <dt><%=t 'views.flight_offsets.new.carbon_footprint' %></dt>
                 <dd>
-                  <span data-target="flight-footprint-form.footprint">-</span>/<%=t 'views.flight_offsets.new.person' %>
+                  <span data-target="flight-footprint-form.footprint">-</span>
                 </dd>
                 <dt><%=t 'views.flight_offsets.new.sum' %></dt>
                 <dd data-target="flight-footprint-form.price">-</dd>

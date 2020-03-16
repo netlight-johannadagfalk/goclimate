@@ -3,11 +3,17 @@ import { Controller } from 'stimulus';
 export default class FlightFootprintForm extends Controller {
   update() {
     if (this.element.origin_airport.value === '' || this.element.destination_airport.value === '') {
-      this.footprintTarget.innerText = '-';
-      this.priceTarget.innerText = '-';
-      this.offsetLinkTarget.removeAttribute('href');
+      this.clearResults();
       return;
     }
+    if (this.element.num_persons.value < 1) {
+      this.clearResults();
+      this.personsFormGroupTarget.classList.add('has-error');
+      this.personsMessageTarget.classList.remove('hidden');
+      return;
+    }
+    this.personsFormGroupTarget.classList.remove('has-error');
+    this.personsMessageTarget.classList.add('hidden');
 
     this.postForm()
       .then((response) => response.json())
@@ -16,6 +22,12 @@ export default class FlightFootprintForm extends Controller {
         this.priceTarget.innerText = data.price;
         this.offsetLinkTarget.href = data.offset_path;
       });
+  }
+
+  clearResults() {
+    this.footprintTarget.innerText = '-';
+    this.priceTarget.innerText = '-';
+    this.offsetLinkTarget.removeAttribute('href');
   }
 
   postForm() {
@@ -27,4 +39,4 @@ export default class FlightFootprintForm extends Controller {
   }
 }
 
-FlightFootprintForm.targets = ['footprint', 'price', 'offsetLink'];
+FlightFootprintForm.targets = ['personsFormGroup', 'personsMessage', 'footprint', 'price', 'offsetLink'];

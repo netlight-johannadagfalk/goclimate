@@ -40,7 +40,7 @@ RSpec.describe FootprintCalculation::OpentraveldataAirportsImporter do
       importer.import
 
       expect(read_csv.to_a).to include(
-        ['ARN', 'Stockholm Arlanda Airport', anything, anything, anything]
+        ['ARN', 'Stockholm Arlanda Airport, Stockholm', anything, anything, anything]
       )
     end
 
@@ -48,7 +48,7 @@ RSpec.describe FootprintCalculation::OpentraveldataAirportsImporter do
       importer.import
 
       expect(read_csv.to_a).to include(
-        ['ARN', anything, 'Stockholm-Arlanda flygplats', anything, anything]
+        ['ARN', anything, 'Stockholm-Arlanda flygplats, Stockholm', anything, anything]
       )
     end
 
@@ -64,7 +64,7 @@ RSpec.describe FootprintCalculation::OpentraveldataAirportsImporter do
       importer.import
 
       expect(read_csv.to_a).to include(
-        ['AFA', 'San Rafael "Santiago Germano" Airport', anything, anything, anything]
+        ['AFA', 'San Rafael "Santiago Germano" Airport, San Rafael', anything, anything, anything]
       )
     end
 
@@ -80,7 +80,7 @@ RSpec.describe FootprintCalculation::OpentraveldataAirportsImporter do
       importer.import
 
       expect(read_csv.to_a).not_to include(
-        ['ARN', 'Arlanda Centralstation', anything, anything, anything]
+        ['ARN', include('Centralstation'), anything, anything, anything]
       )
     end
   end

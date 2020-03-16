@@ -12,11 +12,13 @@ module FootprintCalculation
     def import
       CSV.open(@airports_csv_path, 'w') do |csv|
         csv << %w[iata_code name name_sv latitude longitude]
-
         por_public_airports.each do |line|
           csv << [
-            line['iata_code'], line['name'], parse_swedish_name(line['alt_name_section']),
-            line['latitude'], line['longitude']
+            line['iata_code'],
+            add_city_suffix(line['name'], line['city_name_list']),
+            parse_swedish_name(line['alt_name_section'], line['city_name_list']),
+            line['latitude'],
+            line['longitude']
           ]
         end
         # some api-users search for 'TYO', which is a iata code for Tokyo city,
@@ -38,9 +40,13 @@ module FootprintCalculation
                                   .select { |line| %w[AIRP AIRF AIRQ AIRS].include?(line['fcode']) }
     end
 
-    def parse_swedish_name(alt_name_section)
+    def parse_swedish_name(alt_name_section, city)
       swedish_alt_name = alt_name_section&.split('|')&.each_slice(2)&.find { |alt_name| alt_name[0] =~ /sv/ }
-      swedish_alt_name[1] if swedish_alt_name.present?
+      add_city_suffix(swedish_alt_name[1], city) if swedish_alt_name.present?
+    end
+
+    def add_city_suffix(name, city)
+      "#{name}, #{city}"
     end
   end
 end
