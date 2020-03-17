@@ -10,7 +10,7 @@ en:
   i_want_to_know_more: I want to know more!
   contact_us: Contact us
   100_percent_transparency: 100% transparency
-  100_percent_transparency_intro: We want you to feel 100% confident in knowing exactly how your money is beeing used to save the planet.
+  100_percent_transparency_intro: We want you to feel 100% confident in knowing exactly how your money is beeing used.
   what_we_do_with_your_money: What we do with your money
   system_change: System change
   system_change_description: To stop climate change we need to mobilize poeple to show politicians and companies that we need a systems change now.
@@ -40,6 +40,8 @@ en:
   cost: Cost
   result: Result
   all_of_the_result_were_carried_forward: The results are carried forward to the following year for maximum climate impact
+  carried_forward_to_next_year: Carried forward to next year
+  dividends: Dividends
   auditor: 'Auditor'
   climate_offset_from_users: Climate Offsets from our users
   revenue_from_companies: Revenue from companies

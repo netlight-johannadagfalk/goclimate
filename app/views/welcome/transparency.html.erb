@@ -21,23 +21,25 @@
     <h1 class="cover-heading"><%=t 'what_we_do_with_your_money' %></h1>
 
     <div class="row">
-      <div class="col-xs-12 col-md-4">
-        <span class="glyphicon glyphicon-large glyphicon-bullhorn steps" aria-hidden="true"></span>
-        <h2>1. <%=t 'system_change' %></h2>
-        <p><%=t 'system_change_description' %></p>
-      </div>
 
       <div class="col-xs-12 col-md-4">
         <span class="glyphicon glyphicon-large glyphicon-globe steps" aria-hidden="true"></span>
-        <h2>2. <%=t 'climate_projects' %></h2>
+        <h2>1. <%=t 'climate_projects' %></h2>
         <p><%=t 'climate_projects_description' %></p>
       </div>
 
       <div class="col-xs-12 col-md-4">
         <span class="glyphicon glyphicon-large glyphicon-user steps" aria-hidden="true"></span>
-          <h2>3. <%=t 'behavioral_change' %></h2>
+          <h2>2. <%=t 'behavioral_change' %></h2>
           <p><%=t 'behavioral_change_description' %></p>
       </div>
+
+      <div class="col-xs-12 col-md-4">
+        <span class="glyphicon glyphicon-large glyphicon-bullhorn steps" aria-hidden="true"></span>
+        <h2>3. <%=t 'system_change' %></h2>
+        <p><%=t 'system_change_description' %></p>
+      </div>
+
     </div>
 
   </div>
@@ -210,6 +212,16 @@
           <td class="text-right"><%= number_with_delimiter(48_018) %></td>
           <td class="text-right"><%= number_with_delimiter(157_700) %></td>
         </tr>
+        <tr>
+          <td style="width:345px"><%=t 'carried_forward_to_next_year' %></td>
+          <td class="text-right"><%= number_with_delimiter(48_018) %></td>
+          <td class="text-right"><%= number_with_delimiter(157_700) %></td>
+        </tr>
+        <tr>
+          <td style="width:345px"><%=t 'dividends' %></td>
+          <td class="text-right">0</td>
+          <td class="text-right">0</td>
+        </tr>
       </table>
 
       <p><%= t('all_of_the_result_were_carried_forward') %></p>
@@ -222,16 +234,15 @@
 
 <div class="site-wrapper-second">
   <div class="inner">
-
     <div class="row stats offset-projects">
         <div class="col-md-12">
-            <h1 class="cover-heading"><%=t '100_percent_transparency_climate_projects' %></h1>
-            <div class="table-responsive">
-            <p class="lead"><%=t 'for_more_information_about_climate_projects' %> <%= link_to t('our_projects').downcase, projects_path %>.</p>
+          <span class="glyphicon glyphicon-large glyphicon-globe" aria-hidden="true"></span>
+          <h1 class="cover-heading"><%=t '100_percent_transparency_climate_projects' %></h1>
+          <div class="table-responsive">
+          <p class="lead"><%=t 'for_more_information_about_climate_projects' %> <%= link_to t('our_projects').downcase, projects_path %>.</p>
           </div>
         </div>
     </div>
-
   </div>
 </div>
 
