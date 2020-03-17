@@ -59,4 +59,7 @@ class WelcomeController < ApplicationController
     gon.SEK_PER_USD = Currency::SEK_PER_USD
     gon.SEK_PER_EUR = Currency::SEK_PER_EUR
   end
+
+  def travel_calculator
+  end
 end

@@ -54,6 +54,7 @@ Rails.application.routes.draw do
     get 'press', to: 'welcome#press'
     get '100_percent_transparency', to: 'welcome#transparency', as: 'transparency'
     get 'privacy_policy', to: 'welcome#privacy_policy'
+    get 'travel_calculator', to: 'welcome#travel_calculator'
 
     resources :projects, path: 'our_projects', only: [:index]
 

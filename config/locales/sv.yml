@@ -644,6 +644,22 @@ sv:
         our_projects_header: Våra klimatprojekt
         our_projects_lead: För oss är det avgörande att dina pengar hamnar i rätta händer. Därför väljer vi att bara stötta tredjepartsgranskade klimatprojekt som har certifieringen Gold Standard. Projekten bidrar till den globala omställningen till förnybar energi och FN:s hållbarhetsmål.
         our_projects_link: Läs mer om våra klimatprojekt
+      travel_calculator:
+        travel_emissions_calculator: Klimatkalkylator för resor
+        travel_emissions_calculator_description: Vill du räkna ut klimatavtrycket för en resa? Skriv in hur långt du ska åka här nedan så fixar vi resten!
+        distance_in_kilometers: Längd på resa i kilometer
+        calculate: Beräkna
+        emissions_if_traveling_by: Klimatutsläpp om du reser med
+        flight: Flyg
+        car-petrol: Bil (bensin)
+        car-diesel: Bil (diesel)
+        car-etanol: Bil (etanol)
+        car-gas: Bil (gas)
+        car-electric: Elbil
+        bus: Buss
+        train: Tåg
+        subway: Tunnelbana
+        boat: Båt
 
   business:
     climate_reports:
