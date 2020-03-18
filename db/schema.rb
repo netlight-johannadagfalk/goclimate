@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_20_145532) do
+ActiveRecord::Schema.define(version: 2020_03_03_145148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,6 +150,27 @@ ActiveRecord::Schema.define(version: 2020_02_20_145532) do
     t.datetime "certificate_sent_at"
     t.string "certificate_reciever_email"
     t.index ["project_id"], name: "index_invoices_on_project_id"
+  end
+
+  create_table "lifestyle_calculators", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "countries", array: true
+    t.integer "version"
+    t.jsonb "region_options"
+    t.jsonb "home_options"
+    t.jsonb "heating_options"
+    t.jsonb "house_age_options"
+    t.jsonb "green_electricity_options"
+    t.jsonb "food_options"
+    t.jsonb "car_type_options"
+    t.text "car_distance_unit"
+    t.text "housing_formula"
+    t.text "food_formula"
+    t.text "car_formula"
+    t.text "flights_formula"
+    t.text "consumption_formula"
+    t.text "public_formula"
   end
 
   create_table "lifestyle_choices", force: :cascade do |t|

@@ -28,6 +28,12 @@ RSpec.shared_examples 'greenhouse gases attributes' do |greenhouse_gases_attribu
 
         expect(described_class.find(id).send(attribute)).to eq(GreenhouseGases.new(3_000))
       end
+
+      it 'coerces string values to Integer' do
+        record = described_class.new(attribute => '3000')
+
+        expect(record.send(attribute)).to eq(GreenhouseGases.new(3_000))
+      end
     end
   end
 end

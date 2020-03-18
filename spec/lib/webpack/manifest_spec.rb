@@ -6,7 +6,7 @@ require 'webpack/manifest'
 RSpec.describe Webpack::Manifest do
   subject(:manifest) { described_class.new('spec/fixtures/webpack/manifest.json') }
 
-  shared_context 'when manifest goes stale' do # rubocop:disable Metrics/BlockLength
+  shared_context 'when manifest goes stale' do
     subject(:manifest) { described_class.new(manifest_path) }
 
     let(:manifest_path) { Pathname.new(tmpdir).join('manifest.json') }
