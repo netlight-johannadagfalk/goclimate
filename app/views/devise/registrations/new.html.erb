@@ -10,10 +10,11 @@
   <div class="inner">
 
     <h1 class="cover-heading"><%=t 'sign_up_for_a_climate_neutral_life' %></h1>
-    <p class="lead"><%=t 'you_will_offset_for', cost: @current_plan_price.to_s(precision: :auto) %>. <%=t 'sign_up_here_to_start_livint_a_climate_neutral_life' %></p>
+    <p class="lead"><%=t 'you_will_offset_for', cost: @plan_price.to_s(precision: :auto) %>. <%=t 'sign_up_here_to_start_livint_a_climate_neutral_life' %></p>
 
     <%= form_with url: registration_path(resource_name, format: :json), html: { id: "payment-form", class: "form-horizontal", data: { controller: 'registration-form', action: 'registration-form#submit' } } do |f| %>
       <%= f.hidden_field(:choices, :value => params[:choices]) %>
+      <%= f.hidden_field(:lifestyle_footprint_id, :value => @footprint&.id) %>
 
       <%= fields_for @user do |user_form| %>
         <%= user_form.hidden_field :region %>

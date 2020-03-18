@@ -1,7 +1,21 @@
 # frozen_string_literal: true
 
 class SubscriptionManager
+  BUFFER_FACTOR = 2
+
   attr_reader :customer, :errors
+
+  def self.price_for_footprint(footprint, currency)
+    monthly_offset = footprint / 12 * BUFFER_FACTOR
+    price = monthly_offset.consumer_price(currency)
+
+    case price.currency
+    when Currency::SEK
+      Money.new((price.subunit_amount.to_d / 5).ceil(-2) * 5, :sek)
+    else
+      price
+    end
+  end
 
   def initialize(customer = nil)
     @customer = customer

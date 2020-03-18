@@ -36,7 +36,7 @@ FactoryBot.define do
     car_type_options do
       [
         { key: 'petrol', formula: '0.2' },
-        { key: 'electricity', formula: '0.001' }
+        { key: 'electric', formula: '0.001' }
       ]
     end
     car_distance_unit { 'km' }

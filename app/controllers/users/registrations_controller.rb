@@ -2,16 +2,14 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController
-    before_action :set_lifestyle_choice_ids, only: [:new, :create]
+    before_action :set_footprint_and_price, only: [:new, :create]
     before_action :set_user, only: [:create]
-    before_action :set_stripe_plan, only: [:create]
     before_action :set_subscription_manager, only: [:create]
     skip_before_action :require_no_authentication, only: [:create]
 
     # GET /resource/sign_up
     def new
       @user = User.new(region: current_region.id)
-      @current_plan_price = LifestyleChoice.get_lifestyle_choice_price(@lifestyle_choice_ids, current_region.currency)
     end
 
     # POST /resource
@@ -25,7 +23,8 @@ module Users
       render_user_invalid_json && return unless @user.save
       sign_in(resource_name, @user, force: true) # Force because we have updated the password
 
-      @manager.sign_up(@user.email, @stripe_plan, params[:payment_method_id])
+      stripe_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan_price)
+      @manager.sign_up(@user.email, stripe_plan, params[:payment_method_id])
 
       if @manager.customer.present? && @user.stripe_customer_id != @manager.customer.id
         @user.update!(stripe_customer_id: @manager.customer.id)
@@ -63,7 +62,10 @@ module Users
     end
 
     def sign_up_params
-      super.merge(lifestyle_choice_ids: @lifestyle_choice_ids)
+      super.merge(
+        lifestyle_choice_ids: @lifestyle_choice_ids,
+        lifestyle_footprint_ids: [@footprint&.id]
+      )
     end
 
     def canonical_query_params
@@ -72,19 +74,13 @@ module Users
 
     private
 
-    def set_lifestyle_choice_ids
-      unless params[:choices]&.match(/\d+,\d+,\d+,\d/)
-        respond_to do |format|
-          format.html { redirect_to '/#choose-plan' }
-          format.json do
-            render status: 400,
-                   json: error_json('Something went wrong. Please start over and try again.')
-          end
-        end
-        return
-      end
+    def set_footprint_and_price
+      @lifestyle_choice_ids = lifestyle_choice_ids_from_params if params[:choices].present?
+      footprint_key = params[:lifestyle_footprint]
+      @footprint = LifestyleFootprint.find_by_key!(footprint_key) if footprint_key.present?
 
-      @lifestyle_choice_ids = params[:choices].split(',').map(&:to_i)
+      @footprint_tonnes = @footprint&.total || LifestyleChoice.lifestyle_choice_footprint(@lifestyle_choice_ids)
+      @plan_price = SubscriptionManager.price_for_footprint(@footprint_tonnes, current_region.currency)
     end
 
     def set_user
@@ -94,11 +90,6 @@ module Users
         else
           User.new(sign_up_params)
         end
-    end
-
-    def set_stripe_plan
-      plan_price = LifestyleChoice.get_lifestyle_choice_price(@lifestyle_choice_ids, @user.region.currency)
-      @stripe_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(plan_price)
     end
 
     def set_subscription_manager
@@ -130,6 +121,21 @@ module Users
 
     def error_json(message)
       { error: { message: message } }
+    end
+
+    def lifestyle_choice_ids_from_params
+      unless params[:choices]&.match(/\d+,\d+,\d+,\d/)
+        respond_to do |format|
+          format.html { redirect_to '/#choose-plan' }
+          format.json do
+            render status: 400,
+                   json: error_json('Something went wrong. Please start over and try again.')
+          end
+        end
+        return
+      end
+
+      @lifestyle_choice_ids = params[:choices].split(',').map(&:to_i)
     end
   end
 end

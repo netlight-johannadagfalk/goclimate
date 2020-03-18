@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_03_145148) do
+ActiveRecord::Schema.define(version: 2020_03_19_174526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -187,6 +187,32 @@ ActiveRecord::Schema.define(version: 2020_03_03_145148) do
     t.bigint "lifestyle_choice_id"
     t.index ["lifestyle_choice_id"], name: "index_lifestyle_choices_users_on_lifestyle_choice_id"
     t.index ["user_id"], name: "index_lifestyle_choices_users_on_user_id"
+  end
+
+  create_table "lifestyle_footprints", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "key"
+    t.bigint "lifestyle_calculator_id"
+    t.bigint "user_id"
+    t.text "region_answer"
+    t.text "home_answer"
+    t.text "heating_answer"
+    t.text "house_age_answer"
+    t.text "green_electricity_answer"
+    t.text "food_answer"
+    t.text "car_type_answer"
+    t.integer "car_distance_answer"
+    t.integer "flight_hours_answer"
+    t.integer "housing"
+    t.integer "food"
+    t.integer "car"
+    t.integer "flights"
+    t.integer "consumption"
+    t.integer "public"
+    t.integer "total"
+    t.index ["lifestyle_calculator_id"], name: "index_lifestyle_footprints_on_lifestyle_calculator_id"
+    t.index ["user_id"], name: "index_lifestyle_footprints_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|

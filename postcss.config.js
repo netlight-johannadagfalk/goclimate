@@ -18,7 +18,7 @@ const environment = {
 if (process.env.RAILS_ENV === 'production') {
   environment.plugins.push(
     purgecss({
-      content: ['./app/views/**/*.html.erb', './app/controllers/**/*.rb', './app/assets/javascripts/**/*.js'],
+      content: ['./app/views/**/*.html.erb', './app/controllers/**/*.rb', './app/assets/**/*.js'],
       css: ['./app/assets/stylesheets'],
       extractors: [
         {

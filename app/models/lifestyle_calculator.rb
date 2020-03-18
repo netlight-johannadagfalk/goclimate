@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-class LifestyleCalculator < ApplicationRecord
+class LifestyleCalculator < ApplicationRecord # rubocop:disable Metrics/ClassLength
   CATEGORIES = [:housing, :food, :car, :flights, :consumption, :public].freeze
   OPTION_QUESTIONS = [:region, :home, :heating, :house_age, :green_electricity, :food, :car_type].freeze
   INTEGER_QUESTIONS = [:car_distance, :flight_hours].freeze
+
+  has_many :lifestyle_footprints
 
   attribute :countries, :country, array: true
   enum car_distance_unit: {
@@ -39,6 +41,10 @@ class LifestyleCalculator < ApplicationRecord
     extract_categories_from_results(results).tap do |r|
       r[:total] = r.values.sum
     end
+  end
+
+  def option_keys_for_category(category)
+    send("#{category}_options")&.map { |o| o['key'] }
   end
 
   private

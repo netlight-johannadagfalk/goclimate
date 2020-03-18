@@ -187,7 +187,7 @@ RSpec.describe LifestyleCalculator do
         house_age: 'pre1920',
         green_electricity: 'yes',
         food: 'omnivore',
-        car_type: 'electricity',
+        car_type: 'electric',
         car_distance: 1000,
         flight_hours: 2
       }
