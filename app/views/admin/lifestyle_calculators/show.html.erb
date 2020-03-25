@@ -52,7 +52,7 @@
 
 <h2>Preview</h2>
 
-<%= form_with url: admin_lifestyle_calculator_preview_path(format: :json), html: { 'data-controller': 'lifestyle-footprint' } do |f| %>
+<%= form_with url: admin_lifestyle_calculator_preview_path(format: :json), html: { 'data-controller': 'lifestyle-calculator-preview' } do |f| %>
   <%= fields_for :answers do |fa| %>
     <% if @calculator.region_options&.any? %>
       <div class="form-group">
@@ -114,28 +114,28 @@
     </div>
   <% end %>
 
-  <%= f.submit 'Preview result', class: 'btn btn-primary', 'data-action': 'lifestyle-footprint#calculate' %>
+  <%= f.submit 'Preview result', class: 'btn btn-primary', 'data-action': 'lifestyle-calculator-preview#calculate' %>
 
   <div class="panel panel-default">
     <div class="panel-body">
-      <p data-target="lifestyle-footprint.error" class="hidden-when-empty"></p>
+      <p data-target="lifestyle-calculator-preview.error" class="hidden-when-empty"></p>
       <dl>
         <dt>Housing</dt>
-        <dd data-target="lifestyle-footprint.housingResult"></dd>
+        <dd data-target="lifestyle-calculator-preview.housingResult"></dd>
         <dt>Food</dt>
-        <dd data-target="lifestyle-footprint.foodResult"></dd>
+        <dd data-target="lifestyle-calculator-preview.foodResult"></dd>
         <dt>Car</dt>
-        <dd data-target="lifestyle-footprint.carResult"></dd>
+        <dd data-target="lifestyle-calculator-preview.carResult"></dd>
         <dt>Flights</dt>
-        <dd data-target="lifestyle-footprint.flightsResult"></dd>
+        <dd data-target="lifestyle-calculator-preview.flightsResult"></dd>
         <dt>Consumption</dt>
-        <dd data-target="lifestyle-footprint.consumptionResult"></dd>
+        <dd data-target="lifestyle-calculator-preview.consumptionResult"></dd>
         <dt>Public</dt>
-        <dd data-target="lifestyle-footprint.publicResult"></dd>
+        <dd data-target="lifestyle-calculator-preview.publicResult"></dd>
         <dt>Total</dt>
-        <dd data-target="lifestyle-footprint.total"></dd>
+        <dd data-target="lifestyle-calculator-preview.total"></dd>
         <dt>Price (monthly)</dt>
-        <dd data-target="lifestyle-footprint.price"></dd>
+        <dd data-target="lifestyle-calculator-preview.price"></dd>
       </dl>
     </div>
   </div>
