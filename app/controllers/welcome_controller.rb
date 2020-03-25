@@ -33,18 +33,9 @@ class WelcomeController < ApplicationController
   def transparency
     @unique_climate_neutral_users = User.with_active_subscription.count
     @total_carbon_offset = Project.total_carbon_offset
-
-    # as of 2001XX - found in https://docs.google.com/spreadsheets/d/1RzUCaVqTTxJYjfUMeh3KlTxBpiATy2ViPO3m0LHGpG8/edit#gid=0
-    @project_cost_in_sek2020 = (0 * 0.8).round # exklude VAT
-    @salaries_cost_in_sek2020 = -0
-    @other_operating_expenses2020 = (-0 * 0.8).round # exklude VAT
-
-    # as of 2001XX - found at fortnox.se
-    @invoiced2020 = 0 # exklude VAT
-
-    @payouts_from_users2020 = (StripePayout.where('extract(year from created_at) = 2020').sum(:amount) / 100)
-    @total_revenue = @invoiced2020 + @payouts_from_users2020
-    @total_cost = @project_cost_in_sek2020 + @other_operating_expenses2020 + @salaries_cost_in_sek2020
+    @number_of_countries = User.distinct.pluck(:country).count
+    @number_of_businesses_helped = Invoice.distinct.pluck(:receiver).count +
+                                   ClimateReport.distinct.pluck(:company_name).count
   end
 
   def privacy_policy
