@@ -50,12 +50,12 @@
 
     <span class="glyphicon glyphicon-large glyphicon-home" aria-hidden="true"></span>
     <h1 class="cover-heading"><%=t 'basic_facts' %></h1>
-    <p class="lead text-left"><%=t 'employees' %>: <b>6</b> <%=t 'full_time' %></p>
     <p class="lead text-left"><%=t 'Main_KPI' %>: <b><%= number_with_delimiter(@total_carbon_offset) %></b> <%=t 'tonnes_avoided_CO2e-emissions' %></p>
     <p class="lead text-left"><%=t 'climate_footprint_2019' %>: <b>473</b> kg CO2e</p>
     <p class="lead text-left"><%=t 'number_of_climate_neutral_users' %>: <b><%= number_with_delimiter(@unique_climate_neutral_users) %></b></p>
     <p class="lead text-left"><%=t 'users_from' %>: <b><%= @number_of_countries %></b> <%=t 'different_countries' %></p>
     <p class="lead text-left"><%=t 'number_of_companies_we_have_helped' %>: <b><%= @number_of_businesses_helped %></b></p>
+    <p class="lead text-left"><%=t 'employees' %>: <b>6</b> <%=t 'full_time' %></p>
     <p class="lead text-left"><%=t 'latest_fiscal_year_turnover' %>: <b><%= number_with_delimiter(5_550_300) %></b> SEK</p>
     <p class="lead text-left"><%=t 'total_accumulated_dividend_to_shareholders' %>: <b>0</b> SEK (<%=t 'everything_is_invested_for_maximum_climate_impact' %>)</p>
 
