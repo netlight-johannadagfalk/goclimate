@@ -28,7 +28,7 @@ class LifestyleCalculator < ApplicationRecord # rubocop:disable Metrics/ClassLen
 
   def self.find_or_initialize_draft_by_countries(countries)
     find_or_initialize_by(
-      countries: countries.sort,
+      countries: countries&.sort,
       version: nil
     )
   end

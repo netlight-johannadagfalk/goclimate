@@ -12,7 +12,7 @@ module Admin
 
     def new
       @calculator = LifestyleCalculator.find_or_initialize_draft_by_countries(
-        params[:countries].reject(&:blank?)
+        params[:countries].reject(&:blank?).presence
       )
     end
 

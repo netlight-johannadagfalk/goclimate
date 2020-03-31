@@ -153,6 +153,12 @@ RSpec.describe LifestyleCalculator do
       expect(calculator.version).to be_nil
     end
 
+    it 'initializes with empty countries list' do
+      calculator = described_class.find_or_initialize_draft_by_countries(nil)
+
+      expect(calculator.countries).to be_nil
+    end
+
     context 'when draft already exists' do
       let!(:existing_draft) do
         create(:lifestyle_calculator, countries: %w[dk se], version: nil)

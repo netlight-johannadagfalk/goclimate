@@ -8,7 +8,13 @@
   <dd><%= @calculator.updated_at %></dd>
 
   <dt>Countries:</dt>
-  <dd><%= @calculator.countries.join(', ') %></dd>
+  <dd>
+    <% if @calculator.countries.present? %>
+      <%= @calculator.countries.join(', ') %>
+    <% else %>
+      <i>All countries not matched by other calculators</i>
+    <% end %>
+  </dd>
 
   <dt>Version:</dt>
   <dd><%= @calculator.version || '<i>Draft</i>'.html_safe %></dd>
@@ -144,6 +150,6 @@
 <hr>
 
 <% if @calculator.version.nil? %>
-  <%= link_to 'Edit draft', new_admin_lifestyle_calculator_path(countries: @calculator.countries.map(&:alpha2)), class: 'btn btn-default' %> &nbsp;
+  <%= link_to 'Edit draft', new_admin_lifestyle_calculator_path(countries: @calculator.countries&.map(&:alpha2) || ['']), class: 'btn btn-default' %> &nbsp;
 <% end %>
 <%= link_to 'Back', admin_lifestyle_calculators_path, class: 'btn btn-link' %>
