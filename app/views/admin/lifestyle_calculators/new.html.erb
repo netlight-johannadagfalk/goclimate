@@ -1,7 +1,7 @@
 <h1><%= @calculator.new_record? ? 'New' : 'Editing' %> lifestyle calculator draft</h1>
 
 <%= form_with model: [:admin, @calculator], method: :post, url: admin_lifestyle_calculators_path do |f| %>
-  <% @calculator.countries.each do |country| %>
+  <% @calculator.countries&.each do |country| %>
     <%= f.hidden_field :countries, value: country.alpha2.downcase, multiple: true %>
   <% end %>
 
@@ -23,7 +23,11 @@
   <div class="form-group">
     <%= f.label :countries, 'Countries' %>
     <p class="form-control-static">
-      <%= @calculator.countries.join(', ') %>
+      <% if @calculator.countries.present? %>
+        <%= @calculator.countries.join(', ') %>
+      <% else %>
+        <i>All countries not matched by other calculators</i>
+      <% end %>
     </p>
   </div>
 

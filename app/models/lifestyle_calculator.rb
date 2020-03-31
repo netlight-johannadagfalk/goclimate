@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-class LifestyleCalculator < ApplicationRecord
+class LifestyleCalculator < ApplicationRecord # rubocop:disable Metrics/ClassLength
   CATEGORIES = [:housing, :food, :car, :flights, :consumption, :public].freeze
   OPTION_QUESTIONS = [:region, :home, :heating, :house_age, :green_electricity, :food, :car_type].freeze
   INTEGER_QUESTIONS = [:car_distance, :flight_hours].freeze
+
+  has_many :lifestyle_footprints
 
   attribute :countries, :country, array: true
   enum car_distance_unit: {
@@ -22,11 +24,22 @@ class LifestyleCalculator < ApplicationRecord
       FROM lifestyle_calculators
       GROUP BY countries
     )
+    OR countries IS NULL AND version = (
+      SELECT MAX(version) from lifestyle_calculators WHERE countries IS NULL
+    )
   SQL
+
+  def self.find_published_for_country(country)
+    where(<<~SQL, country.alpha2.downcase).order(Arel.sql(<<~SQL)).first
+      version IS NOT NULL AND (? = ANY(countries) OR countries IS NULL)
+    SQL
+      CASE WHEN countries IS NULL THEN 0 ELSE 1 END DESC, version DESC
+    SQL
+  end
 
   def self.find_or_initialize_draft_by_countries(countries)
     find_or_initialize_by(
-      countries: countries.sort,
+      countries: countries&.sort,
       version: nil
     )
   end
@@ -39,6 +52,10 @@ class LifestyleCalculator < ApplicationRecord
     extract_categories_from_results(results).tap do |r|
       r[:total] = r.values.sum
     end
+  end
+
+  def option_keys_for_category(category)
+    send("#{category}_options")&.map { |o| o['key'] }
   end
 
   private

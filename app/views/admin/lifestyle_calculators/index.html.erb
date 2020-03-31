@@ -30,7 +30,7 @@
     <tr>
       <th>Countries</th>
       <th>Published version</th>
-      <th>Created</th>
+      <th>Last updated</th>
       <th>Draft updated</th>
       <th></th>
     </tr>
@@ -39,17 +39,23 @@
   <tbody>
     <% @calculators.each do |countries, calculators| %>
       <tr>
-        <td><%= countries.map(&:to_s).join(', ') %></td>
+        <td>
+          <% if countries.present? %>
+            <%= countries.map(&:to_s).join(', ') %>
+          <% else %>
+            <i>All others</i>
+          <% end %>
+        </td>
         <td><%= calculators[:published]&.version || '-' %></td>
-        <td><%= (time_tag(calculators[:published].created_at, format: '%F %R') if calculators[:published].present?) || '-' %></td>
+        <td><%= (time_tag(calculators[:published].updated_at, format: '%F %R') if calculators[:published].present?) || '-' %></td>
         <td><%= (time_tag(calculators[:draft].updated_at, format: '%F %R') if calculators[:draft].present?) || '-' %></td>
         <td class="admin-actions">
           <% if calculators[:published].present? %>
-            <%= link_to 'Show published', admin_lifestyle_calculator_path(calculators[:published]) %>
+            <%= link_to 'Show published', admin_lifestyle_calculator_path(calculators[:published]) %> &nbsp;
           <% end %>
           <% if calculators[:draft].present? %>
-            &nbsp; <%= link_to 'Show draft', admin_lifestyle_calculator_path(calculators[:draft]) %>
-            &nbsp; <%= link_to 'Edit draft', new_admin_lifestyle_calculator_path(countries: calculators[:draft].countries.map(&:alpha2)) %>
+            <%= link_to 'Show draft', admin_lifestyle_calculator_path(calculators[:draft]) %>
+            &nbsp; <%= link_to 'Edit draft', new_admin_lifestyle_calculator_path(countries: calculators[:draft].countries&.map(&:alpha2) || ['']) %>
           <% end %>
         </td>
       </tr>

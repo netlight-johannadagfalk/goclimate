@@ -1,6 +1,6 @@
 import { Controller } from 'stimulus';
 
-export default class LifestyleFootprintController extends Controller {
+export default class LifestyleCalculatorPreviewController extends Controller {
   calculate(event) {
     event.preventDefault();
 
@@ -50,4 +50,4 @@ export default class LifestyleFootprintController extends Controller {
   }
 }
 
-LifestyleFootprintController.targets = ['housingResult', 'foodResult', 'carResult', 'flightsResult', 'consumptionResult', 'publicResult', 'total', 'price', 'error'];
+LifestyleCalculatorPreviewController.targets = ['housingResult', 'foodResult', 'carResult', 'flightsResult', 'consumptionResult', 'publicResult', 'total', 'price', 'error'];

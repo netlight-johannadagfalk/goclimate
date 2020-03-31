@@ -55,6 +55,8 @@ Rails.application.routes.draw do
     get '100_percent_transparency', to: 'welcome#transparency', as: 'transparency'
     get 'privacy_policy', to: 'welcome#privacy_policy'
 
+    resources :lifestyle_footprints, path: 'calculator', only: [:new, :create], path_names: { new: '' }
+
     resources :projects, path: 'our_projects', only: [:index]
 
     get 'business', to: 'welcome#business'
@@ -147,6 +149,8 @@ Rails.application.routes.draw do
     resources :lifestyle_calculators, only: [:index, :show, :new, :create] do
       member do
         resource :lifestyle_calculator_preview, path: :preview, only: [:create]
+        get :review, path: :publish
+        post :publish
       end
     end
     resources :projects
