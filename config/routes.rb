@@ -149,6 +149,8 @@ Rails.application.routes.draw do
     resources :lifestyle_calculators, only: [:index, :show, :new, :create] do
       member do
         resource :lifestyle_calculator_preview, path: :preview, only: [:create]
+        get :review, path: :publish
+        post :publish
       end
     end
     resources :projects

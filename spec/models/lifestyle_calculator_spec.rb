@@ -23,12 +23,14 @@ RSpec.describe LifestyleCalculator do
       create(:lifestyle_calculator, countries: ['se'], version: 1)
       create(:lifestyle_calculator, countries: ['se'], version: 2)
       create(:lifestyle_calculator, countries: ['dk'], version: 1)
+      create(:lifestyle_calculator, countries: nil, version: 1)
     end
 
     it 'includes latest version of each country' do
       expect(described_class.published).to contain_exactly(
         an_object_having_attributes(countries: [ISO3166::Country.new('dk')], version: 1),
-        an_object_having_attributes(countries: [ISO3166::Country.new('se')], version: 2)
+        an_object_having_attributes(countries: [ISO3166::Country.new('se')], version: 2),
+        an_object_having_attributes(countries: nil, version: 1)
       )
     end
   end
@@ -137,6 +139,40 @@ RSpec.describe LifestyleCalculator do
         calculator.valid?
         expect(calculator.errors).to include(formula_field)
       end
+    end
+  end
+
+  describe '.find_published_for_country' do
+    let!(:published_canada) do
+      create(:lifestyle_calculator, version: 1, countries: %w[us ca])
+    end
+
+    let!(:published_us) do
+      create(:lifestyle_calculator, version: 2, countries: %w[us])
+    end
+
+    let!(:published_rest_of_world) do
+      create(:lifestyle_calculator, version: 3, countries: nil)
+    end
+
+    before do
+      create(:lifestyle_calculator, version: nil, countries: [ISO3166::Country.new('se')])
+    end
+
+    it 'returns published calculator for provided country' do
+      expect(described_class.find_published_for_country(ISO3166::Country.new('ca'))).to eq(published_canada)
+    end
+
+    it 'returns latest version of published calculator for country' do
+      expect(described_class.find_published_for_country(ISO3166::Country.new('us'))).to eq(published_us)
+    end
+
+    it 'returns calculator for rest of world when none exist for provided country' do
+      expect(described_class.find_published_for_country(ISO3166::Country.new('dk'))).to eq(published_rest_of_world)
+    end
+
+    it 'returns calculator for rest of world for countries with no published calculators' do
+      expect(described_class.find_published_for_country(ISO3166::Country.new('se'))).to eq(published_rest_of_world)
     end
   end
 

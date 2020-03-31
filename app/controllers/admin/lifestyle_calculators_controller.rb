@@ -32,6 +32,20 @@ module Admin
       redirect_to [:admin, @calculator]
     end
 
+    def review
+      @calculator = LifestyleCalculator.find(params[:id])
+
+      render_not_found && return if @calculator.version.present?
+    end
+
+    def publish
+      calculator = LifestyleCalculator.find(params[:id])
+      calculator.version = params[:version].to_i
+      calculator.save!
+
+      redirect_to [:admin, calculator]
+    end
+
     private
 
     def options_params
@@ -49,15 +63,15 @@ module Admin
     end
 
     def calculators
-      p = LifestyleCalculator.published.map do |calculator|
+      p = LifestyleCalculator.published.order(version: :desc).map do |calculator|
         [calculator.countries, { published: calculator }]
       end.to_h
 
-      d = LifestyleCalculator.drafts.map do |calculator|
+      d = LifestyleCalculator.drafts.order(countries: :asc).map do |calculator|
         [calculator.countries, { draft: calculator }]
       end.to_h
 
-      d.deep_merge(p)
+      p.deep_merge(d)
     end
   end
 end

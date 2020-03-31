@@ -1,0 +1,160 @@
+<h1>Publish Lifestyle Calculator</h1>
+
+<dl class="dl-horizontal">
+  <dt>Countries:</dt>
+  <dd>
+    <% if @calculator.countries.present? %>
+      <%= @calculator.countries.join(', ') %>
+    <% else %>
+      <i>All countries not matched by other calculators</i>
+    <% end %>
+  </dd>
+
+  <dt>Unit for distance traveled by car:</dt>
+  <dd><%= @calculator.car_distance_unit %></dd>
+</dl>
+
+<div class="panel panel-warning">
+  <div class="panel-body">
+    This is how this calculator will look like for users after being published. Please make sure all answer options look good before publishing.
+  </div>
+</div>
+
+<p>Preview in: <%= link_to 'English', preview_locale: 'en' %> | <%= link_to 'Swedish', preview_locale: 'sv' %> | <%= link_to 'German', preview_locale: 'de' %></p>
+
+<% I18n.with_locale(params[:preview_locale]&.to_sym || 'en') do %>
+  <% if @calculator.region_options.present? %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3 style="margin-top: 10px;"><%=t 'views.lifestyle_footprints.questions.region' %></h3>
+        <% @calculator.region_options.each do |option| %>
+          <p>
+            <span class="btn btn-default">
+              <%=t "views.lifestyle_footprints.options.region.#{option['key']}" %>
+            </span>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @calculator.home_options.present? %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3 style="margin-top: 10px;"><%=t 'views.lifestyle_footprints.questions.home' %></h3>
+        <% @calculator.home_options.each do |option| %>
+          <p>
+            <span class="btn btn-default">
+              <%=t "views.lifestyle_footprints.options.home.#{option['key']}" %>
+            </span>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @calculator.house_age_options.present? %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3 style="margin-top: 10px;"><%=t 'views.lifestyle_footprints.questions.house_age' %></h3>
+        <% @calculator.house_age_options.each do |option| %>
+          <p>
+            <span class="btn btn-default">
+              <%=t "views.lifestyle_footprints.options.house_age.#{option['key']}" %>
+            </span>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @calculator.green_electricity_options.present? %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3 style="margin-top: 10px;"><%=t 'views.lifestyle_footprints.questions.green_electricity' %></h3>
+        <% @calculator.green_electricity_options.each do |option| %>
+          <p>
+            <span class="btn btn-default">
+              <%=t "views.lifestyle_footprints.options.green_electricity.#{option['key']}" %>
+            </span>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @calculator.food_options.present? %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3 style="margin-top: 10px;"><%=t 'views.lifestyle_footprints.questions.food' %></h3>
+        <% @calculator.food_options.each do |option| %>
+          <p>
+            <span class="btn btn-default">
+              <%=t "views.lifestyle_footprints.options.food.#{option['key']}" %>
+            </span>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @calculator.car_type_options.present? %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3 style="margin-top: 10px;"><%=t 'views.lifestyle_footprints.questions.car_type' %></h3>
+        <% @calculator.car_type_options.each do |option| %>
+          <p>
+            <span class="btn btn-default">
+              <%=t "views.lifestyle_footprints.options.car_type.#{option['key']}" %>
+            </span>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h3 style="margin-top: 10px;"><%=t 'views.lifestyle_footprints.questions.car_distance' %></h3>
+      <p>
+        <div class="input-group" style="width: 200px;">
+          <input type="text" class="form-control">
+          <div class="input-group-addon"><%= @calculator.car_distance_unit %></div>
+        </div>
+      </p>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h3 style="margin-top: 10px;"><%=t 'views.lifestyle_footprints.questions.flight_hours' %></h3>
+      <p>
+        <input type="text" class="form-control" style="width: 200px;">
+      </p>
+    </div>
+  </div>
+<% end %>
+
+<%= form_with url: publish_admin_lifestyle_calculator_path do |f| %>
+  <%= f.hidden_field :id, value: @calculator.id %>
+
+  <div class="form-group">
+    <%= f.label :version %>
+    <%= f.number_field :version, required: '', class: 'form-control' %>
+    <span class="help-block">
+      Be careful to enter a version number that is higher than all
+      calculators you want to replace. Example: If there exists a calculator
+      for Sweden, Norway and Denmark with version number 3 and this
+      calculator is for just Sweden, this calculator still has to have a
+      higher version number, 4 or higher, for it to be used for Sweden (the
+      previous one will still be used for Denmark and Norway). The other way around works the same, i.e. a new calculator for Sweden, Norway and Denmark will apply to all those countries even if there exists calculators for those countries individually, if the new calculator has a version number.
+    </span>
+
+    <%= f.submit 'Publish', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<hr>
+
+<%= link_to 'Edit draft', new_admin_lifestyle_calculator_path(countries: @calculator.countries&.map(&:alpha2) || ['']), class: 'btn btn-default' %> &nbsp;
+<%= link_to 'Back', [:admin, @calculator], class: 'btn btn-link' %>

@@ -2,10 +2,11 @@
 
 class LifestyleFootprintsController < ApplicationController
   def new
-    country = ISO3166::Country.new(params[:country])
-    render_not_found && return if country.nil?
+    (country = ISO3166::Country.new(params[:country])) &&
+      (@calculator = LifestyleCalculator.find_published_for_country(country))
 
-    @calculator = LifestyleCalculator.find_by!(countries: [country])
+    render_not_found && return unless @calculator.present?
+
     @footprint = LifestyleFootprint.new(lifestyle_calculator: @calculator)
   end
 

@@ -151,5 +151,6 @@
 
 <% if @calculator.version.nil? %>
   <%= link_to 'Edit draft', new_admin_lifestyle_calculator_path(countries: @calculator.countries&.map(&:alpha2) || ['']), class: 'btn btn-default' %> &nbsp;
+  <%= link_to 'Review & publish', review_admin_lifestyle_calculator_path(@calculator), class: 'btn btn-default' %> &nbsp;
 <% end %>
 <%= link_to 'Back', admin_lifestyle_calculators_path, class: 'btn btn-link' %>

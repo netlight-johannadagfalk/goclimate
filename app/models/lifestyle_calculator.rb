@@ -24,7 +24,18 @@ class LifestyleCalculator < ApplicationRecord # rubocop:disable Metrics/ClassLen
       FROM lifestyle_calculators
       GROUP BY countries
     )
+    OR countries IS NULL AND version = (
+      SELECT MAX(version) from lifestyle_calculators WHERE countries IS NULL
+    )
   SQL
+
+  def self.find_published_for_country(country)
+    where(<<~SQL, country.alpha2.downcase).order(Arel.sql(<<~SQL)).first
+      version IS NOT NULL AND (? = ANY(countries) OR countries IS NULL)
+    SQL
+      CASE WHEN countries IS NULL THEN 0 ELSE 1 END DESC, version DESC
+    SQL
+  end
 
   def self.find_or_initialize_draft_by_countries(countries)
     find_or_initialize_by(

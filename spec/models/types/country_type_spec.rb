@@ -9,6 +9,10 @@ RSpec.describe CountryType do
     it 'casts ISO strings to countries' do
       expect(country_type.cast('se')).to eq(ISO3166::Country.new('se'))
     end
+
+    it 'passes ISO3166::Country instances as is' do
+      expect(country_type.cast(ISO3166::Country.new('se'))).to eq(ISO3166::Country.new('se'))
+    end
   end
 
   describe '#serialize' do
@@ -18,6 +22,10 @@ RSpec.describe CountryType do
 
     it 'serializes ISO3166::Country instances' do
       expect(country_type.serialize(ISO3166::Country.new('se'))).to eq('se')
+    end
+
+    it 'serializes nil' do
+      expect(country_type.serialize(nil)).to be_nil
     end
   end
 end
