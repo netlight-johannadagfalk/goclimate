@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ClimateReportInvoice < ApplicationRecord
-  ADMIN_FEE_IN_SEK = 1000
-
   belongs_to :climate_report
   belongs_to :project, optional: true
 
@@ -19,6 +17,15 @@ class ClimateReportInvoice < ApplicationRecord
 
   # Calculate amount in SEK lowest denominator
   def calculate_amount
-    (BigDecimal(co2e) / 1000 * LifestyleChoice::BUSINESS_SEK_PER_TONNE + ADMIN_FEE_IN_SEK).ceil * 100
+    admin_fee = case climate_report.employees
+                when 1..10
+                  1000
+                when 11..20
+                  2000
+                else
+                  5000
+                end
+
+    (BigDecimal(co2e) / 1000 * LifestyleChoice::BUSINESS_SEK_PER_TONNE + admin_fee).ceil * 100
   end
 end
