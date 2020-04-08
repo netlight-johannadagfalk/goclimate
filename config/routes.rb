@@ -39,10 +39,6 @@ Rails.application.routes.draw do
       registrations: 'users/registrations'
     }
     namespace :users, as: 'user' do
-      devise_scope :user do
-        post 'verify', to: 'registrations#verify', as: 'registration_verify'
-      end
-
       resource :subscription, only: [:show, :update]
       resources :receipts, only: [:index, :show], param: :card_charge_id
     end
