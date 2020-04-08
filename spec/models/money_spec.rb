@@ -29,6 +29,12 @@ RSpec.describe Money do
 
       expect(money.currency).to eq(Currency::SEK)
     end
+
+    it 'raises ArgumentError when subunit amount is not an integer' do
+      expect do
+        described_class.new(1_00.0, :sek)
+      end.to raise_error(ArgumentError)
+    end
   end
 
   describe '#to_s' do

@@ -11,7 +11,10 @@ class SubscriptionManager
 
     case price.currency
     when Currency::SEK
-      Money.new((price.subunit_amount.to_d / 5).ceil(-2) * 5, :sek)
+      Money.new(
+        ((price.subunit_amount.to_d / 5).ceil(-2) * 5).to_i,
+        :sek
+      )
     else
       price
     end
