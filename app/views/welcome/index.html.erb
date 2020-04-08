@@ -10,85 +10,118 @@
   <%= render "shared/header_old" %>
   <div class="container">
 
-    <div class="row">
-      <div class="inner">
-        <div class="col-xs-12 col-md-8">
-          <h1 class="cover-heading top">
+    <% if new_calculator_active? %>
+      <div style="display: flex; align-items: center; min-height: 70vh; padding-bottom: 50px">
+        <div style="width: 100%;">
+          <h1 class="cover-heading top" style="margin-top: 30px">
             <%=t 'welcome.caption_line_1' %><br>
             <%=t 'welcome.caption_line_2' %>
           </h1>
-        </div>
 
-        <div class="col-xs-12 col-md-4">
-          <div id="choose-plan" class="panel panel-success">
-            <div class="panel-heading">
-              <h3 class="panel-title"><%=t 'welcome.calculator.title' %></h3>
-            </div>
-
-            <div class="panel-body custom-plan-price">
-              <div class="impact-calculator-fields">
-                <label class="sr-only" for="people"><%= t('welcome.form.label.people') %></label>
-
-                <select id="people" class="form-control input-sm impact-calculator-fields--lifestyle-choice">
-                  <% LifestyleChoice.where(category: :people).where("version != 0").order(:co2).each do |people| %>
-                    <% if people.co2.to_i == 1 %>
-                      <option value="<%= people.id %>"><%=t people.name %></option>
-                    <% else %>
-                      <option value="<%= people.id %>"><%= I18n.t('x_people', number: people.co2.to_i) %></option>
-                    <% end %>
-                  <% end %>
-                </select>
-
-                <label class="sr-only" for="food"><%= t('welcome.form.label.food') %></label>
-                <select id="food" class="form-control input-sm impact-calculator-fields--lifestyle-choice">
-                  <% LifestyleChoice.where(category: :food).where("version != 0").order(:co2).each do |choice| %>
-                    <option value="<%= choice.id %>"><%=t choice.name %></option>
-                  <% end %>
-                </select>
-
-                <label class="sr-only" for="car"><%= t('welcome.form.label.car') %></label>
-                <select id="car" class="form-control input-sm impact-calculator-fields--lifestyle-choice">
-                  <% LifestyleChoice.where(category: :car).each do |choice| %>
-                    <option value="<%= choice.id %>"><%=t choice.name %></option>
-                  <% end %>
-                </select>
-
-                <label class="sr-only" for="flying"><%= t('welcome.form.label.flying') %></label>
-                <select id="flying" class="form-control input-sm impact-calculator-fields--lifestyle-choice">
-                  <% LifestyleChoice.where(category: :flying).each do |choice| %>
-                    <option value="<%= choice.id %>"><%=t choice.name %></option>
-                  <% end %>
-                </select>
-
-                <div class="impact-calculator-fields--price">
-                  <%= current_region.currency.prefix %><span id="sum" class="impact-calculator-fields--price-sum">x</span><%= current_region.currency.suffix %><%=t 'welcome.calculator.per_month' %>
-
-                  <a id="price-info-helper"
-                      data-html="true"
-                      aria-hidden="true"
-                      tabindex="0"
-                      data-trigger="focus"
-                      data-toggle="popover"
-                      data-container="body"
-                      title="<%=t 'cost_calculation' %>"
-                      data-placement="auto down"
-                      role="button"
-                      data-content="<%=t 'price_info_popup_content', footprint: "x", footprint_x2: "x", price_per_tonne: "x", price_per_month: "x"  %>">
-                    <span class="glyphicon glyphicon-large glyphicon-question-sign">
-                  </a>
-                </div>
-              </div>
-
-              <input type="hidden" id="base_cost" value="<%= LifestyleChoice.where(category: :base).first.id %>">
-            </div>
-
-            <div class="panel-footer">
-              <a id="custom-plan" href="<%= new_registration_path(:user) %>?choices=25,1,6,14,29" class="btn btn-success" role="button"><%=t 'welcome.calculator.submit' %></a>
+          <div class="panel panel-default panel-full-width" style="display: inline-block; margin-top: 20px;">
+            <div class="panel-body">
+              <p style="margin-bottom: 5px"><strong><%=t 'views.welcome.index.calculate_to_sign_up' %></strong></p>
+              <%= form_with url: new_lifestyle_footprint_path, method: :get, class: 'form-inline' do |f| %>
+                <%= f.country_select :country,
+                      {
+                        include_blank: t('views.welcome.index.i_live_in'),
+                        priority_countries: [
+                          ISO3166::Country.new(request.headers['CF-IPCountry']) ||
+                            current_region.country_codes
+                        ].flatten.compact
+                      },
+                      {
+                        class: 'form-control',
+                        style: 'margin-top: 5px',
+                        required: ''
+                      } %>
+                <%= f.submit t('views.welcome.index.get_started'), name: nil, class: 'btn btn-success sm-full-width', style: 'margin-top: 5px' %>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    <% else %>
+      <div class="row">
+        <div class="inner">
+          <div class="col-xs-12 col-md-8">
+            <h1 class="cover-heading top">
+              <%=t 'welcome.caption_line_1' %><br>
+              <%=t 'welcome.caption_line_2' %>
+            </h1>
+          </div>
+
+          <div class="col-xs-12 col-md-4">
+            <div id="choose-plan" class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title"><%=t 'welcome.calculator.title' %></h3>
+              </div>
+
+              <div class="panel-body custom-plan-price">
+                <div class="impact-calculator-fields">
+                  <label class="sr-only" for="people"><%= t('welcome.form.label.people') %></label>
+
+                  <select id="people" class="form-control input-sm impact-calculator-fields--lifestyle-choice">
+                    <% LifestyleChoice.where(category: :people).where("version != 0").order(:co2).each do |people| %>
+                      <% if people.co2.to_i == 1 %>
+                        <option value="<%= people.id %>"><%=t people.name %></option>
+                      <% else %>
+                        <option value="<%= people.id %>"><%= I18n.t('x_people', number: people.co2.to_i) %></option>
+                      <% end %>
+                    <% end %>
+                  </select>
+
+                  <label class="sr-only" for="food"><%= t('welcome.form.label.food') %></label>
+                  <select id="food" class="form-control input-sm impact-calculator-fields--lifestyle-choice">
+                    <% LifestyleChoice.where(category: :food).where("version != 0").order(:co2).each do |choice| %>
+                      <option value="<%= choice.id %>"><%=t choice.name %></option>
+                    <% end %>
+                  </select>
+
+                  <label class="sr-only" for="car"><%= t('welcome.form.label.car') %></label>
+                  <select id="car" class="form-control input-sm impact-calculator-fields--lifestyle-choice">
+                    <% LifestyleChoice.where(category: :car).each do |choice| %>
+                      <option value="<%= choice.id %>"><%=t choice.name %></option>
+                    <% end %>
+                  </select>
+
+                  <label class="sr-only" for="flying"><%= t('welcome.form.label.flying') %></label>
+                  <select id="flying" class="form-control input-sm impact-calculator-fields--lifestyle-choice">
+                    <% LifestyleChoice.where(category: :flying).each do |choice| %>
+                      <option value="<%= choice.id %>"><%=t choice.name %></option>
+                    <% end %>
+                  </select>
+
+                  <div class="impact-calculator-fields--price">
+                    <%= current_region.currency.prefix %><span id="sum" class="impact-calculator-fields--price-sum">x</span><%= current_region.currency.suffix %><%=t 'welcome.calculator.per_month' %>
+
+                    <a id="price-info-helper"
+                        data-html="true"
+                        aria-hidden="true"
+                        tabindex="0"
+                        data-trigger="focus"
+                        data-toggle="popover"
+                        data-container="body"
+                        title="<%=t 'cost_calculation' %>"
+                        data-placement="auto down"
+                        role="button"
+                        data-content="<%=t 'price_info_popup_content', footprint: "x", footprint_x2: "x", price_per_tonne: "x", price_per_month: "x"  %>">
+                      <span class="glyphicon glyphicon-large glyphicon-question-sign">
+                    </a>
+                  </div>
+                </div>
+
+                <input type="hidden" id="base_cost" value="<%= LifestyleChoice.where(category: :base).first.id %>">
+              </div>
+
+              <div class="panel-footer">
+                <a id="custom-plan" href="<%= new_registration_path(:user) %>?choices=25,1,6,14,29" class="btn btn-success" role="button"><%=t 'welcome.calculator.submit' %></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
 
   </div>
 </div>
@@ -229,10 +262,12 @@
 
 <%= render "shared/footer_old" %>
 
-<% content_for :javascript_tags do %>
-  <script>
-    $(document).ready(function() {
-      initializeWelcome();
-    });
-  </script>
+<% unless new_calculator_active? %>
+  <% content_for :javascript_tags do %>
+    <script>
+      $(document).ready(function() {
+        initializeWelcome();
+      });
+    </script>
+  <% end %>
 <% end %>

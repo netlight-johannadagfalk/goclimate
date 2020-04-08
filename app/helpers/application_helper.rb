@@ -1,6 +1,23 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  def new_calculator_active?
+    return @new_calculator_active unless @new_calculator_active.nil?
+
+    active =
+      if cookies[:new_calculator].present?
+        cookies[:new_calculator] == '1'
+      else
+        rand(0..100) <= 5
+      end
+
+    active = params[:new_calculator] == '1' if params[:new_calculator].present?
+
+    cookies[:new_calculator] = { value: active ? '1' : '0', expires: 30.days.from_now }
+
+    @new_calculator_active = active
+  end
+
   def price_string(amount, currency, options = {})
     Rails.logger.warn 'DEPRECATION: Use Money#to_s instead of ApplicationHelper#price_string'
 
