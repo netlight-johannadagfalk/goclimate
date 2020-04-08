@@ -709,6 +709,10 @@ sv:
         our_projects_header: Våra klimatprojekt
         our_projects_lead: För oss är det avgörande att dina pengar hamnar i rätta händer. Därför väljer vi att bara stötta tredjepartsgranskade klimatprojekt som har certifieringen Gold Standard. Projekten bidrar till den globala omställningen till förnybar energi och FN:s hållbarhetsmål.
         our_projects_link: Läs mer om våra klimatprojekt
+    registrations:
+      offset_for_x_people:
+        before_input: Jag vill kompensera för
+        after_input: personer som mig.
 
   business:
     climate_reports:

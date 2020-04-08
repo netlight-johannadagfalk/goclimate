@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Users
-  class RegistrationsController < Devise::RegistrationsController
+  class RegistrationsController < Devise::RegistrationsController # rubocop:disable Metrics/ClassLength
     before_action :set_footprint_and_price, only: [:new, :create]
     before_action :set_user, only: [:create]
     before_action :set_subscription_manager, only: [:create]
@@ -80,7 +80,8 @@ module Users
       @footprint = LifestyleFootprint.find_by_key!(footprint_key) if footprint_key.present?
 
       @footprint_tonnes = @footprint&.total || LifestyleChoice.lifestyle_choice_footprint(@lifestyle_choice_ids)
-      @plan_price = SubscriptionManager.price_for_footprint(@footprint_tonnes, current_region.currency)
+      @subscription_tonnes = @footprint_tonnes * (params[:people].presence&.to_i || 1)
+      @plan_price = SubscriptionManager.price_for_footprint(@subscription_tonnes, current_region.currency)
     end
 
     def set_user

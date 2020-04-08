@@ -695,6 +695,10 @@ en:
         our_projects_header: Our Climate Projects
         our_projects_lead: It's crucial for us that your money only ever ends up in the right hands. To guarantee that, we support Gold Standard certified projects that have been verified by third parties. The projects contribute to the global transition to renewable energy and the UN Sustainable Development Goals.
         our_projects_link: Read more about our climate projects
+    registrations:
+      offset_for_x_people:
+        before_input: I want to offset for
+        after_input: people like me.
 
   business:
     climate_reports:
