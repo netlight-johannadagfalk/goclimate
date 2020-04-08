@@ -14,7 +14,7 @@
 
     <%= form_with url: registration_path(resource_name, format: :json), html: { id: "payment-form", class: "form-horizontal", data: { controller: 'registration-form', action: 'registration-form#submit' } } do |f| %>
       <%= f.hidden_field(:choices, :value => params[:choices]) %>
-      <%= f.hidden_field(:lifestyle_footprint_id, :value => @footprint&.id) %>
+      <%= f.hidden_field(:lifestyle_footprint, :value => @footprint&.key) %>
 
       <%= fields_for @user do |user_form| %>
         <%= user_form.hidden_field :region %>
