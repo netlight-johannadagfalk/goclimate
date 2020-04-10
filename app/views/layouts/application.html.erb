@@ -66,12 +66,9 @@
       })(window,document,'script','https://www.google-analytics.com/analytics<%= '_debug' if Rails.env.development? %>.js','ga');
       ga('create', 'UA-97611261-1', 'auto');
       <% unless ENV['GOOGLE_ANALYTICS_SENDING'] == 'enabled' %>ga('set', 'sendHitTask', null);<% end %>
-      ga('send', 'pageview');
-      <% if new_calculator_active? %>
-        ga('set', 'dimension1', 'new_calculator');
-      <% else %>
-        ga('set', 'dimension1', null);
-      <% end %>
+      ga('send', 'pageview', {
+        dimension1: <% if new_calculator_active? %>'new_calculator'<% else %>''<% end %>
+      });
     </script>
 
     <!-- Global site tag (gtag.js) -->
