@@ -13,8 +13,8 @@ class LifestyleFootprint < ApplicationRecord
   attribute :total, :greenhouse_gases
 
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
-  validates_presence_of :housing, :food, :car, :flights, :consumption, :public, :total, :car_distance_answer,
-                        :flight_hours_answer
+  validates_presence_of :housing, :food, :car, :flights, :consumption, :public, :total
+  validates :car_distance_answer, :flight_hours_answer, numericality: { greater_than_or_equal_to: 0 }
   validate :answers_exist_in_calculator
 
   before_validation :generate_key
