@@ -71,6 +71,7 @@
 
       <%= form_with model: @footprint do |f| %>
         <%= f.hidden_field :lifestyle_calculator_id %>
+        <%= f.hidden_field :country, value: params[:country] %>
 
         <% if @calculator.region_options.present? %>
           <div class="question py-8 hidden" data-target="lifestyle-calculator.question" data-category="home">

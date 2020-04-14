@@ -4,8 +4,9 @@ require 'rails_helper'
 
 RSpec.describe LifestyleFootprint do
   [
-    :lifestyle_calculator, :housing, :food, :car, :flights, :consumption,
-    :public, :total, :car_distance_answer, :flight_hours_answer
+    :lifestyle_calculator, :country, :housing, :food, :car, :flights,
+    :consumption, :public, :total, :car_distance_answer,
+    :flight_hours_answer
   ].each do |attribute|
     describe "##{attribute}" do
       it 'validates to be present' do
