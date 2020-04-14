@@ -16,6 +16,22 @@ RSpec.describe LifestyleFootprint do
     end
   end
 
+  describe '#car_distance_answer' do
+    it 'validates to not be negative' do
+      footprint = described_class.new(car_distance_answer: -1)
+      footprint.valid?
+      expect(footprint.errors).to include(:car_distance_answer)
+    end
+  end
+
+  describe '#flight_hours_answer' do
+    it 'validates to not be negative' do
+      footprint = described_class.new(flight_hours_answer: -1)
+      footprint.valid?
+      expect(footprint.errors).to include(:flight_hours_answer)
+    end
+  end
+
   [
     :region, :home, :heating, :house_age, :green_electricity, :food, :car_type
   ].each do |category|
