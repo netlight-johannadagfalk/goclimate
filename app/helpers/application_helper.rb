@@ -8,7 +8,7 @@ module ApplicationHelper
       if cookies[:new_calculator].present?
         cookies[:new_calculator] == '1'
       else
-        rand(0..100) <= 5
+        rand(0..100) <= 50
       end
 
     active = params[:new_calculator] == '1' if params[:new_calculator].present?
