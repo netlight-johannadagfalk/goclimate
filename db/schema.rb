@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_19_174526) do
+ActiveRecord::Schema.define(version: 2020_04_13_073358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(version: 2020_03_19_174526) do
     t.integer "consumption"
     t.integer "public"
     t.integer "total"
+    t.text "country"
     t.index ["lifestyle_calculator_id"], name: "index_lifestyle_footprints_on_lifestyle_calculator_id"
     t.index ["user_id"], name: "index_lifestyle_footprints_on_user_id"
   end
