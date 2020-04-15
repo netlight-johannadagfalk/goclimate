@@ -22,6 +22,11 @@ export default class RegistrationFormController extends Controller {
       .then((response) => response.json())
       .then((data) => this.resolveFormResponse(data))
       .catch((error) => {
+        if (error.cardError) {
+          this.setErrorMessage(error.message);
+          return;
+        }
+
         window.Sentry.captureException(error); // These errors are unexpected, so report them.
         this.setErrorMessage('An unexpected error occurred. Please start over and try again. If the issue remains, please contact us at info@goclimateneutral.org.');
       })
