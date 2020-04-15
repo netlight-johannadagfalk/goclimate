@@ -156,8 +156,10 @@
 
       <% content_for :javascript_tags do %>
         <script>
-          new CountingNumber(document.querySelector('#total-carbon-offset'));
-          new CountingNumber(document.querySelector('#total-users'));
+          document.addEventListener('DOMContentLoaded', function() {
+            new CountingNumber(document.querySelector('#total-carbon-offset'));
+            new CountingNumber(document.querySelector('#total-users'));
+          });
         </script>
       <% end %>
 
