@@ -2,6 +2,7 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController # rubocop:disable Metrics/ClassLength
+    before_action :redirect_invalid_params, only: [:new]
     before_action :set_footprint_and_price, only: [:new, :create]
     before_action :set_user, only: [:create]
     before_action :set_subscription_manager, only: [:create]
@@ -73,6 +74,10 @@ module Users
     end
 
     private
+
+    def redirect_invalid_params
+      redirect_to root_path unless params[:choices].present? || params[:lifestyle_footprint].present?
+    end
 
     def set_footprint_and_price
       @lifestyle_choice_ids = lifestyle_choice_ids_from_params if params[:choices].present?
