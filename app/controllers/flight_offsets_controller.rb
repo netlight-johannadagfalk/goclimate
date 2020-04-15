@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class FlightOffsetsController < ApplicationController
+  before_action :set_flight_footprint, only: [:new]
+
   def new
-    @flight_footprint = flight_footprint_from_params
     @num_persons = num_persons_from_params
     @footprint_per_person = footprint_per_person
 
@@ -49,10 +50,12 @@ class FlightOffsetsController < ApplicationController
     )
   end
 
-  def flight_footprint_from_params
+  def set_flight_footprint
     offset_params = FlightOffsetParameters.from_s(params[:offset_params])
 
-    FootprintCalculation::FlightFootprint.new(
+    redirect_to(flight_footprints_path) && return if offset_params.nil?
+
+    @flight_footprint = FootprintCalculation::FlightFootprint.new(
       cabin_class: offset_params.cabin_class,
       segments: offset_params.segments
     )
