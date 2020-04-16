@@ -49,6 +49,9 @@
           <% if invoice.project.present? %>
             &nbsp; <%= link_to 'Certificate', admin_invoice_certificates_path(type: 'climate_report_invoice', id: invoice.id, format: :pdf) %>
           <% end %>
+          <% if invoice.project.present? %>
+            &nbsp; <%= link_to 'Report', business_climate_report_path(key: invoice.climate_report.key, format: :pdf, locale: 'sv') %>
+          <% end %>
         </td>
       </tr>
     <% end %>
