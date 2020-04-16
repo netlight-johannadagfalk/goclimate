@@ -733,7 +733,7 @@ sv:
       name_and_logo: Ditt företagsnamn och logga på vår sajt
       name_and_logo_tooltip: Att visa företagsnamn och logga kan inspirera andra till att beräkna sina utsläpp och göra något åt dem. Om du ångrar dig senare så är det bara att du hör av dig!
       ok_with_showing_logo: Vi är OK med att visa vårt företagsnamn och logga på GoClimateNeutrals sajt.
-      energy_header: Energi
+      energy: Energi
       energy_intro: Ett företags energiförbrukning brukar ofta vara den största delen av ett företags klimatavtryck. Den här beräkningen tar hänsyn till de tre vanligtvis största delarna; elektricitet, värme och antal servrar som företaget använder. 
       electricity: El
       electricity_consumption: Elförbrukning

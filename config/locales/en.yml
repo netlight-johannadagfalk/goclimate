@@ -719,7 +719,7 @@ en:
       name_and_logo: Your business name and logo on our site
       name_and_logo_tooltip: Showing your logo might help convince others that it's a good idea to calculate and offset their climate footprint too. And if you change your mind later, just drop us a line!
       ok_with_showing_logo: We're OK with our name and logo being shown on the GoClimateNeutral site.
-      energy_header: Energy
+      energy: Energy
       energy_intro: The energy consumption of a business is often the largest source of a service business climate footprint. This calculator takes the three most commonly largest energy consuming sources into account; electricity, heating and the amount of servers running.
       electricity: Electricity
       electricity_consumption: Electricity consumption
