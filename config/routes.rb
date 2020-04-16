@@ -67,6 +67,9 @@ Rails.application.routes.draw do
             get 'thank_you'
           end
         end
+        scope format: true, constraints: { format: :pdf } do
+          get 'pdf'
+        end
       end
     end
 

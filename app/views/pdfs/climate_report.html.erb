@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+<style>
+  body {
+    font-family: sans-serif;
+    line-height: 1.5;
+  }
+  h1, h2, h3 {
+    font-weight: 400;
+  }
+  h2, h3 {
+    margin-top: 40px;
+  }
+  p {
+    font-size: 18px;
+  }
+  th {
+    white-space: nowrap;
+    padding: 10px;
+  }
+  .alwaysbreak {
+    page-break-before: always;
+    padding-top: 80px;
+  }
+  .content {
+    padding: 0px 80px;
+    width: 800px;
+  }
+  .reportGraph {
+    margin: 40px 40px;
+    width: 700px;
+  }
+  .logo {
+    text-align: right;
+  }
+  td.category {
+    padding-top: 120px;
+    font-weight: bold;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="content">
+  <div class="logo">
+  <%= image_tag wicked_pdf_file_base64('app/assets/images/goclimateneutral_logo_turkos.png'), size: "200x200" %>
+  </div>
+
+  <h1>Klimatrapport <%= @company_name %></h1>
+
+  <p>Att beräkna en verksamhets utsläpp av växthusgaser är det första steget på vägen till att lyfta ett företag mot morgondagens hållbara och klimatneutrala samhälle. För att ligga i linje med Parisavtalet och vara bland de aktörer som tar ställning för klimatet behöver de egna utsläppen identifieras och kvantifieras. Denna rapport presenterar det uppmätta klimatavtrycket för verksamheten, och utgör på så vis det underlag som möjliggör att företaget kan förstå sin påverkan på klimatet. Baserat på detta kan företaget lägga ribban för ett seriöst klimatarbete och ta meningsfulla, faktabaserade åtgärder för att minska sin klimatpåverkan.</p>
+
+  <h2>Om beräkningarna</h2>
+
+  <p>Beräkningen är baserad på riktlinjer enligt Greenhouse Gas Protocol (GHG- protokollet), som är den världsledande standarden för att mäta och hantera utsläpp med påverkan på klimatet. Denna standard används av både av nationer, städer och företag - år 2016 följde 92% av Fortune 500-företagen GHG-protokollet för att beräkna sitt klimatavtryck. Detta rigorösa system har förenklats för att passa tjänstebolag genom GoClimateNeutrals företagskalkylator, där uppgifter som motsvarar de huvudsakliga utsläppsposterna för denna sortens verksamhet är utvalda. Beräkningarna är därmed baserade på uppgifter som <%= @company_name %> har uppgett inom dessa ramar, och lämnar dessutom utrymme för att övriga utsläpp läggs till i mån av behov.</p>
+
+  <h3>GHG-protokollets systemgränser</h3>
+
+  <p>GHG-protokollet skiljer på direkta utsläpp från verksamheten (scope 1), indirekta utsläpp från inköpt energi (scope 2) och övriga indirekta utsläpp från företagets värdekedja (scope 3). Vid beräkning av utsläpp från scope 1 och scope 2 samt de vanligaste scope 3-utsläppen kan beräkningen betraktas som heltäckande för tjänstebolag. För en komplett beräkning enligt GHG-protokollet är i dagsläget endast scope 1 och 2 obligatoriska, men eftersom en betydande andel av ett tjänstebolags utsläpp faller inom scope 3 så tar vi även detta i beaktning för att ge en komplett bild av utsläppen som associeras med verksamheten. </p>
+
+  <h3>Metod</h3>
+
+  <p>Beräkningarna av utsläppen från energi är utförda enligt den marknadsbaserade metoden, som definieras i GHG-protokollet och klassas som scope 2. Denna metod tar i beaktning utsläpp från el och uppvärmning som företagen medvetet har valt (eller aktivt inte valt). Alternativet, den platsbaserade metoden, använder nationell eller regional genomsnittsdata och exkluderar påverkan som företagets val av energi har.</p>
+  
+  <p class="alwaysbreak">Scope 3 inkluderar resor som görs i tjänsten, där inkluderar vi flyg och bilresor. Notera att om fartyget ägs av företaget så kategoriseras utsläppen från det som scope 1 om det är bränsledrivet, eller scope 2 om det är eldrivet.</p>
+  <p>Tågresor i Sverige har såpass lågt klimatavtryck att det kan anses försumbart i denna kontext. Vid beräkning av utsläppet från flygresor tas hänsyn till klimatpåverkan utöver koldioxidutsläppet, så kallade höghöjdsrelaterade utsläpp, genom att multiplicera koldioxidutsläppet med faktorn 2.0 (den så kallade RFI-faktorn). För resor med bil eller taxi beräknas snittutsläpp per kilometer för en svensk bensinbil, eller elbil om det har angetts. Att inkludera hotellnätter är enligt GHG-protokollet valbart, och finns därför med som alternativ i kalkylatorn.</p>
+  <p>Utsläpp från mat beräknas eftersom detta framför allt vid event och större ordrar kan ha en betydande klimatpåverkan, och det är stor skillnad i utsläpp från kött jämfört med vegetariska eller växtbaserade alternativ. Även detta faller under Scope 3.</p>
+  <p>Inköp av produkter som företaget använder faller även detta under scope 3. Elektronik inkluderas i kalkylatorn eftersom detta ofta är en betydande del av de inköp ett tjänsteföretag gör som belastar klimatet, där även små produkter har relativt höga utsläpp. Andra inköp som tex trycksaker och förbrukningsmaterial som köps in i små kvantiteter har lägre påverkan på klimatet.</p>
+  <p>En schablon läggs även på för att beräkna en medarbetares dagliga utsläpp. Ett antagande görs om att en anställd dricker en kopp kaffe och får en frukt (eller motsvarande) om dagen, och producerar en liten mängd hushållsavfall.</p>
+  <p>Kategorin för övriga utsläpp tar i beaktning att varje företag är unikt och kan ha betydande utsläpp från andra källor. Kalkylatorn erbjder därför företaget att beräkna dessa separat och lägga till dem för att ge en rättvisande bild av verksamhetens klimatpåverkan.</p>
+  <p>Ytterligare information om metoden bakom beräkningarna, emissionsfaktorer och schabloner finns tillgänglig på GoClimateNeutrals hemsida.</p>
+
+  <h2 class="alwaysbreak">Klimatutsläpp</h2>
+
+  <p>Denna klimatrapport omfattar utsläpp som registrerats under 2019. Under den angivna perioden var de totala utsläppen av växthusgaser från företagets verksamhet <%= co2e_string(@co2e) %> kg koldioxidekvivalenter (CO2e), vilket motsvarar <%= number_with_delimiter(@co2e_per_employee, delimiter: ' ') %> kg CO2e per anställd. Utsläppen är fördelade enligt nedan.</p>
+
+  <div class="reportGraph"><canvas id="doughnut-canvas"></canvas></div>
+  
+  <table>
+    <tr>
+      <th></th>
+      <th><%= @calculation_period %></th>
+      <th>Andel av totalt</th>
+    </tr>
+    <% @calculation_fields.each do |field| %>
+      <% field_emissions = @climate_report.calculation.send("#{field[:name]}_emissions") %>
+      <tr>
+        <td>
+          <%= "- " unless field.has_key? :category %>
+          <%=t "business.climate_reports.#{field[:name]}" %>
+        </td>
+        <td><%= field_emissions %></td>
+        <td><%= (BigDecimal(field_emissions) / @co2e * 100).round %> %</td>
+      </tr>
+  <% end %>
+  </table>
+
+  
+
+
+
+  <div class="reportGraph2"><canvas id="canvas"></canvas></div>
+</div>
+
+<script type="text/javascript">
+// wkhtmltopdf 0.12.5 crash fix.
+// https://github.com/wkhtmltopdf/wkhtmltopdf/issues/3242#issuecomment-518099192
+'use strict';
+(function(setLineDash) {
+    CanvasRenderingContext2D.prototype.setLineDash = function() {
+        if(!arguments[0].length){
+            arguments[0] = [1,0];
+        }
+        // Now, call the original method
+        return setLineDash.apply(this, arguments);
+    };
+})(CanvasRenderingContext2D.prototype.setLineDash);
+Function.prototype.bind = Function.prototype.bind || function (thisp) {
+    var fn = this;
+    return function () {
+        return fn.apply(thisp, arguments);
+    };
+};
+
+function drawGraphs() {
+
+  Chart.helpers.merge(Chart.defaults.global.plugins.datalabels, {
+    color: '#000000'
+  });
+
+  
+  var ctx = document.getElementById('doughnut-canvas').getContext('2d');
+  var myDoughnutChart = new Chart(ctx, {
+    plugins: [ChartDataLabels],
+    type: 'doughnut',
+    data: {
+        labels: ['energy', 'trips', 'meals', 'material', 'other'],
+        datasets: [{
+            label: 'Utsläppskällor',
+            data: [ 36, 57, 0, 7, 0 ],//<%= @doughnut_data.join(', ') %> ],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.4)',
+                'rgba(54, 162, 235, 0.4)',
+                'rgba(255, 206, 86, 0.4)',
+                'rgba(75, 192, 192, 0.4)',
+                'rgba(153, 102, 255, 0.4)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+      plugins: {
+          datalabels: {
+            formatter: function(value, context) {
+              if (value == 0) {
+                return '';
+              }
+              return context.dataIndex + ': ' + Math.round(value) + '%';
+            }
+          }
+      },
+      legend: {
+        labels: {
+           fontColor: 'black'
+        }
+      },
+      animation: {
+        animateRotate: false
+      }
+    }
+  });
+}
+window.onload = function() {
+    drawGraphs();
+};
+</script>
+</body>
+</html>
