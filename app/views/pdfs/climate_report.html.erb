@@ -22,6 +22,9 @@
     white-space: nowrap;
     padding: 10px;
   }
+  td {
+    padding: 0px 40px;
+  }
   .alwaysbreak {
     page-break-before: always;
     padding-top: 80px;
@@ -37,8 +40,8 @@
   .logo {
     text-align: right;
   }
-  td.category {
-    padding-top: 120px;
+  .category {
+    padding-top: 30px;
     font-weight: bold;
   }
 
@@ -89,7 +92,7 @@
     </tr>
     <% @calculation_fields.each do |field| %>
       <% field_emissions = @climate_report.calculation.send("#{field[:name]}_emissions") %>
-      <tr>
+      <tr <%= raw("class='category'") if field.has_key? :category %>>
         <td>
           <%= "- " unless field.has_key? :category %>
           <%=t "business.climate_reports.#{field[:name]}" %>
@@ -99,10 +102,6 @@
       </tr>
   <% end %>
   </table>
-
-  
-
-
 
   <div class="reportGraph2"><canvas id="canvas"></canvas></div>
 </div>
@@ -135,14 +134,16 @@ function drawGraphs() {
 
   
   var ctx = document.getElementById('doughnut-canvas').getContext('2d');
+
+  var labels = [ '<%= raw(@doughnut_labels.join("', '")) %>' ];
+
   var myDoughnutChart = new Chart(ctx, {
     plugins: [ChartDataLabels],
     type: 'doughnut',
     data: {
-        labels: ['energy', 'trips', 'meals', 'material', 'other'],
         datasets: [{
             label: 'Utsläppskällor',
-            data: [ 36, 57, 0, 7, 0 ],//<%= @doughnut_data.join(', ') %> ],
+            data: [ <%= @doughnut_data.join(', ') %> ],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.4)',
                 'rgba(54, 162, 235, 0.4)',
@@ -167,7 +168,7 @@ function drawGraphs() {
               if (value == 0) {
                 return '';
               }
-              return context.dataIndex + ': ' + Math.round(value) + '%';
+              return labels[context.dataIndex] + ': ' + Math.round(value) + '%';
             }
           }
       },
