@@ -1,9 +1,11 @@
 const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer');
 const purgecss = require('@fullhuman/postcss-purgecss');
 
 const environment = {
   plugins: [
-    tailwindcss
+    tailwindcss,
+    autoprefixer
   ]
 };
 

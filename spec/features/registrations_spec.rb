@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.feature 'Registrations', type: :feature, js: true do
   scenario 'Register and update card' do
     # Homepage
-    visit '/?enable_experiments=new_calculator'
+    visit '/?enable_experiments=new_calculator,alternative_signup'
 
     select('Sweden', from: 'country')
     click_button 'Get started'
@@ -120,6 +120,39 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     end
   end
 
+  scenario 'Register and update card without new signup' do
+    # Homepage
+    visit '/?enable_experiments=new_calculator&disable_experiment=alternative_signup'
+
+    select('Sweden', from: 'country')
+    click_button 'Get started'
+
+    # Calculator
+    find('label', text: 'Apartment').click
+    find('label', text: 'Electricity').click
+    find('label', text: 'Yes').click
+    find('label', text: 'Vegetarian').click
+    find('label', text: 'I don\'t have a car').click
+    click_button 'Next'
+
+    # Sign up page
+    fill_in 'Email', with: 'test@example.com'
+    fill_in 'Password', with: 'password'
+    within_frame(0) do
+      send_keys_to_card_field '4242424242424242'
+      find('input[name=exp-date]').send_keys '522'
+      find('input[name=cvc]').send_keys '123'
+    end
+    check 'I accept our Privacy policy'
+    click_button 'Go Climate Neutral!'
+
+    # Wait for success page to render
+    find('.dashboard-index', wait: 30)
+
+    expect(page).to have_text 'Welcome to a climate neutral life'
+    expect(page).to have_text 'We have accomplished a lot together!'
+  end
+
   scenario 'Register and update card with old calculator' do
     # Homepage
     visit '/?disable_experiments=new_calculator'
@@ -142,25 +175,5 @@ RSpec.feature 'Registrations', type: :feature, js: true do
 
     expect(page).to have_text 'Welcome to a climate neutral life'
     expect(page).to have_text 'We have accomplished a lot together!'
-
-    # Go to payment settings page
-    visit '/users/edit'
-    find('.registrations-edit', wait: 20)
-    click_link 'Payment Settings'
-    find('.subscriptions-show', wait: 20)
-
-    expect(page).to have_text 'Payment Settings'
-
-    # Update card
-    click_link 'edit card'
-    within_frame(0) do
-      send_keys_to_card_field '4242424242424242'
-      find('input[name=exp-date]').send_keys '522'
-      find('input[name=cvc]').send_keys '123'
-    end
-    click_button 'Update'
-
-    # Wait for payment page to render
-    find('.subscriptions-show', wait: 20)
   end
 end

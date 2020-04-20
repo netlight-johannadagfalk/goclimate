@@ -1,2 +1,4 @@
 new_calculator:
   frequency: 0.5
+alternative_signup:
+  frequency: 0.5
