@@ -67,7 +67,7 @@
       ga('create', 'UA-97611261-1', 'auto');
       <% unless ENV['GOOGLE_ANALYTICS_SENDING'] == 'enabled' %>ga('set', 'sendHitTask', null);<% end %>
       ga('send', 'pageview', {
-        dimension1: <% if new_calculator_active? %>'new_calculator'<% else %>''<% end %>
+        dimension1: '<%= @active_experiments.any? ? @active_experiments.sort.join(',') : 'none' %>'
       });
     </script>
 
