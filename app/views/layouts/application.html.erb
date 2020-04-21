@@ -129,6 +129,14 @@
       </script>
     <% end %>
 
+    <% if controller.controller_name == 'registrations' && controller.action_name == 'new' %>
+      <script>
+        fbq('track', 'InitiateCheckout', {
+          value: 0,
+        });
+      </script>
+    <% end %>
+
     <%= yield %>
 
     <script src="https://js.stripe.com/v3/"></script>
