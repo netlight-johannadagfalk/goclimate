@@ -41,15 +41,15 @@ class ClimateReportPdf
           calculation_period: @calculation_period,
           climate_report: @climate_report,
           calculation_fields: CALCULATION_FIELDS,
-          doughnut_data: doughnut_data.map { |d| d.values.join('') },
-          doughnut_labels: doughnut_data.map { |d| d.keys.join('') }
+          pie_data: pie_data.map { |d| d.values.join('') },
+          pie_labels: pie_data.map { |d| d.keys.join('') }
         }
       ),
       orientation: 'portrait'
     )
   end
 
-  def doughnut_data
+  def pie_data
     fields = CALCULATION_FIELDS.map do |field|
       field if field.has_key? :category
     end.compact

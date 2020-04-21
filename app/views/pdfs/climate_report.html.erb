@@ -15,12 +15,18 @@
   h2, h3 {
     margin-top: 40px;
   }
+  h4 {
+    margin-top: 80px;
+  }
   p {
     font-size: 18px;
   }
+  table {
+    border: 1px;
+  }
   th {
     white-space: nowrap;
-    padding: 10px;
+    padding: 20px;
   }
   td {
     padding: 0px 40px;
@@ -80,14 +86,16 @@
 
   <h2 class="alwaysbreak">Klimatutsläpp</h2>
 
-  <p>Denna klimatrapport omfattar utsläpp som registrerats under 2019. Under den angivna perioden var de totala utsläppen av växthusgaser från företagets verksamhet <%= co2e_string(@co2e) %> kg koldioxidekvivalenter (CO2e), vilket motsvarar <%= number_with_delimiter(@co2e_per_employee, delimiter: ' ') %> kg CO2e per anställd. Utsläppen är fördelade enligt nedan.</p>
+  <p>Denna klimatrapport omfattar utsläpp som registrerats under <%= @calculation_period %>. Under den angivna perioden var de totala utsläppen av växthusgaser från företagets verksamhet <%= co2e_string(@co2e) %> kg koldioxidekvivalenter (CO2e), vilket motsvarar <%= number_with_delimiter(@co2e_per_employee, delimiter: ' ') %> kg CO2e per anställd. Utsläppen är fördelade enligt nedan.</p>
 
-  <div class="reportGraph"><canvas id="doughnut-canvas"></canvas></div>
+  <h4>Klimatutsläpp per kategori (% av totala utsläpp)</h4>
+  <div class="reportGraph"><canvas id="pieCanvas"></canvas></div>
   
+  <h4>Klimatutsläpp per utsläppskälla (i ton koldioxidekvivalenter)</h4>
   <table>
     <tr>
-      <th></th>
-      <th><%= @calculation_period %></th>
+      <th>Usläppskälla</th>
+      <th>Utsläpp i ton CO2e</th>
       <th>Andel av totalt</th>
     </tr>
     <% @calculation_fields.each do |field| %>
@@ -103,7 +111,8 @@
   <% end %>
   </table>
 
-  <div class="reportGraph2"><canvas id="canvas"></canvas></div>
+  <h4 class="alwaysbreak">Klimatutsläpp jämfört med snitt av tjänstebolag</h4>
+  <div><canvas id="compareCanvas"></canvas></div>
 </div>
 
 <script type="text/javascript">
@@ -132,56 +141,98 @@ function drawGraphs() {
     color: '#000000'
   });
 
+  Chart.defaults.global.defaultFontColor = 'black';
+  Chart.defaults.global.defaultFontSize = 16;
+  Chart.defaults.global.animation.duration = 0;
   
-  var ctx = document.getElementById('doughnut-canvas').getContext('2d');
+  var ctx = document.getElementById('pieCanvas').getContext('2d');
+  var labels = [ '<%= raw(@pie_labels.join("', '")) %>' ];
 
-  var labels = [ '<%= raw(@doughnut_labels.join("', '")) %>' ];
-
-  var myDoughnutChart = new Chart(ctx, {
+  var mypieChart = new Chart(ctx, {
     plugins: [ChartDataLabels],
-    type: 'doughnut',
+    type: 'pie',
     data: {
+      datasets: [{
+        data: [ <%= @pie_data.join(', ') %> ],
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.4)',
+            'rgba(54, 162, 235, 0.4)',
+            'rgba(255, 206, 86, 0.4)',
+            'rgba(75, 192, 192, 0.4)',
+            'rgba(153, 102, 255, 0.4)'
+        ],
+        borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      plugins: {
+        datalabels: {
+          formatter: function(value, context) {
+            if (value == 0) {
+              return '';
+            }
+            return labels[context.dataIndex] + ': ' + Math.round(value) + '%';
+          }
+        }
+      },
+      legend: {
+        labels: {
+            fontColor: 'black'
+        }
+      },
+      layout: {
+        padding: {
+          right: 300
+        }
+      }
+    }
+  });
+
+  var ctxBar = document.getElementById('compareCanvas').getContext('2d');
+
+  var myBarChart = new Chart(ctxBar, {
+      type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
-            label: 'Utsläppskällor',
-            data: [ <%= @doughnut_data.join(', ') %> ],
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.4)',
-                'rgba(54, 162, 235, 0.4)',
-                'rgba(255, 206, 86, 0.4)',
-                'rgba(75, 192, 192, 0.4)',
-                'rgba(153, 102, 255, 0.4)'
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)'
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1
         }]
     },
     options: {
-      plugins: {
-          datalabels: {
-            formatter: function(value, context) {
-              if (value == 0) {
-                return '';
-              }
-              return labels[context.dataIndex] + ': ' + Math.round(value) + '%';
-            }
-          }
-      },
-      legend: {
-        labels: {
-           fontColor: 'black'
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
         }
-      },
-      animation: {
-        animateRotate: false
-      }
     }
-  });
+});
 }
 window.onload = function() {
     drawGraphs();
