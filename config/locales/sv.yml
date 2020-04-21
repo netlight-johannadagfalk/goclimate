@@ -765,7 +765,7 @@ sv:
       kilometers: kilometer
       food: Mat
       food_intro: Beroende på hur mycket mat och vilken typ av mat som ett företag serverar kan mat vara en stor del av ett företags klimatavtryck.
-      meals: Antal måltider
+      meals: Måltider
       meals_tooltip: Det uppskattade antalet måltider som serverats under perioden. Det här inkluderar alla måltider som företaget betalat för.
       meals_vegetarian_share: Andel vegetariskt
       meals_vegetarian_share_tooltip: Den uppskattade andelen vegetariska eller veganska måltider. Utan en veg-first policy så är det här förmodligen runt 10% (andelen vegetarianer/veganer i Sverige enligt Djurens Rätt).
