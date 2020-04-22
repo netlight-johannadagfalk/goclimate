@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.feature 'Registrations', type: :feature, js: true do
   scenario 'Register and update card' do
     # Homepage
-    visit '/?new_calculator=1'
+    visit '/?enable_experiments=new_calculator'
 
     select('Sweden', from: 'country')
     click_button 'Get started'
@@ -59,7 +59,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
   context 'when using 3D Secure card' do
     scenario 'Register and update card' do
       # Homepage
-      visit '/?new_calculator=1'
+      visit '/?enable_experiments=new_calculator'
 
       select('Sweden', from: 'country')
       click_button 'Get started'
@@ -122,7 +122,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
 
   scenario 'Register and update card with old calculator' do
     # Homepage
-    visit '/?new_calculator=0'
+    visit '/?disable_experiments=new_calculator'
 
     click_link 'Offset my impact'
 

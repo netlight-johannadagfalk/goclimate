@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
+  before_action :set_active_experiments
   helper_method :current_region, :canonical_url
 
   protected
@@ -73,6 +74,34 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_active_experiments
+    experiments = ExperimentsAssignment.new(cookies[:experiments])
+
+    # TODO: Remove once we've finished the new_calculator experiment
+    migrate_new_calculator_cookie(experiments)
+    parse_experiments_from_params(experiments)
+
+    cookies[:experiments] = { value: experiments.cookie_string, expires: 30.days.from_now }
+    @active_experiments = experiments.active_experiments
+  end
+
+  def parse_experiments_from_params(experiments)
+    experiments.enable(params[:enable_experiments].split(',').map(&:to_sym)) if params[:enable_experiments].present?
+    experiments.disable(params[:disable_experiments].split(',').map(&:to_sym)) if params[:disable_experiments].present?
+  end
+
+  def migrate_new_calculator_cookie(experiments)
+    return unless cookies[:new_calculator].present?
+
+    if cookies[:new_calculator] == '1'
+      experiments.enable([:new_calculator])
+    else
+      experiments.disable([:new_calculator])
+    end
+
+    cookies.delete(:new_calculator)
+  end
 
   def set_locale
     I18n.locale = current_region.locale
