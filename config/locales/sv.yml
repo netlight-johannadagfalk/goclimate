@@ -785,6 +785,9 @@ sv:
       calculate_button: Se mitt företags klimatavtryck
       read_more_about_calculations: Läs mer om företagskalkylatorn här
       total: Totalt
+      car: Bilresor
+      flight: Flygresor
+      average: snitt
       show:
         header: Ditt företags klimatavtryck
         result: Ditt företags klimatavtryck för perioden %{calculation_period} är %{total_emissions} ton koldioxidekvivalenter.

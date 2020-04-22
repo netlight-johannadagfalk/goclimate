@@ -42,25 +42,53 @@ class ClimateReportPdf
           climate_report: @climate_report,
           calculation_fields: CALCULATION_FIELDS,
           pie_data: pie_data.map { |d| d.values.join('') },
-          pie_labels: pie_data.map { |d| d.keys.join('') }
+          pie_labels: pie_data.map { |d| d.keys.join('') },
+          bar_data: bar_data.map { |d| d.values.join('') },
+          bar_labels: bar_data.map { |d| d.keys.join('') },
+          compare_bar_data: compare_bar_data.map { |d| d.values.join('') },
+          compare_bar_labels: compare_bar_data.map { |d| d.keys.join('') }
         }
       ),
       orientation: 'portrait'
     )
   end
 
-  def pie_data
+  def category_fields
     fields = CALCULATION_FIELDS.map do |field|
       field if field.has_key? :category
     end.compact
+  end
 
-    data = []
+  def emission_sources_fields
+    fields = CALCULATION_FIELDS.map do |field|
+      field unless field.has_key? :category
+    end.compact
+  end
 
-    fields.each do |field|
+  def pie_data
+    category_fields.map do |field|
       emission = @climate_report.calculation.send("#{field[:name]}_emissions")
-      data << {I18n.t("business.climate_reports.#{field[:name]}") => (BigDecimal(emission) / @co2e * 100).round}
-    end
+      {I18n.t("business.climate_reports.#{field[:name]}") => (BigDecimal(emission) / @co2e * 100).round}
+    end.compact
+  end
 
+  def bar_data
+    emission_sources_fields.map do |field|
+      emission = @climate_report.calculation.send("#{field[:name]}_emissions")
+      { I18n.t("business.climate_reports.#{field[:name]}") => emission.round } unless emission == 0
+    end.compact
+  end
+
+  def compare_bar_data
+    data = []
+    emission_sources_fields.each do |field|
+      total_emissions = ClimateReportInvoice.all.inject(1) { |n, cri | n + cri.climate_report.calculation.send("#{field[:name]}_emissions") }
+      total_employees = ClimateReportInvoice.all.inject(1) { |n, cri | n + cri.climate_report.employees }
+      average_emission_per_employee = total_emissions / total_employees
+      emission = @climate_report.calculation.send("#{field[:name]}_emissions")
+      data << { I18n.t("business.climate_reports.#{field[:name]}") => emission.round / @employees } unless emission == 0
+      data << { I18n.t("business.climate_reports.#{field[:name]}") + ' - ' + I18n.t("business.climate_reports.average") => average_emission_per_employee.round } unless emission == 0
+    end
     data
   end
 end
