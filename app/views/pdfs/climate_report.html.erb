@@ -56,7 +56,7 @@
   }
   .alwaysbreak {
     page-break-before: always;
-    padding-top: 80px;
+    padding-top: 120px;
   }
   .content {
     padding: 0px 80px;
@@ -87,9 +87,9 @@
 
   <p style="margin-top: 600px">
     Tidsperiod: <%= @calculation_period %><br>
-    Uförd: 2020-01-01<br>
+    Uförd: <%= @climate_report.created_at.to_date %><br>
     Klimatpartner: GoClimateNeutral<br>
-    Kontaktperson: Alexandra Palmquist
+    Kontaktperson: Alexandra Palmquist<br>
     E-mail: alexandra@goclimateneutral.org
   </p>
 
@@ -101,11 +101,11 @@
 
   <p>Denna klimatrapport omfattar utsläpp som registrerats under <%= @calculation_period %>. Under den angivna perioden var de totala utsläppen av växthusgaser från företagets verksamhet <%= co2e_string(@co2e) %> kg koldioxidekvivalenter (CO2e), vilket motsvarar <%= number_with_delimiter(@co2e_per_employee, delimiter: ' ') %> kg CO2e per anställd. Utsläppen är fördelade enligt nedan.</p>
   
-  <h4>Klimatutsläpp per utsläppskälla (i ton koldioxidekvivalenter)</h4>
+  <h4>Klimatutsläpp per utsläppskälla (i kg koldioxidekvivalenter)</h4>
   <table>
     <tr>
       <th>Utsläppskälla</th>
-      <th>Utsläpp i ton CO2e</th>
+      <th>Utsläpp i kg CO2e</th>
       <th>Andel av totalt</th>
     </tr>
     <% @calculation_fields.each do |field| %>
@@ -127,7 +127,10 @@
   <h4><%= @company_name %>s klimatutsläpp per utsläppskälla i kg CO2e</h4>
   <div><canvas id="detailedBarCanvas"></canvas></div>
 
-  <h4 class="alwaysbreak">Klimatutsläpp per utsläppskälla och anställd i kg CO2e jämfört med medel för tjänstebolag (snittet baseras på GoClimateNeutrals egna datakällor för tjänstebolags utsläpp)</h4>
+  <h4 class="alwaysbreak">Klimatutsläpp per utsläppskategori och anställd i kg CO2e jämfört med medel för tjänstebolag (snittet baseras på GoClimateNeutrals egna datakällor för tjänstebolags utsläpp)</h4>
+  <div><canvas id="compareCategoryBarCanvas"></canvas></div>
+
+  <h4>Klimatutsläpp per utsläppskälla och anställd i kg CO2e jämfört med medel för tjänstebolag (snittet baseras på GoClimateNeutrals egna datakällor för tjänstebolags utsläpp)</h4>
   <div><canvas id="compareBarCanvas"></canvas></div>
 
   <h2 class="alwaysbreak">Klimatpolicy</h2>
@@ -236,6 +239,37 @@ function drawGraphs() {
     'rgba(255, 99, 132, 1)',
     'rgba(54, 162, 235, 1)'
   ];
+  var compareBackgroundColors = [
+    'rgba(255, 99, 132, 0.6)',
+    'rgba(255, 99, 132, 0.6)',
+    'rgba(54, 162, 235, 0.6)',
+    'rgba(54, 162, 235, 0.6)',
+    'rgba(255, 206, 86, 0.6)',
+    'rgba(255, 206, 86, 0.6)',
+    'rgba(75, 192, 192, 0.6)',
+    'rgba(75, 192, 192, 0.6)',
+    'rgba(153, 102, 255, 0.6)',
+    'rgba(153, 102, 255, 0.6)',
+    'rgba(255, 159, 64, 0.6)',
+    'rgba(255, 159, 64, 0.6)',
+    'rgba(255, 99, 132, 0.6)',
+    'rgba(255, 99, 132, 0.6)',
+    'rgba(54, 162, 235, 0.6)',
+    'rgba(54, 162, 235, 0.6)',
+    'rgba(255, 206, 86, 0.6)',
+    'rgba(255, 206, 86, 0.6)',
+    'rgba(75, 192, 192, 0.6)',
+    'rgba(75, 192, 192, 0.6)',
+    'rgba(153, 102, 255, 0.6)',
+    'rgba(153, 102, 255, 0.6)',
+    'rgba(255, 159, 64, 0.6)',
+    'rgba(255, 159, 64, 0.6)',
+    'rgba(255, 99, 132, 0.6)',
+    'rgba(255, 99, 132, 0.6)',
+    'rgba(54, 162, 235, 0.6)',
+    'rgba(54, 162, 235, 0.6)'
+  ];
+
   
   var ctx = document.getElementById('pieCanvas').getContext('2d');
   var labels = [ '<%= raw(@pie_labels.join("', '")) %>' ];
@@ -301,6 +335,33 @@ function drawGraphs() {
     }
   });
 
+  var ctxBar = document.getElementById('compareCategoryBarCanvas').getContext('2d');
+  var myBarChart = new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+      labels: ['<%= raw(@compare_category_bar_labels.join("', '")) %>'],
+      datasets: [{
+        label: '',
+        data: [ <%= raw(@compare_category_bar_data.join(", ")) %> ],
+        backgroundColor: compareBackgroundColors,
+        borderColor: compareBackgroundColors,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      legend: {
+        display: false,
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+
   var ctxBar = document.getElementById('compareBarCanvas').getContext('2d');
   var myBarChart = new Chart(ctxBar, {
     type: 'bar',
@@ -309,66 +370,8 @@ function drawGraphs() {
       datasets: [{
         label: '',
         data: [ <%= raw(@compare_bar_data.join(", ")) %> ],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(255, 206, 86, 0.6)',
-          'rgba(255, 206, 86, 0.6)',
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-          'rgba(255, 159, 64, 0.6)',
-          'rgba(255, 159, 64, 0.6)',
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(255, 206, 86, 0.6)',
-          'rgba(255, 206, 86, 0.6)',
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-          'rgba(255, 159, 64, 0.6)',
-          'rgba(255, 159, 64, 0.6)',
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(54, 162, 235, 0.6)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(255, 206, 86, 0.6)',
-          'rgba(255, 206, 86, 0.6)',
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-          'rgba(255, 159, 64, 0.6)',
-          'rgba(255, 159, 64, 0.6)',
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(255, 206, 86, 0.6)',
-          'rgba(255, 206, 86, 0.6)',
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-          'rgba(255, 159, 64, 0.6)',
-          'rgba(255, 159, 64, 0.6)',
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(54, 162, 235, 0.6)'
-        ],
+        backgroundColor: compareBackgroundColors,
+        borderColor: compareBackgroundColors,
         borderWidth: 1
       }]
     },

@@ -45,10 +45,15 @@ class ClimateReportPdf
           pie_labels: pie_data.map { |d| d.keys.join('') },
           bar_data: bar_data.map { |d| d.values.join('') },
           bar_labels: bar_data.map { |d| d.keys.join('') },
+          compare_category_bar_data: compare_category_bar_data.map { |d| d.values.join('') },
+          compare_category_bar_labels: compare_category_bar_data.map { |d| d.keys.join('') },
           compare_bar_data: compare_bar_data.map { |d| d.values.join('') },
           compare_bar_labels: compare_bar_data.map { |d| d.keys.join('') }
         }
       ),
+      footer: {
+        content: "<div style='font-family: sans-serif; font-size:14px;'><span>#{@company_name}</span><span style='float:right'>Utf&oumlrd: #{@climate_report.created_at.to_date}</span></div>"
+      },
       orientation: 'portrait'
     )
   end
@@ -82,6 +87,19 @@ class ClimateReportPdf
   def compare_bar_data
     data = []
     emission_sources_fields.each do |field|
+      total_emissions = ClimateReportInvoice.all.inject(1) { |n, cri | n + cri.climate_report.calculation.send("#{field[:name]}_emissions") }
+      total_employees = ClimateReportInvoice.all.inject(1) { |n, cri | n + cri.climate_report.employees }
+      average_emission_per_employee = total_emissions / total_employees
+      emission = @climate_report.calculation.send("#{field[:name]}_emissions")
+      data << { I18n.t("business.climate_reports.#{field[:name]}") => emission.round / @employees } unless emission == 0
+      data << { I18n.t("business.climate_reports.#{field[:name]}") + ' - ' + I18n.t("business.climate_reports.average") => average_emission_per_employee.round } unless emission == 0
+    end
+    data
+  end
+
+  def compare_category_bar_data
+    data = []
+    category_fields.each do |field|
       total_emissions = ClimateReportInvoice.all.inject(1) { |n, cri | n + cri.climate_report.calculation.send("#{field[:name]}_emissions") }
       total_employees = ClimateReportInvoice.all.inject(1) { |n, cri | n + cri.climate_report.employees }
       average_emission_per_employee = total_emissions / total_employees
