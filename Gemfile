@@ -70,7 +70,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'rb-readline'
-  gem 'rspec-rails', '~> 3.7'
+  gem 'rspec-rails', '~> 4.0'
   gem 'rspec_junit_formatter'
   gem 'rubocop', '~> 0.82.0', require: false
   gem 'rubocop-rspec', require: false
