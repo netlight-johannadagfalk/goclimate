@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'shared_examples/models/types/greenhouse_gases_type_spec'
+require 'shared_examples/models/types/greenhouse_gases_type'
 
 RSpec.describe Project do
   subject(:project) { create(:project, co2e: 10_000) }
