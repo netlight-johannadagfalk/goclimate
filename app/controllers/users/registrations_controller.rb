@@ -27,6 +27,7 @@ module Users
     # Einstein quote "As simple as possible, but no simpler".
     def create # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
       render_user_invalid_json && return unless @user.save
+
       sign_in(resource_name, @user, force: true) # Force because we have updated the password
 
       stripe_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan_price)

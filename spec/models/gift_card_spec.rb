@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'shared_examples/models/types/currency_type_spec'
+require 'shared_examples/models/types/currency_type'
 
 RSpec.describe GiftCard do
   let(:fake_pdf) { 'fake pdf' }
