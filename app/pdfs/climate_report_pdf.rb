@@ -4,20 +4,20 @@ class ClimateReportPdf
   attr_reader :receiver, :co2e, :issued_at, :comment, :project
 
   CALCULATION_FIELDS = [
-    {name: 'energy', category: true},
-    {name: 'electricity_consumption'},
-    {name: 'heating'},
-    {name: 'servers'},
-    {name: 'cloud_servers'},
-    {name: 'business_trips', category: true},
-    {name: 'flight'},
-    {name: 'car'},
-    {name: 'meals', category: true},
-    {name: 'material', category: true},
-    {name: 'purchased_computers'},
-    {name: 'purchased_phones'},
-    {name: 'purchased_monitors'},
-    {name: 'other', category: true}
+    {name: 'energy', category: true, scope: [2, 3]},
+    {name: 'electricity_consumption', scope: [2]},
+    {name: 'heating', scope: [2]},
+    {name: 'servers', scope: [3]},
+    {name: 'cloud_servers', scope: [3]},
+    {name: 'business_trips', category: true, scope: [3]},
+    {name: 'flight', scope: [3]},
+    {name: 'car', scope: [3]},
+    {name: 'meals', category: true, scope: [3]},
+    {name: 'material', category: true, scope: [3]},
+    {name: 'purchased_computers', scope: [3]},
+    {name: 'purchased_phones', scope: [3]},
+    {name: 'purchased_monitors', scope: [3]},
+    {name: 'other', category: true, scope: [3]}
   ]
 
   def initialize(climate_report)
@@ -26,6 +26,15 @@ class ClimateReportPdf
     @employees = climate_report.employees
     @calculation_period = climate_report.calculation_period
     @climate_report = climate_report
+    ac = ActionController::Base.new()
+    @cover = ac.render_to_string(
+      template: 'pdfs/cover.html.erb', 
+      assigns: { 
+        climate_report: @climate_report,
+        calculation_period: @calculation_period,
+        company_name: @company_name
+      }
+    )
   end
 
   def render
@@ -52,8 +61,12 @@ class ClimateReportPdf
         }
       ),
       footer: {
-        content: "<div style='font-family: sans-serif; font-size:14px;'><span>#{@company_name}</span><span style='float:right'>Utf&oumlrd: #{@climate_report.created_at.to_date}</span></div>"
+        right: "Sida [page] av [topage]",
+        left: @company_name,
+        font_name: 'sans-serif',
+        font_size: 10
       },
+      cover: @cover,
       orientation: 'portrait'
     )
   end

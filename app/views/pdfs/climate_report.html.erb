@@ -10,7 +10,7 @@
     line-height: 1.5;
   }
   h1 {
-    font-size: 80px;
+    font-size: 56px;
     margin-top: 100px;
     margin-bottom: 100px;
   }
@@ -18,16 +18,14 @@
     font-size: 40px;
   }
   h3 {
-    font-size: 24px;
+    font-size: 32px;
   }
-  h1, h2, h3 {
+  h1, h2, h3, h4 {
+    margin-top: 40px;
     font-weight: 400;
   }
-  h2, h3 {
-    margin-top: 40px;
-  }
   h4 {
-    font-size: 18px;
+    font-size: 24px;
     margin-top: 80px;
     margin-bottom: 40px;
   }
@@ -79,19 +77,6 @@
 <body>
 
 <div class="content">
-  <div class="logo">
-    <%= image_tag wicked_pdf_file_base64('app/assets/images/goclimateneutral_logo_turkos.png'), size: "200x200" %>
-  </div>
-
-  <h1>Klimatrapport <br><%= @company_name %></h1>
-
-  <p style="margin-top: 600px">
-    Tidsperiod: <%= @calculation_period %><br>
-    Uförd: <%= @climate_report.created_at.to_date %><br>
-    Klimatpartner: GoClimateNeutral<br>
-    Kontaktperson: Alexandra Palmquist<br>
-    E-mail: alexandra@goclimateneutral.org
-  </p>
 
   <h2 class="alwaysbreak">Om klimatrapporten</h2>  
 
@@ -105,6 +90,7 @@
   <table>
     <tr>
       <th>Utsläppskälla</th>
+      <th>Scope</th>
       <th>Utsläpp i kg CO2e</th>
       <th>Andel av totalt</th>
     </tr>
@@ -115,6 +101,7 @@
           <%= "- " unless field.has_key? :category %>
           <%=t "business.climate_reports.#{field[:name]}" %>
         </td>
+        <td><%= field[:scope].join(', ') %></td>
         <td><%= field_emissions %></td>
         <td><%= (BigDecimal(field_emissions) / @co2e * 100).round %> %</td>
       </tr>
