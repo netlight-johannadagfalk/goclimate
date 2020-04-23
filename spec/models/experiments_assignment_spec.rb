@@ -3,14 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe ExperimentsAssignment do
-  let(:current_experiments) {
+  let(:current_experiments) do
     {
       experiment1: { frequency: 1 },
       experiment2: { frequency: 0 },
       experiment3: { frequency: 0 },
       experiment4: { frequency: 0 }
     }
-  }
+  end
 
   before do
     stub_const('ExperimentsAssignment::CURRENT_EXPERIMENTS', current_experiments)
