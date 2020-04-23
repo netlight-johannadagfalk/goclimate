@@ -97,7 +97,7 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         modules: {
-          test: /[\\/]node_modules[\\/]/,
+          test: /[\\/]node_modules[\\/](?!bootstrap)/,
           name: 'modules',
           // Currently undocument feature:  https://github.com/webpack/webpack/pull/6791
           chunks: (chunk) => chunk.name.match(/^main|main_old$/)
