@@ -28,6 +28,7 @@
     font-size: 24px;
     margin-top: 80px;
     margin-bottom: 40px;
+    text-align: center;
   }
   p, ul {
     font-size: 18px;
@@ -96,14 +97,14 @@
     </tr>
     <% @calculation_fields.each do |field| %>
       <% field_emissions = @climate_report.calculation.send("#{field[:name]}_emissions") %>
-      <tr <%= raw("class='category'") if field.has_key? :category %>>
+      <tr <%= raw("class='category'") unless field.has_key? :category %>>
         <td>
-          <%= "- " unless field.has_key? :category %>
+          <%= "- " if field.has_key? :category %>
           <%=t "business.climate_reports.#{field[:name]}" %>
         </td>
         <td><%= field[:scope].join(', ') %></td>
         <td><%= field_emissions %></td>
-        <td><%= (BigDecimal(field_emissions) / @co2e * 100).round %> %</td>
+        <td><%= @field_percentages[field[:name]] %> %</td>
       </tr>
   <% end %>
   </table>
@@ -111,7 +112,13 @@
   <h4 class="alwaysbreak"><%= @company_name %>s klimatutsläpp överblick (% av totala utsläpp)</h4>
   <div class="pieGraph"><canvas id="pieCanvas"></canvas></div>
 
-  <h4><%= @company_name %>s klimatutsläpp per utsläppskälla i kg CO2e</h4>
+  <h4><%= @company_name %>s klimatutsläpp uppdalat i Scope (% av totala utsläpp)</h4>
+  <div class="pieGraph"><canvas id="pieScopeCanvas"></canvas></div>
+
+  <h4 class="alwaysbreak">Klimatutsläpp överblick i kg CO2e</h4>
+  <div><canvas id="barCanvas"></canvas></div>
+
+  <h4>Klimatutsläpp per utsläppskälla i kg CO2e</h4>
   <div><canvas id="detailedBarCanvas"></canvas></div>
 
   <h4 class="alwaysbreak">Klimatutsläpp per utsläppskategori och anställd i kg CO2e jämfört med medel för tjänstebolag (snittet baseras på GoClimateNeutrals egna datakällor för tjänstebolags utsläpp)</h4>
@@ -286,11 +293,65 @@ function drawGraphs() {
         labels: {
             fontColor: 'black'
         }
-      },
-      layout: {
-        padding: {
-          right: 300
+      }
+    }
+  });
+
+var ctx = document.getElementById('pieScopeCanvas').getContext('2d');
+  var labels = [ '<%= raw(@pie_scope_labels.join("', '")) %>' ];
+  var mypieChart = new Chart(ctx, {
+    plugins: [ChartDataLabels],
+    type: 'pie',
+    data: {
+      datasets: [{
+        data: [ <%= @pie_scope_data.join(', ') %> ],
+        backgroundColor: backgroundColors,
+        borderColor: borderColors,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      plugins: {
+        datalabels: {
+          formatter: function(value, context) {
+            if (value == 0) {
+              return '';
+            }
+            return labels[context.dataIndex] + ': ' + Math.round(value) + '%';
+          }
         }
+      },
+      legend: {
+        labels: {
+            fontColor: 'black'
+        }
+      }
+    }
+  });
+
+  var ctxBar = document.getElementById('barCanvas').getContext('2d');
+  var myBarChart = new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+      labels: ['<%= raw(@bar_category_labels.join("', '")) %>'],
+      datasets: [{
+        label: '',
+        data: [ <%= raw(@bar_category_data.join(", ")) %> ],
+        backgroundColor: backgroundColors,
+        borderColor: borderColors,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      legend: {
+        display: false,
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
       }
     }
   });
@@ -375,7 +436,6 @@ function drawGraphs() {
       }
     }
   });
-
 }
 window.onload = function() {
     drawGraphs();
