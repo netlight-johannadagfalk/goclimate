@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def experiment_active?(experiment)
-    @active_experiments.include?(experiment)
-  end
-
   def price_string(amount, currency, options = {})
     Rails.logger.warn 'DEPRECATION: Use Money#to_s instead of ApplicationHelper#price_string'
 

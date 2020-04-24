@@ -8,6 +8,9 @@ export default class RegistrationPriceController extends Controller {
       .then((response) => response.json())
       .then((response) => {
         this.peopleFieldTarget.value = people;
+        this.subscriptionTargets.forEach((subscriptionTarget) => {
+          subscriptionTarget.innerText = response.subscription;
+        });
         this.priceTargets.forEach((priceTarget) => {
           priceTarget.innerText = response.price;
         });
@@ -15,4 +18,4 @@ export default class RegistrationPriceController extends Controller {
   }
 }
 
-RegistrationPriceController.targets = ['peopleForm', 'price', 'peopleField'];
+RegistrationPriceController.targets = ['peopleForm', 'subscription', 'price', 'peopleField'];

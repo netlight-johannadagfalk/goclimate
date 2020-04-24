@@ -1,0 +1,21 @@
+.collapse {
+  & > input[type='checkbox'] {
+    display: none;
+  }
+
+  &-content {
+    @apply hidden;
+  }
+
+  & > input[type='checkbox']:checked ~ .collapse-content {
+    @apply block;
+  }
+
+  &-chevron {
+    @apply transition-transform ease-in-out duration-300;
+  }
+
+  & > input[type='checkbox']:checked ~ * &-chevron {
+    @apply transform rotate-180;
+  }
+}

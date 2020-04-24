@@ -10,6 +10,8 @@ export default class RegistrationFormController extends Controller {
   submit(event) {
     event.preventDefault();
 
+    if (!this.formTarget.reportValidity()) { return; }
+
     if (!this.stripeCardElementController.complete) {
       this.setErrorMessage('Please complete your card details.');
       return;
@@ -19,7 +21,7 @@ export default class RegistrationFormController extends Controller {
     this.setErrorMessage('');
 
     this.stripeCardElementController.populatePaymentMethodField()
-      .then(() => submitForm(this.element))
+      .then(() => submitForm(this.formTarget))
       .then((response) => response.json())
       .then((data) => this.resolveFormResponse(data))
       .catch((error) => {
@@ -91,4 +93,4 @@ export default class RegistrationFormController extends Controller {
   }
 }
 
-RegistrationFormController.targets = ['privacyPolicyAgreement', 'submitButton', 'stripeCardElement', 'errorMessage', 'loadingIndicator'];
+RegistrationFormController.targets = ['form', 'privacyPolicyAgreement', 'submitButton', 'stripeCardElement', 'errorMessage', 'loadingIndicator'];

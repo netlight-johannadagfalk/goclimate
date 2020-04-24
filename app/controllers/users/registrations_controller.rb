@@ -12,8 +12,14 @@ module Users
     def new
       @user = User.new(region: current_region.id)
 
+      if alternative_signup?
+        @footprint_price = SubscriptionManager.price_for_footprint(@footprint.total, current_region.currency)
+        @projects = Project.order(id: :desc).limit(3)
+        @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country).co2e
+      end
+
       respond_to do |format|
-        format.html
+        format.html { render 'new_alternative' if alternative_signup? }
         format.json { render_price_json }
       end
     end
@@ -110,6 +116,7 @@ module Users
 
     def render_price_json
       render json: {
+        subscription: @subscription_tonnes.to_s(precision: :auto),
         price: @plan_price.to_s(precision: :auto)
       }
     end
@@ -154,6 +161,10 @@ module Users
       end
 
       @lifestyle_choice_ids = params[:choices].split(',').map(&:to_i)
+    end
+
+    def alternative_signup?
+      @footprint.present? && experiment_active?(:alternative_signup)
     end
   end
 end
