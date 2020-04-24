@@ -263,7 +263,35 @@ function drawGraphs() {
     'rgba(54, 162, 235, 0.6)',
     'rgba(54, 162, 235, 0.6)'
   ];
-
+  var barOptions = {
+    legend: {
+      display: false,
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  };
+  var pieOptions = {
+    plugins: {
+      datalabels: {
+        formatter: function(value, context) {
+          if (value == 0) {
+            return '';
+          }
+          return labels[context.dataIndex] + ': ' + Math.round(value) + '%';
+        }
+      }
+    },
+    legend: {
+      labels: {
+          fontColor: 'black'
+      }
+    }
+  };
   
   var ctx = document.getElementById('pieCanvas').getContext('2d');
   var labels = [ '<%= raw(@pie_labels.join("', '")) %>' ];
@@ -278,23 +306,7 @@ function drawGraphs() {
         borderWidth: 1
       }]
     },
-    options: {
-      plugins: {
-        datalabels: {
-          formatter: function(value, context) {
-            if (value == 0) {
-              return '';
-            }
-            return labels[context.dataIndex] + ': ' + Math.round(value) + '%';
-          }
-        }
-      },
-      legend: {
-        labels: {
-            fontColor: 'black'
-        }
-      }
-    }
+    options: pieOptions
   });
 
 var ctx = document.getElementById('pieScopeCanvas').getContext('2d');
@@ -310,23 +322,7 @@ var ctx = document.getElementById('pieScopeCanvas').getContext('2d');
         borderWidth: 1
       }]
     },
-    options: {
-      plugins: {
-        datalabels: {
-          formatter: function(value, context) {
-            if (value == 0) {
-              return '';
-            }
-            return labels[context.dataIndex] + ': ' + Math.round(value) + '%';
-          }
-        }
-      },
-      legend: {
-        labels: {
-            fontColor: 'black'
-        }
-      }
-    }
+    options: pieOptions
   });
 
   var ctxBar = document.getElementById('barCanvas').getContext('2d');
@@ -342,18 +338,7 @@ var ctx = document.getElementById('pieScopeCanvas').getContext('2d');
         borderWidth: 1
       }]
     },
-    options: {
-      legend: {
-        display: false,
-      },
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
+    options: barOptions
   });
 
   var ctxBar = document.getElementById('detailedBarCanvas').getContext('2d');
@@ -369,18 +354,7 @@ var ctx = document.getElementById('pieScopeCanvas').getContext('2d');
         borderWidth: 1
       }]
     },
-    options: {
-      legend: {
-        display: false,
-      },
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
+    options: barOptions
   });
 
   var ctxBar = document.getElementById('compareCategoryBarCanvas').getContext('2d');
@@ -396,18 +370,7 @@ var ctx = document.getElementById('pieScopeCanvas').getContext('2d');
         borderWidth: 1
       }]
     },
-    options: {
-      legend: {
-        display: false,
-      },
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
+    options: barOptions
   });
 
   var ctxBar = document.getElementById('compareBarCanvas').getContext('2d');
@@ -423,18 +386,7 @@ var ctx = document.getElementById('pieScopeCanvas').getContext('2d');
         borderWidth: 1
       }]
     },
-    options: {
-      legend: {
-        display: false,
-      },
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
+    options: barOptions
   });
 }
 window.onload = function() {
