@@ -28,34 +28,23 @@ class ClimateReportPdf
     @cover = ActionController::Base.new.render_to_string(
       template: 'pdfs/cover.html.erb',
       assigns: {
-        climate_report: @cr,
-        calculation_period: @cr.calculation_period,
-        company_name: @cr.company_name
+        climate_report: @cr
       }
     )
-
     WickedPdf.new.pdf_from_string(
       ApplicationController.render(
         template: 'pdfs/climate_report',
         layout: false,
         assigns: {
-          company_name: @cr.company_name,
-          co2e: @cr.calculation.total_emissions,
-          employees: @cr.employees,
-          co2e_per_employee: @cr.calculation.total_emissions / @cr.employees,
-          calculation_period: @cr.calculation_period,
           climate_report: @cr,
           calculation_fields: CALCULATION_FIELDS,
+          field_percentages: field_percentages,
           pie_chart_categories_data: pie_chart_categories_data,
           pie_chart_scope_data: pie_chart_scope_data,
-          field_percentages: field_percentages,
-          bar_graph_categories_data: bar_graph_categories_data,
-          bar_data: bar_data.map { |d| d.values.join('') },
-          bar_labels: bar_data.map { |d| d.keys.join('') },
-          compare_category_bar_data: compare_bar_data(categories).map { |d| d.values.join('') },
-          compare_category_bar_labels: compare_bar_data(categories).map { |d| d.keys.join('') },
-          compare_bar_data: compare_bar_data(emission_sources).map { |d| d.values.join('') },
-          compare_bar_labels: compare_bar_data(emission_sources).map { |d| d.keys.join('') }
+          bar_chart_categories_data: bar_chart_categories_data,
+          bar_chart_emissions_data: bar_chart_emissions_data,
+          bar_chart_compare_categories_data: bar_chart_compare_data(categories),
+          bar_chart_compare_emissions_data: bar_chart_compare_data(emissions)
         }
       ),
       footer: {
@@ -76,7 +65,7 @@ class ClimateReportPdf
     add_field_emissions(fields)
   end
 
-  def emission_sources
+  def emissions
     fields = CALCULATION_FIELDS.map do |field|
       field if field.key?(:category)
     end.compact
@@ -101,8 +90,7 @@ class ClimateReportPdf
     category_data = get_even_percentages(category_data)
     category_and_sources_percentages = category_data.clone
     category_data.map do |k, v|
-      sources_data = {}
-      fields_in_category = emission_sources.map do |source|
+      fields_in_category = emissions.map do |source|
         source if source.key?(:category) && source[:category] == k
       end.compact
       sources_data = {}
@@ -123,7 +111,7 @@ class ClimateReportPdf
 
   def pie_chart_scope_data
     scopes = { 'Scope 2' => 0, 'Scope 3' => 0 }
-    emission_sources.map do |field|
+    emissions.map do |field|
       scopes["Scope #{field[:scope][0]}"] += field[:emissions]
     end
 
@@ -135,13 +123,17 @@ class ClimateReportPdf
     { labels: "'#{data.keys.join("', '")}'", data: data.values.join(', ') }
   end
 
-  def bar_data
-    emission_sources.map do |field|
+  def bar_chart_emissions_data
+    data = emissions.map do |field|
       { field_name(field) => field[:emissions].round } unless field[:emissions] == 0
     end.compact
+    {
+      data: data.map { |d| d.values.join('') },
+      labels: data.map { |d| d.keys.join('') }
+    }
   end
 
-  def bar_graph_categories_data
+  def bar_chart_categories_data
     data = categories.map do |field|
       { field_name(field) => field[:emissions].round } unless field[:emissions] == 0
     end.compact
@@ -151,7 +143,7 @@ class ClimateReportPdf
     }
   end
 
-  def compare_bar_data(bar_fields)
+  def bar_chart_compare_data(bar_fields)
     data = []
     climate_reports = ClimateReportInvoice.includes(climate_report: :calculation)
     total_employees = climate_reports.inject(0) { |n, cri| n + cri.climate_report.employees }
@@ -166,7 +158,10 @@ class ClimateReportPdf
       data << { field_name(field) => field[:emissions].round / @cr.employees }
       data << { field_average_name(field) => average_emission_per_employee.round }
     end
-    data
+    {
+      data: data.map { |d| d.values.join('') },
+      labels: data.map { |d| d.keys.join('') }
+    }
   end
 
   def field_name(field)

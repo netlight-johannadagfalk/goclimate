@@ -83,9 +83,9 @@
 
   <p>Att beräkna en verksamhets utsläpp av växthusgaser är det första steget på vägen till att lyfta ett företag mot morgondagens hållbara och klimatneutrala samhälle. För att ligga i linje med Parisavtalet och vara bland de aktörer som tar ställning för klimatet behöver de egna utsläppen identifieras och kvantifieras. Denna rapport presenterar det uppmätta klimatavtrycket för verksamheten, och utgör på så vis det underlag som möjliggör att företaget kan förstå sin påverkan på klimatet. Baserat på detta kan företaget lägga ribban för ett seriöst klimatarbete och ta meningsfulla, faktabaserade åtgärder för att minska sin klimatpåverkan.</p>
 
-  <h2 class="alwaysbreak"><%= @company_name %>s klimatpåverkan</h2>
+  <h2 class="alwaysbreak"><%= @climate_report.company_name %>s klimatpåverkan</h2>
 
-  <p>Denna klimatrapport omfattar utsläpp som registrerats under <%= @calculation_period %>. Under den angivna perioden var de totala utsläppen av växthusgaser från företagets verksamhet <%= co2e_string(@co2e) %> kg koldioxidekvivalenter (CO2e), vilket motsvarar <%= number_with_delimiter(@co2e_per_employee, delimiter: ' ') %> kg CO2e per anställd. Utsläppen är fördelade enligt nedan.</p>
+  <p>Denna klimatrapport omfattar utsläpp som registrerats under <%= @climate_report.calculation_period %>. Under den angivna perioden var de totala utsläppen av växthusgaser från företagets verksamhet <%= co2e_string(@climate_report.calculation.total_emissions) %> kg koldioxidekvivalenter (CO2e), vilket motsvarar <%= number_with_delimiter(@climate_report.calculation.total_emissions / @climate_report.employees, delimiter: ' ') %> kg CO2e per anställd. Utsläppen är fördelade enligt nedan.</p>
   
   <h4>Klimatutsläpp per utsläppskälla (i kg koldioxidekvivalenter)</h4>
   <table>
@@ -110,23 +110,23 @@
   <% end %>
   </table>
 
-  <h4 class="alwaysbreak"><%= @company_name %>s klimatutsläpp överblick (% av totala utsläpp)</h4>
+  <h4 class="alwaysbreak"><%= @climate_report.company_name %>s klimatutsläpp överblick (% av totala utsläpp)</h4>
   <div class="pieGraph"><canvas id="pieChartCategories"></canvas></div>
 
-  <h4><%= @company_name %>s klimatutsläpp uppdalat i Scope (% av totala utsläpp)</h4>
+  <h4><%= @climate_report.company_name %>s klimatutsläpp uppdalat i Scope (% av totala utsläpp)</h4>
   <div class="pieGraph"><canvas id="pieScopeCanvas"></canvas></div>
 
   <h4 class="alwaysbreak">Klimatutsläpp överblick i kg CO2e</h4>
   <div><canvas id="barGraphEmissionCategories"></canvas></div>
 
   <h4>Klimatutsläpp per utsläppskälla i kg CO2e</h4>
-  <div><canvas id="detailedBarCanvas"></canvas></div>
+  <div><canvas id="barGraphEmissionSources"></canvas></div>
 
   <h4 class="alwaysbreak">Klimatutsläpp per utsläppskategori och anställd i kg CO2e jämfört med medel för tjänstebolag (snittet baseras på GoClimateNeutrals egna datakällor för tjänstebolags utsläpp)</h4>
-  <div><canvas id="compareCategoryBarCanvas"></canvas></div>
+  <div><canvas id="barGraphCompareCategories"></canvas></div>
 
   <h4>Klimatutsläpp per utsläppskälla och anställd i kg CO2e jämfört med medel för tjänstebolag (snittet baseras på GoClimateNeutrals egna datakällor för tjänstebolags utsläpp)</h4>
-  <div><canvas id="compareBarCanvas"></canvas></div>
+  <div><canvas id="barGraphCompareEmissionSources"></canvas></div>
 
   <h2 class="alwaysbreak">Klimatpolicy</h2>
 
@@ -148,11 +148,11 @@
   <h2 class="alwaysbreak">Klimatkompensation av utsläpp</h2>
   <p>Vissa åtgärder för att minska företagets egna utsläpp är relativt enkla att implementera och kan skapa stor förändring, medan andra tar längre tid att ställa om till. Ett sätt att ta ansvar för de utsläpp som inte kan undvikas omedelbart är genom klimatkompensation, där motsvarande utsläpp undviks på en annan plats.  GoClimateNeutral erbjuder klimatkompensation i projekt som är certifierade av Gold Standard, vilket säkerställer att projekten är av hög kvalitet och att de undvikna utsläppen är reella, additionella och permanenta. Projektens undvikna utsläpp kontrolleras och verifieras genom regelbunden monitoring. Förutom klimatnytta garanterar även Gold Standards certifiering att projekten uppfyller andra hållbarhetsmål från FNs Agenda 2030, och är på så vis en del av den hållbara utvecklingen där de implementeras.</p>
 
-  <p><%= @company_name %> har klimatkompenserat för sina redovisade utsläpp om <%= co2e_string(@co2e) %> kg CO2e via GoClimateNeutral.</p>
+  <p><%= @climate_report.company_name %> har klimatkompenserat för sina redovisade utsläpp om <%= co2e_string(@climate_report.calculation.total_emissions) %> kg CO2e via GoClimateNeutral.</p>
 
   <h2 class="alwaysbreak">Om beräkningarna</h2>
 
-  <p>Beräkningen är baserad på riktlinjer enligt Greenhouse Gas Protocol (GHG- protokollet), som är den världsledande standarden för att mäta och hantera utsläpp med påverkan på klimatet. Denna standard används av både av nationer, städer och företag - år 2016 följde 92% av Fortune 500-företagen GHG-protokollet för att beräkna sitt klimatavtryck. Detta rigorösa system har förenklats för att passa tjänstebolag genom GoClimateNeutrals företagskalkylator, där uppgifter som motsvarar de huvudsakliga utsläppsposterna för denna sortens verksamhet är utvalda. Beräkningarna är därmed baserade på uppgifter som <%= @company_name %> har uppgett inom dessa ramar, och lämnar dessutom utrymme för att övriga utsläpp läggs till i mån av behov.</p>
+  <p>Beräkningen är baserad på riktlinjer enligt Greenhouse Gas Protocol (GHG- protokollet), som är den världsledande standarden för att mäta och hantera utsläpp med påverkan på klimatet. Denna standard används av både av nationer, städer och företag - år 2016 följde 92% av Fortune 500-företagen GHG-protokollet för att beräkna sitt klimatavtryck. Detta rigorösa system har förenklats för att passa tjänstebolag genom GoClimateNeutrals företagskalkylator, där uppgifter som motsvarar de huvudsakliga utsläppsposterna för denna sortens verksamhet är utvalda. Beräkningarna är därmed baserade på uppgifter som <%= @climate_report.company_name %> har uppgett inom dessa ramar, och lämnar dessutom utrymme för att övriga utsläpp läggs till i mån av behov.</p>
 
   <h3>GHG-protokollets systemgränser</h3>
 
@@ -200,159 +200,142 @@ function drawGraphs() {
   Chart.defaults.global.defaultFontSize = 16;
   Chart.defaults.global.animation.duration = 0;
   var backgroundColors = [
-    'rgba(255, 99, 132, 0.6)',
-    'rgba(54, 162, 235, 0.6)',
-    'rgba(255, 206, 86, 0.6)',
-    'rgba(75, 192, 192, 0.6)',
-    'rgba(153, 102, 255, 0.6)',
-    'rgba(255, 159, 64, 0.6)',
-    'rgba(255, 99, 132, 0.6)',
-    'rgba(54, 162, 235, 0.6)',
-    'rgba(255, 206, 86, 0.6)',
-    'rgba(75, 192, 192, 0.6)',
-    'rgba(153, 102, 255, 0.6)',
-    'rgba(255, 159, 64, 0.6)',
-    'rgba(255, 99, 132, 0.6)',
-    'rgba(54, 162, 235, 0.6)'
-  ];
-  var borderColors = [
-    'rgba(255, 99, 132, 1)',
-    'rgba(54, 162, 235, 1)',
-    'rgba(255, 206, 86, 1)',
-    'rgba(75, 192, 192, 1)',
-    'rgba(153, 102, 255, 1)',
-    'rgba(255, 159, 64, 1)',
-    'rgba(255, 99, 132, 1)',
-    'rgba(54, 162, 235, 1)',
-    'rgba(255, 206, 86, 1)',
-    'rgba(75, 192, 192, 1)',
-    'rgba(153, 102, 255, 1)',
-    'rgba(255, 159, 64, 1)',
-    'rgba(255, 99, 132, 1)',
-    'rgba(54, 162, 235, 1)'
+    'rgba(255, 99, 132, 0.8)',
+    'rgba(54, 162, 235, 0.8)',
+    'rgba(255, 206, 86, 0.8)',
+    'rgba(75, 192, 192, 0.8)',
+    'rgba(153, 102, 255, 0.8)',
+    'rgba(255, 159, 64, 0.8)',
+    'rgba(255, 99, 132, 0.8)',
+    'rgba(54, 162, 235, 0.8)',
+    'rgba(255, 206, 86, 0.8)',
+    'rgba(75, 192, 192, 0.8)',
+    'rgba(153, 102, 255, 0.8)',
+    'rgba(255, 159, 64, 0.8)',
+    'rgba(255, 99, 132, 0.8)',
+    'rgba(54, 162, 235, 0.8)'
   ];
   var compareBackgroundColors = [
-    'rgba(255, 99, 132, 0.6)',
-    'rgba(255, 99, 132, 0.6)',
-    'rgba(54, 162, 235, 0.6)',
-    'rgba(54, 162, 235, 0.6)',
-    'rgba(255, 206, 86, 0.6)',
-    'rgba(255, 206, 86, 0.6)',
-    'rgba(75, 192, 192, 0.6)',
-    'rgba(75, 192, 192, 0.6)',
-    'rgba(153, 102, 255, 0.6)',
-    'rgba(153, 102, 255, 0.6)',
-    'rgba(255, 159, 64, 0.6)',
-    'rgba(255, 159, 64, 0.6)',
-    'rgba(255, 99, 132, 0.6)',
-    'rgba(255, 99, 132, 0.6)',
-    'rgba(54, 162, 235, 0.6)',
-    'rgba(54, 162, 235, 0.6)',
-    'rgba(255, 206, 86, 0.6)',
-    'rgba(255, 206, 86, 0.6)',
-    'rgba(75, 192, 192, 0.6)',
-    'rgba(75, 192, 192, 0.6)',
-    'rgba(153, 102, 255, 0.6)',
-    'rgba(153, 102, 255, 0.6)',
-    'rgba(255, 159, 64, 0.6)',
-    'rgba(255, 159, 64, 0.6)',
-    'rgba(255, 99, 132, 0.6)',
-    'rgba(255, 99, 132, 0.6)',
-    'rgba(54, 162, 235, 0.6)',
-    'rgba(54, 162, 235, 0.6)'
+    'rgba(255, 99, 132, 0.8)',
+    'rgba(255, 99, 132, 0.8)',
+    'rgba(54, 162, 235, 0.8)',
+    'rgba(54, 162, 235, 0.8)',
+    'rgba(255, 206, 86, 0.8)',
+    'rgba(255, 206, 86, 0.8)',
+    'rgba(75, 192, 192, 0.8)',
+    'rgba(75, 192, 192, 0.8)',
+    'rgba(153, 102, 255, 0.8)',
+    'rgba(153, 102, 255, 0.8)',
+    'rgba(255, 159, 64, 0.8)',
+    'rgba(255, 159, 64, 0.8)',
+    'rgba(255, 99, 132, 0.8)',
+    'rgba(255, 99, 132, 0.8)',
+    'rgba(54, 162, 235, 0.8)',
+    'rgba(54, 162, 235, 0.8)',
+    'rgba(255, 206, 86, 0.8)',
+    'rgba(255, 206, 86, 0.8)',
+    'rgba(75, 192, 192, 0.8)',
+    'rgba(75, 192, 192, 0.8)',
+    'rgba(153, 102, 255, 0.8)',
+    'rgba(153, 102, 255, 0.8)',
+    'rgba(255, 159, 64, 0.8)',
+    'rgba(255, 159, 64, 0.8)',
+    'rgba(255, 99, 132, 0.8)',
+    'rgba(255, 99, 132, 0.8)',
+    'rgba(54, 162, 235, 0.8)',
+    'rgba(54, 162, 235, 0.8)'
   ];
-  var pieOptions = {
-    plugins: {
-      datalabels: {
-        formatter: function(value, context) {
-          if (value == 0) {
-            return '';
+
+  var pieCharts = [
+    {
+      canvasId: 'pieChartCategories',
+      labels: [ <%= raw(@pie_chart_categories_data[:labels]) %> ],
+      data: [ <%= @pie_chart_categories_data[:data] %> ],
+      backgroundColors: backgroundColors
+    },
+    {
+      canvasId: 'pieScopeCanvas',
+      labels: [ <%= raw(@pie_chart_scope_data[:labels]) %> ],
+      data: [ <%= @pie_chart_scope_data[:data] %> ],
+      backgroundColors: backgroundColors
+    }
+  ];
+
+  pieCharts.forEach(function drawPieChart(chart_data) {
+    var ctx = document.getElementById(chart_data.canvasId).getContext('2d');
+    var labels = chart_data.labels;
+    var chart = new Chart(ctx, {
+      plugins: [ChartDataLabels],
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: chart_data.data,
+          backgroundColor: chart_data.backgroundColors,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: {
+          datalabels: {
+            formatter: function(value, context) {
+              if (value == 0) {
+                return '';
+              }
+              return labels[context.dataIndex] + ': ' + Math.round(value) + '%';
+            }
           }
-          return labels[context.dataIndex] + ': ' + Math.round(value) + '%';
+        },
+        legend: {
+          labels: {
+              fontColor: 'black'
+          }
         }
       }
-    },
-    legend: {
-      labels: {
-          fontColor: 'black'
-      }
-    }
-  };
-  
-  var ctx = document.getElementById('pieChartCategories').getContext('2d');
-  var labels = [ <%= raw(@pie_chart_categories_data[:labels]) %> ];
-  var mypieChart = new Chart(ctx, {
-    plugins: [ChartDataLabels],
-    type: 'pie',
-    data: {
-      datasets: [{
-        data: [ <%= @pie_chart_categories_data[:data] %> ],
-        backgroundColor: backgroundColors,
-        borderColor: borderColors,
-        borderWidth: 1
-      }]
-    },
-    options: pieOptions
-  });
-
-  var ctx = document.getElementById('pieScopeCanvas').getContext('2d');
-  var labels = [ <%= raw(@pie_chart_scope_data[:labels]) %> ];
-  var mypieChart = new Chart(ctx, {
-    plugins: [ChartDataLabels],
-    type: 'pie',
-    data: {
-      datasets: [{
-        data: [ <%= @pie_chart_scope_data[:data] %> ],
-        backgroundColor: backgroundColors,
-        borderColor: borderColors,
-        borderWidth: 1
-      }]
-    },
-    options: pieOptions
+    });
   });
 
   var barCharts = [
     {
       canvasId: 'barGraphEmissionCategories',
-      labels: ['<%= raw(@bar_graph_categories_data[:labels].join("', '")) %>'],
-      data: [<%= raw(@bar_graph_categories_data[:data].join(", ")) %> ],
+      labels: ['<%= raw(@bar_chart_categories_data[:labels].join("', '")) %>'],
+      data: [<%= raw(@bar_chart_categories_data[:data].join(", ")) %> ],
       backgroundColors: backgroundColors,
-      borderColors: borderColors
+      borderColors: backgroundColors
     },
     {
-      canvasId: 'detailedBarCanvas',
-      labels: ['<%= raw(@bar_labels.join("', '")) %>'],
-      data: [ <%= raw(@bar_data.join(", ")) %> ],
+      canvasId: 'barGraphEmissionSources',
+      labels: ['<%= raw(@bar_chart_emissions_data[:labels].join("', '")) %>'],
+      data: [ <%= raw(@bar_chart_emissions_data[:data].join(", ")) %> ],
       backgroundColors: backgroundColors,
-      borderColors: borderColors
+      borderColors: backgroundColors
     },
     {
-      canvasId: 'compareCategoryBarCanvas',
-      labels: ['<%= raw(@compare_category_bar_labels.join("', '")) %>'],
-      data: [ <%= raw(@compare_category_bar_data.join(", ")) %> ],
+      canvasId: 'barGraphCompareCategories',
+      labels: ['<%= raw(@bar_chart_compare_categories_data[:labels].join("', '")) %>'],
+      data: [ <%= raw(@bar_chart_compare_categories_data[:data].join(", ")) %> ],
       backgroundColors: compareBackgroundColors,
       borderColors: compareBackgroundColors
     },
     {
-      canvasId: 'compareBarCanvas',
-      labels: ['<%= raw(@compare_bar_labels.join("', '")) %>'],
-      data: [ <%= raw(@compare_bar_data.join(", ")) %> ],
+      canvasId: 'barGraphCompareEmissionSources',
+      labels: ['<%= raw(@bar_chart_compare_emissions_data[:labels].join("', '")) %>'],
+      data: [ <%= raw(@bar_chart_compare_emissions_data[:data].join(", ")) %> ],
       backgroundColors: compareBackgroundColors,
       borderColors: compareBackgroundColors
     }
   ];
 
-  barCharts.forEach(function drawBarGraph(graph) {
-    var ctxBar = document.getElementById(graph.canvasId).getContext('2d');
-    var myBarChart = new Chart(ctxBar, {
+  barCharts.forEach(function drawBarChart(chart_data) {
+    var ctxBar = document.getElementById(chart_data.canvasId).getContext('2d');
+    var chart = new Chart(ctxBar, {
       type: 'bar',
       data: {
-        labels: graph.labels,
+        labels: chart_data.labels,
         datasets: [{
           label: '',
-          data: graph.data,
-          backgroundColor: graph.backgroundColors,
-          borderColor: graph.borderColors,
+          data: chart_data.data,
+          backgroundColor: chart_data.backgroundColors,
+          borderColor: chart_data.borderColors,
           borderWidth: 1
         }]
       },

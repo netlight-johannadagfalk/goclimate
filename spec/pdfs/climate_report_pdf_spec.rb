@@ -35,7 +35,7 @@ RSpec.describe ClimateReportPdf do
     end
   end
 
-  describe '#emission_sources' do
+  describe '#emissions' do
     it 'returns the emission sources fields with emissions data' do
       emission_sources = {
         category: 'energy',
@@ -44,7 +44,7 @@ RSpec.describe ClimateReportPdf do
         scope: [2]
       }
 
-      expect(crp.emission_sources).to include(emission_sources)
+      expect(crp.emissions).to include(emission_sources)
     end
   end
 
@@ -59,21 +59,19 @@ RSpec.describe ClimateReportPdf do
     end
   end
 
-  describe '#compare_category_bar_data' do
-    it 'returns the compare data' do
-      compare_data = [{ 'Other' => 2500 }, { 'Other - average' => 2500 }]
+  describe '#bar_chart_compare_data' do
+    it 'returns compare data for categories' do
+      compare_data = { data: %w[2500 2500], labels: ['Other', 'Other - average'] }
       invoice.save! # why is invoice not saved in let statement?
 
-      expect(crp.compare_bar_data(crp.categories)).to eq(compare_data)
+      expect(crp.bar_chart_compare_data(crp.categories)).to eq(compare_data)
     end
-  end
 
-  describe '#compare_bar_data' do
-    it 'returns the compare data' do
-      compare_data = [{ 'Other' => 2500 }, { 'Other - average' => 2500 }]
+    it 'returns compare data for emission sources' do
+      compare_data = { data: %w[2500 2500], labels: ['Other', 'Other - average'] }
       invoice.save! # why is invoice not saved in let statement?
 
-      expect(crp.compare_bar_data(crp.emission_sources)).to eq(compare_data)
+      expect(crp.bar_chart_compare_data(crp.emissions)).to eq(compare_data)
     end
   end
 end

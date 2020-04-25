@@ -27,10 +27,10 @@
   <%= image_tag wicked_pdf_file_base64('app/assets/images/goclimateneutral_logo_turkos.png'), size: "200x200" %>
   </div>
 
-  <h1 class="super">Klimatrapport <br><%= @company_name %></h1>
+  <h1 class="super">Klimatrapport <br><%= @climate_report.company_name %></h1>
 
   <p style="margin-top: 600px">
-    Tidsperiod: <%= @calculation_period %><br>
+    Tidsperiod: <%= @climate_report.calculation_period %><br>
     Uförd: <%= @climate_report.created_at.to_date %><br>
     Klimatpartner: GoClimateNeutral<br>
     Kontaktperson: Alexandra Palmquist<br>
