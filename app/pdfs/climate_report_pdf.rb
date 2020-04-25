@@ -41,8 +41,8 @@ class ClimateReportPdf
           field_percentages: field_percentages,
           pie_chart_categories_data: pie_chart_categories_data,
           pie_chart_scope_data: pie_chart_scope_data,
-          bar_chart_categories_data: bar_chart_categories_data,
-          bar_chart_emissions_data: bar_chart_emissions_data,
+          bar_chart_categories_data: bar_chart_emissions_data(categories),
+          bar_chart_emissions_data: bar_chart_emissions_data(emissions),
           bar_chart_compare_categories_data: bar_chart_compare_data(categories),
           bar_chart_compare_emissions_data: bar_chart_compare_data(emissions)
         }
@@ -123,18 +123,8 @@ class ClimateReportPdf
     { labels: "'#{data.keys.join("', '")}'", data: data.values.join(', ') }
   end
 
-  def bar_chart_emissions_data
-    data = emissions.map do |field|
-      { field_name(field) => field[:emissions].round } unless field[:emissions] == 0
-    end.compact
-    {
-      data: data.map { |d| d.values.join('') },
-      labels: data.map { |d| d.keys.join('') }
-    }
-  end
-
-  def bar_chart_categories_data
-    data = categories.map do |field|
+  def bar_chart_emissions_data(fields)
+    data = fields.map do |field|
       { field_name(field) => field[:emissions].round } unless field[:emissions] == 0
     end.compact
     {
