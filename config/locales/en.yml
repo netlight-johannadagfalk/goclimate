@@ -771,6 +771,7 @@ en:
       calculate_button: See my business footprint
       read_more_about_calculations: Read more about the calculations here
       total: Total
+      average: average
       show:
         header: Your business footprint
         result: Your business footprint for the reporting period %{calculation_period} is %{total_emissions} tonnes carbon dioxide equivalents.
