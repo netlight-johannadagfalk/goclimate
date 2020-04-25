@@ -21,9 +21,9 @@ RSpec.describe ClimateReportPdf do
     end
   end
 
-  describe '#category_fields' do
+  describe '#categories' do
     it 'returns the category fields with emissions data' do
-      category_fields = [
+      categories = [
         { emissions: 0, name: 'energy', scope: [2, 3] },
         { emissions: 0, name: 'business_trips', scope: [3] },
         { emissions: 0, name: 'meals', scope: [3] },
@@ -31,20 +31,31 @@ RSpec.describe ClimateReportPdf do
         { emissions: 10_000, name: 'other', scope: [3] }
       ]
 
-      expect(crp.category_fields).to eq(category_fields)
+      expect(crp.categories).to eq(categories)
     end
   end
 
-  describe '#emission_sources_fields' do
+  describe '#emission_sources' do
     it 'returns the emission sources fields with emissions data' do
-      emission_sources_fields = {
+      emission_sources = {
         category: 'energy',
         emissions: 0,
         name: 'electricity_consumption',
         scope: [2]
       }
 
-      expect(crp.emission_sources_fields).to include(emission_sources_fields)
+      expect(crp.emission_sources).to include(emission_sources)
+    end
+  end
+
+  describe '#pie_chart_categories_data' do
+    it 'returns the pie chart data' do
+      pie_data = {
+        data: '0, 0, 0, 0, 100',
+        labels: "'Energy', 'Business trips', 'Number of meals', 'Material', 'Other'"
+      }
+
+      expect(crp.pie_chart_categories_data).to eq(pie_data)
     end
   end
 
@@ -53,7 +64,7 @@ RSpec.describe ClimateReportPdf do
       compare_data = [{ 'Other' => 2500 }, { 'Other - average' => 2500 }]
       invoice.save! # why is invoice not saved in let statement?
 
-      expect(crp.compare_bar_data(crp.category_fields)).to eq(compare_data)
+      expect(crp.compare_bar_data(crp.categories)).to eq(compare_data)
     end
   end
 
@@ -62,7 +73,7 @@ RSpec.describe ClimateReportPdf do
       compare_data = [{ 'Other' => 2500 }, { 'Other - average' => 2500 }]
       invoice.save! # why is invoice not saved in let statement?
 
-      expect(crp.compare_bar_data(crp.emission_sources_fields)).to eq(compare_data)
+      expect(crp.compare_bar_data(crp.emission_sources)).to eq(compare_data)
     end
   end
 end

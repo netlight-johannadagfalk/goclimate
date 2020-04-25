@@ -96,6 +96,7 @@
       <th>Andel av totalt</th>
     </tr>
     <% @calculation_fields.each do |field| %>
+      <% next if field[:name] == field[:category] %>
       <% field_emissions = @climate_report.calculation.send("#{field[:name]}_emissions") %>
       <tr <%= raw("class='category'") unless field.has_key? :category %>>
         <td>
@@ -110,13 +111,13 @@
   </table>
 
   <h4 class="alwaysbreak"><%= @company_name %>s klimatutsläpp överblick (% av totala utsläpp)</h4>
-  <div class="pieGraph"><canvas id="pieCanvas"></canvas></div>
+  <div class="pieGraph"><canvas id="pieChartCategories"></canvas></div>
 
   <h4><%= @company_name %>s klimatutsläpp uppdalat i Scope (% av totala utsläpp)</h4>
   <div class="pieGraph"><canvas id="pieScopeCanvas"></canvas></div>
 
   <h4 class="alwaysbreak">Klimatutsläpp överblick i kg CO2e</h4>
-  <div><canvas id="barCanvas"></canvas></div>
+  <div><canvas id="barGraphEmissionCategories"></canvas></div>
 
   <h4>Klimatutsläpp per utsläppskälla i kg CO2e</h4>
   <div><canvas id="detailedBarCanvas"></canvas></div>
@@ -260,18 +261,6 @@ function drawGraphs() {
     'rgba(54, 162, 235, 0.6)',
     'rgba(54, 162, 235, 0.6)'
   ];
-  var barOptions = {
-    legend: {
-      display: false,
-    },
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
-  };
   var pieOptions = {
     plugins: {
       datalabels: {
@@ -290,14 +279,14 @@ function drawGraphs() {
     }
   };
   
-  var ctx = document.getElementById('pieCanvas').getContext('2d');
-  var labels = [ '<%= raw(@pie_chart[:labels]) %>' ];
+  var ctx = document.getElementById('pieChartCategories').getContext('2d');
+  var labels = [ <%= raw(@pie_chart_categories_data[:labels]) %> ];
   var mypieChart = new Chart(ctx, {
     plugins: [ChartDataLabels],
     type: 'pie',
     data: {
       datasets: [{
-        data: [ <%= @pie_chart[:data] %> ],
+        data: [ <%= @pie_chart_categories_data[:data] %> ],
         backgroundColor: backgroundColors,
         borderColor: borderColors,
         borderWidth: 1
@@ -306,14 +295,14 @@ function drawGraphs() {
     options: pieOptions
   });
 
-var ctx = document.getElementById('pieScopeCanvas').getContext('2d');
-  var labels = [ '<%= raw(@pie_scope_labels.join("', '")) %>' ];
+  var ctx = document.getElementById('pieScopeCanvas').getContext('2d');
+  var labels = [ <%= raw(@pie_chart_scope_data[:labels]) %> ];
   var mypieChart = new Chart(ctx, {
     plugins: [ChartDataLabels],
     type: 'pie',
     data: {
       datasets: [{
-        data: [ <%= @pie_scope_data.join(', ') %> ],
+        data: [ <%= @pie_chart_scope_data[:data] %> ],
         backgroundColor: backgroundColors,
         borderColor: borderColors,
         borderWidth: 1
@@ -322,68 +311,64 @@ var ctx = document.getElementById('pieScopeCanvas').getContext('2d');
     options: pieOptions
   });
 
-  var ctxBar = document.getElementById('barCanvas').getContext('2d');
-  var myBarChart = new Chart(ctxBar, {
-    type: 'bar',
-    data: {
-      labels: ['<%= raw(@bar_category_labels.join("', '")) %>'],
-      datasets: [{
-        label: '',
-        data: [ <%= raw(@bar_category_data.join(", ")) %> ],
-        backgroundColor: backgroundColors,
-        borderColor: borderColors,
-        borderWidth: 1
-      }]
+  var barCharts = [
+    {
+      canvasId: 'barGraphEmissionCategories',
+      labels: ['<%= raw(@bar_graph_categories_data[:labels].join("', '")) %>'],
+      data: [<%= raw(@bar_graph_categories_data[:data].join(", ")) %> ],
+      backgroundColors: backgroundColors,
+      borderColors: borderColors
     },
-    options: barOptions
-  });
-
-  var ctxBar = document.getElementById('detailedBarCanvas').getContext('2d');
-  var myBarChart = new Chart(ctxBar, {
-    type: 'bar',
-    data: {
+    {
+      canvasId: 'detailedBarCanvas',
       labels: ['<%= raw(@bar_labels.join("', '")) %>'],
-      datasets: [{
-        label: '',
-        data: [ <%= raw(@bar_data.join(", ")) %> ],
-        backgroundColor: backgroundColors,
-        borderColor: borderColors,
-        borderWidth: 1
-      }]
+      data: [ <%= raw(@bar_data.join(", ")) %> ],
+      backgroundColors: backgroundColors,
+      borderColors: borderColors
     },
-    options: barOptions
-  });
-
-  var ctxBar = document.getElementById('compareCategoryBarCanvas').getContext('2d');
-  var myBarChart = new Chart(ctxBar, {
-    type: 'bar',
-    data: {
+    {
+      canvasId: 'compareCategoryBarCanvas',
       labels: ['<%= raw(@compare_category_bar_labels.join("', '")) %>'],
-      datasets: [{
-        label: '',
-        data: [ <%= raw(@compare_category_bar_data.join(", ")) %> ],
-        backgroundColor: compareBackgroundColors,
-        borderColor: compareBackgroundColors,
-        borderWidth: 1
-      }]
+      data: [ <%= raw(@compare_category_bar_data.join(", ")) %> ],
+      backgroundColors: compareBackgroundColors,
+      borderColors: compareBackgroundColors
     },
-    options: barOptions
-  });
-
-  var ctxBar = document.getElementById('compareBarCanvas').getContext('2d');
-  var myBarChart = new Chart(ctxBar, {
-    type: 'bar',
-    data: {
+    {
+      canvasId: 'compareBarCanvas',
       labels: ['<%= raw(@compare_bar_labels.join("', '")) %>'],
-      datasets: [{
-        label: '',
-        data: [ <%= raw(@compare_bar_data.join(", ")) %> ],
-        backgroundColor: compareBackgroundColors,
-        borderColor: compareBackgroundColors,
-        borderWidth: 1
-      }]
-    },
-    options: barOptions
+      data: [ <%= raw(@compare_bar_data.join(", ")) %> ],
+      backgroundColors: compareBackgroundColors,
+      borderColors: compareBackgroundColors
+    }
+  ];
+
+  barCharts.forEach(function drawBarGraph(graph) {
+    var ctxBar = document.getElementById(graph.canvasId).getContext('2d');
+    var myBarChart = new Chart(ctxBar, {
+      type: 'bar',
+      data: {
+        labels: graph.labels,
+        datasets: [{
+          label: '',
+          data: graph.data,
+          backgroundColor: graph.backgroundColors,
+          borderColor: graph.borderColors,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        legend: {
+          display: false,
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
   });
 }
 window.onload = function() {
