@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     get 'press', to: 'welcome#press'
     get '100_percent_transparency', to: 'welcome#transparency', as: 'transparency'
     get 'privacy_policy', to: 'welcome#privacy_policy'
+    get 'travel_calculator', to: 'welcome#travel_calculator'
 
     resources :lifestyle_footprints, path: 'calculator', only: [:new, :create], path_names: { new: '' }
 

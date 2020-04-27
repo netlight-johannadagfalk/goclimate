@@ -1,0 +1,108 @@
+<% content_for :stylesheets do %>
+  <%= webpack_entrypoint_stylesheet_tags 'main_old' %>
+<% end %>
+<% content_for :javascripts do %>
+  <%= webpack_entrypoint_javascript_tags 'main_old', onerror: 'throw "Loading Javascript " + this.src + " failed"' %>
+<% end %>
+
+<div class="site-wrapper-first">
+  <%= render "shared/header_old" %>
+  <div class="inner">
+    <span class="glyphicon glyphicon-large glyphicon-plane" aria-hidden="true"></span>
+    <h1 class="cover-heading"><%= title(t('views.welcome.travel_calculator.travel_emissions_calculator')) %></h1>
+    <p class="lead text-center"><%= description(t('views.welcome.travel_calculator.travel_emissions_calculator_description')) %></p>
+
+    <form class="form-inline" id="distance-form" style="margin-top: 50px;">
+      <div class="form-group">
+        <label for="exampleInputName2"><%= t('views.welcome.travel_calculator.distance_in_kilometers') %>:</label>
+        <input type="text" class="form-control" id="distance" placeholder="100" value="100">
+        <button type="submit" class="btn btn-default"><%= t('views.welcome.travel_calculator.calculate') %></button>
+      </div>
+    </form>
+
+    <div class="center-block lead" style="margin-top: 50px;">
+      <%= t('views.welcome.travel_calculator.emissions_if_traveling_by') %>:
+        <div class="center-block">
+          <table class="center-block text-left" style="max-width: 400px;">
+
+            <% ['flight',
+                'car_petrol',
+                'car_diesel',
+                'car_etanol',
+                'car_gas',
+                'car_electric',
+                'bus',
+                'train',
+                'subway',
+                'boat'].each do |type| %>
+            <tr>
+              <td style="min-width: 50px; padding: 5px;">
+                <%= t('views.welcome.travel_calculator.' + type) %>:
+              </td>
+              <td>
+                <div id="<%= type %>-background" style="background-color: #BCD2BE; width: 50px;">
+                  <span style="white-space: nowrap; padding-left: 5px">
+                    <b><span id="<%= type %>" class="big-number" data-target-number="0">0</span></b> kg CO2e
+                  <span>
+                </div>
+              </td>
+            </tr>
+            <% end %>
+            
+          </table>
+        </div>
+
+
+      <div style="margin-top: 80px"><a href="/" class="btn btn-lg btn-success"><%=t 'views.welcome.travel_calculator.offset_the_emissions_here' %></a></div>
+
+
+    </div>
+
+    <% content_for :javascript_tags do %>
+      <script>
+        function processForm(e) {
+          if (e.preventDefault) e.preventDefault();
+
+          var distance = parseInt(document.getElementById("distance").value);
+
+          var emissionTypes = [["flight", 0.25], 
+                               ["car_petrol", 0.19],
+                               ["car_diesel", 0.15],
+                               ["car_etanol", 0.11],
+                               ["car_gas", 0.04],
+                               ["car_electric", 0.01],
+                               ["bus",  0.059],
+                               ["train",  0],
+                               ["subway",  0],
+                               ["boat",  0.17],
+                              ];
+
+          emissionTypes.map(function(emissionType) {
+            var barLength = emissionType[1] * 250 / 0.25;
+            document
+              .getElementById(emissionType[0] + "-background")
+              .setAttribute("style", "background-color: #BCD2BE; width: " + barLength + "px;");
+            document
+              .getElementById(emissionType[0])
+              .setAttribute("data-target-number", distance * emissionType[1]);
+            new CountingNumber(document.querySelector("#" + emissionType[0])).countUp();
+          });
+
+          return false;
+        }
+        
+        var form = document.getElementById('distance-form');
+        if (form.attachEvent) {
+            form.attachEvent("submit", processForm);
+        } else {
+            form.addEventListener("submit", processForm);
+        }
+
+      </script>
+    <% end %>
+
+    <div style="margin-bottom:300px"></div>
+  </div>
+</div>
+
+<%= render "shared/footer_old" %>

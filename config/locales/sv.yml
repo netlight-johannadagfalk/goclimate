@@ -262,7 +262,7 @@ sv:
         <br><br>
         Om man vill göra det lite mer komplicerat så finns det standarder som reglerar vad som krävs för att man ska kunna kalla sig klimatneutral för företag (PAS 2060 och ISO 14021), men när det gäller privatpersoner så finns det inga sådana standarder. Det innebär att det kan finnas lite olika uppfattningar om vad som krävs för att en person ska kunna kalla sig klimatneutral.
         <br><br>
-        <img alt='' class='alignnone wp-image-264 size-large' src='https://www.goclimateneutral.org/blog/wp-content/uploads/2017/08/Skärmavbild-2017-10-31-kl.-21.00.57-1-1024x660.png' />
+        <img alt='' class='alignnone wp-image-264 size-large' src='https://www.goclimateneutral.org/blog/wp-content/uploads/2017/08/Skärmavbild-2017-10-31-kl.-21.00.57-1-1024x660.png' />
         <br>
         I teorin är klimatneutralitet när skillnaden är noll mellan de utsläpp du själv orsakar och de utsläpp som du tar bort från atomsfären alternativt de utsläpp du förhindrar att de släpps ut i atmosfären. Utmaningen med klimatneutralitet är dels att kunna beräkna det exakta klimatavtrycket för respektive individ, dels att hitta mätbara och bra sätt att ta bort utsläpp från atmosfären alternativt mätbara och bra sätt att förhindra att mer utsläpp släpps ut i atmosfären (se <a href='https://sv.goclimateneutral.org/faq#collapseq4id'>Fungerar verkligen klimatkompensation?</a>).
         <br><br>
@@ -320,15 +320,15 @@ sv:
         <br><br>
         Vad är det då som menas med att ett projekt tillför verklig klimatnytta? Jo, i klimatbranschen definierar man verklig klimatnytta med att ett antal kriterier ska uppfyllas av klimatprojekten:
         <br><br>
-        <b>1. Additionalitet</b> - projektet skulle inte blivit av utan pengarna från klimatkompensation – en förutsättning för att man åstadkommer en verklig förändring jämfört med hur det hade blivit utan investeringen. 
+        <b>1. Additionalitet</b> - projektet skulle inte blivit av utan pengarna från klimatkompensation – en förutsättning för att man åstadkommer en verklig förändring jämfört med hur det hade blivit utan investeringen. 
         <br>
         <b>2. Verifierbarhet</b> - klimatkompensationen har kvantifierats och verifierats av en oberoende tredje part.
         <br>
-        <b>3. Spårbarhet</b> - klimatkompensationen ska kunna spåras så att den inte har sålts, eller i framtiden kan säljas, till andra kunder också.
+        <b>3. Spårbarhet</b> - klimatkompensationen ska kunna spåras så att den inte har sålts, eller i framtiden kan säljas, till andra kunder också.
         <br>
-        <b>4. Beständighet</b> - klimatkompensationen ska vara beständig och inte kunna försvinna senare.
+        <b>4. Beständighet</b> - klimatkompensationen ska vara beständig och inte kunna försvinna senare.
         <br>
-        <b>5. Bidrag till hållbar utveckling</b> - Utöver själva klimatnyttan ska projekten även bidra till hållbar utveckling på andra sätt, exempelvis genom att bidra med arbetstillfällen eller bidra till renare luft i regionen.
+        <b>5. Bidrag till hållbar utveckling</b> - Utöver själva klimatnyttan ska projekten även bidra till hållbar utveckling på andra sätt, exempelvis genom att bidra med arbetstillfällen eller bidra till renare luft i regionen.
         <br><br>
         Bra att tänka på är att klimatkompensation inte är tillräckligt för att klara FNs klimatmål att hålla medeltemperaturökningen till lägre än 2 grader jämfört med den förindustriella nivån, även om det är en väldigt bra start. Klimatkompensation ska istället ses som ett sätt att snabbt komma igång med att bromsa klimatförändringarna, för att sedan minska sin egen klimatpåverkan genom livsstilsförändringar. Det är därför alltid viktigt att både klimatkompensera och att samtidigt jobba på - och gärna ha en strategi för - att reducera sina egna klimatavtryck. Och det är därför vi ser själva klimatkompenseringen som ett första steg på GoClimateNeutral, ett enkelt - men inte obetydligt - steg för att visa att du menar allvar med klimatfrågan, medan nästa steg är att faktiskt minska avtrycken du gör så mycket som du bara kan. Bland annat med tips i nyhetsbrev från oss och med hjälp av olika funktioner i kommande produktuppdateringar. Nyfiken på att veta mer? <a href='https://sv.goclimateneutral.se'>Börja resan mot ett klimatneutralt liv tillsammans med oss här</a>!<br><br>Har du åsikter om den här frågan? Gå gärna in på vår blogg och kommentera eller ställ frågor: <a href='https://www.goclimateneutral.org/blog/fungerar-verkligen-klimatkompensation/'>https://www.goclimateneutral.org/blog/fungerar-verkligen-klimatkompensation/</a>"
       q5:
@@ -714,6 +714,23 @@ sv:
         our_projects_header: Våra klimatprojekt
         our_projects_lead: För oss är det avgörande att dina pengar hamnar i rätta händer. Därför väljer vi att bara stötta tredjepartsgranskade klimatprojekt som har certifieringen Gold Standard. Projekten bidrar till den globala omställningen till förnybar energi och FN:s hållbarhetsmål.
         our_projects_link: Läs mer om våra klimatprojekt
+      travel_calculator:
+        travel_emissions_calculator: Resekalkylator
+        travel_emissions_calculator_description: Vill du räkna ut hur mycket utsläpp din resa orsakar? Skriv in hur långt du ska åka här nedan så fixar vi resten!
+        distance_in_kilometers: Längd på resa i kilometer
+        calculate: Beräkna
+        emissions_if_traveling_by: Utsläpp om du reser med
+        flight: Flyg
+        car_petrol: Bil (bensin)
+        car_diesel: Bil (diesel)
+        car_etanol: Bil (etanol)
+        car_gas: Bil (gas)
+        car_electric: Elbil
+        bus: Buss
+        train: Tåg
+        subway: Tunnelbana
+        boat: Båt
+        offset_the_emissions_here: Kompensera för utsläppen här ->
     registrations:
       offset_for_x_people:
         before_input: Jag vill kompensera för
