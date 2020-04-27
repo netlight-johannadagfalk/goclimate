@@ -624,6 +624,23 @@ en:
         our_projects_header: Our Climate Projects
         our_projects_lead: It's crucial for us that your money only ever ends up in the right hands. To guarantee that, we support Gold Standard certified projects that have been verified by third parties. The projects contribute to the global transition to renewable energy and the UN Sustainable Development Goals.
         our_projects_link: Read more about our climate projects
+      travel_calculator:
+        travel_emissions_calculator: Travel Emissions Calculator
+        travel_emissions_calculator_description: Do you want to calculate the emissions from travelling? Enter the distance below and see the carbon emissions each way of travelling causes!
+        distance_in_kilometers: Distance of trip in km
+        calculate: Calculate
+        emissions_if_traveling_by: Emissions if you travel by
+        flight: Flight
+        car_petrol: Car (petrol)
+        car_diesel: Car (diesel)
+        car_etanol: Car (etanol)
+        car_gas: Car (gas)
+        car_electric: Electric Car
+        bus: Bus
+        train: Train
+        subway: Subway
+        boat: Boat
+        offset_the_emissions_here: Offset the emissions here ->
 
   business:
     climate_reports:

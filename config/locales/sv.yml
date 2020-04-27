@@ -651,15 +651,16 @@ sv:
         calculate: Beräkna
         emissions_if_traveling_by: Utsläpp om du reser med
         flight: Flyg
-        car-petrol: Bil (bensin)
-        car-diesel: Bil (diesel)
-        car-etanol: Bil (etanol)
-        car-gas: Bil (gas)
-        car-electric: Elbil
+        car_petrol: Bil (bensin)
+        car_diesel: Bil (diesel)
+        car_etanol: Bil (etanol)
+        car_gas: Bil (gas)
+        car_electric: Elbil
         bus: Buss
         train: Tåg
         subway: Tunnelbana
         boat: Båt
+        offset_the_emissions_here: Kompensera för utsläppen här ->
 
   business:
     climate_reports:

@@ -26,11 +26,11 @@
           <table class="center-block text-left" style="max-width: 400px;">
 
             <% ['flight',
-                'car-petrol',
-                'car-diesel',
-                'car-etanol',
-                'car-gas',
-                'car-electric',
+                'car_petrol',
+                'car_diesel',
+                'car_etanol',
+                'car_gas',
+                'car_electric',
                 'bus',
                 'train',
                 'subway',
@@ -51,6 +51,11 @@
             
           </table>
         </div>
+
+
+      <div style="margin-top: 80px"><a href="/" class="btn btn-lg btn-success"><%=t 'views.welcome.travel_calculator.offset_the_emissions_here' %></a></div>
+
+
     </div>
 
     <% content_for :javascript_tags do %>
@@ -61,11 +66,11 @@
           var distance = parseInt(document.getElementById("distance").value);
 
           var emissionTypes = [["flight", 0.25], 
-                               ["car-petrol", 0.19],
-                               ["car-diesel", 0.15],
-                               ["car-etanol", 0.11],
-                               ["car-gas", 0.04],
-                               ["car-electric", 0.01],
+                               ["car_petrol", 0.19],
+                               ["car_diesel", 0.15],
+                               ["car_etanol", 0.11],
+                               ["car_gas", 0.04],
+                               ["car_electric", 0.01],
                                ["bus",  0.059],
                                ["train",  0],
                                ["subway",  0],
@@ -73,10 +78,10 @@
                               ];
 
           emissionTypes.map(function(emissionType) {
-            var stapleLength = emissionType[1] * 250 / 0.25;
+            var barLength = emissionType[1] * 250 / 0.25;
             document
               .getElementById(emissionType[0] + "-background")
-              .setAttribute("style", "background-color: #BCD2BE; width: " + stapleLength + "px;");
+              .setAttribute("style", "background-color: #BCD2BE; width: " + barLength + "px;");
             document
               .getElementById(emissionType[0])
               .setAttribute("data-target-number", distance * emissionType[1]);
