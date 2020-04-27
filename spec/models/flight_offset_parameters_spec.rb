@@ -46,5 +46,9 @@ RSpec.describe FlightOffsetParameters do
     it 'sets segments' do
       expect(described_class.from_s(serilized_paramters).segments).to eq(segments)
     end
+
+    it 'returns nil when param is not present' do
+      expect(described_class.from_s('')).to be_nil
+    end
   end
 end

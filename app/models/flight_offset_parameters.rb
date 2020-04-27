@@ -3,8 +3,10 @@
 class FlightOffsetParameters
   attr_reader :cabin_class, :segments
 
-  def self.from_s(serilized_parameters)
-    cabin_class, *airports = serilized_parameters.split(',')
+  def self.from_s(serialized_parameters)
+    return nil unless serialized_parameters.present?
+
+    cabin_class, *airports = serialized_parameters.split(',')
     segments = airports.each_slice(2).map do |s|
       FootprintCalculation::FlightSegment.new(origin: s[0], destination: s[1])
     end

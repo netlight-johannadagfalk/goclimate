@@ -28,6 +28,32 @@ RSpec.describe SubscriptionManager do
       .and_return(subscription_list)
   end
 
+  describe '.price_for_footprint' do
+    it 'calculates monthly price using doubling buffer' do
+      price = described_class.price_for_footprint(GreenhouseGases.new(12_000), Currency::SEK)
+
+      expect(price).to eq(Money.new(80_00, :sek))
+    end
+
+    it 'ceils SEK prices to nearest 5 SEK' do
+      price = described_class.price_for_footprint(GreenhouseGases.new(11_400), Currency::SEK)
+
+      expect(price).to eq(Money.new(80_00, :sek))
+    end
+
+    it 'rounds USD prices to nearest 10 cents' do
+      price = described_class.price_for_footprint(GreenhouseGases.new(12_900), Currency::USD)
+
+      expect(price).to eq(Money.new(10_10, :usd))
+    end
+
+    it 'rounds EUR prices to nearest 10 cents' do
+      price = described_class.price_for_footprint(GreenhouseGases.new(15_165), Currency::EUR)
+
+      expect(price).to eq(Money.new(10_10, :eur))
+    end
+  end
+
   describe '#sign_up' do
     let(:plan) { Stripe::Plan.construct_from(stripe_json_fixture('plan.json')) }
 

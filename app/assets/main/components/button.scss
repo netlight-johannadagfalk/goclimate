@@ -1,0 +1,25 @@
+
+.button {
+  @apply bg-bg text-black border border-gray-400 py-2 px-4 rounded cursor-pointer whitespace-no-wrap;
+}
+
+.button:enabled:hover {
+  @apply border-gray-500 bg-gray-200 text-black
+}
+
+.button-transparent {
+  @apply button;
+  background-color: transparent;
+}
+
+.button-brand {
+  @apply button text-white bg-bootstrap-green-500 border-bootstrap-green-600;
+}
+
+.button-brand:enabled:hover {
+  @apply text-white bg-bootstrap-green-600 border-bootstrap-green-700;
+}
+
+.button:disabled, .button-transparent:disabled, .button-brand:disabled {
+  @apply cursor-default;
+}

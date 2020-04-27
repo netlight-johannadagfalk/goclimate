@@ -3,6 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe GreenhouseGases do
+  describe '#initialize' do
+    it 'raises ArgumentError when co2e is not an integer' do
+      expect do
+        described_class.new('2')
+      end.to raise_error(ArgumentError)
+    end
+  end
+
   describe '#consumer_price' do
     it 'uses 40 SEK per tonne, roundet up to nearest 1 krona' do
       expect(described_class.new(1505).consumer_price(Currency::SEK))

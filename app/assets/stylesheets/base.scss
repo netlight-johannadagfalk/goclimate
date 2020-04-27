@@ -573,3 +573,9 @@ ul.trust {
 .cursor-pointer {
   cursor: pointer;
 }
+
+@media (max-width: 767px) {
+  .sm-full-width {
+    width: 100%;
+  }
+}

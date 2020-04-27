@@ -4,8 +4,11 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+
   has_many :card_charges, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
   has_and_belongs_to_many :lifestyle_choices
+  has_many :lifestyle_footprints
+
   scope :with_active_subscription, lambda {
     where(subscription_end_at: nil).or(where('subscription_end_at >= ?', Time.now))
   }

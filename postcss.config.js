@@ -1,9 +1,11 @@
 const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer');
 const purgecss = require('@fullhuman/postcss-purgecss');
 
 const environment = {
   plugins: [
-    tailwindcss
+    tailwindcss,
+    autoprefixer
   ]
 };
 
@@ -18,7 +20,7 @@ const environment = {
 if (process.env.RAILS_ENV === 'production') {
   environment.plugins.push(
     purgecss({
-      content: ['./app/views/**/*.html.erb', './app/controllers/**/*.rb', './app/assets/javascripts/**/*.js'],
+      content: ['./app/views/**/*.html.erb', './app/controllers/**/*.rb', './app/assets/**/*.js'],
       css: ['./app/assets/stylesheets'],
       extractors: [
         {

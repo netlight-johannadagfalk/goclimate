@@ -1,0 +1,24 @@
+@import 'tailwindcss/base';
+
+@import 'tailwindcss/components';
+@import 'components/button.scss';
+@import 'components/input.scss';
+@import 'components/select.scss';
+@import 'components/dropdown.scss';
+@import 'components/collapse.scss';
+
+@import 'tailwindcss/utilities';
+
+html,
+body {
+  min-height: 100%;
+  font-size: 14px;
+}
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+.bg-brand-image {
+  background-image: url("../images/background-illustrated-2.png");
+}
+

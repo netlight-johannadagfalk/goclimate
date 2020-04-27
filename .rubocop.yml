@@ -49,12 +49,14 @@ Metrics/BlockLength:
     - 'shared_examples'
   Exclude:
     - 'config/routes.rb'
+    - 'spec/**/*'
 
 RSpec/MultipleExpectations:
   Exclude:
     - 'spec/features/**/*'
 
 RSpec/ExampleLength:
+  Max: 15
   Exclude:
     - 'spec/features/**/*'
 
@@ -108,4 +110,16 @@ Style/HashTransformKeys:
   Enabled: true
 
 Style/HashTransformValues:
+  Enabled: true
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Style/ExponentialNotation:
   Enabled: true

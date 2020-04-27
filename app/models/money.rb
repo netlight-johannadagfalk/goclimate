@@ -10,6 +10,7 @@ class Money
 
   def initialize(subunit_amount, currency)
     raise ArgumentError, 'Amount cannot be nil' if subunit_amount.nil?
+    raise ArgumentError, 'Amount must be an integer' unless subunit_amount.is_a?(Integer)
     raise ArgumentError, 'Currency cannot be nil' if currency.nil?
 
     @subunit_amount = subunit_amount

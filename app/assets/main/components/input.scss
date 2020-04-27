@@ -1,0 +1,26 @@
+.input {
+  /* TODO: Text is extra large because 16px is the smallest iOS accepts
+   * without zooming. We should consider making this our default text size
+   * globally
+   * */
+  @apply
+    p-2
+    leading-6
+    bg-white
+    text-black
+    text-xl
+    border border-gray-400 rounded
+    cursor-text; /* For when we're styling a container as the input */
+
+  &:focus-within, &:focus, &.StripeElement--focus {
+    @apply
+      border-transparent
+      shadow-outline;
+  }
+
+  /* Disable default focus styling by browsers */
+  &:focus, input:focus { @apply outline-none; }
+
+  /* Disable native styling for Webkit on iOS */
+  &, & input { -webkit-appearance: none; }
+}
