@@ -66,9 +66,8 @@
       })(window,document,'script','https://www.google-analytics.com/analytics<%= '_debug' if Rails.env.development? %>.js','ga');
       ga('create', 'UA-97611261-1', 'auto');
       <% unless ENV['GOOGLE_ANALYTICS_SENDING'] == 'enabled' %>ga('set', 'sendHitTask', null);<% end %>
-      ga('send', 'pageview', {
-        dimension1: '<%= @active_experiments.any? ? @active_experiments.sort.join(',') : 'none' %>'
-      });
+      ga('set', 'dimension1', '<%= @active_experiments.any? ? @active_experiments.sort.join(',') : 'none' %>');
+      ga('send', 'pageview');
     </script>
 
     <!-- Global site tag (gtag.js) -->
