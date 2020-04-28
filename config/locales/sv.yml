@@ -771,9 +771,9 @@ sv:
       meals_vegetarian_share_tooltip: Den uppskattade andelen vegetariska eller veganska måltider. Utan en veg-first policy så är det här förmodligen runt 10% (andelen vegetarianer/veganer i Sverige enligt Djurens Rätt).
       material: Inköp
       material_intro: Elektronik har ofta en faktor 10x större klimatavtryck än andra inköp, så som möbler och kläder. Om stora mängder annat material har köpts in under perioden, som till exempel mycket möbler i samband med en flytt, kan det specificeras i övrigt-kategorin i slutet av det här formuläret.
-      purchased_computers: Köpta datorer
-      purchased_phones: Köpta telefoner/tablets
-      purchased_monitors: Köpta skärmar
+      purchased_computers: Datorer
+      purchased_phones: Telefoner/tablets
+      purchased_monitors: Skärmar
       units: st
       other: Övrigt
       other_intro: Det är svårt att få med ett företags alla utsläpp i ett standardiserat formulär. De flesta företag har andra utsläppskällor som kanske är stora, men inte så vanliga. Organiserar ditt företag event med föreläsare som flygs in från hela världen? Har du konsulter som behöver pendla långa sträckor varje vecka för att komma till sina kunder? Beräkna utsläppen och skriv in dem här nedanför. Om du behöver hjälp med beräkningarna, kontakta oss på info@goclimateneutral.org.

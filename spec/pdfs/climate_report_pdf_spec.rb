@@ -51,11 +51,11 @@ RSpec.describe ClimateReportPdf do
   describe '#pie_chart_categories_data' do
     it 'returns the pie chart data' do
       pie_data = {
-        data: '0, 0, 0, 0, 100',
-        labels: "'Energy', 'Business trips', 'Number of meals', 'Material', 'Other'"
+        data: '100',
+        labels: "'Other'"
       }
 
-      expect(crp.pie_chart_categories_data).to eq(pie_data)
+      expect(crp.pie_chart_sources_data(crp.categories)).to eq(pie_data)
     end
   end
 

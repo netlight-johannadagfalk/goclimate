@@ -39,7 +39,8 @@ class ClimateReportPdf
           climate_report: @cr,
           calculation_fields: CALCULATION_FIELDS,
           field_percentages: field_percentages,
-          pie_chart_categories_data: pie_chart_categories_data,
+          pie_chart_categories_data: pie_chart_sources_data(categories),
+          pie_chart_sources_data: pie_chart_sources_data(emissions),
           pie_chart_scope_data: pie_chart_scope_data,
           bar_chart_categories_data: bar_chart_emissions_data(categories),
           bar_chart_emissions_data: bar_chart_emissions_data(emissions),
@@ -100,12 +101,13 @@ class ClimateReportPdf
     category_and_sources_percentages
   end
 
-  def pie_chart_categories_data
+  def pie_chart_sources_data(fields)
     percentages = {}
-    categories.map do |field|
+    fields.map do |field|
       percentages[field_name(field)] = field_percentage(field)
     end
     data = get_even_percentages(percentages)
+    data.filter! { |_, v| v != 0 }
     { labels: "'#{data.keys.join("', '")}'", data: data.values.join(', ') }
   end
 
@@ -114,12 +116,11 @@ class ClimateReportPdf
     emissions.map do |field|
       scopes["Scope #{field[:scope][0]}"] += field[:emissions]
     end
-
     scopes.each do |k, v|
       scopes[k] = BigDecimal(v) / @cr.calculation.total_emissions * 100
     end
-
     data = get_even_percentages(scopes)
+    data.filter! { |_, v| v != 0 }
     { labels: "'#{data.keys.join("', '")}'", data: data.values.join(', ') }
   end
 
