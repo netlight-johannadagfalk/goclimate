@@ -124,7 +124,11 @@
           currency: "<%= current_region.currency %>",
           value: <%= current_user.subscription_amount %>
         });
-        gtag('event', 'conversion', {'send_to': 'AW-823228700/-nQJCJXUrrcBEJzyxYgD'});
+        gtag('event', 'conversion', {
+          'send_to': 'AW-823228700/-nQJCJXUrrcBEJzyxYgD', 
+          'value': <%= current_user.subscription_amount %>,
+          'currency': '<%= current_region.currency %>'
+        });
       </script>
     <% end %>
 
