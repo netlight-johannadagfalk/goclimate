@@ -74,4 +74,35 @@ RSpec.describe ClimateReportPdf do
       expect(crp.bar_chart_compare_data(crp.emissions)).to eq(compare_data)
     end
   end
+
+  describe '#bar_chart_compare_years_data' do
+    it 'returns compare data for more then one measurement period' do
+      compare_data = {
+        data: %w[0 0 20000 0 0 0 0 0 0 10000],
+        labels: [
+          '2017 - Energy', '2018 - Energy', '2017 - Business trips', '2018 - Business trips',
+          '2017 - Number of meals', '2018 - Number of meals', '2017 - Material', '2018 - Material',
+          '2017 - Other', '2018 - Other'
+        ]
+      }
+
+      calc_old = create(:climate_report_calculation, :flight_emissions)
+      report_old = create(:climate_report, :old, calculation: calc_old)
+      invoice_old = create(:climate_report_invoice, :twenty_tonnes, climate_report: report_old)
+      invoice.save!
+      invoice_old.save!
+      expect(crp.bar_chart_compare_years_data(crp.categories)).to eq(compare_data)
+    end
+
+    it 'returns nil when there is no other measurement periods to compare' do
+      expect(crp.bar_chart_compare_years_data(crp.categories)).to eq(nil)
+    end
+  end
+
+  describe '#climate_periods_to_compare' do
+    it 'returns the number of climate invoices for that company' do
+      invoice.save!
+      expect(crp.climate_periods_to_compare).to eq(1)
+    end
+  end
 end

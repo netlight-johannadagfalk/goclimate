@@ -97,8 +97,8 @@
   <h2 class="alwaysbreak"><%= @climate_report.company_name %>s klimatpåverkan</h2>
 
   <p>Denna klimatrapport omfattar utsläpp som registrerats under <%= @climate_report.calculation_period %><%= ' ' + @calculation_period_length unless @calculation_period_length.nil? %>. Under den angivna perioden var de totala utsläppen av växthusgaser från företagets verksamhet <%= co2e_string(@climate_report.calculation.total_emissions) %> kg koldioxidekvivalenter (CO2e), vilket motsvarar <%= number_with_delimiter(@climate_report.calculation.total_emissions / @climate_report.employees, delimiter: ' ') %> kg CO2e per anställd. Utsläppen är fördelade enligt nedan.</p>
-  
-  <h4>Klimatutsläpp per utsläppskälla (i kg koldioxidekvivalenter)</h4>
+
+  <h4 style="text-align: left;">Klimatutsläpp per utsläppskälla (i kg koldioxidekvivalenter)</h4>
   <table>
     <tr>
       <th>Utsläppskälla</th>
@@ -133,11 +133,26 @@
   <h4>Klimatutsläpp per utsläppskälla i kg CO2e</h4>
   <div><canvas id="barGraphEmissionSources"></canvas></div>
 
-  <h4 class="alwaysbreak">Klimatutsläpp per utsläppskategori och anställd i kg CO2e jämfört med medel för tjänstebolag (snittet baseras på GoClimateNeutrals egna datakällor för tjänstebolags utsläpp)</h4>
+  <h2 class="alwaysbreak">Jämförelse med medelutsläpp för tjäsntebolag</h2>
+
+  <p>Varje verksamhet är unik, men ibland kan det vara bra att få en förstålse för hur stora ens företags utsläpp är jämfört med andra företags utsläpp. Eftersom utsläppen i tjänstebolag ofta är korrelerade till antal anställda är siffrorna nedan per anställd för att kunna jämföra siffrorna oavsett storlek på bolag. Medlet för tjänstebolag är från GoClimateNeutrals egna datakällor och baseras på ca 300 tjänstebolag mestadels baserade i Sverige.</p>
+
+  <h4>Klimatutsläpp per utsläppskategori och anställd i kg CO2e jämfört med medel för tjänstebolag</h4>
   <div><canvas id="barGraphCompareCategories"></canvas></div>
 
-  <h4>Klimatutsläpp per utsläppskälla och anställd i kg CO2e jämfört med medel för tjänstebolag (snittet baseras på GoClimateNeutrals egna datakällor för tjänstebolags utsläpp)</h4>
+  <h4 class="alwaysbreak">Klimatutsläpp per utsläppskälla och anställd i kg CO2e jämfört med medel för tjänstebolag</h4>
   <div><canvas id="barGraphCompareEmissionSources"></canvas></div>
+
+  <% if @climate_periods_to_compare > 1 %>
+
+  <h2 class="alwaysbreak">Jämförelse med tidigare mätperioder</h2>
+
+  <p>Nedan visas jämförelserdata från <%= @climate_report.company_name %>s tidigare mätperioder för klimatpåverkan. När företag växer ökar ofta utsläppen i tjänstebolag i takt med att antalet anställda växer. Därför visas datan nedan förutom i absoluta tal även uppdelat per anställd.</p>
+
+  <h4>Klimatutsläpp per utsläppskategori jämfört med tidigare mätperioder</h4>
+  <div><canvas id="barGraphCompareYears"></canvas></div>
+
+  <% end %>
 
   <h2 class="alwaysbreak">Klimatpolicy</h2>
 
@@ -250,36 +265,15 @@ function drawGraphs() {
     'rgba(255, 99, 132, 0.8)',
     'rgba(54, 162, 235, 0.8)'
   ];
-  var compareBackgroundColors = [
-    'rgba(255, 99, 132, 0.8)',
-    'rgba(255, 99, 132, 0.8)',
-    'rgba(54, 162, 235, 0.8)',
-    'rgba(54, 162, 235, 0.8)',
-    'rgba(255, 206, 86, 0.8)',
-    'rgba(255, 206, 86, 0.8)',
-    'rgba(75, 192, 192, 0.8)',
-    'rgba(75, 192, 192, 0.8)',
-    'rgba(153, 102, 255, 0.8)',
-    'rgba(153, 102, 255, 0.8)',
-    'rgba(255, 159, 64, 0.8)',
-    'rgba(255, 159, 64, 0.8)',
-    'rgba(255, 99, 132, 0.8)',
-    'rgba(255, 99, 132, 0.8)',
-    'rgba(54, 162, 235, 0.8)',
-    'rgba(54, 162, 235, 0.8)',
-    'rgba(255, 206, 86, 0.8)',
-    'rgba(255, 206, 86, 0.8)',
-    'rgba(75, 192, 192, 0.8)',
-    'rgba(75, 192, 192, 0.8)',
-    'rgba(153, 102, 255, 0.8)',
-    'rgba(153, 102, 255, 0.8)',
-    'rgba(255, 159, 64, 0.8)',
-    'rgba(255, 159, 64, 0.8)',
-    'rgba(255, 99, 132, 0.8)',
-    'rgba(255, 99, 132, 0.8)',
-    'rgba(54, 162, 235, 0.8)',
-    'rgba(54, 162, 235, 0.8)'
-  ];
+  function compareBackgroundColors(times){
+    var colors = [];
+    backgroundColors.forEach(function addColor(color) {
+      for(var i = 0; i < times; i++){
+        colors.push(color);
+      }
+    });
+    return colors;
+  }
 
   var pieCharts = [
     {
@@ -329,7 +323,7 @@ function drawGraphs() {
               // vary offset to avoid label overlap
               var index = context.dataIndex;
               var data = context.dataset.data;;
- 
+
               if (data[index] > 15) {
                 return 20;
               }
@@ -383,16 +377,25 @@ function drawGraphs() {
       canvasId: 'barGraphCompareCategories',
       labels: ['<%= raw(@bar_chart_compare_categories_data[:labels].join("', '")) %>'],
       data: [ <%= raw(@bar_chart_compare_categories_data[:data].join(", ")) %> ],
-      backgroundColors: compareBackgroundColors,
-      borderColors: compareBackgroundColors
+      backgroundColors: compareBackgroundColors(2),
+      borderColors: compareBackgroundColors(2)
     },
     {
       canvasId: 'barGraphCompareEmissionSources',
       labels: ['<%= raw(@bar_chart_compare_emissions_data[:labels].join("', '")) %>'],
       data: [ <%= raw(@bar_chart_compare_emissions_data[:data].join(", ")) %> ],
-      backgroundColors: compareBackgroundColors,
-      borderColors: compareBackgroundColors
+      backgroundColors: compareBackgroundColors(2),
+      borderColors: compareBackgroundColors(2)
+    },
+    <% if @climate_periods_to_compare > 1 %>
+    {
+      canvasId: 'barGraphCompareYears',
+      labels: ['<%= raw(@bar_chart_compare_years_data[:labels].join("', '")) %>'],
+      data: [ <%= raw(@bar_chart_compare_years_data[:data].join(", ")) %> ],
+      backgroundColors: compareBackgroundColors(<%= @climate_periods_to_compare %>),
+      borderColors: compareBackgroundColors(<%= @climate_periods_to_compare %>)
     }
+    <% end %>
   ];
 
   barCharts.forEach(function drawBarChart(chart_data) {

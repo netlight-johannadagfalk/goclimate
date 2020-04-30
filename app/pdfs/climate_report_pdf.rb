@@ -46,7 +46,9 @@ class ClimateReportPdf
           bar_chart_categories_data: bar_chart_emissions_data(categories),
           bar_chart_emissions_data: bar_chart_emissions_data(emissions),
           bar_chart_compare_categories_data: bar_chart_compare_data(categories),
-          bar_chart_compare_emissions_data: bar_chart_compare_data(emissions)
+          bar_chart_compare_emissions_data: bar_chart_compare_data(emissions),
+          climate_periods_to_compare: climate_periods_to_compare,
+          bar_chart_compare_years_data: bar_chart_compare_years_data(categories)
         }
       ),
       footer: {
@@ -156,6 +158,28 @@ class ClimateReportPdf
     }
   end
 
+  def climate_periods_to_compare
+    ClimateReport.joins(:invoice).where(company_name: @cr.company_name).count
+  end
+
+  def bar_chart_compare_years_data(bar_fields)
+    data = []
+    climate_reports = ClimateReport.joins(:invoice).where(company_name: @cr.company_name)
+
+    return nil if climate_reports.count < 2
+
+    bar_fields.each do |field|
+      climate_reports.each do |climate_report|
+        emission = climate_report.calculation.send("#{field[:name]}_emissions")
+        data << { "#{climate_report.calculation_period} - #{field_name(field)}" => emission }
+      end
+    end
+    {
+      data: data.map { |d| d.values.join('') },
+      labels: data.map { |d| d.keys.join('') }
+    }
+  end
+
   def field_name(field)
     I18n.t("business.climate_reports.#{field[:name]}")
   end
@@ -167,6 +191,7 @@ class ClimateReportPdf
   def calculation_period_length
     length = @cr.calculation_period_length
     return nil if length.nil? || length == 'year'
+
     "(#{I18n.t("business.climate_reports.calculation_period_length_options.#{length}").downcase})"
   end
 

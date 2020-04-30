@@ -11,5 +11,10 @@ FactoryBot.define do
     trait :ten_tonnes do
       association :climate_report, :ten_tonnes
     end
+
+    trait :twenty_tonnes do
+      association :climate_report, :ten_tonnes
+      amount { 200_00 }
+    end
   end
 end
