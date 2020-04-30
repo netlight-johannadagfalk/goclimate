@@ -37,6 +37,7 @@ class ClimateReportPdf
         layout: false,
         assigns: {
           climate_report: @cr,
+          calculation_period_length: calculation_period_length,
           calculation_fields: CALCULATION_FIELDS,
           field_percentages: field_percentages,
           pie_chart_categories_data: pie_chart_sources_data(categories),
@@ -161,6 +162,12 @@ class ClimateReportPdf
 
   def field_average_name(field)
     "#{I18n.t("business.climate_reports.#{field[:name]}")} - #{I18n.t('business.climate_reports.average')}"
+  end
+
+  def calculation_period_length
+    length = @cr.calculation_period_length
+    return nil if length.nil? || length == 'year'
+    "(#{I18n.t("business.climate_reports.calculation_period_length_options.#{length}").downcase})"
   end
 
   # more on algorithm: https://revs.runtime-revolution.com/getting-100-with-rounded-percentages-273ffa70252b

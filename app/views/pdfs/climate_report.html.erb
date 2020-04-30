@@ -23,14 +23,14 @@
   h1, h2, h3, h4 {
     margin-top: 40px;
     font-weight: 400;
+    max-width: 750px;
   }
   h4 {
     font-size: 24px;
     margin-top: 80px;
-    margin-bottom: 40px;
     text-align: center;
   }
-  p, ul {
+  p, ul, li {
     font-size: 18px;
     max-width: 750px;
   }
@@ -40,6 +40,7 @@
   }
   table {
     border-collapse: collapse;
+    margin-top: 40px;
   }
   th {
     white-space: nowrap;
@@ -62,9 +63,9 @@
     width: 800px;
   }
   .pieGraph {
-    margin: 0px 40px;
-    width: 700px;
-    margin-bottom: 160px;
+    width: 1000px;
+    margin-left: -100px;
+    margin-bottom: 0px;
   }
   .logo {
     text-align: right;
@@ -81,7 +82,9 @@
 
   <h2 class="alwaysbreak">Om klimatrapporten</h2>
 
-  <p>Att beräkna en verksamhets utsläpp av växthusgaser är det första steget på vägen till att lyfta ett företag mot morgondagens hållbara och klimatneutrala samhälle. För att ligga i linje med Parisavtalet och vara bland de aktörer som tar ställning för klimatet behöver de egna utsläppen identifieras och kvantifieras. Denna rapport presenterar det uppmätta klimatavtrycket för verksamheten, och utgör på så vis det underlag som möjliggör att företaget kan förstå sin påverkan på klimatet. Baserat på detta kan företaget lägga ribban för ett seriöst klimatarbete och ta meningsfulla, faktabaserade åtgärder för att minska sin klimatpåverkan.</p>
+  <p>Att beräkna en verksamhets utsläpp av växthusgaser är det första steget på vägen till att lyfta ett företag mot morgondagens hållbara och klimatneutrala samhälle. Denna rapport presenterar det uppmätta klimatavtrycket för verksamheten, och utgör på så vis det underlag som möjliggör att företaget kan förstå sin påverkan på klimatet. Baserat på detta kan företaget lägga ribban för ett seriöst klimatarbete och ta meningsfulla, faktabaserade åtgärder för att minska sin klimatpåverkan.</p>
+
+  <p>Företag och individer som är medvetna om hur deras klimatavtryck ser ut sänker sina utsläpp mer än andra. Så se denna rapport som ett bra första steg på vägen mot ett klimatsmartare och mer framtidssäkrat företag. Bra jobbat!</p>
 
   <h2>Syfte</h2>
 
@@ -89,28 +92,11 @@
 
   <p>Att mäta utsläppen associerade med verksamheten kan tjäna flera mål, som att identifiera möjligheter att reducera utsläppen, publicera offentlig rapportering och delta i frivilliga GHG-program, och vinna erkännande för tidigt frivilligt handlande.</p>
 
-  <h2 class="alwaysbreak">Om beräkningarna</h2>
-
-  <p>Beräkningen är baserad på riktlinjer enligt Greenhouse Gas Protocol (GHG- protokollet), som är den världsledande standarden för att mäta och hantera utsläpp med påverkan på klimatet. Denna standard används av både av nationer, städer och företag - år 2016 följde 92% av Fortune 500-företagen GHG-protokollet för att beräkna sitt klimatavtryck. Detta rigorösa system har förenklats för att passa tjänstebolag genom GoClimateNeutrals företagskalkylator, där uppgifter som motsvarar de huvudsakliga utsläppsposterna för denna sortens verksamhet är utvalda. Beräkningarna är därmed baserade på uppgifter som <%= @climate_report.company_name %> har uppgett inom dessa ramar, och lämnar dessutom utrymme för att övriga utsläpp läggs till i mån av behov.</p>
-
-  <h2>Principer för GHG-beräkningar</h2>
-
-  <p><b>Relevans</b> - rapporteringen ska innehålla den information som både externa och interna användare behöver för beslutsfattning. En viktig aspekt av detta är valet av utsläppskällor och inventeringens avgränsningar, som ska återspegla verksamhetens aktiviteter på ett rättvist sätt. Genom att anpassa riktlinjerna från GHG-protokollet till tjänsteföretag i företagskalkylatorn säkerställs relevans, då vi genom god förståelse för företagstypen ser till att verksamheten rapporterar de huvudsakliga utsläppskällorna. Se även val av konsolideringsmetod.</p>
-  <p><b>Fullständighet</b> - genom att använda företagskalkylatorn kan verksamheten säkerställa att de grundläggande utsläppskällorna redovisas på ett korrekt sätt. Har verksamheten vidare utsläpp rapporteras detta under fältet “övrigt”. Det är verksamheten som ansvarar för att alla övriga utsläppskällor identifieras.</p>
-  <p><b>Jämförbarhet</b> - Ett av syftena med att beräkna verksamhetens utsläpp är att kunna göra uppföljning av dem över tid. Genom att använda företagskalkylatorn kan verksamheten mäta sina utsläpp med samma metod upprepade gånger, och vara säkra på att resultaten blir jämförbara. Uppdateringar av kalkylatorn redogörs för av GoClimateNeutral.</p>
-  <p><b>Transparens</b> - Information om hur beräkningarna genomförts, vilka antaganden som gjorts, och vilka avgränsningar som gjorts ska redovisas. GoClimateNeutral presenterar detta huvudsakligen i avsnittet “Metod”.</p>
-  <p class="alwaysbreak"><b>Noggrannhet</b> - Data måste vara tillräckligt exakt för att rapporten ska vara trovärdig. Mätningen såväl som emissionsfaktorerna får inte vara systematiskt under- eller överskattade i den utsträckning det går att avgöra, och osäkerheterna ska reduceras så mycket som möjligt. GoClimateNeutral använder sig av den senaste officiella datan från ansvariga myndigheter i den mån det finns tillgängligt, och av tillgänglig forskning och ledande företags beräkningar som komplement. Företagets noggrannhet i mätningen och uppskattningen av data är naturligtvis avgörande för klimatrapportens kvalitet.</p>
-
-  <h3>GHG-protokollets systemgränser</h3>
-
-  <p>GHG-protokollet skiljer på direkta utsläpp från verksamheten (scope 1), indirekta utsläpp från inköpt energi (scope 2) och övriga indirekta utsläpp från företagets värdekedja (scope 3). Vid beräkning av utsläpp från scope 1 och scope 2 samt de vanligaste scope 3-utsläppen kan beräkningen betraktas som heltäckande för tjänstebolag. För en komplett beräkning enligt GHG-protokollet är i dagsläget endast scope 1 och 2 obligatoriska, men eftersom en betydande andel av ett tjänstebolags utsläpp faller inom scope 3 så tar vi även detta i beaktning för att ge en komplett bild av utsläppen som associeras med verksamheten. </p>
-
-  <h4 style="text-align: left;"><%= @climate_report.company_name %>s klimatutsläpp uppdalat i Scope (% av totala utsläpp)</h4>
-  <div class="pieGraph"><canvas id="pieScopeCanvas"></canvas></div>
+  <p>Överblick över utsläppen gör det möjligt att göra smarta val som har positiv inverkan på klimatet och framtidssäkra affären.</p>
 
   <h2 class="alwaysbreak"><%= @climate_report.company_name %>s klimatpåverkan</h2>
 
-  <p>Denna klimatrapport omfattar utsläpp som registrerats under <%= @climate_report.calculation_period %>. Under den angivna perioden var de totala utsläppen av växthusgaser från företagets verksamhet <%= co2e_string(@climate_report.calculation.total_emissions) %> kg koldioxidekvivalenter (CO2e), vilket motsvarar <%= number_with_delimiter(@climate_report.calculation.total_emissions / @climate_report.employees, delimiter: ' ') %> kg CO2e per anställd. Utsläppen är fördelade enligt nedan.</p>
+  <p>Denna klimatrapport omfattar utsläpp som registrerats under <%= @climate_report.calculation_period %><%= ' ' + @calculation_period_length unless @calculation_period_length.nil? %>. Under den angivna perioden var de totala utsläppen av växthusgaser från företagets verksamhet <%= co2e_string(@climate_report.calculation.total_emissions) %> kg koldioxidekvivalenter (CO2e), vilket motsvarar <%= number_with_delimiter(@climate_report.calculation.total_emissions / @climate_report.employees, delimiter: ' ') %> kg CO2e per anställd. Utsläppen är fördelade enligt nedan.</p>
   
   <h4>Klimatutsläpp per utsläppskälla (i kg koldioxidekvivalenter)</h4>
   <table>
@@ -155,15 +141,7 @@
 
   <h2 class="alwaysbreak">Klimatpolicy</h2>
 
-  <p>Med detta läge som utgångspunkt kan företaget göra aktiva val som främjar klimatet och minskar verksamhetens påverkan. Genom att arbeta strategiskt och implementera åtgärder som riktas mot de största utsläppskällorna kan företaget agera i linje med Parisavtalet och bli en hållbar aktör i branschen. Påverkan kan på så vis ske både genom att minska egna utsläpp, men också genom att påverka partners, leverantörer och kunder till att ställa om mot ett hållbart samhälle.</p>
-
-  <p>Genom att använda 1.5°C Business Playbook och andra verktyg kan företaget ansluta sig till de aktörer som arbetar mot den s.k. “Carbon Law” - att halvera sitt klimatavtryck var tionde år. Den största minskningen sker de första tio åren, men är också den lättaste att genomföra.</p>
-
-  <p>För att sätta upp mål för företagets klimatarbete finns det ett antal punkter att förhålla sig till. Först, att bestämma vilken typ av mål företaget strävar mot - absoluta mål, eller relativa mål. Ett absolut mål uttrycks vanligen i ton eller procent, medan ett relativt mål avser klimatavtryck tex. per medarbetare, per såld produkt eller per kund. Beslut fattas om vilket basår som målet ska jämföras med, vilket rimligtvis är det första året som verksamhetens avtryck beräknas, och vilket slutår då målet ska vara uppnått. Det är viktigt att ha i åtanke att basåret kan behövas räknas om retroaktivt om man inkluderar utsläpp senare som inte tagits med i basårets beräkning. Att ha klart vilka metodval och antaganden som gäller blir därmed nödvändigt för att kunna göra rättvisa jämförelser från år till år.</p>
-
-  <p>När målen är satta är det dags att börja implementera förändringar i verksamheten för att nå målen. Här är exempel på klimatsmarta val och policies som kan göra stor skillnad:</p>
-
-  <p>Här är exempel på klimatsmarta val och policies som kan göra stor skillnad:</p>
+  <p>Med detta läge som utgångspunkt kan företaget göra aktiva val som främjar klimatet och minskar verksamhetens påverkan. Här är exempel på klimatsmarta val och policies som kan göra stor skillnad:</p>
   <ul>
     <li>Begränsat antal resor med flyg. En flygresa tur och retur Stockholm - Malmö motsvarar 0.4 ton CO2e medan samma resa med tåg motsvarar 0.007 ton CO2e.</li>
     <li>Att servera vegetarisk mat som standard kan minska utsläppen kopplade till måltider med cirka 50 %.</li>
@@ -171,13 +149,37 @@
     <li>Främja fossilfria pendlingsresor till kontor genom medveten placering av kontoret samt andra åtgärder som dusch och cykelförråd på kontoret.</li>
     <li>Policy för inköp av IT som främjar att produkterna används så länge det är möjligt innan de byts ut.</li>
   </ul>
-  
-  <p>Ytterligare åtgärder beror på verksamhetens karaktär och förutsättningar.</p>
+
+  Genom att arbeta strategiskt och implementera åtgärder som riktas mot de största utsläppskällorna går det att agera i linje med Parisavtalet och bli en hållbar aktör. Påverkan kan på så vis ske både genom att minska egna utsläpp, men också genom att påverka partners, leverantörer och kunder till att ställa om mot ett hållbart samhälle.</p>
+
+  <p>Genom att använda 1.5°C Business Playbook och andra verktyg kan företaget ansluta sig till de aktörer som arbetar mot den s.k. “Carbon Law” - att halvera sitt klimatavtryck var tionde år.</p>
+
+  <p>För att sätta upp mål för företagets klimatarbete finns det ett antal punkter att förhålla sig till. Först, att bestämma vilken typ av mål företaget strävar mot - absoluta mål, eller relativa mål. Ett absolut mål uttrycks vanligen i ton eller procent, medan ett relativt mål avser klimatavtryck tex. per medarbetare, per såld produkt eller per kund. Beslut fattas om vilket basår som målet ska jämföras med, vilket rimligtvis är det första året som verksamhetens avtryck beräknas, och vilket slutår då målet ska vara uppnått. Det är viktigt att ha i åtanke att basåret kan behövas räknas om retroaktivt om man inkluderar utsläpp senare som inte tagits med i basårets beräkning. Att ha klart vilka metodval och antaganden som gäller blir därmed nödvändigt för att kunna göra rättvisa jämförelser från år till år.</p>
+
 
   <h2 class="alwaysbreak">Klimatkompensation av utsläpp</h2>
   <p>Vissa åtgärder för att minska företagets egna utsläpp är relativt enkla att implementera och kan skapa stor förändring, medan andra tar längre tid att ställa om till. Ett sätt att ta ansvar för de utsläpp som inte kan undvikas omedelbart är genom klimatkompensation, där motsvarande utsläpp undviks på en annan plats.  GoClimateNeutral erbjuder klimatkompensation i projekt som är certifierade av Gold Standard, vilket säkerställer att projekten är av hög kvalitet och att de undvikna utsläppen är reella, additionella och permanenta. Projektens undvikna utsläpp kontrolleras och verifieras genom regelbunden monitoring. Förutom klimatnytta garanterar även Gold Standards certifiering att projekten uppfyller andra hållbarhetsmål från FNs Agenda 2030, och är på så vis en del av den hållbara utvecklingen där de implementeras.</p>
 
   <p><%= @climate_report.company_name %> har klimatkompenserat för sina redovisade utsläpp om <%= co2e_string(@climate_report.calculation.total_emissions) %> kg CO2e via GoClimateNeutral.</p>
+
+   <h2 class="alwaysbreak">Om beräkningarna</h2>
+
+  <p>Beräkningen är baserad på riktlinjer enligt Greenhouse Gas Protocol (GHG- protokollet), som är den världsledande standarden för att mäta och hantera utsläpp med påverkan på klimatet. Denna standard används av både av nationer, städer och företag - år 2016 följde 92% av Fortune 500-företagen GHG-protokollet för att beräkna sitt klimatavtryck. Detta rigorösa system har förenklats för att passa tjänstebolag genom GoClimateNeutrals företagskalkylator, där uppgifter som motsvarar de huvudsakliga utsläppsposterna för denna sortens verksamhet är utvalda. Beräkningarna är därmed baserade på uppgifter som <%= @climate_report.company_name %> har uppgett inom dessa ramar, och lämnar dessutom utrymme för att övriga utsläpp läggs till i mån av behov.</p>
+
+  <h2>Principer för GHG-beräkningar</h2>
+
+  <p><b>Relevans</b> - rapporteringen ska innehålla den information som både externa och interna användare behöver för beslutsfattning. En viktig aspekt av detta är valet av utsläppskällor och inventeringens avgränsningar, som ska återspegla verksamhetens aktiviteter på ett rättvist sätt. Genom att anpassa riktlinjerna från GHG-protokollet till tjänsteföretag i företagskalkylatorn säkerställs relevans, då vi genom god förståelse för företagstypen ser till att verksamheten rapporterar de huvudsakliga utsläppskällorna. Se även val av konsolideringsmetod.</p>
+  <p><b>Fullständighet</b> - genom att använda företagskalkylatorn kan verksamheten säkerställa att de grundläggande utsläppskällorna redovisas på ett korrekt sätt. Har verksamheten vidare utsläpp rapporteras detta under fältet “övrigt”. Det är verksamheten som ansvarar för att alla övriga utsläppskällor identifieras.</p>
+  <p><b>Jämförbarhet</b> - Ett av syftena med att beräkna verksamhetens utsläpp är att kunna göra uppföljning av dem över tid. Genom att använda företagskalkylatorn kan verksamheten mäta sina utsläpp med samma metod upprepade gånger, och vara säkra på att resultaten blir jämförbara. Uppdateringar av kalkylatorn redogörs för av GoClimateNeutral.</p>
+  <p><b>Transparens</b> - Information om hur beräkningarna genomförts, vilka antaganden som gjorts, och vilka avgränsningar som gjorts ska redovisas. GoClimateNeutral presenterar detta huvudsakligen i avsnittet “Metod”.</p>
+  <p class="alwaysbreak"><b>Noggrannhet</b> - Data måste vara tillräckligt exakt för att rapporten ska vara trovärdig. Mätningen såväl som emissionsfaktorerna får inte vara systematiskt under- eller överskattade i den utsträckning det går att avgöra, och osäkerheterna ska reduceras så mycket som möjligt. GoClimateNeutral använder sig av den senaste officiella datan från ansvariga myndigheter i den mån det finns tillgängligt, och av tillgänglig forskning och ledande företags beräkningar som komplement. Företagets noggrannhet i mätningen och uppskattningen av data är naturligtvis avgörande för klimatrapportens kvalitet.</p>
+
+  <h3>GHG-protokollets systemgränser</h3>
+
+  <p>GHG-protokollet skiljer på direkta utsläpp från verksamheten (scope 1), indirekta utsläpp från inköpt energi (scope 2) och övriga indirekta utsläpp från företagets värdekedja (scope 3). Vid beräkning av utsläpp från scope 1 och scope 2 samt de vanligaste scope 3-utsläppen kan beräkningen betraktas som heltäckande för tjänstebolag. För en komplett beräkning enligt GHG-protokollet är i dagsläget endast scope 1 och 2 obligatoriska, men eftersom en betydande andel av ett tjänstebolags utsläpp faller inom scope 3 så tar vi även detta i beaktning för att ge en komplett bild av utsläppen som associeras med verksamheten. </p>
+
+  <h4 style="text-align: left;"><%= @climate_report.company_name %>s klimatutsläpp uppdalat i Scope (% av totala utsläpp)</h4>
+  <div class="pieGraph"><canvas id="pieScopeCanvas"></canvas></div>
 
   <h2 class="alwaysbreak">Metod</h2>
 
@@ -321,37 +323,27 @@ function drawGraphs() {
             },
             anchor: 'end',
             align: 'end',
+            display: 'auto',
+            padding: 0,
             offset: function(context) {
-
               // vary offset to avoid label overlap
               var index = context.dataIndex;
-              var data = context.dataset.data;
-              var value = data[index];
-              var elementBefore;
-              var elementAfter;
-
-              if (index == 0) {
-                elementBefore = data[data.length];
-              } else {
-                elementBefore = data[index - 1];
-              }
-
-              if (index == data.length) {
-                elementAfter = data[0];
-              } else {
-                elementAfter = data[index + 1];
-              }
-
-              if (value > 20 || ((elementBefore > 10) && (elementAfter > 10))) {
+              var data = context.dataset.data;;
+ 
+              if (data[index] > 15) {
                 return 20;
               }
 
-              // takes care of label at end overlapping label in beginning
-              if ((index == data.length) && ((index % 4) == (data.length % 4))) {
-                index = index + 1;
+              var j = index;
+              var count = 0;
+              while((data[j] < 15) && count < data.length){
+                count++;
+                j--;
+                if (j < 0) {
+                  j = j + data.length;
+                }
               }
-              
-              return (10 + (index % 4) * 30);
+              return ((count % 5) * 20);
             }
           }
         },
@@ -364,8 +356,8 @@ function drawGraphs() {
             padding: {
                 left: 0,
                 right: 0,
-                top: 80,
-                bottom: 40
+                top: 90,
+                bottom: 90
             }
         }
       }
