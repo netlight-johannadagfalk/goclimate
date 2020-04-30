@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.6.5'
+ruby '2.6.6'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
@@ -57,7 +57,7 @@ gem 'stripe', '~> 5.13'
 gem 'seed_dump', '~> 3.2'
 
 # PDF generation
-gem 'wicked_pdf', '~> 1.4'
+gem 'wicked_pdf', '~> 2.0'
 gem 'wkhtmltopdf-binary', '0.12.4' # Later versions don't work on CircleCI
 # wklhtmltopdf-binary provides binaries for Linux and macOS. If this fails you
 # will have to install wkhtmltopdf manually.
@@ -70,9 +70,9 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'rb-readline'
-  gem 'rspec-rails', '~> 3.7'
+  gem 'rspec-rails', '~> 4.0'
   gem 'rspec_junit_formatter'
-  gem 'rubocop', '~> 0.80.1', require: false
+  gem 'rubocop', '~> 0.82.0', require: false
   gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
 end

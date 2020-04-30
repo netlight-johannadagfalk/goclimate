@@ -4,8 +4,9 @@ require 'rails_helper'
 
 RSpec.describe LifestyleFootprint do
   [
-    :lifestyle_calculator, :housing, :food, :car, :flights, :consumption,
-    :public, :total, :car_distance_answer, :flight_hours_answer
+    :lifestyle_calculator, :country, :housing, :food, :car, :flights,
+    :consumption, :public, :total, :car_distance_answer,
+    :flight_hours_answer
   ].each do |attribute|
     describe "##{attribute}" do
       it 'validates to be present' do
@@ -13,6 +14,22 @@ RSpec.describe LifestyleFootprint do
         footprint.valid?
         expect(footprint.errors).to include(attribute)
       end
+    end
+  end
+
+  describe '#car_distance_answer' do
+    it 'validates to not be negative' do
+      footprint = described_class.new(car_distance_answer: -1)
+      footprint.valid?
+      expect(footprint.errors).to include(:car_distance_answer)
+    end
+  end
+
+  describe '#flight_hours_answer' do
+    it 'validates to not be negative' do
+      footprint = described_class.new(flight_hours_answer: -1)
+      footprint.valid?
+      expect(footprint.errors).to include(:flight_hours_answer)
     end
   end
 

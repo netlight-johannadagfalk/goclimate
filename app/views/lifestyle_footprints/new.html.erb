@@ -71,6 +71,7 @@
 
       <%= form_with model: @footprint do |f| %>
         <%= f.hidden_field :lifestyle_calculator_id %>
+        <%= f.hidden_field :country, value: params[:country] %>
 
         <% if @calculator.region_options.present? %>
           <div class="question py-8 hidden" data-target="lifestyle-calculator.question" data-category="home">
@@ -162,7 +163,7 @@
             <h2 class="font-semibold text-xl my-4"><%=t 'views.lifestyle_footprints.questions.car_distance' %></h2>
             <div class="flex flex-col sm:flex-row">
               <label class="input inline-block mb-3 sm:mb-0 sm:mr-3 flex">
-                <%= number_field_tag :car_distance_week_answer, '', size: 7, class: 'flex-1' %>
+                <%= number_field_tag :car_distance_week_answer, '', min: 0, size: 7, class: 'flex-1' %>
                 <span class="text-gray-700 ml-3"><%= @calculator.car_distance_unit %></span>
               </label>
               <%= f.button t('views.lifestyle_footprints.next'), type: 'button', class: 'button flex-1', 'data-action': 'click->lifestyle-calculator#nextQuestion' %>
@@ -173,7 +174,7 @@
         <div class="question py-8 hidden" data-target="lifestyle-calculator.question" data-category="flights">
           <h2 class="font-semibold text-xl my-4"><%=t 'views.lifestyle_footprints.questions.flight_hours' %></h2>
           <div class="flex flex-col sm:flex-row">
-            <%= f.number_field :flight_hours_answer, class: 'input mb-3 sm:mb-0 sm:mr-3', size: 7 %>
+            <%= f.number_field :flight_hours_answer, min: 0, size: 7, class: 'input mb-3 sm:mb-0 sm:mr-3' %>
             <%= f.submit t('views.lifestyle_footprints.next'), class: 'button flex-1' %>
           </div>
         </div>

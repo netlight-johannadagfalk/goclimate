@@ -90,7 +90,9 @@ en:
   hardly_ever_flies: Hardly ever flies
   cost_calculation: Cost calculation
   price_info_popup_content: With this choice we estimate a yearly climate footprint of %{footprint} tonne CO<sub>2</sub>. Since the number is approximate we offset for twice as many tonnes, so %{footprint_x2} tonne C0<sub>2</sub>. This way you can be sure you live climate neutral every month.<br>We invest in projects that are Gold Standard-certified (a certification created among others by WWF). These project cost %{price_per_tonne} per tonne - so this choice end up at %{price_per_month} per month.
-  you_will_offset_for: To take responsibility for your climate footprint costs %{cost}/month
+  you_will_offset_for:
+    prefix: 'To take responsibility for your climate footprint costs '
+    suffix: /month.
   mostly_vegetarian: Eat mostly vegetarian food
   one_fuel_efficient_car: One Fuel Efficient Car
   flies_sometimes: Flies Sometimes
@@ -227,6 +229,8 @@ en:
   x_months: 
     one: 1 month
     other: "%{count} months"
+  years:
+    one: year
   together_we_have_offset: Together we have offset
   goclimateneutral_and_this_planet_loves_you: GoClimateNeutral and this planet love you! You are the best!
   learn_more_about_what_we_have_achieved_here: Learn more about what we have achieved here >>
@@ -390,7 +394,7 @@ en:
         question: How do I know what climate offset projects we are investing in?
         answer: We believe in full transparency in everything we do. All project that we invest in are shown on the first page when you log in to your account. You can also read about them <b><a href='https://www.goclimateneutral.org/blog/category/investment/'>on our blog under the category investment</a></b>.
       q19:
-        question: How do i cancel my subscription?
+        question: How do I cancel my subscription?
         answer: "You can easily cancel your subscription by choosing 'cancel climate plan' on the payment settings page here: <a href='https://en.goclimateneutral.org/users/edit/payment'>https://en.goclimateneutral.org/users/edit/payment</a>"
       q20:
         question: How is my card details stored and handled?
@@ -692,10 +696,59 @@ en:
           We choose projects of different kinds, to broaden our impact. We look at where the projects are implemented, by whom, when and how. Some projects are cheap and that means we can get many tonnes of CO2 for the money, others are a bit more expensive but then we can help stimulate sustainable development in a specific area. We explain the reasoning behind our choices, and you can look at all the details about the projects on this page and on the <a href="https://www.goldstandard.org/">Gold Standard website</a>.
     welcome:
       index:
+        calculate_to_sign_up: Calculate your footprint to start living a climate neutral life today!
+        i_live_in: I live in...
+        get_started: Get started
         our_projects_header: Our Climate Projects
         our_projects_lead: It's crucial for us that your money only ever ends up in the right hands. To guarantee that, we support Gold Standard certified projects that have been verified by third parties. The projects contribute to the global transition to renewable energy and the UN Sustainable Development Goals.
         our_projects_link: Read more about our climate projects
+      travel_calculator:
+        travel_emissions_calculator: Travel Emissions Calculator
+        travel_emissions_calculator_description: Do you want to calculate the emissions from travelling? Enter the distance below and see the carbon emissions each way of travelling causes!
+        distance_in_kilometers: Distance of trip in km
+        calculate: Calculate
+        emissions_if_traveling_by: Emissions if you travel by
+        flight: Flight
+        car_petrol: Car (petrol)
+        car_diesel: Car (diesel)
+        car_etanol: Car (etanol)
+        car_gas: Car (gas)
+        car_electric: Electric Car
+        bus: Bus
+        train: Train
+        subway: Subway
+        boat: Boat
+        offset_the_emissions_here: Offset the emissions here ->
+    registrations:
+      offset_for_x_people:
+        before_input: I want to offset for
+        after_input: people like me.
+      well_done: Great! First step done!
+      your_yearly_climate_footprint: Your yearly carbon footprint
+      corresponds_to: This corresponds to %{price}/month.
+      you: You
+      compensated: With offsetting
+      average_in: Average in %{region}
+      goal_2030: Goal 2030
 
+      higher: higher
+      lower: lower
+      your_climate_footprint: Your carbon footprint of %{footprint} is %{relative} than the average in %{country}. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030. By offsetting your emissions you can reach zero today.
+
+      subscribe_heading: Subscribe to a climate neutral life
+      subscribe_intro: Start your subscription today to offset your carbon footprint. Every person counts on our journey to reaching the climate goals!
+      your_subscription: Your subscription
+      number_of_people: Number of people
+      total: Total
+      subscription_price_information: The price of our Gold Standard certificated climate projects is %{price}/tonne. To be absolutely sure your subscriptoin is actually offsetting your lifestyle, we always double your amount of tonnes for your subscription.
+      where_does_the_money_go:
+        heading: Where does the money go?
+        point_1: Our climate projects are accelerating the global transition to renewable energy sources.
+        point_2: Your contribution is based on your own calculated carbon footprint.
+        point_3: We hand-pick the projects that bring the most value per money spent and contribute to as many of the UN sustainability goals as possible.
+        point_4: We are 100% transparent with all our expenses. The latest information is always available here on our website. 
+      latest_projects: The latest projects
+      faq: Frequently asked questions
   business:
     climate_reports:
       business_footprint_header: Estimate your business footprint

@@ -120,7 +120,7 @@
 
 <% content_for :javascript_tags do %>
   <script>
-    window.addEventListener('load', function() {
+    document.addEventListener('DOMContentLoaded', function() {
       new BusinessOffsetCalculator(
         <%= @cost_per_tonne %>,
         document.getElementById('number_of_employees'),

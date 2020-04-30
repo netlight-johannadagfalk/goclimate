@@ -44,7 +44,9 @@ export default class StripeCardElementController extends Controller {
             this.paymentMethodFieldTarget.value = result.paymentMethod.id;
             resolve();
           } else {
-            reject(new Error(result.error.message));
+            const error = new Error(result.error.message);
+            error.cardError = result.error.code === 'card_declined';
+            reject(error);
           }
         });
     });
