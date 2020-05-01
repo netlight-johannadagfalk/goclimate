@@ -40,15 +40,18 @@ class ClimateReportPdf
           calculation_period_length: calculation_period_length,
           calculation_fields: CALCULATION_FIELDS,
           field_percentages: field_percentages,
-          pie_chart_categories_data: pie_chart_sources_data(categories),
-          pie_chart_sources_data: pie_chart_sources_data(emissions),
-          pie_chart_scope_data: pie_chart_scope_data,
-          bar_chart_categories_data: bar_chart_emissions_data(categories),
-          bar_chart_emissions_data: bar_chart_emissions_data(emissions),
-          bar_chart_compare_categories_data: bar_chart_compare_data(categories),
-          bar_chart_compare_emissions_data: bar_chart_compare_data(emissions),
           climate_periods_to_compare: climate_periods_to_compare,
-          bar_chart_compare_years_data: bar_chart_compare_years_data(categories)
+          pie_categories_data: pie_sources_data(categories),
+          pie_sources_data: pie_sources_data(emissions),
+          pie_scope_data: pie_scope_data,
+          bar_categories_data: bar_emissions_data(categories),
+          bar_emissions_data: bar_emissions_data(emissions),
+          bar_compare_categories_data: bar_compare_data(categories),
+          bar_compare_emissions_data: bar_compare_data(emissions),
+          bar_compare_years_categories_data: bar_compare_years_data(categories),
+          bar_compare_years_emissions_data: bar_compare_years_data(emissions),
+          bar_compare_years_categories_per_employee_data: bar_compare_years_data(categories, true),
+          bar_compare_years_emissions_per_employee_data: bar_compare_years_data(emissions, true)
         }
       ),
       footer: {
@@ -104,7 +107,7 @@ class ClimateReportPdf
     category_and_sources_percentages
   end
 
-  def pie_chart_sources_data(fields)
+  def pie_sources_data(fields)
     percentages = {}
     fields.map do |field|
       percentages[field_name(field)] = field_percentage(field)
@@ -114,7 +117,7 @@ class ClimateReportPdf
     { labels: "'#{data.keys.join("', '")}'", data: data.values.join(', ') }
   end
 
-  def pie_chart_scope_data
+  def pie_scope_data
     scopes = { 'Scope 2' => 0, 'Scope 3' => 0 }
     emissions.map do |field|
       scopes["Scope #{field[:scope][0]}"] += field[:emissions]
@@ -127,7 +130,7 @@ class ClimateReportPdf
     { labels: "'#{data.keys.join("', '")}'", data: data.values.join(', ') }
   end
 
-  def bar_chart_emissions_data(fields)
+  def bar_emissions_data(fields)
     data = fields.map do |field|
       { field_name(field) => field[:emissions].round } unless field[:emissions] == 0
     end.compact
@@ -137,7 +140,7 @@ class ClimateReportPdf
     }
   end
 
-  def bar_chart_compare_data(bar_fields)
+  def bar_compare_data(bar_fields)
     data = []
     climate_reports = ClimateReportInvoice.includes(climate_report: :calculation)
     total_employees = climate_reports.inject(0) { |n, cri| n + cri.climate_report.employees }
@@ -162,7 +165,7 @@ class ClimateReportPdf
     ClimateReport.joins(:invoice).where(company_name: @cr.company_name).count
   end
 
-  def bar_chart_compare_years_data(bar_fields)
+  def bar_compare_years_data(bar_fields, per_employee = false)
     data = []
     climate_reports = ClimateReport.joins(:invoice).where(company_name: @cr.company_name)
 
@@ -171,7 +174,8 @@ class ClimateReportPdf
     bar_fields.each do |field|
       climate_reports.each do |climate_report|
         emission = climate_report.calculation.send("#{field[:name]}_emissions")
-        data << { "#{climate_report.calculation_period} - #{field_name(field)}" => emission }
+        emission = BigDecimal(emission) / climate_report.employees if per_employee
+        data << { "#{climate_report.calculation_period} - #{field_name(field)}" => emission.round }
       end
     end
     {
