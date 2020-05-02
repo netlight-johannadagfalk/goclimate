@@ -26,8 +26,8 @@
     max-width: 750px;
   }
   h4 {
-    font-size: 24px;
-    margin-top: 80px;
+    font-size: 20px;
+    margin-top: 40px;
     text-align: center;
   }
   p, ul, li {
@@ -116,7 +116,7 @@
         </td>
         <td><%= field[:scope].join(', ') %></td>
         <td><%= field_emissions %></td>
-        <td><%= @field_percentages[field[:name]] %> %</td>
+        <td><%= field[:percentage] %> %</td>
       </tr>
   <% end %>
   </table>
@@ -137,10 +137,10 @@
 
   <p>Varje verksamhet är unik, men ibland kan det vara bra att få en förstålse för hur stora ens företags utsläpp är jämfört med andra företags utsläpp. Eftersom utsläppen i tjänstebolag ofta är korrelerade till antal anställda är siffrorna nedan per anställd för att kunna jämföra siffrorna oavsett storlek på bolag. Medlet för tjänstebolag är från GoClimateNeutrals egna datakällor och baseras på ca 300 tjänstebolag mestadels baserade i Sverige.</p>
 
-  <h4>Klimatutsläpp per utsläppskategori och anställd i kg CO2e jämfört med medel för tjänstebolag</h4>
+  <h4>Klimatutsläpp per utsläppskategori och anställd i kg CO2e jämfört med snitt</h4>
   <div><canvas id="barGraphCompareCategories"></canvas></div>
 
-  <h4 class="alwaysbreak">Klimatutsläpp per utsläppskälla och anställd i kg CO2e jämfört med medel för tjänstebolag</h4>
+  <h4>Klimatutsläpp per utsläppskälla och anställd i kg CO2e jämfört med snitt</h4>
   <div><canvas id="barGraphCompareEmissionSources"></canvas></div>
 
   <h2 class="alwaysbreak">Jämförelse med tidigare mätperioder</h2>

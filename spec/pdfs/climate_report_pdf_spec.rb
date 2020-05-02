@@ -24,11 +24,11 @@ RSpec.describe ClimateReportPdf do
   describe '#categories' do
     it 'returns the category fields with emissions data' do
       categories = [
-        { emissions: 0, name: 'energy', scope: [2, 3] },
-        { emissions: 0, name: 'business_trips', scope: [3] },
-        { emissions: 0, name: 'meals', scope: [3] },
-        { emissions: 0, name: 'material', scope: [3] },
-        { emissions: 10_000, name: 'other', scope: [3] }
+        { emissions: 0, name: 'energy', scope: [2, 3], percentage: 0 },
+        { emissions: 0, name: 'business_trips', scope: [3], percentage: 0 },
+        { emissions: 0, name: 'meals', scope: [3], percentage: 0 },
+        { emissions: 0, name: 'material', scope: [3], percentage: 0 },
+        { emissions: 10_000, name: 'other', scope: [3], percentage: 100 }
       ]
 
       expect(crp.categories).to eq(categories)
@@ -41,41 +41,42 @@ RSpec.describe ClimateReportPdf do
         category: 'energy',
         emissions: 0,
         name: 'electricity_consumption',
-        scope: [2]
+        scope: [2],
+        percentage: 0
       }
 
       expect(crp.emissions).to include(emission_sources)
     end
   end
 
-  describe '#pie_chart_categories_data' do
+  describe '#pie_data' do
     it 'returns the pie chart data' do
       pie_data = {
         data: '100',
         labels: "'Other'"
       }
 
-      expect(crp.pie_chart_sources_data(crp.categories)).to eq(pie_data)
+      expect(crp.pie_data(crp.categories)).to eq(pie_data)
     end
   end
 
-  describe '#bar_chart_compare_data' do
+  describe '#bar_compare_data' do
     it 'returns compare data for categories' do
       compare_data = { data: %w[2500 2500], labels: ['Other', 'Other - average'] }
       invoice.save! # why is invoice not saved in let statement?
 
-      expect(crp.bar_chart_compare_data(crp.categories)).to eq(compare_data)
+      expect(crp.bar_compare_data(crp.categories)).to eq(compare_data)
     end
 
     it 'returns compare data for emission sources' do
       compare_data = { data: %w[2500 2500], labels: ['Other', 'Other - average'] }
       invoice.save! # why is invoice not saved in let statement?
 
-      expect(crp.bar_chart_compare_data(crp.emissions)).to eq(compare_data)
+      expect(crp.bar_compare_data(crp.emissions)).to eq(compare_data)
     end
   end
 
-  describe '#bar_chart_compare_years_data' do
+  describe '#bar_compare_years_data' do
     it 'returns compare data for more then one measurement period' do
       compare_data = {
         data: %w[0 0 20000 0 0 0 0 0 0 10000],
@@ -91,11 +92,11 @@ RSpec.describe ClimateReportPdf do
       invoice_old = create(:climate_report_invoice, :twenty_tonnes, climate_report: report_old)
       invoice.save!
       invoice_old.save!
-      expect(crp.bar_chart_compare_years_data(crp.categories)).to eq(compare_data)
+      expect(crp.bar_compare_years_data(crp.categories)).to eq(compare_data)
     end
 
     it 'returns nil when there is no other measurement periods to compare' do
-      expect(crp.bar_chart_compare_years_data(crp.categories)).to eq(nil)
+      expect(crp.bar_compare_years_data(crp.categories)).to eq(nil)
     end
   end
 

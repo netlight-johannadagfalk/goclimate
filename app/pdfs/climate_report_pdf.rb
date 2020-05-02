@@ -38,11 +38,10 @@ class ClimateReportPdf
         assigns: {
           climate_report: @cr,
           calculation_period_length: calculation_period_length,
-          calculation_fields: CALCULATION_FIELDS,
-          field_percentages: field_percentages,
+          calculation_fields: all_fields,
           climate_periods_to_compare: climate_periods_to_compare,
-          pie_categories_data: pie_sources_data(categories),
-          pie_sources_data: pie_sources_data(emissions),
+          pie_categories_data: pie_data(categories),
+          pie_sources_data: pie_data(emissions),
           pie_scope_data: pie_scope_data,
           bar_categories_data: bar_emissions_data(categories),
           bar_emissions_data: bar_emissions_data(emissions),
@@ -66,17 +65,17 @@ class ClimateReportPdf
   end
 
   def categories
-    fields = CALCULATION_FIELDS.map do |field|
-      field unless field.key?(:category)
-    end.compact
-    add_field_emissions(fields)
+    all_fields.map { |field| field unless field.key?(:category) }.compact
   end
 
   def emissions
-    fields = CALCULATION_FIELDS.map do |field|
-      field if field.key?(:category)
-    end.compact
-    add_field_emissions(fields)
+    all_fields.map { |field| field if field.key?(:category) }.compact
+  end
+
+  def all_fields
+    fields = CALCULATION_FIELDS
+    fields = add_field_emissions(fields)
+    add_field_percentages(fields)
   end
 
   def add_field_emissions(fields)
@@ -85,35 +84,30 @@ class ClimateReportPdf
     end
   end
 
-  def field_percentage(field)
-    BigDecimal(@cr.calculation.send("#{field[:name]}_emissions")) / @cr.calculation.total_emissions * 100
-  end
-
-  def field_percentages
+  def add_field_percentages(fields)
     category_data = {}
-    categories.map do |field|
-      category_data[field[:name]] = field_percentage(field)
-    end
+    fields.map { |f| category_data[f[:name]] = field_percentage(f) unless f.key?(:category) }
     category_data = get_even_percentages(category_data)
     category_and_sources_percentages = category_data.clone
     category_data.map do |k, v|
-      fields_in_category = emissions.map do |source|
-        source if source.key?(:category) && source[:category] == k
-      end.compact
+      fields_in_category = fields.map { |f| f if f.key?(:category) && f[:category] == k }.compact
       sources_data = {}
       fields_in_category.map { |field| sources_data[field[:name]] = field_percentage(field) }
       category_and_sources_percentages.merge!(get_even_percentages(sources_data, v))
     end
-    category_and_sources_percentages
+    fields.map { |f| f[:percentage] = category_and_sources_percentages[f[:name]] }
+    fields
   end
 
-  def pie_sources_data(fields)
-    percentages = {}
+  def field_percentage(field)
+    BigDecimal(@cr.calculation.send("#{field[:name]}_emissions")) / @cr.calculation.total_emissions * 100
+  end
+
+  def pie_data(fields)
+    data = {}
     fields.map do |field|
-      percentages[field_name(field)] = field_percentage(field)
+      data[field_name(field)] = field[:percentage] unless field[:percentage] == 0
     end
-    data = get_even_percentages(percentages)
-    data.filter! { |_, v| v != 0 }
     { labels: "'#{data.keys.join("', '")}'", data: data.values.join(', ') }
   end
 
@@ -151,9 +145,8 @@ class ClimateReportPdf
       total_emissions = climate_reports.inject(0) do |n, cri|
         n + cri.climate_report.calculation.send("#{field[:name]}_emissions")
       end
-      average_emission_per_employee = total_emissions / total_employees
       data << { field_name(field) => field[:emissions].round / @cr.employees }
-      data << { field_average_name(field) => average_emission_per_employee.round }
+      data << { field_average_name(field) => (total_emissions / total_employees).round }
     end
     {
       data: data.map { |d| d.values.join('') },
