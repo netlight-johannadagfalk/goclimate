@@ -73,8 +73,7 @@ class ClimateReportPdf
   end
 
   def all_fields
-    fields = CALCULATION_FIELDS
-    fields = fields.each { |f| f[:emissions] = @cr.calculation.send("#{f[:name]}_emissions") }
+    fields = CALCULATION_FIELDS.each { |f| f[:emissions] = @cr.calculation.send("#{f[:name]}_emissions") }
     add_field_percentages(fields)
   end
 
