@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ClimateReportPdf
+class ClimateReportPdf # rubocop:disable Metrics/ClassLength
   CALCULATION_FIELDS = [
     { name: 'energy', scope: [2, 3] },
     { name: 'electricity_consumption', category: 'energy', scope: [2] },
@@ -24,7 +24,7 @@ class ClimateReportPdf
     @cr = climate_report
   end
 
-  def render
+  def render # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     @cover = ActionController::Base.new.render_to_string(
       template: 'pdfs/cover.html.erb',
       assigns: {
@@ -77,7 +77,7 @@ class ClimateReportPdf
     add_field_percentages(fields)
   end
 
-  def add_field_percentages(fields)
+  def add_field_percentages(fields) # rubocop:disable Metrics/AbcSize
     category_data = {}
     fields.map { |f| category_data[f[:name]] = field_percentage(f) unless f.key?(:category) }
     category_data = get_even_percentages(category_data)
@@ -127,7 +127,7 @@ class ClimateReportPdf
     }
   end
 
-  def bar_compare_data(bar_fields)
+  def bar_compare_data(bar_fields) # rubocop:disable Metrics/AbcSize
     data = []
     climate_reports = ClimateReportInvoice.includes(climate_report: :calculation)
     total_employees = climate_reports.inject(0) { |n, cri| n + cri.climate_report.employees }
@@ -151,7 +151,7 @@ class ClimateReportPdf
     ClimateReport.joins(:invoice).where(company_name: @cr.company_name).count
   end
 
-  def bar_compare_years_data(bar_fields, per_employee = false)
+  def bar_compare_years_data(bar_fields, per_employee = false) # rubocop:disable Metrics/AbcSize
     data = []
     climate_reports = ClimateReport.joins(:invoice).where(company_name: @cr.company_name)
 
