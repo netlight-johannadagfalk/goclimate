@@ -655,6 +655,7 @@ sv:
           etanol: Etanol (E85)
           electric: Elbil
           hvo_electric: Elbil or HVO
+          vehicle_gas: Fordonsgas
           no_car: Jag åker inte bil
       next: Nästa
       back: Tillbaka

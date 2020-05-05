@@ -643,6 +643,7 @@ en:
           etanol: Ethanol (E85)
           electric: Electric
           hvo_electric: Electric or HVO
+          vehicle_gas: Vehicle gas (CNG)
           no_car: I don't have a car
       next: Next
       back: Go back
