@@ -631,7 +631,7 @@ en:
         food:
           vegan: Plant-based
           vegetarian: Vegetarian
-          pescetarian: Pescatarian (fish but no meat)
+          pescetarian: Pescetarian (fish but no meat)
           meat_low: Some meat (less than 50 g per day)
           meat_medium: Meat-eater
           meat_high: Lots of meat (more than 100 g per day)
