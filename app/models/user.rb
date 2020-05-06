@@ -29,6 +29,17 @@ class User < ApplicationRecord
     stripe_customer.subscriptions.first.plan.amount.to_f / 100
   end
 
+  def subscription_amount_in_sek
+    case Currency.from_iso_code(stripe_customer.subscriptions.first.plan.currency)
+    when Currency::USD
+      subscription_amount * Currency::SEK_PER_USD
+    when Currency::EUR
+      subscription_amount * Currency::SEK_PER_EUR
+    else
+      subscription_amount
+    end
+  end
+
   def country_name
     if !country.nil? && !country.empty?
       c = ISO3166::Country[country]

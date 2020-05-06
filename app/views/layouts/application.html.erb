@@ -34,7 +34,7 @@
       )
     %>
     <meta property="fb:app_id" content="452582378427296">
-    
+
     <% if (stylesheets = yield :stylesheets).present? %>
       <%= stylesheets %>
     <% else %>
@@ -125,10 +125,17 @@
           value: <%= current_user.subscription_amount %>
         });
         gtag('event', 'conversion', {
-          'send_to': 'AW-823228700/-nQJCJXUrrcBEJzyxYgD', 
+          'send_to': 'AW-823228700/-nQJCJXUrrcBEJzyxYgD',
           'value': <%= current_user.subscription_amount %>,
           'currency': '<%= current_region.currency %>'
         });
+        ga('send',
+          'event',
+          'subscription',
+          'conversion',
+          '',
+          <%= current_user.subscription_amount_in_sek %>
+          );
       </script>
     <% end %>
 
