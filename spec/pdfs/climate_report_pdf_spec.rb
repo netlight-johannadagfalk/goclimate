@@ -103,7 +103,7 @@ RSpec.describe ClimateReportPdf do
   describe '#climate_periods_to_compare' do
     it 'returns the number of climate invoices for that company' do
       invoice.save!
-      expect(crp.climate_periods_to_compare).to eq(1)
+      expect(crp.previous_climate_reports.count).to eq(1)
     end
   end
 end

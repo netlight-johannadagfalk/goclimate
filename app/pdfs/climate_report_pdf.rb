@@ -21,14 +21,14 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
   ].freeze
 
   def initialize(climate_report)
-    @cr = climate_report
+    @climate_report = climate_report
   end
 
   def render # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     @cover = ActionController::Base.new.render_to_string(
       template: 'pdfs/cover.html.erb',
       assigns: {
-        climate_report: @cr
+        climate_report: @climate_report
       }
     )
     WickedPdf.new.pdf_from_string(
@@ -36,10 +36,10 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
         template: 'pdfs/climate_report',
         layout: false,
         assigns: {
-          climate_report: @cr,
+          climate_report: @climate_report,
           calculation_period_length: calculation_period_length,
           calculation_fields: all_fields,
-          climate_periods_to_compare: climate_periods_to_compare,
+          climate_periods_to_compare: previous_climate_reports.count,
           pie_categories_data: pie_data(categories),
           pie_sources_data: pie_data(emissions),
           pie_scope_data: pie_scope_data,
@@ -55,7 +55,7 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
       ),
       footer: {
         right: 'Sida [page] av [topage]',
-        left: @cr.company_name,
+        left: @climate_report.company_name,
         font_name: 'sans-serif',
         font_size: 10
       },
@@ -65,15 +65,15 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
   end
 
   def categories
-    all_fields.map { |field| field unless field.key?(:category) }.compact
+    all_fields.filter { |field| !field.key?(:category) }
   end
 
   def emissions
-    all_fields.map { |field| field if field.key?(:category) }.compact
+    all_fields.filter { |field| field.key?(:category) }
   end
 
   def all_fields
-    fields = CALCULATION_FIELDS.each { |f| f[:emissions] = @cr.calculation.send("#{f[:name]}_emissions") }
+    fields = CALCULATION_FIELDS.each { |f| f[:emissions] = @climate_report.calculation.send("#{f[:name]}_emissions") }
     add_field_percentages(fields)
   end
 
@@ -93,24 +93,24 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
   end
 
   def field_percentage(field)
-    BigDecimal(@cr.calculation.send("#{field[:name]}_emissions")) / @cr.calculation.total_emissions * 100
+    BigDecimal(@climate_report.calculation.send("#{field[:name]}_emissions")) /
+      @climate_report.calculation.total_emissions * 100
   end
 
   def pie_data(fields)
-    data = {}
-    fields.map do |field|
-      data[field_name(field)] = field[:percentage] unless field[:percentage] == 0
-    end
+    data = fields.map do |field|
+      [field_name(field), field[:percentage]] unless field[:percentage] == 0
+    end.compact.to_h
     { labels: "'#{data.keys.join("', '")}'", data: data.values.join(', ') }
   end
 
   def pie_scope_data
     scopes = { 'Scope 2' => 0, 'Scope 3' => 0 }
-    emissions.map do |field|
-      scopes["Scope #{field[:scope][0]}"] += field[:emissions]
+    emissions.each do |field|
+      scopes["Scope #{field[:scope].first}"] += field[:emissions]
     end
     scopes.each do |k, v|
-      scopes[k] = BigDecimal(v) / @cr.calculation.total_emissions * 100
+      scopes[k] = BigDecimal(v) / @climate_report.calculation.total_emissions * 100
     end
     data = get_even_percentages(scopes)
     data.filter! { |_, v| v != 0 }
@@ -138,7 +138,7 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
       total_emissions = climate_reports.inject(0) do |n, cri|
         n + cri.climate_report.calculation.send("#{field[:name]}_emissions")
       end
-      data << { field_name(field) => field[:emissions].round / @cr.employees }
+      data << { field_name(field) => field[:emissions].round / @climate_report.employees }
       data << { field_average_name(field) => (total_emissions / total_employees).round }
     end
     {
@@ -147,18 +147,17 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
     }
   end
 
-  def climate_periods_to_compare
-    ClimateReport.joins(:invoice).where(company_name: @cr.company_name).count
+  def previous_climate_reports
+    ClimateReport.joins(:invoice, :calculation).where(company_name: @climate_report.company_name)
   end
 
   def bar_compare_years_data(bar_fields, per_employee = false) # rubocop:disable Metrics/AbcSize
     data = []
-    climate_reports = ClimateReport.joins(:invoice).where(company_name: @cr.company_name)
 
-    return nil if climate_reports.count < 2
+    return nil if previous_climate_reports.count < 2
 
     bar_fields.each do |field|
-      climate_reports.each do |climate_report|
+      previous_climate_reports.each do |climate_report|
         emission = climate_report.calculation.send("#{field[:name]}_emissions")
         emission = BigDecimal(emission) / climate_report.employees if per_employee
         data << { "#{climate_report.calculation_period} - #{field_name(field)}" => emission.round }
@@ -179,7 +178,7 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
   end
 
   def calculation_period_length
-    length = @cr.calculation_period_length
+    length = @climate_report.calculation_period_length
     return nil if length.nil? || length == 'year'
 
     "(#{I18n.t("business.climate_reports.calculation_period_length_options.#{length}").downcase})"
@@ -189,11 +188,10 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
   # { "a": 0.5, "b": 0.51, "c": 98.9 } ->
   # { "a": 0, "b": 1, "c": 99 } not { "a": 1, "b": 1, "c": 99 }
   def get_even_percentages(dataset, max = 100)
-    diff = max - dataset.inject(0) { |sum, d| sum + d[1].floor }
+    diff = max - dataset.map { |_, v| v.floor }.sum
     dataset
-      .sort_by { |x| x[1].floor - x[1] }
+      .sort_by { |_, v| v.floor - v }
       .map
-      .with_index { |e, index| dataset[e[0]] = index < diff ? e[1].floor + 1 : e[1].floor }
-    dataset
+      .with_index { |(k, v), i| [k, i < diff ? v.floor + 1 : v.floor] }.to_h
   end
 end
