@@ -2,26 +2,27 @@
 
 class ClimateReportPdf # rubocop:disable Metrics/ClassLength
   CALCULATION_FIELDS = [
-    { name: 'energy', scope: [2, 3] },
-    { name: 'electricity_consumption', category: 'energy', scope: [2] },
-    { name: 'heating', category: 'energy', scope: [2] },
-    { name: 'servers', category: 'energy', scope: [3] },
-    { name: 'cloud_servers', category: 'energy', scope: [3] },
-    { name: 'business_trips', scope: [3] },
-    { name: 'flight', category: 'business_trips', scope: [3] },
-    { name: 'car', category: 'business_trips', scope: [3] },
-    { name: 'meals', scope: [3] },
-    { name: 'meals', category: 'meals', scope: [3] },
-    { name: 'material', scope: [3] },
-    { name: 'purchased_computers', category: 'material', scope: [3] },
-    { name: 'purchased_phones', category: 'material', scope: [3] },
-    { name: 'purchased_monitors', category: 'material', scope: [3] },
-    { name: 'other', scope: [3] },
-    { name: 'other', category: 'other', scope: [3] }
+    { name: 'energy', scope: [2, 3] }.freeze,
+    { name: 'electricity_consumption', category: 'energy', scope: [2] }.freeze,
+    { name: 'heating', category: 'energy', scope: [2] }.freeze,
+    { name: 'servers', category: 'energy', scope: [3] }.freeze,
+    { name: 'cloud_servers', category: 'energy', scope: [3] }.freeze,
+    { name: 'business_trips', scope: [3] }.freeze,
+    { name: 'flight', category: 'business_trips', scope: [3] }.freeze,
+    { name: 'car', category: 'business_trips', scope: [3] }.freeze,
+    { name: 'meals', scope: [3] }.freeze,
+    { name: 'meals', category: 'meals', scope: [3] }.freeze,
+    { name: 'material', scope: [3] }.freeze,
+    { name: 'purchased_computers', category: 'material', scope: [3] }.freeze,
+    { name: 'purchased_phones', category: 'material', scope: [3] }.freeze,
+    { name: 'purchased_monitors', category: 'material', scope: [3] }.freeze,
+    { name: 'other', scope: [3] }.freeze,
+    { name: 'other', category: 'other', scope: [3] }.freeze
   ].freeze
 
   def initialize(climate_report)
     @climate_report = climate_report
+    @all_fields = all_fields_with_data
   end
 
   def render # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
@@ -38,7 +39,7 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
         assigns: {
           climate_report: @climate_report,
           calculation_period_length: calculation_period_length,
-          calculation_fields: all_fields,
+          calculation_fields: @all_fields,
           climate_periods_to_compare: previous_climate_reports.count,
           pie_categories_data: pie_data(categories),
           pie_sources_data: pie_data(emissions),
@@ -65,15 +66,17 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
   end
 
   def categories
-    all_fields.filter { |field| !field.key?(:category) }
+    @all_fields.filter { |field| !field.key?(:category) }
   end
 
   def emissions
-    all_fields.filter { |field| field.key?(:category) }
+    @all_fields.filter { |field| field.key?(:category) }
   end
 
-  def all_fields
-    fields = CALCULATION_FIELDS.each { |f| f[:emissions] = @climate_report.calculation.send("#{f[:name]}_emissions") }
+  def all_fields_with_data
+    fields = CALCULATION_FIELDS.map do |f|
+      f.dup.merge(emissions: @climate_report.calculation.send("#{f[:name]}_emissions"))
+    end
     add_field_percentages(fields)
   end
 
