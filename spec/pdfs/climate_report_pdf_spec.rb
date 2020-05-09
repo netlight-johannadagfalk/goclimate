@@ -62,14 +62,14 @@ RSpec.describe ClimateReportPdf do
 
   describe '#bar_compare_data' do
     it 'returns compare data for categories' do
-      compare_data = { data: %w[2500 2500], labels: ['Other', 'Other - average'] }
+      compare_data = { data: [2500, 2500], labels: ['Other', 'Other - average'] }
       invoice.save! # why is invoice not saved in let statement?
 
       expect(crp.bar_compare_data(crp.categories)).to eq(compare_data)
     end
 
     it 'returns compare data for emission sources' do
-      compare_data = { data: %w[2500 2500], labels: ['Other', 'Other - average'] }
+      compare_data = { data: [2500, 2500], labels: ['Other', 'Other - average'] }
       invoice.save! # why is invoice not saved in let statement?
 
       expect(crp.bar_compare_data(crp.emissions)).to eq(compare_data)

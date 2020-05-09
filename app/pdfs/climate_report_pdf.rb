@@ -23,6 +23,8 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
   def initialize(climate_report)
     @climate_report = climate_report
     @all_fields = all_fields_with_data
+    @invoiced_climate_reports = ClimateReportInvoice.includes(climate_report: :calculation)
+    @total_employees = @invoiced_climate_reports.sum(:employees)
   end
 
   def render # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
@@ -130,24 +132,23 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
     }
   end
 
-  def bar_compare_data(bar_fields) # rubocop:disable Metrics/AbcSize
+  def bar_compare_data(bar_fields)
     data = []
-    climate_reports = ClimateReportInvoice.includes(climate_report: :calculation)
-    total_employees = climate_reports.inject(0) { |n, cri| n + cri.climate_report.employees }
+    labels = []
 
     bar_fields.each do |field|
       next if field[:emissions] == 0
 
-      total_emissions = climate_reports.inject(0) do |n, cri|
-        n + cri.climate_report.calculation.send("#{field[:name]}_emissions")
-      end
-      data << { field_name(field) => field[:emissions].round / @climate_report.employees }
-      data << { field_average_name(field) => (total_emissions / total_employees).round }
+      labels << field_name(field) << field_average_name(field)
+      data << field[:emissions].round / @climate_report.employees << (total_emissions(field) / @total_employees).round
     end
-    {
-      data: data.map { |d| d.values.join('') },
-      labels: data.map { |d| d.keys.join('') }
-    }
+    { data: data, labels: labels }
+  end
+
+  def total_emissions(field)
+    @invoiced_climate_reports.inject(0) do |n, cri|
+      n + cri.climate_report.calculation.send("#{field[:name]}_emissions")
+    end
   end
 
   def previous_climate_reports
