@@ -10,7 +10,7 @@ module Business
           @projects = Project.order(id: :desc).limit(2)
         end
         format.pdf do
-          I18n.with_locale :sv do
+          I18n.with_locale(:sv) do
             pdf = ClimateReportPdf.new(@report)
             filename = "#{@report.company_name} climate report - #{@report.calculation_period}.pdf"
             send_data(pdf.render, filename: filename, type: :pdf)
