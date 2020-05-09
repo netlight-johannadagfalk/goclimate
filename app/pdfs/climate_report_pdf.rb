@@ -82,19 +82,18 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
     add_field_percentages(fields)
   end
 
-  def add_field_percentages(fields) # rubocop:disable Metrics/AbcSize
+  def add_field_percentages(fields)
     category_data = {}
     fields.each { |f| category_data[f[:name]] = field_percentage(f) unless f.key?(:category) }
     category_data = get_even_percentages(category_data)
     category_and_sources_percentages = category_data.clone
     category_data.each do |k, v|
-      fields_in_category = fields.map { |f| f if f.key?(:category) && f[:category] == k }.compact
+      fields_in_category = fields.filter { |f| f.key?(:category) && f[:category] == k }
       sources_data = {}
-      fields_in_category.map { |field| sources_data[field[:name]] = field_percentage(field) }
+      fields_in_category.each { |field| sources_data[field[:name]] = field_percentage(field) }
       category_and_sources_percentages.merge!(get_even_percentages(sources_data, v))
     end
-    fields.map { |f| f[:percentage] = category_and_sources_percentages[f[:name]] }
-    fields
+    fields.each { |f| f[:percentage] = category_and_sources_percentages[f[:name]] }
   end
 
   def field_percentage(field)
@@ -155,8 +154,9 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
     ClimateReport.joins(:invoice, :calculation).where(company_name: @climate_report.company_name)
   end
 
-  def bar_compare_years_data(bar_fields, per_employee = false) # rubocop:disable Metrics/AbcSize
+  def bar_compare_years_data(bar_fields, per_employee = false)
     data = []
+    labels = []
 
     return nil if previous_climate_reports.count < 2
 
@@ -164,13 +164,11 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
       previous_climate_reports.each do |climate_report|
         emission = climate_report.calculation.send("#{field[:name]}_emissions")
         emission = BigDecimal(emission) / climate_report.employees if per_employee
-        data << { "#{climate_report.calculation_period} - #{field_name(field)}" => emission.round }
+        labels << "#{climate_report.calculation_period} - #{field_name(field)}"
+        data << emission.round
       end
     end
-    {
-      data: data.map { |d| d.values.join('') },
-      labels: data.map { |d| d.keys.join('') }
-    }
+    { data: data, labels: labels }
   end
 
   def field_name(field)

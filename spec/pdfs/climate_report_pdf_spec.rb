@@ -79,7 +79,7 @@ RSpec.describe ClimateReportPdf do
   describe '#bar_compare_years_data' do
     it 'returns compare data for more then one measurement period' do
       compare_data = {
-        data: %w[0 0 20000 0 0 0 0 0 0 10000],
+        data: [0, 0, 20_000, 0, 0, 0, 0, 0, 0, 10_000],
         labels: [
           '2017 - Energy', '2018 - Energy', '2017 - Business trips', '2018 - Business trips',
           '2017 - Number of meals', '2018 - Number of meals', '2017 - Material', '2018 - Material',
