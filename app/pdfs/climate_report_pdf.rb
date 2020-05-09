@@ -82,10 +82,10 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
 
   def add_field_percentages(fields) # rubocop:disable Metrics/AbcSize
     category_data = {}
-    fields.map { |f| category_data[f[:name]] = field_percentage(f) unless f.key?(:category) }
+    fields.each { |f| category_data[f[:name]] = field_percentage(f) unless f.key?(:category) }
     category_data = get_even_percentages(category_data)
     category_and_sources_percentages = category_data.clone
-    category_data.map do |k, v|
+    category_data.each do |k, v|
       fields_in_category = fields.map { |f| f if f.key?(:category) && f[:category] == k }.compact
       sources_data = {}
       fields_in_category.map { |field| sources_data[field[:name]] = field_percentage(field) }
