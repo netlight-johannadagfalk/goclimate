@@ -395,4 +395,28 @@ RSpec.describe ClimateReportCalculation do
       validate_presence_of :other_emissions
     end
   end
+
+  describe '#scope_2_emissions' do
+    it 'returns the sum of scope 2 emissions' do
+      expect(calculation.scope_2_emissions).to eq(40)
+    end
+  end
+
+  describe '#scope_3_emissions' do
+    it 'returns the sum of scope 3 emissions' do
+      expect(calculation.scope_3_emissions).to eq(9985)
+    end
+  end
+
+  describe '#scope_3_percentage' do
+    it 'returns the sum of scope 3 percentage' do
+      expect(calculation.scope_3_percentage).to eq(BigDecimal(9985) / 10_025 * 100)
+    end
+  end
+
+  describe '#scope_2_percentage' do
+    it 'returns the sum of scope 2 percentage' do
+      expect(calculation.scope_2_percentage).to eq(BigDecimal(40) / 10_025 * 100)
+    end
+  end
 end

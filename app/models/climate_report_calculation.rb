@@ -24,6 +24,28 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
   TYPICAL_PURCHASED_PHONE_EMISSIONS                = 70 # kg CO2e/purchased phone
   TYPICAL_PURCHASED_MONITOR_EMISSIONS              = 500 # kg CO2e/purchased monitor
 
+  SCOPE_CATEGORIES = {
+    energy: [2, 3],
+    business_trips: [3],
+    meals: [3],
+    material: [3],
+    other: [3]
+  }.freeze
+
+  SCOPE_EMISSIONS = {
+    electricity_consumption: 2,
+    heating: 2,
+    servers: 3,
+    cloud_servers: 3,
+    flight: 3,
+    car: 3,
+    meals: 3,
+    purchased_computers: 3,
+    purchased_phones: 3,
+    purchased_monitors: 3,
+    other: 3
+  }.freeze
+
   belongs_to :climate_report
 
   validates_presence_of :climate_report, :electricity_consumption_emissions,
@@ -57,6 +79,30 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
 
   def material_emissions
     purchased_computers_emissions + purchased_phones_emissions + purchased_monitors_emissions
+  end
+
+  def scope_2_emissions
+    SCOPE_EMISSIONS.inject(0) do |sum, (emission_name, scope)|
+      scope == 2 ? sum + send("#{emission_name}_emissions") : sum
+    end
+  end
+
+  def scope_3_emissions
+    SCOPE_EMISSIONS.inject(0) do |sum, (emission_name, scope)|
+      scope == 3 ? sum + send("#{emission_name}_emissions") : sum
+    end
+  end
+
+  def scope_3_percentage
+    BigDecimal(scope_3_emissions) / total_emissions * 100
+  end
+
+  def scope_2_percentage
+    BigDecimal(scope_2_emissions) / total_emissions * 100
+  end
+
+  def scope(name, category)
+    category ? SCOPE_CATEGORIES[name.to_sym] : [SCOPE_EMISSIONS[name.to_sym]]
   end
 
   private
