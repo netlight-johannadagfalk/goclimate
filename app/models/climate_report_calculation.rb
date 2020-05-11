@@ -121,7 +121,7 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
   end
 
   def even_scopes_percentages
-    get_even_percentages({ 'Scope 2': scope_2_percentage, 'Scope 3': scope_3_percentage })
+    get_even_percentages('Scope 2': scope_2_percentage, 'Scope 3': scope_3_percentage)
   end
 
   def scope(name, category)
