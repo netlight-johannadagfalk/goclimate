@@ -3,7 +3,7 @@
     <div id="region-recommendation" class="flex justify-between items-center py-4 px-8 bg-dark text-white">
       <div class="flex flex-col md:flex-row items-start md:items-center">
         <p class=""><%=t 'views.shared.header.region_recommendation.select_country' %></p>
-        <%= link_to url_for_region(region), class: 'button mt-4 ml-0 md:mt-0 md:ml-4' do %>
+        <%= link_to url_for_region(region), class: 'button button-inverted mt-4 ml-0 md:mt-0 md:ml-4' do %>
           <%= image_tag webpack_asset_path("images/regions/#{region.id}.png"), class: 'inline-block max-w-none' %>
           <%=t 'views.shared.header.region_recommendation.continue_button', region: region.name %>
         <% end %>
@@ -60,23 +60,23 @@
     <div class="flex flex-col md:flex-row overflow-hidden transition-all ease-out duration-200 max-h-0 md:max-h-full h-auto" data-target="header.menu">
     <!-- base menu --> 
     <ul class="text-center md:text-left pt-5 mt-5 border-t md:border-0 md:inline-flex md:items-center md:pt-0 md:mt-0">
-      <li class="py-3 md:px-4 md:pl-12 text-lg"><%= link_to t('navigation.gift_cards'), gift_cards_path %></li>
-      <li class="py-3 md:px-4 text-lg"><%= link_to t('our_projects'), projects_path %></li>
-      <li class="py-3 md:px-4 text-lg"><%= link_to t('for_business'), business_path %>
-      <li class="py-3 md:px-4 text-lg"><%= link_to t('about_us'), about_path %></li>
+      <li class="py-3 md:px-4 md:pl-12 text-base"><%= link_to t('navigation.gift_cards'), gift_cards_path %></li>
+      <li class="py-3 md:px-4 text-base"><%= link_to t('our_projects'), projects_path %></li>
+      <li class="py-3 md:px-4 text-base"><%= link_to t('for_business'), business_path %>
+      <li class="py-3 md:px-4 text-base"><%= link_to t('about_us'), about_path %></li>
     </ul>
 
     <!-- Menu for small screens -->
     <ul class="text-center md:hidden">
       <% if user_signed_in? %> 
-        <li class="py-3 md:px-4 text-lg" role="separator" class="divider"></li>
-        <li class="py-3 md:px-4 text-lg"><a href="<%= dashboard_path %>">Dashboard</a></li>
-        <li class="py-3 md:px-4 text-lg"><a href="<%= edit_user_registration_path %>"><%= t('settings') %></a></li>
-        <li class="py-3 md:px-4 text-lg" role="separator" class="divider"></li> 
-        <li class="py-3 md:px-4 text-lg"><%= link_to(I18n.t('log_out'), destroy_user_session_path, :method => :delete) %></li>
+        <li class="py-3 md:px-4 text-base" role="separator" class="divider"></li>
+        <li class="py-3 md:px-4 text-base"><a href="<%= dashboard_path %>">Dashboard</a></li>
+        <li class="py-3 md:px-4 text-base"><a href="<%= edit_user_registration_path %>"><%= t('settings') %></a></li>
+        <li class="py-3 md:px-4 text-base" role="separator" class="divider"></li> 
+        <li class="py-3 md:px-4 text-base"><%= link_to(I18n.t('log_out'), destroy_user_session_path, :method => :delete) %></li>
       <% else %>
-        <li class="pt-8 pb-3 md:px-4 text-lg whitespace-no-wrap"><%= link_to(I18n.t('log_in'), new_user_session_url)%></li>
-        <li class="py-3 md:px-4 text-lg"><div class="navbar-inner"><%= link_to(I18n.t('views.shared.header.sign_up'), root_url, class: 'button button-primary')%></div></li>
+        <li class="pt-8 pb-3 md:px-4 text-base whitespace-no-wrap"><%= link_to(I18n.t('log_in'), new_user_session_url)%></li>
+        <li class="py-3 md:px-4 text-base"><div class="navbar-inner"><%= link_to(I18n.t('views.shared.header.sign_up'), root_url, class: 'button button-primary')%></div></li>
       <% end %>
     </ul>
     </div>
