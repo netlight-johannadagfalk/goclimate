@@ -46,6 +46,25 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
     other: 3
   }.freeze
 
+  CALCULATION_FIELDS = [
+    { name: 'energy' }.freeze,
+    { name: 'electricity_consumption', category: 'energy' }.freeze,
+    { name: 'heating', category: 'energy' }.freeze,
+    { name: 'servers', category: 'energy' }.freeze,
+    { name: 'cloud_servers', category: 'energy' }.freeze,
+    { name: 'business_trips' }.freeze,
+    { name: 'flight', category: 'business_trips' }.freeze,
+    { name: 'car', category: 'business_trips' }.freeze,
+    { name: 'meals' }.freeze,
+    { name: 'meals', category: 'meals' }.freeze,
+    { name: 'material' }.freeze,
+    { name: 'purchased_computers', category: 'material' }.freeze,
+    { name: 'purchased_phones', category: 'material' }.freeze,
+    { name: 'purchased_monitors', category: 'material' }.freeze,
+    { name: 'other' }.freeze,
+    { name: 'other', category: 'other' }.freeze
+  ].freeze
+
   belongs_to :climate_report
 
   validates_presence_of :climate_report, :electricity_consumption_emissions,
@@ -101,8 +120,60 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
     BigDecimal(scope_2_emissions) / total_emissions * 100
   end
 
+  def even_scopes_percentages
+    get_even_percentages({ 'Scope 2': scope_2_percentage, 'Scope 3': scope_3_percentage })
+  end
+
   def scope(name, category)
     category ? SCOPE_CATEGORIES[name.to_sym] : [SCOPE_EMISSIONS[name.to_sym]]
+  end
+
+  def categories
+    all_fields_with_data.filter { |field| !field.key?(:category) }
+  end
+
+  def emissions
+    all_fields_with_data.filter { |field| field.key?(:category) }
+  end
+
+  def all_fields_with_data
+    CALCULATION_FIELDS.map do |f|
+      f.dup.merge(
+        emissions: send("#{f[:name]}_emissions"),
+        scope: scope(f[:name], f[:category].nil?),
+        percentage: f[:category].nil? ? category_percentages[f[:name]] : emission_percentages[f[:name]]
+      )
+    end
+  end
+
+  def category_percentages
+    category_data = {}
+    CALCULATION_FIELDS.each { |f| category_data[f[:name]] = field_percentage(f) unless f.key?(:category) }
+    get_even_percentages(category_data)
+  end
+
+  def emission_percentages
+    category_percentages.map do |k, v|
+      fields_in_category = CALCULATION_FIELDS.filter { |f| f.key?(:category) && f[:category] == k }
+      sources_data = {}
+      fields_in_category.each { |field| sources_data[field[:name]] = field_percentage(field) }
+      get_even_percentages(sources_data, v)
+    end.inject(:merge)
+  end
+
+  def field_percentage(field)
+    BigDecimal(send("#{field[:name]}_emissions")) / total_emissions * 100
+  end
+
+  # more on algorithm: https://revs.runtime-revolution.com/getting-100-with-rounded-percentages-273ffa70252b
+  # { "a": 0.5, "b": 0.51, "c": 98.9 } ->
+  # { "a": 0, "b": 1, "c": 99 } not { "a": 1, "b": 1, "c": 99 }
+  def get_even_percentages(dataset, max = 100)
+    diff = max - dataset.map { |_, v| v.floor }.sum
+    dataset
+      .sort_by { |_, v| v.floor - v }
+      .map
+      .with_index { |(k, v), i| [k, i < diff ? v.floor + 1 : v.floor] }.to_h
   end
 
   private
