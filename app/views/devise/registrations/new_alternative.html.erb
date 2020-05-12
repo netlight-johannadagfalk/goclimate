@@ -5,15 +5,15 @@
 <div class="bg-secondary text-primary">
   <section class="bg-brand bg-brand-image bg-bottom bg-no-repeat bg-cover">
     <div class="text-center pt-24 sm:pt-40 pb-48 sm:pb-64 px-10 lg:px-0 max-w-4xl mx-auto">
-          <h1 class="text-3xl font-bold md:text-5xl my-5"><%= t 'views.registrations.well_done' %></h1>
+          <h1 class="text-lg m-lg:text-xl d:text-2xl font-semibold my-5"><%= t 'views.registrations.well_done' %></h1>
     </div>
   </section>
 
-  <section class="bg-bg rounded p-10 m-4 -mt-32 max-w-4xl sm:mx-auto">
+  <section class="bg-bg rounded p-10 m-4 t:mx-8 -mt-32 d:max-w-4xl d:mx-auto">
     <div class="md:flex md:justify-between md:items-center">
       <div class="md:w-1/2">
         <h2><%= t 'views.registrations.your_yearly_climate_footprint' %></h2>
-        <p class="font-bold">
+        <p class="font-semibold">
           <span class="text-3xl"><%= @footprint_tonnes.tonnes.round(1) %></span>
           <span class="text-lg"><%= t 'views.shared.tonnes_co2e.other' %></span>
         </p>
@@ -50,9 +50,9 @@
   </section>
 
   <section class="bg-secondary" data-controller='registration-price'>
-    <div class="max-w-6xl mx-auto py-20 px-10 lg:px-0">
-      <h2 class="text-3xl font-bold mb-4 text-center"><%= t 'views.registrations.subscribe_heading' %></h2>
-      <p class="text-xl mb-4 mx-auto max-w-4xl text-center"><%= t 'views.registrations.subscribe_intro' %></p>
+    <div class="max-w-6xl mx-auto py-20 px-10">
+      <h2 class="text-lg m-lg:text-xl d:text-2xl font-semibold mb-4 text-center"><%= t 'views.registrations.subscribe_heading' %></h2>
+      <p class="m-lg:text-lg mb-4 mx-auto max-w-4xl text-center"><%= t 'views.registrations.subscribe_intro' %></p>
 
 
       <div data-controller="registration-form">
@@ -163,7 +163,7 @@
   <section class="bg-bg">
     <div class="text-center pt-16 pb-48 px-10 lg:px-0 max-w-2xl mx-auto">
       <i class="fa fa-question-circle text-big-icon text-icon" aria-hidden="true"></i>
-      <h2 class="text-3xl font-bold mb-4"><%= t 'views.registrations.faq' %></h2>
+      <h2 class="text-lg m-lg:text-xl d:text-2xl font-semibold my-6"><%= t 'views.registrations.faq' %></h2>
       <% [1, 4, 5, 9, 10, 19, 20].each do |q| %>
         <div class="block border p-3 mt-4 rounded text-left collapse">
           <input id="question-<%= q %>" type="checkbox">
