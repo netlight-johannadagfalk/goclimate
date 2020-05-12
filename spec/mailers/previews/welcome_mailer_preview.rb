@@ -4,7 +4,7 @@
 class WelcomeMailerPreview < ActionMailer::Preview
   def welcome_email
     WelcomeMailer.with(
-      email: 'cissi@goclimateneutral.org'
+      email: 'kalle@goclimateneutral.org'
     ).welcome_email
   end
 end
