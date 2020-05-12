@@ -23,7 +23,7 @@ take into account.
 ### Reporting issues & feature ideas
 
 - Report technical debt and refactorings as issues here on GitHub.
-- Please share any product ideas with us at info@goclimateneutral.org. We keep
+- Please share any product ideas with us at hello@goclimateneutral.org. We keep
   a list of ideas on an internal idea board.
 
 Keep in mind that none of these are "backlogs" in the traditional sense (we

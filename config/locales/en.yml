@@ -59,7 +59,7 @@ en:
   number_of_ton_that_has_been_offset: Number of ton that has been offset
   you_can_read_more_details_about_our_costs_here: You can read more details about our costs here
   questions_or_comments_contact_us: Questions or Comments? Please drop us a line at
-  general_questions_html: 'For questions about GoClimateNeutral or if you have ideas on how we can improve the site, please drop us a line at <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a> or give us a call at <a href="tel:+46735013074">+46735013074</a>.'
+  general_questions_html: 'For questions about GoClimateNeutral or if you have ideas on how we can improve the site, please drop us a line at <a href="mailto:hello@goclimateneutral.org">hello@goclimateneutral.org</a> or give us a call at <a href="tel:+46735013074">+46735013074</a>.'
   general_questions_press_html: If you have PR-related questions send us an email at <a href="mailto:press@goclimateneutral.org">press@goclimateneutral.org</a>
   general_questions_facebook_html: 'You can find us on Facebook here: <a href="https://www.facebook.com/GoClimateNeutral" target="_blank">GoClimateNeutral</a>'
   general_questions_twitter_html: 'You can find us on twitter here: <a href="https://twitter.com/goclimateneutrl" target="_blank">@goclimateneutrl</a>'
@@ -459,7 +459,7 @@ en:
       for_companies: Carbon Offsetting For Your Business
       for_companies_text_html: Do you want to offset the emissions from a flight or for all your employees? We would love to help!
       calculate_footprint: Your business footprint
-      calculate_footprint_html: Calculate the climate footprint of your business, reduce what emissions you can and offset the rest. Our calculator is made for smaller service businesses without own physical production. Questions? Contact us at <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a>!
+      calculate_footprint_html: Calculate the climate footprint of your business, reduce what emissions you can and offset the rest. Our calculator is made for smaller service businesses without own physical production. Questions? Contact us at <a href="mailto:hello@goclimateneutral.org">hello@goclimateneutral.org</a>!
       calculate_footprint_button: Calculate my business footprint
       customers_we_work_with: A few of our amazing customers and partners
       offset_employees: Offset your employees
@@ -468,7 +468,7 @@ en:
       im_interested: Contact me
       we_will_contact_you_shortly_html: We will contact you on <b>%{email}</b> shortly with more information about the next step!
       other_offsetting: Other Services
-      other_offsetting_html:  We can help out with climate footprint calculations, one time offsets and technical integrations. Contact us at <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> to learn more.
+      other_offsetting_html:  We can help out with climate footprint calculations, one time offsets and technical integrations. Contact us at <a href='mailto:hello@goclimateneutral.org'>hello@goclimateneutral.org</a> to learn more.
       number_of_employees: "Number of employees:"
       your_email: "Your e-mail:"
   number:
@@ -757,7 +757,7 @@ en:
       general_information: General information
       company_name: Company name
       country: Country
-      country_tooltip: Our Business footprint calculator is only available for Swedish based businesses so far. This means that we unfortunately can't support Swedish companies with offices in other countries either. Contact us at info@goclimateneutral.org if you are interested in calculations for your offices in other countries - we would love to help!
+      country_tooltip: Our Business footprint calculator is only available for Swedish based businesses so far. This means that we unfortunately can't support Swedish companies with offices in other countries either. Contact us at hello@goclimateneutral.org if you are interested in calculations for your offices in other countries - we would love to help!
       sweden: Sweden
       number_of_employees: Number of employees
       number_of_employees_tooltip: "Estimated full-time employees or equivalent. This is used so that we can estimate your energy usage if you don't have specific kWh-numbers available, and for calculating emissions per employee and other statistical values. Example: 2 people working full-time and 2 people working 50% would be equal to 3 full-time employees."
@@ -816,7 +816,7 @@ en:
       purchased_monitors: Purchased monitors
       units: units
       other: Other
-      other_intro: It's hard to capture a business all emissions in one form. Most companies have other sources of emissions that might be large, but not very common. Is your business organizing events with speakers from all around the world that are flown in? Do you have consultants that need to commute long distances every week to get to your customers? Calculate and enter the emissions below. If you need help with calculations, feel free to contact us at info@goclimateneutral.org.
+      other_intro: It's hard to capture a business all emissions in one form. Most companies have other sources of emissions that might be large, but not very common. Is your business organizing events with speakers from all around the world that are flown in? Do you have consultants that need to commute long distances every week to get to your customers? Calculate and enter the emissions below. If you need help with calculations, feel free to contact us at hello@goclimateneutral.org.
       other_emissions: Other emissions
       specify_other_emissions: Specify other emissions
       contact: Contact
@@ -840,7 +840,7 @@ en:
         invoice_email: Invoice email (optional)
         invoice_email_text: Provide an email address to receive your invoice via email.
         order: Order
-        well_get_in_touch_html: We'll get in touch when your next reporting period is about to end and it's time to update your footprint. If you have any questions about the order, please contact us at info@goclimateneutral.org
+        well_get_in_touch_html: We'll get in touch when your next reporting period is about to end and it's time to update your footprint. If you have any questions about the order, please contact us at hello@goclimateneutral.org
         reduce_header: Can you reduce your emissions more?
         reduce_body: Please think through one extra time if there is anything of your emissions you can reduce. We encourage all businesses to take responsibility for their emissions by carbon offsetting, but even more important is to reduce your emissions as much as possible.
         safety_factor: safety factor

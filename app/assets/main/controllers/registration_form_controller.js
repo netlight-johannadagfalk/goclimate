@@ -31,7 +31,7 @@ export default class RegistrationFormController extends Controller {
         }
 
         window.Sentry.captureException(error); // These errors are unexpected, so report them.
-        this.setErrorMessage('An unexpected error occurred. Please start over and try again. If the issue remains, please contact us at info@goclimateneutral.org.');
+        this.setErrorMessage('An unexpected error occurred. Please start over and try again. If the issue remains, please contact us at hello@goclimateneutral.org.');
       })
       .finally(() => {
         this.stripeCardElementController.invalidatePaymentMethodField();
