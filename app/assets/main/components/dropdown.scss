@@ -1,33 +1,52 @@
-.dropdown {
-  @apply relative inline-block;
+@responsive {
+  .dropdown {
+    @apply relative inline-block text-base;
 
-  input[type='checkbox'] { 
+    &-menu {
+      @apply
+        absolute top-100 left-0
+        w-max-content
+        hidden
+        py-1
+        border border-0 rounded
+        text-primary text-left bg-white
+        shadow-md;
+
+      .dropdown-toggler:checked ~ & {
+        @apply block;
+      }
+
+      &-up {
+        @apply top-auto bottom-100;
+      }
+
+      &-right {
+        @apply left-auto right-0;
+      }
+
+      & > li > a {
+        @apply
+        block
+        px-4 py-2
+        transition-colors duration-100 ease-linear
+        border-none rounded-none; /* Override links and buttons used in smaller breakpoints */
+      }
+
+      & > li > a:hover {
+        @apply bg-primary text-white;
+      }
+
+      & > li > a:active {
+        @apply scale-100; /* Override buttons used in smaller breakpoints */
+      }
+    }
+  }
+
+  .dropdown-toggler { 
     @apply hidden;
   }
 
-  .dropdown-menu {
-    @apply hidden absolute top-100 left-0 
-    bg-white text-primary border border-primary 
-    rounded py-1 my-1 shadow-md text-left;
-  }
-
-  .dropdown-menu-up {
-    @apply top-auto bottom-100;
-  }
-
-  .dropdown-menu-right {
-    @apply left-auto right-0;
-  }
-
-  .dropdown-menu > li > a {
-    @apply whitespace-no-wrap block py-1 px-4
-  }
-
-  .dropdown-menu > li > a:hover {
-    @apply bg-primary text-white;
-  }
-
-  input[type='checkbox']:checked ~ .dropdown-menu {
-    @apply block;
+  .dropdown-separator {
+    @apply border-none h-2;
   }
 }
