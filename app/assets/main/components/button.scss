@@ -1,19 +1,23 @@
 .button {
   @apply
+    inline-block
     py-2 px-4
-    border rounded border-primary
-    cursor-pointer
+    border rounded border-current
     whitespace-no-wrap
     text-primary
-    inline-block
-    transition duration-200;
+    transition duration-200
+    cursor-pointer;
 
   &:hover {
     @apply bg-primary text-white;
   }
 
+  &:active {
+    @apply transform translate-y-px;
+  }
+
   &-inverted {
-    @apply border-white text-white;
+    @apply text-white;
 
     &:hover {
       @apply bg-white text-primary;
@@ -26,9 +30,5 @@
     &:hover {
       @apply bg-primary text-white;
     }
-  }
-
-  &:active {
-    @apply transform scale-105;
   }
 }

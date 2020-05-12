@@ -1,0 +1,23 @@
+.heading {
+  @apply text-lg font-bold;
+}
+
+.heading-lg {
+  @apply text-xl font-semibold;
+
+  @screen d-md {
+    @apply text-2xl;
+  }
+}
+
+.heading-xl {
+  @apply text-2xl font-semibold;
+
+  @screen t {
+    @apply text-3xl;
+  }
+
+  @screen d-md {
+    @apply text-4xl;
+  }
+}
