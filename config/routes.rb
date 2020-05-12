@@ -64,6 +64,9 @@ Rails.application.routes.draw do
             get 'thank_you'
           end
         end
+        scope format: true, constraints: { format: :pdf } do
+          get 'pdf'
+        end
       end
     end
 
@@ -153,7 +156,6 @@ Rails.application.routes.draw do
     resources :projects
     resources :flight_offsets, only: [:index, :show, :new, :create]
     resources :climate_report_invoices, only: [:index, :show, :edit, :update]
-    resources :climate_reports, only: [:index]
     resource :invoice_certificates, only: [:show], format: true, constraints: { format: :pdf }
     resource :invoice_certificates, only: [] do
       post 'send_email', on: :collection

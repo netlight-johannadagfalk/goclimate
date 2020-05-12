@@ -7,5 +7,14 @@ FactoryBot.define do
     currency { 'sek' }
     co2e { 1818 }
     association :climate_report
+
+    trait :ten_tonnes do
+      association :climate_report, :ten_tonnes
+    end
+
+    trait :twenty_tonnes do
+      association :climate_report, :ten_tonnes
+      amount { 200_00 }
+    end
   end
 end

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+<style>
+  body {
+    font-family: sans-serif;
+    line-height: 1.5;
+  }
+  h1 {
+    font-size: 56px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+  h2 {
+    font-size: 40px;
+  }
+  h3 {
+    font-size: 32px;
+  }
+  h1, h2, h3, h4 {
+    margin-top: 40px;
+    font-weight: 400;
+    max-width: 750px;
+  }
+  h4 {
+    font-size: 20px;
+    margin-top: 40px;
+    text-align: center;
+  }
+  p, ul, li {
+    font-size: 18px;
+    max-width: 750px;
+  }
+  table, th, td {
+    border: 1px solid darkgray;
+    font-color: darkgray;
+  }
+  table {
+    border-collapse: collapse;
+    margin-top: 40px;
+  }
+  th {
+    white-space: nowrap;
+    padding: 20px 40px 10px 40px;
+    text-align: left;
+    background-color: rgba(54, 162, 235, 0.6);
+  }
+  td {
+    padding: 10px 40px;
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  .alwaysbreak {
+    page-break-before: always;
+    padding-top: 120px;
+  }
+  .content {
+    padding: 0px 80px;
+    width: 800px;
+  }
+  .pieGraph {
+    width: 1000px;
+    margin-left: -100px;
+    margin-bottom: 0px;
+  }
+  .logo {
+    text-align: right;
+  }
+  .category {
+    padding-top: 30px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<div class="content">
+
+  <h2 class="alwaysbreak">Om klimatrapporten</h2>
+
+  <p>Att beräkna en verksamhets utsläpp av växthusgaser är det första steget på vägen till att lyfta ett företag mot morgondagens hållbara och klimatneutrala samhälle. Denna rapport presenterar det uppmätta klimatavtrycket för verksamheten, och utgör på så vis det underlag som möjliggör att företaget kan förstå sin påverkan på klimatet. Baserat på detta kan företaget lägga ribban för ett seriöst klimatarbete och ta meningsfulla och faktabaserade åtgärder för att minska sin klimatpåverkan.</p>
+
+  <p>Företag och individer som är medvetna om hur deras klimatavtryck ser ut sänker sina utsläpp mer än andra. Så se denna rapport som ett bra första steg på vägen mot ett klimatsmartare och mer framtidssäkrat företag. Bra jobbat!</p>
+
+  <h2>Syfte</h2>
+
+  <p>Klimatrapporten ämnar att ge en tydlig bild av verksamhetens påverkan på klimatet för den specificerade perioden.</p>
+
+  <p>Att mäta utsläppen associerade med verksamheten kan tjäna flera mål, som att identifiera möjligheter att reducera utsläppen, publicera offentlig rapportering och delta i frivilliga GHG-program, och vinna erkännande för tidigt frivilligt handlande.</p>
+
+  <p>Överblick över utsläppen gör det möjligt att göra smarta val som har positiv inverkan på klimatet och framtidssäkra affären.</p>
+
+  <h2 class="alwaysbreak"><%= @climate_report.company_name %>s klimatpåverkan</h2>
+
+  <p>Denna klimatrapport omfattar utsläpp som registrerats under <%= @climate_report.calculation_period %><%= ' ' + @calculation_period_length unless @calculation_period_length.nil? %>. Under perioden var de totala utsläppen av växthusgaser från företagets verksamhet <%= co2e_string(@climate_report.calculation.total_emissions) %> kg koldioxidekvivalenter (CO2e), vilket motsvarar <%= number_with_delimiter(@climate_report.calculation.total_emissions / @climate_report.employees) %> kg CO2e per anställd. Utsläppen är fördelade enligt nedan.</p>
+
+  <h4 style="text-align: left;">Klimatutsläpp per utsläppskälla (i kg CO2e)</h4>
+  <table>
+    <tr>
+      <th>Utsläppskälla</th>
+      <th>Scope</th>
+      <th>Utsläpp i kg CO2e</th>
+      <th>Andel</th>
+    </tr>
+    <% @calculation_fields.each do |field| %>
+      <% next if field[:name] == field[:category] %>
+      <% field_emissions = @climate_report.calculation.send("#{field[:name]}_emissions") %>
+      <tr <%= raw("class='category'") unless field.has_key? :category %>>
+        <td>
+          <%= "- " if field.has_key? :category %>
+          <%=t "business.climate_reports.#{field[:name]}" %>
+        </td>
+        <td style="text-align: right;"><%= field[:scope].join(', ') %></td>
+        <td style="text-align: right;"><%= number_with_delimiter(field_emissions) %></td>
+        <td style="text-align: right;"><%= field[:percentage] %> %</td>
+      </tr>
+  <% end %>
+  </table>
+
+  <h4 class="alwaysbreak"><%= @climate_report.company_name %>s klimatutsläpp överblick (% av totala utsläpp)</h4>
+  <div class="pieGraph"><canvas id="pieChartCategories"></canvas></div>
+
+  <h4><%= @climate_report.company_name %>s klimatutsläpp per utsläppskälla (% av totala utsläpp)</h4>
+  <div class="pieGraph"><canvas id="pieChartSources"></canvas></div>
+
+  <h4 class="alwaysbreak">Klimatutsläpp överblick i kg CO2e</h4>
+  <div><canvas id="barGraphEmissionCategories"></canvas></div>
+
+  <h4>Klimatutsläpp per utsläppskälla i kg CO2e</h4>
+  <div><canvas id="barGraphEmissionSources"></canvas></div>
+
+  <h2 class="alwaysbreak">Jämförelse med andra tjänstebolag</h2>
+
+  <p>Varje verksamhet är unik, men ibland kan det vara bra att få en förstålse för hur stora ens företags utsläpp är jämfört med andra företags utsläpp. Eftersom utsläppen i tjänstebolag ofta är korrelerade till antal anställda är siffrorna nedan per anställd för att kunna jämföra siffrorna oavsett storlek på bolag. Medlet för tjänstebolag är från GoClimateNeutrals egna datakällor och baseras på ca 300 tjänstebolag mestadels baserade i Sverige.</p>
+
+  <h4>Klimatutsläpp per utsläppskategori och anställd i kg CO2e jämfört med snitt</h4>
+  <div><canvas id="barGraphCompareCategories"></canvas></div>
+
+  <h4>Klimatutsläpp per utsläppskälla och anställd i kg CO2e jämfört med snitt</h4>
+  <div><canvas id="barGraphCompareEmissionSources"></canvas></div>
+
+  <h2 class="alwaysbreak">Jämförelse med tidigare mätperioder</h2>
+
+  <% if @climate_periods_to_compare > 1 %>
+
+    <p>Nedan visas jämförelserdata från <%= @climate_report.company_name %>s tidigare mätperioder för klimatpåverkan. När företag växer ökar ofta utsläppen i tjänstebolag i takt med att antalet anställda växer. Därför visas datan nedan förutom i absoluta tal även uppdelat per anställd.</p>
+
+    <h4>Klimatutsläpp per utsläppskategori i kg CO2e jämfört med tidigare mätperioder</h4>
+    <div><canvas id="barGraphCompareYears"></canvas></div>
+
+    <h4>Klimatutsläpp per utsläppskälla i kg CO2e jämfört med tidigare mätperioder</h4>
+    <div><canvas id="barGraphCompareYearsSources"></canvas></div>
+
+    <h4 class="alwaysbreak">Klimatutsläpp per utsläppskategori och anställd i kg CO2e jämfört med tidigare mätperioder</h4>
+    <div><canvas id="barGraphCompareYearsCategoriesPerEmployee"></canvas></div>
+
+    <h4>Klimatutsläpp per utsläppskälla och anställd i kg CO2e jämfört med tidigare mätperioder</h4>
+    <div><canvas id="barGraphCompareYearsSourcesPerEmployee"></canvas></div>
+
+  <% else %>
+
+    <p>Eftersom tidigare mätperioder för <%= @climate_report.company_name %>s klimatpåverkan saknas kan inga jämförlsesiffror mot tidigare mätperioder redovisas. I framtida rapporter kan denna mätperiod användas som bas för att följa klimatavtryckets utveckling i absoluta siffror och relativt antal anställda.</p>
+
+  <% end %>
+
+  <h2 class="alwaysbreak">Klimatpolicy</h2>
+
+  <p>Med detta läge som utgångspunkt kan företaget göra aktiva val som främjar klimatet och minskar verksamhetens påverkan. Här är exempel på klimatsmarta val och policies som kan göra stor skillnad:</p>
+  <ul>
+    <li>Begränsat antal resor med flyg. En flygresa tur och retur Stockholm - Malmö motsvarar 0.4 ton CO2e medan samma resa med tåg motsvarar 0.007 ton CO2e.</li>
+    <li>Att servera vegetarisk mat som standard kan minska utsläppen kopplade till måltider med cirka 50 %.</li>
+    <li>Grön el säkrar att energikällan är fossilfri. Att inte göra ett aktivt val innebär i praktiken att elproduktionen till stor del kommer från fossila energikällor såsom kolkraft.</li>
+    <li>Främja fossilfria pendlingsresor till kontor genom medveten placering av kontoret samt andra åtgärder som dusch och cykelförråd på kontoret.</li>
+    <li>Policy för inköp av IT som främjar att produkterna används så länge det är möjligt innan de byts ut.</li>
+  </ul>
+
+  <p>Genom att arbeta strategiskt och implementera åtgärder som riktas mot de största utsläppskällorna går det att agera i linje med Parisavtalet och bli en hållbar aktör. Påverkan kan på så vis ske både genom att minska egna utsläpp, men också genom att påverka partners, leverantörer och kunder till att ställa om mot ett hållbart samhälle.</p>
+
+  <p>För att sätta upp mål för företagets klimatarbete finns det ett antal punkter att förhålla sig till. Först, att bestämma vilken typ av mål företaget strävar mot - absoluta mål eller relativa mål. Ett absolut mål uttrycks vanligen i ton eller procent, medan ett relativt mål avser klimatavtryck tex. per medarbetare, per såld produkt eller per kund. Beslut fattas om vilket basår som målet ska jämföras med, vilket vanligtvis är det första året som verksamhetens avtryck beräknas, och vilket slutår målet ska vara uppnått. Det är viktigt att ha i åtanke att basåret kan behövas räknas om retroaktivt om man inkluderar utsläpp senare som inte tagits med i basårets beräkning. Att ha klart vilka metodval och antaganden som gäller blir därmed nödvändigt för att kunna göra rättvisa jämförelser från år till år.</p>
+
+
+  <h2 class="alwaysbreak">Klimatkompensation av utsläpp</h2>
+  <p>Vissa åtgärder för att minska företagets egna utsläpp är relativt enkla att implementera och kan skapa stor förändring, medan andra tar längre tid att ställa om till. Ett sätt att ta ansvar för de utsläpp som inte kan undvikas omedelbart är genom klimatkompensation, där motsvarande utsläpp undviks på en annan plats.  GoClimateNeutral erbjuder klimatkompensation i projekt som är certifierade av Gold Standard, vilket säkerställer att projekten är av hög kvalitet och att de undvikna utsläppen är reella, additionella och permanenta. Projektens undvikna utsläpp kontrolleras och verifieras regelbundet. Förutom klimatnytta garanterar även Gold Standards certifiering att projekten uppfyller andra hållbarhetsmål från FNs Agenda 2030, och är på så vis en del av den hållbara utvecklingen där de implementeras.</p>
+
+  <p><%= @climate_report.company_name %> har klimatkompenserat för sina redovisade utsläpp om <%= co2e_string(@climate_report.calculation.total_emissions) %> kg CO2e via GoClimateNeutral.</p>
+
+   <h2 class="alwaysbreak">Om beräkningarna</h2>
+
+  <p>Beräkningen är baserad på riktlinjer enligt Greenhouse Gas Protocol (GHG- protokollet), som är den världsledande standarden för att mäta och hantera utsläpp med påverkan på klimatet. Denna standard används av både av nationer, städer och företag - år 2016 följde 92% av Fortune 500-företagen GHG-protokollet för att beräkna sitt klimatavtryck. Detta rigorösa system har förenklats för att passa tjänstebolag genom GoClimateNeutrals företagskalkylator, där uppgifter som motsvarar de huvudsakliga utsläppsposterna för denna sortens verksamhet är utvalda. Beräkningarna är därmed baserade på uppgifter som <%= @climate_report.company_name %> har uppgett inom dessa ramar, och lämnar dessutom utrymme för att övriga utsläpp läggs till i mån av behov.</p>
+
+  <h2>Principer för GHG-beräkningar</h2>
+
+  <p><b>Relevans</b> - rapporteringen ska innehålla den information som både externa och interna användare behöver för beslutsfattning. En viktig aspekt av detta är valet av utsläppskällor och inventeringens avgränsningar, som ska återspegla verksamhetens aktiviteter på ett rättvist sätt. Genom att anpassa riktlinjerna från GHG-protokollet till tjänsteföretag i företagskalkylatorn säkerställs relevans, då vi genom god förståelse för företagstypen ser till att verksamheten rapporterar de huvudsakliga utsläppskällorna. Se även val av konsolideringsmetod.</p>
+  <p><b>Fullständighet</b> - genom att använda företagskalkylatorn kan verksamheten säkerställa att de grundläggande utsläppskällorna redovisas på ett korrekt sätt. Har verksamheten vidare utsläpp rapporteras detta under fältet “övrigt”. Det är verksamheten som ansvarar för att alla övriga utsläppskällor identifieras.</p>
+  <p><b>Jämförbarhet</b> - Ett av syftena med att beräkna verksamhetens utsläpp är att kunna göra uppföljning av dem över tid. Genom att använda företagskalkylatorn kan verksamheten mäta sina utsläpp med samma metod upprepade gånger, och vara säkra på att resultaten blir jämförbara. Uppdateringar av kalkylatorn redogörs för av GoClimateNeutral.</p>
+  <p><b>Transparens</b> - Information om hur beräkningarna genomförts, vilka antaganden som gjorts, och vilka avgränsningar som gjorts ska redovisas. GoClimateNeutral presenterar detta huvudsakligen i avsnittet “Metod”.</p>
+  <p class="alwaysbreak"><b>Noggrannhet</b> - Data måste vara tillräckligt exakt för att rapporten ska vara trovärdig. Mätningen såväl som emissionsfaktorerna får inte vara systematiskt under- eller överskattade i den utsträckning det går att avgöra, och osäkerheterna ska reduceras så mycket som möjligt. GoClimateNeutral använder sig av den senaste officiella datan från ansvariga myndigheter i den mån det finns tillgängligt, och av tillgänglig forskning och ledande företags beräkningar som komplement. Företagets noggrannhet i mätningen och uppskattningen av data är naturligtvis avgörande för klimatrapportens kvalitet.</p>
+
+  <h3>GHG-protokollets systemgränser</h3>
+
+  <p>GHG-protokollet skiljer på direkta utsläpp från verksamheten (scope 1), indirekta utsläpp från inköpt energi (scope 2) och övriga indirekta utsläpp från företagets värdekedja (scope 3). Vid beräkning av utsläpp från scope 1 och scope 2 samt de vanligaste scope 3-utsläppen kan beräkningen betraktas som heltäckande för tjänstebolag. För en komplett beräkning enligt GHG-protokollet är i dagsläget endast scope 1 och 2 obligatoriska, men eftersom en betydande andel av ett tjänstebolags utsläpp faller inom scope 3 så tar vi även detta i beaktning för att ge en komplett bild av utsläppen som associeras med verksamheten. </p>
+
+  <h4 style="text-align: left;"><%= @climate_report.company_name %>s klimatutsläpp uppdalat i Scope (% av totala utsläpp)</h4>
+  <div class="pieGraph"><canvas id="pieScopeCanvas"></canvas></div>
+
+  <h2 class="alwaysbreak">Metod</h2>
+
+  <p>Beräkningarna av utsläppen från energi är utförda enligt den marknadsbaserade metoden, som definieras i GHG-protokollet och klassas som scope 2. Denna metod tar i beaktning utsläpp från el och uppvärmning som företagen medvetet har valt (eller aktivt inte valt). Alternativet, den platsbaserade metoden, använder nationell eller regional genomsnittsdata och exkluderar påverkan som företagets val av energi har. </p>
+  <p>Utsläpp från bilar klassas som scope 1, eftersom de antas vara ägda eller leaseas av företaget, vilket då har operationell kontroll över bilen och dess utsläpp. Scope 3 inkluderar resor som görs i tjänsten, där inkluderar vi flyg. Notera att om fordonet ägs av företaget så kategoriseras utsläppen från det som scope 1 om det är bränsledrivet, eller scope 2 om det är eldrivet.</p>
+  <p>Tågresor i Sverige har så pass lågt klimatavtryck att det kan anses försumbart i denna kontext. Vid beräkning av utsläppet från flygresor tas hänsyn till klimatpåverkan utöver koldioxidutsläppet, så kallade höghöjdsrelaterade utsläpp, genom att multiplicera koldioxidutsläppet med faktorn 2.0 (den så kallade RFI-faktorn). För resor med bil eller taxi beräknas snittutsläpp per kilometer för en svensk bensinbil.</p>
+  <p>Servrar klassas som scope 3, eftersom antagandet gjorts att företaget inte äger sin egen server och därmed inte har operationell kontroll över den.</p>
+  <p>Utsläpp från mat beräknas eftersom detta framför allt vid event och större ordrar kan ha en betydande klimatpåverkan, och det är stor skillnad i utsläpp från kött jämfört med vegetariska eller växtbaserade alternativ. Även detta faller under Scope 3.</p>
+  <p>Inköp av produkter som företaget använder faller även detta under scope 3. Elektronik inkluderas i kalkylatorn eftersom detta ofta är en betydande del av de inköp ett tjänsteföretag gör som belastar klimatet, där även små produkter har relativt höga utsläpp. Andra inköp som tex trycksaker och förbrukningsmaterial som köps in i små kvantiteter har lägre påverkan på klimatet.</p>
+  <p>Kategorin för övriga utsläpp tar i beaktning att varje företag är unikt och kan ha betydande utsläpp från andra källor. Kalkylatorn erbjder därför företaget att beräkna dessa separat och lägga till dem för att ge en rättvisande bild av verksamhetens klimatpåverkan. Dessa kategoriseras automatiskt som scope 3.</p>
+  <p>Ytterligare information om metoden bakom beräkningarna, emissionsfaktorer och schabloner finns tillgänglig på GoClimateNeutrals hemsida.</p>
+
+  <h3 class="alwaysbreak">Konsolideringsmetod</h3>
+  <p>Valet av konsolideringsmetod är ett grundläggande antagande om ansvar, vilket avgör hur utsläppen knyts till en verksamhet eller en annan. Enligt GHG-protokollet kan detta delas upp på olika sätt, baserat på delar av kapital (equity share), finansiell kontroll eller operationell kontroll. Baserat på tjänsteföretags verksamhet har GoClimateNeutral utvecklat företagskalkylatorn baserat på en operationell kontroll, där rapporteringen alltså inkluderar alla de utsläpp som företaget har operationell kontroll över och kan påverka. Fördelen med denna metod är att företaget tar full ägandeskap över de utsläpp som de kan direkt påverka och minska.</p>
+
+  <h3>Antaganden</h3>
+  <p>Utsläpp som företag redovisar under övrigt kategoriseras automatiskt som scope 3.</p>
+
+  <p>Bilar antas vara ägda eller leaseas av företaget, vilket då har operationell kontroll över bilen och dess utsläpp. Därmed klassas utsläpp från bilar som scope 1. Av samma anledning klassas servrar som scope 3, eftersom företaget antas inte ha operationell kontroll över den.</p>
+
+  <p>För beräkningen av energianvändning redovisas resultatet enligt den marknadsbaserade metoden. Denna metod tar i beaktning utsläpp från el och uppvärmning som företagen medvetet har valt (eller aktivt inte valt). Detta innebär att energianvändning av företag som valt grön (ursprungsmärkt) el beräknas med en emissionsfaktor för förnybar energi, medan utsläppen från företag som inte valt grön el beräknas med emissionsfaktorn för den resterande tillgängliga energin, den så kallade residualmixen. Det alternativa beräkningssättet, den platsbaserade metoden, använder nationell eller regional genomsnittsdata och exkluderar påverkan som företagets val av energi har.</p>
+
+  <p>För antaganden om emissionsfaktorer och vilka utsläppskällor som inkluderats och inte, se avsnittet “metod”.</p>
+
+
+</div>
+
+<script type="text/javascript">
+// wkhtmltopdf 0.12.5 crash fix.
+// https://github.com/wkhtmltopdf/wkhtmltopdf/issues/3242#issuecomment-518099192
+'use strict';
+(function(setLineDash) {
+    CanvasRenderingContext2D.prototype.setLineDash = function() {
+        if(!arguments[0].length){
+            arguments[0] = [1,0];
+        }
+        // Now, call the original method
+        return setLineDash.apply(this, arguments);
+    };
+})(CanvasRenderingContext2D.prototype.setLineDash);
+Function.prototype.bind = Function.prototype.bind || function (thisp) {
+    var fn = this;
+    return function () {
+        return fn.apply(thisp, arguments);
+    };
+};
+
+function drawGraphs() {
+  Chart.helpers.merge(Chart.defaults.global.plugins.datalabels, {
+    color: '#000000'
+  });
+  Chart.defaults.global.defaultFontColor = 'black';
+  Chart.defaults.global.defaultFontSize = 16;
+  Chart.defaults.global.animation.duration = 0;
+  var backgroundColors = [
+    'rgba(255, 99, 132, 0.8)',
+    'rgba(54, 162, 235, 0.8)',
+    'rgba(255, 206, 86, 0.8)',
+    'rgba(75, 192, 192, 0.8)',
+    'rgba(153, 102, 255, 0.8)',
+    'rgba(255, 159, 64, 0.8)',
+    'rgba(255, 99, 132, 0.8)',
+    'rgba(54, 162, 235, 0.8)',
+    'rgba(255, 206, 86, 0.8)',
+    'rgba(75, 192, 192, 0.8)',
+    'rgba(153, 102, 255, 0.8)',
+    'rgba(255, 159, 64, 0.8)',
+    'rgba(255, 99, 132, 0.8)',
+    'rgba(54, 162, 235, 0.8)'
+  ];
+  function compareBackgroundColors(times){
+    var colors = [];
+    backgroundColors.forEach(function addColor(color) {
+      for(var i = 0; i < times; i++){
+        colors.push(color);
+      }
+    });
+    return colors;
+  }
+
+  var pieCharts = [
+    {
+      canvasId: 'pieChartCategories',
+      labels: [ <%= raw(@pie_categories_data[:labels]) %> ],
+      data: [ <%= @pie_categories_data[:data] %> ],
+      backgroundColors: backgroundColors
+    },
+    {
+      canvasId: 'pieChartSources',
+      labels: [ <%= raw(@pie_sources_data[:labels]) %> ],
+      data: [ <%= @pie_sources_data[:data] %> ],
+      backgroundColors: backgroundColors
+    },
+    {
+      canvasId: 'pieScopeCanvas',
+      labels: [ <%= raw(@pie_scope_data[:labels]) %> ],
+      data: [ <%= @pie_scope_data[:data] %> ],
+      backgroundColors: backgroundColors
+    }
+  ];
+
+  pieCharts.forEach(function drawPieChart(chart_data) {
+    var ctx = document.getElementById(chart_data.canvasId).getContext('2d');
+    var labels = chart_data.labels;
+    var chart = new Chart(ctx, {
+      plugins: [ChartDataLabels],
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: chart_data.data,
+          backgroundColor: chart_data.backgroundColors,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: {
+          datalabels: {
+            formatter: function(value, context) {
+              return labels[context.dataIndex] + ': ' + Math.round(value) + '%';
+            },
+            anchor: 'end',
+            align: 'end',
+            display: 'auto',
+            padding: 0,
+            offset: function(context) {
+              // vary offset to avoid label overlap
+              var index = context.dataIndex;
+              var data = context.dataset.data;
+
+              if (data[index] > 15) {
+                return 20;
+              }
+
+              var j = index;
+              var count = 0;
+              while((data[j] < 15) && count < data.length){
+                count++;
+                j--;
+                if (j < 0) {
+                  j = j + data.length;
+                }
+              }
+              return ((count % 5) * 20);
+            }
+          }
+        },
+        legend: {
+          labels: {
+              fontColor: 'black'
+          }
+        },
+        layout: {
+            padding: {
+                left: 0,
+                right: 0,
+                top: 90,
+                bottom: 90
+            }
+        }
+      }
+    });
+  });
+
+  var barCharts = [
+    {
+      canvasId: 'barGraphEmissionCategories',
+      labels: ['<%= raw(@bar_categories_data[:labels].join("', '")) %>'],
+      data: [<%= raw(@bar_categories_data[:data].join(", ")) %> ],
+      backgroundColors: backgroundColors,
+      borderColors: backgroundColors
+    },
+    {
+      canvasId: 'barGraphEmissionSources',
+      labels: ['<%= raw(@bar_emissions_data[:labels].join("', '")) %>'],
+      data: [ <%= raw(@bar_emissions_data[:data].join(", ")) %> ],
+      backgroundColors: backgroundColors,
+      borderColors: backgroundColors
+    },
+    {
+      canvasId: 'barGraphCompareCategories',
+      labels: ['<%= raw(@bar_compare_categories_data[:labels].join("', '")) %>'],
+      data: [ <%= raw(@bar_compare_categories_data[:data].join(", ")) %> ],
+      backgroundColors: compareBackgroundColors(2),
+      borderColors: compareBackgroundColors(2)
+    },
+    {
+      canvasId: 'barGraphCompareEmissionSources',
+      labels: ['<%= raw(@bar_compare_emissions_data[:labels].join("', '")) %>'],
+      data: [ <%= raw(@bar_compare_emissions_data[:data].join(", ")) %> ],
+      backgroundColors: compareBackgroundColors(2),
+      borderColors: compareBackgroundColors(2)
+    },
+    <% if @climate_periods_to_compare > 1 %>
+    {
+      canvasId: 'barGraphCompareYears',
+      labels: ['<%= raw(@bar_compare_years_categories_data[:labels].join("', '")) %>'],
+      data: [ <%= raw(@bar_compare_years_categories_data[:data].join(", ")) %> ],
+      backgroundColors: compareBackgroundColors(<%= @climate_periods_to_compare %>),
+      borderColors: compareBackgroundColors(<%= @climate_periods_to_compare %>)
+    },
+    {
+      canvasId: 'barGraphCompareYearsSources',
+      labels: ['<%= raw(@bar_compare_years_emissions_data[:labels].join("', '")) %>'],
+      data: [ <%= raw(@bar_compare_years_emissions_data[:data].join(", ")) %> ],
+      backgroundColors: compareBackgroundColors(<%= @climate_periods_to_compare %>),
+      borderColors: compareBackgroundColors(<%= @climate_periods_to_compare %>)
+    },
+    {
+      canvasId: 'barGraphCompareYearsCategoriesPerEmployee',
+      labels: ['<%= raw(@bar_compare_years_categories_per_employee_data[:labels].join("', '")) %>'],
+      data: [ <%= raw(@bar_compare_years_categories_per_employee_data[:data].join(", ")) %> ],
+      backgroundColors: compareBackgroundColors(<%= @climate_periods_to_compare %>),
+      borderColors: compareBackgroundColors(<%= @climate_periods_to_compare %>)
+    },
+    {
+      canvasId: 'barGraphCompareYearsSourcesPerEmployee',
+      labels: ['<%= raw(@bar_compare_years_emissions_per_employee_data[:labels].join("', '")) %>'],
+      data: [ <%= raw(@bar_compare_years_emissions_per_employee_data[:data].join(", ")) %> ],
+      backgroundColors: compareBackgroundColors(<%= @climate_periods_to_compare %>),
+      borderColors: compareBackgroundColors(<%= @climate_periods_to_compare %>)
+    }
+
+    <% end %>
+  ];
+
+  barCharts.forEach(function drawBarChart(chart_data) {
+    var ctxBar = document.getElementById(chart_data.canvasId).getContext('2d');
+    var chart = new Chart(ctxBar, {
+      plugins: [ChartDataLabels],
+      type: 'bar',
+      data: {
+        labels: chart_data.labels,
+        datasets: [{
+          label: '',
+          data: chart_data.data,
+          backgroundColor: chart_data.backgroundColors,
+          borderColor: chart_data.borderColors,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: {
+          datalabels: {
+            rotation: function(context) {
+              if (context.dataset.data.length > 10) {
+                return 270;
+              }
+              return 0;
+            }
+          }
+        },
+        legend: {
+          display: false,
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+  });
+}
+window.onload = function() {
+    drawGraphs();
+};
+</script>
+</body>
+</html>

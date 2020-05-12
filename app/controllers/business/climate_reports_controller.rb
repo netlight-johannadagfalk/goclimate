@@ -4,9 +4,19 @@ module Business
   class ClimateReportsController < ApplicationController
     def show
       @report = ClimateReport.find_by_key!(params[:key])
-      @invoice = ClimateReportInvoice.new(climate_report: @report)
-                                     .tap(&:calculate_from_report)
-      @projects = Project.order(id: :desc).limit(2)
+      respond_to do |format|
+        format.html do
+          @invoice = ClimateReportInvoice.new(climate_report: @report).tap(&:calculate_from_report)
+          @projects = Project.order(id: :desc).limit(2)
+        end
+        format.pdf do
+          I18n.with_locale(:sv) do
+            pdf = ClimateReportPdf.new(@report)
+            filename = "#{@report.company_name} climate report - #{@report.calculation_period}.pdf"
+            send_data(pdf.render, filename: filename, type: :pdf)
+          end
+        end
+      end
     end
 
     def new

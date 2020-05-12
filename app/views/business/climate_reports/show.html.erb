@@ -47,7 +47,7 @@
             <tbody>
               <% if @report.calculation.energy_emissions > 0 %>
                 <tr class="active">
-                  <th><%=t 'business.climate_reports.energy_header' %></th>
+                  <th><%=t 'business.climate_reports.energy' %></th>
                   <td><%= co2e_string(@report.calculation.energy_emissions) %></td>
                 </tr>
               <% end %>

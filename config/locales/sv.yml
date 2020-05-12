@@ -783,7 +783,7 @@ sv:
       name_and_logo: Ditt företagsnamn och logga på vår sajt
       name_and_logo_tooltip: Att visa företagsnamn och logga kan inspirera andra till att beräkna sina utsläpp och göra något åt dem. Om du ångrar dig senare så är det bara att du hör av dig!
       ok_with_showing_logo: Vi är OK med att visa vårt företagsnamn och logga på GoClimateNeutrals sajt.
-      energy_header: Energi
+      energy: Energi
       energy_intro: Ett företags energiförbrukning brukar ofta vara den största delen av ett företags klimatavtryck. Den här beräkningen tar hänsyn till de tre vanligtvis största delarna; elektricitet, värme och antal servrar som företaget använder. 
       electricity: El
       electricity_consumption: Elförbrukning
@@ -815,15 +815,15 @@ sv:
       kilometers: kilometer
       food: Mat
       food_intro: Beroende på hur mycket mat och vilken typ av mat som ett företag serverar kan mat vara en stor del av ett företags klimatavtryck.
-      meals: Antal måltider
+      meals: Måltider
       meals_tooltip: Det uppskattade antalet måltider som serverats under perioden. Det här inkluderar alla måltider som företaget betalat för.
       meals_vegetarian_share: Andel vegetariskt
       meals_vegetarian_share_tooltip: Den uppskattade andelen vegetariska eller veganska måltider. Utan en veg-first policy så är det här förmodligen runt 10% (andelen vegetarianer/veganer i Sverige enligt Djurens Rätt).
       material: Inköp
       material_intro: Elektronik har ofta en faktor 10x större klimatavtryck än andra inköp, så som möbler och kläder. Om stora mängder annat material har köpts in under perioden, som till exempel mycket möbler i samband med en flytt, kan det specificeras i övrigt-kategorin i slutet av det här formuläret.
-      purchased_computers: Köpta datorer
-      purchased_phones: Köpta telefoner/tablets
-      purchased_monitors: Köpta skärmar
+      purchased_computers: Datorer
+      purchased_phones: Telefoner/tablets
+      purchased_monitors: Skärmar
       units: st
       other: Övrigt
       other_intro: Det är svårt att få med ett företags alla utsläpp i ett standardiserat formulär. De flesta företag har andra utsläppskällor som kanske är stora, men inte så vanliga. Organiserar ditt företag event med föreläsare som flygs in från hela världen? Har du konsulter som behöver pendla långa sträckor varje vecka för att komma till sina kunder? Beräkna utsläppen och skriv in dem här nedanför. Om du behöver hjälp med beräkningarna, kontakta oss på info@goclimateneutral.org.
@@ -835,6 +835,9 @@ sv:
       calculate_button: Se mitt företags klimatavtryck
       read_more_about_calculations: Läs mer om företagskalkylatorn här
       total: Totalt
+      car: Bilresor
+      flight: Flygresor
+      average: snitt
       show:
         header: Ditt företags klimatavtryck
         result: Ditt företags klimatavtryck för perioden %{calculation_period} är %{total_emissions} ton koldioxidekvivalenter.

@@ -2,20 +2,6 @@
 
 <h1>Climate Report Invoices</h1>
 
-<div class="panel panel-default">
-  <div class="panel-body">
-    <h3>Export for generating climate report PDF's</h3>
-    <%= form_tag admin_climate_reports_path(format: :csv), method: :get do %>
-      <div class="form-group">
-        <%= label_tag :invoices, 'Invoice ID\'s' %>
-        <%= text_field_tag :invoices, '', required: '', placeholder: '2 or 2-4', class: 'form-control' %>
-        <span class="help-block">Enter either one ID (e.g. "2") or a range (e.g. "2-4")</span>
-      </div>
-      <%= submit_tag 'Export', class: 'btn btn-primary', data: { disable_with: false } %>
-    <% end %>
-  </div>
-</div>
-
 <table class="table">
   <thead>
     <tr>
@@ -48,6 +34,9 @@
           <%= link_to 'Show', [:admin, invoice] %>
           <% if invoice.project.present? %>
             &nbsp; <%= link_to 'Certificate', admin_invoice_certificates_path(type: 'climate_report_invoice', id: invoice.id, format: :pdf) %>
+          <% end %>
+          <% if invoice.project.present? %>
+            &nbsp; <%= link_to 'Report', business_climate_report_path(key: invoice.climate_report.key, format: :pdf, locale: 'sv') %>
           <% end %>
         </td>
       </tr>
