@@ -6,7 +6,7 @@ module Admin
 
     # GET /invoices
     def index
-      @invoices = ClimateReportInvoice.all.order(created_at: :desc)
+      @invoices = ClimateReportInvoice.includes(:climate_report, :project).all.order(created_at: :desc)
     end
 
     # GET /invoices/1
