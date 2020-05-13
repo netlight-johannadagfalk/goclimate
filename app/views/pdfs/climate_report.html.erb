@@ -279,7 +279,8 @@ function drawGraphs() {
   function compareBackgroundColors(times){
     var colors = [];
     backgroundColors.forEach(function addColor(color) {
-      for(var i = 0; i < times; i++){
+      var i;
+      for(i = 0; i < times; i++){
         colors.push(color);
       }
     });
@@ -458,7 +459,7 @@ function drawGraphs() {
           }
         },
         legend: {
-          display: false,
+          display: false
         },
         scales: {
           yAxes: [{
@@ -470,7 +471,7 @@ function drawGraphs() {
       }
     });
   });
-}
+};
 window.onload = function() {
     drawGraphs();
     window.status = 'ready';
