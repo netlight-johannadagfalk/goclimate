@@ -46,7 +46,8 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
         font_size: 10
       },
       cover: @cover,
-      orientation: 'portrait'
+      orientation: 'portrait',
+      window_status: 'ready'
     )
   end
 
