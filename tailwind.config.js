@@ -98,6 +98,18 @@ module.exports = {
       'big-icon': '12rem' // temporary
     }),
     fontFamily: false,
+    borderRadius: {
+      none: '0',
+      default: '0.25rem',
+      lg: '0.5rem',
+      full: '9999px'
+    },
+    boxShadow: (theme) => ({
+      default: '0 3px 10px -3px rgba(28, 70, 55, 0.2), 0 1px 3px 0px rgba(28, 70, 55, 0.1)',
+      lg: '0 15px 30px -5px rgba(28, 70, 55, 0.1), 0 10px 10px -5px rgba(28, 70, 55, 0.05)',
+      outline: `0 0 0 1px ${theme('colors.primary')}`,
+      none: 'none'
+    }),
     extend: {
       inset: { // top/right/bottom/left
         100: '100%',
@@ -119,9 +131,6 @@ module.exports = {
       zIndex: {
         '-10': '-10'
       },
-      boxShadow: (theme) => ({
-        outline: `0 0 0 3px ${theme('colors.primary')}`
-      }),
       transitionProperty: {
         default: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, border-width height width max-height max-width',
         border: 'border-width',

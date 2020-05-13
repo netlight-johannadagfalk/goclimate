@@ -209,7 +209,7 @@ sv:
   why_goclimateneutral_head: VARFÖR GOCLIMATENEUTRAL?
   forgot_your_password: Glömt ditt lösenord?
   enter_your_email_below_and_we_will_send_you: Skriv in din e-post nedan så mailar vi dig instruktioner.
-  send_me_an_email_with_instructions: Skicka ett mail till mig!
+  send_me_an_email_with_instructions: Återställ lösenord
   change_your_password: Ändra ditt lösenord
   change_your_password_by_entering_your_new_password_below: Ändra ditt lösenord genom att skriva in ditt nya lösenord här.
   change_password: Ändra lösenord
@@ -418,6 +418,9 @@ sv:
         question: Hur hanteras mina kortuppgifter?
         answer: Vi använder oss av Stripe (<a href="https://stripe.com/se">stripe.com</a>) som betalningsleverantör, som är en av de största betalningsleverantörerna på nätet. Kortuppgifterna och betalningarna hanteras helt och hållet av dem - helt krypterat förstås. Kortuppgifterna hamnar aldrig på våra eller någon annans servrar, utan hanteras endast utav Stripe.
   activerecord:
+    attributes:
+      user:
+        email: E-post
     errors:
       models:
         user:
@@ -427,7 +430,7 @@ sv:
                 blank: Oj, lösenordet ser tomt ut!
               email:
                 taken: Användaren finns redan registrerad hos oss, prova med en annan e-postadress!
-                blank: E-postfältet ser tomt ut!
+                blank: måste anges
                 invalid: E-postadressen ser konstig ut, prova igen!
               privacy_policy: 
                 accepted: Du behöver acceptera integritetspolocyn för att gå vidare
