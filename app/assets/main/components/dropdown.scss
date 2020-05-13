@@ -37,7 +37,7 @@
       }
 
       & > li > a:active {
-        @apply scale-100; /* Override buttons used in smaller breakpoints */
+        @apply translate-x-0; /* Override buttons used in smaller breakpoints */
       }
     }
   }
