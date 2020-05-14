@@ -132,9 +132,9 @@ module.exports = {
         '-10': '-10'
       },
       transitionProperty: {
-        default: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, border-width height width max-height max-width',
+        default: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, border-width, height, width, max-height, max-width',
         border: 'border-width',
-        size: 'height width max-height max-width'
+        size: 'height, width, max-height, max-width'
       }
     }
   },
