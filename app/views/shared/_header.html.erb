@@ -86,7 +86,7 @@
 <% end %>
 
 <% if notice || alert %>
-  <div class="p-4 t:px-8 text-center bg-primary text-white" role="alert">
+  <div id="alert" class="p-4 t:px-8 text-center bg-primary text-white" role="alert">
     <% if notice %>
       <p><span class="fa fa-exclamation-circle"></span> <%= notice %></p>
     <% elsif alert %>
@@ -97,7 +97,7 @@
     <script>
       $(document).ready(function() {
         setTimeout(function() {
-          $(".alert").slideUp(1000);
+          $("#alert").slideUp(1000);
         }, 5000);
       });
     </script>

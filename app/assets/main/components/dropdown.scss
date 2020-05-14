@@ -10,7 +10,7 @@
         py-1
         border border-0 rounded
         text-primary text-left bg-white
-        shadow-md;
+        shadow;
 
       .dropdown-toggler:checked ~ & {
         @apply block;
@@ -37,7 +37,7 @@
       }
 
       & > li > a:active {
-        @apply scale-100; /* Override buttons used in smaller breakpoints */
+        @apply translate-x-0; /* Override buttons used in smaller breakpoints */
       }
     }
   }

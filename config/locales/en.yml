@@ -209,7 +209,7 @@ en:
   why_goclimateneutral_head: WHY GOCLIMATENEUTRAL?
   forgot_your_password: Forgot your password?
   enter_your_email_below_and_we_will_send_you: Enter your email below and we will send you an email with instructions.
-  send_me_an_email_with_instructions: Send me reset password instructions!
+  send_me_an_email_with_instructions: Reset password
   change_your_password: Change your password
   change_your_password_by_entering_your_new_password_below: Change your password by entering your new password below.
   change_password: Change password
@@ -409,7 +409,6 @@ en:
                 blank: Wops, the password looks like it´s empty!
               email:
                 taken: The email address already exists, try another one!
-                blank: The email-field looks empty!
                 invalid: The email looks incorrect, try again!
               privacy_policy: 
                 accepted: You need to accept the pricacy policy
