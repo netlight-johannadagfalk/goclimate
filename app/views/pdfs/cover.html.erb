@@ -1,0 +1,39 @@
+<style>
+  body {
+    font-family: sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  h1.super {
+    font-size: 80px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    font-weight: 400;
+  }
+  p {
+    font-size: 18px;
+    max-width: 750px;
+  }
+  .content {
+    padding: 0px 80px;
+    width: 800px;
+  }
+  .logo {
+    text-align: right;
+  }
+</style>
+<div class="content">
+  <div class="logo">
+  <%= image_tag wicked_pdf_file_base64('app/assets/images/goclimateneutral_logo_turkos.png'), size: "200x200" %>
+  </div>
+
+  <h1 class="super">Klimatrapport <br><%= @climate_report.company_name %></h1>
+
+  <p style="position: absolute; top: 1200px; width: 400px">
+    Tidsperiod: <%= @climate_report.calculation_period %><br>
+    Uförd: <%= @climate_report.created_at.to_date %><br>
+    Klimatpartner: GoClimateNeutral<br>
+    Kontaktperson: Alexandra Palmquist<br>
+    E-mail: alexandra@goclimateneutral.org
+  </p>
+</div>

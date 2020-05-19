@@ -14,7 +14,7 @@
     <p class="lead"><%= description(t('enter_your_email_below_and_we_will_send_you')) %></p>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-horizontal" }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= render "devise/shared/error_messages_old", resource: resource %>
 
       <div class="form-group">
         <div class="col-sm-1"></div>

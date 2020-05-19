@@ -1,19 +1,11 @@
 .section-gutter {
-  @apply -m-2;
+  @apply -m-4;
 
   & > * {
-    @apply p-2;
+    @apply p-4;
   }
 
-  @screen t {
-    @apply -m-4;
-
-    & > * {
-      @apply p-4;
-    }
-  }
-
-  @screen d {
+  @screen d-md {
     @apply -m-8;
 
     & > * {

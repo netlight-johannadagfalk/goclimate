@@ -1,0 +1,18 @@
+.toggler {
+  @apply hidden;
+
+  &:checked ~ .toggler-checked\:h-screen,
+  &:checked ~ * .toggler-checked\:h-screen {
+    @apply h-screen;
+  }
+
+  &:checked ~ .toggler-checked\:scale-y-100,
+  &:checked ~ * .toggler-checked\:scale-y-100 {
+    @apply scale-y-100;
+  }
+
+  &:checked ~ .toggler-checked\:opacity-100,
+  &:checked ~ * .toggler-checked\:opacity-100 {
+    @apply opacity-100;
+  }
+}

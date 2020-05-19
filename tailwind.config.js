@@ -73,6 +73,7 @@ module.exports = {
       8: '2rem',
       10: '2.5rem',
       12: '3rem',
+      14: '3.5rem',
       20: '5rem'
     },
     fontWeight: {
@@ -92,18 +93,35 @@ module.exports = {
       xl: ['1.75rem', theme('lineHeight.8')],
       '2xl': ['2.25rem', theme('lineHeight.10')],
       '3xl': ['2.75rem', theme('lineHeight.12')],
-      '4xl': ['4.25rem', theme('lineHeight.20')],
+      '4xl': ['3.25rem', theme('lineHeight.14')],
+      '5xl': ['4.25rem', theme('lineHeight.20')],
       'big-icon': '12rem' // temporary
     }),
     fontFamily: false,
+    borderRadius: {
+      none: '0',
+      default: '0.25rem',
+      lg: '0.5rem',
+      full: '9999px'
+    },
+    boxShadow: (theme) => ({
+      default: '0 3px 10px -3px rgba(28, 70, 55, 0.2), 0 1px 3px 0px rgba(28, 70, 55, 0.1)',
+      lg: '0 15px 30px -5px rgba(28, 70, 55, 0.1), 0 10px 10px -5px rgba(28, 70, 55, 0.05)',
+      outline: `0 0 0 1px ${theme('colors.primary')}`,
+      none: 'none'
+    }),
     extend: {
       inset: { // top/right/bottom/left
         100: '100%',
         '-1/2': '-50%'
       },
-      maxHeight: {
-        0: 0
+      width: {
+        'max-content': 'max-content'
       },
+      maxHeight: (theme) => ({
+        0: 0,
+        ...theme('spacing')
+      }),
       maxWidth: {
         xs: '15rem',
         '1/4': '25%',
@@ -113,12 +131,10 @@ module.exports = {
       zIndex: {
         '-10': '-10'
       },
-      boxShadow: (theme) => ({
-        outline: `0 0 0 3px ${theme('colors.primary')}`
-      }),
       transitionProperty: {
-        default: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, border-width',
-        border: 'border-width'
+        default: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, border-width, height, width, max-height, max-width',
+        border: 'border-width',
+        size: 'height, width, max-height, max-width'
       }
     }
   },

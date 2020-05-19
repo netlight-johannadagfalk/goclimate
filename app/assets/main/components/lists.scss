@@ -1,0 +1,5 @@
+.list-bullet li::before {
+  content: '\2022';
+  width: 1em;
+  display: inline-block;
+}

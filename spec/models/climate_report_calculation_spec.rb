@@ -395,4 +395,68 @@ RSpec.describe ClimateReportCalculation do
       validate_presence_of :other_emissions
     end
   end
+
+  describe '#scope_2_emissions' do
+    it 'returns the sum of scope 2 emissions' do
+      expect(calculation.scope_2_emissions).to eq(40)
+    end
+  end
+
+  describe '#scope_3_emissions' do
+    it 'returns the sum of scope 3 emissions' do
+      expect(calculation.scope_3_emissions).to eq(9985)
+    end
+  end
+
+  describe '#scope_3_percentage' do
+    it 'returns the sum of scope 3 percentage' do
+      expect(calculation.scope_3_percentage).to eq(BigDecimal(9985) / 10_025 * 100)
+    end
+  end
+
+  describe '#scope_2_percentage' do
+    it 'returns the sum of scope 2 percentage' do
+      expect(calculation.scope_2_percentage).to eq(BigDecimal(40) / 10_025 * 100)
+    end
+  end
+
+  describe '#get_even_percentages' do
+    it 'returns a correctly rounded hash' do
+      data = { "a": 0.5, "b": 0.51, "c": 98.9 }
+      expect(calculation.get_even_percentages(data)).to eq({ "a": 0, "b": 1, "c": 99 })
+    end
+
+    it 'returns a correctly rounded hash when max is provided' do
+      data = { "a": 0.5, "b": 0.51, "c": 8.9 }
+      expect(calculation.get_even_percentages(data, 10)).to eq({ "a": 0, "b": 1, "c": 9 })
+    end
+  end
+
+  describe '#categories' do
+    it 'returns the category fields with emissions data' do
+      categories = [
+        { emissions: 5885, name: 'energy', percentage: 59, scope: [2, 3] },
+        { emissions: 2013, name: 'business_trips', percentage: 20, scope: [3] },
+        { emissions: 110, name: 'meals', percentage: 1, scope: [3] },
+        { emissions: 1980, name: 'material', percentage: 20, scope: [3] },
+        { emissions: 37, name: 'other', percentage: 0, scope: [3] }
+      ]
+
+      expect(calculation.categories).to eq(categories)
+    end
+  end
+
+  describe '#emissions' do
+    it 'returns the emission sources fields with emissions data' do
+      emission_sources = {
+        category: 'energy',
+        emissions: 33,
+        name: 'electricity_consumption',
+        scope: [2],
+        percentage: 0
+      }
+
+      expect(calculation.emissions).to include(emission_sources)
+    end
+  end
 end

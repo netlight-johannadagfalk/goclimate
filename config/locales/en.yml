@@ -59,7 +59,7 @@ en:
   number_of_ton_that_has_been_offset: Number of ton that has been offset
   you_can_read_more_details_about_our_costs_here: You can read more details about our costs here
   questions_or_comments_contact_us: Questions or Comments? Please drop us a line at
-  general_questions_html: 'For questions about GoClimateNeutral or if you have ideas on how we can improve the site, please drop us a line at <a href="mailto:hello@goclimateneutral.org">hello@goclimateneutral.org</a> or give us a call at <a href="tel:+46735013074">+46735013074</a>.'
+  general_questions_html: 'For questions about GoClimateNeutral or if you have ideas on how we can improve the site, please drop us a line at <a href="mailto:hello@goclimateneutral.org">hello@goclimateneutral.org</a> or give us a call at <a href="tel:+46706084374">+46706084374</a>.'
   general_questions_press_html: If you have PR-related questions send us an email at <a href="mailto:press@goclimateneutral.org">press@goclimateneutral.org</a>
   general_questions_facebook_html: 'You can find us on Facebook here: <a href="https://www.facebook.com/GoClimateNeutral" target="_blank">GoClimateNeutral</a>'
   general_questions_twitter_html: 'You can find us on twitter here: <a href="https://twitter.com/goclimateneutrl" target="_blank">@goclimateneutrl</a>'
@@ -209,7 +209,7 @@ en:
   why_goclimateneutral_head: WHY GOCLIMATENEUTRAL?
   forgot_your_password: Forgot your password?
   enter_your_email_below_and_we_will_send_you: Enter your email below and we will send you an email with instructions.
-  send_me_an_email_with_instructions: Send me reset password instructions!
+  send_me_an_email_with_instructions: Reset password
   change_your_password: Change your password
   change_your_password_by_entering_your_new_password_below: Change your password by entering your new password below.
   change_password: Change password
@@ -409,7 +409,6 @@ en:
                 blank: Wops, the password looks like it´s empty!
               email:
                 taken: The email address already exists, try another one!
-                blank: The email-field looks empty!
                 invalid: The email looks incorrect, try again!
               privacy_policy: 
                 accepted: You need to accept the pricacy policy
@@ -773,7 +772,7 @@ en:
       name_and_logo: Your business name and logo on our site
       name_and_logo_tooltip: Showing your logo might help convince others that it's a good idea to calculate and offset their climate footprint too. And if you change your mind later, just drop us a line!
       ok_with_showing_logo: We're OK with our name and logo being shown on the GoClimateNeutral site.
-      energy_header: Energy
+      energy: Energy
       energy_intro: The energy consumption of a business is often the largest source of a service business climate footprint. This calculator takes the three most commonly largest energy consuming sources into account; electricity, heating and the amount of servers running.
       electricity: Electricity
       electricity_consumption: Electricity consumption
@@ -825,6 +824,7 @@ en:
       calculate_button: See my business footprint
       read_more_about_calculations: Read more about the calculations here
       total: Total
+      average: average
       show:
         header: Your business footprint
         result: Your business footprint for the reporting period %{calculation_period} is %{total_emissions} tonnes carbon dioxide equivalents.
