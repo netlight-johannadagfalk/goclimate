@@ -10,6 +10,15 @@ Rails.application.routes.draw do
   match '(*path)', to: redirect { |_, request| "//www.goclimateneutral.org/us#{request.fullpath}" },
                    via: [:get, :post], constraints: { host: 'en.goclimateneutral.org' }
 
+  # Redirect any other domain to our main one in production. Since we're
+  # catching all potential domains, do a temporary redirect as to not
+  # accidentally cache redirects for domains we're migrating to or
+  # similar. Subdomains of the primary domains are also not caught.
+  if ENV['HEROKU_ENV'] == 'production'
+    match '(*path)', to: redirect(status: 302) { |_, request| "//www.goclimateneutral.org#{request.fullpath}" },
+                     via: [:get, :post], constraints: ->(req) { !req.host.include?('goclimateneutral.org') }
+  end
+
   # API. Available on subdomain `api.` in production and under path `/api` in other environments.
   api = proc do
     namespace 'api', path: '', defaults: { subdomain: ENV['HEROKU_ENV'] == 'production' ? 'api' : false } do
