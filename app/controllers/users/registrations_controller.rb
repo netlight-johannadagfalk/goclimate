@@ -48,6 +48,7 @@ module Users
       elsif @manager.payment_verification_required?
         render_verification_required_json
       else
+        WelcomeMailer.with(email: @user.email).welcome_email.deliver_now
         render_success_json
       end
     end

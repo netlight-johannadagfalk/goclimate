@@ -19,7 +19,7 @@ RSpec.describe SubscriptionMailer, type: :mailer do
     end
 
     it 'renders the sender email' do
-      expect(mail.from).to eql(['info@goclimateneutral.org'])
+      expect(mail.from).to eql(['hello@goclimateneutral.org'])
     end
 
     it 'sets Sendgrid unsubscribe group' do

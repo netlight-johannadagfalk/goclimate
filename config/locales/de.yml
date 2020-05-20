@@ -57,7 +57,7 @@ de:
   general_questions_html: >-
     Wenn Sie Fragen zu GoClimateNeutral oder Ideen haben, wie wir unsere Seite
     verbessern können, schreiben Sie uns eine E-Mail an <a
-    href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a> oder
+    href="mailto:hello@goclimateneutral.org">hello@goclimateneutral.org</a> oder
     rufen Sie uns an <a href="tel:+46706084374">+46706084374</a>
   general_questions_press_html: >-
     Presseanfragen können Sie gerne an <a
@@ -818,7 +818,7 @@ de:
         viele Emissionen wie möglich und kompensieren Sie den Rest. Unser
         Rechner ist für kleinere Dienstleistungsunternehmen ohne eigene
         physische Produktion konzipiert. Fragen? Kontaktieren Sie uns unter <a
-        href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a>!
+        href="mailto:hello@goclimateneutral.org">hello@goclimateneutral.org</a>!
       calculate_footprint_button: Fußabdruck meines Unternehmens berechnen
       customers_we_work_with: Einige unserer wundervollen Kunden und Partner
       offset_employees: Kompensieren Sie die Emissionen Ihrer Mitarbeiter
@@ -837,7 +837,7 @@ de:
       other_offsetting_html: >
         Wir können Ihnen bei Klimabilanzberechnungen, einmaligen Kompensationen
         und technischen Integrationen helfen. Kontaktieren Sie uns unter <a
-        href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a>,
+        href='mailto:hello@goclimateneutral.org'>hello@goclimateneutral.org</a>,
         um mehr zu erfahren.
       number_of_employees: 'Anzahl Mitarbeiter:'
       your_email: 'Ihre E-Mail:'
@@ -1024,7 +1024,7 @@ de:
         Schweden ansässige Unternehmen verfügbar. Das bedeutet, dass wir
         schwedische Unternehmen mit Niederlassungen im Ausland leider auch nicht
         unterstützen können. Kontaktieren Sie uns unter
-        info@goclimateneutral.org, wenn Sie an Berechnungen für Ihre Büros im
+        hello@goclimateneutral.org, wenn Sie an Berechnungen für Ihre Büros im
         Ausland interessiert sind - wir helfen Ihnen gerne weiter!
       sweden: Schweden
       number_of_employees: Anzahl Mitarbeiter
@@ -1169,7 +1169,7 @@ de:
         werden? Haben Sie Berater, die jede Woche lange Wege zurücklegen müssen,
         um zu Ihren Kunden zu gelangen? Berechnen Sie dieses  Emissionen, indem
         Sie sie unten eingeben. Wenn Sie Hilfe bei der Kalkulation benötigen,
-        können Sie sich gerne schreiben: info@goclimateneutral.org 
+        können Sie sich gerne schreiben: hello@goclimateneutral.org
       other_emissions: Andere Emissionen
       specify_other_emissions: Spezifizieren Sie die anderen Emissionen
       contact: Kontakt
@@ -1213,7 +1213,7 @@ de:
           Wir werden uns mit Ihnen in Verbindung setzen, wenn Ihr nächster
           Berichtszeitraum zu Ende geht und es an der Zeit ist, Ihren Fußabdruck
           neu zu berechnen. Wenn Sie Fragen zur Bestellung haben, kontaktieren
-          Sie uns bitte unter info@goclimateneutral.org
+          Sie uns bitte unter hello@goclimateneutral.org
         reduce_header: Können Sie Ihre Emissionen noch stärker reduzieren?
         reduce_body: >-
           Bitte denken Sie noch einmal darüber nach, ob Sie noch etwas tun

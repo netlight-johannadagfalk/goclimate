@@ -59,7 +59,7 @@ sv:
   number_of_ton_that_has_been_offset: Antal ton CO2 som kompenserats för
   you_can_read_more_details_about_our_costs_here: Du kan även se detaljer kring våra kostnader här
   questions_or_comments_contact_us: Frågor eller synpunkter? Hör gärna av dig till
-  general_questions_html: 'Om du har frågor om GoClimateNeutral eller har idéer om hur vi kan förbättra tjänsten, hör gärna av dig till oss på: <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a> eller ring oss på <a href="tel:+46706084374">+46706084374</a>.'
+  general_questions_html: 'Om du har frågor om GoClimateNeutral eller har idéer om hur vi kan förbättra tjänsten, hör gärna av dig till oss på: <a href="mailto:hello@goclimateneutral.org">hello@goclimateneutral.org</a> eller ring oss på <a href="tel:+46706084374">+46706084374</a>.'
   general_questions_press_html: Har du pressfrågor eller vill ha tag på ytterligare material, maila <a href="mailto:press@goclimateneutral.org">press@goclimateneutral.org</a>
   general_questions_facebook_html: 'Du hittar oss på facebook här: <a href="https://www.facebook.com/GoClimateNeutral" target="_blank">GoClimateNeutral</a>.'
   general_questions_twitter_html: Twittra gärna med oss på kontot <a href="https://twitter.com/goclimateneutrl" target="_blank">@goclimateneutrl</a>.
@@ -489,7 +489,7 @@ sv:
       im_interested: Kontakta mig!
       we_will_contact_you_shortly_html: Vi kontaktar dig inom kort på <b>%{email}</b> med information om nästa steg! Vi hörs!
       other_offsetting: Övriga tjänster
-      other_offsetting_html: "Vi kan hjälpa till med utsläppsberäkningar, enskilda klimatkompensationer och tekniska integrationer. Hör av dig till <a href='mailto:info@goclimateneutral.org'>info@goclimateneutral.org</a> så berättar vi mer."
+      other_offsetting_html: "Vi kan hjälpa till med utsläppsberäkningar, enskilda klimatkompensationer och tekniska integrationer. Hör av dig till <a href='mailto:hello@goclimateneutral.org'>hello@goclimateneutral.org</a> så berättar vi mer."
       number_of_employees: "Antal anställda:"
       your_email: "Din e-post:"
   number:
@@ -770,7 +770,7 @@ sv:
       general_information: Företagsinformation
       company_name: Företagsnamn
       country: Land
-      country_tooltip: Vår företagskalkylator är bara tillgänglig för svenska företag än så länge. Det betyder att vi tyvärr inte kan utföra träffsäkra automatiska beräkningar för företag med kontor i andra länder. Kontakta gärna oss på info@goclimateneutral.org om du är intresserad av en beräkning för era kontor i andra länder - vi hjälper gärna till!
+      country_tooltip: Vår företagskalkylator är bara tillgänglig för svenska företag än så länge. Det betyder att vi tyvärr inte kan utföra träffsäkra automatiska beräkningar för företag med kontor i andra länder. Kontakta gärna oss på hello@goclimateneutral.org om du är intresserad av en beräkning för era kontor i andra länder - vi hjälper gärna till!
       sweden: Sverige
       number_of_employees: Antal anställda
       number_of_employees_tooltip: "Antal heltidsanställda eller motsvarande. Det här använder vi för att uppskatta energianvändning på kontoren om du inte har några exakta kWh-siffror tillgängligt och för att beräkna utsläpp per anställd och andra statistiska värden. Exempel: 2 anställda som jobbar heltid och 2 anställda som jobbar 50% motsvarar 3 heltidsanställda."
@@ -829,7 +829,7 @@ sv:
       purchased_monitors: Skärmar
       units: st
       other: Övrigt
-      other_intro: Det är svårt att få med ett företags alla utsläpp i ett standardiserat formulär. De flesta företag har andra utsläppskällor som kanske är stora, men inte så vanliga. Organiserar ditt företag event med föreläsare som flygs in från hela världen? Har du konsulter som behöver pendla långa sträckor varje vecka för att komma till sina kunder? Beräkna utsläppen och skriv in dem här nedanför. Om du behöver hjälp med beräkningarna, kontakta oss på info@goclimateneutral.org.
+      other_intro: Det är svårt att få med ett företags alla utsläpp i ett standardiserat formulär. De flesta företag har andra utsläppskällor som kanske är stora, men inte så vanliga. Organiserar ditt företag event med föreläsare som flygs in från hela världen? Har du konsulter som behöver pendla långa sträckor varje vecka för att komma till sina kunder? Beräkna utsläppen och skriv in dem här nedanför. Om du behöver hjälp med beräkningarna, kontakta oss på hello@goclimateneutral.org.
       other_emissions: Övriga utsläpp
       specify_other_emissions: Beskriv övriga utsläpp
       contact: Kontakt
@@ -856,7 +856,7 @@ sv:
         invoice_email: E-post för faktura (frivilligt)
         invoice_email_text: Skriv in en e-postadress om du vill få fakturan via e-post
         order: Beställ
-        well_get_in_touch_html: Vi hör av oss när nästa rapporteringsperiod håller på att ta slut om ni vill uppdatera ert klimatavtryck då. Om du har några frågor om klimatkompensation eller ordern, hör gärna av dig till <a href="mailto:info@goclimateneutral.org">info@goclimateneutral.org</a>!
+        well_get_in_touch_html: Vi hör av oss när nästa rapporteringsperiod håller på att ta slut om ni vill uppdatera ert klimatavtryck då. Om du har några frågor om klimatkompensation eller ordern, hör gärna av dig till <a href="mailto:hello@goclimateneutral.org">hello@goclimateneutral.org</a>!
         reduce_header: Kan ni minska era utsläpp mer?
         reduce_body: Fundera gärna igenom en extra gång om det är något av era utsläpp som ni kan minska. Vi uppmanar alla företag att ta ansvar för sina utsläpp genom att klimatkompensera, men ännu viktigare är att minska sina utsläpp så mycket man kan.
         safety_factor: säkerhetsfaktor
@@ -886,6 +886,18 @@ sv:
         thank_you: Tack för att du gjort en klimatuträkning hos oss!
         link_description: "För att du enkelt ska kunna dela dina resultat med dina kollegor och hitta tillbaka till dem senare kommer här en länk till resultaten:"
         reply_to_this_email: Svara gärna på det här mailet om du har några frågor så hjälper vi mer än gärna till!
+    welcome:
+      from: Tove på GoClimateNeutral
+      subject: Välkommen till GoClimateNeutral!
+      welcome_to_gcn: Hej!
+      big_thanks: Stort tack för att du är med och bidrar till en hållbar värld!
+      you_now_support: Du är nu med och stöttar certifierade klimatprojekt som utöver klimatnyttan även bidrar till annan hållbar utveckling runt om i världen. Heja dig!
+      regardless_of_how_much: Oavsett hur mycket du redan kan och gör för klimatet så hoppas vi att du blir inspirerad och hittar nya vägar till hur vi tillsammans kan minska våra klimatutsläpp. För inspiration och tips, följ oss gärna på %{facebook}, %{instagram}, %{twitter} och kolla in vår %{blog}.
+      we_are_many: Vi är många som vill göra något bra för klimatet, och gemenskapen kring det är viktig för oss. Därför bjuder vi då och då in till meetups och demonstrationer, så att vi kan ses och prata om klimatet och vad vi borde göra för att stoppa klimatförändringarna. Inbjudningar till events och information om hur det går för oss kommer via vårt nyhetsbrev, ca 4-6 gånger om året.
+      if_you_have_any_questions: Om du undrar över något, vill ge återkoppling eller bara säga hej, hör gärna av dig till mig på tove@goclimateneutral.org!
+      thank_you: Tack för att du är med och gör skillnad!
+      best_regards: Vänliga hälsningar,
+      the_gcn_team: Tove på GoClimateNeutral
 
   helpers:
     application:
