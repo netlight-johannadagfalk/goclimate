@@ -67,7 +67,7 @@ sv:
   about_us_intro: GoClimateNeutral grundades 2017 med enda målet att göra det enklare att leva ett klimatneutralt liv. Tillsammans med dig vill vi stoppa det största hotet mot både mänskligheten och vår planet – klimatförändringarna.
   about_us_intro_2: Vi tacklar detta på det mesta effektiva, roliga och hållbara sätt möjligt, med total finansiell transparens så att du lätt kan se var dina pengar gör skillnad. Vi stöttar endast projekt som är Gold Standard certifierade, för att säkerställa att ditt bidrag gör största möjliga skillnad för klimatet.
   about_us_why_do_we_exist: Varför finns GoClimateNeutral?
-  about_us_why_do_we_exist_text: En dag kommer våra barn ställa oss till svars för vad vi gjorde eller varför vi inte gjorde mer åt klimatförändringarna trots att vi var medvetna om att situationen var så allvarlig. Det är den största anledningen till att vi skapade GoClimateNeutral. Den dag våra barn frågar oss om vår medverkan vill vi kunna svara att vi gjorde allt vi bara kunde för att bromsa klimatförändringarna för att ge dem och deras generation en bättre framtid. 
+  about_us_why_do_we_exist_text: En dag kommer våra barn ställa oss till svars för vad vi gjorde eller varför vi inte gjorde mer åt klimatförändringarna trots att vi var medvetna om att situationen var så allvarlig. Det är den största anledningen till att vi skapade GoClimateNeutral. Den dag våra barn frågar oss om vår medverkan vill vi kunna svara att vi gjorde allt vi bara kunde för att bromsa klimatförändringarna för att ge dem och deras generation en bättre framtid.
   about_us_how_do_we_stop_climate_change: Hur bromsar vi klimatförändringar?
   about_us_how_do_we_stop_climate_change_text: För att hejda klimatförändringarna behöver så många som möjligt bli klimatneutrala (eller ännu bättre – klimatpositiva) nu. Det bästa tillvägagångssättet är att minska våra egna fotavtryck så mycket det bara går samtidigt som vi klimatkompenserar för resterande.
   about_us_how_do_we_stop_climate_change_text_2: GoClimateNeutral skapades i syfte att göra ovanstående så enkelt som möjligt – ge tips om hur vi alla kan minska vår egen klimatpåverkan och erbjuda möjligheten att klimatkompensera för de fotavtryck vi personligen orsakar. Vi tror att det bästa sättet att få människor att klimatkompensera för sin livsstil är att göra det så enkelt som möjligt. Vi är övertygade om att klimatförändringarna kan stoppas – om vi är tillräckligt många som agerar och om vi gör det nu.
@@ -226,7 +226,7 @@ sv:
   months:
     one: månad
     other: månader
-  x_months: 
+  x_months:
     one: 1 månad
     other: "%{count} månader"
   together_we_have_offset: Vi har nu minskat världens klimatutsläpp med
@@ -364,7 +364,7 @@ sv:
         answer: "<img alt='' class='aligncenter wp-image-227 size-large' src='https://www.goclimateneutral.org/blog/wp-content/uploads/2017/08/gold_standard_CDM-1024x626.png' /><br>
         För att vara säker på att pengarna gör nytta finns olika standarder för klimatkompensation som CDM, Gold Standard, Plan Vivo, VCS och Fair Trade som utvärderar olika parametrar i projekt beroende på vad de bidrar med.
         <br><br>
-        Det hela är ganska snårigt då vissa projekt, framförallt trädplanterings-projekt och CDM-projekt, vid upprepade granskningar visat sig inte hålla vad de lovar, och i vissa fall till och med haft negativa konsekvenser för lokalbefolkningen och miljön där projektet har genomförts. 
+        Det hela är ganska snårigt då vissa projekt, framförallt trädplanterings-projekt och CDM-projekt, vid upprepade granskningar visat sig inte hålla vad de lovar, och i vissa fall till och med haft negativa konsekvenser för lokalbefolkningen och miljön där projektet har genomförts.
         <br><br>
         Det är tydligt att man inte kan välja vilket klimatprojekt som helst att kompensera på grund av detta. Vi investerar därför bara i de mest trovärdiga och hårt granskade projekten, projekt som både uppfyller FNs krav för klimatprojekt och dessutom har certifieringen Gold Standard (som bland annat WWF står bakom). Då har man FNs alla medlemsstater och ca 90 miljöorganisationer i ryggen. Därtill tredjepartsverifieras alla dessa projekt av bland annat TÜV och DNV och alla deras protokoll är offentliga och följer projekten under hela projekttiden.
         <br><br>
@@ -390,12 +390,12 @@ sv:
         answer: "Ja. Om du är osäker, läs mer här: <a href='https://www.bloomberg.com/graphics/2015-whats-warming-the-world/' target='_blank'>https://www.bloomberg.com/graphics/2015-whats-warming-the-world/</a>"
       q12:
         question: Hindrar inte klimatkompensation en omställning till ett hållbart samhälle?
-        answer: "Nej, precis tvärt om faktiskt! Vi tror att klimatkompensation är ett utmärkt första steg många kan ta för att sedan hjälpa till och öka hastigheten att ställa om till ett hållbart samhälle. 
+        answer: "Nej, precis tvärt om faktiskt! Vi tror att klimatkompensation är ett utmärkt första steg många kan ta för att sedan hjälpa till och öka hastigheten att ställa om till ett hållbart samhälle.
         <br><br>
         Beteendeforskning har visat att om man kan få människor att ta ett första – men inte obetydligt – steg i rätt riktning, exempelvis för klimatet via klimatkompensation, så är det väldigt mycket större sannolikhet att de personerna tar fler och större steg i samma riktning senare. Detta kallas foot-in-the-door-technique och är en stark bidragande orsak till att vi vill göra det så enkelt som möjligt för så många som möjligt att komma igång och göra något positivt för klimatet. Vi har sett många exempel på och är övertygade om att de allra flesta som registrerar sig på tjänsten, även vill ta nästa steg och hjälpa till att öka hastigheten på omställningen till ett hållbart samhälle."
-      q13: 
+      q13:
         question: Har klimatkompensation även andra positiva effekter?
-        answer: Ja, det har visat sig att företag som klimatkompenserar även minskar sina utsläpp mer än företag som inte klimatkompenserar. Vi tror att klimatkompensation kan ha samma effekt på privatpersoner – att privatpersoner som klimatkompenserar även minskar sin klimatbelastning på sikt tack vare ändrade vanor. När man registrerat sig på vår tjänst så försöker vi inspirera och uppmuntra till att minska ens klimatpåverkan. 
+        answer: Ja, det har visat sig att företag som klimatkompenserar även minskar sina utsläpp mer än företag som inte klimatkompenserar. Vi tror att klimatkompensation kan ha samma effekt på privatpersoner – att privatpersoner som klimatkompenserar även minskar sin klimatbelastning på sikt tack vare ändrade vanor. När man registrerat sig på vår tjänst så försöker vi inspirera och uppmuntra till att minska ens klimatpåverkan.
       q14:
         question: Är CO2 farligt?
         answer: Nej. Vi behöver CO2 för att leva på jorden. Men när vi pumpar upp miljontals ton CO2 från jordens inre varje dag och släpper ut i atmosfären så har det visat sig att det får konsekvenser i form av att vår planet blir varmare. Och det i sin tur kommer att leda till torka, vattenbrist, svält och eventuellt krig. Naturskyddsföreningen tror att vi kommer ha 200 miljoner klimatflyktingar 2050.
@@ -432,7 +432,7 @@ sv:
                 taken: Användaren finns redan registrerad hos oss, prova med en annan e-postadress!
                 blank: måste anges
                 invalid: E-postadressen ser konstig ut, prova igen!
-              privacy_policy: 
+              privacy_policy:
                 accepted: Du behöver acceptera integritetspolocyn för att gå vidare
   climate_neutral_users_right_now: klimatneutrala användare just nu
   ton_co2_less_in_atmosphere: ton CO2 mindre i atmosfären
@@ -467,7 +467,7 @@ sv:
       go_climate_neutral: Bli klimatneutral
     how_it_works:
       describe_your_lifestyle_text: Använd vår kalkylator för att beräkna ditt ungefärliga klimatavtryck.
-      sign_up_text: Registrera dig för att kompensera för ditt klimatavtryck. 
+      sign_up_text: Registrera dig för att kompensera för ditt klimatavtryck.
       save_our_planet_header: 3. Rädda vår planet
       save_our_planet_text: Bli en av alla oss som vill vara med och stoppa klimatförändringarna.
     form:
@@ -504,7 +504,7 @@ sv:
     gift_card_mailer:
       thank_you_for_buying_gift_card: Tack för att du köpt ett gåvokort!
       you_have_purchased_a_gift_card_with: Du har köpt ett gåvokort på
-      climate_neutral_months: 
+      climate_neutral_months:
         one: månads klimatneutralt liv
         other: månaders klimatneutralt liv
       you_can_find_the_gift_card_as_an_attachmtent_to_this_mail: Vi skickar med gåvokortet som en bilaga till det här mailet. Hör gärna av dig om du har några frågor genom att svara på det här mailet. Tack igen, du är bäst!
@@ -558,7 +558,7 @@ sv:
       thank_you:
         download_the_gift_card_here: Ladda ner gåvokortet här
         download_receipt_here: Ladda ner kvitto här
-        you_have_purchased_a_gift_card_with_x_climate_neutral_months: 
+        you_have_purchased_a_gift_card_with_x_climate_neutral_months:
           one: Du har köpt ett gåvokort på 1 månads klimatneutralt liv
           other: "Du har köpt ett gåvokort på %{count} månaders klimatneutralt liv"
     offset_certificates:
@@ -672,7 +672,7 @@ sv:
           continue_button: "Fortsätt till %{region}"
         sign_up: Registrera
       footer:
-        short_intro: GoClimateNeutral grundades 2017 med enda målet att göra det enklare att leva ett klimatneutralt liv. 
+        short_intro: GoClimateNeutral grundades 2017 med enda målet att göra det enklare att leva ett klimatneutralt liv.
         jobs: 'Jobb'
         headers:
           make_a_difference: Gör skillnad
@@ -766,7 +766,7 @@ sv:
   business:
     climate_reports:
       business_footprint_header: Beräkna ditt företags klimatavtryck
-      business_footprint_intro: Att beräkna ditt företags klimatavtryck är det första steget mot att ta ansvar för de klimatutsläpp som ni orsakar. Efter att du har fyllt i det här formuläret får du information om era totala utsläpp, som ni sedan kan välja att kompensera för i certifierade klimatprojekt. 
+      business_footprint_intro: Att beräkna ditt företags klimatavtryck är det första steget mot att ta ansvar för de klimatutsläpp som ni orsakar. Efter att du har fyllt i det här formuläret får du information om era totala utsläpp, som ni sedan kan välja att kompensera för i certifierade klimatprojekt.
       general_information: Företagsinformation
       company_name: Företagsnamn
       country: Land
@@ -787,7 +787,7 @@ sv:
       name_and_logo_tooltip: Att visa företagsnamn och logga kan inspirera andra till att beräkna sina utsläpp och göra något åt dem. Om du ångrar dig senare så är det bara att du hör av dig!
       ok_with_showing_logo: Vi är OK med att visa vårt företagsnamn och logga på GoClimateNeutrals sajt.
       energy: Energi
-      energy_intro: Ett företags energiförbrukning brukar ofta vara den största delen av ett företags klimatavtryck. Den här beräkningen tar hänsyn till de tre vanligtvis största delarna; elektricitet, värme och antal servrar som företaget använder. 
+      energy_intro: Ett företags energiförbrukning brukar ofta vara den största delen av ett företags klimatavtryck. Den här beräkningen tar hänsyn till de tre vanligtvis största delarna; elektricitet, värme och antal servrar som företaget använder.
       electricity: El
       electricity_consumption: Elförbrukning
       electricity_consumption_tooltip: Elen som förbrukas under tidsperioden i kWh. Oftast finns siffran med på elräkningen för perioden. Om elen är inkluderad i hyran kan du fråga din hyresvärd om de mäter er förbrukning separat eller om de kan uppskatta er förbrukning. Om det inte är möjligt kan ni använda våra snittvärden genom att använda kryssrutan nedanför fältet.
@@ -864,7 +864,7 @@ sv:
         new_based_on_this: Gör en ny beräkning baserad på värdena i den här rapporten
     climate_report_invoices:
       thank_you:
-        thank_you_text: Genom att kompensera för ditt företags klimatutsläpp, så tar du ansvar för det avtryck som ditt företag har på klimatet. 
+        thank_you_text: Genom att kompensera för ditt företags klimatutsläpp, så tar du ansvar för det avtryck som ditt företag har på klimatet.
         well_be_in_touch: Vi hör av oss inom kort för att leverera din klimatrapport och ditt certifikat på klimatkompensationen.
         thanks_again: Tack igen!
 
