@@ -11,9 +11,18 @@ module Admin
       @new_users_mean = number_users_mean(@new_users)
       @churned_users = churned_users
       @churned_users_mean = number_users_mean(@churned_users)
+      @missing_fortnox_ids = missing_fortnox_ids.join(', ')
     end
 
     private
+
+    def missing_fortnox_ids
+      first = 1001
+      last = [Invoice.maximum('fortnox_id'), ClimateReportInvoice.maximum('fortnox_id')].max.to_i
+      all_registered = Invoice.select('fortnox_id').map { |i| i.fortnox_id.to_i } +
+                       ClimateReportInvoice.select('fortnox_id').map { |i| i.fortnox_id.to_i }
+      (first..last).to_a - all_registered
+    end
 
     def new_users
       User.order('date(created_at)').group('date(created_at)').count.transform_keys(&:to_s)
