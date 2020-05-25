@@ -25,8 +25,9 @@
           <p><b><%= t('views.shared.footer.headers.explore') %></b></p>
           <ul class="list-unstyled">
           <li><%= link_to t('our_projects'), projects_path %></li>
-          <li><%= link_to t('blog'), "https://www.goclimateneutral.org/blog/" %></li>
-            <li><%= link_to t('faq'), faq_path %></li>
+          <% blog_subfolder = current_region.slug == 'se' ? 'se/' : '' %>
+          <li><%= link_to t('blog'), "https://www.goclimateneutral.org/#{blog_subfolder}blog/" %></li>
+          <li><%= link_to t('faq'), faq_path %></li>
           </ul>
         </div>
         <div class="col-xs-12 col-sm-3 col-md-2 text-left">

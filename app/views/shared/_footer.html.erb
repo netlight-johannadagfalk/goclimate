@@ -37,7 +37,8 @@
         <h3 class="font-bold"><%= t('views.shared.footer.headers.explore') %></h3>
         <ul class="list-none">
         <li><%= link_to t('our_projects'), projects_path, class: 'link-ui' %></li>
-        <li><%= link_to t('blog'), "https://www.goclimateneutral.org/blog/", class: 'link-ui' %></li>
+        <% blog_subfolder = current_region.slug == 'se' ? 'se/' : '' %>
+        <li><%= link_to t('blog'), "https://www.goclimateneutral.org/#{blog_subfolder}blog/", class: 'link-ui' %></li>
           <li><%= link_to t('faq'), faq_path, class: 'link-ui' %></li>
         </ul>
       </div>
