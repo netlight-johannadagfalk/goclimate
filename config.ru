@@ -10,6 +10,7 @@ use Rack::ReverseProxy do
 
   # Forward the path /test* to http://example.com/test*
   reverse_proxy(%r{^/blog(/.*)$}, 'http://goclimateneutral.nilver.se$1')
+  reverse_proxy(%r{^/se/blog(/.*)$}, 'http://goclimateneutral.nilver.se/se$1')
 end
 
 run Rails.application
