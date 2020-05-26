@@ -1,22 +1,31 @@
-.list-bullet li::before {
-  content: '\2022';
-  width: 1em;
-  display: inline-block;
-  margin-left: -1em;
-}
-.list-bullet li {
-  padding-left: 1em;
+.list-bullet {
+  li::before {
+    content: '\2022';
+    width: 1em;
+    display: inline-block;
+    margin-left: -1em;
+  }
+
+  li {
+    padding-left: 1em;
+  }
 }
 
-.list-check li::before {
-  font-family: FontAwesome;
-  content: "\f00c";
-  font-size: 1.5em;
-  margin-left: -2rem;
-  @apply text-green-accent
-  absolute;
-}
-.list-check li {
-  padding-left: 2em;
-  @apply relative;
+.list-check {
+  li::before {
+    font-family: FontAwesome;
+    content: "\f00c";
+    font-size: 1.5rem;
+
+    @apply
+      absolute
+      -ml-8
+      text-green-accent;
+  }
+
+  li {
+    @apply
+      relative
+      pl-8;
+  }
 }
