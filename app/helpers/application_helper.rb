@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  def client_prefers_no_tracking?
+    request.headers['DNT']&.start_with?('1') || false
+  end
+
   def price_string(amount, currency, options = {})
     Rails.logger.warn 'DEPRECATION: Use Money#to_s instead of ApplicationHelper#price_string'
 
