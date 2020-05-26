@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg preserveAspectRatio="none" viewBox="0 0 1680 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>horizon</title>
+    <g id="Illustrations" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Homepage-Illustration" transform="translate(0.000000, -345.000000)">
+            <g id="horizon" transform="translate(0.001951, 345.000000)">
+                <rect id="spacer" x="0" y="-6.82121026e-13" width="1680" height="512"></rect>
+                <path d="M0,250.560734 C107.771782,241.562785 203.438449,237.063811 287,237.063811 C384.845053,237.063811 483.827244,251.08962 686.250652,253.560051 C894.563731,256.10236 1116.22919,229.853365 1353.27865,228.065862 C1466.87066,227.209306 1575.77778,234.707597 1680,250.560734 L1680,512 L0,512 L0,250.560734 Z" fill="#EBF6E6"></path>
+            </g>
+        </g>
+    </g>
+</svg>
