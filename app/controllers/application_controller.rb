@@ -102,8 +102,13 @@ class ApplicationController < ActionController::Base
   def set_active_experiments
     experiments = ExperimentsAssignment.new(cookies[:experiments])
 
-    # TODO: Remove once we've finished the new_calculator experiment
-    migrate_new_calculator_cookie(experiments)
+    # Moving to testing only old calculator with old sign up, or new calculator
+    # with new sign up. So move everyone who has new_calculator set since
+    # before to the latter group. new_calculator frequency is set to 0, so this
+    # only affects cookies set from before this change.
+    # TODO: Remove after we're done testing alternative_signup
+    experiments.enable([:alternative_signup]) if experiments.active_experiments.include?(:new_calculator)
+
     parse_experiments_from_params(experiments)
 
     cookies[:experiments] = { value: experiments.cookie_string, expires: 30.days.from_now }
@@ -113,18 +118,6 @@ class ApplicationController < ActionController::Base
   def parse_experiments_from_params(experiments)
     experiments.enable(params[:enable_experiments].split(',').map(&:to_sym)) if params[:enable_experiments].present?
     experiments.disable(params[:disable_experiments].split(',').map(&:to_sym)) if params[:disable_experiments].present?
-  end
-
-  def migrate_new_calculator_cookie(experiments)
-    return unless cookies[:new_calculator].present?
-
-    if cookies[:new_calculator] == '1'
-      experiments.enable([:new_calculator])
-    else
-      experiments.disable([:new_calculator])
-    end
-
-    cookies.delete(:new_calculator)
   end
 
   def set_locale
