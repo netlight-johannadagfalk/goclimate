@@ -2,7 +2,7 @@
   <div class="max-w-3xl mx-auto py-10 px-10 d:px-0 text-center space-y-3">
     <h3 class="heading-lg mb-6"><%= t('views.shared.prefooter.heading') %></h3>
     <p><%= t('views.shared.prefooter.body_text') %> </p>
-    <p><a href="/" class="button"><%= t('views.shared.prefooter.button') %></a></p>
+    <p><%= link_to t('views.shared.prefooter.button'), root_path, class: 'button' %></p>
   </div>
   <div class="w-full h-48 t:h-64 relative -mt-16 t:-mt-24 -z-10">
     <%= image_tag webpack_asset_path('images/illustrations/prefooter/behind_left.png'), class: 'absolute right-1/2 d:right-auto d:left-0 h-full max-w-none' %>
