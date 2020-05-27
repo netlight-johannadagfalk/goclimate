@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg preserveAspectRatio="none" viewBox="0 0 1440 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Prefooter/Ground</title>
+    <defs>
+        <rect id="path-1" x="0.00390157923" y="-9.09494702e-13" width="1440" height="256"></rect>
+    </defs>
+    <g id="Components" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Web/Prefooter" transform="translate(0.000000, -204.000000)">
+            <g id="Prefooter/Ground" transform="translate(-0.003902, 204.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Mask"></g>
+                <path d="M0,157.565877 C92.378414,148.565877 174.379715,144.065877 246.003902,144.065877 C329.871089,144.065877 414.712968,158.094883 588.218745,160.565877 C766.772813,163.108766 956.771779,136.853787 1159.95703,135.065877 C1257.32161,134.209126 1350.67057,141.709126 1440.0039,157.565877 L1441.0039,256 L0,256 L0,157.565877 Z" fill="#E3EED8" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>
