@@ -13,7 +13,7 @@ class SitemapController < ApplicationController
     @all_urls = []
     url_helpers = [
       :about, :contact, :business, :faq, :press, :transparency, :travel_calculator,
-      :projects, :flight_offsets, :gift_cards
+      :projects, :flight_footprints, :gift_cards
     ]
 
     Region.all.each do |region|
