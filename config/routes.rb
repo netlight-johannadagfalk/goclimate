@@ -180,4 +180,8 @@ Rails.application.routes.draw do
 
   # Vanity URL redirects
   get '/blog', to: redirect('https://www.goclimateneutral.org/blog/'), as: nil
+
+  # Sitemap xml
+  get '/sitemap.xml' => 'sitemap#index', :format => 'xml', :as => :sitemap
+  get '/sitemap_content.xml' => 'sitemap#content', :format => 'xml', :as => :sitemap_content
 end
