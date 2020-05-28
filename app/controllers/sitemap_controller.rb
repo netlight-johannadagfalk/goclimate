@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# frozen_string_literal: true
 
 class SitemapController < ApplicationController
   before_action :set_base_url
@@ -11,16 +10,14 @@ class SitemapController < ApplicationController
   end
 
   def content
-    @locations = []
-    pages = %w[
-      about contact business faq press 100_percent_transparency travel_calculator
-      our_projects flights gift_cards
+    @all_urls = []
+    url_helpers = [
+      :about, :contact, :business, :faq, :press, :transparency, :travel_calculator,
+      :projects, :flight_offsets, :gift_cards
     ]
 
     Region.all.each do |region|
-      pages.each do |page|
-        @locations << (region.slug.nil? ? page : "#{region.slug}/#{page}")
-      end
+      @all_urls += url_helpers.map { |helper| [polymorphic_url(helper, region: region), helper] }
     end
 
     respond_to do |format|
