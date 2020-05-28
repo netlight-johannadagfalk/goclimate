@@ -51,6 +51,7 @@ gem 'sendgrid-actionmailer', '~> 3.0'
 gem 'sentry-raven'
 gem 'skylight'
 gem 'stripe', '~> 5.13'
+gem 'wordpress_client', path: '../wordpress_client'
 
 # Utilities
 gem 'seed_dump', '~> 3.2'

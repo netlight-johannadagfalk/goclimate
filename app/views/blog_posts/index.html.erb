@@ -1,0 +1,20 @@
+<%= render "shared/header" %>
+
+<h1 class="heading-xl text-center">I am blog</h1>
+
+<div class="section-padding">
+  <% @posts.each do |post| %>
+    <div class="my-12">
+      <h2 class="heading-lg mb-6">
+        <%= raw(post.title_html) %>
+      </h2>
+      <p>
+        <%= raw(post.content_html) %>
+      </p>
+      <div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= render "shared/footer" %>

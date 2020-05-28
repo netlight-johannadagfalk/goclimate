@@ -64,6 +64,9 @@ Rails.application.routes.draw do
     resources :lifestyle_footprints, path: 'calculator', only: [:new, :create], path_names: { new: '' }
 
     resources :projects, path: 'climate-projects', only: [:index]
+    resources :blog_posts, path: 'blog-new' do
+        resources :blog_comments
+    end
 
     get 'business', to: 'welcome#business'
     namespace :business do
