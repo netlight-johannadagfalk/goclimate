@@ -1,4 +1,4 @@
 User-agent: *
-Disallow:
+Disallow: /*users/*
 
-Sitemap: https://www.goclimate.com/sitemap.xml
+Sitemap: https://www.goclimateneutral.org/sitemap.xml
