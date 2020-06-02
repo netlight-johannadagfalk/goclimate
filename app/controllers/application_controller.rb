@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
 
   def canonical_url
     @canonical_url ||= url_for(
-      protocol: 'https', host: 'www.goclimateneutral.org', port: nil, **canonical_query_params_for_request
+      protocol: 'https', host: 'www.goclimate.com', port: nil, **canonical_query_params_for_request
     )
   end
 
@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
   end
 
   def blog
-    redirect_to "https://www.goclimateneutral.org/blog#{request.fullpath.gsub('/blog', '')}", status: :moved_permanently
+    redirect_to "https://www.goclimate.com/blog#{request.fullpath.gsub('/blog', '')}", status: :moved_permanently
   end
 
   def configure_permitted_parameters

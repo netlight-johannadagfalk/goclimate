@@ -1,8 +1,8 @@
-# GoClimateNeutral API Reference
+# GoClimate API Reference
 
 ## Introduction
 
-The GoClimateNeutral API is organized around [REST][rest]. It has
+The GoClimate API is organized around [REST][rest]. It has
 resource-oriented URLs, accepts form-encoded request bodies, returns
 [JSON-encoded][json] responses, and uses standard HTTP response codes,
 authentication, and verbs.
@@ -12,11 +12,11 @@ authentication, and verbs.
 
 ## Calculation Model
 
-The GoClimateNeutral API uses IATA-airport codes of a route to calculate the 
+The GoClimate API uses IATA-airport codes of a route to calculate the 
 CO2-emissions. You can read more about how the 
 calculation is done [here][pdf].
 
-[pdf]: https://www.goclimateneutral.org/blog/wp-content/uploads/2019/04/Calculations-in-GoClimateNeutral-Flight-Footprint-API.pdf
+[pdf]: https://www.goclimate.com/blog/wp-content/uploads/2019/04/Calculations-in-GoClimateNeutral-Flight-Footprint-API.pdf
 
 ## Client libraries
 
@@ -27,7 +27,7 @@ community libraries:
 
 ## Authentication
 
-The GoClimateNeutral API uses API keys to authenticate requests. Get your API
+The GoClimate API uses API keys to authenticate requests. Get your API
 key by [requesting one][request].
 
 Authentication to the API is performed via [HTTP Basic Auth][basic-auth].
@@ -39,15 +39,15 @@ empty. Authentication is required for all endpoints.
 
 ## Errors
 
-GoClimateNeutral uses conventional HTTP status codes to indicate the success or
+GoClimate uses conventional HTTP status codes to indicate the success or
 failure of API requests.
 
-**Summary of HTTP status codes used by the GoClimateNeutral API:**
+**Summary of HTTP status codes used by the GoClimate API:**
 
 - **200 OK:** Request was successful.
 - **404 Not Found:** The requested resource could not be found.
 - **401 Unauthorized:** API key provided was not valid.
-- **500, 502, 503, 504:** Server errors on the GoClimateNeutral side. Only used
+- **500, 502, 503, 504:** Server errors on the GoClimate side. Only used
   in exceptional circumstances.
 
 ## Resources
@@ -81,7 +81,7 @@ and sum estimated footprint for each to create a total for the full trip.
   precision is 100 kg. We recommend displaying this number in tonnes CO2e to the
   user.
 - **offset_prices[]:** Array of objects representing prices per passenger for
-  offsetting this flight through GoClimateNeutral. One object per currency
+  offsetting this flight through GoClimate. One object per currency
   requested.
   Currently returns non-final prices in SEK.
   - **amount**: Amount. In smallest denomination of currency indicated by
@@ -123,16 +123,16 @@ Response:
         {
           "amount": 4000,
           "currency": "SEK"
-          "offset_url":"https://www.goclimateneutral.org/se/flight_offsets/new?offset_params=economy%2CARN%2CBCN%2CBCN%2CARN",
+          "offset_url":"https://www.goclimate.com/se/flight_offsets/new?offset_params=economy%2CARN%2CBCN%2CBCN%2CARN",
           "locale":"sv-SE"
         },
         {
           "amount":400,
           "currency":"USD",
-          "offset_url":"https://www.goclimateneutral.org/us/flight_offsets/new?offset_params=economy%2CARN%2CBCN%2CBCN%2CARN",
+          "offset_url":"https://www.goclimate.com/us/flight_offsets/new?offset_params=economy%2CARN%2CBCN%2CBCN%2CARN",
           "locale":"en-US"
         }
       ],
-      "details_url": "https://www.goclimateneutral.org/flight_offsets/new?offset_params=economy%2CARN%2CBCN%2CBCN%2CARN"
+      "details_url": "https://www.goclimate.com/flight_offsets/new?offset_params=economy%2CARN%2CBCN%2CBCN%2CARN"
     }
 

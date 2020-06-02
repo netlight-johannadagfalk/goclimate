@@ -5,6 +5,6 @@ class FlightOffsetCertificatesController < ApplicationController
     @offset = FlightOffset.find_by_key(params[:key])
     pdf = FlightOffsetCertificatePdf.new(@offset).render
 
-    send_data pdf, filename: 'GoClimateNeutral Offset Certificate.pdf', type: :pdf
+    send_data pdf, filename: 'GoClimate Offset Certificate.pdf', type: :pdf
   end
 end

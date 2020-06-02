@@ -9,10 +9,10 @@ FactoryBot.define do
     latitude { 59.33172 }
     longitude { 18.06695 }
     image_url { <<~URL.chomp }
-      https://www.goclimateneutral.org/blog/wp-content/uploads/2017/05/0000213_trang-palm-oil-wastewater-treatment-project-in-trang-province-thailand_550.jpeg
+      https://www.goclimate.com/blog/wp-content/uploads/2017/05/0000213_trang-palm-oil-wastewater-treatment-project-in-trang-province-thailand_550.jpeg
     URL
     blog_url { <<~URL.chomp }
-      https://www.goclimateneutral.org/blog/carbon-offset-investment-in-trang-palm-oil-wastewater-treatment-project/
+      https://www.goclimate.com/blog/carbon-offset-investment-in-trang-palm-oil-wastewater-treatment-project/
     URL
   end
 end

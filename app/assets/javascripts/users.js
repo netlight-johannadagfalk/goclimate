@@ -6,7 +6,7 @@ function initializeUsers() {
       method: 'share',
       href: window.urlToShare,
       quote: window.facebookQuote,
-      hashtag: '#goclimateneutral'
+      hashtag: '#goclimate'
     }, function(response){});
   }
 

@@ -1,12 +1,12 @@
-# GoClimateNeutral
+# GoClimate
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/711e900ab6fb4c385a19/maintainability)](https://codeclimate.com/repos/5c99da9af52fd70240006af8/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/711e900ab6fb4c385a19/test_coverage)](https://codeclimate.com/repos/5c99da9af52fd70240006af8/test_coverage) [![View performance data on Skylight](https://badges.skylight.io/typical/zdRSFyrfwutu.svg?token=94hHNP2Fy3Obgt0c3MoiPXDLiIW1E9axYM5e-vN-occ)](https://www.skylight.io/app/applications/zdRSFyrfwutu) [![View performance data on Skylight](https://badges.skylight.io/problem/zdRSFyrfwutu.svg?token=94hHNP2Fy3Obgt0c3MoiPXDLiIW1E9axYM5e-vN-occ)](https://www.skylight.io/app/applications/zdRSFyrfwutu)
 
-This is the code that runs [http://goclimateneutral.org](http://goclimateneutral.org)
+This is the code that runs [http://www.goclimate.com](http://www.goclimate.com)
 
 ## What the app does
 
-GoClimateNeutral makes it easy for everyone to take meaningful action for the
+GoClimate makes it easy for everyone to take meaningful action for the
 climate.
 
 ## Contributing
@@ -130,8 +130,8 @@ When writing HTML views, we write utility-first CSS, using [TailwindCSS](https:/
   * `brew install postgresql geckodriver` 
   * [Get Firefox](https://www.mozilla.org/en-US/firefox/)
 * Setup the database
-  * `initdb db/goclimateneutral`
-  * `pg_ctl -D db/goclimateneutral -l logfile start`
+  * `initdb db/goclimate`
+  * `pg_ctl -D db/goclimate -l logfile start`
 * Set environment variables.
   * Copy `.env.sample` to `.env` and add your keys to the file. You will at least need to set the 2 keys for Stripe to get the tests passing.
 * Run the setup command that installs project-specific dependencies.
@@ -169,7 +169,7 @@ If you need to reset your database:
 
 ## License
 
-All source code and assets are © GoClimateNeutral. All rights reserved.
+All source code and assets are © GoClimateNeutral Sweden AB. All rights reserved.
 
 We are considering opening up our source code with an open source license, but
 have not yet found the right license. If you have any experience or

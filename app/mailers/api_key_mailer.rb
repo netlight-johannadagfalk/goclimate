@@ -6,7 +6,7 @@ class ApiKeyMailer < ApplicationMailer
 
     mail(
       to: @api_key.contact_email,
-      subject: 'Your GoClimateNeutral API Key'
+      subject: 'Your GoClimate API Key'
     )
   end
 end

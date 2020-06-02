@@ -7,7 +7,7 @@ module Admin
     def show
       send_data(
         @pdf.render,
-        filename: "GoClimateNeutral Certificate - #{@pdf.receiver}.pdf",
+        filename: "GoClimate Certificate - #{@pdf.receiver}.pdf",
         type: :pdf
       )
     end

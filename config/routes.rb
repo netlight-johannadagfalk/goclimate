@@ -3,21 +3,12 @@
 Rails.application.routes.draw do
   # Handle legacy locale subdomains. Doing this in Cloudflare requires a paid
   # account for the extra page rules which we currently want to avoid.
-  match '(*path)', to: redirect { |_, request| "//www.goclimateneutral.org/se#{request.fullpath}" },
+  match '(*path)', to: redirect { |_, request| "//www.goclimate.com/se#{request.fullpath}" },
                    via: [:get, :post], constraints: { host: 'sv.goclimateneutral.org' }
-  match '(*path)', to: redirect { |_, request| "//www.goclimateneutral.org/de#{request.fullpath}" },
+  match '(*path)', to: redirect { |_, request| "//www.goclimate.com/de#{request.fullpath}" },
                    via: [:get, :post], constraints: { host: 'de.goclimateneutral.org' }
-  match '(*path)', to: redirect { |_, request| "//www.goclimateneutral.org/us#{request.fullpath}" },
+  match '(*path)', to: redirect { |_, request| "//www.goclimate.com/us#{request.fullpath}" },
                    via: [:get, :post], constraints: { host: 'en.goclimateneutral.org' }
-
-  # Redirect any other domain to our main one in production. Since we're
-  # catching all potential domains, do a temporary redirect as to not
-  # accidentally cache redirects for domains we're migrating to or
-  # similar. Subdomains of the primary domains are also not caught.
-  if ENV['HEROKU_ENV'] == 'production'
-    match '(*path)', to: redirect(status: 302) { |_, request| "//www.goclimateneutral.org#{request.fullpath}" },
-                     via: [:get, :post], constraints: ->(req) { !req.host.include?('goclimateneutral.org') }
-  end
 
   # API. Available on subdomain `api.` in production and under path `/api` in other environments.
   api = proc do
@@ -38,6 +29,15 @@ Rails.application.routes.draw do
     match '*path', to: 'errors#not_found', via: :all
   end
   ENV['HEROKU_ENV'] == 'production' ? constraints(subdomain: /api|api-temporary/, &api) : scope('/api', &api)
+
+  # Redirect any other domain to our main one in production. Since we're
+  # catching all potential domains, do a temporary redirect as to not
+  # accidentally cache redirects for domains we're migrating to or
+  # similar. Subdomains of the primary domains are also not caught.
+  if ENV['HEROKU_ENV'] == 'production'
+    match '(*path)', to: redirect(status: 302) { |_, request| "//www.goclimate.com#{request.fullpath}" },
+                     via: [:get, :post], constraints: ->(req) { !req.host.include?('goclimate.com') }
+  end
 
   # Public site
   scope '(:region)', region: Regexp.new(Region.all.map(&:slug).compact.join('|')) do
@@ -179,7 +179,7 @@ Rails.application.routes.draw do
   match '/500', to: 'errors#internal_server_error', via: :all
 
   # Vanity URL redirects
-  get '/blog', to: redirect('https://www.goclimateneutral.org/blog/'), as: nil
+  get '/blog', to: redirect('https://www.goclimate.com/blog/'), as: nil
 
   # Sitemap xml
   get '/sitemap.xml' => 'sitemap#index', :format => 'xml', :as => :sitemap
