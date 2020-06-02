@@ -5,7 +5,7 @@ class GiftCardCertificatesController < ApplicationController
     gift_card = GiftCard.find_by_key(params[:key])
     pdf = GiftCardCertificatePdf.from_gift_card(gift_card).render
 
-    send_data pdf, filename: 'GoClimateNeutral Gift Card.pdf', type: :pdf
+    send_data pdf, filename: 'GoClimate Gift Card.pdf', type: :pdf
   end
 
   # This is a preview version of the gift card. Includes sample text and a big EXAMPLE stamp.
@@ -19,6 +19,6 @@ class GiftCardCertificatesController < ApplicationController
       example: true
     ).render
 
-    send_data pdf, filename: 'GoClimateNeutral Gift Card.pdf', type: :pdf, disposition: :inline
+    send_data pdf, filename: 'GoClimate Gift Card.pdf', type: :pdf, disposition: :inline
   end
 end

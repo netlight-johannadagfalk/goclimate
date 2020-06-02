@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :climate_report do
-    company_name { 'GoClimateNeutral' }
+    company_name { 'GoClimate' }
     contact_email { 'test@example.com' }
     employees { 4 }
     country { 'se' }

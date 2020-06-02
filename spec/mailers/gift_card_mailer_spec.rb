@@ -42,8 +42,8 @@ RSpec.describe GiftCardMailer, type: :mailer do
       expect(mail.attachments.first.content_type).to start_with('application/pdf;')
     end
 
-    it 'sets attachment filename to "GoClimateNeutral Gift Card.pdf"' do
-      expect(mail.attachments.first.filename).to eql('GoClimateNeutral Gift Card.pdf')
+    it 'sets attachment filename to "GoClimate Gift Card.pdf"' do
+      expect(mail.attachments.first.filename).to eql('GoClimate Gift Card.pdf')
     end
 
     it 'sets the attachment body' do

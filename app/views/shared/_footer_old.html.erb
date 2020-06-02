@@ -4,12 +4,12 @@
     <div class="inner no-max-width">
       <div class="row">
         <div class="col-xs-12 col-sm-3 col-sm-offset-0 col-md-4 col-md-offset-1 text-left">
-          <p><b>GoClimateNeutral</b></p>
+          <p><b>GoClimate</b></p>
           <p class="line-height-small"><%= t('views.shared.footer.short_intro') %></p>
           <ul class="list-unstyled social-media-icons">
-            <li><%= link_to raw('<i class="fa fa-2x fa-twitter" aria-hidden="true"></i>'), 'https://twitter.com/goclimateneutrl', target: "_blank" %></li>
+            <li><%= link_to raw('<i class="fa fa-2x fa-twitter" aria-hidden="true"></i>'), 'https://twitter.com/GoClimateHQ', target: "_blank" %></li>
             <li><%= link_to raw('<i class="fa fa-2x fa-instagram" aria-hidden="true"></i>'), 'https://www.instagram.com/goclimateneutral/', target: "_blank" %></li>
-            <li><%= link_to raw('<i class="fa fa-2x fa-facebook" aria-hidden="true"></i>'), 'https://www.facebook.com/GoClimateNeutral', target: "_blank" %></li>
+            <li><%= link_to raw('<i class="fa fa-2x fa-facebook" aria-hidden="true"></i>'), 'https://www.facebook.com/GoClimate', target: "_blank" %></li>
           </ul>
         </div>
         <div class="col-xs-12 col-sm-3 col-md-2 text-left">
@@ -26,7 +26,7 @@
           <ul class="list-unstyled">
           <li><%= link_to t('our_projects'), projects_path %></li>
           <% blog_subfolder = current_region.slug == 'se' ? 'se/' : '' %>
-          <li><%= link_to t('blog'), "https://www.goclimateneutral.org/#{blog_subfolder}blog/" %></li>
+          <li><%= link_to t('blog'), "https://www.goclimate.com/#{blog_subfolder}blog/" %></li>
           <li><%= link_to t('faq'), faq_path %></li>
           </ul>
         </div>
@@ -36,7 +36,7 @@
             <li><%= link_to t('about_us'), about_path %> </li>
             <li><%= link_to t('100_percent_transparency'), transparency_path %> </li>
             <li><%= link_to t('press'), press_path %>  </li>
-            <li><%= link_to t('views.shared.footer.jobs'), 'https://jobs.goclimateneutral.org/' %></li>
+            <li><%= link_to t('views.shared.footer.jobs'), 'https://jobs.goclimate.com/' %></li>
             <li><%= link_to t('contact_us'), contact_path %></li>
           </ul>
         </div>
@@ -55,7 +55,7 @@
               <li><a href="<%= url_for_region(Region::Europe) %>"><%= image_tag webpack_asset_path("images/regions/world.png") %> Rest of the World</a></li>
             </ul>
           </div>
-        <p>© <%= Time.current.year %> GoClimateNeutral</p>
+        <p>© <%= Time.current.year %> GoClimateNeutral Sweden AB</p>
         
       </div>
     </div>
