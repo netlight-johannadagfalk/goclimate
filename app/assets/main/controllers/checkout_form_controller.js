@@ -22,7 +22,7 @@ export default class CheckoutFormController extends Controller {
       .then((data) => this.resolveFormResponse(data))
       .catch((error) => {
         window.Sentry.captureException(error); // These errors are unexpected, so report them.
-        this.setErrorMessage('An unexpected error occurred. Please start over and try again. If the issue remains, please contact us at hello@goclimateneutral.org.');
+        this.setErrorMessage('An unexpected error occurred. Please start over and try again. If the issue remains, please contact us at hello@goclimate.com.');
       })
       .finally(() => {
         this.disableLoadingState();

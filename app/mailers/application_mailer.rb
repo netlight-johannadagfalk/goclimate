@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 class ApplicationMailer < ActionMailer::Base
-  default from: 'GoClimate <hello@goclimateneutral.org>'
-  default reply_to: 'GoClimate <hello@goclimateneutral.org>'
+  default from: 'GoClimate <hello@goclimate.com>'
+  default reply_to: 'GoClimate <hello@goclimate.com>'
 end

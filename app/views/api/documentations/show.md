@@ -104,7 +104,7 @@ and sum estimated footprint for each to create a total for the full trip.
 
 Request:
 
-    $ curl https://api.goclimateneutral.org/v1/flight_footprint \
+    $ curl https://api.goclimate.com/v1/flight_footprint \
       -u YOUR_API_KEY: \
       -d 'segments[0][origin]=ARN' \
       -d 'segments[0][destination]=BCN' \

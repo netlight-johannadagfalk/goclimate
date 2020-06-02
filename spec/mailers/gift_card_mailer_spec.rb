@@ -27,7 +27,7 @@ RSpec.describe GiftCardMailer, type: :mailer do
     end
 
     it 'renders the sender email' do
-      expect(mail.from).to eql(['hello@goclimateneutral.org'])
+      expect(mail.from).to eql(['hello@goclimate.com'])
     end
 
     it 'matches number of months' do

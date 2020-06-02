@@ -25,7 +25,7 @@ RSpec.describe FlightOffsetMailer, type: :mailer do
     end
 
     it 'renders the sender email' do
-      expect(mail.from).to eql(['hello@goclimateneutral.org'])
+      expect(mail.from).to eql(['hello@goclimate.com'])
     end
 
     it 'has an attachment' do

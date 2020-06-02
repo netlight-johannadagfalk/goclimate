@@ -19,7 +19,7 @@ RSpec.describe WelcomeMailer, type: :mailer do
     end
 
     it 'renders the sender email' do
-      expect(mail.from).to eql(['tove@goclimateneutral.org'])
+      expect(mail.from).to eql(['tove@goclimate.com'])
     end
 
     it 'renders the body' do
