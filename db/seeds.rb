@@ -86,3 +86,9 @@ LifestyleCalculator.create!(
   consumption_formula: "2995",
   public_formula: "1240"
 )
+
+User.create!(
+  id: 2,
+  email: 'admin@example.com',
+  password: 'adminadmin'
+)
