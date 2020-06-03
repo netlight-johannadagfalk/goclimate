@@ -15,7 +15,7 @@ module Users
       if alternative_signup?
         @footprint_price = SubscriptionManager.price_for_footprint(@footprint.total, current_region.currency)
         @projects = Project.order(id: :desc).limit(3)
-        @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country).co2e
+        @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
       end
 
       respond_to do |format|
