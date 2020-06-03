@@ -69,3 +69,20 @@ LifestyleCalculator.create!(
   consumption_formula: '1010',
   public_formula: '980+2600'
 )
+
+LifestyleCalculator.create!(
+  countries: nil,
+  version: 1,
+  region_options: nil,
+  home_options: [{"key"=>"fifteen_sqm", "formula"=>"15*170"}, {"key"=>"twentyfive_sqm", "formula"=>"25*170"}, {"key"=>"fortytwo_sqm", "formula"=>"42*170"}, {"key"=>"sixty_sqm", "formula"=>"60*170"}, {"key"=>"eighty_sqm", "formula"=>"80*170"}],
+  heating_options: [{"key"=>"heating_oil", "formula"=>"0.306"}, {"key"=>"natural_gas", "formula"=>"0.240"}, {"key"=>"electricity", "formula"=>"0.2958"}, {"key"=>"district", "formula"=>"0.295"}, {"key"=>"coal", "formula"=>"0.370"}, {"key"=>"biomass", "formula"=>"0.018"}, {"key"=>"dont_know", "formula"=>"0.240"}],
+  green_electricity_options: [{"key"=>"yes", "formula"=>"0.010"}, {"key"=>"fifty_percent", "formula"=>"0.1529"}, {"key"=>"no", "formula"=>"0.2958"}, {"key"=>"dont_know", "formula"=>"0.2958"}],
+  food_options: [{"key"=>"vegan", "formula"=>"1054"}, {"key"=>"vegetarian", "formula"=>"1390"}, {"key"=>"pescetarian", "formula"=>"1427"}, {"key"=>"meat_low", "formula"=>"1704"}, {"key"=>"meat_medium", "formula"=>"2054"}, {"key"=>"meat_high", "formula"=>"2624"}],
+  car_type_options: [{"key"=>"petrol", "formula"=>"0.148"}, {"key"=>"diesel", "formula"=>"0.145"}, {"key"=>"hybrid_plugin", "formula"=>"0.049"}, {"key"=>"electric", "formula"=>"0.005"}, {"key"=>"no_car", "formula"=>"0"}], "car_distance_unit"=>"km",
+  housing_formula: 'if(heating_answer = "electricity", green_electricity*home, home*0.8*heating+home*0.2*green_electricity)',
+  food_formula: "food",
+  car_formula: "car_type * car_distance",
+  flights_formula: "200 * flight_hours",
+  consumption_formula: "2995",
+  public_formula: "1240"
+)
