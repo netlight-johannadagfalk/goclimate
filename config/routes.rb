@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   # accidentally cache redirects for domains we're migrating to or
   # similar. Subdomains of the primary domains are also not caught.
   if ENV['HEROKU_ENV'] == 'production'
-    match '(*path)', to: redirect(status: 302) { |_, request| "//www.goclimate.com#{request.fullpath}" },
+    match '(*path)', to: redirect { |_, request| "//www.goclimate.com#{request.fullpath}" },
                      via: [:get, :post], constraints: ->(req) { !req.host.include?('goclimate.com') }
   end
 
