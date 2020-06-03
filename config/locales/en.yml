@@ -779,11 +779,13 @@ en:
       you: You
       compensated: With offsetting
       average_in: Average in %{region}
+      world_average: World average
       goal_2030: Goal 2030
 
       higher: higher
       lower: lower
       your_climate_footprint: Your carbon footprint of %{footprint} is %{relative} than the average in %{country}. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030. By offsetting your emissions you can reach zero today.
+      your_climate_footprint_compared_world: Your carbon footprint of %{footprint} is %{relative} than the world average. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030. By offsetting your emissions you can reach zero today.
 
       subscribe_heading: Subscribe to a climate neutral life
       subscribe_intro: Start your subscription today to offset your carbon footprint. Every person counts on our journey to reaching the climate goals!

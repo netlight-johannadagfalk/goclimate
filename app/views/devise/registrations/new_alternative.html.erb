@@ -24,24 +24,24 @@
           style="width: 100%; max-width: 400px; height: 250px"
           data-controller="lifestyle-footprint-chart"
           data-lifestyle-footprint-chart-user-footprint="<%= @footprint.total.tonnes.round(1) %>"
-          data-lifestyle-footprint-chart-country-average="<%= @country_average.tonnes.round(1) %>"
-          data-lifestyle-footprint-chart-user-label="<%= t 'views.registrations.you' %>"
-          data-lifestyle-footprint-chart-offset-label="<%= t 'views.registrations.compensated' %>"
-          data-lifestyle-footprint-chart-country-label="<%= t 'views.registrations.average_in', region: @footprint.country.translation(I18n.locale) %>"
-          data-lifestyle-footprint-chart-target-label="<%= t 'views.registrations.goal_2030' %>">
+          data-lifestyle-footprint-chart-country-average="<%= @country_average.co2e.tonnes.round(1) %>"
+          data-lifestyle-footprint-chart-user-label="<%=t 'views.registrations.you' %>"
+          data-lifestyle-footprint-chart-offset-label="<%=t 'views.registrations.compensated' %>"
+          data-lifestyle-footprint-chart-country-label="<%= @country_average.countries.nil? ? t('views.registrations.world_average') : t('views.registrations.average_in', region: @footprint.country.translation(I18n.locale)) %>"
+          data-lifestyle-footprint-chart-target-label="<%=t 'views.registrations.goal_2030' %>">
         </canvas>
       </div>
     </div>
     <div>
       <p class="text-sm my-4 text-gray-800">
         <%= t(
-          'views.registrations.your_climate_footprint',
+          "views.registrations.your_climate_footprint#{'_compared_world' if @country_average.countries.nil?}",
           footprint: @footprint.total.to_s(precision: :auto),
           relative:
-            if @footprint.total > @country_average
-              "#{((@footprint.total.co2e.to_f / @country_average.co2e - 1) * 100).ceil} % #{t 'views.registrations.higher'}"
+            if @footprint.total > @country_average.co2e
+              "#{((@footprint.total.co2e.to_f / @country_average.co2e.co2e - 1) * 100).ceil} % #{t 'views.registrations.higher'}"
             else
-              "#{((1 - @footprint.total.co2e.to_f / @country_average.co2e) * 100).ceil} % #{t 'views.registrations.lower'}"
+              "#{((1 - @footprint.total.co2e.to_f / @country_average.co2e.co2e) * 100).ceil} % #{t 'views.registrations.lower'}"
             end,
           country: @footprint.country.translation(I18n.locale)
           ) %>
