@@ -6,10 +6,6 @@ class WelcomeController < ApplicationController
     @total_carbon_offset = Project.total_carbon_offset
     @lifestyle_choice_co2 = LifestyleChoice.lifestyle_choice_co2
     @latest_project = Project.order(date_bought: :desc).first
-
-    gon.lifestyle_choice_co2 = @lifestyle_choice_co2
-    gon.price_info_popup_content = I18n.t('price_info_popup_content')
-    gon_currency_params
   end
 
   def about
@@ -39,16 +35,6 @@ class WelcomeController < ApplicationController
   end
 
   def privacy_policy
-  end
-
-  def gon_currency_params
-    gon.currency = current_region.currency.iso_code
-    gon.currency_prefix = current_region.currency.prefix
-    gon.currency_suffix = current_region.currency.suffix
-    gon.SEK_PER_TONNE = LifestyleChoice::SEK_PER_TONNE
-    gon.BUFFER_SIZE = LifestyleChoice::BUFFER_SIZE
-    gon.SEK_PER_USD = Currency::SEK_PER_USD
-    gon.SEK_PER_EUR = Currency::SEK_PER_EUR
   end
 
   def travel_calculator

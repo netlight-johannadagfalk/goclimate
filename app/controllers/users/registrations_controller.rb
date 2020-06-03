@@ -11,15 +11,13 @@ module Users
     # GET /resource/sign_up
     def new
       @user = User.new(region: current_region.id)
+      @footprint_price = SubscriptionManager.price_for_footprint(@footprint.total, current_region.currency)
 
-      if alternative_signup?
-        @footprint_price = SubscriptionManager.price_for_footprint(@footprint.total, current_region.currency)
-        @projects = Project.order(id: :desc).limit(3)
-        @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
-      end
+      @projects = Project.order(id: :desc).limit(3)
+      @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
 
       respond_to do |format|
-        format.html { render 'new_alternative' if alternative_signup? }
+        format.html { render }
         format.json { render_price_json }
       end
     end
@@ -31,7 +29,7 @@ module Users
     #
     # Rubocop warnings disabled because the "but no simpler" part of that
     # Einstein quote "As simple as possible, but no simpler".
-    def create # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+    def create # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       render_user_invalid_json && return unless @user.save
 
       sign_in(resource_name, @user, force: true) # Force because we have updated the password
@@ -93,11 +91,8 @@ module Users
     end
 
     def set_footprint_and_price
-      @lifestyle_choice_ids = lifestyle_choice_ids_from_params if params[:choices].present?
-      footprint_key = params[:lifestyle_footprint]
-      @footprint = LifestyleFootprint.find_by_key!(footprint_key) if footprint_key.present?
-
-      @footprint_tonnes = @footprint&.total || LifestyleChoice.lifestyle_choice_footprint(@lifestyle_choice_ids)
+      @footprint = LifestyleFootprint.find_by_key!(params[:lifestyle_footprint])
+      @footprint_tonnes = @footprint&.total
       @subscription_tonnes = @footprint_tonnes * (params[:people].presence&.to_i || 1)
       @plan_price = SubscriptionManager.price_for_footprint(@subscription_tonnes, current_region.currency)
     end
@@ -147,25 +142,6 @@ module Users
 
     def error_json(message)
       { error: { message: message } }
-    end
-
-    def lifestyle_choice_ids_from_params
-      unless params[:choices]&.match(/\d+,\d+,\d+,\d/)
-        respond_to do |format|
-          format.html { redirect_to '/#choose-plan' }
-          format.json do
-            render status: 400,
-                   json: error_json('Something went wrong. Please start over and try again.')
-          end
-        end
-        return
-      end
-
-      @lifestyle_choice_ids = params[:choices].split(',').map(&:to_i)
-    end
-
-    def alternative_signup?
-      @footprint.present? && experiment_active?(:alternative_signup)
     end
   end
 end

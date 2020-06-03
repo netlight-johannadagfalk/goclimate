@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= webpack_entrypoint_stylesheet_tags 'admin' %>
-    <%= include_gon %>
     <%= webpack_entrypoint_javascript_tags 'admin' %>
     <%= yield :javascript_tags %>
   </head>

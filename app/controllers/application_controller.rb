@@ -102,13 +102,6 @@ class ApplicationController < ActionController::Base
   def set_active_experiments
     experiments = ExperimentsAssignment.new(cookies[:experiments])
 
-    # Moving to testing only old calculator with old sign up, or new calculator
-    # with new sign up. So move everyone who has new_calculator set since
-    # before to the latter group. new_calculator frequency is set to 0, so this
-    # only affects cookies set from before this change.
-    # TODO: Remove after we're done testing alternative_signup
-    experiments.enable([:alternative_signup]) if experiments.active_experiments.include?(:new_calculator)
-
     parse_experiments_from_params(experiments)
 
     cookies[:experiments] = { value: experiments.cookie_string, expires: 30.days.from_now }

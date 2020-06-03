@@ -1,4 +1,4 @@
-new_calculator:
-  frequency: 0
-alternative_signup:
-  frequency: 0.5
+# Add experiments with a key and frequency, like this:
+#
+# new_feature:
+#   frequency: 0.5

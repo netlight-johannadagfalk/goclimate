@@ -91,7 +91,6 @@
       window.locale = "<%= I18n.locale %>"
       window.stripe = Stripe("<%= ENV['PUBLISHABLE_KEY'] %>");
     </script>
-    <%= include_gon %>
     <% if (javascripts = yield :javascripts).present? %>
       <%= javascripts %>
     <% else %>
