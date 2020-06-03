@@ -92,3 +92,5 @@ User.create!(
   email: 'admin@example.com',
   password: 'adminadmin'
 )
+
+ActiveRecord::Base.connection.set_pk_sequence!(:users, 2)
