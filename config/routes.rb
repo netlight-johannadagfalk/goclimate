@@ -57,20 +57,20 @@ Rails.application.routes.draw do
     get 'contact', to: 'welcome#contact'
     get 'faq', to: 'welcome#faq'
     get 'press', to: 'welcome#press'
-    get '100_percent_transparency', to: 'welcome#transparency', as: 'transparency'
-    get 'privacy_policy', to: 'welcome#privacy_policy'
-    get 'travel_calculator', to: 'welcome#travel_calculator'
+    get 'transparency', to: 'welcome#transparency', as: 'transparency'
+    get 'privacy-policy', to: 'welcome#privacy_policy'
+    get 'travel-calculator', to: 'welcome#travel_calculator'
 
     resources :lifestyle_footprints, path: 'calculator', only: [:new, :create], path_names: { new: '' }
 
-    resources :projects, path: 'our_projects', only: [:index]
+    resources :projects, path: 'climate-projects', only: [:index]
 
     get 'business', to: 'welcome#business'
     namespace :business do
-      resources :climate_reports, only: [:show, :new, :create], param: :key do
+      resources :climate_reports, path: 'climate-reports', only: [:show, :new, :create], param: :key do
         member do
           resource :climate_report_invoice, only: [:create], path: 'invoice' do
-            get 'thank_you'
+            get 'thank-you'
           end
         end
         scope format: true, constraints: { format: :pdf } do
@@ -95,7 +95,7 @@ Rails.application.routes.draw do
     end
     resources :flight_offsets, only: [:index, :new, :create], param: :key do
       member do
-        get 'thank_you'
+        get 'thank-you'
         scope format: true, constraints: { format: :pdf } do
           resource :flight_offset_certificates, only: [:show], path: :certificate
           resource :flight_offset_receipts, only: [:show], path: :receipt
@@ -110,13 +110,13 @@ Rails.application.routes.draw do
     resources :users, only: [:show], constraints: { id: /\d+/ }
 
     # Gift cards
-    resources :gift_cards, only: [:index, :new, :create], param: :key do
+    resources :gift_cards, path: 'gift-cards', only: [:index, :new, :create], param: :key do
       collection do
         get 'example/certificate', to: 'gift_card_certificates#example', format: true, constraints: { format: :pdf }
       end
 
       member do
-        get 'thank_you'
+        get 'thank-you'
 
         scope format: true, constraints: { format: :pdf } do
           resource :gift_card_certificates, only: [:show], path: :certificate do
@@ -133,15 +133,27 @@ Rails.application.routes.draw do
       get 'gift_cards/thank_you', as: nil, to: redirect(status: 302) { |path_params, request|
         raise ActionController::RoutingError, 'Not Found' unless request.flash[:certificate_key].present?
 
-        "#{path_params[:region]}/gift_cards/#{request.flash[:certificate_key]}/thank_you"
+        "#{path_params[:region]}/gift-cards/#{request.flash[:certificate_key]}/thank-you"
       }
-      get 'gift_cards/certificates/example', to: redirect(path: '%{region}/gift_cards/example/certificate.pdf'), as: nil
-      get 'gift_cards/certificates/:key', to: redirect(path: '%{region}/gift_cards/%{key}/certificate.pdf'), as: nil
       get 'dashboard/index', to: redirect('%{region}/dashboard'), as: nil
       get '/users', to: redirect('%{region}/dashboard'), as: nil
       get '/users/edit/payment', to: redirect('%{region}/users/subscription'), as: nil
       get 'companies', to: redirect('%{region}/business'), as: nil
       get 'business_beta', to: redirect('%{region}/business'), as: nil
+      get '100_percent_transparency', to: redirect('%{region}/transparency'), as: nil
+      get 'travel_calculator', to: redirect('%{region}/travel-calculator'), as: nil
+      get 'our_projects', to: redirect('%{region}/climate-projects'), as: nil
+      get 'gift_cards', to: redirect(path: '%{region}/gift-cards'), as: nil
+      get 'gift_cards/new', to: redirect(path: '%{region}/gift-cards/new'), as: nil
+      get 'gift_cards/certificates/example', to: redirect(path: '%{region}/gift-cards/example/certificate.pdf'), as: nil
+      get 'gift_cards/certificates/:key', to: redirect(path: '%{region}/gift-cards/%{key}/certificate.pdf'), as: nil
+      get 'gift_cards/:key/thank_you', to: redirect(path: '%{region}/gift-cards/%{key}/thank-you'), as: nil
+      get 'business/climate_reports/:key', to: redirect(path: '%{region}/business/climate-reports/%{key}'), as: nil
+      get 'business/climate_reports/new', to: redirect(path: '%{region}/business/climate-reports/new'), as: nil
+      get 'business/climate_reports/:key/invoice/thank_you',
+          to: redirect(
+            path: '%{region}/business/climate-reports/%{key}/invoice/thank-you'
+          ), as: nil
     end
   end
 
