@@ -1,45 +1,29 @@
-# This file is considered DEPRECATED. Please move changes and add new keys
-# to a file mirroring where keys are used. For example, keys used in
-# app/views/registrations/new.html.erb should go to
-# views.registrations.de.yml
+#This file is considered DEPRECATED. Please move changes and add new keys
+#to a file mirroring where keys are used. For example, keys used in
+#app/views/registrations/new.html.erb should go to
+#views.registrations.en.yml
 de:
-  goclimateneutral_url: 'https://www.goclimate.com/de'
+  goclimateneutral_url: https://www.goclimate.com/de
   site_title: GoClimate
-  climate_change_is_the_greatest_challange: >-
-    Der Klimawandel ist eine der größten Herausforderungen unserer Zeit.
-    Gemeinsam haben wir eine Chance, unseren Kindern die Zukunft auf diesem
-    Planeten zu geben, die sie verdienen. Aber dafür müssen wir jetzt handeln.
+  climate_change_is_the_greatest_challange: Der Klimawandel ist eine der größten Herausforderungen unserer Zeit. Gemeinsam haben wir eine Chance, unseren Kindern die Zukunft auf diesem Planeten zu geben, die sie verdienen. Aber dafür müssen wir jetzt handeln.
   log_in: EINLOGGEN
   log_out: Ausloggen
   settings: Einstellungen
   i_want_to_know_more: Mehr erfahren!
   contact_us: Kontakt
   100_percent_transparency: 100% Transparenz
-  100_percent_transparency_intro: >-
-    Wir glauben, dass Transparenz extrem wichtig ist, wenn man die Welt retten
-    will, damit Sie sich sicher sein können, dass Ihr Geld so viel wie möglich
-    dazu beiträgt, den Klimawandel zu stoppen. Auf dieser Seite finden Sie
-    Informationen über alle Projekte, in die wir investieren, sowie über alle
-    relevanten finanziellen Fragen.
+  100_percent_transparency_intro: Wir glauben, dass Transparenz extrem wichtig ist, wenn man die Welt retten will, damit Sie sich sicher sein können, dass Ihr Geld so viel wie möglich dazu beiträgt, den Klimawandel zu stoppen. Auf dieser Seite finden Sie Informationen über alle Projekte, in die wir investieren, sowie über alle relevanten finanziellen Fragen.
   100_percent_transparency_climate_projects: 100% Transparenz - Klimainvestitionen
   for_more_information_about_climate_projects: Weitere Informationen zu unseren Klimainvestitionen finden Sie hier
   100_percent_transparency_financial_info: 100% Transparenz - Finanzielle Informationen
-  100_percent_transparency_financial_info_intro: >-
-    GoClimateNeutral Sweden AB (Registriernummer 559130-6583) wurde 2017 mit dem
-    Fokus auf soziales Unternehmertum und das alleinige Ziel gegründet, den
-    Klimawandel so schnell wie möglich zu verlangsamen. Wir haben ein
-    verlängertes Geschäftsjahr und unser erster Jahresbericht wird den Zeitraum
-    Mai 2017 bis Dezember 2018 umfassen. Der Jahresbericht wird hier
-    veröffentlicht.
+  100_percent_transparency_financial_info_intro: GoClimateNeutral Sweden AB (Registriernummer 559130-6583) wurde 2017 mit dem Fokus auf soziales Unternehmertum und das alleinige Ziel gegründet, den Klimawandel so schnell wie möglich zu verlangsamen. Wir haben ein verlängertes Geschäftsjahr und unser erster Jahresbericht wird den Zeitraum Mai 2017 bis Dezember 2018 umfassen. Der Jahresbericht wird hier veröffentlicht.
   fiscal_years: Geschäftsjahr
   fiscal_year_2020_ongoing: Geschäftsjahr 2020 (ongoing)
   revenue: Einnahmen
   cost: Ausgaben
   result: Ergebnis
-  all_of_the_result_were_carried_forward: >-
-    Für einen maximalen Klimaeffekt wurden die Überschüsse ins nächste Jahr
-    übernommen.
-  auditor: Prüfer
+  all_of_the_result_were_carried_forward: Für einen maximalen Klimaeffekt wurden die Überschüsse ins nächste Jahr übernommen.
+  auditor: 'Prüfer'
   climate_offset_from_users: Klimaausgleichssumme unserer Nutzer
   revenue_from_companies: Einnahmen Unternehmen
   investments_in_climate_projects: Investitionen in Klimaprojekte
@@ -48,78 +32,27 @@ de:
   total: Gesamt
   you_can_read_more_details_about_our_costs_here: Weitere Details zu unseren Kosten finden Sie hier
   questions_or_comments_contact_us: Fragen oder Anmerkungen? Schreiben Sie einfach an
-  general_questions_html: >-
-    Wenn Sie Fragen zu GoClimate oder Ideen haben, wie wir unsere Seite
-    verbessern können, schreiben Sie uns eine E-Mail an <a
-    href="mailto:hello@goclimate.com">hello@goclimate.com</a> oder
-    rufen Sie uns an <a href="tel:+46706084374">+46706084374</a>
-  general_questions_press_html: >-
-    Presseanfragen können Sie gerne an <a
-    href="mailto:press@goclimate.com">press@goclimate.com</a>
-    richten
-  general_questions_facebook_html: >-
-    Sie finden uns auch bei Facebook unter <a
-    href="https://www.facebook.com/GoClimate">GoClimate</a>
-  general_questions_twitter_html: >-
-    Bei Twitter finden Sie uns hier: <a
-    href="https://twitter.com/GoClimateHQ">@GoClimateHQ</a>
+  general_questions_html: 'Wenn Sie Fragen zu GoClimate oder Ideen haben, wie wir unsere Seite verbessern können, schreiben Sie uns eine E-Mail an <a href="mailto:hello@goclimate.com">hello@goclimate.com</a> oder rufen Sie uns an <a href="tel:+46706084374">+46706084374</a>'
+  general_questions_press_html: Presseanfragen können Sie gerne an <a href="mailto:press@goclimate.com">press@goclimate.com</a> richten
+  general_questions_facebook_html: 'Sie finden uns auch bei Facebook unter <a href="https://www.facebook.com/GoClimate">GoClimate</a>'
+  general_questions_twitter_html: 'Bei Twitter finden Sie uns hier: <a href="https://twitter.com/GoClimateHQ">@GoClimateHQ</a>'
   about_us: Über uns
-  about_us_intro: >-
-    GoClimate wurde 2017 mit dem Ziel gegründet, es einfacher zu machen,
-    ein klimaneutrales Leben zu führen und somit den Klimawandel zu
-    verlangsamen. Wir gleichen Ihren Lebensstil aus und geben Anregungen, um den
-    eigenen ökologischen Fußabdruck zu reduzieren und so die Welt zu einem
-    besseren Ort zu machen.
+  about_us_intro: GoClimate wurde 2017 mit dem Ziel gegründet, es einfacher zu machen, ein klimaneutrales Leben zu führen und somit den Klimawandel zu verlangsamen. Wir gleichen Ihren Lebensstil aus und geben Anregungen, um den eigenen ökologischen Fußabdruck zu reduzieren und so die Welt zu einem besseren Ort zu machen.
   about_us_why_do_we_exist: Warum gibt es GoClimate?
-  about_us_why_do_we_exist_text: >-
-    Eines Tages werden unsere Kinder uns dafür verantwortlich machen, was wir
-    getan, oder besser gesagt nicht getan haben, obwohl uns der Ernst der Lage
-    bewusst war. Das ist der Hauptgrund, warum wir GoClimate ins Leben
-    gerufen haben. Um unseren Kindern zukünftig noch ohne schlechtes Gewissen in
-    die Augen schauen zu können, müssen wir alles in unserer Macht stehende tun,
-    um die globale Erwärmung zu stoppen.
+  about_us_why_do_we_exist_text: Eines Tages werden unsere Kinder uns dafür verantwortlich machen, was wir getan, oder besser gesagt nicht getan haben, obwohl uns der Ernst der Lage bewusst war. Das ist der Hauptgrund, warum wir GoClimate ins Leben gerufen haben. Um unseren Kindern zukünftig noch ohne schlechtes Gewissen in die Augen schauen zu können, müssen wir alles in unserer Macht stehende tun, um die globale Erwärmung zu stoppen.
   about_us_how_do_we_stop_climate_change: Wie können wir den Klimawandel stoppen?
-  about_us_how_do_we_stop_climate_change_text: >-
-    Um den Klimawandel stoppen zu können, müssen wir alle ab jetzt ein
-    Klimaneutrales Leben führen. Die beste Möglichkeit ist, unseren ökologischen
-    Fußabdruck zu minimieren und gleichzeitig die Dinge, die wir nicht vermeiden
-    können, auszugleichen. Die GoClimate Webseite entstand 2017 mit dem
-    Ziel, genau das zu schaffen - die negativen Auswirkungen auf unser Klima zu
-    verringern und auszugleichen.
-  about_us_how_do_we_stop_climate_change_text_2: >-
-    Wir glauben, dass man die Auswirkungen auf das Klima am besten kompensieren
-    kann, indem man es möglichst einfach macht, die Auswirkungen eines
-    bestimmten Lebensstils auszugleichen. Wir glauben fest daran, dass wir den
-    Klimawandel stoppen können - wenn wir es gemeinsam tun und jetzt damit
-    anfangen.
+  about_us_how_do_we_stop_climate_change_text: Um den Klimawandel stoppen zu können, müssen wir alle ab jetzt ein Klimaneutrales Leben führen. Die beste Möglichkeit ist, unseren ökologischen Fußabdruck zu minimieren und gleichzeitig die Dinge, die wir nicht vermeiden können, auszugleichen. Die GoClimate Webseite entstand 2017 mit dem Ziel, genau das zu schaffen - die negativen Auswirkungen auf unser Klima zu verringern und auszugleichen.
+  about_us_how_do_we_stop_climate_change_text_2: Wir glauben, dass man die Auswirkungen auf das Klima am besten kompensieren kann, indem man es möglichst einfach macht, die Auswirkungen eines bestimmten Lebensstils auszugleichen. Wir glauben fest daran, dass wir den Klimawandel stoppen können - wenn wir es gemeinsam tun und jetzt damit anfangen.
   about_us_who_are_we: Wer sind wir?
-  about_us_who_are_we_kalle_html: >-
-    Mag vegane Schokoladenkuchen und süße Tiere im Internet. MSc
-    Informationstechnologie und Betriebswirtschaft.
-  about_us_who_are_we_cissi_html: >-
-    Marketing- und CSR-Manager bei einer internationalen Sportmarke. Abschluss
-    in Business Economics und Studien im Bereich Nachhaltigkeit und Umwelt.
-  about_us_who_are_we_henrik_html: >-
-    Agile & Lean Coach. Schöpfer von <a href="https://youtu.be/3CM_KkDuzGQ">A
-    friendly guide to Climate Change</a>, <a
-    href="http://climate.crisp.se/">Climate Crisplet</a> und <a
-    href="http://carbonmanifesto.org/">Carbon Manifesto</a>
+  about_us_who_are_we_kalle_html: "Mag vegane Schokoladenkuchen und süße Tiere im Internet. MSc Informationstechnologie und Betriebswirtschaft."
+  about_us_who_are_we_cissi_html: "Marketing- und CSR-Manager bei einer internationalen Sportmarke. Abschluss in Business Economics und Studien im Bereich Nachhaltigkeit und Umwelt."
+  about_us_who_are_we_henrik_html: 'Agile & Lean Coach. Schöpfer von <a href="https://youtu.be/3CM_KkDuzGQ">A friendly guide to Climate Change</a>, <a href="http://climate.crisp.se/">Climate Crisplet</a> und <a href="http://carbonmanifesto.org/">Carbon Manifesto</a>'
   about_us_who_are_we_stefan_html: Agiler Team- und Organisationscoach. Etwas zu idealistischer Pragmatiker.
-  about_us_who_are_we_alexandra_html: >
-    Umweltwissenschaftler mit langjähriger internationaler Erfahrung.
-    Angetrieben von Neugierde und dem Willen, die Welt zu retten - einen Schritt
-    nach dem anderen. Sie tanzen und laufen durch den Wald, um neue Energie zu
-    tanken.
-  about_us_who_are_we_evelina_html: >
-    Ist öffentliche Rednerin und freie Autorin im Bereich Nachhaltigkeit und
-    nachhaltiges Reisen. Klimaaktivistin und Veganerin, die gerne wandert.
+  about_us_who_are_we_alexandra_html: Umweltwissenschaftler mit langjähriger internationaler Erfahrung. Angetrieben von Neugierde und dem Willen, die Welt zu retten - einen Schritt nach dem anderen. Sie tanzen und laufen durch den Wald, um neue Energie zu tanken.
+  about_us_who_are_we_evelina_html: Ist öffentliche Rednerin und freie Autorin im Bereich Nachhaltigkeit und nachhaltiges Reisen. Klimaaktivistin und Veganerin, die gerne wandert.
   blog: Blog
   we_are_100_transparent: Wir sind zu 100% transparent
-  section_3_text: >-
-    Wir bieten eine 100 %ige Transparenz, in welche UN- und Gold
-    Standard-zertifizierte Projekte wir investieren und warum. Außerdem bieten
-    wir 100 %ige Transparenz was die Menge an Emissionen angeht, die wir in
-    Ihrem Namen und insgesamt ausgleichen.
+  section_3_text: Wir bieten eine 100 %ige Transparenz, in welche UN- und Gold Standard-zertifizierte Projekte wir investieren und warum. Außerdem bieten wir 100 %ige Transparenz was die Menge an Emissionen angeht, die wir in Ihrem Namen und insgesamt ausgleichen.
   email: E-Mail
   password: Passwort
   i_accept: Ich akzeptiere
@@ -131,34 +64,28 @@ de:
   no_card_registered: Keine Karte registriert
   climate_plan: Klimaplan
   go_climate_neutral: Anmelden!
-  log_in_to_see_how_we_are_doing: >-
-    Der Klimawandel ist die größte Herausforderung unserer Zeit. Loggen Sie sich
-    ein, um zu erfahren, wie weit wir im Kampf gegen den Klimawandel schon
-    gekommen sind.
+  log_in_to_see_how_we_are_doing: Der Klimawandel ist die größte Herausforderung unserer Zeit. Loggen Sie sich ein, um zu erfahren, wie weit wir im Kampf gegen den Klimawandel schon gekommen sind.
   you_have_lived_climate_neutral_for:
     one: Sie sind seit 1 Monat klimaneutral.
-    other: 'Sie sind seit %{count} Monaten klimaneutral.'
+    other: Sie sind seit %{count} Monaten klimaneutral.
   i_have_lived_climate_neutral_for_join_me:
     one: Ich lebe seit 1 Monat klimaneutral! Mach mit!
-    other: 'Ich lebe seit %{count} Monaten klimaneutral! Mach mit!'
+    other: Ich lebe seit %{count} Monaten klimaneutral! Mach mit!
   name_have_lived_climate_neutral_for_join_me:
     one: '%{name} lebt seit 1 Monat klimaneutral!'
     other: '%{name} lebt seit %{count} Monaten klimaneutral!'
-  climate_change_is_best_faced_together: >-
-    Sie sind großartig! Da man den Klimawandel am besten gemeinsam bekämpfen
-    kann, würden wir uns freuen, wenn Sie Anderen von GoClimate erzählen,
-    damit auch sie ein klimaneutrales Leben führen können!
+  climate_change_is_best_faced_together: Sie sind großartig! Da man den Klimawandel am besten gemeinsam bekämpfen kann, würden wir uns freuen, wenn Sie Anderen von GoClimate erzählen, damit auch sie ein klimaneutrales Leben führen können!
   share_on_facebook: Auf Facebook teilen
   share_on_twitter: Auf Twitter teilen
   we_have_accomplished_alot_together: Gemeinsam haben wir viel geschafft!
-  amount_of_carbon_we_have_offset: 'Tonnen an CO2, die wir zusammen ausgeglichen haben'
-  amount_of_carbon_i_have_offset: 'Tonnen an CO2, die Sie bisher ausgeglichen haben'
+  amount_of_carbon_we_have_offset: Tonnen an CO2, die wir zusammen ausgeglichen haben
+  amount_of_carbon_i_have_offset: Tonnen an CO2, die Sie bisher ausgeglichen haben
   good_job: Gut gemacht!
   number_of_months_you_have_been_climate_neutral: Anzahl Ihrer klimaneutralen Monate
   number_of_climate_neutral_users_right_now: Aktuelle Anzahl klimaneutraler Nutzer
   our_projects: Unsere Klimainvestitionen
   our_investments_in_climate_projects: Unsere Investitionen in Klimaprojekte
-  i_want_to_contribute: 'Ok, ich bin dabei!'
+  i_want_to_contribute: Ok, ich bin dabei!
   project_name: Projekt
   map: Karte
   more_info_on_blog: Weitere Informationen
@@ -174,14 +101,12 @@ de:
     other: Klimaneutrale Monate
   climate_country_toplist: Topliste Klimaländer
   total_carbon_offset_by_us: Gesamte gemeinsame Klimakompensation
-  read_more_about_investments_on_our_blog: >-
-    Erfahren Sie in unserem Blog mehr über die Projekte, in die wir investieren
-    >>
+  read_more_about_investments_on_our_blog: 'Erfahren Sie in unserem Blog mehr über die Projekte, in die wir investieren >>'
   tonnes_CO2: Tonnen CO2
   tonnes: Tonnen
   type: Dauer
   price: Preis
-  thank_you_so_much_everyone_for_helping_to_save_the_world: 'Vielen Dank an alle, die helfen, die Welt zu retten! Sie sind großartig!'
+  thank_you_so_much_everyone_for_helping_to_save_the_world: Vielen Dank an alle, die helfen, die Welt zu retten! Sie sind großartig!
   latest_carbon_offset_projects: Die jüngsten Klimaprojekte
   country: Land
   location: Ort
@@ -199,56 +124,45 @@ de:
   enter_your_email_below_and_we_will_send_you: Geben Sie Ihre E-Mail Adresse ein und wir senden Ihnen eine Info-Mail.
   send_me_an_email_with_instructions: Anleitung zum Zurücksetzen des Passworts zusenden!
   change_your_password: Passwort ändern
-  change_your_password_by_entering_your_new_password_below: 'Ändern Sie Ihr Passwort, indem Sie unten Ihr neues Passwort eingeben.'
+  change_your_password_by_entering_your_new_password_below: Ändern Sie Ihr Passwort, indem Sie unten Ihr neues Passwort eingeben.
   change_password: Passwort ändern
   the_payment_unfortunately_failed: Leider ist Ihre Zahlung fehlgeschlagen
-  no_worries_we_will_try_again_within_a_few_days: 'Keine Sorge, wir versuchen es in ein paar Tagen erneut.'
-  you_might_need_to_update_your_payment_info: >-
-    Um weiterhin mit uns ein klimaneutrales Leben führen zu können, müssen Sie
-    evtl. Ihre Zahlungsinformationen aktualisieren.
-  link_to_update_your_payment_info: Hier Zahlungsinformationen aktualisieren >>
+  no_worries_we_will_try_again_within_a_few_days: Keine Sorge, wir versuchen es in ein paar Tagen erneut.
+  you_might_need_to_update_your_payment_info: Um weiterhin mit uns ein klimaneutrales Leben führen zu können, müssen Sie evtl. Ihre Zahlungsinformationen aktualisieren.
+  link_to_update_your_payment_info: 'Hier Zahlungsinformationen aktualisieren >>'
   this_mail_was_sent_by: Diese E-Mail wurde versendet von
   to_stop_recieving_these_emails: Um diese E-Mails nicht mehr zu erhalten
   click_here: klicken Sie hier
-  thank_you_for_saving_our_planet: 'Vielen Dank, dass Sie unseren Planeten retten!'
+  thank_you_for_saving_our_planet: Vielen Dank, dass Sie unseren Planeten retten!
   you_have_lived_a_climate_neutral_life_for: Sie leben ein klimaneutrales Leben seit
   months:
     one: Monat
     other: Monaten
   x_months:
     one: 1 Monat
-    other: '%{count} Monaten'
+    other: "%{count} Monaten"
+  years:
+    one: Jahr
+    other: Jahr
   together_we_have_offset: Unsere gemeinsamen Klimakompensationen
   goclimateneutral_and_this_planet_loves_you: GoClimate und unser Planet lieben Sie! Sie sind großartig!
   learn_more_about_what_we_have_achieved_here: 'Erfahren Sie hier mehr darüber, was wir bereits geschafft haben >>'
   thank_you: Vielen Dank!
-  the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible: >-
-    Bitte erzählen Sie Ihren Freunden davon. Je mehr Menschen klimaneutral
-    leben, umso größer ist die Chance, dass wir erfolgreich den Klimawandel
-    verlangsamen können!
+  the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible: 'Bitte erzählen Sie Ihren Freunden davon. Je mehr Menschen klimaneutral leben, umso größer ist die Chance, dass wir erfolgreich den Klimawandel verlangsamen können!'
   press_images: Pressebilder
   press_social_images: Bilder Soziale Medien
-  press_credits: >-
-    Diese Illustrationen stammen von Henrik Kniberg und sind Creative
-    Commons-lizensiert.
+  press_credits: Diese Illustrationen stammen von Henrik Kniberg und sind Creative Commons-lizensiert.
   im_in: Ich bin dabei!
   press: Presse
   faq: FAQ
   for_business: Für Unternehmen
   thats_amazing_from_the_bottom_of_our_hearts: Das ist großartig! Von ganzem Herzen
-  years:
-    one: Jahr
-    other: Jahr
   navigation:
     gift_cards: Gutscheine
   welcome:
     caption_line_1: Gemeinsam können wir unser Klima retten.
     caption_line_2: Kompensieren Sie Ihre Emissionen noch heute!
-    what_is_gcn_text: >-
-      Wir investieren in UN-zertifizierte Klimaprojekte und zeigen Ihnen, wie
-      Sie ganz einfach Ihre Klimabilanz verbessern können. Auf diese Weise
-      tragen wir dazu bei, den Klimawandel zu verlangsamen und den Planeten zu
-      retten.
+    what_is_gcn_text: Wir investieren in UN-zertifizierte Klimaprojekte und zeigen Ihnen, wie Sie ganz einfach Ihre Klimabilanz verbessern können. Auf diese Weise tragen wir dazu bei, den Klimawandel zu verlangsamen und den Planeten zu retten.
     statistics_header: Jeder Einzelne macht einen Unterschied!
     users_prefix: Aktuell sind wir
     users_suffix: klimaneutrale Nutzer
@@ -257,252 +171,113 @@ de:
     call_to_actions:
       im_ready_to_sign_up: Ich möchte mich anmelden!
     how_it_works:
-      describe_your_lifestyle_text: >-
-        Nutzen Sie unseren Klimarechner, um Ihre ungefähre Klimabilanz zu
-        errechnen.
-      sign_up_text: 'Melden Sie sich an, um jeden Monat Ihre Emissionen auszugleichen.'
+      describe_your_lifestyle_text: Nutzen Sie unseren Klimarechner, um Ihre ungefähre Klimabilanz zu errechnen.
+      sign_up_text: Melden Sie sich an, um jeden Monat Ihre Emissionen auszugleichen.
       save_our_planet_header: 3. Die Erde retten
-      save_our_planet_text: >-
-        Seien Sie Teil unserer Community, in der wir nicht länger den
-        Klimawandel fördern.
+      save_our_planet_text: Seien Sie Teil unserer Community, in der wir nicht länger den Klimawandel fördern.
     business:
       for_companies: Klimakompensation für Ihr Unternehmen
-      for_companies_text_html: >
-        Möchten Sie die Emissionen eines Fluges oder für alle Ihre Mitarbeiter
-        kompensieren? Wir helfen Ihnen gerne weiter!
+      for_companies_text_html: Möchten Sie die Emissionen eines Fluges oder für alle Ihre Mitarbeiter kompensieren? Wir helfen Ihnen gerne weiter!
       calculate_footprint: Der Fußabdruck Ihres Unternehmens
-      calculate_footprint_html: >
-        Berechnen Sie die Klimabilanz Ihres Unternehmens, reduzieren Sie so
-        viele Emissionen wie möglich und kompensieren Sie den Rest. Unser
-        Rechner ist für kleinere Dienstleistungsunternehmen ohne eigene
-        physische Produktion konzipiert. Fragen? Kontaktieren Sie uns unter <a
-        href="mailto:hello@goclimate.com">hello@goclimate.com</a>!
+      calculate_footprint_html: Berechnen Sie die Klimabilanz Ihres Unternehmens, reduzieren Sie so viele Emissionen wie möglich und kompensieren Sie den Rest. Unser Rechner ist für kleinere Dienstleistungsunternehmen ohne eigene physische Produktion konzipiert. Fragen? Kontaktieren Sie uns unter <a href="mailto:hello@goclimate.com">hello@goclimate.com</a>!
       calculate_footprint_button: Fußabdruck meines Unternehmens berechnen
       customers_we_work_with: Einige unserer wundervollen Kunden und Partner
       offset_employees: Kompensieren Sie die Emissionen Ihrer Mitarbeiter
-      offset_employees_html: >
-        Durch die CO2-Kompensation des Lebensstils Ihrer Mitarbeiter übernehmen
-        Sie Verantwortung für deren Klimabilanz. Auf diese Weise kann man viel
-        Gutes für das Klima tun und gleichzeitig ein attraktiver und
-        verantwortungsvoller Arbeitgeber sein.
-      equivalent_co2_offset: |
-        entspricht 22 Tonnen CO2-Emissionen pro Mitarbeiter und Jahr.
+      offset_employees_html: Durch die CO2-Kompensation des Lebensstils Ihrer Mitarbeiter übernehmen Sie Verantwortung für deren Klimabilanz. Auf diese Weise kann man viel Gutes für das Klima tun und gleichzeitig ein attraktiver und verantwortungsvoller Arbeitgeber sein.
+      equivalent_co2_offset: entspricht 22 Tonnen CO2-Emissionen pro Mitarbeiter und Jahr.
       im_interested: Kontaktieren Sie mich
-      we_will_contact_you_shortly_html: >
-        Wir werden Sie unter <b>%{email}</b> in Kürze mit weiteren Informationen
-        zum nächsten Schritt kontaktieren!
+      we_will_contact_you_shortly_html: Wir werden Sie unter <b>%{email}</b> in Kürze mit weiteren Informationen zum nächsten Schritt kontaktieren!
       other_offsetting: Weitere Leistungen
-      other_offsetting_html: >
-        Wir können Ihnen bei Klimabilanzberechnungen, einmaligen Kompensationen
-        und technischen Integrationen helfen. Kontaktieren Sie uns unter <a
-        href='mailto:hello@goclimate.com'>hello@goclimate.com</a>,
-        um mehr zu erfahren.
-      number_of_employees: 'Anzahl Mitarbeiter:'
-      your_email: 'Ihre E-Mail:'
+      other_offsetting_html: Wir können Ihnen bei Klimabilanzberechnungen, einmaligen Kompensationen und technischen Integrationen helfen. Kontaktieren Sie uns unter <a href='mailto:hello@goclimate.com'>hello@goclimate.com</a>, um mehr zu erfahren.
+      number_of_employees: "Anzahl Mitarbeiter:"
+      your_email: "Ihre E-Mail:"
   number:
     format:
       delimiter: ' '
       separator: ','
-  we_have_sent_you_an_email_with_the_gift_card: >-
-    Wir haben eine E-Mail mit dem Gutschein an die von Ihnen eingegebene
-    E-Mail-Adresse gesendet.
-  thank_you_for_helping_us_trying_to_stop_climate_change: >-
-    Vielen Dank, dass Sie uns dabei helfen, den Klimawandel zu stoppen. Wenn Sie
-    noch kein Monatsabo haben, würden wir uns freuen, wenn Sie dies in Erwägung
-    ziehen.
+  we_have_sent_you_an_email_with_the_gift_card: Wir haben eine E-Mail mit dem Gutschein an die von Ihnen eingegebene E-Mail-Adresse gesendet.
+  thank_you_for_helping_us_trying_to_stop_climate_change: Vielen Dank, dass Sie uns dabei helfen, den Klimawandel zu stoppen. Wenn Sie noch kein Monatsabo haben, würden wir uns freuen, wenn Sie dies in Erwägung ziehen.
   best_regards: Freundliche Grüße
   gift_card_email_subject: Ihr Gutschein
   business:
     climate_reports:
       business_footprint_header: Schätzen Sie Ihre Unternehmensemissionen
-      business_footprint_intro: >
-        Die Schätzung Ihres geschäftlichen Fußabdrucks ist der erste Schritt, um
-        die Verantwortung für die Klimaemissionen zu übernehmen, die Ihr
-        Unternehmen verursacht. Nach dem Ausfüllen dieses Formulars berechnen
-        wir Ihre gesamten Unternehmensemissionen und Sie können diese Emissionen
-        dann in zertifizierten Klimaprojekten kompensieren.
+      business_footprint_intro: Die Schätzung Ihres geschäftlichen Fußabdrucks ist der erste Schritt, um die Verantwortung für die Klimaemissionen zu übernehmen, die Ihr Unternehmen verursacht. Nach dem Ausfüllen dieses Formulars berechnen wir Ihre gesamten Unternehmensemissionen und Sie können diese Emissionen dann in zertifizierten Klimaprojekten kompensieren.
       general_information: Allgemeine Informationen
       company_name: Name des Unternehmens
       country: Land
-      country_tooltip: >
-        Unser Rechner für Emissionen von Unternehmen ist bisher nur für in
-        Schweden ansässige Unternehmen verfügbar. Das bedeutet, dass wir
-        schwedische Unternehmen mit Niederlassungen im Ausland leider auch nicht
-        unterstützen können. Kontaktieren Sie uns unter
-        hello@goclimate.com, wenn Sie an Berechnungen für Ihre Büros im
-        Ausland interessiert sind - wir helfen Ihnen gerne weiter!
+      country_tooltip: Unser Rechner für Emissionen von Unternehmen ist bisher nur für in Schweden ansässige Unternehmen verfügbar. Das bedeutet, dass wir schwedische Unternehmen mit Niederlassungen im Ausland leider auch nicht unterstützen können. Kontaktieren Sie uns unter hello@goclimate.com, wenn Sie an Berechnungen für Ihre Büros im Ausland interessiert sind - wir helfen Ihnen gerne weiter!
       sweden: Schweden
       number_of_employees: Anzahl Mitarbeiter
-      number_of_employees_tooltip: >
-        Geschätzte Anzahl der Vollzeitbeschäftigten oder Äquivalent. Diese Zahl
-        wird verwendet, um Ihren Energieverbrauch abzuschätzen, wenn Sie keine
-        spezifischen kWh-Zahlen zur Verfügung haben, und um die Emissionen pro
-        Mitarbeiter und andere statistische Werte zu berechnen. Beispiel: 2
-        Vollzeitbeschäftigte und 2 Personen mit 50% wären gleich 3
-        Vollzeitbeschäftigte.
+      number_of_employees_tooltip: "Geschätzte Anzahl der Vollzeitbeschäftigten oder Äquivalent. Diese Zahl wird verwendet, um Ihren Energieverbrauch abzuschätzen, wenn Sie keine spezifischen kWh-Zahlen zur Verfügung haben, und um die Emissionen pro Mitarbeiter und andere statistische Werte zu berechnen. Beispiel: 2 Vollzeitbeschäftigte und 2 Personen mit 50% wären gleich 3 Vollzeitbeschäftigte."
       office_area: Bürofläche
-      office_area_tooltip: >-
-        Gesamte Fläche all Ihrer Büros. Wenn Sie die genaue Zahl nicht wissen,
-        lassen Sie dieses Feld bitte frei.
+      office_area_tooltip: Gesamte Fläche all Ihrer Büros. Wenn Sie die genaue Zahl nicht wissen, lassen Sie dieses Feld bitte frei.
       calculation_period: Berechnungszeitraum
-      calculation_period_tooltip: >-
-        Zeitraum für den Sie die CO2-Kalkulation durchführen möchten.  "2018",
-        "2019 Q1" o.ä. Sie können Jahre, Halbjahre oder Quartale als Zeitraum
-        angeben.
+      calculation_period_tooltip: Zeitraum für den Sie die CO2-Kalkulation durchführen möchten.  "2018", "2019 Q1" o.ä. Sie können Jahre, Halbjahre oder Quartale als Zeitraum angeben.
       calculation_period_length: Länge des Berechnungszeitraumes
       calculation_period_length_options:
         year: Jahr
         half-year: Halbjahr
         quarter: Quartal
       name_and_logo: Unternehmensname und -logo
-      name_and_logo_tooltip: >
-        Ihr Logo zu zeigen, kann dazu beitragen, andere davon zu überzeugen,
-        auch deren Klimabilanz zu berechnen und zu kompensieren. Und wenn Sie
-        Ihre Meinung später ändern, schreiben Sie uns einfach eine Nachricht!
-      ok_with_showing_logo: >
-        Wir sind damit einverstanden, dass unser Name und unser Logo auf der
-        GoClimate-Website angezeigt werden.
+      name_and_logo_tooltip: Ihr Logo zu zeigen, kann dazu beitragen, andere davon zu überzeugen, auch deren Klimabilanz zu berechnen und zu kompensieren. Und wenn Sie Ihre Meinung später ändern, schreiben Sie uns einfach eine Nachricht!
+      ok_with_showing_logo: Wir sind damit einverstanden, dass unser Name und unser Logo auf der GoClimate-Website angezeigt werden.
       energy: Energieverbrauch
-      energy_intro: >
-        Der Energieverbrauch eines Unternehmens ist oft die größte Quelle für
-        die Emissionen eines Dienstleistungsunternehmens. Dieser Rechner
-        berücksichtigt die drei am häufigsten verwendeten energieverbrauchenden
-        Quellen: Strom, Heizung und die Anzahl der laufenden Server.
+      energy_intro: 'Der Energieverbrauch eines Unternehmens ist oft die größte Quelle für die Emissionen eines Dienstleistungsunternehmens. Dieser Rechner berücksichtigt die drei am häufigsten verwendeten energieverbrauchenden Quellen: Strom, Heizung und die Anzahl der laufenden Server.'
       electricity: Strom
       electricity_consumption: Stromverbrauch
-      electricity_consumption_tooltip: >
-        Der während des angegebenen Zeitraums verbrauchte Strom in kWh. Dies
-        wird meist auf den Stromrechnungen angegeben, die Sie jeden Monat oder
-        jedes Quartal erhalten. Wenn der Strom im Mietpreis inbegriffen ist,
-        fragen Sie Ihren Vermieter, ob er den spezifischen Verbrauch jedes
-        Mieters misst oder ob er den Verbrauch für Sie schätzen kann. Wenn
-        nicht, können unsere Durchschnittszahlen verwendet werden.
-      use_average_values: >
-        Wir haben keinen Daten zu unserem Stromverbrauch. Verwenden Sie
-        Durchschnittswerte.
+      electricity_consumption_tooltip: Der während des angegebenen Zeitraums verbrauchte Strom in kWh. Dies wird meist auf den Stromrechnungen angegeben, die Sie jeden Monat oder jedes Quartal erhalten. Wenn der Strom im Mietpreis inbegriffen ist, fragen Sie Ihren Vermieter, ob er den spezifischen Verbrauch jedes Mieters misst oder ob er den Verbrauch für Sie schätzen kann. Wenn nicht, können unsere Durchschnittszahlen verwendet werden.
+      use_average_values: Wir haben keinen Daten zu unserem Stromverbrauch. Verwenden Sie Durchschnittswerte.
       green_electricity: Ökostrom
-      green_electricity_tooltip: |+
-        Mit Ökostrom beziehen wir Strom aus erneuerbaren und nuklearen Quellen.
-
+      green_electricity_tooltip: Mit Ökostrom beziehen wir Strom aus erneuerbaren und nuklearen Quellen.
       green_electricity_text: Wir beziehen Ökostrom
       heating: Heizung
-      heating_tooltip: >
-        90% der Beheizung in Schweden stammt aus Fernwärme und ist im Bezug auf
-        die verbrauchten kWh ungefähr gleichauf mit dem Stromverbrauch. Die
-        Daten dazu sind normalerweise auf der Heizungsrechnung zu finden.
-        Sollten diese Zahlen nicht verfügbar sein, fragen Sie Ihren Vermieter,
-        ob er Sie Ihnen zur Verfügung stellen kann. Wenn nicht, können unsere
-        Durchschnittszahlen verwendet werden. Wenn Sie wissen, dass Sie keinen
-        zusätzlichen Wärmeverbrauch haben, geben Sie hier 0 ein.
+      heating_tooltip: 90% der Beheizung in Schweden stammt aus Fernwärme und ist im Bezug auf die verbrauchten kWh ungefähr gleichauf mit dem Stromverbrauch. Die Daten dazu sind normalerweise auf der Heizungsrechnung zu finden. Sollten diese Zahlen nicht verfügbar sein, fragen Sie Ihren Vermieter, ob er Sie Ihnen zur Verfügung stellen kann. Wenn nicht, können unsere Durchschnittszahlen verwendet werden. Wenn Sie wissen, dass Sie keinen zusätzlichen Wärmeverbrauch haben, geben Sie hier 0 ein.
       servers: Server
       average_number_of_servers: Anzahl aktiver Server
-      average_number_of_servers_tooltip: >
-        Die durchschnittliche Anzahl der aktiven Rechenzentrumsserver während
-        des Zeitraums. Ausgenommen sind Server, die auf Ihrer eigenen
-        Stromrechnung laufen und Server, die sich bei großen Cloud-Anbietern
-        befinden. Wenn Sie beispielsweise 4 Server in einem lokalen
-        Rechenzentrum für die Hälfte der Zeit und 2 für den Rest betrieben
-        haben, geben Sie 3 als Durchschnitt ein. Dieses Feld ist nur für
-        selbstverwaltete Rechenzentrumsserver vorgesehen (die statistisch
-        gesehen einen größeren CO2-Fußabdruck haben als Cloud-Server).
+      average_number_of_servers_tooltip: Die durchschnittliche Anzahl der aktiven Rechenzentrumsserver während des Zeitraums. Ausgenommen sind Server, die auf Ihrer eigenen Stromrechnung laufen und Server, die sich bei großen Cloud-Anbietern befinden. Wenn Sie beispielsweise 4 Server in einem lokalen Rechenzentrum für die Hälfte der Zeit und 2 für den Rest betrieben haben, geben Sie 3 als Durchschnitt ein. Dieses Feld ist nur für selbstverwaltete Rechenzentrumsserver vorgesehen (die statistisch gesehen einen größeren CO2-Fußabdruck haben als Cloud-Server).
       servers_green_electricity: Unsere Server laufen zu 100% mit Oköstrom
       cloud_servers: Cloud-Server
       number_of_cloud_servers: Anzahl aktiver Cloud-Server
-      number_of_cloud_servers_tooltip: >
-        Die durchschnittliche Anzahl der aktiven Cloud-Server während des
-        Zeitraums. Darunter verstehen wir große Cloud-Anbieter wie Amazon AWS,
-        Google Cloud und Microsoft Azure. Dies kann schwer einzuschätzen sein,
-        manchmal entspricht 1 Instanz in der Cloud 20% eines dedizierten Servers
-        und manchmal entspricht 1 große Instanz 2 normalen Servern. Versuchen
-        Sie, die Anzahl der Äquivalente zu einem dedizierten High-End-Server zu
-        schätzen. Beispiel: Es laufen 15 kleine Instanzen in der Cloud während
-        der ersten Hälfte der Zeitspanne und 5 während der anderen Hälfte. Der
-        Durchschnitt beträgt 10 Instanzen, und wenn sie auf 50% eines
-        dedizierten Servers geschätzt werden, sollten hier 5 eingetragen werden.
+      number_of_cloud_servers_tooltip: "Die durchschnittliche Anzahl der aktiven Cloud-Server während des Zeitraums. Darunter verstehen wir große Cloud-Anbieter wie Amazon AWS, Google Cloud und Microsoft Azure. Dies kann schwer einzuschätzen sein, manchmal entspricht 1 Instanz in der Cloud 20% eines dedizierten Servers und manchmal entspricht 1 große Instanz 2 normalen Servern. Versuchen Sie, die Anzahl der Äquivalente zu einem dedizierten High-End-Server zu schätzen. Beispiel: Es laufen 15 kleine Instanzen in der Cloud während der ersten Hälfte der Zeitspanne und 5 während der anderen Hälfte. Der Durchschnitt beträgt 10 Instanzen, und wenn sie auf 50% eines dedizierten Servers geschätzt werden, sollten hier 5 eingetragen werden."
       cloud_servers_green_electricity: Unsere Cloud-Server laufen zu 100% mit Oköstrom
       business_trips: Geschäftsreisen
-      business_trips_intro: >
-        Geschäftsreisen können eine großen Anteil an den Emissionen eines
-        Unternehmens ausmachen, insbesondere wenn viele Langstreckenreisen
-        unternommen werden oder wenn Ihre Vertriebsmitarbeiter viel unterwegs
-        sind.
+      business_trips_intro: Geschäftsreisen können eine großen Anteil an den Emissionen eines Unternehmens ausmachen, insbesondere wenn viele Langstreckenreisen unternommen werden oder wenn Ihre Vertriebsmitarbeiter viel unterwegs sind.
       flights: Flüge
       flight_hours: Flugstunden
-      flight_hours_tooltip: >
-        Geschätzte Anzahl der Flugstunden insgesamt. Für Berater sind dies die
-        Flüge, für die der Kunde zahlt. Zum Beispiel, wenn 10 Personen 2 Stunden
-        auf einem One-Way-Flug fliegen, wäre die Summe hier 20 Stunden. Wenn sie
-        auch einen Rückflug nehmen, wären es 40 Stunden.
+      flight_hours_tooltip: Geschätzte Anzahl der Flugstunden insgesamt. Für Berater sind dies die Flüge, für die der Kunde zahlt. Zum Beispiel, wenn 10 Personen 2 Stunden auf einem One-Way-Flug fliegen, wäre die Summe hier 20 Stunden. Wenn sie auch einen Rückflug nehmen, wären es 40 Stunden.
       hours: Stunden
       car_taxi: Auto & Taxi
       distance_car: Entfernung Auto & Taxi
-      distance_car_tooltip: >-
-        Geschätzte Entfernung mit Auto oder Taxi. Elektrofahrzeuge werden hier
-        nicht einbezogen.
+      distance_car_tooltip: Geschätzte Entfernung mit Auto oder Taxi. Elektrofahrzeuge werden hier nicht einbezogen.
       kilometers: Kilometer
       food: Essen
-      food_intro: >
-        Abhängig von der Art des Unternehmens und der Art der Speisen können
-        Lebensmittel eine große Quelle für den Fußabdruck eines Unternehmens
-        sein.
+      food_intro: Abhängig von der Art des Unternehmens und der Art der Speisen können Lebensmittel eine große Quelle für den Fußabdruck eines Unternehmens sein.
       meals: Anzahl Mahlzeiten
-      meals_tooltip: >
-        Die geschätzte Anzahl der während des Zeitraums servierten Mahlzeiten.
-        Dazu gehören alle Mahlzeiten, die das Unternehmen bezahlt.
+      meals_tooltip: Die geschätzte Anzahl der während des Zeitraums servierten Mahlzeiten. Dazu gehören alle Mahlzeiten, die das Unternehmen bezahlt.
       meals_vegetarian_share: Anteil vegetarischer Mahlzeiten
-      meals_vegetarian_share_tooltip: >-
-        Der geschätzte Anteil an vegetarischen Mahlzeiten. In den meisten Fällen
-        sind das wahrscheinlich etwa 10% (die Anzahl der Vegetarier/Veganer in
-        Schweden nach Djurens Rätt).
+      meals_vegetarian_share_tooltip: Der geschätzte Anteil an vegetarischen Mahlzeiten. In den meisten Fällen sind das wahrscheinlich etwa 10% (die Anzahl der Vegetarier/Veganer in Schweden nach Djurens Rätt).
       material: Material
-      material_intro: >
-        Elektronik hat oft eine 10x größeren Klimabilanz als die meisten anderen
-        gekauften Materialien, wie T-Shirts oder Möbel. Wenn große Mengen an
-        anderem Material als Elektronik gekauft wurden, wie z.B. viele Möbel,
-        weil das Unternehmen während der Periode umgezogen ist, kann dies
-        separat berechnet und am Ende dieses Formulars in das Feld "Sonstiges"
-        eingetragen werden.
+      material_intro: Elektronik hat oft eine 10x größeren Klimabilanz als die meisten anderen gekauften Materialien, wie T-Shirts oder Möbel. Wenn große Mengen an anderem Material als Elektronik gekauft wurden, wie z.B. viele Möbel, weil das Unternehmen während der Periode umgezogen ist, kann dies separat berechnet und am Ende dieses Formulars in das Feld "Sonstiges" eingetragen werden.
       purchased_computers: Gekaufte Computer
       purchased_phones: Gekaufte Telefone/Tablets
       purchased_monitors: Gekaufte Monitore
       other: Sonstiges
-      other_intro: >
-        Es ist schwierig, alle Emissionen eines Unternehmens in einer Form zu
-        erfassen. Die meisten Unternehmen haben andere Emissionsquellen, die
-        zwar groß, aber nicht sehr verbreitet sind. Organisiert Ihr Unternehmen
-        Veranstaltungen mit Referenten aus der ganzen Welt, die eingeflogen
-        werden? Haben Sie Berater, die jede Woche lange Wege zurücklegen müssen,
-        um zu Ihren Kunden zu gelangen? Berechnen Sie dieses  Emissionen, indem
-        Sie sie unten eingeben. Wenn Sie Hilfe bei der Kalkulation benötigen,
-        können Sie sich gerne schreiben: hello@goclimate.com
+      other_intro: 'Es ist schwierig, alle Emissionen eines Unternehmens in einer Form zu erfassen. Die meisten Unternehmen haben andere Emissionsquellen, die zwar groß, aber nicht sehr verbreitet sind. Organisiert Ihr Unternehmen Veranstaltungen mit Referenten aus der ganzen Welt, die eingeflogen werden? Haben Sie Berater, die jede Woche lange Wege zurücklegen müssen, um zu Ihren Kunden zu gelangen? Berechnen Sie dieses  Emissionen, indem Sie sie unten eingeben. Wenn Sie Hilfe bei der Kalkulation benötigen, können Sie sich gerne schreiben: hello@goclimate.com'
       other_emissions: Andere Emissionen
       specify_other_emissions: Spezifizieren Sie die anderen Emissionen
       contact: Kontakt
-      contact_intro: >-
-        Um einen Link zur von uns erstellten Klimaberechnung zu erhalten, müssen
-        Sie Ihre E-Mail-Adresse eingeben.
+      contact_intro: Um einen Link zur von uns erstellten Klimaberechnung zu erhalten, müssen Sie Ihre E-Mail-Adresse eingeben.
       contact_email: E-Mail
       calculate_button: Die Emissionen meines Unternehmens ansehen
       read_more_about_calculations: Mehr über die Berechnung finden Sie hier
       total: Gesamt
       show:
         header: Die Emissionen Ihres Unternehmens
-        result: >
-          Der Fußabdruck Ihres Unternehmens für die Berichtsperiode
-          %{calculation_period} beträgt %{total_emissions} Tonnen
-          CO2-Äquivalente.
-        result_per_employee: 'Das sind %{emissions_per_employee} Tonnen pro Mitarbeiter.'
-        offset_and_get_report: |
-          Kompensieren Sie Ihren Fußabdruck und erhalten Sie Ihren Klimabericht.
-        offset_and_get_report_text: >-
-          Die Kompensation Ihrer Emissionen ist eine Möglichkeit, Verantwortung
-          für die Auswirkungen Ihres Unternehmens auf das Klima zu übernehmen.
-          Wenn Sie den Ausgleich vornehmen, erhalten Sie auch einen
-          Klimabericht, der auf den von Ihnen eingegebenen Zahlen basiert.
-          Dieser ist hilfreich, um ein besseres Verständnis dafür zu erhalten,
-          welche Aktivitäten die größten Emissionen verursachen, und er kann als
-          Werkzeug dienen, um Ziele für die Emissionsreduzierung in Ihrem
-          Unternehmen festzulegen.
+        result: Der Fußabdruck Ihres Unternehmens für die Berichtsperiode %{calculation_period} beträgt %{total_emissions} Tonnen CO2-Äquivalente.
+        result_per_employee: Das sind %{emissions_per_employee} Tonnen pro Mitarbeiter.
+        offset_and_get_report: Kompensieren Sie Ihren Fußabdruck und erhalten Sie Ihren Klimabericht.
+        offset_and_get_report_text: Die Kompensation Ihrer Emissionen ist eine Möglichkeit, Verantwortung für die Auswirkungen Ihres Unternehmens auf das Klima zu übernehmen. Wenn Sie den Ausgleich vornehmen, erhalten Sie auch einen Klimabericht, der auf den von Ihnen eingegebenen Zahlen basiert. Dieser ist hilfreich, um ein besseres Verständnis dafür zu erhalten, welche Aktivitäten die größten Emissionen verursachen, und er kann als Werkzeug dienen, um Ziele für die Emissionsreduzierung in Ihrem Unternehmen festzulegen.
         your_order: Ihre Bestellung
         carbon_offseting: CO2-Kompensation
         climate_report: Klimabericht
@@ -510,43 +285,19 @@ de:
         invoice_address: Rechnungsadresse
         vat_number: Umsatzsteuer-ID (optional)
         invoice_email: Rechnungs-E-Mail (optional)
-        invoice_email_text: >-
-          Geben Sie eine E-Mail-Adresse an, um Ihre Rechnung per E-Mail zu
-          erhalten.
+        invoice_email_text: Geben Sie eine E-Mail-Adresse an, um Ihre Rechnung per E-Mail zu erhalten.
         order: Bestellung
-        well_get_in_touch_html: >-
-          Wir werden uns mit Ihnen in Verbindung setzen, wenn Ihr nächster
-          Berichtszeitraum zu Ende geht und es an der Zeit ist, Ihren Fußabdruck
-          neu zu berechnen. Wenn Sie Fragen zur Bestellung haben, kontaktieren
-          Sie uns bitte unter hello@goclimate.com
+        well_get_in_touch_html: Wir werden uns mit Ihnen in Verbindung setzen, wenn Ihr nächster Berichtszeitraum zu Ende geht und es an der Zeit ist, Ihren Fußabdruck neu zu berechnen. Wenn Sie Fragen zur Bestellung haben, kontaktieren Sie uns bitte unter hello@goclimate.com
         reduce_header: Können Sie Ihre Emissionen noch stärker reduzieren?
-        reduce_body: >-
-          Bitte denken Sie noch einmal darüber nach, ob Sie noch etwas tun
-          können, um Ihre Emissionen zu reduzieren. Wir ermutigen alle
-          Unternehmen, Verantwortung für ihre Emissionen durch CO2-Kompensation
-          zu übernehmen, aber noch wichtiger ist es, die Emissionen so weit wie
-          möglich zu reduzieren.
+        reduce_body: Bitte denken Sie noch einmal darüber nach, ob Sie noch etwas tun können, um Ihre Emissionen zu reduzieren. Wir ermutigen alle Unternehmen, Verantwortung für ihre Emissionen durch CO2-Kompensation zu übernehmen, aber noch wichtiger ist es, die Emissionen so weit wie möglich zu reduzieren.
         safety_factor: Sicherheitsfaktor
-        safety_factor_explanation: >
-          Um sicherzustellen, dass die Auswirkungen der CO2-Kompensation den
-          berechneten Emissionen entsprechen, verwenden wir für Ihren Kauf von
-          CO2-Kompensationen bei uns einen Sicherheitsfaktor von zwei.
+        safety_factor_explanation: Um sicherzustellen, dass die Auswirkungen der CO2-Kompensation den berechneten Emissionen entsprechen, verwenden wir für Ihren Kauf von CO2-Kompensationen bei uns einen Sicherheitsfaktor von zwei.
     climate_report_invoices:
       thank_you:
-        thank_you_text: >-
-
-          Indem Sie den Fußabdruck Ihres Unternehmens ausgleichen, übernehmen
-          Sie die Verantwortung für die Auswirkungen, die Ihr Unternehmen auf
-          das Klima hat.
-        well_be_in_touch: >-
-          Wir werden uns in Kürze mit Ihnen in Verbindung setzen, um Ihnen Ihren
-          Klimabericht zukommen zu lassen.
+        thank_you_text: "\nIndem Sie den Fußabdruck Ihres Unternehmens ausgleichen, übernehmen Sie die Verantwortung für die Auswirkungen, die Ihr Unternehmen auf das Klima hat."
+        well_be_in_touch: Wir werden uns in Kürze mit Ihnen in Verbindung setzen, um Ihnen Ihren Klimabericht zukommen zu lassen.
         thanks_again: Nochmals vielen Dank!
   this_is_how_the_money_is_used_header: So wird das Geld verwendet
-  this_is_how_the_money_is_used_text: >-
-    Wir unterstützen UN-zertifizierte Klimaprojekte, die ebenfalls nach Gold
-    Standard zertifiziert sind. Die Projekte reduzieren die Emissionen in Höhe
-    des Fußabdrucks Ihres Unternehmens und tragen global zum Umstieg auf
-    erneuerbare Energien bei. Hier sind unsere beiden neuesten Projekte.
+  this_is_how_the_money_is_used_text: Wir unterstützen UN-zertifizierte Klimaprojekte, die ebenfalls nach Gold Standard zertifiziert sind. Die Projekte reduzieren die Emissionen in Höhe des Fußabdrucks Ihres Unternehmens und tragen global zum Umstieg auf erneuerbare Energien bei. Hier sind unsere beiden neuesten Projekte.
   tonnes_carbon_dioxide: Tonnen Kohlendioxid
   see_all_our_projects: Alle unsere Projekte ansehen

@@ -1,11 +1,11 @@
-# This file is considered DEPRECATED. Please move changes and add new keys
-# to a file mirroring where keys are used. For example, keys used in
-# app/views/registrations/new.html.erb should go to
-# views.registrations.en.yml
+#This file is considered DEPRECATED. Please move changes and add new keys
+#to a file mirroring where keys are used. For example, keys used in
+#app/views/registrations/new.html.erb should go to
+#views.registrations.en.yml
 sv:
   goclimateneutral_url: https://www.goclimate.com/se
   site_title: GoClimate
-  climate_change_is_the_greatest_challange: "Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Tillsammans kan vi bromsa klimatförändringarna och rädda världen, OM vi agerar nu."
+  climate_change_is_the_greatest_challange: Klimatförändringar är det största hotet som vår generation någonsin ställts inför. Tillsammans kan vi bromsa klimatförändringarna och rädda världen, OM vi agerar nu.
   log_in: Logga in
   log_out: Logga ut
   settings: Inställningar
@@ -49,7 +49,7 @@ sv:
   all_of_the_result_were_carried_forward: Resultaten överförs i nästa års räkning för maximal klimatnytta
   carried_forward_to_next_year: Överförs i nästa års räkning
   dividends: Utdelningar
-  auditor: Revisor
+  auditor: 'Revisor'
   climate_offset_from_users: Klimatkompensation från användare
   revenue_from_companies: Intäkter från företag
   investments_in_climate_projects: Investeringar i klimatprojekt
@@ -61,7 +61,7 @@ sv:
   general_questions_html: 'Om du har frågor om GoClimate eller har idéer om hur vi kan förbättra tjänsten, hör gärna av dig till oss på: <a href="mailto:hello@goclimate.com">hello@goclimate.com</a> eller ring oss på <a href="tel:+46706084374">+46706084374</a>.'
   general_questions_press_html: Har du pressfrågor eller vill ha tag på ytterligare material, maila <a href="mailto:press@goclimate.com">press@goclimate.com</a>
   general_questions_facebook_html: 'Du hittar oss på facebook här: <a href="https://www.facebook.com/GoClimate" target="_blank">GoClimate</a>.'
-  general_questions_twitter_html: Twittra gärna med oss på kontot <a href="https://twitter.com/GoClimateHQ" target="_blank">@GoClimateHQ</a>.
+  general_questions_twitter_html: 'Twittra gärna med oss på kontot <a href="https://twitter.com/GoClimateHQ" target="_blank">@GoClimateHQ</a>.'
   about_us: Om oss
   about_us_intro: GoClimate grundades 2017 med enda målet att göra det enklare att leva ett klimatneutralt liv. Tillsammans med dig vill vi stoppa det största hotet mot både mänskligheten och vår planet – klimatförändringarna.
   about_us_intro_2: Vi tacklar detta på det mesta effektiva, roliga och hållbara sätt möjligt, med total finansiell transparens så att du lätt kan se var dina pengar gör skillnad. Vi stöttar endast projekt som är Gold Standard certifierade, för att säkerställa att ditt bidrag gör största möjliga skillnad för klimatet.
@@ -129,8 +129,8 @@ sv:
     one: klimatneutral månad
     other: klimatneutrala månader
   climate_country_toplist: Topplista klimatneutrala länder
-  read_more_about_investments_on_our_blog: Läs mer om projekten vi investerar i på vår blogg >>
   total_carbon_offset_by_us: Totalt har vi minskat utsläpp på
+  read_more_about_investments_on_our_blog: 'Läs mer om projekten vi investerar i på vår blogg >>'
   tonnes_CO2: ton CO2
   tonnes: ton
   type: Typ
@@ -158,7 +158,7 @@ sv:
   the_payment_unfortunately_failed: Betalningen misslyckades tyvärr
   no_worries_we_will_try_again_within_a_few_days: Det är ingen fara. Vi försöker genomföra betalningen igen under de närmaste dagarna.
   you_might_need_to_update_your_payment_info: Om du vill fortsätta att leva ett klimatneutralt liv med oss kan du behöva uppdatera din betalningsinformation.
-  link_to_update_your_payment_info: Uppdatera betalningsinformationen här >>
+  link_to_update_your_payment_info: 'Uppdatera betalningsinformationen här >>'
   this_mail_was_sent_by: Det här mailet skickades av
   to_stop_recieving_these_emails: För att sluta få de här mailen
   click_here: klicka här
@@ -170,9 +170,12 @@ sv:
   x_months:
     one: 1 månad
     other: "%{count} månader"
+  years:
+    one: år
+    other: år
   together_we_have_offset: Vi har nu minskat världens klimatutsläpp med
   goclimateneutral_and_this_planet_loves_you: GoClimate och den här planeten älskar dig! Tack! Du är bäst!
-  learn_more_about_what_we_have_achieved_here: Läs mer om hur det går för oss här >>
+  learn_more_about_what_we_have_achieved_here: 'Läs mer om hur det går för oss här >>'
   thank_you: Stort Tack!
   the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible: 'Dela gärna det här med dina vänner, ju fler vi blir, desto större är chansen att vi lyckas bromsa klimatförändringarna!'
   press_images: Pressbilder
@@ -224,7 +227,7 @@ sv:
         q4:
           question: Är det inte bättre att minska sitt eget avtryck?
           answer: Det är bråttom. Vi behöver göra både och. Vi måste definitivt minska vårt eget avtryck. Studier visar på att de som klimatkompenserar faktiskt är de som minskar sina egna avtryck mest. I en undersökning bland våra användare ser vi att majoriteten använder klimatkompensation som en del i sitt klimatengagemang. Eftersom det inte går att leva helt klimatneutralt i dagens samhälle så kan klimatkompensation användas för att komma ner till netto-noll, och dessutom hjälpa andra i omställningen till ett hållbart samhälle. <a href="https://www.goclimate.com/blog/ar-det-inte-viktigare-att-minska-sina-utslapp-an-att-klimatkompensera/">Läs mer på vår blogg</a>.
-        q5: 
+        q5:
           question: Vad är ett klimatprojekt?
           answer: Ett klimatprojekts huvudsyfte är att se till att utsläppen av växthusgaser till atmosfären minskar. Det finns olika sätt att göra det på, huvudsakligen utveckling av förnybar energi, och infångande och förstörande av växthusgaser med stark värmepotential som tex metan. Även trädplantering och skogsvårdsprojekt kan vara klimatprojekt. Projektets positiva påverkan på klimatet, och antalet koldioxidekvivalenter som det genererar, beräknas gentemot ett scenario där projektet inte implementeras. Alltså, om vi inte bygger förnybar energi, hur mycket växthusgaser skulle släppas ut om befolkningen fortsätter bränna fossila bränslen? Detta är alltså de utsläpp som undviks genom byggandet av förnybar energi. Dessutom har projekten ofta andra positiva effekter, som förbättrad luftkvalitet och ökade arbetstillfällen. <a href="https://www.goclimate.com/blog/vad-ar-ett-klimatprojekt-egentligen/">Läs mer om detta på vår blogg</a>.
         q6:
@@ -277,7 +280,7 @@ sv:
           answer: Vi använder oss av <a href="https://stripe.com/en-se" target="_blank" rel="noopener">Stripe</a> som betalningsleverantör, som är en av de största betalningsleverantörerna på nätet. Kortuppgifterna och betalningarna hanteras helt och hållet av dem - helt krypterat förstås. Kortuppgifterna hamnar aldrig på våra eller någon annans servrar, utan hanteras endast utav Stripe.
         q5:
           question: Kan jag betala med autogiro?
-          answer: Tyvärr har vi i dagsläget enbart möjlighet att ta emot betalningar via kort. 
+          answer: Tyvärr har vi i dagsläget enbart möjlighet att ta emot betalningar via kort.
         q6:
           question: Var hittar jag mina kvitton?
           answer: Du kan hitta dina kvitton genom att logga in på sidan och <a href="https://www.goclimate.com/users/receipts">gå till den här länken</a>.
@@ -286,26 +289,20 @@ sv:
       questions:
         q1:
           question: Är klimatkompensation avdragsgillt?
-          answer: Ja, i vissa fall. I ett uppmärksammat fall från 2018 fick Arla rätt mot Skatteverket och kunde göra avdrag för sin klimatkompensation, eftersom det gjorts i marknadsföringssyfte. På så vis anses klimatkompensationen inte vara en gåva, utan relaterade till bolagets intjäning eftersom de ökade produktens värde. Därför kunde klimatkompensationen falla under den allmänna avdragsrätten för kostnader för intäkters förvärvande eller bibehållande. 
+          answer: "Ja, i vissa fall. I ett uppmärksammat fall från 2018 fick Arla rätt mot Skatteverket och kunde göra avdrag för sin klimatkompensation, eftersom det gjorts i marknadsföringssyfte. På så vis anses klimatkompensationen inte vara en gåva, utan relaterade till bolagets intjäning eftersom de ökade produktens värde. Därför kunde klimatkompensationen falla under den allmänna avdragsrätten för kostnader för intäkters förvärvande eller bibehållande."
         q2:
           question: Hur kan jag kommunicera att företaget klimatkompenserar?
           answer: "För att kommunicera externt om att ni klimatkompenserar är det bra att ha en plan på hur ni även vill minska era utsläpp framöver, eller i alla fall berätta hur ni tänker - t ex genom någon form av miljöpolicy. Detta för att klimatkompensationen inte ska uppfattas som greenwashing. Tumregeln för företag är: beräkna utsläppen, minska dem och slutligen kompensera för de utsläpp ni inte kan minska just nu."
         q3:
-          question: Kan jag göra mitt företag klimatneutralt? 
+          question: Kan jag göra mitt företag klimatneutralt?
           answer: Ja, men inte genom att enbart kompensera för företagets utsläpp utan ni behöver även göra en plan för utsläppsminskningar. Att göra hela sitt företag (eller en produkt) klimatneutralt är lite mer komplext, då det följer en ISO standard och kräver noggranna beräkningar. Men det är absolut möjligt och något vi på GoClimate kan hjälpa till med.
         q4:
           question: Hur använder ni den data som samlas in i kalkylatorn?
-          answer: "Uppgifterna används för att beräkna företagets klimatavtryck. Vi använder även siffrorna helt anonymt för att ta fram snittvärden som alla företag kan jämföra sig mot. Inga uppgifter kommer att visas offentligt utan ert godkännande.
-          <br><br>Om ni klickar i godkännandet att använda er logga och ert namn så kan vi komma att använda det publikt tillsammans med siffran för totala utsläpp eller utsläpp per anställd. Det är till för att vi i framtiden ska kunna skapa topplistor och möjligheten jämföra sig med andra bolag. Förutom detta så är samtliga uppgifter skyddade även om ni väljer att ge det godkännandet."
+          answer: "Uppgifterna används för att beräkna företagets klimatavtryck. Vi använder även siffrorna helt anonymt för att ta fram snittvärden som alla företag kan jämföra sig mot. Inga uppgifter kommer att visas offentligt utan ert godkännande. <br><br>Om ni klickar i godkännandet att använda er logga och ert namn så kan vi komma att använda det publikt tillsammans med siffran för totala utsläpp eller utsläpp per anställd. Det är till för att vi i framtiden ska kunna skapa topplistor och möjligheten jämföra sig med andra bolag. Förutom detta så är samtliga uppgifter skyddade även om ni väljer att ge det godkännandet."
   for_business: För företag
   thats_amazing_from_the_bottom_of_our_hearts: Vilket är fantastiskt! Från djupet av våra hjärtan
-  years:
-    one: år
-    other: år
-
   navigation:
     gift_cards: Gåvokort
-
   welcome:
     caption_line_1: Tillsammans räddar vi klimatet.
     caption_line_2: Ta ansvar för dina utsläpp idag!
@@ -337,7 +334,7 @@ sv:
       im_interested: Kontakta mig!
       we_will_contact_you_shortly_html: Vi kontaktar dig inom kort på <b>%{email}</b> med information om nästa steg! Vi hörs!
       other_offsetting: Övriga tjänster
-      other_offsetting_html: "Vi kan hjälpa till med utsläppsberäkningar, enskilda klimatkompensationer och tekniska integrationer. Hör av dig till <a href='mailto:hello@goclimate.com'>hello@goclimate.com</a> så berättar vi mer."
+      other_offsetting_html: Vi kan hjälpa till med utsläppsberäkningar, enskilda klimatkompensationer och tekniska integrationer. Hör av dig till <a href='mailto:hello@goclimate.com'>hello@goclimate.com</a> så berättar vi mer.
       number_of_employees: "Antal anställda:"
       your_email: "Din e-post:"
   number:
@@ -384,7 +381,7 @@ sv:
       heating_tooltip: 90% av värmen i svenska kontor kommer från fjärrvärme och är ofta ungefär lika stor som elen i kWh. Oftast står kWh från fjärrvärmen på fakturan, och om den inte är tillgänglig så kan du fråga din hyresvärd om de har några siffror. Om du inte lyckas få tag på några siffror kan du använda våra snittvärden genom att kryssa i rutan här bredvid. Om du vet att du inte har någon separat värme, dvs att ni exempelvis använder direktverkande el för uppvärmning, så kan du skriva in 0 i det här fältet.
       servers: Servrar
       average_number_of_servers: Antal aktiva servrar
-      average_number_of_servers_tooltip: "Antal aktiva servrar i snitt under tidsperioden hos driftspartners. Endast servrar som ej ingår i er egen elräkning och som inte är i molnet hos någon av de större moln-leverantörerna. Exempel: 4 servrar som står hos en driftspartner är aktiva under halva tidsperioden och 2 servrar är aktiva under andra halvan blir 3 servrar i snitt."
+      average_number_of_servers_tooltip: 'Antal aktiva servrar i snitt under tidsperioden hos driftspartners. Endast servrar som ej ingår i er egen elräkning och som inte är i molnet hos någon av de större moln-leverantörerna. Exempel: 4 servrar som står hos en driftspartner är aktiva under halva tidsperioden och 2 servrar är aktiva under andra halvan blir 3 servrar i snitt.'
       servers_green_electricity: Våra servrar kör på 100% grön el
       how_do_i_know: hur vet jag det?
       cloud_servers: Servrar i molnet
@@ -452,8 +449,7 @@ sv:
         thank_you_text: Genom att kompensera för ditt företags klimatutsläpp, så tar du ansvar för det avtryck som ditt företag har på klimatet.
         well_be_in_touch: Vi hör av oss inom kort för att leverera din klimatrapport och ditt certifikat på klimatkompensationen.
         thanks_again: Tack igen!
-
   this_is_how_the_money_is_used_header: Hit går pengarna
-  this_is_how_the_money_is_used_text: "Vi stöttar tredjepartsgranskade klimatprojekt med certifieringen Gold Standard. Projekten minskar utsläpp motsvarande det beräknade klimatavtrycket och bidrar till den globala omställningen till förnyelsebar energiproduktion samt energieffektiviseringar. Här är våra två senaste projekt:"
+  this_is_how_the_money_is_used_text: 'Vi stöttar tredjepartsgranskade klimatprojekt med certifieringen Gold Standard. Projekten minskar utsläpp motsvarande det beräknade klimatavtrycket och bidrar till den globala omställningen till förnyelsebar energiproduktion samt energieffektiviseringar. Här är våra två senaste projekt:'
   tonnes_carbon_dioxide: ton koldioxid
   see_all_our_projects: Se alla våra projekt
