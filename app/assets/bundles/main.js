@@ -46,7 +46,6 @@ import '../main/index.scss';
 import '../javascripts/components/business_offset_calculator';
 import '../javascripts/components/counting_number';
 import '../javascripts/components/projects_map_marker';
-import '../javascripts/welcome';
 import '../javascripts/dashboard';
 import '../javascripts/users';
 import '../javascripts/users/edit_card';

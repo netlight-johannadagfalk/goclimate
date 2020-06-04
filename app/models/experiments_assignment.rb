@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ExperimentsAssignment
-  CURRENT_EXPERIMENTS = YAML.safe_load(File.read('config/experiments.yml')).deep_symbolize_keys
+  CURRENT_EXPERIMENTS = YAML.safe_load(File.read('config/experiments.yml'))&.deep_symbolize_keys || {}
 
   attr_reader :active_experiments
 
