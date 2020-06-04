@@ -5,7 +5,6 @@
 de:
   goclimateneutral_url: 'https://www.goclimate.com/de'
   site_title: GoClimate
-  welcome_to_a_climate_neutral_life: Willkommen in einem klimaneutralen Leben!
   climate_change_is_the_greatest_challange: >-
     Der Klimawandel ist eine der größten Herausforderungen unserer Zeit.
     Gemeinsam haben wir eine Chance, unseren Kindern die Zukunft auf diesem
@@ -13,7 +12,6 @@ de:
   log_in: EINLOGGEN
   log_out: Ausloggen
   settings: Einstellungen
-  ok_i_want_to_know_more: Anmelden!
   i_want_to_know_more: Mehr erfahren!
   contact_us: Kontakt
   100_percent_transparency: 100% Transparenz
@@ -48,9 +46,6 @@ de:
   salary_costs: Lohnkosten
   other_operating_expenses: Sonstige Betriebsausgaben
   total: Gesamt
-  other_kpis: Weitere Kennzahlen
-  number_of_users: Anzahl der Nutzer
-  number_of_ton_that_has_been_offset: Kompensierte Tonnen an CO2
   you_can_read_more_details_about_our_costs_here: Weitere Details zu unseren Kosten finden Sie hier
   questions_or_comments_contact_us: Fragen oder Anmerkungen? Schreiben Sie einfach an
   general_questions_html: >-
@@ -120,64 +115,11 @@ de:
     nachhaltiges Reisen. Klimaaktivistin und Veganerin, die gerne wandert.
   blog: Blog
   we_are_100_transparent: Wir sind zu 100% transparent
-  this_is_a_first_step: Dies ist ein erster Schritt.
-  this_is_a_first_step_description: >-
-    Starten Sie jetzt Ihr klimaneutrales Leben. Wir alle müssen unseren
-    Klima-Fußabdruck reduzieren, aber keine Sorge, wir helfen Ihnen, indem wir
-    Ihnen Inspirationen geben und nützliche Informationen mitteilen!
   section_3_text: >-
     Wir bieten eine 100 %ige Transparenz, in welche UN- und Gold
     Standard-zertifizierte Projekte wir investieren und warum. Außerdem bieten
     wir 100 %ige Transparenz was die Menge an Emissionen angeht, die wir in
     Ihrem Namen und insgesamt ausgleichen.
-  vegan: Pflanzliche Ernährung
-  no_car: Kein Auto
-  hardly_ever_flies: Fliege selten
-  cost_calculation: Kostenkalkulation
-  price_info_popup_content: >-
-    In diesem Fall schätzen wir Ihre jährliche Klimabilanz auf %{footprint}
-    Tonnen CO<sub>2</sub>. Da dies nur eine Schätzung ist, setzen wir eine
-    doppelt so große Menge an Ausgleich an, also %{footprint_x2} Tonnen
-    CO<sub>2</sub>. Auf diese Weise können Sie sich sicher sein, jeden Monat
-    klimaneutral zu sein.
-
-    Wir investieren in Projekte, die von der UN zertifiziert sind (CDM) und
-    verfügen außerdem über das Label Gold Standard (u.a. von WWF). Diese
-    Projekte kosten %{price_per_tonne} pro Tonne - daher kostet
-    Sie dies %{price_per_month} € pro Monat.
-  you_will_offset_for:
-    prefix: 'Sie kompensieren mit '
-    suffix: /monat.
-  mostly_vegetarian: Überwiegend vegetarische Ernährung
-  one_fuel_efficient_car: Ein verbrauchsarmes Auto
-  flies_sometimes: Fliege gelegentlich
-  vegetarian: Vegetarische Ernährung
-  sometimes_vegetarian: Häufig vegetarische Ernährung
-  meat_eater: 'Fleischesser, kaum Rindfleisch'
-  meat_eater_lots_of_beef: 'Fleischesser, viel Rindfleisch'
-  electric_car: Elektroauto
-  fuel_efficient_seldom_drives: 'Verbrauchsarmes Auto, fahre selten'
-  fuel_efficient_car_drives_often: 'Verbrauchsarmes Auto, fahre oft'
-  normal_car_seldom_drives: 'Normales Auto, fahre selten'
-  normal_car_drives_often: 'Normales Auto, fahre oft'
-  suv_seldom_drives: 'Auto mit hohem Verbrauch, fahre selten'
-  suv_drives_often: 'Auto mit hohem Verbrauch, fahre oft'
-  never_flies: Fliege nie
-  flies_short_distance_1_time_year: Fliege 1 Mal/Jahr kurze Distanzen
-  flies_short_distance_2_time_year: Fliege 2 Mal/Jahr kurze Distanzen
-  flies_short_distance_3_time_year: Fliege 3 Mal/Jahr kurze Distanzen
-  flies_short_distance_6_time_year: Fliege 3 Mal/Jahr kurze Distanzen
-  flies_short_distance_12_time_year: Fliege 12 Mal/Jahr kurze Distanzen
-  flies_long_distance_1_time_year: Fliege 1 Mal/Jahr lange Distanzen
-  flies_long_distance_2_time_year: Fliege 2 Mal/Jahr lange Distanzen
-  flies_long_distance_3_time_year: Fliege 3 Mal/Jahr lange Distanzen
-  flies_long_distance_6_time_year: Fliege 6 Mal/Jahr lange Distanzen
-  flies_long_distance_12_time_year: Fliege 12 Mal/Jahr lange Distanzen
-  read_more_how_we_calculate_offset_plans_html: 'Erfahren Sie mehr über unsere Berechnung für %{href}.'
-  offset_plans: Kompensationspläne
-  tonnes_co2_per_year: Tonnen CO2/Jahr
-  sign_up_for_a_climate_neutral_life: Anmelden für ein klimaneutrales Leben
-  sign_up_here_to_start_livint_a_climate_neutral_life: Geben Sie Ihre Daten ein und starten Sie Ihr klimaneutrales Leben
   email: E-Mail
   password: Passwort
   i_accept: Ich akzeptiere
@@ -186,7 +128,6 @@ de:
   add_new_card: Neue Karte hinzufügen
   edit_card: Kartendetails bearbeiten
   your_payment_details_have_been_updated: Ihre Einstellungen wurden aktualisiert
-  something_went_wrong_with_the_credit_card_please_submit_it_again: Bei der Kreditkarte ist ein Fehler aufgetreten. Versuchen Sie es erneut.
   no_card_registered: Keine Karte registriert
   climate_plan: Klimaplan
   go_climate_neutral: Anmelden!
@@ -203,14 +144,10 @@ de:
   name_have_lived_climate_neutral_for_join_me:
     one: '%{name} lebt seit 1 Monat klimaneutral!'
     other: '%{name} lebt seit %{count} Monaten klimaneutral!'
-  tell_your_friends: Weitersagen!
   climate_change_is_best_faced_together: >-
     Sie sind großartig! Da man den Klimawandel am besten gemeinsam bekämpfen
     kann, würden wir uns freuen, wenn Sie Anderen von GoClimate erzählen,
     damit auch sie ein klimaneutrales Leben führen können!
-  one_extra_month_for_every_friend_html: >-
-    Wir schenken Ihnen <b>1 klimaneutralen Monat</b> (im Wert von 1 €) für jeden
-    neuen Freund, den Sie werben!
   share_on_facebook: Auf Facebook teilen
   share_on_twitter: Auf Twitter teilen
   we_have_accomplished_alot_together: Gemeinsam haben wir viel geschafft!
@@ -218,20 +155,15 @@ de:
   amount_of_carbon_i_have_offset: 'Tonnen an CO2, die Sie bisher ausgeglichen haben'
   good_job: Gut gemacht!
   number_of_months_you_have_been_climate_neutral: Anzahl Ihrer klimaneutralen Monate
-  you_climate_offset_investments: Ihre Investitionen in die Klimarettung
-  number_of_climate_neutral_months_for_all_users: Anzahl klimaneutraler Monate aller Nutzer
   number_of_climate_neutral_users_right_now: Aktuelle Anzahl klimaneutraler Nutzer
-  total_climate_offset_project_investments: Gesamtinvestitionen in Klimaprojekte
   our_projects: Unsere Klimainvestitionen
   our_investments_in_climate_projects: Unsere Investitionen in Klimaprojekte
-  climate_project_we_have_invested_in: 'Klimaprojekte, in die wir gemeinsam investiert haben'
   i_want_to_contribute: 'Ok, ich bin dabei!'
   project_name: Projekt
   map: Karte
   more_info_on_blog: Weitere Informationen
   our_investment_certificate: Investment-Zertifikat
   certificate: Zertifikat
-  invoice: Rechnung
   date_of_our_investment: Datum der Investition
   read_more: Weitere Informationen
   cimate_hero_toplist: Topliste Klimahelden
@@ -249,10 +181,8 @@ de:
   tonnes: Tonnen
   type: Dauer
   price: Preis
-  proceed_to_checkout: Zur Kasse
   thank_you_so_much_everyone_for_helping_to_save_the_world: 'Vielen Dank an alle, die helfen, die Welt zu retten! Sie sind großartig!'
   latest_carbon_offset_projects: Die jüngsten Klimaprojekte
-  offset: Kompensation
   country: Land
   location: Ort
   more_info_on_our_blog: Weitere Infos in unserem Blog
@@ -261,33 +191,16 @@ de:
   user_name: Nutzername
   confirm_password: Passwort bestätigen
   update: Aktualisieren
-  other_language_site: 'https://www.goclimate.com/se'
-  other_language: Schwedisch
   what_is_goclimateneutral: Was ist GoClimate?
   this_is_how_it_works: So funktioniert's
   1_describe_your_lifestyle: 1. Lifestyle beschreiben
   2_sign_up: 2. Anmelden
-  sign_up_text: 'Nehmen Sie sich 1 Minute, um sich anzumelden'
-  3_save_the_world: 3. Rette die Welt
-  save_the_world_text: >-
-    Wir zahlen in Ihrem Namen für Klimaausgleich und zeigen Ihnen, wie Sie Ihren
-    Fußabdruck verringern können.
-  its_that_simple_text: >-
-    So einfach ist das. Der Klimawandel ist die größte Herausforderung unserer
-    Zeit, aber gemeinsam können wir etwas dagegen tun. Wir behaupten nicht, dass
-    das ausreicht, aber es ist ein großer Schritt in die richtige Richtung.
-    Schließen Sie sich uns an und ermutigen Sie Andere, sich auch dieser
-    Bewegung anzuschließen!
-  why_goclimateneutral_head: WARUM GOCLIMATE?
   forgot_your_password: Passwort vergessen?
   enter_your_email_below_and_we_will_send_you: Geben Sie Ihre E-Mail Adresse ein und wir senden Ihnen eine Info-Mail.
   send_me_an_email_with_instructions: Anleitung zum Zurücksetzen des Passworts zusenden!
   change_your_password: Passwort ändern
   change_your_password_by_entering_your_new_password_below: 'Ändern Sie Ihr Passwort, indem Sie unten Ihr neues Passwort eingeben.'
   change_password: Passwort ändern
-  something_went_wrong_go_back_one_step_and_try_again: >-
-    Etwas ist schief gelaufen. Gehen Sie einen Schritt zurück und versuchen Sie
-    es erneut!
   the_payment_unfortunately_failed: Leider ist Ihre Zahlung fehlgeschlagen
   no_worries_we_will_try_again_within_a_few_days: 'Keine Sorge, wir versuchen es in ein paar Tagen erneut.'
   you_might_need_to_update_your_payment_info: >-
@@ -319,426 +232,8 @@ de:
     Diese Illustrationen stammen von Henrik Kniberg und sind Creative
     Commons-lizensiert.
   im_in: Ich bin dabei!
-  1_people: 1 Person
-  x_people: '%{number} Personen'
   press: Presse
-  where_will_my_money_be_used: Wo wird mein Geld eingesetzt?
-  good_to_know: Sie können beruhigt sein.
-  why_trust_1: >-
-    Alle Klimaprojekte, in die wir investieren, werden sorgfältig von Dritten
-    geprüft.
-  why_trust_2: 'Wir bieten völlige Transparenz, um Ihnen zu zeigen, wo Ihr Geld landet.'
-  why_trust_4: >-
-    Es ist ganz leicht, Ihre Anmeldung für den Klimaausgleich wieder aufzuheben,
-    wenn Sie das möchten.
-  why_trust_5: >-
-    Wenn Sie Ihre Anmeldung für den Klimaausgleich innerhalb von 60 Tagen
-    rückgängig machen möchten, erstatten wir Ihnen Ihr Geld zurück.
-  we_invest_in_un_climate_projects_that_are_gold_standard_certified: >-
-    Wir investieren in Projekte, die sowohl eine UN Zertifizierung als auch eine
-    Gold Standard Zertifizierung aufweisen. Beispiele solcher Projekte finden
-    Sie weiter unten.
-  thai_solar_carousel_description: >-
-    Mehr als 90% der Elektrizität, die in Thailand in das Stromnetz eingespeist
-    wird, wurde mit fossilen Brennstoffen erzeugt. Wir haben in diesen Solarpark
-    investiert, der saubere und erneuerbare Energie für Thailands Stromnetz
-    liefert.
-  nanyang_danjiang_carousel_description: >-
-    Indem traditionelle Kohleöfen durch saubere solarbetriebene Küchenherde
-    ersetzt werden, können die CO2-Emissionen reduziert und somit die
-    Lebensqualität für 50.000 ländliche Haushalte verbessert werden.
-  dak_pone_carousel_description: >-
-    Mit dem Dak Pone Hydro Projekt werden Dieselgeneratoren und Holzöfen durch
-    saubere, nachhaltige Hydroenergie ersetzt.
   faq: FAQ
-  answer: Antwort
-  read_more_on_frequently_asked_questions: Lesen Sie mehr in unseren FAQs
-  faq_questions:
-    questions:
-      q1:
-        question: Kann ich wirklich ein klimaneutrales Leben führen?
-        answer: >-
-          Ja, wir glauben wirklich daran, dass man klimaneutral leben kann!
-          <br><br> Für Unternehmen gibt es Standards, die die Anforderungen für
-          Klimaneutralität regeln (PAS 2060 und ISO 14021). Für Privatpersonen
-          kennen wir jedoch keine solchen Standards. Daher gibt es verschiedene
-          Auffassungen darüber, was es bedeutet, als Einzelperson als
-          klimaneutral angesehen zu werden. <br><br> <img alt=''
-          class='alignnone wp-image-264 size-large'
-          src='https://www.goclimate.com/blog/wp-content/uploads/2018/02/climate-neutral-1024x526.png'
-          /> <br> Rein rechnerisch bedeutet Klimaneutralität, dass die Menge an
-          Emissionen, die man verursacht, und der Menge an Emissionen, die man
-          vermeidet, gleich groß ist. Die Herausforderung dabei ist einerseits,
-          die exakte CO2-Bilanz einer Person zu kalkulieren, und andererseits,
-          verlässliche Möglichkeiten zu finden, um zu vermeiden, dass Emissionen
-          in die Atmosphäre gelangen, bzw. diese Emissionen zu beseitigen.
-          <br><br> Wenn es darum geht, die eigene CO2-Bilanz zu messen, gibt es
-          einige sehr fortgeschrittene Methoden. Wir haben uns für eine simple
-          Schätzung entschieden, um es Ihnen so einfach wie möglich zu machen,
-          etwas gegen den Klimawandel zu tun, ohne viel Zeit für eine ganz
-          exakte CO2-Berechnung aufwenden zu müssen, für die man die genaue
-          Angabe von Flugmeilen, Kilowattstunden etc. benötigen würde. <br><br>
-          Im Internet gibt es eine Vielzahl an  frei verfügbaren Rechnern, die
-          eine genauere Einschätzung berechnen können wie <a
-          href='http://footprint.wwf.org.uk'>http://footprint.wwf.org.uk</a> und
-          <a
-          href='http://www.carbonfootprint.com/calculator.aspx'>http://www.carbonfootprint.com/calculator.aspx</a>.
-          Ein gemeinsames Merkmal all dieser Rechner ist, dass sie auf
-          Schätzungen und Verallgemeinerungen beruhen, was bedeutet, dass das
-          Ergebnis nie ganz exakt ist. Es wird beispielsweise nicht
-          einkalkuliert, ob man im vergangenen Jahr ein Haus gebaut hat und
-          somit viele Emissionen in Form von Baumaterial verursacht hat oder ob
-          man bei Flügen darauf achtet, mit verbrauchsarmen Flugzeugen zu
-          fliegen. Die Berechnungen beziehen außerdem nicht die Herstellung der
-          Akkus für Ihr Elektroauto mit ein oder ob sie Ihr Auto neu oder
-          gebraucht gekauft haben oder ob sie es mit Strom aus erneuerbaren
-          Energiequellen zu Hause laden und auf der Arbeit mit fossilen
-          Brennstoffen fahren. Eine solche Berechnung wäre extrem komplex und
-          zeitaufwändig - und trotzdem nicht perfekt.   <br><br> Gibt es also
-          messbare und gute Möglichkeiten, Emissionen zu beseitigen oder gar
-          nicht erst in die Atmosphäre gelangen zu lassen? Ja, die gibt es! Wir
-          haben uns entschieden, in CDM und Gold Standard-zertifizierte
-          Klimaprojekte zu investieren. Wie genau das funktioniert können sie in
-          der Antwort auf diese Frage finden <a
-          href='https://www.goclimate.com/faq#collapseq4id'>Bring
-          CO2-Kompensation überhaupt etwas?</a>. <br><br> Ist es also unmöglich,
-          sich als klimaneutral zu bezeichnen, wenn man seine Klimabilanz gar
-          nicht genau ermitteln kann? Wir glauben, dass es dennoch möglich ist.
-          Um sicherzugehen, dass wir wirklich klimaneutral sind, sind unsere
-          Profile so angelegt, dass sie für Ihren Lebensstil mindestens doppelt
-          so viel an Ausgleich schaffen und gleichzeitig so viel wie möglich für
-          die Verlässlichkeit unserer Projekte tun. Auf diese Weise gibt es
-          einen Puffer, der gewisse Fehlkalkulationen und Risiken der Projekte
-          ausgleicht. Mit dieser doppelten Kompensation sind wir auf der
-          sicheren Seite und erzeugen daher mit großer Wahrscheinlichkeit sogar
-          eine positive Klimabilanz. <br><br> Um damit noch einmal klar die
-          Frage zu beantworten: Ja, wir glauben daran, dass Sie sich als
-          klimaneutral bezeichnen dürfen!
-      q2:
-        question: 'Kann man tatsächlich einfach dafür zahlen, klimaneutral zu werden?'
-        answer: >-
-          <img alt='' class='alignnone wp-image-270 size-large'
-          src='https://www.goclimate.com/blog/wp-content/uploads/2018/01/price-ton-co2.png'
-          /> <br> Ja. Wenn man mit einem Geldbeitrag so viele Emissionen aus der
-          Atmosphäre entfernen kann, wie man verursacht hat, kann man sich als
-          klimaneutral bezeichnen. Es mag vielleicht etwas provokant und unfair
-          erscheinen, einfach dafür zu zahlen, sich selbst klimaneutral nennen
-          zu können, aber das Gute daran ist, dass man tatsächlich mit einem
-          relativen geringen Beitrag große positive Effekte für das Klima
-          erzielen kann; genug positive Effekte um auf einfache Weise mehr
-          Emissionen mit Klimaprojekten in Entwicklungsländern zu reduzieren als
-          man verursacht. <br><br> Andererseits reicht es natürlich nicht, nur
-          Anderen dabei zu helfen, deren Emissionen zu reduzieren, wenn wir den
-          Klimawandel wirklich stoppen möchten. Wir müssen natürlich auch unsere
-          eigenen Emissionen reduzieren. Daher sehen wir bei GoClimate
-          die Investitionen in Klimaprojekte nur als einen ersten Schritt in die
-          richtige Richtung. Danach müssen wir alle auch unsere eigenen
-          Emissionen reduzieren. <br><br> Leider ist es für die meisten Leute
-          eher schwierig, ihren persönliche Klimabilanz zu verändern, da man
-          dafür häufig seinen Lebensstil anpassen muss - zum Beispiel wenn man
-          sein Auto verkaufen muss oder nicht mehr so viel fliegen möchte. Und
-          für uns Menschen haben sich Veränderungen von Gewohnheiten und des
-          Lebensstils als sehr schwierig erwiesen. Aus diesem Grund haben wir
-          uns dafür entschieden, es den Menschen möglichst einfach zu machen, in
-          Klimaprojekte zu investieren, um damit den Klimawandel zu
-          verlangsamen. Nach diesem ersten Schritt möchten wir alle unsere
-          Nutzer dazu ermutigen, auch ihre eigenen Emissionen zu reduzieren.
-           <br><br> Menschen erst einen kleinen Schritt machen zu lassen und dann größere Veränderungen vorzunehmen nennt man auch "Fuß-in-der-Tür"-Technik. Mehr darüber finden Sie bei:  https://de.wikipedia.org/wiki/Persuasive_Kommunikation#Foot-in-the-door-Technik <br><br> Darum glauben wir, dass es wichtig ist, so viele Menschen wie möglich jetzt dazu zu bringen, einen ersten Schritt zu tun, und dass das sowohl einfach sowie eine positive Erfahrung sein muss. Man wird nun mal öfter größere Veränderungen in seinem Leben umsetzen, wenn man erst einmal einen Schritt in die richtige Richtung gegangen ist.
-      q3:
-        question: Was bedeutet CO2-Kompensation?
-        answer: >-
-          <img alt='' class='aligncenter wp-image-227 size-large'
-          src='https://www.goclimate.com/blog/wp-content/uploads/2017/09/FB_Oops_white_1200x630-d58e3700b4fb069143586d246a82e162eb73203d243fb3b072a80289794101f8-1024x538.jpg'
-          /> <br><br> CO2-Kompensation ist eine Möglichkeit, für die Emissionen,
-          die man verursacht, Verantwortung zu übernehmen. Fahren eines Autos,
-          Nutzung von Flugzeugen und Verzehr von Fleisch verursachen relativ
-          hohe CO2-Emissionen, die den Klimawandel voran treiben - was wiederum
-          zu Erderwärmung führt. <br><br> Bei der CO2-Kompensation zahlt man für
-          die Menge an CO2, die man verursacht. Dieses Geld wird in
-          Klimaprojekte investiert, die die gleiche Menge an CO2 reduzieren, die
-          man selbst verursacht hat, sodass die Summe der Emissionen gleich Null
-          oder weniger ist. Verringern kann man die Emissionen entweder, indem
-          man Menschen dabei hilft, ihre Emissionen zu reduzieren, oder indem
-          man Emissionen in der Atmosphäre beseitigt. <br><br> CO2-Kompensation
-          wird häufig durch Klimaprojekte in Entwicklungsländern umgesetzt -
-          z.B. in Form von Energieeffizienzprojekten oder Wind- bzw.
-          Solaranlagen. <br><br> Um sicher sein zu können, tatsächlich einen
-          positiven Klimaeffekt zu erzielen, sollten diese Projekte verlässliche
-          Zertifizierungen aufweisen können. Die verlässlichsten sind UN- und
-          Gold Standard-zertifizierte Projekte (dahinter stehen u.a. WWF).
-          <br><br> Wir bei GoClimate helfen Ihnen mit UN- und Gold
-          Standard-zertifizierten Projekten, Ihre Emissionen zu verringern.
-      q4:
-        question: 'Bringt CO2-Kompensation überhaupt etwas? '
-        answer: >-
-          <img alt='' class='aligncenter wp-image-227 size-large'
-          src='https://www.goclimate.com/blog/wp-content/uploads/2017/08/gold_standard_CDM-1024x626.png'
-          /><br> Jawohl, CO2-Kompensation wirkt! Um jedoch einen echten,
-          verifizierten und dauerhaften Unterschied bewirken zu können, muss man
-          die Klimaprojekte mit Bedacht wählen. <br><br> Wie können wir also
-          sicher sein, dass wir mit unserem Geld auch wirklich etwas Gutes für
-          das Klima tun? Es gibt verschiedene Organisationen, die Projekte aus
-          genau diesem Grund prüfen und zertifizieren. Die höchsten Standards
-          gibt es bei CDM (hinter dem die UN steckt), Gold Standard, Plan
-          Vivio,  VCS und Fair Trade. Auch der Emissionshandel war eine Zeit
-          lang eine Möglichkeit zur CO2-Kompensation, ist jedoch mittlerweile
-          keine effektive Maßnahme mehr für echten und nachhaltigen Klimaschutz.
-          <br><br> Wir bei GoClimate konzentrieren uns mittlerweile nicht
-          mehr nur auf UN-zertifizierte Projekte (CDM) sondern auf solche, die
-          außerdem die Zertifizierung der Gold Standard Foundation haben. Diese
-          Projekte sind zwar teurer, bieten allerdings eine bessere Qualität und
-          werden besser durch unabhängige Dritte überwacht als Projekte, die nur
-          UN-zertifiziert sind. Weitere Infos zum Gold Standard finden Sie hier:
-          <a
-          href='https://www.goldstandard.org/'>https://www.goldstandard.org/</a>
-          <br><br> Zudem ist es wichtig, in Projekte zu investieren, die bereits
-          vollständig umgesetzt wurden. Nur dann können Dritte den erreichten
-          Klimaschutzeffekt auch verifizieren - in anderen Projekten, die noch
-          nicht abgeschlossen sind, hofft man indes nur auf ein positives
-          Resultat in der Zukunft. <br><br> Weil wir in CDM- und Gold
-          Standard-Projekte investieren - und zwar nur in solche, die bereits
-          abgeschlossen und verifiziert sind - können Sie sicher sein, dass Ihr
-          Geld einen positiven Effekt auf das Klima hat und dass Ihr
-          CO2-Ausgleich funktioniert.
-      q5:
-        question: >-
-          Warum sollte ich Geld in GoClimate investieren? Ist es nicht
-          besser, wenn ich selbst in Klimaprojekte ohne Vermittler investiere?
-        answer: >-
-          <img alt='' class='alignnone wp-image-270 size-large'
-          src='https://www.goclimate.com/blog/wp-content/uploads/2017/10/bra-klimatprojekt-1024x723.png'
-          /><br> Es gibt zwei Hauptgründe, weshalb wir glauben, dass Sie
-          GoClimate nutzen sollten. Erstens helfen wir Ihnen dabei, so
-          viel Gutes wie möglich für das Klima zu tun. Der Markt für
-          Klimakompensation ist leider recht komplex und man kann sich nur
-          schwer einen Überblick verschaffen. Es gibt verschiedenste Standards
-          für Klimaprojekte, völlig unterschiedliche Arten von Projekten und die
-          Preise pro Tonne CO2 (die nicht immer leicht zu finden sind) können
-          zwischen den einzelnen Projekten stark schwanken.  <br><br> Sich durch
-          den Dschungel an Projekten zu kämpfen und herauszufinden, wo Ihr Geld
-          so viel Gutes wie möglich tun kann, ist extrem schwierig, und hier
-          kommen wir ins Spiel. Gemeinsam können wir bessere Preise erzielen, da
-          dieser auch zu großen Teilen vom Umfang der angedachten
-          Klimakompensation abhängt. <br><br> Zweitens kennen wir keinen
-          weiteren Service, der Ihre CO2-Bilanz anhand Ihres Lebensstils
-          errechnet und es Ihnen so einfach macht, dies auszugleichen, indem
-          jedem Monat automatisch ein gewisser Betrag von Ihrem Konto abgebucht
-          wird und sie somit nicht mehr alles selbst eingeben und überweisen
-          müssen. <br><br> Außerdem macht es Spaß, gemeinsam Gutes zu tun, und
-          wir sehen, wie viel wir erreichen können, wenn wir uns in Sachen
-          Klimaschutz zusammentun. Mit ein wenig Glück und Ihrer Hilfe können
-          wir noch mehr Leute für den Kampf gegen den Klimawandel gewinnen und
-          je mehr wir sind, desto größer sind unsere Erfolge.
-      q6:
-        question: >-
-          Ist es nicht wichtiger, Emissionen zu reduzieren als sie zu
-          kompensieren?
-        answer: >-
-          <img alt='' class='alignnone wp-image-270 size-large'
-          src='https://www.goclimate.com/blog/wp-content/uploads/2018/01/reduce_climate_emissions-1024x693.png'
-          /><br> Die kurze Antwort lautet: Ja. Es ist verlässlicher und somit
-          besser, gar nicht erst Emissionen zu verursachen, als sie im Nachgang
-          auszugleichen. Wir bei GoClimate sehen den CO2-Ausgleich aber
-          als einen ersten Schritt an, so viele Menschen wie möglich dazu zu
-          kriegen, etwas gegen den Klimawandel zu tun. Wir behaupten nicht, dass
-          dies auf lange Sicht ausreicht bzw. wichtiger ist. Es ist ein
-          wichtiger erster Schritt, den viele Menschen einfach machen können.
-          <br><br> Gleichzeitig ist es natürlich besser, eine Tonne an CO2
-          freizusetzen und zwei Tonnen CO2 auszugleichen, da man so unterm
-          Strich eine Tonne CO2 vermieden hat, als weder etwas zu produzieren
-          noch es dann wieder auszugleichen. <br><br> Das Beste wäre natürlich,
-          sowohl seine eigenen Emissionen so weit wie möglich zu reduzieren, als
-          auch Anderen dabei zu helfen, deren Emissionen durch Investitionen in
-          Klimaprojekte zu reduzieren.
-      q7:
-        question: >-
-          Das hört sich sehr nach einem Ablassbrief an. Kann ich mich wirklich
-          freikaufen?
-        answer: >-
-          Nein, das kann man nicht. Wir sehen die CO2-Kompensation als ersten
-          Schritt im Kampf gegen den Klimawandel an. Es ist erwiesen, dass
-          Unternehmen, die ihre Emissionen ausgleichen auch gleichzeitig ihren
-          Emissionsausstoß stärker reduzieren als die, die keinen Ausgleich
-          schaffen. <br><br> 'Der typische Käufer von CO2-Kompensation reduziert
-          seine sogenannten Scope 1 Emissionen fast um 17% während Leute, die
-          keine Kompensation kaufen, ihre Scope 1 Emissionen lediglich um
-          weniger als 5% reduzieren.' - <a
-          href='https://www.goclimate.com/blog/wp-content/uploads/2019/11/buyers-report-032015-pdf.pdf'
-          target='_blank'>Ecosystems Marketplace - THE BOTTOM LINE</a> <br><br>
-          Wir glauben, dass dies auch für Privatpersonen zutrifft und dass
-          Leute, die sich bei goclimate.com registrieren und dafür
-          zahlen, Emissionen in der Atmosphäre zu reduzieren, auch eher ihren
-          eigenen CO2-Ausstoß reduzieren als Leute, die sich nicht
-          registrieren.
-      q8:
-        question: Was genau ist ein Klimaprojekt?
-        answer: >-
-          Klimaprojekte verringern mit den investierten Geldern die Menge an
-          Emissionen, die in die Atmosphäre gelangen. Das können etwa
-          Windkraftanlagen sein, die elektrische Energie erzeugen, um Energie
-          aus fossilen Brennstoffen zu vermeiden. Auch effektivere Öfen können
-          Teil dieser Projekte sein, damit nicht mehr so viele Bäume abgeholzt
-          werden müssen. Es gibt auch Projekte, die eine ganze Busflotte von
-          Diesel auf Elektroantrieb umrüsten.
-      q9:
-        question: 'Kann ich sicher sein, dass diese Projekte zuverlässig sind?'
-        answer: >-
-          <img alt='' class='aligncenter wp-image-227 size-large'
-          src='https://www.goclimate.com/blog/wp-content/uploads/2017/08/gold_standard_CDM-1024x626.png'
-          /><br> Um sicherzustellen, dass die investierten Gelder wirklich dazu
-          beitragen, Emissionen zu reduzieren, gibt es verschiedene Standards
-          wie CDM, Gold Standard, Plan Vivo, VCS und Fair Trade, die Projekte
-          anhand verschiedener Parameter zertifizieren. <br><br> Auch wenn die
-          meisten Projekte wirklich großartig sind, gibt es immer wieder welche,
-          die nicht halten, was sie versprechen, oder in manchen Fällen sogar
-          negative Auswirkungen auf die lokale Bevölkerung und das Umfeld haben,
-          in dem das Projekt umgesetzt wird. <br><br> Aus diesem Grund suchen
-          wir uns bei GoClimate die Projekte gut aus und investieren nur
-          in die zuverlässigsten und am besten geprüften Projekte - solche, die
-          sowohl die CDM-Zertifizierung (UN) als auch die Gold
-          Standard-Zertifizierung (u.a. WWF) erhalten haben. Wenn Sie in diese
-          Projekte investieren, haben Sie alle UN-Mitgliedsstaaten und ca. 90
-          weitere Umweltorganisationen im Rücken. Diese Projekte werden zudem
-          von Dritten wie TÜV und DNV verifiziert. Alle Protokolle sind
-          öffentlich und werden das gesamte Projekt über auf dem neuesten Stand
-          gehalten. <br><br> Wir wählen nicht nur Projekte aus, die geprüft und
-          zertifiziert sind, sondern kompensieren auch die doppelte Menge an
-          Emissionen - um auf der sicheren Seite zu sein, falls doch einmal
-          etwas mit den Klimaprojekten, in die wir investieren, schief gehen
-          sollte. Außerdem verteilen wir die Investitionen in mehrere
-          Klimaprojekte, um so viel Gutes wie möglich mit Ihrem Geld erreichen
-          zu können.
-      q10:
-        question: 'Wie kann es so günstig sein, meine Emissionen auszugleichen? '
-        answer: >-
-          <img alt='' class="alignnone wp-image-270 size-large"
-          src="https://www.goclimate.com/blog/wp-content/uploads/2018/01/price-ton-co2.png"
-          alt='' /><br> Man braucht nicht viel Geld, um in Entwicklungsländern
-          große Effekte erzielen zu können. Mit kleinen Beträgen kann man große
-          Klimaprojekte starten und umsetzen. <br><br> Bspl.: Ein Dorf in
-          Vietnam kann für 10,1 Millionen USD ein Wasserkraftwerk bauen. Das ist
-          leider mehr, als Energie aus Kohlekraftwerken zu kaufen, welche 10
-          Millionen USD kosten würden. Das Dorf ist sehr arm und so wird die
-          Wasserkraftanlage nicht gebaut. Wenn man nun aber lediglich 0,1
-          Millionen USD hinzusteuert, geht die Rechnung wieder auf und das
-          Projekt kann umgesetzt werden - eine saubere Wasserkraftanlage ersetzt
-          nun die Energiegewinnung aus Kohle! Geringe Summen - in diesem Fall
-          0,1 Millionen USD - machen also einen großen Unterschied für die
-          Umwelt! Das Beispiel ist natürlich stark vereinfacht, demonstriert
-          aber hoffentlich das Prinzip. <br><br> Der wirtschaftliche Mechanismus
-          stammt von der UN und dem Kyoto-Protokoll, wo die sogenannten
-          CDM-Projekte und CER-Credits entstanden. Um die Qualität der sozialen
-          Aspekte der CDM-Projekte noch zu stärken, wurde bald die Gold Standard
-          Foundation von WWF u.a. gegründet. <br><br> Bei GoClimate
-          versuchen wir die kosteneffektivsten CDM- und Gold Standard-Projekte
-          zu finden, damit Ihr Geld so viel positiven Einfluss wie möglich auf
-          das Klima nehmen kann.
-      q11:
-        question: Sind Menschen wirklich schuld am Klimawandel?
-        answer: >-
-          Ja. Wenn Sie sich unsicher sind, erfahren Sie hier mehr darüber: <a
-          href='https://www.bloomberg.com/graphics/2015-whats-warming-the-world/'>https://www.bloomberg.com/graphics/2015-whats-warming-the-world/</a>
-      q12:
-        question: 'Verhindert CO2-Kompensation eine nachhaltigere Gesellschaft? '
-        answer: >-
-          Nein, eher im Gegenteil! Wir glauben, dass CO2-Kompensation für viele
-          ein exzellenter erster Schritt sein kann, den Wandel hin zu einer
-          nachhaltigeren Gesellschaft zu beschleunigen. <br><br> Forschungen
-          haben gezeigt, dass Menschen die beispielsweise durch CO2-Kompensation
-          einen ersten Schritt in die richtige Richtung machen, auch eher danach
-          noch weitere und größere Schritte in diese Richtung unternehmen. Das
-          nennt man "Foot-in-the-door"-Technik und einer der Gründe, warum wir
-          den Einstieg in den Klimaschutz so einfach wie möglich machen wollen.
-          Wir haben viele Beispiele dafür, dass dies gelingt, und sind
-          überzeugt, dass die Mehrheit der Leute, die sich registrieren, auch
-          weitere Schritte in Richtung einer nachhaltigeren Gesellschaft
-          unternehmen werden.
-      q13:
-        question: Hat der Klimaausgleich noch andere positive Effekte?
-        answer: >-
-          Ja, man hat herausgefunden, dass Unternehmen, die ihren CO2-Ausstoß
-          ausgleichen, auch gleichzeitig ihre Emissionen verringern. Wir
-          glauben, dass der gleiche Effekte auch für Privatpersonen gilt - also
-          dass auch sie auf lange Sicht ihre Gewohnheiten ändern und ihren
-          Fußabdruck verringern. Lesen Sie hier mehr über den CO2-Ausgleich von
-          Unternehmen:<br><br>Read more in this report on offsetting companies:
-          <br>“ Der typische Käufer von CO2-Kompensation reduzierte seine Scope
-          1 Emissionen direkt um ca. 17%, wohingegen typische Nicht-Käufer ihre
-          Scope 1 Emissionen um weniger als 5% reduzierten.” - <a
-          href='https://www.goclimate.com/blog/wp-content/uploads/2019/11/buyers-report-032015-pdf.pdf'
-          target='_blank'>https://www.goclimate.com/blog/wp-content/uploads/2019/11/buyers-report-032015-pdf.pdf</a>
-      q14:
-        question: Ist CO2 gefährlich?
-        answer: >-
-          Nein. CO2 ist wichtig für jegliche Form von Leben auf der Erde. Wenn
-          aber Millionen Tonnen CO2 täglich ausgestoßen werden und in die
-          Atmosphäre gelangen, steigt infolgedessen die Temperatur auf der Erde.
-          Das wiederum führt zu Trockenheit, Wasserknappheit, Hunger und u. U.
-          sogar Kriegen. Die Nature Conservation Association in Schweden geht
-          davon aus, dass es im Jahr 2050 ca 200 Millionen Klimaflüchtlinge
-          geben wird.
-      q15:
-        question: Macht GoClimate Gewinne mit diesem Projekt?
-        answer: >-
-          Wir möchten alles tun, um den Klimawandel so weit wie möglich zu
-          stoppen. Wenn wir jedoch zukünftig die Chancen, den Klimawandel zu
-          stoppen, durch Gewinnziele steigern können, werden wir das tun. Den
-          Klimawandel zu stoppen, ist unser höchstes Ziel. <br><br> Bis zum
-          heutigen Zeitpunkt haben wir bereits tausende Stunden ohne Bezahlung
-          oder Profit in dieses Projekt gesteckt. <br><br> Sollten wir
-          irgendwann Gewinn machen, werden wir zu 100% transparent sein, was das
-          angeht. Auch jetzt können Sie schon alle finanziellen Details hier
-          einsehen: <a
-          href='https://www.goclimate.com/de/100_percent_transparency'>https://www.goclimate.com/de/100_percent_transparency</a>
-      q16:
-        question: >-
-          Wenn die Klimakrise vorbei ist, wird GoClimate dann seine
-          Dienste einstellen?
-        answer: Ja. Und wir geben allen ein Glas Champagner aus!
-      q17:
-        question: Wie wird die persönliche Klimabilanz errechnet?
-        answer: >-
-          Die Berechnung des persönlichen CO2-Ausstoßes ist ziemlich kompliziert
-          und kann niemals perfekt sein. Egal, wie detailliert die Kalkulation
-          ist, man wird immer eine Menge Annahmen machen müssen. Statt
-          komplizierte Berechnungsmodelle zu nutzen, basiert unsere Kalkulation
-          auf drei Lifestyle-Modellen, die den CO2-Fußabdruck am besten
-          wiedergeben: was man isst, welches Auto man fährt und wie oft man
-          fliegt. Um auf der sicheren Seite zu sein, kompensieren wir die
-          doppelte Menge an Emissionen, die Ihr Lifestyle unserer Schätzung nach
-          verursacht. Die zugrundeliegenden Mengen an CO2 der drei Modelle
-          basieren auf den exzellenten Berechnungen von myclimate.com und
-          carbonstory.org. Wenn Sie gerne eine genauere Angabe Ihrer CO2-Bilanz
-          haben möchten gibt es  <b><a
-          href='https://www.google.se/search?safe=active&q=carbon+footprint+calculator&cad=h'
-          target='_blank'> einige sehr gute Seiten da draußen</a></b>.
-      q18:
-        question: 'Woher weiß ich, in welche Klimaprojekte investiert wird?'
-        answer: >-
-          Wir stehen für absolute Transparenz bei allem, was wir tun. Alle
-          Projekte, in die wir investieren, werden Ihnen auf der ersten Seite
-          angezeigt, wenn Sie sich einloggen. Hier können Sie alles noch einmal
-          <b><a
-          href='https://www.goclimate.com/de/our_projects'>in
-          unserem Blog zum Thema Investitionen nachlesen</a></b>.
-      q19:
-        question: 'Wie kann ich meine Anmeldung annullieren? '
-        answer: >
-          Sie können ganz einfach Ihre Anmeldung rückgängig machen, indem Sie
-          auf "Cancel Climate Plan" auf der Seite mit den Zahlungsdaten klicken:
-          <a
-          href='https://www.goclimate.com/de/users/edit/payment'>https://www.goclimate.com/de/users/edit/payment</a>
-      q20:
-        question: Wie werden meine Kartendaten gespeichert und behandelt?
-        answer: >-
-          Wir nutzen Stripe (<a
-          href="https://stripe.com/">https://stripe.com/</a>) als Zahlsystem.
-          Stripe ist einer der größten Online-Zahlungsanbieter. Alle Kartendaten
-          werden vollständig von Stripe verarbeitet - voll verschlüsselt
-          natürlich. Ihre Kartendaten landen zu keinem Zeitpunkt auf unseren
-          Servern, sondern werden direkt von Stripe verarbeitet.
-  climate_neutral_users_right_now: Klimaneutrale Nutzer zum jetzigen Zeitpunkt
-  ton_co2_less_in_atmosphere: Tonnen CO2 weniger in der Atmosphäre
   for_business: Für Unternehmen
   thats_amazing_from_the_bottom_of_our_hearts: Das ist großartig! Von ganzem Herzen
   years:
@@ -749,16 +244,6 @@ de:
   welcome:
     caption_line_1: Gemeinsam können wir unser Klima retten.
     caption_line_2: Kompensieren Sie Ihre Emissionen noch heute!
-    intro: >-
-      Der Klimawandel ist eine der größten Herausforderungen unserer Zeit.
-      Gemeinsam können wir es schaffen, die Bremse zu ziehen und unseren
-      Planeten zu retten, aber wir müssen sofort handeln. Sie jetzt können Teil
-      der Lösung werden, indem Sie Ihre Emissionen ausgleichen. Und das geht mit
-      GoClimate am einfachsten.
-    calculator:
-      title: Legen Sie los und berechnen Sie Ihre Auswirkungen auf das Klima.
-      submit: Meine Emissionen ausgleichen
-      per_month: /mo
     what_is_gcn_text: >-
       Wir investieren in UN-zertifizierte Klimaprojekte und zeigen Ihnen, wie
       Sie ganz einfach Ihre Klimabilanz verbessern können. Auf diese Weise
@@ -770,9 +255,7 @@ de:
     tonnes_prefix: Gemeinsam haben wir
     tonnes_suffix: Tonnen CO2 in der Atmosphäre reduziert
     call_to_actions:
-      tell_me_more: Ich will mehr erfahren!
       im_ready_to_sign_up: Ich möchte mich anmelden!
-      i_want_to_contribute: Ich will meinen Beitrag leisten!
     how_it_works:
       describe_your_lifestyle_text: >-
         Nutzen Sie unseren Klimarechner, um Ihre ungefähre Klimabilanz zu
@@ -782,12 +265,6 @@ de:
       save_our_planet_text: >-
         Seien Sie Teil unserer Community, in der wir nicht länger den
         Klimawandel fördern.
-    form:
-      label:
-        people: Leute zählen
-        food: Essgewohnheiten
-        car: Gewohnheiten des Autos
-        flying: Fluggewohnheiten
     business:
       for_companies: Klimakompensation für Ihr Unternehmen
       for_companies_text_html: >

@@ -91,7 +91,7 @@ search:
 
 ## Do not consider these keys missing:
 ignore_missing:
-- 'activerecord.errors.*{accepted,blank,invalid,too_short,too_long}'
+- 'activerecord.errors.*'
 - 'models.currency.{suffix,prefix}.*'
 - 'models.money.currency_formats.*'
 - 'moment' # Inlined & minified JS code happen to require moment with a function call that got the minified name 't'
@@ -101,7 +101,8 @@ ignore_missing:
 ignore_unused:
   - 'devise.*'
   - 'views.lifestyle_footprints.options.*'
-  - 'faq_questions.questions.*'
+  - 'faq_questions.{for_businesses,our_service,about_us,offsetting,climate_change,climate_neutrality}.heading'
+  - 'faq_questions.{for_businesses,our_service,about_us,offsetting,climate_change,climate_neutrality}.questions.*.{question,answer}'
   - 'number.format.*'
   - 'activerecord.{attributes,errors,models}.*'
   - 'errors.*'
