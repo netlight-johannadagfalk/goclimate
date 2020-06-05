@@ -1,0 +1,28 @@
+eo:
+  models:
+    money:
+      currency_formats:
+        usd: 'crwdns7978:0%{number}crwdne7978:0'
+        eur: 'crwdns7980:0%{number}crwdne7980:0'
+        sek: 'crwdns7982:0crwdne7982:0'
+    currency:
+      prefix:
+        usd: 'crwdns7984:0crwdne7984:0'
+        eur: 'crwdns7986:0crwdne7986:0'
+        sek: 'crwdns7988:0crwdne7988:0'
+      suffix:
+        usd: 'crwdns7990:0crwdne7990:0'
+        eur: 'crwdns7992:0crwdne7992:0'
+        sek: 'crwdns7994:0crwdne7994:0'
+    greenhouse_gases:
+      tonnes:
+        one: 'crwdns7996:1%{count}crwdne7996:1'
+        other: 'crwdns7996:5%{count}crwdne7996:5'
+      kg:
+        one: 'crwdns7998:1%{count}crwdne7998:1'
+        other: 'crwdns7998:5%{count}crwdne7998:5'
+    project:
+      offset_type:
+        'GS': crwdns8000:0crwdne8000:0
+        'CDM+GS': crwdns8002:0crwdne8002:0
+        'CDM': crwdns8004:0crwdne8004:0

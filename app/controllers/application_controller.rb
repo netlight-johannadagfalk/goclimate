@@ -3,7 +3,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_locale
+  before_action :set_crowdin_in_context
+  around_action :with_locale
   before_action :set_active_experiments
   helper_method :current_region, :canonical_url, :experiment_active?
 
@@ -113,8 +114,23 @@ class ApplicationController < ActionController::Base
     experiments.disable(params[:disable_experiments].split(',').map(&:to_sym)) if params[:disable_experiments].present?
   end
 
-  def set_locale
-    I18n.locale = current_region.locale
+  def set_crowdin_in_context
+    return unless cookies[:translate].present? || params.key?('translate')
+
+    if params[:translate] == '0'
+      cookies.delete(:translate)
+      @crowdin_in_context_active = false
+    else
+      cookies[:translate] = '1'
+      @crowdin_in_context_active = true
+    end
+  end
+
+  def with_locale(&action)
+    I18n.with_locale(
+      @crowdin_in_context_active ? :eo : current_region.locale,
+      &action
+    )
   end
 
   def canonical_query_params_for_request
