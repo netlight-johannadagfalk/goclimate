@@ -1,12 +1,14 @@
+# This file is considered DEPRECATED. Please move changes and add new keys
+# to a file mirroring where keys are used. For example, keys used in
+# app/views/registrations/new.html.erb should go to
+# views.registrations.en.yml
 en:
   goclimateneutral_url: https://www.goclimate.com/
   site_title: GoClimate
-  welcome_to_a_climate_neutral_life: Go Climate Neutral!
   climate_change_is_the_greatest_challange: Climate change is the greatest challenge of our time. Together we have a chance to give our children the future on this planet that they deserve. But we have to act now.
   log_in: Log In
   log_out: Log Out
   settings: Settings
-  ok_i_want_to_know_more: Ok, sign me up!
   i_want_to_know_more: I want to know more!
   contact_us: Contact us
   100_percent_transparency: 100% transparency
@@ -41,6 +43,8 @@ en:
   100_percent_transparency_financial_info_intro: GoClimateNeutral Sweden AB (registration number 559130-6583) was started 2017 with a focus on social entrepreneurship and the sole ambition and goal to try to slow down climate change as fast as possible.
   fiscal_years: Fiscal Years
   fiscal_year_2020_ongoing: Fiscal Year 2020 (ongoing)
+  financials: Financials
+  year: Year
   revenue: Revenue
   cost: Cost
   result: Result
@@ -54,9 +58,6 @@ en:
   salary_costs: Salary Costs
   other_operating_expenses: Other Operating Expenses
   total: Total
-  other_kpis: Other KPIs
-  number_of_users: Number of Users
-  number_of_ton_that_has_been_offset: Number of ton that has been offset
   you_can_read_more_details_about_our_costs_here: You can read more details about our costs here
   questions_or_comments_contact_us: Questions or Comments? Please drop us a line at
   general_questions_html: 'For questions about GoClimate or if you have ideas on how we can improve the site, please drop us a line at <a href="mailto:hello@goclimate.com">hello@goclimate.com</a> or give us a call at <a href="tel:+46706084374">+46706084374</a>.'
@@ -82,47 +83,7 @@ en:
   about_us_who_are_we_emma_html: MSc Media technology with experience from a fast growing tech-startup. Wants to create great products, save the world and eat chocolate.
   blog: Blog
   we_are_100_transparent: We are 100% transparent.
-  this_is_a_first_step: This is a first step.
-  this_is_a_first_step_description: Get started with a climate neutral life now. We will also all need to reduce our climate footprint, but don't worry, we'll help by sharing inspiration and useful information!
   section_3_text: We are 100% transparent about which Gold Standard-certified climate offset projects we invest in, and why.
-  vegan: Plant-based diet
-  no_car: No car
-  hardly_ever_flies: Hardly ever flies
-  cost_calculation: Cost calculation
-  price_info_popup_content: With this choice we estimate a yearly climate footprint of %{footprint} tonne CO<sub>2</sub>. Since the number is approximate we offset for twice as many tonnes, so %{footprint_x2} tonne C0<sub>2</sub>. This way you can be sure you live climate neutral every month.<br>We invest in projects that are Gold Standard-certified (a certification created among others by WWF). These project cost %{price_per_tonne} per tonne - so this choice end up at %{price_per_month} per month.
-  you_will_offset_for:
-    prefix: 'To take responsibility for your climate footprint costs '
-    suffix: /month.
-  mostly_vegetarian: Eat mostly vegetarian food
-  one_fuel_efficient_car: One Fuel Efficient Car
-  flies_sometimes: Flies Sometimes
-  vegetarian: Vegetarian diet
-  sometimes_vegetarian: Often vegetarian diet
-  meat_eater: Meat Eater, not so much beef
-  meat_eater_lots_of_beef: Meat Eater, lots of beef
-  electric_car: Electric car
-  fuel_efficient_seldom_drives: Fuel efficient car, seldom drive
-  fuel_efficient_car_drives_often: Fuel efficient car, drive often
-  normal_car_seldom_drives: Normal car, seldom drive
-  normal_car_drives_often: Normal car, drive often
-  suv_seldom_drives: Fuel thirsty car, seldom drive
-  suv_drives_often: Fuel thirsty car, drive often
-  never_flies: Never flies
-  flies_short_distance_1_time_year: Fly short distance 1 time/year
-  flies_short_distance_2_time_year: Fly short distance 2 time/year
-  flies_short_distance_3_time_year: Fly short distance 3 time/year
-  flies_short_distance_6_time_year: Fly short distance 6 time/year
-  flies_short_distance_12_time_year: Fly short distance 12 time/year
-  flies_long_distance_1_time_year: Fly long distance 1 time/year
-  flies_long_distance_2_time_year: Fly long distance 2 time/year
-  flies_long_distance_3_time_year: Fly long distance 3 time/year
-  flies_long_distance_6_time_year: Fly long distance 6 time/year
-  flies_long_distance_12_time_year: Fly long distance 12 time/year
-  read_more_how_we_calculate_offset_plans_html: Read more on how we calculate the %{href}.
-  offset_plans: offset plans
-  tonnes_co2_per_year: tonnes CO2/year
-  sign_up_for_a_climate_neutral_life: Sign up for a Climate Neutral Life
-  sign_up_here_to_start_livint_a_climate_neutral_life: Enter your details below to start the journey towards a climate neutral life.
   email: Email
   password: Password
   i_accept: I accept
@@ -131,7 +92,6 @@ en:
   add_new_card: Add new card
   edit_card: edit card
   your_payment_details_have_been_updated: Your settings has been updated
-  something_went_wrong_with_the_credit_card_please_submit_it_again: Something went wrong with the credit card, please try submiting it again.
   no_card_registered: No Card Registered
   climate_plan: Climate Plan
   go_climate_neutral: Go Climate Neutral!
@@ -145,9 +105,7 @@ en:
   name_have_lived_climate_neutral_for_join_me:
     one: '%{name} has lived a climate neutral life for 1 month now!'
     other: '%{name} has lived a climate neutral life for %{count} months now!'
-  tell_your_friends: Tell your friends!
   climate_change_is_best_faced_together: You are awesome! Since climate change is best faced together, it would be great if you want to share the message so that more people can start living climate neutral lives!
-  one_extra_month_for_every_friend_html: We give you <b>1 extra climate neutral month</b> (worth about $10) for every new friend that beceomes climate neutral through us!
   share_on_facebook: Share on Facebook
   share_on_twitter: Share on Twitter
   we_have_accomplished_alot_together: We have accomplished a lot together!
@@ -155,20 +113,15 @@ en:
   amount_of_carbon_i_have_offset: Number of tonnes CO2 that you have offset so far
   good_job: Good job!
   number_of_months_you_have_been_climate_neutral: Number of months you have been climate neutral
-  you_climate_offset_investments: Your climate offset investments
-  number_of_climate_neutral_months_for_all_users: Number of climate neutral months for all users
   number_of_climate_neutral_users_right_now: Number of climate neutral users right now
-  total_climate_offset_project_investments: Total climate offset project investments
   our_projects: Our Climate Projects
   our_investments_in_climate_projects: Our Climate Projects
-  climate_project_we_have_invested_in: The Climate Projects we have invested in together
   i_want_to_contribute: Ok, I want to contribute!
   project_name: Project name
   map: Map
   more_info_on_blog: More Information
   our_investment_certificate: Investment certificate
   certificate: Certificate
-  invoice: Invoice
   date_of_our_investment: Date of Investment
   read_more: More info
   cimate_hero_toplist: Climate Hero Toplist
@@ -179,15 +132,13 @@ en:
     other: climate neutral months
   climate_country_toplist: Climate Country Toplist
   total_carbon_offset_by_us: Total carbon offsets by us together
-  read_more_about_investments_on_our_blog: Read more about the projects we investments in on our blog >>
+  read_more_about_investments_on_our_blog: 'Read more about the projects we investments in on our blog >>'
   tonnes_CO2: tonnes CO2
   tonnes: tonnes
   type: Type
   price: Price
-  proceed_to_checkout: Proceed to checkout
   thank_you_so_much_everyone_for_helping_to_save_the_world: Thank you so much everyone for helping to save the world! You Rock!
   latest_carbon_offset_projects: Latest Carbon Offset Projects
-  offset: Offset
   country: Country
   location: Location
   more_info_on_our_blog: More information about the project
@@ -196,28 +147,20 @@ en:
   user_name: User Name
   confirm_password: Confirm password
   update: Update
-  other_language_site: https://www.goclimate.com/se
-  other_language: På svenska
   what_is_goclimateneutral: What is GoClimate?
   this_is_how_it_works: This is how it works
   1_describe_your_lifestyle: 1. Describe Your Lifestyle
   2_sign_up: 2. Sign Up
-  sign_up_text: Take 1 minute to register
-  3_save_the_world: 3. Save the World
-  save_the_world_text: We buy climate offsets for you and show you how you can reduce your climate footprint.
-  its_that_simple_text: "It's that simple. Climate change is the biggest challenge of our time, but together we can do something about it. We are not claiming that this will be enough, but it's a big step in the right direction. Join us and spread the word to encourage others to be part of this movement!"
-  why_goclimateneutral_head: WHY GOCLIMATE?
   forgot_your_password: Forgot your password?
   enter_your_email_below_and_we_will_send_you: Enter your email below and we will send you an email with instructions.
   send_me_an_email_with_instructions: Reset password
   change_your_password: Change your password
   change_your_password_by_entering_your_new_password_below: Change your password by entering your new password below.
   change_password: Change password
-  something_went_wrong_go_back_one_step_and_try_again: Something went wrong, go back one step and try again!
   the_payment_unfortunately_failed: Unfortunately your payment has failed
   no_worries_we_will_try_again_within_a_few_days: No worries, we will try again in a few days.
   you_might_need_to_update_your_payment_info: In order to continue living a climate neutral life with us, you might need to update your payment info.
-  link_to_update_your_payment_info: Update your payment info here >>
+  link_to_update_your_payment_info: 'Update your payment info here >>'
   this_mail_was_sent_by: This email was sent by
   to_stop_recieving_these_emails: To stop recieving these emails
   click_here: click here
@@ -233,29 +176,15 @@ en:
     one: year
   together_we_have_offset: Together we have offset
   goclimateneutral_and_this_planet_loves_you: GoClimate and this planet love you! You are the best!
-  learn_more_about_what_we_have_achieved_here: Learn more about what we have achieved here >>
+  learn_more_about_what_we_have_achieved_here: 'Learn more about what we have achieved here >>'
   thank_you: Thank you!
   the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible: 'Please consider sharing this with your friends, the more people that become climate neutral, the bigger the chance that we succeed in slowing down climate change!'
   press_images: Press Images
   press_social_images: Social Media Images
   press_credits: The illustrations are created by Henrik Kniberg and are Creative Commons-licensed.
   im_in: I'm in!
-  1_people: 1 person
-  x_people: '%{number} people'
   press: Press
-  where_will_my_money_be_used: Where will my money be used?
-  good_to_know: You can feel safe.
-  why_trust_1: All climate projects we invest in are thoroughly reviewed by a third-party
-  why_trust_2: We are completely transparent with were your money ends up
-  why_trust_4: It's super easy to cancel your climate offset plan if you want to
-  why_trust_5: If you regret your offset plan within 60 days we will give you your money back
-  we_invest_in_un_climate_projects_that_are_gold_standard_certified: We invest in climate projects that are Gold Standard certified. See some examples of projects we invested in below.
-  thai_solar_carousel_description: Over 90% of electricity consumed in Thailand’s grid is supplied by fossil fuel. We have invested in this solar plant that supplies clean renewable electricity to the Thailand grid.
-  nanyang_danjiang_carousel_description: By replacing traditional coal-fired cooking stoves with clean solar cookers CO2-emissions are reduced and the quality of life of 50.000 rural household are improved.
-  dak_pone_carousel_description: The Dak Pone Hydro project replaces diesel generators and wood-fired heating with clean sustainable hydro energy.
   faq: FAQ
-  answer: Answer
-  read_more_on_frequently_asked_questions: Read more on our FAQ
   faq_questions:
     climate_neutrality:
       heading: Climate neutrality
@@ -373,21 +302,6 @@ en:
           answer: "The data is used to calculate the company's climate footprint. We also use the figures completely anonymously to generate average values that all companies can compare themselves to. No information will be publicly displayed without your approval.
           <br><br>
           If you give us approval to use your logo and your name, we may use it publicly together with the figure for total emissions or emissions per employee. This is so that in the future we will be able to create top lists and the opportunity to compare between companies. In addition to this, all information is protected even if you choose to give this approval."
-  activerecord:
-    errors:
-      models:
-        user:
-          attributes:
-              password:
-                too_short: The password is too short, please try at least 6 characters!
-                blank: Wops, the password looks like it´s empty!
-              email:
-                taken: The email address already exists, try another one!
-                invalid: The email looks incorrect, try again!
-              privacy_policy:
-                accepted: You need to accept the pricacy policy
-  climate_neutral_users_right_now: climate neutral users right now
-  ton_co2_less_in_atmosphere: tonnes CO2 less in atmosphere
   for_business: For Business
   thats_amazing_from_the_bottom_of_our_hearts: That's amazing! From the bottom of our hearts
   years:
@@ -400,11 +314,6 @@ en:
   welcome:
     caption_line_1: Together we can save our climate.
     caption_line_2: Take responsibility for your emissions today!
-    intro: Climate change is the greatest challenge of our time. Together we have a chance to hit the brakes and save our planet, but we have to act now. By offsetting your climate impact, you can become part of the solution right now.
-    calculator:
-      title: Calculate your climate impact to get started
-      submit: Offset my impact
-      per_month: /mo
     what_is_gcn_text: We support Gold Standard certified climate offset projects and highlight easy ways to reduce your climate footprint. In this way we help slow down climate change and contribute to saving our planet.
     statistics_header: Every person makes a difference!
     users_prefix: We're currently
@@ -412,9 +321,7 @@ en:
     tonnes_prefix: Together we've reduced
     tonnes_suffix: tonnes CO2 from the atmosphere
     call_to_actions:
-      tell_me_more: Tell me more!
       im_ready_to_sign_up: I'm ready to sign up!
-      i_want_to_contribute: I want to contribute!
       lets_save_our_planet_together: Let's save our planet together!
       go_climate_neutral: Go Climate Neutral
     how_it_works:
@@ -422,12 +329,6 @@ en:
       sign_up_text: Sign up to offset your carbon footprint on a monthly basis.
       save_our_planet_header: 3. Save Our Planet
       save_our_planet_text: Be part of our community of people who no longer contribute to climate change.
-    form:
-      label:
-        people: People count
-        food: Food habits
-        car: Car habits
-        flying: Flying habits
     business:
       for_companies: Carbon Offsetting For Your Business
       for_companies_text_html: Do you want to offset the emissions from a flight or for all your employees? We would love to help!
@@ -453,328 +354,6 @@ en:
   best_regards: Best regards
   gift_card_email_subject: Your gift card
 
-  views:
-    gift_card_mailer:
-      thank_you_for_buying_gift_card: Thank you for buying a gift card!
-      you_have_purchased_a_gift_card_with: You have purchased a gift card for
-      download_the_gift_card_here: Download the gift card here
-      climate_neutral_months:
-        one: climate neutral month
-        other: climate neutral months
-      you_can_find_the_gift_card_as_an_attachmtent_to_this_mail: You can find the gift card as an attachment to this email. Please contact us if you have any questions by replying to this email. Thank you again!
-    gift_cards:
-      index:
-        header: Let your next gift be a climate neutral life
-        intro:
-          Looking for a gift for someone who already has everything?  Want
-          to help spread the word of something we can all do to fight
-          climate change? Try out our climate gift cards!
-        choose_header: Choose your climate gift card
-        1_months_header: 1 month
-        1_months_description: 1 month of climate neutrality.
-        1_months_cta: Get a 1 month gift card
-        3_months_header: 3 months
-        3_months_description: 3 months of climate neutrality.
-        3_months_cta: Get a 3 months gift card
-        6_months_header: 6 months
-        6_months_description: Half a year of climate neutrality.
-        6_months_cta: Get a 6 months gift card
-        12_months_header: 12 months
-        12_months_description: One full year of climate neutrality.
-        12_months_cta: Get a 12 months gift card
-        details_html: "Gift cards are based on the average climate impact for Swedish residents (11 tonnes CO<sub>2</sub>eq)."
-      new:
-        intro: Personalize and purchase your gift card
-        your_gift_card_order: Your gift card order
-        write_a_message: Personal message
-        sample_message_html: "Example:\nHi Mom, here is a gift for you! /Jenny"
-        we_will_send_you_pdf:
-          After purchase, we will email the gift card to you as a PDF file.
-          Then you can give the gift card to the recipient in whatever way you like.
-        gift_card_for_x_months: Gift card for %{months} months.
-        click_here_for_an_example: "Click here for an example"
-        pay: Purchase gift card
-      download:
-        gift_card: "Gift card"
-        gift_card_x_climate_neutral_months:
-          one: 1 climate neutral month
-          other: "%{count} climate neutral months"
-        about_go_climate_neutral:
-          <a href='http://www.goclimate.com'>GoClimate</a> supports climate projects and gives inspiration and advice on how to reduce your climate footprint. All supported projects are certified by Gold Standard, established by WWF and about 80 other international NGOs. Together we contribute to stop climate change and save the world!
-        calculation_based_on_html: "Calculation based on the average climate footprint of 11 tonnes CO<sub>2</sub>eq per person and year x 2."
-        do_you_want_to_continue: If you want to continue living a climate neutral life after this gift card has expired,
-        register: visit <a href="http://www.goclimate.com">goclimate.com</a> and register!
-      example:
-        message_html: "Hi Mom,\nDoesn't it feel great to help the climate?\nEnjoy this gift! /Lisa"
-        example: "Example"
-      thank_you:
-        download_the_gift_card_here: Download the gift card here
-        download_receipt_here: Download the receipt here
-        you_have_purchased_a_gift_card_with_x_climate_neutral_months:
-          one: You have purchased a gift card for 1 climate neutral month
-          other: "You have purchased a gift card for %{count} climate neutral months"
-    offset_certificates:
-      about_go_climate_neutral:
-        <a href='http://www.goclimate.com'>GoClimate</a> supports
-        climate projects and provides tips and inspiration on easy ways to
-        reduce your carbon footprint. Our projects are Gold Standard certified
-        and are supported by 80 environmental organizations - including the WWF.
-      do_you_want_to_continue: Do you want to offset your full carbon footprint?
-      register: Visit <a href="http://www.goclimate.com">GoClimate</a> to register!
-    flight_footprints:
-      new:
-        flight_details: Your flight details
-        from: From
-        to: To
-        roundtrip: Roundtrip
-        connections: Connections
-        connections_return: Connections on return trip
-        add_connection: Add connection
-        cabin_class: Cabin class
-        number_of_tickets: Number of tickets
-        not_a_valid_input: This is not a valid input
-    flight_offsets:
-      new:
-        header: Offset your flight
-        header_description: To carbon offset is to take responsiblity for your climate footprint. We offer the possibility to offset your flight in certified climate projects.
-        your_order: Your order
-        flight_in_cabin_class: Flight in cabin class
-        carbon_footprint: Carbon footprint
-        person: person
-        people: people
-        total: Total
-        sum: Sum
-        submit: Offset your flight
-      thank_you:
-        header: Thank you!
-        lead: By offsetting, you have taken responsibility for your flight's carbon footprint.
-        download_certificate: Download your certificate
-        download_receipt: Download your receipt
-        we_have_sent_an_email: We've sent an email with the certificate to the email address you entered.
-        did_you_know_lifestyle: Did you know that we can help you offset your full carbon footprint?
-        read_more_and_subscribe: Read more and subscribe
-    lifestyle_footprints:
-      title: Calculate your carbon footprint
-      questions:
-        region: In which region do you live?
-        home: How do you live?
-        heating: How do you heat your home?
-        green_electricity: Do you use green electricity?
-        food: What is your diet mostly like?
-        car_type: What type of car do you use to get around?
-        car_distance: How much do you travel by car each week?
-        flight_hours: How many hours did you travel by plane in the last year?
-      options:
-        region:
-          west: West
-          midwest: Midwest
-          northeast: Northeast
-          south: South
-          other: Other
-        home:
-          house: House
-          apartment: Apartment
-          one_or_two_bedrooms: 1-2 bedrooms
-          three_or_four_bedrooms: 3-4 bedrooms
-          five_or_more_bedrooms: 5+ bedrooms
-          fifteen_sqm: 15 m² per person
-          twentyfive_sqm: 25 m² per person
-          fortytwo_sqm: 42 m² per person
-          sixty_sqm: 60 m² per person
-          eighty_sqm: 80 m² per person
-        heating:
-          electricity: Electricity
-          natural_gas: Natural gas
-          district: District heating
-          coal: Coal
-          biomass: Biomass
-          environmental_or_solar: Renewable or solar energy
-          airpump: Air heating pump
-          geothermal: Geothermal pump
-          heating_oil: Heating oil
-          propane: Propane
-          dont_know: I don't know/Other
-        green_electricity:
-          'yes': 'Yes'
-          seventyfive_percent: 75% green
-          fifty_percent: 50% green
-          twentyfive_percent: 25% green
-          'no': 'No'
-          dont_know: I don't know
-        food:
-          vegan: Plant-based
-          vegetarian: Vegetarian
-          pescetarian: Pescetarian (fish but no meat)
-          meat_low: Some meat (less than 50 g per day)
-          meat_medium: Meat-eater
-          meat_high: Lots of meat (more than 100 g per day)
-        car_type:
-          gas: Gasoline
-          petrol: Petrol
-          diesel: Diesel
-          hybrid_plugin: Hybrid Plug-in
-          etanol: Ethanol (E85)
-          electric: Electric
-          hvo_electric: Electric or HVO
-          vehicle_gas: Vehicle gas (CNG)
-          no_car: I don't have a car
-      next: Next
-      back: Go back
-    shared:
-      header:
-        navigation:
-          flights: Flights
-          offset_flight: Offset flight emissions
-        region_recommendation:
-          select_country: Select your country or region so that we can show the best information for you.
-          continue_button: "Continue to %{region}"
-        sign_up: Sign up
-      prefooter:
-        heading: Let us stop climate change together!
-        body_text: Subscribe to offset your carbon footprint.
-        button: Get started
-      footer:
-        short_intro: GoClimate is a social company with the sole purpose of making it easier to start living a climate neutral life.
-        jobs: 'Jobs'
-        headers:
-          make_a_difference: Get involved
-          explore: Explore
-          about: About
-      tonnes_co2e:
-        one: tonne CO2e
-        other: tonnes CO2e
-    pdfs:
-      flight_offset_certificate:
-        header: Carbon Offset Certificate
-        lead: By offsetting, you've taken responsibility for your flight's carbon footprint. Thank you!
-        order_id: Order ID
-        date: Date
-        project_type: Project type
-      invoice_certificate:
-        header: Carbon Offset Certificate
-        we_certify_that: We hereby certify that
-        has_carbon_offset: has carbon offset
-        project_information: Project information
-        name: Name
-        country: Country
-        project_id: Project ID
-        project_type: Project type
-        date: Date
-    projects:
-      index:
-        latest_project: Our latest project
-        read_more_link: Read more
-        map_link: Show on map
-        invoice: Invoice
-        certificate_link: Show certificate
-        map_header: Here's where we make an impact!
-        about_our_projects: |
-          GoClimate selects projects that have been certified by Gold Standard. This means that the projects have undergone careful scrutiny, backed by WWF and other international organisations, so that they have a real impact and contribute to the UN's sustainability goals.
-
-          We choose projects of different kinds, to broaden our impact. We look at where the projects are implemented, by whom, when and how. Some projects are cheap and that means we can get many tonnes of CO2 for the money, others are a bit more expensive but then we can help stimulate sustainable development in a specific area. We explain the reasoning behind our choices, and you can look at all the details about the projects on this page and on the <a href="https://www.goldstandard.org/">Gold Standard website</a>.
-    welcome:
-      index:
-        hero:
-          heading: The subscription for offsetting your carbon footprint
-          body_text: Calculate your carbon footprint to start your personalized subscription, all in less than 2 minutes
-        how_it_works:
-          bullets:
-            bullet_1_heading: Calculate your carbon footprint
-            bullet_1_text: Our easy test takes just a minute to complete.
-            bullet_2_heading: Sign up
-            bullet_2_text: Start your monthly subscription personalized to your own footprint.
-            bullet_3_heading: Save our planet
-            bullet_3_text: We finance projects that reduce the amount of CO2 in the atmosphere.
-        about_us:
-          heading: Together we can be the change we want to see for the planet
-          body_text: We support climate projects certified by the UN and WWF, as well as assist you with tips on how to best decrease your carbon footprint. 
-          read_more: Read more about us
-        projects:
-          heading: Where does the money go?
-          body_text_1: Your financial contribution equals your individual carbon footprint
-          body_text_2: Our projects support the global transition from fossil fuels to renewable energy resources
-          body_text_3: We specifically pick projects that gives the biggest bang for the buck in terms of doing good for the climate, while also contributing towards as many of the UN sustainability goals as possible
-          body_text_4: We are a 100% transparent business, with all of our outgoings continuously updated and displayed, in detail, here on the website.
-          read_more: Read about our projects
-        transparency:
-          heading: 100% transparency
-          body_text: We want you to feel safe with how your money is spent, why we go by a financial total transparency policy. We continuously update the site with our outgoings and overheads, making sure every cent is making the most possible good for the climate.
-          read_more: Read more about our transparency
-        climate_tips:
-          heading: Climate tips
-          clothes_last_longer: Make your clothes last longer
-          reduce_carbon_footprint_food: How to reduce your carbon footprint with food
-          civil_disobedience: Civil disobedience for the climate?
-          climate_friendly_housing_cooperative: Climate friendly housing cooperative - this is how you make an impact
-          climate_friendly_pension_saving: Fossil free pension savings
-          read_more: Read more
-        community:
-          heading: Meet our community
-          people:
-            annelie:
-              title: adventurer, speaker and guide
-              quote: I do lots of beach clean ups, and dive to pick up ghost nets in our oceans. I live on a tiny houseboat and I don’t have kids. I also try to inspire others to take better care of our nature.
-            mattias:
-              title: partner @ Netlight Consulting
-              quote: As a role model in the IT industry, we want to lower our environmental impact to help save the climate.
-            shelbi:
-              title: sustainability influencer
-              quote: It is difficult to know which choice is the most sustainable when it comes to our personal choices, so I figured offsetting my footprint would be a way to assure I was doing something meaningful & helpful regardless of if I’m making the most perfect lifestyle choices day to day.
-        calculate_to_sign_up: Calculate your footprint to start living a climate neutral life today!
-        i_live_in: I live in...
-        get_started: Get started
-        our_projects_header: Our Climate Projects
-        our_projects_lead: It's crucial for us that your money only ever ends up in the right hands. To guarantee that, we support Gold Standard certified projects that have been verified by third parties. The projects contribute to the global transition to renewable energy and the UN Sustainable Development Goals.
-        our_projects_link: Read more about our climate projects
-      travel_calculator:
-        travel_emissions_calculator: Travel Emissions Calculator
-        travel_emissions_calculator_description: Do you want to calculate the emissions from travelling? Enter the distance below and see the carbon emissions each way of travelling causes!
-        distance_in_kilometers: Distance of trip in km
-        calculate: Calculate
-        emissions_if_traveling_by: Emissions if you travel by
-        flight: Flight
-        car_petrol: Car (petrol)
-        car_diesel: Car (diesel)
-        car_etanol: Car (etanol)
-        car_gas: Car (gas)
-        car_electric: Electric Car
-        bus: Bus
-        train: Train
-        subway: Subway
-        boat: Boat
-        offset_the_emissions_here: Offset the emissions here ->
-    registrations:
-      offset_for_x_people:
-        before_input: I want to offset for
-        after_input: people like me.
-      well_done: Great! First step done!
-      your_yearly_climate_footprint: Your yearly carbon footprint
-      corresponds_to: This corresponds to %{price}/month.
-      you: You
-      compensated: With offsetting
-      average_in: Average in %{region}
-      world_average: World average
-      goal_2030: Goal 2030
-
-      higher: higher
-      lower: lower
-      your_climate_footprint: Your carbon footprint of %{footprint} is %{relative} than the average in %{country}. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030. By offsetting your emissions you can reach zero today.
-      your_climate_footprint_compared_world: Your carbon footprint of %{footprint} is %{relative} than the world average. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030. By offsetting your emissions you can reach zero today.
-
-      subscribe_heading: Subscribe to a climate neutral life
-      subscribe_intro: Start your subscription today to offset your carbon footprint. Every person counts on our journey to reaching the climate goals!
-      your_subscription: Your subscription
-      number_of_people: Number of people
-      total: Total
-      subscription_price_information: The price of our Gold Standard certificated climate projects is %{price}/tonne. To be absolutely sure your subscriptoin is actually offsetting your lifestyle, we always double your amount of tonnes for your subscription.
-      where_does_the_money_go:
-        heading: Where does the money go?
-        point_1: Our climate projects are accelerating the global transition to renewable energy sources.
-        point_2: Your contribution is based on your own calculated carbon footprint.
-        point_3: We hand-pick the projects that bring the most value per money spent and contribute to as many of the UN sustainability goals as possible.
-        point_4: We are 100% transparent with all our expenses. The latest information is always available here on our website.
-      latest_projects: The latest projects
-      faq: Frequently asked questions
   business:
     climate_reports:
       business_footprint_header: Estimate your business footprint
@@ -850,6 +429,8 @@ en:
       calculate_button: See my business footprint
       read_more_about_calculations: Read more about the calculations here
       total: Total
+      car: Car
+      flight: Flights
       average: average
       show:
         header: Your business footprint
@@ -882,58 +463,3 @@ en:
   this_is_how_the_money_is_used_text: We support Gold Standard certified climate projects. The projects reduce emissions equivalent to your business' footprint and contribute to the global transition to renewable energy production. Here's our two latest projects.
   tonnes_carbon_dioxide: tonnes carbon dioxide
   see_all_our_projects: See all our projects
-  mailers:
-    flight_offset:
-      subject: Your certificate
-      thank_you: Thank you for offsetting your flight!
-      you_have_offset: You have offset
-      tonnes_co2e: tonnes CO2e
-      certificate_is_attached:
-        Your certificate is attached to this email. If you have any questions,
-        just hit reply on this email–we're happy to help! Thank you again,
-        you're the best!
-    business:
-      climate_report_email:
-        subject: Share your climate footprint with your team
-        thank_you: Thank you for calculating your climate footprint!
-        link_description: "To make it easier to share your results with your team and get back to them later, here's a link to the results:"
-        reply_to_this_email: If you have any questions, just reply to this email. We're happy to help!
-    welcome:
-      from: Tove from GoClimate
-      subject: Welcome to GoClimate
-      welcome_to_gcn: Hello!
-      big_thanks: A big thank you for joining us and contributing to a more sustainable world!
-      you_now_support: You now support certified climate projects that also contribute to other types of sustainable development around the world. Well done!
-      regardless_of_how_much: Regardless of where you are on your journey towards a fully sustainable life, we hope that by joining our community you will become even more inspired and learn more about how we can reduce our emissions together. For inspiration and more information, please follow us on %{facebook}, %{instagram}, %{twitter} and check out our %{blog}.
-      we_are_many: There are many of us who want to do good for the climate, and we believe that coming together as a community is important in order to succeed. To keep the community active, we regularly invite you to meetups and climate strikes, to talk about how we can take climate action together. Invitations to events and information on our progress will be shared with you in our newsletter, 4-6 times per year.
-      if_you_have_any_questions: If you have any questions or just want to say hello, feel free to drop me a line at tove@goclimate.com!
-      thank_you: Thank you for contributing to a more sustainable future!
-      best_regards: Warm regards,
-      the_gcn_team: Tove from GoClimate
-
-  helpers:
-    application:
-      precise_co2e_string_tonnes: "%{tonnes} tonnes CO2e"
-      precise_co2e_string_kg: "%{co2e} kg CO2e"
-
-  models:
-    money:
-      currency_formats:
-        usd: '$%{number}'
-        eur: '€%{number}'
-    currency:
-      prefix:
-        usd: $
-        eur: €
-    greenhouse_gases:
-      tonnes:
-        one: "%{count} tonne CO2e"
-        other: "%{count} tonnes CO2e"
-      kg:
-        one: "%{count} kg CO2e"
-        other: "%{count} kg CO2e"
-    project:
-      offset_type:
-        'GS': Gold Standard certified
-        'CDM+GS': CDM & Gold Standard certified
-        'CDM': CDM certified

@@ -39,9 +39,10 @@ module GoClimateNeutral
     config.autoload_paths.push(*custom_paths)
 
     # Whitelist locales available for the application
-    config.i18n.available_locales = [:en, :sv, :de]
+    config.i18n.available_locales = [:en, :sv, :de, :eo]
     config.i18n.default_locale = :en
     config.i18n.fallbacks = [:en]
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**/*.{rb,yml}')]
 
     config.generators do |g|
       g.test_framework :rspec
