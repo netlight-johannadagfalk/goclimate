@@ -8,8 +8,8 @@ RSpec.describe 'Routes', type: :routing do
 
   it 'understands new transparency route' do
     expect(get: 'transparency').to route_to(
-      controller: 'welcome',
-      action: 'transparency'
+      controller: 'about/transparency',
+      action: 'show'
     )
   end
 

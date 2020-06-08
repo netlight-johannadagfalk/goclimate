@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
   before_action :flash_when_registered
 
-  def index
+  def show
     @total_carbon_offset = Project.total_carbon_offset
     @my_amount_invested_sek = my_amount_invested_sek
     @my_carbon_offset = (@my_amount_invested_sek / LifestyleChoice::SEK_PER_TONNE.to_f).round(1)

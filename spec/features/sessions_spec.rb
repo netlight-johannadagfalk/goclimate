@@ -20,7 +20,7 @@ RSpec.feature 'Sessions', type: :feature, js: true do
     click_button 'Log In'
 
     # Wait for dashboard to render
-    find('.dashboard-index', wait: 20)
+    find('.dashboard-show', wait: 20)
     expect(page).to have_text 'We have accomplished a lot together!'
   end
 end

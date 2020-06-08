@@ -41,7 +41,7 @@ Rails.application.routes.draw do
 
   # Public site
   scope '(:region)', region: Regexp.new(Region.all.map(&:slug).compact.join('|')) do
-    root 'welcome#index'
+    root 'home#show'
 
     # Devise routes for sessions, registrations & payment
     devise_for :users, controllers: {
@@ -53,19 +53,19 @@ Rails.application.routes.draw do
     end
 
     # Content pages
-    get 'about', to: 'welcome#about'
-    get 'contact', to: 'welcome#contact'
-    get 'faq', to: 'welcome#faq'
-    get 'press', to: 'welcome#press'
-    get 'transparency', to: 'welcome#transparency', as: 'transparency'
-    get 'privacy-policy', to: 'welcome#privacy_policy'
-    get 'travel-calculator', to: 'welcome#travel_calculator'
+    resource :about, controller: 'about', only: [:show]
+    resource :contact, controller: 'about/contact', only: [:show]
+    resource :faq, controller: 'about/faq', only: [:show]
+    resource :press, controller: 'about/press', only: [:show]
+    resource :transparency, controller: 'about/transparency', only: [:show]
+    resource :privacy_policy, controller: 'about/privacy_policy', path: 'privacy-policy', only: [:show]
+    resource :travel_calculator, controller: 'travel_calculator', path: 'travel-calculator', only: [:show]
 
     resources :lifestyle_footprints, path: 'calculator', only: [:new, :create], path_names: { new: '' }
 
     resources :projects, path: 'climate-projects', only: [:index]
 
-    get 'business', to: 'welcome#business'
+    resource :business, controller: 'business', only: [:show]
     namespace :business do
       resources :climate_reports, path: 'climate-reports', only: [:show, :new, :create], param: :key do
         member do
@@ -77,10 +77,10 @@ Rails.application.routes.draw do
           get 'pdf'
         end
       end
-    end
 
-    # Business page with post from employee offsetting form
-    resource :business, only: [:create]
+      # Business page with post from employee offsetting form
+      resource :contacts, only: [:create]
+    end
 
     # Partners
     get 'partners/bokanerja'
@@ -104,7 +104,7 @@ Rails.application.routes.draw do
     end
 
     # Dashboard
-    get 'dashboard', to: 'dashboard#index'
+    resource :dashboard, controller: 'dashboard', only: [:show]
 
     # User profiles
     resources :users, only: [:show], constraints: { id: /\d+/ }
