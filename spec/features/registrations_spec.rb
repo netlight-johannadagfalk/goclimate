@@ -30,7 +30,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     click_button 'Go Climate Neutral!'
 
     # Wait for success page to render
-    find('.dashboard-index', wait: 30)
+    find('.dashboard-show', wait: 30)
 
     expect(page).to have_text 'Welcome to a climate neutral life'
     expect(page).to have_text 'We have accomplished a lot together!'
@@ -95,7 +95,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       end
 
       # Wait for success page to render
-      find('.dashboard-index', wait: 20)
+      find('.dashboard-show', wait: 20)
 
       expect(page).to have_text 'Welcome to a climate neutral life'
       expect(page).to have_text 'We have accomplished a lot together!'
