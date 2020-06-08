@@ -1,6 +1,6 @@
 # GoClimate
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/711e900ab6fb4c385a19/maintainability)](https://codeclimate.com/repos/5c99da9af52fd70240006af8/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/711e900ab6fb4c385a19/test_coverage)](https://codeclimate.com/repos/5c99da9af52fd70240006af8/test_coverage) [![View performance data on Skylight](https://badges.skylight.io/typical/zdRSFyrfwutu.svg?token=94hHNP2Fy3Obgt0c3MoiPXDLiIW1E9axYM5e-vN-occ)](https://www.skylight.io/app/applications/zdRSFyrfwutu) [![View performance data on Skylight](https://badges.skylight.io/problem/zdRSFyrfwutu.svg?token=94hHNP2Fy3Obgt0c3MoiPXDLiIW1E9axYM5e-vN-occ)](https://www.skylight.io/app/applications/zdRSFyrfwutu)
+[![Maintainability](https://api.codeclimate.com/v1/badges/711e900ab6fb4c385a19/maintainability)](https://codeclimate.com/repos/5c99da9af52fd70240006af8/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/711e900ab6fb4c385a19/test_coverage)](https://codeclimate.com/repos/5c99da9af52fd70240006af8/test_coverage)
 
 This is the code that runs [http://www.goclimate.com](http://www.goclimate.com)
 
