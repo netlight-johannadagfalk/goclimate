@@ -60,11 +60,8 @@ ul.nav.nav-tabs li.active a {
 .nav.nav-tabs .active {
   font-weight: bold;
 }
-.welcome-transparency .site-wrapper-first .inner {
+.transparency-show .site-wrapper-first .inner {
    padding-bottom: 140px;
-}
-.welcome-our_projects h1 {
-  margin-bottom: 40px;
 }
 .cover-heading {
   line-height: 1.5;
@@ -144,14 +141,11 @@ div.legal {
   padding-top: 20px;
   padding-bottom: 40px;
 }
-.welcome-transparency .financial-info .table {
+.transparency-show .financial-info .table {
   margin-top: 10px;
 }
-.welcome-transparency table {
+.transparency-show table {
   margin-top: 40px;
-}
-.welcome-plan table.table {
-  margin-bottom: 0px;
 }
 
 /* Glyphicon chevron overrides */
@@ -195,7 +189,7 @@ div.legal {
     padding-top: 0px;
 }
 
-.welcome .lead-btn.more-info {
+.home .lead-btn.more-info {
   padding-top: 0px;
   padding-bottom: 0px;
 } 
@@ -205,7 +199,7 @@ div.legal {
 .img-circle {
     border-radius: 50%;
 }
-.welcome .lead-btn {
+.home .lead-btn {
   padding-top: 30px;
     padding-bottom: 50px;
 }
@@ -231,7 +225,7 @@ div.legal {
 .row.stats.last {
   padding-bottom: 50px;
 }
-.welcome .stats .big-number {
+.home .stats .big-number {
   font-size: 90px;
   line-height: 100%;
 }
@@ -401,7 +395,7 @@ div.profile {
   .carousel-inner img.big {
     display: block;
   }
-  .welcome .stats .big-number {
+  .home .stats .big-number {
     font-size: 60px;
     margin-bottom: 5px;
   }
@@ -453,7 +447,7 @@ table.our-projects th {
     text-align: center;
     font-weight: bold;
 }
-.welcome-press h3 {
+.press-show h3 {
   margin-top: 50px;
 }
 
@@ -478,7 +472,7 @@ ul.trust {
 
 /***** Modal *****/
  
-.welcome-index, .welcome-start, .users {
+.home-show, .welcome-start, .users {
 
   .modal-backdrop.in {
       filter: alpha(opacity=7);
@@ -514,15 +508,11 @@ ul.trust {
       text-shadow: none;
       opacity: 1;
   }
-  .welcome .modal.fade .modal-dialog {
+  .home .modal.fade .modal-dialog {
     -webkit-transition: -webkit-transform 0.3s ease-out;
        -moz-transition: -moz-transform 0.3s ease-out;
          -o-transition: -o-transform 0.3s ease-out;
             transition: transform 0.3s ease-out;
-  }
-
-  .welcome .modal.in .modal-dialog {
-
   }
 
   .modal-header {
