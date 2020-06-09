@@ -6,7 +6,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
   has_many :card_charges, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
-  has_and_belongs_to_many :lifestyle_choices
   has_many :lifestyle_footprints
 
   scope :with_active_subscription, lambda {

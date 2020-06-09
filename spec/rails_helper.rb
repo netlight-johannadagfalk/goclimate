@@ -56,7 +56,6 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.before(:each, type: :feature) do
-    ActiveRecord::Base.connection.reset_pk_sequence!('lifestyle_choices')
     ActiveRecord::Base.connection.reset_pk_sequence!('projects')
     Rails.application.load_seed
   end
