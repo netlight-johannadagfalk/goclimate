@@ -3,8 +3,6 @@
 class LifestyleChoice < ApplicationRecord
   has_and_belongs_to_many :users
 
-  BUFFER_SIZE = 2
-
   def self.lifestyle_choice_footprint(choices)
     tonne_co2 = 0
     people = 1
