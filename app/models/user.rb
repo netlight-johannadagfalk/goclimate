@@ -32,9 +32,9 @@ class User < ApplicationRecord
   def subscription_amount_in_sek
     case Currency.from_iso_code(stripe_customer.subscriptions.first.plan.currency)
     when Currency::USD
-      subscription_amount * Currency::SEK_PER_USD
+      subscription_amount * GreenhouseGases::PRICE_FACTOR_USD
     when Currency::EUR
-      subscription_amount * Currency::SEK_PER_EUR
+      subscription_amount * GreenhouseGases::PRICE_FACTOR_EUR
     else
       subscription_amount
     end

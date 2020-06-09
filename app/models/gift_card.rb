@@ -126,13 +126,13 @@ class GiftCard < ApplicationRecord # rubocop:todo Metrics/ClassLength
   def price_per_tonne
     sek_per_currency = case currency
                        when Currency::USD
-                         Currency::SEK_PER_USD
+                         GreenhouseGases::PRICE_FACTOR_USD
                        when Currency::EUR
-                         Currency::SEK_PER_EUR
+                         GreenhouseGases::PRICE_FACTOR_EUR
                        else
                          1
                        end
-    LifestyleChoice::SEK_PER_TONNE / sek_per_currency
+    GreenhouseGases::CONSUMER_PRICE_PER_TONNE_SEK.amount.to_i / sek_per_currency
   end
 
   def set_co2e_and_price_if_new

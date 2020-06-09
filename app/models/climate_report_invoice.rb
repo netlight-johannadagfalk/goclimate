@@ -26,6 +26,6 @@ class ClimateReportInvoice < ApplicationRecord
                   5000
                 end
 
-    (BigDecimal(co2e) / 1000 * LifestyleChoice::BUSINESS_SEK_PER_TONNE + admin_fee).ceil * 100
+    (BigDecimal(co2e) / 1000 * GreenhouseGases::BUSINESS_PRICE_PER_TONNE_SEK.amount.to_i + admin_fee).ceil * 100
   end
 end
