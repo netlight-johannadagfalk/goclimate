@@ -17,7 +17,7 @@ end
 
 LifestyleFootprintAverage::COUNTRIES = [
   LifestyleFootprintAverage.new(%w[AT], 11_800, 'Ivanova 2015'),
-  LifestyleFootprintAverage.new(%w[AU], 15_400, 'The World Bank: Data (production based)'),
+  LifestyleFootprintAverage.new(%w[AU], 18_360, 'AustralianEthical 2020/Global Footprint Network 2018'),
   LifestyleFootprintAverage.new(%w[BE], 12_500, 'Ivanova 2015'),
   LifestyleFootprintAverage.new(%w[BG], 6_000, 'Ivanova 2015'),
   LifestyleFootprintAverage.new(%w[CA], 15_160, 'The World Bank: Data (production based)'),
