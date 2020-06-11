@@ -166,7 +166,6 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
     resources :api_keys
     resources :invoices
-    resources :lifestyle_choices
     resources :lifestyle_calculators, only: [:index, :show, :new, :create] do
       member do
         resource :lifestyle_calculator_preview, path: :preview, only: [:create]

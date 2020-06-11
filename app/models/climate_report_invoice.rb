@@ -7,8 +7,10 @@ class ClimateReportInvoice < ApplicationRecord
   validates_presence_of :invoice_address, :co2e, :amount, :currency
   validates :certificate_reciever_email, email: true
 
+  BUFFER_FACTOR = 2
+
   def calculate_from_report
-    self.co2e = climate_report.calculation.total_emissions * LifestyleChoice::BUFFER_SIZE
+    self.co2e = climate_report.calculation.total_emissions * BUFFER_FACTOR
     self.amount = calculate_amount
     self.currency = 'sek'
   end
@@ -26,6 +28,6 @@ class ClimateReportInvoice < ApplicationRecord
                   5000
                 end
 
-    (BigDecimal(co2e) / 1000 * LifestyleChoice::BUSINESS_SEK_PER_TONNE + admin_fee).ceil * 100
+    (BigDecimal(co2e) / 1000 * GreenhouseGases::BUSINESS_PRICE_PER_TONNE_SEK.amount.to_i + admin_fee).ceil * 100
   end
 end

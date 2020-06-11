@@ -4,6 +4,7 @@ class GreenhouseGases
   include Comparable
 
   CONSUMER_PRICE_PER_TONNE_SEK = Money.new(40_00, :sek)
+  BUSINESS_PRICE_PER_TONNE_SEK = Money.new(55_00, :sek)
   PRICE_FACTOR_USD = 8.5
   PRICE_FACTOR_EUR = 10
 

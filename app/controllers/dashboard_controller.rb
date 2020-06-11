@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
   def show
     @total_carbon_offset = Project.total_carbon_offset
     @my_amount_invested_sek = my_amount_invested_sek
-    @my_carbon_offset = (@my_amount_invested_sek / LifestyleChoice::SEK_PER_TONNE.to_f).round(1)
+    @my_carbon_offset = (@my_amount_invested_sek / GreenhouseGases::CONSUMER_PRICE_PER_TONNE_SEK.amount.to_f).round(1)
     @my_neutral_months = my_neutral_months
     @unique_climate_neutral_users = User.with_active_subscription.count
 
@@ -28,8 +28,8 @@ class DashboardController < ApplicationController
   def my_amount_invested_sek
     (
       my_amount_invested_sek_part +
-      my_amount_invested_usd_part * Currency::SEK_PER_USD +
-      my_amount_invested_eur_part * Currency::SEK_PER_EUR
+      my_amount_invested_usd_part * GreenhouseGases::PRICE_FACTOR_USD +
+      my_amount_invested_eur_part * GreenhouseGases::PRICE_FACTOR_EUR
     ).round
   end
 

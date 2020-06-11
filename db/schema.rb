@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_13_073358) do
+ActiveRecord::Schema.define(version: 2020_06_09_131845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,22 +171,6 @@ ActiveRecord::Schema.define(version: 2020_04_13_073358) do
     t.text "flights_formula"
     t.text "consumption_formula"
     t.text "public_formula"
-  end
-
-  create_table "lifestyle_choices", force: :cascade do |t|
-    t.string "name"
-    t.string "category"
-    t.integer "version"
-    t.decimal "co2", precision: 8, scale: 3
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "lifestyle_choices_users", id: false, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "lifestyle_choice_id"
-    t.index ["lifestyle_choice_id"], name: "index_lifestyle_choices_users_on_lifestyle_choice_id"
-    t.index ["user_id"], name: "index_lifestyle_choices_users_on_user_id"
   end
 
   create_table "lifestyle_footprints", force: :cascade do |t|

@@ -51,7 +51,7 @@ Our domain consists of:
 
 | Model                 | Description                                         |
 | ----------------------|-----------------------------------------------------|
-| `LifestyleChoice`     | Footprint for an individuals full lifestyle.        |
+| `LifestyleFootprint`  | Footprint for an individual's full lifestyle.       |
 | `GenericFlightFootprint` | Footprint for flight iteniraries.                |
 | (Gift cards)          | (Done inline in `GiftCard`.)                        |
 | (Service companies)   | (Done inline in `ClimateReportCalculation`.)        |
@@ -163,16 +163,7 @@ code `eo` in this project). This is done by running: `bin/rails i18n:normalize_c
 
 If you need to reset your database:
 
-* Clear lifestyle choices and projects and reset their pk sequences:
-
-  ```ruby
-  LifestyleChoice.delete_all
-  ActiveRecord::Base.connection.reset_pk_sequence!('lifestyle_choices')
-  Project.delete_all
-  ActiveRecord::Base.connection.reset_pk_sequence!('projects')
-  ```
-
-* Re-run `bin/rails db:seed`
+* Run `bin/rails db:reset`
 
 ### Stopping a hung development server
 

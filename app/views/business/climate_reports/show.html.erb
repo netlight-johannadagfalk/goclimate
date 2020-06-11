@@ -181,7 +181,7 @@
                   <ul class="flight-offset-details__segments">
                     <li>
                       <%=t 'business.climate_reports.show.carbon_offseting' %>: 
-                      <%= co2e_string(@report.calculation.total_emissions, omit_unit: true) %> x <%= LifestyleChoice::BUFFER_SIZE %> (<%=t 'business.climate_reports.show.safety_factor' %>) = <%= co2e_string(@invoice.co2e) %>
+                      <%= co2e_string(@report.calculation.total_emissions, omit_unit: true) %> x <%= ClimateReportInvoice::BUFFER_FACTOR %> (<%=t 'business.climate_reports.show.safety_factor' %>) = <%= co2e_string(@invoice.co2e) %>
                     <br>
                       <%=t 'business.climate_reports.show.safety_factor_explanation' %>
                     </li>

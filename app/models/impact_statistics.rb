@@ -109,7 +109,7 @@ class ImpactStatistics # rubocop:disable Metrics/ClassLength
 
   def payment_tonnes(card_charges)
     payment_amounts_total(card_charges)
-      .transform_values { |sek_amount| sek_amount / 100 / LifestyleChoice::SEK_PER_TONNE }
+      .transform_values { |sek_amount| sek_amount / 100 / GreenhouseGases::CONSUMER_PRICE_PER_TONNE_SEK.amount.to_i }
   end
 
   def payment_amounts_total(card_charges)
@@ -124,12 +124,12 @@ class ImpactStatistics # rubocop:disable Metrics/ClassLength
 
   def payment_amounts_usd_in_sek(card_charges)
     sum_by_week(card_charges.in_usd, :amount)
-      .transform_values { |usd_amount| usd_amount * Currency::SEK_PER_USD }
+      .transform_values { |usd_amount| usd_amount * GreenhouseGases::PRICE_FACTOR_USD }
   end
 
   def payment_amounts_eur_in_sek(card_charges)
     sum_by_week(card_charges.in_eur, :amount)
-      .transform_values { |eur_amount| eur_amount * Currency::SEK_PER_EUR }
+      .transform_values { |eur_amount| eur_amount * GreenhouseGases::PRICE_FACTOR_EUR }
   end
 
   def sum_by_week(relation, field)

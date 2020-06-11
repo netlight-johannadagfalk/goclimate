@@ -75,7 +75,6 @@ module Users
 
     def sign_up_params
       super.merge(
-        lifestyle_choice_ids: @lifestyle_choice_ids,
         lifestyle_footprint_ids: [@footprint&.id]
       )
     end

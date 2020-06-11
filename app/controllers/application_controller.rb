@@ -86,11 +86,11 @@ class ApplicationController < ActionController::Base
   def cost_per_tonne
     case current_region.currency
     when Currency::SEK
-      LifestyleChoice::BUSINESS_SEK_PER_TONNE
+      GreenhouseGases::BUSINESS_PRICE_PER_TONNE_SEK.amount.to_i
     when Currency::USD
-      LifestyleChoice::BUSINESS_SEK_PER_TONNE / Currency::SEK_PER_USD
+      GreenhouseGases::BUSINESS_PRICE_PER_TONNE_SEK.amount.to_i / GreenhouseGases::PRICE_FACTOR_USD
     when Currency::EUR
-      LifestyleChoice::BUSINESS_SEK_PER_TONNE / Currency::SEK_PER_EUR
+      GreenhouseGases::BUSINESS_PRICE_PER_TONNE_SEK.amount.to_i / GreenhouseGases::PRICE_FACTOR_EUR
     end
   end
 
