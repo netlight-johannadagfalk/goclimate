@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class SubscriptionMailer < ApplicationMailer
-  before_action { @user = User.find_by_email(params[:email]) }
-  before_action { I18n.locale = @user.language }
+  before_action :set_user
+  around_action :use_user_locale
 
   default to: -> { @user.email },
           asm: { group_id: SENDGRID_ASM_GROUP_IDS[:subscription] }
@@ -25,5 +25,19 @@ class SubscriptionMailer < ApplicationMailer
 
   def payment_failed_email
     mail subject: I18n.t('the_payment_unfortunately_failed')
+  end
+
+  protected
+
+  def set_user
+    @user = User.find_by_email(params[:email])
+  end
+
+  def use_user_locale
+    I18n.with_locale(@user.region.locale) { yield }
+  end
+
+  def default_url_options
+    super.merge({ region: @user.region })
   end
 end

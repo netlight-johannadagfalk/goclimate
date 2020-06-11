@@ -48,10 +48,6 @@ class User < ApplicationRecord
     end
   end
 
-  def language
-    region.locale
-  end
-
   def number_of_neutral_months
     @number_of_neutral_months ||= card_charges.for_subscriptions.paid.count
   end

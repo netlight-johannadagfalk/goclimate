@@ -2,7 +2,7 @@
 <%= render "shared/twitter_script" %>
 <%= javascript_tag do %>
   window.facebookQuote = '<%= I18n.t('i_have_lived_climate_neutral_for_join_me', count: @my_neutral_months) %>';
-  window.urlToShare = '<%=t 'goclimateneutral_url' %>'
+  window.urlToShare = '<%= root_url %>'
 <% end %>
 
 <% content_for :stylesheets do %>

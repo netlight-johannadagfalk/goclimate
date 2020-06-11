@@ -1,11 +1,10 @@
-<% content_for :opengraph_url do %><%=t 'goclimateneutral_url' %>users/<%= @user.id %><% end %>
-<% content_for :opengraph_title do %><%= social_quote_for(@user.user_name, @neutral_months) %><% end %>
+<% set_meta_tags og: { title: social_quote_for(@user.user_name, @neutral_months) } %>
 
 <%= render "shared/facebook_script" %>
 <%= render "shared/twitter_script" %>
 <%= javascript_tag do %>
   window.facebookQuote = '<%= social_quote_for(@user.user_name, @neutral_months) %>';
-  window.urlToShare = '<%=t 'goclimateneutral_url' %>users/<%= @user.id %>'
+  window.urlToShare = '<%= user_url(@user) %>'
 <% end %>
 
 <% content_for :stylesheets do %>

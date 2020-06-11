@@ -2,10 +2,10 @@
 
 module SubscriptionMailerHelper
   def facebook_share_url(user)
-    I18n.t('goclimateneutral_url') + 'users/' + user.id.to_s + '?share=fb'
+    user_url(user, share: 'fb')
   end
 
   def twitter_share_url(user)
-    I18n.t('goclimateneutral_url') + 'users/' + user.id.to_s + '?share=tw'
+    user_url(user, share: 'tw')
   end
 end

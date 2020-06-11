@@ -3,7 +3,6 @@
 #app/views/registrations/new.html.erb should go to
 #views.registrations.en.yml
 eo:
-  goclimateneutral_url: crwdns11716:0crwdne11716:0
   site_title: crwdns11718:0crwdne11718:0
   climate_change_is_the_greatest_challange: crwdns11720:0crwdne11720:0
   log_in: crwdns11722:0crwdne11722:0

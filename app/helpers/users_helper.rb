@@ -10,6 +10,6 @@ module UsersHelper
   end
 
   def encoded_social_quote_for(name, neutral_months)
-    CGI.escape("#{social_quote_for(name, neutral_months)} -> #{I18n.t('goclimateneutral_url')}")
+    CGI.escape("#{social_quote_for(name, neutral_months)} -> #{root_url}")
   end
 end

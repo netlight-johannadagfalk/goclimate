@@ -3,7 +3,6 @@
 # app/views/registrations/new.html.erb should go to
 # views.registrations.en.yml
 en:
-  goclimateneutral_url: https://www.goclimate.com/
   site_title: GoClimate
   climate_change_is_the_greatest_challange: Climate change is the greatest challenge of our time. Together we have a chance to give our children the future on this planet that they deserve. But we have to act now.
   log_in: Log In
