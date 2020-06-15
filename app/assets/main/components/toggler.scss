@@ -26,4 +26,13 @@
     @apply hidden;
   }
 
+  &:checked ~ .toggler-checked\:block,
+  &:checked ~ * .toggler-checked\:block {
+    @apply block;
+  }
+
+  &:checked ~ .toggler-checked\:rotate-180,
+  &:checked ~ * .toggler-checked\:rotate-180 {
+    @apply rotate-180;
+  }
 }

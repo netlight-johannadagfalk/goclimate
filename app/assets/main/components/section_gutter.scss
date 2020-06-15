@@ -2,14 +2,14 @@
   @apply -mx-4 -my-8;
 
   & > * {
-    @apply mx-4 my-8;
+    @apply px-4 py-8;
   }
 
   @screen d-md {
     @apply -m-8;
 
     & > * {
-      @apply m-8;
+      @apply p-8;
     }
   }
 }
