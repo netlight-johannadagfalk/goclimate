@@ -2,7 +2,6 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController # rubocop:disable Metrics/ClassLength
-    before_action :redirect_invalid_params, only: [:new]
     before_action :set_footprint_and_price, only: [:new, :create]
     before_action :set_user, only: [:create]
     before_action :set_subscription_manager, only: [:create]
@@ -85,12 +84,14 @@ module Users
 
     private
 
-    def redirect_invalid_params
-      redirect_to root_path unless params[:choices].present? || params[:lifestyle_footprint].present?
-    end
-
     def set_footprint_and_price
-      @footprint = LifestyleFootprint.find_by_key!(params[:lifestyle_footprint])
+      unless params[:lifestyle_footprint].present? &&
+             (@footprint = LifestyleFootprint.find_by_key!(params[:lifestyle_footprint])).present? &&
+             @footprint.user_id.nil?
+        redirect_to root_url
+        return
+      end
+
       @footprint_tonnes = @footprint&.total
       @subscription_tonnes = @footprint_tonnes * (params[:people].presence&.to_i || 1)
       @plan_price = SubscriptionManager.price_for_footprint(@subscription_tonnes, current_region.currency)
