@@ -20,8 +20,7 @@ class ApplicationController < ActionController::Base
   #
   # TODO: Remove when we're done testing & migrating to new design
   def render_to_body(options)
-    if cookies[:new_design].present? || params.key?('new_design')
-      cookies[:new_design] = '1'
+    if @active_experiments&.include?(:new_design)
       return(
         begin
           super(options.merge(template: "#{options[:template]}_new"))
