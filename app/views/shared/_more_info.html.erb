@@ -1,0 +1,35 @@
+<% content = {
+  about: {
+    title: t('views.shared.more_info.about.title'),
+    description: t('views.shared.more_info.about.description'),
+    cta: t('views.shared.more_info.about.cta'),
+    url: about_path
+  },
+  projects: {
+    title: t('views.shared.more_info.projects.title'),
+    description: t('views.shared.more_info.projects.description'),
+    cta: t('views.shared.more_info.projects.cta'),
+    url: projects_path
+  },
+  transparency: {
+    title: t('views.shared.more_info.transparency.title'),
+    description: t('views.shared.more_info.transparency.description'),
+    cta: t('views.shared.more_info.transparency.cta'),
+    url: transparency_path
+  }
+} %>
+<aside class="section-padding">
+  <div class="t:flex t:items-stretch section-gutter">
+    <% pages.each do |page| %>
+      <div class="w-full t:w-1/2">
+        <div class="callout h-full space-y-6">
+          <h2 class="heading text-center"><%= content[page][:title] %></h2>
+          <p><%= content[page][:description] %></p>
+          <p class="text-center">
+            <%= link_to content[page][:cta], content[page][:url], class: 'button' %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</aside>

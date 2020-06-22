@@ -23,3 +23,16 @@ en:
       tonnes_co2e:
         one: tonne CO2e
         other: tonnes CO2e
+      more_info:
+        about:
+          title: About Us
+          description: GoClimate is a social company with the sole purpose of making it easier to start living a climate neutral life.
+          cta: Read more about us
+        projects:
+          title: Our Climate Projects
+          description: Our projects follow a rigorous evaluation process, are hand-picked to make maximum climate impact and contribute to other UN sustainability goals.
+          cta: More about our projects
+        transparency:
+          title: 100% Transparency
+          description: We want you to feel safe with how your money makes an impact. See our outgoings, making sure that you know where every cent is used.
+          cta: See our numbers

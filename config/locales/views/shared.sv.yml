@@ -23,3 +23,16 @@ sv:
       tonnes_co2e:
         one: ton koldioxid
         other: ton koldioxid
+      more_info:
+        about:
+          title: Om oss
+          description: GoClimate grundades 2017 med enda syfte att göra det enklare att leva ett klimatneutralt liv.
+          cta: Läs mer om oss
+        projects:
+          title: Våra klimatprojekt
+          description: Våra klimatprojekt uppfyller kriterier för högkvalitativa klimatprojekt, är handplockade för att ge största möjliga klimatnytta och bidrar till FN:s hållbarhetsmål.
+          cta: Mer om våra projekt
+        transparency:
+          title: 100 % transparens
+          description: Vi vill att du ska känna dig helt trygg med hur dina pengar gör klimatnytta. Vi redovisar löpande alla våra utgifter här på siten, för att du ska veta exakt hur pengarna används.
+          cta: Se alla våra siffror
