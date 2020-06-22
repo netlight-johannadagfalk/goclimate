@@ -12,7 +12,7 @@ class SitemapController < ApplicationController
   def content
     @all_urls = []
     url_helpers = [
-      :about, :contact, :business, :faq, :press, :transparency, :travel_calculator,
+      :about, :contact, :business, :faq, :transparency, :travel_calculator,
       :projects, :flight_footprints, :gift_cards
     ]
 
