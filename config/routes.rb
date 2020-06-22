@@ -56,7 +56,6 @@ Rails.application.routes.draw do
     resource :about, controller: 'about', only: [:show]
     resource :contact, controller: 'about/contact', only: [:show]
     resource :faq, controller: 'about/faq', only: [:show]
-    resource :press, controller: 'about/press', only: [:show]
     resource :transparency, controller: 'about/transparency', only: [:show]
     resource :privacy_policy, controller: 'about/privacy_policy', path: 'privacy-policy', only: [:show]
     resource :travel_calculator, controller: 'travel_calculator', path: 'travel-calculator', only: [:show]
