@@ -40,7 +40,11 @@
   </div>
 
   <div class="mt-12 text-center">
-    <%= link_to t('views.projects.how.read_more'), 'https://www.goclimate.com/se/blog/vad-ar-ett-klimatprojekt-egentligen/', class: 'button' %>
+    <% if I18n.locale == :sv %>
+      <%= link_to t('views.projects.how.read_more'), 'https://www.goclimate.com/se/blog/vad-ar-ett-klimatprojekt-egentligen/', class: 'button' %>
+    <% else %>
+      <%= link_to t('views.projects.how.read_more'), 'https://www.goclimate.com/blog/what-is-a-climate-project/', class: 'button' %>
+    <% end %>
   </div>
 </section>
 
