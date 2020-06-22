@@ -1,0 +1,5 @@
+.divider-y {
+  & > * + * {
+    @apply border-t border-gray-accent;
+  }
+}
