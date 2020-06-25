@@ -15,11 +15,11 @@
           <div class="d:h-full absolute -z-10 top-0 left-0 right-0 bottom-0 overflow-y-auto d:overflow-y-visible pt-20 d:static d:z-0 d:pt-0">
             <!-- Collapsible menu w/ transitions in mobile layout -->
             <div class="d:h-full d:flex justify-between items-center px-4 pb-8 t:px-8 d:p-0 text-center space-y-8 d:space-y-0 transform origin-top scale-y-90 d:scale-y-100 toggler-checked:scale-y-100 opacity-0 d:opacity-100 d:transform-0 toggler-checked:opacity-100 transition d:transition-none duration-500 ease-in-out">
-              <ul class="space-y-4 d:flex d:space-x-4 d:space-y-0">
-                <li><%= link_to t('navigation.gift_cards'), gift_cards_path, class: 'link-ui' %></li>
+              <ul class="space-y-4 d:flex d:space-x-6 d:space-y-0">
                 <li><%= link_to t('our_projects'), projects_path, class: 'link-ui' %></li>
-                <li><%= link_to t('for_business'), business_path, class: 'link-ui' %>
                 <li><%= link_to t('about_us'), about_path, class: 'link-ui' %></li>
+                <li><%= link_to t('navigation.gift_cards'), gift_cards_path, class: 'link-ui' %></li>
+                <li><%= link_to t('for_business'), business_path, class: 'link-ui' %>
               </ul>
 
               <% if user_signed_in? %> 
