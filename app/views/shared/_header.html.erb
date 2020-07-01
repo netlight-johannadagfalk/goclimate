@@ -63,11 +63,11 @@
       <div class="t:flex items-center space-y-4 t:space-y-0 t:space-x-4">
         <p><%=t 'views.shared.header.region_recommendation.select_country' %></p>
         <%= link_to url_for_region(region), class: 'button button-inverted' do %>
-          <%= image_tag webpack_asset_path("images/regions/#{region.id}.png"), class: 'inline-block max-w-none' %>
+          <%= image_tag webpack_asset_path("images/regions/#{region.id}.png"), class: 'inline-block max-w-none', alt: '' %>
           <%=t 'views.shared.header.region_recommendation.continue_button', region: region.name %>
         <% end %>
       </div>
-      <button id="region-recommendation-dismiss" class="pl-4">
+      <button id="region-recommendation-dismiss" class="pl-4" aria-label="<%= t 'views.shared.header.region_recommendation.dismiss' %>">
         <i class="fa fa-times fa-lg" aria-hidden="true"></i>
       </button>
     </div>

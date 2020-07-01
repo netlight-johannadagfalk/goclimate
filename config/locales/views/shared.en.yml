@@ -8,6 +8,7 @@ en:
         region_recommendation:
           select_country: Select your country or region so that we can show the best information for you.
           continue_button: "Continue to %{region}"
+          dismiss: Dismiss change of region
         sign_up: Sign up
       prefooter:
         heading: Let us stop climate change together!

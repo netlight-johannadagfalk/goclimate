@@ -8,6 +8,7 @@ sv:
         region_recommendation:
           select_country: Välj ditt land eller område så att vi kan visa information som passar bäst för dig.
           continue_button: "Fortsätt till %{region}"
+          dismiss: Avfärda byte av område
         sign_up: Registrera
       prefooter:
         heading: Rädda klimatet tillsammans med oss!
