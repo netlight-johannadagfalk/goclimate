@@ -153,6 +153,7 @@ Rails.application.routes.draw do
           to: redirect(
             path: '%{region}/business/climate-reports/%{key}/invoice/thank-you'
           ), as: nil
+      get 'Jo', to: redirect('%{region}/'), as: nil # Invalid URL accidentally shared by The YIKES Podcast
     end
   end
 
