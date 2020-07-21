@@ -7,4 +7,6 @@ Raven.configure do |config|
     else
       ENV['DEPLOYMENT_ENV'].presence || Rails.env
     end
+
+  config.excluded_exceptions += ['Mime::Type::InvalidMimeType']
 end
