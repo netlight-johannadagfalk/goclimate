@@ -48,7 +48,7 @@
           }
         ].each do |logo| %>
           <a href="<%= logo[:url] %>" target="_blank" rel="noopener" class="w-1/2 md:w-1/3 flex items-center justify-center p-5 m-lg:p-8 t:p-10" style="max-height: 120px">
-            <%= image_tag webpack_asset_path(logo[:image_url]), class: 'max-h-full' %>
+            <%= image_tag webpack_asset_path(logo[:image_url]), class: 'max-h-full object-contain' %>
           </a>
         <% end %>
       </div>
