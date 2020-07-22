@@ -18,7 +18,8 @@
     Sentry.init({
       dsn: "<%= ENV["SENTRY_DSN"] %>",
       environment: "<%= Raven.configuration.current_environment %>",
-      release: "<%= Raven.configuration.release %>"
+      release: "<%= Raven.configuration.release %>",
+      allowUrls: ["<%= request.protocol + request.host_with_port %>"]
     });
   </script>
 <% end %>
