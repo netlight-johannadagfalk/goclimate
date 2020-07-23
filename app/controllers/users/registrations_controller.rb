@@ -85,9 +85,8 @@ module Users
     private
 
     def set_footprint_and_price
-      unless params[:lifestyle_footprint].present? &&
-             (@footprint = LifestyleFootprint.find_by_key!(params[:lifestyle_footprint])).present? &&
-             @footprint.user_id.nil?
+      unless (@footprint = LifestyleFootprint.find_by_key!(params[:lifestyle_footprint])).present? &&
+             (@footprint.user_id.nil? || current_user.present? && @footprint.user_id == current_user.id)
         redirect_to root_url
         return
       end
