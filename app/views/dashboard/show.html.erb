@@ -133,3 +133,11 @@
 </div>
 
 <%= render "shared/footer", skip_prefooter: true %>
+
+<% content_for :javascript_tags do %>
+  <script>
+    $(document).ready(function() {
+      initializeDashboard();
+    });
+  </script>
+<% end %>
