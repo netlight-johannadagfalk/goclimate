@@ -10,8 +10,8 @@
 <% end %>
 
 <script
-  src="https://browser.sentry-cdn.com/5.19.2/bundle.min.js"
-  integrity="sha384-JpEWxJ7oLRn+baXBgcCKEv73uYWsgouzEResgJneOXvTjDZ+1crAXcNAKZoiL96Z"
+  src="https://browser.sentry-cdn.com/5.20.1/bundle.apm.min.js"
+  integrity="sha384-yRb6uqOrDZO0UoaXIwntp3rtwds2Zred8O/qjChDYuUX6ried457MYhtj1ASZEsX"
   crossorigin="anonymous"></script>
 <% if ENV["SENTRY_DSN"].present? %>
   <script>
@@ -19,7 +19,11 @@
       dsn: "<%= ENV["SENTRY_DSN"] %>",
       environment: "<%= Raven.configuration.current_environment %>",
       release: "<%= Raven.configuration.release %>",
-      allowUrls: ["<%= request.protocol + request.host_with_port %>"]
+      allowUrls: ["<%= request.protocol + request.host_with_port %>"],
+      integrations: [
+        new Sentry.Integrations.Tracing()
+      ],
+      tracesSampleRate: 0.2
     });
   </script>
 <% end %>
