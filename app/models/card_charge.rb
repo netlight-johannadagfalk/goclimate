@@ -42,6 +42,32 @@ class CardCharge < ApplicationRecord
       total_payments_eur_part * GreenhouseGases::PRICE_FACTOR_EUR).round
   end
 
+  def self.payments_per_month
+    where(paid: true)
+      .group("CONCAT((EXTRACT(YEAR FROM created_at)), '-', EXTRACT(MONTH FROM created_at))")
+      .group('currency')
+      .order('2 DESC')
+      .sum('amount / 100')
+  end
+
+  def self.co2e_per_month
+    co2 = {}
+    payments_per_month.each do |(month, currency), amount|
+      sek_amount =
+        case currency
+        when 'usd'
+          amount * GreenhouseGases::PRICE_FACTOR_USD
+        when 'eur'
+          amount * GreenhouseGases::PRICE_FACTOR_EUR
+        when 'sek'
+          amount
+        end
+      co2[month] = 0 if co2[month].nil?
+      co2[month] += sek_amount / GreenhouseGases::CONSUMER_PRICE_PER_TONNE_SEK.amount
+    end
+    co2
+  end
+
   def order_id
     "GCN-MONTHLY-#{id}"
   end

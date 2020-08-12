@@ -15,6 +15,11 @@ class ClimateReportInvoice < ApplicationRecord
     self.currency = 'sek'
   end
 
+  def self.co2e_per_month
+    group("CONCAT((EXTRACT(YEAR FROM created_at)), '-', EXTRACT(MONTH FROM created_at))")
+      .sum('co2e')
+  end
+
   private
 
   # Calculate amount in SEK lowest denominator
