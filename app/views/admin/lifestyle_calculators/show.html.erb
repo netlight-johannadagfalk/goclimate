@@ -149,7 +149,9 @@
 
 <hr>
 
-<% if @calculator.version.nil? %>
+<% if @calculator.version.present? %>
+  <%= link_to 'Create new version', new_admin_lifestyle_calculator_path(countries: @calculator.countries&.map(&:alpha2) || [''], based_on: @calculator.id), class: 'btn btn-default' %>
+<% else %>
   <%= link_to 'Edit draft', new_admin_lifestyle_calculator_path(countries: @calculator.countries&.map(&:alpha2) || ['']), class: 'btn btn-default' %> &nbsp;
   <%= link_to 'Review & publish', review_admin_lifestyle_calculator_path(@calculator), class: 'btn btn-default' %> &nbsp;
 <% end %>

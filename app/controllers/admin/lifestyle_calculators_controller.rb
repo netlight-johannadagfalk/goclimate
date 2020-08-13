@@ -14,6 +14,11 @@ module Admin
       @calculator = LifestyleCalculator.find_or_initialize_draft_by_countries(
         params[:countries].reject(&:blank?).presence
       )
+
+      return if @calculator.persisted?
+      return unless params[:based_on].present? && (calculator_base = LifestyleCalculator.find(params[:based_on]))
+
+      @calculator.attributes = @calculator.attributes.merge(calculator_base.attributes)
     end
 
     def create
