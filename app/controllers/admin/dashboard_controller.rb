@@ -12,6 +12,9 @@ module Admin
       @churned_users = churned_users
       @churned_users_mean = number_users_mean(@churned_users)
       @missing_fortnox_ids = missing_fortnox_ids.join(', ')
+      @co2e_per_month_individuals = CardCharge.co2e_per_month
+      @co2e_per_month_invoices = Invoice.co2e_per_month
+      @co2e_per_month_cri = ClimateReportInvoice.co2e_per_month
     end
 
     private
