@@ -22,6 +22,7 @@ if (process.env.RAILS_ENV === 'production') {
     purgecss({
       content: ['./app/views/**/*.html.erb', './app/controllers/**/*.rb', './app/assets/**/*.js'],
       css: ['./app/assets/stylesheets'],
+      whitelist: ['tooltip-inner', 'tooltip-arrow'], // Bootstrap tooltip
       extractors: [
         {
           extractor: (content) => content.match(/[A-Za-z0-9-_:/]+/g) || [],
