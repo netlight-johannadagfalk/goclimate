@@ -10,19 +10,20 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
   AVERAGE_ELECTRICITY_CONSUMPTION_PER_SQM_OFFICES  = 122 # kwH/sqm/year
   AVERAGE_HEATING_CONSUMPTION_PER_SQM_OFFICES      = 117 # kwH/sqm/year
   GREEN_ELECTRICITY_EMISSIONS                      = BigDecimal('0.006') # kg CO2e/kwH for scope 3 emissions
-  NORDIC_RESIDUAL_MIX_EMISSIONS                    = BigDecimal('0.329') # kg CO2e/kwH
-  AVERAGE_HEATING_EMISSIONS_SWEDEN                 = BigDecimal('0.06592') # kg CO2e/kwH
-  TYPICAL_SERVER_EMISSIONS                         = 899 # kg CO2e/year
+  NORDIC_RESIDUAL_MIX_EMISSIONS                    = BigDecimal('0.33852') # kg CO2e/kwH
+  AVERAGE_HEATING_EMISSIONS_SWEDEN                 = BigDecimal('0.0701') # kg CO2e/kwH
+  TYPICAL_SERVER_EMISSIONS                         = 916 # kg CO2e/year
   TYPICAL_SERVER_EMISSIONS_GREEN_ELECTRICITY       = 320 # kg CO2e/year
-  TYPICAL_CLOUD_SERVER_EMISSIONS                   = 450 # kg CO2e/year
+  TYPICAL_CLOUD_SERVER_EMISSIONS                   = 458 # kg CO2e/year
   TYPICAL_CLOUD_SERVER_EMISSIONS_GREEN_ELECTRICITY = 160 # kg CO2e/year
   TYPICAL_FLIGHT_EMISSIONS_PER_HOUR                = 200 # kg CO2e/flight hour
-  TYPICAL_CAR_EMISSIONS_PER_KILOMETER              = BigDecimal('0.122') # kg CO2e/km
+  TYPICAL_CAR_EMISSIONS_PER_KILOMETER              = BigDecimal('0.186') # kg CO2e/km
   TYPICAL_OMNIVORE_MEAL_EMISSIONS                  = BigDecimal('2.1') # kg CO2e/meal
   TYPICAL_VEGETARIAN_MEAL_EMISSIONS                = BigDecimal('0.7') # kg CO2e/meal
   TYPICAL_PURCHASED_COMPUTER_EMISSIONS             = 350 # kg CO2e/purchased computer
   TYPICAL_PURCHASED_PHONE_EMISSIONS                = 70 # kg CO2e/purchased phone
   TYPICAL_PURCHASED_MONITOR_EMISSIONS              = 500 # kg CO2e/purchased monitor
+  EMPLOYEE_EMISSIONS                               = BigDecimal('82.86') # kg CO2e/year/employee (coffee, fruit, waste)
 
   SCOPE_CATEGORIES = {
     energy: [2, 3],
@@ -82,6 +83,10 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
   def total_emissions
     energy_emissions + business_trips_emissions + meals_emissions +
       material_emissions + other_emissions
+  end
+
+  def employee_emissions
+    climate_report.employees * EMPLOYEE_EMISSIONS
   end
 
   def per_employee_emissions
@@ -353,5 +358,6 @@ class ClimateReportCalculation < ApplicationRecord # rubocop:disable Metrics/Cla
 
   def set_other_emissions
     self.other_emissions = climate_report.other_co2e || 0
+    self.other_emissions += employee_emissions
   end
 end

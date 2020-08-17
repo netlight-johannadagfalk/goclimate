@@ -386,7 +386,7 @@ sv:
       purchased_monitors: Skärmar
       units: st
       other: Övrigt
-      other_intro: Det är svårt att få med ett företags alla utsläpp i ett standardiserat formulär. De flesta företag har andra utsläppskällor som kanske är stora, men inte så vanliga. Organiserar ditt företag event med föreläsare som flygs in från hela världen? Har du konsulter som behöver pendla långa sträckor varje vecka för att komma till sina kunder? Beräkna utsläppen och skriv in dem här nedanför. Om du behöver hjälp med beräkningarna, kontakta oss på hello@goclimate.com.
+      other_intro: Det är svårt att få med ett företags alla utsläpp i ett standardiserat formulär. De flesta företag har andra utsläppskällor som kanske är stora, men inte så vanliga. Organiserar ditt företag event med föreläsare som flygs in från hela världen? Har du konsulter som behöver pendla långa sträckor varje vecka för att komma till sina kunder? Beräkna utsläppen och skriv in dem här nedanför. Kaffe, frukt och sopor räknas in automatiskt i denna kategori baserat på antal anställda. Om du behöver hjälp med beräkningarna, kontakta oss på hello@goclimate.com.
       other_emissions: Övriga utsläpp
       specify_other_emissions: Beskriv övriga utsläpp
       contact: Kontakt
