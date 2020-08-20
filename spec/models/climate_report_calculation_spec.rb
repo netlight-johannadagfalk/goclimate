@@ -50,7 +50,7 @@ RSpec.describe ClimateReportCalculation do
 
     it 'calculates electricity consumption emissions' do
       # 100 kWh * 0.329 kg/kWh (Nordic residual mix) = 32.9 kg
-      expect(created_calculation.electricity_consumption_emissions).to eq(33)
+      expect(created_calculation.electricity_consumption_emissions).to eq(34)
     end
 
     context 'when electricity is green' do
@@ -72,7 +72,7 @@ RSpec.describe ClimateReportCalculation do
 
       it 'calculates electricity consumption emissions using average values' do
         # 120 sqm * 122 kwH/sqm/yr * 0.329 kg/kWh (Nordic residual mix) = 32.9 kg
-        expect(created_calculation.electricity_consumption_emissions).to eq(4817)
+        expect(created_calculation.electricity_consumption_emissions).to eq(4_956)
       end
     end
 
@@ -86,13 +86,13 @@ RSpec.describe ClimateReportCalculation do
 
       it 'calculates electricity consumption emissions using averages for both office area and consumption' do
         # 10 employees * 15 sqm/employee * 122 kwH/sqm/yr * 0.329 kg/kWh (Nordic residual mix) = 32.9 kg
-        expect(created_calculation.electricity_consumption_emissions).to eq(6021)
+        expect(created_calculation.electricity_consumption_emissions).to eq(6_195)
       end
     end
 
     it 'calculates heating emissions' do
-      # 100 kWh * 0.06592 kg/kWh (Swedish average) = 6.6 kg
-      expect(created_calculation.heating_emissions).to eq(7)
+      # 100 kWh * 0.0701 kg/kWh (Swedish average) = 6.6 kg
+      expect(created_calculation.heating_emissions).to eq(8)
     end
 
     context 'when heating consumption is not known' do
@@ -101,8 +101,8 @@ RSpec.describe ClimateReportCalculation do
       end
 
       it 'calculates heating emissions using average values' do
-        # 120 sqm * 117 kwH/sqm/yr * 0.06592 kg/kWh (Swedish average) = 925.5 kg
-        expect(created_calculation.heating_emissions).to eq(926)
+        # 120 sqm * 117 kwH/sqm/yr * 0.0701 kg/kWh (Swedish average) = 925.5 kg
+        expect(created_calculation.heating_emissions).to eq(985)
       end
     end
 
@@ -116,13 +116,13 @@ RSpec.describe ClimateReportCalculation do
 
       it 'calculates heating emissions using averages for both office area and consumption' do
         # 10 employees * 15 sqm/employee * 117 kwH/sqm/yr * 0.06592 kg/kWh (Swedish average) = 1156.9 kg
-        expect(created_calculation.heating_emissions).to eq(1_157)
+        expect(created_calculation.heating_emissions).to eq(1_231)
       end
     end
 
     it 'calculates servers emissions' do
       # 5 servers * 899 kg/server/year = 4495 kg
-      expect(created_calculation.servers_emissions).to eq(4_495)
+      expect(created_calculation.servers_emissions).to eq(4_580)
     end
 
     context 'when servers use green electricity' do
@@ -138,7 +138,7 @@ RSpec.describe ClimateReportCalculation do
 
     it 'calculates cloud servers emissions' do
       # 3 servers * 450 kg/server/year = 1350 kg
-      expect(created_calculation.cloud_servers_emissions).to eq(1_350)
+      expect(created_calculation.cloud_servers_emissions).to eq(1_374)
     end
 
     context 'when cloud servers use green electricity' do
@@ -159,7 +159,7 @@ RSpec.describe ClimateReportCalculation do
 
     it 'calculates car emissions' do
       # 100 km * 0.122 kg/km (average in Sweden) = 12.2 kg
-      expect(created_calculation.car_emissions).to eq(13)
+      expect(created_calculation.car_emissions).to eq(19)
     end
 
     it 'calculates meals emissions' do
@@ -194,7 +194,7 @@ RSpec.describe ClimateReportCalculation do
     end
 
     it 'sets other emissions from climate report' do
-      expect(created_calculation.other_emissions).to eq(climate_report.other_co2e)
+      expect(created_calculation.other_emissions).to eq(865)
     end
 
     context 'with climate report without optional fields' do
@@ -250,22 +250,22 @@ RSpec.describe ClimateReportCalculation do
 
       it 'calculates electricity consumption emissions using average values' do
         # 120 sqm * 122 kwH/sqm/yr * 0.329 kg/kWh (Nordic residual mix) / 2 = 2408.3 kg
-        expect(created_calculation.electricity_consumption_emissions).to eq(2_409)
+        expect(created_calculation.electricity_consumption_emissions).to eq(2_478)
       end
 
       it 'calculates heating emissions using average values' do
         # 120 sqm * 117 kwH/sqm/yr * 0.06592 kg/kWh (Swedish average) / 2 = 462.8 kg
-        expect(created_calculation.heating_emissions).to eq(463)
+        expect(created_calculation.heating_emissions).to eq(493)
       end
 
       it 'calculates servers emissions' do
         # 5 servers * 899 kg/server/year / 2 = 2247.5 kg
-        expect(created_calculation.servers_emissions).to eq(2248)
+        expect(created_calculation.servers_emissions).to eq(2_290)
       end
 
       it 'calculates cloud servers emissions' do
         # 3 servers * 450 kg/server/year / 2 = 675 kg
-        expect(created_calculation.cloud_servers_emissions).to eq(675)
+        expect(created_calculation.cloud_servers_emissions).to eq(687)
       end
     end
 
@@ -280,41 +280,41 @@ RSpec.describe ClimateReportCalculation do
 
       it 'calculates electricity consumption emissions using average values' do
         # 120 sqm * 122 kwH/sqm/yr * 0.329 kg/kWh (Nordic residual mix) / 4 = 1204.1 kg
-        expect(created_calculation.electricity_consumption_emissions).to eq(1_205)
+        expect(created_calculation.electricity_consumption_emissions).to eq(1_239)
       end
 
       it 'calculates heating emissions using average values' do
         # 120 sqm * 117 kwH/sqm/yr * 0.06592 kg/kWh (Swedish average) / 4 = 231.4 kg
-        expect(created_calculation.heating_emissions).to eq(232)
+        expect(created_calculation.heating_emissions).to eq(247)
       end
 
       it 'calculates servers emissions' do
         # 5 servers * 899 kg/server/year / 4 = 1123.8 kg
-        expect(created_calculation.servers_emissions).to eq(1124)
+        expect(created_calculation.servers_emissions).to eq(1_145)
       end
 
       it 'calculates cloud servers emissions' do
         # 3 servers * 450 kg/server/year / 4 = 337.5 kg
-        expect(created_calculation.cloud_servers_emissions).to eq(338)
+        expect(created_calculation.cloud_servers_emissions).to eq(344)
       end
     end
   end
 
   describe '#total_emissions' do
     it 'sums emissions from each emission area' do
-      expect(calculation.total_emissions).to eq(10_025)
+      expect(calculation.total_emissions).to eq(10_970)
     end
   end
 
   describe '#energy_emissions' do
     it 'sums emissions from each emission area' do
-      expect(calculation.energy_emissions).to eq(5_885)
+      expect(calculation.energy_emissions).to eq(5_996)
     end
   end
 
   describe '#business_trips_emissions' do
     it 'sums emissions from each emission area' do
-      expect(calculation.business_trips_emissions).to eq(2_013)
+      expect(calculation.business_trips_emissions).to eq(2_019)
     end
   end
 
@@ -398,25 +398,25 @@ RSpec.describe ClimateReportCalculation do
 
   describe '#scope_2_emissions' do
     it 'returns the sum of scope 2 emissions' do
-      expect(calculation.scope_2_emissions).to eq(40)
+      expect(calculation.scope_2_emissions).to eq(42)
     end
   end
 
   describe '#scope_3_emissions' do
     it 'returns the sum of scope 3 emissions' do
-      expect(calculation.scope_3_emissions).to eq(9985)
+      expect(calculation.scope_3_emissions).to eq(10_928)
     end
   end
 
   describe '#scope_3_percentage' do
     it 'returns the sum of scope 3 percentage' do
-      expect(calculation.scope_3_percentage).to eq(BigDecimal(9985) / 10_025 * 100)
+      expect(calculation.scope_3_percentage).to eq(BigDecimal(10_928) / 10_970 * 100)
     end
   end
 
   describe '#scope_2_percentage' do
     it 'returns the sum of scope 2 percentage' do
-      expect(calculation.scope_2_percentage).to eq(BigDecimal(40) / 10_025 * 100)
+      expect(calculation.scope_2_percentage).to eq(BigDecimal(42) / 10_970 * 100)
     end
   end
 
@@ -435,11 +435,11 @@ RSpec.describe ClimateReportCalculation do
   describe '#categories' do
     it 'returns the category fields with emissions data' do
       categories = [
-        { emissions: 5885, name: 'energy', percentage: 59, scope: [2, 3] },
-        { emissions: 2013, name: 'business_trips', percentage: 20, scope: [3] },
+        { emissions: 5996, name: 'energy', percentage: 55, scope: [2, 3] },
+        { emissions: 2019, name: 'business_trips', percentage: 18, scope: [3] },
         { emissions: 110, name: 'meals', percentage: 1, scope: [3] },
-        { emissions: 1980, name: 'material', percentage: 20, scope: [3] },
-        { emissions: 37, name: 'other', percentage: 0, scope: [3] }
+        { emissions: 1980, name: 'material', percentage: 18, scope: [3] },
+        { emissions: 865, name: 'other', percentage: 8, scope: [3] }
       ]
 
       expect(calculation.categories).to eq(categories)
@@ -450,7 +450,7 @@ RSpec.describe ClimateReportCalculation do
     it 'returns the emission sources fields with emissions data' do
       emission_sources = {
         category: 'energy',
-        emissions: 33,
+        emissions: 34,
         name: 'electricity_consumption',
         scope: [2],
         percentage: 0

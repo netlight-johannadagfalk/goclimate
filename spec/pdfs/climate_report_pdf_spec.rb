@@ -22,14 +22,14 @@ RSpec.describe ClimateReportPdf do
 
   describe '#bar_compare_data' do
     it 'returns compare data for categories' do
-      compare_data = { data: [2500, 2500], labels: ['Other', 'Other - average'] }
+      compare_data = { data: [2582, 2582], labels: ['Other', 'Other - average'] }
       invoice.save! # why is invoice not saved in let statement?
 
       expect(crp.bar_compare_data(calculation.categories)).to eq(compare_data)
     end
 
     it 'returns compare data for emission sources' do
-      compare_data = { data: [2500, 2500], labels: ['Other', 'Other - average'] }
+      compare_data = { data: [2582, 2582], labels: ['Other', 'Other - average'] }
       invoice.save! # why is invoice not saved in let statement?
 
       expect(crp.bar_compare_data(calculation.emissions)).to eq(compare_data)
@@ -39,7 +39,7 @@ RSpec.describe ClimateReportPdf do
   describe '#bar_compare_years_data' do
     it 'returns compare data for more then one measurement period' do
       compare_data = {
-        data: [0, 0, 20_000, 0, 0, 0, 0, 0, 0, 10_000],
+        data: [0, 0, 20_000, 0, 0, 0, 0, 0, 331, 10_331],
         labels: [
           '2017 - Energy', '2018 - Energy', '2017 - Business trips', '2018 - Business trips',
           '2017 - Number of meals', '2018 - Number of meals', '2017 - Material', '2018 - Material',
