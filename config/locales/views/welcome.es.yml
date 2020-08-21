@@ -1,0 +1,6 @@
+es:
+  views:
+    welcome:
+      index:
+        hero:
+          heading: La suscripción para compensar tu huella de carbono
