@@ -1,18 +1,10 @@
-<% content_for :stylesheets do %>
-  <%= webpack_entrypoint_stylesheet_tags 'main_old' %>
-<% end %>
-<% content_for :javascripts do %>
-  <%= webpack_entrypoint_javascript_tags 'main_old', onerror: 'reportLoadError(event)' %>
-<% end %>
+<%= render "shared/header" %>
 
-<div class="site-wrapper-first">
-  <%= render "shared/header_old" %>
-  <div class="inner">
-
-    <h1>Page not found</h1>
-    <p>We're sorry, but we can't find that page.</p>
-
+<section class="section-padding min-h-1/2-screen flex items-center">
+  <div class="max-w-xl mx-auto text-center space-y-3">
+    <h1 class="heading-lg">Page not found</h1>
+    <p class="t:text-lg">We're sorry, but we can't find that page.</p>
   </div>
-</div>
+</section>
 
-<%= render "shared/footer_old" %>
+<%= render "shared/footer", skip_prefooter: true %>
