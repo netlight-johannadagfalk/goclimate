@@ -44,7 +44,7 @@ class CardCharge < ApplicationRecord
 
   def self.payments_per_month
     where(paid: true)
-      .group("CONCAT((EXTRACT(YEAR FROM created_at)), '-', EXTRACT(MONTH FROM created_at))")
+      .group("CONCAT((EXTRACT(YEAR FROM created_at)), '-', LPAD(EXTRACT(MONTH FROM created_at)::text, 2, '0'))")
       .group('currency')
       .order('2 DESC')
       .sum('amount / 100')

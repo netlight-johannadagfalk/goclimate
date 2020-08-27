@@ -16,7 +16,7 @@ class ClimateReportInvoice < ApplicationRecord
   end
 
   def self.co2e_per_month
-    group("CONCAT((EXTRACT(YEAR FROM created_at)), '-', EXTRACT(MONTH FROM created_at))")
+    group("CONCAT((EXTRACT(YEAR FROM created_at)), '-', LPAD(EXTRACT(MONTH FROM created_at)::text, 2, '0'))")
       .sum('co2e')
   end
 
