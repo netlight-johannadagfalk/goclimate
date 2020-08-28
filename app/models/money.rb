@@ -35,7 +35,7 @@ class Money
     BigDecimal(subunit_amount) / 100
   end
 
-  def to_s(precision: nil)
+  def to_s(precision: nil) # rubocop:disable Metrics/MethodLength TODO: This needs simplifying
     formatting_options = { format: '%n' }
     unless precision.nil?
       formatting_options[:precision] =

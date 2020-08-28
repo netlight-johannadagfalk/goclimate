@@ -69,7 +69,7 @@ class User < ApplicationRecord
 
   def update_from_stripe_subscription(stripe_subscription)
     self.subscription_end_at = subscription_end_at_from_stripe(stripe_subscription)
-    save if changed?
+    save
   end
 
   private

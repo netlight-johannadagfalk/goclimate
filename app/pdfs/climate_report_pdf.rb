@@ -96,7 +96,7 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
     ClimateReport.joins(:invoice, :calculation).where(company_name: @climate_report.company_name)
   end
 
-  def bar_compare_years_data(bar_fields, per_employee = false)
+  def bar_compare_years_data(bar_fields, per_employee = false) # rubocop:disable Style/OptionalBooleanParameter TODO: Convert boolean to keyword argument
     data = []
     labels = []
 

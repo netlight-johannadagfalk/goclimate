@@ -101,7 +101,7 @@ class LifestyleCalculator < ApplicationRecord # rubocop:disable Metrics/ClassLen
       errors.add(:countries, 'countains invalid country')
   end
 
-  def options_have_formulas # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+  def options_have_formulas # rubocop:disable Metrics/MethodLength
     [
       :region_options, :home_options, :heating_options, :house_age_options, :green_electricity_options, :food_options,
       :car_type_options

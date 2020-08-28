@@ -9,16 +9,18 @@ RSpec.describe 'config/locales/*.yml' do # rubocop:disable RSpec/DescribeClass
     it 'includes all keys in use' do
       missing_keys = i18n.missing_keys(locales: [:en])
 
-      expect(missing_keys)
-        .to be_empty, "Missing #{missing_keys.leaves.count} i18n keys, run `bin/i18n-tasks missing --locales en' to show them"
+      expect(missing_keys).to be_empty, <<~TEXT
+        "Missing #{missing_keys.leaves.count} i18n keys, run `bin/i18n-tasks missing --locales en' to show them"
+      TEXT
     end
   end
 
   it 'include only used keys' do
     unused_keys = i18n.unused_keys
 
-    expect(unused_keys)
-      .to be_empty, "#{unused_keys.leaves.count} unused i18n keys, run `bin/i18n-tasks unused' to show them"
+    expect(unused_keys).to be_empty, <<~TEXT
+      "#{unused_keys.leaves.count} unused i18n keys, run `bin/i18n-tasks unused' to show them"
+    TEXT
   end
 
   it 'use consistent interpolations' do

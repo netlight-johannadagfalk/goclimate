@@ -12,7 +12,7 @@ namespace :newsletter do
       end
     end
 
-    p 'Wrote ' + swedish_users.count.to_s + ' emails to swedish_emails.csv'
+    p "Wrote #{swedish_users.count} emails to swedish_emails.csv"
   end
 
   desc 'prints csv content of all swedish emails to be imported in sendgrid for newsletter list'
@@ -26,6 +26,6 @@ namespace :newsletter do
       end
     end
 
-    p 'Wrote ' + english_users.count.to_s + ' emails to english_emails.csv'
+    p "Wrote #{english_users.count} emails to english_emails.csv"
   end
 end

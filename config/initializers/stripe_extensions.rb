@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-require 'stripe_extensions/plan.rb'
+require 'stripe_extensions/plan'
