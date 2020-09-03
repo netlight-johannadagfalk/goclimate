@@ -103,11 +103,9 @@ RSpec.describe User do
     end
 
     it 'does not save to database when nothing changed' do
-      allow(user).to receive(:save)
-
-      user.update_from_stripe_subscription(current_subscription)
-
-      expect(user).not_to have_received(:save)
+      expect do
+        user.update_from_stripe_subscription(current_subscription)
+      end.not_to change(user, :updated_at)
     end
 
     context 'when user has cancelled subscription before' do

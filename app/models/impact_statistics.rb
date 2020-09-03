@@ -92,7 +92,7 @@ class ImpactStatistics # rubocop:disable Metrics/ClassLength
     end
   end
 
-  def set_zeros_for_missing_values # rubocop:disable Metrics/CyclomaticComplexity
+  def set_zeros_for_missing_values
     @weeks.each do |_, fields|
       fields[:subscriber_payments_tonnes] = 0 if fields[:subscriber_payments_tonnes].nil?
       fields[:gift_cards_tonnes] = 0 if fields[:gift_cards_tonnes].nil?

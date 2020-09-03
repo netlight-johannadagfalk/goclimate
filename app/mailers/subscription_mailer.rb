@@ -33,8 +33,8 @@ class SubscriptionMailer < ApplicationMailer
     @user = User.find_by_email(params[:email])
   end
 
-  def use_user_locale
-    I18n.with_locale(@user.region.locale) { yield }
+  def use_user_locale(&block)
+    I18n.with_locale(@user.region.locale, &block)
   end
 
   def default_url_options

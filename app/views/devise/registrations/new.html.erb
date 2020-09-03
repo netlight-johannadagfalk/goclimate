@@ -58,9 +58,9 @@
               country: @footprint.country.translation(I18n.locale)
           } %>
           <% if @country_average.countries.nil? %>
-            <%= t("views.registrations.your_climate_footprint_compared_world", footprint_text_options) %>
+            <%= t("views.registrations.your_climate_footprint_compared_world", **footprint_text_options) %>
           <% else %>
-            <%= t("views.registrations.your_climate_footprint", footprint_text_options) %>
+            <%= t("views.registrations.your_climate_footprint", **footprint_text_options) %>
           <% end %>
         </p>
       </div>

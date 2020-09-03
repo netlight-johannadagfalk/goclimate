@@ -28,7 +28,7 @@ module Users
     #
     # Rubocop warnings disabled because the "but no simpler" part of that
     # Einstein quote "As simple as possible, but no simpler".
-    def create # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/MethodLength
+    def create # rubocop:disable Metrics/PerceivedComplexity, Metrics/MethodLength
       render_user_invalid_json && return unless @user.save
 
       sign_in(resource_name, @user, force: true) # Force because we have updated the password
@@ -67,7 +67,7 @@ module Users
 
     # The path used after sign up.
     def after_sign_up_path_for(_resource)
-      dashboard_path + '?registered=1'
+      dashboard_path(registered: 1)
     end
 
     def after_update_path_for(_resource)
@@ -91,7 +91,9 @@ module Users
     private
 
     def set_footprint_and_price
-      unless (@footprint = LifestyleFootprint.find_by_key!(params[:lifestyle_footprint])).present? &&
+      @footprint = LifestyleFootprint.find_by_key!(params[:lifestyle_footprint])
+
+      unless @footprint.present? &&
              (@footprint.user_id.nil? || current_user.present? && @footprint.user_id == current_user.id)
         redirect_to root_url
         return

@@ -8,7 +8,7 @@ module SubscriptionsHelper
     when 'source', 'payment_method'
       "•••• #{stripe_source&.card&.last4}"
     when 'card'
-      '•••• ' + stripe_source&.last4
+      "•••• #{stripe_source&.last4}"
     end
   end
 
