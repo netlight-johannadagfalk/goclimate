@@ -3,4 +3,6 @@
 class ApplicationMailer < ActionMailer::Base
   default from: 'GoClimate <hello@goclimate.com>'
   default reply_to: 'GoClimate <hello@goclimate.com>'
+
+  layout 'email'
 end

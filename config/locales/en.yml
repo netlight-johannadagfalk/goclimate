@@ -144,10 +144,7 @@ en:
   the_payment_unfortunately_failed: Unfortunately your payment has failed
   no_worries_we_will_try_again_within_a_few_days: No worries, we will try again in a few days.
   you_might_need_to_update_your_payment_info: In order to continue living a climate neutral life with us, you might need to update your payment info.
-  link_to_update_your_payment_info: 'Update your payment info here >>'
-  this_mail_was_sent_by: This email was sent by
-  to_stop_recieving_these_emails: To stop recieving these emails
-  click_here: click here
+  link_to_update_your_payment_info: Update your payment info
   thank_you_for_saving_our_planet: Thank you for saving our planet!
   you_have_lived_a_climate_neutral_life_for: You have lived a climate neutral life for
   months:
@@ -160,7 +157,7 @@ en:
     one: year
   together_we_have_offset: Together we have offset
   goclimateneutral_and_this_planet_loves_you: GoClimate and this planet love you! You are the best!
-  learn_more_about_what_we_have_achieved_here: 'Learn more about what we have achieved here >>'
+  learn_more_about_what_we_have_achieved_here: Learn more about what we have achieved
   thank_you: Thank you!
   the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible: 'Please consider sharing this with your friends, the more people that become climate neutral, the bigger the chance that we succeed in slowing down climate change!'
   faq: FAQ
@@ -285,7 +282,6 @@ en:
           <br><br>
           If you give us approval to use your logo and your name, we may use it publicly together with the figure for total emissions or emissions per employee. This is so that in the future we will be able to create top lists and the opportunity to compare between companies. In addition to this, all information is protected even if you choose to give this approval."
   for_business: For Business
-  thats_amazing_from_the_bottom_of_our_hearts: That's amazing! From the bottom of our hearts
   years:
     one: year
     other: years

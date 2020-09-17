@@ -1,0 +1,6 @@
+en:
+  layouts:
+    email:
+      sent_by_plaintext: This email was sent by
+      unsubscribe: Unsubscribe
+      unsubscribe_plaintext: Unsubscribe from further emails
