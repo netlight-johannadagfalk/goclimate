@@ -3,15 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe SubscriptionManager do
-  subject(:manager) { described_class.new }
+  subject(:manager) { described_class.for_new_customer(email) }
 
   let(:email) { 'test@example.com' }
-  let(:payment_method_id) { 'src_CARD' }
+  let(:plan) { Stripe::Plan.construct_from(stripe_json_fixture('plan.json')) }
+  let(:payment_method_id) { 'pm_some_card' }
+
   let(:created_subscription) do
     Stripe::Subscription.construct_from(stripe_json_fixture('subscription.json'))
-  end
-  let(:subscription_list) do
-    Stripe::ListObject.construct_from(stripe_json_fixture('subscription_list_empty.json'))
   end
 
   before do
@@ -23,10 +22,20 @@ RSpec.describe SubscriptionManager do
     allow(Stripe::PaymentMethod).to receive(:detach)
     allow(Stripe::Subscription).to receive(:create).and_return(created_subscription)
     allow(Stripe::Subscription).to receive(:update).and_return(created_subscription)
-    allow(Stripe::Subscription)
-      .to receive(:list)
-      .with(hash_including(expand: ['data.latest_invoice.payment_intent'], limit: 1))
-      .and_return(subscription_list)
+  end
+
+  describe '.for_new_customer' do
+    it 'creates a new customer' do
+      described_class.for_new_customer(email)
+
+      expect(Stripe::Customer).to have_received(:create)
+    end
+
+    it 'sets email for new customer' do
+      described_class.for_new_customer(email)
+
+      expect(Stripe::Customer).to have_received(:create).with hash_including(email: email)
+    end
   end
 
   describe '.price_for_footprint' do
@@ -56,80 +65,77 @@ RSpec.describe SubscriptionManager do
   end
 
   describe '#sign_up' do
-    let(:plan) { Stripe::Plan.construct_from(stripe_json_fixture('plan.json')) }
-
     it 'returns true indicating success' do
-      expect(manager.sign_up(email, plan, payment_method_id)).to be(true)
-    end
-
-    it 'creates a new customer' do
-      manager.sign_up(email, plan, payment_method_id)
-
-      expect(Stripe::Customer).to have_received(:create)
-    end
-
-    it 'sets email for new customer' do
-      manager.sign_up(email, plan, payment_method_id)
-
-      expect(Stripe::Customer).to have_received(:create).with hash_including(email: email)
+      expect(manager.sign_up(plan, payment_method_id)).to be(true)
     end
 
     it 'sets payment_method as customer default_payment_method' do
-      manager.sign_up(email, plan, payment_method_id)
+      manager.sign_up(plan, payment_method_id)
 
       expect(Stripe::Customer).to have_received(:update)
         .with(manager.customer.id, hash_including(invoice_settings: { default_payment_method: payment_method_id }))
     end
 
     it 'attaches payment_method to customer' do
-      manager.sign_up(email, plan, payment_method_id)
+      manager.sign_up(plan, payment_method_id)
 
       expect(Stripe::PaymentMethod).to have_received(:attach)
         .with(payment_method_id, hash_including(customer: manager.customer.id))
     end
 
     it 'creates new subscription' do
-      manager.sign_up(email, plan, payment_method_id)
+      manager.sign_up(plan, payment_method_id)
 
       expect(Stripe::Subscription).to have_received(:create)
     end
 
-    it 'uses created customer for new subscription' do
-      manager.sign_up(email, plan, payment_method_id)
+    it 'uses customer for new subscription' do
+      manager.sign_up(plan, payment_method_id)
 
       expect(Stripe::Subscription).to have_received(:create).with hash_including(customer: manager.customer.id)
     end
 
     it 'uses provided plan for new subscription' do
-      manager.sign_up(email, plan, payment_method_id)
+      manager.sign_up(plan, payment_method_id)
 
       expect(Stripe::Subscription).to have_received(:create).with hash_including(plan: plan.id)
     end
 
-    context 'when an existing customer was provided' do
-      subject(:manager) { described_class.new(customer) }
+    it 'sets intent_to_confirm to nil' do
+      manager.sign_up(plan, payment_method_id)
 
-      let(:customer) do
-        Stripe::Customer.construct_from(stripe_json_fixture('customer.json'))
-      end
-
-      it 'does not create additional customers' do
-        manager.sign_up(email, plan, payment_method_id)
-
-        expect(Stripe::Customer).not_to have_received(:create)
-      end
+      expect(manager.intent_to_confirm).to be_nil
     end
 
     context 'when new subscription is incomplete and requires_action' do
       let(:created_subscription) do
         Stripe::Subscription.construct_from(stripe_json_fixture('subscription_requires_action.json'))
       end
-      let(:client_secret) { 'c_secret' }
 
-      it 'sets latest_payment_intent' do
-        manager.sign_up(email, plan, payment_method_id)
+      it 'sets intent_to_confirm to PaymentIntent that needs confirmation' do
+        manager.sign_up(plan, payment_method_id)
 
-        expect(manager.latest_payment_intent.client_secret).to eq(client_secret)
+        expect(manager.intent_to_confirm).to be_a(Stripe::PaymentIntent)
+      end
+    end
+  end
+
+  describe '#confirmation_required?' do
+    it 'does not require confirmation by default' do
+      expect(manager.confirmation_required?).to be false
+    end
+
+    context 'when intent_to_confirm has been set' do
+      let(:created_subscription) do
+        Stripe::Subscription.construct_from(stripe_json_fixture('subscription_requires_action.json'))
+      end
+
+      before do
+        manager.sign_up(plan, payment_method_id)
+      end
+
+      it 'requires confirmation' do
+        expect(manager.confirmation_required?).to be true
       end
     end
   end
@@ -139,9 +145,6 @@ RSpec.describe SubscriptionManager do
 
     let(:customer) do
       Stripe::Customer.construct_from(stripe_json_fixture('customer.json'))
-    end
-    let(:subscription_list) do
-      Stripe::ListObject.construct_from(stripe_json_fixture('subscription_list_requires_action.json'))
     end
 
     describe '#new' do
@@ -166,11 +169,9 @@ RSpec.describe SubscriptionManager do
 
         expect(manager.subscription).to have_received(:delete)
       end
-    end
 
-    describe '#remove_payment_methods' do
       it 'removes the current payment methods' do
-        manager.remove_payment_methods
+        manager.cancel
 
         expect(Stripe::PaymentMethod).to have_received(:detach)
           .with(manager.customer.invoice_settings&.default_payment_method)
@@ -180,6 +181,12 @@ RSpec.describe SubscriptionManager do
     describe '#update' do
       let(:new_payment_method_id) { 'new_payment_method_id' }
       let(:new_plan) { Stripe::Plan.construct_from(stripe_json_fixture('plan_alternative.json')) }
+
+      before do
+        allow(Stripe::SetupIntent).to receive(:create).and_return(
+          Stripe::SetupIntent.construct_from(stripe_json_fixture('setup_intent_succeeded.json'))
+        )
+      end
 
       it 'returns true to indicate success' do
         expect(manager.update(new_plan)).to be(true)
@@ -208,39 +215,17 @@ RSpec.describe SubscriptionManager do
           expect(Stripe::Subscription).to have_received(:update)
             .with(subscription_id, hash_including(prorate: false, plan: new_plan.id))
         end
-
-        it 'updates card before updating subscription' do
-          allow(Stripe::Customer).to receive(:update) do
-            expect(Stripe::Subscription).not_to have_received(:update)
-          end
-
-          manager.update(new_plan, new_payment_method_id)
-        end
       end
 
       context 'when customer has no existing subscription' do
-        let(:subscription_list) do
-          Stripe::ListObject.construct_from(stripe_json_fixture('subscription_list_empty.json'))
+        let(:customer) do
+          Stripe::Customer.construct_from(stripe_json_fixture('customer_without_subscription.json'))
         end
 
-        it 'creates a new subscription' do
-          manager.update(new_plan)
-
-          expect(Stripe::Subscription).to have_received(:create)
-        end
-
-        it 'sets customer for created subscription' do
-          manager.update(new_plan)
-
-          expect(Stripe::Subscription).to have_received(:create)
-            .with(hash_including(customer: customer.id))
-        end
-
-        it 'sets id for plan' do
-          manager.update(new_plan)
-
-          expect(Stripe::Subscription).to have_received(:create)
-            .with(hash_including(plan: new_plan.id))
+        it 'raises SubscriptionMissingError' do
+          expect do
+            manager.update(new_plan)
+          end.to raise_error(SubscriptionManager::SubscriptionMissingError)
         end
       end
 
@@ -258,6 +243,53 @@ RSpec.describe SubscriptionManager do
           expect(Stripe::Customer).to have_received(:update)
             .with(customer.id,
                   hash_including(invoice_settings: { default_payment_method: new_payment_method_id }))
+        end
+
+        it 'updates card before updating subscription' do
+          allow(Stripe::Customer).to receive(:update) do
+            expect(Stripe::Subscription).not_to have_received(:update)
+          end
+
+          manager.update(new_plan, new_payment_method_id)
+        end
+
+        it 'sets intent_to_confirm to nil' do
+          manager.update(new_plan, new_payment_method_id)
+
+          expect(manager.intent_to_confirm).to be_nil
+        end
+
+        it 'creates a SetupIntent for new payment method' do
+          manager.update(new_plan, new_payment_method_id)
+
+          expect(Stripe::SetupIntent)
+            .to have_received(:create).with(hash_including(payment_method: new_payment_method_id))
+        end
+
+        it 'attempts to confirm a SetupIntent for new payment method immediately' do
+          manager.update(new_plan, new_payment_method_id)
+
+          expect(Stripe::SetupIntent).to have_received(:create).with(hash_including(confirm: true))
+        end
+
+        it 'sets customer for SetupIntent' do
+          manager.update(new_plan, new_payment_method_id)
+
+          expect(Stripe::SetupIntent).to have_received(:create).with(hash_including(customer: customer.id))
+        end
+      end
+
+      context 'with payment_method_id that triggers 3D Secure' do
+        before do
+          allow(Stripe::SetupIntent).to receive(:create).and_return(
+            Stripe::SetupIntent.construct_from(stripe_json_fixture('setup_intent_requires_action.json'))
+          )
+        end
+
+        it 'sets intent_to_confirm to SetupIntent that needs confirmation' do
+          manager.update(new_plan, new_payment_method_id)
+
+          expect(manager.intent_to_confirm).to be_a(Stripe::SetupIntent)
         end
       end
     end

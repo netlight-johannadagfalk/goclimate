@@ -3,50 +3,76 @@
 module Users
   class SubscriptionsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_stripe_customer
+    before_action :notice_updated, only: [:show]
+    before_action :set_subscription_manager
 
     def show
-      @customer_payment_method = customer_payment_method(@stripe_customer)
-      @setup_intent = Stripe::SetupIntent.create(customer: @stripe_customer.id)
-      @current_plan_price =
-        if @stripe_customer.subscriptions.total_count > 0
-          plan = @stripe_customer.subscriptions.first.plan
-          Money.new(plan.amount, Currency.from_iso_code(plan.currency))
-        end
+      @customer_payment_method = customer_payment_method
+      @current_plan_price = @manager.subscription&.plan&.monthly_amount
       @available_plans = available_plans(@current_plan_price)
     end
 
     def update
-      @manager = SubscriptionManager.new(@stripe_customer)
+      new_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(
+        Money.from_amount(plan_param, customer_currency)
+      )
 
-      @current_plan_price = Money.from_amount(plan_param, customer_currency)
-      new_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@current_plan_price)
-
-      if @manager.update(new_plan, params[:paymentMethodId])
-        render_successful_update
+      if @manager.subscription.present?
+        @manager.update(new_plan, params[:payment_method_id])
       else
+        @manager.sign_up(new_plan, params[:payment_method_id])
+      end
+
+      if @manager.errors.any?
         render_bad_request(@manager.errors)
+      elsif @manager.confirmation_required?
+        render_confirmation_required
+      else
+        render_successful_update
       end
     end
 
     def destroy
-      @manager = SubscriptionManager.new(@stripe_customer)
-
-      cancellation_feedback = SubscriptionCancellationFeedback.new(
-        subscribed_at: Time.at(@manager.subscription.start_date),
-        reason: params[:cancellation_reason] == 'other' ?
-            params[:cancellation_reason_other_text] : params[:cancellation_reason]
-      )
-      cancellation_feedback.save
-
+      SubscriptionCancellationFeedback.create(cancellation_reason_params)
       @manager.cancel
-      @manager.remove_payment_methods
 
-      redirect_to action: :show
       flash[:notice] = I18n.t('views.subscriptions.cancel.cancellation_successful')
+      redirect_to action: :show
     end
 
     private
+
+    # Because we can't always be sure an update is complete before client side
+    # things happen, let the client redirect to a query param to set the notice
+    # in those cases.
+    def notice_updated
+      return unless params[:updated] == '1'
+
+      flash[:notice] = I18n.t('your_payment_details_have_been_updated')
+      redirect_to user_subscription_path
+    end
+
+    def set_subscription_manager
+      @manager = SubscriptionManager.new(current_user.stripe_customer)
+    end
+
+    def render_successful_update
+      flash[:notice] = I18n.t('your_payment_details_have_been_updated')
+      render json: { next_step: 'redirect', success_url: user_subscription_path }, status: :ok
+    end
+
+    def render_confirmation_required
+      render json: {
+        next_step: 'confirmation_required',
+        intent_type: @manager.intent_to_confirm.object,
+        intent_client_secret: @manager.intent_to_confirm.client_secret,
+        success_url: user_subscription_path(updated: 1)
+      }, status: :ok
+    end
+
+    def render_bad_request(errors)
+      render json: { error: errors }, status: :bad_request
+    end
 
     def available_plans(current_plan_price)
       starting_plan_price = current_plan_price&.amount || 0
@@ -62,43 +88,30 @@ module Users
       plans.sort.map { |amount| Money.from_amount(amount, customer_currency) }
     end
 
-    def render_bad_request(errors)
-      render json: { error: errors }, status: :bad_request
-    end
-
-    def set_stripe_customer
-      @stripe_customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-    end
-
     def customer_currency
-      Currency.from_iso_code(@stripe_customer.currency) || current_region.currency
+      Currency.from_iso_code(@manager.customer.currency) || current_region.currency
     end
 
-    def customer_payment_method(customer)
-      return nil unless customer.invoice_settings&.default_payment_method
+    def customer_payment_method
+      return nil unless (payment_method_id = @manager.customer.invoice_settings&.default_payment_method)
 
-      Stripe::PaymentMethod.retrieve(customer.invoice_settings.default_payment_method)
-    end
-
-    def update_subscription(new_plan)
-      @manager.update(
-        new_plan,
-        card_source_param,
-        params[:three_d_secure] == 'continue' ? params[:source] : nil
-      )
-    end
-
-    def render_successful_update
-      flash[:notice] = I18n.t('your_payment_details_have_been_updated')
-      render json: { redirectTo: user_subscription_path, notice: notice }, status: :ok
+      Stripe::PaymentMethod.retrieve(payment_method_id)
     end
 
     def plan_param
       params[:user][:plan]
     end
 
-    def card_source_param
-      params[:stripeSource]
+    def cancellation_reason_params
+      {
+        subscribed_at: Time.at(@manager.subscription.start_date),
+        reason:
+          if params[:cancellation_reason] == 'other'
+            params[:cancellation_reason_other_text]
+          else
+            params[:cancellation_reason]
+          end
+      }
     end
   end
 end

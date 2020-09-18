@@ -22,6 +22,6 @@
   "quantity": 1,
   "start": 1547671705,
   "status": "incomplete",
-  "latest_invoice": {"payment_intent":{"status":"requires_action","client_secret":"c_secret"}},
+  "latest_invoice": {"id":"in_1HZagmHwuhGySQCdW6VQPrNu","object":"invoice","payment_intent":{"id": "pi_1HZagmHwuhGySQCdsXioKL41","object":"payment_intent","status":"requires_action","client_secret":"c_secret"}},
   "tax_percent": null
 }

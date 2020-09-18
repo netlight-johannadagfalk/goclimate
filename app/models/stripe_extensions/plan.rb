@@ -35,6 +35,10 @@ module StripeExtensions
         "Climate Offset #{monthly_amount.amount} #{monthly_amount.currency.iso_code} Monthly"
       end
     end
+
+    def monthly_amount
+      Money.new(amount, Currency.from_iso_code(currency))
+    end
   end
 end
 

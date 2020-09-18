@@ -28,21 +28,17 @@ module Users
     #
     # Rubocop warnings disabled because the "but no simpler" part of that
     # Einstein quote "As simple as possible, but no simpler".
-    def create # rubocop:disable Metrics/PerceivedComplexity, Metrics/MethodLength
+    def create # rubocop:disable Metrics/MethodLength
       render_user_invalid_json && return unless @user.save
 
       sign_in(resource_name, @user, force: true) # Force because we have updated the password
 
       stripe_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan_price)
-      @manager.sign_up(@user.email, stripe_plan, params[:payment_method_id])
-
-      if @manager.customer.present? && @user.stripe_customer_id != @manager.customer.id
-        @user.update!(stripe_customer_id: @manager.customer.id)
-      end
+      @manager.sign_up(stripe_plan, params[:payment_method_id])
 
       if @manager.errors.any?
         render_signup_failed_json
-      elsif @manager.payment_verification_required?
+      elsif @manager.confirmation_required?
         render_verification_required_json
       else
         WelcomeMailer.with(email: @user.email).welcome_email.deliver_now
@@ -114,7 +110,14 @@ module Users
     end
 
     def set_subscription_manager
-      @manager = SubscriptionManager.new(@user.stripe_customer)
+      @manager =
+        if (customer = @user.stripe_customer).present?
+          SubscriptionManager.new(customer)
+        else
+          SubscriptionManager.for_new_customer(@user.email)
+        end
+
+      @user.update!(stripe_customer_id: @manager.customer.id) unless @user.stripe_customer_id == @manager.customer.id
     end
 
     def render_price_json
@@ -135,7 +138,7 @@ module Users
     def render_verification_required_json
       render json: {
         next_step: :verification_required,
-        payment_intent_client_secret: @manager.latest_payment_intent.client_secret,
+        payment_intent_client_secret: @manager.intent_to_confirm.client_secret,
         success_url: after_sign_up_path_for(@user)
       }
     end
