@@ -7,11 +7,8 @@
 <%=t 'goclimateneutral_and_this_planet_loves_you' %>
 
 <%=t 'the_best_way_to_help_is_to_get_as_many_people_climate_neutral_as_possible' %>
+
 Facebook: <%= facebook_share_url(@user) %>
 Twitter: <%= twitter_share_url(@user) %>
 
-<%=t 'learn_more_about_what_we_have_achieved_here' %>
-<%= dashboard_url %>
-
-<%=t 'this_mail_was_sent_by' %> GoClimate
-<%=t 'to_stop_recieving_these_emails' %>, visit: %asm_group_unsubscribe_raw_url%
+<%=t 'learn_more_about_what_we_have_achieved_here' %>: <%= dashboard_url %>

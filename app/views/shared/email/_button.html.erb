@@ -1,0 +1,23 @@
+<table border="0" cellpadding="0" cellspacing="0" class="module" data-role="module-button" data-type="button" role="module" style="table-layout:fixed;" width="100%" data-muid="10b9f2ef-d387-4405-b035-729c29d162a0">
+  <tbody>
+    <tr>
+      <td align="center" bgcolor="" class="outer-td" style="padding:0px 24px 0px 24px;">
+        <table border="0" cellpadding="0" cellspacing="0" class="wrapper-mobile" style="text-align:center;">
+          <tbody>
+            <tr>
+              <% if defined?(cta) && cta %>
+                <td align="center" bgcolor="#FFC714" class="inner-td" style="border-radius:6px; font-size:16px; text-align:center; background-color:inherit;">
+                  <a href="<%= href %>" style="border-radius:6px; display:inline-block; font-weight:normal; letter-spacing:0px; text-align:center; text-decoration:none; border-style:solid; background-color:#FFC714; color:#1C4637; border-color:#FFC714; border:0px solid #FFC714; border-width:0px; line-height:24px; font-size:16px; padding:8px 16px 8px 16px; font-family:inherit;" target="_blank"><%= text %></a>
+                </td>
+              <% else %>
+                <td align="center" bgcolor="#" class="inner-td" style="border-radius:6px; font-size:16px; background-color:inherit; text-align:center;">
+                  <a href="<%= href %>" style="border-radius:6px; border-width:1px; display:inline-block; font-weight:normal; letter-spacing:0px; text-align:center; text-decoration:none; border-style:solid; background-color:#; border:1px solid #1C4637; border-color:#1C4637; color:#1C4637; padding:8px 16px 8px 16px; line-height:24px; font-size:16px; font-family:inherit;" target="_blank"><%= text %></a>
+                </td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -145,9 +145,6 @@ eo:
   no_worries_we_will_try_again_within_a_few_days: crwdns12010:0crwdne12010:0
   you_might_need_to_update_your_payment_info: crwdns12012:0crwdne12012:0
   link_to_update_your_payment_info: 'crwdns12014:0crwdne12014:0'
-  this_mail_was_sent_by: crwdns12016:0crwdne12016:0
-  to_stop_recieving_these_emails: crwdns12018:0crwdne12018:0
-  click_here: crwdns12020:0crwdne12020:0
   thank_you_for_saving_our_planet: crwdns12022:0crwdne12022:0
   you_have_lived_a_climate_neutral_life_for: crwdns12024:0crwdne12024:0
   months:
@@ -284,7 +281,6 @@ eo:
           question: crwdns12190:0crwdne12190:0
           answer: "crwdns12192:0crwdne12192:0"
   for_business: crwdns12194:0crwdne12194:0
-  thats_amazing_from_the_bottom_of_our_hearts: crwdns12196:0crwdne12196:0
   navigation:
     gift_cards: crwdns12198:0crwdne12198:0
   welcome:

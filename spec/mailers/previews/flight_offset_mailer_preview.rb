@@ -3,8 +3,8 @@
 class FlightOffsetMailerPreview < ActionMailer::Preview
   def flight_offset_email
     offset = FlightOffset.create!(
-      email: 'test@example.com', co2e: 1000, charged_amount: 4000,
-      charged_currency: 'sek', stripe_charge_id: 'fake'
+      email: 'test@example.com', co2e: 1000, price: 4000,
+      currency: 'sek', stripe_charge_id: 'fake'
     )
     pdf = FlightOffsetCertificatePdf.new(offset).render
 

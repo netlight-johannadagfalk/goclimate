@@ -1,0 +1,6 @@
+sv:
+  layouts:
+    email:
+      sent_by_plaintext: Det här meddelandet skickades av
+      unsubscribe: Avprenumerera
+      unsubscribe_plaintext: Avprenumerera från framtida meddelanden
