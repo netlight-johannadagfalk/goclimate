@@ -45,23 +45,25 @@
             <span class="text-5xl font-bold text-green-accent"><%= @footprint.total.tonnes.round(1) %></span>
             <span class="heading text-green-accent"><%= t 'tonnes_CO2' %></span>
           </div>
-          <p class="hidden t:block">
-            <% footprint_text_options = {
-                footprint: @footprint.total.to_s(precision: :auto),
-                relative:
-                  if @footprint.total > @country_average.co2e
-                    "#{((@footprint.total.co2e.to_f / @country_average.co2e.co2e - 1) * 100).ceil} % #{t 'views.registrations.higher'}"
-                  else
-                    "#{((1 - @footprint.total.co2e.to_f / @country_average.co2e.co2e) * 100).ceil} % #{t 'views.registrations.lower'}"
-                  end,
-                country: @footprint.country.translation(I18n.locale)
-            } %>
-            <% if @country_average.countries.nil? %>
-              <%= t("dashboard.footprint.your_climate_footprint_compared_world", **footprint_text_options) %>
-            <% else %>
-              <%= t("dashboard.footprint.your_climate_footprint", **footprint_text_options) %>
-            <% end %>
-          </p>
+          <% if @footprint.country %>
+            <p class="hidden t:block">
+              <% footprint_text_options = {
+                  footprint: @footprint.total.to_s(precision: :auto),
+                  relative:
+                    if @footprint.total > @country_average.co2e
+                      "#{((@footprint.total.co2e.to_f / @country_average.co2e.co2e - 1) * 100).ceil} % #{t 'views.registrations.higher'}"
+                    else
+                      "#{((1 - @footprint.total.co2e.to_f / @country_average.co2e.co2e) * 100).ceil} % #{t 'views.registrations.lower'}"
+                    end,
+                  country: @footprint.country.translation(I18n.locale)
+              } %>
+              <% if @country_average.countries.nil? %>
+                <%= t("dashboard.footprint.your_climate_footprint_compared_world", **footprint_text_options) %>
+              <% else %>
+                <%= t("dashboard.footprint.your_climate_footprint", **footprint_text_options) %>
+              <% end %>
+            </p>
+          <% end %>
         </div>
         <div class="t:w-1/2">
           <!-- diagram -->
