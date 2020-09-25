@@ -1,0 +1,90 @@
+.tablist {
+  @apply hidden;
+}
+
+.tabpanel {
+  @apply mt-6 mb-6;
+}
+
+@screen m-lg {
+  .tablist {
+    @apply flex flex-row items-stretch;
+  }
+
+  .tab-container {
+    @apply relative ml-2;
+  }
+
+  .tab-container, .tab-container:first-child, .tab-container-extra-border {
+    @apply p-0 border-transparent;
+  }
+
+  .tab-container:first-child {
+    @apply ml-0;
+  }
+
+  .tab-container-extra-border {
+    @apply 
+      flex-1 
+      border-b border-primary rounded-none;
+  }
+
+  .tab-container::before {
+    content: '';
+  
+    @apply 
+      absolute right-100 bottom-0
+      w-2 -mr-px
+      border-t border-primary;
+  }
+
+  .tab-container:first-child::before {
+    @apply hidden;
+  }
+
+  .tab-container::after {
+    content: '';
+  
+    @apply 
+      absolute left-100 bottom-0
+      w-2 -ml-px
+      border-t border-primary;
+  }
+
+  .tab {
+    @apply 
+      inline-block h-full
+      flex flex-row items-center
+      py-2 px-4 
+      border rounded-t
+      text-center
+      outline-none;
+  }
+
+  .tab:focus {
+    @apply outline-none;
+  }
+
+  .tab[aria-selected] {
+    @apply 
+      bg-transparent
+      text-primary
+      border-b-transparent;
+  }
+
+  .tabpanel {
+    @apply
+      px-0 py-6
+      m-0
+      border-0
+      outline-none;
+  }
+
+  .tabpanel:focus {
+    @apply outline-none;
+  }
+
+  .panel-hidden {
+    @apply hidden;
+  }
+}
