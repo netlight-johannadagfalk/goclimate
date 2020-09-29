@@ -111,6 +111,7 @@ sv:
       heading: Ditt årliga klimatavtryck
       your_climate_footprint: Ditt klimatavtryck på %{footprint} är %{relative} än genomsnittet i %{country}. För att ligga i linje med Parisavtalets 1,5 gradersmål måste vi globalt ha ett genomsnitt på 2,5 ton per person till år 2030.
       your_climate_footprint_compared_world: Ditt klimatavtryck på %{footprint} är %{relative} än genomsnittet i världen. För att ligga i linje med Parisavtalets 1,5 gradersmål måste vi globalt ha ett genomsnitt på 2,5 ton per person till år 2030.
+      more_about_public_category: Vad är det här?
   good_job: Bra jobbat!
   our_projects: Våra klimatprojekt
   project_name: Namn på projekt
