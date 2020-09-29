@@ -103,7 +103,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       click_button 'Start subscription'
 
       # 3D Secure authorization pop up
-      within_frame(find('iframe[name=__privateStripeFrame8]', wait: 20)) do
+      within_frame(find('body > div > iframe[name^=__privateStripeFrame]', wait: 20)) do
         within_frame(find('iframe[id=challengeFrame]', wait: 20)) do
           within_frame(find('iframe.FullscreenFrame', wait: 20)) do
             # For some unknown reason, the Capybara click method does not work
