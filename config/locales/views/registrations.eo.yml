@@ -2,9 +2,6 @@ eo:
   views:
     registrations:
       well_done: crwdns13030:0crwdne13030:0
-      result: crwdns13244:0crwdne13244:0
-      your_yearly_climate_footprint: crwdns14854:0crwdne14854:0
-      corresponds_to: crwdns13034:0%{price}crwdne13034:0
       you: crwdns13036:0crwdne13036:0
       average_in: crwdns13040:0%{region}crwdne13040:0
       world_average: crwdns13042:0crwdne13042:0
