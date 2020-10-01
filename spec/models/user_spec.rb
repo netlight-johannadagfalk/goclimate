@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  subject(:user) { build(:user) }
+  subject(:user) { build(:user, stripe_customer_id: 'cus_TEST') }
 
   describe '#user_name' do
     context 'with a user_name with an @ sign' do
