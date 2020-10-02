@@ -87,6 +87,7 @@ Capybara/FeatureMethods:
   EnabledMethods:
     - 'feature'
     - 'scenario'
+    - 'xscenario'
 
 # Disabled cops
 

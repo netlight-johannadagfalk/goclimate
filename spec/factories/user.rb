@@ -4,7 +4,6 @@ FactoryBot.define do
   factory :user do
     sequence(:email) { |n| "person#{n}@example.com" }
     password { 'password' }
-    stripe_customer_id { 'cus_TEST' }
     region { 'se' }
     lifestyle_footprints { [association(:lifestyle_footprint)] }
 
