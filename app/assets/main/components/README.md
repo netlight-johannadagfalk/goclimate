@@ -14,6 +14,7 @@ Table of contents
 - [Section gutter](#section-gutter)
 - [Section padding](#section-padding)
 - [Select](#select)
+- [Tabs](#tabs)
 - [Toggler](#toggler)
 
 ## Button
@@ -314,6 +315,31 @@ Controlling the width is done on the wrapper element.
     <option value="business">Business</option>
     <option value="first">First</option>
   </select>
+</div>
+```
+
+## Tabs
+
+Tabs makes it possible to have content in a tabbed view. Tabs is a component that heavily depends on Javascript to work properly. It uses the Stimulus.js controller `tabs`, which requires three targets: `tablist`, `tab`, `panel`. The elements `tab` and `panel` are connected by their DOM order, so keep that in mind. Moreover, the tab component is only a tabbed view from breakpoint `m-lg`, on mobile it shows the contents in a column.
+
+```
+<div data-controller="tabs">
+  <ul data-target="tabs.tablist">
+    <li>
+      <a href="#" data-target="tabs.tab">Section 1</a>
+    </li>
+    <li>
+      <a href="#" data-target="tabs.tab">Section 2</a>
+    </li>
+  </ul>
+  <section data-target="tabs.panel">
+    <h2>Section 1</h2>
+    <p>Lorem ipsum dolor sit amet. <a class="link" href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus.</p>
+  </section>
+  <section data-target="tabs.panel">
+    <h2>Section 2</h2>
+    <p>Nullam at diam nec arcu suscipit auctor non a erat. Sed et magna semper, eleifend magna non, facilisis nisl. Proin et est et lorem dictum finibus ut nec turpis.</p>
+  </section>
 </div>
 ```
 

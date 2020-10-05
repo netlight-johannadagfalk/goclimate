@@ -20,6 +20,7 @@
       "arrow-parens": ["error", "always"],
       "no-param-reassign": ["error", {
         "props": false
-      }]
+      }],
+      "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
     }
 }
