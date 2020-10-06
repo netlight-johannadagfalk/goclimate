@@ -12,8 +12,8 @@ en:
 
       higher: higher
       lower: lower
-      your_climate_footprint: Your carbon footprint of %{footprint} is %{relative} than the average in %{country}. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030. By offsetting your emissions you can reach zero today.
-      your_climate_footprint_compared_world: Your carbon footprint of %{footprint} is %{relative} than the world average. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030. By offsetting your emissions you can reach zero today.
+      your_climate_footprint: Your carbon footprint of %{footprint} is %{relative} than the average in %{country}. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030.
+      your_climate_footprint_compared_world: Your carbon footprint of %{footprint} is %{relative} than the world average. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030.
 
       subscribe_heading: Subscribe to a climate neutral life
       step: Step

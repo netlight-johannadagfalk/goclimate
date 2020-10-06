@@ -111,7 +111,15 @@ en:
       heading: Your yearly carbon footprint
       your_climate_footprint: Your carbon footprint of %{footprint} is %{relative} than the average in %{country}. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030.
       your_climate_footprint_compared_world: Your carbon footprint of %{footprint} is %{relative} than the world average. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030.
+      heading_compared: Compared to the world
+      heading_more: More about your carbon footprint
       more_about_public_category: What's this?
+      category:
+        housing: Housing
+        food: Food
+        car: Car
+        flights: Flights
+        public: Public emissions and shopping
   good_job: Good job!
   our_projects: Our Climate Projects
   project_name: Project name
