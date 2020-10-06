@@ -15,6 +15,8 @@ module Users
       @projects = Project.order(id: :desc).limit(3)
       @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
 
+      @sign_up_without_subscription = params[:sign_up_without_subscription].present?
+
       respond_to do |format|
         format.html { render }
         format.json { render_price_json }
