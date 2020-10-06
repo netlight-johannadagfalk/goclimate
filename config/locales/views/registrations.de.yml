@@ -2,6 +2,9 @@ de:
   views:
     registrations:
       well_done: Großartig! Erster Schritt geschafft!
+      result: Ergebnis
+      your_yearly_climate_footprint: Ihre jährliche CO2-Bilanz beträgt
+      corresponds_to: Das entspricht %{price}/Monat.
       you: Sie
       average_in: Durchschnitt in %{region}
       world_average: Weltweiter Durchschnitt

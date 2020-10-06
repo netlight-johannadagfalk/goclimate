@@ -2,6 +2,9 @@ en:
   views:
     registrations:
       well_done: Great! First step done!
+      result: Result
+      your_yearly_climate_footprint: Your yearly carbon footprint is
+      corresponds_to: This corresponds to %{price}/month.
       you: You
       average_in: Average in %{region}
       world_average: World average

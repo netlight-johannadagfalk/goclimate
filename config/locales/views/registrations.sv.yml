@@ -2,6 +2,9 @@ sv:
   views:
     registrations:
       well_done: Toppen! Nu har du tagit första steget!
+      result: Resultat
+      your_yearly_climate_footprint: Ditt årliga klimatavtryck är
+      corresponds_to: Det motsvarar %{price}/månad.
       you: Du
       average_in: Medel i %{region}
       world_average: Medel i världen
