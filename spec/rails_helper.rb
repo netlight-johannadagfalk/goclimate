@@ -60,6 +60,12 @@ RSpec.configure do |config|
     Rails.application.load_seed
   end
 
+  # Prevent us from writing slow unit tests
+  config.before(:each, type: ->(v) { !v.in?([:feature, :request]) }) do
+    allow_any_instance_of(Stripe::StripeClient).to receive(:execute_request) # rubocop:disable RSpec/AnyInstance
+      .and_raise('Please stub out Stripe API calls in unit tests')
+  end
+
   config.include ActiveSupport::Testing::TimeHelpers
   config.include FeatureHelper, type: :feature
 end

@@ -160,8 +160,14 @@ RSpec.describe SubscriptionManager do
     end
 
     describe '#cancel' do
+      let(:payment_methods) do
+        Stripe::ListObject.construct_from(stripe_json_fixture('payment_methods_list.json'))
+      end
+
       before do
         allow(manager.subscription).to receive(:delete)
+        allow(Stripe::PaymentMethod)
+          .to receive(:list).with(customer: customer.id, type: 'card').and_return(payment_methods)
       end
 
       it 'cancels current subscription' do
@@ -174,7 +180,7 @@ RSpec.describe SubscriptionManager do
         manager.cancel
 
         expect(Stripe::PaymentMethod).to have_received(:detach)
-          .with(manager.customer.invoice_settings&.default_payment_method)
+          .with(payment_methods.first.id)
       end
     end
 
