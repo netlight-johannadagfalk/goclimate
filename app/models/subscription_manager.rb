@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class SubscriptionManager
+  class SubscriptionMissingError < StandardError; end
+
   BUFFER_FACTOR = 2
 
-  attr_reader :customer, :errors
+  attr_reader :customer, :errors, :intent_to_confirm
 
   def self.price_for_footprint(footprint, currency)
     monthly_offset = footprint / 12 * BUFFER_FACTOR
@@ -20,56 +22,60 @@ class SubscriptionManager
     end
   end
 
-  def initialize(customer = nil)
+  # NOTE: Keeping a Stripe::Customer up to date might be more of a task for
+  # User, as updates to the email should propagate to Stripe and because
+  # subscriptions might not be the only case we want to use Stripe::Customers
+  # for. Something for the future maybe.
+  def self.for_new_customer(email)
+    new(Stripe::Customer.create(email: email))
+  end
+
+  def initialize(customer)
     @customer = customer
     @errors = {}
   end
 
-  def sign_up(email, plan, payment_method_id)
+  def sign_up(plan, payment_method_id)
     handle_errors_and_return_status do
-      use_or_create_customer(email)
       update_default_card(payment_method_id)
       create_subscription(plan)
+      @intent_to_confirm = subscription.latest_invoice.payment_intent if subscription.status == 'incomplete'
+    end
+  end
+
+  def update(new_plan, payment_method_id = nil)
+    raise SubscriptionMissingError, <<~TEXT if subscription.nil?
+      Can't update subscription without a current one present.
+    TEXT
+
+    handle_errors_and_return_status do
+      if payment_method_id.present?
+        update_default_card(payment_method_id)
+
+        setup_intent = Stripe::SetupIntent.create(
+          payment_method: payment_method_id, confirm: true, customer: customer.id
+        )
+        @intent_to_confirm = setup_intent if setup_intent.status == 'requires_action'
+      end
+
+      update_subscription(new_plan) if subscription.plan.id != new_plan.id
     end
   end
 
   def cancel
     subscription.delete
-  end
 
-  def remove_payment_methods
-    payment_methods = Stripe::PaymentMethod.list(customer: customer.id, type: 'card')
-    payment_methods.each do |payment_method|
+    Stripe::PaymentMethod.list(customer: customer.id, type: 'card').each do |payment_method|
       Stripe::PaymentMethod.detach(payment_method.id)
     end
   end
 
-  def update(new_plan, payment_method_id = nil)
-    handle_errors_and_return_status do
-      update_default_card(payment_method_id) if payment_method_id.present?
-
-      if subscription.nil?
-        create_subscription(new_plan)
-      elsif subscription.plan.id != new_plan.id
-        update_subscription(new_plan)
-      end
-    end
-  end
-
-  def payment_verification_required?
-    subscription.status == 'incomplete' && latest_payment_intent&.status == 'requires_action'
-  end
-
-  def latest_payment_intent
-    subscription.latest_invoice&.payment_intent
+  def confirmation_required?
+    intent_to_confirm.present?
   end
 
   def subscription
-    @subscription ||= Stripe::Subscription.list(
-      customer: @customer.id,
-      expand: ['data.latest_invoice.payment_intent'],
-      limit: 1
-    ).first
+    @subscription ||= customer.subscriptions.first
   end
 
   private
@@ -84,10 +90,6 @@ class SubscriptionManager
     false
   end
 
-  def use_or_create_customer(email)
-    @customer = Stripe::Customer.create(email: email) unless @customer.present?
-  end
-
   def create_subscription(plan)
     @subscription = Stripe::Subscription.create(
       customer: customer.id,
@@ -99,9 +101,8 @@ class SubscriptionManager
   def update_subscription(new_plan)
     @subscription = Stripe::Subscription.update(
       subscription.id,
-      prorate: false,
       plan: new_plan.id,
-      expand: ['latest_invoice.payment_intent']
+      prorate: false
     )
   end
 

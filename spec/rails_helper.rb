@@ -60,6 +60,12 @@ RSpec.configure do |config|
     Rails.application.load_seed
   end
 
+  # Prevent us from writing slow unit tests
+  config.before(:each, type: ->(v) { !v.in?([:feature, :request]) }) do
+    allow_any_instance_of(Stripe::StripeClient).to receive(:execute_request) # rubocop:disable RSpec/AnyInstance
+      .and_raise('Please stub out Stripe API calls in unit tests')
+  end
+
   config.include ActiveSupport::Testing::TimeHelpers
   config.include FeatureHelper, type: :feature
 end
@@ -67,7 +73,7 @@ end
 Capybara.server = :puma, { Silent: true }
 
 Capybara.register_driver :firefox_headless do |app|
-  options = ::Selenium::WebDriver::Firefox::Options.new.tap { |o| o.args << '--headless' }
+  options = ::Selenium::WebDriver::Firefox::Options.new.tap { |o| o.args << '--headless' unless ENV['HEADLESS'] == '0' }
   Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
 end
 Capybara.javascript_driver = :firefox_headless
