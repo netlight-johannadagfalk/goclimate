@@ -1,5 +1,5 @@
-export function serializeQueryParams(formData) {
-  return formData.map(
+function serializeQueryParams(formData) {
+  return Array.from(formData).map(
     (param) => `${encodeURIComponent(param[0])}=${encodeURIComponent(param[1])}`
   ).join('&');
 }
@@ -10,7 +10,7 @@ export default function submitForm(formElement, options = {}) {
   let body;
 
   if (formElement.method === 'get') {
-    url = `${formElement.action}?${serializeQueryParams(Array.from(formData))}`;
+    url = `${formElement.action}?${serializeQueryParams(formData)}`;
   } else {
     url = formElement.action;
     body = formData;

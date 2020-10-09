@@ -5,63 +5,6 @@ export default class RegistrationFormController extends Controller {
   initialize() {
     this.loading = false;
     this.updateSubmitButton();
-    // Set initial choice
-    this.membership = 'single';
-    const initialChoice = this.membershipChoiceTargets.find((t) => t.value === this.membership);
-    initialChoice.checked = true;
-  }
-
-  handleMembershipChange(event) {
-    const newMembership = event.target.value;
-    this.changeMembership(newMembership);
-  }
-
-  chooseMembershipMulti() {
-    this.changeMembership('multi');
-  }
-
-  changeMembership(membership) {
-    this.membership = membership;
-    if (!['free', 'single', 'multi'].includes(this.membership)) {
-      return;
-    }
-    if (this.membership === 'free') {
-      this.stripeCardElementTarget.classList.add('hidden');
-      this.showNoSubscriptionInfo();
-    } else if (this.membership === 'single') {
-      this.registrationPriceController.updateWithNumberOfPeople(1);
-      this.stripeCardElementTarget.classList.remove('hidden');
-      this.showSubscriptionInfo();
-    } else if (this.membership === 'multi') {
-      this.registrationPriceController.update();
-      this.stripeCardElementTarget.classList.remove('hidden');
-      this.showSubscriptionInfo();
-    }
-    this.membershipChoiceTargets.forEach((target) => {
-      if (target.value === this.membership) {
-        RegistrationFormController.styleActiveChoice(target);
-      } else {
-        RegistrationFormController.styleInactiveChoice(target);
-      }
-    });
-  }
-
-  showSubscriptionInfo() {
-    this.noSubscriptionInfoTargets.forEach((target) => {
-      target.classList.add('hidden');
-    });
-    this.subscriptionInfoTargets.forEach((target) => {
-      target.classList.remove('hidden');
-    });
-  }
-
-  showNoSubscriptionInfo() {
-    this.noSubscriptionInfoTargets.forEach((target) => {
-      target.classList.remove('hidden');
-    });
-    this.subscriptionInfoTargets.forEach((target) => {
-      target.classList.add('hidden');
-    });
   }
 
   submit(event) {
@@ -148,26 +91,6 @@ export default class RegistrationFormController extends Controller {
   get stripeCardElementController() {
     return this.application.getControllerForElementAndIdentifier(this.stripeCardElementTarget, 'stripe-card-element');
   }
-
-  get registrationPriceController() {
-    return this.application.getControllerForElementAndIdentifier(this.priceControllerElementTarget, 'registration-price');
-  }
 }
 
-RegistrationFormController.styleActiveChoice = function styleActiveChoice(target) {
-  target.parentNode.classList.add('bg-green-tint-1');
-  target.parentNode.classList.remove('bg-gray-pastel');
-  if (!target.checked) {
-    target.checked = true;
-  }
-};
-
-RegistrationFormController.styleInactiveChoice = function styleInactiveChoice(target) {
-  target.parentNode.classList.add('bg-gray-pastel');
-  target.parentNode.classList.remove('bg-green-tint-1');
-  if (target.checked) {
-    target.checked = false;
-  }
-};
-
-RegistrationFormController.targets = ['priceControllerElement', 'form', 'privacyPolicyAgreement', 'submitButton', 'stripeCardElement', 'errorMessage', 'loadingIndicator', 'membershipChoice', 'membershipField', 'subscriptionInfo', 'noSubscriptionInfo'];
+RegistrationFormController.targets = ['form', 'privacyPolicyAgreement', 'submitButton', 'stripeCardElement', 'errorMessage', 'loadingIndicator'];
