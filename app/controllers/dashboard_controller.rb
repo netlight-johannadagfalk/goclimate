@@ -14,7 +14,10 @@ class DashboardController < ApplicationController
     @unique_climate_neutral_users = User.with_active_subscription.count
 
     @footprint = current_user.current_lifestyle_footprint
-    @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
+    # Some old users doesn't seem to have a LifestyleFootprint
+    if @footprint
+      @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
+    end
 
     @user_top_list = user_top_list
     @country_top_list = country_top_list
