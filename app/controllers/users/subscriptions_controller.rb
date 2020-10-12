@@ -93,9 +93,11 @@ module Users
     end
 
     def customer_payment_method
-      return nil unless (payment_method_id = @manager.customer.invoice_settings&.default_payment_method)
-
-      Stripe::PaymentMethod.retrieve(payment_method_id)
+      if (payment_method_id = @manager.customer.invoice_settings&.default_payment_method)
+        Stripe::PaymentMethod.retrieve(payment_method_id)
+      elsif (source_id = @manager.customer.default_source)
+        @manager.customer.sources.find { |s| s.id == source_id }
+      end
     end
 
     def plan_param
