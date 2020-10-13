@@ -12,17 +12,12 @@ class CardCharge < ApplicationRecord
   scope :in_usd, -> { where(currency: 'usd') }
   scope :in_eur, -> { where(currency: 'eur') }
 
-  def self.create_from_stripe_charge(charge)
-    create(
-      stripe_charge_id: charge.id,
-      stripe_customer_id: charge.customer,
-      amount: charge.amount,
-      paid: charge.paid,
-      currency: charge.currency,
-      gift_card: charge.description&.include?('Gift Card') || false,
-      flight_offset: charge.description&.include?('Flight offset') || false,
-      description: charge.description
-    )
+  def self.create_from_stripe_charge(stripe_charge)
+    charge = create(attributes_from_stripe_charge(stripe_charge))
+
+    charge.send_subscription_payment_email if stripe_charge.invoice.present?
+
+    charge
   end
 
   def self.total_payments_usd_part
@@ -71,5 +66,42 @@ class CardCharge < ApplicationRecord
 
   def order_id
     "GCN-MONTHLY-#{id}"
+  end
+
+  def send_subscription_payment_email
+    return if user.nil?
+
+    if paid?
+      send_subscription_payment_successful_email
+    else
+      send_subscription_payment_failed_email
+    end
+  end
+
+  private_class_method def self.attributes_from_stripe_charge(stripe_charge)
+    {
+      stripe_charge_id: stripe_charge.id,
+      stripe_customer_id: stripe_charge.customer,
+      amount: stripe_charge.amount,
+      paid: stripe_charge.paid,
+      currency: stripe_charge.currency,
+      gift_card: stripe_charge.description&.include?('Gift Card') || false,
+      flight_offset: stripe_charge.description&.include?('Flight offset') || false,
+      description: stripe_charge.description
+    }
+  end
+
+  private
+
+  def send_subscription_payment_successful_email
+    if user.number_of_neutral_months % 12 == 0
+      SubscriptionMailer.with(email: user.email).one_more_year_email.deliver_now
+    else
+      SubscriptionMailer.with(email: user.email).one_more_month_email.deliver_now
+    end
+  end
+
+  def send_subscription_payment_failed_email
+    SubscriptionMailer.with(email: user.email).payment_failed_email.deliver_now
   end
 end

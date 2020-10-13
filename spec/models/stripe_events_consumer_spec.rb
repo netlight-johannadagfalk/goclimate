@@ -20,151 +20,25 @@ RSpec.describe StripeEventsConsumer do
   end
 
   describe '#process' do
-    let(:user) { create(:user, stripe_customer_id: 'customer_test_id') }
-
-    describe 'with charge event' do
-      let(:paid_charge_event) { Stripe::Event.construct_from(stripe_json_fixture('paid_charge_event.json')) }
+    describe 'charge events' do
+      let(:paid_charge_event) { Stripe::Event.construct_from(stripe_json_fixture('event_charge_paid.json')) }
 
       it 'creates a CardCharge' do
-        consumer.process(paid_charge_event)
-
-        expect(CardCharge.last.stripe_charge_id).to eq('test_charge_id')
-      end
-
-      it 'sets gift card flag to false' do
-        consumer.process(paid_charge_event)
-
-        expect(CardCharge.last.gift_card).to eq(false)
-      end
-
-      it 'does not create duplicate events when called twice' do
-        consumer.process(paid_charge_event)
         consumer.process(paid_charge_event)
 
         expect(CardCharge.count).to eq(1)
       end
 
-      context 'when 1 existing paid charge already exists' do
-        before do
-          create(
-            :card_charge,
-            stripe_customer_id: 'customer_test_id',
-            paid: true,
-            currency: 'usd'
-          )
-        end
+      it 'does not create duplicate events when called a second time for the same charge' do
+        consumer.process(paid_charge_event)
+        consumer.process(paid_charge_event)
 
-        it 'sends one more month email' do
-          expect(SubscriptionMailer).to receive_message_chain(:with, :one_more_month_email, :deliver_now)
-            .and_return(SubscriptionMailer.with(email: user.email))
-
-          consumer.process(paid_charge_event)
-        end
-      end
-
-      context 'when 11 existing paid charges already exist' do
-        before do
-          create_list(
-            :card_charge,
-            11,
-            stripe_customer_id: 'customer_test_id',
-            paid: true,
-            currency: 'usd'
-          )
-        end
-
-        it 'sends one more year email' do
-          expect(SubscriptionMailer).to receive_message_chain(:with, :one_more_year_email, :deliver_now)
-            .and_return(SubscriptionMailer.with(email: user.email))
-
-          consumer.process(paid_charge_event)
-        end
-      end
-
-      context 'with gift card charge event' do
-        let(:gift_card_charge_event) do
-          Stripe::Event.construct_from(stripe_json_fixture('gift_card_charge_event.json'))
-        end
-
-        it 'creates a gift card CardCharge' do
-          consumer.process(gift_card_charge_event)
-
-          expect(CardCharge.count).to eq(1)
-        end
-
-        it 'sets gift card flag to true' do
-          consumer.process(gift_card_charge_event)
-
-          expect(CardCharge.last.gift_card?).to eq(true)
-        end
-
-        it 'sets stripe event id' do
-          consumer.process(gift_card_charge_event)
-
-          expect(CardCharge.last.stripe_charge_id).to eq('ch_1DSOhfHwuhGySQCdlVpJYYwn')
-        end
-
-        it 'does not set stripe customer id' do
-          consumer.process(gift_card_charge_event)
-
-          expect(CardCharge.last.stripe_customer_id).to eq(nil)
-        end
-      end
-
-      context 'with flight offset charge event' do
-        let(:flight_offset_charge_event) do
-          Stripe::Event.construct_from(stripe_json_fixture('flight_offset_charge_event.json'))
-        end
-
-        it 'creates a flight offset CardCharge' do
-          consumer.process(flight_offset_charge_event)
-
-          expect(CardCharge.count).to eq(1)
-        end
-
-        it 'sets flight offset flag to true' do
-          consumer.process(flight_offset_charge_event)
-
-          expect(CardCharge.last.flight_offset?).to eq(true)
-        end
-
-        it 'sets stripe event id' do
-          consumer.process(flight_offset_charge_event)
-
-          expect(CardCharge.last.stripe_charge_id).to eq('ch_1DSOhfHwuhGySQCdlVpJYYwn')
-        end
-
-        it 'does not set stripe customer id' do
-          consumer.process(flight_offset_charge_event)
-
-          expect(CardCharge.last.stripe_customer_id).to eq(nil)
-        end
-      end
-
-      context 'when Stripe returns list including unpaid charge' do
-        let(:unpaid_charge_event) { Stripe::Event.construct_from(stripe_json_fixture('unpaid_charge_event.json')) }
-
-        it 'creates a CardCharge' do
-          consumer.process(unpaid_charge_event)
-
-          expect(CardCharge.last.stripe_charge_id).to eq('test_charge_id_2')
-        end
-      end
-
-      context 'when Stripe returns list including event with no Stripe customer' do
-        let(:paid_charge_event_no_customer) do
-          Stripe::Event.construct_from(stripe_json_fixture('paid_charge_event_no_customer.json'))
-        end
-
-        it 'does not send email' do
-          expect do
-            consumer.process(paid_charge_event_no_customer)
-          end.not_to(change { ActionMailer::Base.deliveries.count })
-        end
+        expect(CardCharge.count).to eq(1)
       end
     end
 
-    describe 'with subscription event' do
+    describe 'subscription events' do
+      let(:user) { create(:user, stripe_customer_id: 'customer_test_id') }
       let(:subscription_event) do
         Stripe::Event.construct_from(stripe_json_fixture('event_subscription_deleted.json'))
       end
@@ -180,7 +54,7 @@ RSpec.describe StripeEventsConsumer do
       end
     end
 
-    describe 'with payment intent event for gift card' do
+    describe 'payment intent events for gift card' do
       let(:event) { Stripe::Event.construct_from(stripe_json_fixture('event_payment_intent_successful.json')) }
 
       it 'does nothing if no gift card owns the payment intent' do
@@ -214,7 +88,7 @@ RSpec.describe StripeEventsConsumer do
       end
     end
 
-    describe 'with payment intent event for flight offset' do
+    describe 'payment intent events for flight offset' do
       let(:event) do
         Stripe::Event.construct_from(stripe_json_fixture('event_payment_intent_flight_offset_successful.json'))
       end
@@ -225,7 +99,7 @@ RSpec.describe StripeEventsConsumer do
         end.not_to raise_error
       end
 
-      context 'when gift card exists' do
+      context 'when flight offset exists' do
         let(:offset) do
           create(
             :flight_offset,
