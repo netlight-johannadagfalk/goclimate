@@ -2,6 +2,7 @@
 
 class CardCharge < ApplicationRecord
   belongs_to :user, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id', required: false
+  has_many :subscription_months, as: :payment
 
   scope :paid, -> { where(paid: true) }
   scope :for_subscriptions, -> { where(gift_card: false, flight_offset: false) }
