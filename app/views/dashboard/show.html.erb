@@ -1,5 +1,9 @@
 <%= render "shared/facebook_script" %>
 <%= render "shared/twitter_script" %>
+<%= javascript_tag do %>
+  window.facebookQuote = '<%= social_quote_for(current_user.user_name, @my_neutral_months) %>';
+  window.urlToShare = '<%= user_url(current_user) %>'
+<% end %>
 
 <%= render "shared/header" %>
 
