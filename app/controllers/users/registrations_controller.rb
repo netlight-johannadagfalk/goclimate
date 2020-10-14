@@ -96,7 +96,8 @@ module Users
       end
 
       @footprint_tonnes = @footprint&.total
-      @subscription_tonnes = @footprint_tonnes * (params[:people].presence&.to_i || 1)
+      number_of_people = params[:membership] == 'multi' && params[:people].presence ? params[:people].presence&.to_i : 1
+      @subscription_tonnes = @footprint_tonnes * number_of_people
       @plan_price = SubscriptionManager.price_for_footprint(@subscription_tonnes, current_region.currency)
     end
 
