@@ -6,8 +6,10 @@ RSpec.describe CardCharge do
   describe '.create_from_stripe_charge' do
     context 'with subscription charge' do
       let(:charge) { Stripe::Charge.construct_from(stripe_json_fixture('charge_subscription.json')) }
+      let(:invoice) { Stripe::Invoice.construct_from(stripe_json_fixture('invoice_subscription_month.json')) }
 
       before do
+        allow(Stripe::Invoice).to receive(:retrieve).with(charge.invoice).and_return(invoice)
         create(:user, stripe_customer_id: charge.customer, region: Region::Europe)
       end
 
@@ -21,6 +23,12 @@ RSpec.describe CardCharge do
         described_class.create_from_stripe_charge(charge)
 
         expect(described_class.last.flight_offset).to eq(false)
+      end
+
+      it 'creates a corresponding SubscriptionMonth' do
+        created = described_class.create_from_stripe_charge(charge)
+
+        expect(SubscriptionMonth.last&.payment).to eq(created)
       end
 
       it 'sends one more month email' do
@@ -50,6 +58,12 @@ RSpec.describe CardCharge do
           described_class.create_from_stripe_charge(charge)
 
           expect(described_class.last.stripe_charge_id).to eq(charge.id)
+        end
+
+        it 'does not create a SubscriptionMonth' do
+          expect do
+            described_class.create_from_stripe_charge(charge)
+          end.not_to change(SubscriptionMonth, :count)
         end
 
         it 'sends payment failed email' do

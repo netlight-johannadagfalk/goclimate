@@ -15,7 +15,14 @@ class CardCharge < ApplicationRecord
   def self.create_from_stripe_charge(stripe_charge)
     charge = create(attributes_from_stripe_charge(stripe_charge))
 
-    charge.send_subscription_payment_email if stripe_charge.invoice.present?
+    if stripe_charge.invoice.present?
+      if charge.paid?
+        invoice = Stripe::Invoice.retrieve(stripe_charge.invoice)
+        SubscriptionMonth.create_from_stripe_invoice_line!(invoice.lines.first, charge)
+      end
+
+      charge.send_subscription_payment_email
+    end
 
     charge
   end
