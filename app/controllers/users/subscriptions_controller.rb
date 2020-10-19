@@ -33,6 +33,8 @@ module Users
     end
 
     def destroy
+      return redirect_to action: :show if @manager.subscription.nil?
+
       SubscriptionCancellationFeedback.create(cancellation_reason_params)
       @manager.cancel
 
