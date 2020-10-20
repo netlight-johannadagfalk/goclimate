@@ -10,6 +10,25 @@ class GreenhouseGases
 
   attr_reader :co2e
 
+  # This functionality should be considered deprecated--the future is that we
+  # save amount of co2e sold when we sell it so we don't have to second guess
+  # after the fact.
+  def self.from_consumer_price(price)
+    sek_amount =
+      case price.currency
+      when Currency::SEK
+        price.amount
+      when Currency::EUR
+        price.amount * PRICE_FACTOR_EUR
+      when Currency::USD
+        price.amount * PRICE_FACTOR_USD
+      end
+
+    new(
+      (sek_amount / CONSUMER_PRICE_PER_TONNE_SEK.amount * 1000).ceil
+    )
+  end
+
   def initialize(co2e)
     raise ArgumentError, 'co2e must be an Integer' unless co2e.is_a?(Integer)
 

@@ -27,13 +27,9 @@ class StripeEventsConsumer
 
     Rails.logger.debug("Creating CardCharge for charge #{charge.id}")
 
-    event = CardCharge.create_from_stripe_charge(charge)
+    CardCharge.create_from_stripe_charge(charge)
 
     Rails.logger.info("Created CardCharge for charge #{charge.id}")
-
-    return if event.gift_card? || event.flight_offset?
-
-    send_payment_email(charge)
   end
 
   def update_user(subscription)
@@ -53,32 +49,5 @@ class StripeEventsConsumer
     when 'flight_offset'
       FlightOffset.find_by_payment_intent_id(payment_intent.id)&.update_from_payment_intent(payment_intent)
     end
-  end
-
-  def send_payment_email(charge)
-    return if charge.customer.nil?
-
-    user = User.find_by_stripe_customer_id(charge.customer)
-
-    return if user.nil?
-
-    if charge.paid
-      send_payment_successful_email(user)
-    else
-      send_payment_failed_email(user)
-    end
-  end
-
-  def send_payment_successful_email(user)
-    number_of_payments = user.number_of_neutral_months
-    if number_of_payments % 12 == 0
-      SubscriptionMailer.with(email: user.email).one_more_year_email.deliver_now
-    else
-      SubscriptionMailer.with(email: user.email).one_more_month_email.deliver_now
-    end
-  end
-
-  def send_payment_failed_email(user)
-    SubscriptionMailer.with(email: user.email).payment_failed_email.deliver_now
   end
 end

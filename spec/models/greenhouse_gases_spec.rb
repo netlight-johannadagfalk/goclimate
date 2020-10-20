@@ -3,6 +3,24 @@
 require 'rails_helper'
 
 RSpec.describe GreenhouseGases do
+  describe '.from_consumer_price' do
+    it 'uses 40 SEK per tonne' do
+      expect(described_class.from_consumer_price(Money.new(71_00, :sek))).to eq(described_class.new(1775))
+    end
+
+    it 'uses price factor for EUR' do
+      expect(described_class.from_consumer_price(Money.new(7_10, :eur))).to eq(described_class.new(1775))
+    end
+
+    it 'uses price factor for USD' do
+      expect(described_class.from_consumer_price(Money.new(8_40, :usd))).to eq(described_class.new(1785))
+    end
+
+    it 'rounds up to nearest kg' do
+      expect(described_class.from_consumer_price(Money.new(8_10, :usd))).to eq(described_class.new(1722))
+    end
+  end
+
   describe '#initialize' do
     it 'raises ArgumentError when co2e is not an integer' do
       expect do
@@ -12,7 +30,7 @@ RSpec.describe GreenhouseGases do
   end
 
   describe '#consumer_price' do
-    it 'uses 40 SEK per tonne, roundet up to nearest 1 krona' do
+    it 'uses 40 SEK per tonne, rounded up to nearest 1 krona' do
       expect(described_class.new(1505).consumer_price(Currency::SEK))
         .to eq(Money.new(61_00, :sek))
     end
