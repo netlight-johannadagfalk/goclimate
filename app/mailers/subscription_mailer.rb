@@ -11,14 +11,14 @@ class SubscriptionMailer < ApplicationMailer
 
   def one_more_month_email
     @climate_neutral_months = @user.number_of_neutral_months
-    @total_carbon_offset = Project.total_carbon_offset
+    @total_carbon_offset = OffsettingStatistics.new.total_sold
 
     mail subject: I18n.t('thank_you')
   end
 
   def one_more_year_email
     @climate_neutral_years = @user.number_of_neutral_months / 12
-    @total_carbon_offset = Project.total_carbon_offset
+    @total_carbon_offset = OffsettingStatistics.new.total_sold
 
     mail subject: I18n.t('thank_you')
   end
