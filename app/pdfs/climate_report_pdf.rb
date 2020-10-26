@@ -10,7 +10,7 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
     @total_employees = @invoiced_climate_reports.sum(:employees)
   end
 
-  def render # rubocop:disable Metrics/MethodLength
+  def render
     @cover = ActionController::Base.new.render_to_string(
       template: 'pdfs/cover.html.erb',
       assigns: {

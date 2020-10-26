@@ -4,16 +4,24 @@
 # combined summary of all products.
 class OffsettingStatistics
   def total_sold
-    @total_sold ||= begin
-      cdm_project_cost = Project.where("offset_type = 'CDM'").sum('cost_in_sek')
-      cdm_project_tonnes = Project.where("offset_type = 'CDM'").sum('co2e') / 1000
-      user_offset = (
-        (total_card_payments_in_sek - cdm_project_cost) /
-        GreenhouseGases::CONSUMER_PRICE_PER_TONNE_SEK.amount.to_i
-      ).round + cdm_project_tonnes
+    return @total_sold if @total_sold.present?
 
-      user_offset + (BigDecimal(ClimateReportInvoice.sum(:co2e) + Invoice.sum(:co2e)) / 1000).ceil
-    end
+    co2e = ActiveRecord::Base.connection.exec_query(<<~SQL, 'Total sold').first['sum']
+      WITH offsetting AS (
+        SELECT co2e FROM subscription_months
+        UNION ALL
+        SELECT co2e FROM gift_cards WHERE paid_at IS NOT NULL
+        UNION ALL
+        SELECT co2e FROM flight_offsets WHERE paid_at IS NOT NULL
+        UNION ALL
+        SELECT co2e FROM invoices
+        UNION ALL
+        SELECT co2e FROM climate_report_invoices
+      )
+      SELECT SUM(co2e) FROM offsetting
+    SQL
+
+    @total_sold = GreenhouseGases.new(co2e || 0)
   end
 
   def card_payments_co2e_per_month # rubocop:disable Metrics/MethodLength
@@ -51,24 +59,6 @@ class OffsettingStatistics
   end
 
   private
-
-  def total_card_payments_in_sek
-    (total_card_payments_sek_part +
-      total_card_payments_usd_part * GreenhouseGases::PRICE_FACTOR_USD +
-      total_card_payments_eur_part * GreenhouseGases::PRICE_FACTOR_EUR).round
-  end
-
-  def total_card_payments_usd_part
-    CardCharge.where(paid: true).where(currency: 'usd').sum('amount').to_i / 100
-  end
-
-  def total_card_payments_sek_part
-    CardCharge.where(paid: true).where(currency: 'sek').sum('amount').to_i / 100
-  end
-
-  def total_card_payments_eur_part
-    CardCharge.where(paid: true).where(currency: 'eur').sum('amount').to_i / 100
-  end
 
   def card_payments_per_month
     CardCharge

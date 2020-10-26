@@ -2,9 +2,9 @@
 
 <h3>Status CO2eq bought / sold</h3>
 <ul>
-  <li>Total CO2eq bought: <%= number_with_delimiter(@total_co2_bought) %> ton</li>
-  <li>Total CO2eq consumed: <%= number_with_delimiter(@total_co2_consumed) %> ton</li>
-  <li>Result right now: <%= number_with_delimiter(@total_co2_bought - @total_co2_consumed) %> ton</li>
+  <li>Total CO2eq bought: <%= @total_co2_bought %></li>
+  <li>Total CO2eq consumed: <%= @total_co2_consumed %></li>
+  <li>Result right now: <%= (@total_co2_bought - @total_co2_consumed) %></li>
 </ul>
 
 <h3>Status economy</h3>

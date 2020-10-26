@@ -4,7 +4,7 @@ module Admin
   class DashboardController < AdminController
     def index
       @offsetting_statistics = OffsettingStatistics.new
-      @total_co2_bought = Project.all.sum('co2e') / 1000
+      @total_co2_bought = Project.total_co2e
       @total_co2_consumed = @offsetting_statistics.total_sold
       @total_sek_spent = Project.all.sum('cost_in_sek')
       @payouts_in_sek = (StripePayout.sum(:amount) / 100) + Invoice.sum(:amount_in_sek)

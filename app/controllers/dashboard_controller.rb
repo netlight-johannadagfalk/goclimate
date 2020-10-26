@@ -7,7 +7,7 @@ class DashboardController < ApplicationController
   before_action :flash_when_registered
 
   def show
-    @total_carbon_offset = OffsettingStatistics.new.total_sold
+    @total_carbon_offset = OffsettingStatistics.new.total_sold.tonnes.round
     @my_carbon_offset = current_user.total_subscription_offsetting
     @my_neutral_months = current_user.number_of_neutral_months
     @unique_climate_neutral_users = User.with_active_subscription.count
