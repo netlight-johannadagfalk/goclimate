@@ -78,36 +78,32 @@
 <table class="table table-striped table-condensed">
   <tr>
     <th style="min-width: 120px;"></th>
-    <% @offsetting_statistics.card_payments_co2e_per_month.each do |key, _| %>
+    <% @sold_offsetting_per_month.keys.each do |month| %>
       <th style="white-space: nowrap;">
-        <%= key %>
+        <%= month %>
       </th>
     <% end %>
   </tr>
-  <tr>
-    <td>individuals</td>
-    <% @offsetting_statistics.card_payments_co2e_per_month.each do |_, value| %>
-      <td><%= number_with_delimiter(value.to_i) %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <td>invoices</td>
-    <% @offsetting_statistics.card_payments_co2e_per_month.each do |key, _| %>
-      <td><%= number_with_delimiter(@offsetting_statistics.invoices_co2e_per_month[key].to_i / 1000) %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <td>climate report invoices</td>
-    <% @offsetting_statistics.card_payments_co2e_per_month.each do |key, _| %>
-      <td><%= number_with_delimiter(@offsetting_statistics.climate_report_invoices_co2e_per_month[key].to_i / 1000) %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <td>total</td>
-    <% @offsetting_statistics.card_payments_co2e_per_month.each do |key, value| %>
-      <td><%= number_with_delimiter((value + @offsetting_statistics.invoices_co2e_per_month[key].to_i / 1000 + @offsetting_statistics.climate_report_invoices_co2e_per_month[key].to_i / 1000).to_i) %></td>
-    <% end %>
-  </tr>
+  <% [
+    :subscription_months_co2e, :subscription_months_count, :gift_cards_co2e,
+    :gift_cards_count, :flight_offsets_co2e, :flight_offsets_count,
+    :invoices_co2e, :invoices_count, :climate_report_invoices_co2e,
+    :climate_report_invoices_count, :total_co2e
+  ].each do |row_field| %>
+    <tr>
+      <td><%= row_field.to_s.gsub('_', ' ') %></td>
+      <% @sold_offsetting_per_month.each do |_, fields| %>
+        <% value = fields[row_field] %>
+        <td>
+          <% if value.is_a?(GreenhouseGases) %>
+            <%= number_with_delimiter(value.tonnes) %>
+          <% else %>
+            <%= number_with_delimiter(value) %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
 </table>
 
 
