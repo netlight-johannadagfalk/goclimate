@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :card_charges, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
   has_many :lifestyle_footprints
+  has_many :subscription_months
 
   scope :with_active_subscription, lambda {
     where(subscription_end_at: nil).or(where('subscription_end_at >= ?', Time.now))
@@ -49,14 +50,15 @@ class User < ApplicationRecord
   end
 
   def number_of_neutral_months
-    # TODO: Count SubscriptionMonths instead
-    @number_of_neutral_months ||= card_charges.for_subscriptions.paid.count || 1
+    @number_of_neutral_months ||=
+      begin
+        months = subscription_months.count
+        months == 0 ? 1 : months
+      end
   end
 
   def total_subscription_offsetting
-    # TODO: Sum SubscriptionMonth.co2e instead of calculating from money
-    @total_subscription_offsetting ||=
-      (my_amount_invested_sek / GreenhouseGases::CONSUMER_PRICE_PER_TONNE_SEK.amount.to_f).round(1)
+    @total_subscription_offsetting ||= GreenhouseGases.new(subscription_months.sum(:co2e))
   end
 
   def currency
@@ -90,26 +92,6 @@ class User < ApplicationRecord
   end
 
   private
-
-  def my_amount_invested_sek
-    (
-      my_amount_invested_sek_part +
-      my_amount_invested_usd_part * GreenhouseGases::PRICE_FACTOR_USD +
-      my_amount_invested_eur_part * GreenhouseGases::PRICE_FACTOR_EUR
-    ).round
-  end
-
-  def my_amount_invested_sek_part
-    card_charges.for_subscriptions.paid.in_sek.sum('amount').to_i / 100
-  end
-
-  def my_amount_invested_usd_part
-    card_charges.for_subscriptions.paid.in_usd.sum('amount').to_i / 100
-  end
-
-  def my_amount_invested_eur_part
-    card_charges.for_subscriptions.paid.in_eur.sum('amount').to_i / 100
-  end
 
   def subscription_end_at_from_stripe(stripe_subscription)
     Time.at(stripe_subscription.ended_at) if stripe_subscription.ended_at.present?

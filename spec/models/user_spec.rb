@@ -20,30 +20,33 @@ RSpec.describe User do
   end
 
   describe '#number_of_neutral_months' do
-    context 'with no card charges' do
-      it 'returns 0' do
-        expect(user.number_of_neutral_months).to eq(0)
+    context 'with no subscription months' do
+      # TODO: This is based on the now false assumption that every user is a
+      # subscriber. Needs to be conditioned on having an active subscription.
+      it 'returns 1' do
+        expect(user.number_of_neutral_months).to eq(1)
       end
     end
 
-    context 'with card charges' do
+    context 'with subscription months' do
       before do
-        create_list(:card_charge_monthly, 3, stripe_customer_id: user.stripe_customer_id)
+        create_list(:subscription_month, 3, user: user)
       end
 
-      it 'returns the count of current charges' do
+      it 'returns the count of paid months' do
         expect(user.number_of_neutral_months).to eq(3)
       end
     end
+  end
 
-    context 'with card charges for other products' do
-      before do
-        create_list(:card_charge_gift_card, 3, stripe_customer_id: user.stripe_customer_id)
-      end
+  describe '#total_subscription_offsetting' do
+    before do
+      create(:subscription_month, co2e: 800, user: user)
+      create(:subscription_month, co2e: 1200, user: user)
+    end
 
-      it 'returns 0' do
-        expect(user.number_of_neutral_months).to eq(0)
-      end
+    it 'returns the sum of all subscription months co2e' do
+      expect(user.total_subscription_offsetting).to eq(GreenhouseGases.new(2000))
     end
   end
 
