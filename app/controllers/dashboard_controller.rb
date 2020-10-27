@@ -30,24 +30,20 @@ class DashboardController < ApplicationController
   end
 
   def user_top_list
-    # TODO: Count SubscriptionMonths instead of CardCharges
-    User.where("users.stripe_customer_id != ''")
-        .left_joins(:card_charges)
-        .where('card_charges.paid = true')
-        .where("users.user_name is not null and users.user_name != ''")
-        .select('users.id, users.user_name, COUNT(1)')
-        .group('users.id')
-        .order(Arel.sql('COUNT(1) DESC'))
-        .limit(1000)
+    User
+      .left_joins(:subscription_months)
+      .where("users.user_name is not null and users.user_name != ''")
+      .select('users.id, users.user_name, COUNT(1)')
+      .group('users.id')
+      .order(Arel.sql('COUNT(1) DESC'))
+      .limit(1000)
   end
 
   def country_top_list
-    # TODO: Count SubscriptionMonths instead of CardCharges
-    User.where("users.stripe_customer_id != ''")
-        .left_joins(:card_charges)
-        .where('card_charges.paid = true')
-        .select('users.country, COUNT(1)')
-        .group('users.country')
-        .order(Arel.sql('COUNT(1) DESC'))
+    User
+      .left_joins(:subscription_months)
+      .select('users.country, COUNT(1)')
+      .group('users.country')
+      .order(Arel.sql('COUNT(1) DESC'))
   end
 end
