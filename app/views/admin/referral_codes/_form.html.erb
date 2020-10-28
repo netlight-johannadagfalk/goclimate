@@ -1,0 +1,27 @@
+<%= form_with(model: [:admin, referral_code], local: true) do |form| %>
+  <% if referral_code.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(referral_code.errors.count, "error") %> prohibited this referral code from being saved:</h2>
+
+      <ul>
+        <% referral_code.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :code %>
+    <%= form.text_field :code, class: 'form-control' %>
+    <span class="help-block">Can only contain letters, digits and dashes (-).</span>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :destination_path %>
+    <%= form.text_field :destination_path, class: 'form-control' %>
+    <span class="help-block">Must be a relative link to somewhere on our site, i.e. the part starting with a "/". Example: "/know-your-footprint".</span>
+  </div>
+
+  <%= form.submit 'Update referral code', class: 'btn btn-primary' %>
+<% end %>

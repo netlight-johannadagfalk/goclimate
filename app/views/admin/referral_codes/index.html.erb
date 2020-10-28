@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Referral Codes</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Created</th>
+      <th>Code</th>
+      <th>Destination</th>
+      <th>Times used</th>
+      <th>Amount offsetting</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @referral_codes.each do |referral_code| %>
+      <tr>
+        <td><%= time_tag(referral_code.created_at, format: '%F %R') %></td>
+        <td><code><%= referral_code.code %></code></td>
+        <td><%= link_to(referral_code.destination_path, referral_code.destination_path) %></td>
+        <td><%= referral_code.referred_users_count %></td>
+        <td><%= referral_code.subscription_months_total_co2e %></td>
+        <td class="admin-actions">
+          <%= link_to 'Show', [:admin, referral_code] %> &nbsp;
+          <%= link_to 'Edit', edit_admin_referral_code_path(referral_code) %> &nbsp;
+          <%= link_to 'Destroy', [:admin, referral_code], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<%= link_to 'New Referral Code', new_admin_referral_code_path, class: 'btn btn-default' %>

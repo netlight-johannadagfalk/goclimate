@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_093050) do
+ActiveRecord::Schema.define(version: 2020_10_28_072101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,6 +224,14 @@ ActiveRecord::Schema.define(version: 2020_10_08_093050) do
     t.text "short_description"
   end
 
+  create_table "referral_codes", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "code"
+    t.text "destination_path"
+    t.index ["code"], name: "index_referral_codes_on_code"
+  end
+
   create_table "stripe_payouts", force: :cascade do |t|
     t.string "stripe_payout_id"
     t.integer "amount"
@@ -271,7 +279,9 @@ ActiveRecord::Schema.define(version: 2020_10_08_093050) do
     t.string "country"
     t.datetime "subscription_end_at"
     t.string "region"
+    t.bigint "referred_from_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["referred_from_id"], name: "index_users_on_referred_from_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

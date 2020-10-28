@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Referral Code</h1>
+
+<dl class="dl-horizontal">
+  <dt>Created:</dt>
+  <dd><%= time_tag(@referral_code.created_at) %></dd>
+
+  <dt>Code:</dt>
+  <dd><code><%= @referral_code.code %></code></dd>
+
+  <dt>Destination:</dt>
+  <dd><%= link_to(@referral_code.destination_path, @referral_code.destination_path) %></dd>
+
+  <dt>Times used:</dt>
+  <dd><%= @referral_code.referred_users_count %></dd>
+
+  <dt>Amount offsetting:</dt>
+  <dd><%= @referral_code.subscription_months_total_co2e %></dd>
+</dl>
+
+<hr>
+
+<%= link_to 'Edit', edit_admin_referral_code_path(@referral_code), class: 'btn btn-default' %>
+<%= link_to 'Back', admin_referral_codes_path, class: 'btn btn-link' %>
