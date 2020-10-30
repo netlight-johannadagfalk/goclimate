@@ -2,9 +2,9 @@
 
 <h3>Status CO2eq bought / sold</h3>
 <ul>
-  <li>Total CO2eq bought: <%= number_with_delimiter(@total_co2_bought) %> ton</li>
-  <li>Total CO2eq consumed: <%= number_with_delimiter(@total_co2_consumed) %> ton</li>
-  <li>Result right now: <%= number_with_delimiter(@total_co2_bought - @total_co2_consumed) %> ton</li>
+  <li>Total CO2eq bought: <%= @total_co2_bought %></li>
+  <li>Total CO2eq consumed: <%= @total_co2_consumed %></li>
+  <li>Result right now: <%= (@total_co2_bought - @total_co2_consumed) %></li>
 </ul>
 
 <h3>Status economy</h3>
@@ -78,36 +78,32 @@
 <table class="table table-striped table-condensed">
   <tr>
     <th style="min-width: 120px;"></th>
-    <% @co2e_per_month_individuals.each do |key, _| %>
+    <% @sold_offsetting_per_month.keys.each do |month| %>
       <th style="white-space: nowrap;">
-        <%= key %>
+        <%= month %>
       </th>
     <% end %>
   </tr>
-  <tr>
-    <td>individuals</td>
-    <% @co2e_per_month_individuals.each do |_, value| %>
-      <td><%= number_with_delimiter(value.to_i) %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <td>invoices</td>
-    <% @co2e_per_month_individuals.each do |key, _| %>
-      <td><%= number_with_delimiter(@co2e_per_month_invoices[key].to_i / 1000) %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <td>climate report invoices</td>
-    <% @co2e_per_month_individuals.each do |key, _| %>
-      <td><%= number_with_delimiter(@co2e_per_month_cri[key].to_i / 1000) %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <td>total</td>
-    <% @co2e_per_month_individuals.each do |key, value| %>
-      <td><%= number_with_delimiter((value + @co2e_per_month_invoices[key].to_i / 1000 + @co2e_per_month_cri[key].to_i / 1000).to_i) %></td>
-    <% end %>
-  </tr>
+  <% [
+    :subscription_months_co2e, :subscription_months_count, :gift_cards_co2e,
+    :gift_cards_count, :flight_offsets_co2e, :flight_offsets_count,
+    :invoices_co2e, :invoices_count, :climate_report_invoices_co2e,
+    :climate_report_invoices_count, :total_co2e
+  ].each do |row_field| %>
+    <tr>
+      <td><%= row_field.to_s.gsub('_', ' ') %></td>
+      <% @sold_offsetting_per_month.each do |_, fields| %>
+        <% value = fields[row_field] %>
+        <td>
+          <% if value.is_a?(GreenhouseGases) %>
+            <%= number_with_delimiter(value.tonnes) %>
+          <% else %>
+            <%= number_with_delimiter(value) %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
 </table>
 
 

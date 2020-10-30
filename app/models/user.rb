@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :card_charges, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
   has_many :lifestyle_footprints
+  has_many :subscription_months
 
   scope :with_active_subscription, lambda {
     where(subscription_end_at: nil).or(where('subscription_end_at >= ?', Time.now))
@@ -49,7 +50,15 @@ class User < ApplicationRecord
   end
 
   def number_of_neutral_months
-    @number_of_neutral_months ||= card_charges.for_subscriptions.paid.count
+    @number_of_neutral_months ||=
+      begin
+        months = subscription_months.count
+        months == 0 ? 1 : months
+      end
+  end
+
+  def total_subscription_offsetting
+    @total_subscription_offsetting ||= GreenhouseGases.new(subscription_months.sum(:co2e))
   end
 
   def currency

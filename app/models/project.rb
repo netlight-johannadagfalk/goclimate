@@ -9,15 +9,8 @@ class Project < ApplicationRecord
   validates_presence_of :name, :co2e, :date_bought, :latitude, :longitude, :image_url, :blog_url, :short_description
   validates :offset_type, inclusion: %w[GS CDM+GS CDM], allow_nil: true
 
-  def self.total_carbon_offset
-    cdm_project_cost = Project.where("offset_type = 'CDM'").sum('cost_in_sek')
-    cdm_project_tonnes = Project.where("offset_type = 'CDM'").sum('co2e') / 1000
-    user_offset = (
-      (CardCharge.total_in_sek - cdm_project_cost) /
-      GreenhouseGases::CONSUMER_PRICE_PER_TONNE_SEK.amount.to_i
-    ).round + cdm_project_tonnes
-
-    user_offset + (BigDecimal(ClimateReportInvoice.sum(:co2e) + Invoice.sum(:co2e)) / 1000).ceil
+  def self.total_co2e
+    GreenhouseGases.new(Project.all.sum('co2e'))
   end
 
   def co2e_reserved

@@ -182,8 +182,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :impact_statistics, only: [:show], format: true, constraints: { format: :csv }
-
   # Errors
   match '/404', to: 'errors#not_found', via: :all
   match '/422', to: 'errors#unprocessable_entity', via: :all

@@ -7,10 +7,10 @@ RSpec.describe CardCharge do
     context 'with subscription charge' do
       let(:charge) { Stripe::Charge.construct_from(stripe_json_fixture('charge_subscription.json')) }
       let(:invoice) { Stripe::Invoice.construct_from(stripe_json_fixture('invoice_subscription_month.json')) }
+      let!(:user) { create(:user, stripe_customer_id: charge.customer, region: Region::Europe) }
 
       before do
         allow(Stripe::Invoice).to receive(:retrieve).with(charge.invoice).and_return(invoice)
-        create(:user, stripe_customer_id: charge.customer, region: Region::Europe)
       end
 
       it 'sets gift card flag to false' do
@@ -38,9 +38,9 @@ RSpec.describe CardCharge do
           .to match('You have lived a climate neutral life for 1 month')
       end
 
-      context 'when 11 existing paid charges already exist' do
+      context 'when user has been climate neutral for 12 months' do
         before do
-          create_list(:card_charge, 11, stripe_customer_id: charge.customer, paid: true, currency: 'usd')
+          create_list(:subscription_month, 11, user: user)
         end
 
         it 'sends one more year email' do

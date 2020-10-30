@@ -45,7 +45,7 @@ RSpec.describe SubscriptionMailer, type: :mailer do
     subject(:mail) { described_class.with(email: user.email).one_more_year_email }
 
     before do
-      create_list(:card_charge, 12, stripe_customer_id: 'test_id', paid: true)
+      create_list(:subscription_month, 12, user: user)
     end
 
     it_behaves_like 'subscription email'
