@@ -19,6 +19,11 @@ en:
       create_account: Create account
       your_subscription: Your subscription
       number_of_people: Number of people
+      referral_code: Referral code
+      referral_code_change: Change
+      referral_code_link: Have a referral code?
+      first_month_free: First month free
+      then: Then
       membership:
         free: <span>Free account</span>. Track your carbon footprint over time.
         single: <span>Offset</span> your carbon footprint through climate projects.

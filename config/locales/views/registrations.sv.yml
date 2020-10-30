@@ -17,6 +17,11 @@ sv:
       create_account: Skapa konto
       your_subscription: Din prenumeration
       number_of_people: Antal personer
+      referral_code: Kod
+      referral_code_change: Byt
+      referral_code_link: Har du en kod att skriva in?
+      first_month_free: Första månaden gratis
+      then: Därefter
       membership:
         free: <span>Gratis konto</span>. Spara och följ ditt klimatavtryck över tid.
         single: <span>Kompensera</span> ditt avtryck genom klimatprojekt.

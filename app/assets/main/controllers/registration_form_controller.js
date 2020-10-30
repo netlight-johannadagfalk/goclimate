@@ -57,13 +57,13 @@ export default class RegistrationFormController extends Controller {
           window.location = data.success_url;
           resolve();
           break;
-        case 'verification_required':
-          window.stripe.confirmCardPayment(data.payment_intent_client_secret)
+        case 'confirmation_required':
+          RegistrationFormController.confirmPromise(data.intent_type, data.intent_client_secret)
             .then((result) => {
-              if (result.paymentIntent !== undefined) {
-                window.location = data.success_url;
-              } else {
+              if (result.error !== undefined) {
                 this.setErrorMessage(result.error.message);
+              } else {
+                window.location = data.success_url;
               }
               resolve();
             });
@@ -103,5 +103,18 @@ export default class RegistrationFormController extends Controller {
     return this.application.getControllerForElementAndIdentifier(this.stripeCardElementTarget, 'stripe-card-element');
   }
 }
+
+RegistrationFormController.confirmPromise = function confirmPromise(
+  intentType, intentClientSecret
+) {
+  switch (intentType) {
+    case 'payment_intent':
+      return window.stripe.confirmCardPayment(intentClientSecret);
+    case 'setup_intent':
+      return window.stripe.confirmCardSetup(intentClientSecret);
+    default:
+      return null;
+  }
+};
 
 RegistrationFormController.targets = ['form', 'privacyPolicyAgreement', 'submitButton', 'stripeCardElement', 'errorMessage', 'loadingIndicator'];

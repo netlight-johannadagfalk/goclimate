@@ -61,6 +61,11 @@ Rails.application.routes.draw do
     resource :travel_calculator, controller: 'travel_calculator', path: 'travel-calculator', only: [:show]
 
     resources :lifestyle_footprints, path: 'calculator', only: [:new, :create], path_names: { new: '' }
+    resources :referral_codes, path: 'referral-codes', only: [] do
+      collection do
+        post :lookup
+      end
+    end
 
     resources :projects, path: 'climate-projects', only: [:index]
 
