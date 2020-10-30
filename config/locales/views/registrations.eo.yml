@@ -10,9 +10,7 @@ eo:
       lower: crwdns13048:0crwdne13048:0
       your_climate_footprint: crwdns13050:0%{footprint}crwdnd13050:0%{relative}crwdnd13050:0%{country}crwdne13050:0
       your_climate_footprint_compared_world: crwdns13052:0%{footprint}crwdnd13052:0%{relative}crwdne13052:0
-      subscribe_heading: crwdns13054:0crwdne13054:0
       step: crwdns13246:0crwdne13246:0
-      adjust_subscription: crwdns13248:0crwdne13248:0
       create_account: crwdns13250:0crwdne13250:0
       your_subscription: crwdns13058:0crwdne13058:0
       number_of_people: crwdns13060:0crwdne13060:0
