@@ -165,6 +165,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'dashboard#index'
     resources :api_keys
+    resources :referral_codes
     resources :invoices
     resources :lifestyle_calculators, only: [:index, :show, :new, :create] do
       member do

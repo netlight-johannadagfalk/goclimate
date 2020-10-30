@@ -8,7 +8,7 @@ class SubscriptionMonth < ApplicationRecord
   attribute :currency, :currency
 
   validates_presence_of :start_at, :co2e
-  validates :payment_type, inclusion: { in: %w[CardCharge] } # This can soon be ReferralCode too
+  validates :payment_type, inclusion: { in: %w[CardCharge ReferralCode] }
 
   def self.create_from_stripe_invoice_line!(stripe_invoice_line, charge)
     create!(

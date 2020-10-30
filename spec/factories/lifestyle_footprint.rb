@@ -2,7 +2,6 @@
 
 FactoryBot.define do
   factory :lifestyle_footprint do
-    key { 'a9993e364706816aba3e25717850c26c9cd0d89d' }
     lifestyle_calculator
     country { lifestyle_calculator.countries.first }
     region_answer { 'first' }

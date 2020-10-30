@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :card_charges, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
   has_many :lifestyle_footprints
   has_many :subscription_months
+  belongs_to :referred_from, class_name: 'ReferralCode', optional: true
 
   scope :with_active_subscription, lambda {
     where(subscription_end_at: nil).or(where('subscription_end_at >= ?', Time.now))
