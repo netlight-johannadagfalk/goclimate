@@ -5,7 +5,7 @@ module Admin
     def index
       offsetting_statistics = OffsettingStatistics.new
       @total_co2_consumed = offsetting_statistics.total_sold
-      @sold_offsetting_per_month = offsetting_statistics.sold_offsetting_per_month
+      @sold_offsetting_per_month = offsetting_statistics.sold_offsetting_per_month.to_a.reverse.to_h
       @total_co2_bought = Project.total_co2e
       @total_sek_spent = Project.all.sum('cost_in_sek')
       @payouts_in_sek = (StripePayout.sum(:amount) / 100) + Invoice.sum(:amount_in_sek)

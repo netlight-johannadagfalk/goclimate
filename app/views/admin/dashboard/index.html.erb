@@ -96,7 +96,7 @@
         <% value = fields[row_field] %>
         <td>
           <% if value.is_a?(GreenhouseGases) %>
-            <%= number_with_delimiter(value.tonnes) %>
+            <%= number_with_delimiter(value.tonnes.round) %> t
           <% else %>
             <%= number_with_delimiter(value) %>
           <% end %>
