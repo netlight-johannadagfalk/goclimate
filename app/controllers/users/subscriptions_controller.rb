@@ -55,7 +55,7 @@ module Users
     end
 
     def set_subscription_manager
-      @manager = SubscriptionManager.new(current_user.stripe_customer)
+      @manager = SubscriptionManager.new(current_user)
     end
 
     def render_successful_update
@@ -91,14 +91,14 @@ module Users
     end
 
     def customer_currency
-      Currency.from_iso_code(@manager.customer.currency) || current_region.currency
+      Currency.from_iso_code(current_user.stripe_customer.currency) || current_region.currency
     end
 
     def customer_payment_method
-      if (payment_method_id = @manager.customer.invoice_settings&.default_payment_method)
+      if (payment_method_id = current_user.stripe_customer.invoice_settings&.default_payment_method)
         Stripe::PaymentMethod.retrieve(payment_method_id)
-      elsif (source_id = @manager.customer.default_source)
-        @manager.customer.sources.find { |s| s.id == source_id }
+      elsif (source_id = current_user.stripe_customer.default_source)
+        current_user.stripe_customer.sources.find { |s| s.id == source_id }
       end
     end
 

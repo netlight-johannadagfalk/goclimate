@@ -35,13 +35,13 @@ module Users
 
       unless params[:membership] == 'free'
         stripe_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan_price)
-        @manager.sign_up(stripe_plan, params[:payment_method_id])
+        @manager.sign_up(stripe_plan, params[:payment_method_id], ReferralCode.find_by_code(params[:referral_code]))
       end
 
       if @manager.errors.any?
         render_signup_failed_json
       elsif @manager.confirmation_required?
-        render_verification_required_json
+        render_confirmation_required_json
       else
         WelcomeMailer.with(email: @user.email).welcome_email.deliver_now
         render_success_json
@@ -115,14 +115,7 @@ module Users
     end
 
     def set_subscription_manager
-      @manager =
-        if (customer = @user.stripe_customer).present?
-          SubscriptionManager.new(customer)
-        else
-          SubscriptionManager.for_new_customer(@user.email)
-        end
-
-      @user.update!(stripe_customer_id: @manager.customer.id) unless @user.stripe_customer_id == @manager.customer.id
+      @manager = SubscriptionManager.new(@user)
     end
 
     def render_price_json
@@ -140,10 +133,11 @@ module Users
       render status: :bad_request, json: error_json(@manager.errors.values.join(', '))
     end
 
-    def render_verification_required_json
+    def render_confirmation_required_json
       render json: {
-        next_step: :verification_required,
-        payment_intent_client_secret: @manager.intent_to_confirm.client_secret,
+        next_step: 'confirmation_required',
+        intent_type: @manager.intent_to_confirm.object,
+        intent_client_secret: @manager.intent_to_confirm.client_secret,
         success_url: after_sign_up_path_for(@user)
       }
     end

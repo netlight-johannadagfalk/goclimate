@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_28_072101) do
+ActiveRecord::Schema.define(version: 2020_10_31_191901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -229,7 +229,7 @@ ActiveRecord::Schema.define(version: 2020_10_28_072101) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "code"
     t.text "destination_path"
-    t.index ["code"], name: "index_referral_codes_on_code"
+    t.index "lower(code)", name: "index_referral_codes_on_lower_code"
   end
 
   create_table "stripe_payouts", force: :cascade do |t|

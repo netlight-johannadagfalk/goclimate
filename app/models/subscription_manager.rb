@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class SubscriptionManager
+class SubscriptionManager # rubocop:disable Metrics/ClassLength
   class SubscriptionMissingError < StandardError; end
 
   BUFFER_FACTOR = 2
 
-  attr_reader :customer, :errors, :intent_to_confirm
+  attr_reader :user, :errors, :intent_to_confirm
 
   def self.price_for_footprint(footprint, currency)
     monthly_offset = footprint / 12 * BUFFER_FACTOR
@@ -22,23 +22,24 @@ class SubscriptionManager
     end
   end
 
-  # NOTE: Keeping a Stripe::Customer up to date might be more of a task for
-  # User, as updates to the email should propagate to Stripe and because
-  # subscriptions might not be the only case we want to use Stripe::Customers
-  # for. Something for the future maybe.
-  def self.for_new_customer(email)
-    new(Stripe::Customer.create(email: email))
-  end
-
-  def initialize(customer)
-    @customer = customer
+  def initialize(user)
+    @user = user
     @errors = {}
   end
 
-  def sign_up(plan, payment_method_id)
+  def sign_up(plan, payment_method_id, referral_code = nil)
     handle_errors_and_return_status do
       update_default_card(payment_method_id)
-      create_subscription(plan)
+
+      if referral_code.present?
+        create_subscription(plan, 1.month.from_now)
+        create_trial_subscription_month(referral_code)
+        user.update_attribute(:referred_from, referral_code)
+        set_intent_to_confirm_if_action_required(payment_method_id, user.stripe_customer_id)
+      else
+        create_subscription(plan)
+      end
+
       @intent_to_confirm = subscription.latest_invoice.payment_intent if subscription.status == 'incomplete'
     end
   end
@@ -51,11 +52,7 @@ class SubscriptionManager
     handle_errors_and_return_status do
       if payment_method_id.present?
         update_default_card(payment_method_id)
-
-        setup_intent = Stripe::SetupIntent.create(
-          payment_method: payment_method_id, confirm: true, customer: customer.id
-        )
-        @intent_to_confirm = setup_intent if setup_intent.status == 'requires_action'
+        set_intent_to_confirm_if_action_required(payment_method_id, user.stripe_customer_id)
       end
 
       update_subscription(new_plan) if subscription.plan.id != new_plan.id
@@ -65,7 +62,7 @@ class SubscriptionManager
   def cancel
     subscription.delete
 
-    Stripe::PaymentMethod.list(customer: customer.id, type: 'card').each do |payment_method|
+    Stripe::PaymentMethod.list(customer: user.stripe_customer.id, type: 'card').each do |payment_method|
       Stripe::PaymentMethod.detach(payment_method.id)
     end
   end
@@ -75,7 +72,7 @@ class SubscriptionManager
   end
 
   def subscription
-    @subscription ||= customer.subscriptions.first
+    @subscription ||= user.stripe_customer.subscriptions.first
   end
 
   private
@@ -90,11 +87,23 @@ class SubscriptionManager
     false
   end
 
-  def create_subscription(plan)
+  def create_subscription(plan, trial_end = nil)
     @subscription = Stripe::Subscription.create(
-      customer: customer.id,
+      customer: user.stripe_customer_id,
       plan: plan.id,
+      trial_end: trial_end&.to_i,
       expand: ['latest_invoice.payment_intent']
+    )
+  end
+
+  def create_trial_subscription_month(referral_code)
+    SubscriptionMonth.create!(
+      user: user,
+      payment: referral_code,
+      start_at: Time.at(subscription.start_date),
+      co2e: GreenhouseGases.from_consumer_price(
+        Money.new(subscription.plan.amount, subscription.plan.currency.to_sym)
+      )
     )
   end
 
@@ -107,7 +116,14 @@ class SubscriptionManager
   end
 
   def update_default_card(payment_method)
-    Stripe::PaymentMethod.attach(payment_method, customer: customer.id)
-    Stripe::Customer.update(customer.id, invoice_settings: { default_payment_method: payment_method })
+    Stripe::PaymentMethod.attach(payment_method, customer: user.stripe_customer.id)
+    Stripe::Customer.update(user.stripe_customer_id, invoice_settings: { default_payment_method: payment_method })
+  end
+
+  def set_intent_to_confirm_if_action_required(payment_method_id, stripe_customer_id)
+    setup_intent = Stripe::SetupIntent.create(
+      payment_method: payment_method_id, confirm: true, customer: stripe_customer_id
+    )
+    @intent_to_confirm = setup_intent if setup_intent.status == 'requires_action'
   end
 end

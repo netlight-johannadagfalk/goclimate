@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe SubscriptionManager do
-  subject(:manager) { described_class.for_new_customer(email) }
+  subject(:manager) { described_class.new(user) }
 
-  let(:email) { 'test@example.com' }
+  let(:user) { create(:user) }
   let(:plan) { Stripe::Plan.construct_from(stripe_json_fixture('plan.json')) }
   let(:payment_method_id) { 'pm_some_card' }
 
@@ -22,20 +22,6 @@ RSpec.describe SubscriptionManager do
     allow(Stripe::PaymentMethod).to receive(:detach)
     allow(Stripe::Subscription).to receive(:create).and_return(created_subscription)
     allow(Stripe::Subscription).to receive(:update).and_return(created_subscription)
-  end
-
-  describe '.for_new_customer' do
-    it 'creates a new customer' do
-      described_class.for_new_customer(email)
-
-      expect(Stripe::Customer).to have_received(:create)
-    end
-
-    it 'sets email for new customer' do
-      described_class.for_new_customer(email)
-
-      expect(Stripe::Customer).to have_received(:create).with hash_including(email: email)
-    end
   end
 
   describe '.price_for_footprint' do
@@ -73,14 +59,14 @@ RSpec.describe SubscriptionManager do
       manager.sign_up(plan, payment_method_id)
 
       expect(Stripe::Customer).to have_received(:update)
-        .with(manager.customer.id, hash_including(invoice_settings: { default_payment_method: payment_method_id }))
+        .with(user.stripe_customer_id, hash_including(invoice_settings: { default_payment_method: payment_method_id }))
     end
 
     it 'attaches payment_method to customer' do
       manager.sign_up(plan, payment_method_id)
 
       expect(Stripe::PaymentMethod).to have_received(:attach)
-        .with(payment_method_id, hash_including(customer: manager.customer.id))
+        .with(payment_method_id, hash_including(customer: user.stripe_customer_id))
     end
 
     it 'creates new subscription' do
@@ -92,7 +78,7 @@ RSpec.describe SubscriptionManager do
     it 'uses customer for new subscription' do
       manager.sign_up(plan, payment_method_id)
 
-      expect(Stripe::Subscription).to have_received(:create).with hash_including(customer: manager.customer.id)
+      expect(Stripe::Subscription).to have_received(:create).with hash_including(customer: user.stripe_customer_id)
     end
 
     it 'uses provided plan for new subscription' do
@@ -105,6 +91,74 @@ RSpec.describe SubscriptionManager do
       manager.sign_up(plan, payment_method_id)
 
       expect(manager.intent_to_confirm).to be_nil
+    end
+
+    context 'with referral code' do
+      let(:referral_code) { create(:referral_code) }
+
+      before do
+        allow(Stripe::SetupIntent).to receive(:create).and_return(
+          Stripe::SetupIntent.construct_from(stripe_json_fixture('setup_intent_succeeded.json'))
+        )
+      end
+
+      it 'sets trial_end to 1 month in the future' do
+        manager.sign_up(plan, payment_method_id, referral_code)
+
+        expect(Stripe::Subscription)
+          .to have_received(:create).with hash_including(trial_end: a_value_within(5).of(1.month.from_now.to_i))
+      end
+
+      it 'creates a subscription month for the trial month' do
+        expect do
+          manager.sign_up(plan, payment_method_id, referral_code)
+        end.to change(SubscriptionMonth, :count).by(1)
+      end
+
+      it 'sets user for subscription month' do
+        manager.sign_up(plan, payment_method_id, referral_code)
+
+        expect(SubscriptionMonth.last.user).to eq(user)
+      end
+
+      it 'sets referral code as payment for subscription month' do
+        manager.sign_up(plan, payment_method_id, referral_code)
+
+        expect(SubscriptionMonth.last.payment).to eq(referral_code)
+      end
+
+      it 'sets start_at for subscription month to subscription start' do
+        manager.sign_up(plan, payment_method_id, referral_code)
+
+        expect(SubscriptionMonth.last.start_at.to_i).to eq(created_subscription.start_date)
+      end
+
+      it 'sets co2e based on plan price' do
+        manager.sign_up(plan, payment_method_id, referral_code)
+
+        expect(SubscriptionMonth.last.co2e).to eq(GreenhouseGases.new(765))
+      end
+
+      it 'sets referred_from on user to the referral code used' do
+        manager.sign_up(plan, payment_method_id, referral_code)
+
+        user.reload
+        expect(user.referred_from).to eq(referral_code)
+      end
+
+      context 'with payment_method_id that triggers 3D Secure' do
+        before do
+          allow(Stripe::SetupIntent).to receive(:create).and_return(
+            Stripe::SetupIntent.construct_from(stripe_json_fixture('setup_intent_requires_action.json'))
+          )
+        end
+
+        it 'sets intent_to_confirm to SetupIntent that needs confirmation' do
+          manager.sign_up(plan, payment_method_id, referral_code)
+
+          expect(manager.intent_to_confirm).to be_a(Stripe::SetupIntent)
+        end
+      end
     end
 
     context 'when new subscription is incomplete and requires_action' do
@@ -141,22 +195,13 @@ RSpec.describe SubscriptionManager do
   end
 
   context 'when customer already exists' do
-    subject(:manager) { described_class.new(customer) }
-
+    let(:user) { create(:user, stripe_customer_id: customer.id) }
     let(:customer) do
       Stripe::Customer.construct_from(stripe_json_fixture('customer.json'))
     end
 
-    describe '#new' do
-      it 'returns an instance' do
-        expect(described_class.new(customer)).to be_an_instance_of(described_class)
-      end
-
-      it 'sets provided customer' do
-        manager = described_class.new(customer)
-
-        expect(manager.customer).to be(customer)
-      end
+    before do
+      allow(Stripe::Customer).to receive(:retrieve).with(customer.id).and_return(customer)
     end
 
     describe '#cancel' do

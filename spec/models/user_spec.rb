@@ -3,7 +3,49 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  subject(:user) { build(:user, stripe_customer_id: 'cus_TEST') }
+  subject(:user) { build(:user, stripe_customer_id: stripe_customer&.id) }
+
+  let(:stripe_customer) do
+    Stripe::Customer.construct_from(stripe_json_fixture('customer.json'))
+  end
+
+  describe '#stripe_customer' do
+    before do
+      allow(Stripe::Customer).to receive(:retrieve).with(user.stripe_customer_id).and_return(stripe_customer)
+    end
+
+    it 'returns associated stripe customer' do
+      expect(user.stripe_customer).to eq(stripe_customer)
+    end
+
+    context 'when no Stripe customer is associated' do
+      subject(:user) { build(:user, stripe_customer_id: nil) }
+
+      before do
+        allow(Stripe::Customer).to receive(:create).and_return(stripe_customer)
+      end
+
+      it 'creates a Stripe customer' do
+        user.stripe_customer
+
+        expect(Stripe::Customer).to have_received(:create)
+      end
+
+      it 'sets email for new Stripe customer' do
+        user.stripe_customer
+
+        expect(Stripe::Customer).to have_received(:create).with hash_including(
+          email: user.email
+        )
+      end
+
+      it 'updates stripe_customer_id to new Stripe customer' do
+        user.stripe_customer
+
+        expect(user.stripe_customer_id).to eq(stripe_customer.id)
+      end
+    end
+  end
 
   describe '#user_name' do
     context 'with a user_name with an @ sign' do
