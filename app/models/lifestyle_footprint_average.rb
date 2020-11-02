@@ -38,6 +38,7 @@ LifestyleFootprintAverage::COUNTRIES = [
   LifestyleFootprintAverage.new(%w[LU], 22_000, 'Ivanova 2015'),
   LifestyleFootprintAverage.new(%w[LV], 7_300, 'Ivanova 2015'),
   LifestyleFootprintAverage.new(%w[MT], 11_300, 'Ivanova 2015'),
+  LifestyleFootprintAverage.new(%w[NO], 10_090, 'Steen‐Olsen, Kjartan, Richard Wood, and Edgar G. Hertwich (2016)'),
   LifestyleFootprintAverage.new(%w[PL], 8_300, 'Ivanova 2015'),
   LifestyleFootprintAverage.new(%w[PT], 8_600, 'Ivanova 2015'),
   LifestyleFootprintAverage.new(%w[RO], 5_400, 'Ivanova 2015'),
