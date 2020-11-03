@@ -1,9 +1,13 @@
 <script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId            : '452582378427296',
-      xfbml      : true,
-      version          : 'v2.9'
+      <% if Rails.env.development? %>
+        appId: '261728851826356',
+      <% else %>
+        appId: '452582378427296',
+      <% end %>
+      xfbml: true,
+      version: 'v2.9'
     });
     FB.AppEvents.logPageView();
   };
