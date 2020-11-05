@@ -35,6 +35,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
 
     expect(page).to have_text 'Welcome to a climate neutral life'
     expect(User.last.stripe_customer.subscriptions.first.status).to eq('active')
+    expect(User.last.first_subscription_created_at.to_date).to eq(Time.now.to_date)
   end
 
   scenario 'Register with 3D Secure card' do
@@ -72,6 +73,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
 
     expect(page).to have_text 'Welcome to a climate neutral life'
     expect(User.last.stripe_customer.subscriptions.first.status).to eq('active')
+    expect(User.last.first_subscription_created_at.to_date).to eq(Time.now.to_date)
   end
 
   scenario 'Register with referral code' do
@@ -115,6 +117,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     expect(page).to have_text 'Welcome to a climate neutral life'
     expect(Stripe::Invoice.retrieve(User.last.stripe_customer.subscriptions.first.latest_invoice).total).to eq(0)
     expect(User.last.stripe_customer.subscriptions.first.status).to eq('trialing')
+    expect(User.last.first_subscription_created_at.to_date).to eq(Time.now.to_date)
     subscription = nil
     expect { subscription = trigger_next_subscription_charge }.not_to raise_error
     expect(subscription.status).to eq('active')
@@ -145,6 +148,8 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     # Wait for success page to render
     find('.dashboard-show', wait: 20)
     expect(page).to have_text 'Welcome to GoClimate!'
+    expect(User.last.stripe_customer.subscriptions.first).to eq(nil)
+    expect(User.last.first_subscription_created_at).to eq(nil)
   end
 
   scenario 'Register through campaign page' do
@@ -181,6 +186,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
 
     expect(page).to have_text 'Welcome to a climate neutral life'
     expect(User.last.stripe_customer.subscriptions.first.status).to eq('active')
+    expect(User.last.first_subscription_created_at.to_date).to eq(Time.now.to_date)
   end
 
   scenario 'Register through campaign page with 3D Secure card' do
@@ -220,6 +226,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
 
     expect(page).to have_text 'Welcome to a climate neutral life'
     expect(User.last.stripe_customer.subscriptions.first.status).to eq('active')
+    expect(User.last.first_subscription_created_at.to_date).to eq(Time.now.to_date)
   end
 
   scenario 'Register through campaign page without subscription' do
@@ -251,6 +258,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
 
     expect(page).to have_text 'Welcome to GoClimate!'
     expect(User.last.stripe_customer.subscriptions.first).to eq(nil)
+    expect(User.last.first_subscription_created_at).to eq(nil)
   end
 
   def trigger_next_subscription_charge

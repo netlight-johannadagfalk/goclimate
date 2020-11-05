@@ -27,7 +27,7 @@ class SubscriptionManager # rubocop:disable Metrics/ClassLength
     @errors = {}
   end
 
-  def sign_up(plan, payment_method_id, referral_code = nil)
+  def sign_up(plan, payment_method_id, referral_code = nil) # rubocop:disable Metrics/MethodLength
     handle_errors_and_return_status do
       update_default_card(payment_method_id)
 
@@ -39,9 +39,12 @@ class SubscriptionManager # rubocop:disable Metrics/ClassLength
       else
         create_subscription(plan)
       end
-
       @intent_to_confirm = subscription.latest_invoice.payment_intent if subscription.status == 'incomplete'
       user.stripe_customer.refresh
+
+      if user.first_subscription_created_at.nil?
+        user.update_attribute(:first_subscription_created_at, Time.at(subscription&.start_date))
+      end
     end
   end
 
