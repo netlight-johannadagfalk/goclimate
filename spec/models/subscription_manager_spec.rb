@@ -5,18 +5,20 @@ require 'rails_helper'
 RSpec.describe SubscriptionManager do
   subject(:manager) { described_class.new(user) }
 
-  let(:user) { create(:user) }
+  let(:user) { create(:user, stripe_customer_id: customer.id) }
   let(:plan) { Stripe::Plan.construct_from(stripe_json_fixture('plan.json')) }
   let(:payment_method_id) { 'pm_some_card' }
 
   let(:created_subscription) do
     Stripe::Subscription.construct_from(stripe_json_fixture('subscription.json'))
   end
+  let(:customer) do
+    Stripe::Customer.construct_from(stripe_json_fixture('customer.json'))
+  end
 
   before do
-    allow(Stripe::Customer).to receive(:create).and_return(
-      Stripe::Customer.construct_from(stripe_json_fixture('customer.json'))
-    )
+    allow(Stripe::Customer).to receive(:retrieve).and_return(customer)
+    allow(customer).to receive(:refresh).and_return(customer)
     allow(Stripe::Customer).to receive(:update)
     allow(Stripe::PaymentMethod).to receive(:attach)
     allow(Stripe::PaymentMethod).to receive(:detach)

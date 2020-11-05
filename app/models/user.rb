@@ -23,13 +23,14 @@ class User < ApplicationRecord
   attr_accessor :privacy_policy
 
   def stripe_customer
-    if stripe_customer_id.present?
-      Stripe::Customer.retrieve(stripe_customer_id)
-    else
-      Stripe::Customer.create(email: email).tap do |c|
-        update_attribute(:stripe_customer_id, c.id)
+    @stripe_customer ||=
+      if stripe_customer_id.present?
+        Stripe::Customer.retrieve(stripe_customer_id)
+      else
+        Stripe::Customer.create(email: email).tap do |c|
+          update_attribute(:stripe_customer_id, c.id)
+        end
       end
-    end
   end
 
   def subscription_amount
