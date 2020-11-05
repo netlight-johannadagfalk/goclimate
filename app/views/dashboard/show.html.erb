@@ -1,7 +1,7 @@
 <%= render "shared/facebook_script" %>
 <%= render "shared/twitter_script" %>
 <%= javascript_tag do %>
-  window.facebookQuote = '<%= social_quote_for(current_user.user_name, @my_neutral_months) %>';
+  window.facebookQuote = '<%= handle_social_quote_for(current_user.user_name, current_user.number_of_neutral_months > 0, @my_neutral_months) %>';
   window.urlToShare = '<%= user_url(current_user) %>'
 <% end %>
 
@@ -11,7 +11,7 @@
   <section class="section-padding pb-0">
     <h2 class="heading-xl"><%= t 'dashboard.heading' %></h2>
   </section>
-  <% unless current_user.free_account? %>
+  <% if current_user.number_of_neutral_months > 0 %>
     <section class="section-padding">
       <div class="max-w-4xl mx-auto">
         <div class="section-gutter flex flex-col t:flex-row">
@@ -164,13 +164,17 @@
 
   <section class="section-padding space-y-3 d:w-2/3">
     <h3 class="heading-lg mb-6">
-      <%=t 'you_have_lived_climate_neutral_for', count: @my_neutral_months %>
-      <%=t 'good_job' %>
+      <% if current_user.number_of_neutral_months > 0 %>
+        <%=t 'you_have_lived_climate_neutral_for', count: @my_neutral_months %>
+        <%=t 'good_job' %>
+      <% else %>
+        <%= t 'share_heading' %>
+      <% end %>
     </h3>
     <p><%=t 'climate_change_is_best_faced_together' %></p>
     <div class="flex flex-col m-lg:flex-row m-lg:space-x-3 space-y-3 m-lg:space-y-0">
       <a class="button" id="share-facebook-bottom"><span class="fa fa-facebook"></span> <%=t 'share_on_facebook' %></a>
-      <a class="button" href="https://twitter.com/intent/tweet?text=<%= encoded_social_quote(@my_neutral_months) %>" data-size="large"><span class="fa fa-twitter"></span> <%=t 'share_on_twitter' %></a>
+      <a class="button" href="https://twitter.com/intent/tweet?text=<%= handle_encoded_social_quote(current_user.number_of_neutral_months > 0, @my_neutral_months) %>" data-size="large"><span class="fa fa-twitter"></span> <%=t 'share_on_twitter' %></a>
     </div>
   </section>
 

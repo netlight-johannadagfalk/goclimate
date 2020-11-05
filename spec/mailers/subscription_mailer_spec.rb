@@ -3,7 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe SubscriptionMailer, type: :mailer do
-  let(:user) { create(:user, stripe_customer_id: 'test_id', region: 'us') }
+  let(:user) { create(:user, stripe_customer_id: stripe_customer&.id, region: 'us') }
+
+  let(:stripe_customer) do
+    Stripe::Customer.construct_from(stripe_json_fixture('customer.json'))
+  end
 
   before do
     create(:card_charge, stripe_customer_id: 'test_id', paid: true)
@@ -29,6 +33,10 @@ RSpec.describe SubscriptionMailer, type: :mailer do
 
   describe '.one_more_month_email' do
     subject(:mail) { described_class.with(email: user.email).one_more_month_email }
+
+    before do
+      allow(Stripe::Customer).to receive(:retrieve).with(user.stripe_customer_id).and_return(stripe_customer)
+    end
 
     it_behaves_like 'subscription email'
 

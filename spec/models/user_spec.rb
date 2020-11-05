@@ -62,6 +62,10 @@ RSpec.describe User do
   end
 
   describe '#number_of_neutral_months' do
+    before do
+      allow(Stripe::Customer).to receive(:retrieve).with(user.stripe_customer_id).and_return(stripe_customer)
+    end
+
     context 'with no subscription months' do
       # TODO: This is based on the now false assumption that every user is a
       # subscriber. Needs to be conditioned on having an active subscription.

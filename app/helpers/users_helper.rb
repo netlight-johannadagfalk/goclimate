@@ -9,7 +9,19 @@ module UsersHelper
     end
   end
 
+  def handle_social_quote_for(name, show_months, number_of_months)
+    return social_quote_for(name, number_of_months) if show_months
+
+    t('share_quote_without_months')
+  end
+
   def encoded_social_quote_for(name, neutral_months)
     CGI.escape("#{social_quote_for(name, neutral_months)} -> #{root_url}")
+  end
+
+  def handle_encoded_social_quote_for(name, show_months, number_of_months)
+    return encoded_social_quote_for(name, number_of_months) if show_months
+
+    encoded_social_quote_without_subscription_months
   end
 end

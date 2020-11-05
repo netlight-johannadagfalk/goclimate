@@ -100,9 +100,11 @@ sv:
   name_have_lived_climate_neutral_for_join_me:
     one: '%{name} har levt klimatneutralt i 1 månad!'
     other: '%{name} har levt klimatneutralt i %{count} månader!'
-  climate_change_is_best_faced_together: Du är en hjälte! Bäst bromsar vi klimatförändringarna tillsammans, så dela gärna det här så att vi blir fler som lever klimatneutralt!
+  share_heading: Dela med dina nära och kära
+  climate_change_is_best_faced_together: Du är en hjälte! Bäst bromsar vi klimatförändringarna tillsammans, så dela gärna det här så att vi kan bli ännu fler!
   share_on_facebook: Dela på Facebook
   share_on_twitter: Dela på Twitter
+  share_quote_without_months: Var med och stoppa klimatförändringarna!
   dashboard:
     heading: Hej, klimatvän!
     your_months: Du har varit klimatneutral i
