@@ -166,11 +166,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # These will soon be handled by ReferralCode functionality, but in the
-  # meantime we redirect our upcoming partnerships
-  get 'govenetia', to: redirect('/know-your-carbon-footprint', status: 302), as: nil
-  get 'gomikaela', to: redirect('/know-your-carbon-footprint', status: 302), as: nil
-
   namespace :webhooks do
     resource :stripe_events, only: [:create]
   end
@@ -208,4 +203,7 @@ Rails.application.routes.draw do
   # Sitemap xml
   get '/sitemap.xml' => 'sitemap#index', :format => 'xml', :as => :sitemap
   get '/sitemap_content.xml' => 'sitemap#content', :format => 'xml', :as => :sitemap_content
+
+  # Catch all routes
+  get ':code', to: 'referral_codes#show', constraints: ->(req) { ReferralCode.exists?(code: req.params[:code]) }
 end
