@@ -36,7 +36,7 @@
         </div>
 
         <div class="text-center mt-12">
-          <%= raw(t('dashboard.together', number_of_members: @unique_climate_neutral_users, number_of_tonnes: number_with_delimiter(@total_carbon_offset)).gsub('<span>', '<span class="font-bold">')) %>
+          <%= raw(t('dashboard.together', number_of_members: @total_users, number_of_tonnes: number_with_delimiter(@total_carbon_offset)).gsub('<span>', '<span class="font-bold">')) %>
         </div>
       </div>
     </section>

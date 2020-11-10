@@ -10,10 +10,6 @@ class User < ApplicationRecord
   has_many :subscription_months
   belongs_to :referred_from, class_name: 'ReferralCode', optional: true
 
-  scope :with_active_subscription, lambda {
-    where(subscription_end_at: nil).or(where('subscription_end_at >= ?', Time.now))
-  }
-
   validates :user_name, format: { without: /.+@.+\..+/ }, allow_blank: true
 
   attribute :region, :region

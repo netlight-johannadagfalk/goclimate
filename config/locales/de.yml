@@ -23,7 +23,6 @@ de:
   full_time: Vollzeit
   Main_KPI: Die wichtigsten KPI
   climate_footprint_2019: Klimabilanz 2019
-  number_of_climate_neutral_users: Anzahl klimaneutraler Nutzer
   users_from: Nutzer von
   different_countries: verschiedene Länder
   number_of_companies_we_have_helped: Anzahl der Unternehmen, denen wir geholfen haben
@@ -105,7 +104,7 @@ de:
     heading: Hallo Klima-Freund!
     your_months: Sie sind klimaneutral seit
     your_offsets: Ihr CO2-Ausgleich beläuft sich auf
-    together: Zusammen mit allen <span>%{number_of_members} Mitgliedern</span>haben wir verhindert, dass <span>%{number_of_tonnes} Tonnen</span> CO2 in die Atmosphäre gelangen!
+    together: Zusammen mit allen <span>%{number_of_members} Mitgliedern</span> haben wir verhindert, dass <span>%{number_of_tonnes} Tonnen</span> CO2 in die Atmosphäre gelangen!
   good_job: Gut gemacht!
   our_projects: Unsere Klimainvestitionen
   project_name: Projekt
@@ -226,7 +225,6 @@ de:
     gift_cards: Gutscheine
   welcome:
     users_prefix: Aktuell sind wir
-    users_suffix: klimaneutrale Nutzer
     tonnes_prefix: Gemeinsam haben wir
     tonnes_suffix: Tonnen CO2 in der Atmosphäre reduziert
     how_it_works:
