@@ -98,7 +98,6 @@ de:
   name_have_lived_climate_neutral_for_join_me:
     one: '%{name} lebt seit 1 Monat klimaneutral!'
     other: '%{name} lebt seit %{count} Monaten klimaneutral!'
-  climate_change_is_best_faced_together: Sie sind großartig! Da man den Klimawandel am besten gemeinsam bekämpfen kann, würden wir uns freuen, wenn Sie Anderen von GoClimate erzählen, damit auch sie ein klimaneutrales Leben führen können!
   share_on_facebook: Auf Facebook teilen
   share_on_twitter: Auf Twitter teilen
   dashboard:

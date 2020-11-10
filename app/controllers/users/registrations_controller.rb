@@ -31,6 +31,7 @@ module Users
     def create # rubocop:disable Metrics/MethodLength
       render_user_invalid_json && return unless @user.save
 
+      @user.create_stripe_customer
       sign_in(resource_name, @user, force: true) # Force because we have updated the password
 
       unless params[:membership] == 'free'

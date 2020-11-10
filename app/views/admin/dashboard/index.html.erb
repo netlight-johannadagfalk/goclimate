@@ -31,15 +31,33 @@
     <% end %>
   </tr>
   <tr>
-    <td>new&nbsp;users</td>
+    <td>total new&nbsp;users</td>
     <% (0..30).each do |i| %>
-      <td><%= @new_users[(Date.today - i).to_s].nil? ? 0 : @new_users[(Date.today - i).to_s] %></td>
+      <td><%= @users_stats.new_users[(Date.today - i).to_s].nil? ? 0 : @users_stats.new_users[(Date.today - i).to_s] %></td>
     <% end %>
   </tr>
   <tr>
     <td>mean&nbsp;14&nbsp;days</td>
     <% (0..30).each do |i| %>
-      <td><%= @new_users_mean[(Date.today - i).to_s] %></td>
+      <td><%= @users_stats.new_users_mean[(Date.today - i).to_s] %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td>new users with subscription</td>
+    <% (0..30).each do |i| %>
+      <td><%= @users_stats.new_users_with_subscription[(Date.today - i).to_s].nil? ? 0 : @users_stats.new_users_with_subscription[(Date.today - i).to_s] %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td>new users without subscription</td>
+    <% (0..30).each do |i| %>
+      <td><%= @users_stats.new_users_without_subscription[(Date.today - i).to_s].nil? ? 0 : @users_stats.new_users_without_subscription[(Date.today - i).to_s] %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td>new users from referral codes</td>
+    <% (0..30).each do |i| %>
+      <td><%= @users_stats.new_users_with_referral_code[(Date.today - i).to_s].nil? ? 0 : @users_stats.new_users_with_referral_code[(Date.today - i).to_s] %></td>
     <% end %>
   </tr>
 </table>
@@ -61,15 +79,15 @@
     <% end %>
   </tr>
   <tr>
-    <td>churend&nbsp;users</td>
+    <td>churned&nbsp;users</td>
     <% (0..30).each do |i| %>
-      <td><%= @churned_users[(Date.today - i).to_s].nil? ? 0 : @churned_users[(Date.today - i).to_s] %></td>
+      <td><%= @users_stats.churned_users[(Date.today - i).to_s].nil? ? 0 : @users_stats.churned_users[(Date.today - i).to_s] %></td>
     <% end %>
   </tr>
   <tr>
     <td>mean&nbsp;14&nbsp;days</td>
     <% (0..30).each do |i| %>
-      <td><%= @churned_users_mean[(Date.today - i).to_s] %></td>
+      <td><%= @users_stats.churned_users_mean[(Date.today - i).to_s] %></td>
     <% end %>
   </tr>
 </table>

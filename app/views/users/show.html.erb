@@ -3,7 +3,7 @@
 <%= render "shared/facebook_script" %>
 <%= render "shared/twitter_script" %>
 <%= javascript_tag do %>
-  window.facebookQuote = '<%= social_quote_for(@user.user_name, @neutral_months) %>';
+  window.facebookQuote = '<%= handle_social_quote_for(@user.user_name, @user.number_of_neutral_months > 0, @neutral_months) %>';
   window.urlToShare = '<%= user_url(@user) %>'
 <% end %>
 
@@ -12,7 +12,11 @@
 <section class="bg-blue-tint-1">
   <div class="relative z-20 max-w-3xl mx-auto px-4 t:px-16 d:px-0 pt-16 t:pt-24 d:pt-32 text-center">
     <h1 class="heading-xl mb-6">
-      <%= social_quote_for(@user.user_name, @neutral_months) %>
+      <% if @user.number_of_neutral_months > 0 %>
+        <%= social_quote_for(@user.user_name, @neutral_months) %>
+      <% else %>
+        <%= t 'share_quote_without_months' %>
+      <% end %>
     </h1>
 
     <div class="space-y-3">
@@ -20,7 +24,7 @@
         <p><%=t 'climate_change_is_best_faced_together' %></p>
         <div class="flex flex-col m-lg:flex-row m-lg:justify-center space-y-1 m-lg:space-y-0 m-lg:space-x-1">
           <a class="button" id="share-facebook-bottom"><span class="fa fa-facebook"></span> <%=t 'share_on_facebook' %></a>
-          <a class="button" href="https://twitter.com/intent/tweet?text=<%= encoded_social_quote_for(@user.user_name, @neutral_months) %>" data-size="large"><span class="fa fa-twitter"></span> <%=t 'share_on_twitter' %></a>
+          <a class="button" href="https://twitter.com/intent/tweet?text=<%= handle_encoded_social_quote_for(@user.user_name, @user.number_of_neutral_months > 0, @neutral_months) %>" data-size="large"><span class="fa fa-twitter"></span> <%=t 'share_on_twitter' %></a>
         </div>
       <% else %>
         <p><%=t 'climate_change_is_the_greatest_challange' %></p>

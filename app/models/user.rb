@@ -27,10 +27,14 @@ class User < ApplicationRecord
       if stripe_customer_id.present?
         Stripe::Customer.retrieve(stripe_customer_id)
       else
-        Stripe::Customer.create(email: email).tap do |c|
-          update_attribute(:stripe_customer_id, c.id)
-        end
+        create_stripe_customer
       end
+  end
+
+  def create_stripe_customer
+    Stripe::Customer.create(email: email).tap do |c|
+      update_attribute(:stripe_customer_id, c.id)
+    end
   end
 
   def subscription_amount
@@ -61,7 +65,11 @@ class User < ApplicationRecord
     @number_of_neutral_months ||=
       begin
         months = subscription_months.count
-        months == 0 ? 1 : months
+        if months == 0 && active_subscription?
+          1
+        else
+          months
+        end
       end
   end
 
@@ -93,10 +101,8 @@ class User < ApplicationRecord
     lifestyle_footprints.order(:created_at).last
   end
 
-  def free_account?
-    return true unless stripe_customer&.subscriptions&.any?
-
-    false
+  def active_subscription?
+    stripe_customer.subscriptions&.any?
   end
 
   private

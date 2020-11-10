@@ -100,9 +100,11 @@ en:
   name_have_lived_climate_neutral_for_join_me:
     one: '%{name} has lived a climate neutral life for 1 month now!'
     other: '%{name} has lived a climate neutral life for %{count} months now!'
-  climate_change_is_best_faced_together: You are awesome! Since climate change is best faced together, it would be great if you want to share the message so that more people can start living climate neutral lives!
+  share_heading: Spread the word
+  climate_change_is_best_faced_together: You are awesome! Since climate change is best faced together, it would be great if you want to share the message so that more people can join us in slowing climate change!
   share_on_facebook: Share on Facebook
   share_on_twitter: Share on Twitter
+  share_quote_without_months: Let's stop climate change together!
   dashboard:
     heading: Hello, climate friend!
     your_months: You have been climate neutral for

@@ -33,7 +33,11 @@
         }
       )
     %>
-    <meta property="fb:app_id" content="452582378427296">
+    <% if Rails.env.development? %>
+      <meta property="fb:app_id" content="261728851826356">
+    <% else %>
+      <meta property="fb:app_id" content="452582378427296">
+    <% end %>
 
     <% if (stylesheets = yield :stylesheets).present? %>
       <%= stylesheets %>
