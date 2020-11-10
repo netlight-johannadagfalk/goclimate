@@ -42,7 +42,7 @@ LifestyleFootprintAverage::COUNTRIES = [
   LifestyleFootprintAverage.new(%w[PL], 8_300, 'Ivanova 2015'),
   LifestyleFootprintAverage.new(%w[PT], 8_600, 'Ivanova 2015'),
   LifestyleFootprintAverage.new(%w[RO], 5_400, 'Ivanova 2015'),
-  LifestyleFootprintAverage.new(%w[SE], 9_870, 'Naturvårdsverket (consumption based + international flights)'),
+  LifestyleFootprintAverage.new(%w[SE], 9_680, 'Naturvårdsverket & Chalmers 2018'),
   LifestyleFootprintAverage.new(%w[SI], 13_500, 'Ivanova 2015'),
   LifestyleFootprintAverage.new(%w[SK], 10_600, 'Ivanova 2015'),
   LifestyleFootprintAverage.new(%w[US], 19_200, 'CoolClimate Network')
