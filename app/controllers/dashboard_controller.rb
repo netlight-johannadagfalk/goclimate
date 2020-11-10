@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
     @total_carbon_offset = OffsettingStatistics.new.total_sold.tonnes.round
     @my_carbon_offset = current_user.total_subscription_offsetting.tonnes
     @my_neutral_months = current_user.number_of_neutral_months
-    @unique_climate_neutral_users = User.with_active_subscription.count
+    @total_users = User.count
 
     @footprint = current_user.current_lifestyle_footprint
     # Some old users don't have LifestyleFootprints

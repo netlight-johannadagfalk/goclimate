@@ -96,38 +96,6 @@ RSpec.describe User do
     end
   end
 
-  describe '.with_active_subscription' do
-    context 'with user with active subscription' do
-      before do
-        create(:user)
-      end
-
-      it 'includes it' do
-        expect(described_class.with_active_subscription.count).to eq(1)
-      end
-    end
-
-    context 'with user with subscription that will end but has not yet' do
-      before do
-        create(:user_with_subscription_ending_in_future)
-      end
-
-      it 'includes it' do
-        expect(described_class.with_active_subscription.count).to eq(1)
-      end
-    end
-
-    context 'with users without active subscription' do
-      before do
-        create(:user_with_ended_subscription)
-      end
-
-      it 'does not include it' do
-        expect(described_class.with_active_subscription.count).to eq(0)
-      end
-    end
-  end
-
   describe '#update_from_stripe_subscription' do
     let(:current_subscription) do
       Stripe::Subscription.construct_from(stripe_json_fixture('subscription.json'))
