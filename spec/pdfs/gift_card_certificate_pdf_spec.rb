@@ -3,53 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe GiftCardCertificatePdf do
-  describe '.from_gift_card' do
-    let(:gift_card) { build(:gift_card) }
+  subject(:pdf) { described_class.new(gift_card) }
 
-    it 'uses message from gift_card' do
-      generator = described_class.from_gift_card(gift_card)
-
-      expect(generator.message).to eq gift_card.message
-    end
-
-    it 'uses number_of_months from gift_card' do
-      generator = described_class.from_gift_card(gift_card)
-
-      expect(generator.number_of_months).to eq gift_card.number_of_months
-    end
-  end
-
-  describe '#initialize' do
-    it 'sets provided message' do
-      generator = described_class.new(message: 'test message', number_of_months: 3, example: true)
-
-      expect(generator.message).to eq 'test message'
-    end
-
-    it 'sets provided number_of_months' do
-      generator = described_class.new(message: 'test message', number_of_months: 3, example: true)
-
-      expect(generator.number_of_months).to eq 3
-    end
-
-    it 'sets provided example flag' do
-      generator = described_class.new(message: 'test message', number_of_months: 3, example: true)
-
-      expect(generator.example).to be true
-    end
-
-    it 'defaults example attribute to false' do
-      generator = described_class.new(message: 'test message', number_of_months: 3)
-
-      expect(generator.example).to be false
-    end
-  end
+  let(:gift_card) { build(:gift_card) }
 
   describe '#render' do
-    subject(:pdf) do
-      described_class.new(message: 'test message', number_of_months: 3)
-    end
-
     let(:mocked_wicked_pdf) { instance_double(WickedPdf) }
     let(:mocked_pdf) { 'PDF' }
     let(:mocked_html) { 'HTML' }
@@ -91,25 +49,29 @@ RSpec.describe GiftCardCertificatePdf do
       expect(ApplicationController).to have_received(:render).with(hash_including(layout: false))
     end
 
-    it 'renders with message in assigns' do
+    it 'renders with gift_card in assigns' do
       pdf.render
 
       expect(ApplicationController).to have_received(:render)
-        .with(hash_including(assigns: hash_including(message: pdf.message)))
+        .with(hash_including(assigns: hash_including(gift_card: gift_card)))
     end
 
-    it 'renders with number of months in assigns' do
+    it 'defaults to example being false' do
       pdf.render
 
       expect(ApplicationController).to have_received(:render)
-        .with(hash_including(assigns: hash_including(number_of_months: pdf.number_of_months)))
+        .with(hash_including(assigns: hash_including(example: false)))
     end
 
-    it 'renders with example in assigns' do
-      pdf.render
+    context 'when example is true' do
+      subject(:pdf) { described_class.new(gift_card, example: true) }
 
-      expect(ApplicationController).to have_received(:render)
-        .with(hash_including(assigns: hash_including(example: pdf.example)))
+      it 'sets example to true in assigns' do
+        pdf.render
+
+        expect(ApplicationController).to have_received(:render)
+          .with(hash_including(assigns: hash_including(example: true)))
+      end
     end
   end
 end

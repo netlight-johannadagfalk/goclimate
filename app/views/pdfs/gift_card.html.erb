@@ -4,11 +4,6 @@
   to the magic of https://github.com/mileszs/wicked_pdf
 
   And yes, it needs to be called .erb rather than .html.erb, or else PDF doesn't work.
-
-  This view uses the following variables:
-    @example = true if we should include a big fat EXAMPLE stamp across the gift card
-    @message = the personal message to show (can be empty)
-    @number_of_months = how many months we are offsetting
 -->
 <html>
   <head>
@@ -113,14 +108,14 @@
     </div>
 
     <div class="text marginTop" style="font-size: 45px;">
-      <%=t 'views.gift_cards.download.gift_card_x_climate_neutral_months', count: @number_of_months %>
+      <%=t 'views.gift_cards.download.gift_card_x_climate_neutral_months', count: @gift_card.number_of_months %>
     </div>
 
     <div class="text grayText" style="font-size: 12px;">
-      <%=t 'views.gift_cards.download.calculation_based_on_html' %>
+      <%=t 'views.gift_cards.download.calculation_based_on_html', yearly_footprint: number_with_delimiter(@gift_card.yearly_footprint.tonnes) %>
     </div>
 
-    <div class="text message marginTop"><%= @message %></div>
+    <div class="text message marginTop"><%= @gift_card.message %></div>
 
     <% if @example == true %>
         <div class="exampleStamp">

@@ -2,17 +2,20 @@
 
 require 'digest'
 
-class GiftCard < ApplicationRecord # rubocop:todo Metrics/ClassLength
+class GiftCard < ApplicationRecord
   class InvalidPaymentIntent < StandardError; end
 
   attribute :currency, :currency
   attribute :co2e, :greenhouse_gases
+  attribute :yearly_footprint, :greenhouse_gases
+  attribute :country, :country
 
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
   validates :customer_email, email: true
   validates_presence_of :key, :number_of_months, :price, :currency, :customer_email, :co2e
   # Allow checking validation with payment_intent_id ignored, e.g. valid?(:without_payment_intent_id)
   validates_presence_of :payment_intent_id, on: [:create, :update]
+  validate :country_average_exists
 
   after_initialize :set_co2e_and_price_if_new
   before_validation :generate_key
@@ -42,7 +45,7 @@ class GiftCard < ApplicationRecord # rubocop:todo Metrics/ClassLength
   end
 
   def send_confirmation_email
-    pdf = GiftCardCertificatePdf.from_gift_card(self).render
+    pdf = GiftCardCertificatePdf.new(self).render
 
     GiftCardMailer.with(
       email: customer_email,
@@ -97,52 +100,37 @@ class GiftCard < ApplicationRecord # rubocop:todo Metrics/ClassLength
 
   private
 
-  def calculate_co2e
-    # Average for Sweden * buffer / 12 months per year * number of months
-    tonnes = 11.0 * 2 / 12 * number_of_months
-    GreenhouseGases.new((tonnes * 1000).round)
-  end
-
-  def calculate_current_price
-    Money.from_amount((price_per_month * number_of_months).to_i, currency)
-  end
-
-  def price_per_month
-    avg_tonnes_per_year = BigDecimal(11) # Average tonnes co2 per person and year
-    months_per_year = 12
-    buffer = 2
-    total = avg_tonnes_per_year * price_per_tonne / months_per_year * buffer
-    should_be_rounded ? total.round : total
-  end
-
-  # This method should be removed, and all currencies be rounded after the
-  # multiplication with number_of_months, but since that gives different
-  # giftCard amounts we cannot do it until we start saving what price a customer
-  # paid for their gift_card.
-  def should_be_rounded
-    currency != Currency::SEK
-  end
-
-  def price_per_tonne
-    sek_per_currency = case currency
-                       when Currency::USD
-                         GreenhouseGases::PRICE_FACTOR_USD
-                       when Currency::EUR
-                         GreenhouseGases::PRICE_FACTOR_EUR
-                       else
-                         1
-                       end
-    GreenhouseGases::CONSUMER_PRICE_PER_TONNE_SEK.amount.to_i / sek_per_currency
-  end
-
   def set_co2e_and_price_if_new
-    return unless new_record? && number_of_months.present?
+    return unless new_record?
 
-    self.co2e ||= calculate_co2e
-    self.price ||= calculate_current_price if currency.present?
+    self.yearly_footprint = LifestyleFootprintAverage.find_by_country(country).co2e
+    self.co2e ||= calculate_co2e if number_of_months.present?
+    self.price ||= calculate_price if co2e.present? && currency.present?
+  end
+
+  def calculate_co2e
+    # Average yearly footprint * buffer / 12 months per year * number of months
+    GreenhouseGases.new((yearly_footprint.co2e.to_d * 2 / 12 * number_of_months).round)
+  end
+
+  def calculate_price
+    price = co2e.consumer_price(currency)
+
+    case currency
+    when Currency::SEK
+      price.ceil(-3)
+    else
+      price.ceil(-2)
+    end
   end
 
   def generate_key
     self.key = SecureRandom.hex(20) unless key.present?
+  end
+
+  def country_average_exists
+    return if LifestyleFootprintAverage::COUNTRIES_AVAILABLE.include?(country)
+
+    errors.add(:country, 'must be one we have average footprint for')
   end
 end

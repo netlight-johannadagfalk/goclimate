@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class GiftCardsController < ApplicationController
+  before_action :set_country_and_footprint_average, only: [:index]
   before_action :validate_months_parameter, only: [:new]
   before_action :clear_gift_card_in_checkout, except: [:create]
   before_action :set_canonical, only: [:new]
@@ -8,10 +9,10 @@ class GiftCardsController < ApplicationController
 
   def index
     @gift_cards = {
-      1 => GiftCard.new(number_of_months: 1, currency: current_region.currency),
-      3 => GiftCard.new(number_of_months: 3, currency: current_region.currency),
-      6 => GiftCard.new(number_of_months: 6, currency: current_region.currency),
-      12 => GiftCard.new(number_of_months: 12, currency: current_region.currency)
+      1 => GiftCard.new(number_of_months: 1, currency: current_region.currency, country: @country),
+      3 => GiftCard.new(number_of_months: 3, currency: current_region.currency, country: @country),
+      6 => GiftCard.new(number_of_months: 6, currency: current_region.currency, country: @country),
+      12 => GiftCard.new(number_of_months: 12, currency: current_region.currency, country: @country)
     }
   end
 
@@ -65,13 +66,14 @@ class GiftCardsController < ApplicationController
   def new_gift_card_from_params
     GiftCard.new(
       number_of_months: params[:subscription_months_to_gift].to_i,
-      currency: current_region.currency
+      currency: current_region.currency,
+      country: params[:country]
     )
   end
 
   def gift_card_from_form_fields
     attributes = params.require(:gift_card).permit(
-      :number_of_months, :customer_email, :message, :payment_intent_id
+      :number_of_months, :customer_email, :message, :payment_intent_id, :country
     ).to_h.symbolize_keys
 
     # Don't create duplicate GiftCards if previous attempts weren't yet finalized
@@ -95,6 +97,14 @@ class GiftCardsController < ApplicationController
 
   def clear_gift_card_in_checkout
     session[:gift_card_in_checkout] = nil
+  end
+
+  def set_country_and_footprint_average
+    @country =
+      ISO3166::Country.new(params[:country]) ||
+      visitor_country ||
+      ISO3166::Country.new('US')
+    @footprint_average = LifestyleFootprintAverage.find_by_country(@country)
   end
 
   def set_canonical

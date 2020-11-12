@@ -48,4 +48,6 @@ LifestyleFootprintAverage::COUNTRIES = [
   LifestyleFootprintAverage.new(%w[US], 19_200, 'CoolClimate Network')
 ].freeze
 
+LifestyleFootprintAverage::COUNTRIES_AVAILABLE = LifestyleFootprintAverage::COUNTRIES.flat_map(&:countries)
+
 LifestyleFootprintAverage::WORLD = LifestyleFootprintAverage.new(nil, 5_000, 'World Bank')

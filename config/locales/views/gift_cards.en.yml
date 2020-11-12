@@ -9,16 +9,16 @@ en:
           to help spread the word of something we can all do to fight
           climate change? Try out our climate gift cards!
         description:
-          1: 1 month of climate neutrality.
-          3: 3 months of climate neutrality.
-          6: Half a year of climate neutrality.
-          12: One full year of climate neutrality.
+          1: 1 month of climate neutrality
+          3: 3 months of climate neutrality
+          6: Half a year of climate neutrality
+          12: One full year of climate neutrality
         cta:
           1: Choose 1 month
           3: Choose 3 months
           6: Choose 6 months
           12: Choose 12 months
-        details_html: "Gift cards are based on the average climate impact for Swedish residents (11 tonnes CO<sub>2</sub>eq)."
+        details: The gift cards are based on the average carbon footprint in %{country} of %{footprint} tonnes CO2e/year. To make sure we're not underestimating, the prices above also include a doubling of this number.
       new:
         intro: Personalize and purchase your gift card
         your_gift_card_order: Your gift card order
@@ -36,7 +36,7 @@ en:
           other: "%{count} climate neutral months"
         about_go_climate_neutral:
           <a href='http://www.goclimate.com'>GoClimate</a> supports climate projects and gives inspiration and advice on how to reduce your climate footprint. All supported projects are certified by Gold Standard, established by WWF and about 80 other international NGOs. Together we contribute to stop climate change and save the world!
-        calculation_based_on_html: "Calculation based on the average climate footprint of 11 tonnes CO<sub>2</sub>eq per person and year x 2."
+        calculation_based_on_html: "Calculation based on the average climate footprint of %{yearly_footprint} tonnes CO<sub>2</sub>eq per person and year x 2."
         do_you_want_to_continue: If you want to continue living a climate neutral life after this gift card has expired,
         register: visit <a href="http://www.goclimate.com">goclimate.com</a> and register!
       example:

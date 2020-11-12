@@ -3,7 +3,7 @@
 class GiftCardCertificatesController < ApplicationController
   def show
     gift_card = GiftCard.find_by_key(params[:key])
-    pdf = GiftCardCertificatePdf.from_gift_card(gift_card).render
+    pdf = GiftCardCertificatePdf.new(gift_card).render
 
     send_data pdf, filename: 'GoClimate Gift Card.pdf', type: :pdf
   end
@@ -14,8 +14,11 @@ class GiftCardCertificatesController < ApplicationController
     number_of_months = (params[:subscription_months_to_gift].presence || 6).to_i
 
     pdf = GiftCardCertificatePdf.new(
-      message: t('views.gift_cards.example.message_html'),
-      number_of_months: number_of_months,
+      GiftCard.new(
+        message: t('views.gift_cards.example.message_html'),
+        number_of_months: number_of_months,
+        country: ISO3166::Country.new(params[:country])
+      ),
       example: true
     ).render
 

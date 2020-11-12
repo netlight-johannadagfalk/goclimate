@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :set_crowdin_in_context
   around_action :with_locale
   before_action :set_active_experiments
-  helper_method :current_region, :canonical_url, :experiment_active?
+  helper_method :current_region, :canonical_url, :experiment_active?, :visitor_country
 
   def experiment_active?(experiment)
     @active_experiments.include?(experiment)
@@ -30,6 +30,10 @@ class ApplicationController < ActionController::Base
 
   def current_region
     Region.from_slug(request.path_parameters[:region])
+  end
+
+  def visitor_country
+    ISO3166::Country.new(request.headers['CF-IPCountry']) || ISO3166::Country.new(current_region.country_codes&.first)
   end
 
   def canonical_url
