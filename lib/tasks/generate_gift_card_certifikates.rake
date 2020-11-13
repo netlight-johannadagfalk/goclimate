@@ -15,12 +15,13 @@ task :generate_gift_card_certificates, [:csv_file, :locale] => :environment do |
   I18n.locale = args[:locale].to_sym
 
   CSV.read(args[:csv_file], headers: true, col_sep: ';', converters: :normalize_newlines).each do |line|
-    options = {
+    gift_card = GiftCard.new(
       number_of_months: line['number_of_months'].to_i,
-      message: line['message']
-    }
+      message: line['message'],
+      country: line['country'] || 'SE'
+    )
 
-    pdf = GiftCardCertificatePdf.new(options).render
+    pdf = GiftCardCertificatePdf.new(gift_card).render
     File.open(folder.join("#{line['filename']}.pdf"), 'wb') { |f| f.write(pdf) }
   end
 end

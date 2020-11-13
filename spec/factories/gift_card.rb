@@ -6,6 +6,7 @@ FactoryBot.define do
     message { 'God jul önskar tomten' }
     co2e { 11_000 }
     price { 440_00 }
+    country { 'SE' }
     currency { 'sek' }
     customer_email { 'test@example.com' }
     payment_intent_id { 'pi_TEST' }

@@ -11,7 +11,7 @@
       <p>
         <%= t 'views.gift_cards.new.we_will_send_you_pdf' %>
         <%= link_to t('views.gift_cards.new.click_here_for_an_example'), 
-          example_certificate_gift_cards_path(format: :pdf), 
+          example_certificate_gift_cards_path(format: :pdf, subscription_months_to_gift: params[:subscription_months_to_gift], country: params[:country]),
           class: 'link' %>.
       </p>
     </div>
@@ -21,6 +21,7 @@
         <h2 class="heading-lg text-center mb-12"><%= t 'views.gift_cards.new.intro' %></h2>
 
         <%= form_with model: @gift_card, format: :json, html: { 'data-controller': 'checkout-form', 'data-action': 'checkout-form#submit' } do |f| %>
+          <%= f.hidden_field :country %>
           <div class="space-y-3">
             <div class="flex justify-between">
               <span class="font-bold"><%=t 'type' %></span>

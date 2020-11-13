@@ -12,29 +12,76 @@ RSpec.describe GiftCard do
   end
 
   before do
-    allow(GiftCardCertificatePdf).to receive(:from_gift_card).and_return(pdf_generator_stub)
+    allow(GiftCardCertificatePdf).to receive(:new).and_return(pdf_generator_stub)
     allow(GiftCardMailer).to receive_message_chain(:with, :gift_card_email, :deliver_now)
+  end
+
+  describe '#country' do
+    it 'validates to be one of available LifestyleFootprintAverage' do
+      gift_card = described_class.new(country: ISO3166::Country.new('SE'))
+
+      gift_card.validate
+
+      expect(gift_card.errors[:country]).to be_empty
+    end
+
+    it 'is invalid when not one of available LifestyleFootprintAverage' do
+      gift_card = described_class.new(country: ISO3166::Country.new('AZ'))
+
+      gift_card.validate
+
+      expect(gift_card.errors[:country]).not_to be_empty
+    end
   end
 
   include_examples 'currency attributes', [:currency]
 
   describe 'callback behavior' do
     context 'when new' do
-      it 'sets co2e for 3 months' do
-        gift_card = described_class.new(number_of_months: 3)
+      it 'sets co2e based on country for 1 month' do
+        gift_card = described_class.new(number_of_months: 1, country: 'AT')
 
-        expect(gift_card.co2e).to eq(GreenhouseGases.new(5_500))
+        # Average for Austria (11.8 tonnes) * safety buffer (2) / 12 months
+        expect(gift_card.co2e).to eq(GreenhouseGases.new(1_967))
       end
 
-      it 'sets co2e for 6 months' do
-        gift_card = described_class.new(number_of_months: 6)
+      it 'sets co2e based on country for 3 months' do
+        gift_card = described_class.new(number_of_months: 3, country: 'BE')
 
-        expect(gift_card.co2e).to eq(GreenhouseGases.new(11_000))
+        # Average for Belgium (12.5 tonnes) * safety buffer (2) / 12 months * 3 months
+        expect(gift_card.co2e).to eq(GreenhouseGases.new(6_250))
       end
 
-      it 'sets price' do
-        gift_card = described_class.new(number_of_months: 6, currency: :sek)
-        expect(gift_card.price).to eq(Money.new(440_00, :sek))
+      it 'sets co2e based on country for 6 months' do
+        gift_card = described_class.new(number_of_months: 6, country: 'DK')
+
+        # Average for Denmark (14.5 tonnes) * safety buffer (2) / 12 months * 6 months
+        expect(gift_card.co2e).to eq(GreenhouseGases.new(14_500))
+      end
+
+      it 'sets co2e based on country for 12 months' do
+        gift_card = described_class.new(number_of_months: 12, country: 'US')
+
+        # Average for the U.S. (19.2 tonnes) * safety buffer (2)
+        expect(gift_card.co2e).to eq(GreenhouseGases.new(38_400))
+      end
+
+      it 'sets price based on co2e for SEK, ceiled to nearest 10 kr' do
+        gift_card = described_class.new(co2e: 1_900, currency: Currency::SEK)
+
+        expect(gift_card.price).to eq(Money.new(80_00, :sek))
+      end
+
+      it 'sets price based on co2e for EUR, ceiled to nearest Euro' do
+        gift_card = described_class.new(co2e: 1_900, currency: Currency::EUR)
+
+        expect(gift_card.price).to eq(Money.new(8_00, :eur))
+      end
+
+      it 'sets price based on co2e for USD, ceiled to nearest Dollar' do
+        gift_card = described_class.new(co2e: 1_900, currency: Currency::USD)
+
+        expect(gift_card.price).to eq(Money.new(9_00, :usd))
       end
 
       it 'allows setting price explicitly' do
@@ -55,73 +102,10 @@ RSpec.describe GiftCard do
         expect(gift_card.key).to be_present
       end
 
-      describe 'price calculation' do
-        it 'calculates price for 3 months' do
-          gift_card = described_class.new(number_of_months: 3, currency: 'sek')
+      it 'saves yearly footprint that co2e calculation was based on' do
+        gift_card = described_class.create(number_of_months: 6, country: 'DE')
 
-          # 11 tons/year * 40 kr/ton / 12 months * 2 * 3 months
-          expect(gift_card.price).to eq(Money.from_amount(220, :sek))
-        end
-
-        it 'calculates price for 6 months' do
-          gift_card = described_class.new(number_of_months: 6, currency: 'sek')
-
-          # 11 tons/year * 40 kr/ton / 12 months * 2 * 6 months
-          expect(gift_card.price).to eq(Money.from_amount(440, :sek))
-        end
-
-        it 'calculates price for 12 months' do
-          gift_card = described_class.new(number_of_months: 12, currency: 'sek')
-
-          # 11 tons/year * 40 kr/ton / 12 months * 2 * 6 months
-          expect(gift_card.price).to eq(Money.from_amount(880, :sek))
-        end
-
-        context 'with USD' do
-          it 'calculates price correctly for 1 month' do
-            gift_card = described_class.new(number_of_months: 1, currency: 'usd')
-
-            expect(gift_card.price).to eq(Money.from_amount(9, :usd))
-          end
-
-          it 'calculates price correctly for 3 months' do
-            gift_card = described_class.new(number_of_months: 3, currency: 'usd')
-
-            expect(gift_card.price).to eq(Money.from_amount(27, :usd))
-          end
-
-          it 'calculates price correctly for 6 months' do
-            gift_card = described_class.new(number_of_months: 6, currency: 'usd')
-
-            expect(gift_card.price).to eq(Money.from_amount(54, :usd))
-          end
-
-          it 'calculates price correctly for 12 months' do
-            gift_card = described_class.new(number_of_months: 12, currency: 'usd')
-
-            expect(gift_card.price).to eq(Money.from_amount(108, :usd))
-          end
-        end
-
-        context 'with EUR' do
-          it 'calculates price correctly for 1 month' do
-            gift_card = described_class.new(number_of_months: 1, currency: 'eur')
-
-            expect(gift_card.price).to eq(Money.from_amount(7, :eur))
-          end
-
-          it 'calculates price correctly for 3 months' do
-            gift_card = described_class.new(number_of_months: 3, currency: 'eur')
-
-            expect(gift_card.price).to eq(Money.from_amount(21, :eur))
-          end
-
-          it 'calculates price correctly for 6 months' do
-            gift_card = described_class.new(number_of_months: 6, currency: 'eur')
-
-            expect(gift_card.price).to eq(Money.from_amount(42, :eur))
-          end
-        end
+        expect(gift_card.yearly_footprint).to eq(GreenhouseGases.new(13_000))
       end
     end
 
@@ -368,7 +352,7 @@ RSpec.describe GiftCard do
     it 'uses gift card when generating pdf' do
       gift_card.send_confirmation_email
 
-      expect(GiftCardCertificatePdf).to have_received(:from_gift_card).with(gift_card)
+      expect(GiftCardCertificatePdf).to have_received(:new).with(gift_card)
     end
   end
 
