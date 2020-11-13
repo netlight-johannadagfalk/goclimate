@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_05_092740) do
+ActiveRecord::Schema.define(version: 2020_11_12_094713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,8 @@ ActiveRecord::Schema.define(version: 2020_11_05_092740) do
     t.text "customer_email"
     t.text "payment_intent_id"
     t.datetime "paid_at"
+    t.text "country"
+    t.integer "yearly_footprint"
     t.index ["key"], name: "index_gift_cards_on_key"
     t.index ["payment_intent_id"], name: "index_gift_cards_on_payment_intent_id"
   end
