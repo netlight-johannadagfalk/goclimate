@@ -77,6 +77,8 @@ module.exports = {
         'tint-1': '#FCECF5',
         pastel: '#FFF7FC'
       },
+      facebook: '#1778F2',
+      twitter: '#1DA1F2',
       // below are temporary
       icon: '#bbd2bd',
       dark: '#444',

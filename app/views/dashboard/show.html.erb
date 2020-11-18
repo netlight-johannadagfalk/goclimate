@@ -162,19 +162,48 @@
     </div>
   </section>
 
-  <section class="section-padding space-y-3 d:w-2/3">
-    <h3 class="heading-lg mb-6">
-      <% if current_user.number_of_neutral_months > 0 %>
-        <%=t 'you_have_lived_climate_neutral_for', count: @my_neutral_months %>
-        <%=t 'good_job' %>
-      <% else %>
-        <%= t 'share_heading' %>
-      <% end %>
+  <section class="section-padding space-y-6">
+    <h3 class="heading-lg">
+      <%= t 'share_heading' %>
     </h3>
-    <p><%=t 'climate_change_is_best_faced_together' %></p>
-    <div class="flex flex-col m-lg:flex-row m-lg:space-x-3 space-y-3 m-lg:space-y-0">
-      <a class="button" id="share-facebook-bottom"><span class="fa fa-facebook"></span> <%=t 'share_on_facebook' %></a>
-      <a class="button" href="https://twitter.com/intent/tweet?text=<%= handle_encoded_social_quote(current_user.number_of_neutral_months > 0, @my_neutral_months) %>" data-size="large"><span class="fa fa-twitter"></span> <%=t 'share_on_twitter' %></a>
+    <p class="t:w-2/3"><%= t 'views.dashboard.share.text' %></p>
+    <div class="flex flex-col t:flex-row space-y-6 t:space-y-0 t:space-x-6">
+      <div class="t:w-1/2">
+        <div class="callout space-y-3">
+          <h4 class="heading text-center">
+            <% if current_user.number_of_neutral_months > 0 %>
+              <%= t 'views.dashboard.share.heading_progress' %>
+            <% else %>
+              <%= t 'views.dashboard.share.heading_social_media' %>
+            <% end %>
+          </h4>
+          <p>
+            <% if current_user.number_of_neutral_months > 0 %>
+              <%=t 'you_have_lived_climate_neutral_for', count: @my_neutral_months %>
+              <%=t 'good_job' %>
+            <% else %>
+              <%= t 'views.dashboard.share.text_social_media' %>
+            <% end %>
+          </p>
+          <div class="flex flex-col m-lg:flex-row t:flex-col d:flex-row items-stretch flex-wrap justify-center -m-1">
+            <div class="p-1">
+              <a class="button button-cta block bg-facebook text-white" id="share-facebook-bottom"><span class="fa fa-facebook"></span> <%=t 'share_on_facebook' %></a>
+            </div>
+            <div class="p-1">
+              <a class="button button-cta block bg-twitter text-white" href="https://twitter.com/intent/tweet?text=<%= handle_encoded_social_quote(current_user.number_of_neutral_months > 0, @my_neutral_months) %>" data-size="large"><span class="fa fa-twitter"></span> <%=t 'share_on_twitter' %></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="t:w-1/2">
+        <div class="callout space-y-3">
+          <h4 class="heading text-center"><%= t 'views.dashboard.share.heading_assets' %></h4>
+          <p><%= t 'views.dashboard.share.text_assets' %></p>
+          <div class="text-center">
+            <a class="button button-cta block m-lg:inline-block t:block d:inline-block" href="<%= assets_path %>" target="_blank" rel="noopener"><%= t 'views.dashboard.share.cta_assets' %></a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

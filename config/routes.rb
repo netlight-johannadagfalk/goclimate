@@ -134,6 +134,9 @@ Rails.application.routes.draw do
       end
     end
 
+    # Assets that users may download
+    get '/assets', to: redirect(status: 302) { 'https://drive.google.com/drive/folders/1YN6Vomjkrp-eFZYonZehELbjz1x8BkL_?usp=sharing' }
+
     # Redirects for old routes. To avoid broken links on the internet, don't remove these.
     defaults region: nil do
       get 'klimatkompensera', to: redirect('%{region}/'), as: nil
