@@ -14,7 +14,6 @@ RSpec.feature 'Subscription settings', js: true do
   scenario 'Enable subscription' do
     visit '/users/subscription'
     select '€2', from: 'Climate Plan'
-    click_button 'Add new card'
     within_frame(0) do
       send_keys_to_card_field '4242424242424242'
       find('input[name=exp-date]').send_keys '522'
@@ -32,7 +31,6 @@ RSpec.feature 'Subscription settings', js: true do
   scenario 'Enable subscription with 3D Secure card' do
     visit '/users/subscription'
     select '€2', from: 'Climate Plan'
-    click_button 'Add new card'
     within_frame(0) do
       send_keys_to_card_field '4000002500003155'
       find('input[name=exp-date]').send_keys '522'

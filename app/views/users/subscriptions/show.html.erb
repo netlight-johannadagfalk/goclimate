@@ -23,8 +23,6 @@
 
           <p id="error-content"></p>
 
-          <%= hidden_field(:setup_intent, :client_secret) %>
-
           <div>
             <label for="plan" class="block font-bold"><%= t 'climate_plan' %></label>
             <div class="select-wrapper w-full">
@@ -42,46 +40,42 @@
             </div>
           </div>
 
-          <div id="current-card-group">
-            <label for="current-card" class="font-bold">
-              <%=t 'credit_or_debit_card' %>
-            </label>
+          <% if @customer_payment_method.present? %>
+            <div>
+              <label for="current-card" class="font-bold"><%=t 'credit_or_debit_card' %></label>
 
-            <div id="current-card" class="m-lg:flex m-lg:items-center m-lg:justify-between">
-              <% if @customer_payment_method.nil? %>
-                <%= t('no_card_registered') %>
-              <% else %>
-                <div>
-                  <span>
-                    <% if card_brand(@customer_payment_method) == 'visa' %>
-                      <span class="card-visa"></span>
-                    <% elsif card_brand(@customer_payment_method) == 'mastercard' %>
-                      <span class="card-mastercard"></span>
-                    <% end %>
-                    <%= masked_card_number(@customer_payment_method) %>
-                  </span>
-                  <span class="card-expiration"><%= card_expiration(@customer_payment_method) %></span>
+              <div id="current-card" class="m-lg:flex m-lg:items-center m-lg:justify-between">
+                <span>
+                  <% if card_brand(@customer_payment_method) == 'visa' %>
+                    <span class="card-visa"></span>
+                  <% elsif card_brand(@customer_payment_method) == 'mastercard' %>
+                    <span class="card-mastercard"></span>
+                  <% end %>
+                  <%= masked_card_number(@customer_payment_method) %>
+                </span>
+                <span class="card-expiration"><%= card_expiration(@customer_payment_method) %></span>
+
+                <div class="mt-1 capitalize">
+                  <button type="button" id="add-new-card" class="button" data-action="payment-settings#showStripeCardField"><%= @customer_payment_method.nil? ? t('add_new_card') : t('edit_card') %></button>
                 </div>
-              <% end %>
-
-              <div class="mt-1 capitalize">
-                <button type="button" id="add-new-card" class="button" data-action="payment-settings#showStripeCardField"><%= @customer_payment_method.nil? ? t('add_new_card') : t('edit_card') %></button>
               </div>
             </div>
-          </div>
+          <% end %>
 
-          <div id="new-card-div" class="hidden" data-controller="stripe-card-element" data-target="payment-settings.stripeCardElement">
-            <label for="card-element" class="font-bold"><%=t 'add_new_card' %></label>
+          <div id="new-card-div" <% if @customer_payment_method.present? %> class="hidden"<% end %> data-controller="stripe-card-element" data-target="payment-settings.stripeCardElement">
+            <label for="card-element" class="font-bold">
+              <%=t @customer_payment_method.present? ? 'add_new_card' : 'credit_or_debit_card' %>
+            </label>
             <div id="card-element" class="input my-1" data-target="stripe-card-element.container"></div>
             <div class="text-orange-shade-1" data-target="stripe-card-element.errors"></div>
             <%= hidden_field_tag :payment_method_id, nil, 'data-target': 'stripe-card-element.paymentMethodField' %>
-          </div>
 
-          <div>
-            <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-1">Secured by Stripe</span>
-          </div>
+            <div>
+              <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-1">Secured by Stripe</span>
+            </div>
 
-          <div id="card-errors" class="text-orange-shade-1" data-target="payment-settings.errorMessage"></div>
+            <div id="card-errors" class="text-orange-shade-1" data-target="payment-settings.errorMessage"></div>
+          </div>
 
           <div class="actions">
             <button id="register-button" type="submit" class="button button-cta w-full" data-target="payment-settings.submitButton" data-action="payment-settings#submit">
