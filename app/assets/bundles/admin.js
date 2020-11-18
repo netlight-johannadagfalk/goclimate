@@ -19,7 +19,6 @@ application.load(definitionsFromContext(
 
 /* Bootstrap */
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap';
 
-/* Custom styling */
-import '../stylesheets/admin.scss';
+/* Styling */
+import '../admin/index.scss';
