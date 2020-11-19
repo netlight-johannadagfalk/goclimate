@@ -1,6 +1,6 @@
 <%= form_for([:admin, invoice]) do |f| %>
   <% if invoice.errors.any? %>
-    <div id="error_explanation">
+    <div>
       <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
 
       <ul>

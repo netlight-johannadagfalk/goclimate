@@ -16,12 +16,10 @@
         <div class="space-y-3">
           <h2 class="heading"><%= t 'views.subscriptions.update.heading' %></h2>
           <% if flash[:error].present? %>
-            <div id="error_explanation" data-controller="scroll-here">
+            <div data-controller="scroll-here">
               <p><%= flash[:error] %></p>
             </div>
           <% end %>
-
-          <p id="error-content"></p>
 
           <div>
             <label for="plan" class="block font-bold"><%= t 'climate_plan' %></label>
@@ -53,7 +51,7 @@
                   <% end %>
                   <%= masked_card_number(@customer_payment_method) %>
                 </span>
-                <span class="card-expiration"><%= card_expiration(@customer_payment_method) %></span>
+                <span><%= card_expiration(@customer_payment_method) %></span>
 
                 <div class="mt-1 capitalize">
                   <button type="button" id="add-new-card" class="button" data-action="payment-settings#showStripeCardField"><%= @customer_payment_method.nil? ? t('add_new_card') : t('edit_card') %></button>
@@ -74,7 +72,7 @@
               <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-1">Secured by Stripe</span>
             </div>
 
-            <div id="card-errors" class="text-orange-shade-1" data-target="payment-settings.errorMessage"></div>
+            <div class="text-orange-shade-1" data-target="payment-settings.errorMessage"></div>
           </div>
 
           <div class="actions">

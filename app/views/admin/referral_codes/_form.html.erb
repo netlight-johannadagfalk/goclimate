@@ -1,6 +1,6 @@
 <%= form_with(model: [:admin, referral_code], local: true) do |form| %>
   <% if referral_code.errors.any? %>
-    <div id="error_explanation">
+    <div>
       <h2><%= pluralize(referral_code.errors.count, "error") %> prohibited this referral code from being saved:</h2>
 
       <ul>

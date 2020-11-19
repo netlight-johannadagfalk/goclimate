@@ -39,15 +39,7 @@
       <meta property="fb:app_id" content="452582378427296">
     <% end %>
 
-    <% if (stylesheets = yield :stylesheets).present? %>
-      <%= stylesheets %>
-    <% else %>
-      <%= webpack_entrypoint_stylesheet_tags 'main' %>
-    <% end %>
-
-    <% if (yield :javascripts).present? %>
-      <link href="https://fonts.googleapis.com/css?family=Raleway:300" rel="stylesheet">
-    <% end %>
+    <%= webpack_entrypoint_stylesheet_tags 'main' %>
 
     <% if Rails.env.development? %>
       <style>
@@ -60,8 +52,7 @@
     <%= render 'third_party_javascripts' %>
   </head>
 
-  <%# TODO: Change text-green-dark to text-primary when Bootstrap is gone. These apply to both new and old worlds, so text-primary clashes because it exists in both. %>
-  <body class="<%= controller_name + " " + controller_name + "-" + action_name %> min-h-screen text-base text-green-dark bg-green-dark">
+  <body class="<%= controller_name + " " + controller_name + "-" + action_name %> min-h-screen text-base text-primary bg-green-dark">
 
     <% if params[:registered].to_i == 1 %>
       <script>
@@ -115,11 +106,7 @@
       window.locale = "<%= I18n.locale %>"
       window.stripe = Stripe("<%= ENV['PUBLISHABLE_KEY'] %>");
     </script>
-    <% if (javascripts = yield :javascripts).present? %>
-      <%= javascripts %>
-    <% else %>
-      <%= webpack_entrypoint_javascript_tags 'main', onerror: 'reportLoadError(event)' %>
-    <% end %>
+    <%= webpack_entrypoint_javascript_tags 'main', onerror: 'reportLoadError(event)' %>
     <%= yield :javascript_tags %>
   </body>
 </html>

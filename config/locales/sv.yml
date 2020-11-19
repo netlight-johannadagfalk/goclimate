@@ -142,7 +142,6 @@ sv:
   type: Typ
   price: Pris
   country: Land
-  edit_settings: Ändra inställningar
   account_settings: Kontoinställningar
   payment_settings: Betalningsinställningar
   user_name: Namn
@@ -305,11 +304,6 @@ sv:
     users_suffix: medlemmar
     tonnes_prefix: Tillsammans har vi minskat
     tonnes_suffix: ton koldioxid i atmosfären
-    call_to_actions:
-      lets_save_our_planet_together: Rädda klimatet tillsammans med oss!
-      go_climate_neutral: Bli klimatneutral
-    how_it_works:
-      sign_up_text: Registrera dig för att kompensera för ditt klimatavtryck.
     business:
       for_companies: Klimatkompensera ditt företag
       for_companies_text_html: Vill du klimatkompensera ditt företags klimatavtryck eller klimatkompensera för alla era anställda? Vi hjälper dig gärna!
@@ -438,6 +432,3 @@ sv:
         well_be_in_touch: Vi hör av oss inom kort för att leverera din klimatrapport och ditt certifikat på klimatkompensationen.
         thanks_again: Tack igen!
   this_is_how_the_money_is_used_header: Hit går pengarna
-  this_is_how_the_money_is_used_text: 'Vi stöttar tredjepartsgranskade klimatprojekt med certifieringen Gold Standard. Projekten minskar utsläpp motsvarande det beräknade klimatavtrycket och bidrar till den globala omställningen till förnyelsebar energiproduktion samt energieffektiviseringar. Här är våra två senaste projekt:'
-  tonnes_carbon_dioxide: ton koldioxid
-  see_all_our_projects: Se alla våra projekt

@@ -72,12 +72,12 @@
             <%= f.hidden_field :co2e, value: @offset.co2e.co2e %>
             <%= f.hidden_field :currency %>
 
-            <div class="form-group">
+            <div>
               <label for="email" class="font-bold padding-top"><%=t 'email' %></label>
               <%= f.email_field :email, class: 'input w-full', required: '' %>
             </div>
 
-            <div class="form-group" data-controller="stripe-card-element" data-target="checkout-form.stripeCardElement">
+            <div data-controller="stripe-card-element" data-target="checkout-form.stripeCardElement">
               <label class="font-bold">
                 <%=t 'credit_or_debit_card' %>
               </label>

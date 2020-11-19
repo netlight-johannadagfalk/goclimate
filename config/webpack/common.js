@@ -99,8 +99,8 @@ module.exports = {
         modules: {
           test: /[\\/]node_modules[\\/](?!bootstrap)/,
           name: 'modules',
-          // Currently undocument feature:  https://github.com/webpack/webpack/pull/6791
-          chunks: (chunk) => chunk.name.match(/^main|main_old$/)
+          // Currently undocumented feature:  https://github.com/webpack/webpack/pull/6791
+          chunks: (chunk) => chunk.name.match(/^main$/)
         }
       },
       name: false
