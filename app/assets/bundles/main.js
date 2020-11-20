@@ -40,4 +40,3 @@ import '../main/index.scss';
 import '../javascripts/components/business_offset_calculator';
 import '../javascripts/components/counting_number';
 import '../javascripts/components/projects_map_marker';
-import '../javascripts/users/edit_user';

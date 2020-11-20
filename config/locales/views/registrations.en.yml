@@ -67,3 +67,5 @@ en:
           offset_account:
             heading: Balance your emissions
             text: Offset your carbon footprint through climate projects and get support in reducing your emissions.
+      settings:
+        user_name_description: Your name is shown in top lists and shared links. Leave empty to stay anonymous.

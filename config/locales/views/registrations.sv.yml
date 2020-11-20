@@ -38,3 +38,5 @@ sv:
         point_4: Vi är 100 % transparenta med alla våra utgifter. Den senaste informationen finns alltid här på vår hemsida.
       latest_projects: De senaste projekten
       faq: Vanliga frågor
+      settings:
+        user_name_description: Ditt namn visas i topplistar och delade länkar. Lämna tomt för att vara anonym.
