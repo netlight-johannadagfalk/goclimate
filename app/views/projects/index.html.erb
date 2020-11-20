@@ -55,22 +55,12 @@
   <div class="relative max-w-5xl mx-auto">
     <%= image_tag webpack_asset_path('images/world_epsg_32663_gray.png'), class: 'w-full' %>
     <% @projects.drop(1).each do |project| %>
-      <div class="map-marker absolute w-4 h-4 -ml-2 -mb-4 bg-primary border-2 border-white rounded-full" data-latitude="<%= project.latitude %>" data-longitude="<%= project.longitude %>" title="<%= "#{project.name}, #{project.country}" %>"></div>
+      <div class="absolute w-4 h-4 -ml-2 -mb-4 bg-primary border-2 border-white rounded-full" data-controller="projects-map-marker" data-latitude="<%= project.latitude %>" data-longitude="<%= project.longitude %>" title="<%= "#{project.name}, #{project.country}" %>"></div>
     <% end %>
-    <div class="map-marker absolute w-12 h-12 -ml-6 -mb-6 border-2 border-white rounded-full overflow-hidden" data-latitude="<%= @projects.first.latitude %>" data-longitude="<%= @projects.first.longitude %>">
+    <div class="absolute w-12 h-12 -ml-6 -mb-6 border-2 border-white rounded-full overflow-hidden" data-controller="projects-map-marker" data-latitude="<%= @projects.first.latitude %>" data-longitude="<%= @projects.first.longitude %>">
       <img src="<%= @projects.first.image_url %>" title="<%= "#{@projects.first.name}, #{@projects.first.country}" %>" class="w-full h-full object-cover">
     </div>
   </div>
-  <% content_for :javascript_tags do %>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var markers = document.querySelectorAll('.map-marker');
-        for (var i = 0; i < markers.length; i++) {
-          new ProjectsMapMarker(markers[i]);
-        }
-      });
-    </script>
-  <% end %>
 
   <div class="space-y-6 mt-12">
     <% @projects.each do |project| %>

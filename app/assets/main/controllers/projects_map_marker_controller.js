@@ -1,3 +1,4 @@
+import { Controller } from 'stimulus';
 import proj4 from 'proj4';
 
 /* These markers are overlaid on top of world_epsg_32663.png (projected using
@@ -15,23 +16,20 @@ const WORLD_IMAGE_BOTTOM = -6620510.8664;
 const WORLD_IMAGE_WIDTH = 40075016.6856;
 const WORLD_IMAGE_HEIGHT = 15929446.9914;
 
-class ProjectsMapMarker {
-  constructor(markerElement) {
-    this.markerElement = markerElement;
+export default class ProjectsMapMarkerController extends Controller {
+  initialize() {
     this.setPosition();
   }
 
   setPosition() {
     const [x, y] = transformer.forward([
-      parseFloat(this.markerElement.dataset.longitude),
-      parseFloat(this.markerElement.dataset.latitude)
+      parseFloat(this.element.dataset.longitude),
+      parseFloat(this.element.dataset.latitude)
     ]);
     const imagePercentalX = ((x - WORLD_IMAGE_LEFT) / WORLD_IMAGE_WIDTH) * 100;
     const imagePercentalY = ((y - WORLD_IMAGE_BOTTOM) / WORLD_IMAGE_HEIGHT) * 100;
 
-    this.markerElement.style.left = `${imagePercentalX}%`;
-    this.markerElement.style.bottom = `${imagePercentalY}%`;
+    this.element.style.left = `${imagePercentalX}%`;
+    this.element.style.bottom = `${imagePercentalY}%`;
   }
 }
-
-window.ProjectsMapMarker = ProjectsMapMarker;

@@ -35,8 +35,3 @@ import 'font-awesome/scss/font-awesome.scss';
 
 /* Styling */
 import '../main/index.scss';
-
-/* Components */
-import '../javascripts/components/business_offset_calculator';
-import '../javascripts/components/counting_number';
-import '../javascripts/components/projects_map_marker';
