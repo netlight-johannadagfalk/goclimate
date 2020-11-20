@@ -1,9 +1,9 @@
 /* eslint no-param-reassign: 'off' */
 
 import { Controller } from 'stimulus';
-import { swapToActiveClassList, swapToInactiveClassList } from '../../util/swap_classes';
+import { swapToActiveClassList, swapToInactiveClassList } from '../../../util/swap_classes';
 
-export default class LifestyleCalculatorController extends Controller {
+export default class LifestyleFootprintsCalculatorController extends Controller {
   initialize() {
     this.groupedTargets = this.groupTargets();
 
@@ -99,4 +99,4 @@ export default class LifestyleCalculatorController extends Controller {
   }
 }
 
-LifestyleCalculatorController.targets = ['categoryIndicator', 'questionIndicator', 'question', 'back'];
+LifestyleFootprintsCalculatorController.targets = ['categoryIndicator', 'questionIndicator', 'question', 'back'];

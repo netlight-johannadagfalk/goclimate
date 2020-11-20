@@ -1,6 +1,6 @@
-<div class="callout max-w-md mx-auto" data-controller="registration-form membership-choice">
+<div class="callout max-w-md mx-auto" data-controller="registrations--form registrations--membership-choice">
   <a id="sign-up" class="absolute -mt-32"></a>
-  <div class="space-y-3" data-controller="registration-price referral-code" data-target="membership-choice.priceControllerElement">
+  <div class="space-y-3" data-controller="registrations--price registrations--referral-code" data-target="registrations--membership-choice.priceControllerElement">
     <h2 class="text-lg d:text-xl font-semibold text-center"><%= t 'views.registrations.sign_up_heading' %></h2>
     <p class="text-sm text-center mb-6 hidden"><%= t 'views.registrations.step' %> 1/2</p>
     <p class="text-center"><%= t 'views.registrations.sign_up_description' %></p>
@@ -9,14 +9,14 @@
     <div class="toggler-checked:hidden">
       <div class="space-y-3">
         <div class="h-px w-full bg-gray-tint-2 hidden"></div>
-        <%= form_with method: :get, class: 'space-y-3', html: { 'data-target': 'registration-price.peopleForm', 'data-url': new_user_registration_path } do |f| %>
+        <%= form_with method: :get, class: 'space-y-3', html: { 'data-target': 'registrations--price.peopleForm', 'data-url': new_user_registration_path } do |f| %>
           <%= f.hidden_field(:lifestyle_footprint, :value => @footprint.key) %>
           <label class="flex flex-row items-center p-3 bg-gray-pastel rounded cursor-pointer"
             data-active-class="flex flex-row items-center p-3 bg-green-tint-1 rounded cursor-pointer"
             data-inactive-class="flex flex-row items-center p-3 bg-gray-pastel rounded cursor-pointer"
             for="free"
             >
-            <input class="flex-shrink-0 mr-2" type="radio" name="membership" id="free" value="free" data-target="membership-choice.choice" data-action="click->membership-choice#handleChange">
+            <input class="flex-shrink-0 mr-2" type="radio" name="membership" id="free" value="free" data-target="registrations--membership-choice.choice" data-action="click->registrations--membership-choice#handleChange">
             <span><%= t('views.registrations.membership.free').gsub('<span', '<span class="font-bold"').html_safe %></span>
           </label>
           <label class="flex flex-row items-center p-3 bg-green-tint-1 rounded cursor-pointer"
@@ -24,7 +24,7 @@
             data-inactive-class="flex flex-row items-center p-3 bg-gray-pastel rounded cursor-pointer"
             for="single"
             >
-            <input class="flex-shrink-0 mr-2" type="radio" name="membership" id="single" value="single" checked data-target="membership-choice.choice" data-action="click->membership-choice#handleChange">
+            <input class="flex-shrink-0 mr-2" type="radio" name="membership" id="single" value="single" checked data-target="registrations--membership-choice.choice" data-action="click->registrations--membership-choice#handleChange">
             <span><%= t('views.registrations.membership.single').gsub('<span', '<span class="font-bold"').html_safe %></span>
           </label>
           <label class="flex flex-row items-center p-3 bg-gray-pastel rounded cursor-pointer"
@@ -32,44 +32,44 @@
             data-inactive-class="flex flex-row items-center p-3 bg-gray-pastel rounded cursor-pointer"
             for="multi"
             >
-            <input class="flex-shrink-0 mr-2" type="radio" name="membership" id="multi" value="multi" data-target="membership-choice.choice" data-action="click->membership-choice#handleChange">
+            <input class="flex-shrink-0 mr-2" type="radio" name="membership" id="multi" value="multi" data-target="registrations--membership-choice.choice" data-action="click->registrations--membership-choice#handleChange">
             <span><%= t('views.registrations.membership.multi').gsub('<span', '<span class="font-bold"').html_safe %></span>
             <div class="select-wrapper flex-shrink-0">
                 <%= f.select :people,
                   options_for_select(2..20, params[:people].presence || 2),
                   {},
-                  { class: 'select', 'data-action': 'change->membership-choice#chooseMulti' }
+                  { class: 'select', 'data-action': 'change->registrations--membership-choice#chooseMulti' }
                 %>
             </div>
           </label>
         <% end %>
         <div class="h-px w-full bg-gray-tint-2 hidden"></div>
 
-        <div data-target="membership-choice.subscriptionInfo" data-inactive-class="hidden">
+        <div data-target="registrations--membership-choice.subscriptionInfo" data-inactive-class="hidden">
           <div class="mt-3 collapse">
-            <input type="checkbox" id="enter_referral_code" data-target="referral-code.formPresentedCheckbox" class="hidden">
-            <div data-target="referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden">
-              <p class="text-center text-sm"><%=t 'views.registrations.referral_code' %>: <strong data-target="referral-code.activeCode" class="mr-1"></strong> <label for="enter_referral_code" class="link cursor-pointer"><%=t 'views.registrations.referral_code_change' %></label></p>
+            <input type="checkbox" id="enter_referral_code" data-target="registrations--referral-code.formPresentedCheckbox" class="hidden">
+            <div data-target="registrations--referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden">
+              <p class="text-center text-sm"><%=t 'views.registrations.referral_code' %>: <strong data-target="registrations--referral-code.activeCode" class="mr-1"></strong> <label for="enter_referral_code" class="link cursor-pointer"><%=t 'views.registrations.referral_code_change' %></label></p>
             </div>
-            <div data-target="referral-code.noCodeActiveInfo" data-inactive-class="hidden">
+            <div data-target="registrations--referral-code.noCodeActiveInfo" data-inactive-class="hidden">
               <p class="text-center text-sm"><label for="enter_referral_code" class="link cursor-pointer"><%=t 'views.registrations.referral_code_link' %></label></p>
             </div>
-            <%= form_with url: lookup_referral_codes_path, html: { class: 'collapse-content mt-3', 'data-target': 'referral-code.form', 'data-action': 'referral-code#submit' } do |f| %>
+            <%= form_with url: lookup_referral_codes_path, html: { class: 'collapse-content mt-3', 'data-target': 'registrations--referral-code.form', 'data-action': 'registrations--referral-code#submit' } do |f| %>
               <div class="flex">
                 <%= f.text_field :code, size: 'auto', class: 'input w-full flex-grow mr-2', placeholder: t('views.registrations.referral_code') %>
                 <%= f.submit 'OK', class: 'button', data: { disable_with: false } %>
               </div>
-              <p class="text-orange-shade-1 mt-1" data-target="referral-code.errorMessage"></p>
+              <p class="text-orange-shade-1 mt-1" data-target="registrations--referral-code.errorMessage"></p>
             <% end %>
           </div>
 
           <div class="py-6 space-y-1">
             <p class="heading-lg text-center">
-              <span data-target="referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden"><%=t 'views.registrations.first_month_free' %></span>
-              <span data-target="referral-code.noCodeActiveInfo" data-inactive-class="hidden"><span data-target="registration-price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %></span>
+              <span data-target="registrations--referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden"><%=t 'views.registrations.first_month_free' %></span>
+              <span data-target="registrations--referral-code.noCodeActiveInfo" data-inactive-class="hidden"><span data-target="registrations--price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %></span>
             </p>
-            <p data-target="referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden" data-active-class="font-bold text-center">
-              <%=t 'views.registrations.then' %> <span data-target="registration-price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %>
+            <p data-target="registrations--referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden" data-active-class="font-bold text-center">
+              <%=t 'views.registrations.then' %> <span data-target="registrations--price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %>
             </p>
 
             <p class="text-center text-sm">
@@ -77,17 +77,17 @@
             </p>
           </div>
         </div>
-        <div class="hidden" data-target="membership-choice.noSubscriptionInfo" data-inactive-class="hidden">
+        <div class="hidden" data-target="registrations--membership-choice.noSubscriptionInfo" data-inactive-class="hidden">
           <div class="py-6 space-y-1">
             <p class="heading-lg text-center">
-              <span class="hidden" data-target="membership-choice.noSubscriptionInfo" data-active-class="inline" data-inactive-class="hidden"><%= t 'views.registrations.price_free' %></span>
+              <span class="hidden" data-target="registrations--membership-choice.noSubscriptionInfo" data-active-class="inline" data-inactive-class="hidden"><%= t 'views.registrations.price_free' %></span>
             </p>
           </div>
         </div>
 
         <label for="step-one-done" id="continue-to-payment" class="button button-cta w-full">
-          <span data-target="membership-choice.subscriptionInfo" data-active-class="inline" data-inactive-class="hidden"><%= t 'views.registrations.continue_to_payment' %></span>
-          <span class="hidden" data-target="membership-choice.noSubscriptionInfo" data-active-class="inline" data-inactive-class="hidden"><%= t 'views.registrations.continue' %></span>
+          <span data-target="registrations--membership-choice.subscriptionInfo" data-active-class="inline" data-inactive-class="hidden"><%= t 'views.registrations.continue_to_payment' %></span>
+          <span class="hidden" data-target="registrations--membership-choice.noSubscriptionInfo" data-active-class="inline" data-inactive-class="hidden"><%= t 'views.registrations.continue' %></span>
         </label>
         <p class="text-sm text-right"><%= t 'views.registrations.step' %> 1/2</p>
       </div>
@@ -96,11 +96,11 @@
     <div class="toggler-not-checked:hidden">
       <p class="text-sm text-center mb-6 hidden"><%= t 'views.registrations.step' %> 2/2</p>
 
-      <%= form_with url: registration_path(resource_name, format: :json), html: { 'data-target': 'registration-form.form' } do |f| %>
+      <%= form_with url: registration_path(resource_name, format: :json), html: { 'data-target': 'registrations--form.form' } do |f| %>
         <%= f.hidden_field(:lifestyle_footprint, :value => @footprint&.key) %>
-        <%= f.hidden_field :people, value: (params[:people].presence || 1), 'data-target': 'registration-price.peopleField' %>
-        <%= f.hidden_field :referral_code, 'data-target': 'referral-code.activeCodeField' %>
-        <%= f.hidden_field :membership, value: '', 'data-target': 'membership-choice.membershipField' %>
+        <%= f.hidden_field :people, value: (params[:people].presence || 1), 'data-target': 'registrations--price.peopleField' %>
+        <%= f.hidden_field :referral_code, 'data-target': 'registrations--referral-code.activeCodeField' %>
+        <%= f.hidden_field :membership, value: '', 'data-target': 'registrations--membership-choice.membershipField' %>
         <%= fields_for @user do |user_form| %>
           <%= user_form.hidden_field :region %>
 
@@ -110,7 +110,7 @@
           <label for="password" class="block font-semibold mt-3"><%=t 'password' %></label>
           <%= user_form.password_field :password, required: true, minlength: '6', maxlength: '128', size: 'auto', autocomplete: "off", id: "password", class: "input w-full" %>
 
-          <div class="mt-3" data-controller="stripe-card-element" data-target="registration-form.stripeCardElement membership-choice.stripeCardElement" data-active-class="mt-3 block" data-inactive-class="hidden">
+          <div class="mt-3" data-controller="stripe-card-element" data-target="registrations--form.stripeCardElement registrations--membership-choice.stripeCardElement" data-active-class="mt-3 block" data-inactive-class="hidden">
             <label for="card" class=" font-semibold"><%=t 'credit_or_debit_card' %></label>
             <div class="">
               <div id="card" class="input mb-1" data-target="stripe-card-element.container"></div>
@@ -122,7 +122,7 @@
 
           <div class="mt-3">
             <label>
-              <%= f.check_box :privacy_policy, 'data-target': 'registration-form.privacyPolicyAgreement', 'data-action': 'change->registration-form#updateSubmitButton' %>
+              <%= f.check_box :privacy_policy, 'data-target': 'registrations--form.privacyPolicyAgreement', 'data-action': 'change->registrations--form#updateSubmitButton' %>
               <span>
                 <%=t 'i_accept' %>
                 <%= link_to I18n.t('our_privacy_policy'), privacy_policy_path, target: '_blank', class: 'link' %>
@@ -132,14 +132,14 @@
         <% end %>
       <% end %>
 
-      <div data-target="membership-choice.subscriptionInfo" data-inactive-class="hidden">
+      <div data-target="registrations--membership-choice.subscriptionInfo" data-inactive-class="hidden">
         <div class="py-6 space-y-1">
           <p class="heading-lg text-center">
-            <span data-target="referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden"><%=t 'views.registrations.first_month_free' %></span>
-            <span data-target="referral-code.noCodeActiveInfo" data-inactive-class="hidden"><span data-target="registration-price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %></span>
+            <span data-target="registrations--referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden"><%=t 'views.registrations.first_month_free' %></span>
+            <span data-target="registrations--referral-code.noCodeActiveInfo" data-inactive-class="hidden"><span data-target="registrations--price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %></span>
           </p>
-          <p data-target="referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden" data-active-class="font-bold text-center">
-            <%=t 'views.registrations.then' %> <span data-target="registration-price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %>
+          <p data-target="registrations--referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden" data-active-class="font-bold text-center">
+            <%=t 'views.registrations.then' %> <span data-target="registrations--price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %>
           </p>
 
           <p class="text-center text-sm">
@@ -147,34 +147,34 @@
           </p>
         </div>
       </div>
-        <div class="hidden" data-target="membership-choice.noSubscriptionInfo" data-inactive-class="hidden">
+        <div class="hidden" data-target="registrations--membership-choice.noSubscriptionInfo" data-inactive-class="hidden">
           <div class="py-6 space-y-1">
             <p class="heading-lg text-center">
-              <span class="hidden" data-target="membership-choice.noSubscriptionInfo" data-active-class="inline" data-inactive-class="hidden"><%= t 'views.registrations.price_free' %></span>
+              <span class="hidden" data-target="registrations--membership-choice.noSubscriptionInfo" data-active-class="inline" data-inactive-class="hidden"><%= t 'views.registrations.price_free' %></span>
             </p>
           </div>
         </div>
 
       <button class="button button-cta w-full"
-        data-target="registration-form.submitButton membership-choice.subscriptionInfo"
-        data-action="registration-form#submitWithCardDetails"
+        data-target="registrations--form.submitButton registrations--membership-choice.subscriptionInfo"
+        data-action="registrations--form#submitWithCardDetails"
         data-active-class="button button-cta w-full block"
         data-inactive-class="hidden"
       >
-        <i class="fa fa-spinner fa-spin hidden" data-target="registration-form.loadingIndicator"></i>
+        <i class="fa fa-spinner fa-spin hidden" data-target="registrations--form.loadingIndicator"></i>
         <span><%= t 'views.registrations.start_subscription' %></span>
       </button>
 
       <button class="button button-cta w-full hidden"
-        data-target="registration-form.submitButton membership-choice.noSubscriptionInfo"
-        data-action="registration-form#submit"
+        data-target="registrations--form.submitButton registrations--membership-choice.noSubscriptionInfo"
+        data-action="registrations--form#submit"
         data-active-class="button button-cta block w-full"
         data-inactive-class="hidden"
       >
-        <i class="fa fa-spinner fa-spin hidden" data-target="registration-form.loadingIndicator"></i>
+        <i class="fa fa-spinner fa-spin hidden" data-target="registrations--form.loadingIndicator"></i>
         <span><%= t 'views.registrations.create_account' %></span>
       </button>
-      <p class="text-orange-shade-1 ml-4" data-target="registration-form.errorMessage"></p>
+      <p class="text-orange-shade-1 ml-4" data-target="registrations--form.errorMessage"></p>
       <div class="mt-3 flex justify-between">
         <div><label for="step-one-done" class="link-ui text-sm"><- <%= t 'views.registrations.back' %></label></div>
         <span class="text-sm"><%= t 'views.registrations.step' %> 2/2</span>

@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus';
-import { swapToActiveClassList, swapToInactiveClassList } from '../../util/swap_classes';
+import { swapToActiveClassList, swapToInactiveClassList } from '../../../util/swap_classes';
 
-export default class MembershipChoiceController extends Controller {
+export default class RegistrationsMembershipChoiceController extends Controller {
   initialize() {
     // Set initial choice, handling that Firefox saves choice on reload
     this.membership = 'single';
@@ -28,9 +28,9 @@ export default class MembershipChoiceController extends Controller {
     this.membershipFieldTarget.value = this.membership;
     this.choiceTargets.forEach((target) => {
       if (target.value === this.membership) {
-        MembershipChoiceController.activateChoice(target);
+        RegistrationsMembershipChoiceController.activateChoice(target);
       } else {
-        MembershipChoiceController.deactivateChoice(target);
+        RegistrationsMembershipChoiceController.deactivateChoice(target);
       }
     });
     if (this.membership === 'free') {
@@ -62,22 +62,22 @@ export default class MembershipChoiceController extends Controller {
   }
 
   get registrationPriceController() {
-    return this.application.getControllerForElementAndIdentifier(this.priceControllerElementTarget, 'registration-price');
+    return this.application.getControllerForElementAndIdentifier(this.priceControllerElementTarget, 'registrations--price');
   }
 }
 
-MembershipChoiceController.activateChoice = function activateChoice(target) {
+RegistrationsMembershipChoiceController.activateChoice = function activateChoice(target) {
   swapToActiveClassList(target.parentNode);
   if (!target.checked) {
     target.checked = true;
   }
 };
 
-MembershipChoiceController.deactivateChoice = function deactivateChoice(target) {
+RegistrationsMembershipChoiceController.deactivateChoice = function deactivateChoice(target) {
   swapToInactiveClassList(target.parentNode);
   if (target.checked) {
     target.checked = false;
   }
 };
 
-MembershipChoiceController.targets = ['priceControllerElement', 'choice', 'membershipField', 'subscriptionInfo', 'noSubscriptionInfo', 'stripeCardElement'];
+RegistrationsMembershipChoiceController.targets = ['priceControllerElement', 'choice', 'membershipField', 'subscriptionInfo', 'noSubscriptionInfo', 'stripeCardElement'];

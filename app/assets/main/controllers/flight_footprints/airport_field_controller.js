@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus';
-import { swapToActiveClassList, swapToInactiveClassList } from '../../util/swap_classes';
+import { swapToActiveClassList, swapToInactiveClassList } from '../../../util/swap_classes';
 
-export default class AirportFieldController extends Controller {
+export default class FlightFootprintsAirportFieldController extends Controller {
   initialize() {
     this.focusedAirportIndex = null;
     this.requestPending = false;
@@ -171,4 +171,4 @@ export default class AirportFieldController extends Controller {
   }
 }
 
-AirportFieldController.targets = ['container', 'dropdownContainer', 'suggestionsList', 'searchField', 'airportCodeField', 'dropdownTrigger'];
+FlightFootprintsAirportFieldController.targets = ['container', 'dropdownContainer', 'suggestionsList', 'searchField', 'airportCodeField', 'dropdownTrigger'];

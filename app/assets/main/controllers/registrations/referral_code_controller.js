@@ -1,10 +1,10 @@
 import { Controller } from 'stimulus';
-import submitForm from '../../util/submit_form';
-import { swapToActiveClassList, swapToInactiveClassList } from '../../util/swap_classes';
+import submitForm from '../../../util/submit_form';
+import { swapToActiveClassList, swapToInactiveClassList } from '../../../util/swap_classes';
 
 class ReferralCodeNotFoundError extends Error { }
 
-export default class ReferralCodeController extends Controller {
+export default class RegistrationsReferralCodeController extends Controller {
   submit(event) {
     event.preventDefault();
 
@@ -58,4 +58,4 @@ export default class ReferralCodeController extends Controller {
   }
 }
 
-ReferralCodeController.targets = ['form', 'formPresentedCheckbox', 'activeCode', 'activeCodeField', 'codeActiveInfo', 'noCodeActiveInfo', 'errorMessage'];
+RegistrationsReferralCodeController.targets = ['form', 'formPresentedCheckbox', 'activeCode', 'activeCodeField', 'codeActiveInfo', 'noCodeActiveInfo', 'errorMessage'];
