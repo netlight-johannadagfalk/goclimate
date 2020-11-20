@@ -57,7 +57,7 @@
             <div class="font-semibold"><%= t "faq_questions.#{q}.question" %></div>
             <div class="pl-3"><i class="fa fa-chevron-circle-down collapse-chevron" aria-hidden="true"></i></div>
           </label>
-          <div class="pt-4 collapse-content"><%= raw(t("faq_questions.#{q}.answer")) %></div>
+          <div class="pt-4 collapse-content"><%= raw(t("faq_questions.#{q}.answer").gsub('<a ','<a class="link" ')) %></div>
         </div>
       <% end %>
     </div>
