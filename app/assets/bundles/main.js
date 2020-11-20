@@ -30,12 +30,6 @@ application.load(definitionsFromContext(
   require.context('../main/controllers', true, /\.js$/)
 ));
 
-/* Bootstrap and inline jQuery calls require jQuery globally */
-import jQuery from 'jquery';
-
-window.jQuery = jQuery;
-window.$ = jQuery;
-
 /* Font Awesome */
 import 'font-awesome/scss/font-awesome.scss';
 

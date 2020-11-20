@@ -49,10 +49,6 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name]-[contenthash].css'
-    }),
-    /* Bootstrap 3 does not import jQuery. This should not be needed once we move to Bootstrap 4. */
-    new webpack.ProvidePlugin({
-      jQuery: 'jquery'
     })
   ],
   module: {
