@@ -18,7 +18,7 @@ en:
       price_free: Free
       create_account: Create account
       your_subscription: Your subscription
-      number_of_people: Number of people
+      number_of_people: Multiply your offsetting by
       referral_code: Referral code
       referral_code_change: Change
       referral_code_link: Have a referral code?
@@ -43,7 +43,7 @@ en:
       know_your_footprint:
         consist_of:
           heading: What does my carbon footprint consist of?
-          text: The main areas to look at in terms of your footprint are living situation, diet, travelling and means of transportation, as well as shopping and public consumption. Housing and car emissions can differ quite a lot depending on what country you live in, so does public consumption - which includes infrastructure, hospitals, education etc. The areas where most of us can make choices that have a high impact on our carbon footprint in a fairly short amount of time, are generally diet and shopping, as well as looking over how we travel. The “Public emissions and shopping” part of your carbon footprint can be reduced by roughly between 1-5 tonnes, by making conscious choices and changing your consumption habits.
+          text: The main areas to look at in terms of your footprint are housing, food, travelling with car and flights, as well as shopping and public emissions. Housing and car emissions can differ quite a lot depending on what country you live in, so does public emissions - which includes infrastructure, hospitals, education etc. The areas where most of us can make choices that have a high impact on our carbon footprint in a fairly short amount of time, are generally food and shopping, as well as looking over how we travel. The public emissions and shopping part of your carbon footprint can be reduced by roughly between 1-5 tonnes, by making conscious choices and changing your consumption habits.
           text_2: Learn more by signing up and get support in reducing your individual carbon footprint today!
         tips:
           heading: What can I do about this?
@@ -56,7 +56,7 @@ en:
             text: The most climate friendly diet is without a doubt a plant based one. The biggest culprit food-wise is red meat, and even cutting your meat and dairy consumption in half has a great impact on reducing your emissions.
           offsetting:
             heading: Balance your emissions
-            text: The most crucial thing we as individuals have to do in order to combat climate change is to reduce our own emissions. A great complement to a more climate friendly lifestyle is to balance your carbon footprint to take full responsibility for your emissions.
+            text: The most crucial thing we as individuals have to do in order to combat climate change is to reduce our own emissions. A great complement to a more climate friendly lifestyle is to balance your carbon footprint by supporting climate projects, in order to take full responsibility for your emissions.
         sign_up:
           heading: Let's stop climate change together!
           text: Understanding and reducing your emissions is crucial - however, there is more that needs to be done. Sign up to track your emissions over time, whilst getting support in reducing your footprint - and opt in to offset your lifestyle through climate projects to kickstart your journey towards a climate friendly lifestyle now.

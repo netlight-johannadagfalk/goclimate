@@ -17,7 +17,7 @@ en:
   climate_projects: Climate projects
   climate_projects_description: We support high quality Gold Standard-certified climate projects to speed up the transition to a sustainable planet.
   behavioral_change: Behavioral change
-  behavioral_change_description: We can't offset our emissions and continue as normal. We educate, inspire and help individuals lower their carbon footprint.
+  behavioral_change_description: We can't just offset our emissions and continue as normal. We educate, inspire and help individuals lower their carbon footprint.
   basic_facts: GoClimate in numbers
   employees: Employees
   full_time: full time
@@ -65,8 +65,7 @@ en:
   about_us_why_do_we_exist_text: To keep the rise in global temperatures below 1.5°C this century, emissions of carbon dioxide will have to be cut by 50% by 2030, and then continue to decrease. Many people, mainly in developing countries, are already experiencing the devastating effects of climate change, and there is no time to waste in turning this ship around.
   about_us_why_do_we_exist_text_2: This puts a lot of pressure on governments, companies and individuals alike. The changes we all need to do to meet the goal and avoid further climate catastrophe can be difficult to get your head around. We want to facilitate the journey towards a climate friendly lifestyle, showing that a life in line with caring for our planet - and each other - can be a luxurious one. A life with more focus on what is truly important.
   about_us_how_do_we_stop_climate_change: How do we stop climate change?
-  about_us_how_do_we_stop_climate_change_text: In order to stop climate change we all need to live climate neutral lives now. The best way to do that is to reduce our footprint as much as possible and at the same time start to offset for the things we can't reduce. The GoClimate site was founded in 2017 with the aim to make it easy to do just that - reduce our climate impact and offset for the things we can't reduce.
-  about_us_how_do_we_stop_climate_change_text_2: We believe that the best way to help offset climate impact is to make it as easy as possible to offset the climate impact of a specific lifestyle. We believe that we can stop climate change - if we do it together and if we start now.
+  about_us_how_do_we_stop_climate_change_text: In order to stop climate change we all need to live climate friendly lives now. The best way to do that is to reduce our carbon footprint as much as possible and balance our emissions by financing effective climate projects. We believe that we can stop climate change – if we do it together and if we start now.
   about_us_who_are_we: Who are we?
   about_us_team:
     heading: Who are we?
@@ -325,8 +324,8 @@ en:
       calculate_footprint_html: Calculate the climate footprint of your business, reduce what emissions you can and offset the rest. Our calculator is made for smaller service businesses without own physical production. Questions? Contact us at <a href="mailto:hello@goclimate.com">hello@goclimate.com</a>!
       calculate_footprint_button: Calculate my business footprint
       customers_we_work_with: A few of our amazing customers and partners
-      offset_employees: Offset your employees
-      offset_employees_html: By offsetting for your employees lifestyle you take responsibility for their climate footprint. This is a way to do a lot of good for the climate and at the same time be an attractive and responsible employer.
+      offset_employees: Offset your team members’ footprint
+      offset_employees_html: Balance the carbon footprint of your employees by offsetting everyone’s individual emissions and take responsibility for your team’s total carbon footprint. This is one way to do a lot of good for the climate and at the same time be an attractive and responsible employer.
       equivalent_co2_offset: equivalent to 22 tonnes of CO2-emissions per employee and year
       im_interested: Contact me
       we_will_contact_you_shortly_html: We will contact you on <b>%{email}</b> shortly with more information about the next step!

@@ -64,9 +64,8 @@ sv:
   about_us_why_do_we_exist: Varför finns GoClimate?
   about_us_why_do_we_exist_text: För att hålla den globala temperaturökningen under 1.5°C så måste koldioxidutsläppen minskas med 50% senast år 2030 - och sedan fortsätta minska i samma takt. Många människor, framför allt i utvecklingsländer, upplever redan de förödande effekterna av klimatförändringarna. Vi måste agera nu, för att ha en chans att möta de nödvändiga mål som håller temperaturen på en någorlunda stabil nivå.
   about_us_why_do_we_exist_text_2: Detta sätter press på både regeringar, företag och privatpersoner. Förändringarna som vi alla behöver göra för att nå målet och undvika ytterligare klimatkatastrof kan vara svåra att förstå och genomföra. Vi vill underlätta resan mot en klimatvänlig livsstil och visa att ett liv där vi bryr oss om vår planet - och varandra - kan vara ett lyxigt liv. Ett liv med mer fokus på det som verkligen är viktigt.
-  about_us_how_do_we_stop_climate_change: Hur bromsar vi klimatförändringar?
-  about_us_how_do_we_stop_climate_change_text: För att hejda klimatförändringarna behöver så många som möjligt bli klimatneutrala (eller ännu bättre – klimatpositiva) nu. Det bästa tillvägagångssättet är att minska våra egna fotavtryck så mycket det bara går samtidigt som vi klimatkompenserar för resterande.
-  about_us_how_do_we_stop_climate_change_text_2: GoClimate skapades i syfte att göra ovanstående så enkelt som möjligt – ge tips om hur vi alla kan minska vår egen klimatpåverkan och erbjuda möjligheten att klimatkompensera för de fotavtryck vi personligen orsakar. Vi tror att det bästa sättet att få människor att klimatkompensera för sin livsstil är att göra det så enkelt som möjligt. Vi är övertygade om att klimatförändringarna kan stoppas – om vi är tillräckligt många som agerar och om vi gör det nu.
+  about_us_how_do_we_stop_climate_change: Hur bromsar vi klimatförändringarna?
+  about_us_how_do_we_stop_climate_change_text: För att stoppa klimatförändringarna behöver så många som möjligt leva klimatvänliga liv. Det bästa sättet är att minska våra egna klimatavtryck så mycket som möjligt samtidigt som vi balanserar våra utsläpp genom att finansiera effektiva klimatprojekt. Vi är övertygade om att den globala uppvärmningen kan stoppas – om vi är tillräckligt många som agerar och om vi börjar nu.
   about_us_who_are_we: Vilka är vi?
   about_us_team:
     heading: Vilka är vi?
@@ -319,8 +318,8 @@ sv:
       calculate_footprint_html: Beräkna ditt företags klimatavtryck, minska det du kan och klimatkompensera resten. Vi har tagit fram ett enkelt verktyg för tjänsteföretag utan egen fysisk produktion.
       calculate_footprint_button: Beräkna mitt företags klimatavtryck
       customers_we_work_with: Några av våra fantastiska kunder och samarbetspartners
-      offset_employees: Klimatkompensera era anställda
-      offset_employees_html: Genom att klimatkompensera för era anställdas livsstil tar ni ansvar för deras privata klimatavtryck. Det är ett sätt att göra stor klimatnytta samtidigt som det bidrar till att ni blir en attraktiv och ansvarstagande arbetsgivare.
+      offset_employees: Kompensera för hela ditt teams klimatavtryck
+      offset_employees_html: Balansera klimatavtrycket för dina anställda genom att kompensera för varje persons individuella utsläpp och ta ansvar för ditt teams hela avtryck. På så sätt gör du nytta för klimatet och blir samtidigt en attraktiv och ansvarstagande arbetsplats.
       equivalent_co2_offset: motsvarar 22 ton CO2-utsläpp per anställd och år
       im_interested: Kontakta mig!
       we_will_contact_you_shortly_html: Vi kontaktar dig inom kort på <b>%{email}</b> med information om nästa steg! Vi hörs!
