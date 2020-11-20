@@ -33,10 +33,10 @@
         }
       )
     %>
-    <% if Rails.env.development? %>
-      <meta property="fb:app_id" content="261728851826356">
-    <% else %>
+    <% if ENV['HEROKU_ENV'] == 'production' %>
       <meta property="fb:app_id" content="452582378427296">
+    <% else %>
+      <meta property="fb:app_id" content="261728851826356">
     <% end %>
 
     <%= webpack_entrypoint_stylesheet_tags 'main' %>
