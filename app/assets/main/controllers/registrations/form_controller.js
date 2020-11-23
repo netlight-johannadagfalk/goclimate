@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus';
-import submitForm from '../../util/submit_form';
+import submitForm from '../../../util/submit_form';
 
-export default class RegistrationFormController extends Controller {
+export default class RegistrationsFormController extends Controller {
   initialize() {
     this.loading = false;
     this.updateSubmitButton();
@@ -58,7 +58,7 @@ export default class RegistrationFormController extends Controller {
           resolve();
           break;
         case 'confirmation_required':
-          RegistrationFormController.confirmPromise(data.intent_type, data.intent_client_secret)
+          RegistrationsFormController.confirmPromise(data.intent_type, data.intent_client_secret)
             .then((result) => {
               if (result.error !== undefined) {
                 this.setErrorMessage(result.error.message);
@@ -104,7 +104,7 @@ export default class RegistrationFormController extends Controller {
   }
 }
 
-RegistrationFormController.confirmPromise = function confirmPromise(
+RegistrationsFormController.confirmPromise = function confirmPromise(
   intentType, intentClientSecret
 ) {
   switch (intentType) {
@@ -117,4 +117,4 @@ RegistrationFormController.confirmPromise = function confirmPromise(
   }
 };
 
-RegistrationFormController.targets = ['form', 'privacyPolicyAgreement', 'submitButton', 'stripeCardElement', 'errorMessage', 'loadingIndicator'];
+RegistrationsFormController.targets = ['form', 'privacyPolicyAgreement', 'submitButton', 'stripeCardElement', 'errorMessage', 'loadingIndicator'];

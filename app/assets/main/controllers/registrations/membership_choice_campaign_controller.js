@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus';
-import { swapToActiveClassList, swapToInactiveClassList } from '../../util/swap_classes';
+import { swapToActiveClassList, swapToInactiveClassList } from '../../../util/swap_classes';
 
-export default class MembershipChoiceCampaignController extends Controller {
+export default class RegistrationsMembershipChoiceCampaignController extends Controller {
   showFree() {
     swapToInactiveClassList(this.freeTarget);
     swapToInactiveClassList(this.payingTarget);
@@ -23,4 +23,4 @@ export default class MembershipChoiceCampaignController extends Controller {
   }
 }
 
-MembershipChoiceCampaignController.targets = ['free', 'paying', 'signupFree', 'signupPaying', 'membershipField'];
+RegistrationsMembershipChoiceCampaignController.targets = ['free', 'paying', 'signupFree', 'signupPaying', 'membershipField'];

@@ -30,22 +30,8 @@ application.load(definitionsFromContext(
   require.context('../main/controllers', true, /\.js$/)
 ));
 
-/* Bootstrap and inline jQuery calls require jQuery globally */
-import jQuery from 'jquery';
-
-window.jQuery = jQuery;
-window.$ = jQuery;
-
 /* Font Awesome */
 import 'font-awesome/scss/font-awesome.scss';
 
 /* Styling */
 import '../main/index.scss';
-
-/* Components */
-import '../javascripts/components/business_offset_calculator';
-import '../javascripts/components/counting_number';
-import '../javascripts/components/projects_map_marker';
-import '../javascripts/dashboard';
-import '../javascripts/users';
-import '../javascripts/users/edit_user';

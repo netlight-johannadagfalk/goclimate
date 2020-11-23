@@ -1,5 +1,5 @@
 import { Controller } from 'stimulus';
-import submitForm from '../../util/submit_form';
+import submitForm from '../../../util/submit_form';
 
 export default class RegistrationPriceController extends Controller {
   update() {

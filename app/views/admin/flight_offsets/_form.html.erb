@@ -1,6 +1,6 @@
 <%= form_for([:admin, flight_offset]) do |f| %>
   <% if flight_offset.errors.any? %>
-    <div id="error_explanation">
+    <div>
       <h2><%= pluralize(flight_offset.errors.count, "error") %> prohibited this flight offset from being saved:</h2>
 
       <ul>

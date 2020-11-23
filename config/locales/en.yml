@@ -142,7 +142,6 @@ en:
   type: Type
   price: Price
   country: Country
-  edit_settings: Edit Settings
   account_settings: Account settings
   payment_settings: Payment settings
   user_name: User Name
@@ -311,11 +310,6 @@ en:
     users_suffix: community members
     tonnes_prefix: Together we've reduced
     tonnes_suffix: tonnes CO2 from the atmosphere
-    call_to_actions:
-      lets_save_our_planet_together: Let's save our planet together!
-      go_climate_neutral: Go Climate Neutral
-    how_it_works:
-      sign_up_text: Sign up to offset your carbon footprint on a monthly basis.
     business:
       for_companies: Carbon Offsetting For Your Business
       for_companies_text_html: Do you want to offset the emissions from a flight or for all your employees? We would love to help!
@@ -446,6 +440,3 @@ en:
         thanks_again: Thanks again!
 
   this_is_how_the_money_is_used_header: This is how the money is used
-  this_is_how_the_money_is_used_text: We support Gold Standard certified climate projects. The projects reduce emissions equivalent to your business' footprint and contribute to the global transition to renewable energy production. Here's our two latest projects.
-  tonnes_carbon_dioxide: tonnes carbon dioxide
-  see_all_our_projects: See all our projects

@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus';
-import submitForm from '../../util/submit_form';
+import submitForm from '../../../util/submit_form';
 
-export default class FlightFootprintForm extends Controller {
+export default class FlightFootprintsFootprintFormController extends Controller {
   update() {
     if (this.element.origin_airport.value === '' || this.element.destination_airport.value === '') {
       this.clearResults();
@@ -32,4 +32,4 @@ export default class FlightFootprintForm extends Controller {
   }
 }
 
-FlightFootprintForm.targets = ['personsFormGroup', 'personsMessage', 'footprint', 'price', 'offsetLink'];
+FlightFootprintsFootprintFormController.targets = ['personsFormGroup', 'personsMessage', 'footprint', 'price', 'offsetLink'];

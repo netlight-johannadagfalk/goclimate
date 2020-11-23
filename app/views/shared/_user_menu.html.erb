@@ -1,4 +1,0 @@
-<ul class="nav nav-tabs nav-justified">
-  <li role="presentation" <%== params[:controller] =~ /registrations/ ? "class='active'" : "" %>><%= link_to t('edit_settings'), edit_user_registration_path %></li>
-  <li role="presentation" <%== params[:controller] =~ /subscriptions/ ? "class='active'" : "" %>><%= link_to t('payment_settings'), user_subscription_path %></li>
-</ul>

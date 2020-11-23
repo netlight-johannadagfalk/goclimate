@@ -62,14 +62,14 @@
     <div class="t:w-1/2">
       <h2 class="heading-lg"><%=t 'welcome.business.offset_employees' %></h2>
       <p class="my-6"><%=t 'welcome.business.offset_employees_html' %></p>
-      <div class="callout">
+      <div class="callout" data-controller="business--offset-calculator" data-cost-per-tonne="<%= @cost_per_tonne %>">
         <p class="heading-lg text-center">
           <% case I18n.locale when :en %>
-            $<span id="big-number"></span> /month
+            $<span data-target="business--offset-calculator.costLabel"></span> /month
           <% when :de %>
-            <span id="big-number"></span> €/month
+            <span data-target="business--offset-calculator.costLabel"></span> €/month
           <% when :sv %>
-            <span id="big-number"></span> kr/månad
+            <span data-target="business--offset-calculator.costLabel"></span> kr/månad
           <% end %>
         </p>
         <p class="text-sm text-center"><%=t 'welcome.business.equivalent_co2_offset' %></p>
@@ -77,14 +77,14 @@
         <%= form_tag(business_contacts_path, class: 'my-3') do %>
           <div class="text-center">
             <%= label_tag(:number_of_employees, t('welcome.business.number_of_employees'), class: 'font-bold') %>
-            <div class="">
-              <%= number_field_tag :number_of_employees, '10', class: 'input w-full d:w-auto', required: '' %>
+            <div>
+              <%= number_field_tag :number_of_employees, '10', class: 'input w-full d:w-auto', min: 1, required: true, 'data-action': 'business--offset-calculator#update', 'data-target': 'business--offset-calculator.employeesField' %>
             </div>
           </div>
           <div class="text-center mt-1">
             <%= label_tag(:email, t('welcome.business.your_email'), class: 'font-bold') %>
-            <div class="">
-              <%= email_field_tag :email, '', class: 'input w-full d:w-auto', required: '' %>
+            <div>
+              <%= email_field_tag :email, '', class: 'input w-full d:w-auto', required: true %>
             </div>
           </div>
           <div class="mt-3 text-center">
@@ -105,15 +105,3 @@
 </section>
 
 <%= render 'shared/footer' %>
-
-<% content_for :javascript_tags do %>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      new BusinessOffsetCalculator(
-        <%= @cost_per_tonne %>,
-        document.getElementById('number_of_employees'),
-        document.getElementById('big-number')
-      )
-    })
-  </script>
-<% end %>

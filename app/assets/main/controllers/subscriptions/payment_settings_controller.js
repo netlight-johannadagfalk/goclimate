@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus';
-import submitForm from '../../util/submit_form';
+import submitForm from '../../../util/submit_form';
 
-export default class PaymentSettingsController extends Controller {
+export default class SubscriptionsPaymentSettingsController extends Controller {
   initialize() {
     this.loading = false;
     this.updateSubmitButton();
@@ -49,7 +49,7 @@ export default class PaymentSettingsController extends Controller {
           resolve();
           break;
         case 'confirmation_required':
-          PaymentSettingsController.confirmPromise(data.intent_type, data.intent_client_secret)
+          SubscriptionsPaymentSettingsController.confirmPromise(data.intent_type, data.intent_client_secret)
             .then((result) => {
               if (result.error !== undefined) {
                 this.setErrorMessage(result.error.message);
@@ -109,7 +109,9 @@ export default class PaymentSettingsController extends Controller {
   }
 }
 
-PaymentSettingsController.confirmPromise = function confirmPromise(intentType, intentClientSecret) {
+SubscriptionsPaymentSettingsController.confirmPromise = function confirmPromise(
+  intentType, intentClientSecret
+) {
   switch (intentType) {
     case 'payment_intent':
       return window.stripe.confirmCardPayment(intentClientSecret);
@@ -120,4 +122,4 @@ PaymentSettingsController.confirmPromise = function confirmPromise(intentType, i
   }
 };
 
-PaymentSettingsController.targets = ['form', 'submitButton', 'stripeCardElement', 'errorMessage', 'loadingIndicator'];
+SubscriptionsPaymentSettingsController.targets = ['form', 'submitButton', 'stripeCardElement', 'errorMessage', 'loadingIndicator'];

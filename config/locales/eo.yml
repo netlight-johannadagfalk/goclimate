@@ -142,7 +142,6 @@ eo:
   type: crwdns11964:0crwdne11964:0
   price: crwdns11966:0crwdne11966:0
   country: crwdns11972:0crwdne11972:0
-  edit_settings: crwdns11978:0crwdne11978:0
   account_settings: crwdns14868:0crwdne14868:0
   payment_settings: crwdns14870:0crwdne14870:0
   user_name: crwdns11982:0crwdne11982:0
@@ -305,11 +304,6 @@ eo:
     users_suffix: crwdns12210:0crwdne12210:0
     tonnes_prefix: crwdns12212:0crwdne12212:0
     tonnes_suffix: crwdns12214:0crwdne12214:0
-    call_to_actions:
-      lets_save_our_planet_together: crwdns12218:0crwdne12218:0
-      go_climate_neutral: crwdns12220:0crwdne12220:0
-    how_it_works:
-      sign_up_text: crwdns12224:0crwdne12224:0
     business:
       for_companies: crwdns12230:0crwdne12230:0
       for_companies_text_html: crwdns12232:0crwdne12232:0
@@ -438,6 +432,3 @@ eo:
         well_be_in_touch: crwdns12464:0crwdne12464:0
         thanks_again: crwdns12466:0crwdne12466:0
   this_is_how_the_money_is_used_header: crwdns12468:0crwdne12468:0
-  this_is_how_the_money_is_used_text: crwdns12470:0crwdne12470:0
-  tonnes_carbon_dioxide: crwdns12472:0crwdne12472:0
-  see_all_our_projects: crwdns12474:0crwdne12474:0

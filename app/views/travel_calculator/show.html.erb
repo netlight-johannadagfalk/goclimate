@@ -57,46 +57,42 @@
 </section>
 
 <% content_for :javascript_tags do %>
-      <script>
-        function processForm(e) {
-          if (e.preventDefault) e.preventDefault();
+  <script>
+    function processForm(e) {
+      if (e.preventDefault) { e.preventDefault(); }
 
-          var distance = parseInt(document.getElementById("distance").value);
+      var distance = parseInt(document.getElementById("distance").value);
 
-          var emissionTypes = [["flight", 0.25], 
-                               ["car_petrol", 0.19],
-                               ["car_diesel", 0.15],
-                               ["car_etanol", 0.11],
-                               ["car_gas", 0.04],
-                               ["car_electric", 0.01],
-                               ["bus",  0.059],
-                               ["train",  0],
-                               ["subway",  0],
-                               ["boat",  0.17],
-                              ];
+      var emissionTypes = [
+        ["flight", 0.25],
+        ["car_petrol", 0.19],
+        ["car_diesel", 0.15],
+        ["car_etanol", 0.11],
+        ["car_gas", 0.04],
+        ["car_electric", 0.01],
+        ["bus",  0.059],
+        ["train",  0],
+        ["subway",  0],
+        ["boat",  0.17],
+      ];
 
-          emissionTypes.map(function(emissionType) {
-            var barLength = emissionType[1] * 250 / 0.25;
-            document
-              .getElementById(emissionType[0] + "-background")
-              .setAttribute("style", "width: " + barLength + "px;");
-            document
-              .getElementById(emissionType[0])
-              .setAttribute("data-target-number", distance * emissionType[1]);
-            new CountingNumber(document.querySelector("#" + emissionType[0])).countUp();
-          });
+      emissionTypes.map(function(emissionType) {
+        var barLength = emissionType[1] * 250 / 0.25;
 
-          return false;
-        }
-        
-        var form = document.getElementById('distance-form');
-        if (form.attachEvent) {
-            form.attachEvent("submit", processForm);
-        } else {
-            form.addEventListener("submit", processForm);
-        }
+        document
+          .getElementById(emissionType[0] + "-background")
+          .setAttribute("style", "width: " + barLength + "px;");
 
-      </script>
-    <% end %>
+        document
+          .getElementById(emissionType[0])
+          .innerText = Math.round(distance * emissionType[1]);
+      });
+
+      return false;
+    }
+
+    document.getElementById('distance-form').addEventListener("submit", processForm);
+  </script>
+<% end %>
 
 <%= render "shared/footer" %>

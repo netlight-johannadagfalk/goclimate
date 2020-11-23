@@ -134,7 +134,6 @@ de:
   type: Dauer
   price: Preis
   country: Land
-  edit_settings: Einstellungen anpassen
   account_settings: Kontoeinstellungen
   payment_settings: Zahlungseinstellungen
   user_name: Nutzername
@@ -293,11 +292,6 @@ de:
     users_prefix: Aktuell sind wir
     tonnes_prefix: Gemeinsam haben wir
     tonnes_suffix: Tonnen CO2 in der Atmosphäre reduziert
-    call_to_actions:
-      lets_save_our_planet_together: Lass uns gemeinsam unseren Planeten retten!
-      go_climate_neutral: Werde klimaneutral
-    how_it_works:
-      sign_up_text: Melden Sie sich an, um jeden Monat Ihre Emissionen auszugleichen.
     business:
       for_companies: Klimakompensation für Ihr Unternehmen
       for_companies_text_html: Möchten Sie die Emissionen eines Fluges oder für alle Ihre Mitarbeiter kompensieren? Wir helfen Ihnen gerne weiter!
@@ -424,6 +418,3 @@ de:
         well_be_in_touch: Wir werden uns in Kürze mit Ihnen in Verbindung setzen, um Ihnen Ihren Klimabericht zukommen zu lassen.
         thanks_again: Nochmals vielen Dank!
   this_is_how_the_money_is_used_header: So wird das Geld verwendet
-  this_is_how_the_money_is_used_text: Wir unterstützen UN-zertifizierte Klimaprojekte, die ebenfalls nach Gold Standard zertifiziert sind. Die Projekte reduzieren die Emissionen in Höhe des Fußabdrucks Ihres Unternehmens und tragen global zum Umstieg auf erneuerbare Energien bei. Hier sind unsere beiden neuesten Projekte.
-  tonnes_carbon_dioxide: Tonnen Kohlendioxid
-  see_all_our_projects: Alle unsere Projekte ansehen
