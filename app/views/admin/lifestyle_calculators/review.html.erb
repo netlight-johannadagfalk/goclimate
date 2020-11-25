@@ -53,6 +53,21 @@
     </div>
   <% end %>
 
+  <% if @calculator.home_area_options.present? %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3 style="margin-top: 10px;"><%=t 'views.lifestyle_footprints.questions.home_area' %></h3>
+        <% @calculator.home_area_options.each do |option| %>
+          <p>
+            <span class="btn btn-default">
+              <%=t "views.lifestyle_footprints.options.home_area.#{option['key']}" %>
+            </span>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
   <% if @calculator.heating_options.present? %>
     <div class="panel panel-default">
       <div class="panel-body">

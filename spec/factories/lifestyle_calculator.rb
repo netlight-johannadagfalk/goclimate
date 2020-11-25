@@ -15,6 +15,12 @@ FactoryBot.define do
         { key: 'house', formula: '10' }
       ]
     end
+    home_area_options do
+      [
+        { key: 'fifteen_sqm', formula: '3' },
+        { key: 'twentyfive_sqm', formula: '6' }
+      ]
+    end
     heating_options do
       [
         { key: 'district', formula: '2' },

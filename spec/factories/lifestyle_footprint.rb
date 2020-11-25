@@ -6,6 +6,7 @@ FactoryBot.define do
     country { lifestyle_calculator.countries.first }
     region_answer { 'first' }
     home_answer { 'apartment' }
+    home_area_answer { 'fifteen_sqm' }
     heating_answer { 'district' }
     green_electricity_answer { 'yes' }
     food_answer { 'vegan' }

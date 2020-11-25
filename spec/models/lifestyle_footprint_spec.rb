@@ -34,7 +34,7 @@ RSpec.describe LifestyleFootprint do
   end
 
   [
-    :region, :home, :heating, :house_age, :green_electricity, :food, :car_type
+    :region, :home, :home_area, :heating, :green_electricity, :food, :car_type
   ].each do |category|
     field = "#{category}_answer".to_sym
 
@@ -117,8 +117,8 @@ RSpec.describe LifestyleFootprint do
         lifestyle_calculator: calculator,
         region_answer: 'region',
         home_answer: 'home',
+        home_area_answer: 'fifteen_sqm',
         heating_answer: 'heating',
-        house_age_answer: 'house_age',
         green_electricity_answer: 'green_electricity',
         food_answer: 'food',
         car_type_answer: 'car_type',
@@ -154,8 +154,8 @@ RSpec.describe LifestyleFootprint do
         hash_including(
           region: 'region',
           home: 'home',
+          home_area: 'fifteen_sqm',
           heating: 'heating',
-          house_age: 'house_age',
           green_electricity: 'green_electricity',
           food: 'food',
           car_type: 'car_type',
