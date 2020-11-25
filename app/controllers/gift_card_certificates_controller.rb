@@ -12,12 +12,16 @@ class GiftCardCertificatesController < ApplicationController
   # Optionally, you can include a subscription_months_to_gift query param.
   def example
     number_of_months = (params[:subscription_months_to_gift].presence || 6).to_i
+    country =
+      ISO3166::Country.new(params[:country]) ||
+      visitor_country ||
+      ISO3166::Country.new('US')
 
     pdf = GiftCardCertificatePdf.new(
       GiftCard.new(
         message: t('views.gift_cards.example.message_html'),
         number_of_months: number_of_months,
-        country: ISO3166::Country.new(params[:country])
+        country: country
       ),
       example: true
     ).render
