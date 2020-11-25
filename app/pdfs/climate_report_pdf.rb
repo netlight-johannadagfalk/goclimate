@@ -17,6 +17,13 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
         climate_report: @climate_report
       }
     )
+    @footer = ActionController::Base.new.render_to_string(
+      template: 'pdfs/footer.html.erb',
+      assigns: {
+        climate_report: @climate_report
+      }
+    )
+
     WickedPdf.new.pdf_from_string(
       ApplicationController.render(
         template: 'pdfs/climate_report',
@@ -40,10 +47,7 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
         }
       ),
       footer: {
-        right: 'Sida [page] av [topage]',
-        left: @climate_report.company_name,
-        font_name: 'sans-serif',
-        font_size: 10
+        content: @footer
       },
       cover: @cover,
       orientation: 'portrait'
