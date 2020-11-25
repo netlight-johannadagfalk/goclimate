@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_25_135617) do
+ActiveRecord::Schema.define(version: 2020_11_25_155921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,7 +161,6 @@ ActiveRecord::Schema.define(version: 2020_11_25_135617) do
     t.jsonb "region_options"
     t.jsonb "home_options"
     t.jsonb "heating_options"
-    t.jsonb "house_age_options"
     t.jsonb "green_electricity_options"
     t.jsonb "food_options"
     t.jsonb "car_type_options"
@@ -184,7 +183,6 @@ ActiveRecord::Schema.define(version: 2020_11_25_135617) do
     t.text "region_answer"
     t.text "home_answer"
     t.text "heating_answer"
-    t.text "house_age_answer"
     t.text "green_electricity_answer"
     t.text "food_answer"
     t.text "car_type_answer"
