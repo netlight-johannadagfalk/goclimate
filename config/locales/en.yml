@@ -121,7 +121,8 @@ en:
         food: Food
         car: Car
         flights: Flights
-        public: Public emissions and shopping
+        shopping: Shopping
+        public: Public emissions
   good_job: Good job!
   our_projects: Our Climate Projects
   project_name: Project name
