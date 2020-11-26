@@ -8,7 +8,7 @@ LifestyleCalculator.create!(
   home_options: [{"key"=> "house", "formula"=> "4314"}, {"key"=> "apartment", "formula"=> "4891"}],
   heating_options: [{"key"=> "electricity", "formula"=> "home * green_electricity"}, {"key"=> "district", "formula"=> "home * 0.0701"}, {"key"=> "airpump", "formula"=> "home * 0.28 * green_electricity + home * 0.72 * 0.5 * green_electricity"}, {"key"=> "geothermal", "formula"=> "home * 0.3 * green_electricity"}, {"key"=> "dont_know", "formula"=> "900"}],
   green_electricity_options: [{"key"=> "yes", "formula"=> "0.010"}, {"key"=> "no", "formula"=> "0.25076"}, {"key"=> "dont_know", "formula"=> "0.25076"}],
-  food_options: [{"key"=> "vegan", "formula"=> "1054"}, {"key"=> "vegetarian", "formula"=> "1390"}, {"key"=> "pescatarian", "formula"=> "1427"}, {"key"=> "meat_low", "formula"=> "1704"}, {"key"=> "meat_medium", "formula"=> "2054"}, {"key"=> "meat_high", "formula"=> "2624"}],
+  food_options: [{"key"=> "vegan", "formula"=> "1054"}, {"key"=> "vegetarian", "formula"=> "1390"}, {"key"=> "pescetarian", "formula"=> "1427"}, {"key"=> "meat_low", "formula"=> "1704"}, {"key"=> "meat_medium", "formula"=> "2054"}, {"key"=> "meat_high", "formula"=> "2624"}],
   car_type_options: [{"key"=> "petrol", "formula"=> "0.186"}, {"key"=> "diesel", "formula"=> "0.147"}, {"key"=> "etanol", "formula"=> "0.113"}, {"key"=> "biofuel", "formula"=> "0.039"}, {"key"=> "hvo_electric", "formula"=> "0.005"}, {"key"=> "no_car", "formula"=> "0"}],
   car_distance_unit: 'km',
   housing_formula: 'heating + if(heating_answer = "dont_know", 0, switch(home_answer, "house", 1852, "apartment", 1053) * green_electricity)',
