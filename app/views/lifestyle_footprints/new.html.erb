@@ -15,23 +15,23 @@
               data-target="lifestyle-footprints--calculator.categoryIndicator"
               data-category="home"
             >
-              <i class="fa fa-lg fa-home" aria-hidden="true"></i>
+              <i class="fas fa-lg fa-home" aria-hidden="true"></i>
             </div>
             <div class="text-sm text-gray-accent">
               <% if @calculator.region_options.present? %>
-                <i class="fa fa-circle-o" data-active-class="fa fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
+                <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
               <% end %>
               <% if @calculator.home_options.present? %>
-                <i class="fa fa-circle-o" data-active-class="fa fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
+                <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
               <% end %>
               <% if @calculator.home_area_options.present? %>
-                <i class="fa fa-circle-o" data-active-class="fa fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
+                <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
               <% end %>
               <% if @calculator.heating_options.present? %>
-                <i class="fa fa-circle-o" data-active-class="fa fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
+                <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
               <% end %>
               <% if @calculator.green_electricity_options.present? %>
-                <i class="fa fa-circle-o" data-active-class="fa fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
+                <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
               <% end %>
             </div>
           </div>
@@ -43,11 +43,11 @@
                 data-target="lifestyle-footprints--calculator.categoryIndicator"
                 data-category="food"
               >
-                <i class="fa fa-lg fa-cutlery" aria-hidden="true"></i>
+                <i class="fas fa-lg fa-utensils" aria-hidden="true"></i>
               </div>
             <div class="text-sm text-gray-accent">
               <% if @calculator.food_options.present? %>
-                <i class="fa fa-circle-o" data-active-class="fa fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="food"></i>
+                <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="food"></i>
               <% end %>
             </div>
             </div>
@@ -59,12 +59,12 @@
                 data-target="lifestyle-footprints--calculator.categoryIndicator"
                 data-category="car"
               >
-                <i class="fa fa-lg fa-car" aria-hidden="true"></i>
+                <i class="fas fa-lg fa-car" aria-hidden="true"></i>
               </div>
               <div class="text-sm text-gray-accent">
                 <% if @calculator.car_type_options.present? %>
-                  <i class="fa fa-circle-o" data-active-class="fa fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="car"></i>
-                  <i class="fa fa-circle-o" data-active-class="fa fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="car"></i>
+                  <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="car"></i>
+                  <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="car"></i>
                 <% end %>
               </div>
             </div>
@@ -75,10 +75,10 @@
               data-target="lifestyle-footprints--calculator.categoryIndicator"
               data-category="flights"
             >
-              <i class="fa fa-lg fa-plane" aria-hidden="true"></i>
+              <i class="fas fa-lg fa-plane" aria-hidden="true"></i>
             </div>
             <div class="text-sm text-gray-accent">
-                <i class="fa fa-circle-o" data-active-class="fa fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="flights"></i>
+                <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="flights"></i>
             </div>
           </div>
         </div>
@@ -197,7 +197,7 @@
 
         <div class="flex justify-space-between">
           <div class="hidden cursor-pointer" data-target="lifestyle-footprints--calculator.back" data-action="click->lifestyle-footprints--calculator#previousCategory">
-            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
             <span><%=t 'views.lifestyle_footprints.back' %></span>
           </div>
         </div>

@@ -10,7 +10,7 @@
         },
         {
           amount: @footprint.food,
-          icon: 'fa-cutlery',
+          icon: 'fa-utensils',
           title: t('dashboard.footprint.category.food'),
           'bg-color': 'bg-yellow-accent'
         },
@@ -43,7 +43,7 @@
       ].each do |footprint| %>
       <div class="space-y-2">
         <div>
-          <i class="fa fa-lg mr-1 m-lg:inline <%= footprint[:icon] %>" aria-hidden="true"></i>
+          <i class="fas fa-fw fa-lg <%= footprint[:icon] %>" aria-hidden="true"></i>
           <span class="m-lg:text-sm"><%= footprint[:title] %></span>
         </div>
         <div class="flex-1 pr-24">

@@ -11,19 +11,19 @@
         <ul class="list-none pt-4 flex flex-row space-x-4">
           <li>
             <%= link_to 'https://www.instagram.com/goclimate/', target: "_blank", rel: "noopener" do %>
-              <i class="fa fa-2x fa-instagram" aria-hidden="true"></i>
+              <i class="fab fa-2x fa-instagram" aria-hidden="true"></i>
               <span class="sr-only">GoClimate on Instagram</span>
             <% end %>
           </li>
           <li>
             <%= link_to 'https://www.facebook.com/GoClimate', target: "_blank", rel: "noopener" do %>
-              <i class="fa fa-2x fa-facebook" aria-hidden="true"></i>
+              <i class="fab fa-2x fa-facebook" aria-hidden="true"></i>
               <span class="sr-only">GoClimate on Facebook</span>
             <% end %>
           </li>
           <li>
             <%= link_to 'https://twitter.com/GoClimateHQ', target: "_blank", rel: "noopener" do %>
-              <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+              <i class="fab fa-2x fa-twitter" aria-hidden="true"></i>
               <span class="sr-only">GoClimate on Twitter</span>
             <% end %>
           </li>
@@ -64,7 +64,7 @@
         <label for="region-picker" class="button button-inverted flex items-center">
           <%= image_tag webpack_asset_path("images/regions/#{current_region.id}.png"), alt: '' %>
           <span class="ml-2"><%= current_region.name %></span>
-          <i class="fa fa-caret-up ml-2" aria-hidden="true"></i>
+          <i class="fas fa-caret-up ml-2" aria-hidden="true"></i>
         </label>
         <ul class="dropdown-menu dropdown-menu-up">
           <% Region.all.filter { |r| r != current_region }.each do |region| %>

@@ -81,7 +81,7 @@ Usage with animated chevron. Notice the class `collapse-chevron`.
   <label for="some-sort-of-element-id" class="flex justify-between cursor-pointer">
     <p>Click me to toggle the content!</p>
     <div class="pl-3">
-      <i class="fa fa-chevron-circle-down collapse-chevron" aria-hidden="true"></i>
+      <i class="fas fa-chevron-circle-down collapse-chevron" aria-hidden="true"></i>
     </div>
   </label>
   <div class="collapse-content pt-4">

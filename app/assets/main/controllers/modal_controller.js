@@ -19,7 +19,7 @@ export default class ModalController extends Controller {
 
     screenReaderFallback.classList.add('sr-only');
     screenReaderFallback.innerText = 'close';
-    icon.classList.add('fa', 'fa-times');
+    icon.classList.add('fas', 'fa-times');
     icon.setAttribute('aria-hidden', 'true');
     icon.appendChild(screenReaderFallback);
     closeButton.classList.add('modal-close-button');

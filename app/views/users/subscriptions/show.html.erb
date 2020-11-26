@@ -69,7 +69,7 @@
             <%= hidden_field_tag :payment_method_id, nil, 'data-target': 'stripe-card-element.paymentMethodField' %>
 
             <div>
-              <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-1">Secured by Stripe</span>
+              <i class="fas fa-lock" aria-hidden="true"></i> <span class="ml-1">Secured by Stripe</span>
             </div>
 
             <div class="text-orange-shade-1" data-target="subscriptions--payment-settings.errorMessage"></div>
@@ -77,7 +77,7 @@
 
           <div class="actions">
             <button id="register-button" type="submit" class="button button-cta w-full" data-target="subscriptions--payment-settings.submitButton" data-action="subscriptions--payment-settings#submit">
-              <i class="fa fa-spinner fa-spin hidden" data-target="subscriptions--payment-settings.loadingIndicator"></i>
+              <i class="fas fa-spinner fa-spin hidden" data-target="subscriptions--payment-settings.loadingIndicator"></i>
               <%= t 'update' %>
             </button>
           </div>

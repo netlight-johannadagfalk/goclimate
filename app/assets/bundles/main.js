@@ -31,7 +31,10 @@ application.load(definitionsFromContext(
 ));
 
 /* Font Awesome */
-import 'font-awesome/scss/font-awesome.scss';
+import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+import '@fortawesome/fontawesome-free/scss/solid.scss';
+import '@fortawesome/fontawesome-free/scss/regular.scss';
+import '@fortawesome/fontawesome-free/scss/brands.scss';
 
 /* Styling */
 import '../main/index.scss';
