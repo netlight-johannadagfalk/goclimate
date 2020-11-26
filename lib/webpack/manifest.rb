@@ -3,6 +3,7 @@
 module Webpack
   class Manifest
     class ManifestNotFound < StandardError; end
+
     class AssetNotFound < StandardError; end
 
     def initialize(manifest_path)

@@ -72,8 +72,8 @@ class ClimateReportPdf # rubocop:disable Metrics/ClassLength
       { field_name(field) => field[:emissions].round } unless field[:emissions] == 0
     end.compact
     {
-      data: data.map { |d| d.values.join('') },
-      labels: data.map { |d| d.keys.join('') }
+      data: data.map { |d| d.values.join },
+      labels: data.map { |d| d.keys.join }
     }
   end
 

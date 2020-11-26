@@ -127,15 +127,16 @@ Rails.application.routes.draw do
         get 'thank-you'
 
         scope format: true, constraints: { format: :pdf } do
-          resource :gift_card_certificates, only: [:show], path: :certificate do
-          end
+          resource :gift_card_certificates, only: [:show], path: :certificate
           resource :gift_card_receipts, only: [:show], path: :receipt
         end
       end
     end
 
     # Assets that users may download
-    get '/assets', to: redirect(status: 302) { 'https://drive.google.com/drive/folders/1YN6Vomjkrp-eFZYonZehELbjz1x8BkL_?usp=sharing' }
+    get '/assets', to: redirect(status: 302) {
+      'https://drive.google.com/drive/folders/1YN6Vomjkrp-eFZYonZehELbjz1x8BkL_?usp=sharing'
+    }
 
     # Redirects for old routes. To avoid broken links on the internet, don't remove these.
     defaults region: nil do

@@ -2,7 +2,7 @@
 
 require 'guard/compat/plugin'
 
-module ::Guard # rubocop:disable Style/ClassAndModuleChildren
+module ::Guard
   class Eslint < Plugin
     def run_on_additions(paths)
       run(paths)

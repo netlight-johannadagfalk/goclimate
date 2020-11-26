@@ -29,7 +29,7 @@ RSpec.feature 'Sessions', type: :feature, js: true do
     user = create(:user)
     footprint = user.current_lifestyle_footprint
     footprint.country = nil
-    footprint.save(:validate => false)
+    footprint.save(validate: false)
 
     if page.has_link?('user-menu')
       click_link('user-menu')
