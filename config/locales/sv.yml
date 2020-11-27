@@ -121,7 +121,8 @@ sv:
         food: Mat
         car: Bil
         flights: Flyg
-        public: Samhälle och shopping
+        shopping: Shopping
+        public: Samhälle
   good_job: Bra jobbat!
   our_projects: Våra klimatprojekt
   project_name: Namn på projekt
