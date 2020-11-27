@@ -2,3 +2,6 @@
 #
 # new_feature:
 #   frequency: 0.5
+
+remove_signup_without_subscription:
+  frequency: 0.5
