@@ -27,7 +27,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       find('input[name=exp-date]').send_keys '522'
       find('input[name=cvc]').send_keys '123'
     end
-    check 'I accept our Privacy policy'
+    check 'I accept GoClimate\'s Privacy policy'
     click_button 'Start subscription'
 
     # Wait for success page to render
@@ -62,7 +62,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       find('input[name=exp-date]').send_keys '522'
       find('input[name=cvc]').send_keys '123'
     end
-    check 'I accept our Privacy policy'
+    check 'I accept GoClimate\'s Privacy policy'
     click_button 'Start subscription'
 
     # 3D Secure authorization pop up
@@ -105,7 +105,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       find('input[name=exp-date]').send_keys '522'
       find('input[name=cvc]').send_keys '123'
     end
-    check 'I accept our Privacy policy'
+    check 'I accept GoClimate\'s Privacy policy'
     click_button 'Start subscription'
 
     # 3D Secure authorization pop up
@@ -142,7 +142,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     find('#continue-to-payment').click
     fill_in 'Email', with: 'test@example.com'
     fill_in 'Password', with: 'password'
-    check 'I accept our Privacy policy'
+    check 'I accept GoClimate\'s Privacy policy'
     click_button 'Create account'
 
     # Wait for success page to render
@@ -178,7 +178,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       find('input[name=exp-date]').send_keys '522'
       find('input[name=cvc]').send_keys '123'
     end
-    check 'I accept our Privacy policy'
+    check 'I accept GoClimate\'s Privacy policy'
     click_button 'Start subscription'
 
     # Wait for success page to render
@@ -215,7 +215,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
       find('input[name=exp-date]').send_keys '522'
       find('input[name=cvc]').send_keys '123'
     end
-    check 'I accept our Privacy policy'
+    check 'I accept GoClimate\'s Privacy policy'
     click_button 'Start subscription'
 
     # 3D Secure authorization pop up
@@ -250,7 +250,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     click_button 'Sign up'
     fill_in 'Email', with: 'test@example.com'
     fill_in 'Password', with: 'password'
-    check 'I accept our Privacy policy'
+    check 'I accept GoClimate\'s Privacy policy'
     click_button 'Create account'
 
     # Wait for success page to render
