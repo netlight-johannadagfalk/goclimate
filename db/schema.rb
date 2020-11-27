@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_094713) do
+ActiveRecord::Schema.define(version: 2020_11_25_135617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,7 +135,6 @@ ActiveRecord::Schema.define(version: 2020_11_12_094713) do
     t.text "payment_intent_id"
     t.datetime "paid_at"
     t.text "country"
-    t.integer "yearly_footprint"
     t.index ["key"], name: "index_gift_cards_on_key"
     t.index ["payment_intent_id"], name: "index_gift_cards_on_payment_intent_id"
   end
@@ -173,6 +172,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_094713) do
     t.text "flights_formula"
     t.text "consumption_formula"
     t.text "public_formula"
+    t.jsonb "home_area_options"
   end
 
   create_table "lifestyle_footprints", force: :cascade do |t|
@@ -198,6 +198,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_094713) do
     t.integer "public"
     t.integer "total"
     t.text "country"
+    t.text "home_area_answer"
     t.index ["lifestyle_calculator_id"], name: "index_lifestyle_footprints_on_lifestyle_calculator_id"
     t.index ["user_id"], name: "index_lifestyle_footprints_on_user_id"
   end
