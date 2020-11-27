@@ -182,10 +182,10 @@
           </p>
           <div class="flex flex-col m-lg:flex-row t:flex-col d:flex-row items-stretch flex-wrap justify-center -m-1">
             <div class="p-1">
-              <a class="button button-cta block bg-facebook text-white" data-controller="facebook-share" data-action="facebook-share#share" data-share-url="<%= user_url(current_user) %>" data-share-quote="<%= handle_social_quote_for(current_user.user_name, current_user.number_of_neutral_months > 0, @my_neutral_months) %>"><span class="fa fa-facebook"></span> <%=t 'share_on_facebook' %></a>
+              <a class="button button-cta block bg-facebook text-white" data-controller="facebook-share" data-action="facebook-share#share" data-share-url="<%= user_url(current_user) %>" data-share-quote="<%= handle_social_quote_for(current_user.user_name, current_user.number_of_neutral_months > 0, @my_neutral_months) %>"><span class="fab fa-facebook"></span> <%=t 'share_on_facebook' %></a>
             </div>
             <div class="p-1">
-              <a class="button button-cta block bg-twitter text-white" href="https://twitter.com/intent/tweet?text=<%= handle_encoded_social_quote(current_user.number_of_neutral_months > 0, @my_neutral_months) %>" data-size="large"><span class="fa fa-twitter"></span> <%=t 'share_on_twitter' %></a>
+              <a class="button button-cta block bg-twitter text-white" href="https://twitter.com/intent/tweet?text=<%= handle_encoded_social_quote(current_user.number_of_neutral_months > 0, @my_neutral_months) %>" data-size="large"><span class="fab fa-twitter"></span> <%=t 'share_on_twitter' %></a>
             </div>
           </div>
         </div>

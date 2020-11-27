@@ -127,28 +127,28 @@ Lyssna på Cissi i <a href="https://klimatpodden.se/66-cecilia-linden-klimatkomp
           <% if person[:twitter_handle] %>
             <div class="inline-block mx-2">
               <%= link_to "https://twitter.com/#{person[:twitter_handle]}", target: "_blank", rel: "noopener", class: 'link-icon' do %>
-                <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+                <i class="fab fa-2x fa-twitter" aria-hidden="true"></i>
               <% end %>
             </div>
           <% end %>
           <% if person[:twitter_handle_sv] && I18n.locale == :sv  %>
             <div class="inline-block mx-2">
               <%= link_to "https://twitter.com/#{person[:twitter_handle_sv]}", target: "_blank", rel: "noopener", class: 'link-icon' do %>
-                <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+                <i class="fab fa-2x fa-twitter" aria-hidden="true"></i>
               <% end %>
             </div>
           <% end %>
           <% if person[:twitter_handle_en] && I18n.locale == :en  %>
             <div class="inline-block mx-2">
               <%= link_to "https://twitter.com/#{person[:twitter_handle_en]}", target: "_blank", rel: "noopener", class: 'link-icon' do %>
-                <i class="fa fa-2x fa-twitter" aria-hidden="true"></i>
+                <i class="fab fa-2x fa-twitter" aria-hidden="true"></i>
               <% end %>
             </div>
           <% end %>
           <% if person[:instagram_handle] %>
             <div class="inline-block mx-2">
               <%= link_to "https://www.instagram.com/#{person[:instagram_handle]}", target: "_blank", rel: "noopener", class: 'link-icon' do %>
-                <i class="fa fa-2x fa-instagram" aria-hidden="true"></i>
+                <i class="fab fa-2x fa-instagram" aria-hidden="true"></i>
               <% end %>
             </div>
           <% end %>
