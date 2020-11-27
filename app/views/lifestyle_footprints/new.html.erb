@@ -8,7 +8,7 @@
       <div class="callout" data-controller="lifestyle-footprints--calculator">
 
         <div class="flex justify-center space-x-3 m-lg:space-x-6 text-gray-shade-2">
-          <% if @calculator.region_options.present? || @calculator.home_options.present? || @calculator.heating_options.present? || @calculator.house_age_options.present? || @calculator.green_electricity_options.present? %>
+          <% if @calculator.region_options.present? || @calculator.home_options.present? || @calculator.home_area_options.present? || @calculator.heating_options.present? || @calculator.green_electricity_options.present? %>
           <div>
             <div class="mb-2 border border-gray-tint-2 rounded-full w-12 h-12 flex justify-center items-center box-content p-1"
               data-active-class="mb-2 border border-green-tint-1 bg-green-tint-1 text-primary rounded-full w-12 h-12 flex justify-center items-center box-content p-1"
@@ -24,10 +24,10 @@
               <% if @calculator.home_options.present? %>
                 <i class="fa fa-circle-o" data-active-class="fa fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
               <% end %>
-              <% if @calculator.heating_options.present? %>
+              <% if @calculator.home_area_options.present? %>
                 <i class="fa fa-circle-o" data-active-class="fa fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
               <% end %>
-              <% if @calculator.house_age_options.present? %>
+              <% if @calculator.heating_options.present? %>
                 <i class="fa fa-circle-o" data-active-class="fa fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
               <% end %>
               <% if @calculator.green_electricity_options.present? %>
@@ -111,6 +111,18 @@
             </div>
           <% end %>
 
+          <% if @calculator.home_area_options.present? %>
+            <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="home">
+              <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.home_area' %></h2>
+              <% @calculator.home_area_options.each do |option| %>
+                <label class="block button my-3">
+                  <%= f.radio_button :home_area_answer, option['key'], required: '', class: 'hidden', 'data-action': "click->lifestyle-footprints--calculator#nextQuestion" %>
+                  <%=t "views.lifestyle_footprints.options.home_area.#{option['key']}" %>
+                </label>
+              <% end %>
+            </div>
+          <% end %>
+
           <% if @calculator.heating_options.present? %>
             <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="home">
               <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.heating' %></h2>
@@ -118,19 +130,6 @@
                 <label class="block button my-3">
                   <%= f.radio_button :heating_answer, option['key'], required: '', class: 'hidden', 'data-action': "click->lifestyle-footprints--calculator#nextQuestion" %>
                   <%=t "views.lifestyle_footprints.options.heating.#{option['key']}" %>
-                </label>
-              <% end %>
-            </div>
-          <% end %>
-
-          <%# TODO: This is currently not being used. Add localization if it should be used or remove it %>
-          <% if @calculator.house_age_options.present? %>
-            <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="home">
-              <h2 class="heading my-4">How old is your house?</h2>
-              <% @calculator.house_age_options.each do |option| %>
-                <label class="block button my-3">
-                  <%= f.radio_button :house_age_answer, option['key'], required: '', class: 'hidden', 'data-action': "click->lifestyle-footprints--calculator#nextQuestion" %>
-                  <%= option['key'] %>
                 </label>
               <% end %>
             </div>

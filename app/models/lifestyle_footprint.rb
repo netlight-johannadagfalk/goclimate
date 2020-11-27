@@ -23,7 +23,7 @@ class LifestyleFootprint < ApplicationRecord
   def update_from_lifestyle_calculator
     self.attributes = lifestyle_calculator.calculate(
       [
-        :region, :home, :heating, :house_age, :green_electricity, :food, :car_type, :car_distance, :flight_hours
+        :region, :home, :home_area, :heating, :green_electricity, :food, :car_type, :car_distance, :flight_hours
       ].map { |q| [q, send("#{q}_answer")] }.to_h
     )
   end
@@ -36,7 +36,7 @@ class LifestyleFootprint < ApplicationRecord
 
   def answers_exist_in_calculator
     [
-      :region, :home, :heating, :house_age, :green_electricity, :food, :car_type
+      :region, :home, :home_area, :heating, :green_electricity, :food, :car_type
     ].each do |category|
       field = "#{category}_answer".to_sym
       available_options = lifestyle_calculator&.option_keys_for_category(category)

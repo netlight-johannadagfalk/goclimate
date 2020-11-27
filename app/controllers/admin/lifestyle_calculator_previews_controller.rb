@@ -18,7 +18,7 @@ module Admin
 
     def answers_from_params
       params.require(:answers).permit(
-        :region, :home, :heating, :green_electricity, :house_age, :food, :car_type, :car_distance, :flight_hours
+        :region, :home, :home_area, :heating, :green_electricity, :food, :car_type, :car_distance, :flight_hours
       ).to_h.symbolize_keys
     end
 

@@ -62,7 +62,7 @@ RSpec.describe LifestyleCalculator do
   end
 
   [
-    :region_options, :home_options, :heating_options, :house_age_options, :green_electricity_options, :food_options,
+    :region_options, :home_options, :home_area_options, :heating_options, :green_electricity_options, :food_options,
     :car_type_options
   ].each do |options_field|
     describe "##{options_field}" do
@@ -225,8 +225,8 @@ RSpec.describe LifestyleCalculator do
       {
         region: 'first',
         home: 'apartment',
+        home_area: 'fifteen_sqm',
         heating: 'district',
-        house_age: 'pre1920',
         green_electricity: 'yes',
         food: 'omnivore',
         car_type: 'electric',
@@ -271,7 +271,7 @@ RSpec.describe LifestyleCalculator do
           expect(result[category]).to eq(GreenhouseGases.new(46))
         end
 
-        [:region, :home, :heating, :house_age, :green_electricity, :food, :car_type].each do |question|
+        [:region, :home, :home_area, :heating, :green_electricity, :food, :car_type].each do |question|
           it "makes #{question} available" do
             calculator = build(
               :lifestyle_calculator,

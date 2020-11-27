@@ -4,7 +4,8 @@ en:
       title: Calculate your carbon footprint
       questions:
         region: In which region do you live?
-        home: How do you live?
+        home: What type of home do you live in?
+        home_area: How big is your home?
         heating: How do you heat your home?
         green_electricity: Do you use green electricity?
         food: What is your diet mostly like?
@@ -24,11 +25,18 @@ en:
           one_or_two_bedrooms: 1-2 bedrooms
           three_or_four_bedrooms: 3-4 bedrooms
           five_or_more_bedrooms: 5+ bedrooms
-          fifteen_sqm: 15 m² per person
-          twentyfive_sqm: 25 m² per person
-          fortytwo_sqm: 42 m² per person
-          sixty_sqm: 60 m² per person
-          eighty_sqm: 80 m² per person
+          # TODO: Remove after LifestyleFootprints have been migrated to use home_area for these
+          fifteen_sqm: 15 square metres per person
+          twentyfive_sqm: 25 square metres per person
+          fortytwo_sqm: 42 square metres per person
+          sixty_sqm: 60 square metres per person
+          eighty_sqm: 80 square metres per person
+        home_area:
+          fifteen_sqm: 15 square metres per person
+          twentyfive_sqm: 25 square metres per person
+          fortytwo_sqm: 42 square metres per person
+          sixty_sqm: 60 square metres per person
+          eighty_sqm: 80 square metres per person
         heating:
           electricity: Electricity
           natural_gas: Natural gas

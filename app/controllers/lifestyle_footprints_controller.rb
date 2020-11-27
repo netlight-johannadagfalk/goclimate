@@ -30,7 +30,7 @@ class LifestyleFootprintsController < ApplicationController
   def footprint_params
     params.require(:lifestyle_footprint).permit(
       :lifestyle_calculator_id, :country, :region_answer, :home_answer,
-      :heating_answer, :house_age_answer, :green_electricity_answer,
+      :home_area_answer, :heating_answer, :green_electricity_answer,
       :food_answer, :car_type_answer, :flight_hours_answer
     ).tap do |p|
       p[:car_distance_answer] = (params[:car_distance_week_answer].presence&.to_i || 0) * 52
