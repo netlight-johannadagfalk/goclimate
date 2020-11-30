@@ -27,9 +27,13 @@ sv:
       download:
         gift_card: "Gåvokort"
         heading: Du stöttar en hållbar planet i
-        one_month: 1 månad
-        x_months: "%{count} månader"
-        about: Gåvokortet motsvarar klimatkompensering av %{co2} ton koldioxid, vilket är utsläppen för en genomsnittlig person som bor i %{country} under %{time_period}. <a href='http://www.goclimate.com'>GoClimate</a> finansierar effektiva klimatprojekt och stöttar dig på din resa mot ett klimatvänligt liv!
+        months:
+          one: 1 månad
+          other: "%{count} månader"
+        about_offsetting:
+          Beräkningen bygger på genomsnittligt klimatavtryck i %{country} på %{yearly_footprint} ton koldioxid per person och år
+        about_goclimate:
+          GoClimate stöttar klimatprojekt och tipsar och inspirerar om enkla sätt att minska sin klimatpåverkan. Projekten är FN- och Gold Standard-certifierade och har FNs alla medlemsstater och 80 miljöorganisationer i ryggen - bland annat Världsnaturfonden. Genom denna gåva bidrar du till att bromsa klimatförändringarna. Vill du fortsätta att leva klimatneutralt efter att gåvokortet gått ut? Gå in på www.goclimate.com och registrera dig!
       example:
         message_html: "Hej Mamma!\nVisst känns det bra att hjälpa klimatet?\n/Lisa"
         example: "Exempel"
