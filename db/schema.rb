@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_155921) do
     t.text "payment_intent_id"
     t.datetime "paid_at"
     t.text "country"
+    t.integer "yearly_footprint"
     t.index ["key"], name: "index_gift_cards_on_key"
     t.index ["payment_intent_id"], name: "index_gift_cards_on_payment_intent_id"
   end
