@@ -159,11 +159,7 @@
                   <%= t 'views.gift_cards.download.heading' %>
                 </span>
                 <span class="block text-blue-accent" style="font-size: 60px">
-                  <% if @gift_card.number_of_months == 1 %>
-                    <%= t 'views.gift_cards.download.one_month' %>
-                  <% else %>
-                    <%= t('views.gift_cards.download.x_months', count: @gift_card.number_of_months) %>
-                  <% end %>
+                  <%= t 'views.gift_cards.download.months', count: @gift_card.number_of_months %>
                 </span>
               </td>
               <td style="width: 17.5%"></td>
@@ -173,19 +169,20 @@
       </div>
     </section>
 
-    <article class="mx-auto" style="margin-top: 30px; height: 195px; width: 600px">
-      <p class="text-center text-base font-bold">
-        <%= @gift_card.message %>
-      </p>
+    <article class="mx-auto" style="margin-top: 30px; height: 150px; width: 600px">
+      <%= simple_format(@gift_card.message, class: 'text-center text-base font-bold') %>
     </article>
 
     <footer class="mx-auto">
+      <p class="text-center text-sm">
+      <%= t(
+            'views.gift_cards.download.about_offsetting',
+            yearly_footprint: number_with_delimiter(@gift_card.yearly_footprint.tonnes),
+            country: @gift_card.country&.translations[I18n.locale.to_s] || @gift_card.country
+          ).gsub(/www\.[A-Za-z.]+\.com/, '<a href="\0" target="_blank">\0</a>') %>
+      </p>
       <p class="text-center text-sm pb-0 mb-0">
-        <%= raw(t('views.gift_cards.download.about',
-                    co2: number_with_delimiter(@gift_card.co2e.tonnes),
-                    country: @gift_card.country&.translations[I18n.locale.to_s] || @gift_card.country,
-                    time_period: @gift_card.number_of_months == 1 ? t('views.gift_cards.download.one_month') : t('views.gift_cards.download.x_months', count: @gift_card.number_of_months)
-                  ).gsub('<a ', '<a class="link" target="_blank" ')) %>
+        <%=t 'views.gift_cards.download.about_goclimate' %>
       </p>
     </footer>
   </body>
