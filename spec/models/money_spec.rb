@@ -123,13 +123,30 @@ RSpec.describe Money do
     end
   end
 
-  describe 'ceil' do
-    it 'rounds up to major unit' do
-      expect(described_class.new(5_75, :sek).ceil).to eq(described_class.new(6_00, :sek))
-    end
+  describe '.ceil' do
+    let(:currency) { Currency.new(:test, -1, 5_00, 10_00) }
 
-    it 'allows setting precision' do
-      expect(described_class.new(5_75, :sek).ceil(-1)).to eq(described_class.new(5_80, :sek))
+    it 'ceils to currency precision' do
+      expect(described_class.new(5_75, currency).ceil)
+        .to eq(described_class.new(5_80, currency))
+    end
+  end
+
+  describe '.small_amount_price_ceil' do
+    let(:currency) { Currency.new(:test, -1, 5_00, 10_00) }
+
+    it 'ceils to closest price step for currency' do
+      expect(described_class.new(5_75, currency).small_amount_price_ceil)
+        .to eq(described_class.new(10_00, currency))
+    end
+  end
+
+  describe '.large_amount_price_ceil' do
+    let(:currency) { Currency.new(:test, -1, 5_00, 10_00) }
+
+    it 'ceils to closest price step for currency' do
+      expect(described_class.new(12_75, currency).large_amount_price_ceil)
+        .to eq(described_class.new(20_00, currency))
     end
   end
 

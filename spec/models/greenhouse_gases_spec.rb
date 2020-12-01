@@ -13,11 +13,11 @@ RSpec.describe GreenhouseGases do
     end
 
     it 'uses price factor for USD' do
-      expect(described_class.from_consumer_price(Money.new(8_40, :usd))).to eq(described_class.new(1785))
+      expect(described_class.from_consumer_price(Money.new(8_40, :usd))).to eq(described_class.new(1788))
     end
 
     it 'rounds up to nearest kg' do
-      expect(described_class.from_consumer_price(Money.new(8_10, :usd))).to eq(described_class.new(1722))
+      expect(described_class.from_consumer_price(Money.new(8_10, :usd))).to eq(described_class.new(1724))
     end
   end
 
@@ -43,6 +43,23 @@ RSpec.describe GreenhouseGases do
     it 'uses 10 SEK per EUR factor for EUR, rounded up to nearest 10 cents' do
       expect(described_class.new(1520).consumer_price(Currency::EUR))
         .to eq(Money.new(6_10, :eur))
+    end
+  end
+
+  describe '#business_price' do
+    it 'uses 55 SEK per tonne, rounded up to nearest 1 krona' do
+      expect(described_class.new(1505).business_price(Currency::SEK))
+        .to eq(Money.new(83_00, :sek))
+    end
+
+    it 'uses 8.5 SEK per USD factor for USD, rounded up to nearest 10 cents' do
+      expect(described_class.new(1500).business_price(Currency::USD))
+        .to eq(Money.new(9_80, :usd))
+    end
+
+    it 'uses 10 SEK per EUR factor for EUR, rounded up to nearest 10 cents' do
+      expect(described_class.new(1520).business_price(Currency::EUR))
+        .to eq(Money.new(8_40, :eur))
     end
   end
 

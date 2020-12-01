@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Currency = Struct.new(:iso_code) do
+Currency = Struct.new(:iso_code, :rounding_precision, :small_amount_price_step, :large_amount_price_step) do
   def self.from_iso_code(iso_code)
     return nil unless iso_code.present?
 
@@ -24,6 +24,6 @@ Currency = Struct.new(:iso_code) do
   end
 end
 
-Currency::SEK = Currency.new(:sek)
-Currency::EUR = Currency.new(:eur)
-Currency::USD = Currency.new(:usd)
+Currency::EUR = Currency.new(:eur, -1, 50, 1_00)
+Currency::SEK = Currency.new(:sek, -2, 5_00, 10_00)
+Currency::USD = Currency.new(:usd, -1, 50, 1_00)

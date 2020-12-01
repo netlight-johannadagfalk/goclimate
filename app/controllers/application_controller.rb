@@ -67,17 +67,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:user_name, :country, :region])
   end
 
-  def cost_per_tonne
-    case current_region.currency
-    when Currency::SEK
-      GreenhouseGases::BUSINESS_PRICE_PER_TONNE_SEK.amount.to_i
-    when Currency::USD
-      GreenhouseGases::BUSINESS_PRICE_PER_TONNE_SEK.amount.to_i / GreenhouseGases::PRICE_FACTOR_USD
-    when Currency::EUR
-      GreenhouseGases::BUSINESS_PRICE_PER_TONNE_SEK.amount.to_i / GreenhouseGases::PRICE_FACTOR_EUR
-    end
-  end
-
   def handle_record_not_found
     render 'errors/not_found', status: :not_found
   end

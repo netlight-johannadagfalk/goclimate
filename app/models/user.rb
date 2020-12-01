@@ -38,14 +38,11 @@ class User < ApplicationRecord
   end
 
   def subscription_amount_in_sek
-    case Currency.from_iso_code(stripe_customer.subscriptions.first.plan.currency)
-    when Currency::USD
-      subscription_amount * GreenhouseGases::PRICE_FACTOR_USD
-    when Currency::EUR
-      subscription_amount * GreenhouseGases::PRICE_FACTOR_EUR
-    else
-      subscription_amount
-    end
+    subscription_currency = Currency.from_iso_code(stripe_customer.subscriptions.first.plan.currency)
+    sek_price = GreenhouseGases::CONSUMER_PRICE_PER_TONNE[Currency::SEK]
+    subscription_currency_price = GreenhouseGases::CONSUMER_PRICE_PER_TONNE[subscription_currency]
+
+    ((sek_price.subunit_amount.to_d / subscription_currency_price.subunit_amount) * subscription_amount).to_i
   end
 
   def country_name

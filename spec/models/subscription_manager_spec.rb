@@ -39,16 +39,16 @@ RSpec.describe SubscriptionManager do
       expect(price).to eq(Money.new(80_00, :sek))
     end
 
-    it 'rounds USD prices to nearest 10 cents' do
+    it 'rounds USD prices to nearest 50 cents' do
       price = described_class.price_for_footprint(GreenhouseGases.new(12_900), Currency::USD)
 
-      expect(price).to eq(Money.new(10_10, :usd))
+      expect(price).to eq(Money.new(10_50, :usd))
     end
 
-    it 'rounds EUR prices to nearest 10 cents' do
+    it 'rounds EUR prices to nearest 50 cents' do
       price = described_class.price_for_footprint(GreenhouseGases.new(15_165), Currency::EUR)
 
-      expect(price).to eq(Money.new(10_10, :eur))
+      expect(price).to eq(Money.new(10_50, :eur))
     end
   end
 
@@ -138,7 +138,7 @@ RSpec.describe SubscriptionManager do
       it 'sets co2e based on plan price' do
         manager.sign_up(plan, payment_method_id, referral_code)
 
-        expect(SubscriptionMonth.last.co2e).to eq(GreenhouseGases.new(765))
+        expect(SubscriptionMonth.last.co2e).to eq(GreenhouseGases.new(766))
       end
 
       it 'sets referred_from on user to the referral code used' do

@@ -27,8 +27,22 @@ class Money
     Money.new((subunit_amount * other).round, currency)
   end
 
-  def ceil(precision = nil)
-    Money.new(subunit_amount.ceil(precision || -2), currency)
+  def ceil
+    Money.new(subunit_amount.ceil(currency.rounding_precision), currency)
+  end
+
+  def small_amount_price_ceil
+    Money.new(
+      (subunit_amount.to_d / currency.small_amount_price_step).ceil * currency.small_amount_price_step,
+      currency
+    )
+  end
+
+  def large_amount_price_ceil
+    Money.new(
+      (subunit_amount.to_d / currency.large_amount_price_step).ceil * currency.large_amount_price_step,
+      currency
+    )
   end
 
   def amount

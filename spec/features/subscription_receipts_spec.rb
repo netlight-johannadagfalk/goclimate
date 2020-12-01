@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.feature 'Subscription receipts', type: :feature, js: true do
   before do
-    User.create!(email: 'test@example.com', password: 'password', stripe_customer_id: 'cus_TEST', region: 'us')
-    CardCharge.create!(stripe_customer_id: 'cus_TEST', paid: true)
+    user = create(:user, email: 'test@example.com', password: 'password', stripe_customer_id: 'cus_TEST', region: 'us')
+    create(:card_charge_monthly, stripe_customer_id: user.stripe_customer_id)
   end
 
   scenario 'Download receipt' do

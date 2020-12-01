@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SubscriptionManager # rubocop:disable Metrics/ClassLength
+class SubscriptionManager
   class SubscriptionMissingError < StandardError; end
 
   BUFFER_FACTOR = 2
@@ -9,17 +9,7 @@ class SubscriptionManager # rubocop:disable Metrics/ClassLength
 
   def self.price_for_footprint(footprint, currency)
     monthly_offset = footprint / 12 * BUFFER_FACTOR
-    price = monthly_offset.consumer_price(currency)
-
-    case price.currency
-    when Currency::SEK
-      Money.new(
-        ((price.subunit_amount.to_d / 5).ceil(-2) * 5).to_i,
-        :sek
-      )
-    else
-      price
-    end
+    monthly_offset.consumer_price(currency).small_amount_price_ceil
   end
 
   def initialize(user)
