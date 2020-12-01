@@ -4,13 +4,21 @@ class GreenhouseGases
   include Comparable
 
   CONSUMER_PRICE_PER_TONNE = {
+    Currency::AUD => Money.new(6_40, :aud),
+    Currency::CAD => Money.new(6_15, :cad),
+    Currency::DKK => Money.new(30_00, :dkk),
     Currency::EUR => Money.new(4_00, :eur),
+    Currency::GBP => Money.new(3_60, :gbp),
     Currency::SEK => Money.new(40_00, :sek),
     Currency::USD => Money.new(4_70, :usd)
   }.freeze
 
   BUSINESS_PRICE_PER_TONNE = {
+    Currency::AUD => Money.new(8_80, :aud),
+    Currency::CAD => Money.new(8_45, :cad),
+    Currency::DKK => Money.new(40_50, :dkk),
     Currency::EUR => Money.new(5_50, :eur),
+    Currency::GBP => Money.new(4_85, :gbp),
     Currency::SEK => Money.new(55_00, :sek),
     Currency::USD => Money.new(6_50, :usd)
   }.freeze

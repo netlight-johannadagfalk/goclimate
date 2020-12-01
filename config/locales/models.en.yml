@@ -2,18 +2,30 @@ en:
   models:
     money:
       currency_formats:
-        usd: '$%{number}'
+        aud: 'A$%{number}'
+        cad: '$%{number}'
+        dkk: 'DEFAULT'
         eur: '€%{number}'
+        gbp: '£%{number}'
         sek: 'DEFAULT'
+        usd: '$%{number}'
     currency:
       prefix:
-        usd: '$'
+        aud: 'A$'
+        cad: '$'
+        dkk: 'DKK '
         eur: '€'
-        sek: 'DEFAULT'
+        gbp: '£'
+        sek: 'SEK '
+        usd: '$'
       suffix:
-        usd: 'DEFAULT'
+        aud: 'DEFAULT'
+        cad: 'DEFAULT'
+        dkk: 'DEFAULT'
         eur: 'DEFAULT'
+        gbp: 'DEFAULT'
         sek: 'DEFAULT'
+        usd: 'DEFAULT'
     greenhouse_gases:
       tonnes:
         one: '%{count} tonne CO2e'
