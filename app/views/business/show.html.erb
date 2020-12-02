@@ -64,13 +64,7 @@
       <p class="my-6"><%=t 'welcome.business.offset_employees_html' %></p>
       <div class="callout" data-controller="business--offset-calculator" data-cost-per-tonne="<%= @cost_per_tonne %>">
         <p class="heading-lg text-center">
-          <% case I18n.locale when :en %>
-            $<span data-target="business--offset-calculator.costLabel"></span> /month
-          <% when :de %>
-            <span data-target="business--offset-calculator.costLabel"></span> €/month
-          <% when :sv %>
-            <span data-target="business--offset-calculator.costLabel"></span> kr/månad
-          <% end %>
+          <%= current_region.currency.prefix %><span data-target="business--offset-calculator.costLabel"></span><%= current_region.currency.suffix %>/month
         </p>
         <p class="text-sm text-center"><%=t 'welcome.business.equivalent_co2_offset' %></p>
 

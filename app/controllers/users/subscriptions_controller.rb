@@ -77,17 +77,15 @@ module Users
     end
 
     def available_plans(current_plan_price)
-      starting_plan_price = current_plan_price&.amount || 0
-      plans =
-        if customer_currency == Currency::SEK
-          (10...starting_plan_price + 300).step(5)
-        else
-          (2...starting_plan_price + 30)
-        end.to_a
+      current_plan_price_amount = current_plan_price&.subunit_amount || 0
 
-      plans.push(current_plan_price.amount) if current_plan_price.present? && !plans.include?(current_plan_price.amount)
+      starting_plan_price = customer_currency.small_amount_price_step * 4
+      ending_plan_price = current_plan_price_amount + customer_currency.small_amount_price_step * 60
+      plans = (starting_plan_price...ending_plan_price).step(customer_currency.small_amount_price_step).to_a
 
-      plans.sort.map { |amount| Money.from_amount(amount, customer_currency) }
+      plans.push(current_plan_price_amount) if current_plan_price.present? && plans.exclude?(current_plan_price_amount)
+
+      plans.sort.map { |amount| Money.new(amount, customer_currency) }
     end
 
     def customer_currency

@@ -3,10 +3,25 @@
 class GreenhouseGases
   include Comparable
 
-  CONSUMER_PRICE_PER_TONNE_SEK = Money.new(40_00, :sek)
-  BUSINESS_PRICE_PER_TONNE_SEK = Money.new(55_00, :sek)
-  PRICE_FACTOR_USD = 8.5
-  PRICE_FACTOR_EUR = 10
+  CONSUMER_PRICE_PER_TONNE = {
+    Currency::AUD => Money.new(6_40, :aud),
+    Currency::CAD => Money.new(6_15, :cad),
+    Currency::DKK => Money.new(30_00, :dkk),
+    Currency::EUR => Money.new(4_00, :eur),
+    Currency::GBP => Money.new(3_60, :gbp),
+    Currency::SEK => Money.new(40_00, :sek),
+    Currency::USD => Money.new(4_70, :usd)
+  }.freeze
+
+  BUSINESS_PRICE_PER_TONNE = {
+    Currency::AUD => Money.new(8_80, :aud),
+    Currency::CAD => Money.new(8_45, :cad),
+    Currency::DKK => Money.new(40_50, :dkk),
+    Currency::EUR => Money.new(5_50, :eur),
+    Currency::GBP => Money.new(4_85, :gbp),
+    Currency::SEK => Money.new(55_00, :sek),
+    Currency::USD => Money.new(6_50, :usd)
+  }.freeze
 
   attr_reader :co2e
 
@@ -14,18 +29,8 @@ class GreenhouseGases
   # save amount of co2e sold when we sell it so we don't have to second guess
   # after the fact.
   def self.from_consumer_price(price)
-    sek_amount =
-      case price.currency
-      when Currency::SEK
-        price.amount
-      when Currency::EUR
-        price.amount * PRICE_FACTOR_EUR
-      when Currency::USD
-        price.amount * PRICE_FACTOR_USD
-      end
-
     new(
-      (sek_amount / CONSUMER_PRICE_PER_TONNE_SEK.amount * 1000).ceil
+      (price.subunit_amount.to_d / CONSUMER_PRICE_PER_TONNE[price.currency].subunit_amount * 1000).ceil
     )
   end
 
@@ -40,22 +45,11 @@ class GreenhouseGases
   end
 
   def consumer_price(currency)
-    case currency
-    when Currency::SEK
-      (CONSUMER_PRICE_PER_TONNE_SEK * tonnes).ceil
-    when Currency::USD
-      amount = (
-        CONSUMER_PRICE_PER_TONNE_SEK.subunit_amount / PRICE_FACTOR_USD * tonnes
-      ).round(-1).to_i
+    (CONSUMER_PRICE_PER_TONNE[currency] * tonnes).ceil
+  end
 
-      Money.new(amount, :usd)
-    when Currency::EUR
-      amount = (
-        CONSUMER_PRICE_PER_TONNE_SEK.subunit_amount / PRICE_FACTOR_EUR * tonnes
-      ).round(-1).to_i
-
-      Money.new(amount, :eur)
-    end
+  def business_price(currency)
+    (BUSINESS_PRICE_PER_TONNE[currency] * tonnes).ceil
   end
 
   def <=>(other)

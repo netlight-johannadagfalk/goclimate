@@ -117,17 +117,17 @@
         <tr>
           <td></td>
           <td>Amount:</td>
-          <td><%= number_with_precision(@receipt.total_amount_before_vat, :precision => 2) %> <%= @receipt.currency %></td>
+          <td><%= number_with_precision(@receipt.total_amount_before_vat, :precision => 2) %> <%= @receipt.currency.upcase %></td>
         </tr>
         <tr>
           <td></td>
           <td>VAT (25%):</td>
-          <td><%= number_with_precision(@receipt.vat_amount, :precision => 2) %> <%= @receipt.currency %></td>
+          <td><%= number_with_precision(@receipt.vat_amount, :precision => 2) %> <%= @receipt.currency.upcase %></td>
         </tr>
         <tr>
           <td></td>
           <td>Total:</td>
-          <td><%= number_with_precision(@receipt.total_amount, :precision => 2) %> <%= @receipt.currency %></td>
+          <td><%= number_with_precision(@receipt.total_amount, :precision => 2) %> <%= @receipt.currency.upcase %></td>
         </tr>
       </table>
 

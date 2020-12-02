@@ -38,10 +38,4 @@ RSpec.describe Region do
       expect(described_class.recommended_for_ip_country('')).to be_nil
     end
   end
-
-  describe '.all' do
-    it 'returns all available regions' do
-      expect(described_class.all).to be == [Region::Europe, Region::Germany, Region::Sweden, Region::USA]
-    end
-  end
 end

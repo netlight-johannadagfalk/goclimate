@@ -2,7 +2,7 @@
 
 Region = Struct.new(:id, :name, :slug, :locale, :logical_locale, :currency, :country_codes) do
   def self.all
-    [Region::Europe, Region::Germany, Region::Sweden, Region::USA].freeze
+    Region::ALL
   end
 
   def self.find(id)
@@ -24,7 +24,13 @@ Region = Struct.new(:id, :name, :slug, :locale, :logical_locale, :currency, :cou
   end
 end
 
-Region::Europe = Region.new('eu', 'Europe', nil, :en, 'en', Currency::EUR).freeze
-Region::Germany = Region.new('de', 'Deutschland', 'de', :de, 'de-DE', Currency::EUR, %w[DE]).freeze
-Region::Sweden = Region.new('se', 'Sverige', 'se', :sv, 'sv-SE', Currency::SEK, %w[SE]).freeze
-Region::USA = Region.new('us', 'United States', 'us', :en, 'en-US', Currency::USD, %w[US]).freeze
+Region::ALL = [
+  Region::Australia = Region.new('au', 'Australia', 'au', :en, 'en-AU', Currency::AUD, %w[AU]).freeze,
+  Region::Canada = Region.new('ca', 'Canada', 'ca', :en, 'en-CA', Currency::CAD, %w[CA]).freeze,
+  Region::Denmark = Region.new('dk', 'Danmark', 'dk', :en, 'dk-DK', Currency::DKK, %w[DK]).freeze,
+  Region::Europe = Region.new('eu', 'Europe', nil, :en, 'en', Currency::EUR).freeze,
+  Region::Germany = Region.new('de', 'Deutschland', 'de', :de, 'de-DE', Currency::EUR, %w[DE]).freeze,
+  Region::Sweden = Region.new('se', 'Sverige', 'se', :sv, 'sv-SE', Currency::SEK, %w[SE]).freeze,
+  Region::UK = Region.new('gb', 'United Kingdom', 'gb', :en, 'en-GB', Currency::GBP, %w[GB]).freeze,
+  Region::USA = Region.new('us', 'United States', 'us', :en, 'en-US', Currency::USD, %w[US]).freeze
+].freeze

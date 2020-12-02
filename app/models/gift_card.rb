@@ -114,14 +114,7 @@ class GiftCard < ApplicationRecord
   end
 
   def calculate_price
-    price = co2e.consumer_price(currency)
-
-    case currency
-    when Currency::SEK
-      price.ceil(-3)
-    else
-      price.ceil(-2)
-    end
+    co2e.consumer_price(currency).large_amount_price_ceil
   end
 
   def generate_key

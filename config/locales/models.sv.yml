@@ -5,6 +5,9 @@ sv:
         eur: '%{number} €'
         sek: '%{number} kr'
     currency:
+      prefix:
+        eur: 'DEFAULT'
+        sek: 'DEFAULT'
       suffix:
         eur: ' €'
         sek: ' kr'

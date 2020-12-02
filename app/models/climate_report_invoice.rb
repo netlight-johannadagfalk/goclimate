@@ -19,15 +19,16 @@ class ClimateReportInvoice < ApplicationRecord
 
   # Calculate amount in SEK lowest denominator
   def calculate_amount
-    admin_fee = case climate_report.employees
-                when 1..10
-                  1000
-                when 11..20
-                  2000
-                else
-                  5000
-                end
+    admin_fee =
+      case climate_report.employees
+      when 1..10
+        1_000_00
+      when 11..20
+        2_000_00
+      else
+        5_000_00
+      end
 
-    (BigDecimal(co2e) / 1000 * GreenhouseGases::BUSINESS_PRICE_PER_TONNE_SEK.amount.to_i + admin_fee).ceil * 100
+    GreenhouseGases.new(co2e).business_price(Currency::SEK).subunit_amount + admin_fee
   end
 end
