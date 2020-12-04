@@ -1,30 +1,34 @@
 {
   "entrypoints": {
     "main": {
-      "css": [
-        "main-f05e04187fe502df65cf.css"
-      ],
-      "js": [
-        "0-c85263b8ff4c69da5d3a.js",
-        "main-36cb5e44d6d3cd2067ab.js"
-      ],
-      "css.map": [
-        "main-f05e04187fe502df65cf.css.map"
-      ],
-      "js.map": [
-        "0-c85263b8ff4c69da5d3a.js.map",
-        "main-36cb5e44d6d3cd2067ab.js.map"
-      ]
+      "assets": {
+        "css": [
+          "main-f05e04187fe502df65cf.css"
+        ],
+        "js": [
+          "0-c85263b8ff4c69da5d3a.js",
+          "main-36cb5e44d6d3cd2067ab.js"
+        ],
+        "css.map": [
+          "main-f05e04187fe502df65cf.css.map"
+        ],
+        "js.map": [
+          "0-c85263b8ff4c69da5d3a.js.map",
+          "main-36cb5e44d6d3cd2067ab.js.map"
+        ]
+      }
     },
     "other": {
-      "js": [
-        "0-c85263b8ff4c69da5d3a.js",
-        "other-36cb5e44d6d3cd2067ab.js"
-      ],
-      "js.map": [
-        "0-c85263b8ff4c69da5d3a.js.map",
-        "other-36cb5e44d6d3cd2067ab.js.map"
-      ]
+      "assets": {
+        "js": [
+          "0-c85263b8ff4c69da5d3a.js",
+          "other-36cb5e44d6d3cd2067ab.js"
+        ],
+        "js.map": [
+          "0-c85263b8ff4c69da5d3a.js.map",
+          "other-36cb5e44d6d3cd2067ab.js.map"
+        ]
+      }
     }
   },
   "images/image.png": "images/image-5537be63869ef7671aaa321b25470c9d.png",
