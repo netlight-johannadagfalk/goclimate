@@ -26,11 +26,8 @@ const cssLoaders = [
     }
   },
   {
-    loader: 'postcss-loader',
-    options: {
-      ident: 'postcss'
-    },
-  },
+    loader: 'postcss-loader'
+  }
 ];
 
 module.exports = {
