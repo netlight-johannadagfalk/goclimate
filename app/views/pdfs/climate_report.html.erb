@@ -180,7 +180,7 @@
 
   <h2 class="alwaysbreak"><%= @climate_report.company_name %>s klimatpåverkan</h2>
 
-  <p>Denna klimatrapport omfattar utsläpp som registrerats under <%= @climate_report.calculation_period %><%= ' ' + @calculation_period_length unless @calculation_period_length.nil? %>. Under perioden var de totala utsläppen av växthusgaser från företagets verksamhet <%= co2e_string(@climate_report.calculation.total_emissions) %> kg koldioxidekvivalenter (CO2e), vilket motsvarar <%= number_with_delimiter(@climate_report.calculation.total_emissions / @climate_report.employees) %> kg CO2e per anställd. Utsläppen är fördelade enligt nedan.</p>
+  <p>Denna klimatrapport omfattar utsläpp som registrerats under <%= @climate_report.calculation_period %><%= ' ' + @calculation_period_length unless @calculation_period_length.nil? %>. Under perioden var de totala utsläppen av växthusgaser från företagets verksamhet <%= co2e_string(@climate_report.calculation.total_emissions) %> (CO2e), vilket motsvarar <%= number_with_delimiter(@climate_report.calculation.total_emissions / @climate_report.employees) %> kg CO2e per anställd. Utsläppen är fördelade enligt nedan.</p>
 
   <h4 style="text-align: left;">Klimatutsläpp per utsläppskälla (i kg CO2e)</h4>
   <table>
