@@ -1,6 +1,7 @@
 const flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette').default;
 
 module.exports = {
+  purge: false,
   theme: {
     variants: {
       borderWidth: ['responsive', 'hover']
