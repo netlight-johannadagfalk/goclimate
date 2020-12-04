@@ -27,3 +27,13 @@ body { min-height: 100%; }
 .translation_missing {
   background-color: rgba(255, 0, 0, 0.5) !important;
 }
+
+tr {
+  background: #fff;
+}
+
+.table-sticky-first-column tr > :first-child {
+  position: sticky;
+  left: 0;
+  background: inherit;
+}
