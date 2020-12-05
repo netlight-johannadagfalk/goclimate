@@ -35,13 +35,14 @@
 .modal-actions {
   @apply flex flex-col mt-3;
 
-  .button {
+  & .button {
     @apply my-2;
   }
+
   @screen t {
     @apply flex-row justify-end;
 
-    .button {
+    & .button {
       @apply my-0 mx-2;
     }
   }

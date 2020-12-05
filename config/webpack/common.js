@@ -16,20 +16,6 @@ function buildNamedEntryPoints(paths) {
   return entryPoints;
 }
 
-const cssLoaders = [
-  /* Using style-loader when running dev server allows hot updating when running with HMR */
-  (inDevServer ? { loader: 'style-loader' } : MiniCssExtractPlugin.loader),
-  {
-    loader: 'css-loader',
-    options: {
-      sourceMap: true
-    }
-  },
-  {
-    loader: 'postcss-loader'
-  }
-];
-
 module.exports = {
   entry: buildNamedEntryPoints(glob.sync('./app/assets/bundles/*.js')),
   output: {
@@ -57,18 +43,17 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: cssLoaders
-      },
-      {
-        test: /\.scss$/,
         use: [
-          ...cssLoaders,
+          /* Using style-loader when running dev server allows hot updating when running with HMR */
+          (inDevServer ? { loader: 'style-loader' } : MiniCssExtractPlugin.loader),
           {
-            loader: 'sass-loader',
+            loader: 'css-loader',
             options: {
-              implementation: require("sass"),
               sourceMap: true
             }
+          },
+          {
+            loader: 'postcss-loader'
           }
         ]
       },

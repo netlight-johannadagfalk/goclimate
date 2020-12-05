@@ -3,19 +3,19 @@
     @apply hidden;
   }
 
-  &-content {
-    @apply hidden;
-  }
-
   & > input[type='checkbox']:checked ~ .collapse-content {
     @apply block;
   }
 
-  &-chevron {
-    @apply transition-transform ease-in-out duration-300;
-  }
-
-  & > input[type='checkbox']:checked ~ * &-chevron {
+  & > input[type='checkbox']:checked ~ * .collapse-chevron {
     @apply transform rotate-180;
   }
+}
+
+.collapse-content {
+  @apply hidden;
+}
+
+.collapse-chevron {
+  @apply transition-transform ease-in-out duration-300;
 }

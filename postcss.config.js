@@ -1,3 +1,5 @@
+const postcssImport = require('postcss-import');
+const postcssNesting = require('postcss-nesting');
 const tailwindcss = require('tailwindcss');
 const autoprefixer = require('autoprefixer');
 const purgecss = require('@fullhuman/postcss-purgecss');
@@ -5,7 +7,9 @@ const cssnano = require('cssnano');
 
 const environment = {
   plugins: [
+    postcssImport,
     tailwindcss,
+    postcssNesting,
     autoprefixer
   ]
 };

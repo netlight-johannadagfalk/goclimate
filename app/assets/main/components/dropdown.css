@@ -1,0 +1,54 @@
+@responsive {
+  .dropdown {
+    @apply relative inline-block text-base;
+
+  }
+
+  .dropdown-menu {
+    @apply
+    absolute top-100 left-0
+    w-max-content
+    hidden
+    py-1
+    rounded
+    text-primary text-left bg-white
+    shadow
+    z-10;
+
+    @nest .dropdown-toggler:checked ~ & {
+      @apply block;
+    }
+  }
+
+  .dropdown-menu > li > a {
+    @apply
+    block
+    px-4 py-2
+    transition-colors duration-100 ease-linear
+    border-none rounded-none; /* Override links and buttons used in smaller breakpoints */
+  }
+
+  .dropdown-menu > li > a:hover {
+    @apply bg-primary text-white;
+  }
+
+  .dropdown-menu > li > a:active {
+    @apply translate-x-0; /* Override buttons used in smaller breakpoints */
+  }
+
+  .dropdown-menu-up {
+    @apply top-auto bottom-100;
+  }
+
+  .dropdown-menu-right {
+    @apply left-auto right-0;
+  }
+
+  .dropdown-toggler { 
+    @apply hidden;
+  }
+
+  .dropdown-separator {
+    @apply border-none h-2;
+  }
+}
