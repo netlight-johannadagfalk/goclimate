@@ -2,17 +2,16 @@ const path = require('path');
 const glob = require('glob');
 const fs = require('fs');
 const yaml = require('js-yaml');
-const webpack = require('webpack');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const env = process.env.NODE_ENV || 'development';
 const sharedConfig = yaml.safeLoad(fs.readFileSync('config/webpack.yml'))[env];
-const inDevServer = process.argv.find(v => v.includes('webpack-dev-server'));
+const inDevServer = process.argv.find((v) => v.includes('webpack-dev-server'));
 
 function buildNamedEntryPoints(paths) {
   const entryPoints = {};
-  paths.forEach(entryPath => entryPoints[path.basename(entryPath, '.js')] = entryPath)
+  paths.forEach((entryPath) => { entryPoints[path.basename(entryPath, '.js')] = entryPath; });
   return entryPoints;
 }
 
@@ -22,7 +21,7 @@ module.exports = {
     path: path.resolve(`./public/${sharedConfig.output_path}`),
     publicPath: `/${sharedConfig.output_path}/`,
     filename: '[name]-[contenthash].js',
-    devtoolModuleFilenameTemplate: info => `${info.resource.replace('./', '').replace(/\/(?=.*\/)/g, '__').replace('.', `-${info.hash}.`)}`
+    devtoolModuleFilenameTemplate: (info) => `${info.resource.replace('./', '').replace(/\/(?=.*\/)/g, '__').replace('.', `-${info.hash}.`)}`
   },
   plugins: [
     new WebpackAssetsManifest({
@@ -39,7 +38,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: 'babel-loader'
       },
       {
         test: /\.css$/,
@@ -64,7 +63,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[path][name]-[contenthash].[ext]',
-              context: path.join('app', 'assets'),
+              context: path.join('app', 'assets')
             }
           }
         ]

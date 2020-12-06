@@ -3,4 +3,4 @@
  * Rails views. This bundle is not intended to be referenced itself from asset
  * helpers.
  */
-require.context('../images', true)
+require.context('../images', true);

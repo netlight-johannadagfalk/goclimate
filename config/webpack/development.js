@@ -1,6 +1,6 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // eslint-disable-line import/no-extraneous-dependencies
 
 const env = process.env.NODE_ENV || 'development';
 const sharedConfig = yaml.safeLoad(fs.readFileSync('config/webpack.yml'))[env];
@@ -22,4 +22,4 @@ module.exports = {
     hot: true
   },
   cache: true
-}
+};
