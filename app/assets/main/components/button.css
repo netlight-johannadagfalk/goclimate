@@ -5,6 +5,7 @@
     border rounded border-current
     bg-transparent
     whitespace-nowrap
+    text-base
     text-primary text-center
     transition duration-200
     cursor-pointer;
@@ -52,4 +53,10 @@
   &:hover {
     @apply text-white bg-primary;
   }
+}
+
+.button-sm {
+  @apply 
+    py-1 px-2
+    text-sm;
 }
