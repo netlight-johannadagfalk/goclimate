@@ -489,28 +489,32 @@ function drawGraphs() {
       labels: ['<%= raw(@bar_compare_years_categories_data[:labels].join("', '")) %>'],
       data: [ <%= raw(@bar_compare_years_categories_data[:data].join(", ")) %> ],
       backgroundColors: compareBackgroundColors(<%= @climate_periods_to_compare %>),
-      borderColors: compareBackgroundColors(<%= @climate_periods_to_compare %>)
+      borderColors: compareBackgroundColors(<%= @climate_periods_to_compare %>),
+      fontSize: <%= @climate_periods_to_compare > 3 ? 12 : 16 %>
     },
     {
       canvasId: 'barGraphCompareYearsSources',
       labels: ['<%= raw(@bar_compare_years_emissions_data[:labels].join("', '")) %>'],
       data: [ <%= raw(@bar_compare_years_emissions_data[:data].join(", ")) %> ],
       backgroundColors: compareBackgroundColors(<%= @climate_periods_to_compare %>),
-      borderColors: compareBackgroundColors(<%= @climate_periods_to_compare %>)
+      borderColors: compareBackgroundColors(<%= @climate_periods_to_compare %>),
+      fontSize: <%= @climate_periods_to_compare > 3 ? 12 : 16 %>
     },
     {
       canvasId: 'barGraphCompareYearsCategoriesPerEmployee',
       labels: ['<%= raw(@bar_compare_years_categories_per_employee_data[:labels].join("', '")) %>'],
       data: [ <%= raw(@bar_compare_years_categories_per_employee_data[:data].join(", ")) %> ],
       backgroundColors: compareBackgroundColors(<%= @climate_periods_to_compare %>),
-      borderColors: compareBackgroundColors(<%= @climate_periods_to_compare %>)
+      borderColors: compareBackgroundColors(<%= @climate_periods_to_compare %>),
+      fontSize: <%= @climate_periods_to_compare > 3 ? 12 : 16 %>
     },
     {
       canvasId: 'barGraphCompareYearsSourcesPerEmployee',
       labels: ['<%= raw(@bar_compare_years_emissions_per_employee_data[:labels].join("', '")) %>'],
       data: [ <%= raw(@bar_compare_years_emissions_per_employee_data[:data].join(", ")) %> ],
       backgroundColors: compareBackgroundColors(<%= @climate_periods_to_compare %>),
-      borderColors: compareBackgroundColors(<%= @climate_periods_to_compare %>)
+      borderColors: compareBackgroundColors(<%= @climate_periods_to_compare %>),
+      fontSize: <%= @climate_periods_to_compare > 3 ? 12 : 16 %>
     }
 
     <% end %>
@@ -518,6 +522,7 @@ function drawGraphs() {
 
   barCharts.forEach(function drawBarChart(chart_data) {
     var ctxBar = document.getElementById(chart_data.canvasId).getContext('2d');
+    var fontSize = chart_data.fontSize == undefined ? 16 : chart_data.fontSize;
     var chart = new Chart(ctxBar, {
       plugins: [ChartDataLabels],
       type: 'bar',
@@ -549,6 +554,11 @@ function drawGraphs() {
           yAxes: [{
             ticks: {
               beginAtZero: true
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontSize: fontSize
             }
           }]
         }
