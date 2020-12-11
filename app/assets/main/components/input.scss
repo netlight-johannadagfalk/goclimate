@@ -12,11 +12,13 @@
     cursor-text; /* For when we're styling a container as the input */
 
   &:focus-within, &:focus, &.StripeElement--focus {
-    @apply shadow-outline;
+    @apply ring ring-primary ring-opacity-100;
   }
 
   /* Disable default focus styling by browsers */
-  &:focus, input:focus { @apply outline-none; }
+  &:focus, & input:focus {
+    @apply outline-none;
+  }
 
   /* Disable native styling for Webkit on iOS */
   &, & input { -webkit-appearance: none; }
