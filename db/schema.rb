@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_25_155921) do
+ActiveRecord::Schema.define(version: 2021_01_15_143904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -202,6 +202,14 @@ ActiveRecord::Schema.define(version: 2020_11_25_155921) do
     t.index ["user_id"], name: "index_lifestyle_footprints_on_user_id"
   end
 
+  create_table "newsletter_subscribers", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "email", null: false
+    t.string "region"
+    t.bigint "logged_in_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.string "cdm_url"
@@ -290,4 +298,5 @@ ActiveRecord::Schema.define(version: 2020_11_25_155921) do
   end
 
   add_foreign_key "invoices", "projects"
+  add_foreign_key "newsletter_subscribers", "users", column: "logged_in_user_id"
 end
