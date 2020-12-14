@@ -71,6 +71,7 @@ group :development, :test do
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 4.0'
   gem 'rubocop', '~> 1.6.1', require: false
+  gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
 end
