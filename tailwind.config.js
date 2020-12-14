@@ -1,6 +1,10 @@
-const flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette').default;
+const borderSpecificColors = require('./lib/tailwind_plugins/border_specific_colors.js');
 
 module.exports = {
+  purge: false,
+  plugins: [
+    borderSpecificColors
+  ],
   theme: {
     variants: {
       borderWidth: ['responsive', 'hover']
@@ -122,16 +126,15 @@ module.exports = {
     fontFamily: false,
     borderRadius: {
       none: '0',
-      default: '0.25rem',
+      DEFAULT: '0.25rem',
       lg: '0.5rem',
       full: '9999px'
     },
-    boxShadow: (theme) => ({
-      default: '0 3px 10px -3px rgba(28, 70, 55, 0.2), 0 1px 3px 0px rgba(28, 70, 55, 0.1)',
+    boxShadow: {
+      DEFAULT: '0 3px 10px -3px rgba(28, 70, 55, 0.2), 0 1px 3px 0px rgba(28, 70, 55, 0.1)',
       lg: '0 15px 30px -5px rgba(28, 70, 55, 0.1), 0 10px 10px -5px rgba(28, 70, 55, 0.05)',
-      outline: `0 0 0 1px ${theme('colors.primary')}`,
       none: 'none'
-    }),
+    },
     extend: {
       height: {
         96: '24rem',
@@ -176,31 +179,16 @@ module.exports = {
         '-10': '-10'
       },
       transitionProperty: {
-        default: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, border-width, height, width, max-height, max-width',
+        DEFAULT: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, border-width, height, width, max-height, max-width',
         border: 'border-width',
         size: 'height, width, max-height, max-width'
-      }
+      },
+      ringWidth: {
+        DEFAULT: '1px'
+      },
+      ringColor: (theme) => ({
+        DEFAULT: theme('colors.primary')
+      })
     }
-  },
-  plugins: [
-    ({
-      addUtilities, _e, theme, variants
-    }) => {
-      // Border specific colours
-      // https://github.com/tailwindlabs/tailwindcss/pull/560#issuecomment-670045304
-      const colors = flattenColorPalette(theme('borderColor'));
-      delete colors.default;
-
-      const colorMap = Object.keys(colors)
-        .map((color) => ({
-          [`.border-t-${color}`]: { borderTopColor: colors[color] },
-          [`.border-r-${color}`]: { borderRightColor: colors[color] },
-          [`.border-b-${color}`]: { borderBottomColor: colors[color] },
-          [`.border-l-${color}`]: { borderLeftColor: colors[color] }
-        }));
-      const utilities = Object.assign({}, ...colorMap);
-
-      addUtilities(utilities, variants('borderColor'));
-    }
-  ]
+  }
 };

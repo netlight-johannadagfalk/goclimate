@@ -1,18 +1,18 @@
 .list-bullet {
-  li::before {
+  & li::before {
     content: '\2022';
     width: 1em;
     display: inline-block;
     margin-left: -1em;
   }
 
-  li {
+  & li {
     padding-left: 1em;
   }
 }
 
 .list-check {
-  li::before {
+  & li::before {
     font-family: 'Font Awesome 5 Free';
     font-weight: 900;
     content: '\f00c';
@@ -24,7 +24,7 @@
       text-green-accent;
   }
 
-  li {
+  & li {
     @apply
       relative
       pl-8;
@@ -34,11 +34,11 @@
 .list-number {
   counter-reset: my-list;
 
-  li {
+  & li {
     counter-increment: my-list;
   }
 
-  li::before {
+  & li::before {
     content: counter(my-list) ". ";
 
     @apply

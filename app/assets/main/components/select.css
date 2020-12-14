@@ -6,12 +6,14 @@
     text-primary
     border border-primary rounded;
 
-    &:focus-within, &:focus, &.StripeElement--focus {
-      @apply shadow-outline;
-    }
-  
-    /* Disable default focus styling by browsers */
-    &:focus, input:focus { @apply outline-none; }
+  &:focus-within, &:focus, &.StripeElement--focus {
+    @apply ring ring-primary ring-opacity-100;
+  }
+
+  /* Disable default focus styling by browsers */
+  &:focus {
+    @apply outline-none;
+  }
 }
 
 .select-wrapper {

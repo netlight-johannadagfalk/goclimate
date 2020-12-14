@@ -4,7 +4,7 @@
     py-2 px-4
     border rounded border-current
     bg-transparent
-    whitespace-no-wrap
+    whitespace-nowrap
     text-primary text-center
     transition duration-200
     cursor-pointer;
@@ -24,24 +24,24 @@
       cursor-not-allowed
       transform translate-y-0;
   }
+}
 
-  &-inverted {
-    @apply text-white;
+.button-inverted {
+  @apply text-white;
 
-    &:hover {
-      @apply bg-white text-primary;
-    }
+  &:hover {
+    @apply bg-white text-primary;
+  }
+}
+
+.button-cta {
+  @apply bg-yellow-accent border-none;
+
+  &:hover {
+    @apply bg-primary text-white;
   }
 
-  &-cta {
-    @apply bg-yellow-accent border-none;
-
-    &:hover {
-      @apply bg-primary text-white;
-    }
-
-    &:disabled {
-      @apply bg-yellow-accent text-primary;
-    }
+  &:disabled {
+    @apply bg-yellow-accent text-primary;
   }
 }

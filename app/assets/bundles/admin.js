@@ -21,4 +21,4 @@ application.load(definitionsFromContext(
 import 'bootstrap/dist/css/bootstrap.css';
 
 /* Styling */
-import '../admin/index.scss';
+import '../admin/index.css';
