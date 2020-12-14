@@ -32,11 +32,33 @@
         </ul>
 
         <div>
-          <label for="newsletter-email" class="font-bold"><%= t 'views.shared.footer.newsletter.heading' %></label>
-          <div class="flex flex-row space-x-2">
-            <input class="input input-sm" id="newsletter-email" type="email" placeholder="<%= t 'email' %>">
-            <button class="button button-inverted button-sm"><%= t 'views.shared.footer.newsletter.cta' %></button>
-          </div>
+          <%= form_with url: NewsletterSubscriber.new(), html: { 'data-controller': 'newsletter-subscription' } do |f| %>
+            <%= f.hidden_field :logged_in_user_id, value: current_user&.id || nil %>
+            <%= f.label :newsletter_email, t('views.shared.footer.newsletter.heading'), class: 'font-bold' %>
+            <div class="flex flex-row space-x-2">
+              <%= f.email_field :newsletter_email, class: 'input input-sm', placeholder: t('email'), 'data-target': 'newsletter-subscription.emailField' %>
+              <button type="button" class="button button-inverted button-sm relative" data-action="click->newsletter-subscription#submit">
+                <span
+                  data-target="newsletter-subscription.idleIndicator"
+                  data-active-class="inline"
+                  data-inactive-class="invisible"
+                ><%= t('views.shared.footer.newsletter.cta') %></span>
+                <span
+                  data-target="newsletter-subscription.loadingIndicator"
+                  class="hidden"
+                  data-active-class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                  data-inactive-class="hidden"
+                ><i class="fas fa-circle-notch fa-spin"></i></span>
+                <span
+                  data-target="newsletter-subscription.successIndicator"
+                  class="hidden"
+                  data-active-class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                  data-inactive-class="hidden"
+                ><i class="fas fa-check"></i></span>
+              </button>
+            </div>
+            <p data-target="newsletter-subscription.errorMessage"></p>
+          <% end %>
         </div>
       </div>
       <div class="w-full t:w-1/3 d:w-1/5 d:max-w-xs p-4">

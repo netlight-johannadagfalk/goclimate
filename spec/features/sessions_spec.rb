@@ -15,9 +15,7 @@ RSpec.feature 'Sessions', type: :feature, js: true do
     click_link 'Log In'
 
     # sign in page
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Log In'
+    log_in(user)
 
     # Wait for dashboard to render
     find('.dashboard-show', wait: 20)
@@ -40,9 +38,7 @@ RSpec.feature 'Sessions', type: :feature, js: true do
     click_link 'Log In'
 
     # sign in page
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Log In'
+    log_in(user)
 
     # Wait for dashboard to render
     find('.dashboard-show', wait: 20)

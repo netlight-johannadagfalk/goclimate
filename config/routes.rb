@@ -138,6 +138,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :newsletter_subscribers, only: [:create]
+
     # Assets that users may download
     get '/assets', to: redirect(status: 302) {
       'https://drive.google.com/drive/folders/1YN6Vomjkrp-eFZYonZehELbjz1x8BkL_?usp=sharing'
