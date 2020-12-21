@@ -36,7 +36,7 @@
 
             <div>
               <%= f.label :message, t('views.gift_cards.new.write_a_message'), class: 'font-bold' %>
-              <%= f.text_area :message, rows: 4, cols: 40, class: 'input w-full', placeholder: t('views.gift_cards.new.sample_message_html') %>
+              <%= f.text_area :message, rows: 4, cols: 40, class: 'input w-full', placeholder: t('views.gift_cards.new.sample_message_html'), maxlength: 400 %>
             </div>
             <div>
               <%= label_tag :email, t('email'), class: 'font-bold' %>
