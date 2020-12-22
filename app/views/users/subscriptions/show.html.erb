@@ -25,17 +25,21 @@
             <label for="plan" class="block font-bold"><%= t 'climate_plan' %></label>
             <div class="select-wrapper w-full">
               <select id="plan" name="user[plan]" class="select" required>
-                <% unless @current_plan_price %>
+                <% unless current_user.active_subscription? %>
                   <option value="" selected=1><%= t 'views.subscriptions.update.no_subscription' %></option>
                 <% end %>
 
-                <% @available_plans.each do |i| %>
-                  <option value="<%= i.amount %>" <%= i == @current_plan_price ? "selected" : "" %> >
-                    <%= i.to_s(precision: :auto) %>
+                <% @available_plans.each do |plan_price| %>
+                  <option value="<%= plan_price.amount %>" <%= plan_price == current_user.subscription_price ? "selected" : "" %> >
+                    <%= plan_price.to_s(precision: :auto) %>
+                    (<%= (GreenhouseGases.from_consumer_price(plan_price) * 12 / 2).to_s(precision: :auto) %>)
                   </option>
                 <% end %>
               </select>
             </div>
+            <p class="mt-1 text-sm">
+              <%= t('views.subscriptions.update.current_footprint', count: current_user.current_lifestyle_footprint.total.tonnes.round(1)) %>
+            </p>
           </div>
 
           <% if @customer_payment_method.present? %>
