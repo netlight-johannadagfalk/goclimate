@@ -12,7 +12,8 @@ RSpec.describe OffsettingStatistics do
     create(:gift_card_paid, co2e: 2000, price: 3000, currency: :sek, paid_at: Time.parse('2020-10-15 14:00'))
     create(:flight_offset_paid, co2e: 3000, price: 4000, currency: :sek, paid_at: Time.parse('2020-10-20 14:00'))
     create(:invoice, co2e: 4000, amount_in_sek: 5000, created_at: Time.parse('2020-08-03 14:00'))
-    create(:climate_report_invoice, co2e: 5000, amount: 6000, currency: :sek, created_at: Time.parse('2020-08-04 14:00'))
+    create(:climate_report_invoice,
+           co2e: 5000, amount: 6000, currency: :sek, created_at: Time.parse('2020-08-04 14:00'))
 
     create(:gift_card, co2e: 10_000, price: 3000, currency: :sek, paid_at: nil)
     create(:flight_offset, co2e: 11_000, price: 4000, currency: :sek, paid_at: nil)

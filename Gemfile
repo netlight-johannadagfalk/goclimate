@@ -22,7 +22,7 @@ gem 'rack-reverse-proxy', '~> 0.12.0', require: 'rack/reverse_proxy'
 
 # Domains
 gem 'countries', '~> 3.0.0'
-gem 'dentaku', '~> 3.3.4'
+gem 'dentaku', '~> 3.4.1'
 
 # Authentication
 gem 'devise', '~> 4.7.1'
@@ -70,7 +70,8 @@ group :development, :test do
   gem 'rb-readline'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 4.0'
-  gem 'rubocop', '~> 0.89.1', require: false
+  gem 'rubocop', '~> 1.6.1', require: false
+  gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
 end

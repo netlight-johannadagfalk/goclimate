@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ReferralCode do
-  subject(:code) { ReferralCode.new }
+  subject(:code) { described_class.new }
 
   describe '#code' do
     it 'validates when containing only letters, digits and dashes' do

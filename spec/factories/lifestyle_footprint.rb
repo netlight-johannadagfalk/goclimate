@@ -18,7 +18,7 @@ FactoryBot.define do
     car { 100 }
     flights { 1000 }
     consumption { 1000 }
-    public { 2000 } # rubocop:disable Layout/EmptyLinesAroundAccessModifier
+    public { 2000 }
     total { 6100 }
   end
 end

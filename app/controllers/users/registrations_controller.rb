@@ -94,8 +94,7 @@ module Users
     def set_footprint_and_price
       @footprint = LifestyleFootprint.find_by_key!(params[:lifestyle_footprint])
 
-      unless @footprint.present? &&
-             (@footprint.user_id.nil? || current_user.present? && @footprint.user_id == current_user.id)
+      unless footprint_present_and_usable_by_current_user?
         redirect_to root_url
         return
       end
@@ -104,6 +103,11 @@ module Users
       number_of_people = params[:membership] == 'multi' && params[:people].presence ? params[:people].presence&.to_i : 1
       @subscription_tonnes = @footprint_tonnes * number_of_people
       @plan_price = SubscriptionManager.price_for_footprint(@subscription_tonnes, current_region.currency)
+    end
+
+    def footprint_present_and_usable_by_current_user?
+      @footprint.present? &&
+        (@footprint.user_id.nil? || current_user.present? && @footprint.user_id == current_user.id)
     end
 
     def set_user
