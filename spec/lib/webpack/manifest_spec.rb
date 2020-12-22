@@ -15,9 +15,7 @@ RSpec.describe Webpack::Manifest do
     let(:manifest_json) { <<~JSON }
       {
         "entrypoints": {
-          "main": {
-            "assets": { "js": [ "#{original_main}" ] }
-          }
+          "main": { "js": [ "#{original_main}" ] }
         },
         "main.js": "#{original_main}"
       }
@@ -25,9 +23,7 @@ RSpec.describe Webpack::Manifest do
     let(:manifest_json_changed) { <<~JSON }
       {
         "entrypoints": {
-          "main": {
-            "assets": { "js": [ "#{changed_main}" ] }
-          }
+          "main": { "js": [ "#{changed_main}" ] }
         },
         "main.js": "#{changed_main}"
       }
