@@ -41,24 +41,30 @@
       <div class="text-center">
         <a href="<%= @footprint.country ? new_lifestyle_footprint_path(country: @footprint.country.alpha2) : root_path%>" class="button">
           <i class="fas fa-plus" aria-hidden="true"></i>
-          New calculation
+          <%= t 'views.lifestyle_footprints.show.new_calculation' %>
         </a>
-        <div class="inline-block" data-controller="modal">
-          <button type="button" class="button button-danger" data-target="modal.trigger" data-action="modal#open">
-            Delete
-          </button>
+        <% if @total_number_of_footprints > 1 %>
+          <div class="inline-block" data-controller="modal">
+            <button type="button" class="button button-danger" data-target="modal.trigger" data-action="modal#open">
+              <%= t 'views.lifestyle_footprints.show.delete' %>
+            </button>
 
-          <div class="modal-container" data-target="modal.container">
-            <div class="modal-content modal-content-sm" data-target="modal.content">
-              <h3 class="modal-heading">Are you sure?</h3>
-              <p class="mt-3">You are about to delete your carbon footprint calculation that was created at <%= @footprint.created_at.to_date %>.</p>
-              <div class="modal-actions">
-                <button type="button" class="button" data-action="modal#close">Keep calculation</button>
-                <%= form_tag({ action: :destroy }, method: :delete, class: 'w-full t:w-auto') do %>
-                  <button type="submit" class="button button-danger w-full t:w-auto">Delete calculation</button>
-                <% end %>
-              </div>
-        </div>
+            <div class="modal-container" data-target="modal.container">
+              <div class="modal-content modal-content-sm" data-target="modal.content">
+                <h3 class="modal-heading"><%= t 'views.lifestyle_footprints.show.delete_confirmation.heading' %></h3>
+                <p class="mt-3"><%= t('views.lifestyle_footprints.show.delete_confirmation.text', date: @footprint.created_at.to_date) %></p>
+                <div class="modal-actions">
+                  <button type="button" class="button" data-action="modal#close">
+                    <%= t 'views.lifestyle_footprints.show.delete_confirmation.abort' %>
+                  </button>
+                  <%= form_tag({ action: :destroy }, method: :delete, class: 'w-full t:w-auto') do %>
+                    <button type="submit" class="button button-danger w-full t:w-auto">
+                      <%= t 'views.lifestyle_footprints.show.delete_confirmation.cta' %>
+                    </button>
+                  <% end %>
+                </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </section>
@@ -69,13 +75,24 @@
       <h3 class="heading-lg">
         <%= t 'share_heading' %>
       </h3>
-      <p class="t:w-2/3"><%= t 'views.dashboard.share.text' %></p>
+      <p class="t:w-2/3"><%= t 'views.lifestyle_footprints.show.share.text' %></p>
       <div class="flex flex-col m-lg:flex-row t:flex-col d:flex-row items-stretch flex-wrap justify-left -m-1">
         <div class="p-1">
-          <a class="button button-cta block bg-facebook text-white" data-controller="facebook-share" data-action="facebook-share#share" data-share-url="<%= user_url(current_user) %>" data-share-quote="<%= handle_social_quote_for(current_user.user_name, current_user.number_of_neutral_months > 0, @my_neutral_months) %>"><span class="fab fa-facebook"></span> <%=t 'share_on_facebook' %></a>
+          <a class="button button-cta block bg-facebook text-white" 
+            data-controller="facebook-share" 
+            data-action="facebook-share#share" 
+            data-share-url="<%= lifestyle_footprint_url(id: @footprint) %>" 
+            data-share-quote="<%= CGI.escape(t('views.lifestyle_footprints.show.share.social_quote', tonnes: @footprint.total.tonnes.round(1), url: lifestyle_footprint_url(id: @footprint))) %>">
+              <span class="fab fa-facebook"></span> <%=t 'share_on_facebook' %>
+          </a>
         </div>
         <div class="p-1">
-          <a class="button button-cta block bg-twitter text-white" href="https://twitter.com/intent/tweet?text=<%= handle_encoded_social_quote(current_user.number_of_neutral_months > 0, @my_neutral_months) %>" data-size="large"><span class="fab fa-twitter"></span> <%=t 'share_on_twitter' %></a>
+          <a class="button button-cta block bg-twitter text-white" 
+            href="https://twitter.com/intent/tweet?text=<%= CGI.escape(t('views.lifestyle_footprints.show.share.social_quote', tonnes: @footprint.total.tonnes.round(1), url: lifestyle_footprint_url(id: @footprint))) %>" 
+            data-size="large"
+          >
+            <span class="fab fa-twitter"></span> <%=t 'share_on_twitter' %>
+          </a>
         </div>
       </div>
       </div>

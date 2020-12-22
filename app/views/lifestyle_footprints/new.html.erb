@@ -83,8 +83,8 @@
           </div>
         </div>
 
-        <%= form_with model: @footprint do |f| %>
-          <%= f.hidden_field :lifestyle_calculator_id %>
+        <%= form_with url: new_lifestyle_footprint_path(@footprint) do |f| %>
+          <%= f.hidden_field :lifestyle_calculator_id, value: @calculator.id %>
           <%= f.hidden_field :country, value: params[:country] %>
 
           <% if @calculator.region_options.present? %>
