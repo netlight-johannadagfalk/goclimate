@@ -71,3 +71,9 @@ sv:
           no_car: Jag åker inte bil
       next: Nästa
       back: Tillbaka
+      index:
+        heading: Dina klimatavtryck
+        text: Det här är en översikt över alla klimatavtryck du beräknat via vår tjänst.
+        list:
+          date: Datum
+          amount: Årligt avtryck

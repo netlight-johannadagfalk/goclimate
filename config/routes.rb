@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     namespace :users, as: 'user' do
       resource :subscription, only: [:show, :update, :destroy]
       resources :receipts, only: [:index, :show], param: :card_charge_id
+      resources :lifestyle_footprints, only: [:index], path: 'footprints'
     end
 
     # Content pages

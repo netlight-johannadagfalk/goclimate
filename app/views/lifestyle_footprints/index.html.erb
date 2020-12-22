@@ -1,0 +1,25 @@
+<%= render "shared/header" %>
+
+<div class="bg-blue-pastel">
+  <section class="section-padding space-y-6">
+    <h1 class="heading-xl"><%= t 'views.lifestyle_footprints.index.heading' %></h1>
+    <p><%= t 'views.lifestyle_footprints.index.text' %></p>
+
+    <div class="space-y-6 max-w-2xl">
+      <div class="flex flex-row font-bold">
+        <div class="w-1/2"><%= t 'views.lifestyle_footprints.index.list.amount' %></div>
+        <div class="w-1/2 text-right"><%= t 'views.lifestyle_footprints.index.list.date' %></div>
+      </div>
+      <% @footprints.each do |footprint| %>
+        <div class="w-full flex flex-row">
+          <div class="w-1/2"><a href="<%= lifestyle_footprint_path(id: footprint) %>" class="link"><%= footprint.total.to_s(precision: :auto) %></a></div>
+          <div class="w-1/2 text-right"><%= footprint.created_at.to_date %></div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+  <%= render "shared/bottom_landscape" %>
+</div>
+
+<%= render "shared/footer", skip_prefooter: true %>
+
