@@ -1,6 +1,8 @@
 en:
   views:
     dashboard:
+      footprint:
+        subscription_coverage: Your current monthly offsetting is %{subscription_price} which corresponds to %{footprint_coverage}% of your yearly carbon footprint.
       share:
         text: One of the most powerful ways to create change is to inspire others to take action – and we would love for you use our social media assets to share in your own channels.
         heading_progress: Share your progress

@@ -65,6 +65,15 @@
                 <%= t("dashboard.footprint.your_climate_footprint", **footprint_text_options) %>
               <% end %>
             </p>
+            <% if current_user.active_subscription? %>
+              <p class="hidden t:block">
+                <%= t("views.dashboard.footprint.subscription_coverage",
+                  subscription_price: current_user.subscription_price.to_s(precision: :auto),
+                  footprint_coverage: current_user.footprint_coverage
+                )
+                %>
+              </p>
+            <% end %>
           <% end %>
         </div>
         <div class="t:w-1/2">
