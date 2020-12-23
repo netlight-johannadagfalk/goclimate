@@ -83,6 +83,9 @@ en:
           date: Date
           amount: Yearly amount
       show:
+        heading_public: My yearly carbon footprint
+        my_climate_footprint: My carbon footprint of %{footprint} is %{relative} than the average in %{country}. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030.
+        my_climate_footprint_compared_world: My carbon footprint of %{footprint} is %{relative} than the world average. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030.
         new_calculation: New calculation
         delete: Delete
         delete_confirmation:

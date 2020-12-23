@@ -7,7 +7,13 @@
     <div class="max-w-5xl mx-auto t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2">
       <div class="flex flex-col t:flex-row t:space-x-8 space-y-6 t:space-y-0">
         <div class="t:w-1/2 space-y-6">
-          <h2 class="heading-lg"><%= t 'dashboard.footprint.heading' %></h2>
+          <h2 class="heading-lg">
+            <% if current_user && (@footprint.user_id == current_user.id) %>
+              <%= t 'dashboard.footprint.heading' %>
+            <% else %>
+              <%= t 'views.lifestyle_footprints.show.heading_public' %>
+            <% end %>
+          </h2>
           <div>
             <span class="text-5xl font-bold text-green-accent"><%= @footprint.total.tonnes.round(1) %></span>
             <span class="heading text-green-accent"><%= t 'tonnes_CO2' %></span>
@@ -25,9 +31,17 @@
                   country: @footprint.country.translation(I18n.locale)
               } %>
               <% if @country_average.countries.nil? %>
-                <%= t("dashboard.footprint.your_climate_footprint_compared_world", **footprint_text_options) %>
+                <% if current_user && (@footprint.user_id == current_user.id) %>
+                  <%= t("dashboard.footprint.your_climate_footprint_compared_world", **footprint_text_options) %>
+                <% else %>
+                  <%= t("views.lifestyle_footprints.show.my_climate_footprint_compared_world", **footprint_text_options) %>
+                <% end %>
               <% else %>
-                <%= t("dashboard.footprint.your_climate_footprint", **footprint_text_options) %>
+                <% if current_user && (@footprint.user_id == current_user.id) %>
+                  <%= t("dashboard.footprint.your_climate_footprint", **footprint_text_options) %>
+                <% else %>
+                  <%= t("views.lifestyle_footprints.show.my_climate_footprint", **footprint_text_options) %>
+                <% end %>
               <% end %>
             </p>
           <% end %>
