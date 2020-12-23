@@ -94,7 +94,9 @@
 
     <script>
       function reportLoadError(event) {
-        console.warning("Failed to load " + event.target.src + ", stopping error reporting")
+        if (typeof console !== 'undefined' && typeof console.warning !== 'undefined') {
+          console.warning("Failed to load " + event.target.src + ", stopping error reporting")
+        }
         Sentry.close();
         Sentry.getCurrentHub().getClient().getOptions().enabled = false; // Prevents further errors reported before closing finishes.
       }
