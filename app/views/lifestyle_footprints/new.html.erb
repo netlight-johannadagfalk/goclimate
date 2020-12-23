@@ -176,7 +176,7 @@
               <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.car_distance' %></h2>
               <div class="flex flex-col m-lg:flex-row">
                 <label class="input inline-block mb-3 m-lg:mb-0 m-lg:mr-3 flex">
-                  <%= number_field_tag :car_distance_week_answer, '', min: 0, size: 7, class: 'flex-1' %>
+                  <%= number_field_tag :car_distance_week_answer, '', min: 0, max: 2147483647, size: 7, class: 'flex-1' %>
                   <span class="ml-3"><%= @calculator.car_distance_unit %></span>
                 </label>
                 <%= f.button t('views.lifestyle_footprints.next'), type: 'button', class: 'button flex-1', 'data-action': 'click->lifestyle-footprints--calculator#nextQuestion' %>
@@ -187,7 +187,7 @@
           <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="flights">
             <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.flight_hours' %></h2>
             <div class="flex flex-col m-lg:flex-row">
-              <%= f.number_field :flight_hours_answer, min: 0, size: 7, class: 'input mb-3 m-lg:mb-0 m-lg:mr-3' %>
+              <%= f.number_field :flight_hours_answer, min: 0, max: 2147483647, size: 7, class: 'input mb-3 m-lg:mb-0 m-lg:mr-3' %>
               <%= f.hidden_field :campaign, value: params[:campaign] %>
               <%= f.submit t('views.lifestyle_footprints.next'), class: 'button flex-1' %>
             </div>
