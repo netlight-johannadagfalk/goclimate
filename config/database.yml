@@ -8,14 +8,14 @@ default: &default
   adapter: postgresql
   pool: <%= ENV['RAILS_MAX_THREADS'] || 5 %>
   timeout: 500
-  database: goclimateneutral
 
 development:
   <<: *default
+  database: goclimate
 
 test:
   <<: *default
-  database: goclimateneutral_test
+  database: goclimate_test
 
 production:
   <<: *default
