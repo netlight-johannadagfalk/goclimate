@@ -59,7 +59,7 @@ class LifestyleFootprintsController < ApplicationController
     params.permit(
       :lifestyle_calculator_id, :country, :region_answer, :home_answer,
       :home_area_answer, :heating_answer, :green_electricity_answer,
-      :food_answer, :car_type_answer, :flight_hours_answer
+      :food_answer, :shopping_answer, :car_type_answer, :flight_hours_answer
     ).tap do |p|
       p[:car_distance_answer] = (params[:car_distance_week_answer].presence&.to_i || 0) * 52
       p[:flight_hours_answer] = 0 unless p[:flight_hours_answer].present?

@@ -26,7 +26,7 @@
 <h3>Options</h3>
 
 <dl class="dl-horizontal">
-  <% [:region, :home, :home_area, :heating, :green_electricity, :food, :car_type].each do |question| %>
+  <% [:region, :home, :home_area, :heating, :green_electricity, :food, :shopping, :car_type].each do |question| %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title"><code><%= question %></code></h4>
@@ -99,6 +99,13 @@
       <div class="form-group">
         <%= fa.label :food %>
         <%= fa.select :food, @calculator.food_options.map { |o| o['key'] }, {}, class: 'form-control' %>
+      </div>
+    <% end %>
+
+    <% if @calculator.shopping_options&.any? %>
+      <div class="form-group">
+        <%= fa.label :shopping %>
+        <%= fa.select :shopping, @calculator.shopping_options.map { |o| o['key'] }, {}, class: 'form-control' %>
       </div>
     <% end %>
 
