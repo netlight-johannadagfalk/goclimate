@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_15_143904) do
+ActiveRecord::Schema.define(version: 2021_01_25_121500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(version: 2021_01_15_143904) do
     t.text "consumption_formula"
     t.text "public_formula"
     t.jsonb "home_area_options"
+    t.jsonb "shopping_options"
   end
 
   create_table "lifestyle_footprints", force: :cascade do |t|
@@ -198,6 +199,7 @@ ActiveRecord::Schema.define(version: 2021_01_15_143904) do
     t.integer "total"
     t.text "country"
     t.text "home_area_answer"
+    t.text "shopping_answer"
     t.index ["lifestyle_calculator_id"], name: "index_lifestyle_footprints_on_lifestyle_calculator_id"
     t.index ["user_id"], name: "index_lifestyle_footprints_on_user_id"
   end
