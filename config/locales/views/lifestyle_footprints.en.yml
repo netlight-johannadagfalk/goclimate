@@ -48,6 +48,7 @@ en:
           geothermal: Geothermal pump
           heating_oil: Heating oil
           propane: Propane
+          no_heating: I don't heat my home
           dont_know: I don't know/Other
         green_electricity:
           'yes': 'Yes'

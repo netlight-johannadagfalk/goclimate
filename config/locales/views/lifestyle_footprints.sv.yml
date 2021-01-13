@@ -43,6 +43,7 @@ sv:
           airpump: Luftvärmepump
           geothermal: Bergvärmepump
           propane: Propan
+          no_heating: Mitt hem har inte uppvärmning
           dont_know: Vet inte/annat
         green_electricity:
           'yes': 'Ja'
