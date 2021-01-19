@@ -12,7 +12,7 @@
       </div>
       <% @footprints.each do |footprint| %>
         <div class="w-full flex flex-row">
-          <div class="w-1/2"><a href="<%= lifestyle_footprint_path(id: footprint) %>" class="link"><%= footprint.total.to_s(precision: :auto) %></a></div>
+          <div class="w-1/2"><a href="<%= lifestyle_footprint_path(footprint) %>" class="link"><%= footprint.total.to_s(precision: :auto) %></a></div>
           <div class="w-1/2 text-right"><%= footprint.created_at.to_date %></div>
         </div>
       <% end %>
