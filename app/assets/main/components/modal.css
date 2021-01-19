@@ -6,6 +6,7 @@
 
 .modal-content {
   @apply bg-white rounded-lg shadow-lg p-4
+    text-left
     border border-gray-tint-2
     absolute top-1/2 left-1/2 
     transform -translate-y-1/2 -translate-x-1/2 
@@ -45,5 +46,18 @@
     & .button {
       @apply my-0 mx-2;
     }
+  }
+}
+
+
+.modal-content-sm {
+  @apply max-w-md;
+}
+
+.modal-content-sm .modal-heading {
+  @apply text-lg;
+
+  @screen d-md {
+    @apply text-xl;
   }
 }

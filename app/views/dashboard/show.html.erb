@@ -38,7 +38,7 @@
   <% end %>
 
   <% if @footprint %>
-  <section class="section-padding">
+  <section class="section-padding space-y-12 t:space-y-6">
     <div class="max-w-5xl mx-auto t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2">
       <div class="flex flex-col t:flex-row t:space-x-8 space-y-6 t:space-y-0">
         <div class="t:w-1/2 space-y-6">
@@ -65,11 +65,37 @@
                 <%= t("dashboard.footprint.your_climate_footprint", **footprint_text_options) %>
               <% end %>
             </p>
+            <% if current_user.active_subscription? %>
+              <p class="hidden t:block">
+                <%= t("views.dashboard.footprint.subscription_coverage",
+                  subscription_price: current_user.subscription_price.to_s(precision: :auto),
+                  footprint_coverage: current_user.footprint_coverage
+                )
+                %>
+              </p>
+            <% end %>
           <% end %>
         </div>
         <div class="t:w-1/2">
           <%= render "shared/chart_categories" %> 
         </div>
+      </div>
+    </div>
+    <div class="text-center space-y-2 space-x-2">
+      <a href="<%= @footprint.country ? new_lifestyle_footprint_path(country: @footprint.country.alpha2) : root_path%>" class="button">
+        <i class="fas fa-plus" aria-hidden="true"></i>
+        <%= t 'views.lifestyle_footprints.show.new_calculation' %>
+      </a>
+      <% if @total_number_of_footprints > 1 %>
+        <div class="inline-block">
+          <%= link_to t('views.dashboard.footprint.previous_footprints'), lifestyle_footprints_path, class: 'link whitespace-nowrap' %>
+        </div>
+      <% end %>
+      <div class="inline-block">
+        <%= link_to (current_user.active_subscription? ? t('views.dashboard.footprint.update_subscription') : t('views.dashboard.footprint.subscribe')),
+          user_subscription_path,
+          class: 'link whitespace-nowrap'
+        %>
       </div>
     </div>
   </section>

@@ -20,6 +20,8 @@ class DashboardController < ApplicationController
     @country_top_list = country_top_list
 
     @projects = Project.all.order(created_at: :desc).limit(5)
+
+    @total_number_of_footprints = LifestyleFootprint.where(user_id: current_user.id).count
   end
 
   private

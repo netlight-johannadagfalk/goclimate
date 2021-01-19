@@ -38,7 +38,6 @@ class User < ApplicationRecord
   end
 
   def subscription_amount_in_sek
-    subscription_currency = Currency.from_iso_code(stripe_customer.subscriptions.first.plan.currency)
     sek_price = GreenhouseGases::CONSUMER_PRICE_PER_TONNE[Currency::SEK]
     subscription_currency_price = GreenhouseGases::CONSUMER_PRICE_PER_TONNE[subscription_currency]
 
@@ -96,6 +95,28 @@ class User < ApplicationRecord
 
   def active_subscription?
     stripe_customer.subscriptions&.any?
+  end
+
+  def subscription_currency
+    return nil unless active_subscription?
+
+    Currency.from_iso_code(stripe_customer&.subscriptions&.first&.plan&.currency)
+  end
+
+  def subscription_price
+    return nil unless active_subscription?
+
+    Money.new(stripe_customer&.subscriptions&.first&.plan&.amount, subscription_currency)
+  end
+
+  def footprint_coverage
+    return nil unless active_subscription?
+
+    full_footprint_price = SubscriptionManager.price_for_footprint(
+      current_lifestyle_footprint&.total,
+      subscription_currency
+    )
+    (subscription_amount / full_footprint_price.amount * 100).round
   end
 
   private

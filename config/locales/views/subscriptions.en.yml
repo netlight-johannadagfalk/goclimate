@@ -4,6 +4,9 @@ en:
       update:
         heading: Update subscription
         no_subscription: No subscription
+        current_footprint:
+          one: Your current carbon footprint is %{count} tonne CO2.
+          other: Your current carbon footprint is %{count} tonnes CO2.
       receipts:
         heading: Receipts
         action: See your receipts

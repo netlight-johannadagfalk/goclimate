@@ -45,3 +45,11 @@
     @apply bg-yellow-accent text-primary;
   }
 }
+
+.button-danger {
+  @apply text-white bg-danger;
+
+  &:hover {
+    @apply text-white bg-primary;
+  }
+}

@@ -71,3 +71,20 @@ sv:
           no_car: Jag åker inte bil
       next: Nästa
       back: Tillbaka
+      index:
+        heading: Dina klimatavtryck
+        text: Det här är en översikt över alla klimatavtryck du beräknat via vår tjänst.
+        list:
+          date: Datum
+          amount: Årligt avtryck
+      show:
+        new_calculation: Ny beräkning
+        delete: Ta bort
+        delete_confirmation:
+          heading: Är du säker?
+          text: Du är på väg att ta bort en beräkning av ditt klimatavtryck som gjordes %{date}.
+          cta: Ta bort beräkning
+          abort: Behåll beräkning
+        share:
+          text: Ett av de mest kraftfulla sätten att skapa förändring är att inspirera andra att agera - och vi blir jättestolta om du delar ditt klimatavtryck i dina egna kanaler.
+          social_quote: Mitt klimatavtryck är %{tonnes} ton koldioxid! Se mitt avtryck och beräkna ditt egna på %{url}

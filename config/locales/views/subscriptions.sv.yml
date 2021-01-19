@@ -4,6 +4,9 @@ sv:
       update:
         heading: Uppdatera prenumeration
         no_subscription: Ingen prenumeration
+        current_footprint:
+          one: Ditt nuvarande klimatavtryck är %{count} ton koldioxid.
+          other: Ditt nuvarande klimatavtryck är %{count} ton koldioxid.
       receipts:
         heading: Kvitton
         action: Se dina kvitton

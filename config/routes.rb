@@ -60,7 +60,12 @@ Rails.application.routes.draw do
     resource :privacy_policy, controller: 'about/privacy_policy', path: 'privacy-policy', only: [:show]
     resource :travel_calculator, controller: 'travel_calculator', path: 'travel-calculator', only: [:show]
 
-    resources :lifestyle_footprints, path: 'calculator', only: [:new, :create], path_names: { new: '' }
+    resources :lifestyle_footprints, path: 'calculator', only: [:new, :create], path_names: { new: '' } do
+      collection do
+        resources :lifestyle_footprints, path: 'results', only: [:index, :show, :destroy]
+      end
+    end
+    
     resources :referral_codes, path: 'referral-codes', only: [] do
       collection do
         post :lookup

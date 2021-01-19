@@ -1,0 +1,119 @@
+<%= render "shared/twitter_script" %>
+
+<%= render "shared/header" %>
+
+<div class="bg-blue-pastel">
+  <section class="section-padding space-y-6">
+    <div class="max-w-5xl mx-auto t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2">
+      <div class="flex flex-col t:flex-row t:space-x-8 space-y-6 t:space-y-0">
+        <div class="t:w-1/2 space-y-6">
+          <h2 class="heading-lg">
+            <% if current_user && (@footprint.user_id == current_user.id) %>
+              <%= t 'dashboard.footprint.heading' %>
+            <% else %>
+              <%= t 'views.lifestyle_footprints.show.heading_public' %>
+            <% end %>
+          </h2>
+          <div>
+            <span class="text-5xl font-bold text-green-accent"><%= @footprint.total.tonnes.round(1) %></span>
+            <span class="heading text-green-accent"><%= t 'tonnes_CO2' %></span>
+          </div>
+          <% if @country_average %>
+            <p class="hidden t:block">
+              <% footprint_text_options = {
+                  footprint: @footprint.total.to_s(precision: :auto),
+                  relative:
+                    if @footprint.total > @country_average.co2e
+                      "#{((@footprint.total.co2e.to_f / @country_average.co2e.co2e - 1) * 100).ceil} % #{t 'views.registrations.higher'}"
+                    else
+                      "#{((1 - @footprint.total.co2e.to_f / @country_average.co2e.co2e) * 100).ceil} % #{t 'views.registrations.lower'}"
+                    end,
+                  country: @footprint.country.translation(I18n.locale)
+              } %>
+              <% if @country_average.countries.nil? %>
+                <% if current_user && (@footprint.user_id == current_user.id) %>
+                  <%= t("dashboard.footprint.your_climate_footprint_compared_world", **footprint_text_options) %>
+                <% else %>
+                  <%= t("views.lifestyle_footprints.show.my_climate_footprint_compared_world", **footprint_text_options) %>
+                <% end %>
+              <% else %>
+                <% if current_user && (@footprint.user_id == current_user.id) %>
+                  <%= t("dashboard.footprint.your_climate_footprint", **footprint_text_options) %>
+                <% else %>
+                  <%= t("views.lifestyle_footprints.show.my_climate_footprint", **footprint_text_options) %>
+                <% end %>
+              <% end %>
+            </p>
+          <% end %>
+        </div>
+        <div class="t:w-1/2">
+          <%= render "shared/chart_categories" %> 
+        </div>
+      </div>
+    </div>
+    <% if current_user && (@footprint.user_id == current_user.id) %>
+      <div class="text-center">
+        <a href="<%= @footprint.country ? new_lifestyle_footprint_path(country: @footprint.country.alpha2) : root_path%>" class="button">
+          <i class="fas fa-plus" aria-hidden="true"></i>
+          <%= t 'views.lifestyle_footprints.show.new_calculation' %>
+        </a>
+        <% if @total_number_of_footprints > 1 %>
+          <div class="inline-block" data-controller="modal">
+            <button type="button" class="button button-danger" data-target="modal.trigger" data-action="modal#open">
+              <%= t 'views.lifestyle_footprints.show.delete' %>
+            </button>
+
+            <div class="modal-container" data-target="modal.container">
+              <div class="modal-content modal-content-sm" data-target="modal.content">
+                <h3 class="modal-heading"><%= t 'views.lifestyle_footprints.show.delete_confirmation.heading' %></h3>
+                <p class="mt-3"><%= t('views.lifestyle_footprints.show.delete_confirmation.text', date: @footprint.created_at.to_date) %></p>
+                <div class="modal-actions">
+                  <button type="button" class="button" data-action="modal#close">
+                    <%= t 'views.lifestyle_footprints.show.delete_confirmation.abort' %>
+                  </button>
+                  <%= form_tag({ action: :destroy }, method: :delete, class: 'w-full t:w-auto') do %>
+                    <button type="submit" class="button button-danger w-full t:w-auto">
+                      <%= t 'views.lifestyle_footprints.show.delete_confirmation.cta' %>
+                    </button>
+                  <% end %>
+                </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
+
+  <% if current_user && (@footprint.user_id == current_user.id) %>
+    <section class="section-padding">
+      <div class="max-w-5xl mx-auto space-y-6"> 
+      <h3 class="heading-lg">
+        <%= t 'share_heading' %>
+      </h3>
+      <p class="t:w-2/3"><%= t 'views.lifestyle_footprints.show.share.text' %></p>
+      <div class="flex flex-col m-lg:flex-row t:flex-col d:flex-row items-stretch flex-wrap justify-left -m-1">
+        <div class="p-1">
+          <a class="button button-cta block bg-facebook text-white" 
+            data-controller="facebook-share" 
+            data-action="facebook-share#share" 
+            data-share-url="<%= lifestyle_footprint_url(id: @footprint) %>" 
+            data-share-quote="<%= CGI.escape(t('views.lifestyle_footprints.show.share.social_quote', tonnes: @footprint.total.tonnes.round(1), url: lifestyle_footprint_url(id: @footprint))) %>">
+              <span class="fab fa-facebook"></span> <%=t 'share_on_facebook' %>
+          </a>
+        </div>
+        <div class="p-1">
+          <a class="button button-cta block bg-twitter text-white" 
+            href="https://twitter.com/intent/tweet?text=<%= CGI.escape(t('views.lifestyle_footprints.show.share.social_quote', tonnes: @footprint.total.tonnes.round(1), url: lifestyle_footprint_url(id: @footprint))) %>" 
+            data-size="large"
+          >
+            <span class="fab fa-twitter"></span> <%=t 'share_on_twitter' %>
+          </a>
+        </div>
+      </div>
+      </div>
+    </section>
+  <% end %>
+
+  <%= render "shared/bottom_landscape" if current_user %>
+
+  <%= render "shared/footer", skip_prefooter: current_user %>
+</div>
