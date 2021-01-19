@@ -32,7 +32,7 @@
                 <% @available_plans.each do |plan_price| %>
                   <option value="<%= plan_price.amount %>" <%= plan_price == current_user.subscription_price ? "selected" : "" %> >
                     <%= plan_price.to_s(precision: :auto) %>
-                    (<%= (GreenhouseGases.from_consumer_price(plan_price) * 12 / 2).to_s(precision: :auto) %>)
+                    (<%= (GreenhouseGases.from_consumer_price(plan_price) * 12 / 2).to_s(precision: :auto) %>/<%= t 'years.one' %>)
                   </option>
                 <% end %>
               </select>
