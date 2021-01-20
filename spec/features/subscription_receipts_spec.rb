@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.feature 'Subscription receipts', type: :feature, js: true do
+  let(:user) { create(:user, email: 'test@example.com', password: 'password', stripe_customer_id: 'cus_TEST', region: 'us') }
   before do
-    user = create(:user, email: 'test@example.com', password: 'password', stripe_customer_id: 'cus_TEST', region: 'us')
     create(:card_charge_monthly, stripe_customer_id: user.stripe_customer_id)
   end
 
@@ -12,10 +12,7 @@ RSpec.feature 'Subscription receipts', type: :feature, js: true do
     visit '/users/receipts'
 
     # Log in
-    fill_in 'Email', with: 'test@example.com'
-    fill_in 'Password', with: 'password'
-
-    click_button 'Log In'
+    log_in(user)
 
     # Verify that receipts are shown
     expect(page).to have_text('View receipt')

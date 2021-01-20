@@ -22,6 +22,9 @@ sv:
           make_a_difference: Gör skillnad
           explore: Utforska
           about: Om
+        newsletter:
+          heading: Prenumerera på vårt nyhetsbrev
+          cta: Prenumerera
       more_info:
         about:
           title: Om oss

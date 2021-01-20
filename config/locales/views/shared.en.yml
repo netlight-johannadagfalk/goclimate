@@ -22,6 +22,9 @@ en:
           make_a_difference: Get involved
           explore: Explore
           about: About
+        newsletter:
+          heading: Subscribe to our newsletter
+          cta: Subscribe
       more_info:
         about:
           title: About Us
