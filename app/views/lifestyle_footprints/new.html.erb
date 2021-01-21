@@ -175,7 +175,7 @@
             <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="car">
               <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.car_distance' %></h2>
               <div class="flex flex-col m-lg:flex-row">
-                <label class="input inline-block mb-3 m-lg:mb-0 m-lg:mr-3 flex">
+                <label class="input mb-3 m-lg:mb-0 m-lg:mr-3 flex">
                   <%= number_field_tag :car_distance_week_answer, '', min: 0, max: 2147483647, size: 7, class: 'flex-1' %>
                   <span class="ml-3"><%= @calculator.car_distance_unit %></span>
                 </label>
@@ -196,7 +196,7 @@
         <% end %>
 
         <div class="flex justify-space-between">
-          <div class="hidden cursor-pointer" data-target="lifestyle-footprints--calculator.back" data-action="click->lifestyle-footprints--calculator#previousCategory">
+          <div class="hidden cursor-pointer" data-target="lifestyle-footprints--calculator.back" data-action="click->lifestyle-footprints--calculator#previousQuestion">
             <i class="fas fa-chevron-left" aria-hidden="true"></i>
             <span><%=t 'views.lifestyle_footprints.back' %></span>
           </div>

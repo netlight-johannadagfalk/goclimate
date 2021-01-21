@@ -24,6 +24,17 @@ export default class LifestyleFootprintsCalculatorController extends Controller 
     this.goToQuestion(nextCategoryIndex, nextQuestionIndex);
   }
 
+  previousQuestion() {
+    let nextCategoryIndex = this.currentCategoryIndex();
+    let nextQuestionIndex = this.currentQuestionIndex() - 1;
+
+    if (nextQuestionIndex < 0) {
+      nextCategoryIndex -= 1;
+      nextQuestionIndex = this.groupedTargets[nextCategoryIndex].questions.length - 1;
+    }
+    this.goToQuestion(nextCategoryIndex, nextQuestionIndex);
+  }
+
   nextCategory() {
     const nextCategoryIndex = this.currentCategoryIndex() + 1;
 
