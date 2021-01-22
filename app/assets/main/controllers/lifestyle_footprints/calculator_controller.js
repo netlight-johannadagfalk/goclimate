@@ -75,9 +75,9 @@ export default class LifestyleFootprintsCalculatorController extends Controller 
       this.groupedTargets[categoryIndex].questions[questionIndex].classList.remove('hidden');
 
       if (categoryIndex === 0 && questionIndex === 0) {
-        this.backTarget.classList.add('hidden');
+        swapToInactiveClassList(this.backTarget);
       } else if (currentCategoryIndex === 0 && currentQuestionIndex === 0) {
-        this.backTarget.classList.remove('hidden');
+        swapToActiveClassList(this.backTarget);
       }
     }
 
