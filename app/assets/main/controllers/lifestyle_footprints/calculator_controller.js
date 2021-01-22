@@ -81,6 +81,24 @@ export default class LifestyleFootprintsCalculatorController extends Controller 
       }
     }
 
+    if (categoryIndex < currentCategoryIndex) {
+      swapToActiveClassList(
+        this.categoryQuestionListTargets[categoryIndex]
+      );
+      swapToInactiveClassList(
+        this.categoryCheckmarkTargets[categoryIndex]
+      );
+    }
+
+    if (categoryIndex > currentCategoryIndex) {
+      swapToInactiveClassList(
+        this.categoryQuestionListTargets[currentCategoryIndex]
+      );
+      swapToActiveClassList(
+        this.categoryCheckmarkTargets[currentCategoryIndex]
+      );
+    }
+
     this.element.dataset.currentCategory = categoryIndex;
     this.element.dataset.currentQuestion = questionIndex;
   }
@@ -110,4 +128,4 @@ export default class LifestyleFootprintsCalculatorController extends Controller 
   }
 }
 
-LifestyleFootprintsCalculatorController.targets = ['categoryIndicator', 'questionIndicator', 'question', 'back'];
+LifestyleFootprintsCalculatorController.targets = ['categoryIndicator', 'questionIndicator', 'categoryQuestionList', 'categoryCheckmark', 'question', 'back'];

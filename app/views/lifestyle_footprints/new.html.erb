@@ -17,7 +17,11 @@
             >
               <i class="fas fa-lg fa-home" aria-hidden="true"></i>
             </div>
-            <div class="text-sm text-gray-accent">
+            <div class="text-sm text-gray-accent block"
+              data-target="lifestyle-footprints--calculator.categoryQuestionList"
+              data-active-class="text-sm text-gray-accent block"
+              data-inactive-class="text-sm text-gray-accent hidden"
+            >
               <% if @calculator.region_options.present? %>
                 <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
               <% end %>
@@ -34,6 +38,13 @@
                 <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
               <% end %>
             </div>
+            <div class="text-green-accent hidden"
+              data-target="lifestyle-footprints--calculator.categoryCheckmark"
+              data-active-class="text-green-accent block"
+              data-inactive-class="text-green-accent hidden"
+            >
+              <i class="fa fa-check-circle"></i>
+            </div>
           </div>
           <% end %>
           <% if @calculator.food_options.present? %>
@@ -45,10 +56,21 @@
               >
                 <i class="fas fa-lg fa-utensils" aria-hidden="true"></i>
               </div>
-            <div class="text-sm text-gray-accent">
+            <div class="text-sm text-gray-accent block"
+              data-target="lifestyle-footprints--calculator.categoryQuestionList"
+              data-active-class="text-sm text-gray-accent block"
+              data-inactive-class="text-sm text-gray-accent hidden"
+            >
               <% if @calculator.food_options.present? %>
                 <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="food"></i>
               <% end %>
+            </div>
+            <div class="text-green-accent hidden"
+              data-target="lifestyle-footprints--calculator.categoryCheckmark"
+              data-active-class="text-green-accent block"
+              data-inactive-class="text-green-accent hidden"
+            >
+              <i class="fa fa-check-circle"></i>
             </div>
             </div>
           <% end %>
@@ -61,11 +83,22 @@
               >
                 <i class="fas fa-lg fa-car" aria-hidden="true"></i>
               </div>
-              <div class="text-sm text-gray-accent">
+              <div class="text-sm text-gray-accent block"
+                data-target="lifestyle-footprints--calculator.categoryQuestionList"
+                data-active-class="text-sm text-gray-accent block"
+                data-inactive-class="text-sm text-gray-accent hidden"
+              >
                 <% if @calculator.car_type_options.present? %>
                   <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="car"></i>
                   <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="car"></i>
                 <% end %>
+              </div>
+              <div class="text-green-accent hidden"
+                data-target="lifestyle-footprints--calculator.categoryCheckmark"
+                data-active-class="text-green-accent block"
+                data-inactive-class="text-green-accent hidden"
+              >
+                <i class="fa fa-check-circle"></i>
               </div>
             </div>
           <% end %>
@@ -77,8 +110,19 @@
             >
               <i class="fas fa-lg fa-plane" aria-hidden="true"></i>
             </div>
-            <div class="text-sm text-gray-accent">
+            <div class="text-sm text-gray-accent block"
+              data-target="lifestyle-footprints--calculator.categoryQuestionList"
+              data-active-class="text-sm text-gray-accent block"
+              data-inactive-class="text-sm text-gray-accent hidden"
+            >
                 <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="flights"></i>
+            </div>
+            <div class="text-green-accent hidden"
+              data-target="lifestyle-footprints--calculator.categoryCheckmark"
+              data-active-class="text-green-accent block"
+              data-inactive-class="text-green-accent hidden"
+            >
+              <i class="fa fa-check-circle"></i>
             </div>
           </div>
         </div>
