@@ -16,7 +16,7 @@
 # Ignore the postgres logfile
 /logfile
 
-# Ignore the local goclimateneutral database
+# Ignore the local database
 /db/goclimateneutral
 /db/goclimate
 
