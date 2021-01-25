@@ -74,6 +74,31 @@
             </div>
             </div>
           <% end %>
+          <% if @calculator.shopping_options.present? %>
+            <div>
+              <div class="mb-2 border border-gray-tint-2 rounded-full w-12 h-12 flex justify-center items-center box-content p-1"
+                data-active-class="mb-2 border border-green-tint-1 bg-green-tint-1 text-primary rounded-full w-12 h-12 flex justify-center items-center box-content p-1"
+                data-target="lifestyle-footprints--calculator.categoryIndicator"
+                data-category="consumption"
+              >
+                <i class="fas fa-lg fa-shopping-bag" aria-hidden="true"></i>
+              </div>
+              <div class="text-sm text-gray-accent block"
+                   data-target="lifestyle-footprints--calculator.categoryQuestionList"
+                   data-active-class="text-sm text-gray-accent block"
+                   data-inactive-class="text-sm text-gray-accent hidden"
+                   >
+                <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="consumption"></i>
+              </div>
+              <div class="text-green-accent hidden"
+                data-target="lifestyle-footprints--calculator.categoryCheckmark"
+                data-active-class="text-green-accent block"
+                data-inactive-class="text-green-accent hidden"
+              >
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+          <% end %>
           <% if @calculator.car_type_options.present? %>
             <div>
               <div class="mb-2 border border-gray-tint-2 rounded-full w-12 h-12 flex justify-center items-center box-content p-1"
@@ -205,6 +230,18 @@
                   <%= f.label :food_answer, t("views.lifestyle_footprints.options.food.#{option['key']}"), value: option['key'], class: 'hidden button button-cta toggler-checked:block' %>
                   <%= f.label :food_answer, t("views.lifestyle_footprints.options.food.#{option['key']}"), value: option['key'], class: 'block button toggler-checked:hidden' %>
                 </div>
+              <% end %>
+            </div>
+          <% end %>
+
+          <% if @calculator.shopping_options.present? %>
+            <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="consumption">
+              <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.shopping' %></h2>
+              <% @calculator.shopping_options.each do |option| %>
+                <label class="block button my-3">
+                  <%= f.radio_button :shopping_answer, option['key'], required: '', class: 'hidden', 'data-action': 'click->lifestyle-footprints--calculator#nextQuestion' %>
+                  <%=t "views.lifestyle_footprints.options.shopping.#{option['key']}" %>
+                </label>
               <% end %>
             </div>
           <% end %>

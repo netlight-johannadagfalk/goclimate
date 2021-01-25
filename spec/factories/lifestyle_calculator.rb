@@ -39,6 +39,12 @@ FactoryBot.define do
         { key: 'omnivore', formula: '2000' }
       ]
     end
+    shopping_options do
+      [
+        { key: 'zerowaste', formula: '1000' },
+        { key: 'average', formula: '1500' }
+      ]
+    end
     car_type_options do
       [
         { key: 'petrol', formula: '0.2' },
@@ -50,7 +56,7 @@ FactoryBot.define do
     food_formula { 'food' }
     car_formula { 'car_type * car_distance' }
     flights_formula { 'flight_hours * 0.2' }
-    consumption_formula { '1500' }
+    consumption_formula { 'shopping' }
     public_formula { '2000' }
   end
 end

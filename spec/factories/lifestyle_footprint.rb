@@ -10,6 +10,7 @@ FactoryBot.define do
     heating_answer { 'district' }
     green_electricity_answer { 'yes' }
     food_answer { 'vegan' }
+    shopping_answer { 'zerowaste' }
     car_type_answer { 'electric' }
     car_distance_answer { 1000 }
     flight_hours_answer { 5 }

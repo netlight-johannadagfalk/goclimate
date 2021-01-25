@@ -9,6 +9,7 @@ sv:
         heating: Hur värmer du ditt hem?
         green_electricity: Har du valt grön el?
         food: Hur äter du vanligtvis?
+        shopping: Hur mycket kläder, skor, elektronik, möbler och andra produkter köper du nytt från butik?
         car_type: Vilken typ av bil åker du?
         car_distance: Hur långt åker du i bil en genomsnittlig vecka?
         flight_hours: Hur många timmar har du rest med flyg under det senaste året?
@@ -59,6 +60,10 @@ sv:
           meat_low: Lite kött (mindre än 50 g/dag)
           meat_medium: Köttätare
           meat_high: Mycket kött (mer än 100 g/dag)
+        shopping:
+          low: Inget eller bara några få gånger per år
+          average: Då och då
+          high: Flera i månaden eller flera större produkter per år
         car_type:
           gas: Bensin
           petrol: Bensin

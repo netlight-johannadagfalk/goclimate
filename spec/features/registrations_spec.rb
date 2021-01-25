@@ -15,6 +15,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     find('label', text: 'Electricity').click
     find('label', text: 'Yes').click
     find('label', text: 'Vegetarian').click
+    find('label', text: 'Every now and then').click
     find('label', text: 'I don\'t have a car').click
     click_button 'Next'
 
@@ -50,6 +51,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     find('label', text: 'Electricity').click
     find('label', text: 'Yes').click
     find('label', text: 'Vegetarian').click
+    find('label', text: 'Every now and then').click
     find('label', text: 'I don\'t have a car').click
     click_button 'Next'
 
@@ -88,6 +90,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     find('label', text: 'Electricity').click
     find('label', text: 'Yes').click
     find('label', text: 'Vegetarian').click
+    find('label', text: 'Every now and then').click
     find('label', text: 'I don\'t have a car').click
     click_button 'Next'
 
@@ -134,6 +137,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     find('label', text: 'Electricity').click
     find('label', text: 'Yes').click
     find('label', text: 'Vegetarian').click
+    find('label', text: 'Every now and then').click
     find('label', text: 'I don\'t have a car').click
     click_button 'Next'
 
@@ -166,6 +170,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     find('label', text: 'Electricity').click
     find('label', text: 'Yes').click
     find('label', text: 'Vegetarian').click
+    find('label', text: 'Every now and then').click
     find('label', text: 'I don\'t have a car').click
     click_button 'Next'
 
@@ -203,6 +208,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     find('label', text: 'Electricity').click
     find('label', text: 'Yes').click
     find('label', text: 'Vegetarian').click
+    find('label', text: 'Every now and then').click
     find('label', text: 'I don\'t have a car').click
     click_button 'Next'
 
@@ -243,6 +249,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     find('label', text: 'Electricity').click
     find('label', text: 'Yes').click
     find('label', text: 'Vegetarian').click
+    find('label', text: 'Every now and then').click
     find('label', text: 'I don\'t have a car').click
     click_button 'Next'
 

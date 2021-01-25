@@ -9,6 +9,7 @@ en:
         heating: How do you heat your home?
         green_electricity: Do you use green electricity?
         food: What is your diet mostly like?
+        shopping: Considering clothing, shoes, electronics, furniture and other items, how much do you purchase brand-new?
         car_type: What type of car do you use to get around?
         car_distance: How much do you travel by car each week?
         flight_hours: How many hours did you travel by plane in the last year?
@@ -64,6 +65,10 @@ en:
           meat_low: Some meat (less than 50 g per day)
           meat_medium: Meat-eater
           meat_high: Lots of meat (more than 100 g per day)
+        shopping:
+          low: None or just a few per year
+          average: Every now and then
+          high: Multiple every month, or multiple larger products each year
         car_type:
           gas: Gasoline
           petrol: Petrol

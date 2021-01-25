@@ -3,7 +3,7 @@
 class LifestyleCalculator < ApplicationRecord # rubocop:disable Metrics/ClassLength
   CATEGORIES = [:housing, :food, :car, :flights, :consumption, :public].freeze
   # TODO: house_age is unused and should be removed
-  OPTION_QUESTIONS = [:region, :home, :home_area, :heating, :green_electricity, :food, :car_type].freeze
+  OPTION_QUESTIONS = [:region, :home, :home_area, :heating, :green_electricity, :food, :shopping, :car_type].freeze
   INTEGER_QUESTIONS = [:car_distance, :flight_hours].freeze
 
   has_many :lifestyle_footprints
@@ -104,7 +104,7 @@ class LifestyleCalculator < ApplicationRecord # rubocop:disable Metrics/ClassLen
   def options_have_formulas
     [
       :region_options, :home_options, :home_area_options, :heating_options, :green_electricity_options, :food_options,
-      :car_type_options
+      :shopping_options, :car_type_options
     ].each do |options_field|
       options = send(options_field)
 

@@ -113,6 +113,21 @@
     </div>
   <% end %>
 
+  <% if @calculator.shopping_options.present? %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3 style="margin-top: 10px;"><%=t 'views.lifestyle_footprints.questions.shopping' %></h3>
+        <% @calculator.shopping_options.each do |option| %>
+          <p>
+            <span class="btn btn-default">
+              <%=t "views.lifestyle_footprints.options.shopping.#{option['key']}" %>
+            </span>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
   <% if @calculator.car_type_options.present? %>
     <div class="panel panel-default">
       <div class="panel-body">

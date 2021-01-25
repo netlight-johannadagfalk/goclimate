@@ -63,7 +63,7 @@ RSpec.describe LifestyleCalculator do
 
   [
     :region_options, :home_options, :home_area_options, :heating_options, :green_electricity_options, :food_options,
-    :car_type_options
+    :shopping_options, :car_type_options
   ].each do |options_field|
     describe "##{options_field}" do
       it 'is valid when nil' do
@@ -229,6 +229,7 @@ RSpec.describe LifestyleCalculator do
         heating: 'district',
         green_electricity: 'yes',
         food: 'omnivore',
+        shopping: 'zerowaste',
         car_type: 'electric',
         car_distance: 1000,
         flight_hours: 2
@@ -271,7 +272,7 @@ RSpec.describe LifestyleCalculator do
           expect(result[category]).to eq(GreenhouseGases.new(46))
         end
 
-        [:region, :home, :home_area, :heating, :green_electricity, :food, :car_type].each do |question|
+        [:region, :home, :home_area, :heating, :green_electricity, :food, :shopping, :car_type].each do |question|
           it "makes #{question} available" do
             calculator = build(
               :lifestyle_calculator,
