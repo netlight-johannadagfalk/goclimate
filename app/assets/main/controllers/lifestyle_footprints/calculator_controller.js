@@ -24,6 +24,17 @@ export default class LifestyleFootprintsCalculatorController extends Controller 
     this.goToQuestion(nextCategoryIndex, nextQuestionIndex);
   }
 
+  previousQuestion() {
+    let nextCategoryIndex = this.currentCategoryIndex();
+    let nextQuestionIndex = this.currentQuestionIndex() - 1;
+
+    if (nextQuestionIndex < 0) {
+      nextCategoryIndex -= 1;
+      nextQuestionIndex = this.groupedTargets[nextCategoryIndex].questions.length - 1;
+    }
+    this.goToQuestion(nextCategoryIndex, nextQuestionIndex);
+  }
+
   nextCategory() {
     const nextCategoryIndex = this.currentCategoryIndex() + 1;
 
@@ -64,10 +75,28 @@ export default class LifestyleFootprintsCalculatorController extends Controller 
       this.groupedTargets[categoryIndex].questions[questionIndex].classList.remove('hidden');
 
       if (categoryIndex === 0 && questionIndex === 0) {
-        this.backTarget.classList.add('hidden');
+        swapToInactiveClassList(this.backTarget);
       } else if (currentCategoryIndex === 0 && currentQuestionIndex === 0) {
-        this.backTarget.classList.remove('hidden');
+        swapToActiveClassList(this.backTarget);
       }
+    }
+
+    if (categoryIndex < currentCategoryIndex) {
+      swapToActiveClassList(
+        this.categoryQuestionListTargets[categoryIndex]
+      );
+      swapToInactiveClassList(
+        this.categoryCheckmarkTargets[categoryIndex]
+      );
+    }
+
+    if (categoryIndex > currentCategoryIndex) {
+      swapToInactiveClassList(
+        this.categoryQuestionListTargets[currentCategoryIndex]
+      );
+      swapToActiveClassList(
+        this.categoryCheckmarkTargets[currentCategoryIndex]
+      );
     }
 
     this.element.dataset.currentCategory = categoryIndex;
@@ -99,4 +128,4 @@ export default class LifestyleFootprintsCalculatorController extends Controller 
   }
 }
 
-LifestyleFootprintsCalculatorController.targets = ['categoryIndicator', 'questionIndicator', 'question', 'back'];
+LifestyleFootprintsCalculatorController.targets = ['categoryIndicator', 'questionIndicator', 'categoryQuestionList', 'categoryCheckmark', 'question', 'back'];

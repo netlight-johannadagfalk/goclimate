@@ -17,7 +17,11 @@
             >
               <i class="fas fa-lg fa-home" aria-hidden="true"></i>
             </div>
-            <div class="text-sm text-gray-accent">
+            <div class="text-sm text-gray-accent block"
+              data-target="lifestyle-footprints--calculator.categoryQuestionList"
+              data-active-class="text-sm text-gray-accent block"
+              data-inactive-class="text-sm text-gray-accent hidden"
+            >
               <% if @calculator.region_options.present? %>
                 <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
               <% end %>
@@ -34,6 +38,13 @@
                 <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="home"></i>
               <% end %>
             </div>
+            <div class="text-green-accent hidden"
+              data-target="lifestyle-footprints--calculator.categoryCheckmark"
+              data-active-class="text-green-accent block"
+              data-inactive-class="text-green-accent hidden"
+            >
+              <i class="fa fa-check-circle"></i>
+            </div>
           </div>
           <% end %>
           <% if @calculator.food_options.present? %>
@@ -45,10 +56,21 @@
               >
                 <i class="fas fa-lg fa-utensils" aria-hidden="true"></i>
               </div>
-            <div class="text-sm text-gray-accent">
+            <div class="text-sm text-gray-accent block"
+              data-target="lifestyle-footprints--calculator.categoryQuestionList"
+              data-active-class="text-sm text-gray-accent block"
+              data-inactive-class="text-sm text-gray-accent hidden"
+            >
               <% if @calculator.food_options.present? %>
                 <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="food"></i>
               <% end %>
+            </div>
+            <div class="text-green-accent hidden"
+              data-target="lifestyle-footprints--calculator.categoryCheckmark"
+              data-active-class="text-green-accent block"
+              data-inactive-class="text-green-accent hidden"
+            >
+              <i class="fa fa-check-circle"></i>
             </div>
             </div>
           <% end %>
@@ -61,11 +83,22 @@
               >
                 <i class="fas fa-lg fa-car" aria-hidden="true"></i>
               </div>
-              <div class="text-sm text-gray-accent">
+              <div class="text-sm text-gray-accent block"
+                data-target="lifestyle-footprints--calculator.categoryQuestionList"
+                data-active-class="text-sm text-gray-accent block"
+                data-inactive-class="text-sm text-gray-accent hidden"
+              >
                 <% if @calculator.car_type_options.present? %>
                   <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="car"></i>
                   <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="car"></i>
                 <% end %>
+              </div>
+              <div class="text-green-accent hidden"
+                data-target="lifestyle-footprints--calculator.categoryCheckmark"
+                data-active-class="text-green-accent block"
+                data-inactive-class="text-green-accent hidden"
+              >
+                <i class="fa fa-check-circle"></i>
               </div>
             </div>
           <% end %>
@@ -77,8 +110,19 @@
             >
               <i class="fas fa-lg fa-plane" aria-hidden="true"></i>
             </div>
-            <div class="text-sm text-gray-accent">
+            <div class="text-sm text-gray-accent block"
+              data-target="lifestyle-footprints--calculator.categoryQuestionList"
+              data-active-class="text-sm text-gray-accent block"
+              data-inactive-class="text-sm text-gray-accent hidden"
+            >
                 <i class="far fa-circle" data-active-class="fas fa-circle text-green-accent" data-target="lifestyle-footprints--calculator.questionIndicator" data-category="flights"></i>
+            </div>
+            <div class="text-green-accent hidden"
+              data-target="lifestyle-footprints--calculator.categoryCheckmark"
+              data-active-class="text-green-accent block"
+              data-inactive-class="text-green-accent hidden"
+            >
+              <i class="fa fa-check-circle"></i>
             </div>
           </div>
         </div>
@@ -91,10 +135,11 @@
             <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="home">
               <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.region' %></h2>
               <% @calculator.region_options.each do |option| %>
-                <label class="block button my-3">
+                <div class="my-3">
                   <%= f.radio_button :region_answer, option['key'], required: '', class: 'hidden', 'data-action': "click->lifestyle-footprints--calculator#nextQuestion" %>
-                  <%=t "views.lifestyle_footprints.options.region.#{option['key']}" %>
-                </label>
+                  <%= f.label :region_answer, t("views.lifestyle_footprints.options.region.#{option['key']}"), value: option['key'], class: 'hidden button button-cta toggler-checked:block' %>
+                  <%= f.label :region_answer, t("views.lifestyle_footprints.options.region.#{option['key']}"), value: option['key'], class: 'block button toggler-checked:hidden' %>
+                </div>
               <% end %>
             </div>
           <% end %>
@@ -103,10 +148,11 @@
             <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="home">
               <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.home' %></h2>
               <% @calculator.home_options.each do |option| %>
-                <label class="block button my-3">
-                  <%= f.radio_button :home_answer, option['key'], required: '', class: 'hidden', 'data-action': "click->lifestyle-footprints--calculator#nextQuestion" %>
-                  <%=t "views.lifestyle_footprints.options.home.#{option['key']}" %>
-                </label>
+                <div class="my-3">
+                  <%= f.radio_button :home_answer, option['key'], required: '', class: 'toggler', 'data-action': "click->lifestyle-footprints--calculator#nextQuestion" %>
+                  <%= f.label :home_answer, t("views.lifestyle_footprints.options.home.#{option['key']}"), value: option['key'], class: 'hidden button button-cta toggler-checked:block' %>
+                  <%= f.label :home_answer, t("views.lifestyle_footprints.options.home.#{option['key']}"), value: option['key'], class: 'block button toggler-checked:hidden' %>
+                </div>
               <% end %>
             </div>
           <% end %>
@@ -115,10 +161,11 @@
             <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="home">
               <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.home_area' %></h2>
               <% @calculator.home_area_options.each do |option| %>
-                <label class="block button my-3">
-                  <%= f.radio_button :home_area_answer, option['key'], required: '', class: 'hidden', 'data-action': "click->lifestyle-footprints--calculator#nextQuestion" %>
-                  <%=t "views.lifestyle_footprints.options.home_area.#{option['key']}" %>
-                </label>
+                <div class="my-3">
+                  <%= f.radio_button :home_area_answer, option['key'], required: '', class: 'toggler', 'data-action': "click->lifestyle-footprints--calculator#nextQuestion" %>
+                  <%= f.label :home_area_answer, t("views.lifestyle_footprints.options.home_area.#{option['key']}"), value: option['key'], class: 'hidden button button-cta toggler-checked:block' %>
+                  <%= f.label :home_area_answer, t("views.lifestyle_footprints.options.home_area.#{option['key']}"), value: option['key'], class: 'block button toggler-checked:hidden' %>
+                </div>
               <% end %>
             </div>
           <% end %>
@@ -127,10 +174,11 @@
             <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="home">
               <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.heating' %></h2>
               <% @calculator.heating_options.each do |option| %>
-                <label class="block button my-3">
-                  <%= f.radio_button :heating_answer, option['key'], required: '', class: 'hidden', 'data-action': "click->lifestyle-footprints--calculator#nextQuestion" %>
-                  <%=t "views.lifestyle_footprints.options.heating.#{option['key']}" %>
-                </label>
+                <div class="my-3">
+                  <%= f.radio_button :heating_answer, option['key'], required: '', class: 'toggler', 'data-action': "click->lifestyle-footprints--calculator#nextQuestion" %>
+                  <%= f.label :heating_answer, t("views.lifestyle_footprints.options.heating.#{option['key']}"), value: option['key'], class: 'hidden button button-cta toggler-checked:block' %>
+                  <%= f.label :heating_answer, t("views.lifestyle_footprints.options.heating.#{option['key']}"), value: option['key'], class: 'block button toggler-checked:hidden' %>
+                </div>
               <% end %>
             </div>
           <% end %>
@@ -139,10 +187,11 @@
             <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="home">
               <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.green_electricity' %></h2>
               <% @calculator.green_electricity_options.each do |option| %>
-                <label class="block button my-3">
-                  <%= f.radio_button :green_electricity_answer, option['key'], required: '', class: 'hidden', 'data-action': "click->lifestyle-footprints--calculator#nextQuestion" %>
-                  <%=t "views.lifestyle_footprints.options.green_electricity.#{option['key']}" %>
-                </label>
+                <div class="my-3">
+                  <%= f.radio_button :green_electricity_answer, option['key'], required: '', class: 'toggler', 'data-action': "click->lifestyle-footprints--calculator#nextQuestion" %>
+                  <%= f.label :green_electricity_answer, t("views.lifestyle_footprints.options.green_electricity.#{option['key']}"), value: option['key'], class: 'hidden button button-cta toggler-checked:block' %>
+                  <%= f.label :green_electricity_answer, t("views.lifestyle_footprints.options.green_electricity.#{option['key']}"), value: option['key'], class: 'block button toggler-checked:hidden' %>
+                </div>
               <% end %>
             </div>
           <% end %>
@@ -151,10 +200,11 @@
             <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="food">
               <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.food' %></h2>
               <% @calculator.food_options.each do |option| %>
-                <label class="block button my-3">
-                  <%= f.radio_button :food_answer, option['key'], required: '', class: 'hidden', 'data-action': "click->lifestyle-footprints--calculator#nextQuestion" %>
-                  <%=t "views.lifestyle_footprints.options.food.#{option['key']}" %>
-                </label>
+                <div class="my-3">
+                  <%= f.radio_button :food_answer, option['key'], required: '', class: 'toggler', 'data-action': "click->lifestyle-footprints--calculator#nextQuestion" %>
+                  <%= f.label :food_answer, t("views.lifestyle_footprints.options.food.#{option['key']}"), value: option['key'], class: 'hidden button button-cta toggler-checked:block' %>
+                  <%= f.label :food_answer, t("views.lifestyle_footprints.options.food.#{option['key']}"), value: option['key'], class: 'block button toggler-checked:hidden' %>
+                </div>
               <% end %>
             </div>
           <% end %>
@@ -163,10 +213,11 @@
             <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="car">
               <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.car_type' %></h2>
               <% @calculator.car_type_options.each do |option| %>
-                <label class="block button my-3">
-                  <%= f.radio_button :car_type_answer, option['key'], required: '', class: 'hidden', 'data-action': option['key'] == 'no_car' ? 'click->lifestyle-footprints--calculator#nextCategory' : 'click->lifestyle-footprints--calculator#nextQuestion' %>
-                  <%=t "views.lifestyle_footprints.options.car_type.#{option['key']}" %>
-                </label>
+                <div class="my-3">
+                  <%= f.radio_button :car_type_answer, option['key'], required: '', class: 'toggler', 'data-action': option['key'] == 'no_car' ? 'click->lifestyle-footprints--calculator#nextCategory' : 'click->lifestyle-footprints--calculator#nextQuestion' %>
+                  <%= f.label :car_type_answer, t("views.lifestyle_footprints.options.car_type.#{option['key']}"), value: option['key'], class: 'hidden button button-cta toggler-checked:block' %>
+                  <%= f.label :car_type_answer, t("views.lifestyle_footprints.options.car_type.#{option['key']}"), value: option['key'], class: 'block button toggler-checked:hidden' %>
+                </div>
               <% end %>
             </div>
           <% end %>
@@ -175,7 +226,7 @@
             <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="car">
               <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.car_distance' %></h2>
               <div class="flex flex-col m-lg:flex-row">
-                <label class="input inline-block mb-3 m-lg:mb-0 m-lg:mr-3 flex">
+                <label class="input mb-3 m-lg:mb-0 m-lg:mr-3 flex">
                   <%= number_field_tag :car_distance_week_answer, '', min: 0, max: 2147483647, size: 7, class: 'flex-1' %>
                   <span class="ml-3"><%= @calculator.car_distance_unit %></span>
                 </label>
@@ -196,7 +247,12 @@
         <% end %>
 
         <div class="flex justify-space-between">
-          <div class="hidden cursor-pointer" data-target="lifestyle-footprints--calculator.back" data-action="click->lifestyle-footprints--calculator#previousCategory">
+          <div class="hidden cursor-pointer"
+            data-target="lifestyle-footprints--calculator.back"
+            data-action="click->lifestyle-footprints--calculator#previousQuestion"
+            data-active-class="block cursor-pointer"
+            data-inactive-class="hidden cursor-pointer"
+          >
             <i class="fas fa-chevron-left" aria-hidden="true"></i>
             <span><%=t 'views.lifestyle_footprints.back' %></span>
           </div>
