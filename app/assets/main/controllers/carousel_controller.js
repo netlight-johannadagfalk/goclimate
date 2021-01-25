@@ -1,14 +1,11 @@
 import { Controller } from 'stimulus';
 import { swapToActiveClassList, swapToInactiveClassList } from '../../util/swap_classes';
 
-const TIME_TO_NEXT_SLIDE_MS = 6000;
-
 export default class CarouselController extends Controller {
   initialize() {
     this.currentIndex = 0;
     swapToActiveClassList(this.slideTargets[this.currentIndex]);
     swapToActiveClassList(this.slideIndicatorTargets[this.currentIndex]);
-    this.nextSlideTimer = this.startTimerUntilNextSlide();
   }
 
   next() {
@@ -30,8 +27,6 @@ export default class CarouselController extends Controller {
       return;
     }
 
-    clearTimeout(this.nextSlideTimer);
-
     let newIndex = index;
     if (index > this.slideTargets.length - 1) {
       newIndex = 0;
@@ -44,12 +39,6 @@ export default class CarouselController extends Controller {
     swapToActiveClassList(this.slideTargets[newIndex]);
     swapToActiveClassList(this.slideIndicatorTargets[newIndex]);
     this.currentIndex = newIndex;
-
-    this.nextSlideTimer = this.startTimerUntilNextSlide();
-  }
-
-  startTimerUntilNextSlide() {
-    return setTimeout(() => this.next(), TIME_TO_NEXT_SLIDE_MS);
   }
 }
 
