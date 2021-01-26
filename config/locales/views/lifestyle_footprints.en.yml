@@ -81,6 +81,7 @@ en:
           no_car: I don't have a car
       next: Next
       back: Go back
+      methodology: How do we calculate?
       index:
         heading: Your carbon footprints
         text: This is an overview of your carbon footprints you have calculated.

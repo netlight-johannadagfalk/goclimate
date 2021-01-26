@@ -76,6 +76,7 @@ sv:
           no_car: Jag åker inte bil
       next: Nästa
       back: Tillbaka
+      methodology: Hur har vi räknat?
       index:
         heading: Dina klimatavtryck
         text: Det här är en översikt över alla klimatavtryck du beräknat via vår tjänst.

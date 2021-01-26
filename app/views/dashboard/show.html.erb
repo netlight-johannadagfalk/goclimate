@@ -77,7 +77,7 @@
           <% end %>
         </div>
         <div class="t:w-1/2">
-          <%= render "shared/chart_categories" %> 
+          <%= render "shared/chart_categories", skip_public_explanation: true %>
         </div>
       </div>
     </div>
@@ -97,6 +97,10 @@
           class: 'link whitespace-nowrap'
         %>
       </div>
+      <div class="inline-block">
+        <a class="link" href="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/" target="_blank"><%= t 'views.lifestyle_footprints.methodology' %></a>
+      </div>
+
     </div>
   </section>
   <% end %>
