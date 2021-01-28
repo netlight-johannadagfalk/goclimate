@@ -37,9 +37,11 @@
                 <% end %>
               </select>
             </div>
-            <p class="mt-1 text-sm">
-              <%= t('views.subscriptions.update.current_footprint', count: current_user.current_lifestyle_footprint.total.tonnes.round(1)) %>
-            </p>
+            <% if current_user.current_lifestyle_footprint.present? %>
+              <p class="mt-1 text-sm">
+                <%= t('views.subscriptions.update.current_footprint', count: current_user.current_lifestyle_footprint.total.tonnes.round(1)) %>
+              </p>
+            <% end %>
           </div>
 
           <% if @customer_payment_method.present? %>
