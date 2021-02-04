@@ -66,9 +66,9 @@ en:
           meat_medium: Meat-eater
           meat_high: Lots of meat (more than 100 g per day)
         shopping:
-          low: None or just a few per year
+          low: None or just a few in the last year
           average: Every now and then
-          high: Multiple every month, or multiple larger products each year
+          high: Multiple every month, or multiple larger products in the last year
         car_type:
           gas: Gasoline
           petrol: Petrol

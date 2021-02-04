@@ -61,9 +61,9 @@ sv:
           meat_medium: Köttätare
           meat_high: Mycket kött (mer än 100 g/dag)
         shopping:
-          low: Inget eller bara några få gånger per år
+          low: Inget eller bara några få gånger det senaste året
           average: Då och då
-          high: Flera i månaden eller flera större produkter per år
+          high: Flera i månaden eller flera större produkter det senaste året
         car_type:
           gas: Bensin
           petrol: Bensin
