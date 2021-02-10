@@ -152,7 +152,7 @@
           </div>
         </div>
 
-        <%= form_with url: new_lifestyle_footprint_path(@footprint) do |f| %>
+        <%= form_with url: new_lifestyle_footprint_path(@footprint, region: current_region.to_param) do |f| %>
           <%= f.hidden_field :lifestyle_calculator_id, value: @calculator.id %>
           <%= f.hidden_field :country, value: params[:country] %>
 
