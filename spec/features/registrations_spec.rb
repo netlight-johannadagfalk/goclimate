@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.feature 'Registrations', type: :feature, js: true do
   scenario 'Register' do
     # Homepage
-    visit '/'
+    visit '/us'
 
     select('Sweden', from: 'country')
     click_button 'Get started'
@@ -20,6 +20,8 @@ RSpec.feature 'Registrations', type: :feature, js: true do
     click_button 'Next'
 
     # Sign up page
+    expect(page.text).to match(%r{\$[\d.]*/month}) # Verify that currency matches original region
+
     find('#continue-to-payment').click
     fill_in 'Email', with: 'test@example.com'
     fill_in 'Password', with: 'password'

@@ -152,9 +152,10 @@
           </div>
         </div>
 
-        <%= form_with url: new_lifestyle_footprint_path(@footprint, region: current_region.to_param) do |f| %>
-          <%= f.hidden_field :lifestyle_calculator_id, value: @calculator.id %>
-          <%= f.hidden_field :country, value: params[:country] %>
+        <%= form_with model: @footprint, url: new_lifestyle_footprint_path do |f| %>
+          <%= f.hidden_field :lifestyle_calculator_id %>
+          <%= f.hidden_field :country %>
+          <%= hidden_field_tag :campaign, params[:campaign] %>
 
           <% if @calculator.region_options.present? %>
             <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="home">
@@ -276,7 +277,6 @@
             <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.flight_hours' %></h2>
             <div class="flex flex-col m-lg:flex-row">
               <%= f.number_field :flight_hours_answer, min: 0, max: 2147483647, size: 7, class: 'input mb-3 m-lg:mb-0 m-lg:mr-3' %>
-              <%= f.hidden_field :campaign, value: params[:campaign] %>
               <%= f.submit t('views.lifestyle_footprints.next'), class: 'button flex-1' %>
             </div>
           </div>
