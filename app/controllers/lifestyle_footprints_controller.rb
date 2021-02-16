@@ -14,26 +14,21 @@ class LifestyleFootprintsController < ApplicationController
 
     render_not_found && return unless @calculator.present?
 
-    @footprint = LifestyleFootprint.new(lifestyle_calculator: @calculator)
+    @footprint = LifestyleFootprint.new(lifestyle_calculator: @calculator, country: params[:country])
   end
 
   def create
-    campaign_param = params[:campaign]
-
     @footprint = LifestyleFootprint.new(footprint_params)
     @footprint.update_from_lifestyle_calculator
     @footprint.user = current_user
     @footprint.save!
 
-    query_params = {
-      lifestyle_footprint: @footprint
-    }
-    query_params[:campaign] = campaign_param unless campaign_param.blank?
     if current_user
       redirect_to lifestyle_footprint_path(id: @footprint)
-    else
-      redirect_to new_registration_path(:user, **query_params)
+      return
     end
+
+    redirect_to new_registration_path(:user, lifestyle_footprint: @footprint, campaign: params[:campaign].presence)
   end
 
   def show
@@ -54,7 +49,7 @@ class LifestyleFootprintsController < ApplicationController
   end
 
   def footprint_params
-    params.permit(
+    params.require(:lifestyle_footprint).permit(
       :lifestyle_calculator_id, :country, :region_answer, :home_answer,
       :home_area_answer, :heating_answer, :green_electricity_answer,
       :food_answer, :shopping_answer, :car_type_answer, :flight_hours_answer
