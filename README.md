@@ -201,7 +201,7 @@ If you need to reset your database:
 
 ## License
 
-All source code and assets are © GoClimateNeutral Sweden AB. All rights reserved.
+All source code and assets are © GoClimate Sweden AB. All rights reserved.
 
 We are considering opening up our source code with an open source license, but
 have not yet found the right license. If you have any experience or
