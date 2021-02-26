@@ -39,7 +39,7 @@ module Admin
     end
 
     def airport_search(origin, destination)
-      @errors.push("Column empty at '#{line}'") and return if origin.nil? || destination.nil?
+      @errors.push("Column empty at '#{origin}', '#{destination}'") and return if origin.nil? || destination.nil?
 
       origin_airport = FootprintCalculation::Airport.search(origin)
       destination_airport = FootprintCalculation::Airport.search(destination)
