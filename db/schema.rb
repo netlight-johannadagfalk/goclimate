@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_25_121500) do
+ActiveRecord::Schema.define(version: 2021_03_03_092729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,29 @@ ActiveRecord::Schema.define(version: 2021_01_25_121500) do
     t.text "usage_description"
     t.string "contact_name"
     t.string "contact_email"
+  end
+
+  create_table "business_calculators_calculator_categories", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "calculator_id", null: false
+    t.text "name"
+    t.index ["calculator_id"], name: "index_business_calculators_calculator_categor_on_calculator_id"
+  end
+
+  create_table "business_calculators_calculator_fields", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "category_id", null: false
+    t.text "label"
+    t.jsonb "units"
+    t.index ["category_id"], name: "index_business_calculators_calculator_fields_on_category_id"
+  end
+
+  create_table "business_calculators_calculators", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "card_charges", force: :cascade do |t|
@@ -105,6 +128,23 @@ ActiveRecord::Schema.define(version: 2021_01_25_121500) do
     t.text "other_specification"
     t.text "calculation_period_length"
     t.index ["key"], name: "index_climate_reports_on_key"
+  end
+
+  create_table "climate_reports_report_areas", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "report_id", null: false
+    t.bigint "calculator_id", null: false
+    t.text "title"
+    t.index ["calculator_id"], name: "index_climate_reports_report_areas_on_calculator_id"
+    t.index ["report_id"], name: "index_climate_reports_report_areas_on_report_id"
+  end
+
+  create_table "climate_reports_reports", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "title"
+    t.daterange "reporting_period"
   end
 
   create_table "flight_offsets", force: :cascade do |t|
@@ -299,6 +339,10 @@ ActiveRecord::Schema.define(version: 2021_01_25_121500) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "business_calculators_calculator_categories", "business_calculators_calculators", column: "calculator_id"
+  add_foreign_key "business_calculators_calculator_fields", "business_calculators_calculator_categories", column: "category_id"
+  add_foreign_key "climate_reports_report_areas", "business_calculators_calculators", column: "calculator_id"
+  add_foreign_key "climate_reports_report_areas", "climate_reports_reports", column: "report_id"
   add_foreign_key "invoices", "projects"
   add_foreign_key "newsletter_subscribers", "users", column: "logged_in_user_id"
 end
