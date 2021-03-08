@@ -20,10 +20,12 @@ module Admin
     # GET /invoices/new
     def new
       @invoice = Invoice.new
+      @available_projects = Project.order(created_at: :desc).limit(10)
     end
 
     # GET /invoices/1/edit
     def edit
+      @available_projects = Project.order(created_at: :desc).limit(10)
     end
 
     # POST /invoices

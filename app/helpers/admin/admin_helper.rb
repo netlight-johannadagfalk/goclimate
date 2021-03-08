@@ -2,7 +2,7 @@
 
 module Admin
   module AdminHelper
-    def project_id_options_for_select(projects, co2e_required = 0)
+    def project_id_options_for_select(projects, co2e_required = 0, selected = nil)
       co2e_required = GreenhouseGases.new(co2e_required)
 
       options_for_select(projects.map do |project|
@@ -11,7 +11,7 @@ module Admin
           project.id,
           project.co2e_available < co2e_required ? { disabled: '' } : {}
         ]
-      end)
+      end, selected)
     end
   end
 end
