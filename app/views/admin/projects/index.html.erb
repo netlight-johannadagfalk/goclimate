@@ -18,8 +18,7 @@
       <th>Date bought</th>
       <th>Country</th>
       <th>Offset type</th>
-      <th>Start block</th>
-      <th>End block</th>
+      <th>Gold Standard ID</th>
       <th></th>
     </tr>
   </thead>
@@ -35,8 +34,7 @@
         <td><%= project.date_bought.to_date %></td>
         <td><%= project.country %></td>
         <td><%= project.offset_type %></td>
-        <td><%= project.start_block %></td>
-        <td><%= project.end_block %></td>
+        <td><%= project.gold_standard_id %></td>
         <td class="admin-actions">
           <%= link_to 'Show', [:admin, project] %> &nbsp;
           <%= link_to 'Edit', edit_admin_project_path(project) %> &nbsp;
