@@ -11,58 +11,64 @@
   </head>
 
   <body class="admin <%= controller_name + " " + controller_name + "-" + action_name %><% unless ENV['HEROKU_ENV'] == 'production' %> admin-non-production-stripes<% end %>">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to 'GoClimate Admin', admin_root_path, class: 'navbar-brand' %>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li<% if controller_name == 'climate_report_invoices' %> class="active"<% end %>>
-              <%= link_to 'Climate Report Invoices', admin_climate_report_invoices_path %></a>
-            </li>
-            <li<% if controller_name == 'invoices' %> class="active"<% end %>>
-              <%= link_to 'Invoices', admin_invoices_path %></a>
-            </li>
-            <li<% if controller_name == 'projects' %> class="active"<% end %>>
-              <%= link_to 'Projects', admin_projects_path %></a>
-            </li>
-            <li<% if controller_name == 'flight_offsets' %> class="active"<% end %>>
-              <%= link_to 'Flight offsets', admin_flight_offsets_path %></a>
-            </li>
-            <li<% if controller_name == 'referral_codes' %> class="active"<% end %>>
-              <%= link_to 'Referral codes', admin_referral_codes_path %></a>
-            </li>
-            <li<% if controller_name == 'api_keys' %> class="active"<% end %>>
-              <%= link_to 'API Keys', admin_api_keys_path %></a>
-            </li>
-            <li<% if controller_name == 'lifestyle_calculators' %> class="active"<% end %>>
-              <%= link_to 'Lifestyle Calculators', admin_lifestyle_calculators_path %></a>
-            </li>
-            <li<% if controller_name == 'flight_batch' %> class="active"<% end %>>
-              <%= link_to 'Flight Batch', new_admin_flight_batch_path %></a>
-            </li>
-            <li<% if controller_name == 'business_calculators' %> class="active"<% end %>>
-              <%= link_to 'Business Calculators', admin_business_calculators_path %></a>
-            </li>
-            <li<% if controller_name == 'organizations' %> class="active"<% end %>>
-              <%= link_to 'Organizations', admin_organizations_path %></a>
-            </li>
-            <li<% if controller_name == 'climate_reports' %> class="active"<% end %>>
-              <%= link_to 'Climate Reports', admin_climate_reports_path %></a>
-            </li>
-          </ul>
+    <div class="row" style="width: 100%; height: 100vh;">
+      <div class="col-sm-2" style="height: 100%">
+        <nav class="navbar-inverse" style="height: 100%; overflow-y: auto">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <%= link_to 'GoClimate Admin', admin_root_path, class: 'navbar-brand' %>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li<% if controller_name == 'climate_report_invoices' %> class="active"<% end %>>
+                  <%= link_to 'Climate Report Invoices', admin_climate_report_invoices_path %></a>
+                </li>
+                <li<% if controller_name == 'invoices' %> class="active"<% end %>>
+                  <%= link_to 'Invoices', admin_invoices_path %></a>
+                </li>
+                <li<% if controller_name == 'projects' %> class="active"<% end %>>
+                  <%= link_to 'Projects', admin_projects_path %></a>
+                </li>
+                <li<% if controller_name == 'flight_offsets' %> class="active"<% end %>>
+                  <%= link_to 'Flight offsets', admin_flight_offsets_path %></a>
+                </li>
+                <li<% if controller_name == 'referral_codes' %> class="active"<% end %>>
+                  <%= link_to 'Referral codes', admin_referral_codes_path %></a>
+                </li>
+                <li<% if controller_name == 'api_keys' %> class="active"<% end %>>
+                  <%= link_to 'API Keys', admin_api_keys_path %></a>
+                </li>
+                <li<% if controller_name == 'lifestyle_calculators' %> class="active"<% end %>>
+                  <%= link_to 'Lifestyle Calculators', admin_lifestyle_calculators_path %></a>
+                </li>
+                <li<% if controller_name == 'flight_batch' %> class="active"<% end %>>
+                  <%= link_to 'Flight Batch', new_admin_flight_batch_path %></a>
+                </li>
+                <li<% if controller_name == 'business_calculators' %> class="active"<% end %>>
+                  <%= link_to 'Business Calculators', admin_business_calculators_path %></a>
+                </li>
+                <li<% if controller_name == 'organizations' %> class="active"<% end %>>
+                  <%= link_to 'Organizations', admin_organizations_path %></a>
+                </li>
+                <li<% if controller_name == 'climate_reports' %> class="active"<% end %>>
+                  <%= link_to 'Climate Reports', admin_climate_reports_path %></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="col-sm-10">
+        <div class="container-fluid admin-main" style="height: 100vh; overflow-y: auto;">
+          <%= yield %>
         </div>
       </div>
-    </nav>
-    <div class="container-fluid admin-main">
-      <%= yield %>
     </div>
   </body>
 
