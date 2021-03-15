@@ -192,7 +192,7 @@ AIO,"Atlantic Municipal Airport, Atlantic",,41.4,-95.02
 AIP,"Adampur Airport, Adampur",,31.43569,75.7564
 AIP,"Airuk Airfield, Airuk",,7.27936,168.82562
 AIR,"Aripuanã Airport, Aripuanã Airport",,-14.42,-56.45
-AIS,"Arorae Island Airport, Arorae Atoll",,-2.6159,176.80027
+AIS,"Arorae Airport, Arorae Atoll",,-2.6159,176.80027
 AIT,"Aitutaki Airstrip, Aitutaki",,-18.82944,-159.76722
 AIU,"Enua Airport, Atiu Island",,-19.9678,-158.119
 AIV,"George Downer Airport, Aliceville",,33.1,-88.2
@@ -262,7 +262,7 @@ ALY,"Alexandria / Nouzha Airport, Alexandria",,31.183903,29.948889
 ALZ,"Alitak Seaplane Base, Alitak Bay",,56.89919,-154.25013
 AMA,"Rick Husband Amarillo International Airport, Amarillo",,35.219369,-101.705931
 AMB,"Ambilobe Airport, Ambilobe",,-13.18856,48.98761
-AMC,"Am Timan Airport, Am Timan",,11.03,20.28
+AMC,"Am Timan Airport, Am-Timan",,11.03,20.28
 AMD,"Sardar Vallabhbhai Patel International Airport, Ahmedabad",,23.07724,72.63465
 AME,"Alto Molocue Airport, Alto Molocue",,-15.60663,37.68057
 AMF,"Ama Airport, Ama",,-4.10066,141.6693
@@ -399,7 +399,7 @@ ASP,"Alice Springs Airport, Alice Springs",,-23.80364,133.90038
 ASQ,"Austin Airport, Austin",,39.5,-117.1
 ASR,"Kayseri Erkilet Airport, Kayseri",,38.77039,35.49543
 ASS,"Arathusa Safari Lodge Airport, Arathusa Safari Lodge",,-24.7406,31.51814
-AST,"Clatsop County Airport, Clatsop County Airport",,46.17,-123.9
+AST,"Astoria Regional Airport, Astoria",,46.15816,-123.87959
 ASU,"Silvio Pettirossi International Airport, Asunción",,-25.23985,-57.51913
 ASV,"Amboseli Airport, Amboseli Safari Camp",,-2.64505,37.2531
 ASW,"Aswan International Airport, Aswan",,23.96436,32.81998
@@ -476,7 +476,7 @@ AWB,"Awaba Airport, Awaba",,-8.01402,142.75206
 AWD,"Aniwa Airport, Aniwa Island",,-19.23728,169.60093
 AWE,"Alowe, Alowe",,-0.75,9.45
 AWH,"Awareh Airport, Awareh",,8.267,44.18
-AWK,"Wake Island Airfield, Wake Island",,19.28109,166.64344
+AWK,"Wake Island Airfield, Wake Atoll",,19.28109,166.64344
 AWM,"West Memphis Municipal Airport, West Memphis",,35.13,-90.18
 AWN,"Alton Downs, Alton Downs",,-26.48,139.3
 AWP,"Austral Downs Airport, Austral Downs Airport",,-20.33,137.3
@@ -508,7 +508,7 @@ AYK,"Arkalyk North Airport, Arkalyk",,50.3186,66.9528
 AYL,"Anthony Lagoon Airport, Anthony Lagoon Airport",,-18.02,135.6
 AYM,"Yas Island Seaplane Base, Abu Dhabi=Yas Island",,24.46682,54.6102
 AYN,"Anyang Airport, Anyang",,36.1339,114.344
-AYO,"Juan de Ayolas Airport, Juan de Ayolas",,-27.3723,-56.85382
+AYO,"Juan de Ayolas Airport, Ayolas",,-27.3723,-56.85382
 AYP,"Coronel FAP Alfredo Mendívil Duarte Airport, Ayacucho",,-13.15482,-74.20442
 AYQ,"Ayers Rock Airport, Uluru",,-25.1891,130.97754
 AYR,"Ayr Airport, Ayr",,-19.584444,147.329167
@@ -578,7 +578,7 @@ BBT,"Berbérati Airport, Berbérati",,4.22158,15.78637
 BBU,"Bucharest Băneasa Aurel Vlaicu International Airport, Bucharest","Bukarest flygplats, Bucharest",44.50319,26.10211
 BBV,"Grand-Béréby Airport, Grand Béréby",,4.68764,-7.07674
 BBW,"Broken Bow Municipal Airport, Broken Bow",,41.4,-99.63
-BBX,"Wings Field, Philadelphia=Blue Bell",,40.13467,-75.26497
+BBX,"Wings Field, Philadelphia=Blue Bell",,40.1375,-75.265
 BBY,"Bambari Airport, Bambari",,5.85,20.63
 BBZ,"Zambezi Airport, Zambezi",,-13.53768,23.10925
 BCA,"Gustavo Rizo Airport, Baracoa",,20.36532,-74.50621
@@ -719,7 +719,7 @@ BHK,"Bukhara Airport, Bukhara",,39.76629,64.47988
 BHL,"Bahía de los Ángeles Airport, Bahía de los Ángeles",,28.97631,-113.56018
 BHM,"Birmingham–Shuttlesworth International Airport, Birmingham",,33.56166,-86.75254
 BHN,"Beihan Airport, Bayḩān",,14.782,45.7201
-BHO,"Raja Bhoj International Airport, Bhopal",,23.28747,77.33738
+BHO,"Raja Bhoj International Airport, Bhopāl",,23.28747,77.33738
 BHP,"Bhojpur Airport, Bhojpur",,27.17,87.05
 BHQ,"Broken Hill Airport, Broken Hill",,-32.0014,141.472
 BHR,"Bharatpur Airport, Bharatpur",,27.67863,84.42749
@@ -784,7 +784,7 @@ BKE,"Baker Municipal Airport, Baker City",,44.83765,-117.80966
 BKF,"Lake Brooks Seaplane Base, Brooks Camp=Katmai National Preserve",,58.55404,-155.77611
 BKG,"Branson Airport, Branson",,36.53764,-93.20011
 BKH,"Kekaha, Pacific Missile Test Facility Barking Sands, Kekaha",,22.022833,-159.785
-BKI,"Jesselton, Kota Kinabalu",,5.937208,116.051181
+BKI,"Kota Kinabalu International Airport, Kota Kinabalu",,5.937208,116.051181
 BKJ,"Boke, Boké",,10.967,-14.281
 BKK,"Suvarnabhumi Airport, Bangkok","Suvarnabhumi flygplats, Bangkok",13.69152,100.75089
 BKL,"Burke Lakefront Airport, Cleveland",,41.5175,-81.683333
@@ -970,6 +970,7 @@ BSI,"Polillo Balesin Island Airport, Balesin Island",,14.41864,122.03905
 BSI,"Blairsville Airport, Blairsville",,40.44424,-79.28807
 BSJ,"Bairnsdale Airport, Bairnsdale",,-37.8875,147.567778
 BSK,"Biskra Airport, Biskra",,34.793289,5.738231
+BSL,"EuroAirport Basel–Mulhouse–Freiburg, Basel",,47.58958,7.52991
 BSM,"Bishe Kola Air Base, Bīsheh Kolā",,36.6551,52.3496
 BSN,"Bossangoa Airport, Bossangoa",,6.5,17.43
 BSO,"Basco Airport, Basco",,20.451322,121.979883
@@ -1038,7 +1039,6 @@ BUZ,"Bushehr Civ / Afb, Bushehr",,28.94481,50.83464
 BVA,"Beauvais–Tillé Airport, Paris","Beauvais-Tillé flygplats, Paris",49.45444,2.11278
 BVB,"Boa Vista, Boa Vista Intl, Boa Vista",,2.846311,-60.690069
 BVC,"Aristides Pereira International Airport, Rabil",,16.13624,-22.8889
-BVD,"Beaver Inlet AK US Sea Port, Beaver Inlet AK US Sea Port",,66.36,-147.4
 BVE,"Brive–Souillac Airport, Brive-la-Gaillarde",,45.04151,1.48646
 BVF,"Bua Airport, Bua Province",,-16.85958,178.62259
 BVG,"Berlevåg Airport, Berlevåg",,70.871,29.02944
@@ -1066,12 +1066,12 @@ BWE,"Braunschweig-Wolfsburg Airport, Wolfsburg=Braunschweig",,52.31917,10.55611
 BWF,"Barrow/Walney Island Airport, Walney Island=Barrow in Furness",,54.13117,-3.26367
 BWG,"Bowling Green-Warren County Regional Airport, Bowling Green",,36.964517,-86.419681
 BWH,"Butterworth Airport, Butterworth",,5.3,100.3
-BWI,"Baltimore-Washington International Airport, Baltimore=Washington, D.C.",,39.17539,-76.66802
+BWI,"Baltimore-Washington International Airport, Baltimore=Washington",,39.17539,-76.66802
 BWJ,"Bawan, Bawan",,-6.4,146.9
 BWK,"Brac, Otok Brač",,43.28583,16.67972
 BWL,"Earl Henry Airport, Blackwell",,36.8,-97.28
 BWM,"Bowman Municipal Airport, Bowman",,46.18751,-103.4288
-BWN,"Brunei Airport, Bandar Seri Begawan",,4.9442,114.928353
+BWN,"Brunei International Airport, Bandar Seri Begawan",,4.9442,114.928353
 BWO,"Balakovo Airport, Balakovo",,51.8583,47.7456
 BWQ,"Brewarrina Airport, Brewarrina",,-29.97,146.8
 BWS,"Blaine Municipal Airport, Blaine",,48.98956,-122.73184
@@ -1135,7 +1135,7 @@ BZG,"Bydgoszcz Ignacy Jan Paderewski Airport, Bydgoszcz",,53.0968,17.9777
 BZH,"Bumi Hills Airport, Bumi Hills",,-16.81674,28.34576
 BZI,"Balikesir, Balikesir",,39.619258,27.925958
 BZK,"Brjansk, Bryansk",,53.214194,34.176447
-BZL,"Barisal Airport, Barisāl",,22.801,90.3012
+BZL,"Barisal Airport, Barishal",,22.801,90.3012
 BZM,"Bemolanga Airport, Bemolanga Airport",,-17.69328,45.08881
 BZN,"Gallatin Field Airport, Bozeman",,45.777464,-111.152981
 BZO,"Bolzano Dolomiti Airport, Bolzano",,46.46019,11.32638
@@ -1255,6 +1255,7 @@ CEH,"Chelinda Airport, Chelinda",,-10.55688,33.79875
 CEI,"Mae Fah Luang-Chiang Rai International Airport, Chiang Rai",,19.952342,99.882928
 CEJ,"Chernihiv Air Base, Chernihiv",,51.40263,31.15723
 CEK,"Chelyabinsk Airport, Chelyabinsk",,55.30584,61.50333
+CEL,"Canela Airport, Canela",,-29.3702,-50.832
 CEL,"Cape Eleuthera Airport, Cape Eleuthera",,24.79141,-76.29919
 CEL,"Cape Eleuthera, Cape Eleuthera",,24.84252,-76.34056
 CEM,"Central Airport, Central",,65.57,-144.8
@@ -1270,7 +1271,7 @@ CEV,"Mettel Field Airport, Connersville",,39.69687,-85.13492
 CEW,"Bob Sikes Airport, Crestview",,30.7788,-86.5219
 CEY,"Murray-Calloway County Airport, Murray",,36.66458,-88.37278
 CEZ,"Cortez-Montezuma County Airport, Cortez",,37.32,-108.6
-CFA,"Coffee Point Airport, Coffee Point Airport",,58.22,-157.5
+CFA,"Coffee Point Airport, Coffee Point Airport",,58.21375,-157.43719
 CFB,"Cabo Frio Airport, Cabo Frio",,-22.9217,-42.0743
 CFC,"Caçador Airport, Caçador",,-26.79121,-50.94141
 CFD,"Coulter Field, Bryan",,30.67,-96.37
@@ -1303,7 +1304,7 @@ CGK,"Soekarno-Hatta International Airport, Jakarta",,-6.12557,106.6559
 CGM,"Camiguin Airport, Mambajao=Camiguin Island",,9.25361,124.70694
 CGN,"Cologne Bonn Airport, Köln","Köln-Bonns flygplats, Köln",50.87894,7.12292
 CGO,"Zhengzhou Xinzheng International Airport, Zhengzhou",,34.51967,113.84089
-CGP,"Shah Amanat International Airport, Chittagong",,22.249611,91.813286
+CGP,"Shah Amanat International Airport, Chattogram",,22.249611,91.813286
 CGQ,"Changchun Longjia International Airport, Changchun",,43.99621,125.68536
 CGR,"Campo Grande International Airport, Campo Grande","Campo Grande Internationella Flygplats, Campo Grande",-20.46867,-54.6725
 CGS,"College Park Airport, College Park",,38.97998,-76.92313
@@ -1372,7 +1373,7 @@ CJJ,"Cheongju International Airport, Cheongju-si",,36.7166,127.49912
 CJL,"Chitral Airfield, Chitral",,35.88167,71.79806
 CJM,"Chumphon Airport, Chumphon",,10.7112,99.361706
 CJN,"Cijulang Nusawiru Airport, Cijulang",,-7.7201,108.4887
-CJS,"Abraham González International Airport, Juárez","Ciudad Juárez Flygplats, Juárez",31.63599,-106.42902
+CJS,"Abraham González International Airport, Ciudad Juárez","Ciudad Juárez Flygplats, Ciudad Juárez",31.63599,-106.42902
 CJT,"Comitán Copalar Airport, Comitán",,16.1767,-92.0506
 CJU,"Jeju International Airport, Jeju City",,33.51131,126.49303
 CKA,"Kegelman Air Force Auxiliary Field, Cherokee",,36.73816,-98.12624
@@ -1577,7 +1578,7 @@ CTC,"Coronel Felipe Varela International Airport, San Fernando del Valle de Cata
 CTD,"Chitre Airport, Chitré",,7.98686,-80.41009
 CTE,"Carti Airport, Carti Islands",,9.453,-78.979
 CTF,"Coatepeque Airport, Coatepeque",,14.69461,-91.88149
-CTG,"Aeropuerto Internacional de Crespo, Cartagena",,10.442381,-75.512961
+CTG,"Rafael Núñez International Airport, Cartagena",,10.442381,-75.512961
 CTH,"Chester County G O Carlson Airport, Coatesville",,39.97,-75.82
 CTI,"Cuito Cuanavale Airport, Cuito Cuanavale",,-15.17,19.17
 CTK,"Canton Municipal Airport, Canton",,43.30867,-96.57007
@@ -1633,7 +1634,6 @@ CVM,"General Pedro J. Méndez International Airport, Ciudad Victoria","Ciudad Vi
 CVN,"Clovis Municipal Airport, Clovis",,34.42646,-103.07828
 CVO,"Corvallis Municipal Airport, Corvallis",,44.497194,-123.289831
 CVQ,"Carnarvon Airport, Carnarvon",,-24.880556,113.672222
-CVS,"Cannon Air Force Base, Clovis",,34.392,-103.32071
 CVT,"Coventry Airport, Coventry",,52.369722,-1.479722
 CVU,"Corvo Airport, Vila do Corvo","Corvo flygplats, Vila do Corvo",39.67144,-31.11623
 CWA,"Central Wisconsin Airport, Wausau",,44.77,-89.67
@@ -1654,7 +1654,7 @@ CXB,"Cox's Bazar Airport, Cox’s Bāzār",,21.45219,91.96389
 CXF,"Coldfoot Airport, Coldfoot",,67.27,-150.2
 CXH,"Vancouver Harbour Seaplane Base, Vancouver",,49.29034,-123.11511
 CXI,"Cassidy International Airport, Kiritimati Island",,1.98616,-157.34978
-CXJ,"Campo dos Bugres Airport, Caxias do Sul",,-29.1971,-51.1875
+CXJ,"Caxias do Sul Airport, Caxias do Sul",,-29.1971,-51.1875
 CXL,"Calexico International Airport, Calexico",,32.669502,-115.51333
 CXN,"Candala Airport, Qandala",,11.5,49.917
 CXO,"Montgomery County Airport, Conroe",,30.351833,-95.414467
@@ -1723,19 +1723,20 @@ DAZ,"Darwaz Airport, Darwaz Airport",,38.4611,70.8825
 DBA,"Dalbandin Airport, Dalbandin",,28.8783,64.3998
 DBB,"El Alamein International Airport, El Dabaa",,30.92505,28.46068
 DBC,"Baicheng Chang'an Airport, Baicheng",,45.50587,123.01958
-DBD,"Dhanbad Airport, Dhanbad Airport",,23.8,86.45
+DBD,"Dhanbad Airport, Dhanbad",,23.834,86.4253
 DBK,"Dutch Bay Seaplane Base, Kalpitiya",,8.2549,79.75482
 DBM,"Debremarcos, Debremarcos",,10.28,37.77
 DBN,"W. H. 'Bud' Barron Airport, Dublin",,32.56406,-82.98653
 DBO,"Dubbo, Dubbo",,-32.216667,148.574722
 DBP,"Debepare, Debepare",,-6.283,141.9
 DBQ,"Dubuque Regional Airport, Dubuque",,42.402,-90.709472
+DBR,"Darbhanga Airport, Darbhanga=State of Bihar",,26.19426,85.91587
 DBS,"Dubois Municipal Airport, Dubois Municipal Airport",,44.17,-112.2
 DBT,"Debre Tabor Airport, Debre Tabor",,11.97,38
 DBU,"Dambula Sea Plane Base, Dambulla",,7.8616,80.62849
 DBV,"Dubrovnik Airport, Dubrovnik","Dubrovnik flygplats, Dubrovnik",42.561353,18.268244
 DBY,"Dalby Airport, Dalby",,-27.155278,151.267222
-DCA,"Ronald Reagan Washington National Airport, Washington, D.C.",,38.852083,-77.037722
+DCA,"Ronald Reagan Washington National Airport, Washington",,38.852083,-77.037722
 DCF,"Canefield Airport, Dominica",,15.33841,-61.39186
 DCG,"Dubai Creek Golf Club Seaplane Base, Dubai",,25.24246,55.33182
 DCI,"Decimomannu Military Airfield, Decimomannu",,39.354222,8.972481
@@ -2052,7 +2053,6 @@ EDN,"Yedinka Airport, Yedinka",,47.17592,138.66315
 EDO,"Balıkesir Koca Seyit Airport, Edremit",,39.5546,27.0138
 EDQ,"Erandique, Erandique",,14.13,-88.42
 EDR,"Pormpuraaw Airport, Pormpuraaw",,-14.8967,141.60899
-EDW,"Edwards Air Force Base, Edwards Air Force Base",,34.91634,-117.89188
 EED,"Needles Airport, Needles",,34.85,-114.6
 EEK,"Eek Airport, Eek",,60.22,-162
 EEN,"Dillant-Hopkins Airport, Keene",,42.89841,-72.27009
@@ -2117,7 +2117,7 @@ ELM,"Elmira/Corning Regional Airport, Elmira",,42.1598,-76.89107
 ELN,"Bowers Field, Ellensburg",,47.03374,-120.53146
 ELO,"Eldorado Airport, Eldorado",,-26.4,-54.63
 ELP,"El Paso International Airport, El Paso",,31.80725,-106.377583
-ELQ,"Prince Nayef bin Abdulaziz Regional Airport, Al-Qassim Province",,26.30282,43.77391
+ELQ,"Prince Nayef bin Abdulaziz Regional Airport, Al-Qassim Region",,26.30282,43.77391
 ELR,"Elelim Indonesia, Elelim Indonesia",,-3.817,140.1
 ELS,"East London Airport, East London",,-33.035569,27.825939
 ELT,"El Tor, El-Tor",,28.20903,33.64552
@@ -2198,7 +2198,7 @@ ESC,"Delta County Airport, Escanaba",,45.71936,-87.09575
 ESD,"Orcas Island Airport, Eastsound",,48.70816,-122.91074
 ESE,"Ensenada Airport, Ensenada",,31.79399,-116.60176
 ESF,"Alexandria Esler Regional Airport, Alexandria",,31.394903,-92.295772
-ESG,"Dr. Luis María Argaña International Airport, Mariscal Estigarribia",,-22.04499,-60.62169
+ESG,"Dr. Luis María Argaña International Airport, Mariscal José Félix Estigarribia",,-22.04499,-60.62169
 ESH,"Brighton Shoreham Airport, Shoreham-by-Sea=Brighton",,50.83556,-0.29722
 ESK,"Eskişehir Airport, Eskişehir",,39.78414,30.58211
 ESL,"Elista Airport, Elista",,46.373933,44.330872
@@ -2391,7 +2391,7 @@ FOA,"Foula Airport, Foula",,60.12197,-2.05346
 FOB,"Fort Bragg Airport, Fort Bragg",,39.47364,-123.79545
 FOC,"Fuzhou Changle International Airport, Changle=Fuzhou",,25.93506,119.66327
 FOD,"Fort Dodge Municipal Airport, Fort Dodge",,42.5512,-94.191842
-FOE,"Forbes Field Airport, Topeka",,38.94716,-95.67385
+FOE,"Topeka Regional Airport, Topeka",,38.94716,-95.67385
 FOG,"Foggia ""Gino Lisa"" Airport, Foggia","Foggia Gino Lisa Flygplats, Foggia",41.4329,15.535
 FOK,"The Francis S Gabreski Airport, Westhampton Beach",,40.84371,-72.63121
 FOM,"Koundja, Foumban",,5.636919,10.750817
@@ -2424,9 +2424,9 @@ FRO,"Florø Airport, Florø",,61.58361,5.02472
 FRP,"Fresh Water Bay Airport, Fresh Water Bay",,57.8333,-135.017
 FRQ,"Feramin Airport, Feramin",,-5.20836,141.699
 FRR,"Front Royal-Warren County Airport, Front Royal",,38.91851,-78.25343
-FRS,"Mundo Maya Airport, Santa Elena=Flores",,16.91382,-89.86638
+FRS,"Mundo Maya International Airport, Santa Elena=Flores",,16.91382,-89.86638
 FRT,"El Avellano Airport, Frutillar Alto",,-41.12267,-73.05341
-FRU,"Bishkek/Manas Airport, Bishkek",,43.06131,74.47756
+FRU,"Manas International Airport, Bishkek",,43.06131,74.47756
 FRW,"Francistown Airport, Francistown",,-21.15,27.47
 FRY,"Fryeburg/Eastern Slopes Regional Airport, Fryeburg",,43.99063,-70.94646
 FRZ,"Fritzlar, Fritzlar",,51.13,9.28
@@ -2606,7 +2606,7 @@ GHE,"Garachiné Airport, Garachiné",,8.06509,-78.36702
 GHF,"Giebelstadt, Giebelstadt",,49.65,9.97
 GHK,"Gahcho Kue Aerodrome, Kennedy Lake",,63.43362,-109.20067
 GHM,"Centerville Municipal Airport, Centerville",,35.78,-87.47
-GHN,"Guanghan Airport, Guanghan Xian",,30.94866,104.32952
+GHN,"Guanghan Airport, Guanghan Shi",,30.94866,104.32952
 GHS,"West Kutai Melalan Airport, Melak",,-0.20582,115.75903
 GHT,"Ghat Airport, Ghat",,25.14556,10.14265
 GHU,"Gualeguaychu Aerodrome, Gualeguaychú",,-33.01028,-58.61306
@@ -2939,7 +2939,7 @@ HFE,"Hefei Xinqiao International Airport, Hefei",,31.99082,116.96908
 HFF,"Mackall Army Airfield, Mackall Army Airfield",,35.04,-79.5
 HFN,"Hornafjörður Airport, Hornafjörður Airport",,64.295556,-15.227222
 HFS,"Hagfors Airport, Hagfors",,60.020064,13.578908
-HFT,"Hammerfest Airport, Hammerfest",,70.7,23.67
+HFT,"Hammerfest Airport, Hammerfest",,70.68037,23.67262
 HGA,"Egal International Airport - Hargeisa, Hargeysa",,9.5145,44.08444
 HGD,"Hughenden Airport, Hughenden",,-20.815,144.225278
 HGE,"Higuerote Airport, Higuerote",,10.46232,-66.09358
@@ -2962,7 +2962,6 @@ HIA,"Huai'an Lianshui Airport, Huai'an=Lianshui",,33.78685,119.12853
 HIB,"Range Regional Airport, Hibbing",,47.3866,-92.838994
 HID,"Horn Island Airport, Horn Island",,-10.5864,142.28999
 HIE,"Mount Washington Regional Airport, Whitefield",,44.37,-71.55
-HIF,"Hill Air Force Base, Ogden",,41.12355,-111.973
 HIG,"Highbury Airport, Highbury",,-16.4244,143.146
 HII,"Lake Havasu City Airport, Lake Havasu City",,34.57,-114.4
 HIJ,"Hiroshima Airport, Hiroshima",,34.43611,132.91944
@@ -3018,7 +3017,7 @@ HMB,"Sohag International Airport, Sohag",,26.33969,31.7392
 HME,"Oued Irara-Krim Belkacem Airport, Hassi Messaoud",,31.672972,6.140444
 HMG,"Hermannsburg Airport, Hermannsburg",,-23.93,132.80499
 HMI,"Hami Airport, Hami",,42.84098,93.66909
-HMJ,"Khmelnytskyi Airport, Khmelnytskyi",,49.3597,26.9334
+HMJ,"Khmelnytskyi Airport, Khmelnytskyy",,49.3597,26.9334
 HMO,"General Ignacio Pesqueira García International Airport, Hermosillo","Hermosillo Flygplats, Hermosillo",29.09586,-111.04786
 HMR,"Stafsberg Airport, Hamar",,60.8,11.1
 HMS,"Homeshore Airport, Homeshore",,58.29,-135.342
@@ -3171,13 +3170,13 @@ HYV,"Hyvinkaa Airport, Hyvinkaa Airport",,60.654444,24.881111
 HZB,"Merville–Calonne Airport, Hazebrouck",,50.617,2.64
 HZG,"Hanzhong Airport, Hanzhong",,33.0636,107.008
 HZH,"Liping Airport, Liping Xian",,26.31988,109.1532
-HZK,"Husavik Airport, Húsavík",,65.9523,-17.426
+HZK,"Husavik Airport, Norðurþing",,65.9523,-17.426
 HZL,"Hazleton Regional Airport, Hazleton",,40.98,-76
 HZP,"Fort MacKay/Horizon Airport, Fort MacKay",,57.37,-111.7
 HZR,"False River Regional Airport, False River Regional Airport",,30.72598,-91.47781
 IAA,"Igarka Airport, Igarka",,67.43,86.63
 IAB,"Mc Connell Air Force Base, Wichita",,37.63045,-97.26064
-IAD,"Washington Dulles International Airport, Washington, D.C.","Dulles International Airport, Washington, D.C.",38.944533,-77.455811
+IAD,"Washington Dulles International Airport, Washington","Dulles International Airport, Washington",38.944533,-77.455811
 IAG,"Niagara Falls International Airport, Niagara Falls",,43.107333,-78.946194
 IAH,"George Bush Intercontinental Airport, Houston","Houston-George Bush Flygplats, Houston",29.98687,-95.34212
 IAM,"In Aménas Airport, I-n-Amenas",,28.05155,9.64291
@@ -3202,13 +3201,13 @@ ICC,"Andrés Miguel Salazar Marcano Airport, Coche Island",,10.79454,-63.98159
 ICI,"Cicia Airport, Cicia Island",,-17.7433,-179.342
 ICK,"Majoor Henry Fernandes Airport, Nieuw Nickerie",,5.95583,-57.03975
 ICL,"Schenck Field Airport, Clarinda",,40.72264,-95.02791
-ICN,"Incheon International Airport, Seoul",,37.45571,126.44534
+ICN,"Incheon International Airport, Incheon=Seoul",,37.45571,126.44534
 ICO,"Sicogon Island, Sicogon Island",,11.45,123.267
 ICR,"Nicaro Airport, Nícaro",,20.68744,-75.53356
 ICS,"Cascade Airport, Cascade Airport",,44.49,-116
 ICT,"Wichita Mid-Continent Airport, Wichita",,37.649944,-97.433056
 ICY,"Icy Bay Airport, Icy Bay",,59.9695,-141.64583
-IDA,"Fanning Field, Idaho Falls",,43.514556,-112.07075
+IDA,"Idaho Falls Regional Airport, Idaho Falls",,43.514556,-112.07075
 IDB,"Idre Airport, Idre",,61.87,12.68
 IDC,"Chilonzuine Is, Chilonzuine Is",,-22.18,35.52
 IDF,"Idiofa Airport, Idiofa",,-5,19.5
@@ -3277,7 +3276,7 @@ ILF,"Ilford Airport, Ilford",,56.05148,-95.61401
 ILG,"New Castle Airport, Wilmington",,39.67845,-75.60632
 ILI,"Iliamna Airport, Iliamna",,59.754356,-154.910961
 ILK,"Atsinanana Airport, Ilaka Atsinanana",,-19.75,48.82
-ILL,"Willmar Municipal Airport-John L Rice Field, Willmar",,45.11485,-95.13126
+ILL,"Willmar Municipal Airport, Willmar",,45.11485,-95.13126
 ILM,"Wilmington International Airport, Wilmington",,34.270615,-77.902569
 ILN,"Wilmington Air Park, Wilmington",,39.42,-83.8
 ILO,"Iloilo International Airport, Iloilo",,10.82993,122.49395
@@ -3291,7 +3290,7 @@ ILY,"Islay Airport, Islay",,55.68194,-6.25667
 ILZ,"Žilina Airport, Žilina",,49.23153,18.6135
 IMA,"Iamalele, Iamalele",,-9.5,150.5
 IMB,"Imbaimadai Airport, Imbaimadai",,5.717,-60.28
-IMF,"Imphal International Airport, Imphal",,24.75995,93.8967
+IMF,"Imphal International Airport, Imphāl",,24.75995,93.8967
 IMG,"Inhaminga MZ, Inhaminga MZ",,-18.4,35
 IMI,"Ine Airport, Ine Airport",,6.983,171.6
 IMK,"Simikot Airport, Simikot",,29.9711,81.8189
@@ -3416,7 +3415,7 @@ IWO,"Iwo Jima Air Base, Iwo Jima",,24.784,141.322722
 IWS,"West Houston Airport, Houston",,29.81691,-95.67312
 IXA,"Agartala Airport, Agartala",,23.886978,91.24045
 IXB,"Bagdogra Airport, Bagdogra",,26.68121,88.32857
-IXC,"Chandigarh International Airport, Chandigarh",,30.6735,76.7885
+IXC,"Chandigarh International Airport, Chandīgarh",,30.6735,76.7885
 IXD,"Allahabad Airport, Allahābād",,25.44006,81.73387
 IXE,"Mangalore Airport, Mangalore",,12.96127,74.89007
 IXG,"Belgaum Airport, Belgaum",,15.859286,74.618292
@@ -3474,7 +3473,7 @@ JCM,"Jacobina Airport, Jacobina",,-11.18,-40.52
 JCR,"Jacareacanga, Jacareacanga",,-6.233156,-57.776869
 JCT,"Junction TX US Kimble County, Junction TX US Kimble County",,30.48,-99.77
 JCY,"Johnson TX US Lbj Ranch, Johnson TX US Lbj Ranch",,32.33,-97.33
-JDA,"John Day State Airport, John Day",,44.42,-119
+JDA,"Grant County Regional Airport, John Day",,44.40287,-118.96788
 JDF,"Juiz De Fora Airport, Juiz de Fora",,-21.79266,-43.38544
 JDG,"Jeongseok Airport, Jeongseok Airport",,33.3983,126.713
 JDH,"Jodhpur Airport, Jodhpur",,26.251092,73.048869
@@ -3499,7 +3498,7 @@ JGB,"Jagdalpur Airport, Jagdalpur",,19.0743,82.0368
 JGD,"Jiagedaqi Airport, Jiagedaqi",,50.37815,124.11482
 JGN,"Jiayuguan Airport, Jiayuguan",,39.86054,98.34085
 JGS,"Jinggangshan Airport, Jinggangshan=Ji’an",,26.85534,114.73265
-JHB,"Johore Bharu / Senai, Johor Bahru",,1.641308,103.669619
+JHB,"Senai International Airport, Johor Bahru",,1.641308,103.669619
 JHG,"Xishuangbanna Gasa Airport, Jinghong",,21.973914,100.759611
 JHL,"Fort MacKay/Albian Aerodrome, Fort MacKay",,57.2278,-111.419
 JHM,"Kapalua Airport, Kapalua",,20.962936,-156.673031
@@ -3649,7 +3648,7 @@ KBH,"Buzwagi Airport, Kahama",,-3.84674,32.68579
 KBI,"Kribi Airport, Kribi",,2.87528,9.97743
 KBJ,"Kings Canyon, Kings Canyon",,-14.48,132.3
 KBK,"Klag Bay, Klag Bay",,57.6431,-136.09858
-KBL,"Kabul International Airport, Kabul",,34.565853,69.212328
+KBL,"Hamid Karzai International Airport, Kabul",,34.565853,69.212328
 KBM,"Kabwum Airport, Kabwum",,-6.13936,147.27842
 KBN,"Tunta Airport, Kabinda",,-6.12191,24.54105
 KBO,"Kabalo Airport, Kabalo",,-6.083,26.917
@@ -3690,7 +3689,7 @@ KDB,"Kambalda Airport, Kambalda",,-31.19606,121.60037
 KDC,"Kandi Airport, Kandi",,11.13,2.933
 KDD,"Khuzdar Airport, Khuzdar",,27.7906,66.6473
 KDE,"Koroba Airport, Koroba",,-5.69559,142.74459
-KDH,"Kandahar International Airport, Kandahār",,31.50736,65.85035
+KDH,"Ahmad Shah Baba International Airport, Kandahār",,31.50736,65.85035
 KDI,"Haluoleo Airport, Kendari",,-4.08285,122.414
 KDJ,"Ndjolé Ville Airport, Ndjolé Ville Airport",,-0.25,10.75
 KDK,"Kodiak Municipal Airport, Kodiak",,57.80768,-152.37083
@@ -3757,7 +3756,7 @@ KGK,"Koliganek Airport, Koliganek",,59.7269,-157.26688
 KGL,"Kigali International Airport, Kigali",,-1.968628,30.13945
 KGM,"Kungim Airstrip, Kungim",,-5.66998,141.02992
 KGN,"Kasongo-Lunda Airport, Kasongo-Lunda",,-6.467,16.82
-KGO,"Kirovograd Airport, Kropyvnytskyi",,48.55,32.3
+KGO,"Kropyvnytskyi Airport, Kropyvnytskyy",,48.5428,32.285
 KGP,"Kogalym International Airport, Kogalym",,62.2,74.54
 KGR,"Kulgera Airport, Kulgera Airport",,-25.83,133.5
 KGS,"Kos Airport, Kos",,36.793335,27.091667
@@ -3816,7 +3815,7 @@ KJH,"Kaili Huangping Airport, Huangping=Kaili",,26.9719,107.988
 KJI,"Kanas Airport, Burqin",,48.22,87.00
 KJK,"Wevelgem Airport, Kortrijk",,50.817222,3.204722
 KJN,"Kenana, Kosti",,13.17,32.72
-KJP,"Kerama Airport, Kerama Rettō",,26.1683,127.293
+KJP,"Kerama Airport, Kerama Group",,26.1683,127.293
 KJT,"Majalengka Kertajati International Airport, Kabupaten Majalengka",,-6.64466,108.16074
 KJU,"Kamiraba Airport, Kamiraba Airport",,-2.883,151.3
 KJX,"Blangpidie Kuala Batee Airport, Blangpidie",,3.73456,96.79104
@@ -3906,7 +3905,7 @@ KNJ,"Kindamba Airport, Kindamba Airport",,-3.733,14.22
 KNK,"Kokhanok Airport, Kokhanok",,59.4339,-154.79801
 KNM,"Kaniama Airport, Kaniama",,-7.54183,24.17271
 KNN,"Kankan, Kankan",,10.4,-9.3
-KNO,"Medan Kuala Namu Airport, Medan",,3.63866,98.87403
+KNO,"Kualanamu International Airport, Medan",,3.63866,98.87403
 KNP,"Capanda Airport, Capanda",,-12.78,15.72
 KNQ,"Koné Airport, Koné",,-21.0543,164.83701
 KNR,"Jam, Kangān",,27.8207,52.352
@@ -3963,7 +3962,7 @@ KPY,"Port Bailey Seaplane Base, Port Bailey",,57.93062,-153.03959
 KQA,"Akutan Seaplane Base, Akutan",,54.13338,-165.77792
 KQH,"Ajmer Kishangarh Airport, Kishangarh=Ajmer",,26.59114,74.81329
 KQR,"Karara Airport, Karara",,-29.21451,116.68442
-KQT,"Qurghonteppa International Airport, Qŭrghonteppa",,37.8664,68.8647
+KQT,"Qurghonteppa International Airport, Bokhtar",,37.8664,68.8647
 KRA,"Kerang Airport, Kerang",,-35.75,143.9
 KRB,"Karumba Airport, Karumba",,-17.5,140.9
 KRC,"Depati Parbo Airport, Kabupaten Kerinci",,-2.09363,101.46938
@@ -4064,7 +4063,7 @@ KUZ,"Gunsan Air Base, Gunsan",,35.903756,126.615906
 KVA,"Kavala International Airport, Kavála",,40.91331,24.61922
 KVB,"Skövde Airport, Skövde","Skovde Flygplats, Skövde",58.4564,13.97267
 KVC,"King Cove Airport, King Cove",,55.07,-162.3
-KVD,"Gyanca Airport, Ganja",,40.737678,46.317581
+KVD,"Ganja International Airport, Ganja",,40.737678,46.317581
 KVE,"Kitava, Kitava",,-10.17,148.7
 KVG,"Kavieng Airport, Kavieng",,-2.567,150.8
 KVK,"Kirovsk–Apatity Airport, Kirovsk=Apatity",,67.4633,33.5883
@@ -4078,7 +4077,7 @@ KWB,"Karimunjawa Airport, Karimunjawa",,-5.85,110.5
 KWD,"Kawadjia CF, Kawadjia CF",,-8,23.23
 KWE,"Guiyang Longdongbao International Airport, Guiyang",,26.538522,106.800703
 KWF,"Waterfall Seaplane Base, Waterfall",,55.29598,-133.2433
-KWG,"Kryvyi Rih/Lozuvatka International Airport, Lozuvatka=Kryvyi Rih",,48.043333,33.21
+KWG,"Kryvyi Rih/Lozuvatka International Airport, Lozuvatka=Kryvyy Rih",,48.043333,33.21
 KWH,"Khwahan Airport, Deh Khwāhān",,37.8902,70.2039
 KWI,"Kuwait International Airport, Kuwait City",,29.226567,47.968928
 KWJ,"Kwangju Ab, Gwangju",,35.126389,126.808889
@@ -4194,6 +4193,7 @@ LCO,"Lague Airport, Lague Airport",,-1.8,14.87
 LCP,"Loncopue Airport, Loncopue Airport",,-38.08,-70.67
 LCQ,"Lake City Gateway Airport, Lake City",,30.17892,-82.57418
 LCR,"La Chorrera Airport, La Chorrera",,-0.7333,-73.02
+LCT,"Shijiazhuang Luancheng Airport, Luancheng District=Luancheng=Shijiazhuang",,37.91306,114.59166
 LCV,"Lucca-Tassignano Airport, Lucca",,43.83,10.58
 LCX,"Longyan Guanzhishan Airport, Longyan",,25.66719,116.74566
 LCY,"London City Airport, London",,51.50528,0.05528
@@ -4475,7 +4475,6 @@ LSR,"Lost River 1 Airport, Lost River",,65.39362,-167.16436
 LSS,"Les Saintes - Terre-de-Haut, Terre-de-Haut",,15.87,-61.58
 LST,"Launceston Airport, Launceston",,-41.545278,147.214167
 LSU,"Long Sukang Airport, Long Sukang",,4.55,115.5
-LSV,"Nellis Air Force Base, Las Vegas",,36.23692,-115.03309
 LSW,"Lhokseumawe / Malikussaleh, Lhokseumawe",,5.22668,96.95034
 LSX,"Lhok Sukon Airport, Lhok Sukon",,5.05,97.32
 LSY,"Lismore Airport, Lismore",,-28.830278,153.26
@@ -4509,7 +4508,7 @@ LUI,"La Unión Airport, La Unión",,15.0333,-86.6925
 LUK,"Cincinnati Municipal Lunken Airport, Cincinnati",,39.103333,-84.418611
 LUL,"Hesler-Noble Field, Laurel",,31.7,-89.13
 LUM,"Mangshi Airport, Mangshi",,24.4011,98.5317
-LUN,"Lusaka International Airport, Lusaka",,-15.330817,28.452628
+LUN,"Kenneth Kaunda International Airport, Lusaka",,-15.330817,28.452628
 LUO,"Luena Airport, Luena",,-11.768086,19.897672
 LUP,"Kalaupapa Airport, Kalaupapa",,21.18,-157
 LUQ,"Brigadier Mayor César Raúl Ojeda Airport, San Luis",,-33.273192,-66.356422
@@ -4700,7 +4699,6 @@ MEO,"Dare County Regional Airport, Manteo",,35.91741,-75.70013
 MEP,"Mersing Airport, Mersing",,2.433,103.8
 MEQ,"Cut Nyak Dhien Airport, Meulaboh",,4.04347,96.25079
 MER,"Castle Airport, Merced",,37.380481,-120.568189
-MES,"Medan Polonia International Airport, Medan",,3.55806,98.67172
 MET,"Moreton Airport, Moreton Airport",,-12.75,142.8
 MEU,"Monte Dourado Airport, Monte Dourado",,-0.8833,-52.6
 MEV,"Minden-Tahoe Airport, Minden",,39.00004,-119.75557
@@ -4726,7 +4724,7 @@ MFP,"Manners Creek Airport, Manners Creek Airport",,-22.1,138
 MFQ,"Maradi Airport, Maradi",,13.502531,7.126753
 MFR,"Rogue Valley International - Medford Airport, Medford",,42.374228,-122.8735
 MFS,"Miraflores Airport, Miraflores",,1.033,-72.13
-MFT,"Machu Pichu Airport, Machu Picchu",,-13.12,-72.57
+MFT,"Machu Pichu Airport, Machupicchu",,-13.12,-72.57
 MFU,"Mfuwe Airport, Mfuwe",,-13.258878,31.936581
 MFV,"Accomack County Airport, Melfa",,37.64318,-75.76106
 MFW,"Magaruque Island Airport, Magaruque Island",,-21.96783,35.42421
@@ -4861,6 +4859,7 @@ MLC,"McAlester Regional Airport, McAlester",,34.88505,-95.78439
 MLE,"Velana International Airport, Male",,4.191833,73.529128
 MLF,"Milford Municipal Airport, Milford",,38.42663,-113.01246
 MLG,"Abdul Rachman Saleh Airport, Malang",,-7.9264,112.7146
+MLH,"EuroAirport Basel–Mulhouse–Freiburg, Mulhouse",,47.58958,7.52991
 MLI,"Quad City International Airport, Moline",,41.448528,-90.507539
 MLJ,"Baldwin County Airport, Milledgeville",,33.15421,-83.24282
 MLK,"Malta Airport, Malta",,48.36831,-107.91272
@@ -5045,7 +5044,7 @@ MSV,"Sullivan County International Airport, Monticello",,41.62,-74.7
 MSW,"Massawa International Airport, Massawa",,15.67,39.3701
 MSX,"Mossendjo Airport, Mossendjo",,-2.94861,12.70028
 MSY,"Louis Armstrong New Orleans International Airport, New Orleans",,29.993389,-90.258028
-MSZ,"Namibe Airport, Namibe",,-15.2612,12.1468
+MSZ,"Namibe Airport, Moçâmedes",,-15.2612,12.1468
 MTA,"Matamata Aerodrome, Matamata",,-37.73665,175.74052
 MTB,"Montelíbano Airport, Montelíbano",,7.97174,-75.4325
 MTC,"Selfridge Air National Guard Base, Mount Clemens",,42.608333,-82.8355
@@ -5059,7 +5058,7 @@ MTJ,"Montrose Regional Airport, Montrose",,38.5,-107.9
 MTK,"Makin Airfield, Makin Atoll",,3.37501,172.99358
 MTL,"Maitland Airport, Maitland",,-32.7033,151.48801
 MTM,"Metlakatla Seaplane Base, Metlakatla",,55.13083,-131.57806
-MTN,"Martin State Airport, Baltimore=Washington, D.C.",,39.325665,-76.413767
+MTN,"Martin State Airport, Baltimore=Washington",,39.325665,-76.413767
 MTO,"Coles County Memorial Airport, Coles County Memorial Airport",,39.48,-88.28
 MTP,"Montauk Airport, Montauk",,41.07649,-71.92007
 MTQ,"Mitchell Airport, Mitchell",,-26.483333,147.936667
@@ -5136,6 +5135,7 @@ MWO,"Middletown Regional Airport/Hook Field, Middletown",,39.52912,-84.39356
 MWP,"Mountain Airport, Mountain Airport",,28,85.33
 MWQ,"Magway Airport, Magway",,20.17,94.93
 MWR,"Motswari Airport, Motswari Game Reserve",,-24.19072,31.38682
+MWS,"IMIP Airport, Morowali Regency",,-2.79987,122.1405
 MWT,"Moolawatana Airport, Moolawatana",,-29.90673,139.76631
 MWU,"Mussau, Mussau",,-1.5,149.7
 MWV,"Môndól Kiri Airport, Môndól Kiri Airport",,12.45,107.2
@@ -5277,7 +5277,7 @@ NDJ,"N'Djamena International Airport, N'Djamena",,12.133689,15.034019
 NDK,"Namdrik Airfield, Namdrik",,5.63264,168.12249
 NDL,"N'Dele, Ndélé",,8.427,20.635
 NDM,"Mendi Airport, Mendi Airport",,9.817,35.08
-NDN,"Nadunumu, Nadunumu",,-9.14371,147.68414
+NDN,"Nadunumu Airport, Nadunumu Airport",,-9.14371,147.68414
 NDR,"Nador International Airport, Nador",,34.98889,-3.02833
 NDS,"Sandstone Airport, Sandstone",,-27.98,119.297
 NDU,"Rundu Airport, Rundu",,-17.956461,19.719439
@@ -5400,7 +5400,7 @@ NNT,"Nan, Nan",,18.807914,100.783419
 NNU,"Nanuque Airport, Nanuque",,-17.78,-40.68
 NNX,"Nunukan Airport, Nunukan",,4.15,117.7
 NNY,"Nanyang Jiangying Airport, Nanyang",,32.9808,112.615
-NOA,"Nowra Ran Air Station, Nowra",,-34.948889,150.536944
+NOA,"Naval Air Station Nowra, Nowra",,-34.94889,150.53694
 NOB,"Nosara Airport, Nosara",,9.97649,-85.653
 NOC,"Ireland West Airport Knock, Knock=Charlestown",,53.91028,-8.81806
 NOD,"Norden-Norddeich, Norden",,53.6323,7.19205
@@ -5433,8 +5433,8 @@ NQL,"Niquelândia Airport, Niquelândia Airport",,-14.45,-48.45
 NQN,"Presidente Perón International Airport, Neuquén",,-38.949,-68.15571
 NQT,"Nottingham Airport, Nottingham",,52.92,-1.07917
 NQU,"Reyes Murillo Airport, Nuquí",,5.7097,-77.2625
-NQX,"Naval Air Station Key West, Key West",,24.575834,-81.688889
 NQY,"Newquay Cornwall Airport, Newquay","Newquay Cornwall flygplats, Newquay",50.44056,-4.99541
+NQZ,"Astana Nursultan Nazarbayev International Airport, Nur-Sultan",,51.022222,71.466944
 NRA,"Narrandera Airport, Narrandera",,-34.702222,146.512222
 NRB,"Naval Station Mayport, Mayport",,30.39076,-81.42509
 NRC,"Crows Landing Naval Auxiliary Landing Field, Crows Landing",,37.4,-121.1
@@ -5551,6 +5551,7 @@ OAN,"Olanchito El Arrayán Airport, Olanchito",,15.50794,-86.57355
 OAR,"Marina Municipal Airport, Monterey",,36.91,-121.8
 OAS,"Sharana, Sharan",,33.1258,68.8386
 OAX,"Oaxaca - Xoxocotlán International Airport, Oaxaca",,17.00135,-96.72496
+OBA,"Oban Airport, Oban",,-21.23463,139.0336
 OBC,"Obock Airport, Obock",,11.92,43.25
 OBD,"Obano Airport, Obano",,-3.9,136.2
 OBE,"Okeechobee County Airport, Okeechobee",,27.25,-80.83
@@ -5587,7 +5588,7 @@ ODM,"Garrett County Airport, Oakland",,39.58169,-79.3378
 ODN,"Long Seridan Airport, Long Seridan",,4.033,115.1
 ODO,"Bodaybo Airport, Bodaybo",,57.86521,114.24219
 ODR,"Ord River Airport, Ord River",,-17.34425,128.91529
-ODS,"Odessa International Airport, Odessa",,46.426767,30.676464
+ODS,"Odesa International Airport, Odessa",,46.426767,30.676464
 ODW,"AJ Eisenberg Airport, Oak Harbor",,48.25154,-122.67814
 ODY,"Oudomsay Airport, Muang Xay",,20.6827,101.994
 OEA,"O'Neal Airport, Vincennes",,38.68998,-87.54816
@@ -5765,7 +5766,7 @@ OSM,"Mosul International Airport, Mosul",,36.30576,43.1474
 OSN,"Osan Ab, Osan",,37.09062,127.02959
 OSO,"Osborne Mine Airport, Osborne Mine",,-22.08254,140.55779
 OSR,"Leoš Janáček Airport Ostrava, Ostrava",,49.69629,18.11105
-OSS,"Osh Airport, Osh",,40.608989,72.793269
+OSS,"Osh International Airport, Osh",,40.608989,72.793269
 OST,"Ostend-Bruges International Airport, Ostend",,51.19889,2.86222
 OSU,"Ohio State University Airport, Columbus",,40.079778,-83.073028
 OSW,"Orsk Airport, Orsk",,51.072506,58.595586
@@ -5801,6 +5802,7 @@ OUI,"Ban Huoeisay Airport, Ban Huoeisay",,20.25,100.4
 OUK,"Out Skerries Airport, Out Skerries",,60.42517,-0.75121
 OUL,"Oulu Airport, Oulu","Uleåborgs flygfält, Oulu",64.930061,25.354564
 OUM,"Oum Hadjer Airport, Oum Hadjer",,13.28333,19.7
+OUN,"University of Oklahoma Westheimer Airport, Norman",,35.24556,-97.47222
 OUR,"Batouri Airport, Batouri",,4.47563,14.36269
 OUS,"Ourinhos Airport, Ourinhos",,-22.98,-49.87
 OUT,"Bousso Airport, Bousso",,10.48882,16.71883
@@ -5831,13 +5833,13 @@ OYE,"Oyem Airport, Oyem",,1.543108,11.581361
 OYG,"Moyo Airport, Moyo",,3.65,31.72
 OYK,"Oiapoque, Oiapoque",,3.867,-51.8
 OYL,"Moyale Airport, Moyale",,3.47076,39.10065
-OYN,"Ouyen, Ouyen",,-32.07,142.3
+OYN,"Ouyen Airport, Ouyen",,-35.20002,142.49955
 OYO,"Tres Arroyos Airport, Tres Arroyos",,-38.38876,-60.32928
 OYP,"Saint-Georges-de-l'Oyapock Airport, Saint-Georges",,3.89989,-51.80358
 OZA,"Ozona TX US Municipal, Ozona TX US Municipal",,30.7,-101.2
 OZC,"Ozamiz City Airport, Ozamiz City",,8.17851,123.842
 OZG,"Zagora Airport, Zagora",,30.2639,-5.85306
-OZH,"Zaporizhia International Airport, Zaporizhia",,47.86722,35.31639
+OZH,"Zaporizhia International Airport, Zaporizhzhya",,47.86722,35.31639
 OZP,"Morón Air Base, Morón de la Frontera",,37.17492,-5.61594
 OZR,"Cairns Army Airfield (Fort Rucker), Ozark",,31.27813,-85.71581
 OZZ,"Ouarzazate Airport, Ouarzazat",,30.93905,-6.90943
@@ -5892,14 +5894,14 @@ PCB,"Pondok Cabe Air Base, Pondok Cabe Air Base",,-6.35,106.8
 PCC,"Puerto Rico CO, Puerto Rico CO",,1.917,-75.17
 PCD,"Prairie du Chien Municipal Airport, Prairie du Chien",,43.02159,-91.11964
 PCE,"Painter Creek Airport, Painter Creek",,57.1584,-157.41323
-PCJ,"Puerto La Victoria Airport, Puerto La Victoria",,-22.28,-57.93
+PCJ,"Puerto La Victoria Airport, Puerto Casado",,-22.28,-57.93
 PCK,"Porcupine Creek Airport, Porcupine Creek",,67.23778,-150.28583
 PCK,"Porcupine Creek, Porcupine Creek",,67.23083,-150.27361
 PCL,"FAP Captain David Abenzur Rengifo International Airport, Pucallpa",,-8.37794,-74.5743
 PCM,"Playa del Carmen Airport, Playa del Carmen",,20.6,-87.1
 PCN,"Picton Aerodrome, Picton",,-41.35,174
 PCO,"Punta Colorada Airstrip, La Rivera=Punta Colorada",,23.57461,-109.53601
-PCP,"Principe, Ilha do Príncipe",,1.66294,7.41174
+PCP,"Príncipe Airport, Príncipe Island",,1.66269,7.41105
 PCQ,"Bounneua, Bounneua",,22,101.9
 PCR,"Puerto Carreno / A. Guauquea, Puerto Carreño",,6.18472,-67.49316
 PCS,"Picos Airport, Picos",,-7.083,-41.47
@@ -6167,7 +6169,7 @@ PQC,"Phu Quoc International Airport, Phu Quoc",,10.17032,103.99384
 PQD,"Batticaloa, Batticaloa",,7.92778,81.5417
 PQI,"Northern Maine Regional Airport at Presque Isle, Presque Isle",,46.688958,-68.044797
 PQM,"Palenque International Airport, Palenque",,17.5334,-91.9845
-PQQ,"Port Macquarie Airport, Port Macquarie",,-31.435833,152.863333
+PQQ,"Port Macquarie Airport, Port Macquarie",,-31.4358,152.86301
 PQS,"Pilot Station Airport, Pilot Station",,61.93,-162.9
 PRA,"Parana Airport, Paraná",,-31.79478,-60.48036
 PRB,"Paso Robles Municipal Airport, Paso Robles",,35.672886,-120.62705
@@ -6450,7 +6452,7 @@ RAU,"Rangpur Airport, Rangpur",,25.75,89.23
 RAV,"Cravo Norte, Cravo Norte",,6.317,-70.18
 RAW,"Arawa Airport, Arawa",,-6.22196,155.56984
 RAX,"Oram, Oram",,-9.667,148
-RAZ,"Rawalakot Airport, Rawala Kot",,33.8497,73.7981
+RAZ,"Rawalakot Airport, Rawalakot",,33.8497,73.7981
 RBA,"Rabat-Salé Airport, Rabat",,34.051467,-6.751519
 RBB,"Borba Airport, Borba",,-4.4,-59.58
 RBC,"Robinvale Airport, Robinvale",,-34.65,142.783
@@ -6714,7 +6716,7 @@ RUG,"Rugao Air Base, Rugao Air Base",,32.38,129.7
 RUH,"King Khalid International, Riyadh",,24.95764,46.698776
 RUI,"Sierra Blanca Regional Airport, Ruidoso",,33.46286,-105.5347
 RUK,"Chaurjahari Airport, Rukumkoṭ",,28.627,82.195
-RUL,"Gaddhoo Maavaarulaa Airport, Gaddhoo Island=Gaddhoo",,0.33653,73.51138
+RUL,"Gaddhoo Maavaarulaa Airport, Gaddhoo Island=Gadhdhoo",,0.33653,73.51138
 RUM,"Rumjatar Airport, Rumjāṭār",,27.3035,86.5504
 RUN,"Roland Garros Airport, La Réunion",,-20.8871,55.51031
 RUP,"Rupsi India Airport, Rupsi",,26.14118,89.90687
@@ -6788,7 +6790,7 @@ SBD,"San Bernardino International Airport, San Bernardino",,34.09529,-117.23532
 SBD,"Norton Air Force Base, San Bernardino",,34.1,-117.23611
 SBF,"Sardeh Band Airport, Sardeh Band",,33.32114,68.63682
 SBG,"Maimun Saleh Airport, Sabang",,5.87588,95.34029
-SBH,"Gustaf III Airport, Saint Barthélemy",,17.90443,-62.84392
+SBH,"Gustaf III Airport, Saint Barthelemy",,17.90443,-62.84392
 SBI,"Sambailo Airport, Koundara",,12.48,-13.3
 SBJ,"São Mateus Airport, São Mateus",,-18.7213,-39.8337
 SBK,"Saint-Brieuc – Armor Airport, Saint-Brieuc",,48.53778,-2.85444
@@ -6821,7 +6823,7 @@ SCK,"Stockton Metropolitan Airport, Sacramento",,37.89381,-121.23911
 SCL,"Comodoro Arturo Merino Benítez International Airport, Santiago","Santiago flygplats, Santiago",-33.392975,-70.785803
 SCM,"Scammon Bay Airport, Scammon Bay",,61.87,-165.6
 SCN,"Saarbrücken Airport, Saarbrücken",,49.21455,7.10951
-SCO,"Aktau Airport, Aktau",,43.86005,51.09198
+SCO,"Aktau Airport, Shevchenko",,43.86005,51.09198
 SCP,"Mont-Dauphin - Saint-Crépin, Mont-Dauphin",,44.68,6.583
 SCQ,"Santiago de Compostela Airport, Santiago de Compostela",,42.89766,-8.41793
 SCR,"Scandinavian Mountains Airport, Sälen","Sälen Trysil Airport, Sälen",61.15912,12.84131
@@ -6888,7 +6890,7 @@ SFC,"Saint-François, Saint-François",,16.258,-61.264
 SFD,"Las Flecheras Airport, San Fernando de Apure",,7.88332,-67.44402
 SFE,"San Fernando Airport, San Fernando",,16.594,120.3033
 SFF,"Felts Field, Spokane",,47.682819,-117.322558
-SFG,"Grand Case - L'Espérance Airport, Saint Martin=Espérance",,18.10019,-63.04755
+SFG,"Grand Case-Espérance Airport, Saint Martin=Espérance",,18.10019,-63.04755
 SFH,"San Felipe International Airport, San Felipe",,30.9302,-114.809
 SFI,"Safi Airport, Safi",,32.27538,-9.23461
 SFJ,"Kangerlussuaq Airport, Kangerlussuaq",,67.016969,-50.689325
@@ -6980,7 +6982,7 @@ SIW,"Parapat Sibisa Airport, Parapat=Sibisa",,2.60038,98.9645
 SIX,"Singleton Airport, Singleton",,-32.60146,151.19445
 SIY,"Siskiyou County Airport, Siskiyou County=Montague=Yreka",,41.78125,-122.46919
 SIZ,"Sissano, Sissano",,-3,142.1
-SJA,"San Juan Airport, San Juan de Marcona",,-15.35906,-75.13464
+SJA,"San Juan Airport, San Juan",,-15.35906,-75.13464
 SJB,"San Joaquín Airport, San Joaquín",,-13.067,-64.675
 SJC,"Norman Y. Mineta San José International Airport, San Jose",,37.36189,-121.92885
 SJD,"Los Cabos International Airport, San José del Cabo",,23.15185,-109.72104
@@ -7139,7 +7141,7 @@ SPF,"Black Hills Airport, Spearfish",,44.48,-103.9
 SPG,"Albert Whitted Airport, St. Petersburg=Tampa",,27.7641,-82.62837
 SPH,"Sopu, Sopu",,-9,147.8
 SPI,"Abraham Lincoln Capital Airport, Springfield","Abraham Lincoln Springfield Flygplats, Springfield",39.8441,-89.677889
-SPJ,"Sparti Airport, Spárti",,37,22.48
+SPJ,"Sparti Airport, Sparta",,37,22.48
 SPM,"Spangdahlem Air Base, Spangdahlem",,49.972667,6.6925
 SPN,"Francisco C. Ada International Airport, Saipan",,15.119003,145.729356
 SPP,"Menongue Airport, Menongue",,-14.657583,17.719833
@@ -7218,6 +7220,7 @@ SSM,"Sault Ste Marie Municipal Airport, Sault Ste. Marie",,46.47805,-84.36672
 SSN,"Seoul Air Base, Seoul",,37.44069,127.11182
 SSO,"São Lourenço Airport, São Lourenço",,-22.0909,-45.0445
 SSP,"Silver Plains Airport, Silver Plains Airport",,-13.98,143.6
+SSQ,"La Sarre Airport, La Sarre",,48.9159,-79.18104
 SSR,"Sara Airport, Pentecost Island",,-15.4708,168.15199
 SSS,"Siassi, Siassi",,-5.9,148
 SST,"Santa Teresita, Santa Teresita",,-36.53333,-56.71667
@@ -7246,7 +7249,7 @@ STQ,"St Marys Municipal Airport, Saint Marys",,41.41248,-78.50332
 STR,"Stuttgart Airport, Stuttgart","Stuttgart flygplats, Stuttgart",48.69034,9.19521
 STS,"Sonoma County Airport, Santa Rosa",,38.5088,-122.81388
 STT,"Cyril E. King Airport, Saint Thomas Island",,18.33523,-64.97292
-STV,"Surat Airport, Sūrat",,21.1141,72.7418
+STV,"Surat Airport, Surat",,21.1141,72.7418
 STW,"Stavropol Shpakovskoye Airport, Stavropol’",,45.10916,42.11278
 STX,"Henry E Rohlsen Airport, Christiansted=Saint Croix",,17.701889,-64.798556
 STY,"Aeropuerto Nueva Hesperides, Salto",,-31.438481,-57.985294
@@ -7270,7 +7273,6 @@ SUQ,"Sucua Airport, Sucua Airport",,-2.467,-78.18
 SUR,"Summer Beaver Airport, Summer Beaver",,52.7086,-88.5419
 SUS,"Spirit of St Louis Airport, St. Louis",,38.662119,-90.652044
 SUT,"Sumbawanga Airport, Sumbawanga",,-7.967,31.62
-SUU,"Travis Air Force Base, Fairfield",,38.26074,-121.94133
 SUV,"Nausori International Airport, Suva",,-18.043267,178.559228
 SUW,"Richard I. Bong Airport, Superior=Duluth",,46.68613,-92.09882
 SUX,"Sioux Gateway Airport/Col. Bud Day Field, Sioux City",,42.402603,-96.384367
@@ -7374,7 +7376,7 @@ SYX,"Sanya Phoenix International Airport, Sanya",,18.302892,109.412269
 SYY,"Stornoway Airport, Stornoway",,58.215556,-6.331111
 SYZ,"Shiraz International Airport, Shiraz",,29.53924,52.58979
 SZA,"Soyo Airport, Soio",,-6.14109,12.3718
-SZB,"Subang/Sultan Abdul Aziz Shah Airport, Kuala Lumpur",,3.130583,101.549333
+SZB,"Sultan Abdul Aziz Shah Airport, Kuala Lumpur",,3.130583,101.549333
 SZE,"Semera Airport, Semera",,11.54302,41.24027
 SZF,"Samsun-Çarşamba Airport, Samsun",,41.25845,36.55598
 SZG,"Salzburg Airport, Salzburg","Salzburg flygplats, Salzburg",47.7933,13.00433
@@ -7404,7 +7406,7 @@ TAF,"Oran/Tafaraoui, Oran",,35.542444,-0.532278
 TAG,"Tagbilaran Airport, Tagbilaran City",,9.6657,123.8533
 TAG,"Bohol–Panglao International Airport, Tagbilaran City=Panglao=Bohol",,9.57327,123.77019
 TAH,"Whitegrass Airport, Tanna",,-19.4551,169.224
-TAI,"Ta'izz International Airport, Ta‘izz",,13.68596,44.13906
+TAI,"Ta'izz International Airport, Taiz",,13.68596,44.13906
 TAJ,"Tadji Airport, Aitape",,-3.19682,142.42702
 TAK,"Takamatsu Airport, Takamatsu",,34.21417,134.01556
 TAL,"Ralph M Calhoun Memorial Airport, Tanana",,65.17,-152.1
@@ -7449,7 +7451,6 @@ TCE,"Tulcea Airport, Tulcea",,45.062486,28.714311
 TCG,"Tacheng Airport, Tacheng",,46.6725,83.3408
 TCH,"Tchibanga Airport, Tchibanga",,-2.817,11
 TCL,"Tuscaloosa Municipal Airport, Tuscaloosa",,33.220627,-87.611403
-TCM,"McChord Field Airport (Joint Base Lewis-McChord), Tacoma",,47.13744,-122.48175
 TCN,"Tehuacán Airport, Tehuacán",,18.4972,-97.4199
 TCO,"La Florida Airport, Tumaco",,1.814417,-78.749228
 TCP,"Taba International Airport, Taba",,29.58778,34.77806
@@ -7563,10 +7564,10 @@ TIA,"Tirana International Airport Nënë Tereza, Tirana","Tiranas internationell
 TIB,"Tibu, Tibu",,8.631519,-72.730372
 TIC,"Tinak airfield, Tinak",,7.09996,171.92153
 TID,"Abdelhafid Boussouf Bou Chekif Airport, Tiaret",,35.34114,1.46315
-TIE,"Tippi Airport, Tippi",,7.333,35.58
+TIE,"Tippi Airport, Tēpī",,7.333,35.58
 TIF,"Taif Regional Airport, Ta’if",,21.48342,40.54433
 TIG,"Tingwon Airport, Tingwon",,-2.6,149.8
-TIH,"Tikehau Airport, Atoll Tikehau",,-15.11971,-148.23113
+TIH,"Tikehau Airport, Tikehau",,-15.11971,-148.23113
 TII,"Tarin Kowt Airport, Tarinkot",,32.60412,65.86595
 TIJ,"General Abelardo L. Rodríguez International Airport, Tijuana",,32.54334,-116.97375
 TIK,"Tinker Air Force Base, Oklahoma City",,35.414739,-97.386633
@@ -7802,7 +7803,7 @@ TTB,"Tortolì Airport, Tortolì",,39.9188,9.68298
 TTC,"Las Breas Airport, Taltal",,-25.57,-70.38
 TTD,"Portland–Troutdale Airport, Troutdale=Portland",,45.54929,-122.39815
 TTE,"Sultan Babullah Airport, Ternate Island",,0.83141,127.38149
-TTG,"Tartagal Aerodrome, Tartagal",,-22.619167,-63.793189
+TTG,"Tartagal Aerodrome, Tartagal=General Mosconi",,-22.61917,-63.79319
 TTH,"RAFO Thumrait Airbase, RAFO Thumrait Airbase",,17.666,54.024612
 TTI,"Tetiaroa Airport, Tetiaroa Airport",,-17.08,-149.5
 TTJ,"Tottori Airport, Tottori",,35.530069,134.166553
@@ -7940,7 +7941,7 @@ UGA,"Bulgan Airport, Bulgan",,48.855,103.476
 UGB,"Ugashik Bay Airport, Pilot Point",,57.43,-157.8
 UGC,"Urgench International Airport, Urganch",,41.58427,60.64171
 UGI,"San Juan Uganik Seaplane Base, Uganik Island",,57.73037,-153.32142
-UGL,"Union Glacier Airport, Union Glacier",,-79.72333,-82.46279
+UGL,"Union Glacier Blue-Ice Runway, Union Glacier=Union Glacier Camp",,-79.77683,-83.31852
 UGN,"Waukegan Regional Airport, Waukegan",,42.41872,-87.86791
 UGO,"Uige Airport, Uíge",,-7.60307,15.0278
 UGS,"Ugashik Airport, Ugashik",,57.53,-157.4
@@ -7974,7 +7975,7 @@ UKS,"Sevastopol International Airport, Sevastopol",,44.689,33.571
 UKT,"Quakertown Airport, Quakertown",,40.43,-75.33
 UKU,"Nuku Airport, Nuku",,-3.683,142.5
 UKX,"Ust-Kut Airport, Ust’-Kut",,56.8567,105.73
-ULA,"Capitán José Daniel Vazquez Airport, San Julián",,-49.306775,-67.802589
+ULA,"Capitán José Daniel Vazquez Airport, Puerto San Julián",,-49.306775,-67.802589
 ULB,"Ulei Airport, Ulei",,-16.32917,168.30042
 ULC,"Los Cerrillos Airport, Santiago",,-33.5,-70.67
 ULD,"Prince Mangosuthu Buthelez Airport, Ulundi",,-28.31602,31.418
@@ -7985,7 +7986,7 @@ ULI,"Ulithi Airport, Ulithi Airport",,9.967,139.7
 ULK,"Lensk Airport, Lensk",,60.72249,114.82279
 ULL,"Glenforsa Airfield, Glenforsa Airfield",,56.42,-6.333
 ULM,"New Ulm Municipal Airport, New Ulm",,44.32,-94.5
-ULN,"Ulan-Bator Chinggis Khan International Airport, Ulan Bator",,47.84306,106.76664
+ULN,"Buyant-Ukhaa International Airport, Ulan Bator",,47.84306,106.76664
 ULO,"Ulaangom Airport, Ulaangom",,49.97,92.03
 ULP,"Quilpie Airport, Quilpie",,-26.612222,144.252778
 ULQ,"Farfan Airport, Farfan Airport",,4.088358,-76.235133
@@ -8048,7 +8049,7 @@ URT,"Surat Thani Airport, Surat Thani",,9.132603,99.135586
 URU,"Uroubi, Uroubi",,-9.5,148.6
 URY,"Gurayat Domestic Airport, Qurayyat",,31.41278,37.27389
 URZ,"Uruzgan, Uruzgan",,32.9,66.62
-USA,"Concord Regional Airport, Concord",,35.38555,-80.71097
+USA,"Concord-Padgett Regional Airport, Concord",,35.38555,-80.71097
 USC,"Union County Airport - Troy Shelton Field, Union",,34.68531,-81.64163
 USH,"Ushuaia Aerodrome, Ushuaia",,-54.822697,-68.304264
 USI,"Mabaruma Airport, Mabaruma",,8.2,-59.8
@@ -8135,6 +8136,7 @@ VCP,"Viracopos International Airport, São Paulo",,-23.00738,-47.13452
 VCR,"Carora Airport, Carora",,10.175603,-70.065214
 VCS,"Con Dao Airport, Côn Sơn Island",,8.73183,106.633
 VCT,"Victoria Regional Airport, Victoria",,28.852556,-96.918486
+VCV,"Southern California Logistics Airport, Victorville",,34.58696,-117.37444
 VDA,"Ovda Airport, Ovda=Eilat",,29.94025,34.93585
 VDB,"Fagernes Airport, Leirin, Fagernes","Fagernes flygplats, Leirin, Fagernes",61.01556,9.28806
 VDC,"Pedro Otacílio Figueiredo Airport, Vitória da Conquista",,-14.86276,-40.86311
@@ -8182,7 +8184,7 @@ VIJ,"Virgin Gorda Airport, Virgin Gorda",,18.44586,-64.42816
 VIK,"Kavik Airstrip, Kavik",,70.1406,-147.1871
 VIK,"Kavik, Kavik",,70.1357,-147.20066
 VIL,"Dakhla Airport, Dakhla",,23.7183,-15.932
-VIN,"Havryshivka International Airport, Vinnytsia",,49.2399,28.614
+VIN,"Havryshivka International Airport, Vinnytsya",,49.2399,28.614
 VIQ,"Viqueque Airport, Viqueque",,-8.8838,126.373
 VIR,"Virginia Aerodrome, Durban",,-29.770606,31.058406
 VIS,"Visalia Municipal Airport, Visalia",,36.31856,-119.39373
@@ -8292,7 +8294,7 @@ WAC,"Waca Airport, Waca Airport",,7.167,37.17
 WAD,"Andriamena Airport, Andriamena",,-17.45085,47.51291
 WAE,"Wadi al-Dawasir Domestic Airport, Wadi ad-Dawasir",,20.50428,45.19956
 WAF,"Wāna Airfield, Wāna Airfield",,32.28,69.57
-WAG,"Wanganui Airport, Wanganui",,-39.96255,175.02289
+WAG,"Wanganui Airport, Whanganui",,-39.96255,175.02289
 WAH,"Breckenridge-Wahpeton Interstate Airport, Wahpeton",,46.24635,-96.60674
 WAI,"Ambalabe Airport, Antsohihy",,-14.89846,47.99395
 WAJ,"Wawoi Falls, Wawoi Falls",,-6.95,142.7
@@ -8304,6 +8306,7 @@ WAP,"Alto Palena Airport, Palena",,-43.6119,-71.8061
 WAQ,"Antsalova, Antsalova",,-18.7,44.62
 WAR,"Waris Airport, Waris",,-3.233,141
 WAT,"Waterford Airport, Waterford",,52.1872,-7.086964
+WAU,"Wauchope Landing Ground, Wauchope",,-20.64074,134.21504
 WAV,"Wave Hill Airport, Wave Hill Airport",,-17.65,130.9
 WAW,"Warsaw Chopin Airport, Warsaw",,52.16575,20.967122
 WAX,"Zuwarah Airport, Zuwārah",,32.9523,12.0155
@@ -8607,7 +8610,7 @@ XNN,"Xining Caojiabao Airport, Xining",,36.52785,102.03677
 XNT,"Xingtai Dalian Airport, Xingtai",,36.88333,114.4293
 XNU,"Nouna Airport, Nouna",,12.74367,-3.86322
 XPA,"Pama Airport, Pama",,11.25,0.7
-XPD,"San Pedro, San Pedro",,-27.98,-65.22
+XPD,"San Pedro de Jujuy Airport, San Pedro de Jujuy",,-24.20341,-64.83512
 XPK,"Pukatawagan Airport, Pukatawagan",,55.8,-101.4
 XPP,"Poplar River Airport, Poplar River",,52.99676,-97.27818
 XPR,"Pine Ridge Airport, Pine Ridge",,43.02577,-102.51776
@@ -8982,6 +8985,7 @@ YRI,"Rivière-du-Loup Airport, Rivière-du-Loup",,47.7644,-69.5847
 YRJ,"Roberval Airport, Roberval",,48.52118,-72.26781
 YRL,"Red Lake Airport, Red Lake",,51.066944,-93.793056
 YRM,"Rocky Mountain House Airport, Rocky Mountain House",,52.429722,-114.904167
+YRN,"Rivers Inlet Waterdrome, Rivers Inlet",,51.68467,-127.26609
 YRO,"Ottawa / Rockcliffe Airport, Ottawa",,45.4603,-75.6461
 YRQ,"Trois-Rivières Airport, Trois-Rivières",,46.3528,-72.6794
 YRR,"Stuart Island Airport, Stuart Island",,50.40995,-125.13522
@@ -9002,7 +9006,7 @@ YSL,"Saint-Léonard Airport, Saint-Léonard",,47.1575,-67.83472
 YSM,"Fort Smith Airport, Fort Smith",,60.02028,-111.96194
 YSN,"Salmon Arm Airport, Salmon Arm",,50.6828,-119.229
 YSO,"Postville Airport, Postville",,54.91031,-59.78569
-YSP,"Marathon Airport, Marathon",,48.755278,-86.344444
+YSP,"Marathon Airport, Marathon",,48.7553,-86.3444
 YSQ,"Songyuan Chaganhu Airport, Songyuan",,45.21077,124.44875
 YSR,"Nanisivik Airport, Nanisivik",,72.98103,-84.61198
 YSS,"Slate Islands Provincial Park, Slate Islands Provincial Park",,48.65979,-87.00056
@@ -9042,7 +9046,7 @@ YUE,"Yuendumu Airport, Yuendumu",,-22.254167,131.782222
 YUL,"Montréal-Pierre Elliott Trudeau International Airport, Montréal",,45.46106,-73.75019
 YUM,"Yuma International Airport, Yuma",,32.656578,-114.60598
 YUS,"Yushu Batang, Yushu Xian",,32.8364,97.0361
-YUT,"Repulse Bay Airport, Naujaat",,66.521389,-86.224722
+YUT,"Naujaat Airport, Naujaat",,66.521389,-86.224722
 YUX,"Hall Beach Airport, Hall Beach",,68.77611,-81.24361
 YUY,"Rouyn-Noranda Airport, Rouyn-Noranda",,48.20611,-78.83556
 YVA,"Moroni Iconi Airport, Moroni",,-11.71263,43.2427
@@ -9193,7 +9197,6 @@ ZIH,"Ixtapa-Zihuatanejo International Airport, Ixtapa-Zihuatanejo",,17.60157,-10
 ZIS,"Zintan Airport, Zintan",,31.77598,12.2498
 ZIW,"Kehl DE, Kehl DE",,48.57,7.817
 ZIX,"Zhigansk Airport, Zhigansk",,66.79664,123.36136
-ZJF,"Dubai AE Jebel Ali Free Zone, Dubai",,25.0203,55.1031
 ZJG,"Jenpeg Airport, Jenpeg",,54.5189,-98.0461
 ZJI,"Locarno Airport, Locarno",,46.17,8.8
 ZJN,"Swan River Airport, Swan River",,52.120556,-101.236389
@@ -9229,7 +9232,7 @@ ZPH,"Zephyrhills Municipal Airport, Zephyrhills",,28.23,-82.17
 ZPO,"Pinehouse Lake Airport, Pinehouse Lake",,55.52739,-106.5824
 ZPQ,"Rheine-Bentlage Air Base, Rheine",,52.29117,7.387
 ZQN,"Queenstown Airport, Queenstown",,-45.01837,168.74007
-ZQS,"Queen Charlotte Seaplane Base, Queen Charlotte Island",,53.01189,-131.95533
+ZQS,"Queen Charlotte Seaplane Base, Haida Gwaii",,53.01189,-131.95533
 ZQV,"Worms Airfield, Worms",,49.606511,8.3684
 ZQW,"Zweibrücken Airport, Saarbrücken","Zweibrücken flygplats, Saarbrücken",49.209525,7.400647
 ZQZ,"Zhangjiakou Ningyuan Airport, Zhangjiakou",,40.7392,114.931
