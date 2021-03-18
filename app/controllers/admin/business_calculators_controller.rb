@@ -3,6 +3,7 @@
 module Admin
   class BusinessCalculatorsController < AdminController
     before_action :set_calculator, only: [:show, :edit, :update, :destroy]
+    before_action :set_units, only: [:new, :edit, :update]
 
     def index
       @calculators = BusinessCalculators::Calculator.all.order(name: :asc)
@@ -48,9 +49,20 @@ module Admin
       @calculator = BusinessCalculators::Calculator.find(params[:id])
     end
 
+    def set_units
+      @units = BusinessCalculators::Unit.all.order(name: :asc)
+    end
+
     def calculator_params
       params.require(:business_calculator).permit(
-        :name, { categories_attributes: [:id, :name, { fields_attributes: [:id, :label] }] }
+        :name,
+        {
+          categories_attributes: [
+            :id,
+            :name,
+            { fields_attributes: [:id, :label, units: []] }
+          ]
+        }
       )
     end
   end

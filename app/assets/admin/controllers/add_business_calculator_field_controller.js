@@ -4,25 +4,42 @@ export default class AddBusinessCalculatorFieldController extends Controller {
   cloneToDestination() {
     const clone = this.templateTarget.cloneNode(true);
     clone.classList.remove('hidden');
-    clone.dataset.target = clone.dataset.target.replace('add-business-calculator-field.template', '');
     this.destinationTarget.appendChild(clone);
+
+    clone.dataset.target = clone.dataset.target.replace('add-business-calculator-field.template', '');
   }
 
   cloneToDestinationWithFirstNumberIncremented() {
     this.cloneToDestination();
 
-    AddBusinessCalculatorFieldController
-      .incrementFirstNumber(this.templateTarget.firstElementChild);
+    this.templateTarget.querySelectorAll('.add-business-calculator-field-input-field').forEach((inputElement) => {
+      AddBusinessCalculatorFieldController
+        .incrementFirstNumberOnInputElement(inputElement);
+    });
+
+    this.templateTarget.querySelectorAll('.add-business-calculator-field-label-field').forEach((labelElement) => {
+      const newForValue = AddBusinessCalculatorFieldController
+        .incrementFirstIntegerOfArray(labelElement.htmlFor.split('_')).join('_');
+      labelElement.htmlFor = newForValue;
+    });
   }
 
   cloneToDestinationWithSecondNumberIncremented() {
     this.cloneToDestination();
 
-    AddBusinessCalculatorFieldController
-      .incrementLastNumber(this.templateTarget.firstElementChild);
+    this.templateTarget.querySelectorAll('.add-business-calculator-field-input-field').forEach((inputElement) => {
+      AddBusinessCalculatorFieldController
+        .incrementLastNumberOnInputElement(inputElement);
+    });
+
+    this.templateTarget.querySelectorAll('.add-business-calculator-field-label-field').forEach((labelElement) => {
+      const newForValue = AddBusinessCalculatorFieldController
+        .incrementLastIntegerOfArray(labelElement.htmlFor.split('_')).join('_');
+      labelElement.htmlFor = newForValue;
+    });
   }
 
-  static incrementFirstNumber(element) {
+  static incrementFirstNumberOnInputElement(element) {
     const newId = AddBusinessCalculatorFieldController
       .incrementFirstIntegerOfArray(element.id.split('_')).join('_');
     element.id = newId;
@@ -32,7 +49,7 @@ export default class AddBusinessCalculatorFieldController extends Controller {
     element.name = newName;
   }
 
-  static incrementLastNumber(element) {
+  static incrementLastNumberOnInputElement(element) {
     const newId = AddBusinessCalculatorFieldController
       .incrementLastIntegerOfArray(element.id.split('_')).join('_');
     element.id = newId;

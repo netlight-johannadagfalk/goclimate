@@ -188,6 +188,7 @@ Rails.application.routes.draw do
     resources :referral_codes
     resources :business_calculators
     resources :organizations
+    resources :units
     resources :climate_reports
     resources :invoices
     resources :lifestyle_calculators, only: [:index, :show, :new, :create] do
