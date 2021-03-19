@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Units</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Key</th>
+      <th>Input type</th>
+      <th>Updated</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @units.each do |unit| %>
+      <tr>
+        <td><%= unit.name %></td>
+        <td><%= unit.key %></td>
+        <td><%= unit.input_type %></td>
+        <td><%= time_tag(unit.updated_at, format: '%F %R') %></td>
+        <td class="admin-actions">
+          <%= link_to 'Show', [:admin, unit] %> &nbsp;
+          <%= link_to 'Edit', edit_admin_unit_path(unit) %> &nbsp;
+          <%= link_to 'Destroy', [:admin, unit], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<%= link_to 'New unit', new_admin_unit_path, class: 'btn btn-default' %>

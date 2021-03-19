@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Unit</h1>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @unit.name %></dd>
+  <dt>Key:</dt>
+  <dd><%= @unit.key %></dd>
+  <dt>Input type:</dt>
+  <dd><%= @unit.input_type %></dd>
+  
+  <dt>Updated:</dt>
+  <dd><%= time_tag(@unit.updated_at) %></dd>
+</dl>
+
+<hr>
+
+<%= link_to 'Edit', edit_admin_unit_path(@unit), class: 'btn btn-default' %>
+<%= link_to 'Back', admin_units_path, class: 'btn btn-link' %>
