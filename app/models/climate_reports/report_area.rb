@@ -3,7 +3,7 @@
 module ClimateReports
   class ReportArea < ApplicationRecord
     belongs_to :report, class_name: 'ClimateReports::Report'
-    belongs_to :calculator, class_name: 'BusinessCalculator::Calculator'
+    belongs_to :calculator, class_name: 'BusinessCalculators::Calculator'
 
     validates_presence_of :title
   end

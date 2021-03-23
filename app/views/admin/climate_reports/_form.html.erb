@@ -36,5 +36,52 @@
     </div>
   </div>
 
+  <h2>Report areas</h2>
+  <div data-controller="add-nested-fields">
+    <%= form.fields_for :areas do |area_fields| %>
+      <%= area_fields.hidden_field :id %>
+      <div class="row" style="margin-bottom: 1em">
+        <div class="col-sm-6">
+          <%= area_fields.label :area_name %>
+          <%= area_fields.text_field :title, class: 'form-control' %>
+        </div>
+        <div class="col-sm-5">
+          <%= area_fields.label :calculator, class: 'add-nested-fields-label-field'%>
+          <%= area_fields.select :calculator_id, options_from_collection_for_select(@calculators, :id, :name), {}, class: 'form-control add-nested-fields-input-field' %>
+        </div>
+        <div class="col-sm-1">
+          <%= area_fields.label :delete %>
+          <%= area_fields.check_box :_destroy %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= form.fields_for :areas, ClimateReports::ReportArea.new do |area_fields| %>
+      <div class="hidden row" data-target="add-nested-fields.template">
+        <div class="form-group col-sm-6">
+          <%= area_fields.label :area_name %>
+          <%= area_fields.text_field :title, class: 'form-control add-nested-fields-input-field', style: '', placeholder: 'Area name ...'  %>
+        </div>
+
+        <div class="col-sm-5">
+          <%= area_fields.label :calculator, class: 'add-nested-fields-label-field'%>
+          <%= area_fields.select :calculator_id, options_from_collection_for_select(@calculators, :id, :name), {}, class: 'form-control add-nested-fields-input-field' %>
+        </div>
+        <div class="col-sm-1">
+          <%= area_fields.label :delete %>
+          <%= area_fields.check_box :_destroy %>
+        </div>
+      </div>
+    <% end %>
+
+    <div data-target="add-nested-fields.destination" style=""></div>
+
+    <div style="margin: 1.5em 0">
+      <button type="button" class="btn btn-default" data-action="add-nested-fields#cloneToDestinationWithFirstNumberIncremented">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add area
+      </button>
+    </div>
+  </div>
+
   <%= form.submit class: 'btn btn-primary' %>
 <% end %>
