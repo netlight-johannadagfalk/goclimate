@@ -8,6 +8,17 @@
   
   <dt>Updated:</dt>
   <dd><%= time_tag(@report.updated_at) %></dd>
+
+  <dt>Organization:</dt>
+  <dd><%= @report.organization.name %></dd>
+
+  <dt>Reporting period:</dt>
+  <dd><%= @report.reporting_period %></dd>
+
+  <dt>Report areas:</dt>
+  <% @report.areas.each do |area| %>
+    <dd><%= area.title %> (connected to calculator <%= BusinessCalculators::Calculator.find(area.calculator_id).name %>)</dd>
+  <% end %>
 </dl>
 
 <hr>

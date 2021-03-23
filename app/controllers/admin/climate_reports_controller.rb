@@ -3,7 +3,8 @@
 module Admin
   class ClimateReportsController < AdminController
     before_action :set_report, only: [:show, :edit, :update, :destroy]
-    before_action :set_organizations, only: [:new, :edit]
+    before_action :set_organizations, only: [:new, :create, :update, :edit]
+    before_action :set_calculators, only: [:new, :create, :update, :edit]
 
     def index
       @reports = ClimateReports::Report.all.order(title: :asc)
@@ -53,8 +54,25 @@ module Admin
       @organizations = Organization.all.order(name: :asc).map { |o| [o.name, o.id] }
     end
 
+    def set_calculators
+      @calculators = BusinessCalculators::Calculator.all.order(name: :asc)
+    end
+
     def report_params
-      params.require(:climate_report).permit(:title, :start_date, :end_date, :organization).tap do |p|
+      params.require(:climate_report).permit(
+        :title,
+        :start_date,
+        :end_date,
+        :organization,
+        {
+          areas_attributes: [
+            :id,
+            :title,
+            :_destroy,
+            :calculator_id
+          ]
+        }
+      ).tap do |p|
         p[:reporting_period] = p[:start_date]..p[:end_date]
         p[:organization_id] = p[:organization]
       end.except(:start_date, :end_date, :organization)

@@ -1,24 +1,24 @@
 import { Controller } from 'stimulus';
 
-export default class AddBusinessCalculatorFieldController extends Controller {
+export default class AddNestedFieldsController extends Controller {
   cloneToDestination() {
     const clone = this.templateTarget.cloneNode(true);
     clone.classList.remove('hidden');
     this.destinationTarget.appendChild(clone);
 
-    clone.dataset.target = clone.dataset.target.replace('add-business-calculator-field.template', '');
+    clone.dataset.target = clone.dataset.target.replace('add-nested-fields.template', '');
   }
 
   cloneToDestinationWithFirstNumberIncremented() {
     this.cloneToDestination();
 
-    this.templateTarget.querySelectorAll('.add-business-calculator-field-input-field').forEach((inputElement) => {
-      AddBusinessCalculatorFieldController
+    this.templateTarget.querySelectorAll('.add-nested-fields-input-field').forEach((inputElement) => {
+      AddNestedFieldsController
         .incrementFirstNumberOnInputElement(inputElement);
     });
 
-    this.templateTarget.querySelectorAll('.add-business-calculator-field-label-field').forEach((labelElement) => {
-      const newForValue = AddBusinessCalculatorFieldController
+    this.templateTarget.querySelectorAll('.add-nested-fields-label-field').forEach((labelElement) => {
+      const newForValue = AddNestedFieldsController
         .incrementFirstIntegerOfArray(labelElement.htmlFor.split('_')).join('_');
       labelElement.htmlFor = newForValue;
     });
@@ -27,34 +27,34 @@ export default class AddBusinessCalculatorFieldController extends Controller {
   cloneToDestinationWithSecondNumberIncremented() {
     this.cloneToDestination();
 
-    this.templateTarget.querySelectorAll('.add-business-calculator-field-input-field').forEach((inputElement) => {
-      AddBusinessCalculatorFieldController
+    this.templateTarget.querySelectorAll('.add-nested-fields-input-field').forEach((inputElement) => {
+      AddNestedFieldsController
         .incrementLastNumberOnInputElement(inputElement);
     });
 
-    this.templateTarget.querySelectorAll('.add-business-calculator-field-label-field').forEach((labelElement) => {
-      const newForValue = AddBusinessCalculatorFieldController
+    this.templateTarget.querySelectorAll('.add-nested-fields-label-field').forEach((labelElement) => {
+      const newForValue = AddNestedFieldsController
         .incrementLastIntegerOfArray(labelElement.htmlFor.split('_')).join('_');
       labelElement.htmlFor = newForValue;
     });
   }
 
   static incrementFirstNumberOnInputElement(element) {
-    const newId = AddBusinessCalculatorFieldController
+    const newId = AddNestedFieldsController
       .incrementFirstIntegerOfArray(element.id.split('_')).join('_');
     element.id = newId;
 
-    const newName = AddBusinessCalculatorFieldController
+    const newName = AddNestedFieldsController
       .incrementFirstIntegerOfArray(element.name.split('][')).join('][');
     element.name = newName;
   }
 
   static incrementLastNumberOnInputElement(element) {
-    const newId = AddBusinessCalculatorFieldController
+    const newId = AddNestedFieldsController
       .incrementLastIntegerOfArray(element.id.split('_')).join('_');
     element.id = newId;
 
-    const newName = AddBusinessCalculatorFieldController
+    const newName = AddNestedFieldsController
       .incrementLastIntegerOfArray(element.name.split('][')).join('][');
     element.name = newName;
   }
@@ -66,10 +66,10 @@ export default class AddBusinessCalculatorFieldController extends Controller {
   }
 
   static incrementLastIntegerOfArray(array) {
-    const newArray = AddBusinessCalculatorFieldController
+    const newArray = AddNestedFieldsController
       .incrementFirstIntegerOfArray(array.reverse()).reverse();
     return newArray;
   }
 }
 
-AddBusinessCalculatorFieldController.targets = ['template', 'destination'];
+AddNestedFieldsController.targets = ['template', 'destination'];
