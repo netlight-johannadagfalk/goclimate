@@ -35,32 +35,32 @@
                 <li<% if controller_name == 'projects' %> class="active"<% end %>>
                   <%= link_to 'Projects', admin_projects_path %></a>
                 </li>
-                <li<% if controller_name == 'flight_offsets' %> class="active"<% end %>>
-                  <%= link_to 'Flight offsets', admin_flight_offsets_path %></a>
-                </li>
                 <li<% if controller_name == 'referral_codes' %> class="active"<% end %>>
                   <%= link_to 'Referral codes', admin_referral_codes_path %></a>
+                </li>
+                <li<% if controller_name == 'flight_offsets' %> class="active"<% end %>>
+                  <%= link_to 'Flight offsets', admin_flight_offsets_path %></a>
                 </li>
                 <li<% if controller_name == 'api_keys' %> class="active"<% end %>>
                   <%= link_to 'API Keys', admin_api_keys_path %></a>
                 </li>
-                <li<% if controller_name == 'lifestyle_calculators' %> class="active"<% end %>>
-                  <%= link_to 'Lifestyle Calculators', admin_lifestyle_calculators_path %></a>
-                </li>
                 <li<% if controller_name == 'flight_batch' %> class="active"<% end %>>
                   <%= link_to 'Flight Batch', new_admin_flight_batch_path %></a>
                 </li>
+                <li<% if controller_name == 'lifestyle_calculators' %> class="active"<% end %>>
+                  <%= link_to 'Lifestyle Calculators', admin_lifestyle_calculators_path %></a>
+                </li>
                 <li<% if controller_name == 'business_calculators' %> class="active"<% end %>>
                   <%= link_to 'Business Calculators', admin_business_calculators_path %></a>
+                </li>
+                <li<% if controller_name == 'units' %> class="active"<% end %>>
+                  <%= link_to 'Units', admin_units_path %></a>
                 </li>
                 <li<% if controller_name == 'organizations' %> class="active"<% end %>>
                   <%= link_to 'Organizations', admin_organizations_path %></a>
                 </li>
                 <li<% if controller_name == 'climate_reports' %> class="active"<% end %>>
                   <%= link_to 'Climate Reports', admin_climate_reports_path %></a>
-                </li>
-                <li<% if controller_name == 'units' %> class="active"<% end %>>
-                  <%= link_to 'Units', admin_units_path %></a>
                 </li>
               </ul>
             </div>
