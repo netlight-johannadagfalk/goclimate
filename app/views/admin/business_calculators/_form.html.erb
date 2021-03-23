@@ -17,7 +17,7 @@
   </div>
 
   <h2>Form design</h2>
-  <div data-controller="add-business-calculator-field">
+  <div data-controller="add-nested-fields">
 
     <%= form.fields_for :categories do |category_fields| %>
       <%= category_fields.hidden_field :id %>
@@ -57,18 +57,18 @@
     <% end %>
 
     <%= form.fields_for :categories, BusinessCalculators::CalculatorCategory.new do |category_fields| %>
-      <div class="hidden" data-target="add-business-calculator-field.template">
-        <%= category_fields.text_field :name, class: 'form-control input-lg add-business-calculator-field-input-field', 'data-target': 'add-business-calculator-field.templateInput', style: 'margin: 1em 0; font-weight: 600;', placeholder: 'Category name ...'  %>
+      <div class="hidden" data-target="add-nested-fields.template">
+        <%= category_fields.text_field :name, class: 'form-control input-lg add-nested-fields-input-field', 'data-target': 'add-nested-fields.templateInput', style: 'margin: 1em 0; font-weight: 600;', placeholder: 'Category name ...'  %>
 
         <!-- It's currently not possible to create a category and its fields at the same time -->
         <!-- <%= render "add_field", category_fields: category_fields %> -->
       </div>
     <% end %>
 
-    <div data-target="add-business-calculator-field.destination" style="margin-top: 2em"></div>
+    <div data-target="add-nested-fields.destination" style="margin-top: 2em"></div>
 
     <div style="margin: 1.5em 0">
-      <button type="button" class="btn btn-default" data-action="add-business-calculator-field#cloneToDestinationWithFirstNumberIncremented">
+      <button type="button" class="btn btn-default" data-action="add-nested-fields#cloneToDestinationWithFirstNumberIncremented">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add category
       </button>
     </div>

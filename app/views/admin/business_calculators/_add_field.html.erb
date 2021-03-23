@@ -1,22 +1,22 @@
-<div data-controller="add-business-calculator-field">
+<div data-controller="add-nested-fields">
   <%= local_assigns[:category_fields].fields_for :fields, BusinessCalculators::CalculatorField.new do |field_fields| %>
-    <div class="hidden" data-target="add-business-calculator-field.template" style="">
+    <div class="hidden" data-target="add-nested-fields.template" style="">
       <div class="row" style="padding-top: 0.5em">
         <div class="col-sm-8">
-          <%= field_fields.label :question, class: 'add-business-calculator-field-label-field'%>
-          <%= field_fields.text_field :label, class: 'form-control add-business-calculator-field-input-field' %>
+          <%= field_fields.label :question, class: 'add-nested-fields-label-field'%>
+          <%= field_fields.text_field :label, class: 'form-control add-nested-fields-input-field' %>
         </div>
         <div class="col-sm-4">
-          <%= field_fields.label :allowed_units, class: 'add-business-calculator-field-label-field'%>
-          <%= field_fields.select :units, options_from_collection_for_select(@units, :key, :name), {}, class: 'form-control add-business-calculator-field-input-field', multiple: true %>
+          <%= field_fields.label :allowed_units, class: 'add-nested-fields-label-field'%>
+          <%= field_fields.select :units, options_from_collection_for_select(@units, :key, :name), {}, class: 'form-control add-nested-fields-input-field', multiple: true %>
         </div>
       </div>
     </div>
   <% end %>
 
-  <div data-target="add-business-calculator-field.destination"></div>
+  <div data-target="add-nested-fields.destination"></div>
 
-  <button type="button" class="btn btn-default" data-action="add-business-calculator-field#cloneToDestinationWithSecondNumberIncremented">
+  <button type="button" class="btn btn-default" data-action="add-nested-fields#cloneToDestinationWithSecondNumberIncremented">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add field
   </button>
 </div>  
