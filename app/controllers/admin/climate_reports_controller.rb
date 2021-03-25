@@ -23,19 +23,21 @@ module Admin
     def create
       @report = ClimateReports::Report.new(report_params)
 
-      if @report.save
-        redirect_to [:admin, @report], notice: 'Report was successfully created.'
-      else
+      unless @report.save
         render :new
+        return
       end
+
+      redirect_to [:admin, @report], notice: 'Report was successfully created.'
     end
 
     def update
-      if @report.update(report_params)
-        redirect_to [:admin, @report], notice: 'Report was successfully updated.'
-      else
+      unless @report.update(report_params)
         render :edit
+        return
       end
+
+      redirect_to [:admin, @report], notice: 'Report was successfully updated.'
     end
 
     def destroy
@@ -63,7 +65,7 @@ module Admin
         :title,
         :start_date,
         :end_date,
-        :organization,
+        :organization_id,
         {
           areas_attributes: [
             :id,
@@ -74,7 +76,6 @@ module Admin
         }
       ).tap do |p|
         p[:reporting_period] = p[:start_date]..p[:end_date]
-        p[:organization_id] = p[:organization]
       end.except(:start_date, :end_date, :organization)
     end
   end

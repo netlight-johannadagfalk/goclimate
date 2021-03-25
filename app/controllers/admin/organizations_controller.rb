@@ -21,19 +21,21 @@ module Admin
     def create
       @organization = Organization.new(organization_params)
 
-      if @organization.save
-        redirect_to [:admin, @organization], notice: 'Organization was successfully created.'
-      else
+      unless @organization.save
         render :new
+        return
       end
+
+      redirect_to [:admin, @organization], notice: 'Organization was successfully created.'
     end
 
     def update
-      if @organization.update(organization_params)
-        redirect_to [:admin, @organization], notice: 'Organization was successfully updated.'
-      else
+      unless @organization.update(organization_params)
         render :edit
+        return
       end
+
+      redirect_to [:admin, @organization], notice: 'Organization was successfully updated.'
     end
 
     def destroy

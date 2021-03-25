@@ -18,7 +18,7 @@
 
   <div class="form-group">
     <%= form.label :organization %>
-    <%= form.select :organization, options_for_select(@organizations, @report.organization&.id), {}, class: 'form-control' %>
+    <%= form.select :organization_id, options_for_select(@organizations, @report.organization&.id), {}, class: 'form-control' %>
   </div>
 
   <div class="row">
