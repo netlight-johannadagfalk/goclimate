@@ -41,29 +41,29 @@ RSpec.describe GiftCard do
       it 'sets co2e based on country for 1 month' do
         gift_card = described_class.new(number_of_months: 1, country: 'AT')
 
-        # Average for Austria (11.8 tonnes) * safety buffer (2) / 12 months
-        expect(gift_card.co2e).to eq(GreenhouseGases.new(1_967))
+        # Average for Austria (13.14 tonnes) * safety buffer (2) / 12 months
+        expect(gift_card.co2e).to eq(GreenhouseGases.new(2_190))
       end
 
       it 'sets co2e based on country for 3 months' do
         gift_card = described_class.new(number_of_months: 3, country: 'BE')
 
-        # Average for Belgium (12.5 tonnes) * safety buffer (2) / 12 months * 3 months
-        expect(gift_card.co2e).to eq(GreenhouseGases.new(6_250))
+        # Average for Belgium (13.83 tonnes) * safety buffer (2) / 12 months * 3 months
+        expect(gift_card.co2e).to eq(GreenhouseGases.new(6_915))
       end
 
       it 'sets co2e based on country for 6 months' do
         gift_card = described_class.new(number_of_months: 6, country: 'DK')
 
-        # Average for Denmark (14.5 tonnes) * safety buffer (2) / 12 months * 6 months
-        expect(gift_card.co2e).to eq(GreenhouseGases.new(14_500))
+        # Average for Denmark (15.74 tonnes) * safety buffer (2) / 12 months * 6 months
+        expect(gift_card.co2e).to eq(GreenhouseGases.new(15_740))
       end
 
       it 'sets co2e based on country for 12 months' do
         gift_card = described_class.new(number_of_months: 12, country: 'US')
 
-        # Average for the U.S. (19.2 tonnes) * safety buffer (2)
-        expect(gift_card.co2e).to eq(GreenhouseGases.new(38_400))
+        # Average for the U.S. (19.84 tonnes) * safety buffer (2)
+        expect(gift_card.co2e).to eq(GreenhouseGases.new(39_680))
       end
 
       it 'sets price based on co2e for SEK, ceiled to nearest 10 kr' do
@@ -105,7 +105,7 @@ RSpec.describe GiftCard do
       it 'saves yearly footprint that co2e calculation was based on' do
         gift_card = described_class.create(number_of_months: 6, country: 'DE')
 
-        expect(gift_card.yearly_footprint).to eq(GreenhouseGases.new(13_000))
+        expect(gift_card.yearly_footprint).to eq(GreenhouseGases.new(11_170))
       end
     end
 
