@@ -47,7 +47,7 @@
         </div>
         <div class="col-sm-5">
           <%= area_fields.label :calculator, class: 'add-nested-fields-label-field'%>
-          <%= area_fields.select :calculator_id, options_from_collection_for_select(@calculators, :id, :name), {}, class: 'form-control add-nested-fields-input-field' %>
+          <%= area_fields.select :calculator_id, options_from_collection_for_select(@calculators, :id, :name, area_fields.object.calculator.id.to_i), {}, class: 'form-control add-nested-fields-input-field' %>
         </div>
         <div class="col-sm-1">
           <%= area_fields.label :delete %>
