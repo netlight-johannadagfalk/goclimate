@@ -38,7 +38,7 @@ gem 'rack-proxy', '~> 0.6.4'
 gem 'redcarpet', '~> 3.5.0'
 
 # Views
-gem 'country_select', '~> 4.0.0'
+gem 'country_select', '~> 5.0.1'
 gem 'jbuilder', '~> 2.9'
 
 # Geometry
