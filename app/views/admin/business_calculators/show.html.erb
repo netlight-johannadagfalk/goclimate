@@ -5,6 +5,25 @@
 <dl class="dl-horizontal">
   <dt>Name:</dt>
   <dd><%= @calculator.name %></dd>
+
+  <dt>Contents:</dt>
+  <dd>
+    <% BusinessCalculators::CalculatorCategory.where(calculator_id: @calculator.id).each do |category| %>
+      <b><%= category.name %></b>
+      <ul>
+        <% BusinessCalculators::CalculatorField.where(category_id: category.id).each do |field| %>
+          <li>
+            <%= field.label %>
+            <% field.units.each_with_index do |(key, _value), index| %>
+                <%= "
+                  #{'(' if index == 0}#{BusinessCalculators::Unit.where(key: key).first.name}#{index == field.units.length - 1 ? ')' : ','}
+                  " %>
+              <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </dd>
   
   <dt>Updated:</dt>
   <dd><%= time_tag(@calculator.updated_at) %></dd>
