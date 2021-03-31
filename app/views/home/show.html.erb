@@ -44,7 +44,7 @@
       <div class="flex flex-col m-lg:flex-row justify-center text-center space-y-12 m-lg:space-y-0 m-lg:space-x-16 d:space-x-32">
         <div>
           <p style="min-width=300px;"><%=t 'welcome.users_prefix' %></p>
-          <p class="font-bold text-5xl text-green-accent text-center">
+          <p class="font-bold text-5xl text-green-accent text-center whitespace-nowrap">
             <span id="total-users"
               data-controller="counting-number"
               data-target-number="<%= @total_users %>">
@@ -55,7 +55,7 @@
         </div>
         <div>
           <p style="min-width=300px;"><%=t 'welcome.tonnes_prefix' %></p>
-          <p class="font-bold text-5xl text-green-accent text-center">
+          <p class="font-bold text-5xl text-green-accent text-center whitespace-nowrap">
             <span id="total-carbon-offset"
               data-controller="counting-number"
               data-target-number="<%= @total_carbon_offset %>">
