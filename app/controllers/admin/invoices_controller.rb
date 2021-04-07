@@ -25,7 +25,7 @@ module Admin
 
     # GET /invoices/1/edit
     def edit
-      @available_projects = Project.order(created_at: :desc).limit(10)
+      @available_projects = Project.order(created_at: :desc)
     end
 
     # POST /invoices
