@@ -17,7 +17,7 @@ module Admin
 
     def missing_fortnox_ids
       first = 1001
-      last = [Invoice.maximum('fortnox_id'), ClimateReportInvoice.maximum('fortnox_id')].max.to_i
+      last = [Invoice.maximum('fortnox_id').to_i, ClimateReportInvoice.maximum('fortnox_id').to_i].max.to_i
       all_registered = Invoice.select('fortnox_id').map { |i| i.fortnox_id.to_i } +
                        ClimateReportInvoice.select('fortnox_id').map { |i| i.fortnox_id.to_i }
       (first..last).to_a - all_registered
