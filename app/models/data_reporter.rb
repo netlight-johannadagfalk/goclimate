@@ -6,7 +6,7 @@ class DataReporter < ApplicationRecord
   has_many :data_requests, class_name: 'DataRequest', foreign_key: 'recipient_id'
 
   validates_presence_of :report
-  validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
+  validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{24}\z/ }
 
   before_validation :generate_key
 

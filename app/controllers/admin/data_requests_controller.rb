@@ -23,17 +23,18 @@ module Admin
     end
 
     def create # rubocop:disable Metrics/MethodLength
+      report = ClimateReports::ReportArea.find(data_request_params[:area]).report
       data_request_params[:email].split(',').map(&:strip).each do |email|
         data_reporter = DataReporter.find_or_create_by(
           {
             email: email,
-            report_id: ClimateReports::ReportArea.find(data_request_params[:area]).report.id
+            report: report
           }
         )
 
         unless data_reporter.save
           redirect_to [
-            :admin, data_request
+            :admin, report
           ], notice: "There was and error and the data reporter with email '#{email}' was not saved!"
           break
         end
