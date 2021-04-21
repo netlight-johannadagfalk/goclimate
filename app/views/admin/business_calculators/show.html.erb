@@ -14,11 +14,8 @@
         <% BusinessCalculators::CalculatorField.where(category_id: category.id).each do |field| %>
           <li>
             <%= field.label %>
-            <% field.units.each_with_index do |(key, _value), index| %>
-                <%= "
-                  #{'(' if index == 0}#{BusinessCalculators::Unit.where(key: key).first.name}#{index == field.units.length - 1 ? ')' : ','}
-                  " %>
-              <% end %>
+            <% formatted_unit_names = field.units&.map { |(key, _value)| BusinessCalculators::Unit.where(key: key).first.name }&.join(", ") %>
+            (<%= "#{formatted_unit_names}#{formatted_unit_names.present? ? ', free form' : 'Free form'}" %>)
           </li>
         <% end %>
       </ul>
