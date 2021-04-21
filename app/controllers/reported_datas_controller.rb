@@ -10,9 +10,12 @@ class ReportedDatasController < ApplicationController
       [
         category,
         category.fields.map do |field|
+          latest_reported_data = ReportedData.latest(@report_area, field) unless @data_request.survey
           ReportedData.new(
             calculator_field: field,
-            data_request: @data_request
+            data_request: @data_request,
+            value: latest_reported_data&.value,
+            unit: latest_reported_data&.unit
           )
         end
       ]

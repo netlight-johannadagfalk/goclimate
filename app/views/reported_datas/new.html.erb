@@ -13,16 +13,21 @@
               <div class="flex flex-row">
                 <div class="flex flex-col max-w-md w-1/2 mr-2">
                   <%= label_tag reported_data.calculator_field.label, nil, class: 'font-semibold' %>
-                  <%= reported_data_fields.text_field :value, class: 'input' %>
+                  <%= reported_data_fields.text_field :value, value: reported_data.value, class: 'input' %>
                 </div>
                 <div class="flex flex-col">
                   <%= label_tag 'Unit', nil, class: 'font-semibold' %>
                   <select name="reported_datas[][unit]" class="input" size="<%= reported_data.calculator_field.units&.length + 1 %>">
                     <% reported_data.calculator_field.units&.each_with_index do |(key, _value), index| %>
                       <% unit = BusinessCalculators::Unit.find_by(key: key) %>
-                      <option value="<%= key %>" <%= index == 0 ? 'selected' : '' %>><%= unit.name %></option>
+                      <option
+                        value="<%= key %>"
+                        <%= key == reported_data.unit || reported_data.unit.nil? && index == 0 ? 'selected' : '' %>
+                      >
+                        <%= unit.name %>
+                      </option>
                     <% end %>
-                    <option value="freeform">Free form</option>
+                    <option value="freeform" <%= reported_data.unit == "freeform" || reported_data.calculator_field.units.nil? ? 'selected' : '' %>>Free form</option>
                   </select>
                 </div>
               </div>
@@ -30,7 +35,7 @@
           <% end %>
         </div>
       <% end %>
-      <%= form.submit 'Submit answers', class: 'button button-cta' %>
+      <%= form.submit 'Submit answers', class: 'button button-cta mt-3' %>
     <% end %>
 </section>
 
