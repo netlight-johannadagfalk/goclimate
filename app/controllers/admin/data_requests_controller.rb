@@ -25,12 +25,7 @@ module Admin
     def create # rubocop:disable Metrics/MethodLength
       report = ClimateReports::ReportArea.find(data_request_params[:area]).report
       data_request_params[:email].split(',').map(&:strip).each do |email|
-        data_reporter = DataReporter.find_or_create_by(
-          {
-            email: email,
-            report: report
-          }
-        )
+        data_reporter = DataReporter.find_or_create_by({ email: email, report: report })
 
         unless data_reporter.save
           redirect_to [
@@ -42,7 +37,8 @@ module Admin
         data_request = DataRequest.new(
           {
             report_area_id: data_request_params[:area].to_i,
-            recipient: data_reporter
+            recipient: data_reporter,
+            survey: data_request_params[:survey]
           }
         )
 
@@ -86,7 +82,7 @@ module Admin
     end
 
     def data_request_params
-      params.require(:data_request).permit(:email, :area)
+      params.require(:data_request).permit(:email, :area, :survey)
     end
 
     def send_email(data_reporter, data_request)
