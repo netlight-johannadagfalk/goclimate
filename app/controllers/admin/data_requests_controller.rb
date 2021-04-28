@@ -89,13 +89,25 @@ module Admin
     end
 
     def data_request_params
-      params.require(:data_request).permit(:email, :area, :survey)
+      params.require(:data_request).permit(
+        :email,
+        :area,
+        :survey,
+        :sender,
+        :subject,
+        :message,
+        :locale
+      )
     end
 
     def send_email(data_reporter, data_request)
       DataRequestMailer.with(
         data_reporter: data_reporter,
-        data_request: data_request
+        data_request: data_request,
+        sender: data_request_params[:sender],
+        subject: data_request_params[:subject],
+        message: data_request_params[:message],
+        locale: data_request_params[:locale]
       ).data_request_email.deliver_now
     end
   end
