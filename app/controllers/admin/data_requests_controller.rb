@@ -9,7 +9,7 @@ module Admin
       @report_area = ClimateReports::ReportArea.find(params[:report_area_id]) if params[:report_area_id]
 
       @data_requests = if @report_area
-                         DataRequest.where(report_area_id: @report_area.id)
+                         DataRequest.where(report_area_id: @report_area.id).order(recipient_id: :asc, created_at: :desc)
                        else
                          DataRequest.all
                        end
