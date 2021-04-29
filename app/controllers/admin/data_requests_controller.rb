@@ -56,7 +56,7 @@ module Admin
           break
         end
 
-        send_email(data_reporter, data_request)
+        send_email(data_reporter, data_request) if data_request_params[:send_email] == '1'
       end
 
       redirect_to [
@@ -96,7 +96,8 @@ module Admin
         :sender,
         :subject,
         :message,
-        :locale
+        :locale,
+        :send_email
       )
     end
 
