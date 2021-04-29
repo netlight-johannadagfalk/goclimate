@@ -9,7 +9,7 @@ module Admin
       @report_area = ClimateReports::ReportArea.find(params[:report_area_id]) if params[:report_area_id]
 
       @data_requests = if @report_area
-                         DataRequest.where(report_area_id: @report_area.id)
+                         DataRequest.where(report_area_id: @report_area.id).order(recipient_id: :asc, created_at: :desc)
                        else
                          DataRequest.all
                        end
@@ -56,7 +56,7 @@ module Admin
           break
         end
 
-        send_email(data_reporter, data_request)
+        send_email(data_reporter, data_request) if data_request_params[:send_email] == '1'
       end
 
       redirect_to [
@@ -89,13 +89,26 @@ module Admin
     end
 
     def data_request_params
-      params.require(:data_request).permit(:email, :area, :survey)
+      params.require(:data_request).permit(
+        :email,
+        :area,
+        :survey,
+        :sender,
+        :subject,
+        :message,
+        :locale,
+        :send_email
+      )
     end
 
     def send_email(data_reporter, data_request)
       DataRequestMailer.with(
         data_reporter: data_reporter,
-        data_request: data_request
+        data_request: data_request,
+        sender: data_request_params[:sender],
+        subject: data_request_params[:subject],
+        message: data_request_params[:message],
+        locale: data_request_params[:locale]
       ).data_request_email.deliver_now
     end
   end

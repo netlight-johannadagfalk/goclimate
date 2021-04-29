@@ -1,6 +1,8 @@
 <%=t 'mailers.data_requests.heading' %>
 
-You have received a request to help your team collect data for GoClimate. You can find your requests here <%= data_reporter_url(id: params[:data_reporter].key) %>.
+<%= params[:message].present? ? sanitize(params[:message]) : "You have received a request to help your team collect data for GoClimate." %>
+
+Your link: <%= data_reporter_url(id: params[:data_reporter].key) %>
 
 <%=t 'best_regards' %>,
-<%=t 'mailers.welcome.the_gcn_team', name: "Alexandra" %>
+<%=t 'mailers.welcome.the_gcn_team', name: params[:sender] || 'Alexandra' %>

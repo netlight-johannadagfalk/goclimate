@@ -37,7 +37,8 @@
           &nbsp; <%= link_to 'See answers', admin_reported_datas_path(report_area_id: area.id) %>
         </p>
         <% data_requests = DataRequest.where(report_area_id: area.id) %>
-        Data requests (<%= data_requests.count %>) &nbsp;
+        <% data_reporters = DataReporter.joins(:data_requests).where("data_requests.report_area_id = #{area.id}").distinct %>
+        Data reporters (<%= data_reporters.count %>) &nbsp;
         <%= link_to 'See all requests', admin_data_requests_path(report_area_id: area.id) %> &nbsp;
         <%= link_to '+ New data request', new_admin_data_request_path(area: area), class: 'btn btn-default' %>
       </div>

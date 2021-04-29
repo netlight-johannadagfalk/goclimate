@@ -12,15 +12,43 @@
   <% end %>
 
   <%= form.hidden_field :area, value: params[:area] %>
-  
+  <div class="form-group">
+    <%= form.label :recipient_email %>
+    <%= form.text_field :email, value: @data_reporter&.email, required: true, class: 'form-control' %>
+    <span class="help-block"><%= local_assigns[:help_text] %></span>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :subject %> (optional)
+    <%= form.text_field :subject, class: 'form-control' %>
+    <span class="help-block">If left blank, a default subject will be used</span>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :message %> (optional)
+    <%= form.text_area :message, class: 'form-control' %>
+    <span class="help-block">If left blank, default email text will be used</span>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :sender %>
+    <%= form.select :sender, %w[Alexandra Tove], {}, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :language %>
+    <%= form.select :locale, [%w[English en], %w[Swedish sv]], {}, class: 'form-control' %>
+  </div>
+
   <div class="form-group">
     <%= form.label :survey %>
     <%= form.check_box :survey %>
   </div>
+
   <div class="form-group">
-    <%= form.label :recipient_email %>
-    <%= form.text_field :email, value: @data_reporter&.email, class: 'form-control' %>
-    <span class="help-block"><%= local_assigns[:help_text] %></span>
+    <%= form.label :send_email %>
+    <%= form.check_box :send_email, { checked: true } %>
+    <span class="help-block">If unckecked, no email for the created request(s) will be sent. Useful if you create multiple data requests to one person and don't want to overwhelm them with multiple emails.</span>
   </div>
 
   <%= form.submit class: 'btn btn-primary' %>
