@@ -74,7 +74,7 @@ module Admin
             :id,
             :name,
             :_destroy,
-            { fields_attributes: [:id, :label, :_destroy, units: []] }
+            { fields_attributes: [:id, :label, :field_type, :_destroy, units: []] }
           ]
         }
       )
