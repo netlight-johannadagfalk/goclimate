@@ -37,13 +37,17 @@
         <%= category_fields.fields_for :fields do |field_fields| %>
           <%= field_fields.hidden_field :id %>
           <div class="row" style="padding-top: 0.5em">
-            <div class="col-sm-8">
+            <div class="col-sm-6">
               <%= field_fields.label :question %>
               <%= field_fields.text_field :label, class: 'form-control' %>
             </div>
             <div class="col-sm-3">
               <%= field_fields.label :allowed_units %>
               <%= field_fields.select :units, options_from_collection_for_select(@units, :key, :name,field_fields.object.units&.keys), {}, class: 'form-control', multiple: true %>
+            </div>
+            <div class="col-sm-2">
+              <%= field_fields.label :question_type %>
+              <%= field_fields.select :field_type, options_for_select([['Open ended', 'open_ended'], ['Choose one alternative', 'radio']], field_fields.object.field_type), {}, class: 'form-control' %>
             </div>
             <div class="col-sm-1">
               <%= field_fields.label :delete %>
@@ -52,7 +56,7 @@
           </div>
         <% end %>
         <%= render "add_field", category_fields: category_fields %>
-        <p class="text-muted" style="margin-top: 15px;">Please note that all fields will automatically have a "free form" unit.</p>
+        <p class="text-muted" style="margin-top: 15px;">Please note that all open ended fields will automatically have a "free form" unit.</p>
       </div>
     <% end %>
 

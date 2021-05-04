@@ -14,22 +14,40 @@
               <div class="flex flex-row">
                 <div class="flex flex-col max-w-md w-1/2 mr-2">
                   <%= label_tag reported_data.calculator_field.label, nil, class: 'font-semibold' %>
-                  <%= reported_data_fields.text_field :value, value: reported_data.value, class: 'input' %>
                 </div>
+                <div class="flex flex-col max-w-md w-1/2 mr-2">
+                  <% if reported_data.calculator_field.open_ended_type? %>
+                    <%= label_tag 'Unit', nil, class: 'font-semibold' %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="flex flex-row">
+                <% if reported_data.calculator_field.open_ended_type? %>
+                  <div class="flex flex-col max-w-md w-1/2 mr-2">
+                    <%= reported_data_fields.text_field :value, value: reported_data.value, class: 'input' %>
+                  </div>
+                <% else %>
+                  <%= reported_data_fields.hidden_field :value, value: 1 %>
+                <% end %>
                 <div class="flex flex-col">
-                  <%= label_tag 'Unit', nil, class: 'font-semibold' %>
-                  <select name="reported_datas[<%= reported_data.id || ''%>][unit]" class="input" size="<%= reported_data.calculator_field.units&.length + 1 %>">
-                    <% reported_data.calculator_field.units&.each_with_index do |(key, _value), index| %>
-                      <% unit = BusinessCalculators::Unit.find_by(key: key) %>
-                      <option
-                        value="<%= key %>"
-                        <%= key == reported_data.unit || reported_data.unit.nil? && index == 0 ? 'selected' : '' %>
-                      >
-                        <%= unit.name %>
-                      </option>
-                    <% end %>
-                    <option value="freeform" <%= reported_data.unit == "freeform" || reported_data.calculator_field.units.nil? ? 'selected' : '' %>>Free form</option>
-                  </select>
+                    <select
+                      name="<%= "reported_datas[#{reported_data.id || ''}][unit]" %>"
+                      class="input"
+                      size="<%= reported_data.calculator_field.open_ended_type? ? reported_data.calculator_field.units&.length + 1 : reported_data.calculator_field.units&.length %>"
+                    >
+                      <% reported_data.calculator_field.units&.each_with_index do |(key, _value), index| %>
+                        <% unit = BusinessCalculators::Unit.find_by(key: key) %>
+                        <option
+                          value="<%= key %>"
+                          <%= key == reported_data.unit || reported_data.unit.nil? && index == 0 ? 'selected' : '' %>
+                        >
+                          <%= unit.name %>
+                        </option>
+                      <% end %>
+                      <% if reported_data.calculator_field.open_ended_type? %>
+                        <option value="freeform" <%= reported_data.unit == "freeform" || reported_data.calculator_field.units.nil? ? 'selected' : '' %>>Other</option>
+                      <% end %>
+                    </select>
                 </div>
               </div>
             <% end %>

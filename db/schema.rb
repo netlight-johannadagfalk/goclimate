@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_110613) do
+ActiveRecord::Schema.define(version: 2021_04_30_121124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2021_04_15_110613) do
     t.bigint "category_id", null: false
     t.text "label"
     t.jsonb "units"
+    t.string "field_type", default: "open_ended"
     t.index ["category_id"], name: "index_business_calculators_calculator_fields_on_category_id"
   end
 
