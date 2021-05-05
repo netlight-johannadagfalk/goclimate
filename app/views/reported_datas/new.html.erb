@@ -1,7 +1,15 @@
 <%= render 'shared/header' %>
 
 <section class="section-padding space-y-6">
-    <h3 class="heading-lg">Data collection for <%= @report_area.title %></h3>
+    <h3 class="heading-lg"><%= t 'reported_datas.heading', report_area: @report_area.title %></h3>
+    <h4>
+      <%=
+        sanitize(t(
+          'reported_datas.time_period_html',
+          time_period: "#{sanitize(@report.reporting_period.first.to_s)} - #{sanitize(@report.reporting_period.last.to_s)}"
+        ).gsub('<span', '<span class="font-bold"').html_safe)
+      %>
+    </h4>
     <%= form_with url: @data_request.survey ? multi_update_reported_datas_path : reported_datas_path do |form| %>
       <% @reported_datas.each do |(category, reported_datas)| %>
         <div class="space-y-3">
@@ -17,7 +25,7 @@
                 </div>
                 <div class="flex flex-col max-w-md w-1/2 mr-2">
                   <% if reported_data.calculator_field.open_ended_type? %>
-                    <%= label_tag 'Unit', nil, class: 'font-semibold' %>
+                    <%= label_tag t('reported_datas.units'), nil, class: 'font-semibold' %>
                   <% end %>
                 </div>
               </div>
@@ -54,7 +62,7 @@
           <% end %>
         </div>
       <% end %>
-      <%= form.submit 'Submit answers', class: 'button button-cta mt-3' %>
+      <%= form.submit t('reported_datas.submit'), class: 'button button-cta mt-3' %>
     <% end %>
 </section>
 

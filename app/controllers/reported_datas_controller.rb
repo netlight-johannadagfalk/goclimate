@@ -5,6 +5,7 @@ class ReportedDatasController < ApplicationController
     @data_request = DataRequest.where(key: params[:key]).first
     @report_area = ClimateReports::ReportArea.find(@data_request.report_area_id)
     @calculator = BusinessCalculators::Calculator.find(@report_area.calculator_id)
+    @report = ClimateReports::Report.find(@report_area.report_id)
 
     @reported_datas = @calculator.categories.map do |category|
       [
