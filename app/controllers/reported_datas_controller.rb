@@ -93,10 +93,14 @@ class ReportedDatasController < ApplicationController
   end
 
   def reported_data_instance_survey(field)
-    ReportedData.latest(
+    latest_reported_data = ReportedData.latest(
       @report_area,
       field,
       DataReporter.find(@data_request.recipient_id)
+    )
+    latest_reported_data || ReportedData.new(
+      calculator_field: field,
+      data_request: @data_request
     )
   end
 end
