@@ -13,7 +13,10 @@
     <%= form_with url: @data_request.survey ? multi_update_reported_datas_path : reported_datas_path do |form| %>
       <% @reported_datas.each do |(category, reported_datas)| %>
         <div class="space-y-3">
-          <h4 class="heading"><%= category.name %></h4>
+          <div class="space-y-1">
+            <h4 class="heading"><%= category.name %></h4>
+            <p><%= category.description %></p>
+          </div>
           <% reported_datas.each do |reported_data| %>
             <%= fields_for 'reported_datas[]', reported_data do |reported_data_fields| %>
               <%= reported_data_fields.hidden_field :calculator_field_id %>

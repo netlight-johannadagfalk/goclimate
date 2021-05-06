@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_30_121124) do
+ActiveRecord::Schema.define(version: 2021_05_05_142909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_121124) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "calculator_id", null: false
     t.text "name"
+    t.text "description"
     t.index ["calculator_id"], name: "index_business_calculators_calculator_categor_on_calculator_id"
   end
 

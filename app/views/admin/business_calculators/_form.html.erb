@@ -34,6 +34,15 @@
             </div>
         </div>
 
+        <div class="row" style="margin-bottom: 0.5em;">
+          <div class="col-sm-11">
+            <%= category_fields.label :description %>
+            <%= category_fields.text_field :description, class: 'form-control' %>
+          </div>
+          <div class="col-sm-1">
+            </div>
+        </div>
+
         <%= category_fields.fields_for :fields do |field_fields| %>
           <%= field_fields.hidden_field :id %>
           <div class="row" style="padding-top: 0.5em">
