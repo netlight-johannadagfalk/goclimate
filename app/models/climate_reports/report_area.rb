@@ -19,8 +19,8 @@ module ClimateReports
       total
     end
 
-    def number_of_answered_questions
-      ReportedData.all_latest_from_report_area(self).length
+    def number_of_answered_questions(data_reporter = nil)
+      ReportedData.all_latest_from_report_area(self, data_reporter).length
     end
   end
 end

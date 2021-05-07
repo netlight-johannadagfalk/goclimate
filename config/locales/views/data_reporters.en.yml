@@ -1,0 +1,7 @@
+en:
+  data_reporters:
+    heading: Your data requests
+    list_headings:
+      report_area: Report area
+      date: Date
+      progress: Progress

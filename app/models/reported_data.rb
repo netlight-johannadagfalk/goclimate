@@ -53,8 +53,9 @@ class ReportedData < ApplicationRecord
       .order('reported_data.data_request_id, reported_data.calculator_field_id, reported_data.created_at DESC')
   end
 
-  def self.all_latest_from_report_area(report_area)
-    ReportedData
+  def self.all_latest_from_report_area(report_area, data_reporter = nil)
+    latest =
+      ReportedData
       .joins(
         <<~SQL
           INNER JOIN data_requests ON reported_data.data_request_id = data_requests.id
@@ -67,6 +68,7 @@ class ReportedData < ApplicationRecord
           DISTINCT ON(reported_data.data_request_id, reported_data.calculator_field_id) reported_data.*
         SQL
       )
-      .order('reported_data.data_request_id, reported_data.calculator_field_id, reported_data.created_at DESC')
+    latest = latest.where('data_requests.recipient_id': data_reporter.id) if data_reporter
+    latest.order('reported_data.data_request_id, reported_data.calculator_field_id, reported_data.created_at DESC')
   end
 end

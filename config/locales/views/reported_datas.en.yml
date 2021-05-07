@@ -1,0 +1,10 @@
+en:
+  reported_datas:
+    heading: Data collection for %{report_area}
+    time_period_html: Remember that the data collection is for the time period <span>%{time_period}</span>.
+    submit: Submit answers
+    units: Unit
+    thank_you:
+      heading: Thank you!
+      text: A big thank you for completing the collection of data for %{report_area}!
+      cta: Go back to your data requests

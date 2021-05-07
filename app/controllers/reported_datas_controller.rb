@@ -5,6 +5,7 @@ class ReportedDatasController < ApplicationController
     @data_request = DataRequest.where(key: params[:key]).first
     @report_area = ClimateReports::ReportArea.find(@data_request.report_area_id)
     @calculator = BusinessCalculators::Calculator.find(@report_area.calculator_id)
+    @report = ClimateReports::Report.find(@report_area.report_id)
 
     @reported_datas = @calculator.categories.map do |category|
       [
@@ -92,10 +93,14 @@ class ReportedDatasController < ApplicationController
   end
 
   def reported_data_instance_survey(field)
-    ReportedData.latest(
+    latest_reported_data = ReportedData.latest(
       @report_area,
       field,
       DataReporter.find(@data_request.recipient_id)
+    )
+    latest_reported_data || ReportedData.new(
+      calculator_field: field,
+      data_request: @data_request
     )
   end
 end

@@ -73,6 +73,7 @@ module Admin
           categories_attributes: [
             :id,
             :name,
+            :description,
             :_destroy,
             { fields_attributes: [:id, :label, :field_type, :_destroy, units: []] }
           ]
