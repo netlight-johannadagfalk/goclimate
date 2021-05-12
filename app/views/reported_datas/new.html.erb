@@ -11,6 +11,7 @@
       %>
     </h4>
     <%= form_with url: @data_request.survey ? multi_update_reported_datas_path : reported_datas_path do |form| %>
+      <% field_index = 0 %>
       <% @reported_datas.each do |(category, reported_datas)| %>
         <div class="space-y-3">
           <div class="space-y-1">
@@ -19,9 +20,11 @@
           </div>
           <% reported_datas.each do |reported_data| %>
             <%= fields_for 'reported_datas[]', reported_data do |reported_data_fields| %>
-              <%= reported_data_fields.hidden_field :calculator_field_id %>
-              <%= reported_data_fields.hidden_field :data_request_id %>
-              <%= (reported_data_fields.hidden_field :id) if @data_request.survey %>
+              <input type="hidden" name="<%= "reported_datas[#{field_index}][calculator_field_id]" %>" value="<%= reported_data.calculator_field_id %>">
+              <input type="hidden" name="<%= "reported_datas[#{field_index}][data_request_id]" %>" value="<%= reported_data.data_request_id %>">
+              <% if @data_request.survey %>
+                <input type="hidden" name="<%= "reported_datas[#{field_index}][id]" %>" value="<%= reported_data.id %>">
+              <% end %>
               <div class="flex flex-row">
                 <div class="flex flex-col max-w-md w-1/2 mr-2">
                   <%= label_tag reported_data.calculator_field.label, nil, class: 'font-semibold' %>
@@ -35,14 +38,15 @@
               <div class="flex flex-row">
                 <% if reported_data.calculator_field.open_ended_type? %>
                   <div class="flex flex-col max-w-md w-1/2 mr-2">
-                    <%= reported_data_fields.text_field :value, value: reported_data.value, class: 'input' %>
+                    <input type="text" name="<%= "reported_datas[#{field_index}][value]" %>" class="input" value="<%= reported_data.value %>">
                   </div>
                 <% else %>
-                  <%= reported_data_fields.hidden_field :value, value: 1 %>
+                  <input type="hidden" name="<%= "reported_datas[#{field_index}][value]" %>" value="1">
                 <% end %>
                 <div class="flex flex-col">
+                  <% if reported_data.calculator_field.open_ended_type? %>
                     <select
-                      name="<%= "reported_datas[#{reported_data.id || ''}][unit]" %>"
+                      name="<%= "reported_datas[#{field_index}][unit]" %>"
                       class="input"
                       size="<%= reported_data.calculator_field.open_ended_type? ? reported_data.calculator_field.units&.length + 1 : reported_data.calculator_field.units&.length %>"
                     >
@@ -59,9 +63,19 @@
                         <option value="freeform" <%= reported_data.unit == "freeform" || reported_data.calculator_field.units.nil? ? 'selected' : '' %>>Other</option>
                       <% end %>
                     </select>
+                  <% else %>
+                    <% reported_data.calculator_field.units&.each_with_index do |(key, _value), index| %>
+                      <% unit = BusinessCalculators::Unit.find_by(key: key) %>
+                      <label>
+                        <input type="radio" name="<%= "reported_datas[#{field_index}][unit]" %>" value="<%= key %>" <%= key == reported_data.unit ? 'checked' : '' %>>
+                        <%= unit.name %>
+                      </label>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
             <% end %>
+            <% field_index += 1 %>
           <% end %>
         </div>
       <% end %>
