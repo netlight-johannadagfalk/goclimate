@@ -11,6 +11,7 @@ Table of contents
 - [Link](#link)
 - [Lists](#lists)
 - [Modal](#modal)
+- [Radio](#radio)
 - [Section gutter](#section-gutter)
 - [Section padding](#section-padding)
 - [Select](#select)
@@ -238,6 +239,10 @@ Modal is component that requires Javascript to function properly, it's however p
 - `modal-close-button` positions the close button in the top right corner of the modal. NB! This is added by the controller
 - `modal-actions` positions the modal actions, i.o.w. the buttons. NB! This class assumes the actions have the class `button` applied to them
 
+Possible improvements:
+
+- Making a Rails template for the markup
+
 ### Examples
 
 ```
@@ -253,6 +258,24 @@ Modal is component that requires Javascript to function properly, it's however p
     </div>
   </div>
 </div>
+```
+
+## Radio
+
+Custom styling of radio inputs. The biggest advantage is the custom styling is consistent across browsers. And it's of course possible to use our own colors!
+
+Possible improvements:
+
+- Making a Rails template for the markup
+
+### Examples 
+
+```
+<label class="radio">
+  <input type="radio" name="agreement" value="yes">
+  <span class="radio-input"></span>
+  Yes, I agree
+</label>
 ```
 
 ## Section gutter

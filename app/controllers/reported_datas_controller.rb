@@ -35,9 +35,9 @@ class ReportedDatasController < ApplicationController
   end
 
   def multi_update
-    @data_request = DataRequest.find(reported_data_survey_params.first[:data_request_id])
+    @data_request = DataRequest.find(reported_data_params.first[:data_request_id])
 
-    reported_data_survey_params.each do |param|
+    reported_data_params.each do |param|
       reported_data = ReportedData.find(param[:id])
 
       next if reported_data.update(param)
@@ -60,17 +60,6 @@ class ReportedDatasController < ApplicationController
   private
 
   def reported_data_params
-    params.require(:reported_datas).map do |p|
-      p.permit(
-        :data_request_id,
-        :calculator_field_id,
-        :value,
-        :unit
-      )
-    end
-  end
-
-  def reported_data_survey_params
     params.require(:reported_datas).values.map do |p|
       ActionController::Parameters.new(p).permit(
         :data_request_id,
