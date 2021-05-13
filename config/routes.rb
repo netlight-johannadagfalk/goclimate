@@ -77,10 +77,8 @@ Rails.application.routes.draw do
     resources :reported_datas, path: 'report-data', only: [:new, :create, :update], path_names: { new: '' } do
       member do
         get 'thank-you'
+        get 'preview'
       end
-    end
-    resource :reported_datas, only: [] do
-      post 'multi_update', on: :collection
     end
 
     resources :projects, path: 'climate-projects', only: [:index]

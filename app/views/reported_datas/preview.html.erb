@@ -1,16 +1,16 @@
 <%= render 'shared/header' %>
 
 <section class="section-padding space-y-6">
-    <h3 class="heading-lg"><%= t 'reported_datas.heading', report_area: @report_area.title %></h3>
+    <h3 class="heading-lg"><%= t 'reported_datas.heading', report_area: "<preview>" %></h3>
     <h4>
       <%=
         sanitize(t(
           'reported_datas.time_period_html',
-          time_period: "#{sanitize(@report.reporting_period.first.to_s)} - #{sanitize(@report.reporting_period.last.to_s)}"
+          time_period: "<start date> - <end date>"
         ).gsub('<span', '<span class="font-bold"').html_safe)
       %>
     </h4>
-    <%= render 'form' %>
+    <%= render 'form', disable_submit: true %>
 </section>
 
 <%= render 'shared/footer', skip_prefooter: true %>
