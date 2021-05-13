@@ -7,14 +7,7 @@ class ReportedDatasController < ApplicationController
     @calculator = BusinessCalculators::Calculator.find(@report_area.calculator_id)
     @report = ClimateReports::Report.find(@report_area.report_id)
 
-    @reported_datas = @calculator.categories.map do |category|
-      [
-        category,
-        category.fields.map do |field|
-          @data_request.survey ? reported_data_instance_survey(field) : reported_data_instance(field)
-        end
-      ]
-    end
+    set_reported_datas
   end
 
   def create
@@ -44,7 +37,23 @@ class ReportedDatasController < ApplicationController
     @data_reporter = DataReporter.find(@data_request.recipient_id)
   end
 
+  def preview
+    @calculator = BusinessCalculators::Calculator.find(params[:id])
+    set_reported_datas
+  end
+
   private
+
+  def set_reported_datas
+    @reported_datas = @calculator.categories.map do |category|
+      [
+        category,
+        category.fields.map do |field|
+          @data_request&.survey ? reported_data_instance_survey(field) : reported_data_instance(field)
+        end
+      ]
+    end
+  end
 
   def reported_data_params
     params.require(:reported_datas).values.map do |p|
@@ -59,7 +68,7 @@ class ReportedDatasController < ApplicationController
   end
 
   def reported_data_instance(field)
-    latest_reported_data = ReportedData.latest(@report_area, field)
+    latest_reported_data = ReportedData.latest(@report_area, field) if @report_area
     ReportedData.new(
       calculator_field: field,
       data_request: @data_request,
