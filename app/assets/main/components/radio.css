@@ -1,0 +1,38 @@
+.radio {
+  @apply flex flex-row items-center cursor-pointer;
+}
+
+.radio input {
+  @apply opacity-0 w-0 h-0;
+}
+
+.radio-input {
+  @apply
+    relative
+    inline-block
+    w-4 h-4
+    mr-1
+    border border-primary rounded-full;
+}
+
+.radio-input::before {
+  content: "";
+
+  @apply 
+    absolute
+    left-1/6
+    top-1/6
+    right-1/6
+    bottom-1/6
+    rounded-full
+    bg-green-accent
+    opacity-0
+}
+
+.radio input:checked + .radio-input::before {
+  @apply opacity-100;
+}
+
+.radio input:focus + .radio-input {
+  @apply ring ring-primary ring-opacity-100;
+}

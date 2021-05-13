@@ -66,8 +66,9 @@
                   <% else %>
                     <% reported_data.calculator_field.units&.each_with_index do |(key, _value), index| %>
                       <% unit = BusinessCalculators::Unit.find_by(key: key) %>
-                      <label>
+                      <label class="radio">
                         <input type="radio" name="<%= "reported_datas[#{field_index}][unit]" %>" value="<%= key %>" <%= key == reported_data.unit ? 'checked' : '' %>>
+                        <span class="radio-input"></span>
                         <%= unit.name %>
                       </label>
                     <% end %>
