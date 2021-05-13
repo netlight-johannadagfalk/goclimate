@@ -79,9 +79,6 @@ Rails.application.routes.draw do
         get 'thank-you'
       end
     end
-    resource :reported_datas, only: [] do
-      post 'multi_update', on: :collection
-    end
 
     resources :projects, path: 'climate-projects', only: [:index]
 

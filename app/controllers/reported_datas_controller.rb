@@ -21,26 +21,13 @@ class ReportedDatasController < ApplicationController
     @data_request = DataRequest.find(reported_data_params.first[:data_request_id])
 
     reported_data_params.each do |param|
-      reported_data = ReportedData.new(param)
-
-      next if reported_data.save
-
-      redirect_to(
-        reported_datas_path(key: @data_request.key),
-        notice: 'There was and error and the data could not be saved! Please try again or contact us at hello@goclimate.com' # rubocop:disable Metrics/LineLength
-      )
-    end
-
-    redirect_to thank_you_reported_data_path(id: @data_request.key)
-  end
-
-  def multi_update
-    @data_request = DataRequest.find(reported_data_params.first[:data_request_id])
-
-    reported_data_params.each do |param|
-      reported_data = ReportedData.find(param[:id])
-
-      next if reported_data.update(param)
+      if param[:id].present?
+        reported_data = ReportedData.find(param[:id])
+        next if reported_data.update(param)
+      else
+        reported_data = ReportedData.new(param)
+        next if reported_data.save
+      end
 
       redirect_to(
         reported_datas_path(key: @data_request.key),
