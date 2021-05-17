@@ -35,3 +35,12 @@
 .input-sm {
   @apply py-1 px-2 text-sm;
 }
+
+.has-error .input {
+  @apply
+    border-danger;
+
+  &:focus-within, &:focus, &.StripeElement--focus {
+    @apply ring-danger;
+  }
+}
