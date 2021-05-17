@@ -85,7 +85,6 @@
           <li><%= link_to t('about_us'), about_path, class: 'link-ui' %> </li>
           <li><%= link_to t('100_percent_transparency'), transparency_path, class: 'link-ui' %> </li>
           <li><%= link_to t('views.shared.footer.jobs'), 'https://jobs.goclimate.com/', class: 'link-ui' %></li>
-          <li><%= link_to 'Cookies', cookies_path, class: 'link-ui' %></li>
           <li><%= link_to t('contact_us'), contact_path, class: 'link-ui' %></li>
         </ul>
       </div>
@@ -127,6 +126,7 @@
       <div class="text-sm space-x-2">
         <span class="font-bold">© <%= Time.current.year %> GoClimate Sweden AB</span>
         <%= link_to t('views.shared.footer.privacy_policy'), privacy_policy_path, class: 'link text-white' %>
+        <%= link_to 'Cookies', cookies_path, class: 'link text-white' %>
       </div>
     </div>
   </section>

@@ -13,7 +13,7 @@ class ReportedDatasController < ApplicationController
   def create
     @data_request = DataRequest.find(reported_data_params.first[:data_request_id])
 
-    reported_data_params.each do |param|
+    reported_data_params.reject { |param| param[:value].blank? }.each do |param|
       if param[:id].present?
         reported_data = ReportedData.find(param[:id])
         next if reported_data.update(param)
