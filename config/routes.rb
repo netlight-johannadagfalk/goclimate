@@ -86,9 +86,13 @@ Rails.application.routes.draw do
     get '/knowyourcarbonfootprint', to: redirect('know-your-carbon-footprint')
     get '/KnowYourCarbonFootprint', to: redirect('know-your-carbon-footprint')
 
-    resource :business, controller: 'business', only: [:show]
     namespace :business do
-      resources :climate_reports, path: 'climate-reports', only: [:show, :new, :create], param: :key do
+      root 'home#show'
+
+      resource :advisory, controller: 'advisory', only: [:show]
+      resource :offsetting, controller: 'offsetting', only: [:show]
+
+      resources :climate_reports, path: 'climate-reports', only: [:index, :show, :new, :create], param: :key do
         member do
           resource :climate_report_invoice, only: [:create], path: 'invoice' do
             get 'thank-you'
@@ -100,7 +104,7 @@ Rails.application.routes.draw do
       end
 
       # Business page with post from employee offsetting form
-      resource :contacts, only: [:create]
+      resource :contact, only: [:new, :create], path_names: { new: '' }
     end
 
     # Partners

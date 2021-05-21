@@ -19,7 +19,7 @@
                 <li><%= link_to t('our_projects'), projects_path, class: "link-ui #{'selected' if controller_name == 'projects'}" %></li>
                 <li><%= link_to t('about_us'), about_path, class: "link-ui #{'selected' if controller_name == 'about'}" %></li>
                 <li><%= link_to t('navigation.gift_cards'), gift_cards_path, class: "link-ui #{'selected' if controller_name == 'gift_cards'}" %></li>
-                <li><%= link_to t('for_business'), business_path, class: "link-ui #{'selected' if controller_name == 'business'}" %>
+                <li><%= link_to t('for_business'), business_root_path, class: "link-ui #{'selected' if controller_path.start_with?('business')}" %>
               </ul>
 
               <% if user_signed_in? %> 
@@ -45,8 +45,10 @@
         </div>
       </div>
 
-      <% unless user_signed_in? %>
-        <%= link_to(I18n.t('views.shared.header.sign_up'), root_url, class: 'button button-cta')%>
+      <% if controller_path.start_with?('business') %>
+        <%= link_to t('views.shared.header.book_meeting'), new_business_contact_url, class: 'button button-cta' %>
+      <% elsif !user_signed_in? %>
+        <%= link_to t('views.shared.header.sign_up'), root_url, class: 'button button-cta' %>
       <% end %>
 
       <label for="nav-toggler" class="button d:hidden">
@@ -56,6 +58,17 @@
   </div>
 </div>
 <div class="h-20"></div>
+
+<% if controller_path.start_with?('business') %>
+  <div class="w-full fixed z-40 bg-gray-tint-1 py-2 px-4 t:px-8 overflow-x-scroll">
+    <ul class="flex space-x-4 d:space-x-6">
+      <li class="flex-none"><%= link_to t('views.shared.header.business_subnavigation.climate_advisory'), business_advisory_path, class: "link-ui #{'selected' if controller_name == 'advisory'}" %></li>
+      <li class="flex-none"><%= link_to t('views.shared.header.business_subnavigation.self_serve'), business_climate_reports_path, class: "link-ui #{'selected' if controller_name == 'climate_reports'}" %></li>
+      <li class="flex-none"><%= link_to t('views.shared.header.business_subnavigation.offsetting'), business_offsetting_path, class: "link-ui #{'selected' if controller_name == 'offsetting'}" %></li>
+    </ul>
+  </div>
+  <div class="h-10"></div>
+<% end %>
 
 <% if (region = Region.recommended_for_ip_country(request.headers['CF-IPCountry'])) && region != current_region && !cookies[:region_recommendation_dismissed].present? %>
   <% I18n.with_locale(region.locale) do %>

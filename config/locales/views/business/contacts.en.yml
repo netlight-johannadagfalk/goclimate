@@ -1,0 +1,17 @@
+en:
+  views:
+    business:
+      contacts:
+        form:
+          heading: Book a meeting with our experienced climate advisors
+          name: Your name
+          company: Company
+          phone: Phone number
+          email: Email
+          contact_via: Contact me via
+          contact_via_email: Email
+          contact_via_phone: Phone
+          message: Message
+          submit: Talk soon!
+          option_text_html: Or send us an email at <a href="mailto:hello@goclimate.com">hello@goclimate.com</a>.
+          error: Please check your provided information

@@ -10,6 +10,11 @@ en:
           continue_button: "Continue to %{region}"
           dismiss: Dismiss change of region
         sign_up: Sign up
+        book_meeting: Book meeting
+        business_subnavigation:
+          climate_advisory: Climate advisory
+          self_serve: Self-serve climate reporting
+          offsetting: Carbon offsetting
       prefooter:
         heading: Let us stop climate change together!
         body_text: Subscribe to balance your carbon footprint.
