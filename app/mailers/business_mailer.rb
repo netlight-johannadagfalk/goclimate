@@ -3,12 +3,12 @@
 class BusinessMailer < ApplicationMailer
   helper :application
 
-  def employee_offset_notice_email(reply_to, number_of_employees, language)
+  def contact_email(contact)
     mail(
       to: 'hello@goclimate.com',
-      reply_to: reply_to,
-      subject: 'Intresseanmälan från företag som vill klimatkompensera',
-      body: "Intresseanmälan från: #{reply_to}, för #{number_of_employees} antal anställda, språk: #{language}"
+      reply_to: contact.email,
+      subject: contact.subject_line,
+      body: contact.message_with_metadata
     )
   end
 

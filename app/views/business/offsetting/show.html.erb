@@ -1,0 +1,97 @@
+<%= render "shared/header" %>
+
+<div class="section-padding pb-0">
+  <h1 class="heading-xl"><%= title(t('views.business.offsetting.hero.heading')) %></h1>
+</div>
+
+<section class="section-padding">
+  <h2 class="heading-lg"><%=t 'views.business.offsetting.services.heading' %></h2>
+
+  <div class="section-gutter mt-12 flex flex-col t:flex-row flex-wrap">
+    <div class="d:w-1/3">
+      <div class="h-full callout w-full">
+        <div class="relative h-full space-y-4">
+          <h3 class="heading text-center"><%=t 'views.business.offsetting.services.advisory.heading' %></h3>
+          <p><%=t 'views.business.offsetting.services.advisory.text' %></p>
+          <div class="absolute bottom-0 w-full space-y-2">
+            <%= link_to t('views.business.offsetting.services.advisory.read_more'), business_advisory_path, class: 'button w-full' %>
+            <%= link_to t('views.business.offsetting.services.advisory.book_meeting'), new_business_contact_path, class: 'button button-cta w-full' %>
+          </div>
+          <div class="h-24"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d:w-1/3">
+      <div class="h-full callout w-full">
+        <div class="relative h-full space-y-4">
+          <h3 class="heading text-center"><%=t 'views.business.offsetting.services.self_serve.heading' %></h3>
+          <p><%=t 'views.business.offsetting.services.self_serve.text' %></p>
+          <div class="absolute bottom-0 w-full space-y-2">
+            <%= link_to t('views.business.offsetting.services.self_serve.read_more'), business_climate_reports_path, class: 'button w-full' %>
+            <%= link_to t('views.business.offsetting.services.self_serve.calculate'), new_business_climate_report_path, class: 'button button-cta w-full' %>
+          </div>
+          <div class="h-24"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d:w-1/3">
+      <div class="h-full callout w-full">
+        <div class="relative h-full space-y-4">
+          <h3 class="heading text-center"><%=t 'views.business.offsetting.services.just_offsetting.heading' %></h3>
+          <p><%=t 'views.business.offsetting.services.just_offsetting.text' %></p>
+          <div class="absolute bottom-0 w-full">
+            <%= link_to t('views.business.offsetting.services.just_offsetting.book_meeting'), new_business_contact_path, class: 'button button-cta w-full' %>
+          </div>
+          <div class="h-10"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="section-gutter t:flex items-center">
+    <div class="t:w-1/2 d:w-2/3">
+      <h2 class="heading-lg"><%= t 'views.business.offsetting.offset_employees.heading' %></h2>
+      <p class="my-6">
+        <%= t 'views.business.offsetting.offset_employees.text' %>
+      </p>
+    </div>
+    <div class="t:w-1/2 d:w-1/3">
+      <div class="callout mx-auto m-lg:w-2/3 t:w-full max-w-lg"
+        data-controller="business--offset-calculator"
+        data-cost-per-tonne="<%= @cost_per_tonne %>"
+      >
+        <p class="heading-lg text-center">
+          <%= current_region.currency.prefix %><span data-target="business--offset-calculator.costLabel"></span><%= current_region.currency.suffix %>/<%= t 'months.one' %>
+        </p>
+        <p class="text-sm text-center"><%=t 'views.business.offsetting.offset_employees.equivalent_co2_offset' %></p>
+
+        <%= form_with model: @contact, url: business_contact_path, class: 'mt-4' do |f| %>
+          <div class="space-y-4">
+            <div>
+              <%= label_tag(:number_of_employees, t('views.business.offsetting.offset_employees.number_of_employees'), class: 'font-bold') %>
+              <%= number_field_tag :number_of_employees, '10', class: 'input w-full', min: 1, required: true, 'data-action': 'business--offset-calculator#update', 'data-target': 'business--offset-calculator.employeesField' %>
+            </div>
+            <div>
+              <%= f.label :email, t('views.business.offsetting.offset_employees.email'), class: 'font-bold' %>
+              <%= f.email_field :email, class: 'input w-full', required: true %>
+            </div>
+            <div>
+              <button type="submit" class="button button-cta w-full"><%=t 'views.business.offsetting.offset_employees.cta' %></button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding t:text-center">
+  <h2 class="heading-lg"><%=t 'views.business.offsetting.other_ways.heading' %></h2>
+  <p class="mt-6 t:w-2/3 d:w-1/2 mx-auto"><%=t('views.business.offsetting.other_ways.text_html').gsub('<a', '<a class="link"').html_safe %></p>
+</section>
+
+<%= render 'shared/bottom_landscape' %>
+<%= render 'shared/footer', skip_prefooter: true %>

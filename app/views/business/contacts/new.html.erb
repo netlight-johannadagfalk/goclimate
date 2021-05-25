@@ -1,0 +1,61 @@
+<%= render "shared/header" %>
+
+<div class="section-padding pb-0">
+  <h1 class="heading-lg text-center"><%= title(t('views.business.contacts.form.heading')) %></h1>
+</div>
+
+<section class="section-padding">
+  <div class="callout max-w-2xl mx-auto space-y-4">
+    <% if @contact.errors.any? %>
+      <div class="text-danger mb-8">
+        <p class="text-large font-bold">
+          <%= I18n.t("views.business.contacts.form.error") %>
+        </p>
+        <ul class="list-bullet">
+          <% @contact.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= form_with model: @contact, url: business_contact_path do |f| %>
+      <div class="space-y-4">
+        <div class="t:flex justify-between">
+          <%= f.label :name, t('views.business.contacts.form.name'), class: 'font-bold leading-10' %>
+          <div class="t:w-2/3"><%= f.text_field :name, class: 'input w-full' %></div>
+        </div>
+        <div class="t:flex justify-between">
+          <%= f.label :company, t('views.business.contacts.form.company'), class: 'font-bold leading-10' %>
+          <div class="t:w-2/3"><%= f.text_field :company, class: 'input w-full' %></div>
+        </div>
+        <div class="t:flex justify-between">
+          <%= f.label :phone, t('views.business.contacts.form.phone'), class: 'font-bold leading-10' %>
+          <div class="t:w-2/3"><%= f.text_field :phone, class: 'input w-full' %></div>
+        </div>
+        <div class="t:flex justify-between">
+          <%= f.label :email, t('views.business.contacts.form.email'), class: 'font-bold leading-10' %>
+          <div class="t:w-2/3"><%= f.text_field :email, class: 'input w-full' %></div>
+        </div>
+        <div class="t:flex justify-between">
+          <span class="font-bold leading-10 whitespace-nowrap"><%=t 'views.business.contacts.form.contact_via' %></span>
+          <div class="t:w-2/3 leading-10">
+            <label><%= f.radio_button :preferred_contact_method, 'email' %> <%=t 'views.business.contacts.form.contact_via_email' %></label> &nbsp;
+            <label><%= f.radio_button :preferred_contact_method, 'phone' %> <%=t 'views.business.contacts.form.contact_via_phone' %></label>
+          </div>
+        </div>
+        <div>
+          <%= f.label :message, t('views.business.contacts.form.message'), class: 'font-bold leading-10 block' %>
+          <%= f.text_area :message, rows: 3, class: 'input w-full' %>
+        </div>
+        <button type="submit" class="button button-cta w-full"><%=t 'views.business.contacts.form.submit' %></button>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<section class="section-padding text-center">
+  <p><%= t('views.business.contacts.form.option_text_html').gsub('<a','<a class="link"').html_safe %></p>
+</section>
+
+<%= render 'shared/bottom_landscape' %>
+<%= render 'shared/footer', skip_prefooter: true %>

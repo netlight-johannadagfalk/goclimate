@@ -1,0 +1,115 @@
+<%= render "shared/header" %>
+
+<div class="bg-blue-pastel">
+  <section class="section-padding t:py-32">
+    <div class="section-gutter t:flex flex-row items-center">
+      <div class="t:w-1/2 d:w-3/5 space-y-6">
+        <h1 class="heading-xl"><%= t 'views.business.home.hero.heading' %></h1>
+        <p><%= t 'views.business.home.hero.text' %></p>
+      </div>
+      <div class="t:w-1/2 d:w-2/5">
+        <div class="relative mx-auto m-lg:w-2/3 t:w-full max-w-md">
+          <%= image_tag webpack_asset_path('images/shapes/blob_3.svg'), class: 'w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2', alt: '' %>
+          <div class="relative mx-4 space-y-3">
+            <h3 class="text-center heading"><%= t 'views.business.home.our_offer.heading' %></h3>
+            <ul class="list-check space-y-2">
+              <li><%= t 'views.business.home.our_offer.bullet_1' %></li>
+              <li><%= t 'views.business.home.our_offer.bullet_2' %></li>
+              <li><%= t 'views.business.home.our_offer.bullet_3' %></li>
+              <li><%= t 'views.business.home.our_offer.bullet_4' %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="bg-blue-pastel t:-mt-16">
+  <%= image_tag webpack_asset_path('images/illustrations/forest_and_city.png'), class: 'w-11/12 t:w-3/4 mx-auto', style: 'max-width: 812px'%>
+</div>
+
+<div class="bg-white">
+  <section class="section-padding">
+    <h2 class="heading-lg mb-6 text-center"><%=t 'views.business.home.customers' %></h2>
+    <div class="flex flex-col items-center t:flex-row t:flex-wrap">
+      <% [
+        {
+          alt: 'wedonthavetime',
+          img_url: 'images/companies/wdht.png',
+        },
+        {
+          alt: 'norrsken',
+          img_url: 'images/companies/norrsken.png',
+        },
+        {
+          alt: 'netlight',
+          img_url: 'images/companies/netlight.png',
+        },
+        {
+          alt: 'blocket',
+          img_url: 'images/companies/blocket.png',
+        },
+        {
+          alt: 'breakit',
+          img_url: 'images/companies/breakit.png',
+        }
+      ].each do |partner| %>
+        <div class="w-1/3 t:w-1/5 t:px-8 py-4">
+          <%= image_tag webpack_asset_path(partner[:img_url]), width: "300", alt: partner[:alt] %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>
+
+<section class="section-padding">
+  <div class="section-gutter t:flex items-center">
+    <div class="t:w-1/2 d:w-2/3">
+      <h2 class="heading-lg"><%= t 'views.business.home.advisory.heading' %></h2>
+      <p class="my-6"><%= t 'views.business.home.advisory.text' %></p>
+      <div class="flex space-x-4">
+      <%= link_to t('views.business.home.advisory.book_meeting'), new_business_contact_path, class: 'button button-cta' %>
+      <%= link_to t('views.business.home.advisory.read_more'), business_advisory_path, class: 'button' %>
+      </div>
+    </div>
+    <div class="t:w-1/2 d:w-1/3">
+    </div>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="section-gutter t:flex flex-row items-center">
+    <div class="t:w-1/2 d:w-2/3">
+      <h2 class="heading-lg"><%= t 'views.business.home.self_serve.heading' %></h2>
+      <p class="my-6"><%= t 'views.business.home.self_serve.text' %></p>
+      <div class="flex space-x-4">
+        <%= link_to t('views.business.home.self_serve.calculate'), new_business_climate_report_path, class: 'button button-cta', id: 'calculate-business-footprint-cta' %>
+        <%= link_to t('views.business.home.self_serve.read_more'), business_climate_reports_path, class: 'button' %>
+      </div>
+    </div>
+    <div class="t:w-1/2 d:w-1/3">
+    </div>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="section-gutter t:flex flex-row items-center">
+    <div class="t:w-1/2 d:w-2/3">
+      <h2 class="heading-lg"><%= t 'views.business.home.offsetting.heading' %></h2>
+      <p class="my-6"><%= t 'views.business.home.offsetting.text' %></p>
+      <div class="flex space-x-4">
+        <%= link_to I18n.t('views.business.home.offsetting.learn_more'), business_offsetting_path, class: 'button' %>
+      </div>
+    </div>
+    <div class="t:w-1/2 d:w-1/3">
+    </div>
+  </div>
+</section>
+
+<section class="section-padding t:text-center">
+  <h2 class="heading-lg"><%=t 'views.business.home.other_services.heading' %></h2>
+  <p class="mt-6 t:w-2/3 d:w-1/2 mx-auto"><%=t('views.business.home.other_services.text_html').gsub('<a', '<a class="link"').html_safe %></p>
+</section>
+
+<%= render 'shared/bottom_landscape' %>
+<%= render 'shared/footer', skip_prefooter: true %>

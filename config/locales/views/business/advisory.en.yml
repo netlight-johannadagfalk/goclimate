@@ -1,0 +1,34 @@
+en:
+  views:
+    business:
+      advisory:
+        intro:
+          heading: Climate advisory
+          text_1: Are you motivated to transition your organization from business as usual to being aligned with the Paris Agreement? We can help take you there!
+          text_2: We will help you to evaluate and understand where your business can make the most impact. There is no one size fits all for climate action, which is why we will work with you to find the most cost-effective focus that best suits your objective.
+        approach:
+          heading: Our approach to climate action
+          step_1:
+            heading: Understand your emissions
+            text: Step one is to conduct a carbon footprint calculation, to find out what emissions your organization is responsible for. We take a deep dive in the numbers to find out which of your activities have an impact on the climate, and how much. We start by evaluating a base year, usually the previous calendar year. We use the most recognized international standard, Greenhouse Gas Protocol.
+            bullet_1: Set a baseline for climate action
+            bullet_2: Greenhouse Gas Protocol standardized
+          step_2:
+            heading: Goal setting
+            text: Once we know what the status quo is, it is time to figure out how to be part of the solution. We guide your organization on how to be aligned with the Paris Agreement by supporting you in setting the right goals for your emission reduction (using Science Based Targets), which will provide a clear direction for your efforts.
+            bullet_1: Set targets tailored for your organization
+            bullet_2: Science Based Targets
+          step_3:
+            heading: Roadmap
+            text: Once the baseline is understood and the target is set, we together develop a roadmap to get from where you are today to being an organization that is taking smart steps in working against climate change. Some changes can be really easy to implement, while others might take a little longer and need gradual application. You can count on the continued support from GoClimate to ensure that you are on track all the way through.
+            bullet_1: Step by step roadmap to climate action
+            bullet_2: Continuous GoClimate support
+          step_4:
+            heading: Follow up
+            text: Ambitions are great, and the performance review is the proof that what you do actually has the intended impact. That is why we measure your emissions on a yearly basis. This process gets faster and easier every time as we establish routines for data collection. Over time, you will be able to do much of the data collection yourselves in our business tool, and track your progress.
+            bullet_1: Track your progress over time
+            bullet_2: Yearly reports
+          read_more: Read more about our method
+        get_in_touch:
+          heading: Let's start a conversation
+          button: Book a meeting

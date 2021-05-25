@@ -1,0 +1,32 @@
+en:
+  views:
+    business:
+      offsetting:
+        hero:
+          heading: Carbon offsetting for your business
+        services:
+          heading: Offset your business footprint
+          advisory:
+            heading: Tailored climate advisory
+            text: We will help you to evaluate and understand where your business can make the most impact. There is no one size fits all for climate action, which is why we will work with you to find the most cost-effective focus that best suits your objective.
+            read_more: Read more
+            book_meeting: Book a meeting
+          self_serve:
+            heading: Make your own climate report
+            text: Use our tool to calculate and offset your emissions all through our automated processs–no complicated procedure.
+            read_more: Read more
+            calculate: Calculate business footprint
+          just_offsetting:
+            heading: Just offsetting
+            text: Already know your footprint? We offer our selection of the best carbon offsetting projects.
+            book_meeting: Book a meeting
+        offset_employees:
+          heading: Offset your team members' carbon footprint
+          text: We give you the opportunity to balance out the carbon footprint of your employees by offsetting each individual's emissions and take full responsibility for your team's total carbon footprint. Not only does this benefit the climate, it also makes you an attractive employer.
+          cta: Contact me
+          equivalent_co2_offset: equivalent to 18 tonnes of CO2-emissions per employee and year
+          number_of_employees: "Number of employees:"
+          email: "Your e-mail:"
+        other_ways:
+          heading: Other ways to offset
+          text_html: We can help with carbon offsetting in other ways too. Just get in touch at <a href='mailto:hello@goclimate.com'>hello@goclimate.com</a>!

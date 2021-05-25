@@ -10,6 +10,11 @@ sv:
           continue_button: "Fortsätt till %{region}"
           dismiss: Avfärda byte av område
         sign_up: Registrera
+        book_meeting: Boka möte
+        business_subnavigation:
+          climate_advisory: Klimatrådgivning
+          self_serve: Gör-det-själv klimatrapport
+          offsetting: Klimatkompensering
       prefooter:
         heading: Rädda klimatet tillsammans med oss!
         body_text: Prenumerera och balansera ditt klimatavtryck.

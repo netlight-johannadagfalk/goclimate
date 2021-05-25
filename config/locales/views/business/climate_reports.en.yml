@@ -1,0 +1,19 @@
+en:
+  views:
+    business:
+      climate_reports:
+        hero:
+          heading: Make your own climate report
+          text: Use our tool to calculate and offset your emissions all through our automated processs–no complicated procedure.
+        business_footprint:
+          heading: Your business footprint
+          text: Our carbon footprint calculator for businesses allows you to report on your activities yourself. By asking you for data on the most relevant emission factors, you can conduct an automatic calculation which shows your climate impact. This is the easiest solution for service companies or SMEs who want to get a quick overview of their climate emissions.
+        carbon_offsetting:
+          heading: Carbon offsetting
+          text: Calculate your company's carbon footprint, lower the emissions where possible and offset the rest. We've developed a calculator that's easy to use, giving you an overview of your company's carbon footprint.
+        climate_report:
+          heading: The climate report
+          text: When offsetting with GoClimate you'll get a tailored climate report that gives you a clear overview of your emissions. The report offers a substantial ground for your internal as well as external sustainability communication.
+        get_started:
+          heading: Calculate your business carbon footprint
+          button: Calculate business footprint
