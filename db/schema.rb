@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_05_142909) do
+ActiveRecord::Schema.define(version: 2021_05_25_121222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_05_05_142909) do
     t.bigint "calculator_id", null: false
     t.text "name"
     t.text "description"
+    t.integer "field_order", array: true
     t.index ["calculator_id"], name: "index_business_calculators_calculator_categor_on_calculator_id"
   end
 
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 2021_05_05_142909) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status", default: "draft"
+    t.integer "category_order", array: true
   end
 
   create_table "business_calculators_units", force: :cascade do |t|
