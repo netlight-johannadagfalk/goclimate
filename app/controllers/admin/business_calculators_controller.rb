@@ -92,11 +92,13 @@ module Admin
     def calculator_params
       params.require(:business_calculator).permit(
         :name,
+        :category_order,
         {
           categories_attributes: [
             :id,
             :name,
             :description,
+            :field_order,
             :_destroy,
             { fields_attributes: [:id, :label, :field_type, :_destroy, units: []] }
           ]

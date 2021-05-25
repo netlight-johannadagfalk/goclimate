@@ -1,5 +1,5 @@
 <div data-controller="add-nested-fields">
-  <%= local_assigns[:category_fields].fields_for :fields, BusinessCalculators::CalculatorField.new do |field_fields| %>
+  <%= fields_for local_assigns[:fields_for], BusinessCalculators::CalculatorField.new do |field_fields| %>
     <div class="hidden" data-target="add-nested-fields.template" style="">
       <div class="row" style="padding-top: 0.5em">
         <div class="col-sm-6">

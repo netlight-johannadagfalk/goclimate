@@ -1,25 +1,24 @@
 import { Controller } from 'stimulus';
 
-export default class FieldOrderController extends Controller {
+export default class ItemOrderController extends Controller {
+  initialize() {
+    this.updateOrderField();
+  }
+
   move(e) {
     const currentIndex = e.target.dataset.position;
     const targetIndex = e.target.value - 1;
-    const elementToMove = this.fieldTargets[currentIndex];
-    const targetElement = this.fieldTargets[targetIndex];
+    const elementToMove = this.itemTargets[currentIndex];
+    const targetElement = this.itemTargets[targetIndex];
 
-    if (targetIndex === this.fieldTargets.length - 1) {
+    if (targetIndex === this.itemTargets.length - 1) {
       targetElement.parentNode.insertBefore(elementToMove, targetElement);
       targetElement.parentNode.insertBefore(targetElement, elementToMove);
     } else {
       targetElement.parentNode.insertBefore(elementToMove, targetElement);
     }
     this.updatePositionData();
-    let order = '{';
-    this.fieldTargets.forEach((field, index) => {
-      order += `${index === 0 ? '' : ', '}${field.dataset.id}`;
-    });
-    order += '}';
-    this.orderTarget.value = order;
+    this.updateOrderField();
   }
 
   updatePositionData() {
@@ -34,6 +33,15 @@ export default class FieldOrderController extends Controller {
       });
     });
   }
+
+  updateOrderField() {
+    let order = '{';
+    this.itemTargets.forEach((item, index) => {
+      order += `${index === 0 ? '' : ', '}${item.dataset.id}`;
+    });
+    order += '}';
+    this.orderTarget.value = order;
+  }
 }
 
-FieldOrderController.targets = ['field', 'select', 'order'];
+ItemOrderController.targets = ['item', 'select', 'order'];

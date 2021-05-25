@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, calculator], local: true) do |form| %>
+<%= form_with(model: [:admin, calculator], local: true, html: { 'data-controller': 'item-order'}) do |form| %>
   <% if calculator.errors.any? %>
     <div>
       <h2><%= pluralize(calculator.errors.count, "error") %> prohibited this calculator from being saved:</h2>
@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <%= form.hidden_field :category_order, 'data-target': 'item-order.order' %>
+
   <div class="form-group">
     <%= form.label :name %>
     <%= form.text_field :name, class: 'form-control' %>
@@ -18,58 +20,80 @@
 
   <h2>Form design</h2>
   <div data-controller="add-nested-fields">
+    <% @calculator.categories.each_with_index do |category, category_index| %>
+      <%= fields_for "business_calculator[categories_attributes][#{category_index}]", category do |category_fields| %>
+        <%= category_fields.hidden_field :id %>
 
-    <%= form.fields_for :categories do |category_fields| %>
-      <%= category_fields.hidden_field :id %>
-
-      <div style="padding: 1em; margin-bottom: 2em; border: 1px solid gray; border-radius: 4px;">
-        <div class="row" style="margin-bottom: 0.5em;">
-          <div class="col-sm-11">
-            <%= category_fields.label :category_name %>
-            <%= category_fields.text_field :name, class: 'form-control input-lg', style: 'font-weight: 600;' %>
-          </div>
-          <div class="col-sm-1">
+        <div data-target="item-order.item" data-id="<%= category.id %>" style="padding: 1em; margin-bottom: 2em; border: 1px solid gray; border-radius: 4px;">
+          <div class="row" style="margin-bottom: 0.5em;">
+            <div class="col-sm-1">
+              <%= category_fields.label :position %>
+              <select class="form-control input-lg" data-target="item-order.select" data-action="item-order#move" data-position="<%= category_index %>">
+                <% (1..@calculator.categories.length).to_a.each do |number| %>
+                  <option value="<%= number %>" <%= number - 1 == category_index ? 'selected' : '' %>><%= number %></option>
+                <% end %>
+              </select>
+            </div>
+            <div class="col-sm-10">
+              <%= category_fields.label :category_name %>
+              <%= category_fields.text_field :name, class: 'form-control input-lg', style: 'font-weight: 600;' %>
+            </div>
+            <div class="col-sm-1">
               <%= category_fields.label :delete %>
               <%= category_fields.check_box :_destroy %>
             </div>
-        </div>
-
-        <div class="row" style="margin-bottom: 0.5em;">
-          <div class="col-sm-11">
-            <%= category_fields.label :description %>
-            <%= category_fields.text_field :description, class: 'form-control' %>
           </div>
-          <div class="col-sm-1">
-            </div>
-        </div>
 
-        <%= category_fields.fields_for :fields do |field_fields| %>
-          <%= field_fields.hidden_field :id %>
-          <div class="row" style="padding-top: 0.5em">
-            <div class="col-sm-6">
-              <%= field_fields.label :question %>
-              <%= field_fields.text_field :label, class: 'form-control' %>
-            </div>
-            <div class="col-sm-3">
-              <%= field_fields.label :allowed_units %>
-              <%= field_fields.select :units, options_from_collection_for_select(@units, :key, :name,field_fields.object.units&.keys), {}, class: 'form-control', multiple: true %>
-            </div>
-            <div class="col-sm-2">
-              <%= field_fields.label :question_type %>
-              <%= field_fields.select :field_type, options_for_select([['Open ended', 'open_ended'], ['Choose one alternative', 'radio']], field_fields.object.field_type), {}, class: 'form-control' %>
+          <div class="row" style="padding-bottom: 1em; margin-bottom: 0.5em; border-bottom: 1px dotted lightgray">
+            <div class="col-sm-11">
+              <%= category_fields.label :description %>
+              <%= category_fields.text_field :description, class: 'form-control' %>
             </div>
             <div class="col-sm-1">
-              <%= field_fields.label :delete %>
-              <%= field_fields.check_box :_destroy %>
-            </div>
+              </div>
           </div>
-        <% end %>
-        <%= render "add_field", category_fields: category_fields %>
-        <p class="text-muted" style="margin-top: 15px;">Please note that all open ended fields will automatically have a "free form" unit.</p>
-      </div>
+
+          <div data-controller="item-order">
+            <%= category_fields.hidden_field :field_order, 'data-target': 'item-order.order' %>
+            <% category.fields.each_with_index do |field, field_index| %>
+              <%= fields_for "business_calculator[categories_attributes][#{category_index}][fields_attributes][#{field_index}]", field do |field_fields| %>
+                <div class="row" style="padding-top: 0.5em" data-target="item-order.item" data-id="<%= field.id %>">
+                  <%= field_fields.hidden_field :id %>
+                  <div class="col-sm-1">
+                    <%= field_fields.label :position %>
+                    <select class="form-control" data-target="item-order.select" data-action="item-order#move" data-position="<%= field_index %>">
+                      <% (1..category.fields.length).to_a.each do |number| %>
+                        <option value="<%= number %>" <%= number - 1 == field_index ? 'selected' : '' %>><%= number %></option>
+                      <% end %>
+                    </select>
+                  </div>
+                  <div class="col-sm-5">
+                    <%= field_fields.label :question %>
+                    <%= field_fields.text_field :label, class: 'form-control' %>
+                  </div>
+                  <div class="col-sm-3">
+                    <%= field_fields.label :allowed_units %>
+                    <%= field_fields.select :units, options_from_collection_for_select(@units, :key, :name,field_fields.object.units&.keys), {}, class: 'form-control', multiple: true %>
+                  </div>
+                  <div class="col-sm-2">
+                    <%= field_fields.label :question_type %>
+                    <%= field_fields.select :field_type, options_for_select([['Open ended', 'open_ended'], ['Choose one alternative', 'radio']], field_fields.object.field_type), {}, class: 'form-control' %>
+                  </div>
+                  <div class="col-sm-1">
+                    <%= field_fields.label :delete %>
+                    <%= field_fields.check_box :_destroy %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <%= render "add_field", fields_for: "business_calculator[categories_attributes][#{category_index}][fields_attributes][#{category.fields.length}]" %>
+          <p class="text-muted" style="margin-top: 15px;">Please note that all open ended fields will automatically have a "free form" unit.</p>
+        </div>
+      <% end %>
     <% end %>
 
-    <%= form.fields_for :categories, BusinessCalculators::CalculatorCategory.new do |category_fields| %>
+    <%= fields_for "business_calculator[categories_attributes][#{@calculator.categories.length}]", BusinessCalculators::CalculatorCategory.new do |category_fields| %>
       <div class="hidden" data-target="add-nested-fields.template">
         <%= category_fields.text_field :name, class: 'form-control input-lg add-nested-fields-input-field', 'data-target': 'add-nested-fields.templateInput', style: 'margin: 1em 0; font-weight: 600;', placeholder: 'Category name ...'  %>
 
