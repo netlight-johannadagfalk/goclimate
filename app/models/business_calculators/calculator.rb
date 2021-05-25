@@ -2,7 +2,10 @@
 
 module BusinessCalculators
   class Calculator < ApplicationRecord
-    has_many :categories, class_name: 'BusinessCalculators::CalculatorCategory', dependent: :destroy
+    has_many :categories,
+             ->(calculator) { order(sanitize_sql_for_order(["POSITION(id::text IN '?')", calculator.category_order])) },
+             class_name: 'BusinessCalculators::CalculatorCategory',
+             dependent: :destroy
 
     accepts_nested_attributes_for :categories, allow_destroy: true, reject_if:
       proc { |attributes|
@@ -53,7 +56,7 @@ module BusinessCalculators
 
     def status_value
       available_options = %w[published archived draft]
-      errors.add(self.status, "must be one of #{available_options.join(', ')}") unless available_options.include?(self.status) # rubocop:disable Metrics/LineLength
+      errors.add(self.status, "must be one of #{available_options.join(', ')}") unless available_options.include?(self.status) # rubocop:disable Layout/LineLength
     end
   end
 end
