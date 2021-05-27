@@ -33,8 +33,12 @@ class User < ApplicationRecord
     end
   end
 
+  def current_plan
+    stripe_customer.subscriptions.first&.plan
+  end
+
   def subscription_amount
-    stripe_customer.subscriptions.first.plan.amount.to_f / 100
+    current_plan.amount.to_f / 100
   end
 
   def subscription_amount_in_sek

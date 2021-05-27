@@ -1,0 +1,35 @@
+<%= render "shared/header" %>
+
+<section class="section-padding">
+  <h1 class="heading-xl mb-6">Make your choice</h1>
+</section>
+
+<section class="section-padding">
+  <h2 class="heading-lg mb-16">Choose your subscription</h2>
+
+  <div class="section-gutter t:flex">
+    <div class="t:w-1/2">
+      <div class="callout h-full space-y-4">
+        <h3 class="heading">Keep current subscription</h3>
+        <ul class="list list-bullet">
+          <li>Continue offsetting for your full carbon footprint.</li>
+          <li>Your price changes to <strong>X/mo</strong> after June 17.</li>
+        </ul>
+        <p class="text-center font-bold leading-10">No action required</p>
+      </div>
+    </div>
+    <div class="t:w-1/2">
+      <div class="callout h-full space-y-4">
+        <h3 class="heading">Reduce subscription to match current price</h3>
+        <ul class="list list-bullet">
+          <li>Your monthly offsetting will decrease to <strong>0.X tonnes/mo</strong>.</li>
+          <li>Keep your current price per month of <strong><%= @current_plan.monthly_amount %>/mo</strong>.</li>
+        </ul>
+        <p class="text-center"><%= link_to 'Keep current price', '', class: 'button w-full' %></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= render "shared/bottom_landscape" %>
+<%= render "shared/footer", skip_prefooter: true %>

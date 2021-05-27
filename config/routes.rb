@@ -153,6 +153,9 @@ Rails.application.routes.draw do
 
     resources :newsletter_subscribers, only: [:create]
 
+    resource :subscription_price_choice, path: 'choose-updated-subscription', only: [:new, :create],
+                                         path_names: { new: '' }
+
     # Assets that users may download
     get '/assets', to: redirect(status: 302) {
       'https://drive.google.com/drive/folders/1YN6Vomjkrp-eFZYonZehELbjz1x8BkL_?usp=sharing'
