@@ -8,10 +8,10 @@
 
   <dt>Contents:</dt>
   <dd>
-    <% BusinessCalculators::CalculatorCategory.where(calculator_id: @calculator.id).each do |category| %>
+    <% @calculator.categories.each do |category| %>
       <b><%= category.name %></b>
       <ul>
-        <% BusinessCalculators::CalculatorField.where(category_id: category.id).each do |field| %>
+        <% category.fields.each do |field| %>
           <li>
             <%= field.label %>
             <% formatted_unit_names = field.units&.map { |(key, _value)| BusinessCalculators::Unit.where(key: key).first.name }&.join(", ") %>

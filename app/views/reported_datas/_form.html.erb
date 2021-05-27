@@ -1,12 +1,12 @@
 <%= form_with url: reported_datas_path, class: 'space-y-6' do |form| %>
   <% field_index = 0 %>
-  <% @reported_datas.each do |(category, reported_datas)| %>
+  <% @reported_datas.each_with_index do |(category, reported_datas), category_index| %>
     <div class="space-y-4">
       <div class="space-y-1">
-        <h4 class="heading"><%= category.name %></h4>
+        <h4 class="heading"><%= category_index + 1 %>. <%= category.name %></h4>
         <p><%= category.description %></p>
       </div>
-      <% reported_datas.each do |reported_data| %>
+      <% reported_datas.each_with_index do |reported_data, reported_data_index| %>
         <%= fields_for 'reported_datas[]', reported_data do |reported_data_fields| %>
           <input type="hidden" name="<%= "reported_datas[#{field_index}][calculator_field_id]" %>" value="<%= reported_data.calculator_field_id %>">
           <input type="hidden" name="<%= "reported_datas[#{field_index}][data_request_id]" %>" value="<%= reported_data.data_request_id %>">
@@ -14,7 +14,10 @@
           <div class="space-y-1">
             <div class="flex flex-col t:flex-row">
               <div class="flex flex-row items-end t:w-1/2 t:mr-2">
-                <%= label_tag reported_data.calculator_field.label, nil, class: 'font-semibold' %>
+                <label class="font-semibold">
+                  <%= category_index + 1 %>.<%= reported_data_index + 1 %>.
+                  <%= reported_data.calculator_field.label %>
+                </label>
               </div>
               <div class="hidden t:flex flex-row items-end max-w-md w-1/2 mr-2">
                 <% if reported_data.calculator_field.open_ended_type? %>

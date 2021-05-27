@@ -3,9 +3,11 @@
 module BusinessCalculators
   class CalculatorCategory < ApplicationRecord
     belongs_to :calculator, class_name: 'BusinessCalculators::Calculator'
-    has_many :fields, class_name: 'BusinessCalculators::CalculatorField',
-                      foreign_key: 'category_id',
-                      dependent: :destroy
+    has_many :fields,
+             ->(category) { order(sanitize_sql_for_order(["POSITION(id::text IN '?')", category.field_order])) },
+             class_name: 'BusinessCalculators::CalculatorField',
+             foreign_key: 'category_id',
+             dependent: :destroy
 
     validates_presence_of :name
 
