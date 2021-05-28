@@ -48,6 +48,28 @@ module BusinessCalculators
       self.save
     end
 
+    def duplicate # rubocop:disable Layout/MethodLength
+      new_calculator = dup
+      new_calculator.name = "#{new_calculator.name} (copy)"
+      new_calculator.status = 'draft'
+
+      if new_calculator.save
+        categories.each do |category|
+          new_category = category.dup
+          new_category.calculator_id = new_calculator.id
+          new_category.save
+
+          category.fields.each do |field|
+            new_field = field.dup
+            new_field.category_id = new_category.id
+            new_field.save
+          end
+        end
+      else
+        errors.add(self, 'was not duplicated')
+      end
+    end
+
     private
 
     def set_default_status
