@@ -49,7 +49,7 @@ class ReportedDatasController < ApplicationController
       [
         category,
         category.fields.map do |field|
-          @data_request&.survey ? reported_data_instance_survey(field) : reported_data_instance(field)
+          @calculator.survey ? reported_data_existing_instance(field) : reported_data_new_instance(field)
         end
       ]
     end
@@ -67,7 +67,7 @@ class ReportedDatasController < ApplicationController
     end
   end
 
-  def reported_data_instance(field)
+  def reported_data_new_instance(field)
     latest_reported_data = ReportedData.latest(@report_area, field) if @report_area
     ReportedData.new(
       calculator_field: field,
@@ -77,7 +77,7 @@ class ReportedDatasController < ApplicationController
     )
   end
 
-  def reported_data_instance_survey(field)
+  def reported_data_existing_instance(field)
     latest_reported_data = ReportedData.latest(
       @report_area,
       field,

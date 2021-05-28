@@ -93,6 +93,7 @@ module Admin
       params.require(:business_calculator).permit(
         :name,
         :category_order,
+        :survey,
         {
           categories_attributes: [
             :id,
