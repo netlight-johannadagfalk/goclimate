@@ -39,17 +39,16 @@
                     <%= label_tag t('reported_datas.units'), nil, class: 'font-semibold' %>
                   </div>
                 <% end %>
-                <% reported_data.calculator_field.units&.each_with_index do |(key, _value), index| %>
-                  <% unit = BusinessCalculators::Unit.find_by(key: key) %>
+                <% BusinessCalculators::Unit.where(key: reported_data.calculator_field.units&.keys).order(updated_at: :asc).each_with_index do |unit, index| %>
                   <label class="radio">
-                    <input type="radio" name="<%= "reported_datas[#{field_index}][unit]" %>" value="<%= key %>" <%= key == reported_data.unit || reported_data.unit.nil? && index == 0 ? 'checked' : '' %>>
+                    <input type="radio" name="<%= "reported_datas[#{field_index}][unit]" %>" value="<%= unit.key %>" <%= unit.key == reported_data.unit || reported_data.unit.nil? && index == 0 && reported_data.calculator_field.open_ended_type? ? 'checked' : '' %>>
                     <span class="radio-input"></span>
                     <%= unit.name %>
                   </label>
                 <% end %>
                 <% if reported_data.calculator_field.open_ended_type? %>
                   <label class="radio">
-                    <input type="radio" name="<%= "reported_datas[#{field_index}][unit]" %>" value="freeform" <%= reported_data.unit == "freeform" || reported_data.calculator_field.units.blank? ? 'checked' : '' %>>
+                    <input type="radio" name="<%= "reported_datas[#{field_index}][unit]" %>" value="freeform" <%= reported_data.unit == "freeform" || reported_data.calculator_field.units.blank? && reported_data.calculator_field.open_ended_type? ? 'checked' : '' %>>
                     <span class="radio-input"></span>
                     Other
                   </label>
