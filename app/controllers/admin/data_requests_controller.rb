@@ -45,7 +45,6 @@ module Admin
           {
             report_area_id: data_request_params[:area].to_i,
             recipient: data_reporter,
-            survey: data_request_params[:survey]
           }
         )
 
@@ -92,7 +91,6 @@ module Admin
       params.require(:data_request).permit(
         :email,
         :area,
-        :survey,
         :sender,
         :subject,
         :message,
