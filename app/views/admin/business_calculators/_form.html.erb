@@ -62,7 +62,7 @@
             <%= category_fields.hidden_field :field_order, 'data-target': 'item-order.order' %>
             <% category.fields.each_with_index do |field, field_index| %>
               <%= fields_for "business_calculator[categories_attributes][#{category_index}][fields_attributes][#{field_index}]", field do |field_fields| %>
-                <div class="row" style="padding-top: 0.5em" data-target="item-order.item" data-id="<%= field.id %>">
+                <div class="row" style="padding-top: 1.5em" data-target="item-order.item" data-id="<%= field.id %>">
                   <%= field_fields.hidden_field :id %>
                   <div class="col-sm-1">
                     <%= field_fields.label :position %>
