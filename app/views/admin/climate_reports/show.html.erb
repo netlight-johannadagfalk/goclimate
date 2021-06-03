@@ -25,7 +25,8 @@
   <dt>Report areas:</dt>
   <% @report.areas.each do |area| %>
     <dd style="padding-bottom: 1em">
-      <strong><%= area.title %></strong> &mdash; Calculator <%= BusinessCalculators::Calculator.find(area.calculator_id).name %>
+      <% calculator = BusinessCalculators::Calculator.find(area.calculator_id) %>
+      <strong><%= area.title %></strong> &mdash; Calculator <%= link_to calculator.name, admin_business_calculator_path(calculator) %>
       <div style="padding-left: 1em">
         <p>
           <% number_of_questions = area.number_of_questions
