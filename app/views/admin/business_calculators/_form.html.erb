@@ -72,22 +72,7 @@
                       <% end %>
                     </select>
                   </div>
-                  <div class="col-sm-5">
-                    <%= field_fields.label :question %>
-                    <%= field_fields.text_field :label, class: 'form-control' %>
-                  </div>
-                  <div class="col-sm-3">
-                    <%= field_fields.label :allowed_units %>
-                    <%= field_fields.select :units, options_from_collection_for_select(@units, :key, :name,field_fields.object.units&.keys), {}, class: 'form-control', multiple: true %>
-                  </div>
-                  <div class="col-sm-2">
-                    <%= field_fields.label :question_type %>
-                    <%= field_fields.select :field_type, options_for_select([['Open ended', 'open_ended'], ['Choose one alternative', 'radio']], field_fields.object.field_type), {}, class: 'form-control' %>
-                  </div>
-                  <div class="col-sm-1">
-                    <%= field_fields.label :delete %>
-                    <%= field_fields.check_box :_destroy %>
-                  </div>
+                  <%= render "field_layout", fields: field_fields %>
                 </div>
               <% end %>
             <% end %>
@@ -101,9 +86,6 @@
     <%= fields_for "business_calculator[categories_attributes][#{@calculator.categories.length}]", BusinessCalculators::CalculatorCategory.new do |category_fields| %>
       <div class="hidden" data-target="add-nested-fields.template">
         <%= category_fields.text_field :name, class: 'form-control input-lg add-nested-fields-input-field', 'data-target': 'add-nested-fields.templateInput', style: 'margin: 1em 0; font-weight: 600;', placeholder: 'Category name ...'  %>
-
-        <!-- It's currently not possible to create a category and its fields at the same time -->
-        <!-- <%= render "add_field", category_fields: category_fields %> -->
       </div>
     <% end %>
 
