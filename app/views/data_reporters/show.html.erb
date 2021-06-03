@@ -20,10 +20,11 @@
           </div>
           <div class="w-1/4 relative">
             <span class="relative z-10 ml-2">
-              <% progress_percentage = (item[:number_of_answered_questions] > item[:number_of_questions] ? 1 : item[:number_of_answered_questions] / item[:number_of_questions]) * 100 %>
+              <% progress_percentage = ((item[:number_of_answered_questions] > item[:number_of_questions] ? 1 : (item[:number_of_answered_questions].to_f / item[:number_of_questions].to_f).round(2)) * 100).round(0) %>
               <%= progress_percentage %>%
             </span>
-            <div class="absolute top-0 left-0 h-full bg-green-tint-2 rounded-r" style="width: <%= progress_percentage %>%;"></div>
+            <div class="absolute top-0 left-0 h-full w-full bg-white border border-gray-accent rounded-r"></div>
+            <div class="absolute top-0 left-0 h-full bg-green-tint-2 border border-green-tint-2 rounded-r" style="width: <%= progress_percentage %>%;"></div>
           </div>
         </div>
       <% end %>
