@@ -9,6 +9,9 @@
   <dt>Email:</dt>
   <dd><%= @data_reporter.email %></dd>
 
+  <dt>Link:</dt>
+  <dd><%= link_to data_reporter_url(id: @data_reporter.key), data_reporter_url(id: @data_reporter.key) %></dd>
+
   <dt>Report:</dt>
   <dd><%= link_to @report.title, [:admin, @report] %></dd>
   
