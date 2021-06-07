@@ -31,7 +31,10 @@ RSpec.describe SubscriptionMailer, type: :mailer do
     subject(:mail) { described_class.with(email: user.email).one_more_month_email }
 
     before do
-      allow(Stripe::Customer).to receive(:retrieve).with(user.stripe_customer_id).and_return(stripe_customer)
+      allow(Stripe::Customer)
+        .to receive(:retrieve)
+        .with(id: user.stripe_customer_id, expand: ['subscriptions'])
+        .and_return(stripe_customer)
     end
 
     it_behaves_like 'subscription email'

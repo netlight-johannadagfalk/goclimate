@@ -6,7 +6,7 @@ Rails.configuration.stripe = {
 }
 
 Stripe.api_key = Rails.configuration.stripe[:secret_key]
-Stripe.api_version = '2019-10-17'
+Stripe.api_version = '2020-08-27'
 Stripe.logger =
   if Rails.env.development?
     # Development logger is by default only pointing to the log file, not

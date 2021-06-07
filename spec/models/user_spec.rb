@@ -11,7 +11,10 @@ RSpec.describe User do
 
   describe '#stripe_customer' do
     before do
-      allow(Stripe::Customer).to receive(:retrieve).with(user.stripe_customer_id).and_return(stripe_customer)
+      allow(Stripe::Customer)
+        .to receive(:retrieve)
+        .with(id: user.stripe_customer_id, expand: ['subscriptions'])
+        .and_return(stripe_customer)
     end
 
     it 'returns associated stripe customer' do
@@ -63,7 +66,10 @@ RSpec.describe User do
 
   describe '#number_of_neutral_months' do
     before do
-      allow(Stripe::Customer).to receive(:retrieve).with(user.stripe_customer_id).and_return(stripe_customer)
+      allow(Stripe::Customer)
+        .to receive(:retrieve)
+        .with(id: user.stripe_customer_id, expand: ['subscriptions'])
+        .and_return(stripe_customer)
     end
 
     context 'with no subscription months' do
