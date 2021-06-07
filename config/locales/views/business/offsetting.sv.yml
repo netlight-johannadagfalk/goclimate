@@ -13,12 +13,12 @@ sv:
             book_meeting: Boka möte
           self_serve:
             heading: Skapa din egen klimatrapport
-            text: Använd vårt verktyg för att beräkna och klimatkompensera för era utsläpp med hjälp av vår automatiserade process – helt utan komplicerade procedurer.
+            text: Använd vårt enkla verktyg för att beräkna och klimatkompensera för era utsläpp.
             read_more: Läs mer
             calculate: Klimatberäkna företag
           just_offsetting:
             heading: Endast klimatkompensation
-            text: Vet ni redan vad ert klimatavtryck är? Vi erbjuder våra utvalda klimatprojekt som är de bästa i branschen.
+            text: Vet ni redan vad ert klimatavtryck är? Vi erbjuder klimatkompensation i noggrant utvalda certifierade klimatprojekt.
             book_meeting: Boka möte
         offset_employees:
           heading: Kompensera för hela ditt teams klimatavtryck
