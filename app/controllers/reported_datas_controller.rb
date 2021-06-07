@@ -50,7 +50,7 @@ class ReportedDatasController < ApplicationController
       [
         category,
         category.fields.map do |field|
-          @calculator.survey ? reported_data_existing_instance(field) : reported_data_new_instance(field)
+          @calculator.survey && @data_request.present? ? reported_data_existing_instance(field) : reported_data_new_instance(field)
         end
       ]
     end
