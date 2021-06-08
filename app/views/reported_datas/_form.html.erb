@@ -31,21 +31,28 @@
                   <input type="text" name="<%= "reported_datas[#{field_index}][value]" %>" class="input" value="<%= reported_data.value %>">
                 </div>
               <% else %>
-                <div class="flex flex-col">
-                  <% reported_data.calculator_field.alternatives&.reject(&:blank?)&.each do |alternative| %>
-                    <label class="radio">
-                      <input type="radio" name="<%= "reported_datas[#{field_index}][value]" %>" value="<%= alternative %>" <%= alternative == reported_data.value ? 'checked' : '' %>>
-                      <span class="radio-input"></span>
-                      <%= alternative %>
-                    </label>
-                  <% end %>
-                </div>
+                <!-- graceful migration to new architecture -->
+                <% if reported_data.calculator_field.units.present? &&  reported_data.calculator_field.alternatives.blank? %>
+                  <input type="hidden" name="<%= "reported_datas[#{field_index}][value]" %>" value="1">
+                <% else %>
+                  <div class="flex flex-col">
+                    <% reported_data.calculator_field.alternatives&.reject(&:blank?)&.each do |alternative| %>
+                      <label class="radio">
+                        <input type="radio" name="<%= "reported_datas[#{field_index}][value]" %>" value="<%= alternative %>" <%= alternative == reported_data.value ? 'checked' : '' %>>
+                        <span class="radio-input"></span>
+                        <%= alternative %>
+                      </label>
+                    <% end %>
+                  </div>
+                <% end %>
               <% end %>
               <div class="flex flex-col">
                 <% if reported_data.calculator_field.open_ended_type? %>
                   <div class="t:hidden">
                     <%= label_tag t('reported_datas.units'), nil, class: 'font-semibold' %>
                   </div>
+                <% end %>
+                <% if !reported_data.calculator_field.open_ended_type? && reported_data.calculator_field.alternatives.blank? %>
                   <% BusinessCalculators::Unit.where(key: reported_data.calculator_field.units&.keys).order(updated_at: :asc).each_with_index do |unit, index| %>
                     <label class="radio">
                       <input type="radio" name="<%= "reported_datas[#{field_index}][unit]" %>" value="<%= unit.key %>" <%= unit.key == reported_data.unit || reported_data.unit.nil? && index == 0 && reported_data.calculator_field.open_ended_type? ? 'checked' : '' %>>
@@ -53,6 +60,8 @@
                       <%= unit.name %>
                     </label>
                   <% end %>
+                <% end %>
+                <% if reported_data.calculator_field.open_ended_type? %>
                   <label class="radio">
                     <input type="radio" name="<%= "reported_datas[#{field_index}][unit]" %>" value="freeform" <%= reported_data.unit == "freeform" || reported_data.calculator_field.units.blank? && reported_data.calculator_field.open_ended_type? ? 'checked' : '' %>>
                     <span class="radio-input"></span>
