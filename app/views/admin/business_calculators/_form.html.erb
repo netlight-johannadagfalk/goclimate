@@ -81,12 +81,20 @@
                     <%= field_fields.select :units, options_from_collection_for_select(@units, :key, :name,field_fields.object.units&.keys), {}, class: 'form-control', multiple: true %>
                   </div>
                   <div class="col-sm-2">
-                    <%= field_fields.label :question_type %>
-                    <%= field_fields.select :field_type, options_for_select([['Open ended', 'open_ended'], ['Choose one alternative', 'radio']], field_fields.object.field_type), {}, class: 'form-control' %>
+                    <div>
+                      <%= field_fields.label :question_type %>
+                      <%= field_fields.select :field_type, options_for_select([['Open ended', 'open_ended'], ['Choose one alternative', 'radio']], field_fields.object.field_type), {}, class: 'form-control' %>
+                    </div>
+                    <div style="margin-top: 1em;">
+                      <label>
+                        <%= field_fields.check_box :multiple_answers %>
+                        Multiple answers allowed
+                      </label>
+                    </div>
                   </div>
                   <div class="col-sm-1">
-                    <%= field_fields.label :delete %>
                     <%= field_fields.check_box :_destroy %>
+                    <%= field_fields.label :delete %>
                   </div>
                 </div>
               <% end %>

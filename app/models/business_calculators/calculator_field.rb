@@ -18,6 +18,17 @@ module BusinessCalculators
       field_type == 'open_ended'
     end
 
+    def survey?
+      category.calculator.survey
+    end
+
+    def answers(report_area, data_reporter = nil)
+      data_request = DataRequest.where(report_area_id: report_area.id).first
+      answers = ReportedData.where(data_request_id: data_request.id).order(created_at: :asc)
+      answers.where('data_requests.recipient_id': data_reporter.id) if data_reporter.present?
+      answers.reorder(created_at: :desc).first unless multiple_answers
+    end
+
     private
 
     def units_exists

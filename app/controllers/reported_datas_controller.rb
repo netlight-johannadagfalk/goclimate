@@ -13,6 +13,7 @@ class ReportedDatasController < ApplicationController
   def create
     @data_request = DataRequest.find(reported_data_params.first[:data_request_id])
     reported_datas = reject_blank_values(reported_data_params).map do |param|
+      # param[:value].each do |value|
       reported_data = ReportedData.where(id: param[:id]).first_or_create
       reported_data.assign_attributes(param)
       reported_data
@@ -59,11 +60,11 @@ class ReportedDatasController < ApplicationController
   def reported_data_params
     @reported_data_params ||= params.require(:reported_datas).values.map do |p|
       ActionController::Parameters.new(p).permit(
-        :data_request_id,
-        :calculator_field_id,
-        :value,
-        :unit,
-        :id
+        data_request_id: [],
+        calculator_field_id: [],
+        id: [],
+        value: [],
+        unit: [],
       )
     end
   end

@@ -8,10 +8,8 @@
       </div>
       <% reported_datas.each_with_index do |reported_data, reported_data_index| %>
         <%= fields_for 'reported_datas[]', reported_data do |reported_data_fields| %>
-          <input type="hidden" name="<%= "reported_datas[#{field_index}][calculator_field_id]" %>" value="<%= reported_data.calculator_field_id %>">
-          <input type="hidden" name="<%= "reported_datas[#{field_index}][data_request_id]" %>" value="<%= reported_data.data_request_id %>">
-          <input type="hidden" name="<%= "reported_datas[#{field_index}][id]" %>" value="<%= reported_data.id %>">
-          <div class="space-y-1">
+          
+          <div class="space-y-2" data-controller="add-nested-fields">
             <div class="flex flex-col t:flex-row">
               <div class="flex flex-row items-end t:w-1/2 t:mr-2">
                 <label class="font-semibold">
@@ -25,13 +23,17 @@
                 <% end %>
               </div>
             </div>
+            
             <div class="flex flex-col t:flex-row">
+              <input type="hidden" name="<%= "reported_datas[#{field_index}][calculator_field_id][0]" %>" value="<%= reported_data.calculator_field_id %>">
+              <input type="hidden" name="<%= "reported_datas[#{field_index}][data_request_id][0]" %>" value="<%= reported_data.data_request_id %>">
+              <input type="hidden" name="<%= "reported_datas[#{field_index}][id][0]" %>" value="<%= reported_data.id %>">
               <% if reported_data.calculator_field.open_ended_type? %>
                 <div class="flex flex-col t:w-1/2 t:mr-2">
-                  <input type="text" name="<%= "reported_datas[#{field_index}][value]" %>" class="input" value="<%= reported_data.value %>">
+                  <input type="text" name="<%= "reported_datas[#{field_index}][value][0]" %>" class="input" value="">
                 </div>
               <% else %>
-                <input type="hidden" name="<%= "reported_datas[#{field_index}][value]" %>" value="1">
+                <input type="hidden" name="<%= "reported_datas[#{field_index}][value][0]" %>" value="1">
               <% end %>
               <div class="flex flex-col">
                 <% if reported_data.calculator_field.open_ended_type? %>
@@ -41,20 +43,61 @@
                 <% end %>
                 <% BusinessCalculators::Unit.where(key: reported_data.calculator_field.units&.keys).order(updated_at: :asc).each_with_index do |unit, index| %>
                   <label class="radio">
-                    <input type="radio" name="<%= "reported_datas[#{field_index}][unit]" %>" value="<%= unit.key %>" <%= unit.key == reported_data.unit || reported_data.unit.nil? && index == 0 && reported_data.calculator_field.open_ended_type? ? 'checked' : '' %>>
+                    <input type="radio" name="<%= "reported_datas[#{field_index}][unit][0]" %>" value="<%= unit.key %>">
                     <span class="radio-input"></span>
                     <%= unit.name %>
                   </label>
                 <% end %>
                 <% if reported_data.calculator_field.open_ended_type? %>
                   <label class="radio">
-                    <input type="radio" name="<%= "reported_datas[#{field_index}][unit]" %>" value="freeform" <%= reported_data.unit == "freeform" || reported_data.calculator_field.units.blank? && reported_data.calculator_field.open_ended_type? ? 'checked' : '' %>>
+                    <input type="radio" name="<%= "reported_datas[#{field_index}][unit][0]" %>" value="freeform">
                     <span class="radio-input"></span>
                     Other
                   </label>
                 <% end %>
               </div>
             </div>
+            <% if reported_data.calculator_field.multiple_answers %>
+              <!-- hidden template -->
+              <div class="flex flex-col t:flex-row hidden" data-target="add-nested-fields.template">
+                <input type="hidden" name="<%= "reported_datas[#{field_index}][calculator_field_id][1]" %>" value="<%= reported_data.calculator_field_id %>">
+                <input type="hidden" name="<%= "reported_datas[#{field_index}][data_request_id][1]" %>" value="<%= reported_data.data_request_id %>">
+                <input type="hidden" name="<%= "reported_datas[#{field_index}][id][1]" %>" value="<%= reported_data.id %>">
+                <% if reported_data.calculator_field.open_ended_type? %>
+                  <div class="flex flex-col t:w-1/2 t:mr-2">
+                    <input type="text" name="<%= "reported_datas[#{field_index}][value][1]" %>" class="input add-nested-fields-input-field" value="<%= reported_data.value %>">
+                  </div>
+                <% else %>
+                  <input type="hidden" name="<%= "reported_datas[#{field_index}][value][1]" %>" class="add-nested-fields-input-field" value="1">
+                <% end %>
+                <div class="flex flex-col">
+                  <% if reported_data.calculator_field.open_ended_type? %>
+                    <div class="t:hidden">
+                      <%= label_tag t('reported_datas.units'), nil, class: 'font-semibold' %>
+                    </div>
+                  <% end %>
+                  <% BusinessCalculators::Unit.where(key: reported_data.calculator_field.units&.keys).order(updated_at: :asc).each_with_index do |unit, index| %>
+                    <label class="radio">
+                      <input type="radio" name="<%= "reported_datas[#{field_index}][unit][1]" %>" class="add-nested-fields-input-field" value="<%= unit.key %>" <%= unit.key == reported_data.unit || reported_data.unit.nil? && index == 0 && reported_data.calculator_field.open_ended_type? ? 'checked' : '' %>>
+                      <span class="radio-input"></span>
+                      <%= unit.name %>
+                    </label>
+                  <% end %>
+                  <% if reported_data.calculator_field.open_ended_type? %>
+                    <label class="radio">
+                      <input type="radio" name="<%= "reported_datas[#{field_index}][unit][1]" %>" class="add-nested-fields-input-field" value="freeform" <%= reported_data.unit == "freeform" || reported_data.calculator_field.units.blank? && reported_data.calculator_field.open_ended_type? ? 'checked' : '' %>>
+                      <span class="radio-input"></span>
+                      Other
+                    </label>
+                  <% end %>
+                </div>
+              </div>
+              <!-- end hidden template -->
+              <div class="space-y-2" data-target="add-nested-fields.destination"></div>
+              <button type="button" class="button button-sm" data-action="add-nested-fields#cloneToDestinationWithSecondNumberIncremented">
+                Add answer
+              </button>
+            <% end %>
           </div>
         <% end %>
         <% field_index += 1 %>

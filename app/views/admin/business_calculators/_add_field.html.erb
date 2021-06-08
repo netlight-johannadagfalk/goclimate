@@ -11,8 +11,16 @@
           <%= field_fields.select :units, options_from_collection_for_select(@units, :key, :name), {}, class: 'form-control add-nested-fields-input-field', multiple: true %>
         </div>
         <div class="col-sm-2">
-          <%= field_fields.label :question_type %>
-          <%= field_fields.select :field_type, options_for_select([['Open ended', 'open_ended'], ['Choose one alternative', 'radio']]), {}, class: 'form-control' %>
+          <div>
+            <%= field_fields.label :question_type %>
+            <%= field_fields.select :field_type, options_for_select([['Open ended', 'open_ended'], ['Choose one alternative', 'radio']]), {}, class: 'form-control' %>
+          </div>
+          <div style="margin-top: 1em;">
+            <label>
+              <%= field_fields.check_box :multiple_answers %>
+              Multiple answers allowed
+            </label>
+          </div>
         </div>
       </div>
     </div>

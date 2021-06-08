@@ -19,5 +19,11 @@ module BusinessCalculators
     def self.model_name
       @model_name ||= ActiveModel::Name.new(self, nil, 'calculator_category')
     end
+
+    def answers
+      ans = fields.each do |field|
+        field
+      end
+    end
   end
 end
