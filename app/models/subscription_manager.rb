@@ -109,7 +109,7 @@ class SubscriptionManager
     @subscription = Stripe::Subscription.update(
       subscription.id,
       plan: new_plan.id,
-      prorate: false
+      proration_behavior: 'none'
     )
   end
 

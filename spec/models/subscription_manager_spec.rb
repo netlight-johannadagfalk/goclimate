@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+#  frozen_string_literal: true
 
 require 'rails_helper'
 
@@ -266,7 +266,7 @@ RSpec.describe SubscriptionManager do
           manager.update(new_plan)
 
           expect(Stripe::Subscription).to have_received(:update)
-            .with(subscription_id, hash_including(prorate: false, plan: new_plan.id))
+            .with(subscription_id, hash_including(proration_behavior: 'none', plan: new_plan.id))
         end
       end
 
