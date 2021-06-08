@@ -4,7 +4,7 @@ class ReportedData < ApplicationRecord
   belongs_to :data_request, class_name: 'DataRequest'
   belongs_to :calculator_field, class_name: 'BusinessCalculators::CalculatorField'
 
-  validates_presence_of :value, :unit, :data_request, :calculator_field
+  validates_presence_of :value, :data_request, :calculator_field
 
   def self.latest(report_area, calculator_field, data_reporter = nil)
     latest =

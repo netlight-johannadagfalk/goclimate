@@ -3,16 +3,24 @@
     <%= local_assigns[:fields].label :question, class: local_assigns[:label_class] %>
     <%= local_assigns[:fields].text_field :label, class: "form-control #{local_assigns[:input_class]}" %>
   </div>
-  <div class="col-sm-3">
+  <div class="col-sm-3" data-controller="add-alternatives">
     <div data-target="units-and-question-types.units">
       <%= local_assigns[:fields].label :allowed_units, class: local_assigns[:label_class] %>
       <%= local_assigns[:fields].select :units, options_from_collection_for_select(@units, :key, :name, local_assigns[:fields].object&.units&.keys), {}, class: "form-control #{local_assigns[:input_class]}", multiple: true %>
     </div>
     <div class="hidden" data-target="units-and-question-types.alternatives">
       <%= local_assigns[:fields].label :alternatives, class: local_assigns[:label_class] %>
-      <div></div>
-      <%= local_assigns[:fields].text_field :alternatives, class: "form-control #{local_assigns[:input_class]}" %>
-      <%= local_assigns[:fields].hidden_field :alternatives, class: local_assigns[:input_class] %>
+      <% style_for_alternatives = "display: inline-block; padding: 0.2em 0.4em; margin-right: 0.4em; margin-bottom: 0.4em; background: none; border: 1px solid lightgray; border-radius: 4px; cursor: pointer;" %>
+      <%= local_assigns[:fields].text_field :alternatives, class: "hidden #{local_assigns[:input_class]}", 'data-target': 'add-alternatives.template', 'data-action': 'click->add-alternatives#remove', style: style_for_alternatives, multiple: true, disabled: true %>
+      <div data-target="add-alternatives.destination" style="margin-bottom: 0.5em;">
+        <% local_assigns[:field]&.alternatives&.reject(&:blank?)&.each do |alternative| %>
+          <%= local_assigns[:fields].text_field :alternatives, value: alternative, class: local_assigns[:input_class], 'data-action': 'click->add-alternatives#remove', style: style_for_alternatives, multiple: true, size: alternative.length %>
+        <% end %>
+      </div>
+      <div>
+        <input type="text" class="form-control <%= local_assigns[:input_class] %>" style="display: inline-block; width: 80%" data-target="add-alternatives.input" data-action="submit->add-alternatives#add">
+        <%= local_assigns[:fields].button 'Add', type: 'button', class: 'form-control', style: 'display: inline-block; width: 18%', 'data-action': 'add-alternatives#add' %>
+      </div>
     </div>
   </div>
   <div class="col-sm-2">

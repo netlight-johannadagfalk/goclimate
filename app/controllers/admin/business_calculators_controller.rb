@@ -86,7 +86,7 @@ module Admin
             :description,
             :field_order,
             :_destroy,
-            { fields_attributes: [:id, :label, :field_type, :_destroy, units: []] }
+            { fields_attributes: [:id, :label, :field_type, :_destroy, alternatives: [], units: []] }
           ]
         }
       )

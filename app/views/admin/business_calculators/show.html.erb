@@ -5,6 +5,8 @@
 <dl class="dl-horizontal">
   <dt>Name:</dt>
   <dd><%= @calculator.name %></dd>
+  <dt>Updated:</dt>
+  <dd><%= time_tag(@calculator.updated_at) %></dd>
   <dt>Survey mode:</dt>
   <dd><%= @calculator.survey %></dd>
 
@@ -16,16 +18,20 @@
         <% category.fields.each do |field| %>
           <li>
             <%= field.label %>
-            <% formatted_unit_names = field.units&.map { |(key, _value)| BusinessCalculators::Unit.where(key: key).first.name }&.join(", ") %>
-            (<%= "#{formatted_unit_names}#{formatted_unit_names.present? ? ', free form' : 'Free form'}" %>)
+            <ul>
+              <li>Field type: <%= field.field_type %></li>
+              <% if field.field_type == "open_ended" %>
+                <% formatted_unit_names = field.units&.map { |(key, _value)| BusinessCalculators::Unit.where(key: key).first.name }&.join(", ") %>
+                <li>Units: <%= "#{formatted_unit_names}#{formatted_unit_names.present? ? ', free form' : 'Free form'}" %></li>
+              <% else %>
+                <li>Alternatives: <%= field.alternatives&.join(", ") %></li>
+              <% end %>
+            </ul>
           </li>
         <% end %>
       </ul>
     <% end %>
   </dd>
-  
-  <dt>Updated:</dt>
-  <dd><%= time_tag(@calculator.updated_at) %></dd>
 </dl>
 
 <hr>
