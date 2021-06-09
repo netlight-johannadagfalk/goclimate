@@ -13,6 +13,9 @@ module Admin
     end
 
     def show
+      @reports = ClimateReports::Report.joins_report_areas.where(
+        'climate_reports_report_areas.calculator_id': @calculator.id
+      )
     end
 
     def new

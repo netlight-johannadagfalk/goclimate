@@ -32,6 +32,13 @@
       </ul>
     <% end %>
   </dd>
+
+  <dt>Used in reports:</dt>
+  <dd>
+      <% @reports.each do |report| %>
+        - <%= link_to report.title, [:admin, report] %>
+      <% end %>
+  </dd>
 </dl>
 
 <hr>
