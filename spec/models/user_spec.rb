@@ -13,7 +13,7 @@ RSpec.describe User do
     before do
       allow(Stripe::Customer)
         .to receive(:retrieve)
-        .with(id: user.stripe_customer_id, expand: ['subscriptions'])
+        .with(id: user.stripe_customer_id, expand: %w[subscriptions sources])
         .and_return(stripe_customer)
     end
 
@@ -68,7 +68,7 @@ RSpec.describe User do
     before do
       allow(Stripe::Customer)
         .to receive(:retrieve)
-        .with(id: user.stripe_customer_id, expand: ['subscriptions'])
+        .with(id: user.stripe_customer_id, expand: %w[subscriptions sources])
         .and_return(stripe_customer)
     end
 

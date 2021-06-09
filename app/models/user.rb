@@ -21,7 +21,7 @@ class User < ApplicationRecord
   def stripe_customer
     @stripe_customer ||=
       if stripe_customer_id.present?
-        Stripe::Customer.retrieve(id: stripe_customer_id, expand: ['subscriptions'])
+        Stripe::Customer.retrieve(id: stripe_customer_id, expand: %w[subscriptions sources])
       else
         create_stripe_customer
       end
