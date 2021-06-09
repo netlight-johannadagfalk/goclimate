@@ -140,6 +140,26 @@ enable_experiments=my_feature,my_other_feature
 disable_experiments=my_feature,my_other_feature
 ```
 
+#### React.js
+
+We have a custom implementation of React component that combines our current Javascript framework, Stimulus.js, and Rails partials to inject react components anywhere in the views.
+
+##### Creating React components
+
+Our React components are placed in the `app/assets/main/react_components/` folder in `.jsx` format. These components are created and function as any React component, you can use the Virtual DOM and the full React lifecycle.
+
+The file structure and file names within the `react_components` folder is possible to structure in sub-folders. It's advised to not give components the same name, even though they are situated in different folders as the component name is what is used in the React helper.
+
+##### Usage
+
+To use the React components, use our React helper for a smooth API.
+
+```
+<%= react_component 'ComponentName', prop: 'propValue', secondProp: 'secondPropValue' %>
+```
+
+It will only work with components that are placed in the correct folder. See previous section. 
+
 ## Getting started
 
 ### Requirements
