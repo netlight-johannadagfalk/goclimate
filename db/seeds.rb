@@ -46,6 +46,6 @@ User.create!(
 
 ActiveRecord::Base.connection.set_pk_sequence!(:users, 2)
 
-ReferralCode.create!(
+Subscriptions::ReferralCode.create!(
   code: 'gofriends'
 )

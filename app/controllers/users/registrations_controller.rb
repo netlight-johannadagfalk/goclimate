@@ -10,7 +10,8 @@ module Users
     # GET /resource/sign_up
     def new
       @user = User.new(region: current_region.id)
-      @footprint_price = SubscriptionManager.price_for_footprint(@footprint.total, current_region.currency)
+      @footprint_price =
+        Subscriptions::Manager.price_for_footprint(@footprint.total, current_region.currency)
 
       @projects = Project.order(id: :desc).limit(3)
       @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
@@ -36,7 +37,11 @@ module Users
 
       unless params[:membership] == 'free'
         stripe_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(@plan_price)
-        @manager.sign_up(stripe_plan, params[:payment_method_id], ReferralCode.find_by_code(params[:referral_code]))
+        @manager.sign_up(
+          stripe_plan,
+          params[:payment_method_id],
+          Subscriptions::ReferralCode.find_by_code(params[:referral_code])
+        )
       end
 
       if @manager.errors.any?
@@ -102,7 +107,7 @@ module Users
       @footprint_tonnes = @footprint&.total
       number_of_people = params[:membership] == 'multi' && params[:people].presence ? params[:people].presence&.to_i : 1
       @subscription_tonnes = @footprint_tonnes * number_of_people
-      @plan_price = SubscriptionManager.price_for_footprint(@subscription_tonnes, current_region.currency)
+      @plan_price = Subscriptions::Manager.price_for_footprint(@subscription_tonnes, current_region.currency)
     end
 
     def footprint_present_and_usable_by_current_user?
@@ -120,7 +125,7 @@ module Users
     end
 
     def set_subscription_manager
-      @manager = SubscriptionManager.new(@user)
+      @manager = Subscriptions::Manager.new(@user)
     end
 
     def render_price_json

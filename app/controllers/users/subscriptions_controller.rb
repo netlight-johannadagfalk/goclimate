@@ -55,7 +55,7 @@ module Users
     end
 
     def set_subscription_manager
-      @manager = SubscriptionManager.new(current_user)
+      @manager = Subscriptions::Manager.new(current_user)
     end
 
     def render_successful_update

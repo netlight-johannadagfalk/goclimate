@@ -7,8 +7,8 @@ class User < ApplicationRecord
 
   has_many :card_charges, primary_key: 'stripe_customer_id', foreign_key: 'stripe_customer_id'
   has_many :lifestyle_footprints
-  has_many :subscription_months
-  belongs_to :referred_from, class_name: 'ReferralCode', optional: true
+  has_many :subscription_months, class_name: 'Subscriptions::SubscriptionMonth'
+  belongs_to :referred_from, class_name: 'Subscriptions::ReferralCode', optional: true
 
   validates :user_name, format: { without: /.+@.+\..+/ }, allow_blank: true
 
@@ -112,7 +112,7 @@ class User < ApplicationRecord
   def footprint_coverage
     return nil unless active_subscription?
 
-    full_footprint_price = SubscriptionManager.price_for_footprint(
+    full_footprint_price = Subscriptions::Manager.price_for_footprint(
       current_lifestyle_footprint&.total,
       subscription_currency
     )

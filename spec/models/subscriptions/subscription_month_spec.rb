@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SubscriptionMonth do
+RSpec.describe Subscriptions::SubscriptionMonth do
   describe '.create_from_stripe_invoice_line!' do
     let(:invoice_line) do
       Stripe::Invoice.construct_from(stripe_json_fixture('invoice_subscription_month.json')).lines.first

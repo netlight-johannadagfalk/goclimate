@@ -251,5 +251,6 @@ Rails.application.routes.draw do
   get '/sitemap_content.xml' => 'sitemap#content', :format => 'xml', :as => :sitemap_content
 
   # Catch all routes
-  get ':code', to: 'referral_codes#show', constraints: ->(req) { ReferralCode.exists?(code: req.params[:code]) }
+  get ':code', to: 'referral_codes#show',
+               constraints: ->(req) { Subscriptions::ReferralCode.exists?(code: req.params[:code]) }
 end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ReferralCode do
+RSpec.describe Subscriptions::ReferralCode do
   subject(:code) { described_class.new }
 
   describe '#code' do

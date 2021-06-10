@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SubscriptionManager do
+RSpec.describe Subscriptions::Manager do
   subject(:manager) { described_class.new(user) }
 
   let(:user) { create(:user, stripe_customer_id: customer.id) }
@@ -114,31 +114,31 @@ RSpec.describe SubscriptionManager do
       it 'creates a subscription month for the trial month' do
         expect do
           manager.sign_up(plan, payment_method_id, referral_code)
-        end.to change(SubscriptionMonth, :count).by(1)
+        end.to change(Subscriptions::SubscriptionMonth, :count).by(1)
       end
 
       it 'sets user for subscription month' do
         manager.sign_up(plan, payment_method_id, referral_code)
 
-        expect(SubscriptionMonth.last.user).to eq(user)
+        expect(Subscriptions::SubscriptionMonth.last.user).to eq(user)
       end
 
       it 'sets referral code as payment for subscription month' do
         manager.sign_up(plan, payment_method_id, referral_code)
 
-        expect(SubscriptionMonth.last.payment).to eq(referral_code)
+        expect(Subscriptions::SubscriptionMonth.last.payment).to eq(referral_code)
       end
 
       it 'sets start_at for subscription month to subscription start' do
         manager.sign_up(plan, payment_method_id, referral_code)
 
-        expect(SubscriptionMonth.last.start_at.to_i).to eq(created_subscription.start_date)
+        expect(Subscriptions::SubscriptionMonth.last.start_at.to_i).to eq(created_subscription.start_date)
       end
 
       it 'sets co2e based on plan price' do
         manager.sign_up(plan, payment_method_id, referral_code)
 
-        expect(SubscriptionMonth.last.co2e).to eq(GreenhouseGases.new(766))
+        expect(Subscriptions::SubscriptionMonth.last.co2e).to eq(GreenhouseGases.new(766))
       end
 
       it 'sets referred_from on user to the referral code used' do
@@ -278,7 +278,7 @@ RSpec.describe SubscriptionManager do
         it 'raises SubscriptionMissingError' do
           expect do
             manager.update(new_plan)
-          end.to raise_error(SubscriptionManager::SubscriptionMissingError)
+          end.to raise_error(Subscriptions::Manager::SubscriptionMissingError)
         end
       end
 

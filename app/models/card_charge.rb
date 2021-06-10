@@ -18,7 +18,7 @@ class CardCharge < ApplicationRecord
     if stripe_charge.invoice.present?
       if charge.paid?
         invoice = Stripe::Invoice.retrieve(stripe_charge.invoice)
-        SubscriptionMonth.create_from_stripe_invoice_line!(invoice.lines.first, charge)
+        Subscriptions::SubscriptionMonth.create_from_stripe_invoice_line!(invoice.lines.first, charge)
       end
 
       charge.send_subscription_payment_email
