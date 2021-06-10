@@ -16,6 +16,12 @@ module ClimateReports
       @model_name ||= ActiveModel::Name.new(self, nil, 'climate_report')
     end
 
+    def self.joins_report_areas
+      joins(
+        'INNER JOIN climate_reports_report_areas ON climate_reports_report_areas.report_id = climate_reports_reports.id'
+      )
+    end
+
     def number_of_questions
       total = 0
       areas&.each do |area|

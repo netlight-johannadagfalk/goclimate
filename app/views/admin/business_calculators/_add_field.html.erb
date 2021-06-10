@@ -2,18 +2,7 @@
   <%= fields_for local_assigns[:fields_for], BusinessCalculators::CalculatorField.new do |field_fields| %>
     <div class="hidden" data-target="add-nested-fields.template" style="">
       <div class="row" style="padding-top: 0.5em">
-        <div class="col-sm-6">
-          <%= field_fields.label :question, class: 'add-nested-fields-label-field'%>
-          <%= field_fields.text_field :label, class: 'form-control add-nested-fields-input-field' %>
-        </div>
-        <div class="col-sm-3">
-          <%= field_fields.label :allowed_units, class: 'add-nested-fields-label-field'%>
-          <%= field_fields.select :units, options_from_collection_for_select(@units, :key, :name), {}, class: 'form-control add-nested-fields-input-field', multiple: true %>
-        </div>
-        <div class="col-sm-2">
-          <%= field_fields.label :question_type %>
-          <%= field_fields.select :field_type, options_for_select([['Open ended', 'open_ended'], ['Choose one alternative', 'radio']]), {}, class: 'form-control' %>
-        </div>
+        <%= render "field_layout", fields: field_fields, hide_delete: true, label_class: 'add-nested-fields-label-field', input_class: 'add-nested-fields-input-field' %>
       </div>
     </div>
   <% end %>

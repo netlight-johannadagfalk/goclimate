@@ -1,4 +1,5 @@
 import { Controller } from 'stimulus';
+import createPsqlList from '../../util/create_psql_list';
 
 export default class ItemOrderController extends Controller {
   initialize() {
@@ -35,12 +36,7 @@ export default class ItemOrderController extends Controller {
   }
 
   updateOrderField() {
-    let order = '{';
-    this.itemTargets.forEach((item, index) => {
-      order += `${index === 0 ? '' : ', '}${item.dataset.id}`;
-    });
-    order += '}';
-    this.orderTarget.value = order;
+    this.orderTarget.value = createPsqlList(this.itemTargets.map((item) => item.dataset.id));
   }
 }
 

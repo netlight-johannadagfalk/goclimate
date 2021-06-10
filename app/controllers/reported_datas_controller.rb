@@ -12,7 +12,7 @@ class ReportedDatasController < ApplicationController
 
   def create
     @data_request = DataRequest.find(reported_data_params.first[:data_request_id])
-    reported_datas = reject_blank_values(reported_data_params).map do |param|
+    reported_datas = reported_data_params.reject { |param| param[:value].blank? }.map do |param|
       reported_data = ReportedData.where(id: param[:id]).first_or_create
       reported_data.assign_attributes(param)
       reported_data
@@ -40,10 +40,6 @@ class ReportedDatasController < ApplicationController
   end
 
   private
-
-  def reject_blank_values(data_params)
-    data_params.reject { |param| param[:value].blank? || param[:value].present? && param[:unit].blank? }
-  end
 
   def set_reported_datas
     @reported_datas = @calculator.categories.map do |category|

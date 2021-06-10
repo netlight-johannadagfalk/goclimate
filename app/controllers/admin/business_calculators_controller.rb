@@ -13,6 +13,9 @@ module Admin
     end
 
     def show
+      @reports = ClimateReports::Report.joins_report_areas.where(
+        'climate_reports_report_areas.calculator_id': @calculator.id
+      )
     end
 
     def new
@@ -86,7 +89,7 @@ module Admin
             :description,
             :field_order,
             :_destroy,
-            { fields_attributes: [:id, :label, :field_type, :_destroy, units: []] }
+            { fields_attributes: [:id, :label, :field_type, :_destroy, alternatives: [], units: []] }
           ]
         }
       )
