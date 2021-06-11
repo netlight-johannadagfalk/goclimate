@@ -67,6 +67,8 @@ Rails.application.routes.draw do
         get 'thank-you'
       end
     end
+    resource :climate_tips, path: 'climate-tips', only: [:show]
+    resource :take_action, controller: 'take_action', path: 'take-action', only: [:show]
 
     resources :lifestyle_footprints, path: 'calculator', only: [:new, :create], path_names: { new: '' } do
       collection do
