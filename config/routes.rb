@@ -60,6 +60,13 @@ Rails.application.routes.draw do
     resource :transparency, controller: 'about/transparency', only: [:show]
     resource :privacy_policy, controller: 'about/privacy_policy', path: 'privacy-policy', only: [:show]
     resource :travel_calculator, controller: 'travel_calculator', path: 'travel-calculator', only: [:show]
+    resource :price_increase_confirmation, controller: 'price_increase_confirmation', path: 'price-increase', only: [:new, :create], path_names: { new: '' } do
+      member do
+        post :opt_in
+        post :opt_out
+        get 'thank-you'
+      end
+    end
 
     resources :lifestyle_footprints, path: 'calculator', only: [:new, :create], path_names: { new: '' } do
       collection do
