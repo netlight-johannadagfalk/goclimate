@@ -93,9 +93,7 @@ module Subscriptions
         user: user,
         payment: referral_code,
         start_at: Time.at(subscription.start_date),
-        co2e: GreenhouseGases.from_consumer_price(
-          Money.new(subscription.plan.amount, subscription.plan.currency.to_sym)
-        )
+        co2e: GreenhouseGases.new(subscription.plan.metadata['co2e'].to_i)
       )
     end
 

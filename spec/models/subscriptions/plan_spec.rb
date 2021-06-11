@@ -7,25 +7,25 @@ RSpec.describe Subscriptions::Plan do
     it 'calculates monthly price using doubling buffer' do
       plan = described_class.for_footprint(GreenhouseGases.new(12_000), Currency::SEK)
 
-      expect(plan.price).to eq(Money.new(80_00, :sek))
+      expect(plan.price).to eq(Money.new(120_00, :sek))
     end
 
     it 'ceils SEK prices to nearest 5 SEK' do
       plan = described_class.for_footprint(GreenhouseGases.new(11_400), Currency::SEK)
 
-      expect(plan.price).to eq(Money.new(80_00, :sek))
+      expect(plan.price).to eq(Money.new(115_00, :sek))
     end
 
     it 'rounds USD prices to nearest 50 cents' do
       plan = described_class.for_footprint(GreenhouseGases.new(12_900), Currency::USD)
 
-      expect(plan.price).to eq(Money.new(10_50, :usd))
+      expect(plan.price).to eq(Money.new(15_50, :usd))
     end
 
     it 'rounds EUR prices to nearest 50 cents' do
       plan = described_class.for_footprint(GreenhouseGases.new(15_165), Currency::EUR)
 
-      expect(plan.price).to eq(Money.new(10_50, :eur))
+      expect(plan.price).to eq(Money.new(15_50, :eur))
     end
   end
 
@@ -46,10 +46,10 @@ RSpec.describe Subscriptions::Plan do
       expect(Stripe::Plan).to have_received(:retrieve)
     end
 
-    it 'uses stripe_plan id in format "climate_offset_[price]_[currency]_monthly"' do
+    it 'uses stripe_plan id in format "offsetting_subscription_2021_[curency]_[price]"' do
       plan.retrieve_or_create_stripe_plan
 
-      expect(Stripe::Plan).to have_received(:retrieve).with('climate_offset_3_6_usd_monthly')
+      expect(Stripe::Plan).to have_received(:retrieve).with('offsetting_subscription_2021_usd_3_60')
     end
 
     # FIXME: This test is reused and structured based on old code. Left as is as an intermediate step.
@@ -80,10 +80,10 @@ RSpec.describe Subscriptions::Plan do
         expect(Stripe::Plan).to have_received(:create)
       end
 
-      it 'uses stripe_plan id in format "climate_offset_[price]_[currency]_monthly" for created stripe_plan' do
+      it 'uses stripe_plan id in format "offsetting_subscription_2021_[currency]_[price]" for created stripe_plan' do
         plan.retrieve_or_create_stripe_plan
 
-        expect(Stripe::Plan).to have_received(:create).with(hash_including(id: 'climate_offset_3_6_usd_monthly'))
+        expect(Stripe::Plan).to have_received(:create).with(hash_including(id: 'offsetting_subscription_2021_usd_3_60'))
       end
 
       it 'uses monthly billing interval for created stripe_plan' do
@@ -104,11 +104,18 @@ RSpec.describe Subscriptions::Plan do
         expect(Stripe::Plan).to have_received(:create).with(hash_including(amount: 3_60))
       end
 
-      it 'uses product name in format "Climate Offset [price] [currency] Monthly" for created stripe_plan' do
+      it 'uses product ID for current price list' do
         plan.retrieve_or_create_stripe_plan
 
         expect(Stripe::Plan).to have_received(:create)
-          .with(hash_including(product: { name: 'Climate Offset 3.6 usd Monthly' }))
+          .with(hash_including(product: 'offsetting_subscription_2021'))
+      end
+
+      it 'sets monthly offsetting as co2e metadata' do
+        plan.retrieve_or_create_stripe_plan
+
+        expect(Stripe::Plan).to have_received(:create)
+          .with(hash_including(metadata: { co2e: 515 }))
       end
 
       it 'returns created stripe_plan' do

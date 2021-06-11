@@ -69,19 +69,19 @@ RSpec.describe GiftCard do
       it 'sets price based on co2e for SEK, ceiled to nearest 10 kr' do
         gift_card = described_class.new(co2e: 1_900, currency: Currency::SEK)
 
-        expect(gift_card.price).to eq(Money.new(80_00, :sek))
+        expect(gift_card.price).to eq(Money.new(120_00, :sek))
       end
 
       it 'sets price based on co2e for EUR, ceiled to nearest Euro' do
         gift_card = described_class.new(co2e: 1_900, currency: Currency::EUR)
 
-        expect(gift_card.price).to eq(Money.new(8_00, :eur))
+        expect(gift_card.price).to eq(Money.new(12_00, :eur))
       end
 
       it 'sets price based on co2e for USD, ceiled to nearest Dollar' do
         gift_card = described_class.new(co2e: 1_900, currency: Currency::USD)
 
-        expect(gift_card.price).to eq(Money.new(9_00, :usd))
+        expect(gift_card.price).to eq(Money.new(14_00, :usd))
       end
 
       it 'allows setting price explicitly' do

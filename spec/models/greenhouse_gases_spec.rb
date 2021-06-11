@@ -4,20 +4,20 @@ require 'rails_helper'
 
 RSpec.describe GreenhouseGases do
   describe '.from_consumer_price' do
-    it 'uses 40 SEK per tonne' do
-      expect(described_class.from_consumer_price(Money.new(71_00, :sek))).to eq(described_class.new(1775))
+    it 'uses 60 SEK per tonne' do
+      expect(described_class.from_consumer_price(Money.new(106_50, :sek))).to eq(described_class.new(1775))
     end
 
-    it 'uses price factor for EUR' do
-      expect(described_class.from_consumer_price(Money.new(7_10, :eur))).to eq(described_class.new(1775))
+    it 'uses 6 EUR per tonne' do
+      expect(described_class.from_consumer_price(Money.new(10_65, :eur))).to eq(described_class.new(1775))
     end
 
-    it 'uses price factor for USD' do
-      expect(described_class.from_consumer_price(Money.new(8_40, :usd))).to eq(described_class.new(1788))
+    it 'uses 7 USD per tonne' do
+      expect(described_class.from_consumer_price(Money.new(12_51, :usd))).to eq(described_class.new(1788))
     end
 
     it 'rounds up to nearest kg' do
-      expect(described_class.from_consumer_price(Money.new(8_10, :usd))).to eq(described_class.new(1724))
+      expect(described_class.from_consumer_price(Money.new(8_10, :usd))).to eq(described_class.new(1158))
     end
   end
 
@@ -30,19 +30,19 @@ RSpec.describe GreenhouseGases do
   end
 
   describe '#consumer_price' do
-    it 'uses 40 SEK per tonne, rounded up to nearest 1 krona' do
+    it 'uses 60 SEK per tonne, rounded up to nearest 1 krona' do
       expect(described_class.new(1505).consumer_price(Currency::SEK))
-        .to eq(Money.new(61_00, :sek))
+        .to eq(Money.new(91_00, :sek))
     end
 
-    it 'uses 8.5 SEK per USD factor for USD, rounded up to nearest 10 cents' do
-      expect(described_class.new(1500).consumer_price(Currency::USD))
-        .to eq(Money.new(7_10, :usd))
+    it 'uses 7 USD per tonne, rounded up to nearest 10 cents' do
+      expect(described_class.new(1502).consumer_price(Currency::USD))
+        .to eq(Money.new(10_60, :usd))
     end
 
-    it 'uses 10 SEK per EUR factor for EUR, rounded up to nearest 10 cents' do
+    it 'uses 6 EUR per tonne, rounded up to nearest 10 cents' do
       expect(described_class.new(1520).consumer_price(Currency::EUR))
-        .to eq(Money.new(6_10, :eur))
+        .to eq(Money.new(9_20, :eur))
     end
   end
 

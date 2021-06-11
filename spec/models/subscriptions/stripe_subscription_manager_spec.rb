@@ -109,10 +109,10 @@ RSpec.describe Subscriptions::StripeSubscriptionManager do
         expect(Subscriptions::SubscriptionMonth.last.start_at.to_i).to eq(created_subscription.start_date)
       end
 
-      it 'sets co2e based on plan price' do
+      it 'sets co2e based on plan' do
         manager.sign_up(plan, payment_method_id, referral_code)
 
-        expect(Subscriptions::SubscriptionMonth.last.co2e).to eq(GreenhouseGases.new(766))
+        expect(Subscriptions::SubscriptionMonth.last.co2e).to eq(GreenhouseGases.new(1167))
       end
 
       it 'sets referred_from on user to the referral code used' do

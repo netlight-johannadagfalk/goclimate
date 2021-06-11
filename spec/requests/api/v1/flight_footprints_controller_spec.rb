@@ -97,7 +97,7 @@ RSpec.describe Api::V1::FlightFootprintsController do
     it 'includes offset price amount in response' do
       get '/api/v1/flight_footprint', headers: auth_headers(api_key), params: request_params
 
-      expect(response.parsed_body['offset_prices'].first['amount']).to eq(2000)
+      expect(response.parsed_body['offset_prices'].first['amount']).to eq(3000)
     end
 
     it 'includes offset price currency in response' do

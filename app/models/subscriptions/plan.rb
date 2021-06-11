@@ -3,11 +3,17 @@
 module Subscriptions
   class Plan
     BUFFER_FACTOR = 2
+    SUBSCRIPTION_PRODUCT_ID = 'offsetting_subscription_2021' # Created manually in Stripe
 
     attr_accessor :footprint, :price, :monthly_offset
 
     def self.from_stripe_plan(stripe_plan)
-      monthly_offset = GreenhouseGases.from_consumer_price(stripe_plan.monthly_amount)
+      monthly_offset =
+        if (co2e = stripe_plan.metadata['co2e']).present?
+          GreenhouseGases.new(co2e.to_i)
+        else
+          GreenhouseGases.from_2017_consumer_price(Money.new(stripe_plan.amount, stripe_plan.currency.to_sym))
+        end
 
       new(
         monthly_offset * 12 / BUFFER_FACTOR,
@@ -17,14 +23,12 @@ module Subscriptions
       )
     end
 
+    # for_footprint uses for_price to ensure that everyone paying the same
+    # amount also gets offsetting credits for the same amount of co2e
     def self.for_footprint(footprint, currency)
       monthly_offset = footprint / 12 * BUFFER_FACTOR
 
-      new(
-        footprint,
-        monthly_offset.consumer_price(currency).small_amount_price_ceil,
-        monthly_offset
-      )
+      for_price(monthly_offset.consumer_price(currency).small_amount_price_ceil)
     end
 
     def self.for_price(price)
@@ -67,7 +71,7 @@ module Subscriptions
 
     def stripe_plan_id
       @stripe_plan&.id ||
-        "climate_offset_#{price.amount.to_s.gsub(/[.,]/, '_')}_#{price.currency.iso_code}_monthly"
+        "#{SUBSCRIPTION_PRODUCT_ID}_#{price.currency.iso_code}_#{format('%.2f', price.amount).sub('.', '_')}"
     end
 
     def ==(other)
@@ -85,7 +89,10 @@ module Subscriptions
         interval: 'month',
         currency: price.currency.iso_code,
         amount: price.subunit_amount,
-        product: { name: "Climate Offset #{price.amount} #{price.currency.iso_code} Monthly" }
+        product: SUBSCRIPTION_PRODUCT_ID,
+        metadata: {
+          co2e: monthly_offset.co2e
+        }
       }
     end
   end

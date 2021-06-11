@@ -16,9 +16,17 @@ module Subscriptions
         price: stripe_invoice_line.amount,
         currency: stripe_invoice_line.currency,
         start_at: Time.at(stripe_invoice_line.period.start),
-        co2e: GreenhouseGases.from_consumer_price(
-          Money.new(stripe_invoice_line.amount, stripe_invoice_line.currency.to_sym)
-        ),
+        co2e:
+          # Plans used from June 2021 include the co2e amount offset for each
+          # month as metadata. Previous payments were calculated by reversing the
+          # amount chaged, so for those we keep the 2017 pricelist.
+          if (co2e = stripe_invoice_line.price.metadata['co2e']).present?
+            GreenhouseGases.new(co2e.to_i)
+          else
+            GreenhouseGases.from_2017_consumer_price(
+              Money.new(stripe_invoice_line.amount, stripe_invoice_line.currency.to_sym)
+            )
+          end,
         payment: charge,
         user: charge.user
       )

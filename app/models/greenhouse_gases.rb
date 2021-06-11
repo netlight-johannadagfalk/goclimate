@@ -4,6 +4,16 @@ class GreenhouseGases
   include Comparable
 
   CONSUMER_PRICE_PER_TONNE = {
+    Currency::AUD => Money.new(9_50, :aud),
+    Currency::CAD => Money.new(8_80, :cad),
+    Currency::DKK => Money.new(44_00, :dkk),
+    Currency::EUR => Money.new(6_00, :eur),
+    Currency::GBP => Money.new(5_00, :gbp),
+    Currency::SEK => Money.new(60_00, :sek),
+    Currency::USD => Money.new(7_00, :usd)
+  }.freeze
+
+  CONSUMER_PRICE_PER_TONNE_2017 = {
     Currency::AUD => Money.new(6_40, :aud),
     Currency::CAD => Money.new(6_15, :cad),
     Currency::DKK => Money.new(30_00, :dkk),
@@ -31,6 +41,12 @@ class GreenhouseGases
   def self.from_consumer_price(price)
     new(
       (price.subunit_amount.to_d / CONSUMER_PRICE_PER_TONNE[price.currency].subunit_amount * 1000).ceil
+    )
+  end
+
+  def self.from_2017_consumer_price(price)
+    new(
+      (price.subunit_amount.to_d / CONSUMER_PRICE_PER_TONNE_2017[price.currency].subunit_amount * 1000).ceil
     )
   end
 
