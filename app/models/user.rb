@@ -97,26 +97,28 @@ class User < ApplicationRecord
     stripe_customer.subscriptions&.any?
   end
 
+  def current_plan
+    return nil unless (plan = stripe_customer.subscriptions.first&.plan)
+
+    @current_plan ||= Subscriptions::Plan.from_stripe_plan(plan)
+  end
+
   def subscription_currency
     return nil unless active_subscription?
 
-    Currency.from_iso_code(stripe_customer&.subscriptions&.first&.plan&.currency)
+    current_plan.price.currency
   end
 
   def subscription_price
     return nil unless active_subscription?
 
-    Money.new(stripe_customer&.subscriptions&.first&.plan&.amount, subscription_currency)
+    current_plan.price
   end
 
   def footprint_coverage
     return nil unless active_subscription?
 
-    full_footprint_price = Subscriptions::Manager.price_for_footprint(
-      current_lifestyle_footprint&.total,
-      subscription_currency
-    )
-    (subscription_amount / full_footprint_price.amount * 100).round
+    (current_plan.footprint.tonnes / current_lifestyle_footprint.total.tonnes * 100).round
   end
 
   private

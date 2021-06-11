@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Subscriptions::Manager do
+RSpec.describe Subscriptions::StripeSubscriptionManager do
   subject(:manager) { described_class.new(user) }
 
   let(:user) { create(:user, stripe_customer_id: customer.id) }
@@ -24,32 +24,6 @@ RSpec.describe Subscriptions::Manager do
     allow(Stripe::PaymentMethod).to receive(:detach)
     allow(Stripe::Subscription).to receive(:create).and_return(created_subscription)
     allow(Stripe::Subscription).to receive(:update).and_return(created_subscription)
-  end
-
-  describe '.price_for_footprint' do
-    it 'calculates monthly price using doubling buffer' do
-      price = described_class.price_for_footprint(GreenhouseGases.new(12_000), Currency::SEK)
-
-      expect(price).to eq(Money.new(80_00, :sek))
-    end
-
-    it 'ceils SEK prices to nearest 5 SEK' do
-      price = described_class.price_for_footprint(GreenhouseGases.new(11_400), Currency::SEK)
-
-      expect(price).to eq(Money.new(80_00, :sek))
-    end
-
-    it 'rounds USD prices to nearest 50 cents' do
-      price = described_class.price_for_footprint(GreenhouseGases.new(12_900), Currency::USD)
-
-      expect(price).to eq(Money.new(10_50, :usd))
-    end
-
-    it 'rounds EUR prices to nearest 50 cents' do
-      price = described_class.price_for_footprint(GreenhouseGases.new(15_165), Currency::EUR)
-
-      expect(price).to eq(Money.new(10_50, :eur))
-    end
   end
 
   describe '#sign_up' do
@@ -278,7 +252,7 @@ RSpec.describe Subscriptions::Manager do
         it 'raises SubscriptionMissingError' do
           expect do
             manager.update(new_plan)
-          end.to raise_error(Subscriptions::Manager::SubscriptionMissingError)
+          end.to raise_error(Subscriptions::StripeSubscriptionManager::SubscriptionMissingError)
         end
       end
 

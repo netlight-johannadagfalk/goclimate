@@ -50,7 +50,7 @@ RSpec.feature 'Subscription settings', js: true do
     before do
       pm_id = Stripe::PaymentMethod.attach('pm_card_visa', customer: user.stripe_customer).id
       Stripe::Customer.update(user.stripe_customer.id, invoice_settings: { default_payment_method: pm_id })
-      plan_id = Stripe::Plan.retrieve_or_create_climate_offset_plan(Money.new(2_00, :eur))
+      plan_id = Subscriptions::Plan.for_price(Money.new(2_00, :eur)).retrieve_or_create_stripe_plan
       Stripe::Subscription.create(customer: user.stripe_customer_id, plan: plan_id)
     end
 

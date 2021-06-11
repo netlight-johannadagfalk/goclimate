@@ -95,7 +95,7 @@
 
           <div class="flex justify-between">
             <span class="font-semibold"><%= t 'views.registrations.know_your_footprint.sign_up.free_account.your_footprint' %></span>
-            <span class="text-right"><%= @subscription_tonnes.to_s(precision: :auto) %>/<%= t 'years.one' %></span>
+            <span class="text-right"><%= @plan.footprint.to_s(precision: :auto) %>/<%= t 'years.one' %></span>
           </div>
 
           <div class="h-px w-full bg-gray-tint-2"></div>
@@ -139,7 +139,7 @@
 
           <div class="flex justify-between">
             <span class="font-semibold"><%= t 'views.registrations.your_subscription' %></span>
-            <span class="text-right"><span data-target="registrations--price.subscription"><%= @subscription_tonnes.to_s(precision: :auto) %></span>/<%= t 'years.one' %></span>
+            <span class="text-right"><span data-target="registrations--price.subscription"><%= @plan.footprint.to_s(precision: :auto) %></span>/<%= t 'years.one' %></span>
           </div>
 
           <div class="h-px w-full bg-gray-tint-2"></div>
@@ -164,10 +164,10 @@
           <div class="py-6 space-y-1">
             <p class="heading-lg text-center">
               <span data-target="registrations--referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden"><%=t 'views.registrations.first_month_free' %></span>
-              <span data-target="registrations--referral-code.noCodeActiveInfo" data-inactive-class="hidden"><span data-target="registrations--price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %></span>
+              <span data-target="registrations--referral-code.noCodeActiveInfo" data-inactive-class="hidden"><span data-target="registrations--price.price"><%= @plan.price.to_s(precision: :auto) %></span>/<%= t 'months.one' %></span>
             </p>
             <p data-target="registrations--referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden" data-active-class="font-bold text-center">
-              <%=t 'views.registrations.then' %> <span data-target="registrations--price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %>
+              <%=t 'views.registrations.then' %> <span data-target="registrations--price.price"><%= @plan.price.to_s(precision: :auto) %></span>/<%= t 'months.one' %>
             </p>
 
             <p class="text-center text-sm">
@@ -279,10 +279,10 @@
           <div class="py-6 space-y-1">
             <p class="heading-lg text-center">
               <span data-target="registrations--referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden"><%=t 'views.registrations.first_month_free' %></span>
-              <span data-target="registrations--referral-code.noCodeActiveInfo" data-inactive-class="hidden"><span data-target="registrations--price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %></span>
+              <span data-target="registrations--referral-code.noCodeActiveInfo" data-inactive-class="hidden"><span data-target="registrations--price.price"><%= @plan.price.to_s(precision: :auto) %></span>/<%= t 'months.one' %></span>
             </p>
             <p data-target="registrations--referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden" data-active-class="font-bold text-center">
-              <%=t 'views.registrations.then' %> <span data-target="registrations--price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %>
+              <%=t 'views.registrations.then' %> <span data-target="registrations--price.price"><%= @plan.price.to_s(precision: :auto) %></span>/<%= t 'months.one' %>
             </p>
 
             <p class="text-center text-sm" data-target="registrations--membership-choice.subscriptionInfo" data-active-class="text-center text-sm block" data-inactive-class="text-center text-sm hidden">

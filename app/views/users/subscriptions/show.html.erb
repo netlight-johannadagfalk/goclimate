@@ -29,10 +29,9 @@
                   <option value="" selected=1><%= t 'views.subscriptions.update.no_subscription' %></option>
                 <% end %>
 
-                <% @available_plans.each do |plan_price| %>
-                  <option value="<%= plan_price.amount %>" <%= plan_price == current_user.subscription_price ? "selected" : "" %> >
-                    <%= plan_price.to_s(precision: :auto) %>
-                    (<%= (GreenhouseGases.from_consumer_price(plan_price) * 12 / 2).to_s(precision: :auto) %>/<%= t 'years.one' %>)
+                <% @available_plans.each do |plan| %>
+                  <option value="<%= plan.price.amount %>" <%= plan == @current_plan ? "selected" : "" %> >
+                    <%= plan.price.to_s(precision: :auto) %> (<%= plan.footprint.to_s(precision: :auto) %>/<%= t 'years.one' %>)
                   </option>
                 <% end %>
               </select>
@@ -97,7 +96,7 @@
       <%= link_to t('views.subscriptions.receipts.action'), user_receipts_path, class: 'button w-full' %>
     </div>
 
-    <% if @current_plan_price %>
+    <% if @current_plan.present? %>
       <div class="callout max-w-xl mx-auto">
         <h2 class="heading mb-3"><%= t 'views.subscriptions.cancel.heading' %></h2>
         <div data-controller="modal">

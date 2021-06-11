@@ -1,34 +1,27 @@
 # frozen_string_literal: true
 
 module Subscriptions
-  class Manager
+  class StripeSubscriptionManager
     class SubscriptionMissingError < StandardError; end
 
-    BUFFER_FACTOR = 2
-
     attr_reader :user, :errors, :intent_to_confirm
-
-    def self.price_for_footprint(footprint, currency)
-      monthly_offset = footprint / 12 * BUFFER_FACTOR
-      monthly_offset.consumer_price(currency).small_amount_price_ceil
-    end
 
     def initialize(user)
       @user = user
       @errors = {}
     end
 
-    def sign_up(plan, payment_method_id, referral_code = nil) # rubocop:disable Metrics/MethodLength
+    def sign_up(stripe_plan, payment_method_id, referral_code = nil) # rubocop:disable Metrics/MethodLength
       handle_errors_and_return_status do
         update_default_card(payment_method_id)
 
         if referral_code.present?
-          create_subscription(plan, 1.month.from_now)
+          create_subscription(stripe_plan, 1.month.from_now)
           create_trial_subscription_month(referral_code)
           user.update_attribute(:referred_from, referral_code)
           set_intent_to_confirm_if_action_required(payment_method_id, user.stripe_customer.id)
         else
-          create_subscription(plan)
+          create_subscription(stripe_plan)
         end
         @intent_to_confirm = subscription.latest_invoice.payment_intent if subscription.status == 'incomplete'
         user.stripe_customer.refresh
@@ -39,7 +32,7 @@ module Subscriptions
       end
     end
 
-    def update(new_plan, payment_method_id = nil)
+    def update(new_stripe_plan, payment_method_id = nil)
       raise SubscriptionMissingError, <<~TEXT if subscription.nil?
         Can't update subscription without a current one present.
       TEXT
@@ -50,7 +43,7 @@ module Subscriptions
           set_intent_to_confirm_if_action_required(payment_method_id, user.stripe_customer.id)
         end
 
-        update_subscription(new_plan) if subscription.plan.id != new_plan.id
+        update_subscription(new_stripe_plan) if subscription.plan.id != new_stripe_plan.id
         user.stripe_customer.refresh
       end
     end
@@ -86,10 +79,10 @@ module Subscriptions
       false
     end
 
-    def create_subscription(plan, trial_end = nil)
+    def create_subscription(stripe_plan, trial_end = nil)
       @subscription = Stripe::Subscription.create(
         customer: user.stripe_customer.id,
-        plan: plan.id,
+        plan: stripe_plan.id,
         trial_end: trial_end&.to_i,
         expand: ['latest_invoice.payment_intent']
       )
@@ -106,10 +99,10 @@ module Subscriptions
       )
     end
 
-    def update_subscription(new_plan)
+    def update_subscription(new_stripe_plan)
       @subscription = Stripe::Subscription.update(
         subscription.id,
-        plan: new_plan.id,
+        plan: new_stripe_plan.id,
         proration_behavior: 'none'
       )
     end

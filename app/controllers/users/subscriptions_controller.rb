@@ -8,14 +8,13 @@ module Users
 
     def show
       @customer_payment_method = customer_payment_method
-      @current_plan_price = @manager.subscription&.plan&.monthly_amount
-      @available_plans = available_plans(@current_plan_price)
+      @current_plan = current_user.current_plan
+      @available_plans = Subscriptions::Plan.available_plans(customer_currency, @current_plan)
     end
 
     def update
-      new_plan = Stripe::Plan.retrieve_or_create_climate_offset_plan(
-        Money.from_amount(plan_param, customer_currency)
-      )
+      new_plan = Subscriptions::Plan.for_price(Money.from_amount(plan_param, customer_currency))
+                                    .retrieve_or_create_stripe_plan
 
       if @manager.subscription.present?
         @manager.update(new_plan, params[:payment_method_id])
@@ -55,7 +54,7 @@ module Users
     end
 
     def set_subscription_manager
-      @manager = Subscriptions::Manager.new(current_user)
+      @manager = Subscriptions::StripeSubscriptionManager.new(current_user)
     end
 
     def render_successful_update
@@ -74,18 +73,6 @@ module Users
 
     def render_bad_request(errors)
       render json: { error: errors }, status: :bad_request
-    end
-
-    def available_plans(current_plan_price)
-      current_plan_price_amount = current_plan_price&.subunit_amount || 0
-
-      starting_plan_price = customer_currency.small_amount_price_step * 4
-      ending_plan_price = current_plan_price_amount + customer_currency.small_amount_price_step * 60
-      plans = (starting_plan_price...ending_plan_price).step(customer_currency.small_amount_price_step).to_a
-
-      plans.push(current_plan_price_amount) if current_plan_price.present? && plans.exclude?(current_plan_price_amount)
-
-      plans.sort.map { |amount| Money.new(amount, customer_currency) }
     end
 
     def customer_currency
