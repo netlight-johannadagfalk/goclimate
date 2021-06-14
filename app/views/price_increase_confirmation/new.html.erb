@@ -1,7 +1,7 @@
 <%= render "shared/header" %>
 
 <section class="section-padding space-y-12">
-  <% unless @should_update_card %>
+  <% if @should_update_card %>
     <div class="callout space-y-3 max-w-lg">
       <h2 class="heading text-center">Whoops!</h2>
       <p>We have noticed that we haven't offsetted your emisssons for a while. Please update your card to get started again.</p>
