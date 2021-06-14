@@ -28,7 +28,7 @@ RSpec.describe CardCharge do
       it 'creates a corresponding SubscriptionMonth' do
         created = described_class.create_from_stripe_charge(charge)
 
-        expect(SubscriptionMonth.last&.payment).to eq(created)
+        expect(Subscriptions::SubscriptionMonth.last&.payment).to eq(created)
       end
 
       it 'sends one more month email' do
@@ -63,7 +63,7 @@ RSpec.describe CardCharge do
         it 'does not create a SubscriptionMonth' do
           expect do
             described_class.create_from_stripe_charge(charge)
-          end.not_to change(SubscriptionMonth, :count)
+          end.not_to change(Subscriptions::SubscriptionMonth, :count)
         end
 
         it 'sends payment failed email' do

@@ -20,7 +20,7 @@ RSpec.describe FlightOffset do
       it 'sets price' do
         offset = described_class.new(co2e: 1200, currency: :sek)
 
-        expect(offset.price).to eq(Money.new(48_00, :sek))
+        expect(offset.price).to eq(Money.new(72_00, :sek))
       end
 
       it 'allows setting price explicitly' do

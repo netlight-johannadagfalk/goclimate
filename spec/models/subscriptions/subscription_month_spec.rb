@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SubscriptionMonth do
+RSpec.describe Subscriptions::SubscriptionMonth do
   describe '.create_from_stripe_invoice_line!' do
     let(:invoice_line) do
       Stripe::Invoice.construct_from(stripe_json_fixture('invoice_subscription_month.json')).lines.first
@@ -34,10 +34,10 @@ RSpec.describe SubscriptionMonth do
       expect(month.start_at).to eq(Time.at(invoice_line.period.start))
     end
 
-    it 'sets co2e based on current consumer price' do
+    it 'sets co2e based on plan metadata' do
       month = described_class.create_from_stripe_invoice_line!(invoice_line, charge)
 
-      expect(month.co2e).to eq(GreenhouseGases.new(1_000))
+      expect(month.co2e).to eq(GreenhouseGases.new(1_167))
     end
 
     it 'sets user from charge' do
@@ -50,6 +50,18 @@ RSpec.describe SubscriptionMonth do
       month = described_class.create_from_stripe_invoice_line!(invoice_line, charge)
 
       expect(month.errors).to be_empty
+    end
+
+    context 'with 2017 subscription plans' do
+      let(:invoice_line) do
+        Stripe::Invoice.construct_from(stripe_json_fixture('invoice_subscription_month_2017.json')).lines.first
+      end
+
+      it 'sets co2e based on 2017 consumer price' do
+        month = described_class.create_from_stripe_invoice_line!(invoice_line, charge)
+
+        expect(month.co2e).to eq(GreenhouseGases.new(1_000))
+      end
     end
   end
 end

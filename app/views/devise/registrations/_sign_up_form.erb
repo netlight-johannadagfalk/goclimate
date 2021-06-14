@@ -72,10 +72,10 @@
           <div class="py-6 space-y-1">
             <p class="heading-lg text-center">
               <span data-target="registrations--referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden"><%=t 'views.registrations.first_month_free' %></span>
-              <span data-target="registrations--referral-code.noCodeActiveInfo" data-inactive-class="hidden"><span data-target="registrations--price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %></span>
+              <span data-target="registrations--referral-code.noCodeActiveInfo" data-inactive-class="hidden"><span data-target="registrations--price.price"><%= @plan.price.to_s(precision: :auto) %></span>/<%= t 'months.one' %></span>
             </p>
             <p data-target="registrations--referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden" data-active-class="font-bold text-center">
-              <%=t 'views.registrations.then' %> <span data-target="registrations--price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %>
+              <%=t 'views.registrations.then' %> <span data-target="registrations--price.price"><%= @plan.price.to_s(precision: :auto) %></span>/<%= t 'months.one' %>
             </p>
 
             <p class="text-center text-sm">
@@ -142,10 +142,10 @@
         <div class="py-6 space-y-1">
           <p class="heading-lg text-center">
             <span data-target="registrations--referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden"><%=t 'views.registrations.first_month_free' %></span>
-            <span data-target="registrations--referral-code.noCodeActiveInfo" data-inactive-class="hidden"><span data-target="registrations--price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %></span>
+            <span data-target="registrations--referral-code.noCodeActiveInfo" data-inactive-class="hidden"><span data-target="registrations--price.price"><%= @plan.price.to_s(precision: :auto) %></span>/<%= t 'months.one' %></span>
           </p>
           <p data-target="registrations--referral-code.codeActiveInfo" class="hidden" data-inactive-class="hidden" data-active-class="font-bold text-center">
-            <%=t 'views.registrations.then' %> <span data-target="registrations--price.price"><%= @plan_price.to_s(precision: :auto) %></span>/<%= t 'months.one' %>
+            <%=t 'views.registrations.then' %> <span data-target="registrations--price.price"><%= @plan.price.to_s(precision: :auto) %></span>/<%= t 'months.one' %>
           </p>
 
           <p class="text-center text-sm">

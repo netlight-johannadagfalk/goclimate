@@ -13,7 +13,7 @@ RSpec.feature 'Subscription settings', js: true do
 
   scenario 'Enable subscription' do
     visit '/users/subscription'
-    select '€2 (3.0 tonnes CO2e/year)', from: 'Climate Plan'
+    select '€2.00 (2.0 tonnes CO2e/year)', from: 'Climate Plan'
     within_frame(0) do
       send_keys_to_card_field '4242424242424242'
       find('input[name=exp-date]').send_keys '522'
@@ -30,7 +30,7 @@ RSpec.feature 'Subscription settings', js: true do
 
   scenario 'Enable subscription with 3D Secure card' do
     visit '/users/subscription'
-    select '€2 (3.0 tonnes CO2e/year)', from: 'Climate Plan'
+    select '€2.00 (2.0 tonnes CO2e/year)', from: 'Climate Plan'
     within_frame(0) do
       send_keys_to_card_field '4000002500003155'
       find('input[name=exp-date]').send_keys '522'
@@ -50,7 +50,7 @@ RSpec.feature 'Subscription settings', js: true do
     before do
       pm_id = Stripe::PaymentMethod.attach('pm_card_visa', customer: user.stripe_customer).id
       Stripe::Customer.update(user.stripe_customer.id, invoice_settings: { default_payment_method: pm_id })
-      plan_id = Stripe::Plan.retrieve_or_create_climate_offset_plan(Money.new(2_00, :eur))
+      plan_id = Subscriptions::Plan.for_price(Money.new(2_00, :eur)).retrieve_or_create_stripe_plan
       Stripe::Subscription.create(customer: user.stripe_customer_id, plan: plan_id)
     end
 

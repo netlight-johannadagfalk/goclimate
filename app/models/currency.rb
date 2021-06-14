@@ -22,6 +22,10 @@ Currency = Struct.new(:iso_code, :rounding_precision, :small_amount_price_step, 
     suffix = I18n.translate("models.currency.suffix.#{iso_code}", default: 'DEFAULT', fallback: false)
     suffix unless suffix == 'DEFAULT'
   end
+
+  def fractal_small_amount_price_step?
+    small_amount_price_step % 100 != 0
+  end
 end
 
 Currency::AUD = Currency.new(:aud, -1, 50, 1_00)

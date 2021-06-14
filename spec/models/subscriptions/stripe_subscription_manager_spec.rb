@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SubscriptionManager do
+RSpec.describe Subscriptions::StripeSubscriptionManager do
   subject(:manager) { described_class.new(user) }
 
   let(:user) { create(:user, stripe_customer_id: customer.id) }
@@ -24,32 +24,6 @@ RSpec.describe SubscriptionManager do
     allow(Stripe::PaymentMethod).to receive(:detach)
     allow(Stripe::Subscription).to receive(:create).and_return(created_subscription)
     allow(Stripe::Subscription).to receive(:update).and_return(created_subscription)
-  end
-
-  describe '.price_for_footprint' do
-    it 'calculates monthly price using doubling buffer' do
-      price = described_class.price_for_footprint(GreenhouseGases.new(12_000), Currency::SEK)
-
-      expect(price).to eq(Money.new(80_00, :sek))
-    end
-
-    it 'ceils SEK prices to nearest 5 SEK' do
-      price = described_class.price_for_footprint(GreenhouseGases.new(11_400), Currency::SEK)
-
-      expect(price).to eq(Money.new(80_00, :sek))
-    end
-
-    it 'rounds USD prices to nearest 50 cents' do
-      price = described_class.price_for_footprint(GreenhouseGases.new(12_900), Currency::USD)
-
-      expect(price).to eq(Money.new(10_50, :usd))
-    end
-
-    it 'rounds EUR prices to nearest 50 cents' do
-      price = described_class.price_for_footprint(GreenhouseGases.new(15_165), Currency::EUR)
-
-      expect(price).to eq(Money.new(10_50, :eur))
-    end
   end
 
   describe '#sign_up' do
@@ -114,31 +88,31 @@ RSpec.describe SubscriptionManager do
       it 'creates a subscription month for the trial month' do
         expect do
           manager.sign_up(plan, payment_method_id, referral_code)
-        end.to change(SubscriptionMonth, :count).by(1)
+        end.to change(Subscriptions::SubscriptionMonth, :count).by(1)
       end
 
       it 'sets user for subscription month' do
         manager.sign_up(plan, payment_method_id, referral_code)
 
-        expect(SubscriptionMonth.last.user).to eq(user)
+        expect(Subscriptions::SubscriptionMonth.last.user).to eq(user)
       end
 
       it 'sets referral code as payment for subscription month' do
         manager.sign_up(plan, payment_method_id, referral_code)
 
-        expect(SubscriptionMonth.last.payment).to eq(referral_code)
+        expect(Subscriptions::SubscriptionMonth.last.payment).to eq(referral_code)
       end
 
       it 'sets start_at for subscription month to subscription start' do
         manager.sign_up(plan, payment_method_id, referral_code)
 
-        expect(SubscriptionMonth.last.start_at.to_i).to eq(created_subscription.start_date)
+        expect(Subscriptions::SubscriptionMonth.last.start_at.to_i).to eq(created_subscription.start_date)
       end
 
-      it 'sets co2e based on plan price' do
+      it 'sets co2e based on plan' do
         manager.sign_up(plan, payment_method_id, referral_code)
 
-        expect(SubscriptionMonth.last.co2e).to eq(GreenhouseGases.new(766))
+        expect(Subscriptions::SubscriptionMonth.last.co2e).to eq(GreenhouseGases.new(1167))
       end
 
       it 'sets referred_from on user to the referral code used' do
@@ -278,7 +252,7 @@ RSpec.describe SubscriptionManager do
         it 'raises SubscriptionMissingError' do
           expect do
             manager.update(new_plan)
-          end.to raise_error(SubscriptionManager::SubscriptionMissingError)
+          end.to raise_error(Subscriptions::StripeSubscriptionManager::SubscriptionMissingError)
         end
       end
 

@@ -5,21 +5,21 @@ module Admin
     before_action :set_referral_code, only: [:show, :edit, :update, :destroy]
 
     def index
-      @referral_codes = ReferralCode.all.order(created_at: :desc)
+      @referral_codes = Subscriptions::ReferralCode.all.order(created_at: :desc)
     end
 
     def show
     end
 
     def new
-      @referral_code = ReferralCode.new
+      @referral_code = Subscriptions::ReferralCode.new
     end
 
     def edit
     end
 
     def create
-      @referral_code = ReferralCode.new(referral_code_params)
+      @referral_code = Subscriptions::ReferralCode.new(referral_code_params)
 
       if @referral_code.save
         redirect_to [:admin, @referral_code], notice: 'Referral code was successfully created.'
@@ -45,7 +45,7 @@ module Admin
     private
 
     def set_referral_code
-      @referral_code = ReferralCode.find(params[:id])
+      @referral_code = Subscriptions::ReferralCode.find(params[:id])
     end
 
     def referral_code_params
