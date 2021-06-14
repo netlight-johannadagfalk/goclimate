@@ -31,7 +31,12 @@
 
                 <% @available_plans.each do |plan| %>
                   <option value="<%= plan.price.amount %>" <%= plan == @current_plan ? "selected" : "" %> >
-                    <%= plan.price.to_s(precision: :auto) %> (<%= plan.footprint.to_s(precision: :auto) %>/<%= t 'years.one' %>)
+                    <% if plan.price.currency.fractal_small_amount_price_step? %>
+                      <%= plan.price.to_s(precision: 2) %>
+                    <% else %>
+                      <%= plan.price.to_s(precision: :auto) %>
+                    <% end %>
+                    (<%= plan.footprint.to_s(precision: :auto) %>/<%= t 'years.one' %>)
                   </option>
                 <% end %>
               </select>
