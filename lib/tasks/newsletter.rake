@@ -31,26 +31,19 @@ namespace :newsletter do
 
   desc 'prints csv content of all emails that needs info on price increase'
   task price_increase_emails: :environment do
-    users = User.where("email like '%@nilver.se'")
+    users = User.all.select(&:active_subscription?)
 
     CSV.open('price_increase_emails.csv', 'w') do |csv|
-      csv << ['email']
+      csv << %w[email new_monthly_fee new_cost_per_tonne]
       users.each do |user|
-        skip unless user.active_subscription?
-        CONSUMER_PRICE_PER_TONNE = {
-          Currency::AUD => Money.new(9_50, :aud),
-          Currency::CAD => Money.new(8_70, :cad),
-          Currency::DKK => Money.new(44_00, :dkk),
-          Currency::EUR => Money.new(6_00, :eur),
-          Currency::GBP => Money.new(5_00, :gbp),
-          Currency::SEK => Money.new(60_00, :sek),
-          Currency::USD => Money.new(7_00, :usd)
-        }.freeze
-        csv << [user.email, user.subscription_price * 1.5, CONSUMER_PRICE_PER_TONNE[user.currency]]
+        csv << [
+          user.email,
+          Subscriptions::Plan.for_footprint(user.current_plan.footprint, user.subscription_currency).price,
+          CONSUMER_PRICE_PER_TONNE[user.subscription_currency]
+        ]
       end
     end
 
     p "Wrote #{users.count} emails to price_increase_emails.csv"
   end
-
 end
