@@ -19,5 +19,15 @@ FactoryBot.define do
       amount { 40_00 }
       flight_offset { true }
     end
+
+    factory :card_charge_four_months_ago do
+      sequence(:stripe_customer_id)
+      created_at { (Date.today - 4.months) }
+    end
+
+    factory :card_charge_one_month_ago do
+      sequence(:stripe_customer_id)
+      created_at { (Date.today - 1.month) }
+    end
   end
 end

@@ -141,4 +141,22 @@ RSpec.describe User do
       end
     end
   end
+
+  describe '#three_months_since_last_card_charge?' do
+    it 'evaluates to false when no card_charges are present' do
+      expect(user.three_months_since_last_card_charge?).to eq(false)
+    end
+
+    it 'evaluates to true when last card charge is more than three months ago' do
+      create(:card_charge_four_months_ago, stripe_customer_id: user.stripe_customer_id)
+
+      expect(user.three_months_since_last_card_charge?).to eq(true)
+    end
+
+    it 'evaluates to false when last card charge is less than three months ago' do
+      create(:card_charge_one_month_ago, stripe_customer_id: user.stripe_customer_id)
+
+      expect(user.three_months_since_last_card_charge?).to eq(false)
+    end
+  end
 end

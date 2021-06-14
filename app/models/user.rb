@@ -119,6 +119,13 @@ class User < ApplicationRecord
     (subscription_amount / full_footprint_price.amount * 100).round
   end
 
+  def three_months_since_last_card_charge?
+    return false unless card_charges.present?
+
+    last_card_charge = card_charges.paid.order(created_at: :desc).first
+    last_card_charge.created_at < (Date.today - 3.months)
+  end
+
   private
 
   def subscription_end_at_from_stripe(stripe_subscription)

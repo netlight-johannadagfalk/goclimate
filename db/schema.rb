@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_03_092406) do
+ActiveRecord::Schema.define(version: 2021_06_11_090248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -296,6 +296,14 @@ ActiveRecord::Schema.define(version: 2021_06_03_092406) do
     t.text "name"
   end
 
+  create_table "price_increase_confirmations", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "accepted"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_price_increase_confirmations_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.string "cdm_url"
@@ -405,6 +413,7 @@ ActiveRecord::Schema.define(version: 2021_06_03_092406) do
   add_foreign_key "data_requests", "data_reporters", column: "recipient_id"
   add_foreign_key "invoices", "projects"
   add_foreign_key "newsletter_subscribers", "users", column: "logged_in_user_id"
+  add_foreign_key "price_increase_confirmations", "users"
   add_foreign_key "reported_data", "business_calculators_calculator_fields", column: "calculator_field_id"
   add_foreign_key "reported_data", "data_requests"
 end
