@@ -17,7 +17,7 @@ module Subscriptions
 
       new(
         monthly_offset * 12 / BUFFER_FACTOR,
-        stripe_plan.monthly_amount,
+        Money.new(stripe_plan.amount, Currency.from_iso_code(stripe_plan.currency)),
         monthly_offset,
         stripe_plan
       )
