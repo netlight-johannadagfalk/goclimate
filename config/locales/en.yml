@@ -310,7 +310,7 @@ en:
   welcome:
     users_prefix: We're currently
     users_suffix: community members
-    tonnes_prefix: Together we've reduced
+    tonnes_prefix: Our members and business customers have reduced
     tonnes_suffix: tonnes CO2 from the atmosphere
     business:
       we_will_contact_you_shortly_html: We will contact you on <b>%{email}</b> shortly with more information about the next step!

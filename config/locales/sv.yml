@@ -304,7 +304,7 @@ sv:
   welcome:
     users_prefix: Just nu är vi
     users_suffix: medlemmar
-    tonnes_prefix: Tillsammans har vi minskat
+    tonnes_prefix: Våra medlemmar och företagskunder har minskat
     tonnes_suffix: ton koldioxid i atmosfären
     business:
       we_will_contact_you_shortly_html: Vi kontaktar dig inom kort på <b>%{email}</b> med information om nästa steg! Vi hörs!
