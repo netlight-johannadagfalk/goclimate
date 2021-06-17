@@ -21,7 +21,7 @@ RSpec.feature 'Subscription settings', js: true do
     end
     click_button 'Update'
 
-    expect(page).to have_text 'Your settings has been updated', wait: 20
+    expect(page).to have_text 'Your settings have been updated', wait: 20
     expect(user.stripe_customer.subscriptions.first.status).to eq('active')
     subscription = nil
     expect { subscription = trigger_next_subscription_charge }.not_to raise_error
@@ -39,7 +39,7 @@ RSpec.feature 'Subscription settings', js: true do
     click_button 'Update'
     authorize_3d_secure
 
-    expect(page).to have_text 'Your settings has been updated', wait: 20
+    expect(page).to have_text 'Your settings have been updated', wait: 20
     expect(user.stripe_customer.subscriptions.first.status).to eq('active')
     subscription = nil
     expect { subscription = trigger_next_subscription_charge }.not_to raise_error
@@ -73,7 +73,7 @@ RSpec.feature 'Subscription settings', js: true do
       end
       click_button 'Update'
 
-      expect(page).to have_text 'Your settings has been updated', wait: 20
+      expect(page).to have_text 'Your settings have been updated', wait: 20
       user.stripe_customer.refresh
       expect(user.stripe_customer.subscriptions.first.status).to eq('active')
       subscription = nil
@@ -92,7 +92,7 @@ RSpec.feature 'Subscription settings', js: true do
       click_button 'Update'
       authorize_3d_secure
 
-      expect(page).to have_text 'Your settings has been updated', wait: 20
+      expect(page).to have_text 'Your settings have been updated', wait: 20
       user.stripe_customer.refresh
       expect(user.stripe_customer.subscriptions.first.status).to eq('active')
       subscription = nil
