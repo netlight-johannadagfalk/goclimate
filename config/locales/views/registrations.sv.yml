@@ -31,6 +31,7 @@ sv:
       continue: Fortsätt
       continue_to_payment: Fortsätt till betalning
       start_subscription: Starta prenumeration
+      accept_policies: Genom att registrera dig accepterar du <a>användarvillkoren och riktlinjerna</a>
       back: Tillbaka
       where_does_the_money_go:
         heading: Var går pengarna?
