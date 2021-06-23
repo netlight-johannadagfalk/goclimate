@@ -35,3 +35,4 @@
 .env
 spec/examples.txt
 coverage/
+.crowdin.yml
