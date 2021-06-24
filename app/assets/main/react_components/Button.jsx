@@ -6,7 +6,7 @@ export default class Button extends Component {
     const { status, className, children, onClick, href } = this.props;
 
     if (href) {
-      return(
+      return (
         <a className={`button ${className}`} href={href}>
           {children}
         </a>
@@ -27,8 +27,8 @@ export default class Button extends Component {
         )
       }
 
-      return(
-        <button 
+      return (
+        <button
           className={`button relative ${className}`}
           onClick={onClick}
         >

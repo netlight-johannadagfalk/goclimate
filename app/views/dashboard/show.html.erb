@@ -92,7 +92,7 @@
       </div>
     </div>
 
-<%# Footer på översta sidan calculation, new calculator etc %>
+<%# Footer på översta delen av sidan calculation, new calculator etc %>
     <div class="text-center space-y-2 space-x-2">
       <a href="<%= @footprint.country ? new_lifestyle_footprint_path(country: @footprint.country.alpha2) : root_path%>" class="button">
         <i class="fas fa-plus" aria-hidden="true"></i>
@@ -118,7 +118,7 @@
   <% end %>
 
 
-  <%# ----------------------------- %>
+<%= react_component 'Card', prop: 'propValue', secondProp: 'secondPropValue' %>
 
 
 <%# CLIMATE HERO %>
@@ -183,37 +183,7 @@
     </div>
   </section>
 
-  <%# Johannas test %>
-   <section class="section-padding">
-    <div class="section-gutter t:flex t:flex-row">
-      <div class="t:w-1/2">
-        <h3 class="heading-lg mb-3"><%=t 'Action ' %></h3>
-        <div class="mt-12 flex flex-col d:flex-row section-gutter">
-        <div class="d:w-1/3 pt-20 m-lg:pt-24">
-          <%# <div class="callout h-full space-y-3 pt-0"> %>
-          <div class="max-w-5xl mx-auto t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2">
-          <%# callout är "kortet" %>
-  
-<p class= " font-bold inline-block bg-green-accent text-white py-1 px-2 -ml-2 rounded" >Choose your actions:</p>
-
-<div>
-  <input type="checkbox"
-         checked>
-  <label class= "font-bold">Vegan for a month!</label>
-</div>
-
-<div>
-  <input type="checkbox" >
-  <label class= "font-bold">No flying!</label>
-</div>
-
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+ 
 
   <section class="section-padding">
     <h2 class="heading-lg"><%=t 'views.projects.current_projects' %></h2>

@@ -12,4 +12,5 @@
   @screen d-lg {
     @apply mx-auto max-w-screen-d-lg;
   }
+
 }
