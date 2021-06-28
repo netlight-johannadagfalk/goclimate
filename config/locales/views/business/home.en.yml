@@ -29,3 +29,7 @@ en:
         other_services:
           heading: Other services
           text_html: We can help out with carbon footprint calculations, one time offsets, inspirational lectures, workshops and technical integrations. Contact us at <a href='mailto:hello@goclimate.com'>hello@goclimate.com</a> to learn more.
+        questions:
+          heading: Any questions?
+          text_html: If you are wondering something, please check out our frequently asked questions or send us an email at <a href='mailto:hello@goclimate.com'>hello@goclimate.com</a>.
+          cta: See frequently asked questions
