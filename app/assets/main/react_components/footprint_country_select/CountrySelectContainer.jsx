@@ -1,11 +1,10 @@
 import React from 'react';
-import Title from './Title.jsx';
 
 const Container = (props) => {
   
   return (
-    <div className="callout">
-      <Title question = {"hej"}/>
+    <div className="m-lg:flex m-lg:justify-center mt-3">
+
     </div>
   )
 }
