@@ -9,7 +9,7 @@ sv:
           select_country: Välj ditt land eller område så att vi kan visa information som passar bäst för dig.
           continue_button: "Fortsätt till %{region}"
           dismiss: Avfärda byte av område
-        sign_up: Registrera
+        sign_up: Registrera dig
         book_meeting: Boka möte
         business_subnavigation:
           climate_advisory: Klimatrådgivning
@@ -30,6 +30,7 @@ sv:
         newsletter:
           heading: Prenumerera på vårt nyhetsbrev
           cta: Prenumerera
+        our_services: Våra tjänster
       more_info:
         about:
           title: Om oss
