@@ -3,7 +3,14 @@ import ChooseCountryButton from './ChooseCountryButton.jsx';
 import CountryDropdown from './CountryDropdown.jsx';
 
 const CountrySelectContainer = (props) => {
-  
+
+  /*
+    Idea: skip the "form shell" (i.e., <form> ... </form> part), and have an onClick for the button 
+          that takes the chosen country from the Dropdown and passes it to the controller
+
+    button onClick -> return.toController with (chosen country)
+  */
+
   return (
     <div className="relative z-20 max-w-3xl mx-auto px-4 t:px-16 d:px-0 pt-16 t:pt-24 d:pt-32 text-center">
       CONTAINER START
