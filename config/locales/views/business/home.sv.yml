@@ -29,3 +29,7 @@ sv:
         other_services:
           heading: Andra tjänster
           text_html: Vi kan hjälpa till med utsläppsberäkningar, enskilda klimatkompensationer, inspirationsföreläsningar, workshops och tekniska integrationer. Hör av dig till <a href="mailto:hello@goclimate.com">hello@goclimate.com</a> så berättar vi mer.
+        questions:
+          heading: Undrar du något?
+          text_html: Om du har något du undrar över, titta gärna bland våra vanligt förekommande frågor eller skicka ett email till oss på <a href='mailto:hello@goclimate.com'>hello@goclimate.com</a>.
+          cta: Vanliga frågor
