@@ -1,23 +1,18 @@
-
-
 import React from 'react'
 import ChecklistItem from './ChecklistItem.jsx'
 
-const Checklist = ({ challenges, ifChecked, isOnlyAccepted }) => {
-
+const Checklist = ({ climateActions, onCheck, isOnlyAccepted }) => {
     return (
         <div className="space-y-3 ">
             {isOnlyAccepted ?
-                challenges.map((challenge) => (challenge.accepted ?
-                    <ChecklistItem key={challenge.id} challenge={challenge} ifChecked={ifChecked} /> : ''
-                ))
-                :
-                challenges.map((challenge) => (
-                    <ChecklistItem key={challenge.id} challenge={challenge} ifChecked={ifChecked} />
+                climateActions.map((climateAction) => (climateAction.accepted ?
+                    <ChecklistItem key={climateAction.id} climateAction={climateAction} onCheck={onCheck} /> : '')) :
+                climateActions.map((climateAction) => (
+                    <ChecklistItem key={climateAction.id} climateAction={climateAction} onCheck={onCheck} />
                 ))
             }
         </div>
-
     );
 }
+
 export default Checklist;
