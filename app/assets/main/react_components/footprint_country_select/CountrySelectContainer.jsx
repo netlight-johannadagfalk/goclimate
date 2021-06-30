@@ -5,7 +5,7 @@ import CountryDropdown from './CountryDropdown.jsx';
 const CountrySelectContainer = (props) => {
 
   const [country, setCountry] = useState() 
-    const hej = (event) => { 
+    const confirmCountryChoice = (event) => { 
       console.log("Testing click", event)
     }
 
@@ -14,7 +14,7 @@ const CountrySelectContainer = (props) => {
       <h1 className="heading-xl mb-6 t:mb-12">Together we can save the climate!</h1>
       <p className="my-4 max-w-lg mx-auto">Calculate your carbon footprint to start your personalized subscription, all in less than 2 minutes</p>
       <CountryDropdown/>
-      <ChooseCountryButton buttonClick = { (event) => hej(event) }/>
+      <ChooseCountryButton buttonClick = { (event) => confirmCountryChoice(event) }/>
     </div>
   )
 }
