@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Action Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @action_categories.each do |action_category| %>
+      <tr>
+        <td><%= action_category.id %></td>
+        <td><%= action_category.name %></td>
+        <td><%= action_category.description %></td>
+        <td><%= link_to 'Show', action_category %></td>
+        <td><%= link_to 'Edit', edit_action_category_path(action_category) %></td>
+        <td><%= link_to 'Destroy', action_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Action Category', new_action_category_path %>

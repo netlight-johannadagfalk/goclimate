@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_11_090248) do
+ActiveRecord::Schema.define(version: 2021_06_30_075656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "actions", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "points"
+    t.string "status"
+    t.boolean "repeatable"
+    t.boolean "action_of_the_month"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_actions_on_category_id"
+  end
 
   create_table "api_keys", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -74,6 +94,19 @@ ActiveRecord::Schema.define(version: 2021_06_11_090248) do
     t.boolean "gift_card", default: false, null: false
     t.string "description"
     t.boolean "flight_offset", default: false, null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cetegories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "climate_report_calculations", force: :cascade do |t|

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @action.id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @action.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @action.description %>
+</p>
+
+<p>
+  <strong>Points:</strong>
+  <%= @action.points %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @action.status %>
+</p>
+
+<p>
+  <strong>Repeatable:</strong>
+  <%= @action.repeatable %>
+</p>
+
+<p>
+  <strong>Action of the month:</strong>
+  <%= @action.action_of_the_month %>
+</p>
+
+<%= link_to 'Edit', edit_action_path(@action) %> |
+<%= link_to 'Back', actions_path %>
