@@ -5,7 +5,7 @@ const Container = (props) => {
   
   return (
     <div className="callout">
-      <Title question = {"halloj"}/>
+      <Title question = {"This is a form in react"}/>
     </div>
   )
 }

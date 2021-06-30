@@ -4,15 +4,9 @@ import CountryDropdown from './CountryDropdown.jsx';
 
 const CountrySelectContainer = (props) => {
 
-  /*
-    Idea: skip the "form shell" (i.e., <form> ... </form> part), and have an onClick for the button 
-          that takes the chosen country from the Dropdown and passes it to the controller
-
-    button onClick -> return.toController with (chosen country)
-  */
   const [country, setCountry] = useState() 
     const hej = (event) => { 
-      console.log("hej hej", event)
+      console.log("Testing click", event)
     }
 
   return (
