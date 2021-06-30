@@ -12,6 +12,10 @@ module Subscriptions
       with: %r{\A/(?!/).*\Z}, message: 'must be a link without protocol & domain parts'
     }
 
+    def self.model_name
+      @model_name ||= ActiveModel::Name.new(self, nil, 'referral_code')
+    end
+
     def referred_users_count
       referred_users.count
     end

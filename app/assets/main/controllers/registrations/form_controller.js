@@ -4,7 +4,6 @@ import submitForm from '../../../util/submit_form';
 export default class RegistrationsFormController extends Controller {
   initialize() {
     this.loading = false;
-    this.updateSubmitButton();
   }
 
   submit(event, includePaymentMethod = false) {
@@ -82,21 +81,11 @@ export default class RegistrationsFormController extends Controller {
   enableLoadingState() {
     this.loading = true;
     this.loadingIndicatorTarget.classList.remove('hidden');
-    this.updateSubmitButton();
   }
 
   disableLoadingState() {
     this.loading = false;
     this.loadingIndicatorTarget.classList.add('hidden');
-    this.updateSubmitButton();
-  }
-
-  updateSubmitButton() {
-    if (!this.loading && this.privacyPolicyAgreementTarget.checked) {
-      this.submitButtonTarget.disabled = false;
-    } else {
-      this.submitButtonTarget.disabled = true;
-    }
   }
 
   get stripeCardElementController() {
@@ -117,4 +106,4 @@ RegistrationsFormController.confirmPromise = function confirmPromise(
   }
 };
 
-RegistrationsFormController.targets = ['form', 'privacyPolicyAgreement', 'submitButton', 'stripeCardElement', 'errorMessage', 'loadingIndicator'];
+RegistrationsFormController.targets = ['form', 'stripeCardElement', 'errorMessage', 'loadingIndicator'];
