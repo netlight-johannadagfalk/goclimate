@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_30_075656) do
+ActiveRecord::Schema.define(version: 2021_06_30_080105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,10 +29,10 @@ ActiveRecord::Schema.define(version: 2021_06_30_075656) do
     t.string "status"
     t.boolean "repeatable"
     t.boolean "action_of_the_month"
+    t.bigint "action_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "category_id"
-    t.index ["category_id"], name: "index_actions_on_category_id"
+    t.index ["action_category_id"], name: "index_actions_on_action_category_id"
   end
 
   create_table "api_keys", force: :cascade do |t|
@@ -435,6 +435,7 @@ ActiveRecord::Schema.define(version: 2021_06_30_075656) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "actions", "action_categories"
   add_foreign_key "business_calculators_calculator_categories", "business_calculators_calculators", column: "calculator_id"
   add_foreign_key "business_calculators_calculator_fields", "business_calculators_calculator_categories", column: "category_id"
   add_foreign_key "climate_reports_report_areas", "business_calculators_calculators", column: "calculator_id"

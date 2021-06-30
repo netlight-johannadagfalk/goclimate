@@ -9,6 +9,8 @@ class CreateActions < ActiveRecord::Migration[6.0]
       t.boolean :repeatable
       t.boolean :action_of_the_month
 
+      t.references :action_category, null: false, foreign_key: { to_table: :action_categories }
+
       t.timestamps
     end
   end
