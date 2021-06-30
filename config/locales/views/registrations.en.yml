@@ -32,6 +32,7 @@ en:
       continue: Continue
       continue_to_payment: Continue to payment
       start_subscription: Start subscription
+      accept_policies: By signing up you accept the <a>terms of use and policies</a>
       back: Back
       where_does_the_money_go:
         heading: Where does the money go?
