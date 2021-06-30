@@ -7,7 +7,6 @@
     <h2 class="heading-xl"><%= t 'dashboard.heading' %></h2>
   </section>
 
-  <%# SYNS EJ FÖR MIG %>
   <% if current_user.number_of_neutral_months > 0 %>
     <section class="section-padding">
       <div class="max-w-4xl mx-auto">
@@ -39,9 +38,6 @@
     </section>
   <% end %>
 
-<%# DASHBOARD SOM VI SER%>
-<%# -------------------------------- %>
-
   <% if @footprint %>
   <section class="section-padding space-y-12 t:space-y-6">
     <div class="max-w-5xl mx-auto t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2">
@@ -71,7 +67,6 @@
               <% end %>
             </p>
 
-          <%# FINNS EJ PÅ MIN %>
             <% if current_user.active_subscription? %>
               <p class="hidden t:block">
                 <%= t("views.dashboard.footprint.subscription_coverage",
@@ -83,8 +78,6 @@
             <% end %>
           <% end %>
         </div>
-
-        <%# DASHBOARD HÖGER SIDA %>
         <div class="t:w-1/2">
           <%= render "shared/chart_categories", skip_public_explanation: true %>
         </div>
@@ -92,7 +85,6 @@
       </div>
     </div>
 
-<%# Footer på översta delen av sidan calculation, new calculator etc %>
     <div class="text-center space-y-2 space-x-2">
       <a href="<%= @footprint.country ? new_lifestyle_footprint_path(country: @footprint.country.alpha2) : root_path%>" class="button">
         <i class="fas fa-plus" aria-hidden="true"></i>
@@ -121,7 +113,6 @@
 <%= react_component 'ActionFeature', props: 'firstProp', secondProp: 'secondPropValue' %>
 
 
-<%# CLIMATE HERO %>
 
   <section class="section-padding">
     <div class="section-gutter t:flex t:flex-row">
