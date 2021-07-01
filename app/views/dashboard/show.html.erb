@@ -1,11 +1,11 @@
 <%= render "shared/twitter_script" %>
-
 <%= render "shared/header" %>
 
 <div class="bg-blue-pastel">
   <section class="section-padding pb-0">
     <h2 class="heading-xl"><%= t 'dashboard.heading' %></h2>
   </section>
+
   <% if current_user.number_of_neutral_months > 0 %>
     <section class="section-padding">
       <div class="max-w-4xl mx-auto">
@@ -29,7 +29,6 @@
             </p>
           </div>
         </div>
-
         <div class="text-center mt-12">
           <%= raw(t('dashboard.together', number_of_members: @total_users, number_of_tonnes: number_with_delimiter(@total_carbon_offset)).gsub('<span>', '<span class="font-bold">')) %>
         </div>
@@ -65,13 +64,12 @@
                 <%= t("dashboard.footprint.your_climate_footprint", **footprint_text_options) %>
               <% end %>
             </p>
+
             <% if current_user.active_subscription? %>
               <p class="hidden t:block">
                 <%= t("views.dashboard.footprint.subscription_coverage",
                   subscription_price: current_user.subscription_price.to_s(precision: :auto),
-                  footprint_coverage: current_user.footprint_coverage
-                )
-                %>
+                  footprint_coverage: current_user.footprint_coverage) %>
               </p>
             <% end %>
           <% end %>
@@ -94,16 +92,16 @@
       <div class="inline-block">
         <%= link_to (current_user.active_subscription? ? t('views.dashboard.footprint.update_subscription') : t('views.dashboard.footprint.subscribe')),
           user_subscription_path,
-          class: 'link whitespace-nowrap'
-        %>
+          class: 'link whitespace-nowrap' %>
       </div>
       <div class="inline-block">
         <a class="link" href="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/" target="_blank"><%= t 'views.lifestyle_footprints.methodology' %></a>
       </div>
-
     </div>
   </section>
   <% end %>
+
+<%= react_component 'ClimateActionContainer', props: 'firstProp', secondProp: 'secondPropValue' %>
 
   <section class="section-padding">
     <div class="section-gutter t:flex t:flex-row">
@@ -113,16 +111,13 @@
           <% @user_top_list.each_with_index do |user, index| %>
             <% user_neutral_months = user.count %>
             <% user_name = user.user_name || "Unknown User" %>
-
             <% if index == 10 %>
               <input type="checkbox" id="user-toplist-toggler" class="toggler">
               <div class="hidden toggler-checked:block space-y-1">
             <% end %>
-
             <li class="text-left<%= user.id == current_user.id ? " font-bold inline-block bg-green-accent text-white py-1 px-2 -ml-2 rounded" : "" %>">
               <%= user_name %> (<%= user_neutral_months %> <%=t 'climate_neutral_months', count: user_neutral_months %>)
             </li>
-
             <% if @user_top_list.length > 10 && index == (@user_top_list.length - 1) %>
               </div>
               <div class="toggler-checked:hidden pt-3">
@@ -140,16 +135,13 @@
         <ol class="list-number space-y-1">
           <% @country_top_list.each_with_index do |country, index| %>
             <% country_name = country.country_name || "Unknown" %>
-
             <% if index == 10 %>
               <input type="checkbox" id="country-toplist-toggler" class="toggler">
               <div class="hidden toggler-checked:block space-y-1">
             <% end %>
-
             <li class="text-left<%= country_name == current_user.country_name ? " font-bold inline-block bg-green-accent text-white py-1 px-2 -ml-2 rounded" : "" %>">
               <%= country_name %> (<%= country.count %> <%=t 'climate_neutral_months', count: country.count %>)
             </li>
-
             <% if @user_top_list.length > 10 && index == (@user_top_list.length - 1) %>
               </div>
               <div class="toggler-checked:hidden pt-3">
@@ -167,7 +159,6 @@
 
   <section class="section-padding">
     <h2 class="heading-lg"><%=t 'views.projects.current_projects' %></h2>
-
     <div class="mt-12 flex flex-col d:flex-row section-gutter">
       <% @projects.take(3).each do |project| %>
         <div class="d:w-1/3 pt-20 m-lg:pt-24">
@@ -181,7 +172,6 @@
         </div>
       <% end %>
     </div>
-
     <div class="mt-12 text-center">
       <%= link_to t('views.projects.see_all'), projects_path, class: 'button' %>
     </div>
