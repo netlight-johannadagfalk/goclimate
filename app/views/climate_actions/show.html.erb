@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @climate_action.id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @climate_action.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @climate_action.description %>
+</p>
+
+<p>
+  <strong>Points:</strong>
+  <%= @climate_action.points %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @climate_action.status %>
+</p>
+
+<p>
+  <strong>Repeatable:</strong>
+  <%= @climate_action.repeatable %>
+</p>
+
+<p>
+  <strong>Action of the month:</strong>
+  <%= @climate_action.action_of_the_month %>
+</p>
+
+<%= link_to 'Edit', edit_climate_action_path(@climate_action) %> |
+<%= link_to 'Back', climate_actions_path %>

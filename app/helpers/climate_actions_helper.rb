@@ -1,0 +1,2 @@
+module ClimateActionsHelper
+end

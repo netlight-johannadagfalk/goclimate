@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @climate_action_category.id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @climate_action_category.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @climate_action_category.description %>
+</p>
+
+<%= link_to 'Edit', edit_climate_action_category_path(@climate_action_category) %> |
+<%= link_to 'Back', climate_action_categories_path %>
