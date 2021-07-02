@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Climate Action Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @climate_action_categories.each do |climate_action_category| %>
+      <tr>
+        <td><%= climate_action_category.id %></td>
+        <td><%= climate_action_category.name %></td>
+        <td><%= climate_action_category.description %></td>
+        <td><%= link_to 'Show', climate_action_category %></td>
+        <td><%= link_to 'Edit', edit_climate_action_category_path(climate_action_category) %></td>
+        <td><%= link_to 'Destroy', climate_action_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Climate Action Category', new_climate_action_category_path %>

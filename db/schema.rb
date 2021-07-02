@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_11_090248) do
+ActiveRecord::Schema.define(version: 2021_07_01_064723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,26 @@ ActiveRecord::Schema.define(version: 2021_06_11_090248) do
     t.boolean "gift_card", default: false, null: false
     t.string "description"
     t.boolean "flight_offset", default: false, null: false
+  end
+
+  create_table "climate_action_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "climate_actions", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "points"
+    t.string "status"
+    t.boolean "repeatable"
+    t.boolean "action_of_the_month"
+    t.bigint "climate_action_category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["climate_action_category_id"], name: "index_climate_actions_on_climate_action_category_id"
   end
 
   create_table "climate_report_calculations", force: :cascade do |t|
@@ -404,6 +424,7 @@ ActiveRecord::Schema.define(version: 2021_06_11_090248) do
 
   add_foreign_key "business_calculators_calculator_categories", "business_calculators_calculators", column: "calculator_id"
   add_foreign_key "business_calculators_calculator_fields", "business_calculators_calculator_categories", column: "category_id"
+  add_foreign_key "climate_actions", "climate_action_categories"
   add_foreign_key "climate_reports_report_areas", "business_calculators_calculators", column: "calculator_id"
   add_foreign_key "climate_reports_report_areas", "climate_reports_reports", column: "report_id"
   add_foreign_key "climate_reports_reports", "organizations"
