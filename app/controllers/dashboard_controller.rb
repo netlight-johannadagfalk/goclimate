@@ -22,6 +22,9 @@ class DashboardController < ApplicationController
     @projects = Project.all.order(created_at: :desc).limit(5)
 
     @total_number_of_footprints = LifestyleFootprint.where(user_id: current_user.id).count
+
+    @climate_actions = ClimateAction.all
+    @climate_actions_categories = ClimateActionCategory.all
   end
 
   private

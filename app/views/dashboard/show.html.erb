@@ -101,7 +101,7 @@
   </section>
   <% end %>
 
-<%= react_component 'ClimateActionContainer', props: 'firstProp', secondProp: 'secondPropValue' %>
+<%= react_component 'ClimateActionContainer', climateActionsProps: @climate_actions.to_json() %>
 
   <section class="section-padding">
     <div class="section-gutter t:flex t:flex-row">

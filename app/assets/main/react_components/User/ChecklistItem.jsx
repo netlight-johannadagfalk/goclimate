@@ -7,7 +7,7 @@ const ChecklistItem = ({ climateAction, onCheck }) => {
                 <div className={` ${climateAction.accepted ? 'callout border-8 max-w-2xl' : 'callout max-w-2xl '}`}>
                     <label className="space-x-6 text-l font-bold">
 
-                        {' ' + climateAction.text}
+                        {' ' + climateAction.name}
                     </label>
                     <p className="float-right">{climateAction.emoji}</p>
                 </div>
