@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import ChooseCountryButton from './ChooseCountryButton.jsx';
 import CountryDropdown from './CountryDropdown.jsx';
 
@@ -9,19 +9,16 @@ const CountrySelectContainer = (props) => {
 
   const country = useRef();
 
-  const confirmCountryChoice = () => { 
-    console.log("Chosen country", country)
-    // TELL CONTROLLER TO ROUTE TO CALCULATOR WITH SPECIFIED COUNTRY
-  }
-
+  const [dynamichref, setDynamichref] = useState(props.href)
+  
   return (
     <div className="relative z-20 max-w-3xl mx-auto px-4 t:px-16 d:px-0 pt-16 t:pt-24 d:pt-32 text-center">
       <h1 className="heading-xl mb-6 t:mb-12">{TITLE}</h1>
       <p className="my-4 max-w-lg mx-auto">{SUBTITLE}</p>
       <CountryDropdown 
-        chooseCountry={(val) => country.current = val}
+        chooseCountry={(val) => {country.current = val; setDynamichref(dynamichref + country.current)}}
         />
-      <ChooseCountryButton buttonClick={confirmCountryChoice}/>
+      <ChooseCountryButton href={dynamichref}/>
     </div>
   )
 }
