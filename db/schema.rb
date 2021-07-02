@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2021_06_11_090248) do
     t.jsonb "units"
     t.string "field_type", default: "open_ended"
     t.text "alternatives", array: true
+    t.boolean "multiple_answers", default: false
     t.index ["category_id"], name: "index_business_calculators_calculator_fields_on_category_id"
   end
 
