@@ -1,12 +1,13 @@
 import React from 'react';
-import Title from './Title.jsx';
+import Questions from './questions_en.json';
+import FootprintForm from './FootprintForm.jsx';
 
 const Container = (props) => {
   
   return (
-    <div className="callout">
-      <Title question = {"hej"}/>
-    </div>
+      <div className="callout">
+          <FootprintForm questions={Questions}/>
+      </div>
   )
 }
 

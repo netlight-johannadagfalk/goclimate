@@ -1,0 +1,123 @@
+﻿{
+  "en": {
+    "views": {
+      "lifestyle_footprints": {
+        "title": "Calculate your carbon footprint",
+        "questions": {
+          "region": "In which region do you live?",
+          "home": "What type of home do you live in?",
+          "home_area": "How big is your home?",
+          "heating": "How do you heat your home?",
+          "green_electricity": "Do you use green electricity?",
+          "food": "What is your diet mostly like?",
+          "shopping": "Considering clothing, shoes, electronics, furniture and other items, how much do you purchase brand-new?",
+          "car_type": "What type of car do you use to get around?",
+          "car_distance": "How much do you travel by car each week?",
+          "flight_hours": "How many hours did you travel by plane in the last year?"
+        },
+        "options": {
+          "region": {
+            "west": "West",
+            "midwest": "Midwest",
+            "northeast": "Northeast",
+            "south": "South",
+            "other": "Other"
+          },
+          "home": {
+            "house": "House",
+            "apartment": "Apartment",
+            "one_or_two_bedrooms": "1-2 bedrooms",
+            "three_or_four_bedrooms": "3-4 bedrooms",
+            "five_or_more_bedrooms": "5+ bedrooms",
+            "fifteen_sqm": "15 square metres per person",
+            "twentyfive_sqm": "25 square metres per person",
+            "fortytwo_sqm": "42 square metres per person",
+            "sixty_sqm": "60 square metres per person",
+            "eighty_sqm": "80 square metres per person"
+          },
+          "home_area": {
+            "fifteen_sqm": "15 square metres per person",
+            "twentyfive_sqm": "25 square metres per person",
+            "fortytwo_sqm": "42 square metres per person",
+            "sixty_sqm": "60 square metres per person",
+            "eighty_sqm": "80 square metres per person"
+          },
+          "heating": {
+            "electricity": "Electricity",
+            "natural_gas": "Natural gas",
+            "district": "District heating",
+            "coal": "Coal",
+            "biomass": "Biomass",
+            "environmental_or_solar": "Renewable or solar energy",
+            "airpump": "Air heating pump",
+            "geothermal": "Geothermal pump",
+            "heating_oil": "Heating oil",
+            "propane": "Propane",
+            "no_heating": "I don't heat my home",
+            "dont_know": "I don't know/Other"
+          },
+          "green_electricity": {
+            "yes": "Yes",
+            "seventyfive_percent": "75% green",
+            "fifty_percent": "50% green",
+            "twentyfive_percent": "25% green",
+            "no": "No",
+            "dont_know": "I don't know"
+          },
+          "food": {
+            "vegan": "Plant-based",
+            "vegetarian": "Vegetarian",
+            "pescetarian": "Pescetarian (fish but no meat)",
+            "meat_low": "Some meat (less than 50 g per day)",
+            "meat_medium": "Meat-eater",
+            "meat_high": "Lots of meat (more than 100 g per day)"
+          },
+          "shopping": {
+            "low": "None or just a few in the last year",
+            "average": "Every now and then",
+            "high": "Multiple every month, or multiple larger products in the last year"
+          },
+          "car_type": {
+            "gas": "Gasoline",
+            "petrol": "Petrol",
+            "diesel": "Diesel",
+            "hybrid_plugin": "Hybrid Plug-in",
+            "etanol": "Ethanol (E85)",
+            "electric": "Electric",
+            "hvo_electric": "Electric or HVO",
+            "vehicle_gas": "Vehicle gas (CNG)",
+            "no_car": "I don't have a car"
+          }
+        },
+        "next": "Next",
+        "back": "Go back",
+        "methodology": "How do we calculate?",
+        "index": {
+          "heading": "Your carbon footprints",
+          "text": "This is an overview of your carbon footprints you have calculated.",
+          "list": {
+            "date": "Date",
+            "amount": "Yearly amount"
+          }
+        },
+        "show": {
+          "heading_public": "My yearly carbon footprint",
+          "my_climate_footprint": "My carbon footprint of %{footprint} is %{relative} than the average in %{country}. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030.",
+          "my_climate_footprint_compared_world": "My carbon footprint of %{footprint} is %{relative} than the world average. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030.",
+          "new_calculation": "New calculation",
+          "delete": "Delete",
+          "delete_confirmation": {
+            "heading": "Are you sure?",
+            "text": "You are about to delete your carbon footprint calculation that was created at %{date}.",
+            "cta": "Delete calculation",
+            "abort": "Keep calculation"
+          },
+          "share": {
+            "text": "One of the most powerful ways to create change is to inspire others to take action - and we would for you to share your carbon footprint in your own channels.",
+            "social_quote": "My carbon footprint is %{tonnes} tonnes! See mine and calculate your own carbon footprint at %{url}"
+          }
+        }
+      }
+    }
+  }
+}
