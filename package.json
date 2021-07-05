@@ -47,6 +47,7 @@
     "postcss-nesting": "^7.0.1",
     "proj4": "^2.6.0",
     "react": "^17.0.1",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.1",
     "stimulus": "^1.1.1",
     "tailwindcss": "^2.0.1",

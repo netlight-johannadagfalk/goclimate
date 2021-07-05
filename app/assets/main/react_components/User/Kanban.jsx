@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Checklist from './Checklist.jsx'
 import UserChecklist from './UserChecklist.jsx'
 
+
 function Kanban({ climateActionsProps, userClimateActionsProps }) {
     const [climateActions, setClimateActions] = useState(JSON.parse(climateActionsProps))
     const [userClimateActions, setUserClimateActions] = useState(JSON.parse(userClimateActionsProps))
