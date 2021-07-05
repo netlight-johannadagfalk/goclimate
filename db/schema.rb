@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_05_092314) do
+ActiveRecord::Schema.define(version: 2021_07_05_092740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -395,6 +395,16 @@ ActiveRecord::Schema.define(version: 2021_07_05_092314) do
     t.index ["user_id"], name: "index_subscription_months_on_user_id"
   end
 
+  create_table "user_climate_actions", force: :cascade do |t|
+    t.boolean "status"
+    t.bigint "climate_action_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["climate_action_id"], name: "index_user_climate_actions_on_climate_action_id"
+    t.index ["user_id"], name: "index_user_climate_actions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -436,4 +446,6 @@ ActiveRecord::Schema.define(version: 2021_07_05_092314) do
   add_foreign_key "price_increase_confirmations", "users"
   add_foreign_key "reported_data", "business_calculators_calculator_fields", column: "calculator_field_id"
   add_foreign_key "reported_data", "data_requests"
+  add_foreign_key "user_climate_actions", "climate_actions"
+  add_foreign_key "user_climate_actions", "users"
 end

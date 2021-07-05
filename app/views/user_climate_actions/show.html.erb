@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_climate_action.user_id %>
+</p>
+
+<p>
+  <strong>Action:</strong>
+  <%= @user_climate_action.action_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @user_climate_action.status %>
+</p>
+
+<%= link_to 'Edit', edit_user_climate_action_path(@user_climate_action) %> |
+<%= link_to 'Back', user_climate_actions_path %>

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :user_climate_actions
   resources :climate_actions
   resources :climate_action_categories
   # Handle legacy locale subdomains. Doing this in Cloudflare requires a paid

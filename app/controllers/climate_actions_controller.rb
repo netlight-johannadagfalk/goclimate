@@ -64,6 +64,6 @@ class ClimateActionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def climate_action_params
-      params.require(:climate_action).permit(:id, :name, :description, :points, :status, :repeatable, :action_of_the_month)
+      params.require(:climate_action).permit(:id, :name, :description, :points, :repeatable, :action_of_the_month)
     end
 end
