@@ -1,91 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Title from './Title.jsx';
 
-const FootprintForm = (props) => {
+const FootprintForm = ({calculator, questions, options, footprint}) => {
 
-    console.log(props.questions.en.views.lifestyle_footprints.questions)
+  const order = ["region", "home", "home_area", "heating", "green_electricity", "food", "shopping", "car_type", "car_distance", "flight_hours"]
 
-    return (
+  const [currentQuestion, setCurrentQuestion] = useState();
+  const [currentOptions, setCurrentOptions] = useState();
+  const [answers, setAnswers] = useState();
 
-        <>
+  useEffect(() => {
+    setCurrentQuestion(questions[order.find((category) => calculator[category.concat("_options")])])
+  }, [])
 
-        {Object.keys(props.questions.en.views.lifestyle_footprints.questions).map((question) => {
-            return <div key={question}>{question}</div>
-        })}
-   
-        </>
+  const nextQuestion = () => {
+    const indexOfCurrent = order.indexOf(Object.keys(questions).find((key) => questions[key] == currentQuestion));
+    setCurrentQuestion(questions[order[indexOfCurrent+1]]);
+  }
 
+  return (
+    <>
+      <form action="/calculator" acceptCharset="UTF-8" method="post">
+        <div className="question py-8" data-target="lifestyle-footprints--calculator.question" data-category="home">
+          <Title text={currentQuestion}/>
+            <div className="my-3" onClick={nextQuestion}>
+              <input required="required" className="toggler" data-action="click->lifestyle-footprints--calculator#nextQuestion" type="radio" value="fifteen_sqm" name="lifestyle_footprint[home_area_answer]" id="lifestyle_footprint_home_area_answer_fifteen_sqm"/>
+              <label className="hidden button button-cta toggler-checked:block" htmlFor="lifestyle_footprint_home_area_answer_fifteen_sqm">15 square metres per person</label>
+              <label className="block button toggler-checked:hidden" htmlFor="lifestyle_footprint_home_area_answer_fifteen_sqm">15 square metres per person</label>
+            </div>
+        </div>
+      </form>
+      </>
     )
 }
 
 export default FootprintForm;
-
-     /*
-
-
-
-            <form>
-                
-                questions --> blockade tills index OK
-
-                for each question in questions:
-                    <div hidden=index % questionsOwnIndex>
-                    <title> question </title>    
-                    <input> ans 1 </input>
-                    -....
-                    <div>
-
-
-
-
-                    index = 2
-                    synlig
-
-                    if click, set index to index +1
-
-                submit
-            </form>
-
-
-
-        
-
-        <form action="/calculator" acceptCharset="UTF-8" method="post">
-
-
-
-            <div className="question py-8" data-target="lifestyle-footprints--calculator.question" data-category="home">
-              <h2 className="heading my-4">How big is your home?</h2>
-                <div className="my-3">
-                  <input required="required" className="toggler" data-action="click->lifestyle-footprints--calculator#nextQuestion" type="radio" value="fifteen_sqm" name="lifestyle_footprint[home_area_answer]" id="lifestyle_footprint_home_area_answer_fifteen_sqm"/>
-                  <label className="hidden button button-cta toggler-checked:block" htmlFor="lifestyle_footprint_home_area_answer_fifteen_sqm">15 square metres per person</label>
-                  <label className="block button toggler-checked:hidden" htmlFor="lifestyle_footprint_home_area_answer_fifteen_sqm">15 square metres per person</label>
-                </div>
-                <div className="my-3">
-                  <input required="required" className="toggler" data-action="click->lifestyle-footprints--calculator#nextQuestion" type="radio" value="twentyfive_sqm" name="lifestyle_footprint[home_area_answer]" id="lifestyle_footprint_home_area_answer_twentyfive_sqm"/>
-                  <label className="hidden button button-cta toggler-checked:block" htmlFor="lifestyle_footprint_home_area_answer_twentyfive_sqm">25 square metres per person</label>
-                  <label className="block button toggler-checked:hidden" htmlFor="lifestyle_footprint_home_area_answer_twentyfive_sqm">25 square metres per person</label>
-                </div>
-                <div className="my-3">
-                  <input required="required" className="toggler" data-action="click->lifestyle-footprints--calculator#nextQuestion" type="radio" value="fortytwo_sqm" name="lifestyle_footprint[home_area_answer]" id="lifestyle_footprint_home_area_answer_fortytwo_sqm"/>
-                  <label className="hidden button button-cta toggler-checked:block" htmlFor="lifestyle_footprint_home_area_answer_fortytwo_sqm">42 square metres per person</label>
-                  <label className="block button toggler-checked:hidden" htmlFor="lifestyle_footprint_home_area_answer_fortytwo_sqm">42 square metres per person</label>
-                </div>
-                <div className="my-3">
-                  <input required="required" className="toggler" data-action="click->lifestyle-footprints--calculator#nextQuestion" type="radio" value="sixty_sqm" name="lifestyle_footprint[home_area_answer]" id="lifestyle_footprint_home_area_answer_sixty_sqm"/>
-                  <label className="hidden button button-cta toggler-checked:block" htmlFor="lifestyle_footprint_home_area_answer_sixty_sqm">60 square metres per person</label>
-                  <label className="block button toggler-checked:hidden" htmlFor="lifestyle_footprint_home_area_answer_sixty_sqm">60 square metres per person</label>
-                </div>
-                <div className="my-3">
-                  <input required="required" className="toggler" data-action="click->lifestyle-footprints--calculator#nextQuestion" type="radio" value="eighty_sqm" name="lifestyle_footprint[home_area_answer]" id="lifestyle_footprint_home_area_answer_eighty_sqm"/>
-                  <label className="hidden button button-cta toggler-checked:block" htmlFor="lifestyle_footprint_home_area_answer_eighty_sqm">80 square metres per person</label>
-                  <label className="block button toggler-checked:hidden" htmlFor="lifestyle_footprint_home_area_answer_eighty_sqm">80 square metres per person</label>
-                </div>
-            </div>
-        </form>
-
-        */
-
-
 
 
 /*

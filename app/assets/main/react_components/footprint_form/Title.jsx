@@ -1,10 +1,8 @@
 import React from 'react';
 
-const Title = (props) => {
+const Title = ({text}) => {
   return (
-    <h2 className="heading my-4" > 
-      {props.question}
-    </h2>
+    <h2 className="heading my-4">{text}</h2>
   )
 }
 
