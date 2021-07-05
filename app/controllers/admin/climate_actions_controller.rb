@@ -27,7 +27,7 @@ module Admin
 
       respond_to do |format|
         if @climate_action.save
-          format.html { redirect_to @climate_action, notice: "Climate action was successfully created." }
+          format.html { redirect_to [:admin, @climate_action], notice: "Climate action was successfully created." }
           format.json { render :show, status: :created, location: @climate_action }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ module Admin
     def update
       respond_to do |format|
         if @climate_action.update(climate_action_params)
-          format.html { redirect_to @climate_action, notice: "Climate action was successfully updated." }
+          format.html { redirect_to [:admin, @climate_action], notice: "Climate action was successfully updated." }
           format.json { render :show, status: :ok, location: @climate_action }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ module Admin
     def destroy
       @climate_action.destroy
       respond_to do |format|
-        format.html { redirect_to climate_actions_url, notice: "Climate action was successfully destroyed." }
+        format.html { redirect_to admin_climate_actions_url, notice: "Climate action was successfully destroyed." }
         format.json { head :no_content }
       end
     end
@@ -66,7 +66,7 @@ module Admin
 
       # Only allow a list of trusted parameters through.
       def climate_action_params
-        params.require(:climate_action).permit(:id, :name, :description, :points, :status, :repeatable, :action_of_the_month)
+        params.require(:climate_action).permit(:id, :name, :description, :points, :repeatable, :action_of_the_month, :climate_action_category_id)
       end
   end
 end
