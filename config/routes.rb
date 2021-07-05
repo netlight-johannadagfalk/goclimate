@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  
   resources :climate_actions
   resources :climate_action_categories
   # Handle legacy locale subdomains. Doing this in Cloudflare requires a paid
@@ -208,6 +209,8 @@ Rails.application.routes.draw do
   # Admin
   namespace :admin do
     root to: 'dashboard#index'
+    resources :climate_actions, only: [:index, :show, :new, :edit, :create, :update] 
+    resources :climate_action_categories
     resources :api_keys
     resources :referral_codes
     resources :business_calculators, only: [:index, :show, :new, :edit, :create, :update] do

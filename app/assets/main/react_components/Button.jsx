@@ -32,7 +32,8 @@ export default class Button extends Component {
           className={`button relative ${className}`}
           onClick={onClick}
         >
-          <span className={`${statusIndicator ? "invisible" : ""}`}>
+          {/* <span className={`${statusIndicator ? "invisible" : ""}`}> */}
+          <span>
             {children}
           </span>
           {statusIndicator}
