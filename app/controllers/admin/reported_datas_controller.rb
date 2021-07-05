@@ -62,9 +62,9 @@ module Admin
 
     def reported_datas
       if @report_area
-        ReportedData.all_latest_from_report_area(@report_area)
+        @report_area.answers
       elsif @report
-        ReportedData.all_latest_from_report(@report)
+        @report.answers
       else
         ReportedData.all
       end
