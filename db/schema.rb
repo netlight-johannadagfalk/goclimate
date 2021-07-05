@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_01_064723) do
+ActiveRecord::Schema.define(version: 2021_07_05_092314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,7 +87,6 @@ ActiveRecord::Schema.define(version: 2021_07_01_064723) do
     t.string "name"
     t.string "description"
     t.integer "points"
-    t.string "status"
     t.boolean "repeatable"
     t.boolean "action_of_the_month"
     t.bigint "climate_action_category_id", null: false
