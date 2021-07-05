@@ -1,6 +1,6 @@
 import React from 'react';
-import Questions from './questions_en.json';
-import FootprintForm from './FootprintForm.jsx';
+import Questions from '../questions_en.json';
+import FootprintForm from '../FootprintForm.jsx';
 
 const Container = (props) => {
   
