@@ -6,15 +6,15 @@ import countryList from 'react-select-country-list'
  */
 const CountryForm = () => {
 
-    const DEFAULT_DROPDOWN_VAL = "I live in...";
-    const FALLBACK_TITLE = "Select your country";
+    const defaultDropdownValue = "I live in...";
+    const fallbackTitle = "Select your country";
 
     return (
         <form className="m-lg:flex m-lg:justify-center mt-3" action='/calculator'>
             <div className="select-wrapper w-full m-lg:w-auto m-lg:max-w-xs">
-                <label htmlFor="country" className="sr-only">{FALLBACK_TITLE}</label>
+                <label htmlFor="country" className="sr-only">{fallbackTitle}</label>
                 <select skip_default_ids="false" allow_method_names_outside_object="true" className="select" required="required" name="country" id="country">
-                <option value="">{DEFAULT_DROPDOWN_VAL}</option>
+                <option value="">{defaultDropdownValue}</option>
                 {
                     useMemo(() => countryList().getData(), []).map((country) => <option value={country.value} key={country.value}>{country.label}</option>)
                 }
