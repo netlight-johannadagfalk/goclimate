@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ListAlternatives from './ListAlternatives.jsx';
 import Title from './Title.jsx';
 
 const FootprintForm = ({calculator, questions, options, footprint}) => {
@@ -12,22 +11,23 @@ const FootprintForm = ({calculator, questions, options, footprint}) => {
 
   useEffect(() => {
     setCurrentQuestion(questions[order.find((category) => calculator[category.concat("_options")])])
-    setCurrentOptions(options[order[0]]);
   }, [])
 
   const nextQuestion = () => {
     const indexOfCurrent = order.indexOf(Object.keys(questions).find((key) => questions[key] == currentQuestion));
     setCurrentQuestion(questions[order[indexOfCurrent+1]]);
-    setCurrentOptions(options[order[indexOfCurrent+1]]);
   }
-
 
   return (
     <>
       <form action="/calculator" acceptCharset="UTF-8" method="post">
         <div className="question py-8" data-target="lifestyle-footprints--calculator.question" data-category="home">
           <Title text={currentQuestion}/>
-          <ListAlternatives nextQuestion={nextQuestion} />
+            <div className="my-3" onClick={nextQuestion}>
+              <input required="required" className="toggler" data-action="click->lifestyle-footprints--calculator#nextQuestion" type="radio" value="fifteen_sqm" name="lifestyle_footprint[home_area_answer]" id="lifestyle_footprint_home_area_answer_fifteen_sqm"/>
+              <label className="hidden button button-cta toggler-checked:block" htmlFor="lifestyle_footprint_home_area_answer_fifteen_sqm">15 square metres per person</label>
+              <label className="block button toggler-checked:hidden" htmlFor="lifestyle_footprint_home_area_answer_fifteen_sqm">15 square metres per person</label>
+            </div>
         </div>
       </form>
       </>
@@ -39,7 +39,6 @@ export default FootprintForm;
 
 /*
 ** old htmlForm **
-          
 
 
             do we need this?
