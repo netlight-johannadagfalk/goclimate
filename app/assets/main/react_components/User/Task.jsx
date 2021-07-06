@@ -1,21 +1,8 @@
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd';
 
-function Tasks({ item, index }) {
+function Task({ item, index }) {
     return (
-        // <Draggable draggableId={task.id} index={index}>
-        //     {(provided) => (
-        //         <div className="callout"
-        //             {...provided.draggableProps}
-        //             {...provided.dragHandleProps}
-        //             innerRef={proveded.innerRef}>
-        //             <label className="space-x-6 text-l font-bold">
-        //                 {' ' + task.content}
-        //             </label>
-        //         </div>
-        //     )}
-        // </Draggable>
-
         <Draggable
             key={item.id}
             draggableId={item.id}
@@ -23,7 +10,7 @@ function Tasks({ item, index }) {
         >
             {(provided, snapshot) => {
                 return (
-                    <div
+                    <div className="callout space-x-6 text-l font-bold"
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
@@ -32,14 +19,10 @@ function Tasks({ item, index }) {
                             padding: 16,
                             margin: "0 0 8px 0",
                             minHeight: "50px",
-                            backgroundColor: snapshot.isDragging
-                                ? "#263B4A"
-                                : "#456C86",
-                            color: "white",
                             ...provided.draggableProps.style
                         }}
                     >
-                        {item.content}
+                        {item.name}
                     </div>
                 );
             }}
@@ -47,4 +30,4 @@ function Tasks({ item, index }) {
     )
 }
 
-export default Tasks
+export default Task

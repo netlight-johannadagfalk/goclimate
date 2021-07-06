@@ -101,8 +101,8 @@
   </section>
   <% end %>
 
-<%= react_component 'ClimateActionContainer', climateActionsProps: @climate_actions.to_json(), userClimateActionsProps: @climate_actions.to_json() %>
-<%= react_component 'DnD' %>
+<%# <%= react_component 'ClimateActionContainer', climateActionsProps: @climate_actions.to_json(), userClimateActionsProps: @climate_actions.to_json() %>
+<%= react_component 'DnD', itemsFromBackend: @climate_actions.to_json() %>
 
   <section class="section-padding">
     <div class="section-gutter t:flex t:flex-row">

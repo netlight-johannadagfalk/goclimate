@@ -1,84 +1,76 @@
 import React, { useState } from "react";
 import { DragDropContext } from 'react-beautiful-dnd';
 
-
 import Column from './Column.jsx';
 
-const itemsFromBackend = [
-    { id: "1", content: "First task" },
-    { id: "2", content: "Second task" },
-    { id: "3", content: "Third task" },
-    { id: "4", content: "Fourth task" },
-    { id: "5", content: "Fifth task" }
-];
-
-const columnsFromBackend = {
-    [1]: {
-        name: "Accepted",
-        items: itemsFromBackend
-    },
-    [2]: {
-        name: "Performed",
-        items: []
-    },
-};
+// const itemsFromBackend = [
+//     { id: "1", content: "First task", status: false },
+//     { id: "2", content: "Second task", status: false },
+//     { id: "3", content: "Third task", status: false },
+//     { id: "4", content: "Fourth task", status: false },
+//     { id: "5", content: "Fifth task", status: false }
+// ];
 
 
-function DnD() {
 
+function DnD({ itemsFromBackend }) {
+    const newItemsFromBackend = JSON.parse(itemsFromBackend)
+
+    newItemsFromBackend.map((newItemFromBackend) => {
+        { newItemFromBackend.id = newItemFromBackend.id.toString() }
+    })
+
+    const columnsFromBackend = {
+        [1]: {
+            name: "Your accepted actions:",
+            items: newItemsFromBackend
+        },
+        [2]: {
+            name: "Your performed actions:",
+            items: []
+        },
+    };
     const [columns, setColumns] = useState(columnsFromBackend);
-    // const initialData = {
-    //     tasks: {
-    //         'task-1': { id: 'task-1', content: 'First task' },
+    const [items, setItems] = useState(newItemsFromBackend);
 
-    //         'task-2': { id: 'task-2', content: 'Second task' },
-
-    //         'task-3': { id: 'task-3', content: 'Third task' },
-
-    //         'task-4': { id: 'task-4', content: 'Fouth task' },
-    //     },
-
-    //     columns: {
-    //         'column-1': {
-    //             id: 'column-1',
-    //             title: 'First column',
-    //             taskIDs: ['task-1', 'task-2', 'task-3', 'task-4'],
-    //         },
-    //     },
-    //     columnOrder: ['column-1'],
-    // }
-    // const tasks =
-    //     [
-    //         { id: 'task-1', content: 'First task' },
-    //         { id: 'task-2', content: 'Second task' },
-    //         { id: 'task-3', content: 'Third task' },
-    //         { id: 'task-4', content: 'Fouth task' },]
-
-
-    // const columns = [
-    //     {
-    //         id: 'column-1',
-    //         title: 'First column',
-    //         taskIDs: ['task-1', 'task-2', 'task-3', 'task-4'],
+    // const changeState = () => {
+    //     setItems(items.map((item) => {
+    //         item.status === false ? { ...item, status: !item.status } : item
+    //         console.log(item.status === false)
+    //         console.log(item)
     //     }
-    // ]
-
-    // const columnOrder = ['column-1']
-
-    // const onDragEnd = () => {
-
-    //     // empty for now
+    //     ))
     // }
+    const changeState = (destItems) => {
+        console.log("hej")
+        setItems(items.map((item) => {
+            console.log(item)
+            if (true) {
+                item.status = !item.status;
+            }
+            console.log(item)
+            // true ? { ...item, status: true } : { ...item, status: true }
+            // console.log(item.status === false)
+            // console.log(item)
+            // console.log(destItems)
+            // console.log(destItems.find(destItem => destItem.content === "1"))
+
+        }
+        ))
+    }
 
     const onDragEnd = (result, columns, setColumns) => {
         if (!result.destination) return;
         const { source, destination } = result;
-
         if (source.droppableId !== destination.droppableId) {
             const sourceColumn = columns[source.droppableId];
             const destColumn = columns[destination.droppableId];
             const sourceItems = [...sourceColumn.items];
             const destItems = [...destColumn.items];
+            //const newItems = destItems.map((item) => status = !item.status)
+
+            changeState(destItems);
+
             const [removed] = sourceItems.splice(source.index, 1);
             destItems.splice(destination.index, 0, removed);
             setColumns({
@@ -90,8 +82,14 @@ function DnD() {
                 [destination.droppableId]: {
                     ...destColumn,
                     items: destItems
-                }
+                },
+                // [2]: {
+                //     ...destColumn,
+                //     items: newItems
+                // }
             });
+            console.log(destItems)
+
         } else {
             const column = columns[source.droppableId];
             const copiedItems = [...column.items];
@@ -108,26 +106,11 @@ function DnD() {
     };
 
     return (
-        // <DragDropContext onDragEnd={onDragEnd}>
-        //     <div>
-        //         {/* {columnOrder.map((order) => (
-        //         column = columns.find(({ id }) => id === 'column-1')
-        //     ))} */}
-
-        //         {column.items.map((item, index) => {
-        //             // {columns.map((column) => (
-        //             < Column key={column.id} column={column} tasks={tasks} />
-
-        //         })}
-
-        //     </div>
-        // </DragDropContext>
-
         <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
             <DragDropContext
                 onDragEnd={result => onDragEnd(result, columns, setColumns)}
             >
-                {Object.entries(columns).map(([columnId, column], index) => {
+                {Object.entries(columns).map(([columnId, column]) => {
 
                     return (
                         <div
@@ -136,10 +119,11 @@ function DnD() {
                                 flexDirection: "column",
                                 alignItems: "center"
                             }}
+                            //kanske ta bort key?
                             key={columnId}
                         >
-                            <h2>{column.name}</h2>
-                            <div style={{ margin: 8 }}>
+                            <div className="callout" style={{ margin: 8 }}>
+                                <p className="font-bold inline-block text-green-accent py-1 px-2 -ml-2 rounded" >{column.name}</p>
                                 <Column column={column} columnId={columnId} key={columnId} />
                             </div>
                         </div>
