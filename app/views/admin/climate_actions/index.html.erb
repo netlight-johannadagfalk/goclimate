@@ -2,7 +2,9 @@
 
 <h1>Climate Actions</h1>
 
-<table>
+<div class="panel panel-default">
+<div class="panel-body">
+<table class="table"> 
   <thead>
     <tr>
       <th>Id</th>
@@ -23,17 +25,17 @@
         <td><%= climate_action.name %></td>
         <td><%= climate_action.description %></td>
         <td><%= climate_action.points %></td>
-        <td><%= climate_action.status %></td>
+        <td><%= climate_action.status %></td> 
         <td><%= climate_action.repeatable %></td>
         <td><%= climate_action.action_of_the_month %></td>
-        <td><%= link_to 'Show', climate_action %></td>
-        <td><%= link_to 'Edit', edit_climate_action_path(climate_action) %></td>
-        <td><%= link_to 'Destroy', climate_action, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_admin_climate_action_path(climate_action) %></td> &nbsp;
+        <td><%= link_to 'Destroy', [:admin, climate_action], method: :delete, data: { confirm: 'Are you sure?' } %></td>  
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</div>
+</div>
 <br>
 
-<%= link_to 'New Climate Action', new_climate_action_path %>
+<%= link_to 'New Climate Action', new_admin_climate_action_path, class: 'btn btn-default'%>
