@@ -2,9 +2,12 @@ import React from 'react';
 import AnswerButton from './AnswerButton.jsx';
 
 const ListAlternatives = (props) => {
+  console.log(props)
   return (
       <>
-          <AnswerButton nextQuestion={props.nextQuestion}/>
+      {props.map((question) => (
+          <AnswerButton nextQuestion={props.nextQuestion} text={question}/>
+      ))}
       </>
   )
 }
