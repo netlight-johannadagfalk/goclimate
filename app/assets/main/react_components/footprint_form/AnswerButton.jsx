@@ -11,4 +11,3 @@ const AnswerButton = ({ toNextQuestion, option }) => {
 }
 
 export default AnswerButton;
-

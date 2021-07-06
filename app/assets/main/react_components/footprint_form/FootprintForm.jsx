@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import OptionList from './OptionList.jsx';
 import Title from './Title.jsx';
 
+/**
+ Hej
+ */
 const FootprintForm = ({ calculator, questions, options, footprint }) => {
 
   const order = ["region", "home", "home_area", "heating", "green_electricity", "food", "shopping", "car_type", "car_distance", "flight_hours"]
