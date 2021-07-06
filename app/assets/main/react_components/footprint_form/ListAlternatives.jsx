@@ -2,11 +2,14 @@ import React from 'react';
 import AnswerButton from './AnswerButton.jsx';
 
 const ListAlternatives = (props) => {
+
   return (
       <>
-      {props.map((question) => (
-          <AnswerButton nextQuestion={props.nextQuestion} text={question}/>
-      ))}
+      {Object.entries(props.options).map(([k, question]) => {
+        return (
+          <AnswerButton key={k} nextQuestion={props.nextQuestion} alternative={question}/>
+        )
+      })}
       </>
   )
 }
