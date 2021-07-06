@@ -3,7 +3,9 @@ import OptionList from './OptionList.jsx';
 import Title from './Title.jsx';
 
 /**
- Hej
+ FootprintForm has the responsibility to handle the logic for showing the the questions and answeres 
+ in the form as well as show the current question on the form-page, one at the time. 
+ It also has the responsibility to store the answeres filled in by the user by changing the footprint object.
  */
 const FootprintForm = ({ calculator, questions, options, footprint }) => {
 
