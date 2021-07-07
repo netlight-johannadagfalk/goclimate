@@ -1,14 +1,14 @@
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd';
 
-function Task({ item, index }) {
+function KanbanActionItem({ item, index }) {
     return (
         <Draggable
             key={item.id}
             draggableId={item.id}
             index={index}
         >
-            {(provided, snapshot) => {
+            {(provided) => {
                 return (
                     <div className="callout space-x-6 text-l font-bold"
                         ref={provided.innerRef}
@@ -30,4 +30,4 @@ function Task({ item, index }) {
     )
 }
 
-export default Task
+export default KanbanActionItem

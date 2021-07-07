@@ -1,11 +1,10 @@
 import React from 'react'
-import Task from './Task.jsx'
 import { Droppable } from 'react-beautiful-dnd'
+import KanbanActionItem from './KanbanActionItem.jsx';
 
-function Column({ column, columnId }) {
+function KanbanColumn({ column, columnId }) {
     return (
         <div key={columnId}>
-
             <Droppable column={column} droppableId={columnId} key={columnId}>
                 {(provided, snapshot) => {
                     return (
@@ -23,7 +22,7 @@ function Column({ column, columnId }) {
                         >
                             {column.items.map((item, index) => {
                                 return (
-                                    <Task item={item} index={index} />
+                                    <KanbanActionItem item={item} index={index} />
                                 );
                             })}
                             {provided.placeholder}
@@ -35,4 +34,4 @@ function Column({ column, columnId }) {
     )
 }
 
-export default Column
+export default KanbanColumn

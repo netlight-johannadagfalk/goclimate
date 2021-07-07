@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DragDropContext } from 'react-beautiful-dnd';
 
-import Column from './Column.jsx';
+import KanbanColumn from './KanbanColumn.jsx';
 
 const itemsFromBackend = [
     { id: "1", name: "First task", status: false },
@@ -11,7 +11,7 @@ const itemsFromBackend = [
     { id: "5", name: "Fifth task", status: false }
 ];
 
-function DnD() {
+function KanbanActionContainer() {
     // const newItemsFromBackend = JSON.parse(itemsFromBackend)
 
     // newItemsFromBackend.map((newItemFromBackend) => {
@@ -40,7 +40,6 @@ function DnD() {
     //     }
     //     ))
     // }
-
 
     // const changeState = (destItems) => {
     //     console.log("hej")
@@ -128,7 +127,7 @@ function DnD() {
                         >
                             <div className="callout" style={{ margin: 8 }}>
                                 <p className="font-bold inline-block text-green-accent py-1 px-2 -ml-2 rounded" >{column.name}</p>
-                                <Column column={column} columnId={columnId} key={columnId} />
+                                <KanbanColumn column={column} columnId={columnId} key={columnId} />
                             </div>
                         </div>
                     );
@@ -136,8 +135,7 @@ function DnD() {
                 })}
             </DragDropContext>
         </div >
-
     )
 }
 
-export default DnD
+export default KanbanActionContainer
