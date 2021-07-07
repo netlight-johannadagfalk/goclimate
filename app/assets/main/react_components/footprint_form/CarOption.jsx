@@ -1,7 +1,7 @@
 import React, { useState }  from 'react';
 import AnswerButton from './AnswerButton.jsx';
 
-const OptionNumerical = ({ onAnswerGiven, option }) => {
+const CarOption = ({ onAnswerGiven, option }) => {
   const [value, setValue] = useState(-1);
 
   return (
@@ -15,4 +15,4 @@ const OptionNumerical = ({ onAnswerGiven, option }) => {
   )
 }
 
-export default OptionNumerical;
+export default CarOption;
