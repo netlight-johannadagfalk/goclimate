@@ -23,27 +23,19 @@ class UserClimateActionsController < ApplicationController
   def create
     @user_climate_action = UserClimateAction.new(user_climate_action_params)
 
-    respond_to do |format|
-      if @user_climate_action.save
-        format.html { redirect_to @user_climate_action, notice: "User climate action was successfully created." }
-        format.json { render :show, status: :created, location: @user_climate_action }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user_climate_action.errors, status: :unprocessable_entity }
-      end
+    if @user_climate_action.update(user_climate_action_params)
+      render json: @user_climate_action
+    else
+      render json: @user_climate_action.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /user_climate_actions/1 or /user_climate_actions/1.json
   def update
-    respond_to do |format|
-      if @user_climate_action.update(user_climate_action_params)
-        format.html { redirect_to @user_climate_action, notice: "User climate action was successfully updated." }
-        format.json { render :show, status: :ok, location: @user_climate_action }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user_climate_action.errors, status: :unprocessable_entity }
-      end
+    if @user_climate_action.update(user_climate_action_params)
+      render json: @user_climate_action
+    else
+      render json: @user_climate_action.errors, status: :unprocessable_entity
     end
   end
 

@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :lifestyle_footprints
   has_many :subscription_months, class_name: 'Subscriptions::SubscriptionMonth'
   belongs_to :referred_from, class_name: 'Subscriptions::ReferralCode', optional: true
-
+  has_many :user_climate_actions
   validates :user_name, format: { without: /.+@.+\..+/ }, allow_blank: true
 
   attribute :region, :region
