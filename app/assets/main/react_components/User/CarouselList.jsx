@@ -4,12 +4,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import CarouselActionItem from "./CarouselActionItem.jsx";
 
-const CarouselList= ({ climateActions }) => {
+const CarouselList= ({ climateActions, setStatus }) => {
 
-    
-    const handleClick = () => {
-        console.log('click');
-    }
 
     return (
                 <Carousel 
@@ -34,8 +30,9 @@ const CarouselList= ({ climateActions }) => {
                         )}>
 
                 {climateActions.map((action) =>
-                <CarouselActionItem action={action} key={action.id}></CarouselActionItem>
+                    <CarouselActionItem action={action} key={action.id} setStatus={setStatus}></CarouselActionItem>
                 )}  
+
             </Carousel>     
                 );
 }
