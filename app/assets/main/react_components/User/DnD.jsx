@@ -3,35 +3,34 @@ import { DragDropContext } from 'react-beautiful-dnd';
 
 import Column from './Column.jsx';
 
-// const itemsFromBackend = [
-//     { id: "1", content: "First task", status: false },
-//     { id: "2", content: "Second task", status: false },
-//     { id: "3", content: "Third task", status: false },
-//     { id: "4", content: "Fourth task", status: false },
-//     { id: "5", content: "Fifth task", status: false }
-// ];
+const itemsFromBackend = [
+    { id: "1", name: "First task", status: false },
+    { id: "2", name: "Second task", status: false },
+    { id: "3", name: "Third task", status: false },
+    { id: "4", name: "Fourth task", status: false },
+    { id: "5", name: "Fifth task", status: false }
+];
 
+function DnD() {
+    // const newItemsFromBackend = JSON.parse(itemsFromBackend)
 
-
-function DnD({ itemsFromBackend }) {
-    const newItemsFromBackend = JSON.parse(itemsFromBackend)
-
-    newItemsFromBackend.map((newItemFromBackend) => {
-        { newItemFromBackend.id = newItemFromBackend.id.toString() }
-    })
+    // newItemsFromBackend.map((newItemFromBackend) => {
+    //     { newItemFromBackend.id = newItemFromBackend.id.toString() }
+    // })
 
     const columnsFromBackend = {
         [1]: {
             name: "Your accepted actions:",
-            items: newItemsFromBackend
+            items: itemsFromBackend
         },
         [2]: {
             name: "Your performed actions:",
             items: []
         },
     };
+
     const [columns, setColumns] = useState(columnsFromBackend);
-    const [items, setItems] = useState(newItemsFromBackend);
+    //const [items, setItems] = useState(newItemsFromBackend);
 
     // const changeState = () => {
     //     setItems(items.map((item) => {
@@ -41,23 +40,25 @@ function DnD({ itemsFromBackend }) {
     //     }
     //     ))
     // }
-    const changeState = (destItems) => {
-        console.log("hej")
-        setItems(items.map((item) => {
-            console.log(item)
-            if (true) {
-                item.status = !item.status;
-            }
-            console.log(item)
-            // true ? { ...item, status: true } : { ...item, status: true }
-            // console.log(item.status === false)
-            // console.log(item)
-            // console.log(destItems)
-            // console.log(destItems.find(destItem => destItem.content === "1"))
 
-        }
-        ))
-    }
+
+    // const changeState = (destItems) => {
+    //     console.log("hej")
+    //     setItems(items.map((item) => {
+    //         console.log(item)
+    //         if (true) {
+    //             item.status = !item.status;
+    //         }
+    //         console.log(item)
+    //         // true ? { ...item, status: true } : { ...item, status: true }
+    //         // console.log(item.status === false)
+    //         // console.log(item)
+    //         // console.log(destItems)
+    //         // console.log(destItems.find(destItem => destItem.content === "1"))
+
+    //     }
+    //     ))
+    // }
 
     const onDragEnd = (result, columns, setColumns) => {
         if (!result.destination) return;
@@ -67,9 +68,13 @@ function DnD({ itemsFromBackend }) {
             const destColumn = columns[destination.droppableId];
             const sourceItems = [...sourceColumn.items];
             const destItems = [...destColumn.items];
-            //const newItems = destItems.map((item) => status = !item.status)
+            // const newItems = destItems.map((item) => {
+            //     item.status === false ? { ...item, status: !item.status } : item
 
-            changeState(destItems);
+            //        console.log(columns)
+            // })
+
+            //changeState(destItems);
 
             const [removed] = sourceItems.splice(source.index, 1);
             destItems.splice(destination.index, 0, removed);
@@ -81,15 +86,14 @@ function DnD({ itemsFromBackend }) {
                 },
                 [destination.droppableId]: {
                     ...destColumn,
-                    items: destItems
+                    items: destItems.map((item) =>
+                        item.status === false ? { ...item, status: !item.status } : item)
                 },
                 // [2]: {
                 //     ...destColumn,
                 //     items: newItems
-                // }
+                // },
             });
-            console.log(destItems)
-
         } else {
             const column = columns[source.droppableId];
             const copiedItems = [...column.items];
@@ -128,6 +132,7 @@ function DnD({ itemsFromBackend }) {
                             </div>
                         </div>
                     );
+
                 })}
             </DragDropContext>
         </div >
