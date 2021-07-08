@@ -13,7 +13,6 @@ const OptionList = ({ onAnswerGiven, options }) => {
             "key": option[0],
             "value": option[1]
           }
-          console.log(optionObject);
           return (
             <div key={optionObject.key} className="my-3 flex-1">
               <AnswerButton 

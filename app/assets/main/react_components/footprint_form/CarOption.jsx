@@ -2,7 +2,7 @@ import React, { useState }  from 'react';
 import AnswerButton from './AnswerButton.jsx';
 
 const CarOption = ({ onAnswerGiven, option }) => {
-  const [value, setValue] = useState(-1);
+  const [value, setValue] = useState(0);
 
   return (
     <div className="flex flex-col m-lg:flex-row" >

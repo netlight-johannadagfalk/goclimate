@@ -14,12 +14,8 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   const order = ["region", "home", "home_area", "heating", "green_electricity", "food", "shopping", "car_type", "car_distance", "flight_hours"]
   const isNumerical = ["car_distance", "flight_hours"]
   const firstQuestionKey = order.find((category) => calculator[category.concat("_options")]);
-
   const [currentQuestion, setCurrentQuestion] = useState(questions[firstQuestionKey]);
   const [currentOptions, setCurrentOptions] = useState(getOptions(firstQuestionKey));
-
-  console.log(footprint);
-  
   let indexOfCurrent = order.indexOf(Object.keys(questions).find((key) => questions[key] == currentQuestion));
 
   /** 
@@ -28,7 +24,6 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
    */
   function getOptions(questionKey){
     if(isNumerical.includes(questionKey)){
-      console.log("numerical question", questionKey);
       if(questionKey === "car_distance"){
         return {
           "isNumerical": true,
@@ -73,17 +68,21 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   const onAnswerGiven = (givenAnswer) => {
     saveAnswer(givenAnswer);
     setNewCurrentIndex();
-    setNextQuestion();
-    setNextOptions();
+    if(indexOfCurrent == -1){
+      submit();
+    } else {
+      setNextQuestion();
+      setNextOptions();
+    }
   }
-  const getFormula = (givenAnswer) => {
-    return calculator[order[indexOfCurrent].concat("_options")].find((formulaObject) => {
-      return formulaObject.key === givenAnswer
-    }).formula;
+
+  const submit = () => {
+    var cleanFootprint = cleanUpObjectWhereNull(footprint)
+    console.log(cleanFootprint);
   }
+  
   const saveAnswer = (givenAnswer) => {
     footprint[order[indexOfCurrent].concat("_answer")] = givenAnswer
-    footprint[order[indexOfCurrent]] = getFormula(givenAnswer)
   }
 
   /**
@@ -91,9 +90,14 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
    * Increases with at least 1, but if next question is not to be used, the index increases again
    */
   const setNewCurrentIndex = () => {
-    do{
-      indexOfCurrent++;
-    } while(calculator[(order[indexOfCurrent]).concat("_options")] !== undefined && !calculator[(order[indexOfCurrent]).concat("_options")]);    
+    if(order[indexOfCurrent] == "flight_hours"){
+      indexOfCurrent = -1;
+    }
+    else {
+      do{
+        indexOfCurrent++;
+      } while(calculator[(order[indexOfCurrent]).concat("_options")] !== undefined && !calculator[(order[indexOfCurrent]).concat("_options")]);    
+      }
   }
 
   const setNextQuestion = () => {
@@ -104,8 +108,13 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     setCurrentOptions(getOptions(order[indexOfCurrent]))
   }
 
-  const onAnswerGivenNumerical = (givenAnswer) => {
-    // TODO: Handle numerical answer
+  const cleanUpObjectWhereNull = (obj) => {
+    for (var propName in obj) {
+      if (obj[propName] === null || obj[propName] === undefined) {
+        delete obj[propName];
+      }
+    }
+    return obj
   }
 
   return (
@@ -117,10 +126,9 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
               <OptionList onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} options={currentOptions.options}/>
             :
               currentOptions.isCarOption ?
-                <CarOption option={{"key": "car_distance_answer", "value": "Next"}} onAnswerGiven={(givenAnswer) => onAnswerGivenNumerical(givenAnswer)} />
+                <CarOption option={{"key": "car_distance_answer", "value": "Next"}} onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} />
               :
-                <FlightOption option={{"key": "car_distance_answer", "value": "Next"}} onAnswerGiven={(givenAnswer) => onAnswerGivenNumerical(givenAnswer)} />
-              //<OptionNumerical option={{"key": "car_distance_answer", "value": "Next"}} onAnswerGiven={(givenAnswer) => onAnswerGivenNumerical(givenAnswer)} />
+                <FlightOption option={{"key": "car_distance_answer", "value": "Next"}} onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} />
           }
         </div>
       </form>
