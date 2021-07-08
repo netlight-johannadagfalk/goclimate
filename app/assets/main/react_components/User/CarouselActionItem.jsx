@@ -24,7 +24,11 @@ const CarouselActionItem= ({ action, setStatus }) => {
                 <img src='earth.png' width="50" height="10"></img>
             </div>
             <div>
-                <button className="button button-cta inline-block align-bottom" onClick={() => handleClick(action)}>Accept challenge</button>
+                {action.status ? 
+                <button className="button button-cta inline-block align-bottom" onClick={() => handleClick(action)} /*style={{color: 'rgba(28, 70, 55)'}}*/>Challenge accepted</button>
+                :
+                <button className="button button-cta inline-block align-bottom" onClick={() => handleClick(action)} /*style={{color: 'rgba(28, 70, 55)'}}*/>Accept challenge</button>
+            }
             </div>
         </div>
     );
