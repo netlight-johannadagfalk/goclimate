@@ -1,4 +1,4 @@
-<%= form_with(model: climate_action, local: true) do |form| %>
+<%= form_with(model: [:admin, climate_action], local: true) do |form| %>
   <% if climate_action.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(climate_action.errors.count, "error") %> prohibited this climate_action from being saved:</h2>
@@ -46,6 +46,10 @@
     <%= form.check_box :action_of_the_month %>
   </div>
 
+<div class="field">
+    <%= form.label :climate_action_category_id %>
+    <%= form.text_field :climate_action_category_id %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

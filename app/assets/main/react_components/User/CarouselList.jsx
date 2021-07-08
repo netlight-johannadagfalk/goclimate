@@ -8,7 +8,29 @@ import CarouselActionItem from "./CarouselActionItem.jsx";
 // http://react-responsive-carousel.js.org/storybook/index.html?path=/story/01-basic--with-custom-status-arrows-and-indicators
 // http://react-responsive-carousel.js.org/storybook/?path=/story/02-advanced--with-external-controls 
 
-const CarouselList= ({ climateActions, setStatus }) => {
+const CarouselList= ({ climateActions, setStatus, user, userActions }) => {
+
+    const climateActionsUser = ([...climateActions]);
+
+
+    // Create new list including 'accepted' status
+    climateActionsUser.map(climateAction =>
+        {userActions.map(userAction =>
+            {if(climateAction.name === userAction.name)
+                climateAction.accepted = false;
+            else
+                climateAction.accepted = true;
+            })})
+
+    console.log(climateActionsUser)
+
+    // TODO: Bugg - ett par actions har blivit dubletter
+    // TODO: Fixa så storlek på knapp är lika oavsett 'accepted'-status
+    // TODO: Toggla 'accepted'-status när man klickar på knapp
+    // TODO: Fixa objekt med 'accepted' i backend ist för frontend
+
+    // Ta reda på vilka climate actions som är accepterade och sätt 'accepted = true' för dem
+    // Eller be backend skapa objekt med rätt data
 
 
     return (
@@ -34,8 +56,15 @@ const CarouselList= ({ climateActions, setStatus }) => {
                             </button>
                         )}>
 
-                {climateActions.map((action) =>
-                    <CarouselActionItem action={action} key={action.id} setStatus={setStatus}></CarouselActionItem>
+                {climateActionsUser.map((action) =>
+                    <CarouselActionItem 
+                        action={action} 
+                        key={action.id}
+                        accepted={action.accepted}
+                        setStatus={setStatus} 
+                        user={user}
+                        userActions={userActions}
+                        ></CarouselActionItem>
                 )}  
 
             </Carousel>     

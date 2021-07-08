@@ -101,8 +101,9 @@
   </section>
   <% end %>
 
-<%= react_component 'CarouselContainer', climateActionsProps: @climate_actions.to_json() %>
-<%= react_component 'ClimateActionContainer', climateActionsProps: @climate_actions.to_json() %>
+<%= react_component 'CarouselContainer', climateActionsProps: @climate_actions.to_json(), user: @current_user.to_json(), userActions: @get_all_user_climate_actions.to_json() %>
+<%= react_component 'ClimateActionContainer', climateActionsProps: @climate_actions.to_json(), user: @current_user.to_json() %>
+<%# <%= react_component 'ClimateActionContainer', climateActionsProps: @climate_actions.to_json(), user:@current_user.to_json()%> %>
 
   <section class="section-padding">
     <div class="section-gutter t:flex t:flex-row">
