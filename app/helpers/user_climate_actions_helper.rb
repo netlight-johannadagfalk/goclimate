@@ -1,0 +1,2 @@
+module UserClimateActionsHelper
+end

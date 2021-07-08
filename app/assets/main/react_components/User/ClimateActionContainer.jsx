@@ -5,9 +5,51 @@ import Checklist from './Checklist.jsx'
 import ChecklistHeader from './ChecklistHeader.jsx'
 import ChecklistFooter from './ChecklistFooter.jsx'
 
-const ClimateActionContainer = ({climateActionsProps}) => {
+const ClimateActionContainer = ({climateActionsProps, user}) => {
     const [climateActions, setClimateActions] = useState(JSON.parse(climateActionsProps))
+    const currUser = JSON.parse(user)
     
+    //FUNCTION TO CHANGE STATUS FRO ACCEPTED TO COMPLETED IN DB
+    const setStatus = (id) => {
+        //in value id is the action id
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+        const URL = "/user_climate_actions/" + id.toString();
+        const requestOptions = {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {
+                "X-CSRF-Token": csrfToken,
+              'Content-Type': 'application/json',
+              
+            },
+            body: JSON.stringify({status: false})
+          };
+          
+          fetch(URL, requestOptions)
+          .then(res => console.log(res.json()))
+          .catch(e => console.log(e))
+    }
+
+    //FUNCTION WHERE USER ACCEPT AN ACTION IN DB -> MOVES TO ACCEPTED 
+    const setAccepted = (actionID) => {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+        const URL = "/user_climate_actions";
+        const requestOptions = {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                "X-CSRF-Token": csrfToken,
+              'Content-Type': 'application/json',
+              
+            },
+            body: JSON.stringify({climate_action_id: actionID, user_id:currUser.id, status:false})
+          };
+          
+          fetch(URL, requestOptions)
+          .then(res => console.log(res.json()))
+          .catch(e => console.log(e))
+    }
+        
 
     const onCheck = (id) => {
         setClimateActions(climateActions.map((climateAction) => climateAction.id === id ? { ...climateAction, accepted: !climateAction.accepted } : climateAction))

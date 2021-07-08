@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  #resources :climate_actions
-  resources :climate_action_categories
+  resources :user_climate_actions
   # Handle legacy locale subdomains. Doing this in Cloudflare requires a paid
   # account for the extra page rules which we currently want to avoid.
   match '(*path)', to: redirect { |_, request| "//www.goclimate.com/se#{request.fullpath}" },
