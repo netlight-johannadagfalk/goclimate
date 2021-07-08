@@ -1,63 +1,79 @@
 import React, { useState } from "react";
 import { DragDropContext } from 'react-beautiful-dnd';
-
 import KanbanColumn from './KanbanColumn.jsx';
 
-const itemsFromBackend = [
-    { id: "1", name: "First task", status: false },
-    { id: "2", name: "Second task", status: false },
-    { id: "3", name: "Third task", status: false },
-    { id: "4", name: "Fourth task", status: false },
-    { id: "5", name: "Fifth task", status: false }
-];
+function KanbanActionContainer({ climateActionsProps, user, userClimateAction }) {
+    const itemsFromBackend = JSON.parse(userClimateAction)
 
-function KanbanActionContainer() {
-    // const newItemsFromBackend = JSON.parse(itemsFromBackend)
-
-    // newItemsFromBackend.map((newItemFromBackend) => {
-    //     { newItemFromBackend.id = newItemFromBackend.id.toString() }
-    // })
+    itemsFromBackend.map((itemFromBackend) => {
+        { itemFromBackend.id = itemFromBackend.id.toString() }
+    })
 
     const columnsFromBackend = {
         [1]: {
+            id: "Accepted",
             name: "Your accepted actions:",
             items: itemsFromBackend
         },
         [2]: {
+            id: "Performed",
             name: "Your performed actions:",
             items: []
         },
     };
-
     const [columns, setColumns] = useState(columnsFromBackend);
-    //const [items, setItems] = useState(newItemsFromBackend);
 
-    // const changeState = () => {
-    //     setItems(items.map((item) => {
-    //         item.status === false ? { ...item, status: !item.status } : item
-    //         console.log(item.status === false)
-    //         console.log(item)
-    //     }
-    //     ))
+    const currUser = JSON.parse(user)
+
+    //FUNCTION WHERE USER ACCEPT AN ACTION IN DB -> MOVES TO ACCEPTED 
+    // const createAccepted = (actionID) => {
+    //     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    //     const URL = "/user_climate_actions";
+    //     const requestOptions = {
+    //         method: 'POST',
+    //         credentials: 'include',
+    //         headers: {
+    //             "X-CSRF-Token": csrfToken,
+    //             'Content-Type': 'application/json',
+
+    //         },
+    //         body: JSON.stringify({ climate_action_id: actionID, user_id: currUser.id, status: false })
+    //     };
+
+    //     fetch(URL, requestOptions)
+    //         .then(res => console.log(res.json()))
+    //         .then((res) => {
+    //             if (res.ok) {
+    //                 return res.json()
+    //             }
+    //             else {
+    //                 throw new Error(console.log(e))
+
+    //             }
+    //         })
     // }
 
-    // const changeState = (destItems) => {
-    //     console.log("hej")
-    //     setItems(items.map((item) => {
-    //         console.log(item)
-    //         if (true) {
-    //             item.status = !item.status;
-    //         }
-    //         console.log(item)
-    //         // true ? { ...item, status: true } : { ...item, status: true }
-    //         // console.log(item.status === false)
-    //         // console.log(item)
-    //         // console.log(destItems)
-    //         // console.log(destItems.find(destItem => destItem.content === "1"))
-
-    //     }
-    //     ))
-    // }
+    //FUNCTION TO CHANGE STATUS FRO ACCEPTED TO COMPLETED IN DB
+    const updateStatus = (id, status) => {
+        //in value id is the action id
+        console.log("entered updatestatus" + id)
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+        const URL = "/user_climate_actions/" + id.toString();
+        const requestOptions = {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {
+                "X-CSRF-Token": csrfToken,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ status: status })
+        };
+        fetch(URL, requestOptions)
+            .then((res) => {
+                return res.json();
+            })
+            .catch(error => console.warn(error));
+    }
 
     const onDragEnd = (result, columns, setColumns) => {
         if (!result.destination) return;
@@ -67,14 +83,6 @@ function KanbanActionContainer() {
             const destColumn = columns[destination.droppableId];
             const sourceItems = [...sourceColumn.items];
             const destItems = [...destColumn.items];
-            // const newItems = destItems.map((item) => {
-            //     item.status === false ? { ...item, status: !item.status } : item
-
-            //        console.log(columns)
-            // })
-
-            //changeState(destItems);
-
             const [removed] = sourceItems.splice(source.index, 1);
             destItems.splice(destination.index, 0, removed);
             setColumns({
@@ -85,14 +93,41 @@ function KanbanActionContainer() {
                 },
                 [destination.droppableId]: {
                     ...destColumn,
-                    items: destItems.map((item) =>
-                        item.status === false ? { ...item, status: !item.status } : item)
+                    items: destItems
                 },
-                // [2]: {
-                //     ...destColumn,
-                //     items: newItems
-                // },
             });
+            if (destColumn.id === columns[2].id) {
+                const theItem = destItems.find((item) => item.status === false)
+                setColumns(({
+                    ...columns,
+                    [source.droppableId]: {
+                        ...sourceColumn,
+                        items: sourceItems
+                    },
+                    [destination.droppableId]: {
+                        ...destColumn,
+                        items: destItems.map((item) => item.status === false ? { ...item, status: !item.status } : item)
+                    },
+                }))
+                updateStatus(theItem.id, true)
+            }
+            else {
+                console.log("inside else")
+                const theItem = destItems.find((item) => item.status === true)
+                setColumns(({
+                    ...columns,
+                    [source.droppableId]: {
+                        ...sourceColumn,
+                        items: sourceItems
+                    },
+                    [destination.droppableId]: {
+                        ...destColumn,
+                        items: destItems.map((item) => item.status === true ? { ...item, status: !item.status } : item)
+                    },
+                }))
+                updateStatus(theItem.id, false)
+            }
+
         } else {
             const column = columns[source.droppableId];
             const copiedItems = [...column.items];
@@ -109,7 +144,7 @@ function KanbanActionContainer() {
     };
 
     return (
-        <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+        <div style={{ display: "flex", justifyContent: "center", height: "100%" }} >
             <DragDropContext
                 onDragEnd={result => onDragEnd(result, columns, setColumns)}
             >

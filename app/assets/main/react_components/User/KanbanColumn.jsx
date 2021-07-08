@@ -21,8 +21,9 @@ function KanbanColumn({ column, columnId }) {
                             }}
                         >
                             {column.items.map((item, index) => {
+                                console.log(item)
                                 return (
-                                    <KanbanActionItem item={item} index={index} />
+                                    <KanbanActionItem item={item} index={index} key={item.id} />
                                 );
                             })}
                             {provided.placeholder}

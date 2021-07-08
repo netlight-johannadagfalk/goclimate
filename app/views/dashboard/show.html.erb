@@ -101,7 +101,7 @@
   </section>
   <% end %>
 
-<%= react_component 'KanbanActionContainer', climateActionsProps: @get_all_climate_actions_that_does_not_contain_user_actions.to_json(), user:@current_user.to_json() %>
+<%= react_component 'KanbanActionContainer', climateActionsProps: @get_all_climate_actions_that_does_not_contain_user_actions.to_json(), user:@current_user.to_json(), userClimateAction: @get_all_user_climate_actions.to_json() %>
 <%# <%= react_component 'KanbanActionContainer', itemsFromBackend: @climate_actions.to_json() %> 
 
   <section class="section-padding">
