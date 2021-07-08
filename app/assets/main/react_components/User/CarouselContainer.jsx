@@ -10,7 +10,6 @@ const CarouselContainer = ({climateActionsProps}) => {
 
     const setStatus = (action) => {
         console.log('set status ' + action.id);
-        console.log(action);
     }
 
     return (
