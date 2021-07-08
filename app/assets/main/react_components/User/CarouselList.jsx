@@ -12,14 +12,12 @@ const CarouselList= ({ climateActions, setStatus, user, userActions }) => {
 
     const climateActionsUser = ([...climateActions]);
 
-
     // Create new list including 'accepted' status
     climateActionsUser.map(climateAction =>
         {userActions.map(userAction =>
             {if(climateAction.name === userAction.name)
-                climateAction.accepted = false;
-            else
-                climateAction.accepted = true;
+                climateAction.accepted ? climateAction.accepted = false : climateAction.accepted = true;
+                // uppdatera databas här
             })})
 
     console.log(climateActionsUser)

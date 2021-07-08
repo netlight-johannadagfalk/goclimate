@@ -10,6 +10,10 @@ module Admin
 
     # GET /climate_actions/1 or /climate_actions/1.json
     def show
+
+      @climate_actions = ClimateAction.all
+      @climate_actions_categories = ClimateActionCategory.all
+
     end
 
     # GET /climate_actions/new
