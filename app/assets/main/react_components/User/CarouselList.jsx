@@ -1,8 +1,12 @@
 import React from "react"
-// import Carousel from "react-elastic-carousel"
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import CarouselActionItem from "./CarouselActionItem.jsx";
+
+// Carousel resources
+// https://github.com/leandrowd/react-responsive-carousel
+// http://react-responsive-carousel.js.org/storybook/index.html?path=/story/01-basic--with-custom-status-arrows-and-indicators
+// http://react-responsive-carousel.js.org/storybook/?path=/story/02-advanced--with-external-controls 
 
 const CarouselList= ({ climateActions, setStatus }) => {
 

@@ -13,7 +13,7 @@ const CarouselActionItem= ({ action, setStatus }) => {
     };
 
     return (
-        <div className="callout m-2 p-2 grid grid-cols-1 grid-rows-4 gap-1" style={gridStyle}>
+        <div className="callout shadow-none m-2 p-2 grid grid-cols-1 grid-rows-4 gap-1" style={gridStyle}>
             <div>
                 <h3 className="text-base font-bold" style={{color: 'rgba(28, 70, 55, var(--tw-text-opacity))'}}>{action.name}</h3>
             </div>
