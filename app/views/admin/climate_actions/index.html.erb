@@ -3,22 +3,19 @@
 <h1>Climate Actions</h1>
 
 <div class="panel panel-default">
-  <div class="panel-body">
-<table class="table">
+<div class="panel-body">
+<table class="table"> 
   <thead>
     <tr>
       <th>Id</th>
       <th>Name</th>
       <th>Description</th>
       <th>Points</th>
-      <th>Status</th>
       <th>Repeatable</th>
       <th>Action of the month</th>
       <th colspan="3"></th>
     </tr>
   </thead>
-
-  
 
   <tbody>
     <% @climate_actions.each do |climate_action| %>
@@ -27,18 +24,15 @@
         <td><%= climate_action.name %></td>
         <td><%= climate_action.description %></td>
         <td><%= climate_action.points %></td>
-        <td><%= climate_action.status %></td>
         <td><%= climate_action.repeatable %></td>
         <td><%= climate_action.action_of_the_month %></td>
-        <td><%= link_to 'Edit', edit_admin_climate_action_path(climate_action) %></td>
-        <td><%= link_to 'Destroy', climate_action, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_admin_climate_action_path(climate_action) %></td> &nbsp;
+        <td><%= link_to 'Destroy', [:admin, climate_action], method: :delete, data: { confirm: 'Are you sure?' } %></td>  
       </tr>
     <% end %>
   </tbody>
 </table>
 </div>
 </div>
-
 <br>
 <%= link_to 'New Climate Action', new_admin_climate_action_path, class: 'btn btn-default'%>
-
