@@ -17,7 +17,7 @@ const OptionList = ({ onAnswerGiven, options }) => {
           return (
             <div key={optionObject.key} className="my-3 flex-1">
               <AnswerButton 
-                onAnswerGiven={() => onAnswerGiven(option.key)} 
+                onAnswerGiven={() => onAnswerGiven(optionObject.key)} 
                 option={optionObject} 
               />
             </div>

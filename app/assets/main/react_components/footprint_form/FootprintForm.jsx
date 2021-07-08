@@ -76,9 +76,14 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     setNextQuestion();
     setNextOptions();
   }
-
+  const getFormula = (givenAnswer) => {
+    return calculator[order[indexOfCurrent].concat("_options")].find((formulaObject) => {
+      return formulaObject.key === givenAnswer
+    }).formula;
+  }
   const saveAnswer = (givenAnswer) => {
-    footprint[order[indexOfCurrent]] = givenAnswer
+    footprint[order[indexOfCurrent].concat("_answer")] = givenAnswer
+    footprint[order[indexOfCurrent]] = getFormula(givenAnswer)
   }
 
   /**
