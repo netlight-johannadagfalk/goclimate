@@ -15,6 +15,7 @@ const CarouselList= ({ climateActions, setStatus }) => {
                     infiniteLoop={true}
                     showStatus={false}
                     showIndicators={false}
+                    autoPlay={false}
                     renderArrowPrev={(onClickHandler, hasPrev) =>
                         hasPrev && (
                             <button type="button" className="button border-none float-left" onClick={onClickHandler} style={{position: 'absolute', top:'91%'}}>
