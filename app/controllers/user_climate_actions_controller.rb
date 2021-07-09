@@ -41,10 +41,15 @@ class UserClimateActionsController < ApplicationController
 
   # DELETE /user_climate_actions/1 or /user_climate_actions/1.json
   def destroy
-    @user_climate_action.destroy
-    respond_to do |format|
-      format.html { redirect_to user_climate_actions_url, notice: "User climate action was successfully destroyed." }
-      format.json { head :no_content }
+    # @user_climate_action.destroy
+    # respond_to do |format|
+      # format.html { redirect_to user_climate_actions_url, notice: "User climate action was successfully destroyed." }
+      # format.json { head :no_content }
+    # end
+    if @user_climate_action.destroy
+      render json: @user_climate_action
+    else
+      render json: @user_climate_action.errors, status: :unprocessable_entity
     end
   end
 

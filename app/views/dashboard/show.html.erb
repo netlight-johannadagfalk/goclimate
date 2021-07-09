@@ -101,7 +101,12 @@
   </section>
   <% end %>
 
-<%= react_component 'CarouselContainer', climateActionsProps: @climate_actions.to_json(), user: @current_user.to_json(), userActions: @get_all_user_climate_actions.to_json() %>
+<%= react_component 'CarouselContainer', 
+  climateActionsProps: @climate_actions.to_json(), 
+  user: @current_user.to_json(), 
+  userActions: @get_all_user_climate_actions.to_json(), 
+  allActionsAndUserActions: @all_actions_with_accepted_user_actions.to_json(),
+  actionsWithoutUserActions: @get_all_climate_actions_without_user_actions.to_json() %>
 <%# <%= react_component 'ClimateActionContainer', climateActionsProps: @climate_actions.to_json(), user:@current_user.to_json()%>
 <%= react_component 'KanbanActionContainer', climateActionsProps: @get_all_climate_actions_that_does_not_contain_user_actions.to_json(), user:@current_user.to_json(), userClimateAction: @get_all_user_climate_actions.to_json() %>
 <%# <%= react_component 'KanbanActionContainer', itemsFromBackend: @climate_actions.to_json() %> 

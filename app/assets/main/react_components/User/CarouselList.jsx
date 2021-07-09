@@ -8,7 +8,10 @@ import CarouselActionItem from "./CarouselActionItem.jsx";
 // http://react-responsive-carousel.js.org/storybook/index.html?path=/story/01-basic--with-custom-status-arrows-and-indicators
 // http://react-responsive-carousel.js.org/storybook/?path=/story/02-advanced--with-external-controls 
 
-const CarouselList= ({ climateActions, user, userActions }) => {
+const CarouselList= ({ climateActions, user, userActions, actionsWithoutUserActions }) => {
+
+    const allActions = [...userActions, ...actionsWithoutUserActions];
+    console.log(allActions);
 
     const [climateActionsUser, setClimateActionsUser] = useState([...climateActions]);
 
