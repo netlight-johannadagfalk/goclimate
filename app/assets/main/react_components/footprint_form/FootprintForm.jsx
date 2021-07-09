@@ -65,23 +65,32 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     });
   }
 
-  const onAnswerGiven = (givenAnswer) => {
+  function onAnswerGiven(givenAnswer){
     saveAnswer(givenAnswer);
     setNewCurrentIndex();
     if(indexOfCurrent == -1){
       submit();
     } else {
-      setNextQuestion();
-      setNextOptions();
+      setQuestion();
+      setOptions();
     }
   }
 
-  const submit = () => {
+  function onPreviousQuestion(){
+    //saveAnswer(givenAnswer) ska vi spara svaret ifall man svarar men sen vill gå tillbaka? Antar det
+    decreaseIndex()
+    setQuestion()
+    setOptions()
+    //TODO style answers given that you have given the answer before
+    //To do this we could use the filled in answers from the calculator object?
+    //TODO test with american (?) object where you step back twice
+  }
+
+  function submit(){
     var cleanFootprint = cleanUpObjectWhereNull(footprint)
-    console.log(cleanFootprint);
   }
   
-  const saveAnswer = (givenAnswer) => {
+  function saveAnswer(givenAnswer){
     footprint[order[indexOfCurrent].concat("_answer")] = givenAnswer
   }
 
@@ -89,26 +98,40 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
    * Sets the index for next question
    * Increases with at least 1, but if next question is not to be used, the index increases again
    */
-  const setNewCurrentIndex = () => {
+  function setNewCurrentIndex(){
     if(order[indexOfCurrent] == "flight_hours"){
       indexOfCurrent = -1;
     }
     else {
       do{
         indexOfCurrent++;
-      } while(calculator[(order[indexOfCurrent]).concat("_options")] !== undefined && !calculator[(order[indexOfCurrent]).concat("_options")]);    
+      } while(calculator[(order[indexOfCurrent]).concat("_options")] !== undefined 
+        && !calculator[(order[indexOfCurrent]).concat("_options")]);    
       }
   }
 
-  const setNextQuestion = () => {
+  function decreaseIndex(){
+    if(indexOfCurrent == 0){
+      indexOfCurrent = 0;
+      //TODO dont show back button until there is something to go back to
+    }
+    else {
+      do{
+        indexOfCurrent--;
+      } while(calculator[(order[indexOfCurrent]).concat("_options")] !== undefined 
+        && !calculator[(order[indexOfCurrent]).concat("_options")]);    
+      }
+  }
+
+  function setQuestion(){
     setCurrentQuestion(questions[order[indexOfCurrent]]);
   }
 
-  const setNextOptions = () => {
+  function setOptions(){
     setCurrentOptions(getOptions(order[indexOfCurrent]))
   }
 
-  const cleanUpObjectWhereNull = (obj) => {
+  function cleanUpObjectWhereNull(obj){
     for (var propName in obj) {
       if (obj[propName] === null || obj[propName] === undefined) {
         delete obj[propName];
@@ -131,6 +154,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
                 <FlightOption option={{"key": "car_distance_answer", "value": "Next"}} onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} />
           }
         </div>
+        <label onClick={onPreviousQuestion}>Go back bby</label>
       </form>
   )
 }
