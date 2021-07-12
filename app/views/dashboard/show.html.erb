@@ -44,7 +44,7 @@
         <div class="t:w-1/2 space-y-6">
           <h2 class="heading-lg"><%= t 'dashboard.footprint.heading' %></h2>
           <div>
-            <span class="text-5xl font-bold text-green-accent"><%= number_with_delimiter(@footprint.total.tonnes.round(1)) %></span>
+            <span class="text-3xl m-lg:text-5xl font-bold text-green-accent"><%= number_with_delimiter(@footprint.total.tonnes.round(1)) %></span>
             <span class="heading text-green-accent"><%= t 'tonnes_CO2' %></span>
           </div>
           <% if @footprint.country %>
