@@ -28,7 +28,7 @@
                     else
                       "#{((1 - @footprint.total.co2e.to_f / @country_average.co2e.co2e) * 100).ceil} % #{t 'views.registrations.lower'}"
                     end,
-                  country: @footprint.country.translation(I18n.locale)
+                  country: @footprint.country&.translation(I18n.locale)
               } %>
               <% if @country_average.countries.nil? %>
                 <% if current_user && (@footprint.user_id == current_user.id) %>
