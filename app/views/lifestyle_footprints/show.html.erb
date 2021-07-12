@@ -52,7 +52,7 @@
       </div>
     </div>
     <% if current_user && (@footprint.user_id == current_user.id) %>
-      <div class="text-center">
+      <div class="text-center space-x-1 space-y-3">
         <a href="<%= @footprint.country ? new_lifestyle_footprint_path(country: @footprint.country.alpha2) : root_path%>" class="button">
           <i class="fas fa-plus" aria-hidden="true"></i>
           <%= t 'views.lifestyle_footprints.show.new_calculation' %>
@@ -77,6 +77,12 @@
                     </button>
                   <% end %>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="inline-block">
+            <%= link_to t('views.dashboard.footprint.previous_footprints'), lifestyle_footprints_path, class: 'link whitespace-nowrap' %>
           </div>
         <% end %>
       </div>

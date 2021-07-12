@@ -80,9 +80,6 @@ sv:
       index:
         heading: Dina klimatavtryck
         text: Det här är en översikt över alla klimatavtryck du beräknat via vår tjänst.
-        list:
-          date: Datum
-          amount: Årligt avtryck
       show:
         new_calculation: Ny beräkning
         delete: Ta bort

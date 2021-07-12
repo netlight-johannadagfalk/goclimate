@@ -5,7 +5,7 @@ class LifestyleFootprintsController < ApplicationController
   before_action :authenticate_user!, only: [:index]
 
   def index
-    @footprints = LifestyleFootprint.where(user_id: current_user.id).order(created_at: :desc)
+    @footprints = LifestyleFootprint.where(user_id: current_user.id).order(created_at: :asc)
   end
 
   def new
