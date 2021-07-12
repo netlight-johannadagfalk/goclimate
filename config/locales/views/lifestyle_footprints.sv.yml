@@ -91,3 +91,7 @@ sv:
         share:
           text: Ett av de mest kraftfulla sätten att skapa förändring är att inspirera andra att agera - och vi blir jättestolta om du delar ditt klimatavtryck i dina egna kanaler.
           social_quote: Mitt klimatavtryck är %{tonnes} ton koldioxid! Se mitt avtryck och beräkna ditt egna på %{url}
+        update:
+          placeholder: Lägg till titel
+          cta_create: Skapa titel
+          cta_update: Uppdatera titel

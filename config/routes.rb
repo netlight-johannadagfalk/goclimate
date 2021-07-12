@@ -65,6 +65,9 @@ Rails.application.routes.draw do
     resource :take_action, controller: 'take_action', path: 'take-action', only: [:show]
 
     resources :lifestyle_footprints, path: 'calculator', only: [:new, :create], path_names: { new: '' } do
+      member do
+        post :update_name
+      end
       collection do
         resources :lifestyle_footprints, path: 'results', only: [:index, :show, :destroy]
       end

@@ -96,6 +96,11 @@ en:
           text: You are about to delete your carbon footprint calculation that was created at %{date}.
           cta: Delete calculation
           abort: Keep calculation
+          success: Your carbon footprint calculation was deleted sucessfully
         share:
           text: One of the most powerful ways to create change is to inspire others to take action - and we would for you to share your carbon footprint in your own channels.
           social_quote: My carbon footprint is %{tonnes} tonnes! See mine and calculate your own carbon footprint at %{url}
+        update:
+          placeholder: Add title
+          cta_create: Create title
+          cta_update: Update title
