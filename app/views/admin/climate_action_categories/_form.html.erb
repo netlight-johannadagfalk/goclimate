@@ -2,7 +2,6 @@
   <% if climate_action_category.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(climate_action_category.errors.count, "error") %> prohibited this climate_action_category from being saved:</h2>
-
       <ul>
         <% climate_action_category.errors.full_messages.each do |message| %>
           <li><%= message %></li>

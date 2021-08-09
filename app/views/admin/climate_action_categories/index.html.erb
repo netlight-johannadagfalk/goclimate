@@ -20,7 +20,6 @@
         <td><%= climate_action_category.id %></td>
         <td><%= climate_action_category.name %></td>
         <td><%= climate_action_category.description %></td>
-        <td><%= link_to 'Show', [:admin, climate_action_category] %></td> &nbsp;
         <td><%= link_to 'Edit', edit_admin_climate_action_category_path(climate_action_category) %></td> &nbsp;
         <% if ClimateAction.where(climate_action_category_id: climate_action_category.id).count==0%>
         <td><%= link_to 'Destroy', [:admin, climate_action_category], method: :delete, data: { confirm: 'Are you sure?' } %></td> 
@@ -33,7 +32,5 @@
 </table>
 </div>
 </div>
-
 <br>
-
 <%= link_to 'New Climate Action Category', new_admin_climate_action_category_path, class: 'btn btn-default' %>
