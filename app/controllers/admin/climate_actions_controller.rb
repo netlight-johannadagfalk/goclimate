@@ -52,13 +52,10 @@ module Admin
     # DELETE /climate_actions/1 or /climate_actions/1.json
     def destroy
       @climate_action.destroy
-
-      redirect_to admin_climate_action_url, notice: 'Data reporter was successfully destroyed.' 
-
-      # respond_to do |format|
-      #   format.html { redirect_to admin_climate_action_url, notice: "Climate action was successfully destroyed." }
-      #   format.json { head :no_content }
-      # end
+      respond_to do |format|
+        format.html { redirect_to admin_climate_actions_url, notice: "Climate action was successfully destroyed." }
+        format.json { head :no_content }
+      end
     end
 
     private
