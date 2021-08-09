@@ -1,39 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Id:</strong>
-  <%= @climate_action.id %>
-</p>
+<dl class="dl-horizontal">
+  <dt>Id:</dt>
+  <dd><%= @climate_action.id %></dd>
 
-<p>
-  <strong>Name:</strong>
-  <%= @climate_action.name %>
-</p>
+  <dt>Name:</dt>
+  <dd><%= @climate_action.name %></dd>
 
-<p>
-  <strong>Description:</strong>
-  <%= @climate_action.description %>
-</p>
+  <dt>Description:</dt>
+  <dd><%= @climate_action.description %></dd>
 
-<p>
-  <strong>Points:</strong>
-  <%= @climate_action.points %>
-</p>
+  <dt>Points:</dt>
+  <dd><%= @climate_action.points %></dd>
 
-<p>
-  <strong>Repeatable:</strong>
-  <%= @climate_action.repeatable %>
-</p>
+  <dt>Repeatable:</dt>
+  <dd><%= @climate_action.repeatable %></dd>
 
-<p>
-  <strong>Action of the month:</strong>
-  <%= @climate_action.action_of_the_month %>
-</p>
+  <dt>Action of the month:</dt>
+  <dd><%= @climate_action.action_of_the_month %></dd>
 
-<p>
-  <strong>Category:</strong>
-  <%= @climate_action.climate_action_category_id %>
-</p>
+  <dt>Category:</dt>
+  <dd><%= @climate_action.climate_action_category_id %></dd>
 
-<%= link_to 'Edit', edit_admin_climate_action_path(@climate_action) %> |
-<%= link_to 'Back', admin_climate_actions_path %>
+</dl>
+
+<hr>
+
+<%= link_to 'Edit', edit_admin_climate_action_path(@climate_action), class: 'btn btn-default'  %>
+<%= link_to 'Back', admin_climate_actions_path, class: 'btn btn-default'  %>

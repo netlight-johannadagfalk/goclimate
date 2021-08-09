@@ -1,19 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Id:</strong>
-  <%= @climate_action_category.id %>
-</p>
+<h1>Climate Action Category</h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @climate_action_category.name %>
-</p>
+<dl class="dl-horizontal">
+  <dt>Id:</dt>
+  <dd><%= @climate_action_category.id%></dd>
+  
+  <dt>Name:</dt>
+  <dd><%= @climate_action_category.name%></dd>
 
-<p>
-  <strong>Description:</strong>
-  <%= @climate_action_category.description %>
-</p>
+  <dt>Description:</dt>
+  <dd><%= @climate_action_category.description%></dd>
 
-<%= link_to 'Edit', edit_admin_climate_action_category_path(@climate_action_category) %> |
-<%= link_to 'Back', admin_climate_action_categories_path %>
+ </dl> 
+
+<hr>
+
+<%= link_to 'Edit', edit_admin_climate_action_category_path(@climate_action_category), class: 'btn btn-default' %>
+<%= link_to 'Back', admin_climate_action_categories_path, class: 'btn btn-default' %>

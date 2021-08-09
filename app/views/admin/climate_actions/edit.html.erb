@@ -2,5 +2,7 @@
 
 <%= render 'form', climate_action: @climate_action %>
 
-<%= link_to 'Show', [:admin, @climate_action] %> |
-<%= link_to 'Back', admin_climate_actions_path %>
+<hr>
+
+<%= link_to 'Show', [:admin, @climate_action], class: 'btn btn-default' %>
+<%= link_to 'Back', admin_climate_actions_path, class: 'btn btn-link' %>
