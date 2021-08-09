@@ -83,10 +83,32 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   const submit = () => {
     var cleanFootprint = cleanUpObjectWhereNull(footprint)
     console.log(cleanFootprint);
+
+    cleanFootprint.country = cleanFootprint.country.country_data_or_code;
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    const URL = "/calculator";
+    const requestOptions = {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          "X-CSRF-Token": csrfToken,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cleanFootprint)
+      };
+      fetch(URL, requestOptions)
+      .then(res => console.log(res)/*window.location.href = res.url*/)
   }
   
   const saveAnswer = (givenAnswer) => {
-    footprint[order[indexOfCurrent].concat("_answer")] = givenAnswer
+    console.log("foot 1", footprint)
+    if (order[indexOfCurrent] === "car_distance"){
+      footprint[order[indexOfCurrent].concat("_week_answer")] = givenAnswer
+    } else {
+      footprint[order[indexOfCurrent].concat("_answer")] = givenAnswer
+    }
+    console.log("foot 2", footprint)
+
   }
 
   /**
