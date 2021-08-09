@@ -20,7 +20,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   let questionIndex = order.indexOf(Object.keys(questions).find((key) => questions[key] == currentQuestion));
 
   /** 
-   * Finds if a question option key exists in calculator. 
+   * Finds if a question option key exists in calculator
    */
   function isOptionUsed(questionKey, optionKey){
     const calculatorKeyForOptions = questionKey.concat("_options")
