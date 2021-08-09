@@ -21,11 +21,6 @@
 </p>
 
 <p>
-  <strong>Status:</strong>
-  <%= @climate_action.status %>
-</p>
-
-<p>
   <strong>Repeatable:</strong>
   <%= @climate_action.repeatable %>
 </p>
@@ -35,5 +30,10 @@
   <%= @climate_action.action_of_the_month %>
 </p>
 
-<%= link_to 'Edit', edit_climate_action_path(@climate_action) %> |
+<p>
+  <strong>Category:</strong>
+  <%= @climate_action.climate_action_category_id %>
+</p>
+
+<%= link_to 'Edit', edit_admin_climate_action_path(@climate_action) %> |
 <%= link_to 'Back', admin_climate_actions_path %>

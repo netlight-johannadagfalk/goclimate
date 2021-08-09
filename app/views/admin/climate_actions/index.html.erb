@@ -13,6 +13,7 @@
       <th>Points</th>
       <th>Repeatable</th>
       <th>Action of the month</th>
+      <th>Category</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,6 +27,7 @@
         <td><%= climate_action.points %></td>
         <td><%= climate_action.repeatable %></td>
         <td><%= climate_action.action_of_the_month %></td>
+        <td><%= ClimateActionCategory.find_by(id: climate_action.climate_action_category_id).name %></td> 
         <td><%= link_to 'Edit', edit_admin_climate_action_path(climate_action) %></td> &nbsp;
         <td><%= link_to 'Destroy', [:admin, climate_action], method: :delete, data: { confirm: 'Are you sure?' } %></td>  
       </tr>

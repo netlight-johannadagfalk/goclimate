@@ -12,11 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :id %>
-    <%= form.text_field :id %>
-  </div>
-
-  <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
@@ -30,12 +25,6 @@
     <%= form.label :points %>
     <%= form.number_field :points %>
   </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
   <div class="field">
     <%= form.label :repeatable %>
     <%= form.check_box :repeatable %>
@@ -48,7 +37,8 @@
 
 <div class="field">
     <%= form.label :climate_action_category_id %>
-    <%= form.text_field :climate_action_category_id %>
+    <%= form.collection_select :climate_action_category_id, ClimateActionCategory.all , :id, :name %>
+
   </div>
   <div class="actions">
     <%= form.submit %>
