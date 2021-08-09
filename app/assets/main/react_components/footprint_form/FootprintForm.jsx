@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import OptionList from './OptionList.jsx';
 import Title from './Title.jsx';
 import CarOption from './CarOption.jsx';
@@ -121,7 +121,6 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   function onGoBack(){
     decreaseIndex()
     setQuestion()
-    //TODO test with american (?) object where you step back twice
   }
 
  /**
