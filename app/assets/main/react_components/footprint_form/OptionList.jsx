@@ -4,7 +4,7 @@ import AnswerButton from './AnswerButton.jsx';
 /**
  * Receives a list of all options for a specific question, and maps 
  */
-const OptionList = ({ onAnswerGiven, options }) => {
+const OptionList = ({ onAnswerGiven, options, selectedKey }) => {
 
   return (
       <>
@@ -17,7 +17,8 @@ const OptionList = ({ onAnswerGiven, options }) => {
             <div key={optionObject.key} className="my-3 flex-1">
               <AnswerButton 
                 onAnswerGiven={() => onAnswerGiven(optionObject.key)} 
-                option={optionObject} 
+                option={optionObject}
+                isSelected = {selectedKey==optionObject.key}
               />
             </div>
           )
