@@ -3,6 +3,15 @@ module Admin
   class ClimateActionCategoriesController < AdminController
     before_action :set_climate_action_category, only: %i[ show edit update destroy ]
 
+    #@check = ClimateAction.where(climate_action_category_id: 2)
+
+    def check
+      if ClimateAction.include?(climate_action_category_id: 2)
+        return true
+      else
+        return false
+      end
+    end
     # GET /climate_action_categories or /climate_action_categories.json
     def index
       @climate_action_categories = ClimateActionCategory.all
@@ -40,7 +49,7 @@ module Admin
     def update
       respond_to do |format|
         if @climate_action_category.update(climate_action_category_params)
-          format.html { redirect_to @climate_action_category, notice: "Climate action category was successfully updated." }
+          format.html { redirect_to [:admin, @climate_action_category], notice: "Climate action category was successfully updated." }
           format.json { render :show, status: :ok, location: @climate_action_category }
         else
           format.html { render :edit, status: :unprocessable_entity }

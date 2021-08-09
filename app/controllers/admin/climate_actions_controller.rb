@@ -1,7 +1,6 @@
 module Admin
-
   class ClimateActionsController < AdminController
-    before_action :set_climate_action, only: %i[ show edit update destroy ]
+    before_action :set_climate_action, only: %i[ show edit update destroy delete]
 
     # GET /climate_actions or /climate_actions.json
     def index
@@ -24,7 +23,6 @@ module Admin
     # POST /climate_actions or /climate_actions.json
     def create
       @climate_action = ClimateAction.new(climate_action_params)
-
       respond_to do |format|
         if @climate_action.save
           format.html { redirect_to [:admin, @climate_action], notice: "Climate action was successfully created." }
