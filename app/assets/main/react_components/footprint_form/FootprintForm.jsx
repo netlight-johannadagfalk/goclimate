@@ -72,8 +72,8 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   }
 
   /**
-   * Submits the compleated form and sends a post request to the server
-   * with the cleanFootprint-object containing the answers.
+   * Submits the completed form and sends a post request to the server
+   * with the cleanFootprint object containing the answers.
    * After completed post request the user gets redirected to the result/sign-up page.
   */
   const submit = () => {
