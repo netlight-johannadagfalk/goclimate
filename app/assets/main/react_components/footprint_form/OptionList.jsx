@@ -27,5 +27,4 @@ const OptionList = ({ onAnswerGiven, options, selectedKey }) => {
       </>
   )
 }
-//TODO GÅ TILLBAKA OCH VISA SIFFRAN
 export default OptionList;
