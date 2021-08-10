@@ -71,7 +71,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     if(indexOfCurrent == -1){
       submit();
     } else {
-      if (currentQuestion === "What type of car do you use to get around?" && givenAnswer === "no_car" ){
+      if (order[indexOfCurrent-1] === "car_type" && givenAnswer === "no_car" ){
         saveAnswer("");
         indexOfCurrent++;
       }
