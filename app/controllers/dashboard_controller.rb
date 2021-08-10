@@ -8,7 +8,7 @@ class DashboardController < ApplicationController
 
   def show
     @total_carbon_offset = OffsettingStatistics.new.total_sold.tonnes.round
-    @my_carbon_offset = current_user.total_subscription_offsetting.tonnes
+    @my_carbon_offset = current_user.total_subscription_offsetting.tonnes.round(1)
     @my_neutral_months = current_user.number_of_neutral_months
     @total_users = User.count
 

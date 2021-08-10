@@ -6,7 +6,7 @@
   <dt>See results:</dt>
   <dd>
     <%= link_to 'Reported data', admin_reported_datas_path(report_id: @report.id) %>
-    (<%= ReportedData.all_latest_from_report(@report).length %> questions answered out of
+    (<%= @report.number_of_answered_questions %> questions answered out of
     <%= @report.number_of_questions %>)
   </dd>
 

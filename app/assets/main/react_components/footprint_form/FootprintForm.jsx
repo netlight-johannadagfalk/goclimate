@@ -62,6 +62,10 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     if(indexOfCurrent == -1){
       submit();
     } else {
+      if (order[indexOfCurrent-1] === "car_type" && givenAnswer === "no_car" ){
+        saveAnswer("");
+        indexOfCurrent++;
+      }
       setNextQuestion();
       setNextOptions();
     }
@@ -98,7 +102,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   const setNextOptions = () => {
     setCurrentOptions(getOptions(order[indexOfCurrent]))
   }
-  
+
   /**
    * Cleans upp an object and remocves all entities where value is "null" or "undefined".
    * Used for cleaning up the footprint object.

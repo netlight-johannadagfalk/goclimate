@@ -10,7 +10,7 @@ sv:
             heading: Klimatavtrycket av mat
             link: https://www.goclimate.com/blog/the-carbon-footprint-of-a-diet/
           item_2:
-            heading: Köttätarens guide för att äta mer vegeteriskt
+            heading: Köttätarens guide för att äta mer vegetariskt
             link: https://www.goclimate.com/blog/meat-eaters-non-dogmatic-guide-to-becoming-more-vegetarian/
           item_3:
             heading: Minska klimatavtryck av det du äter
@@ -19,13 +19,13 @@ sv:
           heading: Hem
           item_1:
             heading: Att byta till grön elektricitet
-            link: https://www.goclimate.com/blog/making-the-change-to-green-electricity/
+            link: https://www.goclimate.com/blog/dags-att-byta-till-gron-el/
           item_2:
             heading: Klimatavtrycket av ett hem
             link: https://www.goclimate.com/blog/the-carbon-footprint-of-a-home/
           item_3:
             heading: De fem bästa tipsen för klimatvänlig renovering
-            link: https://www.goclimate.com/blog/5-best-tips-for-a-climate-friendly-renovation/
+            link: https://www.goclimate.com/blog/5-basta-tipsen-for-en-klimatsmartare-renovering/
         traveling:
           heading: Resor
           item_1:
@@ -46,7 +46,7 @@ sv:
             heading: Det här kan du göra istället för att köpa nya kläder
             link: https://www.goclimate.com/blog/not-buying-new-clothes-heres-what-you-can-do-instead/
           item_3:
-            heading: Hur du shoppar på ett hållbart sätt när du har lite tid
+            heading: Hur du shoppar på ett hållbart sätt när du har brist på tid
             link: https://www.goclimate.com/blog/how-to-shop-sustainably-when-you-are-living-a-very-busy-life/
         system_change:
           heading: Systemförändring
@@ -54,8 +54,8 @@ sv:
             heading: Rösta för klimatet!
             link: https://www.goclimate.com/blog/vote-for-the-climate/
           item_2:
-            heading: Civil olydnad för klimatet?
-            link: https://www.goclimate.com/blog/civil-disobedience-for-the-climate/
+            heading: Civil olydnad för klimatet
+            link: https://www.goclimate.com/blog/civil-olydnad-for-klimatet/
           item_3:
             heading: Skriv under namninsamlingar för klimatet
         carbon_footprint:
@@ -64,7 +64,7 @@ sv:
             heading: Jag och mitt klimatavtryck
             link: https://www.goclimate.com/blog/me-and-my-carbon-footprint/
           item_2:
-            heading: Vad är ett klimatavtryck
+            heading: Vad är ett klimatavtryck?
             link: https://www.goclimate.com/blog/what-is-a-carbon-footprint/
           item_3:
             heading: Klimatavtrycket av samhällets konsumption
