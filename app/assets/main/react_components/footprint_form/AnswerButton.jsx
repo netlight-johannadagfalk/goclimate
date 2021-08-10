@@ -7,7 +7,7 @@ const AnswerButton = ({ onAnswerGiven, option, isSelected }) => {
   return (
     <>
       <input required="required" className="toggler" type="radio" />
-      <label onClick={onAnswerGiven} className={"block button toggler-checked:hidden button flex-1 " + selectedClass}>{option.value}</label>
+      <label onClick={onAnswerGiven} className={"block button toggler-checked:hidden button flex-1 " + selectedClass}>{option}</label>
     </>
   )
 }

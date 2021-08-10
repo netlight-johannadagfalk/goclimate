@@ -18,6 +18,26 @@ module BusinessCalculators
       field_type == 'open_ended'
     end
 
+    def survey?
+      category.calculator.survey
+    end
+
+    def answers(report_area, data_reporter = nil)
+      return nil unless report_area.present?
+
+      answers = ReportedData.joins(:data_request)
+                            .where('data_requests.report_area_id': report_area.id, calculator_field_id: id)
+                            .order(created_at: :asc)
+      answers = answers.where('data_requests.recipient_id': data_reporter.id) if data_reporter.present?
+      answers = answers.reorder(created_at: :desc).limit(1) unless multiple_answers
+      answers
+    end
+
+    def answers?(report_area, data_reporter = nil)
+      ans = answers(report_area, data_reporter)
+      ans.present? && ans.count > 0
+    end
+
     private
 
     def units_exists

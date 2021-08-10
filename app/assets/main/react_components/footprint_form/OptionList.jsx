@@ -17,8 +17,9 @@ const OptionList = ({ onAnswerGiven, options, selectedKey }) => {
             <div key={optionObject.key} className="my-3 flex-1">
               <AnswerButton 
                 onAnswerGiven={() => onAnswerGiven(optionObject.key)} 
-                option={optionObject}
+                option={optionObject.value}
                 isSelected = {selectedKey==optionObject.key}
+                labelText={optionObject.value} 
               />
             </div>
           )
@@ -26,5 +27,5 @@ const OptionList = ({ onAnswerGiven, options, selectedKey }) => {
       </>
   )
 }
-
+//TODO GÅ TILLBAKA OCH VISA SIFFRAN
 export default OptionList;

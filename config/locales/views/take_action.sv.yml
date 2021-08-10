@@ -5,7 +5,7 @@ sv:
       text: Det finns olika sätt du kan vidta åtgärder för positiv klimatpåverkan, vi har listat några av dem nedan.
       categories:
         subscription:
-          heading: Prenumerera 
+          heading: Prenumerera
           text: Starta din månatliga prenumeration baserad på ditt specifika klimatavtryck genom att göra vårt enkla test. Tillsammans finansierar vi projekt som minskar mängden koldioxid i atmosfären!
         gift_cards:
           heading: Gåvokort
@@ -33,4 +33,3 @@ sv:
           heading: Skriv under namninsamlingar
           text: Att stötta olika initiativ genom att underteckna namninsamlingar kan vara ett mycket effektivt och enkelt sätt att skapa förändring. Vi har samlat aktuella namninsamlingar inom olika klimatfrågor, ta gärna en titt för att avgöra vad som är relevant för dig och sätt igång att göra skillnad!
           cta: Aktuella namninsamlingar
- 
