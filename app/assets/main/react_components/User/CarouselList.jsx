@@ -8,10 +8,8 @@ import CarouselActionItem from "./CarouselActionItem.jsx";
 // http://react-responsive-carousel.js.org/storybook/index.html?path=/story/01-basic--with-custom-status-arrows-and-indicators
 // http://react-responsive-carousel.js.org/storybook/?path=/story/02-advanced--with-external-controls 
 
-const CarouselList= ({ climateActions, user, userActions, actionsWithoutUserActions }) => {
-
+const CarouselList= ({ climateActions, user, userActions, actionsWithoutUserActions, render }) => {
     const allActions = [...userActions, ...actionsWithoutUserActions];
-    console.log(allActions);
 
     const [climateActionsUser, setClimateActionsUser] = useState([...climateActions]);
 
@@ -38,7 +36,7 @@ const CarouselList= ({ climateActions, user, userActions, actionsWithoutUserActi
                     renderArrowNext={(onClickHandler, hasNext) =>
                         hasNext && (
                             <button type="button" className="button border-none float-right" onClick={onClickHandler}>
-                             ->
+                             -&gt;
                             </button>
                         )}>
 
@@ -50,6 +48,7 @@ const CarouselList= ({ climateActions, user, userActions, actionsWithoutUserActi
                         userActions={userActions}
                         setClimateActionsUser={setClimateActionsUser}
                         updateLocalAccepted={updateLocalAccepted}
+                        render = {render}
                         ></CarouselActionItem>
                 )}  
 
