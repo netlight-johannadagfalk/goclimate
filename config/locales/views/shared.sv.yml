@@ -49,3 +49,6 @@ sv:
         link_text: vår användning av kakor
         cta: Jag godkänner
       read_more: Läs mer
+      update_success: Uppdateringen lyckades!
+      update_error: Hoppsan, något blev fel!
+      year: år

@@ -10,6 +10,28 @@ module ClimateReports
 
     validates_presence_of :title
 
+    def answers
+      all_answers = []
+      calculator&.categories&.each do |category|
+        category.fields&.each do |field|
+          all_answers += field.answers(self).to_a
+        end
+      end
+
+      all_answers
+    end
+
+    def fields
+      all_fields = []
+      calculator&.categories&.each do |category|
+        category.fields&.each do |field|
+          all_fields.push(field)
+        end
+      end
+
+      all_fields
+    end
+
     def number_of_questions
       total = 0
       calculator&.categories&.each do |category|
@@ -20,7 +42,14 @@ module ClimateReports
     end
 
     def number_of_answered_questions(data_reporter = nil)
-      ReportedData.all_latest_from_report_area(self, data_reporter).length
+      total = 0
+      calculator&.categories&.each do |category|
+        category.fields&.each do |field|
+          total += 1 if field.answers?(self, data_reporter)
+        end
+      end
+
+      total
     end
   end
 end

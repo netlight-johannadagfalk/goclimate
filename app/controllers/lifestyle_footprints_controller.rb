@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class LifestyleFootprintsController < ApplicationController
-  before_action :set_footprint, only: [:show, :destroy]
+  before_action :set_footprint, only: [:show, :destroy, :update_name]
   before_action :authenticate_user!, only: [:index]
 
   def index
-    @footprints = LifestyleFootprint.where(user_id: current_user.id).order(created_at: :desc)
+    @footprints = LifestyleFootprint.where(user_id: current_user.id).order(created_at: :asc)
   end
 
   def new
@@ -38,8 +38,18 @@ class LifestyleFootprintsController < ApplicationController
 
   def destroy
     @footprint.destroy
-    flash[:notice] = 'Your carbon footprint calculation was deleted sucessfully.'
+    flash[:notice] = I18n.t('views.lifestyle_footprints.show.delete_confirmation.success')
     redirect_to dashboard_path
+  end
+
+  def update_name
+    notice = if @footprint.update(footprint_name_params)
+               I18n.t('views.shared.update_success')
+             else
+               I18n.t('views.shared.update_error')
+             end
+    flash[:notice] = notice
+    redirect_to lifestyle_footprint_path(id: @footprint)
   end
 
   private
@@ -57,5 +67,9 @@ class LifestyleFootprintsController < ApplicationController
       p[:car_distance_answer] = (params[:car_distance_week_answer].presence&.to_i || 0) * 52
       p[:flight_hours_answer] = 0 unless p[:flight_hours_answer].present?
     end
+  end
+
+  def footprint_name_params
+    params.permit(:name)
   end
 end

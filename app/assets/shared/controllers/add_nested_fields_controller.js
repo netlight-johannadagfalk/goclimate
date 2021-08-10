@@ -1,5 +1,7 @@
 import { Controller } from 'stimulus';
 
+const numberPattern = /\d+/g;
+
 export default class AddNestedFieldsController extends Controller {
   cloneToDestination() {
     const clone = this.templateTarget.cloneNode(true);
@@ -19,7 +21,7 @@ export default class AddNestedFieldsController extends Controller {
 
     this.templateTarget.querySelectorAll('.add-nested-fields-label-field').forEach((labelElement) => {
       const newForValue = AddNestedFieldsController
-        .incrementFirstIntegerOfArray(labelElement.htmlFor.split('_')).join('_');
+        .incrementNumberOfString(labelElement.htmlFor, 0);
       labelElement.htmlFor = newForValue;
     });
   }
@@ -34,42 +36,63 @@ export default class AddNestedFieldsController extends Controller {
 
     this.templateTarget.querySelectorAll('.add-nested-fields-label-field').forEach((labelElement) => {
       const newForValue = AddNestedFieldsController
-        .incrementLastIntegerOfArray(labelElement.htmlFor.split('_')).join('_');
+        .incrementNumberOfString(labelElement.htmlFor);
       labelElement.htmlFor = newForValue;
     });
   }
 
   static incrementFirstNumberOnInputElement(element) {
     const newId = AddNestedFieldsController
-      .incrementFirstIntegerOfArray(element.id.split('_')).join('_');
+      .incrementNumberOfString(element.id, 0);
     element.id = newId;
 
     const newName = AddNestedFieldsController
-      .incrementFirstIntegerOfArray(element.name.split('][')).join('][');
+      .incrementNumberOfString(element.name, 0);
     element.name = newName;
   }
 
   static incrementLastNumberOnInputElement(element) {
     const newId = AddNestedFieldsController
-      .incrementLastIntegerOfArray(element.id.split('_')).join('_');
+      .incrementNumberOfString(element.id);
     element.id = newId;
 
     const newName = AddNestedFieldsController
-      .incrementLastIntegerOfArray(element.name.split('][')).join('][');
+      .incrementNumberOfString(element.name);
     element.name = newName;
   }
 
-  static incrementFirstIntegerOfArray(array) {
-    const indexToIncrement = array.findIndex((a) => Number.isInteger(Number(a)));
-    array[indexToIncrement] = String(Number(array[indexToIncrement]) + 1);
-    return array;
+  static incrementNumberOfString(string, indexOfNumber = undefined) {
+    const arrayOfNumbers = string.match(numberPattern);
+    if (!arrayOfNumbers) return string;
+
+    const index = indexOfNumber === undefined ? arrayOfNumbers.length - 1 : indexOfNumber;
+    const originalNumber = arrayOfNumbers[index];
+    const newNumber = Number(originalNumber) + 1;
+    const newArrayOfNumbers = arrayOfNumbers.slice();
+    newArrayOfNumbers[index] = newNumber;
+
+    const splittedString = string.split(originalNumber);
+    if (splittedString.length === 2) {
+      return string.replace(originalNumber, Number(newNumber));
+    }
+    if (splittedString.length > 2) {
+      let joinedString = splittedString.join();
+      newArrayOfNumbers.forEach((num) => {
+        joinedString = joinedString.replace(',', num);
+      });
+      return joinedString;
+    }
+    return string;
   }
 
-  static incrementLastIntegerOfArray(array) {
-    const newArray = AddNestedFieldsController
-      .incrementFirstIntegerOfArray(array.reverse()).reverse();
-    return newArray;
+  /* eslint-disable class-methods-use-this */
+  removeParentElement(e) {
+    const parent = e.target.parentElement.parentElement;
+    if (parent.classList.contains('field-container')) {
+      parent.remove();
+    }
   }
+  /* eslint-enable class-methods-use-this */
 }
 
 AddNestedFieldsController.targets = ['template', 'destination'];
