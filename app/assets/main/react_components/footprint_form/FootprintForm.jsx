@@ -82,8 +82,6 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
 
   const submit = () => {
     var cleanFootprint = cleanUpObjectWhereNull(footprint)
-    console.log(cleanFootprint);
-
     cleanFootprint.country = cleanFootprint.country.country_data_or_code;
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const URL = "/calculator";
@@ -97,7 +95,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
         body: JSON.stringify(cleanFootprint)
       };
       fetch(URL, requestOptions)
-      .then(res => console.log(res)/*window.location.href = res.url*/)
+      .then(res => window.location.href = res.url)
   }
   
   const saveAnswer = (givenAnswer) => {
