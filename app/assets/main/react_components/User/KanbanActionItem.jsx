@@ -1,33 +1,30 @@
-import React from 'react'
-import { Draggable } from 'react-beautiful-dnd';
+import React from "react";
+import { Draggable } from "react-beautiful-dnd";
 
-function KanbanActionItem({ item, index }) {
-    return (
-        <Draggable
-            key={item.id}
-            draggableId={item.id}
-            index={index}
-        >
-            {(provided) => {
-                return (
-                    <div className="callout space-x-6 text-l font-bold"
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        style={{
-                            userSelect: "none",
-                            padding: 16,
-                            margin: "0 0 8px 0",
-                            minHeight: "50px",
-                            ...provided.draggableProps.style
-                        }}
-                    >
-                        {item.name}
-                    </div>
-                );
+const KanbanActionItem = (item, index) => {
+  return (
+    <Draggable key={item.id} draggableId={item.id} index={index}>
+      {(provided) => {
+        return (
+          <div
+            className="callout space-x-6 text-l font-bold"
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            style={{
+              userSelect: "none",
+              padding: 16,
+              margin: "0 0 8px 0",
+              minHeight: "50px",
+              ...provided.draggableProps.style,
             }}
-        </Draggable>
-    )
-}
+          >
+            {item.name}
+          </div>
+        );
+      }}
+    </Draggable>
+  );
+};
 
-export default KanbanActionItem
+export default KanbanActionItem;

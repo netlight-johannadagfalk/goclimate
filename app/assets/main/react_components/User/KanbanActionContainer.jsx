@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanColumn from "./KanbanColumn.jsx";
 
-function KanbanActionContainer({ userClimateAction }) {
+const KanbanActionContainer = (userClimateAction) => {
   useEffect(() => {
     setColumns(columnsFromBackend);
   }, [userClimateAction]);
@@ -150,6 +150,6 @@ function KanbanActionContainer({ userClimateAction }) {
       </DragDropContext>
     </div>
   );
-}
+};
 
 export default KanbanActionContainer;
