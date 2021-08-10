@@ -116,6 +116,24 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   }
 
   /**
+  * Cleans upp an object and remocves all entities where value is "null" or "undefined".
+   * Used for cleaning up the footprint object.
+   */
+  function removeNullAttributes(obj){
+    for (var propName in obj) {
+      if (obj[propName] === null || obj[propName] === undefined) {
+        delete obj[propName];
+      }
+    }
+    return obj
+  }
+
+  function submit() {
+    const answers = removeNullAttributes(footprint)
+    console.log(answers)
+  }
+
+  /**
    * Called when the answer to a question is given, saves the result and loads the next question
    */
   function onAnswerGiven(givenAnswer){
@@ -136,19 +154,6 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   function onGoBack(){
     decreaseIndex()
     setQuestion()
-  }
-
- /**
-   * Cleans upp an object and remocves all entities where value is "null" or "undefined".
-   * Used for cleaning up the footprint object.
-   */
-  function removeNullAttributes(obj){
-    for (var propName in obj) {
-      if (obj[propName] === null || obj[propName] === undefined) {
-        delete obj[propName];
-      }
-    }
-    return obj
   }
 
   return (
