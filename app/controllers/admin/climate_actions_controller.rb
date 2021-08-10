@@ -2,9 +2,24 @@ module Admin
   class ClimateActionsController < AdminController
     before_action :set_climate_action, only: %i[ show edit update destroy delete]
 
+    # POST /climate_actions/filter
+    # These functions handles the filtering of actions depending on category
+    def filter
+      show_actions_filtered_on_categories(params[:category])
+    end
+
+    def show_actions_filtered_on_categories(input_category)
+      if input_category.nil? || input_category.eql?('')
+        @climate_actions = ClimateAction.all
+      else
+        @climate_actions = ClimateAction.where(climate_action_category_id: input_category).select("*")
+      end
+    end
+    
     # GET /climate_actions or /climate_actions.json
     def index
-      @climate_actions = ClimateAction.all
+    #@climate_actions = ClimateAction.all
+      show_actions_filtered_on_categories(params[:category])
     end
 
     # GET /climate_actions/1 or /climate_actions/1.json
@@ -67,4 +82,5 @@ module Admin
         params.require(:climate_action).permit(:id, :name, :description, :points, :repeatable, :action_of_the_month, :climate_action_category_id)
       end
   end
+
 end

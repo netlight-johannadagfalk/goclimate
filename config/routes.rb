@@ -207,6 +207,7 @@ Rails.application.routes.draw do
   # Admin
   namespace :admin do
     root to: 'dashboard#index'
+    post 'climate_actions/filter'
     resources :climate_actions
     resources :climate_action_categories
     resources :api_keys
