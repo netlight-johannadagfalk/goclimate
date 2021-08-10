@@ -8,19 +8,36 @@
   <h3>For report area: <%= link_to @report_area.title, [:admin, @report_area.report] %></h3>
 <% end %>
 <% if @report || @report_area %>
-  <p>Showing the latest answer for each question.</p>
+  <p>Unanswered questions</p>
+  <ul>
+    <% @report_area&.fields&.each do |field| %>
+      <% unless field.answers?(@report_area) %>
+        <li><%= field.label %></li>
+      <% end %>
+    <% end %>
+    <% @report&.areas&.each do |area| %>
+      <% area&.fields&.each do |field| %>
+        <% unless field.answers?(area) %>
+          <li><%= field.label %></li>
+        <% end %>
+      <% end %>
+    <% end %>
+  </ul>
 <% end %>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Report area</th>
-      <th>Question</th>
-      <th>Answer</th>
-      <th>Unit</th>
+      <% unless @report_area %>
+        <th>Report area</th>
+      <% end %>
       <% unless @report %>
         <th>Report</th>
       <% end %>
+      <th>Question</th>
+      <th>Answer</th>
+      <th>Unit</th>
+      <th>Multiple answers allowed</th>
       <th>Created at</th>
       <th></th>
     </tr>
@@ -29,13 +46,16 @@
   <tbody>
     <% @reported_datas&.each do |data| %>
       <tr>
-        <td><%= data[:report_area].title %></td>
-        <td><%= data[:reported_data].calculator_field.label %></td>
-        <td><%= data[:reported_data].value %></td>
-        <td><%= data[:reported_data].unit %></td>
+        <% unless @report_area %>
+          <td><%= data[:report_area].title %></td>
+        <% end %>
         <% unless @report %>
           <td><%= link_to data[:report].title, admin_reported_datas_path(report_id: data[:report].id) %></td>
         <% end %>
+        <td><%= data[:reported_data].calculator_field.label %></td>
+        <td><%= data[:reported_data].value %></td>
+        <td><%= data[:reported_data].unit %></td>
+        <td><%= BusinessCalculators::CalculatorField.find(data[:reported_data].calculator_field_id).multiple_answers %></td>
         <td><%= time_tag(data[:reported_data].created_at, format: '%F %R') %></td>
         <td class="admin-actions">
           <%= link_to 'Show', admin_reported_data_path(data[:reported_data]) %> &nbsp;

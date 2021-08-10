@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User < ApplicationRecord
+class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
@@ -17,6 +17,10 @@ class User < ApplicationRecord
   # accessor and validator of :privacy_policy are only here for client side validation via the ClientSideValidations gem
   validates :privacy_policy, acceptance: true
   attr_accessor :privacy_policy
+
+  def self.search_email(query, limit = 30)
+    where('email LIKE ?', "%#{sanitize_sql_like(query.downcase)}%").limit(limit)
+  end
 
   def stripe_customer
     @stripe_customer ||=
