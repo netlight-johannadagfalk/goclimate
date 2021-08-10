@@ -2,15 +2,13 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanColumn from "./KanbanColumn.jsx";
 
-const KanbanActionContainer = (userClimateAction) => {
+const KanbanActionContainer = ({userClimateAction}) => {
   useEffect(() => {
     setColumns(columnsFromBackend);
   }, [userClimateAction]);
 
   const formatedUserActions = userClimateAction.map((itemFromBackend) => ({
-    ...itemFromBackend,
-    id: itemFromBackend.id.toString(),
-  }));
+    ...itemFromBackend, id: itemFromBackend.id.toString() }));
 
   const columnsFromBackend = {
     [1]: {

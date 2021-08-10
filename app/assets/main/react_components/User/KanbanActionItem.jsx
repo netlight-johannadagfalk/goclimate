@@ -1,7 +1,7 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
-const KanbanActionItem = (item, index) => {
+const KanbanActionItem = ({item, index}) => {
   return (
     <Draggable key={item.id} draggableId={item.id} index={index}>
       {(provided) => {
