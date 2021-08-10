@@ -2,28 +2,31 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanColumn from "./KanbanColumn.jsx";
 
-const KanbanActionContainer = ({userClimateAction}) => {
+const KanbanActionContainer = ({userActions}) => {
   useEffect(() => {
-    setColumns(columnsFromBackend);
-  }, [userClimateAction]);
+    setColumns(columnUserActions);
+  }, [userActions]);
 
-  const formatedUserActions = userClimateAction.map((itemFromBackend) => ({
-    ...itemFromBackend, id: itemFromBackend.id.toString() }));
+  const formatedUserActions = userActions.map((userActions) => ({
+    ...userActions, id: userActions.id.toString() }));
 
-  const columnsFromBackend = {
+  const acceptedUserActions = formatedUserActions.filter(action => action.status !== true).map((action => ({...action})))
+  const doneUserActions = formatedUserActions.filter(action => action.status !== false).map((action => ({...action})))
+
+  const columnUserActions = {
     [1]: {
       id: "Accepted",
       name: "Your accepted actions:",
-      items: formatedUserActions,
+      items: acceptedUserActions,
     },
     [2]: {
       id: "Performed",
       name: "Your performed actions:",
-      items: [],
+      items: doneUserActions,
     },
   };
 
-  const [columns, setColumns] = useState(columnsFromBackend);
+  const [columns, setColumns] = useState(columnUserActions);
 
   //FUNCTION TO CHANGE STATUS FRO ACCEPTED TO COMPLETED IN DB
   const updateStatus = (id, status) => {

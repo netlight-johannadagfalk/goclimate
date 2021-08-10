@@ -29,9 +29,7 @@ const ClimateActionsContainer = ({climateActionsProps, user, userActions, allAct
             render = {handleRender}/> 
 
             <KanbanActionContainer 
-            climateActionsProps= {climateActionsProps}
-            user={user}
-            userClimateAction = {totUserActions} 
+            userActions = {totUserActions} 
            
             />
         </>
