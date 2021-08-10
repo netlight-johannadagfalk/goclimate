@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import OptionList from './OptionList.jsx';
 import Title from './Title.jsx';
-import CarOption from './CarOption.jsx';
-import FlightOption from './FlightOption.jsx';
+import OptionNumerical from './OptionNumerical.jsx';
 
 /**
  * FootprintForm has the responsibility to handle the logic for showing the the questions and answers 
@@ -27,20 +26,12 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
       if(questionKey === "car_distance"){
         return {
           "isNumerical": true,
-          "isCarOption": true,
-          "options": {
-            "key": "car_distance_answer",
-            "value": "car_distance"
-          }
+          "isCarOption": true
         };
       }
       return {
         "isNumerical": true,
-        "isCarOption": false,
-          "options": {
-            "key": "flight_hours_answer",
-            "value": "flight_hours"
-          }
+        "isCarOption": false
       }
     }
     else {
@@ -71,7 +62,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     if(indexOfCurrent == -1){
       submit();
     } else {
-      if (currentQuestion === "What type of car do you use to get around?" && givenAnswer === "no_car" ){
+      if (order[indexOfCurrent-1] === "car_type" && givenAnswer === "no_car" ){
         saveAnswer("");
         indexOfCurrent++;
       }
@@ -155,10 +146,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
             !currentOptions.isNumerical ? 
               <OptionList onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} options={currentOptions.options}/>
             :
-              currentOptions.isCarOption ?
-                <CarOption option={{"key": "car_distance_answer", "value": "Next"}} onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} />
-              :
-                <FlightOption option={{"key": "car_distance_answer", "value": "Next"}} onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} />
+              <OptionNumerical onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} isCarOption={currentOptions.isCarOption}/>
           }
         </div>
       </form>

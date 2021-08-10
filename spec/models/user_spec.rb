@@ -9,6 +9,25 @@ RSpec.describe User do
     Stripe::Customer.construct_from(stripe_json_fixture('customer.json'))
   end
 
+  describe '#search_email' do
+    before do
+      create(:user, email: 'test@email.com')
+      create(:user, email: 'test2@email.com')
+    end
+
+    it 'returns no relations if none are found' do
+      expect(described_class.search_email('notexistingemail').count).to eq(0)
+    end
+
+    it 'returns one relations with perfect match' do
+      expect(described_class.search_email('test@email.com').first.email).to eq('test@email.com')
+    end
+
+    it 'returns multiple relations with part match' do
+      expect(described_class.search_email('email.com').count).to be > 1
+    end
+  end
+
   describe '#stripe_customer' do
     before do
       allow(Stripe::Customer)

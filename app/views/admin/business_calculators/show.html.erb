@@ -20,6 +20,7 @@
             <%= field.label %>
             <ul>
               <li>Field type: <%= field.field_type %></li>
+              <li>Multiple answers allowed: <%= field.multiple_answers %></li>
               <% if field.field_type == "open_ended" %>
                 <% formatted_unit_names = field.units&.map { |(key, _value)| BusinessCalculators::Unit.where(key: key).first.name }&.join(", ") %>
                 <li>Units: <%= "#{formatted_unit_names}#{formatted_unit_names.present? ? ', free form' : 'Free form'}" %></li>

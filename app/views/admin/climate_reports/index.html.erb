@@ -23,7 +23,7 @@
         <td class="admin-actions">
           <%= link_to 'Show', [:admin, report] %> &nbsp;
           <%= link_to(
-            "Show reported data (#{ReportedData.all_latest_from_report(report).length}/#{report.number_of_questions})",
+            "Show reported data (#{report.number_of_answered_questions}/#{report.number_of_questions})",
             admin_reported_datas_path(report_id: report.id)
           )%> &nbsp;
           <%= link_to 'Edit', edit_admin_climate_report_path(report) %> &nbsp;

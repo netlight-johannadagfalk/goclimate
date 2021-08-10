@@ -1,68 +1,56 @@
-<%= form_with url: reported_datas_path, class: 'space-y-6' do |form| %>
+<%= form_with url: reported_datas_path, class: 'space-y-12' do |form| %>
   <% field_index = 0 %>
-  <% @reported_datas.each_with_index do |(category, reported_datas), category_index| %>
+  <% @category_fields_reported_datas.each_with_index do |(category, field, reported_datas), category_index| %>
     <div class="space-y-4">
       <div class="space-y-1">
         <h4 class="heading"><%= category_index + 1 %>. <%= category.name %></h4>
         <p><%= category.description %></p>
       </div>
-      <% reported_datas.each_with_index do |reported_data, reported_data_index| %>
-        <%= fields_for 'reported_datas[]', reported_data do |reported_data_fields| %>
-          <input type="hidden" name="<%= "reported_datas[#{field_index}][calculator_field_id]" %>" value="<%= reported_data.calculator_field_id %>">
-          <input type="hidden" name="<%= "reported_datas[#{field_index}][data_request_id]" %>" value="<%= reported_data.data_request_id %>">
-          <input type="hidden" name="<%= "reported_datas[#{field_index}][id]" %>" value="<%= reported_data.id %>">
-          <div class="space-y-1">
-            <div class="flex flex-col t:flex-row">
-              <div class="flex flex-row items-end t:w-1/2 t:mr-2">
-                <label class="font-semibold">
-                  <%= category_index + 1 %>.<%= reported_data_index + 1 %>.
-                  <%= reported_data.calculator_field.label %>
-                </label>
-              </div>
-              <div class="hidden t:flex flex-row items-end max-w-md w-1/2 mr-2">
-                <% if reported_data.calculator_field.open_ended_type? %>
-                  <%= label_tag t('reported_datas.units'), nil, class: 'font-semibold' %>
-                <% end %>
-              </div>
+      <% field.each_with_index do |field, field_each_index| %>
+        <div class="space-y-3 callout" data-controller="add-nested-fields">
+          <div class="flex flex-col t:flex-row t:space-x-2">
+            <div class="flex flex-row items-end t:w-2/3">
+              <label class="font-semibold">
+                <%= category_index + 1 %>.<%= field_each_index + 1 %>.
+                <%= field.label %>
+              </label>
             </div>
-            <div class="flex flex-col t:flex-row">
-              <% if reported_data.calculator_field.open_ended_type? %>
-                <div class="flex flex-col t:w-1/2 t:mr-2">
-                  <input type="text" name="<%= "reported_datas[#{field_index}][value]" %>" class="input" value="<%= reported_data.value %>">
-                </div>
-              <% else %>
-                <div class="flex flex-col">
-                  <% reported_data.calculator_field.alternatives&.reject(&:blank?)&.each do |alternative| %>
-                    <label class="radio">
-                      <input type="radio" name="<%= "reported_datas[#{field_index}][value]" %>" value="<%= alternative %>" <%= alternative == reported_data.value ? 'checked' : '' %>>
-                      <span class="radio-input"></span>
-                      <%= alternative %>
-                    </label>
-                  <% end %>
-                </div>
+            <div class="hidden t:flex flex-row items-end w-1/3">
+              <% if field.open_ended_type? %>
+                <%= label_tag t('reported_datas.units'), nil, class: 'font-semibold' %>
               <% end %>
-              <div class="flex flex-col">
-                <% if reported_data.calculator_field.open_ended_type? %>
-                  <div class="t:hidden">
-                    <%= label_tag t('reported_datas.units'), nil, class: 'font-semibold' %>
-                  </div>
-                  <% BusinessCalculators::Unit.where(key: reported_data.calculator_field.units&.keys).order(updated_at: :asc).each_with_index do |unit, index| %>
-                    <label class="radio">
-                      <input type="radio" name="<%= "reported_datas[#{field_index}][unit]" %>" value="<%= unit.key %>" <%= unit.key == reported_data.unit || reported_data.unit.nil? && index == 0 && reported_data.calculator_field.open_ended_type? ? 'checked' : '' %>>
-                      <span class="radio-input"></span>
-                      <%= unit.name %>
-                    </label>
-                  <% end %>
-                  <label class="radio">
-                    <input type="radio" name="<%= "reported_datas[#{field_index}][unit]" %>" value="freeform" <%= reported_data.unit == "freeform" || reported_data.calculator_field.units.blank? && reported_data.calculator_field.open_ended_type? ? 'checked' : '' %>>
-                    <span class="radio-input"></span>
-                    Other
-                  </label>
-                <% end %>
-              </div>
             </div>
           </div>
-        <% end %>
+
+          <% reported_datas[field_each_index].each_with_index do |reported_data, reported_data_index| %>
+            <%= render 'field',
+              field_index: field_index,
+              field: field,
+              reported_data: reported_data,
+              reported_data_index: reported_data_index,
+              data_request_id: @data_request.id
+            %>
+          <% end %>
+
+          <% if field.multiple_answers %>
+            <%= render 'field', 
+              class: 'hidden',
+              data_target: 'add-nested-fields.template',
+              field: field,
+              field_index: field_index,
+              reported_data: ReportedData.new(data_request_id: reported_datas.first.first.data_request_id),
+              reported_data_index: reported_datas[field_each_index].length,
+              data_request_id: @data_request.id,
+              removable: true
+            %>
+            <div class="space-y-2" data-target="add-nested-fields.destination"></div>
+            <button type="button" class="button button-sm" data-action="add-nested-fields#cloneToDestinationWithSecondNumberIncremented">
+              <i class="fas fa-plus"></i> Add answer
+            </button>
+          <% end %>
+        </div>
+
+        
         <% field_index += 1 %>
       <% end %>
     </div>
