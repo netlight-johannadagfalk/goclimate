@@ -80,6 +80,11 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     }
   }
 
+  /**
+   * Submits the compleated form and sends a post request to the server
+   * with the cleanFootprint-object containing the answers.
+   * After completed post request the user gets redirected to the result/sign-up page.
+  */
   const submit = () => {
     var cleanFootprint = cleanUpObjectWhereNull(footprint)
     cleanFootprint.country = cleanFootprint.country.country_data_or_code;
@@ -99,14 +104,11 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   }
   
   const saveAnswer = (givenAnswer) => {
-    console.log("foot 1", footprint)
     if (order[indexOfCurrent] === "car_distance"){
       footprint[order[indexOfCurrent].concat("_week_answer")] = givenAnswer
     } else {
       footprint[order[indexOfCurrent].concat("_answer")] = givenAnswer
     }
-    console.log("foot 2", footprint)
-
   }
 
   /**
