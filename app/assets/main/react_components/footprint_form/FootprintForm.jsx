@@ -19,7 +19,8 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   let questionIndex = order.indexOf(Object.keys(questions).find((key) => questions[key] == currentQuestion));
 
   /** 
-   * Finds if a question option key exists in calculator
+   * Is to find if a question option key exists in calculator. 
+   * If found, it is valid and should be used should be used for the specific question, based on the calculator specifications
    */
   function isOptionUsed(questionKey, optionKey){
     const calculatorKeyForOptions = questionKey.concat("_options")
@@ -58,42 +59,26 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
 
   function setQuestion(){
     setCurrentQuestion(questions[order[questionIndex]]);
-    setCurrentOptions(getOptions(order[questionIndex]))
-  }
-  /** 
-   * Is to find if a question option key exists in calculator. 
-   * If found, it is valid and should be used should be used for the specific question, based on the calculator specifications
-   */
-  function findIfOptionIsUsed(questionKey, optionKey){
-    const calculatorKeyForOptions = questionKey.concat("_options")
-    return Object.values(calculator[calculatorKeyForOptions]).find((calculatorOptionKey) => {
-      return calculatorOptionKey.key === optionKey;
-    });
+    setCurrentOptions(getOptions(order[questionIndex]));
   }
 
-  const onAnswerGiven = (givenAnswer) => {
+  /**
+  * When an answer is given to a question, save result and increase the index
+  */
+  function onAnswerGiven(givenAnswer){
     saveAnswer(givenAnswer);
-    increaseIndex();
+    //if last question
     if(questionIndex == -1){
       submit();
     } else {
       if (order[questionIndex-1] === "car_type" && givenAnswer === "no_car" ){
         saveAnswer("");
-        questionIndex++;
+        increaseIndex();
       }
       setQuestion();
     }
   }
-
-  const submit = () => {
-    var cleanFootprint = cleanUpObjectWhereNull(footprint)
-    console.log(cleanFootprint);
-  }
   
-  const saveAnswer = (givenAnswer) => {
-    footprint[order[questionIndex].concat("_answer")] = givenAnswer
-  }
-
   /**
    * Sets the index for next question
    * Increases with at least 1, but if next question is not to be used, the index increases again
@@ -125,19 +110,25 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     }
   }
 
+  function saveAnswer(givenAnswer) {
+    footprint[order[questionIndex].concat("_answer")] = givenAnswer
+    increaseIndex();
+  }
+
   /**
    * Called when the answer to a question is given, saves the result and loads the next question
    */
-  /*function onAnswerGiven(givenAnswer){
-    //Save the given answer to the footprint object
-    footprint[order[questionIndex].concat("_answer")] = givenAnswer
-    increaseIndex();
+  function onAnswerGiven(givenAnswer){
+    saveAnswer(givenAnswer);
     if(questionIndex == -1){
       submit();
     } else {
+      if (order[questionIndex-1] === "car_type" && givenAnswer === "no_car" ){
+        saveAnswer("");
+      }
       setQuestion();
     }
-  }*/
+  }
 
   /**
    * Called on go back-button, loads the previous question by decreasing index and setting the question and options
@@ -151,7 +142,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
    * Cleans upp an object and remocves all entities where value is "null" or "undefined".
    * Used for cleaning up the footprint object.
    */
-  const cleanUpObjectWhereNull = (obj) => {
+  function removeNullAttributes(obj){
     for (var propName in obj) {
       if (obj[propName] === null || obj[propName] === undefined) {
         delete obj[propName];
@@ -159,13 +150,6 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     }
     return obj
   }
-
-  /**
-   * Called on submission of the form, cleans nulls and submits post TODO explain further
-   
-  function submit(){
-    var cleanFootprint = cleanUpObjectWhereNull(footprint)
-  }*/
 
   return (
       <form action="/calculator" acceptCharset="UTF-8" method="post">
