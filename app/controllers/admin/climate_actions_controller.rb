@@ -37,7 +37,8 @@ module Admin
 
     # GET /climate_actions or /climate_actions.json
     def index
-    #@climate_actions = ClimateAction.all
+      #Fetch the action of the month so it is shown in the index-view
+      @action_of_the_month = ClimateAction.where(action_of_the_month: true).select("*")
       show_actions_filtered_on_categories_and_points(params[:category], params[:points])
     end
 
@@ -72,6 +73,7 @@ module Admin
     def update
       respond_to do |format|
         if @climate_action.update(climate_action_params)
+          checkMonthlyMailUpdate(@climate_action.id)
           format.html { redirect_to [:admin, @climate_action], notice: "Climate action was successfully updated." }
           format.json { render :show, status: :ok, location: @climate_action }
         else
@@ -80,6 +82,13 @@ module Admin
         end
       end
     end
+
+    #Set all other actions to action_of_the_month false so no duplicates
+    def checkMonthlyMailUpdate(id)
+      if ClimateAction.where(action_of_the_month: true).count > 1
+        ClimateAction.where.not(id: id).update_all(action_of_the_month: false)
+      end
+    end 
 
     # DELETE /climate_actions/1 or /climate_actions/1.json
     def destroy
