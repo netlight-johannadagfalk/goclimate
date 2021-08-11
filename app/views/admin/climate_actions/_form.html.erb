@@ -11,46 +11,34 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :id %>
-    <%= form.text_field :id %>
-  </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: 'form-control'  %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_field :description, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :points %>
-    <%= form.number_field :points %>
+    <%= form.number_field :points, class: 'form-control'  %>
   </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :repeatable %>
     <%= form.check_box :repeatable %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :action_of_the_month %>
-    <%= form.check_box :action_of_the_month %>
+    <%= form.check_box :action_of_the_month%>
   </div>
 
-<div class="field">
+<div class="form-group">
     <%= form.label :climate_action_category_id %>
-    <%= form.text_field :climate_action_category_id %>
+    <%= form.collection_select :climate_action_category_id, ClimateActionCategory.all , :id, :name, class: 'form-control'%>
   </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+
+  <%= form.submit class: 'btn btn-primary' %>
 <% end %>
