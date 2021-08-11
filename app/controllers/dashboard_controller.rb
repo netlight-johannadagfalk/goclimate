@@ -33,8 +33,9 @@ class DashboardController < ApplicationController
     .where(["user_climate_actions.user_id = ? and climate_actions.id = user_climate_actions.climate_action_id", current_user.id])
     .select("user_climate_actions.id", :climate_action_id, :name, :description, :status, :user_id)
 
-    @get_all_climate_actions_without_user_actions = ClimateAction.where.not(id: UserClimateAction.where(user_id: current_user.id))
-
+    @get_all_climate_actions_without_user_actions = ClimateAction.where.not(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
+    @get_all_climate_actions_with_user_actions = ClimateAction.where(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
+    
     #@all_actions_with_accepted_user_actions = ClimateAction.right_outer_joins(:user_climate_actions)
     #.where(["user_climate_actions.user_id = ?", current_user.id])
     #.select("user_climate_actions.id", :climate_action_id, :name, :description, :status, :user_id)
@@ -45,10 +46,10 @@ class DashboardController < ApplicationController
     
     #Done = True
     #Status = True
-    @getAllDoneActions = UserClimateAction.where(["user_climate_actions.user_id = ? and user_climate_actions.status = ?", current_user.id, true]).select("*")
+    #@getAllDoneActions = UserClimateAction.where(["user_climate_actions.user_id = ? and user_climate_actions.status = ?", current_user.id, true]).select("*")
     #Accepted = True
     #Status = False
-    @getAllAcceptedActions = UserClimateAction.where(["user_climate_actions.user_id = ? and user_climate_actions.status = ?", current_user.id, false]).select("*")
+    #@getAllAcceptedActions = UserClimateAction.where(["user_climate_actions.user_id = ? and user_climate_actions.status = ?", current_user.id, false]).select("*")
   end
 
   private

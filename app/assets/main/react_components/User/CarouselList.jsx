@@ -8,10 +8,14 @@ import CarouselActionItem from "./CarouselActionItem.jsx";
 // http://react-responsive-carousel.js.org/storybook/index.html?path=/story/01-basic--with-custom-status-arrows-and-indicators
 // http://react-responsive-carousel.js.org/storybook/?path=/story/02-advanced--with-external-controls 
 
-const CarouselList= ({ climateActions, user, userActions, actionsWithoutUserActions, render }) => {
-    const allActions = [...userActions, ...actionsWithoutUserActions];
+const CarouselList= ({ user, actionsWithUserActions, actionsWithoutUserActions, render }) => {
 
-    const [climateActionsUser, setClimateActionsUser] = useState([...climateActions]);
+    const localActionsWithUserActions = actionsWithUserActions.map((action) => ({
+        ...action, accepted: true }));
+    const localActionsWithoutUserActions = actionsWithoutUserActions.map((action) => ({
+        ...action, accepted: false }));
+    const totClimateActions = [ ...localActionsWithoutUserActions, ...localActionsWithUserActions ];
+    const [climateActionsUser, setClimateActionsUser] = useState([...totClimateActions]);
 
     const updateLocalAccepted = (action_name) => {
         setClimateActionsUser(climateActionsUser.map((action => action.name === action_name ? { ...action, accepted: !action.accepted} : action)));
@@ -23,36 +27,37 @@ const CarouselList= ({ climateActions, user, userActions, actionsWithoutUserActi
                     centerSlidePercentage={25}
                     showThumbs={false}
                     showStatus={false}
-                    infiniteLoop={true}
+                    infiniteLoop={false}
                     showIndicators={false}
                     autoPlay={false}
+                    showArrows={false}
+                    selectedItem={1}
                     renderArrowPrev={(onClickHandler, hasPrev) =>
-                        hasPrev && (
-                            <button type="button" className="button border-none float-left" onClick={onClickHandler} style={{position: 'absolute', top:'91%'}}>
+                        //hasPrev && (
+                            <button type="button" className="button absolute border-none shadow-none bottom-0 focus:outline-none" onClick={onClickHandler}>
                              &lt;- 
                             </button>
-                        )
+                        //)
                     }
                     renderArrowNext={(onClickHandler, hasNext) =>
-                        hasNext && (
-                            <button type="button" className="button border-none float-right" onClick={onClickHandler}>
+                        //hasNext && (
+                            <button type="button" className="button border-none shadow-none float-right focus:outline-none" onClick={onClickHandler}>
                              -&gt;
                             </button>
-                        )}>
-
+                        //)
+                        }>
                 {climateActionsUser.map((action) =>
                     <CarouselActionItem 
                         action={action} 
                         key={action.id}
                         user={user}
-                        userActions={userActions}
                         setClimateActionsUser={setClimateActionsUser}
                         updateLocalAccepted={updateLocalAccepted}
                         render = {render}
                         ></CarouselActionItem>
                 )}  
 
-            </Carousel>     
+            </Carousel>
                 );
 }
 

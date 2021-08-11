@@ -2,8 +2,7 @@ import React, {useState} from 'react'
 import CarouselContainer from './CarouselContainer.jsx'
 import KanbanActionContainer from './KanbanActionContainer.jsx'
 
-const ClimateActionsContainer = ({climateActionsProps, user, userActions, allActionsAndUserActions, actionsWithoutUserActions}) => {
-
+const ClimateActionsContainer = ({climateActionsProps, user, userActions, actionsWithUserActions, actionsWithoutUserActions}) => {
     const [totUserActions, setTotUserActions] = useState(JSON.parse(userActions))
     
     const handleRender = async (action, res) => {
@@ -24,8 +23,8 @@ const ClimateActionsContainer = ({climateActionsProps, user, userActions, allAct
             <CarouselContainer climateActionsProps={climateActionsProps}  
             user = {user}
             userActions= {totUserActions}
-            allActionsAndUserActions = {allActionsAndUserActions}
-            actionsWithoutUserActions= {actionsWithoutUserActions}
+            actionsWithUserActions = {JSON.parse(actionsWithUserActions)}
+            actionsWithoutUserActions= {JSON.parse(actionsWithoutUserActions)}
             render = {handleRender}/> 
 
             <KanbanActionContainer 
