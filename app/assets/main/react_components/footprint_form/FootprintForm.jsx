@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import OptionList from './OptionList.jsx';
 import Title from './Title.jsx';
 import OptionNumerical from './OptionNumerical.jsx';
+import ProgressBar from './ProgressBar.jsx';
 
 /**
  * FootprintForm has the responsibility to handle the logic for showing the the questions and answers 
@@ -11,13 +12,14 @@ import OptionNumerical from './OptionNumerical.jsx';
 const FootprintForm = ({ calculator, questions, options, footprint }) => {
 
   const order = ["region", "home", "home_area", "heating", "green_electricity", "food", "shopping", "car_type", "car_distance", "flight_hours"]
+  const categories = ["fa-home", "fa-home", "fa-home", "fa-home", "fa-utensils", "fa-shopping-bag", "fa-car", "fa-plane"]
   const numericalKeys = ["car_distance", "flight_hours"]
   const firstQuestionKey = order.find((category) => calculator[category.concat("_options")]);
   const firstQuestionIndex = order.indexOf((firstQuestionKey));
   const [currentQuestion, setCurrentQuestion] = useState(questions[firstQuestionKey]);
   const [currentOptions, setCurrentOptions] = useState(getOptions(firstQuestionKey));
   let questionIndex = order.indexOf(Object.keys(questions).find((key) => questions[key] == currentQuestion));
-
+  const [category, setCategory] = useState("fa-plane")
   /** 
    * Is to find if a question option key exists in calculator. 
    * If found, it is valid and should be used should be used for the specific question, based on the calculator specifications
@@ -153,6 +155,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
 
   return (
       <form action="/calculator" acceptCharset="UTF-8" method="post">
+        <ProgressBar calculator={calculator} active_category={category}/>
         <div className="question py-8" data-target="lifestyle-footprints--calculator.question" data-category="home">
           <Title text={currentQuestion}/>
           {
