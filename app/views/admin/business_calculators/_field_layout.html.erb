@@ -24,13 +24,21 @@
     </div>
   </div>
   <div class="col-sm-2">
-    <%= local_assigns[:fields].label :question_type, class: local_assigns[:label_class] %>
-    <%= local_assigns[:fields].select :field_type, options_for_select([['Open ended', 'open_ended'], ['Choose one alternative', 'radio']], local_assigns[:fields].object&.field_type), {}, class: "form-control #{local_assigns[:input_class]}", 'data-target': 'units-and-question-types.fieldType', 'data-action': 'units-and-question-types#toggle' %>
+    <div>
+      <%= local_assigns[:fields].label :question_type, class: local_assigns[:label_class] %>
+      <%= local_assigns[:fields].select :field_type, options_for_select([['Open ended', 'open_ended'], ['Choose one alternative', 'radio']], local_assigns[:fields].object&.field_type), {}, class: "form-control #{local_assigns[:input_class]}", 'data-target': 'units-and-question-types.fieldType', 'data-action': 'units-and-question-types#toggle' %>
+    </div>
+    <div style="margin-top: 1em;">
+      <label>
+        <%= local_assigns[:fields].check_box :multiple_answers %>
+        Multiple answers allowed
+      </label>
+    </div>
   </div>
   <% unless local_assigns[:hide_delete] %>
     <div class="col-sm-1">
-      <%= local_assigns[:fields].label :delete, class: local_assigns[:label_class] %>
       <%= local_assigns[:fields].check_box :_destroy, class: local_assigns[:input_class] %>
+      <%= local_assigns[:fields].label :delete, class: local_assigns[:label_class] %>
     </div>
   <% end %>
 </div>
