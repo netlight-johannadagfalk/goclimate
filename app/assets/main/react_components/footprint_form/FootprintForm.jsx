@@ -12,14 +12,15 @@ import ProgressBar from './ProgressBar.jsx';
 const FootprintForm = ({ calculator, questions, options, footprint }) => {
 
   const order = ["region", "home", "home_area", "heating", "green_electricity", "food", "shopping", "car_type", "car_distance", "flight_hours"]
-  const categories = ["fa-home", "fa-home", "fa-home", "fa-home", "fa-utensils", "fa-shopping-bag", "fa-car", "fa-plane"]
+  const order_with_category = [["region", "home"], ["home", "home"], ["home-area", "home"], ["heating", "home"], ["green_electricity", "home"],
+                              ["food", "utensils"], ["shopping", "shopping-bag"], ["car_type", "car"], ["car_distance", "car"], ["flight_hours", "plane"]]
   const numericalKeys = ["car_distance", "flight_hours"]
   const firstQuestionKey = order.find((category) => calculator[category.concat("_options")]);
   const firstQuestionIndex = order.indexOf((firstQuestionKey));
   const [currentQuestion, setCurrentQuestion] = useState(questions[firstQuestionKey]);
   const [currentOptions, setCurrentOptions] = useState(getOptions(firstQuestionKey));
   let questionIndex = order.indexOf(Object.keys(questions).find((key) => questions[key] == currentQuestion));
-  const [category, setCategory] = useState("fa-plane")
+  const [category, setCategory] = useState("home")
   /** 
    * Is to find if a question option key exists in calculator. 
    * If found, it is valid and should be used should be used for the specific question, based on the calculator specifications
@@ -62,6 +63,8 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   function setQuestion(){
     setCurrentQuestion(questions[order[questionIndex]]);
     setCurrentOptions(getOptions(order[questionIndex]));
+    console.log(order_with_category[questionIndex][1])
+    setCategory(order_with_category[questionIndex][1])
   }
 
   /**
