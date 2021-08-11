@@ -78,7 +78,56 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
       setQuestion();
     }
   }
-  
+
+  /**
+   * Cleans upp an object and remocves all entities where value is "null" or "undefined".
+   * Used for cleaning up the footprint object.
+   */
+  function removeNullAttributes(obj){
+    for (var propName in obj) {
+      if (obj[propName] === null || obj[propName] === undefined) {
+        delete obj[propName];
+      }
+    }
+    return obj
+  }  
+
+  /**
+   * Submits the completed form and sends a post request to the server
+   * with the cleanFootprint object containing the answers.
+   * After completed post request the user gets redirected to the result/sign-up page.
+   */
+  function submit(){
+    var cleanFootprint = removeNullAttributes(footprint)
+    cleanFootprint.country = cleanFootprint.country.country_data_or_code;
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    const URL = "/calculator";
+    const requestOptions = {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          "X-CSRF-Token": csrfToken,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cleanFootprint)
+      };
+      fetch(URL, requestOptions)
+      .then(res => window.location.href = res.url)
+  }
+
+  /**
+   * Saves the answer given
+   * Does some checks and saves to the footprint object 
+   */
+  function saveAnswer(givenAnswer) {
+    console.log("saveanswer")
+    if (order[questionIndex] === "car_distance"){
+      footprint[order[questionIndex].concat("_week_answer")] = givenAnswer
+    } else {
+      footprint[order[questionIndex].concat("_answer")] = givenAnswer
+    }
+  }
+
   /**
    * Sets the index for next question
    * Increases with at least 1, but if next question is not to be used, the index increases again
@@ -110,34 +159,14 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     }
   }
 
-  function saveAnswer(givenAnswer) {
-    footprint[order[questionIndex].concat("_answer")] = givenAnswer
-    increaseIndex();
-  }
 
-  /**
-   * Cleans upp an object and remocves all entities where value is "null" or "undefined".
-   * Used for cleaning up the footprint object.
-   */
-  function removeNullAttributes(obj){
-    for (var propName in obj) {
-      if (obj[propName] === null || obj[propName] === undefined) {
-        delete obj[propName];
-      }
-    }
-    return obj
-  }
-
-  function submit() {
-    const answers = removeNullAttributes(footprint)
-    console.log(answers)
-  }
 
   /**
    * Called when the answer to a question is given, saves the result and loads the next question
    */
   function onAnswerGiven(givenAnswer){
     saveAnswer(givenAnswer);
+    increaseIndex();
     if(questionIndex == -1){
       submit();
     } else {
