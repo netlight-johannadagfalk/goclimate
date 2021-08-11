@@ -4,17 +4,14 @@ import countryList from 'react-select-country-list'
 /**
  * Form for choosing country of residence prior to filling out footprint calculator
  */
-const CountryForm = () => {
-
-    const defaultDropdownValue = "I live in...";
-    const fallbackTitle = "Select your country";
+const CountryForm = ({ data, shared, lang }) => {
 
     return (
-        <form className="m-lg:flex m-lg:justify-center mt-3" action='/calculator'>
+        <form className="m-lg:flex m-lg:justify-center mt-3" action={lang !== 'en' ? lang === 'sv' ? 'se/calculator' : lang + '/calculator' : '/calculator'}>
             <div className="select-wrapper w-full m-lg:w-auto m-lg:max-w-xs">
-                <label htmlFor="country" className="sr-only">{fallbackTitle}</label>
+                <label htmlFor="country" className="sr-only">{shared.select_country}</label>
                 <select skip_default_ids="false" allow_method_names_outside_object="true" className="select" required="required" name="country" id="country">
-                <option value="">{defaultDropdownValue}</option>
+                <option value="">{data.i_live_in}</option>
                 {
                     useMemo(() => countryList().getData(), []).map((country) => <option value={country.value} key={country.value}>{country.label}</option>)
                 }
