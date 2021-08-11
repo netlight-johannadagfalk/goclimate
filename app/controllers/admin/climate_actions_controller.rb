@@ -3,23 +3,42 @@ module Admin
     before_action :set_climate_action, only: %i[ show edit update destroy delete]
 
     # POST /climate_actions/filter
-    # These functions handles the filtering of actions depending on category
     def filter
-      show_actions_filtered_on_categories(params[:category])
+      show_actions_filtered_on_categories_and_points(params[:category], params[:points])
     end
 
-    def show_actions_filtered_on_categories(input_category)
+    #These functions filters actions based on input category and points
+    def show_actions_filtered_on_categories_and_points(input_category, input_points)
+      if (input_category.nil? || input_category.eql?('')) && (input_points.nil?)
+        @climate_actions = ClimateAction.all
+      else
+        actionsFilteredBasedOnCategory = filter_actions_based_on_category(input_category)
+        @climate_actions = filter_actions_based_on_points(input_points, actionsFilteredBasedOnCategory)
+      end
+    end
+
+    #Filter actions based on categories
+    def filter_actions_based_on_category(input_category)
       if input_category.nil? || input_category.eql?('')
         @climate_actions = ClimateAction.all
       else
         @climate_actions = ClimateAction.where(climate_action_category_id: input_category).select("*")
       end
     end
-    
+
+    #Filter actions based on points
+    def filter_actions_based_on_points(input_points, actionsFilteredBasedOnCategory)
+      if input_points.nil? || input_points.eql?('')
+        @climate_actions = actionsFilteredBasedOnCategory
+      else
+        @climate_actions = actionsFilteredBasedOnCategory.where(points: input_points).select("*")
+      end
+    end
+
     # GET /climate_actions or /climate_actions.json
     def index
     #@climate_actions = ClimateAction.all
-      show_actions_filtered_on_categories(params[:category])
+      show_actions_filtered_on_categories_and_points(params[:category], params[:points])
     end
 
     # GET /climate_actions/1 or /climate_actions/1.json
