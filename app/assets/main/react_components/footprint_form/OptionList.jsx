@@ -5,21 +5,19 @@ import AnswerButton from './AnswerButton.jsx';
  * Receives a list of all options for a specific question, and maps 
  */
 const OptionList = ({ onAnswerGiven, options, selectedKey }) => {
-
+  let myobject = Object.fromEntries(options)
+  //console.log(myobject.keys)
   return (
       <>
-        {options.map((option) => {
-          const optionObject = {
-            "key": option[0],
-            "value": option[1]
-          }
+        {
+        options.map(([key, value]) => {
           return (
-            <div key={optionObject.key} className="my-3 flex-1">
+            <div key={key} className="my-3 flex-1">
               <AnswerButton 
-                onAnswerGiven={() => onAnswerGiven(optionObject.key)} 
-                option={optionObject.value}
-                isSelected = {selectedKey==optionObject.key}
-                labelText={optionObject.value} 
+                onAnswerGiven={() => onAnswerGiven(key)} 
+                option={value}
+                isSelected = {selectedKey==key}
+                labelText={value} 
               />
             </div>
           )

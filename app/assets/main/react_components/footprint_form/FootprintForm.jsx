@@ -20,7 +20,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
 
   /** 
    * Is to find if a question option key exists in calculator. 
-   * If found, it is valid and should be used should be used for the specific question, based on the calculator specifications
+   * If found, it is valid and should be used for the specific question, based on the calculator specifications
    */
   function isOptionUsed(questionKey, optionKey){
     const calculatorKeyForOptions = questionKey.concat("_options")
@@ -63,8 +63,8 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   }
 
   /**
-  * When an answer is given to a question, save result and increase the index
-  */
+   * When an answer is given to a question, save result and increase the index
+   */
   function onAnswerGiven(givenAnswer){
     saveAnswer(givenAnswer);
     //if last question
@@ -96,8 +96,8 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   }
   
   /** 
-  * Called when changing to a previous question, decreases the index, if question is undefined decrease again
-  */
+   * Called when changing to a previous question, decreases the index, if question is undefined decrease again
+   */
   function decreaseIndex(){
     if(questionIndex == 0){
       questionIndex = 0;
@@ -116,7 +116,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   }
 
   /**
-  * Cleans upp an object and remocves all entities where value is "null" or "undefined".
+   * Cleans upp an object and remocves all entities where value is "null" or "undefined".
    * Used for cleaning up the footprint object.
    */
   function removeNullAttributes(obj){
@@ -169,9 +169,9 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
         </div>
         { questionIndex != firstQuestionIndex ? 
           <div className="flex justify-space-between">
-            <div className="block cursor-pointer">
-              <i className="fas fa-chevron-left" aria-hidden="true"></i>     
-              <label className="px-1" onClick={onGoBack}>Go back</label>
+            <div className="block">
+              <i className="fas fa-chevron-left cursor-pointer" aria-hidden="true"></i>     
+              <label className="px-1 cursor-pointer" onClick={onGoBack}>Go back</label>
             </div>
           </div>
           :
