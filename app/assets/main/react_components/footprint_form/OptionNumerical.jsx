@@ -24,8 +24,8 @@ const OptionNumerical = ({ onAnswerGiven, isCarOption }) => {
       <AnswerButton labelText="Next" 
         onAnswerGiven={() => {
           setValue("");
-          /* .replace() makes sure that trailing commas (, or .) are removed */
-          onAnswerGiven(value.replace(/[,.]\s*$/, ""));
+           /* .replace() makes sure that only . and not , is used, and trailing commas are removed */
+           onAnswerGiven(value.replace(/,/g, '.').replace(/[.]\s*$/, ""));
         }}
       />
     </div>
