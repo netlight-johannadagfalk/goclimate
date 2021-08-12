@@ -15,7 +15,7 @@ const OptionNumerical = ({ onAnswerGiven, isCarOption }) => {
           }}/>
         {isCarOption ? <span className="ml-3">km</span> : <></>}
       </label>
-      <AnswerButton option="Next"
+      <AnswerButton label="Next"
         onAnswerGiven={() => {
           setValue("");
           /* .replace() makes sure that trailing commas (, or .) are removed */
