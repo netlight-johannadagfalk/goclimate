@@ -1,8 +1,7 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
-const KanbanActionItem = ({item, index, handleDelete}) => {
-
+const KanbanActionItem = ({ item, index, handleDelete }) => {
   return (
     <Draggable key={item.id} draggableId={item.id} index={index}>
       {(provided) => {
@@ -21,10 +20,12 @@ const KanbanActionItem = ({item, index, handleDelete}) => {
             }}
           >
             {item.name}
-            {item.status === false &&
-            <button className="float-right fas fa-trash" onClick={() => handleDelete(item.id, item.climate_action_id) }> 
-            </button>
-            }
+            {item.status === false && (
+              <button
+                className="float-right fas fa-trash"
+                onClick={() => handleDelete(item.id, item.climate_action_id)}
+              ></button>
+            )}
           </div>
         );
       }}

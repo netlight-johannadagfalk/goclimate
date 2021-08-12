@@ -1,37 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import KanbanColumn from "./KanbanColumn.jsx";
+import KanbanActionColumn from "./KanbanActionColumn.jsx";
 
-const KanbanActionContainer = ({userActions, setLocalAccepted}) => {
+const KanbanActionContainer = ({ userActions, setLocalAccepted }) => {
   useEffect(() => {
     setColumns(columnUserActions(acceptedUserActions));
-
   }, [userActions]);
 
   const formatedUserActions = userActions.map((userActions) => ({
-    ...userActions, id: userActions.id.toString() }));
+    ...userActions,
+    id: userActions.id.toString(),
+  }));
 
-  const acceptedUserActions = formatedUserActions.filter(action => action.status !== true).map((action => ({...action})))
-  const doneUserActions = formatedUserActions.filter(action => action.status !== false).map((action => ({...action})))
+  const acceptedUserActions = formatedUserActions
+    .filter((action) => action.status !== true)
+    .map((action) => ({ ...action }));
+  const doneUserActions = formatedUserActions
+    .filter((action) => action.status !== false)
+    .map((action) => ({ ...action }));
 
-  const columnUserActions = (inVal) => {
+  const columnUserActions = (acceptedList) => {
     return {
-    [1]: {
-      id: "Accepted",
-      name: "Your accepted actions:",
-      items: inVal,
-    },
-    [2]: {
-      id: "Performed",
-      name: "Your performed actions:",
-      items: doneUserActions,
-    },
-  }};
+      [1]: {
+        id: "Accepted",
+        name: "Your accepted actions:",
+        items: acceptedList,
+      },
+      [2]: {
+        id: "Performed",
+        name: "Your performed actions:",
+        items: doneUserActions,
+      },
+    };
+  };
 
   const handleDelete = (id, actionID) => {
-    deleteUserAction(id)
-    setLocalAccepted(userActions.filter(item => item.id.toString() !==id), actionID)
+    deleteUserAction(id);
+    setLocalAccepted(
+      userActions.filter((item) => item.id.toString() !== id),
+      actionID
+    );
   };
+
   const deleteUserAction = (id) => {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const URL = "/user_climate_actions/" + id.toString();
@@ -44,15 +54,14 @@ const KanbanActionContainer = ({userActions, setLocalAccepted}) => {
       },
     };
 
-     fetch(URL, requestOptions)
-     .catch((e) => console.log(e));
-  }
+    fetch(URL, requestOptions).catch((e) => console.log(e));
+  };
 
-  const [columns, setColumns] = useState(columnUserActions(acceptedUserActions));
+  const [columns, setColumns] = useState(
+    columnUserActions(acceptedUserActions)
+  );
 
-  //FUNCTION TO CHANGE STATUS FRO ACCEPTED TO COMPLETED IN DB
   const updateStatus = (id, status) => {
-    //in value id is the action id
     console.log("entered updatestatus" + id);
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const URL = "/user_climate_actions/" + id.toString();
@@ -154,14 +163,13 @@ const KanbanActionContainer = ({userActions, setLocalAccepted}) => {
                 flexDirection: "column",
                 alignItems: "center",
               }}
-              //kanske ta bort key?
               key={columnId}
             >
               <div className="callout" style={{ margin: 8 }}>
                 <p className="font-bold inline-block text-green-accent py-1 px-2 -ml-2 rounded">
                   {column.name}
                 </p>
-                <KanbanColumn
+                <KanbanActionColumn
                   column={column}
                   columnId={columnId}
                   key={columnId}

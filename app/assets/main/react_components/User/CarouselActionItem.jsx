@@ -1,13 +1,12 @@
 import React from "react";
 
-const CarouselActionItem = ({ action, user, updateLocalAccepted, render }) => {
+const CarouselActionItem = ({action, user, updateLocalAccepted, addAcceptedAction,}) => {
   const currUser = JSON.parse(user);
 
   const handleClickAccepted = (action) => {
     updateLocalAccepted(action.id);
     updateAccepted(action);
   };
-
 
   //FUNCTION WHERE USER ACCEPT AN ACTION IN DB -> MOVES TO ACCEPTED
   const updateAccepted = (action) => {
@@ -30,10 +29,9 @@ const CarouselActionItem = ({ action, user, updateLocalAccepted, render }) => {
 
     fetch(URL, requestOptions)
       .then((res) => res.json())
-      .then((json) => render(action, json))
+      .then((json) => addAcceptedAction(action, json))
       .catch((e) => console.log(e));
   };
-
 
   const gridStyle = {
     height: "350px",
@@ -71,9 +69,7 @@ const CarouselActionItem = ({ action, user, updateLocalAccepted, render }) => {
         ) : (
           <button
             className="button button-cta inline-block align-bottom"
-            onClick={() =>
-              handleClickAccepted(action)
-            } /*style={{color: 'rgba(28, 70, 55)'}}*/
+            onClick={() => handleClickAccepted(action)}
           >
             Accept challenge
           </button>
