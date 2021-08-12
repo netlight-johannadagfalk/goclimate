@@ -2,7 +2,7 @@ import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import KanbanActionItem from "./KanbanActionItem.jsx";
 
-const KanbanColumn = ({column, columnId}) => {
+const KanbanColumn = ({column, columnId, handleDelete}) => {
   return (
     <div key={columnId}>
       <Droppable column={column} droppableId={columnId} key={columnId}>
@@ -20,7 +20,7 @@ const KanbanColumn = ({column, columnId}) => {
             >
               {column.items.map((item, index) => {
                 return (
-                  <KanbanActionItem item={item} index={index} key={item.id} />
+                  <KanbanActionItem item={item} index={index} key={item.id} handleDelete={handleDelete}/>
                 );
               })}
               {provided.placeholder}

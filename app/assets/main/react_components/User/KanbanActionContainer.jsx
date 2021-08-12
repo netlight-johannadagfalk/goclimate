@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanColumn from "./KanbanColumn.jsx";
 
-const KanbanActionContainer = ({userActions}) => {
+const KanbanActionContainer = ({userActions, setLocalAccepted}) => {
   useEffect(() => {
-    setColumns(columnUserActions);
+    setColumns(columnUserActions(acceptedUserActions));
+
   }, [userActions]);
 
   const formatedUserActions = userActions.map((userActions) => ({
@@ -13,20 +14,49 @@ const KanbanActionContainer = ({userActions}) => {
   const acceptedUserActions = formatedUserActions.filter(action => action.status !== true).map((action => ({...action})))
   const doneUserActions = formatedUserActions.filter(action => action.status !== false).map((action => ({...action})))
 
-  const columnUserActions = {
+  const columnUserActions = (inVal) => {
+    return {
     [1]: {
       id: "Accepted",
       name: "Your accepted actions:",
-      items: acceptedUserActions,
+      items: inVal,
     },
     [2]: {
       id: "Performed",
       name: "Your performed actions:",
       items: doneUserActions,
     },
+  }};
+
+  const handleDelete = (id, actionID) => {
+    deleteUserAction(id)
+    removeActionFromColumn(id)
+    setLocalAccepted(actionID)
   };
 
-  const [columns, setColumns] = useState(columnUserActions);
+  const removeActionFromColumn = (id) => {
+      const dummy = acceptedUserActions.filter(item => item.id !== id)
+      setColumns(columnUserActions(dummy))
+      
+  }
+
+  const deleteUserAction = (id) => {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    const URL = "/user_climate_actions/" + id.toString();
+    const requestOptions = {
+      method: "DELETE",
+      credentials: "include",
+      headers: {
+        "X-CSRF-Token": csrfToken,
+        "Content-Type": "application/json",
+      },
+    };
+
+     fetch(URL, requestOptions)
+     .catch((e) => console.log(e));
+  }
+
+  const [columns, setColumns] = useState(columnUserActions(acceptedUserActions));
 
   //FUNCTION TO CHANGE STATUS FRO ACCEPTED TO COMPLETED IN DB
   const updateStatus = (id, status) => {
@@ -143,6 +173,7 @@ const KanbanActionContainer = ({userActions}) => {
                   column={column}
                   columnId={columnId}
                   key={columnId}
+                  handleDelete={handleDelete}
                 />
               </div>
             </div>

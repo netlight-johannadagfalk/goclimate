@@ -4,8 +4,8 @@ import KanbanActionContainer from './KanbanActionContainer.jsx'
 
 const ClimateActionsContainer = ({climateActionsProps, user, userActions, actionsWithUserActions, actionsWithoutUserActions}) => {
     const [totUserActions, setTotUserActions] = useState(JSON.parse(userActions))
-    
-    const handleRender = async (action, res) => {
+    const [actionDeleted, setActionDeleted] = useState(null)
+    const handleRender = (action, res) => {
         const a = {
             id: res.id,
             name: action.name,
@@ -17,6 +17,10 @@ const ClimateActionsContainer = ({climateActionsProps, user, userActions, action
             setTotUserActions([...totUserActions, a])
     };
 
+    const setLocalAccepted = (inVal) => {
+        setActionDeleted(inVal)
+    }
+
 
     return(
         <>
@@ -25,11 +29,12 @@ const ClimateActionsContainer = ({climateActionsProps, user, userActions, action
             userActions= {totUserActions}
             actionsWithUserActions = {JSON.parse(actionsWithUserActions)}
             actionsWithoutUserActions= {JSON.parse(actionsWithoutUserActions)}
-            render = {handleRender}/> 
+            render = {handleRender}
+            actionDeleted={actionDeleted}/> 
 
             <KanbanActionContainer 
             userActions = {totUserActions} 
-           
+            setLocalAccepted = {setLocalAccepted}
             />
         </>
     );

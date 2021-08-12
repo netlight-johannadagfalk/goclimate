@@ -4,14 +4,10 @@ const CarouselActionItem = ({ action, user, updateLocalAccepted, render }) => {
   const currUser = JSON.parse(user);
 
   const handleClickAccepted = (action) => {
-    updateLocalAccepted(action.name);
+    updateLocalAccepted(action.id);
     updateAccepted(action);
   };
 
-  const handleClickDelete = (action) => {
-    updateLocalAccepted(action.name);
-    updateDelete(action.id);
-  };
 
   //FUNCTION WHERE USER ACCEPT AN ACTION IN DB -> MOVES TO ACCEPTED
   const updateAccepted = (action) => {
@@ -38,22 +34,6 @@ const CarouselActionItem = ({ action, user, updateLocalAccepted, render }) => {
       .catch((e) => console.log(e));
   };
 
-  const updateDelete = (actionID) => {
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    const URL = "/user_climate_actions/" + actionID.toString();
-    const requestOptions = {
-      method: "DELETE",
-      credentials: "include",
-      headers: {
-        "X-CSRF-Token": csrfToken,
-        "Content-Type": "application/json",
-      },
-    };
-
-    fetch(URL, requestOptions)
-      .then((res) => console.log(res.json()))
-      .catch((e) => console.log(e));
-  };
 
   const gridStyle = {
     height: "350px",
@@ -83,10 +63,10 @@ const CarouselActionItem = ({ action, user, updateLocalAccepted, render }) => {
         {action.accepted ? (
           <button
             className="button inline-block align-bottom"
-            onClick={() => handleClickDelete(action)}
+            disabled={true}
             style={{ color: "rgba(28, 70, 55)" }}
           >
-            Remove
+            Accepted
           </button>
         ) : (
           <button

@@ -3,7 +3,7 @@ import CarouselHeader from "./CarouselHeader.jsx";
 import CarouselList from "./CarouselList.jsx";
 import { useState } from "react";
 
-const CarouselContainer = ({climateActionsProps, user, userActions, actionsWithUserActions, actionsWithoutUserActions, render,}) => {
+const CarouselContainer = ({climateActionsProps, user, userActions, actionsWithUserActions, actionsWithoutUserActions, render, actionDeleted}) => {
   const [climateActions, setClimateActions] = useState(
     JSON.parse(climateActionsProps)
   );
@@ -16,6 +16,7 @@ const CarouselContainer = ({climateActionsProps, user, userActions, actionsWithU
         actionsWithUserActions= {actionsWithUserActions}
         actionsWithoutUserActions={actionsWithoutUserActions}
         render={render}
+        actionDeleted = {actionDeleted}
       ></CarouselList>
     </div>
   );

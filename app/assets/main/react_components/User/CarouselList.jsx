@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import CarouselActionItem from "./CarouselActionItem.jsx";
@@ -8,8 +8,11 @@ import CarouselActionItem from "./CarouselActionItem.jsx";
 // http://react-responsive-carousel.js.org/storybook/index.html?path=/story/01-basic--with-custom-status-arrows-and-indicators
 // http://react-responsive-carousel.js.org/storybook/?path=/story/02-advanced--with-external-controls 
 
-const CarouselList= ({ user, actionsWithUserActions, actionsWithoutUserActions, render }) => {
+const CarouselList= ({ user, actionsWithUserActions, actionsWithoutUserActions, render, actionDeleted }) => {
 
+    useEffect(() => {
+        actionDeleted != null ? updateLocalAccepted(actionDeleted): console.log('hej')
+    }, [actionDeleted])
     const localActionsWithUserActions = actionsWithUserActions.map((action) => ({
         ...action, accepted: true }));
     const localActionsWithoutUserActions = actionsWithoutUserActions.map((action) => ({
@@ -17,8 +20,9 @@ const CarouselList= ({ user, actionsWithUserActions, actionsWithoutUserActions, 
     const totClimateActions = [ ...localActionsWithoutUserActions, ...localActionsWithUserActions ];
     const [climateActionsUser, setClimateActionsUser] = useState([...totClimateActions]);
 
-    const updateLocalAccepted = (action_name) => {
-        setClimateActionsUser(climateActionsUser.map((action => action.name === action_name ? { ...action, accepted: !action.accepted} : action)));
+    const updateLocalAccepted = (actionID) => {
+        console.log(actionID)
+        setClimateActionsUser(climateActionsUser.map((action => action.id === actionID ? { ...action, accepted: !action.accepted} : action)));
     }
 
     return (
