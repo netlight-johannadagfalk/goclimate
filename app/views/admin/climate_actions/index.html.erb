@@ -2,35 +2,38 @@
 <h1>Climate Actions</h1>
 <h3>Action of the month:</h3>
 <div class = "actionofthemonth-container">
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <table class="table"> 
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Points</th>
-          <th>Repeatable</th>
-          <th>Category</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @action_of_the_month.each do |action_of_the_month| %>
-          <tr>
-            <td><%= action_of_the_month.id %></td>
-            <td><%= action_of_the_month.name %></td>
-            <td><%= action_of_the_month.description %></td>
-            <td><%= action_of_the_month.points %></td>
-            <td><%= action_of_the_month.repeatable %></td>
-            <td><%= ClimateActionCategory.find_by(id: action_of_the_month.climate_action_category_id).name %></td>
-          </tr>
-        <% end %>
-      </tbody>
-      </table>
+  <div class = "card" style = "margin-bottom: 10px">
+    <div class="container" style="outline: 2px dashed grey; max-width: 300px;display: inline-block;">
+          <h4 style="text-align:center"><b><%= @action_of_the_month.name %></b></h4> 
+          <table class = "table">
+            <tr>
+              <th>Description:</th>
+              <td><%= @action_of_the_month.description%></td>
+            </tr>
+            <tr>
+              <th>Climate impact points:</th>
+              <td><%= @action_of_the_month.points%></td>
+            </tr>
+            <tr>
+              <th>Category:</th>
+              <td><%= ClimateActionCategory.find_by(id: @action_of_the_month.climate_action_category_id).name%></td>
+            </tr>
+            <tr>
+              <th>Number of times completed:</th>
+              <td><%= @action_of_the_month_number_of_times_completed %></td>
+            </tr>
+          </table> 
     </div>
   </div>
+  <button type="button" class= "btn btn-default" data-toggle = "modal" data-target = "#myModal">
+  Change Action Of The Month</button>
+</div>
+<div id="myModal" class="modal">
+<!-- Modal content -->
+<div class="modal-content">
+  <span class="close">&times;</span>
+  <p>Some text in the Modal..</p>
+</div>
 </div>
 <h3>All Climate Actions</h3>
 <div class="filter-container">

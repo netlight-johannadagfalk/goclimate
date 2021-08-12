@@ -2,6 +2,10 @@ module Admin
   class ClimateActionsController < AdminController
     before_action :set_climate_action, only: %i[ show edit update destroy delete]
 
+    def choose_climate_action
+      @choose_climate_actions = ClimateAction.all
+    end 
+    
     # POST /climate_actions/filter
     def filter
       show_actions_filtered_on_categories_and_points(params[:category], params[:points])
@@ -38,7 +42,8 @@ module Admin
     # GET /climate_actions or /climate_actions.json
     def index
       #Fetch the action of the month so it is shown in the index-view
-      @action_of_the_month = ClimateAction.where(action_of_the_month: true).select("*")
+      @action_of_the_month = ClimateAction.where(action_of_the_month: true).first
+      @action_of_the_month_number_of_times_completed = UserClimateAction.where(climate_action_id: @action_of_the_month.id).count
       show_actions_filtered_on_categories_and_points(params[:category], params[:points])
     end
 
