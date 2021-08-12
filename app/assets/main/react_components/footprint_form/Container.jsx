@@ -3,9 +3,6 @@ import FootprintForm from './FootprintForm.jsx';
 
 const Container = ({ footprint, calculator, data, lang }) => {
 
-  console.log("DATA,", data);
-  console.log("LANG", lang);
-
   return (
       <div className="callout">
           <FootprintForm 
