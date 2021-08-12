@@ -21,7 +21,6 @@ const CarouselList= ({ user, actionsWithUserActions, actionsWithoutUserActions, 
     const [climateActionsUser, setClimateActionsUser] = useState([...totClimateActions]);
 
     const updateLocalAccepted = (actionID) => {
-        console.log(actionID)
         setClimateActionsUser(climateActionsUser.map((action => action.id === actionID ? { ...action, accepted: !action.accepted} : action)));
     }
 

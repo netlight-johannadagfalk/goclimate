@@ -17,16 +17,16 @@ const ClimateActionsContainer = ({climateActionsProps, user, userActions, action
             setTotUserActions([...totUserActions, a])
     };
 
-    const setLocalAccepted = (inVal) => {
-        setActionDeleted(inVal)
+    const setLocalAccepted = (updatedList, deletedAction) => {
+        setTotUserActions(updatedList)
+        setActionDeleted(deletedAction)
     }
 
 
     return(
         <>
-            <CarouselContainer climateActionsProps={climateActionsProps}  
+            <CarouselContainer  
             user = {user}
-            userActions= {totUserActions}
             actionsWithUserActions = {JSON.parse(actionsWithUserActions)}
             actionsWithoutUserActions= {JSON.parse(actionsWithoutUserActions)}
             render = {handleRender}

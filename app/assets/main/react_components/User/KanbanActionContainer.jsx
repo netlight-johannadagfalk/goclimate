@@ -30,16 +30,8 @@ const KanbanActionContainer = ({userActions, setLocalAccepted}) => {
 
   const handleDelete = (id, actionID) => {
     deleteUserAction(id)
-    removeActionFromColumn(id)
-    setLocalAccepted(actionID)
+    setLocalAccepted(userActions.filter(item => item.id.toString() !==id), actionID)
   };
-
-  const removeActionFromColumn = (id) => {
-      const dummy = acceptedUserActions.filter(item => item.id !== id)
-      setColumns(columnUserActions(dummy))
-      
-  }
-
   const deleteUserAction = (id) => {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const URL = "/user_climate_actions/" + id.toString();
