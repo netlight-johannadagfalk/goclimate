@@ -11,7 +11,6 @@ const OptionNumerical = ({ onAnswerGiven, isCarOption }) => {
           onKeyPress = {(event) => {
             if (event.key === 'Enter') {
               setValue("");
-              /* .replace() makes sure that trailing commas (, or .) are removed */
               onAnswerGiven(value.replace(/[,.]\s*$/, ""));
             }
           }} 
