@@ -6,6 +6,7 @@ const ClimateActionsContainer = ({user, userActions, actionsWithUserActions, act
   const [totUserActions, setTotUserActions] = useState(JSON.parse(userActions));
   const [deletedAction, setDeletedAction] = useState(null);
   const addAcceptedAction = (action, userAction) => {
+    setDeletedAction(null)
     const temp = {
       id: userAction.id,
       name: action.name,
