@@ -12,8 +12,7 @@ import ProgressBar from './ProgressBar.jsx';
 const FootprintForm = ({ calculator, questions, options, footprint }) => {
 
   const order = ["region", "home", "home_area", "heating", "green_electricity", "food", "shopping", "car_type", "car_distance", "flight_hours"]
-  const order_with_category = [["region", "home"], ["home", "home"], ["home-area", "home"], ["heating", "home"], ["green_electricity", "home"],
-                              ["food", "utensils"], ["shopping", "shopping-bag"], ["car_type", "car"], ["car_distance", "car"], ["flight_hours", "plane"]]
+  const categories = {"region": "home", "home": "home", "home-area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane"}
   const numericalKeys = ["car_distance", "flight_hours"]
   const firstQuestionKey = order.find((category) => calculator[category.concat("_options")]);
   const firstQuestionIndex = order.indexOf((firstQuestionKey));
@@ -21,6 +20,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   const [currentOptions, setCurrentOptions] = useState(getOptions(firstQuestionKey));
   let questionIndex = order.indexOf(Object.keys(questions).find((key) => questions[key] == currentQuestion));
   const [category, setCategory] = useState("home")
+
   /** 
    * Is to find if a question option key exists in calculator. 
    * If found, it is valid and should be used should be used for the specific question, based on the calculator specifications
@@ -61,10 +61,10 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   }
 
   function setQuestion(){
-    setCurrentQuestion(questions[order[questionIndex]]);
-    setCurrentOptions(getOptions(order[questionIndex]));
-    console.log(order_with_category[questionIndex][1])
-    setCategory(order_with_category[questionIndex][1])
+    let key = order[questionIndex]
+    setCurrentQuestion(questions[key]);
+    setCurrentOptions(getOptions(key));
+    setCategory(categories[key])
   }
 
   /**
