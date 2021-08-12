@@ -120,7 +120,6 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
    * Does some checks and saves to the footprint object 
    */
   function saveAnswer(givenAnswer) {
-    console.log("saveanswer")
     if (order[questionIndex] === "car_distance"){
       footprint[order[questionIndex].concat("_week_answer")] = givenAnswer
     } else {
