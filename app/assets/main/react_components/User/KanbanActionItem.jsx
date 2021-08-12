@@ -22,7 +22,8 @@ const KanbanActionItem = ({item, index, handleDelete}) => {
           >
             {item.name}
             {item.status === false &&
-            <button className="float-right" onClick={() => handleDelete(item.id, item.climate_action_id) }> delete </button>
+            <button className="float-right fas fa-trash" onClick={() => handleDelete(item.id, item.climate_action_id) }> 
+            </button>
             }
           </div>
         );

@@ -37,15 +37,13 @@ const CarouselList= ({ user, actionsWithUserActions, actionsWithoutUserActions, 
                     selectedItem={1}
                     renderArrowPrev={(onClickHandler, hasPrev) =>
                         //hasPrev && (
-                            <button type="button" className="button absolute border-none shadow-none bottom-0 focus:outline-none" onClick={onClickHandler}>
-                             &lt;- 
+                            <button type="button" className="button absolute border-none shadow-none bottom-0 focus:outline-none fas fa-arrow-circle-left" onClick={onClickHandler}>
                             </button>
                         //)
                     }
                     renderArrowNext={(onClickHandler, hasNext) =>
                         //hasNext && (
-                            <button type="button" className="button border-none shadow-none float-right focus:outline-none" onClick={onClickHandler}>
-                             -&gt;
+                            <button type="button" className="button border-none shadow-none float-right focus:outline-none fas fa-arrow-circle-right" onClick={onClickHandler}>
                             </button>
                         //)
                         }>
