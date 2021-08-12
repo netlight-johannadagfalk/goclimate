@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import OptionList from './OptionList.jsx';
 import Title from './Title.jsx';
 import OptionNumerical from './OptionNumerical.jsx';
@@ -11,18 +11,30 @@ import OptionNumerical from './OptionNumerical.jsx';
 const FootprintForm = ({ calculator, questions, options, footprint }) => {
 
   const order = ["region", "home", "home_area", "heating", "green_electricity", "food", "shopping", "car_type", "car_distance", "flight_hours"]
-  const isNumerical = ["car_distance", "flight_hours"]
+  const numericalKeys = ["car_distance", "flight_hours"]
   const firstQuestionKey = order.find((category) => calculator[category.concat("_options")]);
+  const firstQuestionIndex = order.indexOf((firstQuestionKey));
   const [currentQuestion, setCurrentQuestion] = useState(questions[firstQuestionKey]);
   const [currentOptions, setCurrentOptions] = useState(getOptions(firstQuestionKey));
-  let indexOfCurrent = order.indexOf(Object.keys(questions).find((key) => questions[key] == currentQuestion));
+  let questionIndex = order.indexOf(Object.keys(questions).find((key) => questions[key] == currentQuestion));
 
   /** 
-   * Is to filter out what options that should be used for the specific question, based on the calculator specifications
+   * Is to find if a question option key exists in calculator. 
+   * If found, it is valid and should be used for the specific question, based on the calculator specifications
+   */
+  function isOptionUsed(questionKey, optionKey){
+    const calculatorKeyForOptions = questionKey.concat("_options")
+    return Object.values(calculator[calculatorKeyForOptions]).find((calculatorOptionKey) => {
+      return calculatorOptionKey.key === optionKey;
+    });
+  }
+  
+  /** 
+   * Filters out what options that should be used for the specific question, based on the calculator specifications
    * Returns a [key, value] pair list with all options to use
    */
   function getOptions(questionKey){
-    if(isNumerical.includes(questionKey)){
+    if(numericalKeys.includes(questionKey)){
       if(questionKey === "car_distance"){
         return {
           "isNumerical": true,
@@ -36,7 +48,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     }
     else {
       const optionsToUse = Object.entries(options[questionKey]).filter(([key]) => {
-        return findIfOptionIsUsed(questionKey, key);
+        return isOptionUsed(questionKey, key);
       });
       return {
         "options": optionsToUse,
@@ -45,39 +57,48 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     }
   }
 
-  /** 
-   * Is to find if a question option key exists in calculator. 
-   * If found, it is valid and should be used should be used for the specific question, based on the calculator specifications
-   */
-  function findIfOptionIsUsed(questionKey, optionKey){
-    const calculatorKeyForOptions = questionKey.concat("_options")
-    return Object.values(calculator[calculatorKeyForOptions]).find((calculatorOptionKey) => {
-      return calculatorOptionKey.key === optionKey;
-    });
+  function setQuestion(){
+    setCurrentQuestion(questions[order[questionIndex]]);
+    setCurrentOptions(getOptions(order[questionIndex]));
   }
 
-  const onAnswerGiven = (givenAnswer) => {
+  /**
+   * When an answer is given to a question, save result and increase the index
+   */
+  function onAnswerGiven(givenAnswer){
     saveAnswer(givenAnswer);
-    setNewCurrentIndex();
-    if(indexOfCurrent == -1){
+    //if last question
+    if(questionIndex == -1){
       submit();
     } else {
-      if (order[indexOfCurrent-1] === "car_type" && givenAnswer === "no_car" ){
+      if (order[questionIndex-1] === "car_type" && givenAnswer === "no_car" ){
         saveAnswer("");
-        indexOfCurrent++;
+        increaseIndex();
       }
-      setNextQuestion();
-      setNextOptions();
+      setQuestion();
     }
   }
+
+  /**
+   * Cleans upp an object and remocves all entities where value is "null" or "undefined".
+   * Used for cleaning up the footprint object.
+   */
+  function removeNullAttributes(obj){
+    for (var propName in obj) {
+      if (obj[propName] === null || obj[propName] === undefined) {
+        delete obj[propName];
+      }
+    }
+    return obj
+  }  
 
   /**
    * Submits the completed form and sends a post request to the server
    * with the cleanFootprint object containing the answers.
    * After completed post request the user gets redirected to the result/sign-up page.
-  */
-  const submit = () => {
-    var cleanFootprint = cleanUpObjectWhereNull(footprint)
+   */
+  function submit(){
+    var cleanFootprint = removeNullAttributes(footprint)
     cleanFootprint.country = cleanFootprint.country.country_data_or_code;
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const URL = "/calculator";
@@ -93,12 +114,17 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
       fetch(URL, requestOptions)
       .then(res => window.location.href = res.url)
   }
-  
-  const saveAnswer = (givenAnswer) => {
-    if (order[indexOfCurrent] === "car_distance"){
-      footprint[order[indexOfCurrent].concat("_week_answer")] = givenAnswer
+
+  /**
+   * Saves the answer given
+   * Does some checks and saves to the footprint object 
+   */
+  function saveAnswer(givenAnswer) {
+    console.log("saveanswer")
+    if (order[questionIndex] === "car_distance"){
+      footprint[order[questionIndex].concat("_week_answer")] = givenAnswer
     } else {
-      footprint[order[indexOfCurrent].concat("_answer")] = givenAnswer
+      footprint[order[questionIndex].concat("_answer")] = givenAnswer
     }
   }
 
@@ -106,36 +132,57 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
    * Sets the index for next question
    * Increases with at least 1, but if next question is not to be used, the index increases again
    */
-  const setNewCurrentIndex = () => {
-    if(order[indexOfCurrent] == "flight_hours"){
-      indexOfCurrent = -1;
+  function increaseIndex(){
+    if(order[questionIndex] == "flight_hours"){
+      questionIndex = -1;
     }
     else {
       do{
-        indexOfCurrent++;
-      } while(calculator[(order[indexOfCurrent]).concat("_options")] !== undefined && !calculator[(order[indexOfCurrent]).concat("_options")]);    
+        questionIndex++;
+      } while(calculator[(order[questionIndex]).concat("_options")] !== undefined 
+        && !calculator[(order[questionIndex]).concat("_options")]);    
       }
   }
-
-  const setNextQuestion = () => {
-    setCurrentQuestion(questions[order[indexOfCurrent]]);
+  
+  /** 
+   * Called when changing to a previous question, decreases the index, if question is undefined decrease again
+   */
+  function decreaseIndex(){
+    if(questionIndex == 0){
+      questionIndex = 0;
+    }
+    else {
+      do{
+        questionIndex--;
+      } while(calculator[(order[questionIndex]).concat("_options")] !== undefined 
+      && !calculator[(order[questionIndex]).concat("_options")]);    
+    }
   }
 
-  const setNextOptions = () => {
-    setCurrentOptions(getOptions(order[indexOfCurrent]))
+
+
+  /**
+   * Called when the answer to a question is given, saves the result and loads the next question
+   */
+  function onAnswerGiven(givenAnswer){
+    saveAnswer(givenAnswer);
+    increaseIndex();
+    if(questionIndex == -1){
+      submit();
+    } else {
+      if (order[questionIndex-1] === "car_type" && givenAnswer === "no_car" ){
+        saveAnswer("");
+      }
+      setQuestion();
+    }
   }
 
   /**
-   * Cleans upp an object and remocves all entities where value is "null" or "undefined".
-   * Used for cleaning up the footprint object.
+   * Called on go back-button, loads the previous question by decreasing index and setting the question and options
    */
-  const cleanUpObjectWhereNull = (obj) => {
-    for (var propName in obj) {
-      if (obj[propName] === null || obj[propName] === undefined) {
-        delete obj[propName];
-      }
-    }
-    return obj
+  function onGoBack(){
+    decreaseIndex()
+    setQuestion()
   }
 
   return (
@@ -144,11 +191,21 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
           <Title text={currentQuestion}/>
           {
             !currentOptions.isNumerical ? 
-              <OptionList onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} options={currentOptions.options}/>
+              <OptionList selectedKey={footprint[order[questionIndex].concat("_answer")]} onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} options={currentOptions.options}/>
             :
               <OptionNumerical onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} isCarOption={currentOptions.isCarOption}/>
           }
         </div>
+        { questionIndex != firstQuestionIndex ? 
+          <div className="flex justify-space-between">
+            <div className="block">
+              <i className="fas fa-chevron-left cursor-pointer" aria-hidden="true"></i>     
+              <label className="px-1 cursor-pointer" onClick={onGoBack}>Go back</label>
+            </div>
+          </div>
+          :
+          <div/>
+        }
       </form>
   )
 }
