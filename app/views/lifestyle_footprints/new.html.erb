@@ -7,7 +7,7 @@
     <div class="text-center pt-16 pb-48 px-4 md:px-10 lg:px-0 max-w-2xl mx-auto space-y-6">
       <%= react_component 'Container', 
         lang: I18n.locale[0..-1], 
-        data: YAML.load_file('config/locales/views/lifestyle_footprints.' + I18n.locale[0..-1] + '.yml').to_json, 
+        lifestyleFootprintsText: YAML.load_file('config/locales/views/lifestyle_footprints.' + I18n.locale[0..-1] + '.yml').to_json, 
         footprint: @footprint.to_json, 
         calculator: @calculator.to_json 
       %>
