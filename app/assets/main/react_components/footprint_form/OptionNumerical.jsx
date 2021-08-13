@@ -11,7 +11,7 @@ const OptionNumerical = ({ onAnswerGiven, isCarOption }) => {
           onKeyPress = {(event) => {
             if (event.key === 'Enter') {
               setValue("");
-              onAnswerGiven(value.replace(/[,.]\s*$/, ""));
+              onAnswerGiven(value.replace(/,/g, '.').replace(/[.]\s*$/, ""));
             }
           }} 
           onChange={(e) => {
@@ -21,11 +21,13 @@ const OptionNumerical = ({ onAnswerGiven, isCarOption }) => {
           }}/>
         {isCarOption ? <span className="ml-3">km</span> : <></>}
       </label>
-      <AnswerButton labelText="Next" 
+      <AnswerButton label="Next"
         onAnswerGiven={() => {
           setValue("");
-          /* .replace() makes sure that trailing commas (, or .) are removed */
-          onAnswerGiven(value.replace(/[,.]\s*$/, ""));
+          /* Sets focus to input field */
+          document.getElementsByClassName("input")[0].focus();
+          /* .replace() makes sure that only . and not , is used, and trailing commas are removed */
+          onAnswerGiven(value.replace(/,/g, '.').replace(/[.]\s*$/, ""));
         }}
       />
     </div>
