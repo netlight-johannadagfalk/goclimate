@@ -13,7 +13,7 @@ class SubscriptionMailer < ApplicationMailer
     @climate_neutral_months = @user.number_of_neutral_months
     @total_carbon_offset = OffsettingStatistics.new.total_sold.tonnes.round
     @action_of_the_month = ClimateAction.where(action_of_the_month: true).select("*").first
-
+    @user_climate_actions = UserClimateAction.where(id: @user.id).select("*")
     mail subject: I18n.t('thank_you')
   end
 
