@@ -4,7 +4,11 @@ module Admin
 
     # POST /climate_actions/filter
     def filter
-      show_actions_filtered_on_categories_and_points(params[:category], params[:points])
+      if params[:commit].eql?('Clear Filter')
+        @climate_actions = ClimateAction.all
+      else
+        show_actions_filtered_on_categories_and_points(params[:category], params[:points])
+      end
     end
 
     #These functions filters actions based on input category and points

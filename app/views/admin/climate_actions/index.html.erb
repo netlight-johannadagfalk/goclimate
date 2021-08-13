@@ -8,6 +8,7 @@
   <%= select_tag :category, options_from_collection_for_select(ClimateActionCategory.all, :id, :name), options ={:prompt => "All Categories", :class => "btn btn-default", :style=>"height:34px"}%>
   <%= select_tag :points, options_from_collection_for_select(ClimateAction.select(:points).distinct, :points, :points), options ={:prompt => "Climate Impact Points", :class => "btn btn-default", :style=>"height:34px"}%>
   <%= submit_tag "Filter", class: 'btn btn-default'%>
+  <%= submit_tag "Clear Filter", class: 'btn btn-default'%>
   <% end%>
 </div>
 
