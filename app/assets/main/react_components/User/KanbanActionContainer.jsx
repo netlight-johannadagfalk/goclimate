@@ -2,42 +2,18 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanActionColumn from "./KanbanActionColumn.jsx";
 
-const KanbanActionContainer = ({ userActions, setLocalAccepted }) => {
+const KanbanActionContainer = ({setLocalAccepted, columns, setColumns, setTotUserActions }) => {
+  const [render, setRender] = useState()
   useEffect(() => {
-    setColumns(columnUserActions(acceptedUserActions));
-  }, [userActions]);
+    setRender(columns)
+  }, [columns]);
 
-  const formatedUserActions = userActions.map((userActions) => ({
-    ...userActions,
-    id: userActions.id.toString(),
-  }));
-
-  const acceptedUserActions = formatedUserActions
-    .filter((action) => action.status !== true)
-    .map((action) => ({ ...action }));
-  const doneUserActions = formatedUserActions
-    .filter((action) => action.status !== false)
-    .map((action) => ({ ...action }));
-
-  const columnUserActions = (acceptedList) => {
-    return {
-      [1]: {
-        id: "Accepted",
-        name: "Your accepted actions:",
-        items: acceptedList,
-      },
-      [2]: {
-        id: "Performed",
-        name: "Your performed actions:",
-        items: doneUserActions,
-      },
-    };
-  };
 
   const handleDelete = (id, actionID) => {
     deleteUserAction(id);
     setLocalAccepted(
-      userActions.filter((item) => item.id.toString() !== id),
+      columns[1].items.filter((item) => item.id.toString() !== id), 
+      columns[2].items,
       actionID
     );
   };
@@ -56,10 +32,6 @@ const KanbanActionContainer = ({ userActions, setLocalAccepted }) => {
 
     fetch(URL, requestOptions).catch((e) => console.log(e));
   };
-
-  const [columns, setColumns] = useState(
-    columnUserActions(acceptedUserActions)
-  );
 
   const updateStatus = (id, status) => {
     console.log("entered updatestatus" + id);
@@ -89,8 +61,9 @@ const KanbanActionContainer = ({ userActions, setLocalAccepted }) => {
       const destColumn = columns[destination.droppableId];
       const sourceItems = [...sourceColumn.items];
       const destItems = [...destColumn.items];
-      const [removed] = sourceItems.splice(source.index, 1);
+      const [removed] = sourceItems.splice(source.index, 1);   
       destItems.splice(destination.index, 0, removed);
+      setTotUserActions([...sourceItems, ...destItems])
       setColumns({
         ...columns,
         [source.droppableId]: {
@@ -104,6 +77,9 @@ const KanbanActionContainer = ({ userActions, setLocalAccepted }) => {
       });
       if (destColumn.id === columns[2].id) {
         const theItem = destItems.find((item) => item.status === false);
+        const newDestItems = destItems.map((item) =>
+        item.status === false ? { ...item, status: !item.status } : item)
+        setTotUserActions([...sourceItems, ...newDestItems])
         setColumns({
           ...columns,
           [source.droppableId]: {
@@ -112,14 +88,15 @@ const KanbanActionContainer = ({ userActions, setLocalAccepted }) => {
           },
           [destination.droppableId]: {
             ...destColumn,
-            items: destItems.map((item) =>
-              item.status === false ? { ...item, status: !item.status } : item
-            ),
+            items: newDestItems,
           },
         });
         updateStatus(theItem.id, true);
       } else {
         const theItem = destItems.find((item) => item.status === true);
+        const newDestItems = destItems.map((item) =>
+        item.status === true ? { ...item, status: !item.status } : item)
+        setTotUserActions([...sourceItems, ...newDestItems])
         setColumns({
           ...columns,
           [source.droppableId]: {
@@ -128,9 +105,7 @@ const KanbanActionContainer = ({ userActions, setLocalAccepted }) => {
           },
           [destination.droppableId]: {
             ...destColumn,
-            items: destItems.map((item) =>
-              item.status === true ? { ...item, status: !item.status } : item
-            ),
+            items: newDestItems,
           },
         });
         updateStatus(theItem.id, false);

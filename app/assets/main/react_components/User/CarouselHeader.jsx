@@ -1,6 +1,6 @@
 import React from "react";
 
-function CarouselHeader() {
+const CarouselHeader = () => {
   return (
     <div>
       <h3 className="heading-lg mb-3">Browse Climate Actions </h3>
