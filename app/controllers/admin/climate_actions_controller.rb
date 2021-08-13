@@ -2,7 +2,18 @@ module Admin
   class ClimateActionsController < AdminController
     before_action :set_climate_action, only: %i[ show edit update destroy delete]
 
-    def choose_climate_action
+    
+    def set_action_of_the_month
+      ClimateAction.where.not(id: params[:id]).update_all(action_of_the_month: false)
+      ClimateAction.where(id: params[:id]).update_all(action_of_the_month: true)
+      @choose_climate_actions = ClimateAction.all
+      @action_of_the_month = ClimateAction.where(action_of_the_month: true).first
+      getNumberOfTimesActionPerformed()
+      show_actions_filtered_on_categories_and_points(params[:category], params[:points])
+
+    end
+    
+    def show_climate_actions
       @choose_climate_actions = ClimateAction.all
     end 
     
@@ -42,11 +53,19 @@ module Admin
     # GET /climate_actions or /climate_actions.json
     def index
       #Fetch the action of the month so it is shown in the index-view
+      @choose_climate_actions = ClimateAction.all
       @action_of_the_month = ClimateAction.where(action_of_the_month: true).first
-      @action_of_the_month_number_of_times_completed = UserClimateAction.where(climate_action_id: @action_of_the_month.id).count
+      getNumberOfTimesActionPerformed()
       show_actions_filtered_on_categories_and_points(params[:category], params[:points])
     end
 
+    def getNumberOfTimesActionPerformed
+      if @action_of_the_month.nil?
+        @action_of_the_month_number_of_times_completed = nil
+      else
+        @action_of_the_month_number_of_times_completed = UserClimateAction.where(climate_action_id: @action_of_the_month.id).count
+      end
+    end
     # GET /climate_actions/1 or /climate_actions/1.json
     def show
     end
@@ -65,6 +84,7 @@ module Admin
       @climate_action = ClimateAction.new(climate_action_params)
       respond_to do |format|
         if @climate_action.save
+          checkMonthlyMailUpdate(@climate_action.id)
           format.html { redirect_to [:admin, @climate_action], notice: "Climate action was successfully created." }
           format.json { render :show, status: :created, location: @climate_action }
         else

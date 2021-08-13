@@ -1,0 +1,51 @@
+<style>
+/* Important part */
+.modal-dialog{
+    overflow-y: initial !important;
+    width: 80vh;
+}
+.modal-body{
+    height: 30vh;
+    overflow-y: auto;
+}
+</style>
+
+<div id="myModal" class="modal">
+<%= form_tag(admin_climate_actions_set_action_of_the_month_path, remote: true) do %>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick = "document.getElementById('myModal').style.display='none'">×</button>
+                <h2 class="modal-title">Choose the action of the month</h2>
+            </div>
+            <div class="modal-body">
+                <table class="table"> 
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Points</th>
+                    <th>Category</th>
+                    <th colspan="3"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @choose_climate_actions.each.each do |climate_action| %>
+                    <tr>
+                    <td><%= climate_action.name %></td>
+                    <td><%= climate_action.description %></td>
+                    <td><%= climate_action.points %></td>
+                    <td><%= ClimateActionCategory.find_by(id: climate_action.climate_action_category_id).name %></td> 
+                    <td><%= check_box_tag :id, "Choose Action", false, :value => climate_action.id  %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <%= submit_tag "Save", class: 'btn btn-default'%>
+            </div>
+        </div>
+    </div>
+    <% end %>
+</div>

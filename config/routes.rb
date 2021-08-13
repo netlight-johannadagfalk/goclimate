@@ -208,6 +208,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'dashboard#index'
     post 'climate_actions/filter'
+    get 'climate_actions/show_climate_actions'
+    post 'climate_actions/set_action_of_the_month'
     resources :climate_actions
     resources :climate_action_categories
     resources :api_keys
