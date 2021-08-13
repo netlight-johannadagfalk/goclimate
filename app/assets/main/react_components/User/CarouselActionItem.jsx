@@ -39,38 +39,46 @@ const CarouselActionItem = ({
   };
 
   return (
-    <div className="callout shadow-none flex-auto flex-row m-2">
-      <div>
-        <h3
-          className="text-base font-bold"
-          style={{ color: "rgba(28, 70, 55, var(--tw-text-opacity))" }}
-        >
-          {action.name}
-        </h3>
-      </div>
-      <div>
-        <p>{action.description}</p>
-      </div>
-      <div>
-        <img src="earth.png" width="50" height="10"></img>
-      </div>
-      <div>
-        {action.accepted ? (
-          <button
-            className="button inline-block align-bottom"
-            disabled={true}
-            style={{ color: "rgba(28, 70, 55)" }}
+    <div className="callout shadow-none  min-h-full p-2 ml-2 mr-2 justify-center">
+      <div className="flex flex-1 flex-col justify-center">
+        <div className="flex flex-1/4 justify-center">
+          <h4
+            className="text-base font-bold "
+            style={{ color: "rgba(28, 70, 55, var(--tw-text-opacity))" }}
           >
-            Accepted
-          </button>
-        ) : (
-          <button
-            className="button button-cta inline-block align-bottom"
-            onClick={() => handleClickAccepted(action)}
-          >
-            Accept challenge
-          </button>
-        )}
+            {action.name.length > 25
+              ? action.name.slice(0, 25) + "..."
+              : action.name}
+          </h4>
+        </div>
+        <div className="flex flex-1/4 justify-center">
+          <p>
+            {action.description.length > 40
+              ? action.description.slice(0, 40) + "..."
+              : action.description}
+          </p>
+        </div>
+        <div className="flex flex-1/4 ">
+          <img src="earth.png" className=" flex flex-1"></img>
+        </div>
+        <div className="flex flex-1/4 justify-center">
+          {action.accepted ? (
+            <button
+              className="button inline-block "
+              disabled={true}
+              style={{ color: "rgba(28, 70, 55)" }}
+            >
+              Accepted
+            </button>
+          ) : (
+            <button
+              className="button button-cta inline-block "
+              onClick={() => handleClickAccepted(action)}
+            >
+              Accept challenge
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
