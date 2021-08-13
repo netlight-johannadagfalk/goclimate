@@ -14,7 +14,7 @@ const Container = ({ footprint, calculator, lifestyleFootprintsText, lang }) => 
             />
         </div>
           <div className="text-sm">
-            <a className="link" href="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/" target="_blank">How do we calculate?</a>
+            <a className="link" href="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/" target="_blank">{JSON.parse(lifestyleFootprintsText).lifestyle_footprints.methodology}</a>
           </div>
       </div>
   )  
