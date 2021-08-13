@@ -1,6 +1,11 @@
 import React from "react";
 
-const CarouselActionItem = ({action, user, updateLocalAccepted, addAcceptedAction,}) => {
+const CarouselActionItem = ({
+  action,
+  user,
+  updateLocalAccepted,
+  addAcceptedAction,
+}) => {
   const currUser = JSON.parse(user);
 
   const handleClickAccepted = (action) => {
@@ -33,16 +38,8 @@ const CarouselActionItem = ({action, user, updateLocalAccepted, addAcceptedActio
       .catch((e) => console.log(e));
   };
 
-  const gridStyle = {
-    height: "350px",
-    gridTemplateRows: "25px 40px 200px 60px",
-  };
-
   return (
-    <div
-      className="callout shadow-none m-2 p-2 grid grid-cols-1 grid-rows-4 gap-1"
-      style={gridStyle}
-    >
+    <div className="callout shadow-none flex-auto flex-row m-2">
       <div>
         <h3
           className="text-base font-bold"
