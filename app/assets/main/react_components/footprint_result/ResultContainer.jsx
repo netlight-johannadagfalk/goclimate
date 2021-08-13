@@ -1,15 +1,21 @@
 import React from 'react';
+import WorldComparisonChart from './WorldComparisonChart.jsx';
 
 /**
  * React container for Result page components
  */
-const ResultContainer = () => {
+const ResultContainer = ({ footprint, countryAverage, registrationsText, commonText, lang }) => {
 
     return (
         <div className="pr-16">
             <div className="relative pb-1">
                 <div className="space-y-6">
-                    { /* React components */ }
+                    <WorldComparisonChart 
+                        lang={lang}
+                        footprint={JSON.parse(footprint)}
+                        countryAverage={JSON.parse(countryAverage)}
+                        worldComparisonText={{...JSON.parse(registrationsText), ...JSON.parse(commonText)}} 
+                    />
                 </div>
             </div>
         </div>

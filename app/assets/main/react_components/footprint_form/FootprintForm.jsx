@@ -8,7 +8,7 @@ import OptionNumerical from './OptionNumerical.jsx';
  * in the form as well as show the current question on the form-page, one at the time. 
  * It also has the responsibility to store the answeres filled in by the user by changing the footprint object.
  */
-const FootprintForm = ({ calculator, questions, options, footprint }) => {
+const FootprintForm = ({ calculator, questions, options, footprint, route }) => {
 
   const order = ["region", "home", "home_area", "heating", "green_electricity", "food", "shopping", "car_type", "car_distance", "flight_hours"]
   const numericalKeys = ["car_distance", "flight_hours"]
@@ -101,7 +101,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     var cleanFootprint = removeNullAttributes(footprint)
     cleanFootprint.country = cleanFootprint.country.country_data_or_code;
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    const URL = "/calculator";
+    const URL = route;
     const requestOptions = {
         method: 'POST',
         credentials: 'include',
