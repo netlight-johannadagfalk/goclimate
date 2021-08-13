@@ -286,26 +286,4 @@
   </div>
 </section>
 
-<section class="section-padding space-y-6">
-  <h2 class="heading-lg">
-    <%= t 'views.welcome.index.social_media.heading' %>
-  </h2>
-  <p><%= t 'views.welcome.index.social_media.body_text' %></p>
-  <div class="flex flex-row flex-wrap t:flex-no-wrap ">
-    <% @instagram_images&.each_with_index do |image, index| %>
-      <div class="w-1/2 t:w-1/5 p-1 t:block <%= 'hidden' if index == @instagram_images.length - 1 %>">
-        <div class="relative w-full overflow-hidden rounded" data-target="instagram-feed.template">
-          <div class="w-full pb-full bg-none"></div>
-          <a href="<%= image['permalink'] %>" target="_blank" rel="noopener noreferrer">
-            <img src="<%= image['media_url'] %>" class="instagram-feed-image absolute left-0 top-1/2 transform -translate-y-1/2">
-          </a>
-        </div>
-      </div>
-    <% end %>
-  </div>
-  <div class="text-center">
-    <%= link_to t('views.welcome.index.social_media.cta'), 'https://www.instagram.com/goclimate/', target: "_blank", rel: "noopener noreferrer", class: "button" %>
-  </div>
-</section>
-
 <%= render "shared/footer" %>
