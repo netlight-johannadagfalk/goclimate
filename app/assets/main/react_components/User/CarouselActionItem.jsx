@@ -39,9 +39,9 @@ const CarouselActionItem = ({
   };
 
   return (
-    <div className="callout shadow-none  min-h-full p-2 ml-2 mr-2 justify-center">
-      <div className="flex flex-1 flex-col justify-center">
-        <div className="flex flex-1/4 justify-center">
+    <div className="callout shadow-none  min-h-full p-2 ml-2 mr-2 flex justify-center">
+      <div className="flex flex-col">
+        <div className="flex-1">
           <h4
             className="text-base font-bold "
             style={{ color: "rgba(28, 70, 55, var(--tw-text-opacity))" }}
@@ -51,17 +51,17 @@ const CarouselActionItem = ({
               : action.name}
           </h4>
         </div>
-        <div className="flex flex-1/4 justify-center">
+        <div className="flex-1">
           <p>
             {action.description.length > 40
               ? action.description.slice(0, 40) + "..."
               : action.description}
           </p>
         </div>
-        <div className="flex flex-1/4 ">
-          <img src="earth.png" className=" flex flex-1"></img>
+        <div className="flex-1">
+          <img src="earth.png" className=" flex"></img>
         </div>
-        <div className="flex flex-1/4 justify-center">
+        <div className="flex-1"> 
           {action.accepted ? (
             <button
               className="button inline-block "
