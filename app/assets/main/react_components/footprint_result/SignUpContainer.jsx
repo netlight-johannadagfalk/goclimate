@@ -9,7 +9,7 @@ const SignUpContainer = () => {
 
     return (
         <div className="pr-16">
-            <MembershipTypeChooser></MembershipTypeChooser>
+            <MembershipTypeChooser/>
         </div>
     )
 }

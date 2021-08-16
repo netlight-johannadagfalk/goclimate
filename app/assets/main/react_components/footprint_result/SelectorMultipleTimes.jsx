@@ -18,9 +18,11 @@ const SelectorMultipleTimes = () => {
     }
 
     return (
-        <select className="select" data-action="change->registrations--membership-choice#chooseMulti" name="people" id="people"S>
-            {generateOptions(2,20)}
-        </select>
+        <div className="select-wrapper flex-shrink-0">
+            <select className="select" data-action="change->registrations--membership-choice#chooseMulti" name="people" id="people"S>
+                {generateOptions(2,20)}
+            </select>
+        </div>
     )
 }
 
