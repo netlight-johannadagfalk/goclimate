@@ -29,7 +29,7 @@ const AllHTMLInOneXComponent = () => {
                                                 <span><span className="font-bold">Free account</span>. Track your carbon footprint over time.</span>
                                             </label>
                                             <label className="flex flex-row items-center p-3 bg-green-tint-1 rounded cursor-pointer" data-active-class="flex flex-row items-center p-3 bg-green-tint-1 rounded cursor-pointer" data-inactive-class="flex flex-row items-center p-3 bg-gray-pastel rounded cursor-pointer" htmlFor="single">
-                                                <input className="flex-shrink-0 mr-2" type="radio" name="membership" id="single" value="single" checked="" data-target="registrations--membership-choice.choice" data-action="click->registrations--membership-choice#handleChange"/>
+                                                <input className="flex-shrink-0 mr-2" type="radio" name="membership" id="single" value="single" checked data-target="registrations--membership-choice.choice" data-action="click->registrations--membership-choice#handleChange"/>
                                                 <span><span className="font-bold">Offset</span> your carbon footprint through climate projects.</span>
                                             </label>
                                             <label className="flex flex-row items-center p-3 bg-gray-pastel rounded cursor-pointer" data-active-class="flex flex-row items-center p-3 bg-green-tint-1 rounded cursor-pointer" data-inactive-class="flex flex-row items-center p-3 bg-gray-pastel rounded cursor-pointer" htmlFor="multi">
