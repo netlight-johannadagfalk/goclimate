@@ -23,7 +23,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
 
   /** 
    * Is to find if a question option key exists in calculator. 
-   * If found, it is valid and should be used should be used for the specific question, based on the calculator specifications
+   * If found, it is valid and should be used for the specific question, based on the calculator specifications
    */
   function isOptionUsed(questionKey, optionKey){
     const calculatorKeyForOptions = questionKey.concat("_options")
@@ -68,8 +68,8 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   }
 
   /**
-  * When an answer is given to a question, save result and increase the index
-  */
+   * When an answer is given to a question, save result and increase the index
+   */
   function onAnswerGiven(givenAnswer){
     saveAnswer(givenAnswer);
     //if last question
@@ -83,7 +83,55 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
       setQuestion();
     }
   }
-  
+
+  /**
+   * Cleans upp an object and remocves all entities where value is "null" or "undefined".
+   * Used for cleaning up the footprint object.
+   */
+  function removeNullAttributes(obj){
+    for (var propName in obj) {
+      if (obj[propName] === null || obj[propName] === undefined) {
+        delete obj[propName];
+      }
+    }
+    return obj
+  }  
+
+  /**
+   * Submits the completed form and sends a post request to the server
+   * with the cleanFootprint object containing the answers.
+   * After completed post request the user gets redirected to the result/sign-up page.
+   */
+  function submit(){
+    var cleanFootprint = removeNullAttributes(footprint)
+    cleanFootprint.country = cleanFootprint.country.country_data_or_code;
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    const URL = "/calculator";
+    const requestOptions = {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          "X-CSRF-Token": csrfToken,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cleanFootprint)
+      };
+      fetch(URL, requestOptions)
+      .then(res => window.location.href = res.url)
+  }
+
+  /**
+   * Saves the answer given
+   * Does some checks and saves to the footprint object 
+   */
+  function saveAnswer(givenAnswer) {
+    if (order[questionIndex] === "car_distance"){
+      footprint[order[questionIndex].concat("_week_answer")] = givenAnswer
+    } else {
+      footprint[order[questionIndex].concat("_answer")] = givenAnswer
+    }
+  }
+
   /**
    * Sets the index for next question
    * Increases with at least 1, but if next question is not to be used, the index increases again
@@ -101,8 +149,8 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   }
   
   /** 
-  * Called when changing to a previous question, decreases the index, if question is undefined decrease again
-  */
+   * Called when changing to a previous question, decreases the index, if question is undefined decrease again
+   */
   function decreaseIndex(){
     if(questionIndex == 0){
       questionIndex = 0;
@@ -115,16 +163,14 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     }
   }
 
-  function saveAnswer(givenAnswer) {
-    footprint[order[questionIndex].concat("_answer")] = givenAnswer
-    increaseIndex();
-  }
+
 
   /**
    * Called when the answer to a question is given, saves the result and loads the next question
    */
   function onAnswerGiven(givenAnswer){
     saveAnswer(givenAnswer);
+    increaseIndex();
     if(questionIndex == -1){
       submit();
     } else {
@@ -143,21 +189,8 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     setQuestion()
   }
 
- /**
-   * Cleans upp an object and remocves all entities where value is "null" or "undefined".
-   * Used for cleaning up the footprint object.
-   */
-  function removeNullAttributes(obj){
-    for (var propName in obj) {
-      if (obj[propName] === null || obj[propName] === undefined) {
-        delete obj[propName];
-      }
-    }
-    return obj
-  }
-
   return (
-      <form action="/calculator" acceptCharset="UTF-8" method="post">
+      <form action="/calculator" acceptCharset="UTF-8" method="post" onSubmit={e => { e.preventDefault(); }}>
         <ProgressBar calculator={calculator} active_category={category}/>
         <div className="question py-8" data-target="lifestyle-footprints--calculator.question" data-category="home">
           <Title text={currentQuestion}/>
@@ -170,9 +203,9 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
         </div>
         { questionIndex != firstQuestionIndex ? 
           <div className="flex justify-space-between">
-            <div className="block cursor-pointer">
-              <i className="fas fa-chevron-left" aria-hidden="true"></i>     
-              <label className="px-1" onClick={onGoBack}>Go back</label>
+            <div className="block">
+              <i className="fas fa-chevron-left cursor-pointer" aria-hidden="true"></i>     
+              <label className="px-1 cursor-pointer" onClick={onGoBack}>Go back</label>
             </div>
           </div>
           :

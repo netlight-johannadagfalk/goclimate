@@ -8,18 +8,14 @@ const OptionList = ({ onAnswerGiven, options, selectedKey }) => {
 
   return (
       <>
-        {options.map((option) => {
-          const optionObject = {
-            "key": option[0],
-            "value": option[1]
-          }
+        {
+        options.map(([key, value]) => {
           return (
-            <div key={optionObject.key} className="my-3 flex-1">
+            <div key={key} className="my-3 flex-1">
               <AnswerButton 
-                onAnswerGiven={() => onAnswerGiven(optionObject.key)} 
-                option={optionObject.value}
-                isSelected = {selectedKey==optionObject.key}
-                labelText={optionObject.value} 
+                onAnswerGiven={() => onAnswerGiven(key)} 
+                isSelected = {selectedKey==key}
+                label={value} 
               />
             </div>
           )
