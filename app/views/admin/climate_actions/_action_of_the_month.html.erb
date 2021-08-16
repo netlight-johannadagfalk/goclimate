@@ -1,32 +1,33 @@
-<div class = "card" style = "margin-bottom: 10px">
-    <div class="container" style="outline: 2px dashed grey; max-width: 300px;display: inline-block;">
-          <% if @action_of_the_month.nil?%>
-          <h6 style="text-align:center"><b>No action of the month is chosen, please choose one.</b></h6> 
-          <%else%>
-          <h4 style="text-align:center"><b><%= @action_of_the_month.name %></b></h4> 
-          <table class = "table">
-            <tr>
-              <th>Description:</th>
-              <td><%= @action_of_the_month.description%></td>
-            </tr>
-            <tr>
-              <th>Climate impact points:</th>
-              <td><%= @action_of_the_month.points%></td>
-            </tr>
-            <tr>
-              <th>Category:</th>
-              <td><%= ClimateActionCategory.find_by(id: @action_of_the_month.climate_action_category_id).name%></td>
-            </tr>
-            <tr>
-              <th>Number of times completed:</th>
-              <% if @action_of_the_month_number_of_times_completed.nil? %>
-              <td> No one have completed this action</td>
-              <% else %>
-              <td><%= @action_of_the_month_number_of_times_completed %></td>
-              <% end%>
-            </tr>
-          </table> 
-          <%end%>
-    </div>
+<div class = "container" style = "margin-bottom: 10px;display: inline-block;float:left;width:45%">
+<h3>Action of the month:</h3>
+  <div class = "card" style = "outline: 2px dashed grey">
+      <% if @action_of_the_month.nil?%>
+      <h6 style="text-align:center"><b>No action of the month is chosen, please choose one.</b></h6> 
+      <%else%>
+      <h4 style="text-align:center"><b><%= @action_of_the_month.name %></b></h4> 
+      <table class = "table">
+        <tr>
+          <th>Description:</th>
+          <td><%= @action_of_the_month.description%></td>
+        </tr>
+        <tr>
+          <th>Points:</th>
+          <td><%= @action_of_the_month.points%> CO2</td>
+        </tr>
+        <tr>
+          <th>Category:</th>
+          <td><%= ClimateActionCategory.find_by(id: @action_of_the_month.climate_action_category_id).name%></td>
+        </tr>
+        <tr>
+          <th>Times performed:</th>
+          <% if @action_of_the_month_number_of_times_completed.nil? %>
+          <td> No one have completed this action</td>
+          <% else %>
+          <td><%= @action_of_the_month_number_of_times_completed %></td>
+          <% end%>
+        </tr>
+      </table> 
+      <%end%>
   </div>
-  <%= link_to "Change Action of the month", admin_climate_actions_show_climate_actions_path, remote: true, class: 'btn btn-default' %>
+<%= link_to "Change Action of the month", admin_climate_actions_show_climate_actions_path, remote: true, class: 'btn btn-default' %>
+</div>

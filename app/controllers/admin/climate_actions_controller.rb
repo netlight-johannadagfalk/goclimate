@@ -10,7 +10,10 @@ module Admin
       @action_of_the_month = ClimateAction.where(action_of_the_month: true).first
       getNumberOfTimesActionPerformed()
       show_actions_filtered_on_categories_and_points(params[:category], params[:points])
+    end
 
+    def get_number_of_users_completed_actions_in_order
+      @number_of_users_completed_actions_ordered = ClimateAction.joins(:user_climate_actions).where('user_climate_actions.climate_action_id = climate_actions.id').order('COUNT(user_climate_actions.climate_action_id) DESC').group('climate_actions.id')
     end
     
     def show_climate_actions
@@ -56,6 +59,7 @@ module Admin
       @choose_climate_actions = ClimateAction.all
       @action_of_the_month = ClimateAction.where(action_of_the_month: true).first
       getNumberOfTimesActionPerformed()
+      get_number_of_users_completed_actions_in_order()
       show_actions_filtered_on_categories_and_points(params[:category], params[:points])
     end
 

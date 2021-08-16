@@ -1,13 +1,15 @@
 <p id="notice"><%= notice %></p>
 <h1>Climate Actions</h1>
-<h3>Action of the month:</h3>
-<div id = "actionofthemonth-container">
-  <%= render 'action_of_the_month' %>
-  <!--<button type="button" class= "btn btn-default" data-toggle = "modal" data-target = "#myModal">
-  Change Action Of The Month</button>-->
-</div>
-<div id = "showModal">
-  <%= render 'change_action_of_the_month'%>
+<div class="row">
+  <div id = "climate_action_toplist-container">
+    <%= render 'show_action_toplist' %>
+  </div>
+  <div id = "actionofthemonth-container">
+    <%= render 'action_of_the_month' %>
+  </div>
+  <div id = "showModal">
+    <%= render 'change_action_of_the_month'%>
+  </div>
 </div>
 <h3>All Climate Actions</h3>
 <div class="filter-container">
