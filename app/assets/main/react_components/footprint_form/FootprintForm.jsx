@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import OptionList from './OptionList.jsx';
 import Title from './Title.jsx';
 import OptionNumerical from './OptionNumerical.jsx';
@@ -204,7 +204,8 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
           {
             !currentOptions.isNumerical ? 
               <OptionList 
-                onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} options={currentOptions.options}
+                onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} 
+                options={currentOptions.options}
                 selectedKey={footprint[order[questionIndex].concat("_answer")]} 
               />
             :
