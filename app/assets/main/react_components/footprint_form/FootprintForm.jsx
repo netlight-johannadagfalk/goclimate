@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import OptionList from './OptionList.jsx';
 import Title from './Title.jsx';
 import OptionNumerical from './OptionNumerical.jsx';
@@ -158,8 +158,6 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     }
   }
 
-
-
   /**
    * Called when the answer to a question is given, saves the result and loads the next question
    */
@@ -184,15 +182,38 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     setQuestion()
   }
 
+  /**
+   * Provides numerical input fields with default values
+   * Returns actual value if back button has been used, meaning answer has been entered earlier
+   */
+  function getSavedValue(){
+    if(order[questionIndex] === "car_distance"){
+      if(footprint[order[questionIndex].concat("_week_answer")])
+        return footprint[order[questionIndex].concat("_week_answer")]
+      return ""
+    }
+    if(footprint[order[questionIndex].concat("_answer")])
+      return footprint[order[questionIndex].concat("_answer")]
+    return ""
+  }
+
   return (
       <form action="/calculator" acceptCharset="UTF-8" method="post" onSubmit={e => { e.preventDefault(); }}>
         <div className="question py-8" data-target="lifestyle-footprints--calculator.question" data-category="home">
           <Title text={currentQuestion}/>
           {
             !currentOptions.isNumerical ? 
-              <OptionList selectedKey={footprint[order[questionIndex].concat("_answer")]} onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} options={currentOptions.options}/>
+              <OptionList 
+                onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} options={currentOptions.options}
+                selectedKey={footprint[order[questionIndex].concat("_answer")]} 
+              />
             :
-              <OptionNumerical onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} isCarOption={currentOptions.isCarOption}/>
+              <OptionNumerical 
+                onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} 
+                isCarOption={currentOptions.isCarOption} 
+                onNumericalInput={saveAnswer}
+                savedValue={getSavedValue()} 
+              />
           }
         </div>
         { questionIndex != firstQuestionIndex ? 
