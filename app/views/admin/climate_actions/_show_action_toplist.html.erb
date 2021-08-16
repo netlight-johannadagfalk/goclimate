@@ -1,0 +1,24 @@
+<div class = "container" style = "display: inline-block;float:left;width:45%">
+<h3>Climate action toplist:</h3>
+  <div class = "card" style = "outline: 2px dashed grey;">
+        <table class="table"> 
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Points</th>
+                <th>Times performed</th>
+                <th colspan="3"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @number_of_users_completed_actions_ordered.each do |climate_action| %>
+                <tr>
+                <td><%= climate_action.name %></td>
+                <td><%= climate_action.points %> CO2</td>
+                <td><%= UserClimateAction.where(climate_action_id: climate_action.id).count %> times</td> 
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

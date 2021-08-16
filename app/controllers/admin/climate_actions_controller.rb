@@ -2,11 +2,74 @@ module Admin
   class ClimateActionsController < AdminController
     before_action :set_climate_action, only: %i[ show edit update destroy delete]
 
-    # GET /climate_actions or /climate_actions.json
-    def index
-      @climate_actions = ClimateAction.all
+    
+    def set_action_of_the_month
+      ClimateAction.where.not(id: params[:id]).update_all(action_of_the_month: false)
+      ClimateAction.where(id: params[:id]).update_all(action_of_the_month: true)
+      @choose_climate_actions = ClimateAction.all
+      @action_of_the_month = ClimateAction.where(action_of_the_month: true).first
+      getNumberOfTimesActionPerformed()
+      show_actions_filtered_on_categories_and_points(params[:category], params[:points])
     end
 
+    def get_number_of_users_completed_actions_in_order
+      @number_of_users_completed_actions_ordered = ClimateAction.joins(:user_climate_actions).where('user_climate_actions.climate_action_id = climate_actions.id').order('COUNT(user_climate_actions.climate_action_id) DESC').group('climate_actions.id')
+    end
+    
+    def show_climate_actions
+      @choose_climate_actions = ClimateAction.all
+    end 
+    
+    # POST /climate_actions/filter
+    def filter
+      show_actions_filtered_on_categories_and_points(params[:category], params[:points])
+    end
+
+    #These functions filters actions based on input category and points
+    def show_actions_filtered_on_categories_and_points(input_category, input_points)
+      if (input_category.nil? || input_category.eql?('')) && (input_points.nil?)
+        @climate_actions = ClimateAction.all
+      else
+        actionsFilteredBasedOnCategory = filter_actions_based_on_category(input_category)
+        @climate_actions = filter_actions_based_on_points(input_points, actionsFilteredBasedOnCategory)
+      end
+    end
+
+    #Filter actions based on categories
+    def filter_actions_based_on_category(input_category)
+      if input_category.nil? || input_category.eql?('')
+        @climate_actions = ClimateAction.all
+      else
+        @climate_actions = ClimateAction.where(climate_action_category_id: input_category).select("*")
+      end
+    end
+
+    #Filter actions based on points
+    def filter_actions_based_on_points(input_points, actionsFilteredBasedOnCategory)
+      if input_points.nil? || input_points.eql?('')
+        @climate_actions = actionsFilteredBasedOnCategory
+      else
+        @climate_actions = actionsFilteredBasedOnCategory.where(points: input_points).select("*")
+      end
+    end
+
+    # GET /climate_actions or /climate_actions.json
+    def index
+      #Fetch the action of the month so it is shown in the index-view
+      @choose_climate_actions = ClimateAction.all
+      @action_of_the_month = ClimateAction.where(action_of_the_month: true).first
+      getNumberOfTimesActionPerformed()
+      get_number_of_users_completed_actions_in_order()
+      show_actions_filtered_on_categories_and_points(params[:category], params[:points])
+    end
+
+    def getNumberOfTimesActionPerformed
+      if @action_of_the_month.nil?
+        @action_of_the_month_number_of_times_completed = nil
+      else
+        @action_of_the_month_number_of_times_completed = UserClimateAction.where(climate_action_id: @action_of_the_month.id).count
+      end
+    end
     # GET /climate_actions/1 or /climate_actions/1.json
     def show
 
@@ -29,6 +92,7 @@ module Admin
       @climate_action = ClimateAction.new(climate_action_params)
       respond_to do |format|
         if @climate_action.save
+          checkMonthlyMailUpdate(@climate_action.id)
           format.html { redirect_to [:admin, @climate_action], notice: "Climate action was successfully created." }
           format.json { render :show, status: :created, location: @climate_action }
         else
@@ -42,6 +106,7 @@ module Admin
     def update
       respond_to do |format|
         if @climate_action.update(climate_action_params)
+          checkMonthlyMailUpdate(@climate_action.id)
           format.html { redirect_to [:admin, @climate_action], notice: "Climate action was successfully updated." }
           format.json { render :show, status: :ok, location: @climate_action }
         else
@@ -50,6 +115,13 @@ module Admin
         end
       end
     end
+
+    #Set all other actions to action_of_the_month false so no duplicates
+    def checkMonthlyMailUpdate(id)
+      if ClimateAction.where(action_of_the_month: true).count > 1
+        ClimateAction.where.not(id: id).update_all(action_of_the_month: false)
+      end
+    end 
 
     # DELETE /climate_actions/1 or /climate_actions/1.json
     def destroy
@@ -71,4 +143,5 @@ module Admin
         params.require(:climate_action).permit(:id, :name, :description, :points, :repeatable, :action_of_the_month, :climate_action_category_id)
       end
   end
+
 end
