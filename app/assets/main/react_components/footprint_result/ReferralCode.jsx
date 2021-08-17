@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
-
+     
 /**
  * React component for refferal code field in signup
  */
 const RefferalCode = () => {
+
+    const [errorMessage, setErrorMessage] = useState("");
     const [inputValue, setInputValue] = useState("");
     function submit(){
         const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
@@ -18,6 +20,14 @@ const RefferalCode = () => {
             body: JSON.stringify({"code": inputValue})
           };
           fetch(URL, requestOptions)
+          .then((res) => {
+            console.log("RES", res);
+            if (res.status === 404) {
+                setErrorMessage("That's not right, try again");
+            } else {
+                setErrorMessage("");
+            }
+          })
       }
     
     return (
@@ -35,7 +45,7 @@ const RefferalCode = () => {
                     <input size="auto" className="input w-full flex-grow mr-2" placeholder="Referral code" type="text" name="code" id="code" onChange={e => setInputValue(e.target.value)}/> 
                     <input type="submit" name="commit" value="OK" className="button" onClick={() => submit()}/> 
                 </div>
-                <p className="text-orange-shade-1 mt-1" data-target="registrations--referral-code.errorMessage"></p>
+                <p className="text-orange-shade-1 mt-1">{errorMessage}</p>
             </form> 
         </div>
     )
