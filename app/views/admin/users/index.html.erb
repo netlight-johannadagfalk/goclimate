@@ -33,7 +33,7 @@
               <td><%= user.id %></td>
               <td><%= user.email %></td>
               <td><%= user.subscription_price || 'None' %></td>
-              <td><%= user.current_lifestyle_footprint.total.tonnes.round(1) %> tonnes</td>
+              <td><%= user.current_lifestyle_footprint&.total.tonnes.round(1) %> tonnes</td>
               <td class="whitespace-nowrap">
                 <%= link_to 'Show', [:admin, user], class: 'link-ui text-green-shade-2' %> &nbsp;
               </td>
