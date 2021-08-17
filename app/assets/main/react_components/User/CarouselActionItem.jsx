@@ -12,7 +12,6 @@ const CarouselActionItem = ({
     updateLocalAccepted(action.id);
     updateAccepted(action);
   };
-
   //FUNCTION WHERE USER ACCEPT AN ACTION IN DB -> MOVES TO ACCEPTED
   const updateAccepted = (action) => {
     const actionID = action.id;
@@ -37,10 +36,9 @@ const CarouselActionItem = ({
       .then((json) => addAcceptedAction(action, json))
       .catch((e) => console.log(e));
   };
-
   return (
-    <div className="callout shadow-none  min-h-full p-2 ml-2 mr-2 justify-center">
-      <div className="flex flex-1 flex-col justify-center">
+    <div className={action.action_of_the_month ? "callout border-8 shadow-none min-h-full  p-2 ml-2 mr-2 justify-center" : "callout shadow-none min-h-full p-2 ml-2 mr-2 justify-center"} >
+      < div className="flex flex-1 flex-col justify-center">
         <div className="flex flex-1/4 justify-center">
           <h4
             className="text-base font-bold "
@@ -80,7 +78,7 @@ const CarouselActionItem = ({
           )}
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
