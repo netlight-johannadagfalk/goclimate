@@ -33,7 +33,7 @@ const OptionNumerical = ({ onAnswerGiven, isCarOption, savedValue, onNumericalIn
 
   return (
     <div className="flex flex-col m-lg:flex-row" >
-      <label className="input mb-3 m-lg:mb-0 m-lg:mr-3 flex">
+      <label className="input mb-3 m-lg:mb-0 m-lg:mr-3 flex m-lg:w-1/3">
         <input autoFocus type="text" min="0" pattern="[0-9]+[.,]?[0-9]*" max="2147483647" size="7" className="flex-1" 
           value={value}
           onKeyPress = {(e) => onKeyPress(e)} 
@@ -43,11 +43,13 @@ const OptionNumerical = ({ onAnswerGiven, isCarOption, savedValue, onNumericalIn
       </label>
       <AnswerButton 
         label="Next"
-        disableOnClick={!isCarOption}
         onAnswerGiven={onAnswer}
+        disableOnClick={!isCarOption}
+        stylingClasses={"m-lg:w-2/3"}
       />
     </div>
   )
 }
 
 export default OptionNumerical;
+
