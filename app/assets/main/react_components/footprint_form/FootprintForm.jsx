@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import OptionList from './OptionList.jsx';
 import Title from './Title.jsx';
 import OptionNumerical from './OptionNumerical.jsx';
@@ -11,15 +11,31 @@ import ProgressBar from './ProgressBar.jsx';
  */
 const FootprintForm = ({ calculator, questions, options, footprint }) => {
 
-  const order = ["region", "home", "home_area", "heating", "green_electricity", "food", "shopping", "car_type", "car_distance", "flight_hours"]
-  const categories = {"region": "home", "home": "home", "home-area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane"}
+  const [questionCategories] = useState({"region": "home", "home": "home", "home_area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane"});
+  const questionKeys = Object.keys(questionCategories)
   const numericalKeys = ["car_distance", "flight_hours"]
-  const firstQuestionKey = order.find((category) => calculator[category.concat("_options")]);
-  const firstQuestionIndex = order.indexOf((firstQuestionKey));
+  const firstQuestionKey = questionKeys.find((category) => calculator[category.concat("_options")]);
+  const firstQuestionIndex = questionKeys.indexOf((firstQuestionKey));
   const [currentQuestion, setCurrentQuestion] = useState(questions[firstQuestionKey]);
   const [currentOptions, setCurrentOptions] = useState(getOptions(firstQuestionKey));
-  let questionIndex = order.indexOf(Object.keys(questions).find((key) => questions[key] == currentQuestion));
+  let questionIndex = questionKeys.indexOf(Object.keys(questions).find((key) => questions[key] == currentQuestion));
   const [category, setCategory] = useState("home")
+
+  function isQuestionUsed(questionKey){
+    const calculatorKeyForOptions = questionKey.concat("_options")
+    return !(calculator[calculatorKeyForOptions] == null)
+  }
+
+  /**
+   * Takes the questions from questionCategories and removes questions not used for the specified country
+   */
+  function removeIrrelevantQuestions(){
+      for (const key in questionCategories){
+        if(!isQuestionUsed(key) && !numericalKeys.includes(key)){
+          delete questionCategories[key]
+        }
+      }   
+  }
 
   /** 
    * Is to find if a question option key exists in calculator. 
@@ -37,6 +53,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
    * Returns a [key, value] pair list with all options to use
    */
   function getOptions(questionKey){
+    removeIrrelevantQuestions()
     if(numericalKeys.includes(questionKey)){
       if(questionKey === "car_distance"){
         return {
@@ -60,28 +77,14 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     }
   }
 
+  /**
+   * Sets question text, options to show and the current category
+   */
   function setQuestion(){
-    let key = order[questionIndex]
+    let key = questionKeys[questionIndex]
     setCurrentQuestion(questions[key]);
     setCurrentOptions(getOptions(key));
-    setCategory(categories[key])
-  }
-
-  /**
-   * When an answer is given to a question, save result and increase the index
-   */
-  function onAnswerGiven(givenAnswer){
-    saveAnswer(givenAnswer);
-    //if last question
-    if(questionIndex == -1){
-      submit();
-    } else {
-      if (order[questionIndex-1] === "car_type" && givenAnswer === "no_car" ){
-        saveAnswer("");
-        increaseIndex();
-      }
-      setQuestion();
-    }
+    setCategory(questionCategories[key])
   }
 
   /**
@@ -125,10 +128,10 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
    * Does some checks and saves to the footprint object 
    */
   function saveAnswer(givenAnswer) {
-    if (order[questionIndex] === "car_distance"){
-      footprint[order[questionIndex].concat("_week_answer")] = givenAnswer
+    if (questionKeys[questionIndex] === "car_distance"){
+      footprint[questionKeys[questionIndex].concat("_week_answer")] = givenAnswer
     } else {
-      footprint[order[questionIndex].concat("_answer")] = givenAnswer
+      footprint[questionKeys[questionIndex].concat("_answer")] = givenAnswer
     }
   }
 
@@ -137,14 +140,14 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
    * Increases with at least 1, but if next question is not to be used, the index increases again
    */
   function increaseIndex(){
-    if(order[questionIndex] == "flight_hours"){
+    if(questionKeys[questionIndex] == "flight_hours"){
       questionIndex = -1;
     }
     else {
       do{
         questionIndex++;
-      } while(calculator[(order[questionIndex]).concat("_options")] !== undefined 
-        && !calculator[(order[questionIndex]).concat("_options")]);    
+      } while(calculator[(questionKeys[questionIndex]).concat("_options")] !== undefined 
+        && !calculator[(questionKeys[questionIndex]).concat("_options")]);    
       }
   }
   
@@ -158,12 +161,19 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     else {
       do{
         questionIndex--;
-      } while(calculator[(order[questionIndex]).concat("_options")] !== undefined 
-      && !calculator[(order[questionIndex]).concat("_options")]);    
+      } while(calculator[(questionKeys[questionIndex]).concat("_options")] !== undefined 
+      && !calculator[(questionKeys[questionIndex]).concat("_options")]);    
     }
   }
 
 
+  /**
+   * Called on go back-button, loads the previous question by decreasing index and setting the question and options
+   */
+   function onGoBack(){
+    decreaseIndex()
+    setQuestion()
+  }
 
   /**
    * Called when the answer to a question is given, saves the result and loads the next question
@@ -174,29 +184,23 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
     if(questionIndex == -1){
       submit();
     } else {
-      if (order[questionIndex-1] === "car_type" && givenAnswer === "no_car" ){
+      if (questionKeys[questionIndex-1] === "car_type" && givenAnswer === "no_car" ){
         saveAnswer("");
-      }
+        increaseIndex();
+        delete questionCategories["car_distance"]      }
       setQuestion();
     }
   }
 
-  /**
-   * Called on go back-button, loads the previous question by decreasing index and setting the question and options
-   */
-  function onGoBack(){
-    decreaseIndex()
-    setQuestion()
-  }
 
   return (
       <form action="/calculator" acceptCharset="UTF-8" method="post" onSubmit={e => { e.preventDefault(); }}>
-        <ProgressBar calculator={calculator} active_category={category}/>
         <div className="question py-8" data-target="lifestyle-footprints--calculator.question" data-category="home">
+          <ProgressBar questionCategories={questionCategories} calculator={calculator} activeCategory={category} activeQuestion={questionKeys[questionIndex]}/>
           <Title text={currentQuestion}/>
           {
             !currentOptions.isNumerical ? 
-              <OptionList selectedKey={footprint[order[questionIndex].concat("_answer")]} onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} options={currentOptions.options}/>
+              <OptionList selectedKey={footprint[questionKeys[questionIndex].concat("_answer")]} onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} options={currentOptions.options}/>
             :
               <OptionNumerical onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} isCarOption={currentOptions.isCarOption}/>
           }
