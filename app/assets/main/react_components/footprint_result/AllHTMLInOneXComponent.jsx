@@ -63,22 +63,22 @@ const AllHTMLInOneXComponent = () => {
                                         <div className="h-px w-full bg-gray-tint-2 hidden"></div>
 
                                         <div data-target="registrations--membership-choice.subscriptionInfo" data-inactive-class="hidden">
-                                        <div className="mt-3 collapse">
-                                            <input type="checkbox" id="enter_referral_code" data-target="registrations--referral-code.formPresentedCheckbox" className="hidden"/>
-                                            <div data-target="registrations--referral-code.codeActiveInfo" className="hidden" data-inactive-class="hidden">
-                                            <p className="text-center text-sm">Referral code: <strong data-target="registrations--referral-code.activeCode" className="mr-1"></strong> <label for="enter_referral_code" className="link cursor-pointer">Change</label></p>
+                                            <div className="mt-3 collapse">
+                                                <input type="checkbox" id="enter_referral_code" data-target="registrations--referral-code.formPresentedCheckbox" className="hidden"/>
+                                                <div data-target="registrations--referral-code.codeActiveInfo" className="hidden" data-inactive-class="hidden">
+                                                <p className="text-center text-sm">Referral code: <strong data-target="registrations--referral-code.activeCode" className="mr-1"></strong> <label for="enter_referral_code" className="link cursor-pointer">Change</label></p>
+                                                </div>
+                                                <div data-target="registrations--referral-code.noCodeActiveInfo" data-inactive-class="hidden">
+                                                <p className="text-center text-sm"><label htmlFor="enter_referral_code" className="link cursor-pointer">Have a referral code?</label></p>
+                                                </div>
+                                                <form className="collapse-content mt-3" data-target="registrations--referral-code.form" data-action="registrations--referral-code#submit" action="/referral-codes/lookup" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="QSf6Ic8fXagDW2T7YQ73TB3rgHeNdUfQh7kVSb0XOM+onZmWWWqcfOe0kCvf10S/FXZE5M/+CXu2qYazqz8kYQ=="/>
+                                                <div className="flex">
+                                                    <input size="auto" className="input w-full flex-grow mr-2" placeholder="Referral code" type="text" name="code" id="code"/>
+                                                    <input type="submit" name="commit" value="OK" className="button"/>
+                                                </div>
+                                                <p className="text-orange-shade-1 mt-1" data-target="registrations--referral-code.errorMessage"></p>
+                                                </form>          
                                             </div>
-                                            <div data-target="registrations--referral-code.noCodeActiveInfo" data-inactive-class="hidden">
-                                            <p className="text-center text-sm"><label htmlFor="enter_referral_code" className="link cursor-pointer">Have a referral code?</label></p>
-                                            </div>
-                                            <form className="collapse-content mt-3" data-target="registrations--referral-code.form" data-action="registrations--referral-code#submit" action="/referral-codes/lookup" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="QSf6Ic8fXagDW2T7YQ73TB3rgHeNdUfQh7kVSb0XOM+onZmWWWqcfOe0kCvf10S/FXZE5M/+CXu2qYazqz8kYQ=="/>
-                                            <div className="flex">
-                                                <input size="auto" className="input w-full flex-grow mr-2" placeholder="Referral code" type="text" name="code" id="code"/>
-                                                <input type="submit" name="commit" value="OK" className="button"/>
-                                            </div>
-                                            <p className="text-orange-shade-1 mt-1" data-target="registrations--referral-code.errorMessage"></p>
-                                            </form>          
-                                        </div>
 
                                         <div className="py-6 space-y-1">
                                             <p className="heading-lg text-center">

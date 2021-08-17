@@ -1,5 +1,6 @@
 import React from 'react';
 import MembershipTypeChooser from './MembershipTypeChooser.jsx';
+import RefferalCode from './ReferralCode.jsx';
 
 /**
  * React container for Sign up components
@@ -23,7 +24,13 @@ const SignUpContainer = () => {
                         <div className="toggler-checked:hidden">
                             <div className="space-y-3">
                                 <div className="h-px w-full bg-gray-tint-2 hidden"></div>
-                                <MembershipTypeChooser/>
+                                    <MembershipTypeChooser/>
+                                <div className="h-px w-full bg-gray-tint-2 hidden"></div>
+                                {/* Added code under */}
+                                <div data-target="registrations--membership-choice.subscriptionInfo" data-inactive-class="hidden">
+                                    <RefferalCode/>
+                                </div>
+
                             </div>
                         </div>
                     </div>
