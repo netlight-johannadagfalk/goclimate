@@ -1,39 +1,57 @@
-<%= render 'admin/shared/notice_banner' %>
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
 
-<h1 class="heading-lg">User</h1>
+  <h1 class="heading-lg">User</h1>
 
-<dl class="dl-horizontal">
-  <dt>Id:</dt>
-  <dd><%= @user.id %></dd>
-  <dt>Email:</dt>
-  <dd><%= @user.email %></dd>
-  <dt>Created:</dt>
-  <dd><%= time_tag(@user.created_at) %></dd>
-  <dt>Last login:</dt>
-  <dd><%= time_tag(@user.last_sign_in_at) %></dd>
-  <hr class="my-1">
-  <dt>Active subscription:</dt>
-  <dd><%= @user.active_subscription? %></dd>
-  <dt>1st subscription date:</dt>
-  <dd><%= time_tag(@user.first_subscription_created_at) if @user.first_subscription_created_at.present? %></dd>
-  <dt>Subscription price:</dt>
-  <dd><%= @user.subscription_price || 'No subscription' %></dd>
-  <dt>Subscription currency:</dt>
-  <dd><%= @user.subscription_currency || 'No subscription' %></dd>
-  <dt>Current footprint:</dt>
-  <dd><%= @user.current_lifestyle_footprint.total.tonnes.round(1) %> tonnes</dd>
-  <dt>Footprint coverage:</dt>
-  <dd><%= @user.footprint_coverage || 0 %>%</dd>
-  <hr class="my-1">
-  <dt>User name:</dt>
-  <dd><%= @user.user_name || '-' %></dd>
-  <dt>Country:</dt>
-  <dd><%= @user.country || '-' %></dd>
-  <dt>Region:</dt>
-  <dd><%= @user.region&.name || '-' %></dd>
-  <hr class="my-1">
-  <dt>Referred from:</dt>
-  <dd><%= @user.referred_from_id || '-' %></dd>
-</dl>
+  <dl class="dl-horizontal">
+    <dt>Id:</dt>
+    <dd><%= @user.id %></dd>
+    <dt>Email:</dt>
+    <dd><%= @user.email %></dd>
+    <dt>Created:</dt>
+    <dd><%= time_tag(@user.created_at) %></dd>
+    <dt>Last login:</dt>
+    <dd><%= time_tag(@user.last_sign_in_at) %></dd>
 
-<%= link_to 'Back', admin_users_path, class: 'link' %>
+    <hr class="my-1">
+
+    <dt>Current footprint:</dt>
+    <dd>
+      <%= link_to "#{@user.current_lifestyle_footprint&.total.tonnes.round(1)} tonnes", admin_lifestyle_footprint_path(@user.current_lifestyle_footprint.id), class: 'link-ui text-green-shade-2' %>
+    </dd>
+    <dt>Total footprints:</dt>
+    <dd>
+      <%= @total_number_of_footprints %>
+      <% if @total_number_of_footprints > 1 %>
+       (<%= link_to 'View all', admin_lifestyle_footprints_path(user_id: @user.id), class: 'link-ui text-green-shade-2' %>)
+      <% end %>
+    </dd>
+
+    <hr class="my-1">
+
+    <dt>Active subscription:</dt>
+    <dd><%= @user.active_subscription? %></dd>
+    <dt>1st subscription date:</dt>
+    <dd><%= time_tag(@user.first_subscription_created_at) if @user.first_subscription_created_at.present? %></dd>
+    <dt>Subscription price:</dt>
+    <dd><%= @user.subscription_price || 'No subscription' %></dd>
+    <dt>Subscription currency:</dt>
+    <dd><%= @user.subscription_currency || 'No subscription' %></dd>
+    <dt>Footprint coverage:</dt>
+    <dd><%= @user.footprint_coverage || 0 %>%</dd>
+
+    <hr class="my-1">
+
+    <dt>User name:</dt>
+    <dd><%= @user.user_name || '-' %></dd>
+    <dt>Country:</dt>
+    <dd><%= @user.country || '-' %></dd>
+    <dt>Region:</dt>
+    <dd><%= @user.region&.name || '-' %></dd>
+
+    <hr class="my-1">
+
+    <dt>Referred from:</dt>
+    <dd><%= @user.referred_from_id || '-' %></dd>
+  </dl>
+</div>

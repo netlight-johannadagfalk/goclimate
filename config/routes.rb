@@ -247,6 +247,7 @@ Rails.application.routes.draw do
         post :search
       end
     end
+    resources :lifestyle_footprints, only: [:index, :show, :destroy]
   end
 
   # Errors
