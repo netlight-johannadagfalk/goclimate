@@ -187,13 +187,14 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
    * Returns actual value if back button has been used, meaning answer has been entered earlier
    */
   function getSavedValue(){
-    if(order[questionIndex] === "car_distance"){
-      if(footprint[order[questionIndex].concat("_week_answer")])
-        return footprint[order[questionIndex].concat("_week_answer")]
+    const questionKey = order[questionIndex];
+    if(questionKey === "car_distance"){
+      if(footprint[questionKey.concat("_week_answer")])
+        return footprint[questionKey.concat("_week_answer")]
       return ""
     }
-    if(footprint[order[questionIndex].concat("_answer")])
-      return footprint[order[questionIndex].concat("_answer")]
+    if(footprint[questionKey.concat("_answer")])
+      return footprint[questionKey.concat("_answer")]
     return ""
   }
 
