@@ -17,7 +17,7 @@ const ProgressBar= ({ questionCategories, activeCategory, activeQuestion }) => {
       reachedActiveCategory = reachedActiveCategory
       activeCategory == category ? reachedActiveCategory = true : reachedActiveCategory = reachedActiveCategory
         return (
-          <div>
+          <div key={category}>
             <div className={"rounded-full w-12 h-12 flex justify-center items-center box-content p-1 mb-2 border " + currentClass}>
               <div className={"fas fa-lg " + "fa-" + category}></div>
             </div>
@@ -29,10 +29,10 @@ const ProgressBar= ({ questionCategories, activeCategory, activeQuestion }) => {
                 if(reachedActiveCategory){
                   if(questionCategories[question] == category){
                     if(question == activeQuestion){
-                      return(<i className={"fa-circle text-green-accent text-sm block " + greenDot}/>)
+                      return(<i key={question} className={"fa-circle text-green-accent text-sm block " + greenDot}/>)
                     }
                     else{
-                      return(<i className={"fa-circle text-green-accent text-sm block " + grayDot}/>) 
+                      return(<i key={question} className={"fa-circle text-green-accent text-sm block " + grayDot}/>) 
                     }
                   }
                 }
