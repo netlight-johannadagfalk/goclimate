@@ -3,12 +3,17 @@ import CarouselContainer from "./CarouselContainer.jsx";
 import KanbanActionContainer from "./KanbanActionContainer.jsx";
 import CarouselActionItem from "./CarouselActionItem.jsx";
 
-const ClimateActionsContainer = ({ user, userActions, actionsWithUserActions, actionsWithoutUserActions }) => {
+const ClimateActionsContainer = ({
+  user,
+  userActions,
+  actionsWithUserActions,
+  actionsWithoutUserActions,
+}) => {
   const [totUserActions, setTotUserActions] = useState(JSON.parse(userActions));
   const [deletedAction, setDeletedAction] = useState(null);
 
   const addAcceptedAction = (action, userAction) => {
-    setDeletedAction(null)
+    setDeletedAction(null);
     const temp = {
       id: userAction.id,
       name: action.name,
@@ -17,14 +22,19 @@ const ClimateActionsContainer = ({ user, userActions, actionsWithUserActions, ac
       status: userAction.status,
       user_id: userAction.user_id,
     };
-    const localVar = [...totUserActions, temp]
-    setTotUserActions(localVar)
-    setColumns(columnUserActions(acceptedUserActions(localVar), doneUserActions(localVar)))
+    const localVar = [...totUserActions, temp];
+    setTotUserActions(localVar);
+    setColumns(
+      columnUserActions(
+        acceptedUserActions(localVar),
+        doneUserActions(localVar)
+      )
+    );
   };
 
   const setLocalAccepted = (updatedList, performed, deletedAction) => {
-    setTotUserActions([...updatedList, ...performed])
-    setColumns(columnUserActions(updatedList, performed))
+    setTotUserActions([...updatedList, ...performed]);
+    setColumns(columnUserActions(updatedList, performed));
     setDeletedAction(deletedAction);
   };
   //******************************************************* */
@@ -34,18 +44,18 @@ const ClimateActionsContainer = ({ user, userActions, actionsWithUserActions, ac
       ...userActions,
       id: userActions.id.toString(),
     }));
-  }
+  };
 
   const acceptedUserActions = (inVal) => {
     return formatedUserActions(inVal)
       .filter((action) => action.status !== true)
       .map((action) => ({ ...action }));
-  }
+  };
   const doneUserActions = (inVal) => {
     return formatedUserActions(inVal)
       .filter((action) => action.status !== false)
       .map((action) => ({ ...action }));
-  }
+  };
 
   const columnUserActions = (acceptedList, doneActions) => {
     return {
@@ -62,21 +72,26 @@ const ClimateActionsContainer = ({ user, userActions, actionsWithUserActions, ac
     };
   };
   const [columns, setColumns] = useState(
-    columnUserActions(acceptedUserActions(totUserActions), doneUserActions(totUserActions))
+    columnUserActions(
+      acceptedUserActions(totUserActions),
+      doneUserActions(totUserActions)
+    )
   );
   //******************************************************* */
 
-  const localActionsWithUserActions = JSON.parse(actionsWithUserActions).map((action) => ({
-    ...action,
-    accepted: true,
-  }));
-
-  const localActionsWithoutUserActions = JSON.parse(actionsWithoutUserActions).map(
+  const localActionsWithUserActions = JSON.parse(actionsWithUserActions).map(
     (action) => ({
       ...action,
-      accepted: false,
+      accepted: true,
     })
   );
+
+  const localActionsWithoutUserActions = JSON.parse(
+    actionsWithoutUserActions
+  ).map((action) => ({
+    ...action,
+    accepted: false,
+  }));
 
   const totClimateActions = [
     ...localActionsWithoutUserActions,
@@ -98,11 +113,12 @@ const ClimateActionsContainer = ({ user, userActions, actionsWithUserActions, ac
   };
 
   useEffect(() => {
-    deletedAction != null
-      && updateLocalAccepted(deletedAction);
+    deletedAction != null && updateLocalAccepted(deletedAction);
   }, [deletedAction]);
 
-  const monthlyAction = climateActionsUser.find((action) => action.action_of_the_month === true)
+  const monthlyAction = climateActionsUser.find(
+    (action) => action.action_of_the_month === true
+  );
 
   return (
     <>
