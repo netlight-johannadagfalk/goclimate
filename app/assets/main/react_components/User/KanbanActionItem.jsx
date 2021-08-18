@@ -1,7 +1,13 @@
-import React from "react";
-import { Draggable } from "react-beautiful-dnd";
+import React from 'react'
+import { Draggable } from 'react-beautiful-dnd'
 
-const KanbanActionItem = ({ item, index, handleDelete }) => {
+const KanbanActionItem = ({
+  item,
+  index,
+  handleDelete,
+  handlePerformed,
+  handleUnPerformed,
+}) => {
   return (
     <Draggable key={item.id} draggableId={item.id} index={index}>
       {(provided) => {
@@ -12,25 +18,40 @@ const KanbanActionItem = ({ item, index, handleDelete }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             style={{
-              userSelect: "none",
+              userSelect: 'none',
               padding: 16,
-              margin: "0 0 8px 0",
-              minHeight: "50px",
+              margin: '0 0 8px 0',
+              minHeight: '50px',
               ...provided.draggableProps.style,
             }}
           >
             {item.name}
-            {item.status === false && (
+            {item.status === false ? (
+              <div>
+                <button
+                  className="float-right fas fa-trash"
+                  onClick={() => handleDelete(item.id, item.climate_action_id)}
+                ></button>
+                <button
+                  className="button button-cta"
+                  onClick={() => handlePerformed(item)}
+                >
+                  Performed{' >'}
+                </button>
+              </div>
+            ) : (
               <button
-                className="float-right fas fa-trash"
-                onClick={() => handleDelete(item.id, item.climate_action_id)}
-              ></button>
+                className="button button-cta"
+                onClick={() => handleUnPerformed(item)}
+              >
+                Unperform{' <'}
+              </button>
             )}
           </div>
-        );
+        )
       }}
     </Draggable>
-  );
-};
+  )
+}
 
-export default KanbanActionItem;
+export default KanbanActionItem
