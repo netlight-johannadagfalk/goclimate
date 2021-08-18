@@ -14,7 +14,6 @@ const CarouselList = ({
   updateLocalAccepted,
   addAcceptedAction,
 }) => {
-
   return (
     <Carousel
       centerMode={true}

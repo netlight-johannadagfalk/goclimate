@@ -8,14 +8,14 @@ const CarouselCategoryButton = ({
   setAllCategories,
 }) => {
   const handleCategory = (categoryID) => {
-    categoryID != null ? y(categoryID) : x();
+    categoryID != null ? categoryClick(categoryID) : allCategoriesClick();
   };
 
-  const x = () => {
+  const allCategoriesClick = () => {
     setAllCategories(true);
     setCategory();
   };
-  const y = (categoryID) => {
+  const categoryClick = (categoryID) => {
     setCategory(categoryID);
     setAllCategories(false);
   };
