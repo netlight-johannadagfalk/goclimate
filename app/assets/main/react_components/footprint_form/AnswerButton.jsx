@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const AnswerButton = ({ onAnswerGiven, label, isSelected }) => {
-  let selectedClass = false
-  isSelected ? selectedClass = "button-cta " : selectedClass = ""
+const AnswerButton = ({ label, onAnswerGiven, disableOnClick = false, stylingClasses = "" }) => {
+  const [disabled, setDisabled] = useState(false);
 
   return (
     <>
-      <input required="required" className="toggler" type="radio" />
-      <label onClick={onAnswerGiven} className={"block button toggler-checked:hidden button flex-1 whitespace-pre-wrap " + selectedClass}>{label}</label>
+      <button disabled={disabled} className={"button whitespace-pre-wrap " + stylingClasses} 
+        onClick={() => {
+          if(disableOnClick)
+            setDisabled(true);
+          onAnswerGiven();
+        }}
+      >
+        {label}
+      </button>
     </>
   )
 }
-
 export default AnswerButton;

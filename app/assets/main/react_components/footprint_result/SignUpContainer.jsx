@@ -7,8 +7,7 @@ import SignUpTitle from './SignUpTitle.jsx';
 /**
  * React container for Sign up components
  */
-const SignUpContainer = ({ signUpText }) => {
-    console.log("teeext", signUpText)
+const SignUpContainer = ({ registrationsText }) => {
 
     return (
         <div className="relative pb-1">
@@ -17,7 +16,7 @@ const SignUpContainer = ({ signUpText }) => {
                     <a id="sign-up" className="absolute -mt-32"></a>
                     <div className="space-y-3" data-controller="registrations--price registrations--referral-code" data-target="registrations--membership-choice.priceControllerElement">
                         <SignUpTitle
-                            text={signUpText.sign_up_heading_test_2}
+                            text={registrationsText.sign_up_heading_test_2}
                         />
                         <SignUpMotivationText></SignUpMotivationText>
                         
