@@ -23,11 +23,7 @@ const CarouselCategoryButton = ({
   return (
     <>
       {active ? (
-        <button
-          className="button inline-block m-1 focus:outline-none"
-          disabled={true}
-          style={{ color: "rgba(28, 70, 55)" }}
-        >
+        <button className="button inline-block focus:outline-none m-1 bg-primary text-white">
           {" "}
           {categoryName}{" "}
         </button>

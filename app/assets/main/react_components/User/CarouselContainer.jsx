@@ -10,17 +10,9 @@ const CarouselContainer = ({
   addAcceptedAction,
   climateActionCategories,
   category,
-  setCategory
+  setCategory,
 }) => {
-
-
-//  const [render, setRender] = useState(true)
-//   useEffect( () => {
-//     setRender(!render)
-//   }, [category])
-
-  // const [category, setCategory] = useState(null);
-   const formatedCategories = JSON.parse(climateActionCategories);
+  const formatedCategories = JSON.parse(climateActionCategories);
   const [allCategories, setAllCategories] = useState(true);
 
   return (
