@@ -15,7 +15,7 @@ const Sidebar = () => {
     <ProSidebar
       collapsed={collapsed}
       width="500px"
-      className="fixed top-0 float-right h-full"
+      className="fixed top-20 float-right"
     >
       <Menu iconShape="square">
         <MenuItem icon={<FaGem />}>Dashboard</MenuItem>
@@ -25,7 +25,7 @@ const Sidebar = () => {
         </SubMenu>
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className={`float-left m-4 fas ${
+          className={`float-left ml-4 fas ${
             collapsed ? "fa-chevron-left" : "fa-chevron-right"
           }`}
         ></button>
