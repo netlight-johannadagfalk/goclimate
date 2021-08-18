@@ -122,7 +122,7 @@ const ClimateActionsContainer = ({
 
   return (
     <>
-      <div className="w-100 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2">
+      <div className="w-80 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2 justify-center">
         <h3 className="heading-lg mb-3">Action of the Month </h3>
         <CarouselActionItem
           action={monthlyAction}
