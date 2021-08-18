@@ -44,7 +44,7 @@ const CarouselActionItem = ({
           : "callout shadow-none min-h-full p-2 ml-2 mr-2 flex justify-center"
       }
     >
-      <div className="flex flex-col">
+      <div className="flex flex-col text-center">
         <div className="flex-1">
           <h4
             className="text-base font-bold justify-center"
