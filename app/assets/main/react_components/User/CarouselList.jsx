@@ -8,11 +8,24 @@ import CarouselActionItem from "./CarouselActionItem.jsx";
 // http://react-responsive-carousel.js.org/storybook/index.html?path=/story/01-basic--with-custom-status-arrows-and-indicators
 // http://react-responsive-carousel.js.org/storybook/?path=/story/02-advanced--with-external-controls
 
-const CarouselList = ({user, actionsWithUserActions, actionsWithoutUserActions, addAcceptedAction, deletedAction,}) => {
+const CarouselList = ({
+  user,
+  actionsWithUserActions,
+  actionsWithoutUserActions,
+  addAcceptedAction,
+  deletedAction,
+  category,
+}) => {
   useEffect(() => {
-    deletedAction != null
-      && updateLocalAccepted(deletedAction);
-  }, [deletedAction]);
+    const filteredActions = category
+      ? totClimateActions.filter(
+          (temp) => temp.climate_action_category_id === category
+        )
+      : totClimateActions;
+    setClimateActionsUser(filteredActions);
+
+    deletedAction != null && updateLocalAccepted(deletedAction);
+  }, [deletedAction, category]);
   const localActionsWithUserActions = actionsWithUserActions.map((action) => ({
     ...action,
     accepted: true,
@@ -23,6 +36,7 @@ const CarouselList = ({user, actionsWithUserActions, actionsWithoutUserActions, 
       accepted: false,
     })
   );
+
   const totClimateActions = [
     ...localActionsWithoutUserActions,
     ...localActionsWithUserActions,
