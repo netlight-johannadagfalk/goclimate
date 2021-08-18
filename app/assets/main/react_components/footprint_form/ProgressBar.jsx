@@ -23,7 +23,7 @@ const ProgressBar= ({ questionCategories, activeCategory, activeQuestion }) => {
             </div>
             {
             <div className="flex justify-center space-x-1 text-gray-shade-2 content-between text-sm text-gray-accent block">
-              {!reachedActiveCategory && <div className="text-green-accent block"><i className="fa fa-check-circle"></i></div>}
+              {!reachedActiveCategory && <div className="text-green-accent block"><i className="text-base fa fa-check-circle"></i></div>}
               {Object.keys(questionCategories).map((question) => 
               {
                 if(reachedActiveCategory){
