@@ -199,7 +199,7 @@ const FootprintForm = ({ calculator, questions, options, footprint, route }) => 
   }
 
   return (
-      <form action="/calculator" acceptCharset="UTF-8" method="post" onSubmit={e => { e.preventDefault(); }}>
+      <form action="/calculator" acceptCharset="UTF-8" method="post" >
         <div className="question py-8" data-target="lifestyle-footprints--calculator.question" data-category="home">
           <Title text={currentQuestion}/>
           {
