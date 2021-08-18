@@ -122,7 +122,12 @@ const ClimateActionsContainer = ({
 
   return (
     <>
-      <div className="w-100 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2">
+      <div
+        className="w-100 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2"
+        style={{
+          backgroundImage: `url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJrx-8bzDoGGZxJBOAcC0pBXbbTfizFRh8B5uMRGQRvYt9Y5GUelMb7SSc0_WNP6GL5Hc&usqp=CAU")`,
+        }}
+      >
         <h3 className="heading-lg mb-3">Action of the Month </h3>
         <CarouselActionItem
           action={monthlyAction}
