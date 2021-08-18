@@ -3,11 +3,11 @@ import React from 'react';
 /**
  * React container signup motivation text
  */
-const SignUpTitle = () => {
+const SignUpTitle = ({ text }) => {
 
     return (
         <h2 className="text-lg d:text-xl font-semibold text-center">
-            Sign up now! If we all contribute we can reach the goal together!
+            {text} 
         </h2>
     )
 }
