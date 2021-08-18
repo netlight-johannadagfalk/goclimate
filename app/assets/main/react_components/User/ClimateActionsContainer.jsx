@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CarouselContainer from "./CarouselContainer.jsx";
 import KanbanActionContainer from "./KanbanActionContainer.jsx";
+import Sidebar from "./Sidebar.jsx";
 
 const ClimateActionsContainer = ({user, userActions, actionsWithUserActions, actionsWithoutUserActions,}) => {
   const [totUserActions, setTotUserActions] = useState(JSON.parse(userActions));
@@ -64,6 +65,8 @@ const ClimateActionsContainer = ({user, userActions, actionsWithUserActions, act
    //******************************************************* */
   return (
     <>
+      <Sidebar/>
+
       <CarouselContainer
         user={user}
         actionsWithUserActions={JSON.parse(actionsWithUserActions)}
