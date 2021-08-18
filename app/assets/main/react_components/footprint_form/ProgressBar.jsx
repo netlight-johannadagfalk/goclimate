@@ -4,8 +4,8 @@ const ProgressBar= ({ questionCategories, activeCategory, activeQuestion }) => {
   const categories = ["home", "utensils", "shopping-bag", "car", "plane"]
   const inactiveCategoryClass = "border-gray-tint-2"
   const activeCategoryClass = "border-green-tint-1 bg-green-tint-1 text-primary"
-  const greenDot = "fas text-green-accent"
-  const grayDot = "far text-gray-accent"
+  const greenDotClass = "fas text-green-accent"
+  const grayDotClass = "far text-gray-accent"
   let currentClass = ""
   let reachedActiveCategory = false
 
@@ -14,7 +14,6 @@ const ProgressBar= ({ questionCategories, activeCategory, activeQuestion }) => {
     <div className="flex justify-center space-x-3 m-lg:space-x-6 text-gray-shade-2" >
     {categories.map((category) => {
       activeCategory == category ? currentClass = activeCategoryClass : currentClass = inactiveCategoryClass 
-      reachedActiveCategory = reachedActiveCategory
       activeCategory == category ? reachedActiveCategory = true : reachedActiveCategory = reachedActiveCategory
         return (
           <div key={category}>
@@ -29,10 +28,10 @@ const ProgressBar= ({ questionCategories, activeCategory, activeQuestion }) => {
                 if(reachedActiveCategory){
                   if(questionCategories[question] == category){
                     if(question == activeQuestion){
-                      return(<i key={question} className={"fa-circle text-green-accent text-sm block " + greenDot}/>)
+                      return(<i key={question} className={"fa-circle text-sm block " + greenDotClass}/>)
                     }
                     else{
-                      return(<i key={question} className={"fa-circle text-green-accent text-sm block " + grayDot}/>) 
+                      return(<i key={question} className={"fa-circle text-sm block " + grayDotClass}/>) 
                     }
                   }
                 }

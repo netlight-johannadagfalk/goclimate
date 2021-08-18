@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import OptionList from './OptionList.jsx';
 import Title from './Title.jsx';
 import OptionNumerical from './OptionNumerical.jsx';
@@ -9,17 +9,18 @@ import ProgressBar from './ProgressBar.jsx';
  * in the form as well as show the current question on the form-page, one at the time. 
  * It also has the responsibility to store the answeres filled in by the user by changing the footprint object.
  */
-const FootprintForm = ({ calculator, questions, options, footprint }) => {
+const FootprintForm = ({ calculator, questionStrings, options, footprint }) => {
 
-  const [questionCategories] = useState({"region": "home", "home": "home", "home_area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane"});
+  const questionCategories = {"region": "home", "home": "home", "home_area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane"};
   const questionKeys = Object.keys(questionCategories)
   const numericalKeys = ["car_distance", "flight_hours"]
-  const firstQuestionKey = questionKeys.find((category) => calculator[category.concat("_options")]);
+  const firstQuestionKey = questionKeys.find((question) => calculator[question.concat("_options")]);
   const firstQuestionIndex = questionKeys.indexOf((firstQuestionKey));
-  const [currentQuestion, setCurrentQuestion] = useState(questions[firstQuestionKey]);
+  const [currentQuestionString, setcurrentQuestionString] = useState(questionStrings[firstQuestionKey]);
   const [currentOptions, setCurrentOptions] = useState(getOptions(firstQuestionKey));
-  let questionIndex = questionKeys.indexOf(Object.keys(questions).find((key) => questions[key] == currentQuestion));
+  let questionIndex = questionKeys.indexOf(Object.keys(questionStrings).find((key) => questionStrings[key] == currentQuestionString));
   const [category, setCategory] = useState("home")
+
 
   function isQuestionUsed(questionKey){
     const calculatorKeyForOptions = questionKey.concat("_options")
@@ -30,9 +31,9 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
    * Takes the questions from questionCategories and removes questions not used for the specified country
    */
   function removeIrrelevantQuestions(){
-      for (const key in questionCategories){
-        if(!isQuestionUsed(key) && !numericalKeys.includes(key)){
-          delete questionCategories[key]
+      for (const question in questionCategories){
+        if(!isQuestionUsed(question) && !numericalKeys.includes(question)){
+          delete questionCategories[question]
         }
       }   
   }
@@ -82,7 +83,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
    */
   function setQuestion(){
     let key = questionKeys[questionIndex]
-    setCurrentQuestion(questions[key]);
+    setcurrentQuestionString(questionStrings[key]);
     setCurrentOptions(getOptions(key));
     setCategory(questionCategories[key])
   }
@@ -169,7 +170,7 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   /**
    * Called on go back-button, loads the previous question by decreasing index and setting the question and options
    */
-   function onGoBack(){
+  function onGoBack(){
     decreaseIndex()
     setQuestion()
   }
@@ -210,8 +211,12 @@ const FootprintForm = ({ calculator, questions, options, footprint }) => {
   return (
       <form action="/calculator" acceptCharset="UTF-8" method="post" onSubmit={e => { e.preventDefault(); }}>
         <div className="question py-8" data-target="lifestyle-footprints--calculator.question" data-category="home">
-          <ProgressBar questionCategories={questionCategories} calculator={calculator} activeCategory={category} activeQuestion={questionKeys[questionIndex]}/>
-          <Title text={currentQuestion}/>
+          <ProgressBar 
+            questionCategories={questionCategories} 
+            calculator={calculator} 
+            activeCategory={category} 
+            activeQuestion={questionKeys[questionIndex]}/>
+          <Title text={currentQuestionString}/>
           {
             !currentOptions.isNumerical ? 
               <OptionList 
