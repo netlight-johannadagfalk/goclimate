@@ -6,8 +6,7 @@ const KanbanActionColumn = ({
   column,
   columnId,
   handleDelete,
-  handlePerformed,
-  handleUnPerformed,
+  handlePerformance,
 }) => {
   return (
     <div key={columnId}>
@@ -31,8 +30,7 @@ const KanbanActionColumn = ({
                     index={index}
                     key={item.id}
                     handleDelete={handleDelete}
-                    handlePerformed={handlePerformed}
-                    handleUnPerformed={handleUnPerformed}
+                    handlePerformance={handlePerformance}
                   />
                 )
               })}

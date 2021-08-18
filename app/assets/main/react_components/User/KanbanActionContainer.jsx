@@ -56,60 +56,60 @@ const KanbanActionContainer = ({
       .catch((error) => console.warn(error))
   }
 
-  const handlePerformed = (theItem) => {
-    const sourceColumn = columns[1]
-    const destColumn = columns[2]
-    const sourceItems = [...sourceColumn.items]
-    const destItems = [...destColumn.items]
-    const sourceIndex = sourceItems.indexOf(theItem)
-    const destIndex = destItems.length
-    const [removed] = sourceItems.splice(sourceIndex, 1)
-    destItems.splice(destIndex, 0, removed)
-    setTotUserActions([...sourceItems, ...destItems])
-    const newDestItems = destItems.map((item) =>
-      item.status === false ? { ...item, status: !item.status } : item,
-    )
-    setTotUserActions([...sourceItems, ...newDestItems])
-    setColumns({
-      ...columns,
-      [1]: {
-        ...sourceColumn,
-        items: sourceItems,
-      },
-      [2]: {
-        ...destColumn,
-        items: newDestItems,
-      },
-    })
-    updateStatus(theItem.id, true)
-  }
-
-  const handleUnPerformed = (theItem) => {
-    const sourceColumn = columns[2]
-    const destColumn = columns[1]
-    const sourceItems = [...sourceColumn.items]
-    const destItems = [...destColumn.items]
-    const sourceIndex = sourceItems.indexOf(theItem)
-    const destIndex = destItems.length
-    const [removed] = sourceItems.splice(sourceIndex, 1)
-    destItems.splice(destIndex, 0, removed)
-    setTotUserActions([...sourceItems, ...destItems])
-    const newDestItems = destItems.map((item) =>
-      item.status === true ? { ...item, status: !item.status } : item,
-    )
-    setTotUserActions([...sourceItems, ...newDestItems])
-    setColumns({
-      ...columns,
-      [2]: {
-        ...sourceColumn,
-        items: sourceItems,
-      },
-      [1]: {
-        ...destColumn,
-        items: newDestItems,
-      },
-    })
-    updateStatus(theItem.id, false)
+  const handlePerformance = (theItem, perform) => {
+    if (perform) {
+      const sourceColumn = columns[1]
+      const destColumn = columns[2]
+      const sourceItems = [...sourceColumn.items]
+      const destItems = [...destColumn.items]
+      const sourceIndex = sourceItems.indexOf(theItem)
+      const destIndex = destItems.length
+      const [removed] = sourceItems.splice(sourceIndex, 1)
+      destItems.splice(destIndex, 0, removed)
+      setTotUserActions([...sourceItems, ...destItems])
+      const newDestItems = destItems.map((item) =>
+        item.status === false ? { ...item, status: !item.status } : item,
+      )
+      setTotUserActions([...sourceItems, ...newDestItems])
+      setColumns({
+        ...columns,
+        [1]: {
+          ...sourceColumn,
+          items: sourceItems,
+        },
+        [2]: {
+          ...destColumn,
+          items: newDestItems,
+        },
+      })
+      updateStatus(theItem.id, true)
+    } else {
+      const sourceColumn = columns[2]
+      const destColumn = columns[1]
+      const sourceItems = [...sourceColumn.items]
+      const destItems = [...destColumn.items]
+      const sourceIndex = sourceItems.indexOf(theItem)
+      const destIndex = destItems.length
+      const [removed] = sourceItems.splice(sourceIndex, 1)
+      destItems.splice(destIndex, 0, removed)
+      setTotUserActions([...sourceItems, ...destItems])
+      const newDestItems = destItems.map((item) =>
+        item.status === true ? { ...item, status: !item.status } : item,
+      )
+      setTotUserActions([...sourceItems, ...newDestItems])
+      setColumns({
+        ...columns,
+        [2]: {
+          ...sourceColumn,
+          items: sourceItems,
+        },
+        [1]: {
+          ...destColumn,
+          items: newDestItems,
+        },
+      })
+      updateStatus(theItem.id, false)
+    }
   }
 
   const onDragEnd = (result, columns, setColumns) => {
@@ -210,8 +210,7 @@ const KanbanActionContainer = ({
                   columnId={columnId}
                   key={columnId}
                   handleDelete={handleDelete}
-                  handlePerformed={handlePerformed}
-                  handleUnPerformed={handleUnPerformed}
+                  handlePerformance={handlePerformance}
                 />
               </div>
             </div>

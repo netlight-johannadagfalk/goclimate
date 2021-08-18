@@ -1,13 +1,7 @@
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 
-const KanbanActionItem = ({
-  item,
-  index,
-  handleDelete,
-  handlePerformed,
-  handleUnPerformed,
-}) => {
+const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
   return (
     <Draggable key={item.id} draggableId={item.id} index={index}>
       {(provided) => {
@@ -34,7 +28,7 @@ const KanbanActionItem = ({
                 ></button>
                 <button
                   className="button button-cta"
-                  onClick={() => handlePerformed(item)}
+                  onClick={() => handlePerformance(item, true)}
                 >
                   Performed{' >'}
                 </button>
@@ -42,7 +36,7 @@ const KanbanActionItem = ({
             ) : (
               <button
                 className="button button-cta"
-                onClick={() => handleUnPerformed(item)}
+                onClick={() => handlePerformance(item, false)}
               >
                 Unperform{' <'}
               </button>
