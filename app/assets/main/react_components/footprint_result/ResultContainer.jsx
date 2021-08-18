@@ -1,4 +1,5 @@
 import React from 'react';
+import ResultTitle from './ResultTitle.jsx';
 import WorldComparisonChart from './WorldComparisonChart.jsx';
 
 /**
@@ -7,9 +8,11 @@ import WorldComparisonChart from './WorldComparisonChart.jsx';
 const ResultContainer = ({ footprint, countryAverage, registrationsText, commonText, lang }) => {
 
     return (
-        <div className="pr-16">
             <div className="relative pb-1">
                 <div className="space-y-6">
+                    <ResultTitle
+                        title={JSON.parse(registrationsText).well_done}
+                    />
                     <WorldComparisonChart 
                         lang={lang}
                         footprint={JSON.parse(footprint)}
@@ -18,7 +21,6 @@ const ResultContainer = ({ footprint, countryAverage, registrationsText, commonT
                     />
                 </div>
             </div>
-        </div>
     )
 }
 
