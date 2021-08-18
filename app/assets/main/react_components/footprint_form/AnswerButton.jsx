@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-const AnswerButton = ({ onAnswerGiven, label, isSelected, disableOnClick = false }) => {
-  let selectedClass = isSelected ? "button-cta " : "";
+const AnswerButton = ({ label, onAnswerGiven, disableOnClick = false, stylingClasses = "" }) => {
   const [disabled, setDisabled] = useState(false);
 
   return (
     <>
-      <button disabled={disabled} className={"button w-full " + selectedClass} 
+      <button disabled={disabled} className={"button whitespace-pre-wrap " + stylingClasses} 
         onClick={() => {
           if(disableOnClick)
             setDisabled(true);
