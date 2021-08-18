@@ -9,8 +9,8 @@ const ResultBar = ({ title, width, value, color = "bg-primary", fontWeight = "",
                 <span className={fontWeight}>{title.text}</span>
             </div>
             <div className="flex-1 pr-24">
-                <div className={"relative h-5 m-lg:h-6 box-content " + (width > 0 ? "pr-2" : "")} style={{width: width + "%"}}>
-                    <div className={"w-full h-full rounded-r " + color}></div>
+                <div className={"relative h-5 m-lg:h-6 " + (width > 0 ? "box-content pr-2" : "")} style={{width: width + "%"}}>
+                    {width > 0 && <div className={"w-full h-full rounded-r " + color}></div>}
                     <span className="absolute left-100 top-1/2 w-24 transform -translate-y-1/2 leading-none">
                         <span className="font-bold">{value}</span>
                     </span>
