@@ -40,15 +40,14 @@ const CarouselActionItem = ({
     <div
       className={
         action.action_of_the_month
-          ? "callout border-8 shadow-none min-h-full  p-2 ml-2 mr-2 flex"
-          : "callout shadow-none min-h-full p-2 ml-2 mr-2 flex"
+          ? "callout border-8 shadow-none min-h-full p-2 ml-2 mr-2 flex justify-center"
+          : "callout shadow-none min-h-full p-2 ml-2 mr-2 flex justify-center"
       }
     >
       <div className="flex flex-col">
         <div className="flex-1">
-
           <h4
-            className="text-base font-bold "
+            className="text-base font-bold justify-center"
             style={{ color: "rgba(28, 70, 55, var(--tw-text-opacity))" }}
           >
             {action.name.length > 25
@@ -66,7 +65,7 @@ const CarouselActionItem = ({
         <div className="flex-1">
           <img src="earth.png" className=" flex"></img>
         </div>
-        <div className="flex-1"> 
+        <div className="flex-1">
           {action.accepted ? (
             <button
               className="button inline-block "
