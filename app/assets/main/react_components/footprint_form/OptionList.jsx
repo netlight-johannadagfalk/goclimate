@@ -13,9 +13,9 @@ const OptionList = ({ onAnswerGiven, options, selectedKey }) => {
           return (
             <div key={key} className="my-3 flex-1">
               <AnswerButton 
-                onAnswerGiven={() => onAnswerGiven(key)} 
-                isSelected={selectedKey==key}
                 label={value} 
+                onAnswerGiven={() => onAnswerGiven(key)} 
+                stylingClasses={(selectedKey == key && "button-cta") + " w-full"}
               />
             </div>
           )

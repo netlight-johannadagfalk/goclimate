@@ -9,7 +9,7 @@ import ProgressBar from './ProgressBar.jsx';
  * in the form as well as show the current question on the form-page, one at the time. 
  * It also has the responsibility to store the answeres filled in by the user by changing the footprint object.
  */
-const FootprintForm = ({ calculator, questionStrings, options, footprint }) => {
+const FootprintForm = ({ calculator, questionStrings, options, footprint, route }) => {
 
   const questionCategories = {"region": "home", "home": "home", "home_area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane"};
   const questionKeys = Object.keys(questionCategories)
@@ -110,7 +110,7 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint }) => {
     var cleanFootprint = removeNullAttributes(footprint)
     cleanFootprint.country = cleanFootprint.country.country_data_or_code;
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    const URL = "/calculator";
+    const URL = route;
     const requestOptions = {
         method: 'POST',
         credentials: 'include',
