@@ -8,39 +8,12 @@ import CarouselActionItem from "./CarouselActionItem.jsx";
 // http://react-responsive-carousel.js.org/storybook/index.html?path=/story/01-basic--with-custom-status-arrows-and-indicators
 // http://react-responsive-carousel.js.org/storybook/?path=/story/02-advanced--with-external-controls
 
-const CarouselList = ({user, actionsWithUserActions, actionsWithoutUserActions, addAcceptedAction, deletedAction,}) => {
-  useEffect(() => {
-    deletedAction != null
-      && updateLocalAccepted(deletedAction);
-  }, [deletedAction]);
-  const localActionsWithUserActions = actionsWithUserActions.map((action) => ({
-    ...action,
-    accepted: true,
-  }));
-  const localActionsWithoutUserActions = actionsWithoutUserActions.map(
-    (action) => ({
-      ...action,
-      accepted: false,
-    })
-  );
-  const totClimateActions = [
-    ...localActionsWithoutUserActions,
-    ...localActionsWithUserActions,
-  ];
-  const [climateActionsUser, setClimateActionsUser] = useState([
-    ...totClimateActions,
-  ]);
-
-  const updateLocalAccepted = (actionID) => {
-    setClimateActionsUser(
-      climateActionsUser.map((action) =>
-        action.id === actionID
-          ? { ...action, accepted: !action.accepted }
-          : action
-      )
-    );
-  };
-
+const CarouselList = ({
+  user,
+  climateActionsUser,
+  updateLocalAccepted,
+  addAcceptedAction,
+}) => {
   return (
     <Carousel
       centerMode={true}
@@ -79,7 +52,6 @@ const CarouselList = ({user, actionsWithUserActions, actionsWithoutUserActions, 
           action={action}
           key={action.id}
           user={user}
-          setClimateActionsUser={setClimateActionsUser}
           updateLocalAccepted={updateLocalAccepted}
           addAcceptedAction={addAcceptedAction}
         ></CarouselActionItem>
