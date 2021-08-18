@@ -6,7 +6,7 @@ import SelectButton from './SelectButton.jsx';
  */
 const MembershipTypeChooser = () => {
     const [selectedMembership, setSelectedMembership] = useState("single")
-
+    
     return (
         <form className="space-y-3" data-target="registrations--price.peopleForm" data-url="/users/sign_up" action="/users/sign_up" accept-charset="UTF-8" method="get">
             <input value="b3ec26a402c164dd2f8a78bf7e95841922cbb9bc" type="hidden" name="lifestyle_footprint" id="lifestyle_footprint"/>

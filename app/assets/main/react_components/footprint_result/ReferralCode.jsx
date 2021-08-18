@@ -7,6 +7,7 @@ const RefferalCode = () => {
 
     const [errorMessage, setErrorMessage] = useState("");
     const [inputValue, setInputValue] = useState("");
+
     function submit(){
         const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
         const URL = "/referral-codes/lookup";
@@ -21,7 +22,6 @@ const RefferalCode = () => {
           };
           fetch(URL, requestOptions)
           .then((res) => {
-            console.log("RES", res);
             if (res.status === 404) {
                 setErrorMessage("That's not right, try again");
             } else {
