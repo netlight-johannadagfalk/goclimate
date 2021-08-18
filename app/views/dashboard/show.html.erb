@@ -105,7 +105,9 @@
   user: @current_user.to_json(), 
   userActions: @get_all_user_climate_actions.to_json(), 
   actionsWithUserActions: @get_all_climate_actions_with_user_actions.to_json(),
-  actionsWithoutUserActions: @get_all_climate_actions_without_user_actions.to_json() %>
+  actionsWithoutUserActions: @get_all_climate_actions_without_user_actions.to_json(),
+  newProp: @new_prop.to_json()
+  %>
 
   <section class="section-padding">
     <div class="section-gutter t:flex t:flex-row">

@@ -2,9 +2,20 @@ import React, { useState } from "react";
 import CarouselContainer from "./CarouselContainer.jsx";
 import KanbanActionContainer from "./KanbanActionContainer.jsx";
 
-const ClimateActionsContainer = ({user, userActions, actionsWithUserActions, actionsWithoutUserActions,}) => {
+const ClimateActionsContainer = ({user, userActions, actionsWithUserActions, actionsWithoutUserActions, acceptedActions, newProp}) => {
   const [totUserActions, setTotUserActions] = useState(JSON.parse(userActions));
   const [deletedAction, setDeletedAction] = useState(null);
+  const [nProp, setNProp] = useState(JSON.parse(newProp));
+
+  console.log('User actions');
+  console.log(totUserActions);
+  console.log('New prop');
+  console.log(nProp);
+  console.log('Actions with user actions');
+  console.log(JSON.parse(actionsWithUserActions))
+  console.log('Actions without user actions');
+  console.log(JSON.parse(actionsWithoutUserActions))
+  
 
   const addAcceptedAction = (action, userAction) => {
     setDeletedAction(null)
