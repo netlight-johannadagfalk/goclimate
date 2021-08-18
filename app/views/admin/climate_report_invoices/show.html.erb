@@ -1,97 +1,125 @@
-<%= render 'admin/shared/notice_banner' %>
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
 
-<% if @previous.present? %>
-  <%= link_to '← Previous', admin_climate_report_invoice_path(@previous), class: 'btn btn-default' %>
-<% end %>
-<% if @next.present? %>
-  <%= link_to 'Next →', admin_climate_report_invoice_path(@next), class: 'btn btn-default' %>
-<% end %>
+  <%
+    default_actions = [
+      {
+        title: 'Edit',
+        path: edit_admin_climate_report_invoice_path(@invoice),
+        class: 'button-cta'
+      },
+      {
+        title: 'Climate report',
+        path: business_climate_report_path(@invoice.climate_report),
+        class: 'button'
+      }
+    ]
+    additional_actions = [
+      {
+        title: 'Download certificate (sv)',
+        path: admin_invoice_certificates_path(type: 'climate_report_invoice', id: @invoice.id, format: :pdf, locale: 'sv'),
+        class: 'button'
+      },
+      {
+        title: 'Download certificate (en)',
+        path: admin_invoice_certificates_path(type: 'climate_report_invoice', id: @invoice.id, format: :pdf),
+        class: 'button'
+      },
+      {
+        title: 'Send certificate with e-mail (sv)',
+        path: send_email_admin_invoice_certificates_path(type: 'climate_report_invoice', id: @invoice.id),
+        class: 'button',
+        method: :post
+      }
+    ]
+  %>
 
-<h1>Climate Report Invoice</h1>
+  <%= render 'admin/shared/content_header', heading: 'Climate Report Invoice', actions: @invoice.project.present? ? default_actions + additional_actions : default_actions %>
 
-<dl class="dl-horizontal">
-  <dt>ID:</dt>
-  <dd><%= @invoice.id %></dd>
+  <dl class="dl-horizontal">
+    <dt>ID:</dt>
+    <dd><%= @invoice.id %></dd>
 
-  <dt>Fortnox invoice:</dt>
-  <dd><%= @invoice.fortnox_id %></dd>
+    <dt>Fortnox invoice:</dt>
+    <dd><%= @invoice.fortnox_id %></dd>
 
-  <dt>Created:</dt>
-  <dd><%= time_tag(@invoice.created_at) %></dd>
+    <dt>Created:</dt>
+    <dd><%= time_tag(@invoice.created_at) %></dd>
 
-  <dt>Company:</dt>
-  <dd><%= @invoice.climate_report.company_name %></dd>
+    <dt>Company:</dt>
+    <dd><%= @invoice.climate_report.company_name %></dd>
 
-  <dt>Contact email:</dt>
-  <dd><%= @invoice.climate_report.contact_email %></dd>
+    <dt>Contact email:</dt>
+    <dd><%= @invoice.climate_report.contact_email %></dd>
 
-  <dt>Calculation period:</dt>
-  <dd><%= @invoice.climate_report.calculation_period %> (<%= @invoice.climate_report.calculation_period_length %>)</dd>
+    <dt>Calculation period:</dt>
+    <dd><%= @invoice.climate_report.calculation_period %> (<%= @invoice.climate_report.calculation_period_length %>)</dd>
 
-  <dt>Carbon offset:</dt>
-  <dd><%= number_with_delimiter(@invoice.co2e, delimiter: ' ') %> kg co2e</dd>
+    <dt>Carbon offset:</dt>
+    <dd><%= number_with_delimiter(@invoice.co2e, delimiter: ' ') %> kg co2e</dd>
 
-  <dt>Amount:</dt>
-  <dd><%= price_string(@invoice.amount, @invoice.currency, lowest_denominator: true) %></dd>
+    <dt>Amount:</dt>
+    <dd><%= price_string(@invoice.amount, @invoice.currency, lowest_denominator: true) %></dd>
 
-  <dt>Invoice address:</dt>
-  <dd><pre><%= @invoice.invoice_address %></pre></dd>
+    <dt>Invoice address:</dt>
+    <dd><pre><%= @invoice.invoice_address %></pre></dd>
 
-  <dt>VAT number:</dt>
-  <dd><%= @invoice.vat_number %></dd>
+    <dt>VAT number:</dt>
+    <dd><%= @invoice.vat_number %></dd>
 
-  <dt>Certificate sent at:</dt>
-  <dd><%= @invoice.certificate_sent_at %></dd>
+    <dt>Certificate sent at:</dt>
+    <dd><%= @invoice.certificate_sent_at %></dd>
 
-  <dt>Certificate reciever:</dt>
-  <dd><%= @invoice.certificate_reciever_email %></dd>
+    <dt>Certificate reciever:</dt>
+    <dd><%= @invoice.certificate_reciever_email %></dd>
 
-  <dt>Invoice email:</dt>
-  <dd>
-    <% if @invoice.invoice_email.present? %>
-      <%= @invoice.invoice_email %>
-    <% else %>
-      <i>Send invoice via mail</i>
-    <% end %>
-  </dd>
-
-  <dt>Booked for project:</dt>
-  <dd>
-    <% if @invoice.project.present? %>
-      <%= link_to(@invoice.project.name, [:admin, @invoice.project]) %>
-    <% else %>
-      <i>Not yet booked</i>
-    <% end %>
-</dl>
-
-<hr>
-
-<% unless @invoice.project.present? %>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <h3>Connect this invoice to a project and a Fortnox invoice</h3>
-      <%= form_for [:admin, @invoice] do |f| %>
-        <div class="form-group">
-          <%= f.label :project_id, 'Project' %>
-          <%= f.select :project_id, project_id_options_for_select(@available_projects, @invoice.co2e), {}, class: 'form-control', required: '', include_blank: true %>
-        </div>
-        <div class="form-group">
-          <%= f.label :fortnox_id, 'Fortnox invoice' %>
-          <%= f.text_field :fortnox_id, class: 'form-control' %>
-        </div>
-        <%= submit_tag 'Connect', class: 'btn btn-primary' %>
+    <dt>Invoice email:</dt>
+    <dd>
+      <% if @invoice.invoice_email.present? %>
+        <%= @invoice.invoice_email %>
+      <% else %>
+        <i>Send invoice via mail</i>
       <% end %>
+    </dd>
+
+    <dt>Booked for project:</dt>
+    <dd>
+      <% if @invoice.project.present? %>
+        <%= link_to(@invoice.project.name, [:admin, @invoice.project], class: 'link') %>
+      <% else %>
+        <i>Not yet booked</i>
+      <% end %>
+  </dl>
+
+
+
+  <% unless @invoice.project.present? %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3>Connect this invoice to a project and a Fortnox invoice</h3>
+        <%= form_for [:admin, @invoice] do |f| %>
+          <div class="flex flex-col">
+            <%= f.label :project_id, 'Project' %>
+            <div class="select-wrapper">
+              <%= f.select :project_id, project_id_options_for_select(@available_projects, @invoice.co2e), {}, class: 'select', required: '', include_blank: true %>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <%= f.label :fortnox_id, 'Fortnox invoice' %>
+            <%= f.text_field :fortnox_id, class: 'input' %>
+          </div>
+          <%= submit_tag 'Connect', class: 'button button-cta' %>
+        <% end %>
+      </div>
     </div>
+  <% end %>
+
+  <div class="flex flex-row">
+    <% if @previous.present? %>
+      <%= link_to '← Previous', admin_climate_report_invoice_path(@previous), class: 'button' %>
+    <% end %>
+    <% if @next.present? %>
+      <%= link_to 'Next →', admin_climate_report_invoice_path(@next), class: 'button' %>
+    <% end %>
   </div>
-
-  <hr>
-<% end %>
-
-<%= link_to 'Edit', edit_admin_climate_report_invoice_path(@invoice), class: 'btn btn-default' %>
-<%= link_to 'Go to climate report', business_climate_report_path(@invoice.climate_report), class: 'btn btn-default' %>
-<% if @invoice.project.present? %>
-  <%= link_to 'Download certificate (en)', admin_invoice_certificates_path(type: 'climate_report_invoice', id: @invoice.id, format: :pdf), class: 'btn btn-default' %>
-  <%= link_to 'Download certificate (sv)', admin_invoice_certificates_path(type: 'climate_report_invoice', id: @invoice.id, format: :pdf, locale: 'sv'), class: 'btn btn-default' %>
-  <%= link_to 'Send certificate with e-mail (sv)', send_email_admin_invoice_certificates_path(type: 'climate_report_invoice', id: @invoice.id), class: 'btn btn-default', method: :post %>
-<% end %>
-<%= link_to 'Back', admin_climate_report_invoices_path, class: 'btn btn-link' %>
+</div>

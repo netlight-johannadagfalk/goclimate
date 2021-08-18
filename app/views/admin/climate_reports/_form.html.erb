@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, climate_report], local: true) do |form| %>
+<%= form_with(model: [:admin, climate_report], local: true, class: 'space-y-3') do |form| %>
   <% if climate_report.errors.any? %>
     <div>
       <h2><%= pluralize(climate_report.errors.count, "error") %> prohibited this report from being saved:</h2>
@@ -11,77 +11,85 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: 'form-control' %>
+  <div class="flex flex-col">
+    <%= form.label :title, class: 'font-bold' %>
+    <%= form.text_field :title, class: 'input' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :organization %>
-    <%= form.select :organization_id, options_for_select(@organizations, @report.organization&.id), {}, class: 'form-control' %>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-3">
-      <div class="form-group">
-        <%= form.label :start_date %>
-        <%= form.date_field :start_date, class: 'form-control', value: @report.reporting_period&.first %>
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="form-group">
-        <%= form.label :end_date %>
-        <%= form.date_field :end_date, class: 'form-control', value: @report.reporting_period&.last %>
-      </div>
+  <div class="flex flex-col">
+    <%= form.label :organization, class: 'font-bold' %>
+    <div class="select-wrapper">
+      <%= form.select :organization_id, options_for_select(@organizations, @report.organization&.id), {}, class: 'select' %>
     </div>
   </div>
 
-  <h2>Report areas</h2>
-  <div data-controller="add-nested-fields">
+  <div class="flex flex-row space-x-1">
+    <div class="w-1/3">
+      <div class="flex flex-col">
+        <%= form.label :start_date, class: 'font-bold' %>
+        <%= form.date_field :start_date, class: 'input', value: @report.reporting_period&.first %>
+      </div>
+    </div>
+    <div class="w-1/3">
+      <div class="flex flex-col">
+        <%= form.label :end_date, class: 'font-bold' %>
+        <%= form.date_field :end_date, class: 'input', value: @report.reporting_period&.last %>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="heading">Report areas</h2>
+  <div data-controller="add-nested-fields" class="space-y-2">
     <%= form.fields_for :areas do |area_fields| %>
       <%= area_fields.hidden_field :id %>
-      <div class="row" style="margin-bottom: 1em">
-        <div class="col-sm-6">
-          <%= area_fields.label :area_name %>
-          <%= area_fields.text_field :title, class: 'form-control' %>
+      <div class="flex flex-row space-x-1">
+        <div class="w-6/12 flex flex-col">
+          <%= area_fields.label :area_name, class: 'font-bold' %>
+          <%= area_fields.text_field :title, class: 'input' %>
         </div>
-        <div class="col-sm-5">
-          <%= area_fields.label :calculator, class: 'add-nested-fields-label-field'%>
-          <%= area_fields.select :calculator_id, options_from_collection_for_select(@calculators, :id, :name, area_fields.object.calculator.id.to_i), {}, class: 'form-control add-nested-fields-input-field' %>
+        <div class="w-5/12 flex flex-col">
+          <%= area_fields.label :calculator, class: 'add-nested-fields-label-field font-bold'%>
+          <div class="select-wrapper">
+            <%= area_fields.select :calculator_id, options_from_collection_for_select(@calculators, :id, :name, area_fields.object.calculator.id.to_i), {}, class: 'select add-nested-fields-input-field' %>
+          </div>
         </div>
-        <div class="col-sm-1">
-          <%= area_fields.label :delete %>
+        <div class="w-1/12">
+          <%= area_fields.label :delete, class: 'font-bold' %>
           <%= area_fields.check_box :_destroy %>
         </div>
       </div>
     <% end %>
 
     <%= form.fields_for :areas, ClimateReports::ReportArea.new do |area_fields| %>
-      <div class="hidden row" data-target="add-nested-fields.template">
-        <div class="form-group col-sm-6">
-          <%= area_fields.label :area_name %>
-          <%= area_fields.text_field :title, class: 'form-control add-nested-fields-input-field', style: '', placeholder: 'Area name ...'  %>
+      <div class="hidden flex flex-row space-x-1" data-target="add-nested-fields.template">
+        <div class="w-6/12 flex flex-col">
+          <%= area_fields.label :area_name, class: 'font-bold' %>
+          <%= area_fields.text_field :title, class: 'input add-nested-fields-input-field', style: '', placeholder: 'Area name ...'  %>
         </div>
 
-        <div class="col-sm-5">
-          <%= area_fields.label :calculator, class: 'add-nested-fields-label-field'%>
-          <%= area_fields.select :calculator_id, options_from_collection_for_select(@calculators, :id, :name), {}, class: 'form-control add-nested-fields-input-field' %>
+        <div class="w-5/12 flex flex-col">
+          <%= area_fields.label :calculator, class: 'add-nested-fields-label-field font-bold'%>
+          <div class="select-wrapper">
+            <%= area_fields.select :calculator_id, options_from_collection_for_select(@calculators, :id, :name), {}, class: 'select add-nested-fields-input-field' %>
+          </div>
         </div>
-        <div class="col-sm-1">
-          <%= area_fields.label :delete %>
+        <div class="w-1/12">
+          <%= area_fields.label :delete, class: 'font-bold' %>
           <%= area_fields.check_box :_destroy %>
         </div>
       </div>
     <% end %>
 
-    <div data-target="add-nested-fields.destination" style=""></div>
+    <div data-target="add-nested-fields.destination" class="space-y-2"></div>
 
-    <div style="margin: 1.5em 0">
-      <button type="button" class="btn btn-default" data-action="add-nested-fields#cloneToDestinationWithFirstNumberIncremented">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add area
+    <div>
+      <button type="button" class="button" data-action="add-nested-fields#cloneToDestinationWithFirstNumberIncremented">
+        <i class="fas fa-plus" aria-hidden="true"></i> Add area
       </button>
     </div>
   </div>
 
-  <%= form.submit class: 'btn btn-primary' %>
+  <div class="text-right">
+    <%= form.submit class: 'button button-cta' %>
+  </div>
 <% end %>

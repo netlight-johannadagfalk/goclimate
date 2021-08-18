@@ -1,0 +1,9 @@
+<div class="flex flex-row justify-between">
+  <h1 class="heading-lg"><%= local_assigns[:heading] %></h1>
+
+  <div class="flex flex-row-reverse space-x-reverse space-x-1">
+    <% local_assigns[:actions].each do |action| %>
+      <%= link_to action[:title], action[:path], class: "button #{action[:class]}", target: action[:target_blank] ? :_blank : '' %>
+    <% end %>
+  </div>
+</div>

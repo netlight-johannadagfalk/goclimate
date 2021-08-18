@@ -1,51 +1,71 @@
-<%= render 'admin/shared/notice_banner' %>
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
 
-<% if @previous.present? %>
-  <%= link_to '← Previous', admin_invoice_path(@previous), class: 'btn btn-default' %>
-<% end %>
-<% if @next.present? %>
-  <%= link_to 'Next →', admin_invoice_path(@next), class: 'btn btn-default' %>
-<% end %>
+  <%
+    default_actions = [
+        {
+          title: 'Edit',
+          path: edit_admin_invoice_path(@invoice),
+          class: 'button-cta'
+        }
+      ]
+    additional_actions = [{
+          title: 'Download certificate (sv)',
+          path: admin_invoice_certificates_path(type: 'invoice', id: @invoice.id, format: :pdf, locale: :sv),
+          class: 'button'
+        },
+        {
+          title: 'Download certificate (en)',
+          path: admin_invoice_certificates_path(type: 'invoice', id: @invoice.id, format: :pdf, locale: :en),
+          class: 'button'
+        },
+        {
+          title: 'Send certificate with e-mail (sv)',
+          path: send_email_admin_invoice_certificates_path(type: 'invoice', id: @invoice.id),
+          class: 'button',
+          method: :post
+        }]
+  %>
+  <%= render 'admin/shared/content_header', heading: 'Invoice', actions: @invoice.project.present? ? default_actions + additional_actions : default_actions %>
 
-<h1>Invoice</h1>
+  <dl class="dl-horizontal">
+    <dt>ID:</dt>
+    <dd><%= @invoice.id %></dd>
 
-<dl class="dl-horizontal">
-  <dt>ID:</dt>
-  <dd><%= @invoice.id %></dd>
+    <dt>Fortnox invoice:</dt>
+    <dd><%= @invoice.fortnox_id %></dd>
 
-  <dt>Fortnox invoice:</dt>
-  <dd><%= @invoice.fortnox_id %></dd>
+    <dt>Created:</dt>
+    <dd><%= time_tag(@invoice.created_at) %></dd>
 
-  <dt>Created:</dt>
-  <dd><%= time_tag(@invoice.created_at) %></dd>
+    <dt>Receiver:</dt>
+    <dd><%= @invoice.receiver %></dd>
 
-  <dt>Receiver:</dt>
-  <dd><%= @invoice.receiver %></dd>
+    <dt>Amount</dt>
+    <dd><%= @invoice.amount_in_sek %> SEK</dd>
 
-  <dt>Amount</dt>
-  <dd><%= @invoice.amount_in_sek %> SEK</dd>
+    <dt>Carbon offset:</dt>
+    <dd><%= @invoice.co2e %> kg co2e</dd>
 
-  <dt>Carbon offset:</dt>
-  <dd><%= @invoice.co2e %> kg co2e</dd>
+    <dt>Project:</dt>
+    <dd><%= link_to(@invoice.project.name, [:admin, @invoice.project]) if @invoice.project.present? %></dd>
 
-  <dt>Project:</dt>
-  <dd><%= link_to(@invoice.project.name, [:admin, @invoice.project]) if @invoice.project.present? %></dd>
+    <dt>Comment (used when generating certificate):</dt>
+    <dd><%= @invoice.comment %></dd>
 
-  <dt>Comment (used when generating certificate):</dt>
-  <dd><%= @invoice.comment %></dd>
+    <dt>Certificate sent at:</dt>
+    <dd><%= @invoice.certificate_sent_at %></dd>
 
-  <dt>Certificate sent at:</dt>
-  <dd><%= @invoice.certificate_sent_at %></dd>
+    <dt>Email that recieves certificate:</dt>
+    <dd><%= @invoice.certificate_reciever_email %></dd>
+  </dl>
 
-  <dt>Email that recieves certificate:</dt>
-  <dd><%= @invoice.certificate_reciever_email %></dd>
-</dl>
-
-<hr>
-<%= link_to 'Edit', edit_admin_invoice_path(@invoice), class: 'btn btn-default' %>
-<% if @invoice.project.present? %>
-  <%= link_to 'Download certificate (sv)', admin_invoice_certificates_path(type: 'invoice', id: @invoice.id, format: :pdf, locale: :sv), class: 'btn btn-default' %>
-  <%= link_to 'Download certificate (en)', admin_invoice_certificates_path(type: 'invoice', id: @invoice.id, format: :pdf, locale: :en), class: 'btn btn-default' %>
-  <%= link_to 'Send certificate with e-mail (sv)', send_email_admin_invoice_certificates_path(type: 'invoice', id: @invoice.id), class: 'btn btn-default', method: :post %>
-<% end %>
-<%= link_to 'Back', admin_invoices_path, class: 'btn btn-link' %>
+  <div class="flex flex-row">
+    <% if @previous.present? %>
+      <%= link_to '← Previous', admin_invoice_path(@previous), class: 'button' %>
+    <% end %>
+    <% if @next.present? %>
+      <%= link_to 'Next →', admin_invoice_path(@next), class: 'button' %>
+    <% end %>
+  </div>
+</div>

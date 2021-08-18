@@ -1,44 +1,48 @@
-<%= render 'admin/shared/notice_banner' %>
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
 
-<h1>Business calculators</h1>
+  <%= render 'admin/shared/content_header', heading: 'Business calculators', actions: [
+      {
+        title: 'New Business Calculator',
+        path: new_admin_business_calculator_path,
+        class: 'button-cta'
+      }
+    ] %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Status</th>
-      <th>Updated</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @calculators.each do |calculator| %>
-      <tr style="<%= calculator.archived? ? 'background: #f5f5f5;' : '' %>">
-        <td><%= calculator.name %></td>
-        <td><%= calculator.status %></td>
-        <td><%= time_tag(calculator.updated_at, format: '%F %R') %></td>
-        <td class="admin-actions">
-          <%= link_to 'Show', [:admin, calculator] %> &nbsp;
-          <% if calculator.draft? %>
-            <%= link_to 'Edit', edit_admin_business_calculator_path(calculator) %>
-          <% else %>
-            <span style="color: gray; cursor: not-allowed;">Edit</span>
-          <% end %> &nbsp;
-          <%= link_to 'Preview form', preview_reported_data_path(calculator.id), target: :_blank %> &nbsp;
-          <%= link_to 'Duplicate', duplicate_admin_business_calculator_path(calculator), method: :post %> &nbsp;
-          <% unless calculator.archived? %>
-            <%= link_to 'Archive', archive_admin_business_calculator_path(calculator), method: :post, data: { confirm: 'Are you sure? You can no longer edit or use this calculator.' } %> &nbsp;
-          <% end %>
-          <% if calculator.draft? %>
-            <%= link_to 'Publish', publish_admin_business_calculator_path(calculator), method: :post, data: { confirm: 'Are you sure? You can no longer edit this calculator.' } %> &nbsp;
-          <% end %>
-        </td>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Updated</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<hr>
-
-<%= link_to 'New Business Calculator', new_admin_business_calculator_path, class: 'btn btn-default' %>
+    <tbody>
+      <% @calculators.each do |calculator| %>
+        <tr style="<%= calculator.archived? ? 'background: #f5f5f5;' : '' %>">
+          <td><%= calculator.name %></td>
+          <td><%= calculator.status %></td>
+          <td><%= time_tag(calculator.updated_at, format: '%F %R') %></td>
+          <td class="whitespace-nowrap">
+            <%= link_to 'Show', [:admin, calculator], class: 'link-ui text-green-shade-2' %> &nbsp;
+            <% if calculator.draft? %>
+              <%= link_to 'Edit', edit_admin_business_calculator_path(calculator), class: 'link-ui text-green-shade-2' %>
+            <% else %>
+              <span style="color: gray; cursor: not-allowed;">Edit</span>
+            <% end %> &nbsp;
+            <%= link_to 'Preview form', preview_reported_data_path(calculator.id), target: :_blank, class: 'link-ui text-green-shade-2' %> &nbsp;
+            <%= link_to 'Duplicate', duplicate_admin_business_calculator_path(calculator), method: :post, class: 'link-ui text-green-shade-2' %> &nbsp;
+            <% unless calculator.archived? %>
+              <%= link_to 'Archive', archive_admin_business_calculator_path(calculator), method: :post, data: { confirm: 'Are you sure? You can no longer edit or use this calculator.' }, class: 'link-ui text-green-shade-2' %> &nbsp;
+            <% end %>
+            <% if calculator.draft? %>
+              <%= link_to 'Publish', publish_admin_business_calculator_path(calculator), method: :post, data: { confirm: 'Are you sure? You can no longer edit this calculator.' }, class: 'link-ui text-green-shade-2' %> &nbsp;
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

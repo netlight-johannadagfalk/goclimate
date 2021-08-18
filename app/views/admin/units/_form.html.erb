@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, unit], local: true) do |form| %>
+<%= form_with(model: [:admin, unit], local: true, class: 'space-y-3') do |form| %>
   <% if unit.errors.any? %>
     <div>
       <h2><%= pluralize(unit.errors.count, "error") %> prohibited this unit from being saved:</h2>
@@ -11,20 +11,24 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: 'form-control' %>
+  <div class="flex flex-col">
+    <%= form.label :name, class: 'font-bold' %>
+    <%= form.text_field :name, class: 'input' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :key %>
-    <%= form.text_field :key, class: 'form-control' %>
+  <div class="flex flex-col">
+    <%= form.label :key, class: 'font-bold' %>
+    <%= form.text_field :key, class: 'input' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :input_type %>
-    <%= form.select(:input_type, [['Number field', 'number'], ['Text area', 'textarea'], ['Text field', 'text']], { selected: form.object.input_type }, { class: 'form-control' }) %>
+  <div class="flex flex-col">
+    <%= form.label :input_type, class: 'font-bold' %>
+    <div class="select-wrapper">
+      <%= form.select(:input_type, [['Number field', 'number'], ['Text area', 'textarea'], ['Text field', 'text']], { selected: form.object.input_type }, { class: 'select' }) %>
+    </div>
   </div>
 
-  <%= form.submit class: 'btn btn-primary' %>
+  <div class="text-right">
+    <%= form.submit class: 'button button-cta' %>
+  </div>
 <% end %>

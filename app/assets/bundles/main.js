@@ -37,4 +37,4 @@ import '@fortawesome/fontawesome-free/css/regular.css';
 import '@fortawesome/fontawesome-free/css/brands.css';
 
 /* Styling */
-import '../main/index.css';
+import '../shared/index.css';

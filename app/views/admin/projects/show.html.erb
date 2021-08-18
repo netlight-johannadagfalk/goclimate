@@ -1,70 +1,73 @@
-<%= render 'admin/shared/notice_banner' %>
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
 
-<h1>Project</h1>
+  <%= render 'admin/shared/content_header', heading: 'Project', actions: [
+      {
+        title: 'Edit',
+        path: edit_admin_project_path(@project),
+        class: 'button-cta'
+      }
+    ] %>
 
-<dl class="dl-horizontal">
-  <dt>Name:</dt>
-  <dd><%= @project.name %></dd>
+  <dl class="dl-horizontal">
+    <dt>Name:</dt>
+    <dd><%= @project.name %></dd>
 
-  <dt>Short description (shown with link to blog):</dt>
-  <dd><%= simple_format(@project.short_description) %></dd>
+    <dt>Short description (shown with link to blog):</dt>
+    <dd><%= simple_format(@project.short_description) %></dd>
 
-  <dt>CDM URL:</dt>
-  <dd><%= @project.cdm_url %></dd>
+    <dt>CDM URL:</dt>
+    <dd><%= @project.cdm_url %></dd>
 
-  <dt>Gold Standard URL:</dt>
-  <dd><%= @project.gold_standard_url %></dd>
+    <dt>Gold Standard URL:</dt>
+    <dd><%= @project.gold_standard_url %></dd>
 
-  <dt>Image URL:</dt>
-  <dd><%= @project.image_url %></dd>
+    <dt>Image URL:</dt>
+    <dd><%= @project.image_url %></dd>
 
-  <dt>Blog URL:</dt>
-  <dd><%= @project.blog_url %></dd>
+    <dt>Blog URL:</dt>
+    <dd><%= @project.blog_url %></dd>
 
-  <dt>Certificate URL:</dt>
-  <dd><%= @project.certificate_url %></dd>
+    <dt>Certificate URL:</dt>
+    <dd><%= @project.certificate_url %></dd>
 
-  <dt>Invoice URL:</dt>
-  <dd><%= @project.invoice_url %></dd>
+    <dt>Invoice URL:</dt>
+    <dd><%= @project.invoice_url %></dd>
 
-  <dt>Longitude:</dt>
-  <dd><%= @project.longitude %></dd>
+    <dt>Longitude:</dt>
+    <dd><%= @project.longitude %></dd>
 
-  <dt>Latitude:</dt>
-  <dd><%= @project.latitude %></dd>
+    <dt>Latitude:</dt>
+    <dd><%= @project.latitude %></dd>
 
-  <dt>Carbon offset:</dt>
-  <dd>
-    <%= @project.co2e %>
-    (<%= @project.co2e_available %> still available)
-  </dd>
+    <dt>Carbon offset:</dt>
+    <dd>
+      <%= @project.co2e %>
+      (<%= @project.co2e_available %> still available)
+    </dd>
 
-  <dt>Cost:</dt>
-  <dd><%= @project.cost_in_sek %> SEK (including VAT)</dd>
+    <dt>Cost:</dt>
+    <dd><%= @project.cost_in_sek %> SEK (including VAT)</dd>
 
-  <dt>Date bought:</dt>
-  <dd><%= @project.date_bought %></dd>
+    <dt>Date bought:</dt>
+    <dd><%= @project.date_bought %></dd>
 
-  <dt>Country:</dt>
-  <dd><%= @project.country %></dd>
+    <dt>Country:</dt>
+    <dd><%= @project.country %></dd>
 
-  <dt>Offset type:</dt>
-  <dd><%= @project.offset_type %></dd>
+    <dt>Offset type:</dt>
+    <dd><%= @project.offset_type %></dd>
 
-  <dt>Gold Standard ID:</dt>
-  <dd><%= @project.gold_standard_id %></dd>
+    <dt>Gold Standard ID:</dt>
+    <dd><%= @project.gold_standard_id %></dd>
 
-  <dt>CDM ID:</dt>
-  <dd><%= @project.cdm_id %></dd>
+    <dt>CDM ID:</dt>
+    <dd><%= @project.cdm_id %></dd>
 
-  <dt>Start block:</dt>
-  <dd><%= @project.start_block %></dd>
+    <dt>Start block:</dt>
+    <dd><%= @project.start_block %></dd>
 
-  <dt>End block:</dt>
-  <dd><%= @project.end_block %></dd>
-</dl>
-
-<hr>
-
-<%= link_to 'Edit', edit_admin_project_path(@project), class: 'btn btn-default' %>
-<%= link_to 'Back', admin_projects_path, class: 'btn btn-link' %>
+    <dt>End block:</dt>
+    <dd><%= @project.end_block %></dd>
+  </dl>
+</div>
