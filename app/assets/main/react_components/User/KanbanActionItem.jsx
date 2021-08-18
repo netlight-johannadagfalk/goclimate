@@ -23,9 +23,11 @@ const KanbanActionItem = ({ item, index, handleDelete }) => {
           >
             {item.name}
             <button
-                className={`float-right ml-4 fas ${expanded ? 'fa-chevron-up' : 'fa-chevron-down'}`}
-                onClick={() => setExpanded(!expanded)}
-              ></button>
+              className={`float-right ml-4 fas ${
+                expanded ? "fa-chevron-up" : "fa-chevron-down"
+              }`}
+              onClick={() => setExpanded(!expanded)}
+            ></button>
 
             {item.status === false && (
               <button
@@ -34,16 +36,18 @@ const KanbanActionItem = ({ item, index, handleDelete }) => {
               ></button>
             )}
 
-              {expanded ? 
-              <div className="text-s ml-0 flex inherit"
+            {expanded && (
+              <div
+                className="text-s ml-0 flex inherit"
                 style={{
                   margin: "0",
                   fontWeight: "normal",
                   fontSize: "16px",
-              }}>
+                }}
+              >
                 <p>{item.description}</p>
-              </div> 
-              : null }
+              </div>
+            )}
           </div>
         );
       }}
