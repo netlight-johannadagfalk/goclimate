@@ -17,7 +17,11 @@
 
     <dt>Current footprint:</dt>
     <dd>
-      <%= link_to "#{@user.current_lifestyle_footprint&.total.tonnes.round(1)} tonnes", admin_lifestyle_footprint_path(@user.current_lifestyle_footprint.id), class: 'link-ui text-green-shade-2' %>
+      <% if @user.current_lifestyle_footprint.present? %>
+        <%= link_to "#{@user.current_lifestyle_footprint&.total&.tonnes&.round(1)} tonnes", admin_lifestyle_footprint_path(@user.current_lifestyle_footprint.id), class: 'link-ui text-green-shade-2' %>
+      <% else %>
+        No footprint
+      <% end %>
     </dd>
     <dt>Total footprints:</dt>
     <dd>
