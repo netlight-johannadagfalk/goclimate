@@ -10,50 +10,10 @@ import CarouselActionItem from "./CarouselActionItem.jsx";
 
 const CarouselList = ({
   user,
-  actionsWithUserActions,
-  actionsWithoutUserActions,
+  climateActionsUser,
+  updateLocalAccepted,
   addAcceptedAction,
-  deletedAction,
-  category,
 }) => {
-  useEffect(() => {
-    const filteredActions = category
-      ? totClimateActions.filter(
-          (temp) => temp.climate_action_category_id === category
-        )
-      : totClimateActions;
-    setClimateActionsUser(filteredActions);
-
-    deletedAction != null && updateLocalAccepted(deletedAction);
-  }, [deletedAction, category]);
-  const localActionsWithUserActions = actionsWithUserActions.map((action) => ({
-    ...action,
-    accepted: true,
-  }));
-  const localActionsWithoutUserActions = actionsWithoutUserActions.map(
-    (action) => ({
-      ...action,
-      accepted: false,
-    })
-  );
-
-  const totClimateActions = [
-    ...localActionsWithoutUserActions,
-    ...localActionsWithUserActions,
-  ];
-  const [climateActionsUser, setClimateActionsUser] = useState([
-    ...totClimateActions,
-  ]);
-
-  const updateLocalAccepted = (actionID) => {
-    setClimateActionsUser(
-      climateActionsUser.map((action) =>
-        action.id === actionID
-          ? { ...action, accepted: !action.accepted }
-          : action
-      )
-    );
-  };
 
   return (
     <Carousel
@@ -93,7 +53,6 @@ const CarouselList = ({
           action={action}
           key={action.id}
           user={user}
-          setClimateActionsUser={setClimateActionsUser}
           updateLocalAccepted={updateLocalAccepted}
           addAcceptedAction={addAcceptedAction}
         ></CarouselActionItem>

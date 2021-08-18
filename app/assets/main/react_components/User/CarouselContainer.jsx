@@ -1,18 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CarouselHeader from "./CarouselHeader.jsx";
 import CarouselList from "./CarouselList.jsx";
 import CarouselCategoryButton from "./CarouselCategoryButton.jsx";
 
 const CarouselContainer = ({
   user,
-  actionsWithUserActions,
-  actionsWithoutUserActions,
+  climateActionsUser,
+  updateLocalAccepted,
   addAcceptedAction,
-  deletedAction,
   climateActionCategories,
+  category,
+  setCategory
 }) => {
-  const [category, setCategory] = useState(null);
-  const formatedCategories = JSON.parse(climateActionCategories);
+
+
+//  const [render, setRender] = useState(true)
+//   useEffect( () => {
+//     setRender(!render)
+//   }, [category])
+
+  // const [category, setCategory] = useState(null);
+   const formatedCategories = JSON.parse(climateActionCategories);
   const [allCategories, setAllCategories] = useState(true);
 
   return (
@@ -38,10 +46,9 @@ const CarouselContainer = ({
 
       <CarouselList
         user={user}
-        actionsWithUserActions={actionsWithUserActions}
-        actionsWithoutUserActions={actionsWithoutUserActions}
+        climateActionsUser={climateActionsUser}
+        updateLocalAccepted={updateLocalAccepted}
         addAcceptedAction={addAcceptedAction}
-        deletedAction={deletedAction}
         category={category}
       ></CarouselList>
     </div>
