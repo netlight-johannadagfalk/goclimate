@@ -8,10 +8,16 @@ import CarouselActionItem from "./CarouselActionItem.jsx";
 // http://react-responsive-carousel.js.org/storybook/index.html?path=/story/01-basic--with-custom-status-arrows-and-indicators
 // http://react-responsive-carousel.js.org/storybook/?path=/story/02-advanced--with-external-controls
 
-const CarouselList = ({user, actionsWithUserActions, actionsWithoutUserActions, addAcceptedAction, deletedAction}) => {
+const CarouselList = ({
+  user,
+  actionsWithUserActions,
+  actionsWithoutUserActions,
+  addAcceptedAction,
+  deletedAction,
+  increaseLocalNrOfAccepted,
+}) => {
   useEffect(() => {
-    deletedAction != null
-      && updateLocalAccepted(deletedAction);
+    deletedAction != null && updateLocalAccepted(deletedAction);
   }, [deletedAction]);
   const localActionsWithUserActions = actionsWithUserActions.map((action) => ({
     ...action,
@@ -31,7 +37,6 @@ const CarouselList = ({user, actionsWithUserActions, actionsWithoutUserActions, 
     ...totClimateActions,
   ]);
 
-
   const updateLocalAccepted = (actionID) => {
     setClimateActionsUser(
       climateActionsUser.map((action) =>
@@ -41,7 +46,6 @@ const CarouselList = ({user, actionsWithUserActions, actionsWithoutUserActions, 
       )
     );
   };
-
 
   return (
     <Carousel
@@ -84,6 +88,7 @@ const CarouselList = ({user, actionsWithUserActions, actionsWithoutUserActions, 
           setClimateActionsUser={setClimateActionsUser}
           updateLocalAccepted={updateLocalAccepted}
           addAcceptedAction={addAcceptedAction}
+          increaseLocalNrOfAccepted={increaseLocalNrOfAccepted}
         ></CarouselActionItem>
       ))}
     </Carousel>

@@ -5,50 +5,41 @@ const CarouselActionItem = ({
   user,
   updateLocalAccepted,
   addAcceptedAction,
+  increaseLocalNrOfAccepted,
 }) => {
   const currUser = JSON.parse(user);
 
   const handleClickAccepted = (action) => {
     updateLocalAccepted(action.id);
     updateAccepted(action);
-    updateLocalNrOfAccepted(action);
+    increaseLocalNrOfAccepted(action.id);
   };
 
-  const test =[{id: 0, total: 0}, 
-      {id: 1, total: 1}, 
-      {id: 2, total: 2}, 
-      {id: 3, total: 3},
-      {id: 4, total: 4},
-      {id: 5, total: 5},
-      {id: 6, total: 6},
-      {id: 7, total: 7},
-      {id: 8, total: 8},
-      {id: 9, total: 9},
-      {id: 10, total: 10},]
-  ;
-  const [localNrOfAccepted, setLocalNrOfAccepted] = useState([    
-    // ...nrOfAccepted,
-  ]);
+  const test = [
+    { id: 0, total: 0 },
+    { id: 1, total: 1 },
+    { id: 2, total: 2 },
+    { id: 3, total: 3 },
+    { id: 4, total: 4 },
+    { id: 5, total: 5 },
+    { id: 6, total: 6 },
+    { id: 7, total: 7 },
+    { id: 8, total: 8 },
+    { id: 9, total: 9 },
+    { id: 10, total: 10 },
+  ];
+  // console.log(action);
 
-  const [testing, setTesting] = useState([
-    ...test,
-  ]);
+  const [localActionTotal, setLocalActionTotal] = useState(action.total);
 
   const updateLocalNrOfAccepted = (action) => {
-    console.log(action)
-    setTesting(
-      // testing.find(element => element.id === action.id).total = + 1
-    )
-    setLocalNrOfAccepted(
-
-      // console.log(localNrOfAccepted.find(element => element.id === actionID))
-      // localNrOfAccepted.map((action) =>
-      //   action.id === actionID
-      //     ? { ...action, total: action.total + 1}
-      //     : action
-      // )
-    )
-  }
+    // console.log(localNrOfAccepted.find(element => element.id === actionID))
+    // localNrOfAccepted.map((action) =>
+    //   action.id === actionID
+    //     ? { ...action, total: action.total + 1}
+    //     : action
+    // )
+  };
 
   //FUNCTION WHERE USER ACCEPT AN ACTION IN DB -> MOVES TO ACCEPTED
   const updateAccepted = (action) => {
@@ -100,20 +91,20 @@ const CarouselActionItem = ({
         </div>
         <div className="flex-1 flex-none mb-1">
           {action.points ? (
-            <label>
-            Impact: {action.points} CO2
-            </label>
+            <label>Impact: {action.points} CO2</label>
           ) : (
-            <label>
-            Impact: unknown
-            </label>
-          )
-          }
-          </div>
+            <label>Impact: unknown</label>
+          )}
+        </div>
         <div className="flex-1 flex-none mb-1">
-          {testing ? (testing.find(element => element.id === action.id) ? testing.find(element => element.id === action.id).total : 0) : 'X'}
+          {/* {testing
+            ? testing.find((element) => element.id === action.id)
+              ? testing.find((element) => element.id === action.id).total
+              : 0
+            : "X"} */}
+          {localActionTotal ? localActionTotal : 0}
           &nbsp; people have accepted
-          </div>
+        </div>
         <div className="flex-1">
           {action.accepted ? (
             <button

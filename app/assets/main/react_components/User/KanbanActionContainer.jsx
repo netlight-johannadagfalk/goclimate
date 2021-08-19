@@ -2,20 +2,26 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanActionColumn from "./KanbanActionColumn.jsx";
 
-const KanbanActionContainer = ({setLocalAccepted, columns, setColumns, setTotUserActions }) => {
-  const [render, setRender] = useState()
+const KanbanActionContainer = ({
+  setLocalAccepted,
+  columns,
+  setColumns,
+  setTotUserActions,
+  decreaseLocalNrOfAccepted,
+}) => {
+  const [render, setRender] = useState();
   useEffect(() => {
-    setRender(columns)
+    setRender(columns);
   }, [columns]);
-
 
   const handleDelete = (id, actionID) => {
     deleteUserAction(id);
     setLocalAccepted(
-      columns[1].items.filter((item) => item.id.toString() !== id), 
+      columns[1].items.filter((item) => item.id.toString() !== id),
       columns[2].items,
       actionID
     );
+    decreaseLocalNrOfAccepted(actionID);
   };
 
   const deleteUserAction = (id) => {
@@ -34,7 +40,7 @@ const KanbanActionContainer = ({setLocalAccepted, columns, setColumns, setTotUse
   };
 
   const updateStatus = (id, status) => {
-    console.log("entered updatestatus" + id);
+    // console.log("entered updatestatus" + id);
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const URL = "/user_climate_actions/" + id.toString();
     const requestOptions = {
@@ -61,9 +67,9 @@ const KanbanActionContainer = ({setLocalAccepted, columns, setColumns, setTotUse
       const destColumn = columns[destination.droppableId];
       const sourceItems = [...sourceColumn.items];
       const destItems = [...destColumn.items];
-      const [removed] = sourceItems.splice(source.index, 1);   
+      const [removed] = sourceItems.splice(source.index, 1);
       destItems.splice(destination.index, 0, removed);
-      setTotUserActions([...sourceItems, ...destItems])
+      setTotUserActions([...sourceItems, ...destItems]);
       setColumns({
         ...columns,
         [source.droppableId]: {
@@ -78,8 +84,9 @@ const KanbanActionContainer = ({setLocalAccepted, columns, setColumns, setTotUse
       if (destColumn.id === columns[2].id) {
         const theItem = destItems.find((item) => item.status === false);
         const newDestItems = destItems.map((item) =>
-        item.status === false ? { ...item, status: !item.status } : item)
-        setTotUserActions([...sourceItems, ...newDestItems])
+          item.status === false ? { ...item, status: !item.status } : item
+        );
+        setTotUserActions([...sourceItems, ...newDestItems]);
         setColumns({
           ...columns,
           [source.droppableId]: {
@@ -95,8 +102,9 @@ const KanbanActionContainer = ({setLocalAccepted, columns, setColumns, setTotUse
       } else {
         const theItem = destItems.find((item) => item.status === true);
         const newDestItems = destItems.map((item) =>
-        item.status === true ? { ...item, status: !item.status } : item)
-        setTotUserActions([...sourceItems, ...newDestItems])
+          item.status === true ? { ...item, status: !item.status } : item
+        );
+        setTotUserActions([...sourceItems, ...newDestItems]);
         setColumns({
           ...columns,
           [source.droppableId]: {
