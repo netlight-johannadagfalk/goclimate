@@ -1,6 +1,6 @@
-import React from "react";
-import CarouselHeader from "./CarouselHeader.jsx";
-import CarouselList from "./CarouselList.jsx";
+import React from 'react'
+import CarouselHeader from './CarouselHeader.jsx'
+import CarouselList from './CarouselList.jsx'
 
 const CarouselContainer = ({
   user,
@@ -9,7 +9,7 @@ const CarouselContainer = ({
   addAcceptedAction,
 }) => {
   return (
-    <div className="max-w-5xl mx-auto space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2">
+    <>
       <CarouselHeader />
       <CarouselList
         user={user}
@@ -17,8 +17,8 @@ const CarouselContainer = ({
         updateLocalAccepted={updateLocalAccepted}
         addAcceptedAction={addAcceptedAction}
       ></CarouselList>
-    </div>
-  );
-};
+    </>
+  )
+}
 
-export default CarouselContainer;
+export default CarouselContainer

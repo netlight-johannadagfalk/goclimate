@@ -187,22 +187,15 @@ const KanbanActionContainer = ({
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
+    <div className="flex flex-col justify-center">
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
         {Object.entries(columns).map(([columnId, column]) => {
           return (
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-              key={columnId}
-            >
-              <div className="callout" style={{ margin: 8 }}>
-                <p className="font-bold inline-block text-green-accent py-1 px-2 -ml-2 rounded">
+            <div className="flex " key={columnId}>
+              <div className="callout m-2">
+                <p className="font-bold text-green-accent py-1 px-2 -ml-2 rounded">
                   {column.name}
                 </p>
                 <KanbanActionColumn

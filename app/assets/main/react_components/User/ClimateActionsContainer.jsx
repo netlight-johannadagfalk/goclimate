@@ -132,18 +132,24 @@ const ClimateActionsContainer = ({
           addAcceptedAction={addAcceptedAction}
         ></CarouselActionItem>
       </div>
-      <CarouselContainer
-        user={user}
-        climateActionsUser={climateActionsUser}
-        updateLocalAccepted={updateLocalAccepted}
-        addAcceptedAction={addAcceptedAction}
-      />
-      <KanbanActionContainer
-        setLocalAccepted={setLocalAccepted}
-        columns={columns}
-        setColumns={setColumns}
-        setTotUserActions={setTotUserActions}
-      />
+      <div className="flex flex-row justify-center">
+        <div className="max-w-5xl space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2">
+          <CarouselContainer
+            user={user}
+            climateActionsUser={climateActionsUser}
+            updateLocalAccepted={updateLocalAccepted}
+            addAcceptedAction={addAcceptedAction}
+          />
+        </div>
+        <div>
+          <KanbanActionContainer
+            setLocalAccepted={setLocalAccepted}
+            columns={columns}
+            setColumns={setColumns}
+            setTotUserActions={setTotUserActions}
+          />
+        </div>
+      </div>
     </>
   )
 }
