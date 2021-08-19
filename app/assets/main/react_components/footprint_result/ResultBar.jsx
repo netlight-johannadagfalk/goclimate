@@ -1,5 +1,8 @@
 import React from 'react'
 
+/**
+ * Shows co2e footprint result using a colored bar, title (with an optional icon) and value tag
+ */
 const ResultBar = ({ title, width, value, color = "bg-primary", fontWeight = "", spaceStyling = "" }) => {
 
     return (

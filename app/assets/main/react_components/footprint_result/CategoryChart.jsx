@@ -2,6 +2,9 @@ import React from 'react'
 import getChartData from './result-helper';
 import ResultBar from './ResultBar.jsx';
 
+/**
+ * Container to display a ResultBar for each category co2e of the footprint
+ */
 const CategoryChart = ({ footprint, categoryChartText }) => {
     const maxValue = Math.max(footprint.housing.co2e, footprint.food.co2e, footprint.car.co2e, footprint.flights.co2e, footprint.public.co2e, footprint.consumption.co2e)
     const categoryData = getChartData(footprint, categoryChartText)
