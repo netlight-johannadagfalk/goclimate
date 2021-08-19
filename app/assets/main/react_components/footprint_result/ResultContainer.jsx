@@ -1,4 +1,5 @@
 import React from 'react';
+import ResultTitle from './ResultTitle.jsx';
 import CategoryChart from './CategoryChart.jsx';
 import WorldComparisonChart from './WorldComparisonChart.jsx';
 
@@ -9,6 +10,9 @@ const ResultContainer = ({ footprint, countryAverage, registrationsText, commonT
     return (
         <div className="relative pb-1">
             <div className="space-y-6">
+                <ResultTitle
+                    title={JSON.parse(registrationsText).well_done}
+                />
                 <WorldComparisonChart 
                     lang={lang}
                     footprint={JSON.parse(footprint)}
