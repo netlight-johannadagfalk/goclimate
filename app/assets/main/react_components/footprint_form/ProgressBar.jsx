@@ -1,5 +1,10 @@
 import React  from 'react';
 
+
+/** Component that contains the progress bar that shows progress while answering the form
+ * Each question in questionCategories has a category to show as active, these correspond to the alternatives in categories
+ * Dots under each category is taken from each question in questionCategories, originally from footprintform
+ */
 const ProgressBar= ({ questionCategories, activeCategory, activeQuestion }) => {
   const categories = ["home", "utensils", "shopping-bag", "car", "plane"]
   const inactiveCategoryClass = "border-gray-tint-2"
