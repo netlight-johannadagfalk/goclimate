@@ -3,12 +3,14 @@ import ResultBar from './ResultBar.jsx';
 
 const WorldComparisonChart = ({ footprint, countryAverage, worldComparisonText, lang }) => {
     const maxValue = Math.max(footprint.total.co2e, countryAverage.co2e.co2e, 2500)
+    const footprintCo2e = footprint.total.co2e;
+    const countryAverageCo2e = countryAverage.co2e.co2e; 
     return (
         <>
             <ResultBar 
                 title={{text: worldComparisonText.you + " <-"}}
-                width={(footprint.total.co2e / 1000).toFixed(1) > 0 ? footprint.total.co2e / maxValue * 100 : 0} 
-                value={(footprint.total.co2e / 1000).toFixed(1)}
+                width={(footprintCo2e / 1000).toFixed(1) > 0 ? footprintCo2e / maxValue * 100 : 0} 
+                value={(footprintCo2e / 1000).toFixed(1)}
                 color={"bg-green-accent"}
                 fontWeight={"font-bold"}
             />
@@ -16,8 +18,8 @@ const WorldComparisonChart = ({ footprint, countryAverage, worldComparisonText, 
                 title={{text: countryAverage.countries ? 
                         worldComparisonText.average_in.replace('%{region}', footprint.country.data.translations[lang])
                         : worldComparisonText.world_average}}
-                width={(countryAverage.co2e.co2e / 1000).toFixed(1) > 0 ? countryAverage.co2e.co2e / maxValue * 100 : 0} 
-                value={(countryAverage.co2e.co2e / 1000).toFixed(1)}
+                width={(countryAverageCo2e / 1000).toFixed(1) > 0 ? countryAverageCo2e / maxValue * 100 : 0} 
+                value={(countryAverageCo2e / 1000).toFixed(1)}
             />
             <ResultBar 
                 title={{text: worldComparisonText.goal_2030}}
