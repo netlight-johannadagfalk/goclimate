@@ -10,6 +10,7 @@ const OptionNumerical = ({ onAnswerGiven, isCarOption, savedValue, onNumericalIn
 
   function onKeyPress(e){
     if (e.key === 'Enter') {
+      e.preventDefault();
       setValue("");
       onNumericalInput("");
       onAnswerGiven(value.replace(/,/g, '.').replace(/[.]\s*$/, ""));

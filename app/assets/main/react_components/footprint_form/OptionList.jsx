@@ -23,4 +23,5 @@ const OptionList = ({ onAnswerGiven, options, selectedKey }) => {
       </>
   )
 }
+
 export default OptionList;
