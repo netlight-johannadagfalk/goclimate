@@ -204,13 +204,14 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, route 
       if (questionKeys[questionIndex-1] === "car_type" && givenAnswer === "no_car" ){
         saveAnswer("");
         increaseIndex();
-        delete questionCategories["car_distance"]      }
+        delete questionCategories["car_distance"]      
+      }
       setQuestion();
     }
   }
 
   return (
-      <form action="/calculator" acceptCharset="UTF-8" method="post" >
+    <>
         <div className="question py-8" data-target="lifestyle-footprints--calculator.question" data-category="home">
           <ProgressBar 
             questionCategories={questionCategories} 
@@ -244,7 +245,7 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, route 
           :
           <div/>
         }
-      </form>
+    </>
   )
 }
 
