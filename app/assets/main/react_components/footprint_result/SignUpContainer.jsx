@@ -16,20 +16,22 @@ const SignUpContainer = ({ registrationsText }) => {
                     <a id="sign-up" className="absolute -mt-32"></a>
                     <div className="space-y-3" data-controller="registrations--price registrations--referral-code" data-target="registrations--membership-choice.priceControllerElement">
                         <SignUpTitle
-                            text={registrationsText.sign_up_heading_test_2}
+                            signUpTitleText={registrationsText.sign_up_heading_test_2}
                         />
-                        <SignUpMotivationText></SignUpMotivationText>
-                        
+                        <SignUpMotivationText
+                            signUpMotivationText={registrationsText.sign_up_description}                            
+                        />
                         <input type="checkbox" id="step-one-done" className="toggler"/>
                         <div className="toggler-checked:hidden">
                             <div className="space-y-3">
-                                <div className="h-px w-full bg-gray-tint-2 hidden"></div>
-                                    <MembershipTypeChooser/>
-                                <div className="h-px w-full bg-gray-tint-2 hidden"></div>
+                                    <MembershipTypeChooser
+                                        membershipText={registrationsText.membership}
+                                    />
                                 <div data-target="registrations--membership-choice.subscriptionInfo" data-inactive-class="hidden">
-                                    <RefferalCode/>
+                                    <RefferalCode
+                                        text={registrationsText}
+                                    />
                                 </div>
-
                             </div>
                         </div>
                     </div>
