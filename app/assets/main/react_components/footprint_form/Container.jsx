@@ -8,7 +8,7 @@ const Container = ({ footprint, calculator, lifestyleFootprintsText, lang }) => 
       <div className="callout">
         <FootprintForm 
           route={(lang === 'en' ? '' : lang === 'sv' ? '/se' : '/' + lang) + '/calculator'}
-          questions={JSON.parse(lifestyleFootprintsText).lifestyle_footprints.questions} 
+          questionStrings={JSON.parse(lifestyleFootprintsText).lifestyle_footprints.questions} 
           options={JSON.parse(lifestyleFootprintsText).lifestyle_footprints.options} 
           footprint={JSON.parse(footprint)} 
           calculator={JSON.parse(calculator)}
