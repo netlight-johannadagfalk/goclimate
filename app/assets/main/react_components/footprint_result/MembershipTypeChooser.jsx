@@ -10,7 +10,7 @@ const MembershipTypeChooser = ({ membershipText }) => {
     return (
         <>
             <div className="h-px w-full bg-gray-tint-2 hidden"></div>
-            <form className="space-y-3" data-target="registrations--price.peopleForm" data-url="/users/sign_up" action="/users/sign_up" accept-charset="UTF-8" method="get">
+            <form className="space-y-3" data-target="registrations--price.peopleForm" data-url="/users/sign_up" action="/users/sign_up" acceptCharset="UTF-8" method="get">
                 <SelectButton 
                     selectedMembership={selectedMembership} setSelectedMembership={setSelectedMembership} 
                     buttonType="free"  text={membershipText.free} 

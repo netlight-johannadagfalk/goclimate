@@ -9,9 +9,9 @@ const SelectorMultipleTimes = () => {
         let itemList=[]
         for (var i=from; i <= to; i++) {
             if (i === from){
-                itemList.push(<option selected="selected" value={i}>{i}</option>)
+                itemList.push(<option defaultValue value={i} key={i}>{i}</option>)
             } else {
-                itemList.push(<option value={i}>{i}</option>)
+                itemList.push(<option value={i} key={i}>{i}</option>)
             }
         } 
         return itemList;
@@ -19,7 +19,7 @@ const SelectorMultipleTimes = () => {
 
     return (
         <div className="select-wrapper flex-shrink-0">
-            <select className="select" data-action="change->registrations--membership-choice#chooseMulti" name="people" id="people"S>
+            <select className="select" name="people" id="people">
                 {generateOptions(2,20)}
             </select>
         </div>

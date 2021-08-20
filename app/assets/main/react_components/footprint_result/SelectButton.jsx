@@ -19,8 +19,7 @@ const SelectButton = ({selectedMembership, setSelectedMembership, buttonType, te
                 checked = {selectedMembership === buttonType} 
                 value={buttonType} 
                 onChange={() => setSelectedMembership(buttonType)}
-                data-target="registrations--membership-choice.choice" 
-                data-action="click->registrations--membership-choice#handleChange"/>        
+            />        
             <span><span className="font-bold">{boldText}</span>{unBoldText}</span>
             { buttonType == "multi" ?
                     <SelectorMultipleTimes/>

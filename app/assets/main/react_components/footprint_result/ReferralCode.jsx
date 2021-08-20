@@ -48,7 +48,7 @@ const RefferalCode = ({ text }) => {
                     <label htmlFor="enter_referral_code" className="link cursor-pointer">{text.referral_code_link}</label>
                 </p>
             </div>
-            <form className="collapse-content mt-3" action="/referral-codes/lookup" accept-charset="UTF-8" method="post" 
+            <form className="collapse-content mt-3" action="/referral-codes/lookup" acceptCharset="UTF-8" method="post" 
                 onSubmit={e => { e.preventDefault(); }}>
                 <div className="flex">
                     <input size="auto" className="input w-full flex-grow mr-2" placeholder={text.referral_code} 

@@ -12,9 +12,9 @@ const SignUpContainer = ({ registrationsText }) => {
     return (
         <div className="relative pb-1">
             <div className="space-y-6">
-                <div className="callout max-w-md mx-auto" data-controller="registrations--form registrations--membership-choice">
+                <div className="callout max-w-md mx-auto">
                     <a id="sign-up" className="absolute -mt-32"></a>
-                    <div className="space-y-3" data-controller="registrations--price registrations--referral-code" data-target="registrations--membership-choice.priceControllerElement">
+                    <div className="space-y-3" data-controller="registrations--price registrations--referral-code">
                         <SignUpTitle
                             signUpTitleText={registrationsText.sign_up_heading_test_2}
                         />
@@ -27,7 +27,7 @@ const SignUpContainer = ({ registrationsText }) => {
                                     <MembershipTypeChooser
                                         membershipText={registrationsText.membership}
                                     />
-                                <div data-target="registrations--membership-choice.subscriptionInfo" data-inactive-class="hidden">
+                                <div data-inactive-class="hidden">
                                     <RefferalCode
                                         text={registrationsText}
                                     />
