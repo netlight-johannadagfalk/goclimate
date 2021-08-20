@@ -9,7 +9,7 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
       {(provided) => {
         return (
           <div
-            className="callout grid grid-cols-3 gap-4 items-baseline space-x-6 text-l font-bold"
+            className="callout items-baseline space-x-6 text-l font-bold"
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -21,62 +21,64 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
               ...provided.draggableProps.style,
             }}
           >
-            <div>{item.name}</div>
-            {item.status === false ? (
-              <div className="col-end-auto col-span-2 ">
-                <button
-                  className="button ml-4 button-cta col-end-auto "
-                  onClick={() => handlePerformance(item, true)}
-                >
-                  Performed{' >'}
-                </button>
-                <button
-                  className=" ml-4 fas fa-trash col-end-auto "
-                  onClick={() => handleDelete(item.id, item.climate_action_id)}
-                ></button>
-                <button
-                  className={`ml-4 fas col-end-auto ${
-                    expanded ? 'fa-chevron-up' : 'fa-chevron-down'
-                  }`}
-                  onClick={() => setExpanded(!expanded)}
-                ></button>
-              </div>
-            ) : (
-              <div className="col-span-2  ">
-                <button
-                  className="button button-cta  "
-                  onClick={() => handlePerformance(item, false)}
-                >
-                  Unperform{' <'}
-                </button>
-                <button
-                  className={`ml-4 fas  ${
-                    expanded ? 'fa-chevron-up' : 'fa-chevron-down'
-                  }`}
-                  onClick={() => setExpanded(!expanded)}
-                ></button>
-              </div>
-            )}
+            <div className="flex items-center justify-between">
+              <img
+                src="https://www.goclimate.com/blog/wp-content/uploads/2020/07/DJI_0974-768x512.jpg"
+                className="h-14 w-14 rounded-full"
+              ></img>
+              <div className="">{item.name}</div>
+
+              <button
+                className={`ml-4 fas float-right ${
+                  expanded ? 'fa-chevron-up' : 'fa-chevron-down'
+                }`}
+                onClick={() => setExpanded(!expanded)}
+              ></button>
+            </div>
 
             {expanded && (
-              <div
-                className="text-s ml-0  inherit"
-                style={{
-                  margin: '0',
-                  fontWeight: 'normal',
-                  fontSize: '16px',
-                }}
-              >
-                <div className="flex-1">
-                  <p>
-                    {item.description.length > 40
-                      ? item.description.slice(0, 40) + '...'
-                      : item.description}
-                  </p>
-                </div>
-                <div className="flex-1">
-                  <img src="earth.png" className=" flex"></img>
-                </div>
+              <div>
+                {item.status === false ? (
+                  <div className="flex flex-col text-center">
+                    <div className="flex-1 justify-center">
+                      <p>
+                        {item.description.length > 40
+                          ? item.description.slice(0, 40) + '...'
+                          : item.description}
+                      </p>
+                    </div>
+                    <div className="flex-1 justify-center">
+                      <button
+                        className=" ml-4 fas fa-trash"
+                        onClick={() =>
+                          handleDelete(item.id, item.climate_action_id)
+                        }
+                      ></button>
+                      <button
+                        className="button ml-4 button-cta"
+                        onClick={() => handlePerformance(item, true)}
+                      >
+                        Performed{' >'}
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex flex-col text-center">
+                    <div className="justify-center">
+                      <p>
+                        {item.description.length > 40
+                          ? item.description.slice(0, 40) + '...'
+                          : item.description}
+                      </p>
+                    </div>
+                    <button
+                      className="button button-cta  "
+                      onClick={() => handlePerformance(item, false)}
+                    >
+                      Unperform{' <'}
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
