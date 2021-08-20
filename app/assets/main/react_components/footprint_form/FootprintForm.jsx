@@ -12,7 +12,7 @@ import ProgressBar from './ProgressBar.jsx';
 const FootprintForm = ({ calculator, questionStrings, options, footprint, route }) => {
 
   //key value pairs where the key is each question in order and the value is the corresponding category
-  const [questionCategories, setQuestionCategories] = useState({"region": "home", "home": "home", "home_area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane"});
+  const [questionCategories]= useState({"region": "home", "home": "home", "home_area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane"});
   const questionKeys = Object.keys(questionCategories)
   const numericalKeys = ["car_distance", "flight_hours"]
   const firstQuestionKey = questionKeys.find((question) => calculator[question.concat("_options")]);
