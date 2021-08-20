@@ -12,7 +12,7 @@ const RefferalCode = ({ text }) => {
      * Funktion that sends a POST request to the server on refferal code submit
      * and handles error message at invalid code
      */
-    function submit(){
+    function submit() {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
         const URL = "/referral-codes/lookup";
         const requestOptions = {

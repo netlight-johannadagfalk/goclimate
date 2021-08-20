@@ -10,10 +10,14 @@ const SelectButton = ({selectedMembership, setSelectedMembership, buttonType, te
     var boldText = text[0].replace("<span>","")
     var unBoldText = text[1]
 
+    if (buttonType===selectedMembership) {
+        var className="flex flex-row items-center p-3 bg-green-tint-1 rounded cursor-pointer";
+    } else {
+        var className="flex flex-row items-center p-3 bg-gray-pastel rounded cursor-pointer";
+    }
+
     return (
-        <label className="flex flex-row items-center p-3 bg-gray-pastel rounded cursor-pointer" 
-            data-active-class="flex flex-row items-center p-3 bg-green-tint-1 rounded cursor-pointer" 
-            data-inactive-class="flex flex-row items-center p-3 bg-gray-pastel rounded cursor-pointer" 
+        <label className={className}
             htmlFor={buttonType}>
             <input className="flex-shrink-0 mr-2" type="radio" name="membership" id={buttonType} 
                 checked = {selectedMembership === buttonType} 
