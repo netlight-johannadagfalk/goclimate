@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import OptionList from './OptionList.jsx';
 import Title from './Title.jsx';
 import OptionNumerical from './OptionNumerical.jsx';
@@ -12,7 +12,7 @@ import ProgressBar from './ProgressBar.jsx';
 const FootprintForm = ({ calculator, questionStrings, options, footprint, route }) => {
 
   //key value pairs where the key is each question in order and the value is the corresponding category
-  const questionCategories = {"region": "home", "home": "home", "home_area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane"};
+  const [questionCategories, setQuestionCategories] = useState({"region": "home", "home": "home", "home_area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane"});
   const questionKeys = Object.keys(questionCategories)
   const numericalKeys = ["car_distance", "flight_hours"]
   const firstQuestionKey = questionKeys.find((question) => calculator[question.concat("_options")]);
@@ -21,7 +21,6 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, route 
   const [currentOptions, setCurrentOptions] = useState(getOptions(firstQuestionKey));
   let questionIndex = questionKeys.indexOf(Object.keys(questionStrings).find((key) => questionStrings[key] == currentQuestionString));
   const [category, setCategory] = useState("home")
-
 
   function isQuestionUsed(questionKey){
     const calculatorKeyForOptions = questionKey.concat("_options")
@@ -204,7 +203,7 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, route 
       if (questionKeys[questionIndex-1] === "car_type" && givenAnswer === "no_car" ){
         saveAnswer("");
         increaseIndex();
-        delete questionCategories["car_distance"]      
+        delete questionCategories["car_distance"]   
       }
       setQuestion();
     }
