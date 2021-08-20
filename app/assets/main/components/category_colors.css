@@ -1,0 +1,28 @@
+.category_housing {
+  @apply bg-green-accent
+    bg-opacity-20;
+}
+
+.category_food {
+  @apply bg-yellow-accent
+   bg-opacity-20;
+}
+
+.category_car {
+  @apply bg-orange-accent
+   bg-opacity-20;
+}
+
+.category_flights {
+  @apply bg-blue-accent
+   bg-opacity-20;
+}
+
+.category_shopping {
+  @apply bg-pink-accent
+   bg-opacity-20;
+}
+.category_public_emissions {
+  @apply bg-gray-accent
+   bg-opacity-20;
+}

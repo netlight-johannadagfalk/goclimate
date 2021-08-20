@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function Card({ monthlyAction }) {
+  const [categoryColor, setCategoryColor] = useState('category_housing')
+  console.log(monthlyAction.climate_action_category_id.toString())
   return (
     <div className="max-w-md d:w-80 pt-20 m-lg:pt-24 flex justify-evenly">
-      <div className="bg-red border border-gray-tint-2 rounded-lg shadow-lg p-4 h-full space-y-3 pt-0">
+      <div
+        className={`${categoryColor} border border-gray-tint-2 rounded-lg shadow-lg p-4 h-full space-y-3 pt-0`}
+      >
         <div className="inline-block w-full">
           <img
-            className="mx-auto h-40 w-40 -mt-20 m-lg:h-48 m-lg:w-48 m-lg:-mt-24 rounded-full object-cover"
+            className="mx-auto h-40 w-40 -mt-20 m-lg:h-40 m-lg:w-40 m-lg:-mt-20 rounded-full object-cover"
             src="https://www.goclimate.com/blog/wp-content/uploads/2020/07/DJI_0974-768x512.jpg"
           />
         </div>
@@ -25,18 +29,14 @@ function Card({ monthlyAction }) {
                 : monthlyAction.description}
             </p>
           </div>
-          <div className="flex-1 flex-row mb-1">
-            {monthlyAction.points ? (
-              <label>Impact: {monthlyAction.points} CO2</label>
-            ) : (
-              <label>Impact: unknown</label>
-            )}
+          <div className="flex-1 flex flex-row mb-1 justify-center">
             {[1, 2, 3, 4, 5].map((index) => {
-              return (
+              return index <= monthlyAction.points ? (
                 <span className="flex flex-row bg-black m-2 rounded-full h-4 w-4 flex items-center justify-center"></span>
+              ) : (
+                <span className="flex flex-row bg-gray-pastel m-2 rounded-full h-4 w-4 flex items-center justify-center"></span>
               )
             })}
-            <progress value="30" max="100" />
           </div>
           <div className="flex-1">
             {monthlyAction.accepted ? (
