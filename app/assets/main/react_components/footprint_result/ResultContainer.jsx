@@ -3,6 +3,7 @@ import ResultTitle from './ResultTitle.jsx';
 import CategoryChart from './CategoryChart.jsx';
 import WorldComparisonChart from './WorldComparisonChart.jsx';
 import YourFootprintText from './YourFootprintText.jsx';
+import MoneyUsageList from './MoneyUsageList.jsx';
 
 /**
  * React container for Result page components
@@ -28,6 +29,9 @@ const ResultContainer = ({ footprint, countryAverage, registrationsText, commonT
                 <CategoryChart 
                     footprint={JSON.parse(footprint)} 
                     categoryChartText={JSON.parse(commonText)} 
+                />
+                <MoneyUsageList 
+                    moneyUsageText={JSON.parse(registrationsText).where_does_the_money_go}
                 />
             </div>
         </div>
