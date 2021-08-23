@@ -1,4 +1,3 @@
-import React, { useState }  from 'react';
 import SelectorMultipleTimes from './SelectorMultipleTimes.jsx';
 
 /**
