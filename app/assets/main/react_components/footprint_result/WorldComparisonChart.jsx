@@ -19,7 +19,7 @@ const WorldComparisonChart = ({ footprint, countryAverage, worldComparisonText, 
     const countryAverageCo2e = {
         value: countryAverage.co2e.co2e,
         inTonnes: (decimalPlaces) => {
-            return (countryAverageCo2e / 1000).toFixed(decimalPlaces)
+            return (countryAverageCo2e.value / 1000).toFixed(decimalPlaces)
         }
     }
 
