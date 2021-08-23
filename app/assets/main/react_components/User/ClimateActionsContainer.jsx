@@ -117,8 +117,7 @@ const ClimateActionsContainer = ({
       )
     );
   };
-
-  const monthlyAction = totClimateActions.find(
+  const monthlyAction = climateActionsUser.find(
     (action) => action.action_of_the_month === true
   );
 
@@ -129,7 +128,13 @@ const ClimateActionsContainer = ({
           (temp) => temp.climate_action_category_id === cat
         )
       : totClimateActions;
-    setClimateActionsUser(filteredActions);
+
+    const filteredActionsWithStatus = filteredActions.map((x) => {
+      return totUserActions.some((y) => y.climate_action_id === x.id)
+        ? { ...x, accepted: true }
+        : { ...x, accepted: false };
+    });
+    setClimateActionsUser(filteredActionsWithStatus);
   };
 
   return (
