@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_05_092742) do
+ActiveRecord::Schema.define(version: 2021_08_23_081824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,9 @@ ActiveRecord::Schema.define(version: 2021_07_05_092742) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "badge_name"
+    t.string "badge_description"
+    t.string "badge_image_url"
   end
 
   create_table "climate_actions", force: :cascade do |t|
@@ -112,6 +115,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_092742) do
     t.bigint "climate_action_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image_url"
     t.index ["climate_action_category_id"], name: "index_climate_actions_on_climate_action_category_id"
   end
 
@@ -417,10 +421,10 @@ ActiveRecord::Schema.define(version: 2021_07_05_092742) do
 
   create_table "user_climate_actions", force: :cascade do |t|
     t.boolean "status"
-    t.bigint "climate_action_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "climate_action_id", null: false
     t.index ["climate_action_id"], name: "index_user_climate_actions_on_climate_action_id"
     t.index ["user_id"], name: "index_user_climate_actions_on_user_id"
   end
@@ -467,6 +471,6 @@ ActiveRecord::Schema.define(version: 2021_07_05_092742) do
   add_foreign_key "price_increase_confirmations", "users"
   add_foreign_key "reported_data", "business_calculators_calculator_fields", column: "calculator_field_id"
   add_foreign_key "reported_data", "data_requests"
-  add_foreign_key "user_climate_actions", "climate_actions"
+  add_foreign_key "user_climate_actions", "climate_actions", on_delete: :cascade
   add_foreign_key "user_climate_actions", "users"
 end
