@@ -13,6 +13,7 @@ const CarouselList = ({
   climateActionsUser,
   updateLocalAccepted,
   addAcceptedAction,
+  categoryColor,
 }) => {
   return (
     <Carousel
@@ -54,6 +55,7 @@ const CarouselList = ({
           user={user}
           updateLocalAccepted={updateLocalAccepted}
           addAcceptedAction={addAcceptedAction}
+          categoryColor={categoryColor}
         ></CarouselActionItem>
       ))}
     </Carousel>

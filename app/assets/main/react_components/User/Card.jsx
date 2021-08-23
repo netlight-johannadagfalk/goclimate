@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-function Card({ monthlyAction }) {
-  const [categoryColor, setCategoryColor] = useState('category_housing')
-  console.log(monthlyAction.climate_action_category_id.toString())
+function Card({ monthlyAction, categoryColor }) {
   return (
     <div className="max-w-md d:w-80 pt-20 m-lg:pt-24 flex justify-evenly">
       <div
@@ -18,14 +16,14 @@ function Card({ monthlyAction }) {
           <div className="flex-1">
             <h4 className="text-base font-bold justify-center">
               {monthlyAction.name.length > 25
-                ? monthlyAction.name.slice(0, 25) + '...'
+                ? monthlyAction.name.slice(0, 25) + "..."
                 : monthlyAction.name}
             </h4>
           </div>
           <div className="flex-1">
             <p>
               {monthlyAction.description.length > 40
-                ? monthlyAction.description.slice(0, 40) + '...'
+                ? monthlyAction.description.slice(0, 40) + "..."
                 : monthlyAction.description}
             </p>
           </div>
@@ -35,7 +33,7 @@ function Card({ monthlyAction }) {
                 <span className="flex flex-row bg-black m-2 rounded-full h-4 w-4 flex items-center justify-center"></span>
               ) : (
                 <span className="flex flex-row bg-gray-pastel m-2 rounded-full h-4 w-4 flex items-center justify-center"></span>
-              )
+              );
             })}
           </div>
           <div className="flex-1">
@@ -43,7 +41,7 @@ function Card({ monthlyAction }) {
               <button
                 className="button inline-block "
                 disabled={true}
-                style={{ color: 'rgba(28, 70, 55)' }}
+                style={{ color: "rgba(28, 70, 55)" }}
               >
                 Accepted
               </button>
@@ -59,7 +57,7 @@ function Card({ monthlyAction }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Card
+export default Card;

@@ -7,15 +7,17 @@ const CarouselContainer = ({
   climateActionsUser,
   updateLocalAccepted,
   addAcceptedAction,
+  categoryColor,
 }) => {
   return (
-    <div className="max-w-5xl mx-auto space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2">
+    <div className="max-w-5xl mx-auto space-y-3 ">
       <CarouselHeader />
       <CarouselList
         user={user}
         climateActionsUser={climateActionsUser}
         updateLocalAccepted={updateLocalAccepted}
         addAcceptedAction={addAcceptedAction}
+        categoryColor={categoryColor}
       ></CarouselList>
     </div>
   );
