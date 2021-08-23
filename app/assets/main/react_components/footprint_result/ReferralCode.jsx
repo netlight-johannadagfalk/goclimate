@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AnswerButton from '../footprint_form/AnswerButton.jsx';
      
 /**
- * React component for refferal code field in signup
+ * React component for referral code field in signup
  */
 const ReferralCode = ({ text }) => {
 
@@ -10,7 +10,7 @@ const ReferralCode = ({ text }) => {
     const [inputCode, setInputCode] = useState("");
 
     /**
-     * Funktion that sends a POST request to the server on refferal code submit
+     * Funktion that sends a POST request to the server on referral code submit
      * and handles error message at invalid code
      */
     function submit() {
