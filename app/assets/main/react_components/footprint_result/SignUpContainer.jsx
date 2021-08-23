@@ -1,5 +1,5 @@
 import React from 'react';
-import MembershipTypeChooser from './MembershipTypeChooser.jsx';
+import MembershipTypeSelector from './MembershipTypeSelector.jsx';
 import RefferalCode from './ReferralCode.jsx';
 import SignUpMotivationText from './SignUpMotivationText.jsx';
 import SignUpTitle from './SignUpTitle.jsx';
@@ -24,7 +24,7 @@ const SignUpContainer = ({ registrationsText }) => {
                         <input type="checkbox" id="step-one-done" className="toggler"/>
                         <div className="toggler-checked:hidden">
                             <div className="space-y-3">
-                                    <MembershipTypeChooser
+                                    <MembershipTypeSelector
                                         membershipText={registrationsText.membership}
                                     />
                                 <div data-inactive-class="hidden">

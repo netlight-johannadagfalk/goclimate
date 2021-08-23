@@ -4,7 +4,7 @@ import SelectButton from './SelectButton.jsx';
 /**
  * React container for Sign up components
  */
-const MembershipTypeChooser = ({ membershipText }) => {
+const MembershipTypeSelector = ({ membershipText }) => {
     const [selectedMembership, setSelectedMembership] = useState("single")
     
     return (
@@ -25,4 +25,4 @@ const MembershipTypeChooser = ({ membershipText }) => {
     )
 }
 
-export default MembershipTypeChooser;
+export default MembershipTypeSelector;
