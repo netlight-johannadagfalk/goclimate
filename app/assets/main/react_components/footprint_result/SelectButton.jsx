@@ -1,3 +1,4 @@
+import React from 'react';
 import SelectorMultipleTimes from './SelectorMultipleTimes.jsx';
 
 /**
@@ -19,7 +20,12 @@ const SelectButton = ({selectedMembership, setSelectedMembership, buttonType, te
                 value={buttonType} 
                 onChange={() => setSelectedMembership(buttonType)}
             />        
-            <span><span className="font-bold">{boldText}</span>{unBoldText}</span>
+            <span>
+                <span className="font-bold">
+                    {boldText}
+                </span>
+                {unBoldText}
+            </span>
             { buttonType == "multi" && <SelectorMultipleTimes/> }
         </label>
     )
