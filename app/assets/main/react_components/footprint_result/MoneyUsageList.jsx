@@ -1,5 +1,8 @@
 import React from 'react'
 
+/**
+ * Displays a list explaining what donated money goes to
+ */
 const MoneyUsageList = ({ moneyUsageText }) => {
     const listValues = Object.entries(moneyUsageText).filter(([key]) => key !== "heading")
 
