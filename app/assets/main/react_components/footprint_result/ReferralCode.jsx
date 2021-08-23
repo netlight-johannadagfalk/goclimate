@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import AnswerButton from '../footprint_form/AnswerButton.jsx';
      
 /**
  * React component for refferal code field in signup
@@ -6,7 +7,7 @@ import React, {useState} from 'react';
 const RefferalCode = ({ text }) => {
 
     const [errorMessage, setErrorMessage] = useState("");
-    const [inputValue, setInputValue] = useState("");
+    const [inputCode, setInputCode] = useState("");
 
     /**
      * Funktion that sends a POST request to the server on refferal code submit
@@ -22,7 +23,7 @@ const RefferalCode = ({ text }) => {
               "X-CSRF-Token": csrfToken,
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({"code": inputValue})
+            body: JSON.stringify({"code": inputCode})
           };
           fetch(URL, requestOptions)
           .then((res) => {
@@ -48,15 +49,14 @@ const RefferalCode = ({ text }) => {
                     <label htmlFor="enter_referral_code" className="link cursor-pointer">{text.referral_code_link}</label>
                 </p>
             </div>
-            <form className="collapse-content mt-3" action="/referral-codes/lookup" acceptCharset="UTF-8" method="post" 
-                onSubmit={e => { e.preventDefault(); }}>
+            <div className="collapse-content mt-3">
                 <div className="flex">
                     <input size="auto" className="input w-full flex-grow mr-2" placeholder={text.referral_code} 
-                        type="text" name="code" id="code" onChange={e => setInputValue(e.target.value)}/> 
-                    <input type="submit" name="commit" value="OK" className="button" onClick={() => submit()}/> 
+                        type="text" name="code" id="code" onChange={e => setInputCode(e.target.value)}/> 
+                    <AnswerButton label={"OK"} onAnswerGiven={submit}/> 
                 </div>
                 <p className="text-orange-shade-1 mt-1">{errorMessage}</p>
-            </form> 
+            </div> 
         </div>
     )
 }
