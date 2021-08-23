@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import CarouselContainer from './CarouselContainer.jsx'
-import KanbanActionContainer from './KanbanActionContainer.jsx'
-import CarouselActionItem from './CarouselActionItem.jsx'
+import React, { useState, useEffect } from "react";
+import CarouselContainer from "./CarouselContainer.jsx";
+import KanbanActionContainer from "./KanbanActionContainer.jsx";
+import CarouselActionItem from "./CarouselActionItem.jsx";
 
 const ClimateActionsContainer = ({
   user,
@@ -9,11 +9,11 @@ const ClimateActionsContainer = ({
   actionsWithUserActions,
   actionsWithoutUserActions,
 }) => {
-  const [totUserActions, setTotUserActions] = useState(JSON.parse(userActions))
-  const [deletedAction, setDeletedAction] = useState(null)
+  const [totUserActions, setTotUserActions] = useState(JSON.parse(userActions));
+  const [deletedAction, setDeletedAction] = useState(null);
 
   const addAcceptedAction = (action, userAction) => {
-    setDeletedAction(null)
+    setDeletedAction(null);
     const temp = {
       id: userAction.id,
       name: action.name,
@@ -21,104 +21,173 @@ const ClimateActionsContainer = ({
       climate_action_id: action.id,
       status: userAction.status,
       user_id: userAction.user_id,
-    }
-    const localVar = [...totUserActions, temp]
-    setTotUserActions(localVar)
+    };
+    const localVar = [...totUserActions, temp];
+    setTotUserActions(localVar);
     setColumns(
       columnUserActions(
         acceptedUserActions(localVar),
-        doneUserActions(localVar),
-      ),
-    )
-  }
+        doneUserActions(localVar)
+      )
+    );
+  };
 
   const setLocalAccepted = (updatedList, performed, deletedAction) => {
-    setTotUserActions([...updatedList, ...performed])
-    setColumns(columnUserActions(updatedList, performed))
-    setDeletedAction(deletedAction)
-  }
+    setTotUserActions([...updatedList, ...performed]);
+    setColumns(columnUserActions(updatedList, performed));
+    setDeletedAction(deletedAction);
+  };
   //******************************************************* */
 
   const formatedUserActions = (inVal) => {
     return inVal.map((userActions) => ({
       ...userActions,
       id: userActions.id.toString(),
-    }))
-  }
+    }));
+  };
 
   const acceptedUserActions = (inVal) => {
     return formatedUserActions(inVal)
       .filter((action) => action.status !== true)
-      .map((action) => ({ ...action }))
-  }
+      .map((action) => ({ ...action }));
+  };
   const doneUserActions = (inVal) => {
     return formatedUserActions(inVal)
       .filter((action) => action.status !== false)
-      .map((action) => ({ ...action }))
-  }
+      .map((action) => ({ ...action }));
+  };
 
   const columnUserActions = (acceptedList, doneActions) => {
     return {
       [1]: {
-        id: 'Accepted',
-        name: 'Your accepted actions:',
+        id: "Accepted",
+        name: "Your accepted actions:",
         items: acceptedList,
       },
       [2]: {
-        id: 'Performed',
-        name: 'Your performed actions:',
+        id: "Performed",
+        name: "Your performed actions:",
         items: doneActions,
       },
-    }
-  }
+    };
+  };
   const [columns, setColumns] = useState(
     columnUserActions(
       acceptedUserActions(totUserActions),
-      doneUserActions(totUserActions),
-    ),
-  )
+      doneUserActions(totUserActions)
+    )
+  );
   //******************************************************* */
 
   const localActionsWithUserActions = JSON.parse(actionsWithUserActions).map(
     (action) => ({
       ...action,
       accepted: true,
-    }),
-  )
+    })
+  );
 
   const localActionsWithoutUserActions = JSON.parse(
-    actionsWithoutUserActions,
+    actionsWithoutUserActions
   ).map((action) => ({
     ...action,
     accepted: false,
-  }))
+  }));
 
   const totClimateActions = [
     ...localActionsWithoutUserActions,
     ...localActionsWithUserActions,
-  ]
+  ];
 
   const [climateActionsUser, setClimateActionsUser] = useState([
     ...totClimateActions,
-  ])
+  ]);
 
   const updateLocalAccepted = (actionID) => {
+    console.log("UPDATE");
+    console.log(actionID);
     setClimateActionsUser(
       climateActionsUser.map((action) =>
         action.id === actionID
-          ? { ...action, accepted: !action.accepted }
-          : action,
-      ),
-    )
-  }
+          ? { ...action, accepted: !action.accepted, total: action.total + 1 }
+          : action
+      )
+    );
+    console.log(climateActionsUser);
+  };
+
+  // const decreaseLocalNrOfAccepted = (actionID) => {
+  //   console.log("DECREASE");
+  //   setClimateActionsUser(
+  //     climateActionsUser.map((action) =>
+  //       action.id === actionID && action.accepted
+  //         ? { ...action, total: action.total - 1 }
+  //         : action
+  //     )
+  //   );
+  // };
+
+  // const increaseLocalNrOfAccepted = (actionID) => {
+  //   console.log("INCREASE");
+  //   setClimateActionsUser(
+  //     climateActionsUser.map((action) =>
+  //       action.id === actionID && !action.accepted
+  //         ? { ...action, total: action.total + 1 }
+  //         : action
+  //     )
+  //   );
+  // };
+
+  // increaseLocalNrOfAccepted
 
   useEffect(() => {
-    deletedAction != null && updateLocalAccepted(deletedAction)
-  }, [deletedAction])
+    deletedAction != null && test(deletedAction);
+  }, [deletedAction]);
+
+  const test = (deletedAction) => {
+    // console.log(climateActionsUser);
+    const testList = [...climateActionsUser];
+    console.log(testList);
+    testList = decreaseLocalNrOfAccepted(deletedAction, testList);
+    testList = increaseLocalNrOfAccepted(deletedAction, testList);
+    updateLocalAccepted(deletedAction);
+    setClimateActionsUser(...testList);
+    // update state
+  };
+
+  // const updateLocalAccepted = (actionID, climateActions) => {
+  //   console.log("UPDATE");
+  //   console.log(actionID);
+  //   setClimateActionsUser(
+  //     climateActionsUser.map((action) =>
+  //       action.id === actionID
+  //         ? { ...action, accepted: !action.accepted, total: action.total + 1 }
+  //         : action
+  //     )
+  //   );
+  //   console.log(climateActionsUser);
+  // };
+
+  const decreaseLocalNrOfAccepted = (actionID, climateActions) => {
+    climateActions.map((action) =>
+      action.id === actionID && action.accepted
+        ? { ...action, total: action.total - 1 }
+        : action
+    );
+    return climateActions;
+  };
+
+  const increaseLocalNrOfAccepted = (actionID, climateActions) => {
+    climateActions.map((action) =>
+      action.id === actionID && !action.accepted
+        ? { ...action, total: action.total + 1 }
+        : action
+    );
+    return climateActions;
+  };
 
   const monthlyAction = climateActionsUser.find(
-    (action) => action.action_of_the_month === true,
-  )
+    (action) => action.action_of_the_month === true
+  );
 
   return (
     <>
@@ -145,6 +214,6 @@ const ClimateActionsContainer = ({
         setTotUserActions={setTotUserActions}
       />
     </>
-  )
-}
-export default ClimateActionsContainer
+  );
+};
+export default ClimateActionsContainer;
