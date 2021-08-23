@@ -7,29 +7,29 @@ import SignUpTitle from './SignUpTitle.jsx';
 /**
  * React container for Sign up components
  */
-const SignUpContainer = ({ registrationsText }) => {
+const SignUpContainer = ({ signUpText }) => {
 
     return (
         <div className="relative pb-1">
             <div className="space-y-6">
                 <div className="callout max-w-md mx-auto">
                     <a id="sign-up" className="absolute -mt-32"></a>
-                    <div className="space-y-3" data-controller="registrations--price registrations--referral-code">
+                    <div className="space-y-3">
                         <SignUpTitle
-                            signUpTitleText={registrationsText.sign_up_heading_test_2}
+                            signUpTitleText={signUpText.sign_up_heading_test_2}
                         />
                         <SignUpMotivationText
-                            signUpMotivationText={registrationsText.sign_up_description}                            
+                            signUpMotivationText={signUpText.sign_up_description}                            
                         />
                         <input type="checkbox" id="step-one-done" className="toggler"/>
                         <div className="toggler-checked:hidden">
                             <div className="space-y-3">
-                                    <MembershipTypeSelector
-                                        membershipText={registrationsText.membership}
-                                    />
+                                <MembershipTypeSelector
+                                    membershipText={signUpText.membership}
+                                />
                                 <div data-inactive-class="hidden">
                                     <ReferralCode
-                                        text={registrationsText}
+                                        text={signUpText}
                                     />
                                 </div>
                             </div>

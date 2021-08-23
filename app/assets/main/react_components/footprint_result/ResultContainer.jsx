@@ -25,7 +25,7 @@ const ResultContainer = ({ footprint, countryAverage, registrationsText, commonT
                     categoryChartText={JSON.parse(commonText)} 
                 />
                 <SignUpContainer
-                    registrationsText={JSON.parse(registrationsText)}
+                    signUpText={JSON.parse(registrationsText)}
                 />
             </div>
         </div>
