@@ -4,7 +4,7 @@ import AnswerButton from '../footprint_form/AnswerButton.jsx';
 /**
  * React component for refferal code field in signup
  */
-const RefferalCode = ({ text }) => {
+const ReferralCode = ({ text }) => {
 
     const [errorMessage, setErrorMessage] = useState("");
     const [inputCode, setInputCode] = useState("");
@@ -61,4 +61,4 @@ const RefferalCode = ({ text }) => {
     )
 }
 
-export default RefferalCode;
+export default ReferralCode;

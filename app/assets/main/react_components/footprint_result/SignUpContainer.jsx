@@ -1,6 +1,6 @@
 import React from 'react';
 import MembershipTypeSelector from './MembershipTypeSelector.jsx';
-import RefferalCode from './ReferralCode.jsx';
+import ReferralCode from './ReferralCode.jsx';
 import SignUpMotivationText from './SignUpMotivationText.jsx';
 import SignUpTitle from './SignUpTitle.jsx';
 
@@ -28,7 +28,7 @@ const SignUpContainer = ({ registrationsText }) => {
                                         membershipText={registrationsText.membership}
                                     />
                                 <div data-inactive-class="hidden">
-                                    <RefferalCode
+                                    <ReferralCode
                                         text={registrationsText}
                                     />
                                 </div>
