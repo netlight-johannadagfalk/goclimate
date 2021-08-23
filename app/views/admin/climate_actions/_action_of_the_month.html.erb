@@ -5,6 +5,9 @@
       <h6 style="text-align:center"><b>No action of the month is chosen, please choose one.</b></h6> 
       <%else%>
       <h4 style="text-align:center"><b><%= @action_of_the_month.name %></b></h4> 
+      <% if !@action_of_the_month.image_url.eql? nil%>
+      <%= image_tag image_url(@action_of_the_month.image_url), style: 'height:auto%;width:15%;display:block;margin-left:auto;margin-right:auto;' %>
+      <% end%>
       <table class = "table">
         <tr>
           <th>Description:</th>

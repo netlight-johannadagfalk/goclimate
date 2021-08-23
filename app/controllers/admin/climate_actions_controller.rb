@@ -13,7 +13,11 @@ module Admin
     end
 
     def get_number_of_users_completed_actions_in_order
-      @number_of_users_completed_actions_ordered = ClimateAction.joins(:user_climate_actions).where('user_climate_actions.climate_action_id = climate_actions.id').order('COUNT(user_climate_actions.climate_action_id) DESC').group('climate_actions.id')
+      @number_of_users_completed_actions_ordered =
+        ClimateAction.joins(:user_climate_actions)
+        .select("climate_actions.*, count(user_climate_actions.climate_action_id) as total")
+        .order('COUNT(user_climate_actions.climate_action_id) DESC')
+        .group('climate_actions.id')
     end
     
     def show_climate_actions
@@ -72,10 +76,8 @@ module Admin
     end
     # GET /climate_actions/1 or /climate_actions/1.json
     def show
-
       @climate_actions = ClimateAction.all
       @climate_actions_categories = ClimateActionCategory.all
-
     end
 
     # GET /climate_actions/new
@@ -140,7 +142,7 @@ module Admin
 
       # Only allow a list of trusted parameters through.
       def climate_action_params
-        params.require(:climate_action).permit(:id, :name, :description, :points, :repeatable, :action_of_the_month, :climate_action_category_id)
+        params.require(:climate_action).permit(:id, :name, :description, :points, :image_url, :repeatable, :action_of_the_month, :climate_action_category_id)
       end
   end
 
