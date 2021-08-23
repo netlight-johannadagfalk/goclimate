@@ -1,6 +1,10 @@
 import React, { useState, useEffect }  from 'react';
 import AnswerButton from './AnswerButton.jsx';
 
+/** 
+ * Component for numerical input in the form, is either flight or car distance, given by the isCarOption bool
+ * SavedValue is what is to be shown as the label ongoback
+*/
 const OptionNumerical = ({ onAnswerGiven, isCarOption, savedValue, onNumericalInput }) => {
   const [value, setValue] = useState(savedValue);
   

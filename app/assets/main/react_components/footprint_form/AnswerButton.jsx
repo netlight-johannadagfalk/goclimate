@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+/**
+ * A simple styled button component
+ */
 const AnswerButton = ({ label, onAnswerGiven, disableOnClick = false, stylingClasses = "" }) => {
   const [disabled, setDisabled] = useState(false);
 

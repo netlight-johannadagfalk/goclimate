@@ -1,6 +1,9 @@
 import React from 'react'
 import ResultBar from './ResultBar.jsx';
 
+/**
+ * Chart for comparison to the world using resultbars of different lengths, calculated in scale to each other
+ */
 const WorldComparisonChart = ({ footprint, countryAverage, worldComparisonText, lang }) => {
     const maxValue = Math.max(footprint.total.co2e, countryAverage.co2e.co2e, 2500)
     const footprintCo2e = footprint.total.co2e;
