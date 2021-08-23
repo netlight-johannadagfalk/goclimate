@@ -1,4 +1,5 @@
 import React from 'react';
+import SignUpContainer from './SignUpContainer.jsx';
 import ResultTitle from './ResultTitle.jsx';
 import CategoryChart from './CategoryChart.jsx';
 import WorldComparisonChart from './WorldComparisonChart.jsx';
@@ -23,6 +24,9 @@ const ResultContainer = ({ footprint, countryAverage, registrationsText, commonT
                 <CategoryChart 
                     footprint={JSON.parse(footprint)} 
                     categoryChartText={JSON.parse(commonText)} 
+                />
+                <SignUpContainer
+                    signUpText={JSON.parse(registrationsText)}
                 />
                 <Link    
                     link={"https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"}
