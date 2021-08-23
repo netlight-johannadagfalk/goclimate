@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ResultLink = ({ link, linkText }) => {
+const Link = ({ link, linkText }) => {
     return (
         <div className="text-sm">
             <a className="link" target="_blank"
@@ -11,5 +11,5 @@ const ResultLink = ({ link, linkText }) => {
     )
 }
 
-export default ResultLink
+export default Link
 
