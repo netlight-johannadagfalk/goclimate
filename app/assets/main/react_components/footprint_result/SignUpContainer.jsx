@@ -11,6 +11,10 @@ import PaymentButton from './PaymentButton.jsx';
 const SignUpContainer = ({ signUpText }) => {
     const [selectedMembership, setSelectedMembership] = useState("single")
 
+    function onContinueToPayment(givenAnswer){
+        // What happens when clicking continue to payment button
+    }
+
     return (
         <div className="relative pb-1">
             <div className="space-y-6">
@@ -39,6 +43,7 @@ const SignUpContainer = ({ signUpText }) => {
                         </div>
                         <PaymentButton
                             text={signUpText.continue_to_payment}
+                            onAnswerGiven={onContinueToPayment}
                         />
                     </div>
                 </div>
