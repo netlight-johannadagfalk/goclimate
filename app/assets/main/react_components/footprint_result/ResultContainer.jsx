@@ -8,7 +8,7 @@ import Link from '../Link.jsx';
 /**
  * React container for Result page components
  */
-const ResultContainer = ({ footprint, countryAverage, registrationsText, commonText, lifestyleFootprintsText, lang }) => {
+const ResultContainer = ({ footprint, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, lang }) => {
     return (
         <div className="relative pb-1">
             <div className="space-y-6">
@@ -19,7 +19,7 @@ const ResultContainer = ({ footprint, countryAverage, registrationsText, commonT
                     lang={lang}
                     footprint={JSON.parse(footprint)}
                     countryAverage={JSON.parse(countryAverage)}
-                    worldComparisonText={{...JSON.parse(registrationsText), ...JSON.parse(commonText)}} 
+                    worldComparisonText={{...JSON.parse(registrationsText), ...JSON.parse(commonText), ...JSON.parse(modelText)}} 
                 />
                 <CategoryChart 
                     footprint={JSON.parse(footprint)} 
