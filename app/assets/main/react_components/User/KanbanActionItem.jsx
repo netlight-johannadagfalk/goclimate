@@ -1,25 +1,54 @@
-import React, { useState } from 'react'
-import { Draggable } from 'react-beautiful-dnd'
+import React, { useState } from "react";
+import { Draggable } from "react-beautiful-dnd";
 
 const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(false);
+
+  const setStyleWithoutReordering = (style, snapshot) => {
+    //Moving element from startcolumn to endcolumn
+    if (!snapshot.isDragging) {
+      return {
+        userSelect: "none",
+        padding: 16,
+        margin: "0 0 8px 0",
+        minHeight: "auto",
+      };
+    }
+  };
+
+  const setStyleWithReordering = (style) => {
+    // Moving element inside startcolumn
+    return {
+      userSelect: "none",
+      padding: 16,
+      margin: "0 0 8px 0",
+      minHeight: "auto",
+      ...style,
+    };
+  };
 
   return (
-    <Draggable key={item.id} draggableId={item.id} index={index}>
-      {(provided) => {
+    <Draggable
+      key={item.id}
+      draggableId={item.id}
+      index={index}
+      isDragDisabled={item.status === true}
+    >
+      {(provided, snapshot) => {
         return (
           <div
             className="callout grid grid-cols-3 gap-4 items-baseline space-x-6 text-l font-bold"
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
-            style={{
-              userSelect: 'none',
-              padding: 16,
-              margin: '0 0 8px 0',
-              minHeight: 'auto',
-              ...provided.draggableProps.style,
-            }}
+            style={
+              item.status === true
+                ? setStyleWithoutReordering(
+                    provided.draggableProps.style,
+                    snapshot
+                  )
+                : setStyleWithReordering(provided.draggableProps.style)
+            }
           >
             <div>{item.name}</div>
             {item.status === false ? (
@@ -28,7 +57,7 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
                   className="button ml-4 button-cta col-end-auto "
                   onClick={() => handlePerformance(item, true)}
                 >
-                  Performed{' >'}
+                  Performed{" >"}
                 </button>
                 <button
                   className=" ml-4 fas fa-trash col-end-auto "
@@ -36,7 +65,7 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
                 ></button>
                 <button
                   className={`ml-4 fas col-end-auto ${
-                    expanded ? 'fa-chevron-up' : 'fa-chevron-down'
+                    expanded ? "fa-chevron-up" : "fa-chevron-down"
                   }`}
                   onClick={() => setExpanded(!expanded)}
                 ></button>
@@ -47,11 +76,11 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
                   className="button button-cta  "
                   onClick={() => handlePerformance(item, false)}
                 >
-                  Unperform{' <'}
+                  Unperform{" <"}
                 </button>
                 <button
                   className={`ml-4 fas  ${
-                    expanded ? 'fa-chevron-up' : 'fa-chevron-down'
+                    expanded ? "fa-chevron-up" : "fa-chevron-down"
                   }`}
                   onClick={() => setExpanded(!expanded)}
                 ></button>
@@ -62,15 +91,15 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
               <div
                 className="text-s ml-0  inherit"
                 style={{
-                  margin: '0',
-                  fontWeight: 'normal',
-                  fontSize: '16px',
+                  margin: "0",
+                  fontWeight: "normal",
+                  fontSize: "16px",
                 }}
               >
                 <div className="flex-1">
                   <p>
                     {item.description.length > 40
-                      ? item.description.slice(0, 40) + '...'
+                      ? item.description.slice(0, 40) + "..."
                       : item.description}
                   </p>
                 </div>
@@ -80,10 +109,10 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
               </div>
             )}
           </div>
-        )
+        );
       }}
     </Draggable>
-  )
-}
+  );
+};
 
-export default KanbanActionItem
+export default KanbanActionItem;
