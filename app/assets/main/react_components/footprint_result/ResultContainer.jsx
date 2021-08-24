@@ -3,6 +3,7 @@ import SignUpContainer from './SignUpContainer.jsx';
 import ResultTitle from './ResultTitle.jsx';
 import CategoryChart from './CategoryChart.jsx';
 import WorldComparisonChart from './WorldComparisonChart.jsx';
+import YourFootprintText from './YourFootprintText.jsx';
 import Link from '../Link.jsx';
 
 /**
@@ -14,6 +15,10 @@ const ResultContainer = ({ footprint, countryAverage, registrationsText, commonT
             <div className="space-y-6">
                 <ResultTitle
                     title={JSON.parse(registrationsText).well_done}
+                />
+                <YourFootprintText
+                    footprintText={{heading: JSON.parse(commonText).dashboard.footprint.heading, tonnes_CO2: JSON.parse(commonText).tonnes_CO2}}
+                    footprintValue={(JSON.parse(footprint).total.co2e / 1000).toFixed(1)}
                 />
                 <WorldComparisonChart 
                     lang={lang}
