@@ -10,9 +10,7 @@ const MoneyUsageList = ({ moneyUsageText }) => {
         <div className="m-lg:w-1/2 m-lg:pr-16 space-y-3">
             <h3 className="font-semibold">{moneyUsageText.heading}</h3>
             <ul className="list-check space-y-3">
-                {
-                    listValues.map(([key, text]) => <li key={key}>{text}</li>)
-                }
+                {listValues.map(([key, text]) => <li key={key}>{text}</li>)}
             </ul>
         </div>
     )
