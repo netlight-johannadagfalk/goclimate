@@ -1,13 +1,14 @@
 import React from 'react';
+import SignUpContainer from './SignUpContainer.jsx';
 import ResultTitle from './ResultTitle.jsx';
 import CategoryChart from './CategoryChart.jsx';
 import WorldComparisonChart from './WorldComparisonChart.jsx';
+import Link from '../Link.jsx';
 
 /**
  * React container for Result page components
  */
-const ResultContainer = ({ footprint, countryAverage, registrationsText, commonText, modelText, lang }) => {
-
+const ResultContainer = ({ footprint, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, lang }) => {
     return (
         <div className="relative pb-1">
             <div className="space-y-6">
@@ -23,6 +24,13 @@ const ResultContainer = ({ footprint, countryAverage, registrationsText, commonT
                 <CategoryChart 
                     footprint={JSON.parse(footprint)} 
                     categoryChartText={JSON.parse(commonText)} 
+                />
+                <SignUpContainer
+                    signUpText={JSON.parse(registrationsText)}
+                />
+                <Link    
+                    link={"https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"}
+                    linkText={JSON.parse(lifestyleFootprintsText).methodology} 
                 />
             </div>
         </div>
