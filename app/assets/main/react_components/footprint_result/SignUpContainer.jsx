@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MembershipTypeSelector from './MembershipTypeSelector.jsx';
 import ReferralCode from './ReferralCode.jsx';
 import SignUpMotivationText from './SignUpMotivationText.jsx';
 import SignUpTitle from './SignUpTitle.jsx';
+import PaymentButton from './PaymentButton.jsx';
 
 /**
  * React container for Sign up components
  */
 const SignUpContainer = ({ signUpText }) => {
+    const [selectedMembership, setSelectedMembership] = useState("single")
 
     return (
         <div className="relative pb-1">
@@ -26,6 +28,7 @@ const SignUpContainer = ({ signUpText }) => {
                             <div className="space-y-3">
                                 <MembershipTypeSelector
                                     membershipText={signUpText.membership}
+                                    selectedMembership={selectedMembership} setSelectedMembership={setSelectedMembership}
                                 />
                                 <div data-inactive-class="hidden">
                                     <ReferralCode
@@ -34,6 +37,9 @@ const SignUpContainer = ({ signUpText }) => {
                                 </div>
                             </div>
                         </div>
+                        <PaymentButton
+                            text={signUpText.continue_to_payment}
+                        />
                     </div>
                 </div>
             </div>

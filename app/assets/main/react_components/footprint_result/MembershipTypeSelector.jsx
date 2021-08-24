@@ -4,8 +4,7 @@ import SelectButton from './SelectButton.jsx';
 /**
  * React container for Sign up components
  */
-const MembershipTypeSelector = ({ membershipText }) => {
-    const [selectedMembership, setSelectedMembership] = useState("single")
+const MembershipTypeSelector = ({ membershipText, selectedMembership, setSelectedMembership }) => {
     
     return (
         <div className="space-y-3">
