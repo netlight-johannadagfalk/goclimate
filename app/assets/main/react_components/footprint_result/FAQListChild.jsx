@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+// Used as good practice in order to prevent unwanted HTML when using dangerouslySetInnterHTML
+import sanitizeHtml from 'sanitize-html';
 
 /**
  * Single FAQ list object
@@ -16,7 +18,7 @@ const FAQListChild = ({ question, answer }) => {
                 </div>
             </div>
             <div className={"inject-link pt-4 collapse-content " + collapseState}
-                dangerouslySetInnerHTML={{__html: answer}}>
+                dangerouslySetInnerHTML={{__html: sanitizeHtml(answer)}}>
             </div>
         </div>
     )
