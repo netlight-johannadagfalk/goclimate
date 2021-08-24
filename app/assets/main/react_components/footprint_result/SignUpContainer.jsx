@@ -4,11 +4,12 @@ import ReferralCode from './ReferralCode.jsx';
 import SignUpMotivationText from './SignUpMotivationText.jsx';
 import SignUpTitle from './SignUpTitle.jsx';
 import PaymentButton from './PaymentButton.jsx';
+import PriceText from './PriceText.jsx';
 
 /**
  * React container for Sign up components
  */
-const SignUpContainer = ({ signUpText }) => {
+const SignUpContainer = ({ signUpText, price }) => {
     const [selectedMembership, setSelectedMembership] = useState("single")
 
     function onContinueToPayment(givenAnswer){
@@ -41,6 +42,9 @@ const SignUpContainer = ({ signUpText }) => {
                                 </div>
                             </div>
                         </div>
+                        <PriceText
+                            price={price}
+                        />
                         <PaymentButton
                             text={signUpText.continue_to_payment}
                             onAnswerGiven={onContinueToPayment}
