@@ -3,7 +3,7 @@ import React from 'react'
 /**
  * Displays all current GoClimate projects
  */
-const LatestProjectsList = ( { latestProjectsText, projects }) => {
+const LatestProjectsList = ({ latestProjectsText, projects }) => {
     return (
         <div className="m-lg:w-1/2 space-y-3">
             <h3 className="font-semibold">{latestProjectsText}</h3>
