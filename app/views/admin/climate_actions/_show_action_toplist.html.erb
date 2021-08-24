@@ -15,7 +15,7 @@
                 <tr>
                 <td><%= climate_action.name %></td>
                 <td><%= climate_action.points %> CO2</td>
-                <td><%= UserClimateAction.where(climate_action_id: climate_action.id).count %> times</td> 
+                <td><%= climate_action.total %> times</td> 
                 </tr>
             <% end %>
             </tbody>

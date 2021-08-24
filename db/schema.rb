@@ -89,13 +89,6 @@ ActiveRecord::Schema.define(version: 2021_08_23_081824) do
     t.boolean "flight_offset", default: false, null: false
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "climate_action_categories", force: :cascade do |t|
     t.string "name"
     t.string "description"
