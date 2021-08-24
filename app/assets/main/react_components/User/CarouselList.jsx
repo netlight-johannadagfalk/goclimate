@@ -12,6 +12,7 @@ import "swiper/components/pagination/pagination.min.css";
 
 // Swiper resources
 //https://swiperjs.com/react
+//https://swiperjs.com/swiper-api#parameters
 
 import SwiperCore, { Navigation, Pagination, Scrollbar } from "swiper/core";
 SwiperCore.use([Pagination, Navigation, Scrollbar]);
@@ -27,15 +28,12 @@ const CarouselList = ({
   return (
     <>
       <Swiper
-        //spaceBetween={30}
-        slidesPerView={3}
-        //navigation={true}
+        slidesPerView={4}
         navigation={{
           nextEl: navigationPrevRef.current,
           prevEl: navigationNextRef.current,
         }}
-        //pagination={true} //enable to get pagination dots
-        //scrollbar={{ draggable: true }}
+        pagination={true}
         onSwiper={(swiper) => {
           setTimeout(() => {
             swiper.params.navigation.prevEl = navigationPrevRef.current;
@@ -48,7 +46,7 @@ const CarouselList = ({
         onSlideChange={() => console.log("slide change")}
       >
         {climateActionsUser.map((action) => (
-          <SwiperSlide key={action.id}>
+          <SwiperSlide key={action.id} className={"h-auto min-h-full mb-10"}>
             <CarouselActionItem
               action={action}
               user={user}

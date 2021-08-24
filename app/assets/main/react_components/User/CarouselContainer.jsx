@@ -16,7 +16,7 @@ const CarouselContainer = ({
   const [allCategories, setAllCategories] = useState(true);
 
   return (
-    <div className="max-w-5xl mx-auto space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2">
+    <div className="max-w-5xl mx-auto space-y-3 t:bg-transparent t:rounded-lg t:p-8 mt-4">
       <CarouselHeader />
       <CarouselCategoryButton
         categoryName={"All categories"}
