@@ -22,7 +22,9 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
             }}
           >
             <div>{item.name}</div>
-            {item.status === false ? (
+
+            {/* id and name exists for both action and category but status should be optional */}
+            {item.status && item.status === false ? (
               <div className="col-end-auto col-span-2 ">
                 <button
                   className="button ml-4 button-cta col-end-auto "
@@ -42,6 +44,7 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
                 ></button>
               </div>
             ) : (
+              // inside expanded and in the map for each item
               <div className="col-span-2  ">
                 <button
                   className="button button-cta  "
@@ -49,6 +52,8 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
                 >
                   Unperform{" <"}
                 </button>
+
+                {/* still here */}
                 <button
                   className={`ml-4 fas  ${
                     expanded ? "fa-chevron-up" : "fa-chevron-down"
@@ -74,6 +79,7 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
                       : item.description}
                   </p>
                 </div>
+                {/* another picture but still there for category items */}
                 <div className="flex-1">
                   <img src="earth.png" className=" flex"></img>
                 </div>
@@ -84,7 +90,7 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
                       <button
                         className=" ml-4 fas fa-trash col-end-auto "
                         onClick={() =>
-                          handleDelete(item.id, item.climate_action_id)
+                          handleDelete(subItem.id, subItem.climate_action_id)
                         }
                       ></button>
                     </div>

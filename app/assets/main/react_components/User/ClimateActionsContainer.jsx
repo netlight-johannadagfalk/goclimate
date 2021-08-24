@@ -166,6 +166,7 @@ const ClimateActionsContainer = ({
         columns={columns}
         setColumns={setColumns}
         setTotUserActions={setTotUserActions}
+        climateActionCategories={climateActionCategories}
       />
     </>
   );
