@@ -4,6 +4,7 @@ import ResultTitle from './ResultTitle.jsx';
 import CategoryChart from './CategoryChart.jsx';
 import WorldComparisonChart from './WorldComparisonChart.jsx';
 import Link from '../Link.jsx';
+import FAQ from './FAQ.jsx';
 
 /**
  * React container for Result page components
@@ -31,6 +32,10 @@ const ResultContainer = ({ footprint, countryAverage, registrationsText, commonT
                 <Link    
                     link={"https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"}
                     linkText={JSON.parse(lifestyleFootprintsText).methodology} 
+                />
+                <FAQ
+                    questions={JSON.parse(commonText).faq_questions}
+                    faqText={JSON.parse(registrationsText).faq}
                 />
             </div>
         </div>
