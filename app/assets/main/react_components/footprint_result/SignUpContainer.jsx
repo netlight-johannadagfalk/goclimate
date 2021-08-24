@@ -23,19 +23,6 @@ const SignUpContainer = ({ signUpText }) => {
                         <SignUpMotivationText
                             signUpMotivationText={signUpText.sign_up_description}                            
                         />
-                        <input type="checkbox" id="step-one-done" className="toggler"/>
-                        <div className="toggler-checked:hidden">
-                            <div className="space-y-3">
-                                <MembershipTypeSelector
-                                    membershipText={signUpText.membership}
-                                />
-                                <div data-inactive-class="hidden">
-                                    <ReferralCode
-                                        text={signUpText}
-                                    />
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <AnswerButton label="Continue to payment" onAnswerGiven={() => setShowPayment(!showPayment)} stylingClasses={"button-cta w-full"}></AnswerButton>
                 </div>

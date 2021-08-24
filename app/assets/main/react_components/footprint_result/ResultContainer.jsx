@@ -9,19 +9,21 @@ import {
     Elements,
   } from '@stripe/react-stripe-js';
 import Link from '../Link.jsx';
+import PaymentContainer from './PaymentContainer.jsx';
 
 /**
  * React container for Result page components
  */
         
-const ResultContainer = ({ footprint, countryAverage, registrationsText, commonText, lifestyleFootprintsText, lang }) => {
+const ResultContainer = ({ footprint, countryAverage, registrationsText, activerecordText, commonText, lifestyleFootprintsText, lang }) => {
     
     const stripePromise = loadStripe("pk_test_4QHSdRjQiwkzokPPCiK33eOq")
+    console.log(activerecordText)
 
     return (
         <div className="relative pb-1">
              <Elements stripe={stripePromise}>
-                <CardInformation/>
+                <PaymentContainer/>
             </Elements>
             <div className="space-y-6">
                 <ResultTitle

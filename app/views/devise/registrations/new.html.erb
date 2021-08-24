@@ -7,6 +7,7 @@
       countryAverage: @country_average.to_json,
       lang: I18n.locale[0..-1], 
       registrationsText: YAML.load_file('config/locales/views/registrations.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['registrations'].to_json, 
+      activeRecord: YAML.load_file('config/locales/activerecord.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['activerecord'].to_json,
       commonText: YAML.load_file('config/locales/' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]].to_json,
       lifestyleFootprintsText: YAML.load_file('config/locales/views/lifestyle_footprints.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['lifestyle_footprints'].to_json
     %>

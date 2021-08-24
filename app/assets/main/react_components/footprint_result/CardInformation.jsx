@@ -29,16 +29,13 @@ const CardInformation = () => {
   return (
       <>
         <label className="block font-semibold mt-3">Email</label>
-        <input className="input w-full">
-        </input>
+        <input className="input w-full"/>
         <label className="block font-semibold mt-3">Password</label>
-        <input className="input w-full">
-        </input>
+        <input className="input w-full"/>
         <label className="block font-semibold mt-3">Credit or debit card</label>
-        <CardElement className="input mb-1 StripeElement StripeElement--empty"/>
-        <button onClick={handleSubmit} disabled={!stripe || !elements}>
-            Pay
-        </button>
+        <CardElement className="pb-4 w-full input mb-1 StripeElement StripeElement--empty"/>
+        <i className="fas fa-lock" aria-hidden="true"></i>
+        <span className="ml-1">Secured by Stripe</span>
       </>
   );
 }
