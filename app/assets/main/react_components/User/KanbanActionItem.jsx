@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import { Draggable } from 'react-beautiful-dnd'
+import React, { useState } from "react";
+import { Draggable } from "react-beautiful-dnd";
 
 const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <Draggable key={item.id} draggableId={item.id} index={index}>
@@ -14,10 +14,10 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             style={{
-              userSelect: 'none',
+              userSelect: "none",
               padding: 16,
-              margin: '0 0 8px 0',
-              minHeight: 'auto',
+              margin: "0 0 8px 0",
+              minHeight: "auto",
               ...provided.draggableProps.style,
             }}
           >
@@ -28,7 +28,7 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
                   className="button ml-4 button-cta col-end-auto "
                   onClick={() => handlePerformance(item, true)}
                 >
-                  Performed{' >'}
+                  Performed{" >"}
                 </button>
                 <button
                   className=" ml-4 fas fa-trash col-end-auto "
@@ -36,7 +36,7 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
                 ></button>
                 <button
                   className={`ml-4 fas col-end-auto ${
-                    expanded ? 'fa-chevron-up' : 'fa-chevron-down'
+                    expanded ? "fa-chevron-up" : "fa-chevron-down"
                   }`}
                   onClick={() => setExpanded(!expanded)}
                 ></button>
@@ -47,11 +47,11 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
                   className="button button-cta  "
                   onClick={() => handlePerformance(item, false)}
                 >
-                  Unperform{' <'}
+                  Unperform{" <"}
                 </button>
                 <button
                   className={`ml-4 fas  ${
-                    expanded ? 'fa-chevron-up' : 'fa-chevron-down'
+                    expanded ? "fa-chevron-up" : "fa-chevron-down"
                   }`}
                   onClick={() => setExpanded(!expanded)}
                 ></button>
@@ -62,28 +62,40 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
               <div
                 className="text-s ml-0  inherit"
                 style={{
-                  margin: '0',
-                  fontWeight: 'normal',
-                  fontSize: '16px',
+                  margin: "0",
+                  fontWeight: "normal",
+                  fontSize: "16px",
                 }}
               >
                 <div className="flex-1">
                   <p>
                     {item.description.length > 40
-                      ? item.description.slice(0, 40) + '...'
+                      ? item.description.slice(0, 40) + "..."
                       : item.description}
                   </p>
                 </div>
                 <div className="flex-1">
                   <img src="earth.png" className=" flex"></img>
                 </div>
+                {item.itemsArray &&
+                  item.itemsArray.map((subItem) => (
+                    <div>
+                      <p>{subItem.name}</p>
+                      <button
+                        className=" ml-4 fas fa-trash col-end-auto "
+                        onClick={() =>
+                          handleDelete(item.id, item.climate_action_id)
+                        }
+                      ></button>
+                    </div>
+                  ))}
               </div>
             )}
           </div>
-        )
+        );
       }}
     </Draggable>
-  )
-}
+  );
+};
 
-export default KanbanActionItem
+export default KanbanActionItem;
