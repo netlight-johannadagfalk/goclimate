@@ -1,5 +1,6 @@
 import React from 'react';
 import FootprintForm from './FootprintForm.jsx';
+import Link from '../Link.jsx';
 
 
 /**
@@ -19,9 +20,10 @@ const Container = ({ footprint, calculator, lifestyleFootprintsText, lang }) => 
           calculator={JSON.parse(calculator)}
         />
       </div>
-      <div className="text-sm">
-        <a className="link" href="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/" target="_blank">{JSON.parse(lifestyleFootprintsText).lifestyle_footprints.methodology}</a>
-      </div>
+      <Link 
+        link="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"
+        linkText={JSON.parse(lifestyleFootprintsText).lifestyle_footprints.methodology}
+      />
     </div>
   )  
 }
