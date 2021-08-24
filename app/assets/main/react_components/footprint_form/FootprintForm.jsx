@@ -7,7 +7,7 @@ import ProgressBar from './ProgressBar.jsx';
 /**
  * FootprintForm has the responsibility to handle the logic for showing the the questions and answers 
  * in the form as well as show the current question on the form-page, one at the time. 
- * It also has the responsibility to store the answeres filled in by the user by changing the footprint object.
+ * It also has the responsibility to store the answers filled in by the user by changing the footprint object.
  */
 const FootprintForm = ({ calculator, questionStrings, options, footprint, route }) => {
 
