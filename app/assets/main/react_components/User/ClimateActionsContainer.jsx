@@ -117,7 +117,7 @@ const ClimateActionsContainer = ({
       )
     );
   };
-  const monthlyAction = climateActionsUser.find(
+  const monthlyAction = totClimateActions.find(
     (action) => action.action_of_the_month === true
   );
 
