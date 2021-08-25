@@ -11,6 +11,7 @@ const ClimateActionsContainer = ({
   climateActionCategories,
 }) => {
   const [totUserActions, setTotUserActions] = useState(JSON.parse(userActions));
+  console.log("userAction" + userActions);
   const [deletedAction, setDeletedAction] = useState(null);
   const [currCategory, setCurrCategory] = useState(null);
 
@@ -19,6 +20,7 @@ const ClimateActionsContainer = ({
   }, [deletedAction]);
 
   const addAcceptedAction = (action, userAction) => {
+    console.log("category" + action.climate_action_category_id);
     setDeletedAction(null);
     const temp = {
       id: userAction.id,
@@ -27,7 +29,9 @@ const ClimateActionsContainer = ({
       climate_action_id: action.id,
       status: userAction.status,
       user_id: userAction.user_id,
+      climate_action_category_id: action.climate_action_category_id,
     };
+
     const localVar = [...totUserActions, temp];
     setTotUserActions(localVar);
     setColumns(
@@ -117,6 +121,7 @@ const ClimateActionsContainer = ({
       )
     );
   };
+  console.log("climateactionsuser" + climateActionsUser);
   const monthlyAction = climateActionsUser.find(
     (action) => action.action_of_the_month === true
   );

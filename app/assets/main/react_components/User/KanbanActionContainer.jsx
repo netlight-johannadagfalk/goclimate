@@ -15,6 +15,7 @@ const KanbanActionContainer = ({
     setRender(columns);
   }, [columns]);
 
+  console.log("columns" + JSON.stringify(columns));
   const handleDelete = (id, actionID) => {
     deleteUserAction(id);
     setLocalAccepted(
@@ -114,16 +115,17 @@ const KanbanActionContainer = ({
     }
   };
 
-  const [categoryBadges, setCategoryBadges] = useState(climateActionCategories);
+  const [categoryBadges, setCategoryBadges] = useState([
+    climateActionCategories,
+  ]);
 
   const appendSubItem = (item) => {
-    console.log("item" + item.climate_action_category_id); //undefined
+    console.log("item" + item.climate_action_category_id);
     console.log("categoryBadge is a type of " + categoryBadges); //array with objects
     const theCategory = categoryBadges.find(
-      //categoryBadges.find() is not a function VARFÖR?
-      (category) => category.id === 2
-      //(category) => category.id === item.climate_action_category_id
+      (category) => category.id === item.climate_action_category_id
     );
+    console.log("thecategroy" + theCategory);
     const theCategoryIndex = categoryBadges.findIndex(theCategory);
     const subItems = [...categoryBadges[theCategoryIndex].items];
     subItems.splice(subItems.lenght, 0, item);
@@ -159,13 +161,16 @@ const KanbanActionContainer = ({
       const destColumn = columns[destination.droppableId];
       const sourceItems = [...sourceColumn.items];
       const destItems = [...destColumn.items];
+
+      console.log("destitems" + JSON.stringify(destItems));
       const [removed] = sourceItems.splice(source.index, 1);
-      console.log(removed);
+
+      console.log("removed" + JSON.stringify(removed));
       //instead of appending removed, add a category object
       //const newObject = createCategoryElement(removed);
       //destItems.splice(destination.index, 0, newObject);
-      newItems = appendSubItem(removed);
-      setTotUserActions([...sourceItems, ...newItems]);
+      updatedCategoryColumn = appendSubItem(removed);
+      setTotUserActions([...sourceItems, ...updatedCategoryColumn]);
 
       setColumns({
         ...columns,
@@ -174,8 +179,7 @@ const KanbanActionContainer = ({
           items: sourceItems,
         },
         [destination.droppableId]: {
-          ...destColumn,
-          items: newItems,
+          updatedCategoryColumn,
         },
       });
       if (destColumn.id === columns[2].id) {
