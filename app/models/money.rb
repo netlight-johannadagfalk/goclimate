@@ -68,8 +68,11 @@ class Money
     )
 
     if localized_string == 'DEFAULT'
+      p "euro -------------"
       "#{currency} #{formatted_number}"
     else
+      p "SVENSKA KR --------"
+      p localized_string
       localized_string
     end
   end

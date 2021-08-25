@@ -9,7 +9,7 @@ import PriceText from './PriceText.jsx';
 /**
  * React container for Sign up components
  */
-const SignUpContainer = ({ signUpText, price }) => {
+const SignUpContainer = ({ signUpText, price, currency, months }) => {
     const [selectedMembership, setSelectedMembership] = useState("single")
 
     function onContinueToPayment(givenAnswer){
@@ -44,6 +44,9 @@ const SignUpContainer = ({ signUpText, price }) => {
                         </div>
                         <PriceText
                             price={price}
+                            currency={currency}
+                            months={months}
+                            signUpText={signUpText}
                         />
                         <PaymentButton
                             text={signUpText.continue_to_payment}

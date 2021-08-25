@@ -9,7 +9,7 @@ import Link from '../Link.jsx';
 /**
  * React container for Result page components
  */
-const ResultContainer = ({ footprint, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, lang, plan }) => {
+const ResultContainer = ({ footprint, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, lang, plan, currency, months }) => {
     
     console.log(JSON.parse(plan));
 
@@ -36,6 +36,8 @@ const ResultContainer = ({ footprint, countryAverage, registrationsText, commonT
                 <SignUpContainer
                     signUpText={JSON.parse(registrationsText)}
                     price={JSON.parse(plan).price}
+                    currency={JSON.parse(currency)}
+                    months={JSON.parse(months)}
                 />
                 <Link    
                     link={"https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"}

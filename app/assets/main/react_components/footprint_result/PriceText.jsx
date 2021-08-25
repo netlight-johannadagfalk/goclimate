@@ -3,51 +3,26 @@ import React from 'react'
 /**
  * Title used on footprint result page
  */
-const PriceText = ({price}) => {
+const PriceText = ({price, currency, months, signUpText}) => {
 
-  function extractPrice (price) {
-
-    console.log((Number.isInteger(price.subunit_amount/100)))
-    if (Number.isInteger(price.subunit_amount/100)) {
-      return (price.subunit_amount/100)
-    } else {
-      return (price.subunit_amount/100)
-    }
-
-    // def to_s(precision: nil) # rubocop:disable Metrics/MethodLength TODO: This needs simplifying
-    //   formatting_options = { format: '%n' }
-    //   unless precision.nil?
-    //     formatting_options[:precision] =
-    //       if precision == :auto
-    //         subunit_amount % 100 == 0 ? 0 : 2
-    //       else
-    //         precision
-    //       end
-    //   end
-    //   formatted_number = ActiveSupport::NumberHelper.number_to_currency(amount, formatting_options)
-
-    //   localized_string = I18n.t(
-    //     "models.money.currency_formats.#{currency.iso_code}",
-    //     number: formatted_number, default: 'DEFAULT', fallback: false
-    //   )
-
-    //   if localized_string == 'DEFAULT'
-    //     "#{currency} #{formatted_number}"
-    //   else
-    //     localized_string
-    //   end
-    // end
+  function extractPrice (price, currency) {
+    var currencyText = currency.money.currency_formats[price.currency.iso_code];
+    const findCustomPlacement = /%{.*?}/i;
+    var price = (price.subunit_amount/100)
+    if (Math.trunc(price) != price) {
+      price = price.toFixed(2);
+    } 
+    return currencyText.replace(findCustomPlacement, price);
   }
     
     return (
         <div className="py-6 space-y-1">
             <p className="heading-lg text-center">
-              <span className="hidden">First month free</span>
-              <span><span>€7--- {extractPrice (price)}  </span>/month</span>
-              {/* @plan.price.to_s(precision: :auto) */}
+              <span className="hidden">{signUpText.first_month_free}</span>
+              <span><span>{extractPrice(price, currency)}</span>/{months.one}</span>
             </p>
             <p className="hidden">
-              Then <span>€7</span>/month
+              {signUpText.then} <span>{extractPrice(price, currency)}</span>/{months.one}
             </p>
         </div>
     )
