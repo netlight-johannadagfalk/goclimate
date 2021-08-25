@@ -16,11 +16,14 @@ const PaymentContainer = ({ signUpText }) => {
         <div className="relative pb-1">
             <div className="space-y-6">
                 <div className="callout max-w-md mx-auto">
-                <CardInformation/>
-                <AnswerButton 
-                    label="Continue to payment" 
-                    stylingClasses={"button-cta w-full"}>
-                </AnswerButton>
+                    <CardInformation/>
+                    <div>7 dahllas/month</div>
+                    <div>Where does the money go</div>
+                    <AnswerButton 
+                        label="Continue to payment" 
+                        stylingClasses={"button-cta w-full mt-3"}>
+                    </AnswerButton>
+                    <div>Terms of use and plicies</div>
                 </div>
             </div>
         </div>

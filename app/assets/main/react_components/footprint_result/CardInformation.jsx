@@ -33,7 +33,7 @@ const CardInformation = () => {
         <label className="block font-semibold mt-3">Password</label>
         <input className="input w-full"/>
         <label className="block font-semibold mt-3">Credit or debit card</label>
-        <CardElement className="pb-4 w-full input mb-1 StripeElement StripeElement--empty"/>
+        <CardElement className="py-3 w-full input mb-1 StripeElement StripeElement--empty"/>
         <i className="fas fa-lock" aria-hidden="true"></i>
         <span className="ml-1">Secured by Stripe</span>
       </>
