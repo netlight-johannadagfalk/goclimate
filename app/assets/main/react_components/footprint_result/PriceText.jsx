@@ -15,17 +15,17 @@ const PriceText = ({price, currency, months, signUpText}) => {
     return currencyText.replace(findCustomPlacement, price);
   }
     
-    return (
-        <div className="py-6 space-y-1">
-            <p className="heading-lg text-center">
-              <span className="hidden">{signUpText.first_month_free}</span>
-              <span><span>{extractPrice(price, currency)}</span>/{months.one}</span>
-            </p>
-            <p className="hidden">
-              {signUpText.then} <span>{extractPrice(price, currency)}</span>/{months.one}
-            </p>
-        </div>
-    )
+  return (
+      <div className="py-6 space-y-1">
+          <p className="heading-lg text-center">
+            <span className="hidden">{signUpText.first_month_free}</span>
+            <span><span>{extractPrice(price, currency)}</span>/{months.one}</span>
+          </p>
+          <p className="hidden">
+            {signUpText.then} <span>{extractPrice(price, currency)}</span>/{months.one}
+          </p>
+      </div>
+  )
 }
 
 export default PriceText;
