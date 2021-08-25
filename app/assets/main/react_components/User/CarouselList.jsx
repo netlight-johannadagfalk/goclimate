@@ -40,7 +40,6 @@ const CarouselList = ({
             swiper.navigation.update();
           });
         }}
-        onSlideChange={() => console.log("slide change")}
       >
         {climateActionsUser.map((action) => (
           <SwiperSlide key={action.id} className={"h-auto min-h-full mb-10"}>
