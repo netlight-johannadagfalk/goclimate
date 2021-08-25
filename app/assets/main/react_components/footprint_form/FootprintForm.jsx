@@ -3,13 +3,15 @@ import OptionList from './OptionList.jsx';
 import Title from './Title.jsx';
 import OptionNumerical from './OptionNumerical.jsx';
 import ProgressBar from './ProgressBar.jsx';
+import ResultPage from './ResultPage.jsx';
+import AnswerButton from './AnswerButton.jsx';
 
 /**
  * FootprintForm has the responsibility to handle the logic for showing the the questions and answers 
  * in the form as well as show the current question on the form-page, one at the time. 
  * It also has the responsibility to store the answeres filled in by the user by changing the footprint object.
  */
-const FootprintForm = ({ calculator, questionStrings, options, footprint, route }) => {
+const FootprintForm = ({ calculator, questionStrings, options, footprint, route, texts, lang }) => {
 
   //key value pairs where the key is each question in order and the value is the corresponding category
   const questionCategories = {"region": "home", "home": "home", "home_area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane"};
@@ -21,7 +23,7 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, route 
   const [currentOptions, setCurrentOptions] = useState(getOptions(firstQuestionKey));
   let questionIndex = questionKeys.indexOf(Object.keys(questionStrings).find((key) => questionStrings[key] == currentQuestionString));
   const [category, setCategory] = useState("home")
-
+  const [result, setResult] = useState();
 
   function isQuestionUsed(questionKey){
     const calculatorKeyForOptions = questionKey.concat("_options")
@@ -121,8 +123,18 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, route 
         },
         body: JSON.stringify(cleanFootprint)
       };
-      fetch(URL, requestOptions)
-      .then(res => window.location.href = res.url)
+    fetch(URL, requestOptions)
+      .then(response => {
+        response.json().then(calculatedFootprint => {
+          console.log(calculatedFootprint);
+         // setResult(calculatedFootprint)
+        })
+        //window.location.href = response.url
+      })
+      .catch(error => {
+        console.log("Something went wrong, trying again.", error);
+        // Någon popup eller liknande?
+      })
   }
 
   /**
@@ -218,21 +230,36 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, route 
             calculator={calculator} 
             activeCategory={category} 
             activeQuestion={questionKeys[questionIndex]}/>
-          <Title text={currentQuestionString}/>
-          {
-            !currentOptions.isNumerical ? 
-              <OptionList 
-                onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} 
-                options={currentOptions.options}
-                selectedKey={footprint[questionKeys[questionIndex].concat("_answer")]} 
+          {result ?
+            <>
+              <ResultPage 
+                result={result} 
+                texts={texts}
+                lang={lang}
               />
+              <AnswerButton
+                label={"Next ->"}
+                onAnswerGiven={() => {
+                  console.log("GÅ TILL NÄSTA VY");
+                }}
+                stylingClasses={"w-2/3"}
+              />
+            </>
             :
-              <OptionNumerical 
-                onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} 
-                isCarOption={currentOptions.isCarOption} 
-                onNumericalInput={saveAnswer}
-                savedValue={getSavedValue()} 
-              />
+            <Title text={currentQuestionString}/> &&
+              !currentOptions.isNumerical ? 
+                <OptionList 
+                  onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} 
+                  options={currentOptions.options}
+                  selectedKey={footprint[questionKeys[questionIndex].concat("_answer")]} 
+                />
+              :
+                <OptionNumerical 
+                  onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} 
+                  isCarOption={currentOptions.isCarOption} 
+                  onNumericalInput={saveAnswer}
+                  savedValue={getSavedValue()} 
+                />
           }
         </div>
         { questionIndex != firstQuestionIndex ? 
