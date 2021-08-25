@@ -11,8 +11,6 @@ import Link from '../Link.jsx';
  */
 const ResultContainer = ({ footprint, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, lang, plan, currency, months }) => {
     
-    console.log(JSON.parse(plan));
-
     return (
         <div className="relative pb-1">
             <div className="space-y-6">

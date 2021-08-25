@@ -3,7 +3,7 @@ import MembershipTypeSelector from './MembershipTypeSelector.jsx';
 import ReferralCode from './ReferralCode.jsx';
 import SignUpMotivationText from './SignUpMotivationText.jsx';
 import SignUpTitle from './SignUpTitle.jsx';
-import PaymentButton from './PaymentButton.jsx';
+import AnswerButton from '../footprint_form/AnswerButton.jsx';
 import PriceText from './PriceText.jsx';
 
 /**
@@ -48,9 +48,10 @@ const SignUpContainer = ({ signUpText, price, currency, months }) => {
                             months={months}
                             signUpText={signUpText}
                         />
-                        <PaymentButton
-                            text={signUpText.continue_to_payment}
-                            onAnswerGiven={onContinueToPayment}
+                        <AnswerButton
+                            label={signUpText.continue_to_payment}
+                            stylingClasses = {"button-cta" + " w-full"}
+                            onAnswerGiven = {onContinueToPayment}
                         />
                     </div>
                 </div>
