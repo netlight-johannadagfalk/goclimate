@@ -9,9 +9,15 @@ const ClimateActionsContainer = ({
   userActions,
   actionsWithUserActions,
   actionsWithoutUserActions,
+  climateActionCategories,
 }) => {
   const [totUserActions, setTotUserActions] = useState(JSON.parse(userActions));
   const [deletedAction, setDeletedAction] = useState(null);
+  const [currCategory, setCurrCategory] = useState(null);
+
+  useEffect(() => {
+    deletedAction != null && updateLocalAccepted(deletedAction);
+  }, [deletedAction]);
 
   const addAcceptedAction = (action, userAction) => {
     setDeletedAction(null);
@@ -112,14 +118,25 @@ const ClimateActionsContainer = ({
       )
     );
   };
-
-  useEffect(() => {
-    deletedAction != null && updateLocalAccepted(deletedAction);
-  }, [deletedAction]);
-
   const monthlyAction = climateActionsUser.find(
     (action) => action.action_of_the_month === true
   );
+
+  const setCategory = (cat) => {
+    setCurrCategory(cat);
+    const filteredActions = cat
+      ? totClimateActions.filter(
+          (temp) => temp.climate_action_category_id === cat
+        )
+      : totClimateActions;
+
+    const filteredActionsWithStatus = filteredActions.map((x) => {
+      return totUserActions.some((y) => y.climate_action_id === x.id)
+        ? { ...x, accepted: true }
+        : { ...x, accepted: false };
+    });
+    setClimateActionsUser(filteredActionsWithStatus);
+  };
 
   return (
     <>
@@ -127,19 +144,26 @@ const ClimateActionsContainer = ({
 
       <div className="w-80 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2 justify-center">
         <h3 className="heading-lg mb-3">Action of the Month </h3>
-        <CarouselActionItem
-          action={monthlyAction}
-          key={monthlyAction.id}
-          user={user}
-          updateLocalAccepted={updateLocalAccepted}
-          addAcceptedAction={addAcceptedAction}
-        ></CarouselActionItem>
+        {monthlyAction && (
+          <CarouselActionItem
+            action={monthlyAction}
+            key={monthlyAction.id}
+            user={user}
+            updateLocalAccepted={updateLocalAccepted}
+            addAcceptedAction={addAcceptedAction}
+          ></CarouselActionItem>
+        )}
       </div>
+
       <CarouselContainer
         user={user}
         climateActionsUser={climateActionsUser}
         updateLocalAccepted={updateLocalAccepted}
         addAcceptedAction={addAcceptedAction}
+        deletedAction={deletedAction}
+        climateActionCategories={climateActionCategories}
+        category={currCategory}
+        setCategory={setCategory}
       />
       <KanbanActionContainer
         setLocalAccepted={setLocalAccepted}
