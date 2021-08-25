@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CarouselContainer from "./CarouselContainer.jsx";
 import KanbanActionContainer from "./KanbanActionContainer.jsx";
+import Sidebar from "./Sidebar.jsx";
 import CarouselActionItem from "./CarouselActionItem.jsx";
 
 const ClimateActionsContainer = ({
@@ -139,6 +140,8 @@ const ClimateActionsContainer = ({
 
   return (
     <>
+      <Sidebar />
+
       <div className="w-80 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2 justify-center">
         <h3 className="heading-lg mb-3">Action of the Month </h3>
         {monthlyAction && (
@@ -151,6 +154,7 @@ const ClimateActionsContainer = ({
           ></CarouselActionItem>
         )}
       </div>
+
       <CarouselContainer
         user={user}
         climateActionsUser={climateActionsUser}
