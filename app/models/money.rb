@@ -50,7 +50,6 @@ class Money
   end
 
   def to_s(precision: nil) # rubocop:disable Metrics/MethodLength TODO: This needs simplifying
-    p ("--sa-df-ad-as-d-as-dsa-d-----")
     formatting_options = { format: '%n' }
     unless precision.nil?
       formatting_options[:precision] =
@@ -68,11 +67,8 @@ class Money
     )
 
     if localized_string == 'DEFAULT'
-      p "euro -------------"
       "#{currency} #{formatted_number}"
     else
-      p "SVENSKA KR --------"
-      p localized_string
       localized_string
     end
   end
