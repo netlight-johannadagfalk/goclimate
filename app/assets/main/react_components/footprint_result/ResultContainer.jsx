@@ -11,40 +11,38 @@ import {
 import Link from '../Link.jsx';
 import PaymentContainer from './PaymentContainer.jsx';
 import YourFootprintText from './YourFootprintText.jsx';
-import Link from '../Link.jsx';
 import LatestProjectsList from './LatestProjectsList.jsx';
 
 /**
  * React container for Result page components
  */
         
-const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, activerecordText, commonText, lifestyleFootprintsText, lang }) => {
-    
+const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, lifestyleFootprintsText, modelText, lang }) => {
+    const commonStrings = JSON.parse(commonText)
     const stripePromise = loadStripe("pk_test_4QHSdRjQiwkzokPPCiK33eOq")
-    console.log(activerecordText)
 
     return (
         <div className="relative pb-1">
-             <Elements stripe={stripePromise}>
-                <PaymentContainer/>
+            <Elements  stripe={stripePromise}  options={{locale: lang}} >
+                <PaymentContainer commonStrings={commonStrings} registrationsStrings={JSON.parse(registrationsText)}/>
             </Elements>
             <div className="space-y-6">
                 <ResultTitle
                     title={JSON.parse(registrationsText).well_done}
                 />
                 <YourFootprintText
-                    footprintText={{heading: JSON.parse(commonText).dashboard.footprint.heading, tonnes_CO2: JSON.parse(commonText).tonnes_CO2}}
+                    footprintText={{heading: commonStrings.dashboard.footprint.heading, tonnes_CO2: commonStrings.tonnes_CO2}}
                     footprintValue={(JSON.parse(footprint).total.co2e / 1000).toFixed(1)}
                 />
                 <WorldComparisonChart 
                     lang={lang}
                     footprint={JSON.parse(footprint)}
                     countryAverage={JSON.parse(countryAverage)}
-                    worldComparisonText={{...JSON.parse(registrationsText), ...JSON.parse(commonText), ...JSON.parse(modelText)}} 
+                    worldComparisonText={{...JSON.parse(registrationsText), ...commonStrings, ...JSON.parse(modelText)}} 
                 />
                 <CategoryChart 
                     footprint={JSON.parse(footprint)} 
-                    categoryChartText={JSON.parse(commonText)} 
+                    categoryChartText={commonStrings} 
                 />
                 <SignUpContainer
                     signUpText={JSON.parse(registrationsText)}
