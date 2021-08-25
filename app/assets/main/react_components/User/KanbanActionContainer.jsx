@@ -9,6 +9,7 @@ const KanbanActionContainer = ({
   setTotUserActions,
   categoryColor,
   climateActionCategories,
+  climateActionsUser,
 }) => {
   const [render, setRender] = useState();
   useEffect(() => {
@@ -116,28 +117,59 @@ const KanbanActionContainer = ({
   };
 
   const [categoryBadges, setCategoryBadges] = useState([
-    climateActionCategories,
+    ...JSON.parse(climateActionCategories),
   ]);
 
   const appendSubItem = (item) => {
     console.log("item" + item.climate_action_category_id);
-    console.log("categoryBadge is a type of " + categoryBadges); //array with objects
+    console.log("categoryBadge is a type of " + JSON.stringify(categoryBadges)); //array with objects
     const theCategory = categoryBadges.find(
       (category) => category.id === item.climate_action_category_id
+      //console.log(category.id);
     );
-    console.log("thecategroy" + theCategory);
-    const theCategoryIndex = categoryBadges.findIndex(theCategory);
-    const subItems = [...categoryBadges[theCategoryIndex].items];
-    subItems.splice(subItems.lenght, 0, item);
+    console.log("thecategroy" + theCategory.id);
+    const theCategoryIndex = categoryBadges.findIndex(
+      (category) => category.id === item.climate_action_category_id
+    );
+    console.log("THE FINAL INDEX IS: " + theCategoryIndex);
 
-    setCategoryBadges({
+    console.log("ALL USER ACTIONS: " + JSON.stringify(climateActionsUser));
+
+    /** Not quite sure of what this is suppose to do */
+    /*const subItems = [...categoryBadges[theCategoryIndex].items];
+    subItems.splice(subItems.lenght, 0, item);*/
+
+    /** Get all actions related to category id */
+    const actionsToCategory = climateActionsUser.filter(
+      (actions) =>
+        actions.climate_action_category_id === item.climate_action_category_id
+    );
+    console.log("FOUND ACTIONS: " + JSON.stringify(actionsToCategory));
+
+    /** Add so status is added to the items so we know that stars should be added */
+
+    // const tempCategory = {
+    //   climate_action_id: item.climate_action_category_id,
+    //   description: theCategory.description,
+    //   id: item.id,
+    //   name: theCategory.name,
+    //   status: true,
+    //   user_id: item.user_id,
+    //   itemsArray: [actionsToCategory],
+    // };
+
+    // console.log("TEMPPP: " + JSON.stringify(tempCategory));
+    // return tempCategory;
+
+    /** Explain this */
+    /*setCategoryBadges({
       ...categoryBadges,
       [theCategoryIndex]: {
         ...categoryBadges[theCategoryIndex],
         itemsArray: [subItems],
       },
     });
-    return categoryBadges;
+    return categoryBadges;*/
   };
 
   const createCategoryElement = (item) => {

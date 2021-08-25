@@ -121,7 +121,7 @@ const ClimateActionsContainer = ({
       )
     );
   };
-  console.log("climateactionsuser" + climateActionsUser);
+  console.log("climateactionsuser" + JSON.stringify(climateActionsUser));
   const monthlyAction = climateActionsUser.find(
     (action) => action.action_of_the_month === true
   );
@@ -172,6 +172,7 @@ const ClimateActionsContainer = ({
         setColumns={setColumns}
         setTotUserActions={setTotUserActions}
         climateActionCategories={climateActionCategories}
+        climateActionsUser={climateActionsUser}
       />
     </>
   );
