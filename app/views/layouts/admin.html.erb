@@ -10,7 +10,7 @@
     <%= yield :javascript_tags %>
   </head>
 
-  <body class="admin <%= controller_name + " " + controller_name + "-" + action_name %><% unless ENV['HEROKU_ENV'] == 'production' %> admin-non-production-stripes<% end %>">
+  <body class="admin <%= controller_name + " " + controller_name + "-" + action_name %><% unless ENV['HEROKU_ENV'] == 'production' %> admin-non-production-stripes<% end %> text-primary">
     <div class="w-full h-screen flex flex-col t:flex-row">
       <nav class="w-full t:w-60 text-white t:overflow-y-auto t:bg-green-dark">
         <div class="fixed t:static w-screen t:w-auto flex flex-rox justify-between py-3 px-6 bg-green-dark h-14 t:h-auto z-40">

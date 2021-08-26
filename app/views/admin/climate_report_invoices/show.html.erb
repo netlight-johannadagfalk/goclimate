@@ -34,7 +34,7 @@
     ]
   %>
 
-  <%= render 'admin/shared/content_header', heading: 'Climate Report Invoice', actions: @invoice.project.present? ? default_actions + additional_actions : default_actions %>
+  <%= render 'admin/shared/content_header', heading: 'Climate Report Invoice', actions: default_actions, additional_actions: @invoice.project.present? ? additional_actions : nil %>
 
   <dl class="dl-horizontal">
     <dt>ID:</dt>
@@ -114,7 +114,7 @@
     </div>
   <% end %>
 
-  <div class="flex flex-row">
+  <div class="flex flex-row space-x-2">
     <% if @previous.present? %>
       <%= link_to '← Previous', admin_climate_report_invoice_path(@previous), class: 'button' %>
     <% end %>

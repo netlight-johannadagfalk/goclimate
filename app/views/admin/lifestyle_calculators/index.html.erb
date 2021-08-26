@@ -3,7 +3,7 @@
 
   <h1 class="heading-lg">Lifestyle Calculators</h1>
 
-  <div class="callout space-y-3">
+  <div class="callout space-y-3 max-w-lg">
     <h3 class="heading">Add calculator</h3>
     <p>Add new country or new version for existing country.</p>
     <%= form_with url: new_admin_lifestyle_calculator_path, method: :get do |f| %>
@@ -20,7 +20,9 @@
             </button>
         </label>
       </div>
-      <%= f.submit 'New', name: nil, class: 'button button-cta' %>
+      <div class="text-right">
+        <%= f.submit 'New', name: nil, class: 'button button-cta' %>
+      </div>
     <% end %>
   </div>
 

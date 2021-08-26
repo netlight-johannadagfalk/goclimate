@@ -9,11 +9,15 @@
       }
     ] %>
 
-  <div class="callout">
-    <dl>
-      <dt>Total CO2</dt><dd><%= @total_co2 %> tonnes</dd>
-      <dt>Total spent</dt><dd><%= @total_sek_spent %> SEK</dd>
-    </dl>
+  <div class="callout flex flex-row max-w-3xl">
+    <div class="w-1/2">
+      <h2>Total CO2</h2>
+      <p class="heading-lg"><%= @total_co2 %> tonnes</p>
+    </div>
+    <div class="w-1/2">
+      <h2>Total spent</h2>
+      <p class="heading-lg"><%= @total_sek_spent %> SEK</p>
+    </div>
   </div>
 
   <table class="table">
