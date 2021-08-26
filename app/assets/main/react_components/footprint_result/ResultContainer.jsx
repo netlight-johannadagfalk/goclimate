@@ -5,8 +5,12 @@ import CategoryChart from './CategoryChart.jsx';
 import WorldComparisonChart from './WorldComparisonChart.jsx';
 import YourFootprintText from './YourFootprintText.jsx';
 import Link from '../Link.jsx';
+<<<<<<< HEAD
+import MoneyUsageList from './MoneyUsageList.jsx';
+=======
 import FAQ from './FAQ.jsx';
 import LatestProjectsList from './LatestProjectsList.jsx';
+>>>>>>> 241f150ee25f7b00a3f660373715c564e7159833
 
 /**
  * React container for Result page components
@@ -38,6 +42,9 @@ const ResultContainer = ({ footprint, projects, countryAverage, registrationsTex
                 <Link    
                     link={"https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"}
                     linkText={JSON.parse(lifestyleFootprintsText).methodology} 
+                />
+                <MoneyUsageList 
+                    moneyUsageText={JSON.parse(registrationsText).where_does_the_money_go}
                 />
                 <LatestProjectsList
                     latestProjectsText={JSON.parse(registrationsText).latest_projects}
