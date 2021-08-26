@@ -64,7 +64,7 @@
       <div class="w-full t:w-1/4 d:w-1/6 d:max-w-xs p-4">
         <h3 class="font-bold"><%= t('views.shared.footer.headers.make_a_difference') %></h3>
         <ul class="list-none">
-          <li><%= link_to t('views.shared.header.sign_up'), start_lifestyle_footprints_url, class: 'link-ui'%></li>
+          <li><%= link_to t('views.shared.header.sign_up'), experiment_active?(:calculator_landing_page) ? start_lifestyle_footprints_url : root_url, class: 'link-ui'%></li>
           <li><%= link_to t('views.take_action.heading'), take_action_path, class: "link-ui" %></li>
           <li><%= link_to t('navigation.gift_cards'), gift_cards_path, class: 'link-ui' %></li>
           <li><%= link_to t('views.shared.header.navigation.flights'), new_flight_footprint_path, class: 'link-ui' %></li>
