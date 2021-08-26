@@ -4,7 +4,7 @@ import SelectorMultipleTimes from './SelectorMultipleTimes.jsx';
 /**
  * React container for select buttons 
  */
-const SelectButton = ({selectedMembership, setSelectedMembership, buttonType, text}) => {
+const SelectButton = ({selectedMembership, setSelectedMembership, buttonType, text, currentMultipleValue, setCurrentMultipleValue}) => {
 
     var text = text.split("</span>")
     var boldText = text[0].replace("<span>","")
@@ -26,7 +26,11 @@ const SelectButton = ({selectedMembership, setSelectedMembership, buttonType, te
                 </span>
                 {unBoldText}
             </span>
-            { buttonType == "multi" && <SelectorMultipleTimes/> }
+            { buttonType == "multi" && 
+                <SelectorMultipleTimes
+                    currentMultipleValue={currentMultipleValue} setCurrentMultipleValue={setCurrentMultipleValue}
+                /> 
+            }
         </label>
     )
 }
