@@ -123,6 +123,7 @@ const KanbanActionContainer = ({
   const appendSubItem = (item) => {
     console.log("item" + item.climate_action_category_id);
     console.log("categoryBadge is a type of " + JSON.stringify(categoryBadges)); //array with objects
+    /** Feteches the correct category */
     const theCategory = categoryBadges.find(
       (category) => category.id === item.climate_action_category_id
       //console.log(category.id);
@@ -135,10 +136,6 @@ const KanbanActionContainer = ({
 
     console.log("ALL USER ACTIONS: " + JSON.stringify(climateActionsUser));
 
-    /** Not quite sure of what this is suppose to do */
-    /*const subItems = [...categoryBadges[theCategoryIndex].items];
-    subItems.splice(subItems.lenght, 0, item);*/
-
     /** Get all actions related to category id */
     const actionsToCategory = climateActionsUser.filter(
       (actions) =>
@@ -146,30 +143,27 @@ const KanbanActionContainer = ({
     );
     console.log("FOUND ACTIONS: " + JSON.stringify(actionsToCategory));
 
-    /** Add so status is added to the items so we know that stars should be added */
+    /** Need user climate actions data, so we can use status */
 
-    // const tempCategory = {
-    //   climate_action_id: item.climate_action_category_id,
-    //   description: theCategory.description,
-    //   id: item.id,
-    //   name: theCategory.name,
-    //   status: true,
-    //   user_id: item.user_id,
-    //   itemsArray: [actionsToCategory],
-    // };
+    // const subItems = [...categoryBadges[theCategoryIndex].items];
+    // subItems.splice(subItems.lenght, 0, item);
 
-    // console.log("TEMPPP: " + JSON.stringify(tempCategory));
-    // return tempCategory;
+    /** Update status for the moved item, both locally and to database */
+    item.status = true;
+    updateStatus(item.id, true);
 
-    /** Explain this */
-    /*setCategoryBadges({
-      ...categoryBadges,
-      [theCategoryIndex]: {
-        ...categoryBadges[theCategoryIndex],
-        itemsArray: [subItems],
-      },
-    });
-    return categoryBadges;*/
+    console.log(
+      "CATEGORYBADGES BEFORE " +
+        JSON.stringify(categoryBadges[theCategoryIndex])
+    );
+
+    categoryBadges[theCategoryIndex].itemsArray = actionsToCategory;
+    console.log(
+      "CATEGORYBADGES WITH ADDED ACTOINS: " +
+        JSON.stringify(categoryBadges[theCategoryIndex])
+    );
+
+    return categoryBadges;
   };
 
   const createCategoryElement = (item) => {
@@ -192,17 +186,18 @@ const KanbanActionContainer = ({
       const sourceColumn = columns[source.droppableId];
       const destColumn = columns[destination.droppableId];
       const sourceItems = [...sourceColumn.items];
-      const destItems = [...destColumn.items];
+      //const destItems = [...destColumn.items];
 
-      console.log("destitems" + JSON.stringify(destItems));
+      // console.log("destitems" + JSON.stringify(destItems));
       const [removed] = sourceItems.splice(source.index, 1);
 
       console.log("removed" + JSON.stringify(removed));
       //instead of appending removed, add a category object
       //const newObject = createCategoryElement(removed);
       //destItems.splice(destination.index, 0, newObject);
-      updatedCategoryColumn = appendSubItem(removed);
-      setTotUserActions([...sourceItems, ...updatedCategoryColumn]);
+      const updatedDestItems = appendSubItem(removed);
+      const destItems = [...updatedDestItems];
+      setTotUserActions([...sourceItems, ...destItems]);
 
       setColumns({
         ...columns,
@@ -211,46 +206,48 @@ const KanbanActionContainer = ({
           items: sourceItems,
         },
         [destination.droppableId]: {
-          updatedCategoryColumn,
+          ...destColumn,
+          items: destItems,
         },
       });
-      if (destColumn.id === columns[2].id) {
-        const theItem = destItems.find((item) => item.status === false);
-        const newDestItems = destItems.map((item) =>
-          item.status === false ? { ...item, status: !item.status } : item
-        );
-        setTotUserActions([...sourceItems, ...newDestItems]);
-        setColumns({
-          ...columns,
-          [source.droppableId]: {
-            ...sourceColumn,
-            items: sourceItems,
-          },
-          [destination.droppableId]: {
-            ...destColumn,
-            items: newDestItems,
-          },
-        });
-        updateStatus(theItem.id, true);
-      } else {
-        const theItem = destItems.find((item) => item.status === true);
-        const newDestItems = destItems.map((item) =>
-          item.status === true ? { ...item, status: !item.status } : item
-        );
-        setTotUserActions([...sourceItems, ...newDestItems]);
-        setColumns({
-          ...columns,
-          [source.droppableId]: {
-            ...sourceColumn,
-            items: sourceItems,
-          },
-          [destination.droppableId]: {
-            ...destColumn,
-            items: newDestItems,
-          },
-        });
-        updateStatus(theItem.id, false);
-      }
+      console.log("newDESTITEMS: " + JSON.stringify(columns[2].items));
+      // if (destColumn.id === columns[2].id) {
+      //   const theItem = destItems.find((item) => item.status === false);
+      //   const newDestItems = destItems.map((item) =>
+      //     item.status === false ? { ...item, status: !item.status } : item
+      //   );
+      //   setTotUserActions([...sourceItems, ...newDestItems]);
+      //   setColumns({
+      //     ...columns,
+      //     [source.droppableId]: {
+      //       ...sourceColumn,
+      //       items: sourceItems,
+      //     },
+      //     [destination.droppableId]: {
+      //       ...destColumn,
+      //       items: newDestItems,
+      //     },
+      //   });
+      //   updateStatus(theItem.id, true);
+      // } else {
+      //   const theItem = destItems.find((item) => item.status === true);
+      //   const newDestItems = destItems.map((item) =>
+      //     item.status === true ? { ...item, status: !item.status } : item
+      //   );
+      //   setTotUserActions([...sourceItems, ...newDestItems]);
+      //   setColumns({
+      //     ...columns,
+      //     [source.droppableId]: {
+      //       ...sourceColumn,
+      //       items: sourceItems,
+      //     },
+      //     [destination.droppableId]: {
+      //       ...destColumn,
+      //       items: newDestItems,
+      //     },
+      //   });
+      //   updateStatus(theItem.id, false);
+      // }
     } else {
       const column = columns[source.droppableId];
       const copiedItems = [...column.items];

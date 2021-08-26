@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 
-const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
+const KanbanActionItem = ({
+  item,
+  index,
+  handleDelete,
+  handlePerformance,
+  categoryColor,
+}) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -9,7 +15,8 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
       {(provided) => {
         return (
           <div
-            className="callout grid grid-cols-3 gap-4 items-baseline space-x-6 text-l font-bold"
+            className={`border border-gray-tint-2 rounded-lg shadow-lg p-4 h-full space-y-3 pt-0`}
+            //className="callout items-baseline space-x-6 text-l font-bold"
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -20,81 +27,70 @@ const KanbanActionItem = ({ item, index, handleDelete, handlePerformance }) => {
               minHeight: "auto",
               ...provided.draggableProps.style,
             }}
+            onClick={() => setExpanded(!expanded)}
           >
-            <div>{item.name}</div>
+            <div className="flex items-center justify-between">
+              {/* image that should be loaded from items.imgage and when status is changed, the image changes to category.image (badge) */}
+              <img
+                src={
+                  item.status === false
+                    ? "https://www.goclimate.com/blog/wp-content/uploads/2020/07/DJI_0974-768x512.jpg"
+                    : "https://www.goclimate.com/bundles/images/climate_tips/diet_meat-2x-7655d2c5801c3203a42ed27da6e83f6c.jpg"
+                }
+                className="h-14 w-14 rounded-full"
+              ></img>
+              <div className="">{item.name}</div>
 
-            {/* id and name exists for both action and category but status should be optional */}
-            {item.status && item.status === false ? (
-              <div className="col-end-auto col-span-2 ">
-                <button
-                  className="button ml-4 button-cta col-end-auto "
-                  onClick={() => handlePerformance(item, true)}
-                >
-                  Performed{" >"}
-                </button>
-                <button
-                  className=" ml-4 fas fa-trash col-end-auto "
-                  onClick={() => handleDelete(item.id, item.climate_action_id)}
-                ></button>
-                <button
-                  className={`ml-4 fas col-end-auto ${
-                    expanded ? "fa-chevron-up" : "fa-chevron-down"
-                  }`}
-                  onClick={() => setExpanded(!expanded)}
-                ></button>
-              </div>
-            ) : (
-              // inside expanded and in the map for each item
-              <div className="col-span-2  ">
-                <button
-                  className="button button-cta  "
-                  onClick={() => handlePerformance(item, false)}
-                >
-                  Unperform{" <"}
-                </button>
-
-                {/* still here */}
-                <button
-                  className={`ml-4 fas  ${
-                    expanded ? "fa-chevron-up" : "fa-chevron-down"
-                  }`}
-                  onClick={() => setExpanded(!expanded)}
-                ></button>
-              </div>
-            )}
+              <button
+                className={`ml-4 fas float-right ${
+                  expanded ? "fa-chevron-up" : "fa-chevron-down"
+                }`}
+              ></button>
+            </div>
 
             {expanded && (
-              <div
-                className="text-s ml-0  inherit"
-                style={{
-                  margin: "0",
-                  fontWeight: "normal",
-                  fontSize: "16px",
-                }}
-              >
-                <div className="flex-1">
-                  <p>
-                    {item.description.length > 40
-                      ? item.description.slice(0, 40) + "..."
-                      : item.description}
-                  </p>
-                </div>
-                {/* another picture but still there for category items */}
-                <div className="flex-1">
-                  <img src="earth.png" className=" flex"></img>
-                </div>
-                {item.itemsArray &&
-                  item.itemsArray.map((subItem) => (
-                    <div>
-                      <p>{subItem.name}</p>
+              <div>
+                {item.status && item.status === false ? (
+                  <div className="flex flex-col text-center">
+                    <div className="flex-1 justify-center">
+                      <p>
+                        {item.description.length > 40
+                          ? item.description.slice(0, 40) + "..."
+                          : item.description}
+                      </p>
+                    </div>
+                    <div className="flex-1 justify-center">
                       <button
-                        className=" ml-4 fas fa-trash col-end-auto "
+                        className=" ml-4 fas fa-trash"
                         onClick={() =>
-                          handleDelete(subItem.id, subItem.climate_action_id)
+                          handleDelete(item.id, item.climate_action_id)
                         }
                       ></button>
+                      <button
+                        className="button ml-4 button-cta"
+                        onClick={() => handlePerformance(item, true)}
+                      >
+                        Performed{" >"}
+                      </button>
                     </div>
-                  ))}
+                  </div>
+                ) : (
+                  <div className="flex flex-col text-center">
+                    <div className="justify-center">
+                      <p>
+                        {item.description.length > 40
+                          ? item.description.slice(0, 40) + "..."
+                          : item.description}
+                      </p>
+                    </div>
+                    <button
+                      className="button button-cta  "
+                      onClick={() => handlePerformance(item, false)}
+                    >
+                      Unperform{" <"}
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
