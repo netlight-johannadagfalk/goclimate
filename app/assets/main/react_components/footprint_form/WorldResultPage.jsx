@@ -3,8 +3,10 @@ import ResultTitle from '../footprint_result/ResultTitle.jsx'
 import YourFootprintText from '../footprint_result/YourFootprintText.jsx'
 import WorldComparisonChart from '../footprint_result/WorldComparisonChart.jsx'
 
+/**
+ * Result component page for world comparison
+ */
 const WorldResultPage = ({ footprint, countryAverage, texts, lang }) => {
-    
     return (
         <div>
             <ResultTitle
