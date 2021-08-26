@@ -23,7 +23,6 @@ const KanbanActionColumn = ({
                 minHeight: 500,
               }}
             >
-              <p>Column</p>
               {column.items.map((item, index) => {
                 return (
                   <KanbanActionItem

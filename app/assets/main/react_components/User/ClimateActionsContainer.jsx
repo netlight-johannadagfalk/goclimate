@@ -68,12 +68,12 @@ const ClimateActionsContainer = ({
     return {
       [1]: {
         id: "Accepted",
-        name: "Your accepted actions:",
+        name: "My Actions",
         items: acceptedList,
       },
       [2]: {
         id: "Performed",
-        name: "Your performed actions:",
+        name: "Achievements",
         items: doneActions,
       },
     };
@@ -162,12 +162,6 @@ const ClimateActionsContainer = ({
         climateActionCategories={climateActionCategories}
         category={currCategory}
         setCategory={setCategory}
-      />
-      <KanbanActionContainer
-        setLocalAccepted={setLocalAccepted}
-        columns={columns}
-        setColumns={setColumns}
-        setTotUserActions={setTotUserActions}
       />
 
       <Sidebar
