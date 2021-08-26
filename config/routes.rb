@@ -247,6 +247,9 @@ Rails.application.routes.draw do
       collection do
         post :search
       end
+      member do
+        get :cancel_subscription
+      end
     end
     resources :lifestyle_footprints, only: [:index, :show, :destroy]
   end

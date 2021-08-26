@@ -28,6 +28,19 @@ module Admin
       end
     end
 
+    def cancel_subscription
+      @user = User.find(params[:id])
+      subscription_manager = Subscriptions::StripeSubscriptionManager.new(@user)
+
+      notice = if @user.active_subscription? && subscription_manager.cancel
+                 'Subscription successfully cancelled'
+               else
+                 "Oups! Something went wrong! #{subscription_manager.errors.full_messages}"
+               end
+
+      redirect_to admin_user_path(@user.id), notice: notice
+    end
+
     private
 
     def search_params
