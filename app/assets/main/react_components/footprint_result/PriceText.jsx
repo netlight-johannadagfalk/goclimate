@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 /**
  * Title used on footprint result page
  */
-const PriceText = ({price, currency, months, signUpText}) => {
+const PriceText = ({price, currency, months, signUpText, grantedRefferalCode}) => {
 
   function extractPrice (price, currency) {
     var currencyText = currency.money.currency_formats[price.currency.iso_code];
@@ -14,17 +14,27 @@ const PriceText = ({price, currency, months, signUpText}) => {
     } 
     return currencyText.replace(findCustomPlacement, price);
   }
-    
+
   return (
-      <div className="py-6 space-y-1">
+    <>
+    {
+      !grantedRefferalCode ?
+        <div id="showPrice"className="py-6 space-y-1">
           <p className="heading-lg text-center">
-            <span className="hidden">{signUpText.first_month_free}</span>
             <span><span>{extractPrice(price, currency)}</span>/{months.one}</span>
           </p>
-          <p className="hidden">
-            {signUpText.then} <span>{extractPrice(price, currency)}</span>/{months.one}
-          </p>
+        </div>
+      :
+      <div id="freeMonth"className="py-6 space-y-1">
+        <p className="heading-lg text-center">
+          <span>{signUpText.first_month_free}</span>
+        </p>
+        <p class="font-bold text-center">
+          {signUpText.then} <span>{extractPrice(price, currency)}</span>/{months.one}
+        </p>
       </div>
+    }
+    </>
   )
 }
 
