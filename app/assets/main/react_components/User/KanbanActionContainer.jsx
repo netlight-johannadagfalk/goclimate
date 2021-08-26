@@ -10,6 +10,7 @@ const KanbanActionContainer = ({
   categoryColor,
   climateActionCategories,
   climateActionsUser,
+  categoryBadges,
 }) => {
   const [render, setRender] = useState();
   useEffect(() => {
@@ -116,55 +117,57 @@ const KanbanActionContainer = ({
     }
   };
 
-  const [categoryBadges, setCategoryBadges] = useState([
-    ...JSON.parse(climateActionCategories),
-  ]);
+  // const appendSubItem = (item, columns) => {
+  //   console.log("item" + item.climate_action_category_id);
+  //   console.log("categoryBadge is a type of " + JSON.stringify(categoryBadges)); //array with objects
+  //   /** Feteches the correct category */
+  //   const theCategory = categoryBadges.find(
+  //     (category) => category.id === item.climate_action_category_id
+  //     //console.log(category.id);
+  //   );
+  //   console.log("thecategroy" + theCategory.id);
+  //   const theCategoryIndex = categoryBadges.findIndex(
+  //     (category) => category.id === item.climate_action_category_id
+  //   );
+  //   console.log("THE FINAL INDEX IS: " + theCategoryIndex);
 
-  const appendSubItem = (item) => {
-    console.log("item" + item.climate_action_category_id);
-    console.log("categoryBadge is a type of " + JSON.stringify(categoryBadges)); //array with objects
-    /** Feteches the correct category */
-    const theCategory = categoryBadges.find(
-      (category) => category.id === item.climate_action_category_id
-      //console.log(category.id);
-    );
-    console.log("thecategroy" + theCategory.id);
-    const theCategoryIndex = categoryBadges.findIndex(
-      (category) => category.id === item.climate_action_category_id
-    );
-    console.log("THE FINAL INDEX IS: " + theCategoryIndex);
+  //   console.log("ALL USER ACTIONS: " + JSON.stringify(climateActionsUser));
 
-    console.log("ALL USER ACTIONS: " + JSON.stringify(climateActionsUser));
+  //   /** Get all actions related to category id */
+  //   const actionsToCategory = climateActionsUser.filter(
+  //     (actions) =>
+  //       actions.climate_action_category_id === item.climate_action_category_id
+  //   );
 
-    /** Get all actions related to category id */
-    const actionsToCategory = climateActionsUser.filter(
-      (actions) =>
-        actions.climate_action_category_id === item.climate_action_category_id
-    );
-    console.log("FOUND ACTIONS: " + JSON.stringify(actionsToCategory));
+  //   console.log("FOUND ACTIONS: " + JSON.stringify(actionsToCategory));
 
-    /** Need user climate actions data, so we can use status */
+  //   console.log("NEW COLUMNS: " + JSON.stringify(columns[2].items));
 
-    // const subItems = [...categoryBadges[theCategoryIndex].items];
-    // subItems.splice(subItems.lenght, 0, item);
+  //   //const userClimateActions = columns[2].items.
 
-    /** Update status for the moved item, both locally and to database */
-    item.status = true;
-    updateStatus(item.id, true);
+  //   /** Need user climate actions data, so we can use status */
 
-    console.log(
-      "CATEGORYBADGES BEFORE " +
-        JSON.stringify(categoryBadges[theCategoryIndex])
-    );
+  //   // const subItems = [...categoryBadges[theCategoryIndex].items];
+  //   // subItems.splice(subItems.lenght, 0, item);
 
-    categoryBadges[theCategoryIndex].itemsArray = actionsToCategory;
-    console.log(
-      "CATEGORYBADGES WITH ADDED ACTOINS: " +
-        JSON.stringify(categoryBadges[theCategoryIndex])
-    );
+  //   /** Update status for the moved item, both locally and to database */
+  //   item.status = true;
+  //   console.log("ITEM STATUS: " + item.status);
+  //   updateStatus(item.id, true);
 
-    return categoryBadges;
-  };
+  //   console.log(
+  //     "CATEGORYBADGES BEFORE " +
+  //       JSON.stringify(categoryBadges[theCategoryIndex])
+  //   );
+
+  //   categoryBadges[theCategoryIndex].itemsArray = actionsToCategory;
+  //   console.log(
+  //     "CATEGORYBADGES WITH ADDED ACTOINS: " +
+  //       JSON.stringify(categoryBadges[theCategoryIndex])
+  //   );
+
+  //   return categoryBadges;
+  // };
 
   const createCategoryElement = (item) => {
     const tempCategory = {
@@ -195,7 +198,7 @@ const KanbanActionContainer = ({
       //instead of appending removed, add a category object
       //const newObject = createCategoryElement(removed);
       //destItems.splice(destination.index, 0, newObject);
-      const updatedDestItems = appendSubItem(removed);
+      const updatedDestItems = categoryBadges;
       const destItems = [...updatedDestItems];
       setTotUserActions([...sourceItems, ...destItems]);
 

@@ -15,6 +15,10 @@ const ClimateActionsContainer = ({
   const [deletedAction, setDeletedAction] = useState(null);
   const [currCategory, setCurrCategory] = useState(null);
 
+  const [categoryBadges, setCategoryBadges] = useState([
+    ...JSON.parse(climateActionCategories),
+  ]);
+
   useEffect(() => {
     deletedAction != null && updateLocalAccepted(deletedAction);
   }, [deletedAction]);
@@ -61,13 +65,49 @@ const ClimateActionsContainer = ({
       .filter((action) => action.status !== true)
       .map((action) => ({ ...action }));
   };
-  const doneUserActions = (inVal) => {
-    return formatedUserActions(inVal)
-      .filter((action) => action.status !== false)
-      .map((action) => ({ ...action }));
+
+  const appendItemsArrayToCategory = (actionsWithUserActions) => {
+    console.log("I ENTER FUNCTION");
+    const newCategoryBadges = categoryBadges.map((category) => {
+      console.log("IN APPEND: " + JSON.stringify(categoryBadges));
+      return (
+        actionsWithUserActions.some(
+          (action) => action.climate_action_category_id === category.id
+        ) && { ...category, itemsArray: [...itemsArray, action] }
+      );
+    });
+
+    setCategoryBadges(newCategoryBadges);
+
+    // /** Feteches the correct category */
+    // const theCategory = categoryBadges.find(
+    //   (category) => category.id === item.climate_action_category_id
+    // );
+    // const theCategoryIndex = categoryBadges.findIndex(
+    //   (category) => category.id === item.climate_action_category_id
+    // );
+
+    // /** Get all actions related to category id */
+    // const actionsToCategory = climateActionsUser.filter(
+    //   (actions) =>
+    //     actions.climate_action_category_id === item.climate_action_category_id
+    // );
+
+    // item.status = true;
+    // updateStatus(item.id, true);
+
+    // categoryBadges[theCategoryIndex].itemsArray = actionsToCategory;
+
+    // return categoryBadges;
   };
 
-  const columnUserActions = (acceptedList, doneActions) => {
+  // const doneUserActions = (inVal) => {
+  //   return formatedUserActions(inVal)
+  //     .filter((action) => action.status !== false)
+  //     .map((action) => ({ ...action }));
+  // };
+
+  const columnUserActions = (acceptedList, categoryBadges) => {
     return {
       [1]: {
         id: "Accepted",
@@ -77,17 +117,21 @@ const ClimateActionsContainer = ({
       [2]: {
         id: "Performed",
         name: "Your performed actions:",
-        items: doneActions,
+        items: categoryBadges,
       },
     };
   };
-  const [columns, setColumns] = useState(
-    columnUserActions(
-      acceptedUserActions(totUserActions),
-      doneUserActions(totUserActions)
-    )
-  );
+
+  /**CHANGE THIS SO NO FUNCTION IS BEING CALLED */
+  const [columns, setColumns] = useState(updateCategoryBadges());
   //******************************************************* */
+
+  const updateCategoryBadges = () => {
+    console.log("CAAAAT: ");
+    const temp = appendItemsArrayToCategory(categoryBadges);
+    console.log("CATEGORYBAGDESNEW: " + JSON.stringify(categoryBadges));
+    return columnUserActions(acceptedUserActions(totUserActions), temp);
+  };
 
   const localActionsWithUserActions = JSON.parse(actionsWithUserActions).map(
     (action) => ({
@@ -121,7 +165,6 @@ const ClimateActionsContainer = ({
       )
     );
   };
-  console.log("climateactionsuser" + JSON.stringify(climateActionsUser));
   const monthlyAction = climateActionsUser.find(
     (action) => action.action_of_the_month === true
   );
@@ -173,6 +216,7 @@ const ClimateActionsContainer = ({
         setTotUserActions={setTotUserActions}
         climateActionCategories={climateActionCategories}
         climateActionsUser={climateActionsUser}
+        categoryBadges={categoryBadges}
       />
     </>
   );

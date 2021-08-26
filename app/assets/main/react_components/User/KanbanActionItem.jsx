@@ -11,7 +11,7 @@ const KanbanActionItem = ({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Draggable key={item.id} draggableId={item.id} index={index}>
+    <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
       {(provided) => {
         return (
           <div
@@ -75,20 +75,15 @@ const KanbanActionItem = ({
                     </div>
                   </div>
                 ) : (
-                  <div className="flex flex-col text-center">
-                    <div className="justify-center">
-                      <p>
-                        {item.description.length > 40
-                          ? item.description.slice(0, 40) + "..."
-                          : item.description}
-                      </p>
-                    </div>
-                    <button
-                      className="button button-cta  "
-                      onClick={() => handlePerformance(item, false)}
-                    >
-                      Unperform{" <"}
-                    </button>
+                  /*Check if which catgeories that should be shown by checking which category items status that is true 
+                  add status in incomning action catgories
+                  */
+                  <div>
+                    {item.itemsArray &&
+                      item.itemsArray.map((subitem) => {
+                        console.log("SUBITEM" + JSON.stringify(subitem));
+                        return <div className="">{subitem.name}</div>;
+                      })}
                   </div>
                 )}
               </div>
