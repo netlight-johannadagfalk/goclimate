@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AnswerButton from '../footprint_form/AnswerButton.jsx';
 import CardInformation from './CardInformation.jsx';
-import MembershipTypeSelector from './MembershipTypeSelector.jsx';
-import ReferralCode from './ReferralCode.jsx';
 import SignUpMotivationText from './SignUpMotivationText.jsx';
 import SignUpTitle from './SignUpTitle.jsx';
 import Link from '../Link.jsx'
@@ -10,8 +8,8 @@ import Link from '../Link.jsx'
 /**
  * React container for Sign up components
  */
-const PaymentContainer = ({ commonStrings, registrationsStrings, test_number }) => {
-    console.log(registrationsStrings.sign_up_heading_test_1)
+const PaymentContainer = ({ commonStrings, registrationsStrings, sign_up_heading_test_number }) => {
+
     function onNextStep () {
         console.log("Dummy function")
     }
@@ -20,7 +18,7 @@ const PaymentContainer = ({ commonStrings, registrationsStrings, test_number }) 
         <div className="relative pb-1">
             <div className="space-y-6">
                 <div className="callout max-w-md mx-auto">
-                    <SignUpTitle signUpTitleText={registrationsStrings.sign_up_heading_test_1} />
+                    <SignUpTitle signUpTitleText={eval("registrationsStrings.sign_up_heading_test_" + sign_up_heading_test_number)} />
                     <SignUpMotivationText signUpMotivationText={registrationsStrings.sign_up_description} />
                     <CardInformation commonStrings={commonStrings}/>
                     <Link linkText={registrationsStrings.where_does_the_money_go.heading}/>

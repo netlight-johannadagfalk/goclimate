@@ -17,14 +17,18 @@ import LatestProjectsList from './LatestProjectsList.jsx';
  * React container for Result page components
  */
         
-const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, lifestyleFootprintsText, modelText, lang }) => {
+const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, lifestyleFootprintsText, modelText, lang, sign_up_heading_test_number }) => {
     const commonStrings = JSON.parse(commonText)
     const stripePromise = loadStripe("pk_test_4QHSdRjQiwkzokPPCiK33eOq")
 
     return (
         <div className="relative pb-1">
             <Elements  stripe={stripePromise}  options={{locale: lang}} >
-                <PaymentContainer commonStrings={commonStrings} registrationsStrings={JSON.parse(registrationsText)}/>
+                <PaymentContainer 
+                commonStrings={commonStrings} 
+                registrationsStrings={JSON.parse(registrationsText)}
+                sign_up_heading_test_number={1}
+                />
             </Elements>
             <div className="space-y-6">
                 <ResultTitle
