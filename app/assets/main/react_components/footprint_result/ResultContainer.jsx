@@ -5,6 +5,7 @@ import CategoryChart from './CategoryChart.jsx';
 import WorldComparisonChart from './WorldComparisonChart.jsx';
 import YourFootprintText from './YourFootprintText.jsx';
 import Link from '../Link.jsx';
+import FAQ from './FAQ.jsx';
 import LatestProjectsList from './LatestProjectsList.jsx';
 
 /**
@@ -41,6 +42,10 @@ const ResultContainer = ({ footprint, projects, countryAverage, registrationsTex
                 <LatestProjectsList
                     latestProjectsText={JSON.parse(registrationsText).latest_projects}
                     projects={JSON.parse(projects)}
+                />
+                <FAQ
+                    questions={JSON.parse(commonText).faq_questions}
+                    faqText={JSON.parse(registrationsText).faq}
                 />
             </div>
         </div>

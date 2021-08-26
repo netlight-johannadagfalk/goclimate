@@ -28,3 +28,14 @@
     @apply border-b-4;
   }
 }
+
+.inject-link a {
+  @apply
+    text-green-shade-1
+    border-b-2
+    transition duration-100 ease-linear;
+
+  &:hover {
+    @apply text-primary border-b-4;
+  }
+}
