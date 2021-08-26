@@ -109,58 +109,19 @@ const ClimateActionsContainer = ({
     ...totClimateActions,
   ]);
 
-  const test = (deletedAction) => {
-    // console.log(climateActionsUser);
-    const testList = [...climateActionsUser];
-    console.log(testList);
-    testList = decreaseLocalNrOfAccepted(deletedAction, testList);
-    testList = increaseLocalNrOfAccepted(deletedAction, testList);
-    updateLocalAccepted(deletedAction);
-    setClimateActionsUser(...testList);
-    // update state
-  };
-
-  // const updateLocalAccepted = (actionID, climateActions) => {
-  //   console.log("UPDATE");
-  //   console.log(actionID);
-  //   setClimateActionsUser(
-  //     climateActionsUser.map((action) =>
-  //       action.id === actionID
-  //         ? { ...action, accepted: !action.accepted, total: action.total + 1 }
-  //         : action
-  //     )
-  //   );
-  //   console.log(climateActionsUser);
-  // };
-
-  const decreaseLocalNrOfAccepted = (actionID, climateActions) => {
-    climateActions.map((action) =>
-      action.id === actionID && action.accepted
-        ? { ...action, total: action.total - 1 }
-        : action
-    );
-    return climateActions;
-  };
-
-  const increaseLocalNrOfAccepted = (actionID, climateActions) => {
-    climateActions.map((action) =>
-      action.id === actionID && !action.accepted
-        ? { ...action, total: action.total + 1 }
-        : action
-    );
-    return climateActions;
-  };
-
   const updateLocalAccepted = (actionID) => {
-    console.log("UPDATE");
-    console.log(actionID);
     setClimateActionsUser(
       climateActionsUser.map((action) =>
         action.id === actionID
-          ? { ...action, accepted: !action.accepted }
+          ? {
+              ...action,
+              accepted: !action.accepted,
+              total: deletedAction ? --action.total : ++action.total,
+            }
           : action
       )
     );
+    setDeletedAction(null);
   };
   const monthlyAction = totClimateActions.find(
     (action) => action.action_of_the_month === true
