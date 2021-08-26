@@ -14,9 +14,9 @@ const ResultBar = ({ title, width, value, color = "bg-primary", fontWeight = "",
             <div className="flex-1 pr-24">
                 <div className={"relative h-5 m-lg:h-6 " + (width > 0 ? "box-content pr-2" : "")} style={{width: width + "%"}}>
                     {width > 0 && <div className={"w-full h-full rounded-r " + color}></div>}
-                        <span className="absolute left-100 top-1/2 transform -translate-y-1/2 leading-none">
-                            <span className="font-bold">{value}</span>
-                        </span>
+                    <span className="absolute left-100 top-1/2 transform -translate-y-1/2 leading-none">
+                        <span className="font-bold">{value}</span>
+                    </span>
                 </div>
             </div>
         </div>
