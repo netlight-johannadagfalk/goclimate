@@ -1,0 +1,29 @@
+<%= render "shared/header" %>
+
+<section class="z-0">
+  <div class="relative z-20 max-w-3xl mx-auto px-4 t:px-16 d:px-0 pt-16 t:pt-24 d:pt-32 text-center">
+    <h1 class="heading-xl mb-6 t:mb-12">
+      <%= t 'views.lifestyle_footprints.start.heading' %>
+    </h1>
+    <div>
+      <%= form_with url: new_lifestyle_footprint_path, method: :get, class: 'm-lg:flex m-lg:justify-center mt-3' do |f| %>
+        <div class="select-wrapper w-full m-lg:w-auto m-lg:max-w-xs">
+          <label for="country" class="sr-only">Select your country</label>
+          <%= f.country_select :country,
+                {
+                  include_blank: t('views.welcome.index.i_live_in'),
+                  priority_countries: [visitor_country&.alpha2].compact
+                },
+                {
+                  class: 'select',
+                  required: ''
+                } %>
+        </div>
+        <%= f.submit t('views.welcome.index.get_started'), name: nil, class: 'button button-cta mt-2 m-lg:mt-0 m-lg:ml-2 w-full m-lg:w-auto' %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%= render "shared/bottom_landscape" %>
+<%= render "shared/footer", skip_prefooter: true %>
