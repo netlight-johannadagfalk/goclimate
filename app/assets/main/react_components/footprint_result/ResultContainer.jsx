@@ -5,12 +5,17 @@ import CategoryChart from './CategoryChart.jsx';
 import WorldComparisonChart from './WorldComparisonChart.jsx';
 import YourFootprintText from './YourFootprintText.jsx';
 import Link from '../Link.jsx';
+<<<<<<< HEAD
 import MoneyUsageList from './MoneyUsageList.jsx';
+=======
+import FAQ from './FAQ.jsx';
+import LatestProjectsList from './LatestProjectsList.jsx';
+>>>>>>> 241f150ee25f7b00a3f660373715c564e7159833
 
 /**
  * React container for Result page components
  */
-const ResultContainer = ({ footprint, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, lang }) => {
+const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, lang }) => {
     return (
         <div className="relative pb-1">
             <div className="space-y-6">
@@ -40,6 +45,14 @@ const ResultContainer = ({ footprint, countryAverage, registrationsText, commonT
                 />
                 <MoneyUsageList 
                     moneyUsageText={JSON.parse(registrationsText).where_does_the_money_go}
+                />
+                <LatestProjectsList
+                    latestProjectsText={JSON.parse(registrationsText).latest_projects}
+                    projects={JSON.parse(projects)}
+                />
+                <FAQ
+                    questions={JSON.parse(commonText).faq_questions}
+                    faqText={JSON.parse(registrationsText).faq}
                 />
             </div>
         </div>

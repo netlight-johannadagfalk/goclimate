@@ -4,6 +4,7 @@
   <div class="section-padding">
     <%= react_component 'ResultContainer',
       footprint: @footprint.to_json,
+      projects: @projects.to_json,
       countryAverage: @country_average.to_json,
       lang: I18n.locale[0..-1], 
       registrationsText: YAML.load_file('config/locales/views/registrations.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['registrations'].to_json, 
