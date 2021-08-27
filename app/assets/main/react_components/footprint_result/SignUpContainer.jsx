@@ -47,7 +47,7 @@ const SignUpContainer = ({ signUpText, price, currency, months }) => {
                             </div>
                         </div>
                         <PriceText
-                            price={price}
+                            priceObject={price}
                             currency={currency}
                             months={months}
                             signUpText={signUpText}

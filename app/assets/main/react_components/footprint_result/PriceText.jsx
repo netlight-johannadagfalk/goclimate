@@ -4,20 +4,25 @@ import React from 'react'
  * Title used on footprint result page
  */
 
-const PriceText = ({price, currency, months, signUpText, grantedRefferalCode, selectedMembership, currentMultipleValue}) => {
+const PriceText = ({priceObject, currency, months, signUpText, grantedRefferalCode, selectedMembership, currentMultipleValue}) => {
 
-    function extractPrice (price, currency) {
-        var currencyText = currency.money.currency_formats[price.currency.iso_code];
-        console.log("dk ", currency.money.currency_formats);
-        const findCustomPlacement = /%{.*?}/i;
-        var price = (price.subunit_amount/100)
+    function extractPrice (priceObject, currency) {
+        var currencyText = currency.money.currency_formats[priceObject.currency.iso_code];
+
+        var price = (priceObject.subunit_amount/100)
         if (Math.trunc(price) != price) {
             price = price.toFixed(2);
         } 
         if (selectedMembership === "multi") {
             price = price * currentMultipleValue;
         }
-        price = currencyText.replace(findCustomPlacement, price);
+
+        if (currencyText === "DEFAULT") {
+            price=priceObject.currency.iso_code.toUpperCase()+" "+price
+        } else {
+            const findCustomPlacement = /%{.*?}/i;
+            price = currencyText.replace(findCustomPlacement, price);
+        }
         return price;
     }
 
@@ -31,13 +36,13 @@ const PriceText = ({price, currency, months, signUpText, grantedRefferalCode, se
         } else if (selectedMembership === "single") {
             return (<div id="showPrice"className="py-6 space-y-1">
             <p className="heading-lg text-center">
-                <span><span>{extractPrice(price, currency)}</span>/{months.one}</span>
+                <span><span>{extractPrice(priceObject, currency)}</span>/{months.one}</span>
             </p>
             </div>)
         } else if (selectedMembership === "multi")  {
             return (<div id="showPrice"className="py-6 space-y-1">
             <p className="heading-lg text-center">
-                <span><span>{extractPrice(price, currency)}</span>/{months.one}</span>
+                <span><span>{extractPrice(priceObject, currency)}</span>/{months.one}</span>
             </p>
             </div>)
         }
