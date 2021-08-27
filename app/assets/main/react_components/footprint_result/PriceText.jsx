@@ -8,6 +8,7 @@ const PriceText = ({price, currency, months, signUpText, grantedRefferalCode, se
 
     function extractPrice (price, currency) {
         var currencyText = currency.money.currency_formats[price.currency.iso_code];
+        console.log("dk ", currency.money.currency_formats);
         const findCustomPlacement = /%{.*?}/i;
         var price = (price.subunit_amount/100)
         if (Math.trunc(price) != price) {
