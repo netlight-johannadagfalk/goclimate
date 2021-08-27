@@ -169,36 +169,35 @@ const KanbanActionContainer = ({
   //   return categoryBadges;
   // };
 
-  const createCategoryElement = (item) => {
-    const tempCategory = {
-      climate_action_id: item.climate_action_id,
-      description: "description",
-      id: item.id,
-      name: "Food Category Badge",
-      status: true,
-      user_id: item.user_id,
-      itemsArray: [item],
-    };
-    return tempCategory;
+  const setNewPerformedActions = (item, performedColumn) => {
+    const resultArray = performedColumn.map((performedItem) => {
+      if (item.climate_action_category_id === performedItem.id) {
+        performedItem.itemsArray.map((action) => {
+          if (action.id === item.id) {
+            return { ...action, status: true };
+          }
+        });
+      }
+    });
   };
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;
+    //Since destination column will always be the second one, update status here!
     if (source.droppableId !== destination.droppableId) {
       const sourceColumn = columns[source.droppableId];
       const destColumn = columns[destination.droppableId];
       const sourceItems = [...sourceColumn.items];
-      //const destItems = [...destColumn.items];
-
-      // console.log("destitems" + JSON.stringify(destItems));
       const [removed] = sourceItems.splice(source.index, 1);
+      //Set data to second column
+      //const destItems = [...destColumn.items];
+      updateStatus(removed.id, true);
 
-      console.log("removed" + JSON.stringify(removed));
-      //instead of appending removed, add a category object
-      //const newObject = createCategoryElement(removed);
-      //destItems.splice(destination.index, 0, newObject);
-      const updatedDestItems = categoryBadges;
+      const updatedDestItems = setNewPerformedActions(
+        removed,
+        columns[2].items
+      );
       const destItems = [...updatedDestItems];
       setTotUserActions([...sourceItems, ...destItems]);
 
