@@ -14,7 +14,7 @@ export const useCategoryUpdate = () => {
 };
 
 //***  To wrap components that need acces to the context in ***/
-export const CategoryProvider = (props) => {
+export const CategoryProvider = ({ children }) => {
   const [currCategory, setCurrCategory] = useState(null);
 
   const updateCategory = (cat) => {
@@ -24,7 +24,7 @@ export const CategoryProvider = (props) => {
   return (
     <CategoryContext.Provider value={currCategory}>
       <CategoryUpdateContext.Provider value={updateCategory}>
-        {props.children}
+        {children}
       </CategoryUpdateContext.Provider>
     </CategoryContext.Provider>
   );

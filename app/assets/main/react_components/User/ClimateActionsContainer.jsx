@@ -4,23 +4,28 @@ import KanbanActionContainer from "./KanbanActionContainer.jsx";
 import Sidebar from "./Sidebar.jsx";
 import CarouselActionItem from "./CarouselActionItem.jsx";
 //*** The ContextProvider needs to be imported  */
-import { useCategory, useCategoryUpdate } from "./contexts/CategoryContext.js";
+import { useCategoryUpdate } from "./contexts/CategoryContext.js";
+import {
+  useDeletedAction,
+  useDeletedActionUpdate,
+} from "./contexts/DeletedActionContext.js";
 
 const ClimateActionsContainer = ({
   user,
-  userActions,
+  allUserActions,
   actionsWithUserActions,
   actionsWithoutUserActions,
   climateActionCategories,
 }) => {
-  const [totUserActions, setTotUserActions] = useState(JSON.parse(userActions));
-  const [deletedAction, setDeletedAction] = useState(null);
+  const [totUserActions, setTotUserActions] = useState(
+    JSON.parse(allUserActions)
+  );
+  //const [deletedAction, setDeletedAction] = useState(null);
+
+  const deletedAction = useDeletedAction();
+  const setDeletedAction = useDeletedActionUpdate();
   //const [currCategory, setCurrCategory] = useState(null);
   //const currCategory = useCategory();
-
-  useEffect(() => {
-    deletedAction != null && updateLocalAccepted(deletedAction);
-  }, [deletedAction]);
 
   //**** TA MED SIMON */
 
@@ -83,6 +88,8 @@ const ClimateActionsContainer = ({
       },
     };
   };
+
+  //Flytta till context
   const [columns, setColumns] = useState(
     columnUserActions(
       acceptedUserActions(totUserActions),
@@ -110,6 +117,7 @@ const ClimateActionsContainer = ({
     ...localActionsWithUserActions,
   ];
 
+  //Ska byta namn till climateActions, används till karusellern
   const [climateActionsUser, setClimateActionsUser] = useState([
     ...totClimateActions,
   ]);
@@ -127,7 +135,9 @@ const ClimateActionsContainer = ({
     (action) => action.action_of_the_month === true
   );
 
+  //************************************************************************** */
   //***** FUNCTION TO UPDATE CONTEXT THAT IS CREATED WITH USECATEGORYUPDATE */
+  //************************************************************************** */
   const updateCategory = useCategoryUpdate();
 
   const setCategory = (cat) => {
@@ -146,6 +156,12 @@ const ClimateActionsContainer = ({
     });
     setClimateActionsUser(filteredActionsWithStatus);
   };
+
+  useEffect(() => {
+    deletedAction != null && updateLocalAccepted(deletedAction);
+  }, [deletedAction]);
+
+  //********************************* RETURN ***************************************** */
 
   return (
     <>
