@@ -19,6 +19,8 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   validates :privacy_policy, acceptance: true
   attr_accessor :privacy_policy
 
+  DEACTIVATED_ACCOUNT_EMAIL_ENDING = '@deactivated.goclimate.com'
+
   def self.search_email(query, limit = 30)
     where('email LIKE ?', "%#{sanitize_sql_like(query.downcase)}%").limit(limit)
   end
@@ -138,9 +140,55 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
     last_card_charge.created_at < (Date.today - 3.months)
   end
 
+  def deactivated?
+    email.include?(DEACTIVATED_ACCOUNT_EMAIL_ENDING)
+  end
+
+  def deactivate
+    handle_errors_and_return_status do
+      raise(StandardError::ArgumentError, 'User is already deactivated') if deactivated?
+
+      if active_subscription?
+        subscription_manager = Subscriptions::StripeSubscriptionManager.new(self)
+        subscription_manager.cancel
+      end
+
+      new_email = "#{Date.today.strftime('%Y-%m-%d')}_#{SecureRandom.hex(3)}#{DEACTIVATED_ACCOUNT_EMAIL_ENDING}"
+
+      Stripe::Customer.update(
+        stripe_customer.id,
+        email: new_email,
+        name: nil,
+        phone: nil,
+        shipping: nil
+      )
+
+      update(
+        user_name: nil,
+        country: nil,
+        email: new_email,
+        password: SecureRandom.hex(20)
+      )
+    end
+  end
+
   private
 
   def subscription_end_at_from_stripe(stripe_subscription)
     Time.at(stripe_subscription.ended_at) if stripe_subscription.ended_at.present?
+  end
+
+  def handle_errors_and_return_status
+    yield
+
+    true
+  rescue Stripe::InvalidRequestError => e
+    errors.add(e.code&.to_sym || :generic, e.message || e.to_s)
+
+    false
+  rescue StandardError => e
+    errors.add(:base, e.to_s)
+
+    false
   end
 end

@@ -3,6 +3,17 @@
 
   <%
     actions = []
+    unless @user.deactivated?
+      actions.push(
+        {
+          title: 'Deactivate account',
+          path: admin_user_path(@user.id),
+          method: :delete,
+          class: 'button-danger',
+          data: { confirm: 'Are you sure?' }
+        }
+      )
+    end
     if @user.active_subscription?
       actions.push(
           {

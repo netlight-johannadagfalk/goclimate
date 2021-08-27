@@ -2,6 +2,8 @@
 
 module Admin
   class UsersController < AdminController
+    before_action :set_user, only: [:show, :cancel_subscription, :destroy]
+
     def index
       @max_entries = 30
       if params[:search_query]
@@ -16,7 +18,6 @@ module Admin
     end
 
     def show
-      @user = User.find(params[:id])
       @total_number_of_footprints = LifestyleFootprint.where(user_id: @user.id).count
     end
 
@@ -29,7 +30,6 @@ module Admin
     end
 
     def cancel_subscription
-      @user = User.find(params[:id])
       subscription_manager = Subscriptions::StripeSubscriptionManager.new(@user)
 
       notice = if @user.active_subscription? && subscription_manager.cancel
@@ -41,7 +41,21 @@ module Admin
       redirect_to admin_user_path(@user.id), notice: notice
     end
 
+    def destroy
+      notice = if @user.deactivate
+                 'Account deactivated'
+               else
+                 "Oups, something went wrong! #{@user.errors.full_messages}"
+               end
+
+      redirect_to admin_users_path, notice: notice
+    end
+
     private
+
+    def set_user
+      @user = User.find(params[:id])
+    end
 
     def search_params
       params.permit(:search_query)
