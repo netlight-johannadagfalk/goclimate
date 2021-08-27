@@ -1,14 +1,13 @@
 import React from 'react'
 
 /**
- * Title used on footprint result page
+ * Price text that adapts to region, selected membership type and referral code
  */
 
 const PriceText = ({priceObject, currency, months, signUpText, grantedRefferalCode, selectedMembership, currentMultipleValue}) => {
 
     function extractPrice (priceObject, currency) {
         var currencyText = currency.money.currency_formats[priceObject.currency.iso_code];
-
         var price = (priceObject.subunit_amount/100)
         if (Math.trunc(price) != price) {
             price = price.toFixed(2);
