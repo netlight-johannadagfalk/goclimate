@@ -19,7 +19,6 @@ const KanbanActionItem = ({
             className={`${categoryColor} border border-gray-tint-2 rounded-lg shadow-lg p-4 h-full space-y-3 pt-0 ${
               collapsed && "w-24"
             }`}
-            //className="callout items-baseline space-x-6 text-l font-bold"
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -30,7 +29,6 @@ const KanbanActionItem = ({
               minHeight: "auto",
               ...provided.draggableProps.style,
             }}
-            onClick={() => setExpanded(!expanded)}
           >
             {collapsed ? (
               <div className="flex items-center justify-between">
@@ -62,11 +60,12 @@ const KanbanActionItem = ({
                   className={`ml-4 fas float-right ${
                     expanded ? "fa-chevron-up" : "fa-chevron-down"
                   }`}
+                  onClick={() => setExpanded(!expanded)}
                 ></button>
               </div>
             )}
 
-            {expanded && (
+            {expanded && !collapsed && (
               <div>
                 {item.status === false ? (
                   <div className="flex flex-col text-center">
