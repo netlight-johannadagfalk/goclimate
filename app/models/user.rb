@@ -127,6 +127,12 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
     current_plan.price
   end
 
+  def subscription_billing_date
+    return nil unless active_subscription?
+
+    Time.at(stripe_customer.subscriptions.first&.billing_cycle_anchor)
+  end
+
   def footprint_coverage
     return nil unless active_subscription?
 

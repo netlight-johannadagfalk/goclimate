@@ -58,6 +58,8 @@
 
     <hr class="my-1">
 
+    <dt>Stripe customer id:</dt>
+    <dd><code><%= @user.stripe_customer.id || '' %></code></dd>
     <dt>Active subscription:</dt>
     <dd><%= @user.active_subscription? %></dd>
     <dt>1st subscription date:</dt>
@@ -66,6 +68,13 @@
     <dd><%= @user.subscription_price || 'No subscription' %></dd>
     <dt>Subscription currency:</dt>
     <dd><%= @user.subscription_currency || 'No subscription' %></dd>
+    <dt>Billed at day of month:</dt>
+    <dd>
+      <%= @user.subscription_billing_date&.strftime("%d") || 'No subscription' %>
+      <% if @user.active_subscription? %>
+        (<a class="link-ui text-green-shade-2" href="https://www.notion.so/goclimate/Update-subscription-pay-date-860fb844d5d44e35bd3dff67309bcdc4">how to change</a>)
+      <% end %>
+    </dd>
     <dt>Footprint coverage:</dt>
     <dd><%= @user.footprint_coverage || 0 %>%</dd>
 
