@@ -11,7 +11,7 @@ import LatestProjectsList from './LatestProjectsList.jsx';
  * React container for Result page components
  */
     
-const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, lang, plan, currency, months }) => {
+const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, lang, plan, currency }) => {
     return (
         <div className="relative pb-1">
             <div className="space-y-6">
@@ -36,7 +36,7 @@ const ResultContainer = ({ footprint, projects, countryAverage, registrationsTex
                     signUpText={JSON.parse(registrationsText)}
                     price={JSON.parse(plan).price}
                     currency={JSON.parse(currency)}
-                    months={JSON.parse(months)}
+                    months={JSON.parse(commonText).months}
                 />
                 <Link    
                     link={"https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"}

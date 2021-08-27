@@ -15,7 +15,6 @@ const PriceText = ({priceObject, currency, months, signUpText, grantedRefferalCo
         if (selectedMembership === "multi") {
             price = price * currentMultipleValue;
         }
-
         if (currencyText === "DEFAULT") {
             price=priceObject.currency.iso_code.toUpperCase()+" "+price
         } else {
