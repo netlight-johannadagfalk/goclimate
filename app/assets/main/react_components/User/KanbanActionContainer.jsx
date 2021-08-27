@@ -7,6 +7,7 @@ const KanbanActionContainer = ({
   columns,
   setColumns,
   setTotUserActions,
+  collapsed,
 }) => {
   const [render, setRender] = useState();
   useEffect(() => {
@@ -210,6 +211,7 @@ const KanbanActionContainer = ({
                     key={columnId}
                     handleDelete={handleDelete}
                     handlePerformance={handlePerformance}
+                    collapsed={collapsed}
                   />
                 </div>
               </div>
