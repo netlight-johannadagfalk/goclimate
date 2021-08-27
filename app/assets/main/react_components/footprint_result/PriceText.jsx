@@ -1,19 +1,23 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 /**
  * Title used on footprint result page
  */
 
-const PriceText = ({price, currency, months, signUpText, grantedRefferalCode, selectedMembership}) => {
+const PriceText = ({price, currency, months, signUpText, grantedRefferalCode, selectedMembership, currentMultipleValue}) => {
 
     function extractPrice (price, currency) {
         var currencyText = currency.money.currency_formats[price.currency.iso_code];
         const findCustomPlacement = /%{.*?}/i;
         var price = (price.subunit_amount/100)
         if (Math.trunc(price) != price) {
-        price = price.toFixed(2);
+            price = price.toFixed(2);
         } 
-        return currencyText.replace(findCustomPlacement, price);
+        if (selectedMembership === "multi") {
+            price = price * currentMultipleValue;
+        }
+        price = currencyText.replace(findCustomPlacement, price);
+        return price;
     }
 
     function ShowPrice () {
@@ -55,6 +59,6 @@ const PriceText = ({price, currency, months, signUpText, grantedRefferalCode, se
         }
         </>
     )
-    }
+}
 
 export default PriceText;

@@ -53,6 +53,7 @@ const SignUpContainer = ({ signUpText, price, currency, months }) => {
                             signUpText={signUpText}
                             grantedRefferalCode={grantedRefferalCode}
                             selectedMembership={selectedMembership}
+                            currentMultipleValue={currentMultipleValue}
                         />
                         <AnswerButton
                             label={signUpText.continue_to_payment}
