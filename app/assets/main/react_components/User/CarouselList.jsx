@@ -7,6 +7,8 @@ import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.min.css";
 import "swiper/components/pagination/pagination.min.css";
 
+import { useClimateActions } from "./contexts/ClimateActionsContext.js";
+
 // Swiper resources
 //https://swiperjs.com/react
 //https://swiperjs.com/swiper-api#parameters
@@ -14,14 +16,11 @@ import "swiper/components/pagination/pagination.min.css";
 import SwiperCore, { Navigation, Pagination, Scrollbar } from "swiper/core";
 SwiperCore.use([Pagination, Navigation, Scrollbar]);
 
-const CarouselList = ({
-  user,
-  climateActionsUser,
-  updateLocalAccepted,
-  addAcceptedAction,
-}) => {
+const CarouselList = ({ user, updateLocalAccepted, addAcceptedAction }) => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
+
+  const climateActions = useClimateActions();
   return (
     <>
       <Swiper
@@ -41,7 +40,7 @@ const CarouselList = ({
           });
         }}
       >
-        {climateActionsUser.map((action) => (
+        {climateActions.map((action) => (
           <SwiperSlide key={action.id} className={"h-auto min-h-full mb-10"}>
             <CarouselActionItem
               action={action}

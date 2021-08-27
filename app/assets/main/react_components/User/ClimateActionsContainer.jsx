@@ -3,8 +3,6 @@ import CarouselContainer from "./CarouselContainer.jsx";
 import KanbanActionContainer from "./KanbanActionContainer.jsx";
 import Sidebar from "./Sidebar.jsx";
 import CarouselActionItem from "./CarouselActionItem.jsx";
-//*** The ContextProvider needs to be imported  */
-import { useCategoryUpdate } from "./contexts/CategoryContext.js";
 import {
   useDeletedAction,
   useDeletedActionUpdate,
@@ -13,18 +11,22 @@ import {
   useUserActions,
   useUserActionsUpdate,
 } from "./contexts/UserActionsContext.js";
+import {
+  useClimateActions,
+  useClimateActionsUpdate,
+  useClimateActionsOriginal,
+} from "./contexts/ClimateActionsContext.js";
 
-const ClimateActionsContainer = ({
-  user,
-  actionsWithUserActions,
-  actionsWithoutUserActions,
-  climateActionCategories,
-}) => {
+const ClimateActionsContainer = ({ user, climateActionCategories }) => {
   const userActions = useUserActions();
   const setUserActions = useUserActionsUpdate();
 
   const deletedAction = useDeletedAction();
   const setDeletedAction = useDeletedActionUpdate();
+
+  const climateActions = useClimateActions();
+  const setClimateActions = useClimateActionsUpdate();
+  const totClimateActions = useClimateActionsOriginal();
 
   //const [currCategory, setCurrCategory] = useState(null);
   //const currCategory = useCategory();
@@ -105,36 +107,14 @@ const ClimateActionsContainer = ({
   );
   //******************************************************* */
   // Should be moved to dashboard.jsx or context?
-  const localActionsWithUserActions = JSON.parse(actionsWithUserActions).map(
-    (action) => ({
-      ...action,
-      accepted: true,
-    })
-  );
 
-  const localActionsWithoutUserActions = JSON.parse(
-    actionsWithoutUserActions
-  ).map((action) => ({
-    ...action,
-    accepted: false,
-  }));
-
-  const totClimateActions = [
-    ...localActionsWithoutUserActions,
-    ...localActionsWithUserActions,
-  ];
-
-  //Ska byta namn till climateActions, används till karusellern
-  const [climateActionsUser, setClimateActionsUser] = useState([
-    ...totClimateActions,
-  ]);
   //******************************************************* */
 
   const updateLocalAccepted = (actionID) => {
     //Depends on context climateAction
-    //used by both carousel and kanban
-    setClimateActionsUser(
-      climateActionsUser.map((action) =>
+    //used by both carousel and kanban, flytta funktion till context?
+    setClimateActions(
+      climateActions.map((action) =>
         action.id === actionID
           ? { ...action, accepted: !action.accepted }
           : action
@@ -145,31 +125,6 @@ const ClimateActionsContainer = ({
     (action) => action.action_of_the_month === true
   );
 
-  //************************************************************************** */
-  //***** FUNCTION TO UPDATE CONTEXT THAT IS CREATED WITH USECATEGORYUPDATE */
-  //************************************************************************** */
-  const updateCategory = useCategoryUpdate();
-
-  const setCategory = (cat) => {
-    //***** HERE WE UPDATE THE CONTEXT */
-    // Depends on hook/context ClimateActions
-    //Should be moved to Category btn component when context is implemented
-
-    updateCategory(cat);
-    const filteredActions = cat
-      ? totClimateActions.filter(
-          (temp) => temp.climate_action_category_id === cat
-        )
-      : totClimateActions;
-
-    const filteredActionsWithStatus = filteredActions.map((x) => {
-      return userActions.some((y) => y.climate_action_id === x.id)
-        ? { ...x, accepted: true }
-        : { ...x, accepted: false };
-    });
-    setClimateActionsUser(filteredActionsWithStatus);
-  };
-
   useEffect(() => {
     deletedAction != null && updateLocalAccepted(deletedAction);
   }, [deletedAction]);
@@ -179,7 +134,6 @@ const ClimateActionsContainer = ({
   return (
     <>
       <Sidebar />
-
       <div className="w-80 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2 justify-center">
         <h3 className="heading-lg mb-3">Action of the Month </h3>
         {monthlyAction && (
@@ -195,17 +149,14 @@ const ClimateActionsContainer = ({
 
       <CarouselContainer
         user={user}
-        climateActionsUser={climateActionsUser}
         updateLocalAccepted={updateLocalAccepted}
         addAcceptedAction={addAcceptedAction}
         climateActionCategories={climateActionCategories}
-        setCategory={setCategory}
       />
       <KanbanActionContainer
         setLocalAccepted={setLocalAccepted}
         columns={columns}
         setColumns={setColumns}
-        //setUserActions={setUserActions}
       />
     </>
   );

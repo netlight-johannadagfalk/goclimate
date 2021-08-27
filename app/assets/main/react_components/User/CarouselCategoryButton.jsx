@@ -1,12 +1,22 @@
 import React from "react";
+import {
+  useClimateActionsOriginal,
+  useClimateActionsUpdate,
+} from "./contexts/ClimateActionsContext";
+import { useCategoryUpdate } from "./contexts/CategoryContext";
+import { useUserActions } from "./contexts/UserActionsContext";
 
 const CarouselCategoryButton = ({
   categoryName,
   categoryID,
-  setCategory,
   active,
   setAllCategories,
 }) => {
+  const updateCategory = useCategoryUpdate();
+  const setClimateActions = useClimateActionsUpdate();
+  const totClimateActions = useClimateActionsOriginal();
+  const userActions = useUserActions();
+
   const handleCategory = (categoryID) => {
     categoryID != null ? categoryClick(categoryID) : allCategoriesClick();
   };
@@ -18,6 +28,26 @@ const CarouselCategoryButton = ({
   const categoryClick = (categoryID) => {
     setCategory(categoryID);
     setAllCategories(false);
+  };
+
+  const setCategory = (cat) => {
+    //***** HERE WE UPDATE THE CONTEXT */
+    // Depends on hook/context ClimateActions
+    //Should be moved to Category btn component when context is implemented
+
+    updateCategory(cat);
+    const filteredActions = cat
+      ? totClimateActions.filter(
+          (temp) => temp.climate_action_category_id === cat
+        )
+      : totClimateActions;
+
+    const filteredActionsWithStatus = filteredActions.map((x) => {
+      return userActions.some((y) => y.climate_action_id === x.id)
+        ? { ...x, accepted: true }
+        : { ...x, accepted: false };
+    });
+    setClimateActions(filteredActionsWithStatus);
   };
 
   return (

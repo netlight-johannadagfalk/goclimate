@@ -6,12 +6,9 @@ import { useCategory } from "./contexts/CategoryContext.js";
 
 const CarouselContainer = ({
   user,
-  climateActionsUser,
   updateLocalAccepted,
   addAcceptedAction,
   climateActionCategories,
-  //category,
-  setCategory,
 }) => {
   const formatedCategories = JSON.parse(climateActionCategories);
   const [allCategories, setAllCategories] = useState(true);
@@ -25,7 +22,7 @@ const CarouselContainer = ({
       <CarouselCategoryButton
         categoryName={"All categories"}
         categoryID={null}
-        setCategory={setCategory}
+        //setCategory={setCategory}
         active={allCategories}
         setAllCategories={setAllCategories}
       />
@@ -34,7 +31,7 @@ const CarouselContainer = ({
           key={cat.id}
           categoryName={cat.name}
           categoryID={cat.id}
-          setCategory={setCategory}
+          //setCategory={setCategory}
           active={category === cat.id ? true : false}
           setAllCategories={setAllCategories}
         />
@@ -42,7 +39,6 @@ const CarouselContainer = ({
 
       <CarouselList
         user={user}
-        climateActionsUser={climateActionsUser}
         updateLocalAccepted={updateLocalAccepted}
         addAcceptedAction={addAcceptedAction}
         category={category}
