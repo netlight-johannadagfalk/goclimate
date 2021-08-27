@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import MembershipTypeSelector from './MembershipTypeSelector.jsx';
 import ReferralCode from './ReferralCode.jsx';
 import SignUpMotivationText from './SignUpMotivationText.jsx';
@@ -37,7 +37,7 @@ const SignUpContainer = ({ signUpText, price, currency, months }) => {
                                     membershipText={signUpText.membership}
                                     selectedMembership={selectedMembership} setSelectedMembership={setSelectedMembership}
                                     currentMultipleValue={currentMultipleValue} setCurrentMultipleValue={setCurrentMultipleValue}
-                                    />
+                                />
                                 <div data-inactive-class="hidden">
                                     <ReferralCode
                                         text={signUpText}
