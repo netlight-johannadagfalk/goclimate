@@ -17,8 +17,8 @@ const Sidebar = ({
         }`}
       >
         <button
-          className={`fas static m-2 top-0 right-10 text-l ${
-            collapsed ? "fa-arrow-alt-circle-left" : "fa-arrow-alt-circle-right"
+          className={`fas rounded-full h-12 w-12 bg-white border border-gray-accent -ml-6 m-auto absolute bottom-1/2 ${
+            collapsed ? "fa-chevron-left" : "fa-chevron-right"
           }`}
           onClick={() => setCollapsed(!collapsed)}
         ></button>

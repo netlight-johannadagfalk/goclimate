@@ -200,7 +200,7 @@ const KanbanActionContainer = ({
                 }}
                 key={columnId}
               >
-                <div className="text-center" style={{ margin: 2 }}>
+                <div className="text-center pt-8" style={{ margin: 2 }}>
                   <p className="font-normal text-base text-primary text-lg top-0 text-center">
                     {column.name}
                   </p>
