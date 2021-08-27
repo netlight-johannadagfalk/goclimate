@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 
 //*** A context is used to share data that can be considered as "global" for the react tree ***/
-const UserActionsContext = React.createContext();
-const UserActionsUpdateContext = React.createContext();
+export const UserActionsContext = React.createContext();
+export const UserActionsUpdateContext = React.createContext();
 
 //***  Functions that endables access to the context and updating the context in the components ***/
 export const useUserActions = () => {
@@ -14,11 +14,11 @@ export const useUserActionsUpdate = () => {
 };
 
 //***  To wrap components that need acces to the context in ***/
-export const UserActionsProvider = ({ children }) => {
-  const [userActions, setUserActions] = useState(null);
+export const UserActionsProvider = ({ children, allUserActions }) => {
+  const [userActions, setUserActions] = useState(allUserActions);
 
-  const updateUserActions = (cat) => {
-    setUserActions(cat);
+  const updateUserActions = (actions) => {
+    setUserActions(actions);
   };
 
   return (

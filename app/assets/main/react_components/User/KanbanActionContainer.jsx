@@ -1,76 +1,78 @@
-import React, { useState, useEffect } from 'react'
-import { DragDropContext } from 'react-beautiful-dnd'
-import KanbanActionColumn from './KanbanActionColumn.jsx'
+import React, { useState, useEffect } from "react";
+import { DragDropContext } from "react-beautiful-dnd";
+import KanbanActionColumn from "./KanbanActionColumn.jsx";
+import { useUserActionsUpdate } from "./contexts/UserActionsContext.js";
 
 const KanbanActionContainer = ({
   setLocalAccepted,
   columns,
   setColumns,
-  setTotUserActions,
+  //setUserActions,
 }) => {
-  const [render, setRender] = useState()
+  const setUserActions = useUserActionsUpdate();
+  const [render, setRender] = useState();
   useEffect(() => {
-    setRender(columns)
-  }, [columns])
+    setRender(columns);
+  }, [columns]);
 
   const handleDelete = (id, actionID) => {
-    deleteUserAction(id)
+    deleteUserAction(id);
     setLocalAccepted(
       columns[1].items.filter((item) => item.id.toString() !== id),
       columns[2].items,
-      actionID,
-    )
-  }
+      actionID
+    );
+  };
 
   const deleteUserAction = (id) => {
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').content
-    const URL = '/user_climate_actions/' + id.toString()
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    const URL = "/user_climate_actions/" + id.toString();
     const requestOptions = {
-      method: 'DELETE',
-      credentials: 'include',
+      method: "DELETE",
+      credentials: "include",
       headers: {
-        'X-CSRF-Token': csrfToken,
-        'Content-Type': 'application/json',
+        "X-CSRF-Token": csrfToken,
+        "Content-Type": "application/json",
       },
-    }
+    };
 
-    fetch(URL, requestOptions).catch((e) => console.log(e))
-  }
+    fetch(URL, requestOptions).catch((e) => console.log(e));
+  };
 
   const updateStatus = (id, status) => {
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').content
-    const URL = '/user_climate_actions/' + id.toString()
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    const URL = "/user_climate_actions/" + id.toString();
     const requestOptions = {
-      method: 'PUT',
-      credentials: 'include',
+      method: "PUT",
+      credentials: "include",
       headers: {
-        'X-CSRF-Token': csrfToken,
-        'Content-Type': 'application/json',
+        "X-CSRF-Token": csrfToken,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ status: status }),
-    }
+    };
     fetch(URL, requestOptions)
       .then((res) => {
-        return res.json()
+        return res.json();
       })
-      .catch((error) => console.warn(error))
-  }
+      .catch((error) => console.warn(error));
+  };
 
   const handlePerformance = (theItem, perform) => {
     if (perform) {
-      const sourceColumn = columns[1]
-      const destColumn = columns[2]
-      const sourceItems = [...sourceColumn.items]
-      const destItems = [...destColumn.items]
-      const sourceIndex = sourceItems.indexOf(theItem)
-      const destIndex = destItems.length
-      const [removed] = sourceItems.splice(sourceIndex, 1)
-      destItems.splice(destIndex, 0, removed)
-      setTotUserActions([...sourceItems, ...destItems])
+      const sourceColumn = columns[1];
+      const destColumn = columns[2];
+      const sourceItems = [...sourceColumn.items];
+      const destItems = [...destColumn.items];
+      const sourceIndex = sourceItems.indexOf(theItem);
+      const destIndex = destItems.length;
+      const [removed] = sourceItems.splice(sourceIndex, 1);
+      destItems.splice(destIndex, 0, removed);
+      setUserActions([...sourceItems, ...destItems]);
       const newDestItems = destItems.map((item) =>
-        item.status === false ? { ...item, status: !item.status } : item,
-      )
-      setTotUserActions([...sourceItems, ...newDestItems])
+        item.status === false ? { ...item, status: !item.status } : item
+      );
+      setUserActions([...sourceItems, ...newDestItems]);
       setColumns({
         ...columns,
         [1]: {
@@ -81,22 +83,22 @@ const KanbanActionContainer = ({
           ...destColumn,
           items: newDestItems,
         },
-      })
-      updateStatus(theItem.id, true)
+      });
+      updateStatus(theItem.id, true);
     } else {
-      const sourceColumn = columns[2]
-      const destColumn = columns[1]
-      const sourceItems = [...sourceColumn.items]
-      const destItems = [...destColumn.items]
-      const sourceIndex = sourceItems.indexOf(theItem)
-      const destIndex = destItems.length
-      const [removed] = sourceItems.splice(sourceIndex, 1)
-      destItems.splice(destIndex, 0, removed)
-      setTotUserActions([...sourceItems, ...destItems])
+      const sourceColumn = columns[2];
+      const destColumn = columns[1];
+      const sourceItems = [...sourceColumn.items];
+      const destItems = [...destColumn.items];
+      const sourceIndex = sourceItems.indexOf(theItem);
+      const destIndex = destItems.length;
+      const [removed] = sourceItems.splice(sourceIndex, 1);
+      destItems.splice(destIndex, 0, removed);
+      setUserActions([...sourceItems, ...destItems]);
       const newDestItems = destItems.map((item) =>
-        item.status === true ? { ...item, status: !item.status } : item,
-      )
-      setTotUserActions([...sourceItems, ...newDestItems])
+        item.status === true ? { ...item, status: !item.status } : item
+      );
+      setUserActions([...sourceItems, ...newDestItems]);
       setColumns({
         ...columns,
         [2]: {
@@ -107,22 +109,22 @@ const KanbanActionContainer = ({
           ...destColumn,
           items: newDestItems,
         },
-      })
-      updateStatus(theItem.id, false)
+      });
+      updateStatus(theItem.id, false);
     }
-  }
+  };
 
   const onDragEnd = (result, columns, setColumns) => {
-    if (!result.destination) return
-    const { source, destination } = result
+    if (!result.destination) return;
+    const { source, destination } = result;
     if (source.droppableId !== destination.droppableId) {
-      const sourceColumn = columns[source.droppableId]
-      const destColumn = columns[destination.droppableId]
-      const sourceItems = [...sourceColumn.items]
-      const destItems = [...destColumn.items]
-      const [removed] = sourceItems.splice(source.index, 1)
-      destItems.splice(destination.index, 0, removed)
-      setTotUserActions([...sourceItems, ...destItems])
+      const sourceColumn = columns[source.droppableId];
+      const destColumn = columns[destination.droppableId];
+      const sourceItems = [...sourceColumn.items];
+      const destItems = [...destColumn.items];
+      const [removed] = sourceItems.splice(source.index, 1);
+      destItems.splice(destination.index, 0, removed);
+      setUserActions([...sourceItems, ...destItems]);
       setColumns({
         ...columns,
         [source.droppableId]: {
@@ -133,13 +135,13 @@ const KanbanActionContainer = ({
           ...destColumn,
           items: destItems,
         },
-      })
+      });
       if (destColumn.id === columns[2].id) {
-        const theItem = destItems.find((item) => item.status === false)
+        const theItem = destItems.find((item) => item.status === false);
         const newDestItems = destItems.map((item) =>
-          item.status === false ? { ...item, status: !item.status } : item,
-        )
-        setTotUserActions([...sourceItems, ...newDestItems])
+          item.status === false ? { ...item, status: !item.status } : item
+        );
+        setUserActions([...sourceItems, ...newDestItems]);
         setColumns({
           ...columns,
           [source.droppableId]: {
@@ -150,14 +152,14 @@ const KanbanActionContainer = ({
             ...destColumn,
             items: newDestItems,
           },
-        })
-        updateStatus(theItem.id, true)
+        });
+        updateStatus(theItem.id, true);
       } else {
-        const theItem = destItems.find((item) => item.status === true)
+        const theItem = destItems.find((item) => item.status === true);
         const newDestItems = destItems.map((item) =>
-          item.status === true ? { ...item, status: !item.status } : item,
-        )
-        setTotUserActions([...sourceItems, ...newDestItems])
+          item.status === true ? { ...item, status: !item.status } : item
+        );
+        setUserActions([...sourceItems, ...newDestItems]);
         setColumns({
           ...columns,
           [source.droppableId]: {
@@ -168,26 +170,26 @@ const KanbanActionContainer = ({
             ...destColumn,
             items: newDestItems,
           },
-        })
-        updateStatus(theItem.id, false)
+        });
+        updateStatus(theItem.id, false);
       }
     } else {
-      const column = columns[source.droppableId]
-      const copiedItems = [...column.items]
-      const [removed] = copiedItems.splice(source.index, 1)
-      copiedItems.splice(destination.index, 0, removed)
+      const column = columns[source.droppableId];
+      const copiedItems = [...column.items];
+      const [removed] = copiedItems.splice(source.index, 1);
+      copiedItems.splice(destination.index, 0, removed);
       setColumns({
         ...columns,
         [source.droppableId]: {
           ...column,
           items: copiedItems,
         },
-      })
+      });
     }
-  }
+  };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
+    <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
@@ -195,9 +197,9 @@ const KanbanActionContainer = ({
           return (
             <div
               style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
               }}
               key={columnId}
             >
@@ -214,11 +216,11 @@ const KanbanActionContainer = ({
                 />
               </div>
             </div>
-          )
+          );
         })}
       </DragDropContext>
     </div>
-  )
-}
+  );
+};
 
-export default KanbanActionContainer
+export default KanbanActionContainer;

@@ -3,7 +3,7 @@ import ClimateActionsContainer from "./ClimateActionsContainer.jsx";
 //*** The ContextProvider needs to be imported  */
 import { CategoryProvider } from "./contexts/CategoryContext.js";
 import { DeletedActionProvider } from "./contexts/DeletedActionContext.js";
-import { UserActionsProvider } from "./contexts/UserActionsContext";
+import { UserActionsProvider } from "./contexts/UserActionsContext.js";
 
 const Dashboard = ({
   user,
@@ -12,16 +12,13 @@ const Dashboard = ({
   actionsWithoutUserActions,
   climateActionCategories,
 }) => {
-  //Sätta värde på context från props
-
   return (
     //   ContextProvider provides the context to all its children
     <DeletedActionProvider>
       <CategoryProvider>
-        <UserActionsProvider>
+        <UserActionsProvider allUserActions={JSON.parse(allUserActions)}>
           <ClimateActionsContainer
             user={user}
-            allUserActions={allUserActions}
             actionsWithUserActions={actionsWithUserActions}
             actionsWithoutUserActions={actionsWithoutUserActions}
             climateActionCategories={climateActionCategories}

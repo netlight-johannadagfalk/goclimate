@@ -9,34 +9,33 @@ import {
   useDeletedAction,
   useDeletedActionUpdate,
 } from "./contexts/DeletedActionContext.js";
-// import {
-//   useUserActions,
-//   useUserActionsUpdate,
-// } from "./contexts/UserActionsContext.js";
+import {
+  useUserActions,
+  useUserActionsUpdate,
+} from "./contexts/UserActionsContext.js";
 
 const ClimateActionsContainer = ({
   user,
-  allUserActions,
   actionsWithUserActions,
   actionsWithoutUserActions,
   climateActionCategories,
 }) => {
-  const [totUserActions, setTotUserActions] = useState(
-    JSON.parse(allUserActions)
-  );
-  const [deletedAction, setDeletedAction] = useState(null);
-  // const totUserActions = useUserActions();
-  // const setTotUserActions = useUserActionsUpdate();
-  // setTotUserActions(JSON.parse(allUserActions));
+  const userActions = useUserActions();
+  const setUserActions = useUserActionsUpdate();
 
-  // const deletedAction = useDeletedAction();
-  // const setDeletedAction = useDeletedActionUpdate();
+  const deletedAction = useDeletedAction();
+  const setDeletedAction = useDeletedActionUpdate();
+
   //const [currCategory, setCurrCategory] = useState(null);
   //const currCategory = useCategory();
 
-  //**** TA MED SIMON */
-
   const addAcceptedAction = (action, userAction) => {
+    //Depends on
+    // context deletedAction
+    // context userActions
+    // context columns + columnUserActions...
+    // Can be moved to carousel component
+
     setDeletedAction(null);
     const temp = {
       id: userAction.id,
@@ -46,8 +45,8 @@ const ClimateActionsContainer = ({
       status: userAction.status,
       user_id: userAction.user_id,
     };
-    const localVar = [...totUserActions, temp];
-    setTotUserActions(localVar);
+    const localVar = [...userActions, temp];
+    setUserActions(localVar);
     setColumns(
       columnUserActions(
         acceptedUserActions(localVar),
@@ -57,11 +56,12 @@ const ClimateActionsContainer = ({
   };
 
   const setLocalAccepted = (updatedList, performed, deletedAction) => {
-    setTotUserActions([...updatedList, ...performed]);
+    setUserActions([...updatedList, ...performed]);
     setColumns(columnUserActions(updatedList, performed));
     setDeletedAction(deletedAction);
   };
   //******************************************************* */
+  // Should be moved to dahboard
 
   const formatedUserActions = (inVal) => {
     return inVal.map((userActions) => ({
@@ -99,12 +99,12 @@ const ClimateActionsContainer = ({
   //Flytta till context
   const [columns, setColumns] = useState(
     columnUserActions(
-      acceptedUserActions(totUserActions),
-      doneUserActions(totUserActions)
+      acceptedUserActions(userActions),
+      doneUserActions(userActions)
     )
   );
   //******************************************************* */
-
+  // Should be moved to dashboard.jsx or context?
   const localActionsWithUserActions = JSON.parse(actionsWithUserActions).map(
     (action) => ({
       ...action,
@@ -128,8 +128,11 @@ const ClimateActionsContainer = ({
   const [climateActionsUser, setClimateActionsUser] = useState([
     ...totClimateActions,
   ]);
+  //******************************************************* */
 
   const updateLocalAccepted = (actionID) => {
+    //Depends on context climateAction
+    //used by both carousel and kanban
     setClimateActionsUser(
       climateActionsUser.map((action) =>
         action.id === actionID
@@ -149,6 +152,9 @@ const ClimateActionsContainer = ({
 
   const setCategory = (cat) => {
     //***** HERE WE UPDATE THE CONTEXT */
+    // Depends on hook/context ClimateActions
+    //Should be moved to Category btn component when context is implemented
+
     updateCategory(cat);
     const filteredActions = cat
       ? totClimateActions.filter(
@@ -157,7 +163,7 @@ const ClimateActionsContainer = ({
       : totClimateActions;
 
     const filteredActionsWithStatus = filteredActions.map((x) => {
-      return totUserActions.some((y) => y.climate_action_id === x.id)
+      return userActions.some((y) => y.climate_action_id === x.id)
         ? { ...x, accepted: true }
         : { ...x, accepted: false };
     });
@@ -192,16 +198,14 @@ const ClimateActionsContainer = ({
         climateActionsUser={climateActionsUser}
         updateLocalAccepted={updateLocalAccepted}
         addAcceptedAction={addAcceptedAction}
-        deletedAction={deletedAction}
         climateActionCategories={climateActionCategories}
-        //category={currCategory}
         setCategory={setCategory}
       />
       <KanbanActionContainer
         setLocalAccepted={setLocalAccepted}
         columns={columns}
         setColumns={setColumns}
-        setTotUserActions={setTotUserActions}
+        //setUserActions={setUserActions}
       />
     </>
   );
