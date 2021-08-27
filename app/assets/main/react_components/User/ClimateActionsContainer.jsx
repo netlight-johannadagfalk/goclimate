@@ -65,17 +65,24 @@ const ClimateActionsContainer = ({
       .map((action) => ({ ...action }));
   };
 
-  const appendItemsArrayToCategory = JSON.parse(climateActionCategories).map(
-    (category) => {
+  const appendItemsArrayToCategory = JSON.parse(climateActionCategories)
+    .map((category) => {
       const matchingCategories = JSON.parse(userActions).filter(
         (filterUserAction) =>
-          JSON.stringify(filterUserAction.climate_action_category_id) ===
-            JSON.stringify(category.id) && filterUserAction.status
+          filterUserAction.climate_action_category_id === category.id &&
+          filterUserAction.status
       );
+      if (matchingCategories.length !== 0) {
+        return {
+          ...category,
+          itemsArray: matchingCategories,
+        };
+      }
     })
+    .filter((removed) => removed);
 
-    const secondMatching = matchingCategories.map(
-    (category) => {
+  const getCorrectCategoriesWithPerformedActions =
+    appendItemsArrayToCategory.map((category) => {
       const secondMatching = JSON.parse(actionsWithoutUserActions).filter(
         (filterAction) =>
           JSON.stringify(filterAction.climate_action_category_id) ===
@@ -86,52 +93,46 @@ const ClimateActionsContainer = ({
           JSON.stringify(filterUserAction.climate_action_category_id) ===
             JSON.stringify(category.id) && filterUserAction.status === false
       );
-    )
       return {
         ...category,
-        itemsArray: [
-          ...appendItemsArrayToCategory,
-          ...secondMatching,
-          ...thirdMatching,
-        ],
+        itemsArray: [...secondMatching, ...thirdMatching],
       };
-    }
+    });
 
-      // const secondMatching = JSON.parse(actionsWithoutUserActions).filter(
-      //   (filterAction) =>
-      //     JSON.stringify(filterAction.climate_action_category_id) ===
-      //     JSON.stringify(category.id)
-      // );
+  // const secondMatching = JSON.parse(actionsWithoutUserActions).filter(
+  //   (filterAction) =>
+  //     JSON.stringify(filterAction.climate_action_category_id) ===
+  //     JSON.stringify(category.id)
+  // );
 
-      // return {
-      //   ...category,
-      //   itemsArray: [...matchingCategories, ...secondMatching],
-      // };
-  
+  // return {
+  //   ...category,
+  //   itemsArray: [...matchingCategories, ...secondMatching],
+  // };
 
-  const secondMatchingCategories = appendItemsArrayToCategory.map(
-    (category) => {
-      const secondMatching = JSON.parse(actionsWithoutUserActions).filter(
-        (filterAction) =>
-          JSON.stringify(filterAction.climate_action_category_id) ===
-          JSON.stringify(category.id)
-      );
-      const thirdMatching = JSON.parse(userActions).filter(
-        (filterUserAction) =>
-          JSON.stringify(filterUserAction.climate_action_category_id) ===
-            JSON.stringify(category.id) && filterUserAction.status === false
-      );
+  // const secondMatchingCategories = appendItemsArrayToCategory.map(
+  //   (category) => {
+  //     const secondMatching = JSON.parse(actionsWithoutUserActions).filter(
+  //       (filterAction) =>
+  //         JSON.stringify(filterAction.climate_action_category_id) ===
+  //         JSON.stringify(category.id)
+  //     );
+  //     const thirdMatching = JSON.parse(userActions).filter(
+  //       (filterUserAction) =>
+  //         JSON.stringify(filterUserAction.climate_action_category_id) ===
+  //           JSON.stringify(category.id) && filterUserAction.status === false
+  //     );
 
-      return {
-        ...category,
-        itemsArray: [
-          ...appendItemsArrayToCategory,
-          ...secondMatching,
-          ...thirdMatching,
-        ],
-      };
-    }
-  );
+  //     return {
+  //       ...category,
+  //       itemsArray: [
+  //         ...appendItemsArrayToCategory,
+  //         ...secondMatching,
+  //         ...thirdMatching,
+  //       ],
+  //     };
+  //   }
+  // );
 
   // const appendItemsArrayToCategory = (actionsWithUserActions) => {
   //   console.log("I ENTER FUNCTION");
@@ -193,7 +194,7 @@ const ClimateActionsContainer = ({
   const [columns, setColumns] = useState(
     columnUserActions(
       acceptedUserActions(totUserActions),
-      secondMatchingCategories
+      getCorrectCategoriesWithPerformedActions
     )
   );
   //******************************************************* */
