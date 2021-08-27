@@ -12,7 +12,7 @@ import PriceText from './PriceText.jsx';
 const SignUpContainer = ({ signUpText, price, currency, months }) => {
     const [selectedMembership, setSelectedMembership] = useState("single")
     const [grantedReferralCode, setGrantedReferralCode] = useState(false)
-    const [currentMultipleValue, setCurrentMultipleValue] = useState(2);
+    const [multipleOffsets, setMultipleOffsets] = useState(2);
 
     function onContinueToPayment(givenAnswer){
         // What happens when clicking continue to payment button
@@ -36,7 +36,7 @@ const SignUpContainer = ({ signUpText, price, currency, months }) => {
                                 <MembershipTypeSelector
                                     membershipText={signUpText.membership}
                                     selectedMembership={selectedMembership} setSelectedMembership={setSelectedMembership}
-                                    currentMultipleValue={currentMultipleValue} setCurrentMultipleValue={setCurrentMultipleValue}
+                                    multipleOffsets={multipleOffsets} setMultipleOffsets={setMultipleOffsets}
                                 />
                                 <div data-inactive-class="hidden">
                                     <ReferralCode
@@ -53,7 +53,7 @@ const SignUpContainer = ({ signUpText, price, currency, months }) => {
                             signUpText={signUpText}
                             grantedReferralCode={grantedReferralCode}
                             selectedMembership={selectedMembership}
-                            currentMultipleValue={currentMultipleValue}
+                            multipleOffsets={multipleOffsets}
                         />
                         <AnswerButton
                             label={signUpText.continue_to_payment}

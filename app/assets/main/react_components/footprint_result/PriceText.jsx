@@ -3,7 +3,7 @@ import React from 'react'
 /**
  * Price text that adapts to region, selected membership type and referral code
  */
-const PriceText = ({priceObject, currency, months, signUpText, grantedReferralCode, selectedMembership, currentMultipleValue}) => {
+const PriceText = ({priceObject, currency, months, signUpText, grantedReferralCode, selectedMembership, multipleOffsets}) => {
 
     function extractPrice (priceObject, currency) {
         var currencyText = currency.money.currency_formats[priceObject.currency.iso_code];
@@ -12,7 +12,7 @@ const PriceText = ({priceObject, currency, months, signUpText, grantedReferralCo
             price = price.toFixed(2);
         } 
         if (selectedMembership === "multi") {
-            price = price * currentMultipleValue;
+            price = price * multipleOffsets;
         }
         if (currencyText === "DEFAULT") {
             price=priceObject.currency.iso_code.toUpperCase()+" "+price
