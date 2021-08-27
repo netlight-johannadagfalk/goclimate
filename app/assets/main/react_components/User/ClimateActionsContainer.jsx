@@ -65,17 +65,28 @@ const ClimateActionsContainer = ({
       .map((action) => ({ ...action }));
   };
 
+  const filterCategories = (filter, condition, status) => {
+    return JSON.parse(filter).filter(
+      (filterUserAction) =>
+        filterUserAction.climate_action_category_id === condition &&
+        filterUserAction.status === status
+    );
+  };
+
+  const filterCategoriesWithoutStatus = (filter, condition) => {
+    return JSON.parse(filter).filter(
+      (filterUserAction) =>
+        filterUserAction.climate_action_category_id === condition
+    );
+  };
+
   const appendItemsArrayToCategory = JSON.parse(climateActionCategories)
     .map((category) => {
-      const matchingCategories = JSON.parse(userActions).filter(
-        (filterUserAction) =>
-          filterUserAction.climate_action_category_id === category.id &&
-          filterUserAction.status
-      );
-      if (matchingCategories.length !== 0) {
+      const filtered = filterCategories(userActions, category.id, true);
+      if (filtered.length !== 0) {
         return {
           ...category,
-          itemsArray: matchingCategories,
+          itemsArray: filtered,
         };
       }
     })
@@ -83,19 +94,19 @@ const ClimateActionsContainer = ({
 
   const getCorrectCategoriesWithPerformedActions =
     appendItemsArrayToCategory.map((category) => {
-      const secondMatching = JSON.parse(actionsWithoutUserActions).filter(
-        (filterAction) =>
-          JSON.stringify(filterAction.climate_action_category_id) ===
-          JSON.stringify(category.id)
+      const secondMatching = filterCategoriesWithoutStatus(
+        actionsWithoutUserActions,
+        category.id
       );
-      const thirdMatching = JSON.parse(userActions).filter(
-        (filterUserAction) =>
-          JSON.stringify(filterUserAction.climate_action_category_id) ===
-            JSON.stringify(category.id) && filterUserAction.status === false
-      );
+
+      const thirdMatching = filterCategories(userActions, category.id, false);
       return {
         ...category,
-        itemsArray: [...secondMatching, ...thirdMatching],
+        itemsArray: [
+          ...category.itemsArray,
+          ...secondMatching,
+          ...thirdMatching,
+        ],
       };
     });
 
