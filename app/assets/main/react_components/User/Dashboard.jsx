@@ -3,10 +3,11 @@ import ClimateActionsContainer from "./ClimateActionsContainer.jsx";
 //*** The ContextProvider needs to be imported  */
 import { CategoryProvider } from "./contexts/CategoryContext.js";
 import { DeletedActionProvider } from "./contexts/DeletedActionContext.js";
+import { UserActionsProvider } from "./contexts/UserActionsContext";
 
 const Dashboard = ({
   user,
-  userActions,
+  allUserActions,
   actionsWithUserActions,
   actionsWithoutUserActions,
   climateActionCategories,
@@ -17,13 +18,15 @@ const Dashboard = ({
     //   ContextProvider provides the context to all its children
     <DeletedActionProvider>
       <CategoryProvider>
-        <ClimateActionsContainer
-          user={user}
-          userActions={userActions}
-          actionsWithUserActions={actionsWithUserActions}
-          actionsWithoutUserActions={actionsWithoutUserActions}
-          climateActionCategories={climateActionCategories}
-        ></ClimateActionsContainer>
+        <UserActionsProvider>
+          <ClimateActionsContainer
+            user={user}
+            allUserActions={allUserActions}
+            actionsWithUserActions={actionsWithUserActions}
+            actionsWithoutUserActions={actionsWithoutUserActions}
+            climateActionCategories={climateActionCategories}
+          ></ClimateActionsContainer>
+        </UserActionsProvider>
       </CategoryProvider>
     </DeletedActionProvider>
   );

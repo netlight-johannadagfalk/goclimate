@@ -9,6 +9,10 @@ import {
   useDeletedAction,
   useDeletedActionUpdate,
 } from "./contexts/DeletedActionContext.js";
+// import {
+//   useUserActions,
+//   useUserActionsUpdate,
+// } from "./contexts/UserActionsContext.js";
 
 const ClimateActionsContainer = ({
   user,
@@ -20,10 +24,13 @@ const ClimateActionsContainer = ({
   const [totUserActions, setTotUserActions] = useState(
     JSON.parse(allUserActions)
   );
-  //const [deletedAction, setDeletedAction] = useState(null);
+  const [deletedAction, setDeletedAction] = useState(null);
+  // const totUserActions = useUserActions();
+  // const setTotUserActions = useUserActionsUpdate();
+  // setTotUserActions(JSON.parse(allUserActions));
 
-  const deletedAction = useDeletedAction();
-  const setDeletedAction = useDeletedActionUpdate();
+  // const deletedAction = useDeletedAction();
+  // const setDeletedAction = useDeletedActionUpdate();
   //const [currCategory, setCurrCategory] = useState(null);
   //const currCategory = useCategory();
 

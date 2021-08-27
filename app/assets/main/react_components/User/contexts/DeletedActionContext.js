@@ -23,9 +23,9 @@ export const DeletedActionProvider = ({ children }) => {
 
   return (
     <DeletedActionContext.Provider value={deletedAction}>
-      <CategoryUpdateContext.Provider value={updateDeletedAction}>
+      <DeletedActionContext.Provider value={updateDeletedAction}>
         {children}
-      </CategoryUpdateContext.Provider>
+      </DeletedActionContext.Provider>
     </DeletedActionContext.Provider>
   );
 };
