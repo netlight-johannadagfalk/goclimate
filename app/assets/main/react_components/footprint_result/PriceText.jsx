@@ -3,8 +3,7 @@ import React from 'react'
 /**
  * Price text that adapts to region, selected membership type and referral code
  */
-
-const PriceText = ({priceObject, currency, months, signUpText, grantedRefferalCode, selectedMembership, currentMultipleValue}) => {
+const PriceText = ({priceObject, currency, months, signUpText, grantedReferralCode, selectedMembership, currentMultipleValue}) => {
 
     function extractPrice (priceObject, currency) {
         var currencyText = currency.money.currency_formats[priceObject.currency.iso_code];
@@ -24,44 +23,29 @@ const PriceText = ({priceObject, currency, months, signUpText, grantedRefferalCo
         return price;
     }
 
-    function ShowPrice () {
-        if (selectedMembership === "free") {
-            return (<div id="showPrice"className="py-6 space-y-1">
-                        <p className="heading-lg text-center">
-                            <span className="inline">{signUpText.price_free}</span>
-                        </p>
-                    </div>)
-        } else if (selectedMembership === "single") {
-            return (<div id="showPrice"className="py-6 space-y-1">
-                        <p className="heading-lg text-center">
-                            <span>
-                                <span>{extractPrice(priceObject, currency)}</span>/{months.one}
-                            </span>
-                        </p>
-                    </div>)
-        } else if (selectedMembership === "multi")  {
-            return (<div id="showPrice"className="py-6 space-y-1">
-                        <p className="heading-lg text-center">
-                            <span>
-                                <span>{extractPrice(priceObject, currency)}</span>/{months.one}
-                            </span>
-                        </p>
-                    </div>)
-        }
-    }
-
     return (
         <>
-        {
-            !grantedRefferalCode ?
-                <ShowPrice/>
-        :
-            <div id="freeMonth"className="py-6 space-y-1">
+        { grantedReferralCode && selectedMembership != "free"?
+            <div id="freeMonth" className="py-6 space-y-1">
                 <p className="heading-lg text-center">
-                <span>{signUpText.first_month_free}</span>
+                    <span>
+                        {signUpText.first_month_free}
+                    </span>
                 </p>
-                <p class="font-bold text-center">
-                {signUpText.then} <span>{extractPrice(priceObject, currency)}</span>/{months.one}
+                <p className="font-bold text-center">
+                    {signUpText.then} <span>{extractPrice(priceObject, currency)}</span>/{months.one}
+                </p>
+            </div>
+        :
+            <div id="showPrice" className="py-6 space-y-1">
+                <p className="heading-lg text-center">
+                    <span>
+                        { selectedMembership === "free" ?
+                            <span className="inline">{signUpText.price_free}</span>
+                            :
+                            <><span>{extractPrice(priceObject, currency)}</span>/{months.one}</>
+                        }
+                    </span>
                 </p>
             </div>
         }

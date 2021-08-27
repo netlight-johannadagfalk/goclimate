@@ -11,7 +11,7 @@ import PriceText from './PriceText.jsx';
  */
 const SignUpContainer = ({ signUpText, price, currency, months }) => {
     const [selectedMembership, setSelectedMembership] = useState("single")
-    const [grantedRefferalCode, setGrantedReferralCode] = useState(false)
+    const [grantedReferralCode, setGrantedReferralCode] = useState(false)
     const [currentMultipleValue, setCurrentMultipleValue] = useState(2);
 
     function onContinueToPayment(givenAnswer){
@@ -51,7 +51,7 @@ const SignUpContainer = ({ signUpText, price, currency, months }) => {
                             currency={currency}
                             months={months}
                             signUpText={signUpText}
-                            grantedRefferalCode={grantedRefferalCode}
+                            grantedReferralCode={grantedReferralCode}
                             selectedMembership={selectedMembership}
                             currentMultipleValue={currentMultipleValue}
                         />

@@ -12,13 +12,11 @@ const MembershipTypeSelector = ({ membershipText, selectedMembership, setSelecte
                 selectedMembership={selectedMembership} setSelectedMembership={setSelectedMembership} 
                 buttonType="free"  text={membershipText.free}
                 currentMultipleValue={currentMultipleValue} setCurrentMultipleValue={setCurrentMultipleValue}
-
             />
             <SelectButton 
                 selectedMembership={selectedMembership} setSelectedMembership={setSelectedMembership} 
                 buttonType="single" text={membershipText.single}
                 currentMultipleValue={currentMultipleValue} setCurrentMultipleValue={setCurrentMultipleValue}
-
             />
             <SelectButton 
                 selectedMembership={selectedMembership} setSelectedMembership={setSelectedMembership} 
