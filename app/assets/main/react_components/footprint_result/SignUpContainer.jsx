@@ -27,7 +27,7 @@ const SignUpContainer = ({ signUpText }) => {
                                 <MembershipTypeSelector
                                     membershipText={signUpText.membership}
                                 />
-                                <div data-inactive-class="hidden">
+                                <div>
                                     <ReferralCode
                                         text={signUpText}
                                     />

@@ -212,7 +212,7 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, route 
 
   return (
     <>
-        <div className="question py-8" data-target="lifestyle-footprints--calculator.question" data-category="home">
+        <div className="question py-8">
           <ProgressBar 
             questionCategories={questionCategories} 
             calculator={calculator} 
