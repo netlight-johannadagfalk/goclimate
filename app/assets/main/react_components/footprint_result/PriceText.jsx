@@ -61,7 +61,7 @@ const PriceText = ({priceObject, currency, months, signUpText, grantedRefferalCo
                 <span>{signUpText.first_month_free}</span>
                 </p>
                 <p class="font-bold text-center">
-                {signUpText.then} <span>{extractPrice(price, currency)}</span>/{months.one}
+                {signUpText.then} <span>{extractPrice(priceObject, currency)}</span>/{months.one}
                 </p>
             </div>
         }
