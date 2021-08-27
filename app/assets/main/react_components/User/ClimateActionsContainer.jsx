@@ -3,6 +3,8 @@ import CarouselContainer from "./CarouselContainer.jsx";
 import KanbanActionContainer from "./KanbanActionContainer.jsx";
 import Sidebar from "./Sidebar.jsx";
 import CarouselActionItem from "./CarouselActionItem.jsx";
+//*** The ContextProvider needs to be imported  */
+import { useCategory, useCategoryUpdate } from "./contexts/CategoryContext.js";
 
 const ClimateActionsContainer = ({
   user,
@@ -13,11 +15,14 @@ const ClimateActionsContainer = ({
 }) => {
   const [totUserActions, setTotUserActions] = useState(JSON.parse(userActions));
   const [deletedAction, setDeletedAction] = useState(null);
-  const [currCategory, setCurrCategory] = useState(null);
+  //const [currCategory, setCurrCategory] = useState(null);
+  //const currCategory = useCategory();
 
   useEffect(() => {
     deletedAction != null && updateLocalAccepted(deletedAction);
   }, [deletedAction]);
+
+  //**** TA MED SIMON */
 
   const addAcceptedAction = (action, userAction) => {
     setDeletedAction(null);
@@ -122,8 +127,12 @@ const ClimateActionsContainer = ({
     (action) => action.action_of_the_month === true
   );
 
+  //***** FUNCTION TO UPDATE CONTEXT THAT IS CREATED WITH USECATEGORYUPDATE */
+  const updateCategory = useCategoryUpdate();
+
   const setCategory = (cat) => {
-    setCurrCategory(cat);
+    //***** HERE WE UPDATE THE CONTEXT */
+    updateCategory(cat);
     const filteredActions = cat
       ? totClimateActions.filter(
           (temp) => temp.climate_action_category_id === cat
@@ -162,7 +171,7 @@ const ClimateActionsContainer = ({
         addAcceptedAction={addAcceptedAction}
         deletedAction={deletedAction}
         climateActionCategories={climateActionCategories}
-        category={currCategory}
+        //category={currCategory}
         setCategory={setCategory}
       />
       <KanbanActionContainer

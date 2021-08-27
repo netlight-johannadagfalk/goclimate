@@ -101,7 +101,7 @@
   </section>
   <% end %>
 
-<%= react_component 'ClimateActionsContainer', 
+<%= react_component 'Dashboard', 
   user: @current_user.to_json(), 
   userActions: @get_all_user_climate_actions.to_json(), 
   actionsWithUserActions: @get_all_climate_actions_with_user_actions.to_json(),
