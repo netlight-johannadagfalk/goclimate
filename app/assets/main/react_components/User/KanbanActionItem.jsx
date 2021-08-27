@@ -50,7 +50,8 @@ const KanbanActionItem = ({
 
             {expanded && (
               <div>
-                {item.status && item.status === false ? (
+                {console.log("ENTERED STATUS FALSE" + item.status)}
+                {item.status === false ? (
                   <div className="flex flex-col text-center">
                     <div className="flex-1 justify-center">
                       <p>
@@ -81,8 +82,15 @@ const KanbanActionItem = ({
                   <div>
                     {item.itemsArray &&
                       item.itemsArray.map((subitem) => {
-                        console.log("SUBITEM" + JSON.stringify(subitem));
-                        return <div className="">{subitem.name}</div>;
+                        return (
+                          <div>
+                            {subitem.status === true ? (
+                              <div className="text-danger">{subitem.name}</div>
+                            ) : (
+                              <div className="">{subitem.name}</div>
+                            )}
+                          </div>
+                        );
                       })}
                   </div>
                 )}
