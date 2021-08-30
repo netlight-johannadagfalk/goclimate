@@ -95,3 +95,5 @@ sv:
           placeholder: Lägg till titel
           cta_create: Skapa titel
           cta_update: Uppdatera titel
+      start:
+        heading: Kom igång genom att beräkna ditt klimatavtryck!

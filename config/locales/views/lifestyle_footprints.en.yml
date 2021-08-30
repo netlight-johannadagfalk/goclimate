@@ -104,3 +104,5 @@ en:
           placeholder: Add title
           cta_create: Create title
           cta_update: Update title
+      start:
+        heading: Calculate your carbon footprint to get started!
