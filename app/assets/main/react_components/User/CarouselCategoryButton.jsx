@@ -24,7 +24,9 @@ const CarouselCategoryButton = ({
   return (
     <>
       {active ? (
-        <button className="button inline-block focus:outline-none bg-primary text-white m-1">
+        <button
+          className={`${""} button inline-block focus:outline-none bg-primary text-white m-1`}
+        >
           {" "}
           {categoryName}{" "}
         </button>
