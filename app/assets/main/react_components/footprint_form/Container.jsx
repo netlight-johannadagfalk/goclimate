@@ -2,19 +2,19 @@ import React from 'react';
 import FootprintForm from './FootprintForm.jsx';
 import Link from '../Link.jsx';
 
-const Container = ({ footprint, calculator, lang, registrationsText, commonText, modelText, lifestyleFootprintsText }) => {
+const Container = ({ footprint, calculator, slug, lang, registrationsText, commonText, modelText, lifestyleFootprintsText }) => {
   const texts = {
     registrationsText: JSON.parse(registrationsText),
     commonText: JSON.parse(commonText),
     modelText: JSON.parse(modelText),
     lifestyleFootprintsText: JSON.parse(lifestyleFootprintsText)
   }
-  
+
   return (
     <div className="space-y-6"> 
       <div className="callout">
         <FootprintForm 
-          route={(lang === 'en' ? '' : lang === 'sv' ? '/se' : '/' + lang) + '/calculator'}
+          URL={slug ? '/' + slug + '/calculator' : '/calculator'}
           questionStrings={texts.lifestyleFootprintsText.questions} 
           options={texts.lifestyleFootprintsText.options} 
           footprint={JSON.parse(footprint)} 

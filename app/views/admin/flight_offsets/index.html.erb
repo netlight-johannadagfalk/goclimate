@@ -1,33 +1,39 @@
-<%= render 'admin/shared/notice_banner' %>
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
 
-<h1>Flight offsets</h1>
+  <%= render 'admin/shared/content_header', heading: 'Flight offsets', actions: [
+    {
+      title: 'New',
+      path: new_admin_flight_offset_path,
+      class: 'button-cta'
+    }
+  ] %>
 
-<%= link_to 'New Flight offset', new_admin_flight_offset_path, class: 'btn btn-default' %>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Created</th>
-      <th>Paid</th>
-      <th>Price</th>
-      <th>CO2e</th>
-      <th>Email</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @flight_offsets.each do |flight_offset| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= time_tag(flight_offset.created_at, format: '%F %R') %></td>
-        <td><%= time_tag(flight_offset.paid_at, format: '%F %R') if flight_offset.paid_at.present? %></td>
-        <td><%= flight_offset.price %></td>
-        <td><%= flight_offset.co2e %></td>
-        <td><%= flight_offset.email %></td>
-        <td class="admin-actions">
-          <%= link_to 'Show', admin_flight_offset_path(flight_offset.id) %>
-        </td>
+        <th>Created</th>
+        <th>Paid</th>
+        <th>Price</th>
+        <th>CO2e</th>
+        <th>Email</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @flight_offsets.each do |flight_offset| %>
+        <tr>
+          <td><%= time_tag(flight_offset.created_at, format: '%F %R') %></td>
+          <td><%= time_tag(flight_offset.paid_at, format: '%F %R') if flight_offset.paid_at.present? %></td>
+          <td><%= flight_offset.price %></td>
+          <td><%= flight_offset.co2e %></td>
+          <td><%= flight_offset.email %></td>
+          <td class="whitespace-nowrap">
+            <%= link_to 'Show', admin_flight_offset_path(flight_offset.id), class: 'link-ui text-green-shade-2' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

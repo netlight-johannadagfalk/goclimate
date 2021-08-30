@@ -35,4 +35,9 @@
   &:checked ~ * .toggler-checked\:rotate-180 {
     @apply rotate-180;
   }
+
+  &:checked ~ .toggler-checked\:translate-x-0,
+  &:checked ~ * .toggler-checked\:translate-x-0 {
+    @apply translate-x-0;
+  }
 }

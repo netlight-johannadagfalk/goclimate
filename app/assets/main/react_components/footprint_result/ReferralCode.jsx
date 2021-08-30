@@ -4,14 +4,14 @@ import AnswerButton from '../footprint_form/AnswerButton.jsx';
 /**
  * React component for referral code field in signup
  */
-const ReferralCode = ({ text }) => {
+const ReferralCode = ({ text, setGrantedReferralCode }) => {
 
-    const [errorMessage, setErrorMessage] = useState("");
+    const [invalidCodeMessage, setInvalidCodeMessage] = useState("");
     const [inputCode, setInputCode] = useState("");
 
     /**
-     * Funktion that sends a POST request to the server on referral code submit
-     * and handles error message at invalid code
+     * Function that sends a POST request to the server on referral code submit
+     * and handles and message to the user at invalid code
      */
     function submit() {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
@@ -24,15 +24,21 @@ const ReferralCode = ({ text }) => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({"code": inputCode})
-          };
-          fetch(URL, requestOptions)
-          .then((res) => {
+        };
+        fetch(URL, requestOptions)
+        .then((res) => {
+            console.log(res)
             if (res.status === 404) {
-                setErrorMessage("That's not right, try again");
-            } else {
-                setErrorMessage("");
+                setGrantedReferralCode(false)
+                setInvalidCodeMessage("That's not right, try again");
+            } else if (res.status === 200) {            
+                setGrantedReferralCode(true)
+                setInvalidCodeMessage("");
             }
-          })
+        })
+        .catch(error => {    
+            console.log("Something went wrong, trying again.", error);
+        })
       }
     
     return (
@@ -55,7 +61,7 @@ const ReferralCode = ({ text }) => {
                         type="text" name="code" id="code" onChange={e => setInputCode(e.target.value)}/> 
                     <AnswerButton label={"OK"} onAnswerGiven={submit}/> 
                 </div>
-                <p className="text-orange-shade-1 mt-1">{errorMessage}</p>
+                <p className="text-orange-shade-1 mt-1">{invalidCodeMessage}</p>
             </div> 
         </div>
     )
