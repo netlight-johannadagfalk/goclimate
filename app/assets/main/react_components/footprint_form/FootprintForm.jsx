@@ -8,7 +8,7 @@ import QuestionPage from './QuestionPage.jsx';
  * in the form as well as show the current question on the form-page, one at the time. 
  * It also has the responsibility to store the answeres filled in by the user by changing the footprint object.
  */
-const FootprintForm = ({ calculator, questionStrings, options, footprint, route, texts, lang }) => {
+const FootprintForm = ({ calculator, questionStrings, options, footprint, URL, texts, lang }) => {
   //key value pairs where the key is each question in order and the value is the corresponding category
   const questionCategories = {"region": "home", "home": "home", "home_area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane", "result-page-1": "chart-bar", "result-page-2": "chart-bar"};
   const questionKeys = Object.keys(questionCategories)
@@ -123,12 +123,11 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, route,
   function submit(){
     const answers = result ? footprint : cleanFootprint(footprint)
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    const URL = route;
     const requestOptions = {
         method: 'POST',
         credentials: 'include',
         headers: {
-          "X-CSRF-Token": csrfToken,
+          'X-CSRF-Token': csrfToken,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(answers)

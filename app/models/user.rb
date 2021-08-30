@@ -38,6 +38,8 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   end
 
   def subscription_amount
+    return 0 unless active_subscription?
+
     stripe_customer.subscriptions.first.plan.amount.to_f / 100
   end
 
@@ -98,10 +100,13 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   end
 
   def active_subscription?
+    return false if stripe_customer.deleted?
+
     stripe_customer.subscriptions&.any?
   end
 
   def current_plan
+    return nil unless active_subscription?
     return nil unless (plan = stripe_customer.subscriptions.first&.plan)
 
     @current_plan ||= Subscriptions::Plan.from_stripe_plan(plan)

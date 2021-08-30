@@ -242,12 +242,12 @@ Rails.application.routes.draw do
       post 'send_email', on: :collection
     end
     resource :flight_batch, controller: 'flight_batch', only: [:new, :create]
-    post '/refresh_instagram_token', to: 'dashboard#refresh_instagram_token'
     resources :users, only: [:index, :show] do
       collection do
         post :search
       end
     end
+    resources :lifestyle_footprints, only: [:index, :show, :destroy]
   end
 
   # Errors
