@@ -10,8 +10,8 @@ const ReferralCode = ({ text }) => {
     const [inputCode, setInputCode] = useState("");
 
     /**
-     * Funktion that sends a POST request to the server on referral code submit
-     * and handles error message at invalid code
+     * Function that sends a POST request to the server on referral code submit
+     * and handles and message to the user at invalid code
      */
     function submit() {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
