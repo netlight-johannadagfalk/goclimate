@@ -36,6 +36,7 @@
     "css-loader": "^5.0.1",
     "cssnano": "^4.1.10",
     "element-closest": "^3.0.2",
+    "eslint-plugin-react": "^7.25.1",
     "eventlistener-polyfill": "^1.0.5",
     "file-loader": "^6.1.0",
     "glob": "^7.1.6",

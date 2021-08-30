@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ClimateActionsContainer from "./ClimateActionsContainer.jsx";
 //*** The ContextProvider needs to be imported  */
 import { CategoryProvider } from "./contexts/CategoryContext.js";
