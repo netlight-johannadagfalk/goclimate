@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CarouselHeader from "./CarouselHeader.jsx";
 import CarouselList from "./CarouselList.jsx";
+import CarouselCategoryButton from "./CarouselCategoryButton.jsx";
 
 const CarouselContainer = ({
   user,
@@ -8,10 +9,34 @@ const CarouselContainer = ({
   updateLocalAccepted,
   addAcceptedAction,
   categoryColor,
+  climateActionCategories,
+  category,
+  setCategory,
 }) => {
+  const formatedCategories = JSON.parse(climateActionCategories);
+  const [allCategories, setAllCategories] = useState(true);
+
   return (
-    <div className="max-w-5xl mx-auto space-y-3">
+    <div className="max-w-5xl mx-auto space-y-3 t:bg-transparent t:rounded-lg t:p-8 mt-4">
       <CarouselHeader />
+      <CarouselCategoryButton
+        categoryName={"All categories"}
+        categoryID={null}
+        setCategory={setCategory}
+        active={allCategories}
+        setAllCategories={setAllCategories}
+      />
+      {formatedCategories.map((cat) => (
+        <CarouselCategoryButton
+          key={cat.id}
+          categoryName={cat.name}
+          categoryID={cat.id}
+          setCategory={setCategory}
+          active={category === cat.id ? true : false}
+          setAllCategories={setAllCategories}
+        />
+      ))}
+
       <CarouselList
         user={user}
         climateActionsUser={climateActionsUser}
