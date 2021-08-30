@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import { Draggable } from "react-beautiful-dnd";
 
 const KanbanActionItem = ({
@@ -15,6 +16,7 @@ const KanbanActionItem = ({
     setExpanded(false);
   }, [collapsed]);
 
+
   return (
     <Draggable
       key={item.id}
@@ -28,6 +30,7 @@ const KanbanActionItem = ({
             className={`${categoryColor} border border-gray-tint-2 rounded-lg shadow-lg p-4 h-full space-y-3 pt-0 ${
               collapsed && "w-24"
             }`}
+
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -38,6 +41,7 @@ const KanbanActionItem = ({
               minHeight: "auto",
               ...provided.draggableProps.style,
             }}
+            onClick={() => setExpanded(!expanded)}
           >
             {collapsed ? (
               <div className="flex items-center justify-between">
@@ -77,6 +81,7 @@ const KanbanActionItem = ({
             )}
 
             {expanded && !collapsed && (
+
               <div>
                 {item.status === false ? (
                   <div className="flex flex-col text-center">

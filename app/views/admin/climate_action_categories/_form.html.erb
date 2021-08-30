@@ -20,5 +20,24 @@
     <%= form.text_field :description, class: 'form-control' %>
   </div>
 
+  <div class="form-group">
+    <h3>Category badge</h3>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :badge_name %>
+    <%= form.text_field :badge_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :badge_description %>
+    <%= form.text_field :badge_description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :badge_image_url %>
+    <%= form.text_field :badge_image_url, class: 'form-control' %>
+  </div>
+
   <%= form.submit class: 'btn btn-primary' %>
 <% end %>

@@ -17,7 +17,7 @@ const Sidebar = ({
         }`}
       >
         <button
-          className={`fas rounded-full h-12 w-12 bg-white border border-gray-accent -ml-6 m-auto absolute bottom-1/2 ${
+          className={`fas rounded-full h-12 w-12 bg-white border border-gray-accent -ml-6 m-auto absolute bottom-1/2 focus:outline-none ${
             collapsed ? "fa-chevron-left" : "fa-chevron-right"
           }`}
           onClick={() => setCollapsed(!collapsed)}

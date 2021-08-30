@@ -8,6 +8,7 @@ const KanbanActionContainer = ({
   setColumns,
   setTotUserActions,
   collapsed,
+  categoryColor,
 }) => {
   const [render, setRender] = useState();
   useEffect(() => {
@@ -187,12 +188,14 @@ const KanbanActionContainer = ({
     }
   };
   return (
-    <div className="flex flex-col">
+    <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
         {Object.entries(columns).map(([columnId, column]) => {
           return (
+
             <div key={columnId}>
               <div
                 style={{
@@ -201,19 +204,19 @@ const KanbanActionContainer = ({
                 }}
                 key={columnId}
               >
-                <div className="text-center pt-8" style={{ margin: 2 }}>
+              <div className="text-center pt-8" style={{ margin: 2 }}>
                   <p className="font-normal text-base text-primary text-lg top-0 text-center">
                     {column.name}
                   </p>
-                  <KanbanActionColumn
-                    column={column}
-                    columnId={columnId}
-                    key={columnId}
-                    handleDelete={handleDelete}
-                    handlePerformance={handlePerformance}
-                    collapsed={collapsed}
-                  />
-                </div>
+                <KanbanActionColumn
+                  column={column}
+                  columnId={columnId}
+                  key={columnId}
+                  handleDelete={handleDelete}
+                  handlePerformance={handlePerformance}
+                  categoryColor={categoryColor}
+                  collapsed={collapsed}
+                />
               </div>
             </div>
           );

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import CarouselContainer from "./CarouselContainer.jsx";
 import KanbanActionContainer from "./KanbanActionContainer.jsx";
-import Sidebar from "./Sidebar.jsx";
 import CarouselActionItem from "./CarouselActionItem.jsx";
+import Card from "./Card.jsx";
+import Sidebar from "./Sidebar.jsx";
 
 const ClimateActionsContainer = ({
   user,
@@ -118,6 +119,10 @@ const ClimateActionsContainer = ({
       )
     );
   };
+
+  // categoryColor should be something like monthlyAction.climate_action_category_id.toString()), or map the id to a category name matching the category_colors.css file naming (that cannot be numbers)
+  const [categoryColor, setCategoryColor] = useState("category_housing");
+
   const monthlyAction = totClimateActions.find(
     (action) => action.action_of_the_month === true
   );
@@ -140,6 +145,8 @@ const ClimateActionsContainer = ({
 
   return (
     <>
+      {/* Not neccessary. Should be removed when circles have the correct design in carousel */}
+      {/* <Card monthlyAction={monthlyAction} categoryColor={categoryColor} /> */}
       <div className="w-80 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2 justify-center">
         <h3 className="heading-lg mb-3">Action of the Month </h3>
         {monthlyAction && (
@@ -149,6 +156,7 @@ const ClimateActionsContainer = ({
             user={user}
             updateLocalAccepted={updateLocalAccepted}
             addAcceptedAction={addAcceptedAction}
+            categoryColor={categoryColor}
           ></CarouselActionItem>
         )}
       </div>
@@ -158,6 +166,7 @@ const ClimateActionsContainer = ({
         climateActionsUser={climateActionsUser}
         updateLocalAccepted={updateLocalAccepted}
         addAcceptedAction={addAcceptedAction}
+        categoryColor={categoryColor}
         deletedAction={deletedAction}
         climateActionCategories={climateActionCategories}
         category={currCategory}
@@ -169,6 +178,7 @@ const ClimateActionsContainer = ({
         columns={columns}
         setColumns={setColumns}
         setTotUserActions={setTotUserActions}
+        categoryColor={categoryColor}
       />
     </>
   );
