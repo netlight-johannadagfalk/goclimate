@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Draggable } from "react-beautiful-dnd";
 
 const KanbanActionItem = ({
@@ -10,6 +10,10 @@ const KanbanActionItem = ({
   collapsed,
 }) => {
   const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    setExpanded(false);
+  }, [collapsed]);
 
   return (
     <Draggable
