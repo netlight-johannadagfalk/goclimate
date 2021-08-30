@@ -13,6 +13,7 @@ const KanbanActionContainer = ({
   categoryBadges,
   userActions,
   actionsWithoutUserActions,
+  setCategoryBadges,
 }) => {
   const [render, setRender] = useState();
   useEffect(() => {
@@ -119,58 +120,6 @@ const KanbanActionContainer = ({
     }
   };
 
-  // const appendSubItem = (item, columns) => {
-  //   console.log("item" + item.climate_action_category_id);
-  //   console.log("categoryBadge is a type of " + JSON.stringify(categoryBadges)); //array with objects
-  //   /** Feteches the correct category */
-  //   const theCategory = categoryBadges.find(
-  //     (category) => category.id === item.climate_action_category_id
-  //     //console.log(category.id);
-  //   );
-  //   console.log("thecategroy" + theCategory.id);
-  //   const theCategoryIndex = categoryBadges.findIndex(
-  //     (category) => category.id === item.climate_action_category_id
-  //   );
-  //   console.log("THE FINAL INDEX IS: " + theCategoryIndex);
-
-  //   console.log("ALL USER ACTIONS: " + JSON.stringify(climateActionsUser));
-
-  //   /** Get all actions related to category id */
-  //   const actionsToCategory = climateActionsUser.filter(
-  //     (actions) =>
-  //       actions.climate_action_category_id === item.climate_action_category_id
-  //   );
-
-  //   console.log("FOUND ACTIONS: " + JSON.stringify(actionsToCategory));
-
-  //   console.log("NEW COLUMNS: " + JSON.stringify(columns[2].items));
-
-  //   //const userClimateActions = columns[2].items.
-
-  //   /** Need user climate actions data, so we can use status */
-
-  //   // const subItems = [...categoryBadges[theCategoryIndex].items];
-  //   // subItems.splice(subItems.lenght, 0, item);
-
-  //   /** Update status for the moved item, both locally and to database */
-  //   item.status = true;
-  //   console.log("ITEM STATUS: " + item.status);
-  //   updateStatus(item.id, true);
-
-  //   console.log(
-  //     "CATEGORYBADGES BEFORE " +
-  //       JSON.stringify(categoryBadges[theCategoryIndex])
-  //   );
-
-  //   categoryBadges[theCategoryIndex].itemsArray = actionsToCategory;
-  //   console.log(
-  //     "CATEGORYBADGES WITH ADDED ACTOINS: " +
-  //       JSON.stringify(categoryBadges[theCategoryIndex])
-  //   );
-
-  //   return categoryBadges;
-  // };
-
   const filterCategoriesWithoutStatus = (filter, condition) => {
     return JSON.parse(filter).filter(
       (filterUserAction) =>
@@ -193,26 +142,8 @@ const KanbanActionContainer = ({
   };
 
   const setNewPerformedActions = (item, performedColumn) => {
-    /** Check if the category is already created in the performed column, if so, we add the action to the category */
-    // const resultArray = performedColumn.map((performedItem) => {
-    //   if (item.climate_action_category_id === performedItem.id) {
-    //     const foundAction = performedItem.itemsArray.filter(
-    //       (action) => action.id === item.id
-    //       //console.log("I ENTER ID IF");
-    //       //return { ...action, status: true };
-    //     );
-    //     return {
-    //       ...performedColumn,
-    //       performedItem.itemsArray.foundAction,
-    //       status: true,
-    //     };
-    //   }
-    // });
-
     const category = findCategory(performedColumn, item);
     if (category !== undefined) {
-      console.log("CATEGORY: " + JSON.stringify(category));
-      console.log("ITEM: " + JSON.stringify(item));
       const updatedItemsArray = category.itemsArray.map((action) =>
         action.id == item.id || action.id == item.climate_action_id
           ? { ...action, status: true }
@@ -245,24 +176,10 @@ const KanbanActionContainer = ({
         itemsArray: [...secondMatching, ...thirdMatching],
       };
 
-      console.log("RESULT WHEN MOVED NEW ACTION: " + JSON.stringify(result));
-      /*const categoryIndex = result.findIndex(
-        (foundCategory) => foundCategory.id == newCategory.id
-      );*/
-
       const updatedItemsArray = result.itemsArray.map((action) => {
-        console.log("ACTION ID: " + action.id);
-        console.log("ITEM ID " + item.id);
         return action.id == item.id || action.id == item.climate_action_id
           ? { ...action, status: true }
           : action;
-        /*if (item.status === false) {
-          return action.id == item.id ? { ...action, status: true } : action;
-        } else {
-          return action.id == item.climate_action_id
-            ? { ...action, status: true }
-            : action;
-        }*/
       });
 
       console.log("UPDATEDITEMSARRAY: " + JSON.stringify(updatedItemsArray));
@@ -271,7 +188,6 @@ const KanbanActionContainer = ({
         ...newCategory,
         itemsArray: updatedItemsArray,
       };
-      //const resultArray = performedColumn.push(updatedItemStatus);
 
       const resultArray = [...performedColumn, updatedResult];
       console.log(
@@ -279,30 +195,6 @@ const KanbanActionContainer = ({
       );
       return resultArray;
     }
-
-    /** The category for the action does not exist in performed so need to create a new one*/
-    // if (!updated) {
-    //   /**Find the category for the performed item */
-    //   const category = JSON.parse(climateActionCategories).find(
-    //     (category) => category.id === item.climate_action_category_id
-    //   );
-    //   /** Find all actions without user actions for the category */
-    //   const secondMatching = filterCategoriesWithoutStatus(
-    //     actionsWithoutUserActions,
-    //     category.id
-    //   );
-
-    //   /** Find all actions that the user have accepted that is in the category */
-    //   const thirdMatching = filterCategories(userActions, category.id, false);
-
-    //   const result = {
-    //     ...category,
-    //     itemsArray: [...secondMatching, ...thirdMatching],
-    //   };
-
-    //   /** Add the found result to the performed column */
-    //   resultArray = [...performedColumn, ...result];
-    // }
   };
 
   const onDragEnd = (result, columns, setColumns) => {
@@ -314,16 +206,11 @@ const KanbanActionContainer = ({
       const destColumn = columns[destination.droppableId];
       const sourceItems = [...sourceColumn.items];
       const [removed] = sourceItems.splice(source.index, 1);
-      //Set data to second column
-      //const destItems = [...destColumn.items];
       updateStatus(removed.id, true);
 
-      const updatedDestItems = setNewPerformedActions(
-        removed,
-        columns[2].items
-      );
-      const destItems = [...updatedDestItems];
+      const destItems = setNewPerformedActions(removed, columns[2].items);
       setTotUserActions([...sourceItems, ...destItems]);
+      setCategoryBadges([...destItems]);
 
       setColumns({
         ...columns,
@@ -337,43 +224,6 @@ const KanbanActionContainer = ({
         },
       });
       console.log("newDESTITEMS: " + JSON.stringify(columns[2].items));
-      // if (destColumn.id === columns[2].id) {
-      //   const theItem = destItems.find((item) => item.status === false);
-      //   const newDestItems = destItems.map((item) =>
-      //     item.status === false ? { ...item, status: !item.status } : item
-      //   );
-      //   setTotUserActions([...sourceItems, ...newDestItems]);
-      //   setColumns({
-      //     ...columns,
-      //     [source.droppableId]: {
-      //       ...sourceColumn,
-      //       items: sourceItems,
-      //     },
-      //     [destination.droppableId]: {
-      //       ...destColumn,
-      //       items: newDestItems,
-      //     },
-      //   });
-      //   updateStatus(theItem.id, true);
-      // } else {
-      //   const theItem = destItems.find((item) => item.status === true);
-      //   const newDestItems = destItems.map((item) =>
-      //     item.status === true ? { ...item, status: !item.status } : item
-      //   );
-      //   setTotUserActions([...sourceItems, ...newDestItems]);
-      //   setColumns({
-      //     ...columns,
-      //     [source.droppableId]: {
-      //       ...sourceColumn,
-      //       items: sourceItems,
-      //     },
-      //     [destination.droppableId]: {
-      //       ...destColumn,
-      //       items: newDestItems,
-      //     },
-      //   });
-      //   updateStatus(theItem.id, false);
-      // }
     } else {
       const column = columns[source.droppableId];
       const copiedItems = [...column.items];

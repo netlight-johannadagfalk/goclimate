@@ -11,7 +11,11 @@ const KanbanActionItem = ({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
+    <Draggable
+      key={item.id.toString() + item.name}
+      draggableId={item.id.toString()}
+      index={index}
+    >
       {(provided) => {
         return (
           <div
@@ -50,7 +54,6 @@ const KanbanActionItem = ({
 
             {expanded && (
               <div>
-                {console.log("ENTERED STATUS FALSE" + item.status)}
                 {item.status === false ? (
                   <div className="flex flex-col text-center">
                     <div className="flex-1 justify-center">
@@ -76,9 +79,6 @@ const KanbanActionItem = ({
                     </div>
                   </div>
                 ) : (
-                  /*Check if which catgeories that should be shown by checking which category items status that is true 
-                  add status in incomning action catgories
-                  */
                   <div>
                     {item.itemsArray &&
                       item.itemsArray.map((subitem) => {

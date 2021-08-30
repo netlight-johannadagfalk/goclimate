@@ -14,15 +14,13 @@ const ClimateActionsContainer = ({
   const [deletedAction, setDeletedAction] = useState(null);
   const [currCategory, setCurrCategory] = useState(null);
 
-  console.log("WITH USER ACTIONS" + JSON.stringify(actionsWithUserActions));
-
   useEffect(() => {
     deletedAction != null && updateLocalAccepted(deletedAction);
   }, [deletedAction]);
 
   const addAcceptedAction = (action, userAction) => {
     setDeletedAction(null);
-    const temp = {
+    const tempAction = {
       id: userAction.id,
       name: action.name,
       description: action.description,
@@ -32,15 +30,16 @@ const ClimateActionsContainer = ({
       climate_action_category_id: action.climate_action_category_id,
     };
 
-    const localVar = [...totUserActions, temp];
+    const localVar = [...totUserActions, tempAction];
+    console.log("LOCALVAR: " + JSON.stringify(totUserActions));
     setTotUserActions(localVar);
     setColumns(
-      columnUserActions(
-        acceptedUserActions(localVar),
-        getCorrectCategoriesWithPerformedActions
-        //doneUserActions(localVar)
-      )
+      columnUserActions(acceptedUserActions(localVar), categoryBadges)
     );
+  };
+  const doneUserActions = (inVal) => {
+    return inVal.filter((category) => category.itemsArray !== undefined);
+    //.map((action) => ({ ...action }));
   };
 
   const setLocalAccepted = (updatedList, performed, deletedAction) => {
@@ -123,12 +122,15 @@ const ClimateActionsContainer = ({
     };
   };
 
-  /**CHANGE THIS SO NO FUNCTION IS BEING CALLED */
   const [columns, setColumns] = useState(
     columnUserActions(
       acceptedUserActions(totUserActions),
       getCorrectCategoriesWithPerformedActions
     )
+  );
+
+  const [categoryBadges, setCategoryBadges] = useState(
+    getCorrectCategoriesWithPerformedActions
   );
   //******************************************************* */
 
@@ -217,6 +219,7 @@ const ClimateActionsContainer = ({
         climateActionsUser={climateActionsUser}
         userActions={userActions}
         actionsWithoutUserActions={actionsWithoutUserActions}
+        setCategoryBadges={setCategoryBadges}
       />
     </>
   );
