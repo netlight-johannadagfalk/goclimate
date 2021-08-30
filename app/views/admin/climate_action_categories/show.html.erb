@@ -11,6 +11,16 @@
 
   <dt>Description:</dt>
   <dd><%= @climate_action_category.description%></dd>
+
+  <dt>Badge Name:</dt>
+  <dd><%= @climate_action_category.badge_name%></dd>
+
+  <dt>Badge Description:</dt>
+  <dd><%= @climate_action_category.badge_description%></dd>
+
+  <dt>Badge Image Url:</dt>
+  <dd><%= @climate_action_category.badge_image_url%></dd>
+
  </dl> 
 <hr>
 <%= link_to 'Edit', edit_admin_climate_action_category_path(@climate_action_category), class: 'btn btn-default' %>
