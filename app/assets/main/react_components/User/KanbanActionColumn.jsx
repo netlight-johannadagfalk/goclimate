@@ -11,7 +11,12 @@ const KanbanActionColumn = ({
 }) => {
   return (
     <div key={columnId}>
-      <Droppable column={column} droppableId={columnId} key={columnId}>
+      <Droppable
+        column={column}
+        droppableId={columnId}
+        key={columnId}
+        isDropDisabled={collapsed}
+      >
         {(provided, snapshot) => {
           return (
             <div

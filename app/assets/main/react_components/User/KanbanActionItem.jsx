@@ -12,7 +12,12 @@ const KanbanActionItem = ({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Draggable key={item.id} draggableId={item.id} index={index}>
+    <Draggable
+      key={item.id}
+      draggableId={item.id}
+      index={index}
+      isDragDisabled={collapsed}
+    >
       {(provided) => {
         return (
           <div
