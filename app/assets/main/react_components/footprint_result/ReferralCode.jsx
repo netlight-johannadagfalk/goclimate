@@ -29,11 +29,9 @@ const ReferralCode = ({ text, setGrantedReferralCode }) => {
         .then((res) => {
             console.log(res)
             if (res.status === 404) {
-                setInvalidCodeMessage("That's not right, try again");
-            } else if (res.status === 200) {            
                 setGrantedReferralCode(false)
                 setInvalidCodeMessage("That's not right, try again");
-            } else {
+            } else if (res.status === 200) {            
                 setGrantedReferralCode(true)
                 setInvalidCodeMessage("");
             }
