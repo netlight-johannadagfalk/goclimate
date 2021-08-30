@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import CarouselContainer from "./CarouselContainer.jsx";
 import KanbanActionContainer from "./KanbanActionContainer.jsx";
 import Sidebar from "./Sidebar.jsx";
@@ -10,6 +10,7 @@ import {
 import {
   useUserActions,
   useUserActionsUpdate,
+  useUserActionsColumnsWithFullFormatUpdate,
 } from "./contexts/UserActionsContext.js";
 import {
   useClimateActions,
@@ -28,8 +29,7 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
 
-  //const [currCategory, setCurrCategory] = useState(null);
-  //const currCategory = useCategory();
+  const setColumnsWithFullFormat = useUserActionsColumnsWithFullFormatUpdate();
 
   const addAcceptedAction = (action, userAction) => {
     //Depends on
@@ -49,70 +49,12 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
     };
     const localVar = [...userActions, temp];
     setUserActions(localVar);
-    setColumns(
-      columnUserActions(
-        acceptedUserActions(localVar),
-        doneUserActions(localVar)
-      )
-    );
+    setColumnsWithFullFormat(localVar);
   };
-
-  const setLocalAccepted = (updatedList, performed, deletedAction) => {
-    setUserActions([...updatedList, ...performed]);
-    setColumns(columnUserActions(updatedList, performed));
-    setDeletedAction(deletedAction);
-  };
-  //******************************************************* */
-  // Should be moved to dahboard
-
-  const formatedUserActions = (inVal) => {
-    return inVal.map((userActions) => ({
-      ...userActions,
-      id: userActions.id.toString(),
-    }));
-  };
-
-  const acceptedUserActions = (inVal) => {
-    return formatedUserActions(inVal)
-      .filter((action) => action.status !== true)
-      .map((action) => ({ ...action }));
-  };
-  const doneUserActions = (inVal) => {
-    return formatedUserActions(inVal)
-      .filter((action) => action.status !== false)
-      .map((action) => ({ ...action }));
-  };
-
-  const columnUserActions = (acceptedList, doneActions) => {
-    return {
-      [1]: {
-        id: "Accepted",
-        name: "Your accepted actions:",
-        items: acceptedList,
-      },
-      [2]: {
-        id: "Performed",
-        name: "Your performed actions:",
-        items: doneActions,
-      },
-    };
-  };
-
-  //Flytta till context
-  const [columns, setColumns] = useState(
-    columnUserActions(
-      acceptedUserActions(userActions),
-      doneUserActions(userActions)
-    )
-  );
-  //******************************************************* */
-  // Should be moved to dashboard.jsx or context?
 
   //******************************************************* */
 
   const updateLocalAccepted = (actionID) => {
-    //Depends on context climateAction
-    //used by both carousel and kanban, flytta funktion till context?
     setClimateActions(
       climateActions.map((action) =>
         action.id === actionID
@@ -153,11 +95,7 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
         addAcceptedAction={addAcceptedAction}
         climateActionCategories={climateActionCategories}
       />
-      <KanbanActionContainer
-        setLocalAccepted={setLocalAccepted}
-        columns={columns}
-        setColumns={setColumns}
-      />
+      <KanbanActionContainer />
     </>
   );
 };

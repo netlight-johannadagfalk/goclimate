@@ -2,22 +2,33 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanActionColumn from "./KanbanActionColumn.jsx";
 import { useUserActionsUpdate } from "./contexts/UserActionsContext.js";
+import { useDeletedActionUpdate } from "./contexts/DeletedActionContext.js";
+import {
+  useUserActionsColumns,
+  useUserActionsColumnsUpdate,
+  useUserActionsColumnsWithFormatUpdate,
+  useUserActionsColumnsWithFullFormatUpdate,
+} from "./contexts/UserActionsContext.js";
 
-const KanbanActionContainer = ({
-  setLocalAccepted,
-  columns,
-  setColumns,
-  //setUserActions,
-}) => {
+const KanbanActionContainer = () => {
   const setUserActions = useUserActionsUpdate();
-  const [render, setRender] = useState();
-  useEffect(() => {
-    setRender(columns);
-  }, [columns]);
+
+  const columns = useUserActionsColumns();
+  const setColumns = useUserActionsColumnsUpdate();
+  const setColumnsWithFormat = useUserActionsColumnsWithFormatUpdate();
+  const setColumnsWithFullFormat = useUserActionsColumnsWithFullFormatUpdate();
+
+  const setDeletedAction = useDeletedActionUpdate();
+
+  const handleLocalAccepted = (updatedList, performed, deletedAction) => {
+    setUserActions([...updatedList, ...performed]);
+    setColumnsWithFormat(updatedList, performed);
+    setDeletedAction(deletedAction);
+  };
 
   const handleDelete = (id, actionID) => {
     deleteUserAction(id);
-    setLocalAccepted(
+    handleLocalAccepted(
       columns[1].items.filter((item) => item.id.toString() !== id),
       columns[2].items,
       actionID
