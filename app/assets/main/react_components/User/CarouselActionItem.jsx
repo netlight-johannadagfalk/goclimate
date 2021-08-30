@@ -13,8 +13,7 @@ const CarouselActionItem = ({ action, user, updateLocalAccepted }) => {
   const setDeletedAction = useDeletedActionUpdate();
   const setColumnsWithFullFormat = useUserActionsColumnsWithFullFormatUpdate();
 
-  const addAcceptedAction = (action, userAction) => {
-    console.log("i addAcceptedAction");
+  const acceptAction = (action, userAction) => {
     setDeletedAction(null);
     const temp = {
       id: userAction.id,
@@ -24,9 +23,9 @@ const CarouselActionItem = ({ action, user, updateLocalAccepted }) => {
       status: userAction.status,
       user_id: userAction.user_id,
     };
-    const localVar = [...userActions, temp];
-    setUserActions(localVar);
-    setColumnsWithFullFormat(localVar);
+    const tempList = [...userActions, temp];
+    setUserActions(tempList);
+    setColumnsWithFullFormat(tempList);
   };
 
   //FUNCTION WHERE USER ACCEPT AN ACTION IN DB -> MOVES TO ACCEPTED
@@ -50,7 +49,7 @@ const CarouselActionItem = ({ action, user, updateLocalAccepted }) => {
 
     fetch(URL, requestOptions)
       .then((res) => res.json())
-      .then((json) => addAcceptedAction(action, json))
+      .then((json) => acceptAction(action, json))
       .catch((e) => console.log(e));
   };
   const handleClickAccepted = (action) => {

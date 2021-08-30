@@ -42,10 +42,12 @@ const CarouselCategoryButton = ({
         )
       : totClimateActions;
 
-    const filteredActionsWithStatus = filteredActions.map((x) => {
-      return userActions.some((y) => y.climate_action_id === x.id)
-        ? { ...x, accepted: true }
-        : { ...x, accepted: false };
+    const filteredActionsWithStatus = filteredActions.map((action) => {
+      return userActions.some(
+        (userAction) => userAction.climate_action_id === action.id
+      )
+        ? { ...action, accepted: true }
+        : { ...action, accepted: false };
     });
     setClimateActions(filteredActionsWithStatus);
   };

@@ -80,15 +80,15 @@ export const UserActionsProvider = ({ children, allUserActions }) => {
     setUserActions(actions);
   };
 
-  const updateColumns = (inVal) => {
-    setColumns(inVal);
+  const updateColumns = (col) => {
+    setColumns(col);
   };
   const updateColumnsWithFormat = (updatedList, performedList) => {
     setColumns(columnUserActions(updatedList, performedList));
   };
-  const updateColumnsWithFullFormat = (inVal) => {
+  const updateColumnsWithFullFormat = (col) => {
     setColumns(
-      columnUserActions(acceptedUserActions(inVal), doneUserActions(inVal))
+      columnUserActions(acceptedUserActions(col), doneUserActions(col))
     );
   };
 
