@@ -1,7 +1,7 @@
 import React, { useState, useEffect }  from 'react';
 import AnswerButton from './AnswerButton.jsx';
 
-const OptionNumerical = ({ onAnswerGiven, option, savedValue, onNumericalInput }) => {
+const OptionNumerical = ({ questionObject, onAnswerGiven, savedValue, onNumericalInput }) => {
   const [value, setValue] = useState(savedValue);
   
   useEffect(() => {
@@ -39,12 +39,12 @@ const OptionNumerical = ({ onAnswerGiven, option, savedValue, onNumericalInput }
           onKeyPress = {(e) => onKeyPress(e)} 
           onChange={(e) => onChange(e)}
         />
-        {option.isCarOption && <span className="ml-3">km</span>}
+        {questionObject.isCarOption && <span className="ml-3">km</span>}
       </label>
       <AnswerButton 
-        label={option.text}
+        label={questionObject.text}
         onAnswerGiven={onAnswer}
-        disableOnClick={!option.isCarOption}
+        disableOnClick={!questionObject.isCarOption}
         stylingClasses={"m-lg:w-2/3"}
       />
     </div>

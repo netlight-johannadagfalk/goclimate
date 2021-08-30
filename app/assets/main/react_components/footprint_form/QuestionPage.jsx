@@ -7,20 +7,21 @@ import OptionNumerical from './OptionNumerical.jsx'
  * Container for FootprintForm page that is related to questions
  * Either shows a numerical or a button-based question
  */
-const QuestionPage = ({ question, options, onAnswerGiven, selectedKey, onNumericalInput, savedValue}) => {
+const QuestionPage = ({ currentObject, onAnswerGiven, selectedKey, onNumericalInput, savedValue}) => {
     return (
         <div>
-            <Title text={question}/>
-            {!options.isNumerical ? 
+            <Title text={currentObject.question}/>
+            {!currentObject.isNumerical ? 
             <OptionList 
                 onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} 
-                options={options.options}
+                options={currentObject.options}
                 selectedKey={selectedKey} 
             />
             :
             <OptionNumerical 
+                questionObject={currentObject}
                 onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} 
-                option={options} 
+                option={currentObject.options} 
                 onNumericalInput={onNumericalInput}
                 savedValue={savedValue} 
             />

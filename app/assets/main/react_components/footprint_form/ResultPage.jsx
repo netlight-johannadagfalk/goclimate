@@ -1,6 +1,7 @@
 import React from 'react'
-import WorldResultPage from './WorldResultPage.jsx'
+import WorldPage from './WorldPage.jsx'
 import AnswerButton from './AnswerButton.jsx';
+import CategoryPage from './CategoryPage.jsx';
 
 /**
  * Container for FootprintForm page that is related to results
@@ -10,21 +11,25 @@ import AnswerButton from './AnswerButton.jsx';
 const ResultPage = ({ result, texts, lang, page, onPageChange }) => {
     const footprint = result.footprint;
     const countryAverage = result.country_average;
-
     return (
         <div>
-            {page === 0 ?
-                <WorldResultPage
-                    footprint={footprint}
-                    countryAverage={countryAverage} 
-                    texts={texts} 
-                    lang={lang}
-                />
-            :
-                <div>
-                    Placeholder: CategoriesResultPage
-                </div>
-            }
+            <div className="mb-8">
+                {page === 0 ?
+                    <WorldPage
+                        footprint={footprint}
+                        countryAverage={countryAverage} 
+                        texts={texts} 
+                        lang={lang}
+                    />
+                : page === 1 ?
+                    <CategoryPage
+                        text={texts.commonText}
+                        footprint={footprint}
+                    />
+                :
+                    <div>Placeholder next page</div>
+                }
+            </div>
             <AnswerButton
                 label={texts.lifestyleFootprintsText.next + " ->"}
                 onAnswerGiven={onPageChange}

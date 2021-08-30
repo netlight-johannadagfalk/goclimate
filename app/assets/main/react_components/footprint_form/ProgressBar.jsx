@@ -4,7 +4,7 @@ import React from 'react';
  * Each question in questionCategories has a category to show as active, these correspond to the alternatives in categories
  * Dots under each category is taken from each question in questionCategories, originally from footprintform
  */
-const ProgressBar = ({ questionCategories, activeCategory, activeQuestion }) => {
+const ProgressBar = ({ questionCategories, currentObject }) => {
   const categories = ["home", "utensils", "shopping-bag", "car", "plane", "chart-bar"]
   const inactiveCategoryClass = "border-gray-tint-2"
   const activeCategoryClass = "border-green-tint-1 bg-green-tint-1 text-primary"
@@ -17,8 +17,8 @@ const ProgressBar = ({ questionCategories, activeCategory, activeQuestion }) => 
     <>
       <div className="flex justify-center space-x-3 m-lg:space-x-6 text-gray-shade-2" >
         {categories.map((category) => {
-          activeCategory == category ? currentClass = activeCategoryClass : currentClass = inactiveCategoryClass 
-          activeCategory == category ? isCompletedCategory = false : isCompletedCategory = isCompletedCategory
+          currentObject.category == category ? currentClass = activeCategoryClass : currentClass = inactiveCategoryClass 
+          currentObject.category == category ? isCompletedCategory = false : isCompletedCategory = isCompletedCategory
           return (
               <div key={category}>
                 <div className={"rounded-full w-12 h-12 flex justify-center items-center box-content p-1 mb-2 border " + currentClass}>
@@ -31,7 +31,7 @@ const ProgressBar = ({ questionCategories, activeCategory, activeQuestion }) => 
                   {
                     if(!isCompletedCategory){
                       if(questionCategories[question] == category){
-                        if(question == activeQuestion){
+                        if(question == currentObject.questionKey){
                           return(<i key={question} className={"fa-circle text-sm block " + greenDotClass}/>)
                         }
                         else{
