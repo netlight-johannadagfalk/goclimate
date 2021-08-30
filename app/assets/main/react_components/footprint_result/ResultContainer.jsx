@@ -11,16 +11,18 @@ import {
 import Link from '../Link.jsx';
 import PaymentContainer from './PaymentContainer.jsx';
 import YourFootprintText from './YourFootprintText.jsx';
+import MoneyUsageList from './MoneyUsageList.jsx';
+import FAQ from './FAQ.jsx';
 import LatestProjectsList from './LatestProjectsList.jsx';
 
 /**
  * React container for Result page components
  */
-        
-const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, lifestyleFootprintsText, modelText, lang, sign_up_heading_test_number }) => {
-    const commonStrings = JSON.parse(commonText)
-    const stripePromise = loadStripe("pk_test_4QHSdRjQiwkzokPPCiK33eOq")
+    
+const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, lang, plan, currency, sign_up_heading_test_number }) => {
 
+    const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq')
+    const commonStrings = JSON.parse(commonText)
     return (
         <div className="relative pb-1">
             <Elements  stripe={stripePromise}  options={{locale: lang}} >
@@ -50,14 +52,24 @@ const ResultContainer = ({ footprint, projects, countryAverage, registrationsTex
                 />
                 <SignUpContainer
                     signUpText={JSON.parse(registrationsText)}
+                    price={JSON.parse(plan).price}
+                    currency={JSON.parse(currency)}
+                    months={JSON.parse(commonText).months}
                 />
                 <Link    
                     link={"https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"}
                     linkText={JSON.parse(lifestyleFootprintsText).methodology} 
                 />
+                <MoneyUsageList 
+                    moneyUsageText={JSON.parse(registrationsText).where_does_the_money_go}
+                />
                 <LatestProjectsList
                     latestProjectsText={JSON.parse(registrationsText).latest_projects}
                     projects={JSON.parse(projects)}
+                />
+                <FAQ
+                    questions={JSON.parse(commonText).faq_questions}
+                    faqText={JSON.parse(registrationsText).faq}
                 />
             </div>
         </div>
