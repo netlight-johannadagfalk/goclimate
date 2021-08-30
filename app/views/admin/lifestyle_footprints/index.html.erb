@@ -1,0 +1,28 @@
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
+
+  <%= render 'admin/shared/content_header', heading: 'Lifestyle footprints', actions: [] %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Amount</th>
+        <th>Created</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @footprints.each do |footprint| %>
+        <tr>
+          <td><%= footprint.total %></td>
+          <td><%= time_tag(footprint.created_at, format: '%F %R') %></td>
+          <td class="whitespace-nowrap">
+            <%= link_to 'Show', admin_lifestyle_footprint_path(footprint.id), class: 'link-ui text-green-shade-2' %> &nbsp;
+            <%= link_to 'Destroy', [:admin, footprint], method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-ui text-green-shade-2' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
