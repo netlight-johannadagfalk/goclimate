@@ -19,6 +19,7 @@ const CarouselList = ({
   climateActionsUser,
   updateLocalAccepted,
   addAcceptedAction,
+  categoryColor,
 }) => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
@@ -48,6 +49,7 @@ const CarouselList = ({
               user={user}
               updateLocalAccepted={updateLocalAccepted}
               addAcceptedAction={addAcceptedAction}
+              categoryColor={categoryColor}
             ></CarouselActionItem>
           </SwiperSlide>
         ))}

@@ -7,6 +7,7 @@ const KanbanActionColumn = ({
   columnId,
   handleDelete,
   handlePerformance,
+  categoryColor,
 }) => {
   return (
     <div key={columnId}>
@@ -31,6 +32,7 @@ const KanbanActionColumn = ({
                     key={item.id}
                     handleDelete={handleDelete}
                     handlePerformance={handlePerformance}
+                    categoryColor={categoryColor}
                   />
                 );
               })}

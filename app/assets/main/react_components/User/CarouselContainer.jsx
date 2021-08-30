@@ -8,6 +8,7 @@ const CarouselContainer = ({
   climateActionsUser,
   updateLocalAccepted,
   addAcceptedAction,
+  categoryColor,
   climateActionCategories,
   category,
   setCategory,
@@ -41,7 +42,7 @@ const CarouselContainer = ({
         climateActionsUser={climateActionsUser}
         updateLocalAccepted={updateLocalAccepted}
         addAcceptedAction={addAcceptedAction}
-        category={category}
+        categoryColor={categoryColor}
       ></CarouselList>
     </div>
   );

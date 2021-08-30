@@ -5,6 +5,7 @@ const CarouselActionItem = ({
   user,
   updateLocalAccepted,
   addAcceptedAction,
+  categoryColor,
 }) => {
   const currUser = JSON.parse(user);
 
@@ -37,58 +38,65 @@ const CarouselActionItem = ({
       .catch((e) => console.log(e));
   };
   return (
-    <div
-      className={
-        action.action_of_the_month
-          ? "callout border-8 shadow-none min-h-full p-2 ml-2 mr-2 flex justify-center"
-          : "callout shadow-none min-h-full p-2 ml-2 mr-2 flex justify-center"
-      }
-    >
-      <div className="flex flex-col text-center">
-        <div className="flex-1">
-          <h4
-            className="text-base font-bold justify-center"
-            style={{ color: "rgba(28, 70, 55, var(--tw-text-opacity))" }}
-          >
-            {action.name.length > 25
-              ? action.name.slice(0, 25) + "..."
-              : action.name}
-          </h4>
-        </div>
-        <div className="flex-1">
-          <p>
-            {action.description.length > 40
-              ? action.description.slice(0, 40) + "..."
-              : action.description}
-          </p>
-        </div>
-        <div className="flex-1">
-          <img src="earth.png" className=" flex"></img>
-        </div>
-        <div className="flex-1 flex-none mb-1">
-          {action.points ? (
-            <label>Impact: {action.points} CO2</label>
-          ) : (
-            <label>Impact: unknown</label>
-          )}
-        </div>
-        <div className="flex-1">
-          {action.accepted ? (
-            <button
-              className="button inline-block "
-              disabled={true}
-              style={{ color: "rgba(28, 70, 55)" }}
-            >
-              Accepted
-            </button>
-          ) : (
-            <button
-              className="button button-cta inline-block "
-              onClick={() => handleClickAccepted(action)}
-            >
-              Accept challenge
-            </button>
-          )}
+    <div className="flex flex-1 min-h-full ">
+      <div className="pt-20 flex m-lg:pt-24 flex justify-evenly">
+        <div
+          className={`${action.action_of_the_month && "border-8"}            
+               ${categoryColor} border-gray-tint-2 rounded-lg shadow-lg p-2 ml-2 mr-2 flex flex-col flex-1`}
+        >
+          <img
+            className="mx-auto -mt-20 rounded-full object-cover"
+            src="https://www.goclimate.com/blog/wp-content/uploads/2020/07/DJI_0974-768x512.jpg"
+          />
+          <div className="flex flex-col text-center">
+            <div className="flex-1">
+              <h4 className="text-base font-bold justify-center">
+                {action.name.length > 25
+                  ? action.name.slice(0, 25) + "..."
+                  : action.name}
+              </h4>
+            </div>
+
+            <div className="flex-1">
+              <p>
+                {action.description.length > 40
+                  ? action.description.slice(0, 40) + "..."
+                  : action.description}
+              </p>
+            </div>
+
+            <div className="flex-1 flex flex-row mb-1 justify-center">
+              {[1, 2, 3, 4, 5].map((index) => {
+                return (
+                  <span
+                    className={`flex flex-row ${
+                      index <= action.points ? "bg-black" : "bg-gray-pastel"
+                    } m-2 rounded-full h-4 w-4 flex items-center justify-center`}
+                    key={action.name + index}
+                  ></span>
+                );
+              })}
+            </div>
+
+            <div className="flex-1">
+              {action.accepted ? (
+                <button
+                  className="button inline-block "
+                  disabled={true}
+                  style={{ color: "rgba(28, 70, 55)" }}
+                >
+                  Accepted
+                </button>
+              ) : (
+                <button
+                  className="button button-cta inline-block "
+                  onClick={() => handleClickAccepted(action)}
+                >
+                  Accept challenge
+                </button>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>
