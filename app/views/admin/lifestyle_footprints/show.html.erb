@@ -1,0 +1,61 @@
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
+  <h1 class="heading-lg">Lifestyle footprint</h1>
+
+  <dl class="dl-horizontal">
+    <dt>Id:</dt>
+    <dd><%= @footprint.id %></dd>
+    <dt>Created at:</dt>
+    <dd><%= time_tag(@footprint.created_at) %></dd>
+    <dt>Updated at:</dt>
+    <dd><%= time_tag(@footprint.updated_at) %></dd>
+    <dt>Name:</dt>
+    <dd><%= @footprint.name %></dd>
+    <dt>Calculator id:</dt>
+    <dd><%= link_to @footprint.lifestyle_calculator_id, admin_lifestyle_calculator_path(@footprint.lifestyle_calculator_id), class: 'link-ui text-green-shade-2' %></dd>
+    <dt>User id:</dt>
+    <dd><%= link_to @footprint.user_id, admin_user_path(@footprint.user_id), class: 'link-ui text-green-shade-2' if @footprint.user_id.present? %></dd>
+    <dt>Country:</dt>
+    <dd><%= @footprint.country %></dd>
+    <dt>Link:</dt>
+    <dd><%= link_to lifestyle_footprint_url(@footprint.key), lifestyle_footprint_url(@footprint.key), target: :_blank, class: 'link-ui text-green-shade-2' %></dd>
+
+    <hr class="my-1">
+
+    <dt>Region answer:</dt>
+    <dd><code><%= @footprint.region_answer %></code></dd>
+    <dt>Home answer:</dt>
+    <dd><code><%= @footprint.home_answer %></code></dd>
+    <dt>Home area answer:</dt>
+    <dd><code><%= @footprint.home_area_answer %></code></dd>
+    <dt>Heating answer:</dt>
+    <dd><code><%= @footprint.heating_answer %></code></dd>
+    <dt>Green electricity answer:</dt>
+    <dd><code><%= @footprint.green_electricity_answer %></code></dd>
+    <dt>Food answer:</dt>
+    <dd><code><%= @footprint.food_answer %></code></dd>
+    <dt>Shopping answer:</dt>
+    <dd><code><%= @footprint.shopping_answer %></code></dd>
+    <dt>Car type answer:</dt>
+    <dd><code><%= @footprint.car_type_answer %></code></dd>
+    <dt>Car distance answer:</dt>
+    <dd><code><%= @footprint.car_distance_answer %></code></dd>
+    <dt>Flight hours answer:</dt>
+    <dd><code><%= @footprint.flight_hours_answer %></code></dd>
+
+    <hr class="my-1">
+
+    <dt>Housing result:</dt>
+    <dd><%= @footprint.housing %></dd>
+    <dt>Food result:</dt>
+    <dd><%= @footprint.food %></dd>
+    <dt>Car result:</dt>
+    <dd><%= @footprint.car %></dd>
+    <dt>Flights result:</dt>
+    <dd><%= @footprint.flights %></dd>
+    <dt>Consumption result:</dt>
+    <dd><%= @footprint.consumption %></dd>
+    <dt>Total result:</dt>
+    <dd><%= @footprint.total %></dd>
+  </dl>
+</div>

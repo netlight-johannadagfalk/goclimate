@@ -1,31 +1,35 @@
-<%= render 'admin/shared/notice_banner' %>
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
 
-<h1>Organizations</h1>
+  <%= render 'admin/shared/content_header', heading: 'Organizations', actions: [
+        {
+          title: 'New',
+          path: new_admin_organization_path,
+          class: 'button-cta'
+        }
+      ] %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Updated</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @organizations.each do |organization| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= organization.name %></td>
-        <td><%= time_tag(organization.updated_at, format: '%F %R') %></td>
-        <td class="admin-actions">
-          <%= link_to 'Show', [:admin, organization] %> &nbsp;
-          <%= link_to 'Edit', edit_admin_organization_path(organization) %> &nbsp;
-          <%= link_to 'Destroy', [:admin, organization], method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
+        <th>Name</th>
+        <th>Updated</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<hr>
-
-<%= link_to 'New Organization', new_admin_organization_path, class: 'btn btn-default' %>
+    <tbody>
+      <% @organizations.each do |organization| %>
+        <tr>
+          <td><%= organization.name %></td>
+          <td><%= time_tag(organization.updated_at, format: '%F %R') %></td>
+          <td class="whitespace-nowrap">
+            <%= link_to 'Show', [:admin, organization], class: 'link-ui text-green-shade-2' %> &nbsp;
+            <%= link_to 'Edit', edit_admin_organization_path(organization), class: 'link-ui text-green-shade-2' %> &nbsp;
+            <%= link_to 'Destroy', [:admin, organization], method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-ui text-green-shade-2' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

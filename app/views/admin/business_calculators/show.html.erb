@@ -1,49 +1,58 @@
-<%= render 'admin/shared/notice_banner' %>
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
 
-<h1>Business calculator</h1>
+  <%= render 'admin/shared/content_header', heading: 'Business calculator', actions: [
+      {
+        title: 'Edit',
+        path: edit_admin_business_calculator_path(@calculator),
+        class: 'button-cta'
+      },
+      {
+        title: 'Preview form',
+        path: preview_reported_data_path(@calculator.id),
+        target_blank: true
+      }
+    ] %>
 
-<dl class="dl-horizontal">
-  <dt>Name:</dt>
-  <dd><%= @calculator.name %></dd>
-  <dt>Updated:</dt>
-  <dd><%= time_tag(@calculator.updated_at) %></dd>
-  <dt>Survey mode:</dt>
-  <dd><%= @calculator.survey %></dd>
+  <dl class="dl-horizontal">
+    <dt>Name:</dt>
+    <dd><%= @calculator.name %></dd>
+    <dt>Updated:</dt>
+    <dd><%= time_tag(@calculator.updated_at) %></dd>
+    <dt>Survey mode:</dt>
+    <dd><%= @calculator.survey %></dd>
 
-  <dt>Contents:</dt>
-  <dd>
-    <% @calculator.categories.each do |category| %>
-      <b><%= category.name %></b>
-      <ul>
-        <% category.fields.each do |field| %>
-          <li>
-            <%= field.label %>
-            <ul>
-              <li>Field type: <%= field.field_type %></li>
-              <li>Multiple answers allowed: <%= field.multiple_answers %></li>
-              <% if field.field_type == "open_ended" %>
-                <% formatted_unit_names = field.units&.map { |(key, _value)| BusinessCalculators::Unit.where(key: key).first.name }&.join(", ") %>
-                <li>Units: <%= "#{formatted_unit_names}#{formatted_unit_names.present? ? ', free form' : 'Free form'}" %></li>
-              <% else %>
-                <li>Alternatives: <%= field.alternatives&.join(", ") %></li>
-              <% end %>
-            </ul>
-          </li>
+    <dt>Categories:</dt>
+    <dd>
+      <% @calculator.categories.each do |category| %>
+        <b><%= category.name %></b>
+        <ul class="list-bullet pl-3">
+          <% category.fields.each do |field| %>
+            <li>
+              <%= field.label %>
+              <ul>
+                <li>Field type: <%= field.field_type %></li>
+                <li>Multiple answers allowed: <%= field.multiple_answers %></li>
+                <% if field.field_type == "open_ended" %>
+                  <% formatted_unit_names = field.units&.map { |(key, _value)| BusinessCalculators::Unit.where(key: key).first.name }&.join(", ") %>
+                  <li>Units: <%= "#{formatted_unit_names}#{formatted_unit_names.present? ? ', free form' : 'Free form'}" %></li>
+                <% else %>
+                  <li>Alternatives: <%= field.alternatives&.join(", ") %></li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </dd>
+
+    <dt>Used in reports:</dt>
+    <dd>
+      <ul class="list-bullet">
+        <% @reports.each do |report| %>
+          <li><%= link_to report.title, [:admin, report], class: 'link' %></li>
         <% end %>
       </ul>
-    <% end %>
-  </dd>
-
-  <dt>Used in reports:</dt>
-  <dd>
-      <% @reports.each do |report| %>
-        - <%= link_to report.title, [:admin, report] %>
-      <% end %>
-  </dd>
-</dl>
-
-<hr>
-
-<%= link_to 'Edit', edit_admin_business_calculator_path(@calculator), class: 'btn btn-default' %>
-<%= link_to 'Preview form', preview_reported_data_path(@calculator.id), class: 'btn btn-default', target: :_blank %>
-<%= link_to 'Back to all calculators', admin_business_calculators_path, class: 'btn btn-link' %>
+    </dd>
+  </dl>
+</div>

@@ -34,19 +34,21 @@ const ReferralCode = ({ text, setGrantedReferralCode }) => {
             body: JSON.stringify({"code": inputCode})
         };
         fetch(URL, requestOptions)
-        .then((res) => {
-             if (mounted.current) { 
-                if (res.status === 404) {
-                    setInvalidCodeMessage("That's not right, try again");
-                } else if (res.status === 200) {            
-                    setInvalidCodeMessage("");
+            .then((res) => {
+                if (mounted.current) { 
+                    if (res.status === 404) {
+                        setGrantedReferralCode(false)
+                        setInvalidCodeMessage("That's not right, try again");
+                    } else if (res.status === 200) {            
+                        setGrantedReferralCode(true)
+                        setInvalidCodeMessage("");
+                    }
                 }
-             }
-        })
-        .catch(error => {    
-            console.log("Something went wrong, trying again.", error);
-        })
-      }
+            })
+            .catch(error => {    
+                console.log("Something went wrong, trying again.", error);
+            })
+    }
     
     return (
         <div className="mt-3 collapse">

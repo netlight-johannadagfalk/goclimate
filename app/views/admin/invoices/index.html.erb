@@ -1,52 +1,56 @@
-<%= render 'admin/shared/notice_banner' %>
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
 
-<h1>Invoices</h1>
+  <%= render 'admin/shared/content_header', heading: 'Invoices', actions: [
+      {
+        title: 'New',
+        path: new_admin_invoice_path,
+        class: 'button-cta'
+      }
+    ] %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Fortnox invoice</th>
-      <th>Created</th>
-      <th>Certificate Sent</th>
-      <th>Receiver</th>
-      <th>Carbon offset</th>
-      <th>Amount</th>
-      <th>Project</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @invoices.each do |invoice| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= invoice.id %></td>
-        <td><%= invoice.fortnox_id %></td>
-        <td><%= time_tag(invoice.created_at, :format=>'%F %R') %></td>
-        <td>
-          <% if invoice.co2e == 0 %>
-            -
-          <% elsif invoice.certificate_sent_at.present? %>
-            <%= time_tag(invoice.certificate_sent_at, :format=>'%F %R') %>
-          <% end %>
-        </td>
-        <td><%= invoice.receiver %></td>
-        <td><%= number_with_delimiter(invoice.co2e, delimiter: ' ') %> kg co2e</td>
-        <td><%= invoice.amount_in_sek %> SEK</td>
-        <td><%= invoice.project.name if invoice.project.present? %></td>
-        <td class="admin-actions">
-          <%= link_to 'Show', [:admin, invoice] %> &nbsp;
-          <%= link_to 'Edit', edit_admin_invoice_path(invoice) %> &nbsp;
-          <%= link_to 'Destroy', [:admin, invoice], method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% if invoice.project.present? %>
-            &nbsp; <%= link_to 'Certificate', admin_invoice_certificates_path(type: 'invoice', id: invoice.id, format: :pdf, locale: :sv) %>
-          <% end %>
-      </td>
+        <th>ID</th>
+        <th>Fortnox invoice</th>
+        <th>Created</th>
+        <th>Certificate Sent</th>
+        <th>Receiver</th>
+        <th>Carbon offset</th>
+        <th>Amount</th>
+        <th>Project</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<hr>
-
-<%= link_to 'New Invoice', new_admin_invoice_path, class: 'btn btn-default' %>
+    <tbody>
+      <% @invoices.each do |invoice| %>
+        <tr>
+          <td><%= invoice.id %></td>
+          <td><%= invoice.fortnox_id %></td>
+          <td><%= time_tag(invoice.created_at, :format=>'%F %R') %></td>
+          <td>
+            <% if invoice.co2e == 0 %>
+              -
+            <% elsif invoice.certificate_sent_at.present? %>
+              <%= time_tag(invoice.certificate_sent_at, :format=>'%F %R') %>
+            <% end %>
+          </td>
+          <td><%= invoice.receiver %></td>
+          <td><%= number_with_delimiter(invoice.co2e, delimiter: ' ') %> kg co2e</td>
+          <td><%= invoice.amount_in_sek %> SEK</td>
+          <td><%= invoice.project.name if invoice.project.present? %></td>
+          <td class="whitespace-nowrap">
+            <%= link_to 'Show', [:admin, invoice], class: 'link-ui text-green-shade-2' %> &nbsp;
+            <%= link_to 'Edit', edit_admin_invoice_path(invoice), class: 'link-ui text-green-shade-2' %> &nbsp;
+            <%= link_to 'Destroy', [:admin, invoice], method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-ui text-green-shade-2' %>
+            <% if invoice.project.present? %>
+              &nbsp; <%= link_to 'Certificate', admin_invoice_certificates_path(type: 'invoice', id: invoice.id, format: :pdf, locale: :sv), class: 'link-ui text-green-shade-2' %>
+            <% end %>
+        </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
