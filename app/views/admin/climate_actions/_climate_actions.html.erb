@@ -8,6 +8,7 @@
         <th>Name</th>
         <th>Description</th>
         <th>Points</th>
+        <th>Image</th>
         <th>Repeatable</th>
         <th>Action of the month</th>
         <th>Category</th>
@@ -22,6 +23,11 @@
           <td><%= climate_action.name %></td>
           <td><%= climate_action.description %></td>
           <td><%= climate_action.points %></td>
+          <% if climate_action.image_url.eql? nil%>
+          <td>No image chosen for this action</td>
+          <% else %>
+          <td> <%= image_tag image_url(climate_action.image_url), style: 'height:15%;width:auto;' %></td>
+          <% end%>
           <td><%= climate_action.repeatable %></td>
           <td><%= climate_action.action_of_the_month %></td>
           <td><%= ClimateActionCategory.find_by(id: climate_action.climate_action_category_id).name %></td> 
