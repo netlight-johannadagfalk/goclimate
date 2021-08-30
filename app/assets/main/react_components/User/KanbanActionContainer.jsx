@@ -11,6 +11,8 @@ const KanbanActionContainer = ({
   climateActionCategories,
   climateActionsUser,
   categoryBadges,
+  userActions,
+  actionsWithoutUserActions,
 }) => {
   const [render, setRender] = useState();
   useEffect(() => {
@@ -169,16 +171,123 @@ const KanbanActionContainer = ({
   //   return categoryBadges;
   // };
 
+  const filterCategoriesWithoutStatus = (filter, condition) => {
+    return JSON.parse(filter).filter(
+      (filterUserAction) =>
+        filterUserAction.climate_action_category_id === condition
+    );
+  };
+
+  const filterCategories = (filter, condition, status) => {
+    return JSON.parse(filter).filter(
+      (filterUserAction) =>
+        filterUserAction.climate_action_category_id === condition &&
+        filterUserAction.status === status
+    );
+  };
+
+  const findCategory = (performedColumn, item) => {
+    return performedColumn.find(
+      (performedItem) => item.climate_action_category_id === performedItem.id
+    );
+  };
+
   const setNewPerformedActions = (item, performedColumn) => {
-    const resultArray = performedColumn.map((performedItem) => {
-      if (item.climate_action_category_id === performedItem.id) {
-        performedItem.itemsArray.map((action) => {
-          if (action.id === item.id) {
-            return { ...action, status: true };
-          }
-        });
-      }
-    });
+    const updated = false;
+    /** Check if the category is already created in the performed column, if so, we add the action to the category */
+    // const resultArray = performedColumn.map((performedItem) => {
+    //   if (item.climate_action_category_id === performedItem.id) {
+    //     const foundAction = performedItem.itemsArray.filter(
+    //       (action) => action.id === item.id
+    //       //console.log("I ENTER ID IF");
+    //       //return { ...action, status: true };
+    //     );
+    //     return {
+    //       ...performedColumn,
+    //       performedItem.itemsArray.foundAction,
+    //       status: true,
+    //     };
+    //   }
+    // });
+
+    const category = findCategory(performedColumn, item);
+    if (category !== undefined) {
+      console.log("CATEGORY: " + JSON.stringify(category));
+      console.log("ITEM: " + JSON.stringify(item));
+      const updatedItemsArray = category.itemsArray.map((action) =>
+        action.id == item.id ? { ...action, status: true } : action
+      );
+
+      const resultArray = performedColumn.map((performedCategory) => {
+        return performedCategory.id === category.id
+          ? { ...performedCategory, itemsArray: updatedItemsArray }
+          : performedCategory;
+      });
+      console.log("RESULTEDARRAY: " + JSON.stringify(resultArray));
+      return resultArray;
+    } else {
+      const newCategory = JSON.parse(climateActionCategories).find(
+        (cat) => cat.id === item.climate_action_category_id
+      );
+      const secondMatching = filterCategoriesWithoutStatus(
+        actionsWithoutUserActions,
+        newCategory.id
+      );
+      const thirdMatching = filterCategories(
+        userActions,
+        newCategory.id,
+        false
+      );
+
+      const result = {
+        ...newCategory,
+        itemsArray: [...secondMatching, ...thirdMatching],
+      };
+
+      console.log("RESULT WHEN MOVED NEW ACTION: " + JSON.stringify(result));
+      /*const categoryIndex = result.findIndex(
+        (foundCategory) => foundCategory.id == newCategory.id
+      );*/
+      const updatedItemsArray = result.itemsArray.map((action) =>
+        action.id == item.id ? { ...action, status: true } : action
+      );
+
+      const updatedResult = {
+        ...newCategory,
+        itemsArray: updatedItemsArray,
+      };
+      //const resultArray = performedColumn.push(updatedItemStatus);
+
+      const resultArray = [...performedColumn, updatedResult];
+      console.log(
+        "RESULTARRAY WHEN DRAG NEW ITEM " + JSON.stringify(resultArray)
+      );
+      return resultArray;
+    }
+
+    /** The category for the action does not exist in performed so need to create a new one*/
+    // if (!updated) {
+    //   /**Find the category for the performed item */
+    //   const category = JSON.parse(climateActionCategories).find(
+    //     (category) => category.id === item.climate_action_category_id
+    //   );
+    //   /** Find all actions without user actions for the category */
+    //   const secondMatching = filterCategoriesWithoutStatus(
+    //     actionsWithoutUserActions,
+    //     category.id
+    //   );
+
+    //   /** Find all actions that the user have accepted that is in the category */
+    //   const thirdMatching = filterCategories(userActions, category.id, false);
+
+    //   const result = {
+    //     ...category,
+    //     itemsArray: [...secondMatching, ...thirdMatching],
+    //   };
+
+    //   /** Add the found result to the performed column */
+    //   resultArray = [...performedColumn, ...result];
+    // }
   };
 
   const onDragEnd = (result, columns, setColumns) => {

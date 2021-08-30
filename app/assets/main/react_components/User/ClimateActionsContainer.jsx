@@ -214,6 +214,8 @@ const ClimateActionsContainer = ({
         setTotUserActions={setTotUserActions}
         climateActionCategories={climateActionCategories}
         climateActionsUser={climateActionsUser}
+        userActions={userActions}
+        actionsWithoutUserActions={actionsWithoutUserActions}
       />
     </>
   );
