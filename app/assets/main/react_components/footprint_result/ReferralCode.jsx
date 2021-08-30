@@ -6,7 +6,7 @@ import AnswerButton from '../footprint_form/AnswerButton.jsx';
  */
 const ReferralCode = ({ text }) => {
 
-    const [errorMessage, setErrorMessage] = useState("");
+    const [invalidCodeMessage, setInvalidCodeMessage] = useState("");
     const [inputCode, setInputCode] = useState("");
 
     /**
@@ -24,15 +24,19 @@ const ReferralCode = ({ text }) => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({"code": inputCode})
-          };
-          fetch(URL, requestOptions)
-          .then((res) => {
+        };
+        fetch(URL, requestOptions)
+        .then((res) => {
+            console.log(res)
             if (res.status === 404) {
-                setErrorMessage("That's not right, try again");
-            } else {
-                setErrorMessage("");
+                setInvalidCodeMessage("That's not right, try again");
+            } else if (res.status === 200) {            
+                setInvalidCodeMessage("");
             }
-          })
+        })
+        .catch(error => {    
+            console.log("Something went wrong, trying again.", error);
+        })
       }
     
     return (
@@ -55,7 +59,7 @@ const ReferralCode = ({ text }) => {
                         type="text" name="code" id="code" onChange={e => setInputCode(e.target.value)}/> 
                     <AnswerButton label={"OK"} onAnswerGiven={submit}/> 
                 </div>
-                <p className="text-orange-shade-1 mt-1">{errorMessage}</p>
+                <p className="text-orange-shade-1 mt-1">{invalidCodeMessage}</p>
             </div> 
         </div>
     )
