@@ -28,7 +28,7 @@
               field: field,
               reported_data: reported_data,
               reported_data_index: reported_data_index,
-              data_request_id: @data_request.id
+              data_request_id: @data_request&.id
             %>
           <% end %>
 
@@ -40,7 +40,7 @@
               field_index: field_index,
               reported_data: ReportedData.new(data_request_id: reported_datas.first.first.data_request_id),
               reported_data_index: reported_datas[field_each_index].length,
-              data_request_id: @data_request.id,
+              data_request_id: @data_request&.id,
               removable: true
             %>
             <div class="space-y-2" data-target="add-nested-fields.destination"></div>

@@ -4,7 +4,7 @@ import AnswerButton from '../footprint_form/AnswerButton.jsx';
 /**
  * React component for referral code field in signup
  */
-const ReferralCode = ({ text }) => {
+const ReferralCode = ({ text, setGrantedReferralCode }) => {
 
     const [invalidCodeMessage, setInvalidCodeMessage] = useState("");
     const [inputCode, setInputCode] = useState("");
@@ -31,6 +31,10 @@ const ReferralCode = ({ text }) => {
             if (res.status === 404) {
                 setInvalidCodeMessage("That's not right, try again");
             } else if (res.status === 200) {            
+                setGrantedReferralCode(false)
+                setInvalidCodeMessage("That's not right, try again");
+            } else {
+                setGrantedReferralCode(true)
                 setInvalidCodeMessage("");
             }
         })

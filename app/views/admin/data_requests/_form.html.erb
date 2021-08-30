@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, data_request], local: true) do |form| %>
+<%= form_with(model: [:admin, data_request], local: true, class: 'space-y-3') do |form| %>
   <% if data_request.errors.any? %>
     <div>
       <h2><%= pluralize(data_request.errors.count, "error") %> prohibited this Data request from being saved:</h2>
@@ -12,39 +12,47 @@
   <% end %>
 
   <%= form.hidden_field :area, value: params[:area] %>
-  <div class="form-group">
-    <%= form.label :recipient_email %>
-    <%= form.text_field :email, value: @data_reporter&.email, required: true, class: 'form-control' %>
-    <span class="help-block"><%= local_assigns[:help_text] %></span>
+  <div class="flex flex-col">
+    <%= form.label :recipient_email, class: 'font-bold' %>
+    <%= form.text_field :email, value: @data_reporter&.email, required: true, class: 'input' %>
+    <span class="block text-sm text-gray-shade-2"><%= local_assigns[:help_text] %></span>
   </div>
 
-  <div class="form-group">
-    <%= form.label :subject %> (optional)
-    <%= form.text_field :subject, class: 'form-control' %>
-    <span class="help-block">If left blank, a default subject will be used</span>
+  <div class="flex flex-col">
+    <div><%= form.label :subject, class: 'font-bold' %> (optional)</div>
+    <%= form.text_field :subject, class: 'input' %>
+    <span class="block text-sm text-gray-shade-2">If left blank, a default subject will be used</span>
   </div>
 
-  <div class="form-group">
-    <%= form.label :message %> (optional)
-    <%= form.text_area :message, class: 'form-control' %>
-    <span class="help-block">If left blank, default email text will be used</span>
+  <div class="flex flex-col">
+    <div><%= form.label :message, class: 'font-bold' %> (optional)</div>
+    <%= form.text_area :message, class: 'input' %>
+    <span class="block text-sm text-gray-shade-2">If left blank, default email text will be used</span>
   </div>
 
-  <div class="form-group">
-    <%= form.label :sender %>
-    <%= form.select :sender, %w[Alexandra Tove], {}, class: 'form-control' %>
+  <div class="flex flex-col">
+    <%= form.label :sender, class: 'font-bold' %>
+    <div class="select-wrapper">
+      <%= form.select :sender, %w[Alexandra Tove], {}, class: 'select' %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= form.label :language %>
-    <%= form.select :locale, [%w[English en], %w[Swedish sv]], {}, class: 'form-control' %>
+  <div class="flex flex-col">
+    <%= form.label :language, class: 'font-bold' %>
+    <div class="select-wrapper">
+      <%= form.select :locale, [%w[English en], %w[Swedish sv]], {}, class: 'select' %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= form.label :send_email %>
-    <%= form.check_box :send_email, { checked: true } %>
-    <span class="help-block">If unchecked, no email for the created request(s) will be sent. Useful if you create multiple data requests to one person and don't want to overwhelm them with multiple emails.</span>
+  <div class="flex flex-col">
+    <div>
+      <%= form.label :send_email, class: 'font-bold' %>
+      <%= form.check_box :send_email, { checked: true } %>
+    </div>
+    <span class="block text-sm text-gray-shade-2">If unchecked, no email for the created request(s) will be sent. Useful if you create multiple data requests to one person and don't want to overwhelm them with multiple emails.</span>
   </div>
 
-  <%= form.submit class: 'btn btn-primary' %>
+  <div class="text-right">
+    <%= form.submit class: 'button button-cta' %>
+  </div>
 <% end %>

@@ -6,6 +6,8 @@
       footprint: @footprint.to_json,
       projects: @projects.to_json,
       countryAverage: @country_average.to_json,
+      plan: @plan.to_json,
+      currency: YAML.load_file('config/locales/models.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['models'].to_json,
       lang: I18n.locale[0..-1], 
       registrationsText: YAML.load_file('config/locales/views/registrations.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['registrations'].to_json, 
       commonText: YAML.load_file('config/locales/' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]].to_json,

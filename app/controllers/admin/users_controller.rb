@@ -17,6 +17,7 @@ module Admin
 
     def show
       @user = User.find(params[:id])
+      @total_number_of_footprints = LifestyleFootprint.where(user_id: @user.id).count
     end
 
     def search
