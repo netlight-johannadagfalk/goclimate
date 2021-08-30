@@ -7,11 +7,17 @@ const KanbanActionColumn = ({
   columnId,
   handleDelete,
   handlePerformance,
+  collapsed,
   categoryColor,
 }) => {
   return (
     <div key={columnId}>
-      <Droppable column={column} droppableId={columnId} key={columnId}>
+      <Droppable
+        column={column}
+        droppableId={columnId}
+        key={columnId}
+        isDropDisabled={collapsed}
+      >
         {(provided, snapshot) => {
           return (
             <div
@@ -32,6 +38,7 @@ const KanbanActionColumn = ({
                     key={item.id}
                     handleDelete={handleDelete}
                     handlePerformance={handlePerformance}
+                    collapsed={collapsed}
                     categoryColor={categoryColor}
                   />
                 );

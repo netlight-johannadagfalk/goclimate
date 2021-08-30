@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import { Draggable } from "react-beautiful-dnd";
 
 const KanbanActionItem = ({
@@ -7,16 +8,29 @@ const KanbanActionItem = ({
   handleDelete,
   handlePerformance,
   categoryColor,
+  collapsed,
 }) => {
   const [expanded, setExpanded] = useState(false);
 
+  useEffect(() => {
+    setExpanded(false);
+  }, [collapsed]);
+
+
   return (
-    <Draggable key={item.id} draggableId={item.id} index={index}>
+    <Draggable
+      key={item.id}
+      draggableId={item.id}
+      index={index}
+      isDragDisabled={collapsed}
+    >
       {(provided) => {
         return (
           <div
-            className={`${categoryColor} border border-gray-tint-2 rounded-lg shadow-lg p-4 h-full space-y-3 pt-0`}
-            //className="callout items-baseline space-x-6 text-l font-bold"
+            className={`${categoryColor} border border-gray-tint-2 rounded-lg shadow-lg p-4 h-full space-y-3 pt-0 ${
+              collapsed && "w-24"
+            }`}
+
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -29,26 +43,45 @@ const KanbanActionItem = ({
             }}
             onClick={() => setExpanded(!expanded)}
           >
-            <div className="flex items-center justify-between">
-              {/* image that should be loaded from items.imgage and when status is changed, the image changes to category.image (badge) */}
-              <img
-                src={
-                  item.status === false
-                    ? "https://www.goclimate.com/blog/wp-content/uploads/2020/07/DJI_0974-768x512.jpg"
-                    : "https://www.goclimate.com/bundles/images/climate_tips/diet_meat-2x-7655d2c5801c3203a42ed27da6e83f6c.jpg"
-                }
-                className="h-14 w-14 rounded-full"
-              ></img>
-              <div className="">{item.name}</div>
+            {collapsed ? (
+              <div className="flex items-center justify-between">
+                {/* image that should be loaded from items.imgage and when status is changed, the image changes to category.image (badge) */}
+                <img
+                  src={
+                    item.status === false
+                      ? "https://www.goclimate.com/blog/wp-content/uploads/2020/07/DJI_0974-768x512.jpg"
+                      : "https://www.goclimate.com/bundles/images/climate_tips/diet_meat-2x-7655d2c5801c3203a42ed27da6e83f6c.jpg"
+                  }
+                  className="h-14 w-14 rounded-full mt-4"
+                ></img>
+              </div>
+            ) : (
+              <div
+                className="flex items-center justify-between"
+                onClick={() => setExpanded(!expanded)}
+              >
+                {/* image that should be loaded from items.imgage and when status is changed, the image changes to category.image (badge) */}
+                <img
+                  src={
+                    item.status === false
+                      ? "https://www.goclimate.com/blog/wp-content/uploads/2020/07/DJI_0974-768x512.jpg"
+                      : "https://www.goclimate.com/bundles/images/climate_tips/diet_meat-2x-7655d2c5801c3203a42ed27da6e83f6c.jpg"
+                  }
+                  className="h-14 w-14 rounded-full mt-4"
+                ></img>
 
-              <button
-                className={`ml-4 fas float-right ${
-                  expanded ? "fa-chevron-up" : "fa-chevron-down"
-                }`}
-              ></button>
-            </div>
+                <div className="font-bold">{item.name}</div>
 
-            {expanded && (
+                <button
+                  className={`ml-4 fas float-right ${
+                    expanded ? "fa-chevron-up" : "fa-chevron-down"
+                  }`}
+                ></button>
+              </div>
+            )}
+
+            {expanded && !collapsed && (
+
               <div>
                 {item.status === false ? (
                   <div className="flex flex-col text-center">

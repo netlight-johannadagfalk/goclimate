@@ -13,7 +13,7 @@ const Sidebar = ({
     <>
       <div
         className={`bg-white h-screen right-0 top-20 fixed z-40 border-l border-gray-accent ${
-          collapsed ? "w-10" : "w-auto"
+          collapsed ? "w-28" : "w-auto"
         }`}
       >
         <button
@@ -23,12 +23,13 @@ const Sidebar = ({
           onClick={() => setCollapsed(!collapsed)}
         ></button>
 
-        <div className={` ${collapsed ? "invisible" : "visible"}`}>
+        <div className={` ${collapsed ? "visible" : "visible"}`}>
           <KanbanActionContainer
             setLocalAccepted={setLocalAccepted}
             columns={columns}
             setColumns={setColumns}
             setTotUserActions={setTotUserActions}
+            collapsed={collapsed}
           />
         </div>
       </div>
