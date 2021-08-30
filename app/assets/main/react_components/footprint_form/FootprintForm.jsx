@@ -87,7 +87,6 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, URL, t
           setResult(calculatedFootprint)
           setCurrentObject(resultObjects[0])
         })
-
         /* IF RESULT ON RESULT PAGE: */
         // window.location.href = response.url
       })
@@ -176,7 +175,7 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, URL, t
             />            
           }
         </div>
-        { currentIndex > 0 &&
+        {currentIndex > 0 &&
           <div className="flex justify-space-between">
             <div className="block">
               <i className="fas fa-chevron-left cursor-pointer" aria-hidden="true"></i>     
