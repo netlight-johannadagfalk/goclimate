@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanActionColumn from "./KanbanActionColumn.jsx";
 import { useUserActionsUpdate } from "./contexts/UserActionsContext.js";
@@ -7,17 +7,13 @@ import {
   useUserActionsColumns,
   useUserActionsColumnsUpdate,
   useUserActionsColumnsWithFormatUpdate,
-  useUserActionsColumnsWithFullFormatUpdate,
 } from "./contexts/UserActionsContext.js";
 
 const KanbanActionContainer = () => {
   const setUserActions = useUserActionsUpdate();
-
   const columns = useUserActionsColumns();
   const setColumns = useUserActionsColumnsUpdate();
   const setColumnsWithFormat = useUserActionsColumnsWithFormatUpdate();
-  const setColumnsWithFullFormat = useUserActionsColumnsWithFullFormatUpdate();
-
   const setDeletedAction = useDeletedActionUpdate();
 
   const handleLocalAccepted = (updatedList, performed, deletedAction) => {

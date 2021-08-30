@@ -1,17 +1,34 @@
 import React from "react";
+import { useDeletedActionUpdate } from "./contexts/DeletedActionContext.js";
+import {
+  useUserActions,
+  useUserActionsUpdate,
+  useUserActionsColumnsWithFullFormatUpdate,
+} from "./contexts/UserActionsContext.js";
 
-const CarouselActionItem = ({
-  action,
-  user,
-  updateLocalAccepted,
-  addAcceptedAction,
-}) => {
+const CarouselActionItem = ({ action, user, updateLocalAccepted }) => {
   const currUser = JSON.parse(user);
+  const userActions = useUserActions();
+  const setUserActions = useUserActionsUpdate();
+  const setDeletedAction = useDeletedActionUpdate();
+  const setColumnsWithFullFormat = useUserActionsColumnsWithFullFormatUpdate();
 
-  const handleClickAccepted = (action) => {
-    updateLocalAccepted(action.id);
-    updateAccepted(action);
+  const addAcceptedAction = (action, userAction) => {
+    console.log("i addAcceptedAction");
+    setDeletedAction(null);
+    const temp = {
+      id: userAction.id,
+      name: action.name,
+      description: action.description,
+      climate_action_id: action.id,
+      status: userAction.status,
+      user_id: userAction.user_id,
+    };
+    const localVar = [...userActions, temp];
+    setUserActions(localVar);
+    setColumnsWithFullFormat(localVar);
   };
+
   //FUNCTION WHERE USER ACCEPT AN ACTION IN DB -> MOVES TO ACCEPTED
   const updateAccepted = (action) => {
     const actionID = action.id;
@@ -35,6 +52,10 @@ const CarouselActionItem = ({
       .then((res) => res.json())
       .then((json) => addAcceptedAction(action, json))
       .catch((e) => console.log(e));
+  };
+  const handleClickAccepted = (action) => {
+    updateLocalAccepted(action.id);
+    updateAccepted(action);
   };
   return (
     <div

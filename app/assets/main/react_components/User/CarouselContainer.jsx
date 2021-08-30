@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CarouselHeader from "./CarouselHeader.jsx";
 import CarouselList from "./CarouselList.jsx";
 import CarouselCategoryButton from "./CarouselCategoryButton.jsx";
@@ -7,13 +7,10 @@ import { useCategory } from "./contexts/CategoryContext.js";
 const CarouselContainer = ({
   user,
   updateLocalAccepted,
-  addAcceptedAction,
   climateActionCategories,
 }) => {
   const formatedCategories = JSON.parse(climateActionCategories);
   const [allCategories, setAllCategories] = useState(true);
-
-  //**** Using the context to assign it to a const */
   const category = useCategory();
 
   return (
@@ -22,7 +19,6 @@ const CarouselContainer = ({
       <CarouselCategoryButton
         categoryName={"All categories"}
         categoryID={null}
-        //setCategory={setCategory}
         active={allCategories}
         setAllCategories={setAllCategories}
       />
@@ -31,7 +27,6 @@ const CarouselContainer = ({
           key={cat.id}
           categoryName={cat.name}
           categoryID={cat.id}
-          //setCategory={setCategory}
           active={category === cat.id ? true : false}
           setAllCategories={setAllCategories}
         />
@@ -40,8 +35,6 @@ const CarouselContainer = ({
       <CarouselList
         user={user}
         updateLocalAccepted={updateLocalAccepted}
-        addAcceptedAction={addAcceptedAction}
-        category={category}
       ></CarouselList>
     </div>
   );

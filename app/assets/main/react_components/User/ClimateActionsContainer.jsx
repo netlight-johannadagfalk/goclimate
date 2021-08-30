@@ -3,15 +3,7 @@ import CarouselContainer from "./CarouselContainer.jsx";
 import KanbanActionContainer from "./KanbanActionContainer.jsx";
 import Sidebar from "./Sidebar.jsx";
 import CarouselActionItem from "./CarouselActionItem.jsx";
-import {
-  useDeletedAction,
-  useDeletedActionUpdate,
-} from "./contexts/DeletedActionContext.js";
-import {
-  useUserActions,
-  useUserActionsUpdate,
-  useUserActionsColumnsWithFullFormatUpdate,
-} from "./contexts/UserActionsContext.js";
+import { useDeletedAction } from "./contexts/DeletedActionContext.js";
 import {
   useClimateActions,
   useClimateActionsUpdate,
@@ -19,40 +11,10 @@ import {
 } from "./contexts/ClimateActionsContext.js";
 
 const ClimateActionsContainer = ({ user, climateActionCategories }) => {
-  const userActions = useUserActions();
-  const setUserActions = useUserActionsUpdate();
-
   const deletedAction = useDeletedAction();
-  const setDeletedAction = useDeletedActionUpdate();
-
   const climateActions = useClimateActions();
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
-
-  const setColumnsWithFullFormat = useUserActionsColumnsWithFullFormatUpdate();
-
-  const addAcceptedAction = (action, userAction) => {
-    //Depends on
-    // context deletedAction
-    // context userActions
-    // context columns + columnUserActions...
-    // Can be moved to carousel component
-
-    setDeletedAction(null);
-    const temp = {
-      id: userAction.id,
-      name: action.name,
-      description: action.description,
-      climate_action_id: action.id,
-      status: userAction.status,
-      user_id: userAction.user_id,
-    };
-    const localVar = [...userActions, temp];
-    setUserActions(localVar);
-    setColumnsWithFullFormat(localVar);
-  };
-
-  //******************************************************* */
 
   const updateLocalAccepted = (actionID) => {
     setClimateActions(
@@ -71,8 +33,6 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
     deletedAction != null && updateLocalAccepted(deletedAction);
   }, [deletedAction]);
 
-  //********************************* RETURN ***************************************** */
-
   return (
     <>
       <Sidebar />
@@ -84,7 +44,6 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
             key={monthlyAction.id}
             user={user}
             updateLocalAccepted={updateLocalAccepted}
-            addAcceptedAction={addAcceptedAction}
           ></CarouselActionItem>
         )}
       </div>
@@ -92,7 +51,6 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
       <CarouselContainer
         user={user}
         updateLocalAccepted={updateLocalAccepted}
-        addAcceptedAction={addAcceptedAction}
         climateActionCategories={climateActionCategories}
       />
       <KanbanActionContainer />

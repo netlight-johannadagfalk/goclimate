@@ -1,13 +1,10 @@
 import React from "react";
 import CarouselActionItem from "./CarouselActionItem.jsx";
-
+import { useClimateActions } from "./contexts/ClimateActionsContext.js";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.min.css";
 import "swiper/components/pagination/pagination.min.css";
-
-import { useClimateActions } from "./contexts/ClimateActionsContext.js";
 
 // Swiper resources
 //https://swiperjs.com/react
@@ -16,7 +13,7 @@ import { useClimateActions } from "./contexts/ClimateActionsContext.js";
 import SwiperCore, { Navigation, Pagination, Scrollbar } from "swiper/core";
 SwiperCore.use([Pagination, Navigation, Scrollbar]);
 
-const CarouselList = ({ user, updateLocalAccepted, addAcceptedAction }) => {
+const CarouselList = ({ user, updateLocalAccepted }) => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
 
@@ -46,7 +43,6 @@ const CarouselList = ({ user, updateLocalAccepted, addAcceptedAction }) => {
               action={action}
               user={user}
               updateLocalAccepted={updateLocalAccepted}
-              addAcceptedAction={addAcceptedAction}
             ></CarouselActionItem>
           </SwiperSlide>
         ))}
