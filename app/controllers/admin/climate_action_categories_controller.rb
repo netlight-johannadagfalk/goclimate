@@ -75,7 +75,7 @@ module Admin
 
       # Only allow a list of trusted parameters through.
       def climate_action_category_params
-        params.require(:climate_action_category).permit(:id, :name, :description)
+        params.require(:climate_action_category).permit(:id, :name, :description, :badge_name, :badge_description, :badge_image_url)
       end
   end
 end

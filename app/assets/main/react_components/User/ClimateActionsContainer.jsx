@@ -69,12 +69,12 @@ const ClimateActionsContainer = ({
     return {
       [1]: {
         id: "Accepted",
-        name: "Your accepted actions:",
+        name: "My Actions",
         items: acceptedList,
       },
       [2]: {
         id: "Performed",
-        name: "Your performed actions:",
+        name: "Achievements",
         items: doneActions,
       },
     };
@@ -145,10 +145,8 @@ const ClimateActionsContainer = ({
 
   return (
     <>
-      <Sidebar />
       {/* Not neccessary. Should be removed when circles have the correct design in carousel */}
       {/* <Card monthlyAction={monthlyAction} categoryColor={categoryColor} /> */}
-
       <div className="w-80 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2 justify-center">
         <h3 className="heading-lg mb-3">Action of the Month </h3>
         {monthlyAction && (
@@ -174,7 +172,8 @@ const ClimateActionsContainer = ({
         category={currCategory}
         setCategory={setCategory}
       />
-      <KanbanActionContainer
+
+      <Sidebar
         setLocalAccepted={setLocalAccepted}
         columns={columns}
         setColumns={setColumns}

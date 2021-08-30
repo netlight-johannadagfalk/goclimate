@@ -186,9 +186,9 @@ const KanbanActionContainer = ({
       });
     }
   };
-
   return (
     <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
@@ -214,6 +214,7 @@ const KanbanActionContainer = ({
                   handlePerformance={handlePerformance}
                   categoryColor={categoryColor}
                 />
+
               </div>
             </div>
           );
