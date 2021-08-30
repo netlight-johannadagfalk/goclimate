@@ -4,10 +4,10 @@ import countryList from 'react-select-country-list'
 /**
  * Form for choosing country of residence prior to filling out footprint calculator
  */
-const CountryForm = ({ lang, countryText }) => {
+const CountryForm = ({ slug, countryText }) => {
 
     return (
-        <form className="m-lg:flex m-lg:justify-center mt-3" action={lang === 'en' ? '/calculator' : lang === 'sv' ? 'se/calculator' : lang + '/calculator'}>
+        <form className="m-lg:flex m-lg:justify-center mt-3" action={slug ? slug + '/calculator' : '/calculator'}>
             <div className="select-wrapper w-full m-lg:w-auto m-lg:max-w-xs">
                 <label htmlFor="country" className="sr-only">{countryText.select_country}</label>
                 <select skip_default_ids="false" allow_method_names_outside_object="true" className="select" required="required" name="country" id="country">
