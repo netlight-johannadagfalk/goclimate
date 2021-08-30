@@ -37,7 +37,8 @@ const ClimateActionsContainer = ({
     setColumns(
       columnUserActions(
         acceptedUserActions(localVar),
-        doneUserActions(localVar)
+        getCorrectCategoriesWithPerformedActions
+        //doneUserActions(localVar)
       )
     );
   };
@@ -58,7 +59,7 @@ const ClimateActionsContainer = ({
 
   const acceptedUserActions = (inVal) => {
     return formatedUserActions(inVal)
-      .filter((action) => action.status !== true)
+      .filter((action) => action.status === false)
       .map((action) => ({ ...action }));
   };
 

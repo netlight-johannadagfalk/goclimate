@@ -193,7 +193,6 @@ const KanbanActionContainer = ({
   };
 
   const setNewPerformedActions = (item, performedColumn) => {
-    const updated = false;
     /** Check if the category is already created in the performed column, if so, we add the action to the category */
     // const resultArray = performedColumn.map((performedItem) => {
     //   if (item.climate_action_category_id === performedItem.id) {
@@ -248,9 +247,18 @@ const KanbanActionContainer = ({
       /*const categoryIndex = result.findIndex(
         (foundCategory) => foundCategory.id == newCategory.id
       );*/
-      const updatedItemsArray = result.itemsArray.map((action) =>
-        action.id == item.id ? { ...action, status: true } : action
-      );
+
+      const updatedItemsArray = result.itemsArray.map((action) => {
+        if (item.status === false) {
+          return action.id == item.id ? { ...action, status: true } : action;
+        } else {
+          return action.id == item.climate_action_id
+            ? { ...action, status: true }
+            : action;
+        }
+      });
+
+      console.log("UPDATEDITEMSARRAY: " + JSON.stringify(updatedItemsArray));
 
       const updatedResult = {
         ...newCategory,
