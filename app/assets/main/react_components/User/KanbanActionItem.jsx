@@ -52,7 +52,10 @@ const KanbanActionItem = ({
                 ></img>
               </div>
             ) : (
-              <div className="flex items-center justify-between">
+              <div
+                className="flex items-center justify-between"
+                onClick={() => setExpanded(!expanded)}
+              >
                 {/* image that should be loaded from items.imgage and when status is changed, the image changes to category.image (badge) */}
                 <img
                   src={
@@ -69,7 +72,6 @@ const KanbanActionItem = ({
                   className={`ml-4 fas float-right ${
                     expanded ? "fa-chevron-up" : "fa-chevron-down"
                   }`}
-                  onClick={() => setExpanded(!expanded)}
                 ></button>
               </div>
             )}
