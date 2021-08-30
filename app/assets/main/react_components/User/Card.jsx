@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Card = ({ monthlyAction, categoryColor }) => {
   return (
@@ -29,10 +29,15 @@ const Card = ({ monthlyAction, categoryColor }) => {
           </div>
           <div className="flex-1 flex flex-row mb-1 justify-center">
             {[1, 2, 3, 4, 5].map((index) => {
-              return index <= monthlyAction.points ? (
-                <span className="flex flex-row bg-black m-2 rounded-full h-4 w-4 flex items-center justify-center"></span>
-              ) : (
-                <span className="flex flex-row bg-gray-pastel m-2 rounded-full h-4 w-4 flex items-center justify-center"></span>
+              return (
+                <span
+                  className={`flex flex-row ${
+                    index <= monthlyAction.points
+                      ? "bg-black"
+                      : "bg-gray-pastel"
+                  } m-2 rounded-full h-4 w-4 flex items-center justify-center`}
+                  key={monthlyAction.name + index}
+                ></span>
               );
             })}
           </div>
