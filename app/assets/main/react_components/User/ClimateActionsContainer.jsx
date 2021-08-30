@@ -146,8 +146,8 @@ const ClimateActionsContainer = ({
   return (
     <>
       <Sidebar />
-
-      <Card monthlyAction={monthlyAction} categoryColor={categoryColor} />
+      {/* Not neccessary. Should be removed when circles have the correct design in carousel */}
+      {/* <Card monthlyAction={monthlyAction} categoryColor={categoryColor} /> */}
 
       <div className="w-80 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2 justify-center">
         <h3 className="heading-lg mb-3">Action of the Month </h3>

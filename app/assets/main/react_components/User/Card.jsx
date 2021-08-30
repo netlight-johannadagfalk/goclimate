@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Card({ monthlyAction, categoryColor }) {
+const Card = ({ monthlyAction, categoryColor }) => {
   return (
     <div className="max-w-md d:w-80 pt-20 m-lg:pt-24 flex justify-evenly">
       <div
@@ -58,6 +58,6 @@ function Card({ monthlyAction, categoryColor }) {
       </div>
     </div>
   );
-}
+};
 
 export default Card;
