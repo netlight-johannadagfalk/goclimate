@@ -214,7 +214,9 @@ const KanbanActionContainer = ({
       console.log("CATEGORY: " + JSON.stringify(category));
       console.log("ITEM: " + JSON.stringify(item));
       const updatedItemsArray = category.itemsArray.map((action) =>
-        action.id == item.id ? { ...action, status: true } : action
+        action.id == item.id || action.id == item.climate_action_id
+          ? { ...action, status: true }
+          : action
       );
 
       const resultArray = performedColumn.map((performedCategory) => {
@@ -249,13 +251,18 @@ const KanbanActionContainer = ({
       );*/
 
       const updatedItemsArray = result.itemsArray.map((action) => {
-        if (item.status === false) {
+        console.log("ACTION ID: " + action.id);
+        console.log("ITEM ID " + item.id);
+        return action.id == item.id || action.id == item.climate_action_id
+          ? { ...action, status: true }
+          : action;
+        /*if (item.status === false) {
           return action.id == item.id ? { ...action, status: true } : action;
         } else {
           return action.id == item.climate_action_id
             ? { ...action, status: true }
             : action;
-        }
+        }*/
       });
 
       console.log("UPDATEDITEMSARRAY: " + JSON.stringify(updatedItemsArray));
