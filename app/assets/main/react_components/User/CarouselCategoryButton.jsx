@@ -21,18 +21,24 @@ const CarouselCategoryButton = ({
     setAllCategories(false);
   };
 
+  const categoryColor = "food";
+
   return (
     <>
       {active ? (
         <button
-          className={`${""} button inline-block focus:outline-none bg-primary text-white m-1`}
+          className={`${
+            "category_" + categoryColor
+          } button inline-block focus:outline-none bg-primary text-white m-1`}
         >
           {" "}
           {categoryName}{" "}
         </button>
       ) : (
         <button
-          className={`button inline-block m-1 focus:outline-none`}
+          className={`${
+            "category_" + categoryColor
+          } button inline-block m-1 focus:outline-none`}
           onClick={() => handleCategory(categoryID)}
         >
           {" "}
