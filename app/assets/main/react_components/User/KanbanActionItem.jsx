@@ -16,7 +16,6 @@ const KanbanActionItem = ({
     setExpanded(false);
   }, [collapsed]);
 
-
   return (
     <Draggable
       key={item.id}
@@ -28,9 +27,8 @@ const KanbanActionItem = ({
         return (
           <div
             className={`${categoryColor} border border-gray-tint-2 rounded-lg shadow-lg p-4 h-full space-y-3 pt-0 ${
-              collapsed && "w-24"
+              collapsed ? "w-24" : "w-96"
             }`}
-
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -81,7 +79,6 @@ const KanbanActionItem = ({
             )}
 
             {expanded && !collapsed && (
-
               <div>
                 {item.status === false ? (
                   <div className="flex flex-col text-center">
