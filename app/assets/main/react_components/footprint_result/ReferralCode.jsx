@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import AnswerButton from '../footprint_form/AnswerButton.jsx';
      
 /**
@@ -8,6 +8,14 @@ const ReferralCode = ({ text, setGrantedReferralCode }) => {
 
     const [invalidCodeMessage, setInvalidCodeMessage] = useState("");
     const [inputCode, setInputCode] = useState("");
+
+    const mounted = useRef(false);
+    useEffect(() => {
+      mounted.current = true;
+      return () => {
+        mounted.current = false;
+      }
+    }, [])
 
     /**
      * Function that sends a POST request to the server on referral code submit
@@ -26,20 +34,21 @@ const ReferralCode = ({ text, setGrantedReferralCode }) => {
             body: JSON.stringify({"code": inputCode})
         };
         fetch(URL, requestOptions)
-        .then((res) => {
-            console.log(res)
-            if (res.status === 404) {
-                setGrantedReferralCode(false)
-                setInvalidCodeMessage("That's not right, try again");
-            } else if (res.status === 200) {            
-                setGrantedReferralCode(true)
-                setInvalidCodeMessage("");
-            }
-        })
-        .catch(error => {    
-            console.log("Something went wrong, trying again.", error);
-        })
-      }
+            .then((res) => {
+                if (mounted.current) { 
+                    if (res.status === 404) {
+                        setGrantedReferralCode(false)
+                        setInvalidCodeMessage("That's not right, try again");
+                    } else if (res.status === 200) {            
+                        setGrantedReferralCode(true)
+                        setInvalidCodeMessage("");
+                    }
+                }
+            })
+            .catch(error => {    
+                console.log("Something went wrong, trying again.", error);
+            })
+    }
     
     return (
         <div className="mt-3 collapse">
