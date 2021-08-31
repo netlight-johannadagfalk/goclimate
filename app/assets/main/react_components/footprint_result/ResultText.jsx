@@ -12,7 +12,7 @@ const ResultText = ({text, customValues = []}) => {
     })
     
     return (
-        <div>
+        <div className="text-left my-8">
             {text}
         </div>
     )

@@ -30,25 +30,29 @@ const WorldComparisonChart = ({ footprint, countryAverage, worldComparisonText, 
 
     return (
         <>
-            <ResultBar 
-                title={{text: worldComparisonText.you + " <-"}}
-                width={footprintCo2e.inTonnes(1) > 0 ? footprintCo2e.value / maxValue * 100 : 0} 
-                value={footprintCo2e.inTonnes(1)}
-                color={"bg-green-accent"}
-                fontWeight={"font-bold"}
-            />
-            <ResultBar 
-                title={{text: countryAverage.countries ? 
-                        worldComparisonText.average_in.replace('%{region}', footprint.country.data.translations[lang])
-                        : worldComparisonText.world_average}}
-                width={countryAverageCo2e.inTonnes(1) > 0 ? countryAverageCo2e.value / maxValue * 100 : 0} 
-                value={countryAverageCo2e.inTonnes(1)}
-            />
-            <ResultBar 
-                title={{text: worldComparisonText.goal_2030}}
-                width={2500 / maxValue * 100} 
-                value={2.5}
-            />
+            <div className="relative pb-1">
+                <div className="space-y-6">
+                    <ResultBar 
+                        title={{text: worldComparisonText.you + " <-"}}
+                        width={footprintCo2e.inTonnes(1) > 0 ? footprintCo2e.value / maxValue * 100 : 0} 
+                        value={footprintCo2e.inTonnes(1)}
+                        color={"bg-green-accent"}
+                        fontWeight={"font-bold"}
+                    />
+                    <ResultBar 
+                        title={{text: countryAverage.countries ? 
+                                worldComparisonText.average_in.replace('%{region}', footprint.country.data.translations[lang])
+                                : worldComparisonText.world_average}}
+                        width={countryAverageCo2e.inTonnes(1) > 0 ? countryAverageCo2e.value / maxValue * 100 : 0} 
+                        value={countryAverageCo2e.inTonnes(1)}
+                    />
+                    <ResultBar 
+                        title={{text: worldComparisonText.goal_2030}}
+                        width={2500 / maxValue * 100} 
+                        value={2.5}
+                    />
+                </div>
+            </div>
             <ResultText 
                 text={resultText}
                 customValues={[footprintCo2e.text, relativeText, countryAverage.countries && footprint.country.data.translations[lang]]}
