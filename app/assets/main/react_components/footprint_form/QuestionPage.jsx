@@ -12,19 +12,19 @@ const QuestionPage = ({ currentObject, onAnswerGiven, selectedKey, onNumericalIn
         <div>
             <Title text={currentObject.question}/>
             {!currentObject.isNumerical ? 
-            <OptionList 
-                onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} 
-                options={currentObject.options}
-                selectedKey={selectedKey} 
-            />
-            :
-            <OptionNumerical 
-                questionObject={currentObject}
-                onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} 
-                option={currentObject.options} 
-                onNumericalInput={onNumericalInput}
-                savedValue={savedValue} 
-            />
+                <OptionList 
+                    onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} 
+                    options={currentObject.options}
+                    selectedKey={selectedKey} 
+                />
+                :
+                <OptionNumerical 
+                    questionObject={currentObject}
+                    onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} 
+                    option={currentObject.options} 
+                    onNumericalInput={onNumericalInput}
+                    savedValue={savedValue} 
+                />
             }
         </div>
     )
