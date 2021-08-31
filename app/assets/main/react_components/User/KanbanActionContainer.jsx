@@ -1,28 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanActionColumn from "./KanbanActionColumn.jsx";
+import { useDeletedActionUpdate } from "./contexts/DeletedActionContext.js";
+import {
+  useUserActions,
+  useUserActionsUpdate,
+  useUserActionsColumns,
+  useUserActionsColumnsUpdate,
+  useUserActionsColumnsWithFormatUpdate,
+  useCategoryBadgesUpdate,
+} from "./contexts/UserActionsContext.js";
 
 const KanbanActionContainer = ({
-  setLocalAccepted,
-  columns,
-  setColumns,
-  setTotUserActions,
+  collapsed,
   categoryColor,
   climateActionCategories,
-  climateActionsUser,
-  categoryBadges,
-  userActions,
   actionsWithoutUserActions,
-  setCategoryBadges,
 }) => {
-  const [render, setRender] = useState();
-  useEffect(() => {
-    setRender(columns);
-  }, [columns]);
+  const userActions = useUserActions();
+  const setUserActions = useUserActionsUpdate();
+  const columns = useUserActionsColumns();
+  const setColumns = useUserActionsColumnsUpdate();
+  const setColumnsWithFormat = useUserActionsColumnsWithFormatUpdate();
+  const setDeletedAction = useDeletedActionUpdate();
+
+  const setCategoryBadges = useCategoryBadgesUpdate();
+
+  const handleLocalAccepted = (updatedList, performed, deletedAction) => {
+    setUserActions([...updatedList, ...performed]);
+    setColumnsWithFormat(updatedList, performed);
+    setDeletedAction(deletedAction);
+  };
 
   const handleDelete = (id, actionID) => {
     deleteUserAction(id);
-    setLocalAccepted(
+    handleLocalAccepted(
       columns[1].items.filter((item) => item.id.toString() !== id),
       columns[2].items,
       actionID
@@ -73,11 +85,11 @@ const KanbanActionContainer = ({
       const destIndex = destItems.length;
       const [removed] = sourceItems.splice(sourceIndex, 1);
       destItems.splice(destIndex, 0, removed);
-      setTotUserActions([...sourceItems, ...destItems]);
+      setUserActions([...sourceItems, ...destItems]);
       const newDestItems = destItems.map((item) =>
         item.status === false ? { ...item, status: !item.status } : item
       );
-      setTotUserActions([...sourceItems, ...newDestItems]);
+      setUserActions([...sourceItems, ...newDestItems]);
       setColumns({
         ...columns,
         [1]: {
@@ -95,15 +107,15 @@ const KanbanActionContainer = ({
       const destColumn = columns[1];
       const sourceItems = [...sourceColumn.items];
       const destItems = [...destColumn.items];
-      const sourceIndex = sourceItems.indexOf(theItem);
+      //const sourceIndex = sourceItems.indexOf(theItem);
       const destIndex = destItems.length;
-      //const [removed] = sourceItems.splice(sourceIndex, 1);
+      // const [removed] = sourceItems.splice(sourceIndex, 1);
       destItems.splice(destIndex, 0, theItem);
-      setTotUserActions([...sourceItems, ...destItems]);
+      setUserActions([...sourceItems, ...destItems]);
       const newDestItems = destItems.map((item) =>
         item.status === true ? { ...item, status: !item.status } : item
       );
-      setTotUserActions([...sourceItems, ...newDestItems]);
+      setUserActions([...sourceItems, ...newDestItems]);
       setColumns({
         ...columns,
         [2]: {
@@ -193,7 +205,6 @@ const KanbanActionContainer = ({
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;
-    //Since destination column will always be the second one, update status here!
     if (source.droppableId !== destination.droppableId) {
       const sourceColumn = columns[source.droppableId];
       const destColumn = columns[destination.droppableId];
@@ -202,12 +213,9 @@ const KanbanActionContainer = ({
       updateStatus(removed.id, true);
 
       const destItems = setNewPerformedActions(removed, columns[2].items);
-      setTotUserActions([...sourceItems, ...destItems]);
+      setUserActions([...sourceItems, ...destItems]);
       //setTotUserActions([...sourceItems]);
-      console.log(
-        "TOTUSERACTION IN DRAGEND: " +
-          JSON.stringify([...sourceItems, ...destItems])
-      );
+
       setCategoryBadges([...destItems]);
 
       setColumns({
@@ -235,34 +243,39 @@ const KanbanActionContainer = ({
       });
     }
   };
-
+  console.log({ columns });
   return (
-    <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+    <div className="flex flex-col justify-center h-full">
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
         {Object.entries(columns).map(([columnId, column]) => {
           return (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-              key={columnId}
-            >
-              <div className="callout" style={{ margin: 8 }}>
-                <p className="font-bold inline-block text-green-accent py-1 px-2 -ml-2 rounded">
-                  {column.name}
-                </p>
-                <KanbanActionColumn
-                  column={column}
-                  columnId={columnId}
-                  key={columnId}
-                  handleDelete={handleDelete}
-                  handlePerformance={handlePerformance}
-                  categoryColor={categoryColor}
-                />
+            <div key={columnId}>
+              <div
+                className="flex flex-col"
+                style={{
+                  alignItems: "center",
+                }}
+                key={columnId}
+              >
+                <div className="text-center pt-8" style={{ margin: 2 }}>
+                  <p
+                    className={`font-normal text-base text-primary text-lg top-0 text-center`}
+                  >
+                    {!collapsed && column.name}
+                  </p>
+
+                  <KanbanActionColumn
+                    column={column}
+                    columnId={columnId}
+                    key={columnId}
+                    handleDelete={handleDelete}
+                    handlePerformance={handlePerformance}
+                    categoryColor={categoryColor}
+                    collapsed={collapsed}
+                  />
+                </div>
               </div>
             </div>
           );
