@@ -45,12 +45,12 @@ const ReferralCode = ({ text, grantedReferralCode, setGrantedReferralCode }) => 
 
     return (
         <div className="mt-3 collapse">
-            <input type="checkbox" id="enter_referral_code" className="hidden"/>
+            <input type="checkbox" id="enter_referral_code"/>
             { grantedReferralCode ?
                 <div>
                     <p className="text-center text-sm">{text.referral_code}
                         <strong className="mr-1"> {inputCode}</strong>
-                        <label htmlFor="enter_referral_code" className="link cursor-pointer" onClick={() => {setGrantedReferralCode(false); setInputCode("")}}>{text.referral_code_change}</label>
+                        <label className="link cursor-pointer" onClick={() => {setGrantedReferralCode(false); setInputCode("")}}>{text.referral_code_change}</label>
                     </p>
                 </div>
                 :
@@ -68,6 +68,7 @@ const ReferralCode = ({ text, grantedReferralCode, setGrantedReferralCode }) => 
                     </div> 
                 </>
             }
+
         </div>
     )
 }
