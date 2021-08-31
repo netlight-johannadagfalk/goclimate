@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CarouselContainer from "./CarouselContainer.jsx";
 import KanbanActionContainer from "./KanbanActionContainer.jsx";
 import CarouselActionItem from "./CarouselActionItem.jsx";
+import { stringify } from "postcss";
 
 const ClimateActionsContainer = ({
   user,
@@ -183,6 +184,51 @@ const ClimateActionsContainer = ({
         ? { ...x, accepted: true }
         : { ...x, accepted: false };
     });
+
+    console.log("TOTUSERACTIONS: " + JSON.stringify(totUserActions));
+
+    const filteredCategoriesWithStatus = totUserActions
+      .filter((category) => category.itemsArray)
+      .map((action) =>
+        action.itemsArray.filter((item) => item.status === true)
+      );
+    //.filter((action) => action.itemsArray.status === true);
+
+    console.log("FILTEREDACTIONS " + JSON.stringify(filteredActionsWithStatus));
+
+    const finalFilter = filteredActionsWithStatus.map((action) => {
+      return filteredCategoriesWithStatus.some(
+        (actionPerformed) =>
+          action.id === actionPerformed.id ||
+          action.id === actionPerformed.climate_action_id
+      )
+        ? { ...action, accepted: true }
+        : { ...action, accepted: false };
+    });
+
+    console.log("FINALFILTER: " + JSON.stringify(finalFilter));
+
+    // const finalFilteredCategoriesAndActions = filteredActions.map((action) => {
+    //   return filteredCategoriesWithStatus.some(
+    //     (categoryAction) => action.id == categoryAction.id
+    //   )
+    //     ? { ...action, accepted: true }
+    //     : { ...action, accepted: false };
+    // });
+
+    // console.log("FILTEREDACTION: " + JSON.stringify(filteredActionsWithStatus));
+
+    // console.log(
+    //   "FINALFILTERWITHCAT: " + JSON.stringify(finalFilteredCategoriesAndActions)
+    // );
+
+    // console.log(
+    //   "SAMMANSLAGEN: " +
+    //     JSON.stringify([
+    //       ...filteredActionsWithStatus,
+    //       finalFilteredCategoriesAndActions,
+    //     ])
+    // );
     setClimateActionsUser(filteredActionsWithStatus);
   };
 

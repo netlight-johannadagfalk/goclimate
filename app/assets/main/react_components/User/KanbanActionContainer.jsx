@@ -210,6 +210,10 @@ const KanbanActionContainer = ({
 
       const destItems = setNewPerformedActions(removed, columns[2].items);
       setTotUserActions([...sourceItems, ...destItems]);
+      console.log(
+        "TOTUSERACTION IN DRAGEND: " +
+          JSON.stringify([...sourceItems, ...destItems])
+      );
       setCategoryBadges([...destItems]);
 
       setColumns({
