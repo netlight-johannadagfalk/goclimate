@@ -12,7 +12,7 @@ const CarouselCategoryButton = ({
   active,
   setAllCategories,
 }) => {
-  const updateCategory = useCategoryUpdate();
+  const setCategory = useCategoryUpdate();
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
   const userActions = useUserActions();
@@ -26,16 +26,12 @@ const CarouselCategoryButton = ({
     setCategory();
   };
   const categoryClick = (categoryID) => {
-    setCategory(categoryID);
+    updateCategory(categoryID);
     setAllCategories(false);
   };
 
-  const setCategory = (cat) => {
-    //***** HERE WE UPDATE THE CONTEXT */
-    // Depends on hook/context ClimateActions
-    //Should be moved to Category btn component when context is implemented
-
-    updateCategory(cat);
+  const updateCategory = (cat) => {
+    setCategory(cat);
     const filteredActions = cat
       ? totClimateActions.filter(
           (temp) => temp.climate_action_category_id === cat

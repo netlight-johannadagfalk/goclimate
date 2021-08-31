@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import CarouselContainer from "./CarouselContainer.jsx";
-//import KanbanActionContainer from "./KanbanActionContainer.jsx";
 import CarouselActionItem from "./CarouselActionItem.jsx";
 import { useDeletedAction } from "./contexts/DeletedActionContext.js";
 import {
@@ -8,7 +7,6 @@ import {
   useClimateActionsUpdate,
   useClimateActionsOriginal,
 } from "./contexts/ClimateActionsContext.js";
-//import Card from "./Card.jsx";
 import Sidebar from "./Sidebar.jsx";
 
 const ClimateActionsContainer = ({ user, climateActionCategories }) => {
@@ -42,8 +40,6 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
 
   return (
     <>
-      {/* Not neccessary. Should be removed when circles have the correct design in carousel */}
-      {/* <Card monthlyAction={monthlyAction} categoryColor={categoryColor} /> */}
       <div className="w-80 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2 justify-center">
         <h3 className="heading-lg mb-3">Action of the Month </h3>
         {monthlyAction && (
@@ -65,7 +61,6 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
       />
 
       <Sidebar categoryColor={categoryColor} />
-      {/* <KanbanActionContainer /> */}
     </>
   );
 };

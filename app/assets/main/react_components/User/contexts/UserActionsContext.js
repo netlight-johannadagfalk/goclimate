@@ -53,7 +53,7 @@ export const UserActionsProvider = ({ children, allUserActions }) => {
       .map((action) => ({ ...action }));
   };
 
-  const columnUserActions = (acceptedList, doneActions) => {
+  const columnUserActions = (acceptedList, doneList) => {
     return {
       [1]: {
         id: "Accepted",
@@ -63,7 +63,7 @@ export const UserActionsProvider = ({ children, allUserActions }) => {
       [2]: {
         id: "Performed",
         name: "Your performed actions:",
-        items: doneActions,
+        items: doneList,
       },
     };
   };
