@@ -26,7 +26,9 @@ const CarouselCategoryButton = ({
       {active ? (
         <button
           className={`${
-            "category_" + categoryName.toLowerCase().replace(/ /g, "_")
+            "category_" +
+            categoryName.toLowerCase().replace(/ /g, "_") +
+            "_active"
           } rounded-full py-1 px-4 button inline-block focus:outline-none text-white m-1`}
         >
           {" "}
