@@ -7,7 +7,7 @@ const Sidebar = ({
   setColumns,
   setTotUserActions,
 }) => {
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
     <>
