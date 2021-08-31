@@ -1,33 +1,28 @@
 import React, { useState } from "react";
+import KanbanActionContainer from "./KanbanActionContainer.jsx";
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div
-      className={`bg-white h-screen right-0 top-20 fixed z-40 border-l border-gray-accent ${
-        collapsed ? "w-10" : "w-1/6"
-      }`}
-    >
-      <button
-        className={`fas static m-2 top-0 right-10 text-l ${
-          collapsed ? "fa-arrow-alt-circle-left" : "fa-arrow-alt-circle-right"
-        }`}
-        onClick={() => setCollapsed(!collapsed)}
-      ></button>
+    <>
       <div
-        className={`flex flex-col h-full justify-center ${
-          collapsed ? "invisible" : "visible"
+        className={`bg-white h-screen right-0 top-20 fixed z-40 border-l border-gray-accent ${
+          collapsed ? "w-28" : "w-auto"
         }`}
       >
-        <div className="flex-1 h-full justify-center">
-          <h4 className="text-base font-bold text-center">My Actions</h4>
-        </div>
-        <div className="flex-1 h-full justify-center border-t border-gray-accent pt-5">
-          <h4 className="text-base font-bold text-center">My Badges</h4>
+        <button
+          className={`fas rounded-full h-12 w-12 bg-white border border-gray-accent -ml-6 m-auto absolute bottom-1/2 focus:outline-none ${
+            collapsed ? "fa-chevron-left" : "fa-chevron-right"
+          }`}
+          onClick={() => setCollapsed(!collapsed)}
+        ></button>
+
+        <div className={` ${collapsed ? "visible" : "visible"}`}>
+          <KanbanActionContainer collapsed={collapsed} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

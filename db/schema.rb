@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_20_124107) do
+ActiveRecord::Schema.define(version: 2021_08_23_081824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,9 @@ ActiveRecord::Schema.define(version: 2021_08_20_124107) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "badge_name"
+    t.string "badge_description"
+    t.string "badge_image_url"
   end
 
   create_table "climate_actions", force: :cascade do |t|

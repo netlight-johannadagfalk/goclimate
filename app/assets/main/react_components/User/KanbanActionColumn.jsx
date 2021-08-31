@@ -1,25 +1,32 @@
-import React from 'react'
-import { Droppable } from 'react-beautiful-dnd'
-import KanbanActionItem from './KanbanActionItem.jsx'
+import React from "react";
+import { Droppable } from "react-beautiful-dnd";
+import KanbanActionItem from "./KanbanActionItem.jsx";
 
 const KanbanActionColumn = ({
   column,
   columnId,
   handleDelete,
   handlePerformance,
+  collapsed,
+  categoryColor,
 }) => {
   return (
     <div key={columnId}>
-      <Droppable column={column} droppableId={columnId} key={columnId}>
+      <Droppable
+        column={column}
+        droppableId={columnId}
+        key={columnId}
+        isDropDisabled={collapsed}
+      >
         {(provided, snapshot) => {
           return (
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
               style={{
-                background: snapshot.isDraggingOver ? 'lightgrey' : 'white',
+                background: snapshot.isDraggingOver ? "lightgrey" : "white",
                 padding: 4,
-                width: 438,
+                width: "auto",
                 minHeight: 500,
               }}
             >
@@ -31,16 +38,18 @@ const KanbanActionColumn = ({
                     key={item.id}
                     handleDelete={handleDelete}
                     handlePerformance={handlePerformance}
+                    collapsed={collapsed}
+                    categoryColor={categoryColor}
                   />
-                )
+                );
               })}
               {provided.placeholder}
             </div>
-          )
+          );
         }}
       </Droppable>
     </div>
-  )
-}
+  );
+};
 
-export default KanbanActionColumn
+export default KanbanActionColumn;

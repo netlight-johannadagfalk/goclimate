@@ -9,7 +9,7 @@ import {
   useUserActionsColumnsWithFormatUpdate,
 } from "./contexts/UserActionsContext.js";
 
-const KanbanActionContainer = () => {
+const KanbanActionContainer = ({ collapsed, categoryColor }) => {
   const setUserActions = useUserActionsUpdate();
   const columns = useUserActionsColumns();
   const setColumns = useUserActionsColumnsUpdate();
@@ -194,33 +194,38 @@ const KanbanActionContainer = () => {
       });
     }
   };
-
   return (
-    <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+    <div className="flex flex-col justify-center h-full">
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
         {Object.entries(columns).map(([columnId, column]) => {
           return (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-              key={columnId}
-            >
-              <div className="callout" style={{ margin: 8 }}>
-                <p className="font-bold inline-block text-green-accent py-1 px-2 -ml-2 rounded">
-                  {column.name}
-                </p>
-                <KanbanActionColumn
-                  column={column}
-                  columnId={columnId}
-                  key={columnId}
-                  handleDelete={handleDelete}
-                  handlePerformance={handlePerformance}
-                />
+            <div key={columnId}>
+              <div
+                className="flex flex-col"
+                style={{
+                  alignItems: "center",
+                }}
+                key={columnId}
+              >
+                <div className="text-center pt-8" style={{ margin: 2 }}>
+                  <p
+                    className={`font-normal text-base text-primary text-lg top-0 text-center`}
+                  >
+                    {!collapsed && column.name}
+                  </p>
+
+                  <KanbanActionColumn
+                    column={column}
+                    columnId={columnId}
+                    key={columnId}
+                    handleDelete={handleDelete}
+                    handlePerformance={handlePerformance}
+                    categoryColor={categoryColor}
+                    collapsed={collapsed}
+                  />
+                </div>
               </div>
             </div>
           );
