@@ -20,7 +20,6 @@ const KanbanActionContainer = ({
     setRender(columns);
   }, [columns]);
 
-  console.log("columns" + JSON.stringify(columns));
   const handleDelete = (id, actionID) => {
     deleteUserAction(id);
     setLocalAccepted(
@@ -98,8 +97,8 @@ const KanbanActionContainer = ({
       const destItems = [...destColumn.items];
       const sourceIndex = sourceItems.indexOf(theItem);
       const destIndex = destItems.length;
-      const [removed] = sourceItems.splice(sourceIndex, 1);
-      destItems.splice(destIndex, 0, removed);
+      //const [removed] = sourceItems.splice(sourceIndex, 1);
+      destItems.splice(destIndex, 0, theItem);
       setTotUserActions([...sourceItems, ...destItems]);
       const newDestItems = destItems.map((item) =>
         item.status === true ? { ...item, status: !item.status } : item
@@ -155,7 +154,6 @@ const KanbanActionContainer = ({
           ? { ...performedCategory, itemsArray: updatedItemsArray }
           : performedCategory;
       });
-      console.log("RESULTEDARRAY: " + JSON.stringify(resultArray));
       return resultArray;
     } else {
       const newCategory = JSON.parse(climateActionCategories).find(
@@ -182,17 +180,12 @@ const KanbanActionContainer = ({
           : action;
       });
 
-      console.log("UPDATEDITEMSARRAY: " + JSON.stringify(updatedItemsArray));
-
       const updatedResult = {
         ...newCategory,
         itemsArray: updatedItemsArray,
       };
 
       const resultArray = [...performedColumn, updatedResult];
-      console.log(
-        "RESULTARRAY WHEN DRAG NEW ITEM " + JSON.stringify(resultArray)
-      );
       return resultArray;
     }
   };
@@ -210,6 +203,7 @@ const KanbanActionContainer = ({
 
       const destItems = setNewPerformedActions(removed, columns[2].items);
       setTotUserActions([...sourceItems, ...destItems]);
+      //setTotUserActions([...sourceItems]);
       console.log(
         "TOTUSERACTION IN DRAGEND: " +
           JSON.stringify([...sourceItems, ...destItems])
@@ -227,7 +221,6 @@ const KanbanActionContainer = ({
           items: destItems,
         },
       });
-      console.log("newDESTITEMS: " + JSON.stringify(columns[2].items));
     } else {
       const column = columns[source.droppableId];
       const copiedItems = [...column.items];

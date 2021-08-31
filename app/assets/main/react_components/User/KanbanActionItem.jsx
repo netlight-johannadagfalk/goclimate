@@ -85,6 +85,16 @@ const KanbanActionItem = ({
                             ) : (
                               <div className="">{subitem.name}</div>
                             )}
+                            {subitem.status === true && (
+                              <button
+                                className="button ml-4 button-cta"
+                                onClick={() =>
+                                  handlePerformance(subitem, false)
+                                }
+                              >
+                                Unperformed{" <"}
+                              </button>
+                            )}
                           </div>
                         );
                       })}

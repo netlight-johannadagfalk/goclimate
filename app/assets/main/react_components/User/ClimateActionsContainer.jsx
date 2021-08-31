@@ -185,28 +185,28 @@ const ClimateActionsContainer = ({
         : { ...x, accepted: false };
     });
 
-    console.log("TOTUSERACTIONS: " + JSON.stringify(totUserActions));
+    // console.log("TOTUSERACTIONS: " + JSON.stringify(totUserActions));
 
-    const filteredCategoriesWithStatus = totUserActions
-      .filter((category) => category.itemsArray)
-      .map((action) =>
-        action.itemsArray.filter((item) => item.status === true)
-      );
-    //.filter((action) => action.itemsArray.status === true);
+    // const filteredCategoriesWithStatus = totUserActions
+    //   .filter((category) => category.itemsArray)
+    //   .map((action) =>
+    //     action.itemsArray.filter((item) => item.status === true)
+    //   );
+    // //.filter((action) => action.itemsArray.status === true);
 
-    console.log("FILTEREDACTIONS " + JSON.stringify(filteredActionsWithStatus));
+    // console.log({ filteredActionsWithStatus });
 
-    const finalFilter = filteredActionsWithStatus.map((action) => {
-      return filteredCategoriesWithStatus.some(
-        (actionPerformed) =>
-          action.id === actionPerformed.id ||
-          action.id === actionPerformed.climate_action_id
-      )
-        ? { ...action, accepted: true }
-        : { ...action, accepted: false };
-    });
+    // const finalFilter = filteredActionsWithStatus.map((action) => {
+    //   return filteredCategoriesWithStatus.some(
+    //     (actionPerformed) =>
+    //       action.id === actionPerformed.id ||
+    //       action.id === actionPerformed.climate_action_id
+    //   )
+    //     ? { ...action, accepted: true }
+    //     : { ...action, accepted: false };
+    // });
 
-    console.log("FINALFILTER: " + JSON.stringify(finalFilter));
+    // console.log("FINALFILTER: " + JSON.stringify(finalFilter));
 
     // const finalFilteredCategoriesAndActions = filteredActions.map((action) => {
     //   return filteredCategoriesWithStatus.some(
