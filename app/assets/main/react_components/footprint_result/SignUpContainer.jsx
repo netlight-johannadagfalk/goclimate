@@ -41,6 +41,7 @@ const SignUpContainer = ({ signUpText, price, currency, months }) => {
                                 <div data-inactive-class="hidden">
                                     <ReferralCode
                                         text={signUpText}
+                                        grantedReferralCode={grantedReferralCode}
                                         setGrantedReferralCode={setGrantedReferralCode}
                                     />
                                 </div>
