@@ -5,7 +5,7 @@
 
 .category_food {
   @apply bg-yellow-accent
-   bg-opacity-20;
+   /* bg-opacity-20; */;
 }
 
 .category_car {
@@ -25,4 +25,39 @@
 .category_public_emissions {
   @apply bg-gray-accent
    bg-opacity-20;
+}
+
+.category_all_categories {
+  @apply bg-green-accent
+   /* bg-opacity-20; */;
+}
+
+.category_politics {
+  @apply bg-pink-accent
+   /* bg-opacity-20; */;
+}
+
+.category_transport {
+  @apply bg-orange-accent
+   /* bg-opacity-20; */;
+}
+
+.category_transport {
+  @apply bg-orange-accent
+   /* bg-opacity-20; */;
+}
+
+.category_other {
+  @apply bg-blue-accent
+   bg-opacity-100;
+}
+
+.category_other:hover {
+  @apply bg-blue-accent
+   bg-opacity-100;
+}
+
+.category_other:active {
+  @apply bg-blue-accent
+  bg-opacity-0;
 }
