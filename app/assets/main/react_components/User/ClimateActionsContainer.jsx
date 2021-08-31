@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CarouselContainer from "./CarouselContainer.jsx";
 import KanbanActionContainer from "./KanbanActionContainer.jsx";
 import Sidebar from "./Sidebar.jsx";
@@ -16,6 +16,10 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
 
+  const [monthlyAction, setMonthlyAction] = useState(
+    totClimateActions.find((action) => action.action_of_the_month === true)
+  );
+
   const updateLocalAccepted = (actionID) => {
     setClimateActions(
       climateActions.map((action) =>
@@ -24,10 +28,9 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
           : action
       )
     );
+    monthlyAction.id === actionID &&
+      setMonthlyAction({ ...monthlyAction, accepted: !monthlyAction.accepted });
   };
-  const monthlyAction = totClimateActions.find(
-    (action) => action.action_of_the_month === true
-  );
 
   useEffect(() => {
     deletedAction != null && updateLocalAccepted(deletedAction);
