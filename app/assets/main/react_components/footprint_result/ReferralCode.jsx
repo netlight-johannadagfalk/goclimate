@@ -27,7 +27,6 @@ const ReferralCode = ({ text, setGrantedReferralCode }) => {
         };
         fetch(URL, requestOptions)
         .then((res) => {
-            console.log(res)
             if (res.status === 404) {
                 setGrantedReferralCode(false)
                 setInvalidCodeMessage("That's not right, try again");

@@ -29,9 +29,20 @@ class LifestyleFootprintsController < ApplicationController
     end
 
     @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
+
+    @footprint_tonnes = @footprint&.total
+    number_of_people = params[:membership] == 'multi' && params[:people].present? ? params[:people].to_i : 1
+    @plan = Subscriptions::Plan.for_footprint(@footprint_tonnes * number_of_people, current_region.currency)
     
+    p "FPFPFPFPFP TONNES"
+    p @footprint_tonnes
+    p "NUM PPL"
+    p number_of_people
+    p "PLAAAAAAAAAN"
+    p @plan
+    p "DAPWDMAWIDJIAWDJIOAW"
     # IF RESULT IN FORM
-    render json: {footprint: @footprint, country_average: @country_average}
+    render json: {footprint: @footprint, country_average: @country_average, plan: @plan}
     
     # IF RESULT ON RESULT PAGE
     # redirect_to new_registration_path(:user, lifestyle_footprint: @footprint, campaign: params[:campaign].presence)

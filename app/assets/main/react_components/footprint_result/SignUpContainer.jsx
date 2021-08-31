@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MembershipTypeSelector from './MembershipTypeSelector.jsx';
 import ReferralCode from './ReferralCode.jsx';
 import SignUpMotivationText from './SignUpMotivationText.jsx';
-import SignUpTitle from './SignUpTitle.jsx';
+import Title from '../footprint_form/Title.jsx';
 import AnswerButton from '../footprint_form/AnswerButton.jsx';
 import PriceText from './PriceText.jsx';
 
@@ -19,13 +19,11 @@ const SignUpContainer = ({ signUpText, price, currency, months }) => {
     }
 
     return (
-        <div className="relative pb-1">
-            <div className="space-y-6">
-                <div className="callout max-w-md mx-auto">
+                <div className="max-w-lg mx-auto">
                     <a id="sign-up" className="absolute -mt-32"></a>
                     <div className="space-y-3">
-                        <SignUpTitle
-                            signUpTitleText={signUpText.sign_up_heading_test_2}
+                        <Title
+                            text={signUpText.sign_up_heading_test_2}
                         />
                         <SignUpMotivationText
                             signUpMotivationText={signUpText.sign_up_description}                            
@@ -55,16 +53,13 @@ const SignUpContainer = ({ signUpText, price, currency, months }) => {
                             selectedMembership={selectedMembership}
                             multipleOffsets={multipleOffsets}
                         />
-                        <AnswerButton
+                        {/*<AnswerButton
                             label={signUpText.continue_to_payment}
                             stylingClasses = {"button-cta" + " w-full"}
                             onAnswerGiven = {onContinueToPayment}
-                        />
+                        />*/}
                     </div>
                 </div>
-            </div>
-        </div>
-
     )
 }
 
