@@ -23,7 +23,7 @@ const CarouselCategoryButton = ({
 
   const allCategoriesClick = () => {
     setAllCategories(true);
-    setCategory();
+    updateCategory();
   };
   const categoryClick = (categoryID) => {
     updateCategory(categoryID);
