@@ -188,35 +188,37 @@ const KanbanActionContainer = ({
     }
   };
   return (
-    <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
-
+    <div className="flex flex-col justify-center h-full">
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
         {Object.entries(columns).map(([columnId, column]) => {
           return (
-
             <div key={columnId}>
               <div
+                className="flex flex-col"
                 style={{
-                  display: "flex",
                   alignItems: "center",
                 }}
                 key={columnId}
               >
-              <div className="text-center pt-8" style={{ margin: 2 }}>
-                  <p className="font-normal text-base text-primary text-lg top-0 text-center">
-                    {column.name}
+                <div className="text-center pt-8" style={{ margin: 2 }}>
+                  <p
+                    className={`font-normal text-base text-primary text-lg top-0 text-center`}
+                  >
+                    {!collapsed && column.name}
                   </p>
-                <KanbanActionColumn
-                  column={column}
-                  columnId={columnId}
-                  key={columnId}
-                  handleDelete={handleDelete}
-                  handlePerformance={handlePerformance}
-                  categoryColor={categoryColor}
-                  collapsed={collapsed}
-                />
+
+                  <KanbanActionColumn
+                    column={column}
+                    columnId={columnId}
+                    key={columnId}
+                    handleDelete={handleDelete}
+                    handlePerformance={handlePerformance}
+                    categoryColor={categoryColor}
+                    collapsed={collapsed}
+                  />
+                </div>
               </div>
             </div>
           );
