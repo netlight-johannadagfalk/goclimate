@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
 import AnswerButton from '../footprint_form/AnswerButton.jsx';
-import MembershipTypeSelector from './MembershipTypeSelector.jsx';
-import ReferralCode from './ReferralCode.jsx';
 import SignUpMotivationText from './SignUpMotivationText.jsx';
 import SignUpTitle from './SignUpTitle.jsx';
 import PriceText from './PriceText.jsx';
+import Link from '../Link.jsx'
+import PaymentContainer from './PaymentContainer.jsx';
 
 /**
  * React container for Sign up components
  */
-const SignUpContainer = ({ signUpText, price, currency, months }) => {
+const SignUpContainer = ( props ) => {
+    console.log(props)
     const [selectedMembership, setSelectedMembership] = useState("single")
-    const [grantedReferralCode, setGrantedReferralCode] = useState(false)
     const [multipleOffsets, setMultipleOffsets] = useState(2);
 
-    function onContinueToPayment(givenAnswer){
-        // What happens when clicking continue to payment button
-    }
     return (
         <div className="relative pb-1">
             <div className="space-y-6">
@@ -24,43 +21,38 @@ const SignUpContainer = ({ signUpText, price, currency, months }) => {
                     <a id="sign-up" className="absolute -mt-32"></a>
                     <div className="space-y-3">
                         <SignUpTitle
-                            signUpTitleText={signUpText.sign_up_heading_test_2}
+                            signUpTitleText={props.signUpText.sign_up_heading_test_2}
                         />
                         <SignUpMotivationText
-                            signUpMotivationText={signUpText.sign_up_description}                            
+                            signUpMotivationText={props.signUpText.sign_up_description}                            
                         />
                         <input type="checkbox" id="step-one-done" className="toggler"/>
                         <div className="toggler-checked:hidden">
                             <div className="space-y-3">
-                                <MembershipTypeSelector
-                                    membershipText={signUpText.membership}
-                                    selectedMembership={selectedMembership} setSelectedMembership={setSelectedMembership}
-                                    multipleOffsets={multipleOffsets} setMultipleOffsets={setMultipleOffsets}
-                                />
-                                <div data-inactive-class="hidden">
-                                    <ReferralCode
-                                        text={signUpText}
-                                        setGrantedReferralCode={setGrantedReferralCode}
-                                    />
-                                </div>
+                                {props.children}
                             </div>
                         </div>
                         <PriceText
-                            priceObject={price}
-                            currency={currency}
-                            months={months}
-                            signUpText={signUpText}
-                            grantedReferralCode={grantedReferralCode}
-                            selectedMembership={selectedMembership}
-                            multipleOffsets={multipleOffsets}
+                            priceObject={props.price}
+                            currency={props.currency}
+                            months={props.months}
+                            signUpText={props.signUpText}
+                            grantedReferralCode={props.grantedReferralCode}
+                            selectedMembership={props.selectedMembership}
+                            multipleOffsets={props.multipleOffsets}
                         />
+                        {!props.selectStep ??
+                            <Link 
+                                link="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"
+                                linkText={props.signUpText.accept_policies}
+                            />
+                        }
                         <AnswerButton
-                            label={signUpText.continue_to_payment}
+                            label={props.buttonText}
                             stylingClasses = {"button-cta" + " w-full"}
-                            onAnswerGiven = {onContinueToPayment}
+                            onAnswerGiven = {props.onContinueToPayment}
                         />
                     </div>
-                    <AnswerButton label="Continue to payment" onAnswerGiven={() => setShowPayment(!showPayment)} stylingClasses={"button-cta w-full"}></AnswerButton>
                 </div>
             </div>
         </div>

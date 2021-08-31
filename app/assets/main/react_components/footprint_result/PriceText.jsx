@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from '../Link.jsx'
 
 /**
  * Price text that adapts to region, selected membership type and referral code
@@ -47,6 +48,9 @@ const PriceText = ({priceObject, currency, months, signUpText, grantedReferralCo
                         }
                     </span>
                 </p>
+                <div className="text-center">
+                    <Link linkText={signUpText.where_does_the_money_go.heading}/>
+                </div>
             </div>
         }
         </>
