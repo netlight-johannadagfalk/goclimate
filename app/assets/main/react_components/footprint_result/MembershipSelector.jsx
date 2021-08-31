@@ -9,16 +9,14 @@ import PriceText from './PriceText.jsx';
 /**
  * React container for Sign up components
  */
-const MembershipSelector = ({ signUpText, grantedReferralCode, setGrantedReferralCode, setSelectStep }) => {
-    const [selectedMembership, setSelectedMembership] = useState("single")
-    //const [grantedReferralCode, setGrantedReferralCode] = useState(false)
-    const [multipleOffsets, setMultipleOffsets] = useState(2);
-
+const MembershipSelector = ({ signUpText, grantedReferralCode, setGrantedReferralCode, setSelectStep, multipleOffsets, setMultipleOffsets, selectedMembership, setSelectedMembership }) => {
+    
     function onContinueToPayment(givenAnswer){
         setSelectStep(false)
         console.log("false")
         // What happens when clicking continue to payment button
     }
+    
     return (
         <>
             <MembershipTypeSelector

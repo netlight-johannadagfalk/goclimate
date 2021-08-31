@@ -5,14 +5,17 @@ import SignUpTitle from './SignUpTitle.jsx';
 import PriceText from './PriceText.jsx';
 import Link from '../Link.jsx'
 import PaymentContainer from './PaymentContainer.jsx';
+import sanitizeHtml from 'sanitize-html';
 
 /**
  * React container for Sign up components
  */
 const SignUpContainer = ( props ) => {
-    console.log(props)
-    const [selectedMembership, setSelectedMembership] = useState("single")
-    const [multipleOffsets, setMultipleOffsets] = useState(2);
+    //const [selectedMembership, setSelectedMembership] = useState("single")
+    //const [multipleOffsets, setMultipleOffsets] = useState(2);
+    //const selectedMembership = props.selectedMembership
+    //sluggo
+    //<a> blir länken i med href
 
     return (
         <div className="relative pb-1">
@@ -41,17 +44,14 @@ const SignUpContainer = ( props ) => {
                             selectedMembership={props.selectedMembership}
                             multipleOffsets={props.multipleOffsets}
                         />
-                        {!props.selectStep ??
-                            <Link 
-                                link="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"
-                                linkText={props.signUpText.accept_policies}
-                            />
-                        }
                         <AnswerButton
                             label={props.buttonText}
                             stylingClasses = {"button-cta" + " w-full"}
                             onAnswerGiven = {props.onContinueToPayment}
-                        />
+                        /> 
+                        <div className={"inject-link pt-4"}
+                            dangerouslySetInnerHTML={{__html: sanitizeHtml(props.signUpText.accept_policies)}}>
+                        </div>
                     </div>
                 </div>
             </div>

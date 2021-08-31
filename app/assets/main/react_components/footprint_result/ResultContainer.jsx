@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import SignUpContainer from './SignUpContainer.jsx';
 import ResultTitle from './ResultTitle.jsx';
 import CategoryChart from './CategoryChart.jsx';
@@ -21,17 +21,30 @@ import LatestProjectsList from './LatestProjectsList.jsx';
  */
     
 const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, lang, plan, currency, sign_up_heading_test_number }) => {
-    const selectStep = false
+    const [selectedMembership, setSelectedMembership] = useState("single")
+    //const [grantedReferralCode, setGrantedReferralCode] = useState(false)
+    const [multipleOffsets, setMultipleOffsets] = useState(2);
+    const selectStep = true
+    console.log(JSON.parse(registrationsText))
     const [grantedReferralCode, setGrantedReferralCode] = useState(false)
     const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq')
     const commonStrings = JSON.parse(commonText)
+
+    useEffect(()=> {
+        //console.log("change")
+        //console.log(selectedMembership)
+    }, [selectedMembership])
 
     return (
         <div className="relative pb-1">
             <Elements  stripe={stripePromise}  options={{locale: lang}} >
                 <SignUpContainer
+                    selectedMembership={selectedMembership} 
+                    setSelectedMembership={setSelectedMembership}
+                    multipleOffsets={multipleOffsets}
+                    setMultipleOffsets={setMultipleOffsets}
                     selectStep={selectStep}
-                    buttonText={JSON.parse(registrationsText).continue_to_payment}
+                    buttonText={selectStep ? JSON.parse(registrationsText).continue_to_payment : JSON.parse(registrationsText).start_subscription}
                     commonStrings={commonStrings}
                     registrationsText={JSON.parse(registrationsText)}
                     sign_up_heading_test_number={1}
@@ -42,17 +55,39 @@ const ResultContainer = ({ footprint, projects, countryAverage, registrationsTex
                     currency={JSON.parse(currency)}
                     months={commonStrings.months}
                 >
-                    {selectStep ?
-                        <MembershipSelector 
-                            membershipText={JSON.parse(registrationsText).membership}
-                            signUpText={JSON.parse(registrationsText)}
-                            setGrantedReferralCode={setGrantedReferralCode}
-                            >
-                        </MembershipSelector>
-                    :
                         <PaymentContainer 
                             commonStrings={commonStrings} 
                         />
+
+                </SignUpContainer>
+                <SignUpContainer
+                    selectedMembership={selectedMembership} 
+                    setSelectedMembership={setSelectedMembership}
+                    multipleOffsets={multipleOffsets}
+                    setMultipleOffsets={setMultipleOffsets}
+                    selectStep={selectStep}
+                    buttonText={selectStep ? JSON.parse(registrationsText).continue_to_payment : JSON.parse(registrationsText).start_subscription}
+                    commonStrings={commonStrings}
+                    registrationsText={JSON.parse(registrationsText)}
+                    sign_up_heading_test_number={1}
+                    grantedReferralCode={grantedReferralCode}
+                    setGrantedReferralCode={setGrantedReferralCode}
+                    signUpText={JSON.parse(registrationsText)}
+                    price={JSON.parse(plan).price}
+                    currency={JSON.parse(currency)}
+                    months={commonStrings.months}
+                >
+                        <MembershipSelector 
+                            selectedMembership={selectedMembership} 
+                            setSelectedMembership={setSelectedMembership}
+                            multipleOffsets={multipleOffsets}
+                            setMultipleOffsets={setMultipleOffsets}
+                            membershipText={JSON.parse(registrationsText).membership}
+                            signUpText={JSON.parse(registrationsText)}
+                            setGrantedReferralCode={setGrantedReferralCode}
+                            grantedReferralCode={grantedReferralCode}
+                            >
+                        </MembershipSelector>
                     }
                 </SignUpContainer>
             </Elements>
