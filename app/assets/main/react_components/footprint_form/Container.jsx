@@ -9,7 +9,7 @@ const Container = ({ footprint, calculator, slug, lang, registrationsText, commo
     modelText: JSON.parse(modelText),
     lifestyleFootprintsText: JSON.parse(lifestyleFootprintsText)
   }
-
+  
   return (
     <div className="space-y-6"> 
       <div className="callout">

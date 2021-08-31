@@ -36,10 +36,6 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, URL, t
     return questionCategories
   }
 
-  function setSessionStorage(key, data){
-    sessionStorage.setItem(key, JSON.stringify(data))
-  }
-
   function getSessionStorage(key){
     const item = sessionStorage.getItem(key)
     return item ? JSON.parse(item) : {}
@@ -131,7 +127,7 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, URL, t
     if(!questionObjects[nextQuestionIndex]){
       if(!result || result && !areObjectsEqual(footprint, getSessionStorage('footprint'))){
         submit()
-        setSessionStorage('footprint', footprint)
+        sessionStorage.setItem('footprint', JSON.stringify(footprint))
       } else {
         setCurrentObject(resultObjects[0])
       }
