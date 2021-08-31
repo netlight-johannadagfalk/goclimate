@@ -58,7 +58,7 @@ const ClimateActionsContainer = ({
 
   const acceptedUserActions = (inVal) => {
     return formatedUserActions(inVal)
-      .filter((action) => action.status === false)
+      .filter((action) => action.status !== true)
       .map((action) => ({ ...action }));
   };
 

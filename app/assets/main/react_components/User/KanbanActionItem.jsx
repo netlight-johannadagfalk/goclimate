@@ -11,11 +11,7 @@ const KanbanActionItem = ({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Draggable
-      key={item.id.toString() + item.name}
-      draggableId={item.id.toString()}
-      index={index}
-    >
+    <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
       {(provided) => {
         return (
           <div
@@ -83,7 +79,7 @@ const KanbanActionItem = ({
                     {item.itemsArray &&
                       item.itemsArray.map((subitem) => {
                         return (
-                          <div>
+                          <div key={subitem.id}>
                             {subitem.status === true ? (
                               <div className="text-danger">{subitem.name}</div>
                             ) : (

@@ -28,7 +28,7 @@ const KanbanActionColumn = ({
                   <KanbanActionItem
                     item={item}
                     index={index}
-                    key={item.id.toString() + item.name}
+                    key={item.id}
                     handleDelete={handleDelete}
                     handlePerformance={handlePerformance}
                   />
