@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import KanbanActionContainer from "./KanbanActionContainer.jsx";
 
-const Sidebar = ({
-  setLocalAccepted,
-  columns,
-  setColumns,
-  setTotUserActions,
-}) => {
+const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -24,13 +19,7 @@ const Sidebar = ({
         ></button>
 
         <div className={` ${collapsed ? "visible" : "visible"}`}>
-          <KanbanActionContainer
-            setLocalAccepted={setLocalAccepted}
-            columns={columns}
-            setColumns={setColumns}
-            setTotUserActions={setTotUserActions}
-            collapsed={collapsed}
-          />
+          <KanbanActionContainer collapsed={collapsed} />
         </div>
       </div>
     </>

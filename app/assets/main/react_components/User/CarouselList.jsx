@@ -1,8 +1,7 @@
 import React from "react";
 import CarouselActionItem from "./CarouselActionItem.jsx";
-
+import { useClimateActions } from "./contexts/ClimateActionsContext.js";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.min.css";
 import "swiper/components/pagination/pagination.min.css";
@@ -14,15 +13,11 @@ import "swiper/components/pagination/pagination.min.css";
 import SwiperCore, { Navigation, Pagination, Scrollbar } from "swiper/core";
 SwiperCore.use([Pagination, Navigation, Scrollbar]);
 
-const CarouselList = ({
-  user,
-  climateActionsUser,
-  updateLocalAccepted,
-  addAcceptedAction,
-  categoryColor,
-}) => {
+const CarouselList = ({ user, updateLocalAccepted, categoryColor }) => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
+
+  const climateActions = useClimateActions();
   return (
     <>
       <Swiper
@@ -42,13 +37,12 @@ const CarouselList = ({
           });
         }}
       >
-        {climateActionsUser.map((action) => (
+        {climateActions.map((action) => (
           <SwiperSlide key={action.id} className={"h-auto min-h-full mb-10"}>
             <CarouselActionItem
               action={action}
               user={user}
               updateLocalAccepted={updateLocalAccepted}
-              addAcceptedAction={addAcceptedAction}
               categoryColor={categoryColor}
             ></CarouselActionItem>
           </SwiperSlide>

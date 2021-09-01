@@ -1,4 +1,5 @@
-.category_housing {
+/* Not used now but will be used later */
+/* .category_housing {
   @apply bg-green-accent
     bg-opacity-20;
 }
@@ -20,7 +21,7 @@
 .category_public_emissions {
   @apply bg-gray-accent
    bg-opacity-20;
-}
+} */
 
 .category_other
   .category_transport
