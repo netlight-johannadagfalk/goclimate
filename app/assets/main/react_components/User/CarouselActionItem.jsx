@@ -70,7 +70,7 @@ const CarouselActionItem = ({
         >
           <img
             className="mx-auto -mt-20 rounded-full object-cover"
-            src="https://www.goclimate.com/blog/wp-content/uploads/2020/07/DJI_0974-768x512.jpg"
+            src={action.image_url}
           />
           <div className="flex flex-col text-center">
             <div className="flex-1">
