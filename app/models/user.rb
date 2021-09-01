@@ -10,6 +10,7 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :subscription_months, class_name: 'Subscriptions::SubscriptionMonth'
   belongs_to :referred_from, class_name: 'Subscriptions::ReferralCode', optional: true
 
+  validates :email, format: { with: /\A[a-z0-9+\-_.]+@[a-z\d\-.]+\.[a-z]{2,6}\z/i }, on: :create
   validates :user_name, format: { without: /.+@.+\..+/ }, allow_blank: true
 
   attribute :region, :region
