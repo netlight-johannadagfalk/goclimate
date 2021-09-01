@@ -96,7 +96,9 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, URL, t
    */
   function onGoBack(){
     let newIndex = currentIndex - 1
-    if(newIndex < questionObjects.length && questionObjects[newIndex].questionKey === "car_distance" && footprint["car_type_answer"] === "no_car")
+    if(newIndex < questionObjects.length
+      && questionObjects[newIndex].questionKey === "car_distance"
+      && footprint["car_type_answer"] === "no_car")
       newIndex--
     setCurrentObject(newIndex < questionObjects.length ? questionObjects[newIndex] : resultObjects[newIndex - questionObjects.length])
     setCurrentIndex(newIndex)
