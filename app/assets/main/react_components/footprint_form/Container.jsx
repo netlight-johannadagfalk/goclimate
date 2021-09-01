@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import FootprintForm from './FootprintForm.jsx';
 import Link from '../Link.jsx';
+import FootprintForm from './FootprintForm.jsx';
 import InformationSection from './InformationSection.jsx';
 
 const Container = ({ footprint, calculator, slug, lang, registrationsText, commonText, modelText, lifestyleFootprintsText, currency, projects }) => {

@@ -1,44 +1,82 @@
-import React from 'react';
-import SignUpContainer from './SignUpContainer.jsx';
-import ResultTitle from './ResultTitle.jsx';
-import CategoryChart from './CategoryChart.jsx';
-import WorldComparisonChart from './WorldComparisonChart.jsx';
-import YourFootprintText from './YourFootprintText.jsx';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import React, { useState } from 'react';
 import Link from '../Link.jsx';
-import MoneyUsageList from './MoneyUsageList.jsx';
+import CategoryChart from './CategoryChart.jsx';
 import FAQ from './FAQ.jsx';
 import LatestProjectsList from './LatestProjectsList.jsx';
+import MembershipSelector from './MembershipSelector.jsx';
+import MoneyUsageList from './MoneyUsageList.jsx';
+import Payment from './Payment.jsx';
+import ResultTitle from './ResultTitle.jsx';
+import SignUpContainer from './SignUpContainer.jsx';
+import WorldComparisonChart from './WorldComparisonChart.jsx';
+import YourFootprintText from './YourFootprintText.jsx';
 
 /**
  * React container for Result page components
  */
     
-const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, lang, plan, currency }) => {
+const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, lang, plan, currency, sign_up_heading_test_number }) => {
+    const [selectedMembership, setSelectedMembership] = useState("single")
+    const [multipleOffsets, setMultipleOffsets] = useState(2);
+    const [grantedReferralCode, setGrantedReferralCode] = useState(false)
+    const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq')
+    const commonStrings = JSON.parse(commonText)
+    
     return (
         <div className="relative pb-1">
+            <Elements  stripe={stripePromise}  options={{locale: lang}} >
+                <SignUpContainer
+                    selectedMembership={selectedMembership} 
+                    multipleOffsets={multipleOffsets}
+                    isPayment={true}
+                    commonStrings={commonStrings}
+                    signUpText={JSON.parse(registrationsText)}
+                    grantedReferralCode={grantedReferralCode}
+                    price={JSON.parse(plan).price}
+                    currency={JSON.parse(currency)}>
+                        <Payment
+                            commonStrings={commonStrings} 
+                        />
+                </SignUpContainer>
+                <SignUpContainer
+                    selectedMembership={selectedMembership} 
+                    multipleOffsets={multipleOffsets}
+                    isPayment={false}
+                    commonStrings={commonStrings}
+                    registrationsText={JSON.parse(registrationsText)}
+                    grantedReferralCode={grantedReferralCode}
+                    price={JSON.parse(plan).price}
+                    currency={JSON.parse(currency)}>
+                        <MembershipSelector 
+                            selectedMembership={selectedMembership} 
+                            setSelectedMembership={setSelectedMembership}
+                            multipleOffsets={multipleOffsets}
+                            setMultipleOffsets={setMultipleOffsets}
+                            signUpText={JSON.parse(registrationsText)}
+                            setGrantedReferralCode={setGrantedReferralCode}
+                            grantedReferralCode={grantedReferralCode}>
+                        </MembershipSelector>
+                </SignUpContainer>
+            </Elements>
             <div className="space-y-6">
                 <ResultTitle
                     title={JSON.parse(registrationsText).well_done}
                 />
                 <YourFootprintText
-                    footprintText={{heading: JSON.parse(commonText).dashboard.footprint.heading, tonnes_CO2: JSON.parse(commonText).tonnes_CO2}}
+                    footprintText={{heading: commonStrings.dashboard.footprint.heading, tonnes_CO2: commonStrings.tonnes_CO2}}
                     footprintValue={(JSON.parse(footprint).total.co2e / 1000).toFixed(1)}
                 />
                 <WorldComparisonChart 
                     lang={lang}
                     footprint={JSON.parse(footprint)}
                     countryAverage={JSON.parse(countryAverage)}
-                    worldComparisonText={{...JSON.parse(registrationsText), ...JSON.parse(commonText), ...JSON.parse(modelText)}} 
+                    worldComparisonText={{...JSON.parse(registrationsText), ...commonStrings, ...JSON.parse(modelText)}} 
                 />
                 <CategoryChart 
                     footprint={JSON.parse(footprint)} 
-                    categoryChartText={JSON.parse(commonText)} 
-                />
-                <SignUpContainer
-                    signUpText={JSON.parse(registrationsText)}
-                    price={JSON.parse(plan).price}
-                    currency={JSON.parse(currency)}
-                    months={JSON.parse(commonText).months}
+                    categoryChartText={commonStrings} 
                 />
                 <Link    
                     link={"https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"}
@@ -52,7 +90,7 @@ const ResultContainer = ({ footprint, projects, countryAverage, registrationsTex
                     projects={JSON.parse(projects)}
                 />
                 <FAQ
-                    questions={JSON.parse(commonText).faq_questions}
+                    questions={commonStrings.faq_questions}
                     faqText={JSON.parse(registrationsText).faq}
                 />
             </div>
