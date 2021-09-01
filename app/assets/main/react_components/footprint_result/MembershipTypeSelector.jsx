@@ -7,10 +7,10 @@ import SelectButton from './SelectButton.jsx';
 const MembershipTypeSelector = ({ membershipText, selectedMembership, setSelectedMembership, multipleOffsets, setMultipleOffsets}) => {
     
     return (
-        <div className="space-y-3">
+        <div className="space-y-3 text-left">
             <SelectButton 
                 selectedMembership={selectedMembership} setSelectedMembership={setSelectedMembership} 
-                buttonType="free"  text={membershipText.free}
+                buttonType="free" text={membershipText.free}
                 multipleOffsets={multipleOffsets} setMultipleOffsets={setMultipleOffsets}
             />
             <SelectButton 

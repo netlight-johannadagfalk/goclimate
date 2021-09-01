@@ -8,12 +8,14 @@
       <%= react_component 'Container', 
         lang: I18n.locale[0..-1], 
         slug: current_region.slug, 
+        currency: YAML.load_file('config/locales/models.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['models'].to_json,
         lifestyleFootprintsText: YAML.load_file('config/locales/views/lifestyle_footprints.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['lifestyle_footprints'].to_json,
         footprint: @footprint.to_json, 
         calculator: @calculator.to_json,
         registrationsText: YAML.load_file('config/locales/views/registrations.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['registrations'].to_json, 
         commonText: YAML.load_file('config/locales/' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]].to_json,
-        modelText: YAML.load_file('config/locales/models.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['models']['greenhouse_gases']['tonnes'].to_json
+        modelText: YAML.load_file('config/locales/models.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['models']['greenhouse_gases']['tonnes'].to_json,
+        projects: @projects.to_json
       %>
       <div class="callout" data-controller="lifestyle-footprints--calculator">
         <div class="flex justify-center space-x-3 m-lg:space-x-6 text-gray-shade-2">

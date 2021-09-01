@@ -1,9 +1,7 @@
-import React from 'react';
-import sanitizeHtml from 'sanitize-html';
-import AnswerButton from '../footprint_form/AnswerButton.jsx';
+import { default as React } from 'react';
+import Title from '../footprint_form/Title.jsx';
 import PriceText from './PriceText.jsx';
 import SignUpMotivationText from './SignUpMotivationText.jsx';
-import SignUpTitle from './SignUpTitle.jsx';
 
 /**
  * React container for Sign up components
@@ -16,47 +14,30 @@ const SignUpContainer = ( props ) => {
     //A/B-test för titeln givet props.sign_up_heading_test_number
 
     return (
-        <div className="relative pb-1">
-            <div className="space-y-6">
-                <div className="callout max-w-md mx-auto">
-                    <a id="sign-up" className="absolute -mt-32"></a>
+        <div className="max-w-lg mx-auto">
+            <div className="space-y-3">
+                <Title
+                    text={props.signUpText.sign_up_heading_test_2}
+                />
+                <SignUpMotivationText
+                    signUpMotivationText={props.signUpText.sign_up_description}                            
+                /> 
+                <div className="toggler-checked:hidden">
                     <div className="space-y-3">
-                        <SignUpTitle
-                            signUpTitleText={props.registrationsText.sign_up_heading_test_2}
-                        />
-                        <SignUpMotivationText
-                            signUpMotivationText={props.registrationsText.sign_up_description}                            
-                        />
-                        <input type="checkbox" id="step-one-done" className="toggler"/>
-                        <div className="toggler-checked:hidden">
-                            <div className="space-y-3">
-                                {props.children}
-                            </div>
-                        </div>
-                        <PriceText
-                            priceObject={props.price}
-                            currency={props.currency}
-                            months={props.commonStrings.months}
-                            signUpText={props.registrationsText}
-                            grantedReferralCode={props.grantedReferralCode}
-                            selectedMembership={props.selectedMembership}
-                            multipleOffsets={props.multipleOffsets}
-                        />
-                        <AnswerButton
-                            label={props.isPayment ? props.registrationsText.start_subscription : props.registrationsText.continue_to_payment}
-                            stylingClasses = {"button-cta" + " w-full"}
-                            onAnswerGiven = {props.onContinueToPayment}
-                        /> 
-                        { props.isPayment &&
-                        <div className={"inject-link pt-4"}
-                            dangerouslySetInnerHTML={{__html: sanitizeHtml(props.registrationsText.accept_policies)}}>
-                        </div>
-                        }
+                        {props.children}
                     </div>
                 </div>
+                <PriceText
+                    priceObject={props.price}
+                    currency={props.currency}
+                    months={props.months}
+                    signUpText={props.signUpText}
+                    grantedReferralCode={props.grantedReferralCode}
+                    selectedMembership={props.selectedMembership}
+                    multipleOffsets={props.multipleOffsets}
+                />
             </div>
         </div>
-
     )
 }
 

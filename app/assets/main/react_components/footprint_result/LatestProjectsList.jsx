@@ -5,7 +5,7 @@ import React from 'react'
  */
 const LatestProjectsList = ({ latestProjectsText, projects }) => {
     return (
-        <div className="m-lg:w-1/2 space-y-3">
+        <div className="space-y-3">
             <h3 className="font-semibold">{latestProjectsText}</h3>
             <ul className="space-y-3">
                 {
