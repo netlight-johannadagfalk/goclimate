@@ -23,12 +23,18 @@
    bg-opacity-20;
 } */
 
+.category_unknown {
+}
+
 /* Normal state */
-.category_other,
-.category_transport,
+.category_all_categories,
+.category_flights,
 .category_politics,
 .category_food,
-.category_all_categories {
+.category_public_emissions,
+.category_car,
+.category_shopping,
+.category_other {
   @apply bg-transparent;
 }
 
@@ -36,7 +42,15 @@
 .category_all_categories:hover,
 .category_all_categories_active,
 .category_all_categories_active:hover {
-  @apply bg-green-accent;
+  @apply bg-green-accent
+  text-white;
+}
+
+/* Flights */
+.category_flights:hover,
+.category_flights_active,
+.category_flights_active:hover {
+  @apply bg-blue-accent;
 }
 
 /* Food */
@@ -46,23 +60,30 @@
   @apply bg-yellow-accent;
 }
 
-/* Politics */
-.category_politics:hover,
-.category_politics_active,
-.category_politics_active:hover {
-  @apply bg-pink-accent;
+/* Public_emissions */
+.category_public_emissions:hover,
+.category_public_emissions_active,
+.category_public_emissions_active:hover {
+  @apply bg-gray-accent;
 }
 
-/* Transport */
-.category_transport:hover,
-.category_transport_active,
-.category_transport_active:hover {
+/* Car */
+.category_car:hover,
+.category_car_active,
+.category_car_active:hover {
   @apply bg-orange-accent;
+}
+
+/* Shopping */
+.category_shopping:hover,
+.category_shopping_active,
+.category_shopping_active:hover {
+  @apply bg-pink-accent;
 }
 
 /* Other */
 .category_other:hover,
 .category_other_active,
 .category_other_active:hover {
-  @apply bg-blue-accent;
+  @apply bg-blue-dark;
 }
