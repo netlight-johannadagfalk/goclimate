@@ -63,16 +63,19 @@ const CarouselActionItem = ({
   };
   return (
     <div className="flex flex-1 min-h-full ">
-      <div className="pt-20 flex m-lg:pt-24 flex justify-evenly">
+      <div className="pt-20 flex m-lg:pt-24 flex-1 justify-evenly">
         <div
           className={`${action.action_of_the_month && "border-8"}            
                ${categoryColor} border-gray-tint-2 rounded-lg shadow-lg p-2 ml-2 mr-2 flex flex-col flex-1`}
         >
-          <img
-            className="mx-auto -mt-20 rounded-full object-cover"
-            src="https://www.goclimate.com/blog/wp-content/uploads/2020/07/DJI_0974-768x512.jpg"
-          />
-          <div className="flex flex-col text-center">
+          <div>
+            <img
+              //className="mx-auto -mt-20 rounded-full object-cover"
+              className="mx-auto rounded-full  -mt-1/2"
+              src="/climateActionsEx/Vegetarian.png"
+            />
+          </div>
+          <div className="flex flex-col flex-1 text-center">
             <div className="flex-1">
               <h4 className="text-base font-bold justify-center">
                 {action.name.length > 25
@@ -94,9 +97,14 @@ const CarouselActionItem = ({
                 return (
                   <span
                     className={`flex flex-row ${
-                      index <= action.points ? "bg-black" : "bg-gray-pastel"
-                    } m-2 rounded-full h-4 w-4 flex items-center justify-center`}
+                      index > action.points && "bg-gray-pastel"
+                    } m-2 rounded-full h-4 w-4 flex items-center justify-center bg-cover`}
                     key={action.name + index}
+                    style={
+                      index <= action.points
+                        ? { backgroundImage: "url('/earth.png')" }
+                        : {}
+                    }
                   ></span>
                 );
               })}
@@ -113,7 +121,7 @@ const CarouselActionItem = ({
                 </button>
               ) : (
                 <button
-                  className="button button-cta inline-block "
+                  className="button inline-block "
                   onClick={() => handleClickAccepted(action)}
                 >
                   Accept challenge
