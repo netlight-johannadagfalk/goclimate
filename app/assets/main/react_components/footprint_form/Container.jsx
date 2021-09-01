@@ -15,7 +15,6 @@ const Container = ({ footprint, calculator, slug, lang, registrationsText, commo
   
   return (
     <div className="space-y-6"> 
-      <script src="https://js.stripe.com/v3/"></script>
       <div className="callout">
         <FootprintForm 
           URL={slug ? '/' + slug + '/calculator' : '/calculator'}
