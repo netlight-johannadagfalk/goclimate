@@ -36,13 +36,6 @@ class LifestyleFootprintsController < ApplicationController
     number_of_people = params[:membership] == 'multi' && params[:people].present? ? params[:people].to_i : 1
     @plan = Subscriptions::Plan.for_footprint(@footprint_tonnes * number_of_people, current_region.currency)
     
-    p "FPFPFPFPFP TONNES"
-    p @footprint_tonnes
-    p "NUM PPL"
-    p number_of_people
-    p "PLAAAAAAAAAN"
-    p @plan
-    p "DAPWDMAWIDJIAWDJIOAW"
     # IF RESULT IN FORM
     render json: {footprint: @footprint, country_average: @country_average, plan: @plan}
     
