@@ -14,6 +14,8 @@ class LifestyleFootprintsController < ApplicationController
 
     render_not_found && return unless @calculator.present?
 
+    @projects = Project.order(id: :desc).limit(3)
+
     @footprint = LifestyleFootprint.new(lifestyle_calculator: @calculator, country: params[:country])
   end
 

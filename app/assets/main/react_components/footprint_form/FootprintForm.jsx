@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import ProgressBar from './ProgressBar.jsx';
 import ResultPage from './ResultPage.jsx';
 import QuestionPage from './QuestionPage.jsx';
@@ -10,7 +10,7 @@ import { numericalKeys, resultKeys, resultObjects } from './footprint-data.js';
  * in the form as well as show the current question on the form-page, one at the time. 
  * It also has the responsibility to store the answeres filled in by the user by changing the footprint object.
  */
-const FootprintForm = ({ calculator, questionStrings, options, footprint, URL, texts, lang, currency }) => {
+const FootprintForm = ({ calculator, questionStrings, options, footprint, URL, texts, lang, currency, onChangeInformationSection }) => {
   //key value pairs where the key is each question in order and the value is the corresponding category
   const questionCategories = {"region": "home", "home": "home", "home_area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane", "result-page-1": "chart-bar", "result-page-2": "chart-bar"};
   const questionObjects = useMemo(() => constructObjects(calculator, options, questionStrings, questionCategories, texts), []);
@@ -18,6 +18,10 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, URL, t
   const [result, setResult] = useState();
   const [currentObject, setCurrentObject] = useState(questionObjects[0]);
   const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    onChangeInformationSection(currentIndex > questionObjects.length + 1 ? true : false)
+  }, [currentIndex])
 
   function isQuestionUsed(questionKey){
     const calculatorKeyForOptions = questionKey.concat("_options")
