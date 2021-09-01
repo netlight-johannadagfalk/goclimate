@@ -195,20 +195,14 @@ const KanbanActionContainer = ({ collapsed, categoryColor }) => {
     }
   };
   return (
-    <div className="flex flex-col justify-center h-full">
+    <div className="flex flex-col justify-center top-0 h-screen">
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
         {Object.entries(columns).map(([columnId, column]) => {
           return (
             <div key={columnId}>
-              <div
-                className="flex flex-col"
-                style={{
-                  alignItems: "center",
-                }}
-                key={columnId}
-              >
+              <div className="flex flex-col top-0" key={columnId}>
                 <div className="text-center pt-8" style={{ margin: 2 }}>
                   <p
                     className={`font-normal text-base text-primary text-lg top-0 text-center`}

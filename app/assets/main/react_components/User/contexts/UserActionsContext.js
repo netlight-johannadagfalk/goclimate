@@ -57,12 +57,12 @@ export const UserActionsProvider = ({ children, allUserActions }) => {
     return {
       [1]: {
         id: "Accepted",
-        name: "Your accepted actions:",
+        name: "My Actions",
         items: acceptedList,
       },
       [2]: {
         id: "Performed",
-        name: "Your performed actions:",
+        name: "Achievements",
         items: doneList,
       },
     };
