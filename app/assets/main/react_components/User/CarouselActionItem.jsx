@@ -27,6 +27,7 @@ const CarouselActionItem = ({
       climate_action_id: action.id,
       status: userAction.status,
       user_id: userAction.user_id,
+      image_url: action.image_url,
     };
     const tempList = [...userActions, temp];
     setUserActions(tempList);

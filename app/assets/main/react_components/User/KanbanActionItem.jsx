@@ -47,7 +47,7 @@ const KanbanActionItem = ({
                 <img
                   src={
                     item.status === false
-                      ? "https://www.goclimate.com/blog/wp-content/uploads/2020/07/DJI_0974-768x512.jpg"
+                      ? item.image_url
                       : "https://www.goclimate.com/bundles/images/climate_tips/diet_meat-2x-7655d2c5801c3203a42ed27da6e83f6c.jpg"
                   }
                   className="h-14 w-14 rounded-full mt-4"
@@ -62,7 +62,7 @@ const KanbanActionItem = ({
                 <img
                   src={
                     item.status === false
-                      ? "https://www.goclimate.com/blog/wp-content/uploads/2020/07/DJI_0974-768x512.jpg"
+                      ? item.image_url
                       : "https://www.goclimate.com/bundles/images/climate_tips/diet_meat-2x-7655d2c5801c3203a42ed27da6e83f6c.jpg"
                   }
                   className="h-14 w-14 rounded-full mt-4"
