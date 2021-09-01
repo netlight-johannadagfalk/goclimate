@@ -9,6 +9,7 @@ import {
   useUserActionsColumnsUpdate,
   useUserActionsColumnsWithFormatUpdate,
   useCategoryBadgesUpdate,
+  useCategoryBadgesUpdateOnDrag,
 } from "./contexts/UserActionsContext.js";
 
 const KanbanActionContainer = ({
@@ -23,6 +24,7 @@ const KanbanActionContainer = ({
   const setColumns = useUserActionsColumnsUpdate();
   const setColumnsWithFormat = useUserActionsColumnsWithFormatUpdate();
   const setDeletedAction = useDeletedActionUpdate();
+  const setCategoryBadgesOnDrag = useCategoryBadgesUpdateOnDrag();
 
   const setCategoryBadges = useCategoryBadgesUpdate();
 
@@ -85,11 +87,11 @@ const KanbanActionContainer = ({
       const destIndex = destItems.length;
       const [removed] = sourceItems.splice(sourceIndex, 1);
       destItems.splice(destIndex, 0, removed);
-      setUserActions([...sourceItems, ...destItems]);
+      //setUserActions([...sourceItems, ...destItems]);
       const newDestItems = destItems.map((item) =>
         item.status === false ? { ...item, status: !item.status } : item
       );
-      setUserActions([...sourceItems, ...newDestItems]);
+      //setUserActions([...sourceItems, ...newDestItems]);
       setColumns({
         ...columns,
         [1]: {
@@ -103,6 +105,7 @@ const KanbanActionContainer = ({
       });
       updateStatus(theItem.id, true);
     } else {
+      /** Button for unperform */
       const sourceColumn = columns[2];
       const destColumn = columns[1];
       const sourceItems = [...sourceColumn.items];
@@ -110,17 +113,35 @@ const KanbanActionContainer = ({
       //const sourceIndex = sourceItems.indexOf(theItem);
       const destIndex = destItems.length;
       // const [removed] = sourceItems.splice(sourceIndex, 1);
+      theItem.id = theItem.id.toString();
       destItems.splice(destIndex, 0, theItem);
-      setUserActions([...sourceItems, ...destItems]);
+      theItem.status = false;
+      const newSourceItems = sourceItems.map((category) => {
+        return {
+          ...category,
+          itemsArray: category.itemsArray.map((item) => {
+            return item.id == theItem.id || item.id == theItem.climate_action_id
+              ? { ...item, status: false }
+              : item;
+          }),
+        };
+      });
+      console.log({ newSourceItems });
+      const checkDelete = newSourceItems.filter((category) => {
+        return category.itemsArray.some((item) => item.status === true);
+      });
+      console.log({ checkDelete });
+      //setUserActions([...sourceItems, ...destItems]);
       const newDestItems = destItems.map((item) =>
         item.status === true ? { ...item, status: !item.status } : item
       );
-      setUserActions([...sourceItems, ...newDestItems]);
+      setCategoryBadges([...checkDelete]);
+      //setUserActions([...sourceItems, ...newDestItems]);
       setColumns({
         ...columns,
         [2]: {
           ...sourceColumn,
-          items: sourceItems,
+          items: checkDelete,
         },
         [1]: {
           ...destColumn,
@@ -131,76 +152,76 @@ const KanbanActionContainer = ({
     }
   };
 
-  const filterCategoriesWithoutStatus = (filter, condition) => {
-    return JSON.parse(filter).filter(
-      (filterUserAction) =>
-        filterUserAction.climate_action_category_id === condition
-    );
-  };
+  // const filterCategoriesWithoutStatus = (filter, condition) => {
+  //   return JSON.parse(filter).filter(
+  //     (filterUserAction) =>
+  //       filterUserAction.climate_action_category_id === condition
+  //   );
+  // };
 
-  const filterCategories = (filter, condition, status) => {
-    return JSON.parse(filter).filter(
-      (filterUserAction) =>
-        filterUserAction.climate_action_category_id === condition &&
-        filterUserAction.status === status
-    );
-  };
+  // const filterCategories = (filter, condition, status) => {
+  //   return JSON.parse(filter).filter(
+  //     (filterUserAction) =>
+  //       filterUserAction.climate_action_category_id === condition &&
+  //       filterUserAction.status === status
+  //   );
+  // };
 
-  const findCategory = (performedColumn, item) => {
-    return performedColumn.find(
-      (performedItem) => item.climate_action_category_id === performedItem.id
-    );
-  };
+  // const findCategory = (performedColumn, item) => {
+  //   return performedColumn.find(
+  //     (performedItem) => item.climate_action_category_id === performedItem.id
+  //   );
+  // };
 
-  const setNewPerformedActions = (item, performedColumn) => {
-    const category = findCategory(performedColumn, item);
-    if (category !== undefined) {
-      const updatedItemsArray = category.itemsArray.map((action) =>
-        action.id == item.id || action.id == item.climate_action_id
-          ? { ...action, status: true }
-          : action
-      );
+  // const setNewPerformedActions = (item, performedColumn) => {
+  //   const category = findCategory(performedColumn, item);
+  //   if (category !== undefined) {
+  //     const updatedItemsArray = category.itemsArray.map((action) =>
+  //       action.id == item.id || action.id == item.climate_action_id
+  //         ? { ...action, status: true }
+  //         : action
+  //     );
 
-      const resultArray = performedColumn.map((performedCategory) => {
-        return performedCategory.id === category.id
-          ? { ...performedCategory, itemsArray: updatedItemsArray }
-          : performedCategory;
-      });
-      return resultArray;
-    } else {
-      const newCategory = JSON.parse(climateActionCategories).find(
-        (cat) => cat.id === item.climate_action_category_id
-      );
-      const secondMatching = filterCategoriesWithoutStatus(
-        actionsWithoutUserActions,
-        newCategory.id
-      );
-      const thirdMatching = filterCategories(
-        userActions,
-        newCategory.id,
-        false
-      );
+  //     const resultArray = performedColumn.map((performedCategory) => {
+  //       return performedCategory.id === category.id
+  //         ? { ...performedCategory, itemsArray: updatedItemsArray }
+  //         : performedCategory;
+  //     });
+  //     return resultArray;
+  //   } else {
+  //     const newCategory = JSON.parse(climateActionCategories).find(
+  //       (cat) => cat.id === item.climate_action_category_id
+  //     );
+  //     const secondMatching = filterCategoriesWithoutStatus(
+  //       actionsWithoutUserActions,
+  //       newCategory.id
+  //     );
+  //     const thirdMatching = filterCategories(
+  //       userActions,
+  //       newCategory.id,
+  //       false
+  //     );
 
-      const result = {
-        ...newCategory,
-        itemsArray: [...secondMatching, ...thirdMatching],
-      };
+  //     const result = {
+  //       ...newCategory,
+  //       itemsArray: [...secondMatching, ...thirdMatching],
+  //     };
 
-      const updatedItemsArray = result.itemsArray.map((action) => {
-        return action.id == item.id || action.id == item.climate_action_id
-          ? { ...action, status: true }
-          : action;
-      });
+  //     const updatedItemsArray = result.itemsArray.map((action) => {
+  //       return action.id == item.id || action.id == item.climate_action_id
+  //         ? { ...action, status: true }
+  //         : action;
+  //     });
 
-      const updatedResult = {
-        ...newCategory,
-        itemsArray: updatedItemsArray,
-      };
+  //     const updatedResult = {
+  //       ...newCategory,
+  //       itemsArray: updatedItemsArray,
+  //     };
 
-      const resultArray = [...performedColumn, updatedResult];
-      return resultArray;
-    }
-  };
+  //     const resultArray = [...performedColumn, updatedResult];
+  //     return resultArray;
+  //   }
+  // };
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -212,8 +233,8 @@ const KanbanActionContainer = ({
       const [removed] = sourceItems.splice(source.index, 1);
       updateStatus(removed.id, true);
 
-      const destItems = setNewPerformedActions(removed, columns[2].items);
-      setUserActions([...sourceItems, ...destItems]);
+      const destItems = setCategoryBadgesOnDrag(removed, columns[2].items);
+      setUserActions([...sourceItems]);
       //setTotUserActions([...sourceItems]);
 
       setCategoryBadges([...destItems]);

@@ -4,11 +4,14 @@ import React, { useState, useContext } from "react";
 export const UserActionsContext = React.createContext();
 export const UserActionsUpdateContext = React.createContext();
 export const CategoryBadgesUpdateContext = React.createContext();
+export const CategoryBadgesContext = React.createContext();
 export const UserActionsColumnsContext = React.createContext();
 export const UserActionsColumnsUpdateContext = React.createContext();
 export const UserActionsColumnsWithFormatUpdateContext = React.createContext();
 export const UserActionsColumnsWithFullFormatUpdeateContext =
   React.createContext();
+
+export const CategoryBadgesUpdateOnDragContext = React.createContext();
 
 //***  Functions that endables access to the context and updating the context in the components ***/
 export const useUserActions = () => {
@@ -22,6 +25,15 @@ export const useUserActionsUpdate = () => {
 export const useCategoryBadgesUpdate = () => {
   return useContext(CategoryBadgesUpdateContext);
 };
+
+export const useCategoryBadges = () => {
+  return useContext(CategoryBadgesContext);
+};
+
+export const useCategoryBadgesUpdateOnDrag = () => {
+  return useContext(CategoryBadgesUpdateOnDragContext);
+};
+
 export const useUserActionsColumns = () => {
   return useContext(UserActionsColumnsContext);
 };
@@ -77,10 +89,6 @@ export const UserActionsProvider = ({
     };
   };
 
-  const [categoryBadges, setCategoryBadges] = useState(
-    getCorrectCategoriesWithPerformedActions
-  );
-
   const updateCategoryBadges = (badge) => {
     setCategoryBadges(badge);
   };
@@ -95,7 +103,7 @@ export const UserActionsProvider = ({
   const updateColumnsWithFormat = (updatedList, performedList) => {
     setColumns(columnUserActions(updatedList, performedList));
   };
-  const updateColumnsWithFullFormat = (col) => {
+  const updateColumnsWithFullFormat = (col, categoryBadges) => {
     setColumns(columnUserActions(acceptedUserActions(col), categoryBadges));
   };
 
@@ -113,6 +121,12 @@ export const UserActionsProvider = ({
     return JSON.parse(filter).filter(
       (filterUserAction) =>
         filterUserAction.climate_action_category_id === condition
+    );
+  };
+
+  const findCategory = (performedColumn, item) => {
+    return performedColumn.find(
+      (performedItem) => item.climate_action_category_id == performedItem.id
     );
   };
 
@@ -147,6 +161,80 @@ export const UserActionsProvider = ({
       };
     });
 
+  console.log({ getCorrectCategoriesWithPerformedActions });
+
+  const updateCategoryBadgesOnDrag = (item, performedColumn) => {
+    const category = findCategory(performedColumn, item);
+    console.log({ category });
+    /** If category bagde is already created in the perform column */
+    if (category !== undefined) {
+      const updatedItemsArray = category.itemsArray.map((action) =>
+        action.id == item.id || action.id == item.climate_action_id
+          ? { ...action, status: true }
+          : action
+      );
+
+      const resultArray = performedColumn.map((performedCategory) => {
+        return performedCategory.id === category.id
+          ? { ...performedCategory, itemsArray: updatedItemsArray }
+          : performedCategory;
+      });
+      return resultArray;
+    } else {
+      /** Creates a new category badge */
+      console.log({ item });
+      const newCategory = JSON.parse(climateActionCategories).find(
+        (cat) => cat.id === item.climate_action_category_id
+      );
+      console.log("NOUSERACTIONS: ", JSON.parse(actionsWithoutUserActions));
+      const secondMatching = filterCategoriesWithoutStatus(
+        actionsWithoutUserActions,
+        newCategory.id
+      );
+      console.log({ userActions });
+      const thirdMatching = filterCategories(
+        formatedUserActions(userActions),
+        newCategory.id,
+        false
+      );
+
+      const result = {
+        ...newCategory,
+        itemsArray: [...secondMatching, ...thirdMatching],
+      };
+      console.log({ secondMatching });
+      console.log({ thirdMatching });
+      const updatedItemsArray = result.itemsArray.map((action) => {
+        return action.id == item.id || action.id == item.climate_action_id
+          ? { ...action, status: true }
+          : action;
+      });
+
+      const updatedResult = {
+        ...newCategory,
+        itemsArray: updatedItemsArray,
+        id: newCategory.id.toString(),
+      };
+
+      const resultArray = [...performedColumn, updatedResult];
+      resultArray.map((category) => {
+        return {
+          ...category,
+          itemsArray: [
+            ...new Map(
+              category.itemsArray.map((item) => [item[key], item])
+            ).values(),
+          ],
+        };
+      });
+      console.log({ resultArray });
+      return resultArray;
+    }
+  };
+
+  const [categoryBadges, setCategoryBadges] = useState(
+    getCorrectCategoriesWithPerformedActions
+  );
   const [columns, setColumns] = useState(
     columnUserActions(
       acceptedUserActions(userActions),
@@ -175,11 +263,17 @@ export const UserActionsProvider = ({
               <UserActionsColumnsWithFullFormatUpdeateContext.Provider
                 value={updateColumnsWithFullFormat}
               >
-                <CategoryBadgesUpdateContext.Provider
-                  value={updateCategoryBadges}
+                <CategoryBadgesUpdateOnDragContext.Provider
+                  value={updateCategoryBadgesOnDrag}
                 >
-                  {children}
-                </CategoryBadgesUpdateContext.Provider>
+                  <CategoryBadgesUpdateContext.Provider
+                    value={updateCategoryBadges}
+                  >
+                    <CategoryBadgesContext.Provider value={categoryBadges}>
+                      {children}
+                    </CategoryBadgesContext.Provider>
+                  </CategoryBadgesUpdateContext.Provider>
+                </CategoryBadgesUpdateOnDragContext.Provider>
               </UserActionsColumnsWithFullFormatUpdeateContext.Provider>
             </UserActionsColumnsWithFormatUpdateContext.Provider>
           </UserActionsColumnsUpdateContext.Provider>

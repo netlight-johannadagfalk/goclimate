@@ -4,6 +4,7 @@ import {
   useUserActions,
   useUserActionsUpdate,
   useUserActionsColumnsWithFullFormatUpdate,
+  useCategoryBadges,
 } from "./contexts/UserActionsContext.js";
 
 const CarouselActionItem = ({
@@ -17,6 +18,7 @@ const CarouselActionItem = ({
   const setUserActions = useUserActionsUpdate();
   const setDeletedAction = useDeletedActionUpdate();
   const setColumnsWithFullFormat = useUserActionsColumnsWithFullFormatUpdate();
+  const categoryBadges = useCategoryBadges();
 
   const acceptAction = (action, userAction) => {
     setDeletedAction(null);
@@ -27,10 +29,12 @@ const CarouselActionItem = ({
       climate_action_id: action.id,
       status: userAction.status,
       user_id: userAction.user_id,
+      climate_action_category_id: action.climate_action_category_id,
     };
     const tempList = [...userActions, temp];
     setUserActions(tempList);
-    setColumnsWithFullFormat(tempList);
+    console.log({ categoryBadges });
+    setColumnsWithFullFormat(tempList, categoryBadges);
   };
 
   //FUNCTION WHERE USER ACCEPT AN ACTION IN DB -> MOVES TO ACCEPTED
