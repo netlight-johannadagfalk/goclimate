@@ -29,8 +29,11 @@ class LifestyleFootprintsController < ApplicationController
     end
 
     @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
+    
+    # IF RESULT IN FORM
     render json: {footprint: @footprint, country_average: @country_average}
-    # to redirect to result page, use below instead of 31 and 32
+    
+    # IF RESULT ON RESULT PAGE
     # redirect_to new_registration_path(:user, lifestyle_footprint: @footprint, campaign: params[:campaign].presence)
   end
 

@@ -1,16 +1,16 @@
 import React from 'react'
-import ResultTitle from '../footprint_result/ResultTitle.jsx'
+import Title from './Title.jsx'
 import YourFootprintText from '../footprint_result/YourFootprintText.jsx'
 import WorldComparisonChart from '../footprint_result/WorldComparisonChart.jsx'
 
 /**
  * Result component page for world comparison
  */
-const WorldResultPage = ({ footprint, countryAverage, texts, lang }) => {
+const WorldPage = ({ footprint, countryAverage, texts, lang }) => {
     return (
-        <div>
-            <ResultTitle
-                title={texts.registrationsText.well_done}
+        <>
+            <Title 
+                text={texts.registrationsText.well_done}
             />
             <YourFootprintText
                 footprintText={{
@@ -25,8 +25,8 @@ const WorldResultPage = ({ footprint, countryAverage, texts, lang }) => {
                 worldComparisonText={{...texts.registrationsText, ...texts.commonText, ...texts.modelText}}
                 lang={lang}
             />
-        </div>
+        </>
     )
 }
 
-export default WorldResultPage
+export default WorldPage
