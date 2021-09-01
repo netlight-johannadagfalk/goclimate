@@ -8,7 +8,7 @@ import WorldComparisonChart from '../footprint_result/WorldComparisonChart.jsx'
  */
 const WorldPage = ({ footprint, countryAverage, texts, lang }) => {
     return (
-        <>
+        <div className="max-w-lg mx-auto">
             <Title 
                 text={texts.registrationsText.well_done}
             />
@@ -25,7 +25,7 @@ const WorldPage = ({ footprint, countryAverage, texts, lang }) => {
                 worldComparisonText={{...texts.registrationsText, ...texts.commonText, ...texts.modelText}}
                 lang={lang}
             />
-        </>
+        </div>
     )
 }
 

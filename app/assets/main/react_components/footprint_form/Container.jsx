@@ -2,7 +2,7 @@ import React from 'react';
 import FootprintForm from './FootprintForm.jsx';
 import Link from '../Link.jsx';
 
-const Container = ({ footprint, calculator, slug, lang, registrationsText, commonText, modelText, lifestyleFootprintsText }) => {
+const Container = ({ footprint, calculator, slug, lang, registrationsText, commonText, modelText, lifestyleFootprintsText, currency }) => {
   const texts = {
     registrationsText: JSON.parse(registrationsText),
     commonText: JSON.parse(commonText),
@@ -21,6 +21,7 @@ const Container = ({ footprint, calculator, slug, lang, registrationsText, commo
           calculator={JSON.parse(calculator)}
           texts={texts}
           lang={lang}
+          currency={JSON.parse(currency)}
         />
       </div>
       <Link 

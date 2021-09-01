@@ -7,7 +7,7 @@ import CategoryChart from '../footprint_result/CategoryChart.jsx'
  */
 const CategoryPage = ({ text, footprint }) => {
     return (
-        <div>
+        <div className="max-w-lg mx-auto">
             <Title 
                 text={text.dashboard.footprint.heading_more}
             />

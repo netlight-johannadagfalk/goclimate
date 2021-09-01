@@ -8,6 +8,7 @@
       <%= react_component 'Container', 
         lang: I18n.locale[0..-1], 
         slug: current_region.slug, 
+        currency: YAML.load_file('config/locales/models.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['models'].to_json,
         lifestyleFootprintsText: YAML.load_file('config/locales/views/lifestyle_footprints.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['lifestyle_footprints'].to_json,
         footprint: @footprint.to_json, 
         calculator: @calculator.to_json,
