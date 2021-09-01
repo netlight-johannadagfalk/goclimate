@@ -8,16 +8,16 @@ const OptionList = ({ onAnswerGiven, options, selectedKey }) => {
   return (
       <>
         {
-        Object.entries(options).map(([key, value]) => {
-          return (
-            <div key={key} className="my-3 flex-1">
-              <AnswerButton 
-                label={value} 
-                onAnswerGiven={() => onAnswerGiven(key)} 
-                stylingClasses={(selectedKey == key && "button-cta") + " w-full"}
-              />
-            </div>
-          )
+          options.map(([key, value]) => {
+            return (
+              <div key={key} className="my-3 flex-1">
+                <AnswerButton 
+                  label={value} 
+                  onAnswerGiven={() => onAnswerGiven(key)} 
+                  stylingClasses={(selectedKey == key && "button-cta") + " w-full"}
+                />
+              </div>
+            )
         })}
       </>
   )
