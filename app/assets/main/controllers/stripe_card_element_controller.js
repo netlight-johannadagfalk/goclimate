@@ -2,7 +2,6 @@ import { Controller } from 'stimulus';
 
 export default class StripeCardElementController extends Controller {
   initialize() {
-    console.log("initialize")
     this.complete = false;
     this.stripeElements = window.stripe.elements({ locale: window.locale });
     this.cardElement = this.stripeElements.create(
@@ -14,7 +13,6 @@ export default class StripeCardElementController extends Controller {
   }
 
   cardElementChange(event) {
-    console.log("cardElementChange")
     this.complete = event.complete;
 
     this.invalidatePaymentMethodField();
@@ -27,14 +25,12 @@ export default class StripeCardElementController extends Controller {
   }
 
   invalidatePaymentMethodField() {
-    console.log("invalidatePaymentMethodField")
     if (this.hasPaymentMethodFieldTarget) {
       this.paymentMethodFieldTarget.value = '';
     }
   }
 
   populatePaymentMethodField() {
-    console.log("populatePaymentMethodField")
     return new Promise((resolve, reject) => {
       if (this.paymentMethodFieldTarget.value !== '') {
         resolve();

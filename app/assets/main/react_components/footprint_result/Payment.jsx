@@ -1,9 +1,5 @@
-import React from 'react';
-import AnswerButton from '../footprint_form/AnswerButton.jsx';
-import SignUpMotivationText from './SignUpMotivationText.jsx';
-import SignUpTitle from './SignUpTitle.jsx';
-import PriceText from './PriceText.jsx';
 import { CardElement } from '@stripe/react-stripe-js';
+import React from 'react';
 
 
 /**

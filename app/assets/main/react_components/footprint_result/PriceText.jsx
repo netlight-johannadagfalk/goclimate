@@ -1,5 +1,5 @@
-import React from 'react'
-import Link from '../Link.jsx'
+import React from 'react';
+import Link from '../Link.jsx';
 
 /**
  * Price text that adapts to region, selected membership type and referral code

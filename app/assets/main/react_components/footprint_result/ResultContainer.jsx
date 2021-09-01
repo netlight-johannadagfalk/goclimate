@@ -1,17 +1,17 @@
-import React, {useState, useEffect} from 'react';
-import SignUpContainer from './SignUpContainer.jsx';
-import ResultTitle from './ResultTitle.jsx';
-import CategoryChart from './CategoryChart.jsx';
-import WorldComparisonChart from './WorldComparisonChart.jsx';
-import MembershipSelector from './MembershipSelector.jsx';
-import Payment from './Payment.jsx';
-import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import React, { useState } from 'react';
 import Link from '../Link.jsx';
-import YourFootprintText from './YourFootprintText.jsx';
-import MoneyUsageList from './MoneyUsageList.jsx';
+import CategoryChart from './CategoryChart.jsx';
 import FAQ from './FAQ.jsx';
 import LatestProjectsList from './LatestProjectsList.jsx';
+import MembershipSelector from './MembershipSelector.jsx';
+import MoneyUsageList from './MoneyUsageList.jsx';
+import Payment from './Payment.jsx';
+import ResultTitle from './ResultTitle.jsx';
+import SignUpContainer from './SignUpContainer.jsx';
+import WorldComparisonChart from './WorldComparisonChart.jsx';
+import YourFootprintText from './YourFootprintText.jsx';
 
 /**
  * React container for Result page components

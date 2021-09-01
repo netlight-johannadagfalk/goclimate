@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
+import sanitizeHtml from 'sanitize-html';
 import AnswerButton from '../footprint_form/AnswerButton.jsx';
+import PriceText from './PriceText.jsx';
 import SignUpMotivationText from './SignUpMotivationText.jsx';
 import SignUpTitle from './SignUpTitle.jsx';
-import PriceText from './PriceText.jsx';
-import sanitizeHtml from 'sanitize-html';
 
 /**
  * React container for Sign up components
