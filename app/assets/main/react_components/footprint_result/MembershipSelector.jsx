@@ -16,7 +16,7 @@ const MembershipSelector = ({ signUpText, grantedReferralCode, setGrantedReferra
         console.log("false")
         // What happens when clicking continue to payment button
     }
-    
+
     return (
         <>
             <MembershipTypeSelector
