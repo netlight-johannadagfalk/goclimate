@@ -7,10 +7,10 @@ const Container = ({ footprint, calculator, slug, lang, registrationsText, commo
   const [showInformationSection, setShowInformationSection] = useState(false)
 
   const texts = {
-      registrationsText: JSON.parse(registrationsText),
-      commonText: JSON.parse(commonText),
-      modelText: JSON.parse(modelText),
-      lifestyleFootprintsText: JSON.parse(lifestyleFootprintsText)
+    registrationsText: JSON.parse(registrationsText),
+    commonText: JSON.parse(commonText),
+    modelText: JSON.parse(modelText),
+    lifestyleFootprintsText: JSON.parse(lifestyleFootprintsText)
   }
 
   return (
