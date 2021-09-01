@@ -66,7 +66,7 @@ const CarouselCategoryButton = ({
           className={` ${
             "category_" + categoryName.toLowerCase().replace(/ /g, "_")
           }
-          rounded-full py-1 px-4 border-primary button inline-block m-1 hover:text-white focus:outline-none `}
+          rounded-full py-1 px-4 border-primary button inline-block m-1 hover:text-white focus:outline-none hover:bg-opacity-80`}
           onClick={() => handleCategory(categoryID)}
         >
           {" "}

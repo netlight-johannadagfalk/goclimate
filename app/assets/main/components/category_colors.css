@@ -23,80 +23,46 @@
    bg-opacity-20;
 } */
 
-.category_other
-  .category_transport
-  .category_politics
-  .category_food
-  .category_all_categories {
+/* Normal state */
+.category_other,
+.category_transport,
+.category_politics,
+.category_food,
+.category_all_categories {
   @apply bg-transparent;
 }
 
 /* All categories */
-.category_all_categories:hover {
-  @apply bg-green-accent
-   bg-opacity-80;
-}
-
-.category_all_categories_active {
-  @apply bg-green-accent;
-}
-
+.category_all_categories:hover,
+.category_all_categories_active,
 .category_all_categories_active:hover {
   @apply bg-green-accent;
 }
 
 /* Food */
-.category_food:hover {
-  @apply bg-yellow-accent
-   bg-opacity-80;
-}
-
-.category_food_active {
-  @apply bg-yellow-accent;
-}
-
+.category_food:hover,
+.category_food_active,
 .category_food_active:hover {
   @apply bg-yellow-accent;
 }
 
 /* Politics */
-.category_politics:hover {
-  @apply bg-pink-accent
-   bg-opacity-80;
-}
-
-.category_politics_active {
-  @apply bg-pink-accent;
-}
-
+.category_politics:hover,
+.category_politics_active,
 .category_politics_active:hover {
   @apply bg-pink-accent;
 }
 
 /* Transport */
-.category_transport:hover {
-  @apply bg-orange-accent
-   bg-opacity-80;
-}
-
-.category_transport_active {
-  @apply bg-orange-accent;
-}
-
+.category_transport:hover,
+.category_transport_active,
 .category_transport_active:hover {
   @apply bg-orange-accent;
 }
 
 /* Other */
-.category_other:hover {
-  @apply bg-blue-accent
-   bg-opacity-80;
-}
-
-.category_other_active {
-  @apply bg-blue-accent;
-}
-
+.category_other:hover,
+.category_other_active,
 .category_other_active:hover {
   @apply bg-blue-accent;
 }
