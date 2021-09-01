@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import AnswerButton from '../footprint_form/AnswerButton.jsx';
      
 /**
@@ -9,6 +9,14 @@ const ReferralCode = ({ text, grantedReferralCode, setGrantedReferralCode }) => 
 
     const [invalidCodeMessage, setInvalidCodeMessage] = useState("");
     const [inputCode, setInputCode] = useState("");
+
+    const mounted = useRef(false);
+    useEffect(() => {
+      mounted.current = true;
+      return () => {
+        mounted.current = false;
+      }
+    }, [])
 
     /**
      * Function that sends a POST request to the server on referral code submit
