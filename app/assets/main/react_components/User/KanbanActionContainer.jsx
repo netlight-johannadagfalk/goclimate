@@ -79,6 +79,7 @@ const KanbanActionContainer = ({
 
   const handlePerformance = (theItem, perform) => {
     if (perform) {
+      // Button for performing actions
       const sourceColumn = columns[1];
       const destColumn = columns[2];
       const sourceItems = [...sourceColumn.items];
@@ -133,7 +134,7 @@ const KanbanActionContainer = ({
       console.log({ checkDelete });
       //setUserActions([...sourceItems, ...destItems]);
       const newDestItems = destItems.map((item) =>
-        item.status === true ? { ...item, status: !item.status } : item
+        item.status === true ? { ...item, status: false } : item
       );
       setCategoryBadges([...checkDelete]);
       //setUserActions([...sourceItems, ...newDestItems]);

@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { uniqWith } from "lodash";
 
 //*** A context is used to share data that can be considered as "global" for the react tree ***/
 export const UserActionsContext = React.createContext();
@@ -161,11 +162,8 @@ export const UserActionsProvider = ({
       };
     });
 
-  console.log({ getCorrectCategoriesWithPerformedActions });
-
   const updateCategoryBadgesOnDrag = (item, performedColumn) => {
     const category = findCategory(performedColumn, item);
-    console.log({ category });
     /** If category bagde is already created in the perform column */
     if (category !== undefined) {
       const updatedItemsArray = category.itemsArray.map((action) =>
@@ -182,16 +180,13 @@ export const UserActionsProvider = ({
       return resultArray;
     } else {
       /** Creates a new category badge */
-      console.log({ item });
       const newCategory = JSON.parse(climateActionCategories).find(
         (cat) => cat.id === item.climate_action_category_id
       );
-      console.log("NOUSERACTIONS: ", JSON.parse(actionsWithoutUserActions));
       const secondMatching = filterCategoriesWithoutStatus(
         actionsWithoutUserActions,
         newCategory.id
       );
-      console.log({ userActions });
       const thirdMatching = filterCategories(
         formatedUserActions(userActions),
         newCategory.id,
@@ -202,8 +197,6 @@ export const UserActionsProvider = ({
         ...newCategory,
         itemsArray: [...secondMatching, ...thirdMatching],
       };
-      console.log({ secondMatching });
-      console.log({ thirdMatching });
       const updatedItemsArray = result.itemsArray.map((action) => {
         return action.id == item.id || action.id == item.climate_action_id
           ? { ...action, status: true }
@@ -217,18 +210,25 @@ export const UserActionsProvider = ({
       };
 
       const resultArray = [...performedColumn, updatedResult];
-      resultArray.map((category) => {
+
+      const filterDuplicates = (arrVal, othVal) => {
+        console.log({ arrVal, item });
+        if (arrVal.id !== item.id) {
+          return arrVal.id === item.climate_action_id;
+        } else {
+          return arrVal.name === othVal.name;
+        }
+      };
+
+      const newResultArray = resultArray.map((category) => {
         return {
           ...category,
-          itemsArray: [
-            ...new Map(
-              category.itemsArray.map((item) => [item[key], item])
-            ).values(),
-          ],
+          itemsArray: uniqWith(category.itemsArray, filterDuplicates),
         };
       });
-      console.log({ resultArray });
-      return resultArray;
+      console.log({ newResultArray });
+
+      return newResultArray;
     }
   };
 
