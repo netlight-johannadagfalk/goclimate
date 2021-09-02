@@ -21,14 +21,15 @@ const KanbanActionColumn = ({
         {(provided, snapshot) => {
           return (
             <div
+              // className="h-1/2"
               {...provided.droppableProps}
               ref={provided.innerRef}
               style={{
                 background: snapshot.isDraggingOver ? "lightgrey" : "white",
                 padding: 4,
                 width: 410,
-                minHeight: 300,
-                maxHeight: 400,
+                // minHeight: 300,
+                maxHeight: 500,
                 overflowY: "scroll",
                 overflowX: "hidden",
               }}

@@ -204,7 +204,7 @@ const KanbanActionContainer = ({ collapsed, categoryColor }) => {
             // <div key={columnId}>
             // <div key={columnId}>
             <div
-              className="text-center pt-8"
+              className="text-center pt-8 h-1/2"
               style={{ margin: 2 }}
               key={columnId}
             >
