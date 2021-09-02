@@ -64,17 +64,12 @@ const CarouselActionItem = ({
   return (
     <div className="flex flex-1 min-h-full ">
       <div className="pt-20 flex m-lg:pt-24 flex-1 justify-evenly">
-        <div
-          className={`${action.action_of_the_month && "border-8"}            
-               ${categoryColor} border-gray-tint-2 rounded-lg shadow-lg p-2 ml-2 mr-2 flex flex-col flex-1`}
-        >
-          <div>
-            <img
-              //className="mx-auto -mt-20 rounded-full object-cover"
-              className="mx-auto rounded-full  -mt-1/2"
-              src="/climateActionsEx/Vegetarian.png"
-            />
-          </div>
+        <div className=" border-gray-tint-2 rounded-lg shadow-lg pb-2 ml-2 mr-2 flex flex-col flex-1">
+          <div className={`${categoryColor} h-10 w-full`}></div>
+          <div
+            className={`mx-auto -mt-1/2 rounded-full h-40 w-40 items-center justify-center bg-cover`}
+            style={{ backgroundImage: "url('/climateActionsEx/Globe.png')" }}
+          ></div>
           <div className="flex flex-col flex-1 text-center">
             <div className="flex-1">
               <h4 className="text-base font-bold justify-center">
@@ -96,13 +91,14 @@ const CarouselActionItem = ({
               {[1, 2, 3, 4, 5].map((index) => {
                 return (
                   <span
-                    className={`flex flex-row ${
-                      index > action.points && "bg-gray-pastel"
-                    } m-2 rounded-full h-4 w-4 flex items-center justify-center bg-cover`}
+                    className={`flex flex-row bg-gray-shade-2 m-2 rounded-full h-4 w-4 items-center justify-center bg-cover`}
                     key={action.name + index}
                     style={
                       index <= action.points
-                        ? { backgroundImage: "url('/earth.png')" }
+                        ? {
+                            backgroundImage:
+                              "url('/climateActionsEx/Globe.png')",
+                          }
                         : {}
                     }
                   ></span>
@@ -124,7 +120,7 @@ const CarouselActionItem = ({
                   className="button inline-block "
                   onClick={() => handleClickAccepted(action)}
                 >
-                  Accept challenge
+                  Accept
                 </button>
               )}
             </div>
