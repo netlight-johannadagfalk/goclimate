@@ -52,14 +52,21 @@ const CarouselCategoryButton = ({
     <>
       {active ? (
         <button
-          className={`${""} button inline-block focus:outline-none bg-primary text-white m-1`}
+          className={`${
+            "category_" +
+            categoryName.toLowerCase().replace(/ /g, "_") +
+            "_active"
+          } category_unknown_active rounded-full py-1 px-4 button inline-block focus:outline-none text-white m-1`}
         >
           {" "}
           {categoryName}{" "}
         </button>
       ) : (
         <button
-          className="button inline-block m-1 focus:outline-none"
+          className={` ${
+            "category_" + categoryName.toLowerCase().replace(/ /g, "_")
+          }
+          category_unknown rounded-full py-1 px-4 button inline-block m-1 hover:text-white focus:outline-none hover:bg-opacity-80`}
           onClick={() => handleCategory(categoryID)}
         >
           {" "}
