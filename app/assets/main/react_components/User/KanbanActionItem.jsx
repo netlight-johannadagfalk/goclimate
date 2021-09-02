@@ -43,15 +43,15 @@ const KanbanActionItem = ({
           >
             {collapsed ? (
               <div className="flex items-center justify-between">
-                {/* image that should be loaded from items.imgage and when status is changed, the image changes to category.image (badge) */}
-                <img
-                  src={
-                    item.status === false
-                      ? "https://www.goclimate.com/blog/wp-content/uploads/2020/07/DJI_0974-768x512.jpg"
-                      : "https://www.goclimate.com/bundles/images/climate_tips/diet_meat-2x-7655d2c5801c3203a42ed27da6e83f6c.jpg"
-                  }
-                  className="h-14 w-14 rounded-full mt-4"
-                ></img>
+                <div
+                  className={`mt-4 rounded-full h-14 w-14 bg-cover`}
+                  style={{
+                    backgroundImage:
+                      item.status === false
+                        ? `url('${item.image_url}')`
+                        : "url('/achievementsImg/AchievementClimateFriend.png')",
+                  }}
+                ></div>
               </div>
             ) : (
               <div
@@ -59,14 +59,15 @@ const KanbanActionItem = ({
                 onClick={() => setExpanded(!expanded)}
               >
                 {/* image that should be loaded from items.imgage and when status is changed, the image changes to category.image (badge) */}
-                <img
-                  src={
-                    item.status === false
-                      ? "https://www.goclimate.com/blog/wp-content/uploads/2020/07/DJI_0974-768x512.jpg"
-                      : "https://www.goclimate.com/bundles/images/climate_tips/diet_meat-2x-7655d2c5801c3203a42ed27da6e83f6c.jpg"
-                  }
-                  className="h-14 w-14 rounded-full mt-4"
-                ></img>
+                <div
+                  className={`mt-4 rounded-full h-14 w-14 bg-cover`}
+                  style={{
+                    backgroundImage:
+                      item.status === false
+                        ? `url('${item.image_url}')`
+                        : "url('/achievementsImg/AchievementClimateFriend.png')",
+                  }}
+                ></div>
 
                 <div className="font-bold">{item.name}</div>
 
