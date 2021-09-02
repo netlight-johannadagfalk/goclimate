@@ -1,28 +1,68 @@
-.category_housing {
-  @apply bg-green-accent
-    bg-opacity-20;
+/* Unknown Category */
+.category_unknown:hover,
+.category_unknown_active,
+.category_unknown_active:hover {
+  @apply bg-primary;
 }
 
-.category_food {
-  @apply bg-yellow-accent
-   bg-opacity-20;
+/* Normal state */
+.category_all_categories,
+.category_flights,
+.category_politics,
+.category_food,
+.category_public_emissions,
+.category_car,
+.category_shopping,
+.category_other,
+.category_unknown {
+  @apply bg-transparent;
 }
 
-.category_car {
-  @apply bg-orange-accent
-   bg-opacity-20;
+/* All categories */
+.category_all_categories:hover,
+.category_all_categories_active,
+.category_all_categories_active:hover {
+  @apply bg-green-accent;
 }
 
-.category_flights {
-  @apply bg-blue-accent
-   bg-opacity-20;
+/* Flights */
+.category_flights:hover,
+.category_flights_active,
+.category_flights_active:hover {
+  @apply bg-blue-accent;
 }
 
-.category_shopping {
-  @apply bg-pink-accent
-   bg-opacity-20;
+/* Food */
+.category_food:hover,
+.category_food_active,
+.category_food_active:hover {
+  @apply bg-yellow-accent;
 }
-.category_public_emissions {
-  @apply bg-gray-accent
-   bg-opacity-20;
+
+/* Public_emissions */
+.category_public_emissions:hover,
+.category_public_emissions_active,
+.category_public_emissions_active:hover {
+  @apply bg-gray-accent;
+}
+
+/* Car */
+.category_car:hover,
+.category_car_active,
+.category_car_active:hover {
+  @apply bg-orange-accent;
+}
+
+/* Shopping */
+.category_shopping:hover,
+.category_shopping_active,
+.category_shopping_active:hover {
+  @apply bg-pink-accent;
+}
+
+/* Other */
+.category_other:hover,
+.category_other_active,
+.category_other_active:hover {
+  @apply bg-blue-dark;
 }
