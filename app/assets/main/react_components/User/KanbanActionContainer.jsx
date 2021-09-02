@@ -195,33 +195,37 @@ const KanbanActionContainer = ({ collapsed, categoryColor }) => {
     }
   };
   return (
-    <div className="flex flex-col justify-center top-0 h-screen">
+    <div className="h-screen">
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
         {Object.entries(columns).map(([columnId, column]) => {
           return (
-            <div key={columnId}>
-              <div className="flex flex-col top-0" key={columnId}>
-                <div className="text-center pt-8" style={{ margin: 2 }}>
-                  <p
-                    className={`font-normal text-base text-primary text-lg top-0 text-center`}
-                  >
-                    {!collapsed && column.name}
-                  </p>
+            // <div key={columnId}>
+            // <div key={columnId}>
+            <div
+              className="text-center pt-8"
+              style={{ margin: 2 }}
+              key={columnId}
+            >
+              <p
+                className={`font-normal text-base text-primary text-lgtext-center`}
+              >
+                {!collapsed && column.name}
+              </p>
 
-                  <KanbanActionColumn
-                    column={column}
-                    columnId={columnId}
-                    key={columnId}
-                    handleDelete={handleDelete}
-                    handlePerformance={handlePerformance}
-                    categoryColor={categoryColor}
-                    collapsed={collapsed}
-                  />
-                </div>
-              </div>
+              <KanbanActionColumn
+                column={column}
+                columnId={columnId}
+                key={columnId}
+                handleDelete={handleDelete}
+                handlePerformance={handlePerformance}
+                categoryColor={categoryColor}
+                collapsed={collapsed}
+              />
             </div>
+            // </div>
+            // </div>
           );
         })}
       </DragDropContext>

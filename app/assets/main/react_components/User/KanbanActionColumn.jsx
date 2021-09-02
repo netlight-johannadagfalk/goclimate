@@ -26,8 +26,11 @@ const KanbanActionColumn = ({
               style={{
                 background: snapshot.isDraggingOver ? "lightgrey" : "white",
                 padding: 4,
-                width: "auto",
-                minHeight: 500,
+                width: 410,
+                minHeight: 300,
+                maxHeight: 400,
+                overflowY: "scroll",
+                overflowX: "hidden",
               }}
             >
               {column.items.map((item, index) => {
