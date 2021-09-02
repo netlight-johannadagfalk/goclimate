@@ -106,8 +106,8 @@ const KanbanActionItem = ({
                   </div>
                 ) : (
                   <div>
-                    {item.itemsArray &&
-                      item.itemsArray.map((subitem) => {
+                    {item.userActionsArray &&
+                      item.userActionsArray.map((subitem) => {
                         return (
                           <div key={subitem.id}>
                             {subitem.status === true ? (
@@ -125,6 +125,14 @@ const KanbanActionItem = ({
                                 Unperformed{" <"}
                               </button>
                             )}
+                          </div>
+                        );
+                      })}
+                    {item.actionsArray &&
+                      item.actionsArray.map((subitem) => {
+                        return (
+                          <div key={subitem.id}>
+                            <div className="">{subitem.name}</div>
                           </div>
                         );
                       })}

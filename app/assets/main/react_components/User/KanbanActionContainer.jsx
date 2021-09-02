@@ -10,6 +10,7 @@ import {
   useUserActionsColumnsWithFormatUpdate,
   useCategoryBadgesUpdate,
   useCategoryBadgesUpdateOnDrag,
+  useActionsWithoutUserActionsUpdate,
 } from "./contexts/UserActionsContext.js";
 
 const KanbanActionContainer = ({
@@ -27,11 +28,13 @@ const KanbanActionContainer = ({
   const setCategoryBadgesOnDrag = useCategoryBadgesUpdateOnDrag();
 
   const setCategoryBadges = useCategoryBadgesUpdate();
+  const setActionsWithoutUserActions = useActionsWithoutUserActionsUpdate();
 
   const handleLocalAccepted = (updatedList, performed, deletedAction) => {
-    setUserActions([...updatedList, ...performed]);
+    setUserActions([...updatedList]);
     setColumnsWithFormat(updatedList, performed);
     setDeletedAction(deletedAction);
+    setActionsWithoutUserActions([...deletedAction]);
   };
 
   const handleDelete = (id, actionID) => {
@@ -79,32 +82,61 @@ const KanbanActionContainer = ({
 
   const handlePerformance = (theItem, perform) => {
     if (perform) {
+      /** THIS NEEDS TO BE IMPLEMENTED */
       // Button for performing actions
+      // const sourceColumn = columns[1];
+      // const destColumn = columns[2];
+      // const sourceItems = [...sourceColumn.items];
+      // const destItems = [...destColumn.items];
+      // const sourceIndex = sourceItems.indexOf(theItem);
+      // const destIndex = destItems.length;
+      // const [removed] = sourceItems.splice(sourceIndex, 1);
+      // destItems.splice(destIndex, 0, removed);
+      // //setUserActions([...sourceItems, ...destItems]);
+      // const newDestItems = destItems.map((item) =>
+      //   item.status === false ? { ...item, status: !item.status } : item
+      // );
+      // //setUserActions([...sourceItems, ...newDestItems]);
+      // setColumns({
+      //   ...columns,
+      //   [1]: {
+      //     ...sourceColumn,
+      //     items: sourceItems,
+      //   },
+      //   [2]: {
+      //     ...destColumn,
+      //     items: newDestItems,
+      //   },
+      // });
+      // updateStatus(theItem.id, true);
       const sourceColumn = columns[1];
       const destColumn = columns[2];
       const sourceItems = [...sourceColumn.items];
-      const destItems = [...destColumn.items];
-      const sourceIndex = sourceItems.indexOf(theItem);
-      const destIndex = destItems.length;
-      const [removed] = sourceItems.splice(sourceIndex, 1);
-      destItems.splice(destIndex, 0, removed);
-      //setUserActions([...sourceItems, ...destItems]);
-      const newDestItems = destItems.map((item) =>
-        item.status === false ? { ...item, status: !item.status } : item
+      const destIndex = [...destColumn.items].length;
+      const [removed] = sourceItems.splice(destIndex, 1);
+      updateStatus(theItem.id, true);
+      theItem.status = true;
+
+      const destItems = setCategoryBadgesOnDrag(theItem, columns[2].items);
+      const newSourceItems = sourceItems.filter(
+        (item) => item.status === false
       );
-      //setUserActions([...sourceItems, ...newDestItems]);
+      setUserActions([...sourceItems]);
+      //setTotUserActions([...sourceItems]);
+
+      setCategoryBadges([...destItems]);
+
       setColumns({
         ...columns,
         [1]: {
           ...sourceColumn,
-          items: sourceItems,
+          items: newSourceItems,
         },
         [2]: {
           ...destColumn,
-          items: newDestItems,
+          items: destItems,
         },
       });
-      updateStatus(theItem.id, true);
     } else {
       /** Button for unperform */
       const sourceColumn = columns[2];
@@ -120,24 +152,21 @@ const KanbanActionContainer = ({
       const newSourceItems = sourceItems.map((category) => {
         return {
           ...category,
-          itemsArray: category.itemsArray.map((item) => {
-            return item.id == theItem.id || item.id == theItem.climate_action_id
-              ? { ...item, status: false }
-              : item;
+          userActionsArray: category.userActionsArray.map((item) => {
+            return item.id == theItem.id ? { ...item, status: false } : item;
           }),
         };
       });
       console.log({ newSourceItems });
       const checkDelete = newSourceItems.filter((category) => {
-        return category.itemsArray.some((item) => item.status === true);
+        return category.userActionsArray.some((item) => item.status === true);
       });
       console.log({ checkDelete });
       //setUserActions([...sourceItems, ...destItems]);
-      const newDestItems = destItems.map((item) =>
-        item.status === true ? { ...item, status: false } : item
-      );
+      //const newDestItems = [...destItems, theItem];
+      console.log({ destItems });
       setCategoryBadges([...checkDelete]);
-      //setUserActions([...sourceItems, ...newDestItems]);
+      setUserActions([...destItems]);
       setColumns({
         ...columns,
         [2]: {
@@ -146,7 +175,7 @@ const KanbanActionContainer = ({
         },
         [1]: {
           ...destColumn,
-          items: newDestItems,
+          items: destItems,
         },
       });
       updateStatus(theItem.id, false);

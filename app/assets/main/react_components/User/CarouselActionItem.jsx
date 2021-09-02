@@ -31,9 +31,10 @@ const CarouselActionItem = ({
       user_id: userAction.user_id,
       climate_action_category_id: action.climate_action_category_id,
     };
+    console.log({ userActions });
     const tempList = [...userActions, temp];
     setUserActions(tempList);
-    console.log({ categoryBadges });
+    console.log({ tempList });
     setColumnsWithFullFormat(tempList, categoryBadges);
   };
 
