@@ -1,34 +1,30 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useEffect, useState } from 'react';
 import AnswerButton from './AnswerButton.jsx';
 
-const OptionNumerical = ({ onAnswerGiven, isCarOption, savedValue, onNumericalInput }) => {
+/** 
+ * Component for numerical input in the form, is either flight or car distance, given by the isCarOption bool
+ * SavedValue is what is to be shown as the label ongoback
+*/
+const OptionNumerical = ({ questionObject, onAnswerGiven, savedValue, onNumericalInput }) => {
+
   const [value, setValue] = useState(savedValue);
-  
+
   useEffect(() => {
     setValue(savedValue)
-  }, [savedValue])
+    document.getElementsByClassName("input")[0].focus();
+  }, [questionObject])
 
   function onKeyPress(e){
-    if (e.key === 'Enter') {
-      setValue("");
-      onNumericalInput("");
+    if (e.key === 'Enter') 
       onAnswerGiven(value.replace(/,/g, '.').replace(/[.]\s*$/, ""));
-    }
   }
 
   function onChange(e){
-    /* Checks if input is valid compared to set requirements  */
+    /* Checks if input is valid compared to set requirements */
     if(e.target.validity.valid){
       setValue(e.target.value);
       onNumericalInput(e.target.value);
     }
-  }
-
-  function onAnswer(){
-    setValue("");
-    document.getElementsByClassName("input")[0].focus();
-    /* .replace() makes sure that only . and not , is used, and trailing commas are removed */
-    onAnswerGiven(value.replace(/,/g, '.').replace(/[.]\s*$/, ""));
   }
 
   return (
@@ -39,12 +35,12 @@ const OptionNumerical = ({ onAnswerGiven, isCarOption, savedValue, onNumericalIn
           onKeyPress = {(e) => onKeyPress(e)} 
           onChange={(e) => onChange(e)}
         />
-        {isCarOption && <span className="ml-3">km</span>}
+        {questionObject.isCarOption && <span className="ml-3">km</span>}
       </label>
       <AnswerButton 
-        label="Next"
-        onAnswerGiven={onAnswer}
-        disableOnClick={!isCarOption}
+        label={questionObject.text}
+        onAnswerGiven={() => onAnswerGiven(value.replace(/,/g, '.').replace(/[.]\s*$/, ""))}
+        disableOnClick={!questionObject.isCarOption}
         stylingClasses={"m-lg:w-2/3"}
       />
     </div>

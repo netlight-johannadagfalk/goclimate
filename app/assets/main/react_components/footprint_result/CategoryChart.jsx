@@ -9,7 +9,7 @@ const CategoryChart = ({ footprint, categoryChartText }) => {
     const maxValue = Math.max(footprint.housing.co2e, footprint.food.co2e, footprint.car.co2e, footprint.flights.co2e, footprint.public.co2e, footprint.consumption.co2e)
     const categoryData = getChartData(footprint, categoryChartText)
     return (
-        <>
+        <div className="space-y-3">
             {categoryData.map((category) => {
                 return (
                     <ResultBar
@@ -19,11 +19,12 @@ const CategoryChart = ({ footprint, categoryChartText }) => {
                         value={((category.co2e / 1000).toFixed(1) > 0 ? (category.co2e / 1000).toFixed(1) : 0) + " " + categoryChartText["tonnes"]}
                         color={category.color}
                         fontWeight={"text-sm"}
-                        spaceStyling={"space-y-1 m-lg:space-y-2"}
+                        spaceStyling={"space-y-1"}
+                        spanWidth={"w-24"}
                     />
                 )
             })}
-        </>
+        </div>
     )
 }
 

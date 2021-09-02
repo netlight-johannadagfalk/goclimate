@@ -178,4 +178,25 @@ RSpec.describe User do
       expect(user.three_months_since_last_card_charge?).to eq(false)
     end
   end
+
+  describe '#active_subscription?' do
+    context 'when stripe customer has been deleted' do
+      subject(:user) { build(:user, stripe_customer_id: deleted_stripe_customer&.id) }
+
+      let(:deleted_stripe_customer) do
+        Stripe::Customer.construct_from(stripe_json_fixture('customer_deleted.json'))
+      end
+
+      before do
+        allow(Stripe::Customer)
+          .to receive(:retrieve)
+          .with(id: user.stripe_customer_id, expand: %w[subscriptions sources])
+          .and_return(deleted_stripe_customer)
+      end
+
+      it 'returns false' do
+        expect(user.active_subscription?).to eq(false)
+      end
+    end
+  end
 end

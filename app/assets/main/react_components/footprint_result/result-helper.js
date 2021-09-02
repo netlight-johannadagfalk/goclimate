@@ -1,3 +1,6 @@
+/**
+ * Helper file containing the information needed to render the result bars for each category without bloating categorychart
+ */
 export default function getChartData(footprint, categoryChartText){
     return [
         {

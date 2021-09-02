@@ -14,6 +14,8 @@ class LifestyleFootprintsController < ApplicationController
 
     render_not_found && return unless @calculator.present?
 
+    @projects = Project.order(id: :desc).limit(3)
+
     @footprint = LifestyleFootprint.new(lifestyle_calculator: @calculator, country: params[:country])
   end
 
@@ -28,7 +30,17 @@ class LifestyleFootprintsController < ApplicationController
       return
     end
 
-    redirect_to new_registration_path(:user, lifestyle_footprint: @footprint, campaign: params[:campaign].presence)
+    @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
+
+    @footprint_tonnes = @footprint&.total
+    number_of_people = params[:membership] == 'multi' && params[:people].present? ? params[:people].to_i : 1
+    @plan = Subscriptions::Plan.for_footprint(@footprint_tonnes * number_of_people, current_region.currency)
+    
+    # IF RESULT IN FORM
+    render json: {footprint: @footprint, country_average: @country_average, plan: @plan}
+    
+    # IF RESULT ON RESULT PAGE
+    # redirect_to new_registration_path(:user, lifestyle_footprint: @footprint, campaign: params[:campaign].presence)
   end
 
   def show

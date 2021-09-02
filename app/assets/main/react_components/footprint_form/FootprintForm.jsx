@@ -1,106 +1,67 @@
-import React, { useState } from 'react';
-import OptionList from './OptionList.jsx';
-import Title from './Title.jsx';
-import OptionNumerical from './OptionNumerical.jsx';
+import React, { useState, useEffect, useMemo } from 'react';
 import ProgressBar from './ProgressBar.jsx';
+import ResultPage from './ResultPage.jsx';
+import QuestionPage from './QuestionPage.jsx';
+import constructObjects from './constructObjects.js';
+import { numericalKeys, resultKeys, resultObjects } from './footprint-data.js';
 
 /**
  * FootprintForm has the responsibility to handle the logic for showing the the questions and answers 
  * in the form as well as show the current question on the form-page, one at the time. 
- * It also has the responsibility to store the answeres filled in by the user by changing the footprint object.
+ * It also has the responsibility to store the answers filled in by the user by changing the footprint object.
  */
-const FootprintForm = ({ calculator, questionStrings, options, footprint, route }) => {
-
+const FootprintForm = ({ calculator, questionStrings, options, footprint, URL, texts, lang, currency, onChangeInformationSection }) => {
   //key value pairs where the key is each question in order and the value is the corresponding category
-  const questionCategories = {"region": "home", "home": "home", "home_area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane"};
-  const questionKeys = Object.keys(questionCategories)
-  const numericalKeys = ["car_distance", "flight_hours"]
-  const firstQuestionKey = questionKeys.find((question) => calculator[question.concat("_options")]);
-  const firstQuestionIndex = questionKeys.indexOf((firstQuestionKey));
-  const [currentQuestionString, setcurrentQuestionString] = useState(questionStrings[firstQuestionKey]);
-  const [currentOptions, setCurrentOptions] = useState(getOptions(firstQuestionKey));
-  let questionIndex = questionKeys.indexOf(Object.keys(questionStrings).find((key) => questionStrings[key] == currentQuestionString));
-  const [category, setCategory] = useState("home")
+  const questionCategories = {"region": "home", "home": "home", "home_area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane", "result-page-1": "chart-bar", "result-page-2": "chart-bar"};
+  const questionObjects = useMemo(() => constructObjects(calculator, options, questionStrings, questionCategories, texts), []);
+  
+  const [result, setResult] = useState();
+  const [currentObject, setCurrentObject] = useState(questionObjects[0]);
+  const [currentIndex, setCurrentIndex] = useState(0)
 
+  useEffect(() => {
+    onChangeInformationSection(currentIndex > questionObjects.length + 1 ? true : false)
+  }, [currentIndex])
 
   function isQuestionUsed(questionKey){
     const calculatorKeyForOptions = questionKey.concat("_options")
-    return !(calculator[calculatorKeyForOptions] == null)
+    return calculator[calculatorKeyForOptions] != null
   }
 
   /**
    * Takes the questions from questionCategories and removes questions not used for the specified country
    */
-  function removeIrrelevantQuestions(){
-      for (const question in questionCategories){
-        if(!isQuestionUsed(question) && !numericalKeys.includes(question)){
+  function getUsedQuestions(){
+    for (const question in questionCategories){
+        if(!isQuestionUsed(question) && !numericalKeys.includes(question) && !resultKeys.includes(question)){
           delete questionCategories[question]
         }
       }   
+    return questionCategories
   }
 
-  /** 
-   * Is to find if a question option key exists in calculator. 
-   * If found, it is valid and should be used for the specific question, based on the calculator specifications
-   */
-  function isOptionUsed(questionKey, optionKey){
-    const calculatorKeyForOptions = questionKey.concat("_options")
-    return Object.values(calculator[calculatorKeyForOptions]).find((calculatorOptionKey) => {
-      return calculatorOptionKey.key === optionKey;
-    });
-  }
-  
-  /** 
-   * Filters out what options that should be used for the specific question, based on the calculator specifications
-   * Returns a [key, value] pair list with all options to use
-   */
-  function getOptions(questionKey){
-    removeIrrelevantQuestions()
-    if(numericalKeys.includes(questionKey)){
-      if(questionKey === "car_distance"){
-        return {
-          "isNumerical": true,
-          "isCarOption": true
-        };
-      }
-      return {
-        "isNumerical": true,
-        "isCarOption": false
-      }
-    }
-    else {
-      const optionsToUse = Object.entries(options[questionKey]).filter(([key]) => {
-        return isOptionUsed(questionKey, key);
-      });
-      return {
-        "options": optionsToUse,
-        "isNumerical": false
-      }
-    }
-  }
+  function getSessionStorage(key){
+    const item = sessionStorage.getItem(key)
+    return item ? JSON.parse(item) : {}
+  }    
 
-  /**
-   * Sets question text, options to show and the current category
-   */
-  function setQuestion(){
-    let key = questionKeys[questionIndex]
-    setcurrentQuestionString(questionStrings[key]);
-    setCurrentOptions(getOptions(key));
-    setCategory(questionCategories[key])
+  function areObjectsEqual(...objects){
+    return objects.every(obj => JSON.stringify(obj) === JSON.stringify(objects[0]));
   }
 
   /**
    * Cleans upp an object and remocves all entities where value is "null" or "undefined".
    * Used for cleaning up the footprint object.
    */
-  function removeNullAttributes(obj){
-    for (var propName in obj) {
-      if (obj[propName] === null || obj[propName] === undefined) {
-        delete obj[propName];
+  function cleanFootprint(basicFootprint){
+    for (var footprintField in basicFootprint) {
+      if (basicFootprint[footprintField] === null || basicFootprint[footprintField] === undefined) {
+        delete basicFootprint[footprintField];
       }
     }
-    return obj
-  }  
+    basicFootprint.country = basicFootprint.country.country_data_or_code;
+    return basicFootprint
+  } 
 
   /**
    * Submits the completed form and sends a post request to the server
@@ -108,72 +69,43 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, route 
    * After completed post request the user gets redirected to the result/sign-up page.
    */
   function submit(){
-    var cleanFootprint = removeNullAttributes(footprint)
-    cleanFootprint.country = cleanFootprint.country.country_data_or_code;
+    const answers = result ? footprint : cleanFootprint(footprint)
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    const URL = route;
     const requestOptions = {
         method: 'POST',
         credentials: 'include',
         headers: {
-          "X-CSRF-Token": csrfToken,
+          'X-CSRF-Token': csrfToken,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(cleanFootprint)
+        body: JSON.stringify(answers)
       };
-      fetch(URL, requestOptions)
-      .then(res => window.location.href = res.url)
-  }
-
-  /**
-   * Saves the answer given
-   * Does some checks and saves to the footprint object 
-   */
-  function saveAnswer(givenAnswer) {
-    if (questionKeys[questionIndex] === "car_distance"){
-      footprint[questionKeys[questionIndex].concat("_week_answer")] = givenAnswer
-    } else {
-      footprint[questionKeys[questionIndex].concat("_answer")] = givenAnswer
-    }
-  }
-
-  /**
-   * Sets the index for next question
-   * Increases with at least 1, but if next question is not to be used, the index increases again
-   */
-  function increaseIndex(){
-    if(questionKeys[questionIndex] == "flight_hours"){
-      questionIndex = -1;
-    }
-    else {
-      do{
-        questionIndex++;
-      } while(calculator[(questionKeys[questionIndex]).concat("_options")] !== undefined 
-        && !calculator[(questionKeys[questionIndex]).concat("_options")]);    
-      }
-  }
-  
-  /** 
-   * Called when changing to a previous question, decreases the index, if question is undefined decrease again
-   */
-  function decreaseIndex(){
-    if(questionIndex == 0){
-      questionIndex = 0;
-    }
-    else {
-      do{
-        questionIndex--;
-      } while(calculator[(questionKeys[questionIndex]).concat("_options")] !== undefined 
-      && !calculator[(questionKeys[questionIndex]).concat("_options")]);    
-    }
+    fetch(URL, requestOptions)
+      .then(response => {
+        /* IF RESULT IN FORM: */
+        response.json().then(calculatedFootprint => {
+          setResult(calculatedFootprint)
+          setCurrentObject(resultObjects[0])
+        })
+        /* IF RESULT ON RESULT PAGE: */
+        // window.location.href = response.url
+      })
+      .catch(error => {
+        console.log("Something went wrong, trying again.", error);
+      })
   }
 
   /**
    * Called on go back-button, loads the previous question by decreasing index and setting the question and options
    */
   function onGoBack(){
-    decreaseIndex()
-    setQuestion()
+    let newIndex = currentIndex - 1
+    if(newIndex < questionObjects.length
+      && questionObjects[newIndex].questionKey === "car_distance"
+      && footprint["car_type_answer"] === "no_car")
+      newIndex--
+    setCurrentObject(newIndex < questionObjects.length ? questionObjects[newIndex] : resultObjects[newIndex - questionObjects.length])
+    setCurrentIndex(newIndex)
   }
 
   /**
@@ -181,7 +113,7 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, route 
    * Returns actual value if back button has been used, meaning answer has been entered earlier
    */
   function getSavedValue(){
-    const questionKey = questionKeys[questionIndex];
+    const questionKey = currentObject.questionKey;
     if(questionKey === "car_distance"){
       if(footprint[questionKey.concat("_week_answer")])
         return footprint[questionKey.concat("_week_answer")]
@@ -196,54 +128,66 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, route 
    * Called when the answer to a question is given, saves the result and loads the next question
    */
   function onAnswerGiven(givenAnswer){
-    saveAnswer(givenAnswer);
-    increaseIndex();
-    if(questionIndex == -1){
-      submit();
+    footprint[currentObject.questionKey === "car_distance" ? currentObject.questionKey.concat("_week_answer") : currentObject.questionKey.concat("_answer")] = givenAnswer
+    let nextQuestionIndex = currentIndex + 1;
+    if(!questionObjects[nextQuestionIndex]){
+      if(!result || result && !areObjectsEqual(footprint, getSessionStorage('footprint'))){
+        submit()
+        sessionStorage.setItem('footprint', JSON.stringify(footprint))
+      } else {
+        setCurrentObject(resultObjects[0])
+      }
     } else {
-      if (questionKeys[questionIndex-1] === "car_type" && givenAnswer === "no_car" ){
-        saveAnswer("");
-        increaseIndex();
+      if (givenAnswer === "no_car"){
+        nextQuestionIndex++;
         delete questionCategories["car_distance"]      
       }
-      setQuestion();
+      setCurrentObject(questionObjects[nextQuestionIndex])
     }
+    setCurrentIndex(nextQuestionIndex)
   }
 
   return (
+<<<<<<< HEAD
     <>
         <div className="question py-8">
+=======
+    <> 
+        <div className="question py-8" data-target="lifestyle-footprints--calculator.question" data-category="home">
+>>>>>>> 59b9feefd9d93cfee0238beb48b356df5b589abc
           <ProgressBar 
-            questionCategories={questionCategories} 
-            calculator={calculator} 
-            activeCategory={category} 
-            activeQuestion={questionKeys[questionIndex]}/>
-          <Title text={currentQuestionString}/>
-          {
-            !currentOptions.isNumerical ? 
-              <OptionList 
-                onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} 
-                options={currentOptions.options}
-                selectedKey={footprint[questionKeys[questionIndex].concat("_answer")]} 
-              />
+            questionCategories={getUsedQuestions()} 
+            currentObject={currentObject}
+          />
+          {currentIndex < questionObjects.length ?
+            <QuestionPage
+              currentObject={currentObject}
+              onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)}
+              selectedKey={footprint[currentObject.questionKey.concat("_answer")]}
+              onNumericalInput={(givenAnswer) => footprint[currentObject.questionKey === "car_distance" ? currentObject.questionKey.concat("_week_answer") : currentObject.questionKey.concat("_answer")] = givenAnswer}
+              savedValue={getSavedValue()}
+            />
             :
-              <OptionNumerical 
-                onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)} 
-                isCarOption={currentOptions.isCarOption} 
-                onNumericalInput={saveAnswer}
-                savedValue={getSavedValue()} 
-              />
+            result && <ResultPage 
+              result={result} 
+              texts={texts}
+              lang={lang}
+              page={currentIndex - questionObjects.length}
+              onPageChange={() => {
+                setCurrentObject(resultObjects[currentIndex + 1 - questionObjects.length])
+                setCurrentIndex(currentIndex + 1)
+              }}
+              currency={currency}
+            />            
           }
         </div>
-        { questionIndex != firstQuestionIndex ? 
+        {currentIndex > 0 &&
           <div className="flex justify-space-between">
             <div className="block">
               <i className="fas fa-chevron-left cursor-pointer" aria-hidden="true"></i>     
               <label className="px-1 cursor-pointer" onClick={onGoBack}>Go back</label>
             </div>
           </div>
-          :
-          <div/>
         }
     </>
   )
