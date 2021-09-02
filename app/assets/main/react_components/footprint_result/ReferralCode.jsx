@@ -51,6 +51,11 @@ const ReferralCode = ({ text, grantedReferralCode, setGrantedReferralCode }) => 
         })
       }
 
+    function onKeyPress(e) {
+        if (e.key === 'Enter') 
+            submit();
+    }
+
     return (
         <div className="mt-3 collapse">
             <input type="checkbox" id="enter_referral_code"/>
@@ -69,7 +74,9 @@ const ReferralCode = ({ text, grantedReferralCode, setGrantedReferralCode }) => 
                     <div className="collapse-content mt-3">
                         <div className="flex">
                             <input size="auto" className="input w-full flex-grow mr-2" placeholder={text.referral_code} 
-                                type="text" name="code" id="code" onChange={e => setInputCode(e.target.value)}/> 
+                                type="text" name="code" id="code" onChange={e => setInputCode(e.target.value)}
+                                onKeyPress = {(e) => onKeyPress(e)} 
+                                /> 
                             <AnswerButton label={"OK"} onAnswerGiven={submit}/>
                         </div>
                         <p className="text-orange-shade-1 mt-1">{invalidCodeMessage}</p>
