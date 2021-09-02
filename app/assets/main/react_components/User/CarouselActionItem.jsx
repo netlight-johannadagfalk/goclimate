@@ -81,14 +81,15 @@ const CarouselActionItem = ({
               "category_" +
               categoryName().toLowerCase().replace(/ /g, "_") +
               "_active"
-            } h-7 w-full rounded-t border-t-gray-tint-2`}
+            } h-7 w-full rounded-t border-t-gray-tint-2 bg-opacity-60`}
           ></div>
           <div
-            className={`mx-auto -mt-1/2 rounded-full h-40 w-40 items-center justify-center bg-cover`}
+            className={`mx-auto bg-gray-tint-2 bg-opacity-10 shadow-md -mt-1/2 rounded-full h-40 w-40 items-center justify-center bg-cover filter drop-shadow-xl`}
             style={{
               backgroundImage: action.image_url
                 ? `url('${action.image_url}')`
                 : "url('/actionsImg/Globe.png')",
+              backgroundSize: "100%",
             }}
           ></div>
           <div className="flex flex-col flex-1 text-center mx-2">
