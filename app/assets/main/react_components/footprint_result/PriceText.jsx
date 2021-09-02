@@ -48,9 +48,14 @@ const PriceText = ({priceObject, currency, months, signUpText, grantedReferralCo
                         }
                     </span>
                 </p>
-                <div className="text-center">
-                    <Link linkText={signUpText.where_does_the_money_go.heading}/>
-                </div>
+                <Link 
+                    link={"information-scroll-placeholder"}
+                    linkText={signUpText.where_does_the_money_go.heading}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById("information-scroll-placeholder").scrollIntoView({ behavior: "smooth" })
+                    }}
+                />
             </div>
         }
         </>

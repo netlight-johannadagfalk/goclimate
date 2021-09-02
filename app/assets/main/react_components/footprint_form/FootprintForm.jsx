@@ -184,6 +184,7 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, URL, t
             </div>
           </div>
         }
+        <div id="information-scroll-placeholder"></div>
     </>
   )
 }
