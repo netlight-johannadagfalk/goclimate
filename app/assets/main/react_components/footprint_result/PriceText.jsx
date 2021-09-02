@@ -48,7 +48,7 @@ const PriceText = ({priceObject, currency, months, signUpText, grantedReferralCo
                         }
                     </span>
                 </p>
-                { !(selectedMembership === "free") &&
+                { selectedMembership !== "free" &&
                     <div className="text-center">
                         <Link linkText={signUpText.where_does_the_money_go.heading}/>
                     </div>
