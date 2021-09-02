@@ -9,7 +9,7 @@ import {
   useUserActionsColumnsWithFormatUpdate,
 } from "./contexts/UserActionsContext.js";
 
-const KanbanActionContainer = ({ collapsed, categoryColor }) => {
+const KanbanActionContainer = ({ collapsed, categoryColor, setCollapsed }) => {
   const setUserActions = useUserActionsUpdate();
   const columns = useUserActionsColumns();
   const setColumns = useUserActionsColumnsUpdate();
@@ -201,19 +201,18 @@ const KanbanActionContainer = ({ collapsed, categoryColor }) => {
       >
         {Object.entries(columns).map(([columnId, column]) => {
           return (
-            // <div key={columnId}>
-            // <div key={columnId}>
             <div
-              className="text-center pt-8 h-1/2 pb-24 -mb-8"
+              className="text-center h-1/2 pb-24 -mb-8"
               style={{ margin: 2 }}
               key={columnId}
             >
-              <p
-                className={`font-normal text-base text-primary text-lgtext-center`}
-              >
-                {!collapsed && column.name}
-              </p>
-
+              <div className="h-8">
+                <p
+                  className={`font-normal text-base text-primary text-lgtext-center`}
+                >
+                  {!collapsed && column.name}
+                </p>
+              </div>
               <KanbanActionColumn
                 column={column}
                 columnId={columnId}
@@ -221,11 +220,10 @@ const KanbanActionContainer = ({ collapsed, categoryColor }) => {
                 handleDelete={handleDelete}
                 handlePerformance={handlePerformance}
                 categoryColor={categoryColor}
+                setCollapsed={setCollapsed}
                 collapsed={collapsed}
               />
             </div>
-            // </div>
-            // </div>
           );
         })}
       </DragDropContext>

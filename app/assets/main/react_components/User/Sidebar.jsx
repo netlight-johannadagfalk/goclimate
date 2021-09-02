@@ -11,15 +11,11 @@ const Sidebar = () => {
           collapsed ? "w-28" : "w-auto"
         }`}
       >
-        <button
-          className={`fas rounded-full h-12 w-12 bg-white border border-gray-accent -ml-6 m-auto absolute bottom-1/2 focus:outline-none ${
-            collapsed ? "fa-chevron-left" : "fa-chevron-right"
-          }`}
-          onClick={() => setCollapsed(!collapsed)}
-        ></button>
-
         <div className={` ${collapsed ? "visible" : "visible"}`}>
-          <KanbanActionContainer collapsed={collapsed} />
+          <KanbanActionContainer
+            setCollapsed={setCollapsed}
+            collapsed={collapsed}
+          />
         </div>
       </div>
     </>

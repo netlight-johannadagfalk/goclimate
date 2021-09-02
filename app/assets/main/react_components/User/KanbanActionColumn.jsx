@@ -7,6 +7,7 @@ const KanbanActionColumn = ({
   columnId,
   handleDelete,
   handlePerformance,
+  setCollapsed,
   collapsed,
   categoryColor,
 }) => {
@@ -21,17 +22,15 @@ const KanbanActionColumn = ({
         {(provided, snapshot) => {
           return (
             <div
-              className="h-full"
+              className={`h-full overflow-x-hidden ${
+                collapsed ? "overflow-y-hidden" : "overflow-y-scroll"
+              }`}
               {...provided.droppableProps}
               ref={provided.innerRef}
               style={{
                 background: snapshot.isDraggingOver ? "lightgrey" : "white",
                 padding: 4,
                 width: 410,
-                // minHeight: 300,
-                // maxHeight: "full",
-                overflowY: "scroll",
-                overflowX: "hidden",
               }}
             >
               {column.items.map((item, index) => {
@@ -52,6 +51,21 @@ const KanbanActionColumn = ({
           );
         }}
       </Droppable>
+      {columnId === "1" && (
+        <div>
+          <hr
+            style={{
+              color: "lightgrey",
+            }}
+          ></hr>
+          <button
+            className={`fas rounded-full h-12 w-12 bg-white border border-gray-accent -left-6 -mt-6 absolute focus:outline-none ${
+              collapsed ? "fa-chevron-left" : "fa-chevron-right"
+            }`}
+            onClick={() => setCollapsed(!collapsed)}
+          ></button>
+        </div>
+      )}
     </div>
   );
 };
