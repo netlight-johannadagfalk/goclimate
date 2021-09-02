@@ -16,7 +16,6 @@ const KanbanActionItem = ({
     setExpanded(false);
   }, [collapsed]);
 
-  console.log(item);
   return (
     <Draggable
       key={item.id}
