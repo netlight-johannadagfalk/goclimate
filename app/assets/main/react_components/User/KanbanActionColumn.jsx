@@ -11,7 +11,7 @@ const KanbanActionColumn = ({
   categoryColor,
 }) => {
   return (
-    <div key={columnId}>
+    <div className="h-full" key={columnId}>
       <Droppable
         column={column}
         droppableId={columnId}
@@ -21,7 +21,7 @@ const KanbanActionColumn = ({
         {(provided, snapshot) => {
           return (
             <div
-              // className="h-1/2"
+              className="h-full"
               {...provided.droppableProps}
               ref={provided.innerRef}
               style={{
@@ -29,7 +29,7 @@ const KanbanActionColumn = ({
                 padding: 4,
                 width: 410,
                 // minHeight: 300,
-                maxHeight: 500,
+                // maxHeight: "full",
                 overflowY: "scroll",
                 overflowX: "hidden",
               }}
