@@ -15,11 +15,13 @@ const MembershipSelector = ({ signUpText, grantedReferralCode, setGrantedReferra
                 multipleOffsets={multipleOffsets} setMultipleOffsets={setMultipleOffsets}
             />
             <div data-inactive-class="hidden">
+            { !(selectedMembership === "free") &&
                 <ReferralCode
                     text={signUpText}
                     grantedReferralCode={grantedReferralCode}
                     setGrantedReferralCode={setGrantedReferralCode}
                 />
+            }
             </div>
         </>
     )
