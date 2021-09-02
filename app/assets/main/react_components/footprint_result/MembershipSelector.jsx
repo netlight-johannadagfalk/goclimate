@@ -14,7 +14,7 @@ const MembershipSelector = ({ signUpText, grantedReferralCode, setGrantedReferra
                 selectedMembership={selectedMembership} setSelectedMembership={setSelectedMembership}
                 multipleOffsets={multipleOffsets} setMultipleOffsets={setMultipleOffsets}
             />
-            <div data-inactive-class="hidden">
+            <div>
                 <ReferralCode
                     text={signUpText}
                     grantedReferralCode={grantedReferralCode}
