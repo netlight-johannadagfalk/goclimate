@@ -16,6 +16,7 @@ const KanbanActionItem = ({
     setExpanded(false);
   }, [collapsed]);
 
+  console.log(item);
   return (
     <Draggable
       key={item.id}
@@ -48,7 +49,7 @@ const KanbanActionItem = ({
                   src={
                     item.status === false
                       ? item.image_url
-                      : "https://www.goclimate.com/bundles/images/climate_tips/diet_meat-2x-7655d2c5801c3203a42ed27da6e83f6c.jpg"
+                      : "achievement_images/AchievementClimateFriend.png"
                   }
                   className="h-14 w-14 rounded-full mt-4"
                 ></img>
@@ -63,7 +64,7 @@ const KanbanActionItem = ({
                   src={
                     item.status === false
                       ? item.image_url
-                      : "https://www.goclimate.com/bundles/images/climate_tips/diet_meat-2x-7655d2c5801c3203a42ed27da6e83f6c.jpg"
+                      : "achievement_images/AchievementClimateFriend.png"
                   }
                   className="h-14 w-14 rounded-full mt-4"
                 ></img>
