@@ -6,14 +6,6 @@
 }
 
 /* Normal state */
-.category_all_categories,
-.category_flights,
-.category_politics,
-.category_food,
-.category_public_emissions,
-.category_car,
-.category_shopping,
-.category_other,
 .category_unknown {
   @apply bg-transparent;
 }
@@ -58,6 +50,13 @@
 .category_shopping_active,
 .category_shopping_active:hover {
   @apply bg-pink-accent;
+}
+
+/* Housing */
+.category_housing:hover,
+.category_housing_active,
+.category_housing_active:hover {
+  @apply bg-green-accent;
 }
 
 /* Other */

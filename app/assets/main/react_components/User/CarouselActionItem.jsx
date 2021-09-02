@@ -27,6 +27,7 @@ const CarouselActionItem = ({
       climate_action_id: action.id,
       status: userAction.status,
       user_id: userAction.user_id,
+      image_url: action.image_url,
     };
     const tempList = [...userActions, temp];
     setUserActions(tempList);
@@ -70,7 +71,7 @@ const CarouselActionItem = ({
         >
           <img
             className="mx-auto -mt-20 rounded-full object-cover"
-            src="https://www.goclimate.com/blog/wp-content/uploads/2020/07/DJI_0974-768x512.jpg"
+            src={action.image_url}
           />
           <div className="flex flex-col text-center">
             <div className="flex-1">
