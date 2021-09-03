@@ -36,12 +36,10 @@ const ReferralCode = ({ text, grantedReferralCode, setGrantedReferralCode }) => 
         };
         fetch(URL, requestOptions)
         .then((res) => {
-            console.log(res)
             if (res.status === 404) {
                 setGrantedReferralCode(false)
                 setInvalidCodeMessage("That's not right, try again");
             } else if (res.status === 200) { 
-                console.log(res)
                 setGrantedReferralCode(true)
                 setInvalidCodeMessage("");
             }
@@ -69,7 +67,12 @@ const ReferralCode = ({ text, grantedReferralCode, setGrantedReferralCode }) => 
                     <div className="collapse-content mt-3">
                         <div className="flex">
                             <input size="auto" className="input w-full flex-grow mr-2" placeholder={text.referral_code} 
-                                type="text" name="code" id="code" onChange={e => setInputCode(e.target.value)}/> 
+                                type="text" name="code" id="code" onChange={e => setInputCode(e.target.value)}
+                                onKeyPress = { (e) => { 
+                                    if (e.key === 'Enter') 
+                                    submit();
+                                }}
+                            /> 
                             <AnswerButton label={"OK"} onAnswerGiven={submit}/>
                         </div>
                         <p className="text-orange-shade-1 mt-1">{invalidCodeMessage}</p>
