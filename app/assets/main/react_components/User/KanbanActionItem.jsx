@@ -6,7 +6,7 @@ const KanbanActionItem = ({
   item,
   index,
   handleDelete,
-  handleButtonsPerformingOnDrag,
+  handleButtonPerformOnDrag,
   categoryColor,
   collapsed,
 }) => {
@@ -98,9 +98,7 @@ const KanbanActionItem = ({
                       ></button>
                       <button
                         className="button ml-4 button-cta"
-                        onClick={() =>
-                          handleButtonsPerformingOnDrag(item, true)
-                        }
+                        onClick={() => handleButtonPerformOnDrag(item, true)}
                       >
                         Performed{" >"}
                       </button>
@@ -122,7 +120,7 @@ const KanbanActionItem = ({
                               <button
                                 className="button ml-4 button-cta"
                                 onClick={() =>
-                                  handleButtonsPerformingOnDrag(subitem, false)
+                                  handleButtonPerformOnDrag(subitem, false)
                                 }
                               >
                                 Unperformed{" <"}

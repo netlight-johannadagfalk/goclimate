@@ -22,28 +22,23 @@ const KanbanActionContainer = ({ collapsed, categoryColor }) => {
 
   const handleDelete = (userActionID, actionID) => {
     deleteUserAction(userActionID);
-    let performedUserActions = [];
-    const collectPerformedUserActions = () => {
-      columns[2].items.map((category) => {
-        return category.userActionsArray.map((userAction) => {
-          if (userAction.status === true) {
-            userAction.id.toString();
-            performedUserActions = [...performedUserActions, userAction];
-          }
-        });
-      });
-    };
-    collectPerformedUserActions();
+    let performedUserActions = collectPerformedUserActions(columns[2].items);
     updateLocalUserActions(
       columns[1].items.filter((item) => item.id.toString() !== userActionID),
       performedUserActions,
+      columns[2].items,
       actionID
     );
   };
 
-  const updateLocalUserActions = (updatedList, performed, deletedAction) => {
+  const updateLocalUserActions = (
+    updatedList,
+    performed,
+    destItems,
+    deletedAction
+  ) => {
     setUserActions([...updatedList, ...performed]);
-    setColumnsWithFormat(updatedList, performed);
+    setColumnsWithFormat(updatedList, destItems);
     setDeletedAction(deletedAction);
   };
 
@@ -80,7 +75,20 @@ const KanbanActionContainer = ({ collapsed, categoryColor }) => {
       .catch((error) => console.warn(error));
   };
 
-  const handleButtonsPerformingOnDrag = (movedItem, perform) => {
+  const collectPerformedUserActions = (destItems) => {
+    let performedUserActions = [];
+    destItems.map((category) => {
+      return category.userActionsArray.map((userAction) => {
+        if (userAction.status === true) {
+          userAction.id.toString();
+          performedUserActions = [...performedUserActions, userAction];
+        }
+      });
+    });
+    return performedUserActions;
+  };
+
+  const handleButtonPerformOnDrag = (movedItem, perform) => {
     //Move items in kanban through buttons instead of drag and drop
     if (perform) {
       //Button for performing an action
@@ -98,18 +106,7 @@ const KanbanActionContainer = ({ collapsed, categoryColor }) => {
       const destItems = setCategoryBadgesOnDrag(movedItem, destColumn.items);
       setCategoryBadges([...destItems]);
       //Function to get performed useraction from categoryBadges
-      let performedUserActions = [];
-      const collectPerformedUserActions = () => {
-        destItems.map((category) => {
-          return category.userActionsArray.map((userAction) => {
-            if (userAction.status === true) {
-              userAction.id.toString();
-              performedUserActions = [...performedUserActions, userAction];
-            }
-          });
-        });
-      };
-      collectPerformedUserActions();
+      let performedUserActions = collectPerformedUserActions(destItems);
       setUserActions([...sourceItems, ...performedUserActions]);
       setColumns({
         ...columns,
@@ -136,7 +133,7 @@ const KanbanActionContainer = ({ collapsed, categoryColor }) => {
       //change the local status and in DB
       movedItem.status = false;
       updateStatus(movedItem.id, false);
-      //Change the color of the subitem through status within the categoryBadge
+      //Change the status of the subitem so that color can depend the categoryBadge
       const newSourceItems = sourceItems.map((category) => {
         return {
           ...category,
@@ -169,26 +166,15 @@ const KanbanActionContainer = ({ collapsed, categoryColor }) => {
     //If you drag but drop in the same column and do not reorder items
     if (!result.destination) return;
     const { source, destination } = result;
-    //Drag is only enabled from column 1 to column 2 (when merged with saras code)
+    //Drag is only enabled from column 1 to column 2 (when merged with saras code). Keep generalized
     if (source.droppableId !== destination.droppableId) {
       const sourceColumn = columns[source.droppableId];
       const destColumn = columns[destination.droppableId];
       const sourceItems = [...sourceColumn.items];
       const [removed] = sourceItems.splice(source.index, 1);
       updateStatus(removed.id, true);
-      const destItems = setCategoryBadgesOnDrag(removed, columns[2].items);
-      let performedUserActions = [];
-      const collectPerformedUserActions = () => {
-        destItems.map((category) => {
-          return category.userActionsArray.map((userAction) => {
-            if (userAction.status === true) {
-              userAction.id.toString();
-              performedUserActions = [...performedUserActions, userAction];
-            }
-          });
-        });
-      };
-      collectPerformedUserActions();
+      const destItems = setCategoryBadgesOnDrag(removed, destColumn.items);
+      let performedUserActions = collectPerformedUserActions(destItems);
       setUserActions([...sourceItems, ...performedUserActions]);
       setCategoryBadges([...destItems]);
       setColumns({
@@ -244,9 +230,7 @@ const KanbanActionContainer = ({ collapsed, categoryColor }) => {
                     columnId={columnId}
                     key={columnId}
                     handleDelete={handleDelete}
-                    handleButtonsPerformingOnDrag={
-                      handleButtonsPerformingOnDrag
-                    }
+                    handleButtonPerformOnDrag={handleButtonPerformOnDrag}
                     categoryColor={categoryColor}
                     collapsed={collapsed}
                   />

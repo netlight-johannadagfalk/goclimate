@@ -103,8 +103,7 @@ export const UserActionsProvider = ({
     setColumns(columnUserActions(acceptedUserActions(col), categoryBadges));
   };
 
-  // connected to badges
-
+  // Code connected to badges
   const updateCategoryBadges = (badge) => {
     setCategoryBadges(badge);
   };
@@ -137,6 +136,7 @@ export const UserActionsProvider = ({
   /** If the user have performed actions when logged in, then these bagdes are created here */
   const appendUserActionsArrayToCategory = JSON.parse(climateActionCategories)
     .map((category) => {
+      //The userActions with status true decides weather a categoryBadge should be created
       const userPerformedActions = filterCategoryRelatedUserActions(
         userActions,
         category.id,
@@ -153,16 +153,16 @@ export const UserActionsProvider = ({
     /** Filters the null values */
     .filter((removed) => removed);
 
-  /** This function created badges from start */
-  const getCorrectCategoriesWithPerformedActions =
+  /** This function creates badges from start */
+  const getCompleteCategoryArrays =
+    //Add actions
     appendUserActionsArrayToCategory.map((category) => {
-      //Add actions
       const allActionsWithoutUserActions = filterCategoryRelatedActions(
         JSON.parse(actionsWithoutUserActions),
         category.id
       );
 
-      //Add useractions
+      //Add useractions with status false
       const allUserActions = filterCategoryRelatedUserActions(
         userActions,
         category.id,
@@ -176,105 +176,73 @@ export const UserActionsProvider = ({
       };
     });
 
+  //Check for further refactoring below:
+
   /** Updates the category badges when the user drags or click on perform */
-  const updateCategoryBadgesOnDrag = (item, performedColumn) => {
-    console.log({ item });
-    // const filterDuplicates = (arrVal, othVal) => {
-    //   /** Filter duplicates based on item name and names in the array
-    //    */
-    //   return arrVal.name == item.name && arrVal.name == othVal.name;
-    // };
+  const updateCategoryBadgesOnDrag = (movedItem, performedColumn) => {
     /** filter duplicates based on name */
     const filterDuplicatesNames = (arrVal, othVal) => {
-      /** Filter duplicates only based on name
-       */
       return arrVal.name === othVal.name;
     };
-    const category = findCategory(performedColumn, item);
+    const category = findCategory(performedColumn, movedItem);
     /** If category bagde is already created in the perform column */
     if (category !== undefined) {
       /** This means that the categorybagde is already created for the action*/
-      item.status = true;
+      movedItem.status = true;
       /** Removes the item from the UserArray, so no duplicates, since we will add the correct version of the item later */
       const updatedUserItemsArray = category.userActionsArray.filter(
         (action) => {
-          return action.name != item.name;
+          return action.name != movedItem.name;
         }
       );
       /** Filter action if it is in actionsArray */
       const updatedActionItemsArray = category.actionsArray.filter((action) => {
-        return action.name != item.name;
+        return action.name != movedItem.name;
       });
-      /** Check in case of duplicates in both arrays */
-      const newActionItemsArray = category.actionsArray.filter((action) => {
-        category.userActionsArray.map((useraction) => {
-          return action.name !== useraction.name;
-        });
-      });
-
-      console.log({ newActionItemsArray });
 
       /** Set the new resultArray with the new item */
       const resultArray = performedColumn.map((performedCategory) => {
         return performedCategory.id === category.id
           ? {
               ...performedCategory,
-              userActionsArray: [...updatedUserItemsArray, item],
+              userActionsArray: [...updatedUserItemsArray, movedItem],
               actionsArray: updatedActionItemsArray,
             }
           : performedCategory;
       });
-      console.log({ resultArray });
       return resultArray;
     } else {
       /** Category badge does not exist so we need to create a new one */
       const newCategory = JSON.parse(climateActionCategories).find(
-        (cat) => cat.id === item.climate_action_category_id
+        (cat) => cat.id === movedItem.climate_action_category_id
       );
       /** Fetch all actions */
       const allClimateActions = [
-        ...filterCategoriesWithoutStatus(
+        ...filterCategoryRelatedActions(
           JSON.parse(actionsWithoutUserActions),
           newCategory.id
         ),
-        ...filterCategoriesWithoutStatus(
+        ...filterCategoryRelatedActions(
           JSON.parse(actionsWithUserActions),
           newCategory.id
         ),
       ];
-      // const secondMatching = filterCategoriesWithoutStatus(
-      //   allActionsWithoutUserActions,
-      //   newCategory.id
-      // );
       /** Fetch all actions that the user have accepted,
        * fetch with status true as well since when the user clicks on performed button its
        * status is true but the badge might not be created  */
       const allUserActions = [
-        ...filterCategories(
+        ...filterCategoryRelatedUserActions(
           formatedUserActions(userActions),
           newCategory.id,
           false
         ),
-        ...filterCategories(
+        ...filterCategoryRelatedUserActions(
           formatedUserActions(userActions),
           newCategory.id,
           true
         ),
       ];
 
-      /** Updates the moved item to status true since it is now performed */
-      // thirdMatching.map((action) => {
-      //   return action.id == item.id ? { ...action, status: true } : action;
-      // });
-      // /** Remove moved item from climate actions, so no duplicates */
-      // secondMatching.filter((action) => action.id != item.climate_action_id);
-
-      // /**Check for no duplicates */
-      // secondMatching.filter((action) => {
-      //   thirdMatching.map((useraction) => {
-      //     return action.name != useraction.name;
-      //   });
-      // });
       /** Set the result */
       const result = {
         ...newCategory,
@@ -282,22 +250,16 @@ export const UserActionsProvider = ({
         userActionsArray: [...allUserActions],
         id: newCategory.id.toString(),
       };
-      console.log({ result });
 
       /** Set the correct status on the performed action */
       const updatedUserActionsArray = result.userActionsArray.map((action) => {
-        return action.id == item.id ? { ...action, status: true } : action;
+        return action.id == movedItem.id ? { ...action, status: true } : action;
       });
 
       /** Removes the action from the actionsArray if the action is performed and exists in updatedActionsArray */
       const updatedActionsArray = result.actionsArray.filter(
-        (action) => action.id != item.climate_action_id
+        (action) => action.id != movedItem.climate_action_id
       );
-      // updatedActionsArray.filter((action) => {
-      //   return updatedUserActionsArray.map((useraction) => {
-      //     return action.name != useraction.name;
-      //   });
-      // });
 
       /** Combines the arrays to be able to filter out duplicates in the arrays */
       const combinedArray = [
@@ -307,8 +269,6 @@ export const UserActionsProvider = ({
 
       /** Uses uniqwith to be able to search for unique values */
       const newCombinedArray = uniqWith(combinedArray, filterDuplicatesNames);
-
-      console.log({ newCombinedArray });
 
       /** Updates the result that consists of no duplicates */
       const updatedResult = {
@@ -320,53 +280,22 @@ export const UserActionsProvider = ({
         id: newCategory.id.toString(),
       };
 
-      // const updatedResult = {
-      //   ...newCategory,
-      //   userActionsArray: updatedUserActionsArray,
-      //   actionsArray: updatedActionsArray,
-      //   id: newCategory.id.toString(),
-      // };
-
-      console.log({ updatedResult });
       /** Combines the final result */
       const resultArray = [...performedColumn, updatedResult];
-
-      /** This is probably not needed? */
-      // const newResultArray = resultArray.map((category) => {
-      //   return {
-      //     ...category,
-      //     actionsArray: uniqWith(category.actionsArray, filterDuplicates),
-      //     userActionsArray: uniqWith(
-      //       category.userActionsArray,
-      //       filterDuplicatesNames
-      //     ),
-      //   };
-      // });
-      // console.log({ newResultArray });
 
       return resultArray;
     }
   };
 
   const [categoryBadges, setCategoryBadges] = useState(
-    getCorrectCategoriesWithPerformedActions
+    getCompleteCategoryArrays
   );
   const [columns, setColumns] = useState(
     columnUserActions(
       acceptedUserActions(userActions),
-      //doneUserActions(userActions)
-      getCorrectCategoriesWithPerformedActions
+      getCompleteCategoryArrays
     )
   );
-
-  // const [columns, setColumns] = useState(
-  //   columnUserActions(
-  //     acceptedUserActions(totUserActions),
-  //     getCorrectCategoriesWithPerformedActions
-  //   )
-  // );
-
-  // ---------------------------
 
   return (
     <UserActionsContext.Provider value={userActions}>
