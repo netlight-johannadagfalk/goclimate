@@ -64,6 +64,7 @@ const ResultPage = ({ result, texts, lang, page, onPageChange, currency }) => {
                             :
                                 <Payment
                                     commonStrings={commonStrings} 
+                                    selectedMembership={selectedMembership}
                                 />
                             }
                         </SignUpContainer>
