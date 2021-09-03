@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import countryList from 'react-select-country-list'
+import countryList from 'react-select-country-list';
 
 /**
  * Form for choosing country of residence prior to filling out footprint calculator
@@ -17,7 +17,7 @@ const CountryForm = ({ slug, countryText }) => {
                     }
                 </select>
             </div>
-            <input type="submit" value={countryText.get_started} className="button button-cta mt-2 m-lg:mt-0 m-lg:ml-2 w-full m-lg:w-auto" data-disable-with={countryText.get_started}/>
+            <input type="submit" value={countryText.get_started} className="button button-cta mt-2 m-lg:mt-0 m-lg:ml-2 w-full m-lg:w-auto" />
         </form> 
     )
 }
