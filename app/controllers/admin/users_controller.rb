@@ -2,7 +2,7 @@
 
 module Admin
   class UsersController < AdminController
-    before_action :set_user, only: [:show, :cancel_subscription, :destroy]
+    before_action :set_user, only: [:show, :edit, :update, :cancel_subscription, :destroy]
 
     MIN_CHARS_IN_SEARCH_QUERY = 3
 
@@ -18,6 +18,18 @@ module Admin
 
     def show
       @total_number_of_footprints = LifestyleFootprint.where(user_id: @user.id).count
+    end
+
+    def edit
+    end
+
+    def update
+      unless @user.update(user_params)
+        render :edit, notice: "Sorry, something on our side didn't go as planned. #{@user.errors.full_messages}"
+        return
+      end
+
+      redirect_to [:admin, @user], notice: 'User was successfully updated.'
     end
 
     def search
@@ -64,6 +76,10 @@ module Admin
       return [] if query.blank?
 
       User.search_email(query, max_entries)
+    end
+
+    def user_params
+      params.require(:user).permit(:email)
     end
   end
 end
