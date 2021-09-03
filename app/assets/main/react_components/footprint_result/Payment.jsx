@@ -6,8 +6,6 @@ import React from 'react';
  * TODO: add stripe logic, including collection of email and password
  */
 const Payment = ({ commonStrings, selectedMembership }) => {
-    console.log(selectedMembership)
-    console.log(selectedMembership === "free")
     return (
       <div className="text-left">
         <label className="block font-semibold mt-3">{commonStrings.email}</label>
