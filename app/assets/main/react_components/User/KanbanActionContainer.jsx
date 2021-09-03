@@ -195,6 +195,7 @@ const KanbanActionContainer = ({ collapsed, categoryColor, setCollapsed }) => {
     }
   };
   const [isHovering, setIsHovering] = useState(false);
+
   return (
     <div className="h-screen">
       <DragDropContext

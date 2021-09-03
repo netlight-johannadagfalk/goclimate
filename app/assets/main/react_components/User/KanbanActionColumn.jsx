@@ -36,19 +36,21 @@ const KanbanActionColumn = ({
                 width: 410,
               }}
             >
-              {column.items.map((item, index) => {
-                return (
-                  <KanbanActionItem
-                    item={item}
-                    index={index}
-                    key={item.id}
-                    handleDelete={handleDelete}
-                    handlePerformance={handlePerformance}
-                    collapsed={collapsed}
-                    categoryColor={categoryColor}
-                  />
-                );
-              })}
+              {column.items
+                .slice(0, collapsed ? 4 : column.items.length)
+                .map((item, index) => {
+                  return (
+                    <KanbanActionItem
+                      item={item}
+                      index={index}
+                      key={item.id}
+                      handleDelete={handleDelete}
+                      handlePerformance={handlePerformance}
+                      collapsed={collapsed}
+                      categoryColor={categoryColor}
+                    />
+                  );
+                })}
               {provided.placeholder}
             </div>
           );
