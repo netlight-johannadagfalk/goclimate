@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanActionColumn from "./KanbanActionColumn.jsx";
 import { useUserActionsUpdate } from "./contexts/UserActionsContext.js";
@@ -194,6 +194,7 @@ const KanbanActionContainer = ({ collapsed, categoryColor, setCollapsed }) => {
       });
     }
   };
+  const [isHovering, setIsHovering] = useState(false);
   return (
     <div className="h-screen">
       <DragDropContext
@@ -205,6 +206,8 @@ const KanbanActionContainer = ({ collapsed, categoryColor, setCollapsed }) => {
               className="text-center h-1/2 pb-24 -mb-8"
               style={{ margin: 2 }}
               key={columnId}
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
             >
               <div className="h-8">
                 <p
@@ -222,6 +225,7 @@ const KanbanActionContainer = ({ collapsed, categoryColor, setCollapsed }) => {
                 categoryColor={categoryColor}
                 setCollapsed={setCollapsed}
                 collapsed={collapsed}
+                isHovering={isHovering}
               />
             </div>
           );

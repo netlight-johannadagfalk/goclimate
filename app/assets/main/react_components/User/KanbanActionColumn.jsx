@@ -10,6 +10,7 @@ const KanbanActionColumn = ({
   setCollapsed,
   collapsed,
   categoryColor,
+  isHovering,
 }) => {
   return (
     <div className="h-full" key={columnId}>
@@ -23,7 +24,9 @@ const KanbanActionColumn = ({
           return (
             <div
               className={`h-full overflow-x-hidden ${
-                collapsed ? "overflow-y-hidden" : "overflow-y-scroll"
+                isHovering && !collapsed
+                  ? "overflow-y-auto"
+                  : "overflow-y-hidden"
               }`}
               {...provided.droppableProps}
               ref={provided.innerRef}
