@@ -12,20 +12,20 @@ const CarouselActionItem = ({
   updateLocalAccepted,
   categories,
 }) => {
+  const currUser = JSON.parse(user);
+  const userActions = useUserActions();
+  const setUserActions = useUserActionsUpdate();
+  const setDeletedAction = useDeletedActionUpdate();
+  const setColumnsWithFullFormat = useUserActionsColumnsWithFullFormatUpdate();
+
   const categoryName = () => {
     for (let i = 0; i <= Object.keys(categories).length; i++) {
       if (categories[i].id === action.climate_action_category_id) {
         return categories[i].name.toString();
       }
     }
-    return "Food";
+    return "unknown";
   };
-
-  const currUser = JSON.parse(user);
-  const userActions = useUserActions();
-  const setUserActions = useUserActionsUpdate();
-  const setDeletedAction = useDeletedActionUpdate();
-  const setColumnsWithFullFormat = useUserActionsColumnsWithFullFormatUpdate();
 
   const acceptAction = (action, userAction) => {
     setDeletedAction(null);
@@ -75,7 +75,7 @@ const CarouselActionItem = ({
   return (
     <div className="flex flex-1 min-h-full ">
       <div className="pt-20 flex m-lg:pt-24 flex-1 justify-evenly">
-        <div className=" border-gray-tint-2 rounded-lg shadow-lg pb-2 ml-2 mr-2 flex flex-col flex-1">
+        <div className=" border-gray-tint-2 rounded-lg shadow-lg pb-2 ml-2 mr-2 flex flex-col flex-1 bg-white">
           <div
             className={`${
               "category_" +
@@ -97,7 +97,7 @@ const CarouselActionItem = ({
               {[1, 2, 3, 4, 5].map((index) => {
                 return (
                   <span
-                    className={`flex flex-row self-center bg-gray-tint-2 m-2 rounded-full h-4 w-4 justify-center bg-cover`}
+                    className={`flex flex-row self-center bg-gray-tint-2 m-2 rounded-full h-6 w-6 justify-center bg-cover`}
                     key={action.name + index}
                     style={
                       index <= action.points
@@ -111,11 +111,11 @@ const CarouselActionItem = ({
               })}
             </div>
             <div className=" flex-1 justify-center align-center self-center">
-              <h4 className="text-base font-bold self-center">
+              <h3 className="text-base font-bold self-center text-lg">
                 {action.name.length > 40
                   ? action.name.slice(0, 40) + "..."
                   : action.name}
-              </h4>
+              </h3>
             </div>
 
             <div className="flex-4">
