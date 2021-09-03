@@ -6,15 +6,6 @@
 }
 
 /* Normal state */
-.category_all_categories,
-.category_flights,
-.category_politics,
-.category_food,
-.category_public_emissions,
-.category_car,
-.category_shopping,
-.category_other,
-.category_housing,
 .category_unknown {
   @apply bg-transparent;
 }

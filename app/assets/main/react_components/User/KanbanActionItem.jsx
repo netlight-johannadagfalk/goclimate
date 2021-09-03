@@ -49,7 +49,7 @@ const KanbanActionItem = ({
                     backgroundImage:
                       item.status === false
                         ? `url('${item.image_url}')`
-                        : "url('/achievementsImg/AchievementClimateFriend.png')",
+                        : "url('/achievement_images/AchievementClimateFriend.png')",
                   }}
                 ></div>
               </div>
@@ -65,7 +65,7 @@ const KanbanActionItem = ({
                     backgroundImage:
                       item.status === false
                         ? `url('${item.image_url}')`
-                        : "url('/achievementsImg/AchievementClimateFriend.png')",
+                        : "url('/achievement_images/AchievementClimateFriend.png')",
                   }}
                 ></div>
 
