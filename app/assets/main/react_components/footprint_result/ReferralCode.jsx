@@ -72,7 +72,7 @@ const ReferralCode = ({ text, grantedReferralCode, setGrantedReferralCode }) => 
                                     if (e.key === 'Enter') 
                                     submit();
                                 }}
-                                /> 
+                            /> 
                             <AnswerButton label={"OK"} onAnswerGiven={submit}/>
                         </div>
                         <p className="text-orange-shade-1 mt-1">{invalidCodeMessage}</p>
