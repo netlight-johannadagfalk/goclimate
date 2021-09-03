@@ -70,8 +70,8 @@ const ReferralCode = ({ text, grantedReferralCode, setGrantedReferralCode }) => 
                                 type="text" name="code" id="code" onChange={e => setInputCode(e.target.value)}
                                 onKeyPress = { (e) => { 
                                     if (e.key === 'Enter') 
-                                    submit();} 
-                                }
+                                    submit();
+                                }}
                                 /> 
                             <AnswerButton label={"OK"} onAnswerGiven={submit}/>
                         </div>
