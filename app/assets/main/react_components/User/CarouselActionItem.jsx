@@ -88,7 +88,7 @@ const CarouselActionItem = ({
             style={{
               backgroundImage: action.image_url
                 ? `url('${action.image_url}')`
-                : "url('/actionsImg/Globe.png')",
+                : "url('/action_images/Globe.png')",
               backgroundSize: "100%",
             }}
           ></div>
@@ -102,7 +102,7 @@ const CarouselActionItem = ({
                     style={
                       index <= action.points
                         ? {
-                            backgroundImage: "url('/actionsImg/Globe.png')",
+                            backgroundImage: "url('/action_images/Globe.png')",
                           }
                         : {}
                     }
