@@ -3,7 +3,6 @@ import { DragDropContext } from "react-beautiful-dnd";
 import KanbanActionColumn from "./KanbanActionColumn.jsx";
 import { useDeletedActionUpdate } from "./contexts/DeletedActionContext.js";
 import {
-  useUserActions,
   useUserActionsUpdate,
   useUserActionsColumns,
   useUserActionsColumnsUpdate,
@@ -12,36 +11,40 @@ import {
   useCategoryBadgesUpdateOnDrag,
 } from "./contexts/UserActionsContext.js";
 
-const KanbanActionContainer = ({
-  collapsed,
-  categoryColor,
-  climateActionCategories,
-}) => {
-  const userActions = useUserActions();
+const KanbanActionContainer = ({ collapsed, categoryColor }) => {
   const setUserActions = useUserActionsUpdate();
   const columns = useUserActionsColumns();
   const setColumns = useUserActionsColumnsUpdate();
   const setColumnsWithFormat = useUserActionsColumnsWithFormatUpdate();
   const setDeletedAction = useDeletedActionUpdate();
+  const setCategoryBadges = useCategoryBadgesUpdate();
   const setCategoryBadgesOnDrag = useCategoryBadgesUpdateOnDrag();
 
-  const setCategoryBadges = useCategoryBadgesUpdate();
-
-  const handleLocalAccepted = (updatedList, performed, deletedAction) => {
-    setUserActions([...updatedList]);
-    setColumnsWithFormat(updatedList, performed);
-    setDeletedAction(deletedAction);
-    /** IS this needed?*/
-    //setActionsWithoutUserActions([...deletedAction]);
-  };
-
-  const handleDelete = (id, actionID) => {
-    deleteUserAction(id);
-    handleLocalAccepted(
-      columns[1].items.filter((item) => item.id.toString() !== id),
-      columns[2].items,
+  const handleDelete = (userActionID, actionID) => {
+    deleteUserAction(userActionID);
+    let performedUserActions = [];
+    const collectPerformedUserActions = () => {
+      columns[2].items.map((category) => {
+        return category.userActionsArray.map((userAction) => {
+          if (userAction.status === true) {
+            userAction.id.toString();
+            performedUserActions = [...performedUserActions, userAction];
+          }
+        });
+      });
+    };
+    collectPerformedUserActions();
+    updateLocalUserActions(
+      columns[1].items.filter((item) => item.id.toString() !== userActionID),
+      performedUserActions,
       actionID
     );
+  };
+
+  const updateLocalUserActions = (updatedList, performed, deletedAction) => {
+    setUserActions([...updatedList, ...performed]);
+    setColumnsWithFormat(updatedList, performed);
+    setDeletedAction(deletedAction);
   };
 
   const deleteUserAction = (id) => {
@@ -55,7 +58,6 @@ const KanbanActionContainer = ({
         "Content-Type": "application/json",
       },
     };
-
     fetch(URL, requestOptions).catch((e) => console.log(e));
   };
 
@@ -78,57 +80,42 @@ const KanbanActionContainer = ({
       .catch((error) => console.warn(error));
   };
 
-  const handlePerformance = (theItem, perform) => {
+  const handleButtonsPerformingOnDrag = (movedItem, perform) => {
+    //Move items in kanban through buttons instead of drag and drop
     if (perform) {
-      /** THIS NEEDS TO BE IMPLEMENTED */
-      // Button for performing actions
-      // const sourceColumn = columns[1];
-      // const destColumn = columns[2];
-      // const sourceItems = [...sourceColumn.items];
-      // const destItems = [...destColumn.items];
-      // const sourceIndex = sourceItems.indexOf(theItem);
-      // const destIndex = destItems.length;
-      // const [removed] = sourceItems.splice(sourceIndex, 1);
-      // destItems.splice(destIndex, 0, removed);
-      // //setUserActions([...sourceItems, ...destItems]);
-      // const newDestItems = destItems.map((item) =>
-      //   item.status === false ? { ...item, status: !item.status } : item
-      // );
-      // //setUserActions([...sourceItems, ...newDestItems]);
-      // setColumns({
-      //   ...columns,
-      //   [1]: {
-      //     ...sourceColumn,
-      //     items: sourceItems,
-      //   },
-      //   [2]: {
-      //     ...destColumn,
-      //     items: newDestItems,
-      //   },
-      // });
-      // updateStatus(theItem.id, true);
+      //Button for performing an action
       const sourceColumn = columns[1];
       const destColumn = columns[2];
       const sourceItems = [...sourceColumn.items];
-      //const destIndex = [...destColumn.items].length;
-      //const [removed] = sourceItems.splice(destIndex, 1);
-      updateStatus(theItem.id, true);
-      theItem.status = true;
-
-      const destItems = setCategoryBadgesOnDrag(theItem, columns[2].items);
-      const newSourceItems = sourceItems.filter(
+      //Updade status both locally and DB needs to happen before the filtering through status below
+      updateStatus(movedItem.id, true);
+      movedItem.status = true;
+      //Filter out moved item from first column by local status.
+      const filteredSourceItems = sourceItems.filter(
         (item) => item.status === false
       );
-      setUserActions([...sourceItems]);
-      //setTotUserActions([...sourceItems]);
-
+      //Add moved item to second column. Helpfunction in context desides if new categoryBadge should be created or just change status and color on subitem
+      const destItems = setCategoryBadgesOnDrag(movedItem, destColumn.items);
       setCategoryBadges([...destItems]);
-
+      //Function to get performed useraction from categoryBadges
+      let performedUserActions = [];
+      const collectPerformedUserActions = () => {
+        destItems.map((category) => {
+          return category.userActionsArray.map((userAction) => {
+            if (userAction.status === true) {
+              userAction.id.toString();
+              performedUserActions = [...performedUserActions, userAction];
+            }
+          });
+        });
+      };
+      collectPerformedUserActions();
+      setUserActions([...sourceItems, ...performedUserActions]);
       setColumns({
         ...columns,
         [1]: {
           ...sourceColumn,
-          items: newSourceItems,
+          items: filteredSourceItems,
         },
         [2]: {
           ...destColumn,
@@ -141,132 +128,69 @@ const KanbanActionContainer = ({
       const destColumn = columns[1];
       const sourceItems = [...sourceColumn.items];
       const destItems = [...destColumn.items];
-      //const sourceIndex = sourceItems.indexOf(theItem);
+      //When we unperform a subitem within a categoryBadge we "create" a new userAction card, which needs an id as string
+      movedItem.id = movedItem.id.toString();
+      //We add the card in the end of the list
       const destIndex = destItems.length;
-      // const [removed] = sourceItems.splice(sourceIndex, 1);
-      theItem.id = theItem.id.toString();
-      destItems.splice(destIndex, 0, theItem);
-      theItem.status = false;
+      destItems.splice(destIndex, 0, movedItem);
+      //change the local status and in DB
+      movedItem.status = false;
+      updateStatus(movedItem.id, false);
+      //Change the color of the subitem through status within the categoryBadge
       const newSourceItems = sourceItems.map((category) => {
         return {
           ...category,
           userActionsArray: category.userActionsArray.map((item) => {
-            return item.id == theItem.id ? { ...item, status: false } : item;
+            return item.id == movedItem.id ? { ...item, status: false } : item;
           }),
         };
       });
-      console.log({ newSourceItems });
+      //Check if categoryBadge has any subitem with status true, else delete the categoryBadge
       const checkDelete = newSourceItems.filter((category) => {
         return category.userActionsArray.some((item) => item.status === true);
       });
-      console.log({ checkDelete });
-      //setUserActions([...sourceItems, ...destItems]);
-      //const newDestItems = [...destItems, theItem];
-      console.log({ destItems });
       setCategoryBadges([...checkDelete]);
       setUserActions([...destItems]);
       setColumns({
         ...columns,
-        [2]: {
-          ...sourceColumn,
-          items: checkDelete,
-        },
         [1]: {
           ...destColumn,
           items: destItems,
         },
+        [2]: {
+          ...sourceColumn,
+          items: checkDelete,
+        },
       });
-      updateStatus(theItem.id, false);
     }
   };
 
-  // const filterCategoriesWithoutStatus = (filter, condition) => {
-  //   return JSON.parse(filter).filter(
-  //     (filterUserAction) =>
-  //       filterUserAction.climate_action_category_id === condition
-  //   );
-  // };
-
-  // const filterCategories = (filter, condition, status) => {
-  //   return JSON.parse(filter).filter(
-  //     (filterUserAction) =>
-  //       filterUserAction.climate_action_category_id === condition &&
-  //       filterUserAction.status === status
-  //   );
-  // };
-
-  // const findCategory = (performedColumn, item) => {
-  //   return performedColumn.find(
-  //     (performedItem) => item.climate_action_category_id === performedItem.id
-  //   );
-  // };
-
-  // const setNewPerformedActions = (item, performedColumn) => {
-  //   const category = findCategory(performedColumn, item);
-  //   if (category !== undefined) {
-  //     const updatedItemsArray = category.itemsArray.map((action) =>
-  //       action.id == item.id || action.id == item.climate_action_id
-  //         ? { ...action, status: true }
-  //         : action
-  //     );
-
-  //     const resultArray = performedColumn.map((performedCategory) => {
-  //       return performedCategory.id === category.id
-  //         ? { ...performedCategory, itemsArray: updatedItemsArray }
-  //         : performedCategory;
-  //     });
-  //     return resultArray;
-  //   } else {
-  //     const newCategory = JSON.parse(climateActionCategories).find(
-  //       (cat) => cat.id === item.climate_action_category_id
-  //     );
-  //     const secondMatching = filterCategoriesWithoutStatus(
-  //       actionsWithoutUserActions,
-  //       newCategory.id
-  //     );
-  //     const thirdMatching = filterCategories(
-  //       userActions,
-  //       newCategory.id,
-  //       false
-  //     );
-
-  //     const result = {
-  //       ...newCategory,
-  //       itemsArray: [...secondMatching, ...thirdMatching],
-  //     };
-
-  //     const updatedItemsArray = result.itemsArray.map((action) => {
-  //       return action.id == item.id || action.id == item.climate_action_id
-  //         ? { ...action, status: true }
-  //         : action;
-  //     });
-
-  //     const updatedResult = {
-  //       ...newCategory,
-  //       itemsArray: updatedItemsArray,
-  //     };
-
-  //     const resultArray = [...performedColumn, updatedResult];
-  //     return resultArray;
-  //   }
-  // };
-
   const onDragEnd = (result, columns, setColumns) => {
+    //If you drag but drop in the same column and do not reorder items
     if (!result.destination) return;
     const { source, destination } = result;
+    //Drag is only enabled from column 1 to column 2 (when merged with saras code)
     if (source.droppableId !== destination.droppableId) {
       const sourceColumn = columns[source.droppableId];
       const destColumn = columns[destination.droppableId];
       const sourceItems = [...sourceColumn.items];
       const [removed] = sourceItems.splice(source.index, 1);
       updateStatus(removed.id, true);
-
       const destItems = setCategoryBadgesOnDrag(removed, columns[2].items);
-      setUserActions([...sourceItems]);
-      //setTotUserActions([...sourceItems]);
-
+      let performedUserActions = [];
+      const collectPerformedUserActions = () => {
+        destItems.map((category) => {
+          return category.userActionsArray.map((userAction) => {
+            if (userAction.status === true) {
+              userAction.id.toString();
+              performedUserActions = [...performedUserActions, userAction];
+            }
+          });
+        });
+      };
+      collectPerformedUserActions();
+      setUserActions([...sourceItems, ...performedUserActions]);
       setCategoryBadges([...destItems]);
-
       setColumns({
         ...columns,
         [source.droppableId]: {
@@ -279,6 +203,7 @@ const KanbanActionContainer = ({
         },
       });
     } else {
+      //If you drag but drop in the current column but reorder the items
       const column = columns[source.droppableId];
       const copiedItems = [...column.items];
       const [removed] = copiedItems.splice(source.index, 1);
@@ -292,7 +217,7 @@ const KanbanActionContainer = ({
       });
     }
   };
-  console.log({ columns });
+
   return (
     <div className="flex flex-col justify-center h-full">
       <DragDropContext
@@ -314,13 +239,14 @@ const KanbanActionContainer = ({
                   >
                     {!collapsed && column.name}
                   </p>
-
                   <KanbanActionColumn
                     column={column}
                     columnId={columnId}
                     key={columnId}
                     handleDelete={handleDelete}
-                    handlePerformance={handlePerformance}
+                    handleButtonsPerformingOnDrag={
+                      handleButtonsPerformingOnDrag
+                    }
                     categoryColor={categoryColor}
                     collapsed={collapsed}
                   />

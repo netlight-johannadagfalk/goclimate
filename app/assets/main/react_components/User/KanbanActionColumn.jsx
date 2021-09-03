@@ -1,17 +1,15 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import KanbanActionItem from "./KanbanActionItem.jsx";
-import { useUserActionsColumns } from "./contexts/UserActionsContext.js";
 
 const KanbanActionColumn = ({
   column,
   columnId,
   handleDelete,
-  handlePerformance,
+  handleButtonsPerformingOnDrag,
   collapsed,
   categoryColor,
 }) => {
-  const columns = useUserActionsColumns();
   return (
     <div key={columnId}>
       <Droppable
@@ -39,7 +37,9 @@ const KanbanActionColumn = ({
                     index={index}
                     key={item.id}
                     handleDelete={handleDelete}
-                    handlePerformance={handlePerformance}
+                    handleButtonsPerformingOnDrag={
+                      handleButtonsPerformingOnDrag
+                    }
                     collapsed={collapsed}
                     categoryColor={categoryColor}
                   />

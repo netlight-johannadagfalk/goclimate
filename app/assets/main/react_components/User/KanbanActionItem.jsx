@@ -6,7 +6,7 @@ const KanbanActionItem = ({
   item,
   index,
   handleDelete,
-  handlePerformance,
+  handleButtonsPerformingOnDrag,
   categoryColor,
   collapsed,
 }) => {
@@ -98,7 +98,9 @@ const KanbanActionItem = ({
                       ></button>
                       <button
                         className="button ml-4 button-cta"
-                        onClick={() => handlePerformance(item, true)}
+                        onClick={() =>
+                          handleButtonsPerformingOnDrag(item, true)
+                        }
                       >
                         Performed{" >"}
                       </button>
@@ -106,6 +108,7 @@ const KanbanActionItem = ({
                   </div>
                 ) : (
                   <div>
+                    {/* Map through both arrays in categoryBadge. All actions in the category should be rendered in a list, but those userActions that are performed should be highlighted */}
                     {item.userActionsArray &&
                       item.userActionsArray.map((subitem) => {
                         return (
@@ -119,7 +122,7 @@ const KanbanActionItem = ({
                               <button
                                 className="button ml-4 button-cta"
                                 onClick={() =>
-                                  handlePerformance(subitem, false)
+                                  handleButtonsPerformingOnDrag(subitem, false)
                                 }
                               >
                                 Unperformed{" <"}

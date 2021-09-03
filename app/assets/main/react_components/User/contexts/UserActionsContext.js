@@ -4,14 +4,14 @@ import { uniqWith } from "lodash";
 //*** A context is used to share data that can be considered as "global" for the react tree ***/
 export const UserActionsContext = React.createContext();
 export const UserActionsUpdateContext = React.createContext();
-export const CategoryBadgesUpdateContext = React.createContext();
-export const CategoryBadgesContext = React.createContext();
 export const UserActionsColumnsContext = React.createContext();
 export const UserActionsColumnsUpdateContext = React.createContext();
 export const UserActionsColumnsWithFormatUpdateContext = React.createContext();
 export const UserActionsColumnsWithFullFormatUpdeateContext =
   React.createContext();
-
+//Should CategoryBadges-contexts be renamed or moved into their own context?
+export const CategoryBadgesContext = React.createContext();
+export const CategoryBadgesUpdateContext = React.createContext();
 export const CategoryBadgesUpdateOnDragContext = React.createContext();
 
 //***  Functions that endables access to the context and updating the context in the components ***/
@@ -21,18 +21,6 @@ export const useUserActions = () => {
 
 export const useUserActionsUpdate = () => {
   return useContext(UserActionsUpdateContext);
-};
-
-export const useCategoryBadgesUpdate = () => {
-  return useContext(CategoryBadgesUpdateContext);
-};
-
-export const useCategoryBadges = () => {
-  return useContext(CategoryBadgesContext);
-};
-
-export const useCategoryBadgesUpdateOnDrag = () => {
-  return useContext(CategoryBadgesUpdateOnDragContext);
 };
 
 export const useUserActionsColumns = () => {
@@ -49,6 +37,19 @@ export const useUserActionsColumnsWithFullFormatUpdate = () => {
   return useContext(UserActionsColumnsWithFullFormatUpdeateContext);
 };
 
+//CategoryBadges related
+export const useCategoryBadges = () => {
+  return useContext(CategoryBadgesContext);
+};
+
+export const useCategoryBadgesUpdate = () => {
+  return useContext(CategoryBadgesUpdateContext);
+};
+
+export const useCategoryBadgesUpdateOnDrag = () => {
+  return useContext(CategoryBadgesUpdateOnDragContext);
+};
+
 //***  To wrap components that need acces to the context in ***/
 export const UserActionsProvider = ({
   children,
@@ -58,6 +59,10 @@ export const UserActionsProvider = ({
   climateActionCategories,
 }) => {
   const [userActions, setUserActions] = useState(allUserActions);
+
+  const updateUserActions = (actions) => {
+    setUserActions(actions);
+  };
 
   const formatedUserActions = (inVal) => {
     return inVal.map((userActions) => ({
@@ -71,11 +76,7 @@ export const UserActionsProvider = ({
       .filter((action) => action.status !== true)
       .map((action) => ({ ...action }));
   };
-  // const doneUserActions = (inVal) => {
-  //   return formatedUserActions(inVal)
-  //     .filter((action) => action.status !== false)
-  //     .map((action) => ({ ...action }));
-  // };
+  //doneUserActions filtering out the rest of userActions is not needed anymore
 
   const columnUserActions = (acceptedList, doneList) => {
     return {
@@ -92,14 +93,6 @@ export const UserActionsProvider = ({
     };
   };
 
-  const updateCategoryBadges = (badge) => {
-    setCategoryBadges(badge);
-  };
-
-  const updateUserActions = (actions) => {
-    setUserActions(actions);
-  };
-
   const updateColumns = (col) => {
     setColumns(col);
   };
@@ -110,23 +103,10 @@ export const UserActionsProvider = ({
     setColumns(columnUserActions(acceptedUserActions(col), categoryBadges));
   };
 
-  // new imports connected to badges
+  // connected to badges
 
-  /** Feteches all actions for a specific category id with status */
-  const filterCategories = (filter, condition, status) => {
-    return filter.filter(
-      (filterUserAction) =>
-        filterUserAction.climate_action_category_id === condition &&
-        filterUserAction.status === status
-    );
-  };
-
-  /**Fetches all actions that does not contain status for a specific category id  */
-  const filterCategoriesWithoutStatus = (filter, condition) => {
-    return filter.filter(
-      (filterUserAction) =>
-        filterUserAction.climate_action_category_id === condition
-    );
+  const updateCategoryBadges = (badge) => {
+    setCategoryBadges(badge);
   };
 
   /** Finds the correct category based on id */
@@ -136,10 +116,28 @@ export const UserActionsProvider = ({
     );
   };
 
+  //Can the two functions below be combined with optional status condition?
+  /** 1. Feteches all actions for a specific category id with status */
+  const filterCategoryRelatedUserActions = (filter, condition, status) => {
+    return filter.filter(
+      (filterUserAction) =>
+        filterUserAction.climate_action_category_id === condition &&
+        filterUserAction.status === status
+    );
+  };
+
+  /** 2. Fetches all actions that does not contain status for a specific category id  */
+  const filterCategoryRelatedActions = (filter, condition) => {
+    return filter.filter(
+      (filterUserAction) =>
+        filterUserAction.climate_action_category_id === condition
+    );
+  };
+
   /** If the user have performed actions when logged in, then these bagdes are created here */
-  const appendItemsArrayToCategory = JSON.parse(climateActionCategories)
+  const appendUserActionsArrayToCategory = JSON.parse(climateActionCategories)
     .map((category) => {
-      const userPerformedActions = filterCategories(
+      const userPerformedActions = filterCategoryRelatedUserActions(
         userActions,
         category.id,
         true
@@ -157,12 +155,19 @@ export const UserActionsProvider = ({
 
   /** This function created badges from start */
   const getCorrectCategoriesWithPerformedActions =
-    appendItemsArrayToCategory.map((category) => {
-      const allActionsWithoutUserActions = filterCategoriesWithoutStatus(
+    appendUserActionsArrayToCategory.map((category) => {
+      //Add actions
+      const allActionsWithoutUserActions = filterCategoryRelatedActions(
         JSON.parse(actionsWithoutUserActions),
         category.id
       );
-      const allUserActions = filterCategories(userActions, category.id, false);
+
+      //Add useractions
+      const allUserActions = filterCategoryRelatedUserActions(
+        userActions,
+        category.id,
+        false
+      );
       return {
         ...category,
         userActionsArray: [...category.userActionsArray, ...allUserActions],
@@ -256,10 +261,6 @@ export const UserActionsProvider = ({
           true
         ),
       ];
-
-      console.log("ActionsWithOUtUser", actionsWithoutUserActions);
-      console.log({ allUserActions });
-      console.log({ allClimateActions });
 
       /** Updates the moved item to status true since it is now performed */
       // thirdMatching.map((action) => {
