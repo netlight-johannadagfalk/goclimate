@@ -23,6 +23,7 @@ const Container = ({ footprint, calculator, slug, lang, registrationsText, commo
           footprint={JSON.parse(footprint)} 
           calculator={JSON.parse(calculator)}
           texts={texts}
+          slug={slug}
           lang={lang}
           currency={JSON.parse(currency)}
           onChangeInformationSection={(value) => setShowInformationSection(value)}
