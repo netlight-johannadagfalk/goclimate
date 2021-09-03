@@ -10,14 +10,12 @@ import {
   useUserActionsColumnsWithFormatUpdate,
   useCategoryBadgesUpdate,
   useCategoryBadgesUpdateOnDrag,
-  useActionsWithoutUserActionsUpdate,
 } from "./contexts/UserActionsContext.js";
 
 const KanbanActionContainer = ({
   collapsed,
   categoryColor,
   climateActionCategories,
-  actionsWithoutUserActions,
 }) => {
   const userActions = useUserActions();
   const setUserActions = useUserActionsUpdate();
@@ -28,13 +26,13 @@ const KanbanActionContainer = ({
   const setCategoryBadgesOnDrag = useCategoryBadgesUpdateOnDrag();
 
   const setCategoryBadges = useCategoryBadgesUpdate();
-  const setActionsWithoutUserActions = useActionsWithoutUserActionsUpdate();
 
   const handleLocalAccepted = (updatedList, performed, deletedAction) => {
     setUserActions([...updatedList]);
     setColumnsWithFormat(updatedList, performed);
     setDeletedAction(deletedAction);
-    setActionsWithoutUserActions([...deletedAction]);
+    /** IS this needed?*/
+    //setActionsWithoutUserActions([...deletedAction]);
   };
 
   const handleDelete = (id, actionID) => {
@@ -112,8 +110,8 @@ const KanbanActionContainer = ({
       const sourceColumn = columns[1];
       const destColumn = columns[2];
       const sourceItems = [...sourceColumn.items];
-      const destIndex = [...destColumn.items].length;
-      const [removed] = sourceItems.splice(destIndex, 1);
+      //const destIndex = [...destColumn.items].length;
+      //const [removed] = sourceItems.splice(destIndex, 1);
       updateStatus(theItem.id, true);
       theItem.status = true;
 

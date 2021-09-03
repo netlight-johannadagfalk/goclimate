@@ -7,7 +7,6 @@ import {
   useClimateActionsUpdate,
   useClimateActionsOriginal,
 } from "./contexts/ClimateActionsContext.js";
-import { useActionsWithoutUserActionsUpdate } from "./contexts/UserActionsContext";
 import Sidebar from "./Sidebar.jsx";
 
 const ClimateActionsContainer = ({
@@ -19,7 +18,6 @@ const ClimateActionsContainer = ({
   const climateActions = useClimateActions();
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
-  const updateActionsWithoutUserActions = useActionsWithoutUserActionsUpdate();
 
   const [monthlyAction, setMonthlyAction] = useState(
     totClimateActions.find((action) => action.action_of_the_month === true)
