@@ -31,9 +31,6 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
       setMonthlyAction({ ...monthlyAction, accepted: !monthlyAction.accepted });
   };
 
-  // categoryColor should be something like monthlyAction.climate_action_category_id.toString()), or map the id to a category name matching the category_colors.css file naming (that cannot be numbers)
-  const categoryColor = "category_housing";
-
   useEffect(() => {
     deletedAction != null && updateLocalAccepted(deletedAction);
   }, [deletedAction]);
@@ -57,10 +54,9 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
         user={user}
         updateLocalAccepted={updateLocalAccepted}
         climateActionCategories={climateActionCategories}
-        categoryColor={categoryColor}
       />
 
-      <Sidebar categoryColor={categoryColor} />
+      <Sidebar categories={JSON.parse(climateActionCategories)} />
     </>
   );
 };
