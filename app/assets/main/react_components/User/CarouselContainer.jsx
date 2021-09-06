@@ -15,7 +15,9 @@ const CarouselContainer = ({
 
   return (
     <div className="max-w-5xl mx-auto space-y-3 t:bg-transparent t:rounded-lg t:p-8 mt-4">
-      <CarouselHeader />
+      <div className="-ml-56">
+        <CarouselHeader />
+      </div>
       <CarouselCategoryButton
         categoryName={"All categories"}
         categoryID={null}
