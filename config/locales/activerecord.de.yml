@@ -10,9 +10,12 @@ de:
             password:
               too_short: Das Passwort ist zu kurz. Es sollte mind. 6 Zeichen enthalten!
               blank: Ups, offenbar fehlt das Passwort!
+              format: '%{message}'
             email:
               taken: Diese E-Mail Adresse existiert bereits, versuchen Sie es mit einer anderen!
               blank: Dieses Feld scheint leer zu sein!
               invalid: Scheinbar ist ein Fehler aufgetreten, versuchen Sie es noch einmal!
+              format: '%{message}'
             privacy_policy:
               accepted: Sie müssen die Datenschutzerklärung akzeptieren
+              format: '%{message}'

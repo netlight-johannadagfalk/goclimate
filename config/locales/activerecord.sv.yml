@@ -10,9 +10,12 @@ sv:
             password:
               too_short: Lösenordet är för kort, minst 6 tecken!
               blank: Oj, lösenordet ser tomt ut!
+              format: '%{message}'
             email:
               taken: Användaren finns redan registrerad hos oss, prova med en annan e-postadress!
-              blank: måste anges
-              invalid: E-postadressen ser konstig ut, prova igen!
+              blank: E-postadress måste anges
+              invalid: E-postadressen ser felaktig ut, prova igen!
+              format: '%{message}'
             privacy_policy:
               accepted: Du behöver acceptera integritetspolocyn för att gå vidare
+              format: '%{message}'

@@ -70,6 +70,7 @@ Rails.application.routes.draw do
       end
       collection do
         resources :lifestyle_footprints, path: 'results', only: [:index, :show, :destroy]
+        get 'start', to: 'lifestyle_footprints#start'
       end
     end
 

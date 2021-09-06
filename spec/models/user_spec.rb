@@ -69,6 +69,26 @@ RSpec.describe User do
     end
   end
 
+  describe '#email' do
+    context 'with a valid email' do
+      subject { build(:user, email: 'test@example.com') }
+
+      it { is_expected.to be_valid }
+    end
+
+    context 'with a completely invalid email' do
+      subject { build(:user, email: 'test.test') }
+
+      it { is_expected.to be_invalid }
+    end
+
+    context 'with an invalid email according to our standard' do
+      subject { build(:user, email: 'test@test') }
+
+      it { is_expected.to be_invalid }
+    end
+  end
+
   describe '#user_name' do
     context 'with a user_name with an @ sign' do
       subject { build(:user, user_name: 'Jod@') }
