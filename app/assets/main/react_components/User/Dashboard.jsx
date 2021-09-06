@@ -15,7 +15,12 @@ const Dashboard = ({
   return (
     <DeletedActionProvider>
       <CategoryProvider>
-        <UserActionsProvider allUserActions={JSON.parse(allUserActions)}>
+        <UserActionsProvider
+          allUserActions={JSON.parse(allUserActions)}
+          actionsWithoutUserActions={actionsWithoutUserActions}
+          actionsWithUserActions={actionsWithUserActions}
+          climateActionCategories={climateActionCategories}
+        >
           <ClimateActionsProvider
             actionsWithUserActions={actionsWithUserActions}
             actionsWithoutUserActions={actionsWithoutUserActions}

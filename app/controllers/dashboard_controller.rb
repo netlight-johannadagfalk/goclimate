@@ -31,7 +31,7 @@ class DashboardController < ApplicationController
     # Functions get climate actions
     @get_all_user_climate_actions = ClimateAction.joins(:user_climate_actions)
     .where(["user_climate_actions.user_id = ? and climate_actions.id = user_climate_actions.climate_action_id", current_user.id])
-    .select("user_climate_actions.id", :climate_action_id, :name, :description, :status, :user_id, :image_url)
+    .select("user_climate_actions.id", :climate_action_id, :name, :description, :status, :user_id, :climate_action_category_id, :image_url)
 
     @get_all_climate_actions_without_user_actions = ClimateAction.where.not(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
     @get_all_climate_actions_with_user_actions = ClimateAction.where(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))

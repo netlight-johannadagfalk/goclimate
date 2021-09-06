@@ -6,7 +6,7 @@ const KanbanActionColumn = ({
   column,
   columnId,
   handleDelete,
-  handlePerformance,
+  handleButtonPerformOnDrag,
   setCollapsed,
   collapsed,
   categoryColor,
@@ -45,7 +45,7 @@ const KanbanActionColumn = ({
                       index={index}
                       key={item.id}
                       handleDelete={handleDelete}
-                      handlePerformance={handlePerformance}
+                      handleButtonPerformOnDrag={handleButtonPerformOnDrag}
                       collapsed={collapsed}
                       categoryColor={categoryColor}
                     />

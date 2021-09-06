@@ -6,7 +6,7 @@ const KanbanActionItem = ({
   item,
   index,
   handleDelete,
-  handlePerformance,
+  handleButtonPerformOnDrag,
   categoryColor,
   collapsed,
 }) => {
@@ -100,27 +100,45 @@ const KanbanActionItem = ({
                       ></button>
                       <button
                         className="button ml-4 button-cta"
-                        onClick={() => handlePerformance(item, true)}
+                        onClick={() => handleButtonPerformOnDrag(item, true)}
                       >
                         Performed{" >"}
                       </button>
                     </div>
                   </div>
                 ) : (
-                  <div className="flex flex-col text-center">
-                    <div className="justify-center">
-                      <p>
-                        {item.description.length > 40
-                          ? item.description.slice(0, 40) + "..."
-                          : item.description}
-                      </p>
-                    </div>
-                    <button
-                      className="button button-cta  "
-                      onClick={() => handlePerformance(item, false)}
-                    >
-                      Unperform{" <"}
-                    </button>
+                  <div>
+                    {/* Map through both arrays in categoryBadge. All actions in the category should be rendered in a list, but those userActions that are performed should be highlighted */}
+                    {item.userActionsArray &&
+                      item.userActionsArray.map((subitem) => {
+                        return (
+                          <div key={subitem.id}>
+                            {subitem.status === true ? (
+                              <div className="text-danger">{subitem.name}</div>
+                            ) : (
+                              <div className="">{subitem.name}</div>
+                            )}
+                            {subitem.status === true && (
+                              <button
+                                className="button ml-4 button-cta"
+                                onClick={() =>
+                                  handleButtonPerformOnDrag(subitem, false)
+                                }
+                              >
+                                Unperformed{" <"}
+                              </button>
+                            )}
+                          </div>
+                        );
+                      })}
+                    {item.actionsArray &&
+                      item.actionsArray.map((subitem) => {
+                        return (
+                          <div key={subitem.id}>
+                            <div className="">{subitem.name}</div>
+                          </div>
+                        );
+                      })}
                   </div>
                 )}
               </div>
