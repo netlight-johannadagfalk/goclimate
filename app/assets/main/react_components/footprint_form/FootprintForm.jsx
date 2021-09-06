@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import ProgressBar from './ProgressBar.jsx';
-import ResultPage from './ResultPage.jsx';
-import QuestionPage from './QuestionPage.jsx';
+import React, { useEffect, useMemo, useState } from 'react';
 import constructObjects from './constructObjects.js';
 import { numericalKeys, resultKeys, resultObjects } from './footprint-data.js';
+import ProgressBar from './ProgressBar.jsx';
+import QuestionPage from './QuestionPage.jsx';
+import ResultPage from './ResultPage.jsx';
 
 /**
  * FootprintForm has the responsibility to handle the logic for showing the the questions and answers 
@@ -148,8 +148,8 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, URL, t
   }
 
   return (
-    <> 
-        <div className="question py-8" data-target="lifestyle-footprints--calculator.question" data-category="home">
+    <>
+        <div className="question py-8">
           <ProgressBar 
             questionCategories={getUsedQuestions()} 
             currentObject={currentObject}
