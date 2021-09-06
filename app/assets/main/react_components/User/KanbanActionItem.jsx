@@ -26,10 +26,6 @@ const KanbanActionItem = ({
     return "unknown";
   };
 
-  // const categoryColor = useMemo(() => {
-  //   return categoryName();
-  // }, [item]);
-
   const categoryColor = categoryName();
   useEffect(() => {
     setExpanded(false);
@@ -136,7 +132,7 @@ const KanbanActionItem = ({
                     </div>
                     <div className="flex flex-1 justify-center items-start">
                       <button
-                        className={`ml-4 fas float-right focus:outline-none ${
+                        className={`ml-4 fas float-right mt-4 focus:outline-none ${
                           expanded ? "fa-chevron-up" : "fa-chevron-down"
                         }`}
                       ></button>
@@ -169,13 +165,13 @@ const KanbanActionItem = ({
                     </div>
                     <div className="flex-1 justify-center my-4">
                       <button
-                        className=" mr-4 fas fa-times-circle h-4 w-4"
+                        className=" mr-4 fas fa-times-circle h-4 w-4 focus:outline-none"
                         onClick={() =>
                           handleDelete(item.id, item.climate_action_id)
                         }
                       ></button>
                       <button
-                        className="ml-4 fas fa-check-circle"
+                        className="ml-4 fas fa-check-circle focus:outline-none"
                         onClick={() => handleButtonPerformOnDrag(item, true)}
                       ></button>
                     </div>
