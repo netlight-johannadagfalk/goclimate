@@ -23,7 +23,7 @@ const ResultPage = ({ result, texts, lang, slug, page, onPageChange, currency })
     const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq')
     const commonStrings = texts.commonText
 
-    if (texts.registrationsText.accept_policies===undefined) {
+    if (texts.registrationsText.accept_policies === undefined) {
         texts.registrationsText.accept_policies = "By signing up you accept the <a>terms of use and policies</a>"
     }
 
