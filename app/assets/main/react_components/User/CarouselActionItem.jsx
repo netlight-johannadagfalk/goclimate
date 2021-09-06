@@ -68,7 +68,6 @@ const CarouselActionItem = ({
       .catch((e) => console.log(e));
   };
   const handleClickAccepted = (action) => {
-    console.log(action);
     updateLocalAccepted(action.id);
     updateAccepted(action);
   };
