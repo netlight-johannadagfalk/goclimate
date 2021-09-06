@@ -36,6 +36,18 @@ const KanbanActionColumn = ({
                 width: 410,
               }}
             >
+              {columnId == 2 && column.items.length == 0 ? (
+                <p
+                  style={{
+                    fontStyle: "italic",
+                    marginTop: "25%",
+                  }}
+                >
+                  Drag your finished actions here
+                </p>
+              ) : (
+                ""
+              )}
               {column.items
                 .slice(0, collapsed ? 4 : column.items.length)
                 .map((item, index) => {

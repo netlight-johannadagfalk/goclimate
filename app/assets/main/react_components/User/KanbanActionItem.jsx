@@ -17,14 +17,37 @@ const KanbanActionItem = ({
     setExpanded(false);
   }, [collapsed]);
 
+  const setStyleWithoutReordering = (style, snapshot) => {
+    /** Moving element from accepted column to achieved column */
+    if (!snapshot.isDragging) {
+      return {
+        userSelect: "none",
+        padding: 16,
+        margin: "0 0 8px 0",
+        minHeight: "auto",
+      };
+    }
+  };
+
+  const setStyleWithReordering = (style) => {
+    /** Moving element inside accepted column */
+    return {
+      userSelect: "none",
+      padding: 16,
+      margin: "0 0 8px 0",
+      minHeight: "auto",
+      ...style,
+    };
+  };
+
   return (
     <Draggable
       key={item.id}
       draggableId={item.id}
       index={index}
-      isDragDisabled={collapsed}
+      isDragDisabled={item.status !== false}
     >
-      {(provided) => {
+      {(provided, snapshot) => {
         return (
           <div
             className={`border border-gray-tint-2 rounded-lg shadow-lg p-4 space-y-3 pt-0 ${
@@ -34,13 +57,14 @@ const KanbanActionItem = ({
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
-            style={{
-              userSelect: "none",
-              padding: 16,
-              margin: "0 0 8px 0",
-              minHeight: "auto",
-              ...provided.draggableProps.style,
-            }}
+            style={
+              item.status === false
+                ? setStyleWithReordering(provided.draggableProps.style)
+                : setStyleWithoutReordering(
+                    provided.draggableProps.style,
+                    snapshot
+                  )
+            }
             onClick={() => setExpanded(!expanded)}
           >
             {collapsed ? (
