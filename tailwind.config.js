@@ -136,6 +136,16 @@ module.exports = {
       lg: "0 15px 30px -5px rgba(28, 70, 55, 0.1), 0 10px 10px -5px rgba(28, 70, 55, 0.05)",
       none: "none",
     },
+    flex: {
+      1: "1 1 0%",
+      auto: "1 1 auto",
+      initial: "0 1 auto",
+      inherit: "inherit",
+      none: "none",
+      2: "2 2 0%",
+      3: "3 3 0%",
+      4: "4 4 0%",
+    },
     extend: {
       height: {
         96: "24rem",
