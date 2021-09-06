@@ -52,7 +52,7 @@ const ClimateActionsContainer = ({
             key={monthlyAction.id}
             user={user}
             updateLocalAccepted={updateLocalAccepted}
-            categoryColor={categoryColor}
+            categories={JSON.parse(climateActionCategories)}
           ></CarouselActionItem>
         )}
       </div>

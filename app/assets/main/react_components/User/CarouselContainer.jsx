@@ -8,7 +8,6 @@ const CarouselContainer = ({
   user,
   updateLocalAccepted,
   climateActionCategories,
-  categoryColor,
 }) => {
   const formatedCategories = JSON.parse(climateActionCategories);
   const [allCategories, setAllCategories] = useState(true);
@@ -36,7 +35,7 @@ const CarouselContainer = ({
       <CarouselList
         user={user}
         updateLocalAccepted={updateLocalAccepted}
-        categoryColor={categoryColor}
+        categories={formatedCategories}
       ></CarouselList>
     </div>
   );
