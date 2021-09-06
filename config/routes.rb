@@ -243,9 +243,12 @@ Rails.application.routes.draw do
       post 'send_email', on: :collection
     end
     resource :flight_batch, controller: 'flight_batch', only: [:new, :create]
-    resources :users, only: [:index, :show] do
+    resources :users, only: [:index, :show, :destroy] do
       collection do
         post :search
+      end
+      member do
+        get :cancel_subscription
       end
     end
     resources :lifestyle_footprints, only: [:index, :show, :destroy]

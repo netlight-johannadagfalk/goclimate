@@ -1,52 +1,58 @@
-<%= render 'admin/shared/notice_banner' %>
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
 
-<div class="space-y-12">
-  <section class="space-y-6">
-    <h2 class="heading-lg">Search</h2>
-    <%= form_with(url: search_admin_users_path, class: 'flex flex-row space-x-1') do |form| %>
-      <%= form.text_field :search_query, placeholder: 'Email', class: 'input' %>
-      <%= form.submit 'Search', class: 'button button-cta' %>
-    <% end %>
-    <% if @users.count == @max_entries %>
-      <p>Showing maximum <%= @max_entries %> entries for performance reasons. Try to specify your search.</p>
-    <% end %>
-  </section>
-
-  <% if @users.length > 0 %>
+  <div class="space-y-12">
     <section class="space-y-6">
-      <h1 class="heading-lg">Users</h1>
-
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Email</th>
-            <th>Subscription</th>
-            <th>Footprint</th>
-            <th></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <td><%= user.id %></td>
-              <td><%= user.email %></td>
-              <td><%= user.subscription_price || 'None' %></td>
-              <td>
-                <% if user.current_lifestyle_footprint.present? %>
-                  <%= user.current_lifestyle_footprint&.total&.tonnes&.round(1) %> tonnes
-                <% else %>
-                  None
-                <% end %>
-              </td>
-              <td class="whitespace-nowrap">
-                <%= link_to 'Show', [:admin, user], class: 'link-ui text-green-shade-2' %> &nbsp;
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <h2 class="heading-lg">Search</h2>
+      <%= form_with(url: search_admin_users_path, class: 'flex flex-row space-x-1') do |form| %>
+        <%= form.text_field :search_query, placeholder: 'Email', class: 'input' %>
+        <%= form.submit 'Search', class: 'button button-cta' %>
+      <% end %>
+      <% if @users.count == @max_entries %>
+        <p>Showing maximum <%= @max_entries %> entries for performance reasons. Try to specify your search.</p>
+      <% end %>
     </section>
-  <% end %>
+
+    <% if @users.length > 0 %>
+      <section class="space-y-6">
+        <h1 class="heading-lg">Users</h1>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Email</th>
+              <th>Subscription</th>
+              <th>Footprint</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.id %></td>
+                <td><%= user.email %></td>
+                <td><%= user.subscription_price || 'None' %></td>
+                <td>
+                  <% if user.current_lifestyle_footprint.present? %>
+                    <%= user.current_lifestyle_footprint&.total&.tonnes&.round(1) %> tonnes
+                  <% else %>
+                    None
+                  <% end %>
+                </td>
+                <td class="whitespace-nowrap">
+                  <%= link_to 'Show', [:admin, user], class: 'link-ui text-green-shade-2' %> &nbsp;
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </section>
+    <% else %>
+      <section class="space-y-6">
+        <h3 class="heading">No users were found ...</h3>
+      </section>
+    <% end %>
+  </div>
 </div>
