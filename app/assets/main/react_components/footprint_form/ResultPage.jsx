@@ -82,7 +82,7 @@ const ResultPage = ({ result, texts, lang, slug, page, onPageChange, currency })
             { page === 3 && 
                 <div className={"inject-link pt-4"}
                     dangerouslySetInnerHTML={{
-                        __html: sanitizeHtml(texts.registrationsText.accept_policies.replace("<a>","<a href='"+ ((slug==='en' || slug===null) ? "" : "/" + slug) +"/privacy-policy' target='_blank'>" ))}}
+                        __html: sanitizeHtml(texts.registrationsText.accept_policies.replace("<a>","<a href='"+ ((slug === 'en' || slug === null) ? "" : "/" + slug) +"/privacy-policy' target='_blank'>" ))}}
                     >
                 </div>
             }
