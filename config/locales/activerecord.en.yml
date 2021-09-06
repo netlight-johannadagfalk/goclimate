@@ -10,9 +10,12 @@ en:
               password:
                 too_short: The password is too short, please try at least 6 characters!
                 blank: Wops, the password looks like it´s empty!
+                format: '%{message}'
               email:
                 taken: The email address already exists, try another one!
-                blank: can't be blank
+                blank: The email address can't be blank
                 invalid: The email looks incorrect, try again!
+                format: '%{message}'
               privacy_policy:
                 accepted: You need to accept the pricacy policy
+                format: '%{message}'

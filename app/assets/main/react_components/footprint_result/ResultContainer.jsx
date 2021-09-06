@@ -17,7 +17,7 @@ import YourFootprintText from './YourFootprintText.jsx';
  * React container for Result page components
  */
     
-const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, lang, plan, currency, sign_up_heading_test_number }) => {
+const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, lang, plan, currency }) => {
     const [selectedMembership, setSelectedMembership] = useState("single")
     const [multipleOffsets, setMultipleOffsets] = useState(2);
     const [grantedReferralCode, setGrantedReferralCode] = useState(false)

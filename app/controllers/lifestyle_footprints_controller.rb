@@ -8,6 +8,9 @@ class LifestyleFootprintsController < ApplicationController
     @footprints = LifestyleFootprint.where(user_id: current_user.id).order(created_at: :asc)
   end
 
+  def start
+  end
+
   def new
     (country = ISO3166::Country.new(params[:country])) &&
       (@calculator = LifestyleCalculator.find_published_for_country(country))
