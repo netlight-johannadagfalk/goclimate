@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanActionColumn from "./KanbanActionColumn.jsx";
 import { useUserActionsUpdate } from "./contexts/UserActionsContext.js";
@@ -9,7 +9,7 @@ import {
   useUserActionsColumnsWithFormatUpdate,
 } from "./contexts/UserActionsContext.js";
 
-const KanbanActionContainer = ({ collapsed, categoryColor }) => {
+const KanbanActionContainer = ({ collapsed, categoryColor, setCollapsed }) => {
   const setUserActions = useUserActionsUpdate();
   const columns = useUserActionsColumns();
   const setColumns = useUserActionsColumnsUpdate();
@@ -194,39 +194,40 @@ const KanbanActionContainer = ({ collapsed, categoryColor }) => {
       });
     }
   };
+  const [isHovering, setIsHovering] = useState(false);
+
   return (
-    <div className="flex flex-col justify-center h-full">
+    <div className="h-screen">
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
         {Object.entries(columns).map(([columnId, column]) => {
           return (
-            <div key={columnId}>
-              <div
-                className="flex flex-col"
-                style={{
-                  alignItems: "center",
-                }}
-                key={columnId}
-              >
-                <div className="text-center pt-8" style={{ margin: 2 }}>
-                  <p
-                    className={`font-normal text-base text-primary text-lg top-0 text-center`}
-                  >
-                    {!collapsed && column.name}
-                  </p>
-
-                  <KanbanActionColumn
-                    column={column}
-                    columnId={columnId}
-                    key={columnId}
-                    handleDelete={handleDelete}
-                    handlePerformance={handlePerformance}
-                    categoryColor={categoryColor}
-                    collapsed={collapsed}
-                  />
-                </div>
+            <div
+              className="text-center h-1/2 pb-24 -mb-8"
+              style={{ margin: 2 }}
+              key={columnId}
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+            >
+              <div className="h-8">
+                <p
+                  className={`font-normal text-base text-primary text-lgtext-center`}
+                >
+                  {!collapsed && column.name}
+                </p>
               </div>
+              <KanbanActionColumn
+                column={column}
+                columnId={columnId}
+                key={columnId}
+                handleDelete={handleDelete}
+                handlePerformance={handlePerformance}
+                categoryColor={categoryColor}
+                setCollapsed={setCollapsed}
+                collapsed={collapsed}
+                isHovering={isHovering}
+              />
             </div>
           );
         })}

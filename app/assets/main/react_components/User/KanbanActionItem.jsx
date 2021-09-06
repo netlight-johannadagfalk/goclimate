@@ -26,9 +26,10 @@ const KanbanActionItem = ({
       {(provided) => {
         return (
           <div
-            className={`${categoryColor} border border-gray-tint-2 rounded-lg shadow-lg p-4 h-full space-y-3 pt-0 ${
+            className={`${categoryColor} border border-gray-tint-2 rounded-lg shadow-lg p-4 space-y-3 pt-0 ${
               collapsed ? "w-24" : "w-96"
-            }`}
+            }
+            ${expanded ? "h-48" : "w-24"}`}
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
