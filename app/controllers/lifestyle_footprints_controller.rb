@@ -32,18 +32,18 @@ class LifestyleFootprintsController < ApplicationController
       redirect_to lifestyle_footprint_path(id: @footprint)
       return
     end
-
-    @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
-
-    @footprint_tonnes = @footprint&.total
-    number_of_people = params[:membership] == 'multi' && params[:people].present? ? params[:people].to_i : 1
-    @plan = Subscriptions::Plan.for_footprint(@footprint_tonnes * number_of_people, current_region.currency)
     
-    # IF RESULT IN FORM
-    render json: {footprint: @footprint, country_average: @country_average, plan: @plan}
+    if experiment_active?(:react)
+      @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
+      @footprint_tonnes = @footprint&.total
+      number_of_people = params[:membership] == 'multi' && params[:people].present? ? params[:people].to_i : 1
+      @plan = Subscriptions::Plan.for_footprint(@footprint_tonnes * number_of_people, current_region.currency)
+      
+      render json: {footprint: @footprint, country_average: @country_average, plan: @plan}
+      return
+    end
     
-    # IF RESULT ON RESULT PAGE
-    # redirect_to new_registration_path(:user, lifestyle_footprint: @footprint, campaign: params[:campaign].presence)
+    redirect_to new_registration_path(:user, lifestyle_footprint: @footprint, campaign: params[:campaign].presence)
   end
 
   def show
