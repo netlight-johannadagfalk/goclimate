@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ProgressBar from "./ProgressBar.jsx";
 
 import { Draggable } from "react-beautiful-dnd";
 
@@ -7,7 +8,7 @@ const KanbanActionItem = ({
   index,
   handleDelete,
   handleButtonPerformOnDrag,
-  categoryColor,
+  categories,
   collapsed,
 }) => {
   const [expanded, setExpanded] = useState(false);
@@ -26,7 +27,7 @@ const KanbanActionItem = ({
       {(provided) => {
         return (
           <div
-            className={`${categoryColor} border border-gray-tint-2 rounded-lg shadow-lg p-4 space-y-3 pt-0 ${
+            className={`border border-gray-tint-2 rounded-lg shadow-lg p-4 space-y-3 pt-0 ${
               collapsed ? "w-24" : "w-96"
             }
             ${expanded ? "h-48" : "w-24"}`}
@@ -55,28 +56,41 @@ const KanbanActionItem = ({
                 ></div>
               </div>
             ) : (
-              <div
-                className="flex items-center justify-between"
-                onClick={() => setExpanded(!expanded)}
-              >
-                {/* image that should be loaded from items.imgage and when status is changed, the image changes to category.image (badge) */}
+              <div className="flex flex-col">
                 <div
-                  className={`mt-4 rounded-full h-14 w-14 bg-cover`}
-                  style={{
-                    backgroundImage:
-                      item.status === false
-                        ? `url('${item.image_url}')`
-                        : "url('/achievement_images/AchievementClimateFriend.png')",
-                  }}
-                ></div>
+                  className="flex items-center justify-between"
+                  onClick={() => setExpanded(!expanded)}
+                >
+                  {/* image that should be loaded from items.imgage and when status is changed, the image changes to category.image (badge) */}
+                  <div
+                    className={`mt-4 rounded-full h-14 w-14 bg-cover`}
+                    style={{
+                      backgroundImage:
+                        item.status === false
+                          ? `url('${item.image_url}')`
+                          : "url('/achievement_images/AchievementClimateFriend.png')",
+                    }}
+                  ></div>
 
-                <div className="font-bold">{item.name}</div>
+                  <div className="font-bold">{item.name}</div>
 
-                <button
-                  className={`ml-4 fas float-right ${
-                    expanded ? "fa-chevron-up" : "fa-chevron-down"
-                  }`}
-                ></button>
+                  <button
+                    className={`ml-4 fas float-right ${
+                      expanded ? "fa-chevron-up" : "fa-chevron-down"
+                    }`}
+                  ></button>
+                </div>
+                {item.userActionsArray && (
+                  <div className="flex justify-center ml-6 -mt-5">
+                    {/* <progress value={progress_bar} max="100" /> */}
+                    <ProgressBar
+                      categories={categories}
+                      item={item}
+                      userActions={item.userActionsArray}
+                      actions={item.actionsArray}
+                    />
+                  </div>
+                )}
               </div>
             )}
 

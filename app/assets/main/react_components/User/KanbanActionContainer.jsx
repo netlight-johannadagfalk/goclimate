@@ -11,7 +11,7 @@ import {
   useCategoryBadgesUpdateOnDrag,
 } from "./contexts/UserActionsContext.js";
 
-const KanbanActionContainer = ({ collapsed, categoryColor, setCollapsed }) => {
+const KanbanActionContainer = ({ collapsed, categories, setCollapsed }) => {
   const setUserActions = useUserActionsUpdate();
   const columns = useUserActionsColumns();
   const setColumns = useUserActionsColumnsUpdate();
@@ -232,7 +232,7 @@ const KanbanActionContainer = ({ collapsed, categoryColor, setCollapsed }) => {
                 key={columnId}
                 handleDelete={handleDelete}
                 handleButtonPerformOnDrag={handleButtonPerformOnDrag}
-                categoryColor={categoryColor}
+                categories={categories}
                 setCollapsed={setCollapsed}
                 collapsed={collapsed}
                 isHovering={isHovering}
