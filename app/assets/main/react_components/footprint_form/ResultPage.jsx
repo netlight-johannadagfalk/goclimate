@@ -14,7 +14,7 @@ import WorldPage from './WorldPage.jsx';
  * If the page number is 0, then the first page, i.e. WorldComparison, should be visible
  * AnswerButton is used to increase currentIndex and with this the page number
  */
-const ResultPage = ({ result, texts, lang, page, onPageChange, currency }) => {
+const ResultPage = ({ result, texts, lang, slug, page, onPageChange, currency }) => {
     const footprint = result.footprint;
     const countryAverage = result.country_average;
     const [selectedMembership, setSelectedMembership] = useState("single")
@@ -22,6 +22,10 @@ const ResultPage = ({ result, texts, lang, page, onPageChange, currency }) => {
     const [grantedReferralCode, setGrantedReferralCode] = useState(false)
     const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq')
     const commonStrings = texts.commonText
+
+    if (texts.registrationsText.accept_policies === undefined) {
+        texts.registrationsText.accept_policies = "By signing up you accept the <a>terms of use and policies</a>"
+    }
 
     return (
         <div>
@@ -76,9 +80,11 @@ const ResultPage = ({ result, texts, lang, page, onPageChange, currency }) => {
                 onAnswerGiven={onPageChange}
                 stylingClasses={"w-2/3 " + (page === 2 && "button-cta")}
             />
-            {page === 3 && 
+            { page === 3 && 
                 <div className={"inject-link pt-4"}
-                    dangerouslySetInnerHTML={{__html: sanitizeHtml(texts.registrationsText.accept_policies)}}>
+                    dangerouslySetInnerHTML={{
+                        __html: sanitizeHtml(texts.registrationsText.accept_policies.replace("<a>","<a href='"+ ((slug === 'en' || slug === null) ? "" : "/" + slug) +"/privacy-policy' target='_blank'>" ))}}
+                    >
                 </div>
             }
         </div>
