@@ -4,12 +4,7 @@ import CarouselList from "./CarouselList.jsx";
 import CarouselCategoryButton from "./CarouselCategoryButton.jsx";
 import { useCategory } from "./contexts/CategoryContext.js";
 
-const CarouselContainer = ({
-  user,
-  updateLocalAccepted,
-  climateActionCategories,
-}) => {
-  const formatedCategories = JSON.parse(climateActionCategories);
+const CarouselContainer = ({ user, updateLocalAccepted, categories }) => {
   const [allCategories, setAllCategories] = useState(true);
   const category = useCategory();
 
@@ -22,7 +17,7 @@ const CarouselContainer = ({
         active={allCategories}
         setAllCategories={setAllCategories}
       />
-      {formatedCategories.map((cat) => (
+      {categories.map((cat) => (
         <CarouselCategoryButton
           key={cat.id}
           categoryName={cat.name}
@@ -35,7 +30,7 @@ const CarouselContainer = ({
       <CarouselList
         user={user}
         updateLocalAccepted={updateLocalAccepted}
-        categories={formatedCategories}
+        categories={categories}
       ></CarouselList>
     </div>
   );
