@@ -28,7 +28,6 @@ const Dashboard = ({
             <ClimateActionsContainer
               user={user}
               climateActionCategories={climateActionCategories}
-              actionsWithoutUserActions={actionsWithoutUserActions}
             ></ClimateActionsContainer>
           </ClimateActionsProvider>
         </UserActionsProvider>

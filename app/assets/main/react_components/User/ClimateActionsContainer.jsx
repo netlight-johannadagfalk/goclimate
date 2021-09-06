@@ -9,11 +9,7 @@ import {
 } from "./contexts/ClimateActionsContext.js";
 import Sidebar from "./Sidebar.jsx";
 
-const ClimateActionsContainer = ({
-  user,
-  climateActionCategories,
-  actionsWithoutUserActions,
-}) => {
+const ClimateActionsContainer = ({ user, climateActionCategories }) => {
   const deletedAction = useDeletedAction();
   const climateActions = useClimateActions();
   const setClimateActions = useClimateActionsUpdate();
@@ -64,11 +60,7 @@ const ClimateActionsContainer = ({
         categoryColor={categoryColor}
       />
 
-      <Sidebar
-        categoryColor={categoryColor}
-        climateActionCategories={climateActionCategories}
-        actionsWithoutUserActions={actionsWithoutUserActions}
-      />
+      <Sidebar categoryColor={categoryColor} />
     </>
   );
 };
