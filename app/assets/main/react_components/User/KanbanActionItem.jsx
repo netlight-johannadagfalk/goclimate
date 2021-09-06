@@ -50,7 +50,7 @@ const KanbanActionItem = ({
                     backgroundImage:
                       item.status === false
                         ? `url('${item.image_url}')`
-                        : "url('/achievement_images/AchievementClimateFriend.png')",
+                        : `url('${item.badge_image_url}')`,
                   }}
                 ></div>
               </div>
@@ -66,7 +66,7 @@ const KanbanActionItem = ({
                     backgroundImage:
                       item.status === false
                         ? `url('${item.image_url}')`
-                        : "url('/achievement_images/AchievementClimateFriend.png')",
+                        : `url('${item.badge_image_url}')`,
                   }}
                 ></div>
 
@@ -81,7 +81,7 @@ const KanbanActionItem = ({
             )}
 
             {expanded && !collapsed && (
-              <div>
+              <div className="rounded-tl-lg rounded-tr-lg p-2">
                 {item.status === false ? (
                   <div className="flex flex-col text-center">
                     <div className="flex-1 justify-center">
@@ -114,11 +114,25 @@ const KanbanActionItem = ({
                         return (
                           <div key={subitem.id}>
                             {subitem.status === true ? (
-                              <div className="text-danger">{subitem.name}</div>
+                              <div className="flex">
+                                <div className="flex-1 text-left text-danger">
+                                  {subitem.name}
+                                </div>
+                                <button
+                                  className="hover:text-danger flex-1 text-right"
+                                  onClick={() =>
+                                    handleButtonPerformOnDrag(subitem, false)
+                                  }
+                                >
+                                  &times;
+                                </button>
+                              </div>
                             ) : (
-                              <div className="">{subitem.name}</div>
+                              <div className="flex-1 text-left">
+                                {subitem.name}
+                              </div>
                             )}
-                            {subitem.status === true && (
+                            {/* {subitem.status === true && (
                               <button
                                 className="button ml-4 button-cta"
                                 onClick={() =>
@@ -127,7 +141,7 @@ const KanbanActionItem = ({
                               >
                                 Unperformed{" <"}
                               </button>
-                            )}
+                            )} */}
                           </div>
                         );
                       })}
@@ -135,7 +149,9 @@ const KanbanActionItem = ({
                       item.actionsArray.map((subitem) => {
                         return (
                           <div key={subitem.id}>
-                            <div className="">{subitem.name}</div>
+                            <div className="flex-1 text-left">
+                              {subitem.name}
+                            </div>
                           </div>
                         );
                       })}
