@@ -43,15 +43,15 @@ const KanbanActionItem = ({
           >
             {collapsed ? (
               <div className="flex items-center justify-between">
-                {/* image that should be loaded from items.imgage and when status is changed, the image changes to category.image (badge) */}
-                <img
-                  src={
-                    item.status === false
-                      ? item.image_url
-                      : "achievement_images/AchievementClimateFriend.png"
-                  }
-                  className="h-14 w-14 rounded-full mt-4"
-                ></img>
+                <div
+                  className={`mt-4 rounded-full h-14 w-14 bg-cover`}
+                  style={{
+                    backgroundImage:
+                      item.status === false
+                        ? `url('${item.image_url}')`
+                        : "url('/achievement_images/AchievementClimateFriend.png')",
+                  }}
+                ></div>
               </div>
             ) : (
               <div
@@ -59,14 +59,15 @@ const KanbanActionItem = ({
                 onClick={() => setExpanded(!expanded)}
               >
                 {/* image that should be loaded from items.imgage and when status is changed, the image changes to category.image (badge) */}
-                <img
-                  src={
-                    item.status === false
-                      ? item.image_url
-                      : "achievement_images/AchievementClimateFriend.png"
-                  }
-                  className="h-14 w-14 rounded-full mt-4"
-                ></img>
+                <div
+                  className={`mt-4 rounded-full h-14 w-14 bg-cover`}
+                  style={{
+                    backgroundImage:
+                      item.status === false
+                        ? `url('${item.image_url}')`
+                        : "url('/achievement_images/AchievementClimateFriend.png')",
+                  }}
+                ></div>
 
                 <div className="font-bold">{item.name}</div>
 

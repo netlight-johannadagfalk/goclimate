@@ -13,7 +13,7 @@ import "swiper/components/pagination/pagination.min.css";
 import SwiperCore, { Navigation, Pagination, Scrollbar } from "swiper/core";
 SwiperCore.use([Pagination, Navigation, Scrollbar]);
 
-const CarouselList = ({ user, updateLocalAccepted, categoryColor }) => {
+const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
 
@@ -43,7 +43,7 @@ const CarouselList = ({ user, updateLocalAccepted, categoryColor }) => {
               action={action}
               user={user}
               updateLocalAccepted={updateLocalAccepted}
-              categoryColor={categoryColor}
+              categories={categories}
             ></CarouselActionItem>
           </SwiperSlide>
         ))}
