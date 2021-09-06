@@ -24,7 +24,7 @@ const ResultPage = ({ result, texts, lang, slug, page, onPageChange, currency })
     const commonStrings = texts.commonText
     console.log(slug);
 
-    var mySlug=    (slug==='en') ? "" : "/"+slug
+    var mySlug=    (slug==='en' || slug===null) ? "" : "/"+slug
     console.log(mySlug);
     return (
         <div>
