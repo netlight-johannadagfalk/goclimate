@@ -15,17 +15,17 @@
   number: number_with_delimiter(@total_carbon_offset),
   suffix: t('tonnes_CO2') %>
 
-<%#= render 'shared/email/spacer' %>
+<%= render 'shared/email/spacer' %>
 
-<%#= render 'shared/email/exituser_climate_actions', 
+<%# <%= render 'shared/email/user_climate_actions', 
   prefix: "Your Climate Actions are:",
   user_climate_actions: @user_climate_actions,
   suffix: "testing"
 %>
 
-<%# <%= render 'shared/email/spacer' %>
+<%#= render 'shared/email/spacer' %>
 
-<%#= render 'shared/email/action_of_the_month', 
+<%= render 'shared/email/action_of_the_month', 
   prefix: "The action of the month are:",
   number: @action_of_the_month.name,
   suffix: @action_of_the_month.description,
