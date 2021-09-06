@@ -11,13 +11,12 @@ const SignUpContainer = ( props ) => {
     //TODO:
     //Slug för språk i url:en
     //<a> blir länken i med href
-    //A/B-test för titeln givet props.sign_up_heading_test_number
 
     return (
         <div className="max-w-lg mx-auto">
             <div className="space-y-3">
                 <Title
-                    text={props.signUpText.sign_up_heading_test_2}
+                    text={props.signUpText.sign_up_heading_collective_efficacy}
                 />
                 <SignUpMotivationText
                     signUpMotivationText={props.signUpText.sign_up_description}                            
