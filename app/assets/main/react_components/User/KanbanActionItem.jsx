@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ProgressBar from "./ProgressBar.jsx";
 
 import { Draggable } from "react-beautiful-dnd";
 
@@ -34,14 +35,37 @@ const KanbanActionItem = ({
     setExpanded(false);
   }, [collapsed]);
 
+  const setStyleWithoutReordering = (style, snapshot) => {
+    /** Moving element from accepted column to achieved column */
+    if (!snapshot.isDragging) {
+      return {
+        userSelect: "none",
+        padding: 16,
+        margin: "0 0 8px 0",
+        minHeight: "auto",
+      };
+    }
+  };
+
+  const setStyleWithReordering = (style) => {
+    /** Moving element inside accepted column */
+    return {
+      userSelect: "none",
+      padding: 16,
+      margin: "0 0 8px 0",
+      minHeight: "auto",
+      ...style,
+    };
+  };
+
   return (
     <Draggable
       key={item.id}
       draggableId={item.id}
       index={index}
-      isDragDisabled={collapsed}
+      isDragDisabled={item.status !== false}
     >
-      {(provided) => {
+      {(provided, snapshot) => {
         return (
           <div
             className={`border border-gray-tint-2 rounded-lg shadow-lg p-0 space-y-3 pt-0 ${
@@ -51,13 +75,14 @@ const KanbanActionItem = ({
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
-            style={{
-              userSelect: "none",
-              padding: 16,
-              margin: "0 0 8px 0",
-              minHeight: "auto",
-              ...provided.draggableProps.style,
-            }}
+            style={
+              item.status === false
+                ? setStyleWithReordering(provided.draggableProps.style)
+                : setStyleWithoutReordering(
+                    provided.draggableProps.style,
+                    snapshot
+                  )
+            }
             onClick={() => setExpanded(!expanded)}
           >
             {collapsed ? (
@@ -75,46 +100,58 @@ const KanbanActionItem = ({
               </div>
             ) : (
               <>
-                {!isBadge && (
-                  <div
-                    className={`${
-                      "category_" +
-                      categoryColor.toLowerCase().replace(/ /g, "_") +
-                      "_active"
-                    } h-7 w-full rounded-t border-t-gray-tint-2 bg-opacity-60`}
-                  ></div>
-                )}
-                <div
-                  className={`flex flex-row h-14 ${
-                    expanded && "border-b border-b-gray-tint-2 "
-                  }`}
-                  onClick={() => setExpanded(!expanded)}
-                >
-                  <div className="flex flex-1">
+                <div>
+                  {!isBadge && (
                     <div
-                      className={`mx-auto ${
-                        !isBadge && "-mt-1/4"
-                      } rounded-full h-16 w-16 items-center justify-center bg-contain bg-center shadow-lg`}
-                      style={{
-                        backgroundImage:
-                          item.status === false
-                            ? `url('${item.image_url}')`
-                            : "url('/achievement_images/AchievementClimateFriend.png')",
-                      }}
+                      className={`${
+                        "category_" +
+                        categoryColor.toLowerCase().replace(/ /g, "_") +
+                        "_active"
+                      } h-7 w-full rounded-t border-t-gray-tint-2 bg-opacity-60`}
                     ></div>
-                  </div>
-                  <div className="flex flex-2 justify-start">
-                    <div className="flex flex-1 font-bold text-left">
-                      {item.name}
+                  )}
+                  <div
+                    className={`flex flex-row h-14 ${
+                      expanded && "border-b border-b-gray-tint-2 "
+                    }`}
+                    onClick={() => setExpanded(!expanded)}
+                  >
+                    <div className="flex flex-1">
+                      <div
+                        className={`mx-auto ${
+                          !isBadge && "-mt-1/4"
+                        } rounded-full h-16 w-16 items-center justify-center bg-contain bg-center shadow-lg`}
+                        style={{
+                          backgroundImage:
+                            item.status === false
+                              ? `url('${item.image_url}')`
+                              : "url('/achievement_images/AchievementClimateFriend.png')",
+                        }}
+                      ></div>
+                    </div>
+                    <div className="flex flex-2 justify-start">
+                      <div className="flex flex-1 font-bold text-left">
+                        {item.name}
+                      </div>
+                    </div>
+                    <div className="flex flex-1 justify-center items-start">
+                      <button
+                        className={`ml-4 fas float-right focus:outline-none ${
+                          expanded ? "fa-chevron-up" : "fa-chevron-down"
+                        }`}
+                      ></button>
                     </div>
                   </div>
-                  <div className="flex flex-1 justify-center items-start">
-                    <button
-                      className={`ml-4 fas float-right focus:outline-none ${
-                        expanded ? "fa-chevron-up" : "fa-chevron-down"
-                      }`}
-                    ></button>
-                  </div>
+                  {isBadge && (
+                    <div className="flex justify-center ml-6 -mt-5">
+                      <ProgressBar
+                        categories={categories}
+                        item={item}
+                        userActions={item.userActionsArray}
+                        actions={item.actionsArray}
+                      />
+                    </div>
+                  )}
                 </div>
               </>
             )}
