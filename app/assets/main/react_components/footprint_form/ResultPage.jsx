@@ -22,10 +22,11 @@ const ResultPage = ({ result, texts, lang, slug, page, onPageChange, currency })
     const [grantedReferralCode, setGrantedReferralCode] = useState(false)
     const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq')
     const commonStrings = texts.commonText
-    console.log(slug);
 
-    var mySlug=    (slug==='en' || slug===null) ? "" : "/"+slug
-    console.log(mySlug);
+    if (texts.registrationsText.accept_policies===undefined) {
+        texts.registrationsText.accept_policies = " By signing up you accept the <a>terms of use and policies</a>"
+    }
+
     return (
         <div>
             <div className="my-8">
@@ -80,7 +81,8 @@ const ResultPage = ({ result, texts, lang, slug, page, onPageChange, currency })
             />
             { page === 3 && 
                 <div className={"inject-link pt-4"}
-                    dangerouslySetInnerHTML={{__html: sanitizeHtml(texts.registrationsText.accept_policies.replace("<a>","<a href='"+mySlug+"/privacy-policy' target='_blank'>" ))}}
+                    dangerouslySetInnerHTML={{
+                        __html: sanitizeHtml(texts.registrationsText.accept_policies.replace("<a>","<a href='"+ ((slug==='en' || slug===null) ? "" : "/" + slug) +"/privacy-policy' target='_blank'>" ))}}
                     >
                 </div>
             }
