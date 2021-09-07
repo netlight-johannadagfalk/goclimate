@@ -5,18 +5,12 @@ module ApplicationHelper
     request.headers['DNT']&.start_with?('1') || false
   end
 
-  def price_string(amount, currency, options = {})
+  def price_string(amount, currency)
     Rails.logger.warn 'DEPRECATION: Use Money#to_s instead of ApplicationHelper#price_string'
-
-    lowest_denominator = options.delete(:lowest_denominator) || false
 
     case currency
     when 'sek'
-      if lowest_denominator
-        "#{fractional_string(amount)} kr"
-      else
-        "#{amount} kr"
-      end
+      "#{amount} kr"
     when 'eur'
       "#{amount} €"
     when 'usd'

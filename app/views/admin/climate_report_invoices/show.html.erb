@@ -59,7 +59,7 @@
     <dd><%= number_with_delimiter(@invoice.co2e, delimiter: ' ') %> kg co2e</dd>
 
     <dt>Amount:</dt>
-    <dd><%= price_string(@invoice.amount, @invoice.currency, lowest_denominator: true) %></dd>
+    <dd><%= @invoice.amount %></dd>
 
     <dt>Invoice address:</dt>
     <dd><pre><%= @invoice.invoice_address %></pre></dd>

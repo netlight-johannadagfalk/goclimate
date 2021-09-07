@@ -2,11 +2,14 @@
 
 module Subscriptions
   class SubscriptionMonth < ApplicationRecord
+    include HasMoneyAttributes
+
     belongs_to :user
     belongs_to :payment, polymorphic: true
 
     attribute :co2e, :greenhouse_gases
     attribute :currency, :currency
+    money_attribute :price, :currency
 
     validates_presence_of :start_at, :co2e
     validates :payment_type, inclusion: { in: %w[CardCharge Subscriptions::ReferralCode] }

@@ -5,10 +5,13 @@ require 'digest'
 class GiftCard < ApplicationRecord
   class InvalidPaymentIntent < StandardError; end
 
+  include HasMoneyAttributes
+
   attribute :currency, :currency
   attribute :co2e, :greenhouse_gases
   attribute :yearly_footprint, :greenhouse_gases
   attribute :country, :country
+  money_attribute :price, :currency
 
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
   validates :customer_email, email: true
@@ -77,21 +80,6 @@ class GiftCard < ApplicationRecord
     end
 
     @payment_intent
-  end
-
-  def price
-    value = super
-    Money.new(value, currency) if value.present?
-  end
-
-  def price=(price)
-    if price.is_a?(Money)
-      self.currency = price.currency
-      super(price.subunit_amount)
-      return
-    end
-
-    super(price)
   end
 
   def to_param

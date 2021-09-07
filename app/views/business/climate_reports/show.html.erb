@@ -184,7 +184,7 @@
           <tfoot>
             <tr class="font-bold">
               <td class="pt-3"><%=t 'business.climate_reports.show.sum' %></td>
-              <td class="pt-3 text-right"><%= price_string(@invoice.amount, 'sek', lowest_denominator: true) %></td>
+              <td class="pt-3 text-right"><%= @invoice.amount.to_s(precision: :auto) %></td>
             </tr>
           </tfoot>
         </table>
