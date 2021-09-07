@@ -105,7 +105,7 @@
       <div class="callout max-w-xl mx-auto">
         <h2 class="heading mb-3"><%= t 'views.subscriptions.cancel.heading' %></h2>
         <div data-controller="modal">
-          <button type="button" id="start_cancellation" class="button button-danger w-full" data-target="modal.trigger" data-action="modal#open">
+          <button type="button" id="start_cancellation" class="button w-full" data-target="modal.trigger" data-action="modal#open">
             <%= t('views.subscriptions.cancel.action') %>
           </button>
 
@@ -139,8 +139,8 @@
                   <% end %>
                 </div>
                 <div class="modal-actions">
-                  <button type="button" class="button button-cta" data-action="modal#close"><%= t('views.subscriptions.cancel.abort') %></button>
-                  <%= button_tag t('views.subscriptions.cancel.action'), id: 'confirm_cancellation', class: 'button', type: 'submit' %>
+                  <button type="button" class="button" data-action="modal#close"><%= t('views.subscriptions.cancel.abort') %></button>
+                  <%= button_tag t('views.subscriptions.cancel.action'), id: 'confirm_cancellation', class: 'button button-danger', type: 'submit' %>
                 </div>
               <% end %>
             </div>
