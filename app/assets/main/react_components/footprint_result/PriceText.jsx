@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from '../Link.jsx';
+import { useTexts, useLocaleData } from '../context/Footprint/StaticDataContext.js';
 
 /**
  * Price text that adapts to region, selected membership type and referral code
  */
-const PriceText = ({priceObject, currency, months, signUpText, grantedReferralCode, selectedMembership, multipleOffsets}) => {
+const PriceText = ({priceObject, grantedReferralCode, selectedMembership, multipleOffsets}) => {
+    
+    const text = {
+        first_month_free: useTexts().registrationsText.first_month_free,
+        then: useTexts().registrationsText.then,
+        one: useTexts().commonText.months.one,
+        price_free: useTexts().registrationsText.price_free,
+        heading: useTexts().registrationsText.where_does_the_money_go.heading,
+        currency: useLocaleData().currency.money.currency_formats[priceObject.currency.iso_code]
+    }
 
-    function extractPrice (priceObject, currency) {
-        var currencyText = currency.money.currency_formats[priceObject.currency.iso_code];
+    const [price, setPrice] = useState(extractPrice())
+
+    function extractPrice () {
         var price = (priceObject.subunit_amount/100)
         if (Math.trunc(price) != price) {
             price = price.toFixed(2);
@@ -15,14 +26,18 @@ const PriceText = ({priceObject, currency, months, signUpText, grantedReferralCo
         if (selectedMembership === "multi") {
             price = price * multipleOffsets;
         }
-        if (currencyText === "DEFAULT") {
-            price=priceObject.currency.iso_code.toUpperCase()+" "+price
+        if (text.currency === "DEFAULT") {
+            price = priceObject.currency.iso_code.toUpperCase()+" "+price
         } else {
             const findCustomPlacement = /%{.*?}/i;
-            price = currencyText.replace(findCustomPlacement, price);
+            price = text.currency.replace(findCustomPlacement, price);
         }
         return price;
     }
+
+    useEffect(() => {
+        setPrice(extractPrice())
+    }, [grantedReferralCode, selectedMembership, multipleOffsets])
 
     return (
         <>
@@ -30,11 +45,11 @@ const PriceText = ({priceObject, currency, months, signUpText, grantedReferralCo
             <div id="freeMonth" className="py-6 space-y-1">
                 <p className="heading-lg text-center">
                     <span>
-                        {signUpText.first_month_free}
+                        {text.first_month_free}
                     </span>
                 </p>
                 <p className="font-bold text-center">
-                    {signUpText.then} <span>{extractPrice(priceObject, currency)}</span>/{months.one}
+                    {text.then} <span>{price}</span>/{text.one}
                 </p>
             </div>
         :
@@ -42,15 +57,15 @@ const PriceText = ({priceObject, currency, months, signUpText, grantedReferralCo
                 <p className="heading-lg text-center">
                     <span>
                         { selectedMembership === "free" ?
-                            <span className="inline">{signUpText.price_free}</span>
+                            <span className="inline">{text.price_free}</span>
                             :
-                            <><span>{extractPrice(priceObject, currency)}</span>/{months.one}</>
+                            <><span>{price}</span>/{text.one}</>
                         }
                     </span>
                 </p>
                 { selectedMembership !== "free" &&
                     <div className="text-center">
-                        <Link linkText={signUpText.where_does_the_money_go.heading}/>
+                        <Link linkText={text.heading}/>
                     </div>
                 }   
             </div>

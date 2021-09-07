@@ -1,13 +1,14 @@
 import React from 'react';
+import { useTexts } from '../context/Footprint/StaticDataContext';
 
 /**
  * React container signup motivation text
  */
-const SignUpMotivationText = ({ signUpMotivationText }) => {
+const SignUpMotivationText = () => {
 
     return (
         <p className="text-center"> 
-            {signUpMotivationText}
+            {useTexts().registrationsText.sign_up_description}
         </p>
     )
 }

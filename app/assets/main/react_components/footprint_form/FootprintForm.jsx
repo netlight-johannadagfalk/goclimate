@@ -4,17 +4,19 @@ import { numericalKeys, resultKeys, resultObjects } from './footprint-data.js';
 import ProgressBar from './ProgressBar.jsx';
 import QuestionPage from './QuestionPage.jsx';
 import ResultPage from './ResultPage.jsx';
+import { useTexts, useLocaleData } from '../context/Footprint/StaticDataContext.js';
 
 /**
  * FootprintForm has the responsibility to handle the logic for showing the the questions and answers 
  * in the form as well as show the current question on the form-page, one at the time. 
  * It also has the responsibility to store the answers filled in by the user by changing the footprint object.
  */
-const FootprintForm = ({ calculator, questionStrings, options, footprint, URL, slug, texts, lang, currency, onChangeInformationSection }) => {
+const FootprintForm = ({ calculator, footprint, onChangeInformationSection }) => {  
   //key value pairs where the key is each question in order and the value is the corresponding category
   const questionCategories = {"region": "home", "home": "home", "home_area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane", "result-page-1": "chart-bar", "result-page-2": "chart-bar"};
-  const questionObjects = useMemo(() => constructObjects(calculator, options, questionStrings, questionCategories, texts), []);
-  
+  const questionObjects = constructObjects(calculator, questionCategories, useTexts());
+  const URL = useLocaleData().slug + '/calculator'
+
   const [result, setResult] = useState();
   const [currentObject, setCurrentObject] = useState(questionObjects[0]);
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -165,15 +167,11 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, URL, s
             :
             result && <ResultPage 
               result={result} 
-              texts={texts}
-              lang={lang}
-              slug={slug}
               page={currentIndex - questionObjects.length}
               onPageChange={() => {
                 setCurrentObject(resultObjects[currentIndex + 1 - questionObjects.length])
                 setCurrentIndex(currentIndex + 1)
               }}
-              currency={currency}
             />            
           }
         </div>
