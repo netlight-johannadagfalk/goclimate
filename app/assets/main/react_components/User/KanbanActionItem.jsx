@@ -64,11 +64,10 @@ const KanbanActionItem = ({
       {(provided, snapshot) => {
         return (
           <div
-            className={`border border-gray-tint-2 rounded-lg shadow-lg space-y-3 pt-0 ${
+            className={`border border-gray-tint-2 rounded-lg shadow-lg space-y-3 p-0 pt-0 ${
               collapsed ? "w-24" : "w-96"
             }
             ${expanded ? "h-auto" : "w-24"}
-            ${isBadge ? "" : "p-0"}
             
             `}
             ref={provided.innerRef}
@@ -98,8 +97,12 @@ const KanbanActionItem = ({
                 ></div>
               </div>
             ) : (
-              <>
-                <div>
+              <div className="h-20">
+                <div
+                  className={`${
+                    expanded && "w-full border-b border-b-gray-tint-2"
+                  }`}
+                >
                   {!isBadge && (
                     <div
                       className={`${
@@ -110,15 +113,13 @@ const KanbanActionItem = ({
                     ></div>
                   )}
                   <div
-                    className={`flex flex-row h-14 ${
-                      expanded && "border-b border-b-gray-tint-2 "
-                    }`}
+                    className="flex flex-row h-16"
                     onClick={() => setExpanded(!expanded)}
                   >
                     <div className="flex flex-1">
                       <div
                         className={`mx-auto ${
-                          isBadge ? "mt-3" : "-mt-1/4"
+                          isBadge ? "mt-2" : "-mt-1/4"
                         } rounded-full h-16 w-16 items-center justify-center bg-contain bg-center shadow-lg`}
                         style={{
                           backgroundImage:
@@ -141,9 +142,9 @@ const KanbanActionItem = ({
                     </div>
                     <div className="flex flex-1 justify-center items-start">
                       <button
-                        className={`ml-4 fas float-right mt-4 focus:outline-none ${
-                          expanded ? "fa-chevron-up" : "fa-chevron-down"
-                        }`}
+                        className={`fas float-right focus:outline-none ${
+                          isBadge ? "mt-12 ml-10" : "mt-4 ml-4"
+                        } ${expanded ? "fa-chevron-up" : "fa-chevron-down"}`}
                       ></button>
                     </div>
                   </div>
@@ -158,7 +159,7 @@ const KanbanActionItem = ({
                     </div>
                   )}
                 </div>
-              </>
+              </div>
             )}
 
             {expanded && !collapsed && (
@@ -201,11 +202,12 @@ const KanbanActionItem = ({
                                       "url('/achievement_images/AchievementStarActive.png')",
                                   }}
                                 ></div>
+
                                 <div className="flex-initial text-left">
                                   {subitem.name}
                                 </div>
                                 <button
-                                  className="flex-1 hover:text-gray-shade-1 text-gray-accent text-lg text-right"
+                                  className="flex-1 hover:text-gray-shade-1 text-gray-accent text-lg text-right mt-0"
                                   onClick={() =>
                                     handleButtonPerformOnDrag(subitem, false)
                                   }
