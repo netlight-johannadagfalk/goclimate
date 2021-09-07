@@ -41,7 +41,7 @@ const CarouselActionItem = ({
       climate_action_category_id: action.climate_action_category_id,
       image_url: action.image_url,
     };
-    const tempList = [...userActions, temp];
+    const tempList = [temp, ...userActions];
     setUserActions(tempList);
     setColumnsWithFullFormat(tempList, categoryBadges);
   };
