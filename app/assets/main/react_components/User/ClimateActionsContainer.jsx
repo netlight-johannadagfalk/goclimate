@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CarouselContainer from "./CarouselContainer.jsx";
-import CarouselActionItem from "./CarouselActionItem.jsx";
+// import CarouselActionItem from "./CarouselActionItem.jsx";
 import { useDeletedAction } from "./contexts/DeletedActionContext.js";
 import {
   useClimateActions,
@@ -8,8 +8,14 @@ import {
   useClimateActionsOriginal,
 } from "./contexts/ClimateActionsContext.js";
 import Sidebar from "./Sidebar.jsx";
+import MainInfo from "./MainInfo.jsx";
 
-const ClimateActionsContainer = ({ user, climateActionCategories }) => {
+const ClimateActionsContainer = ({
+  user,
+  climateActionCategories,
+  footprint,
+  commonText,
+}) => {
   const deletedAction = useDeletedAction();
   const climateActions = useClimateActions();
   const setClimateActions = useClimateActionsUpdate();
@@ -40,18 +46,35 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
 
   return (
     <>
-      <div className="w-80 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2 justify-center">
-        <h3 className="heading-lg mb-3">Action of the Month </h3>
-        {monthlyAction && (
-          <CarouselActionItem
-            action={monthlyAction}
-            key={monthlyAction.id}
-            user={user}
-            updateLocalAccepted={updateLocalAccepted}
-            categories={JSON.parse(climateActionCategories)}
-          ></CarouselActionItem>
-        )}
-      </div>
+      <MainInfo
+        footprint={footprint}
+        commonText={commonText}
+        action={monthlyAction}
+        // key={monthlyAction.id}
+        user={user}
+        updateLocalAccepted={updateLocalAccepted}
+        categories={JSON.parse(climateActionCategories)}
+      ></MainInfo>
+      {/* <div className="section-padding space-y-12 t:space-y-6 relative mx-auto mt-4 h-96">
+        <div className="left-0 absolute top-0">
+          <FootprintContainer
+            footprint={footprint}
+            commonText={commonText}
+          ></FootprintContainer>
+        </div>
+        <div className="w-80 mx-auto space-y-3 t:p-8 right-0 absolute top-0">
+          <h3 className="heading">Action of the Month </h3>
+          {monthlyAction && (
+            <CarouselActionItem
+              action={monthlyAction}
+              key={monthlyAction.id}
+              user={user}
+              updateLocalAccepted={updateLocalAccepted}
+              categories={JSON.parse(climateActionCategories)}
+            ></CarouselActionItem>
+          )}
+        </div>
+      </div> */}
 
       <CarouselContainer
         user={user}

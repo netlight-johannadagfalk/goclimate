@@ -4,7 +4,6 @@ import { CategoryProvider } from "./contexts/CategoryContext.js";
 import { DeletedActionProvider } from "./contexts/DeletedActionContext.js";
 import { UserActionsProvider } from "./contexts/UserActionsContext.js";
 import { ClimateActionsProvider } from "./contexts/ClimateActionsContext.js";
-import ResultContainer from "./ResultContainer.jsx";
 
 const Dashboard = ({
   user,
@@ -28,13 +27,11 @@ const Dashboard = ({
             actionsWithUserActions={actionsWithUserActions}
             actionsWithoutUserActions={actionsWithoutUserActions}
           >
-            <ResultContainer
-              footprint={footprint}
-              commonText={commonText}
-            ></ResultContainer>
             <ClimateActionsContainer
               user={user}
               climateActionCategories={climateActionCategories}
+              footprint={footprint}
+              commonText={commonText}
             ></ClimateActionsContainer>
           </ClimateActionsProvider>
         </UserActionsProvider>

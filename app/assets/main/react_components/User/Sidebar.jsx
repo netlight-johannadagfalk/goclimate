@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import KanbanActionContainer from "./KanbanActionContainer.jsx";
 
 const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   return (
     <>
