@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2021_09_08_095510) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -348,14 +349,6 @@ ActiveRecord::Schema.define(version: 2021_09_08_095510) do
     t.bigint "calculator_field_id", null: false
     t.index ["calculator_field_id"], name: "index_reported_data_on_calculator_field_id"
     t.index ["data_request_id"], name: "index_reported_data_on_data_request_id"
-  end
-
-  create_table "stripe_payouts", force: :cascade do |t|
-    t.string "stripe_payout_id"
-    t.integer "amount"
-    t.datetime "stripe_created"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "subscription_cancellation_feedbacks", force: :cascade do |t|

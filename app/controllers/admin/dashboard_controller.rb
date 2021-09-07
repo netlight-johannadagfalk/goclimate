@@ -8,7 +8,6 @@ module Admin
       @sold_offsetting_per_month = offsetting_statistics.sold_offsetting_per_month.to_a.reverse.to_h
       @total_co2_bought = Project.total_co2e
       @total_sek_spent = Project.all.sum('cost_in_sek')
-      @payouts_in_sek = (StripePayout.sum(:amount) / 100) + Invoice.sum(:amount_in_sek)
       @users_stats = UsersStatistics.new
       @missing_fortnox_ids = missing_fortnox_ids.join(', ')
     end
