@@ -81,7 +81,7 @@ const KanbanActionItem = ({
             )}
 
             {expanded && !collapsed && (
-              <div className="rounded-tl-lg rounded-tr-lg p-2">
+              <div className="">
                 {item.status === false ? (
                   <div className="flex flex-col text-center">
                     <div className="flex-1 justify-center">
@@ -151,27 +151,27 @@ const KanbanActionItem = ({
                           </div>
                         );
                       })}
-                    {item.actionsArray &&
-                      item.actionsArray.map((subitem) => {
-                        return (
-                          <div key={subitem.id}>
-                            <div className="flex mt-1">
-                              <div
-                                className="mr-3 rounded-full h-7 w-7 bg-cover flex-initial"
-                                style={{
-                                  backgroundImage:
-                                    "url('/achievement_images/AchievementStarInactive.png')",
-                                }}
-                              ></div>
-                              <div className="flex-inital text-left text-gray-accent">
-                                {subitem.name}
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
                   </div>
                 )}
+                {item.actionsArray &&
+                  item.actionsArray.map((subitem) => {
+                    return (
+                      <div key={subitem.id}>
+                        <div className="flex mt-1">
+                          <div
+                            className="mr-3 rounded-full h-7 w-7 bg-cover flex-initial"
+                            style={{
+                              backgroundImage:
+                                "url('/achievement_images/AchievementStarInactive.png')",
+                            }}
+                          ></div>
+                          <div className="flex-inital text-left text-gray-accent">
+                            {subitem.name}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
               </div>
             )}
           </div>
