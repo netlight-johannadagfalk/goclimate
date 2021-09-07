@@ -7,9 +7,9 @@ const KanbanActionColumn = ({
   columnId,
   handleDelete,
   handleButtonPerformOnDrag,
+  categories,
   setCollapsed,
   collapsed,
-  categories,
   isHovering,
 }) => {
   return (
@@ -58,8 +58,8 @@ const KanbanActionColumn = ({
                       key={item.id}
                       handleDelete={handleDelete}
                       handleButtonPerformOnDrag={handleButtonPerformOnDrag}
-                      collapsed={collapsed}
                       categories={categories}
+                      collapsed={collapsed}
                     />
                   );
                 })}

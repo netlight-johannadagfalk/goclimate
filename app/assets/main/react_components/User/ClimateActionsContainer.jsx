@@ -31,6 +31,8 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
       setMonthlyAction({ ...monthlyAction, accepted: !monthlyAction.accepted });
   };
 
+  const formatedCategories = JSON.parse(climateActionCategories);
+
   useEffect(() => {
     deletedAction != null && updateLocalAccepted(deletedAction);
   }, [deletedAction]);
@@ -45,7 +47,7 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
             key={monthlyAction.id}
             user={user}
             updateLocalAccepted={updateLocalAccepted}
-            categories={JSON.parse(climateActionCategories)}
+            categories={formatedCategories}
           ></CarouselActionItem>
         )}
       </div>
@@ -53,10 +55,10 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
       <CarouselContainer
         user={user}
         updateLocalAccepted={updateLocalAccepted}
-        climateActionCategories={climateActionCategories}
+        categories={formatedCategories}
       />
 
-      <Sidebar categories={JSON.parse(climateActionCategories)} />
+      <Sidebar categories={formatedCategories} />
     </>
   );
 };
