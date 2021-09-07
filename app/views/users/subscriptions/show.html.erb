@@ -36,7 +36,7 @@
                     <% else %>
                       <%= plan.price.to_s(precision: :auto) %>
                     <% end %>
-                    (<%= plan.footprint.to_s(precision: :auto) %>/<%= t 'years.one' %>)
+                    (<%= plan.footprint.to_s(unit: :tonnes) %>/<%= t 'years.one' %>)
                   </option>
                 <% end %>
               </select>
