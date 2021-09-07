@@ -11,7 +11,7 @@ import {
   useCategoryBadgesUpdateOnDrag,
 } from "./contexts/UserActionsContext.js";
 
-const KanbanActionContainer = ({ collapsed, categories, setCollapsed }) => {
+const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
   const setUserActions = useUserActionsUpdate();
   const columns = useUserActionsColumns();
   const setColumns = useUserActionsColumnsUpdate();

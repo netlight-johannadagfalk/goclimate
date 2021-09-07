@@ -31,6 +31,8 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
       setMonthlyAction({ ...monthlyAction, accepted: !monthlyAction.accepted });
   };
 
+  const formatedCategories = JSON.parse(climateActionCategories);
+
   useEffect(() => {
     deletedAction != null && updateLocalAccepted(deletedAction);
   }, [deletedAction]);
@@ -38,7 +40,7 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
   return (
     <>
       <div className="hidden t:block">
-        <div className="w-80 mx-auto space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2 justify-center">
+        <div className="w-80 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2 justify-center">
           <h3 className="heading-lg mb-3">Action of the Month </h3>
           {monthlyAction && (
             <CarouselActionItem
@@ -46,7 +48,7 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
               key={monthlyAction.id}
               user={user}
               updateLocalAccepted={updateLocalAccepted}
-              categories={JSON.parse(climateActionCategories)}
+              categories={formatedCategories}
             ></CarouselActionItem>
           )}
         </div>
@@ -55,10 +57,10 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
       <CarouselContainer
         user={user}
         updateLocalAccepted={updateLocalAccepted}
-        climateActionCategories={climateActionCategories}
+        categories={formatedCategories}
       />
 
-      {/* <Sidebar categories={JSON.parse(climateActionCategories)} /> */}
+      <Sidebar categories={formatedCategories} />
     </>
   );
 };
