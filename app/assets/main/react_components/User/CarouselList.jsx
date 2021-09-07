@@ -5,6 +5,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.min.css";
 import "swiper/components/pagination/pagination.min.css";
+import { orderBy } from "lodash";
+import { useMediaQuery } from "react-responsive";
 
 // Swiper resources
 //https://swiperjs.com/react
@@ -18,6 +20,14 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const navigationNextRef = React.useRef(null);
 
   const climateActions = useClimateActions();
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+
+  const sortForMobileClimateActions = orderBy(
+    climateActions,
+    ["action_of_the_month"],
+    ["desc"]
+  );
+
   return (
     <>
       <Swiper
@@ -37,16 +47,33 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
           });
         }}
       >
-        {climateActions.map((action) => (
-          <SwiperSlide key={action.id} className={"h-auto min-h-full mb-10"}>
-            <CarouselActionItem
-              action={action}
-              user={user}
-              updateLocalAccepted={updateLocalAccepted}
-              categories={categories}
-            ></CarouselActionItem>
-          </SwiperSlide>
-        ))}
+        {isTabletOrMobile
+          ? sortForMobileClimateActions.map((action) => (
+              <SwiperSlide
+                key={action.id}
+                className={"h-auto min-h-full mb-10"}
+              >
+                <CarouselActionItem
+                  action={action}
+                  user={user}
+                  updateLocalAccepted={updateLocalAccepted}
+                  categories={categories}
+                ></CarouselActionItem>
+              </SwiperSlide>
+            ))
+          : climateActions.map((action) => (
+              <SwiperSlide
+                key={action.id}
+                className={"h-auto min-h-full mb-10"}
+              >
+                <CarouselActionItem
+                  action={action}
+                  user={user}
+                  updateLocalAccepted={updateLocalAccepted}
+                  categories={categories}
+                ></CarouselActionItem>
+              </SwiperSlide>
+            ))}
         <div className="flex flex-row justify-between absolute z-10 top-1/2 w-full">
           <div
             ref={navigationPrevRef}
