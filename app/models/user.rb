@@ -19,6 +19,8 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   validates :privacy_policy, acceptance: true
   attr_accessor :privacy_policy
 
+  after_update :update_email_in_stripe
+
   DEACTIVATED_ACCOUNT_EMAIL_ENDING = '@deactivated.goclimate.com'
 
   def self.search_email(query, limit = 30)
@@ -179,6 +181,20 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   end
 
   private
+
+  def update_email_in_stripe
+    return unless errors.blank? && saved_change_to_attribute?('email')
+
+    begin
+      Stripe::Customer.update(
+        stripe_customer.id,
+        email: email
+      )
+    rescue Stripe::InvalidRequestError => e
+      logger.error(e)
+      Raven.capture_exception(e)
+    end
+  end
 
   def subscription_end_at_from_stripe(stripe_subscription)
     Time.at(stripe_subscription.ended_at) if stripe_subscription.ended_at.present?

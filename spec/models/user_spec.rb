@@ -103,6 +103,38 @@ RSpec.describe User do
     end
   end
 
+  describe '#update' do
+    let(:user) { create(:user, user_name: 'Jane', stripe_customer_id: stripe_customer&.id) }
+    let(:new_email) { 'new_very_cool@email.com' }
+
+    before do
+      allow(Stripe::Customer)
+        .to receive(:create)
+        .and_return(stripe_customer)
+      allow(Stripe::Customer)
+        .to receive(:retrieve)
+        .with(id: user.stripe_customer_id, expand: %w[subscriptions sources])
+        .and_return(stripe_customer)
+      allow(Stripe::Customer).to receive(:update).with(user.stripe_customer_id, email: new_email)
+    end
+
+    context 'when updating email' do
+      it 'does update stripe customer' do
+        user.update(email: new_email)
+
+        expect(Stripe::Customer).to have_received(:update).with(user.stripe_customer_id, email: new_email)
+      end
+    end
+
+    context 'when not updating email' do
+      it 'does not update stripe customer when not updating email' do
+        user.update(user_name: 'Jane Doe')
+
+        expect(Stripe::Customer).not_to have_received(:update)
+      end
+    end
+  end
+
   describe '#number_of_neutral_months' do
     before do
       allow(Stripe::Customer)
