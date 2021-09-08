@@ -5,17 +5,35 @@ import {
 } from "./contexts/ClimateActionsContext";
 import { useCategoryUpdate } from "./contexts/CategoryContext";
 import { useUserActions } from "./contexts/UserActionsContext";
+import { useMediaQuery } from "react-responsive";
+
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 
 const CarouselCategoryButton = ({
   categoryName,
   categoryID,
   active,
   setAllCategories,
+  categories,
 }) => {
   const setCategory = useCategoryUpdate();
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
   const userActions = useUserActions();
+
+  //*************** TABLET/MOBILE DEVELOPMENT ************************* */
+  //const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+
+  let options = [{ value: null, label: "All categories" }];
+
+  const createOptions = () =>
+    categories.map((cat) => {
+      options.push({ value: cat.id, label: cat.name });
+    });
+  categories && createOptions();
+  categories && console.log(options);
+  //************************************************************ */
 
   const handleCategory = (categoryID) => {
     categoryID != null ? categoryClick(categoryID) : allCategoriesClick();
@@ -50,28 +68,42 @@ const CarouselCategoryButton = ({
 
   return (
     <>
-      {active ? (
-        <button
-          className={`${
-            "category_" +
-            categoryName.toLowerCase().replace(/ /g, "_") +
-            "_active"
-          } category_unknown_active rounded-full py-1 px-4 button inline-block focus:outline-none text-white m-1`}
-        >
-          {" "}
-          {categoryName}{" "}
-        </button>
+      {categories ? (
+        <Dropdown
+          //className="w-40 rounded-full button m-1"
+          controlClassName="button rounded-full"
+          //menuClassName="dropdown-menu"
+          //arrowClassName="fa fas-arrow"
+          options={options}
+          defaultOption={options[0]}
+          onChange={(val) => handleCategory(val.value)}
+        ></Dropdown>
       ) : (
-        <button
-          className={` ${
-            "category_" + categoryName.toLowerCase().replace(/ /g, "_")
-          }
+        <>
+          {active ? (
+            <button
+              className={`${
+                "category_" +
+                categoryName.toLowerCase().replace(/ /g, "_") +
+                "_active"
+              } category_unknown_active rounded-full py-1 px-4 button inline-block focus:outline-none text-white m-1`}
+            >
+              {" "}
+              {categoryName}{" "}
+            </button>
+          ) : (
+            <button
+              className={` ${
+                "category_" + categoryName.toLowerCase().replace(/ /g, "_")
+              }
           category_unknown rounded-full py-1 px-4 button inline-block m-1 hover:text-white focus:outline-none hover:bg-opacity-80`}
-          onClick={() => handleCategory(categoryID)}
-        >
-          {" "}
-          {categoryName}{" "}
-        </button>
+              onClick={() => handleCategory(categoryID)}
+            >
+              {" "}
+              {categoryName}{" "}
+            </button>
+          )}
+        </>
       )}
     </>
   );
