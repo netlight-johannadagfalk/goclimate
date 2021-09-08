@@ -14,6 +14,7 @@ const MainInfo = ({
   modelText,
   lang,
   registrationsText,
+  totalNoFootprints,
 }) => {
   return (
     <section className="section-padding pb-28">
@@ -39,7 +40,10 @@ const MainInfo = ({
         </div>
       </div>
 
-      <FootprintFooter footprint={footprint}></FootprintFooter>
+      <FootprintFooter
+        footprint={footprint}
+        totalNoFootprints={totalNoFootprints}
+      ></FootprintFooter>
     </section>
   );
 };

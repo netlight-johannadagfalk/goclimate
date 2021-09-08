@@ -33,7 +33,7 @@
     </section>
   <% end %>
 
-<%# remove && false to show footprint %>
+<%# remove '&& false' to show footprint %>
   <% if @footprint && false %> 
   <section class="section-padding space-y-12 t:space-y-6">
     <div class="max-w-5xl mx-auto t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2">
@@ -110,7 +110,8 @@
   countryAverage: @country_average.to_json(),
   modelText: YAML.load_file('config/locales/models.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['models']['greenhouse_gases']['tonnes'].to_json,
   lang: I18n.locale[0..-1],
-  registrationsText: YAML.load_file('config/locales/views/registrations.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['registrations'].to_json
+  registrationsText: YAML.load_file('config/locales/views/registrations.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['registrations'].to_json,
+  totalNoFootprints: @total_number_of_footprints.to_json()
   %>
 
 
