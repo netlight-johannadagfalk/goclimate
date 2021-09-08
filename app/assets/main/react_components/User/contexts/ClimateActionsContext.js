@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { shuffle } from "lodash";
 
 //*** A context is used to share data that can be considered as "global" for the react tree ***/
 const ClimateActionsContext = React.createContext();
@@ -38,8 +39,12 @@ export const ClimateActionsProvider = ({
     accepted: false,
   }));
 
+  const shuffledActionsWithoutUserActions = shuffle(
+    localActionsWithoutUserActions
+  );
+
   const totClimateActions = [
-    ...localActionsWithoutUserActions,
+    ...shuffledActionsWithoutUserActions,
     ...localActionsWithUserActions,
   ];
 
