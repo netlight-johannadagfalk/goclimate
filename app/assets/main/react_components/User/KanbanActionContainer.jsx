@@ -26,14 +26,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
         ...columns,
         [1]: {
           ...columns[1],
-          items: columns[1].items.map((expandable) => {
-            return expandable.id === item.id
-              ? {
-                  ...expandable,
-                  expanded: value,
-                }
-              : { ...expandable, expanded: false };
-          }),
+          items: getExpandable(columns[1], item, value),
         },
       });
     } else {
@@ -41,17 +34,22 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
         ...columns,
         [2]: {
           ...columns[2],
-          items: columns[2].items.map((expandable) => {
-            return expandable.id === item.id
-              ? {
-                  ...expandable,
-                  expanded: value,
-                }
-              : { ...expandable, expanded: false };
-          }),
+          items: getExpandable(columns[2], item, value),
         },
       });
     }
+  };
+
+  const getExpandable = (column, item, value) => {
+    const temp = column.items.map((expandable) => {
+      return expandable.id === item.id
+        ? {
+            ...expandable,
+            expanded: value,
+          }
+        : { ...expandable, expanded: false };
+    });
+    return temp;
   };
 
   const handleDelete = (userActionID, actionID) => {
