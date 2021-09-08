@@ -10,6 +10,7 @@ import {
   useCategoryBadgesUpdate,
   useCategoryBadgesUpdateOnDrag,
 } from "./contexts/UserActionsContext.js";
+import { orderBy } from "lodash";
 
 const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
   const setUserActions = useUserActionsUpdate();
@@ -104,9 +105,10 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
       );
       //Add moved item to second column. Helpfunction in context desides if new categoryBadge should be created or just change status and color on subitem
       const destItems = setCategoryBadgesOnDrag(movedItem, destColumn.items);
-      setCategoryBadges([...destItems]);
+      const sortedDestItems = orderBadgesOnItemDragged(destItems, movedItem);
+      setCategoryBadges([...sortedDestItems]);
       //Function to get performed useraction from categoryBadges
-      let performedUserActions = collectPerformedUserActions(destItems);
+      let performedUserActions = collectPerformedUserActions(sortedDestItems);
       setUserActions([...sourceItems, ...performedUserActions]);
       setColumns({
         ...columns,
@@ -116,7 +118,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
         },
         [2]: {
           ...destColumn,
-          items: destItems,
+          items: sortedDestItems,
         },
       });
     } else {
@@ -162,6 +164,14 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
     }
   };
 
+  const orderBadgesOnItemDragged = (performedCategories, movedItem) => {
+    return orderBy(performedCategories, ({ id }) =>
+      id == movedItem.climate_action_category_id ? 0 : 1
+    );
+  };
+
+  //_.sortBy(items, ({type}) => type === 'vegetable' ? 0 : 1);
+
   const onDragEnd = (result, columns, setColumns) => {
     //If you drag but drop in the same column and do not reorder items
     if (!result.destination) return;
@@ -176,7 +186,8 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
       const destItems = setCategoryBadgesOnDrag(removed, destColumn.items);
       let performedUserActions = collectPerformedUserActions(destItems);
       setUserActions([...sourceItems, ...performedUserActions]);
-      setCategoryBadges([...destItems]);
+      const sortedDestItems = orderBadgesOnItemDragged(destItems, removed);
+      setCategoryBadges([...sortedDestItems]);
       setColumns({
         ...columns,
         [source.droppableId]: {
@@ -185,7 +196,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
         },
         [destination.droppableId]: {
           ...destColumn,
-          items: destItems,
+          items: sortedDestItems,
         },
       });
     } else {

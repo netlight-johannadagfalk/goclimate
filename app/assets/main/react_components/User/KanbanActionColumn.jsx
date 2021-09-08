@@ -49,7 +49,6 @@ const KanbanActionColumn = ({
                 ""
               )}
 
-              {console.log("items", orderColumnItems)}
               {column.items
                 .slice(0, collapsed ? 4 : column.items.length)
                 .map((item, index) => {
