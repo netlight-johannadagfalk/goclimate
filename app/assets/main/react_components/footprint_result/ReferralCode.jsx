@@ -7,7 +7,7 @@ import { useTexts } from '../context/Footprint/TextsContext.js';
  * Shows link and input field
  */
 const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
-    console.log("GRAN", grantedReferralCode);
+
     const [invalidCodeMessage, setInvalidCodeMessage] = useState("");
     const [inputCode, setInputCode] = useState("");
 
