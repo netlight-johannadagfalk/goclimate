@@ -10,10 +10,14 @@ const MainInfo = ({
   user,
   updateLocalAccepted,
   categories,
+  countryAverage,
+  modelText,
+  lang,
+  registrationsText,
 }) => {
-  console.log(commonText);
-  const commonStrings = JSON.parse(commonText);
-  console.log(commonStrings);
+  // console.log(commonText);
+  // const commonStrings = JSON.parse(commonText);
+  // console.log(commonStrings);
   return (
     <section className="section-padding pb-28">
       {/* Fixa så ej hårdkodat! */}
@@ -23,6 +27,10 @@ const MainInfo = ({
         <FootprintContainer
           footprint={footprint}
           commonText={commonText}
+          countryAverage={countryAverage}
+          modelText={modelText}
+          lang={lang}
+          registrationsText={registrationsText}
         ></FootprintContainer>
 
         <MonthlyAction
@@ -33,7 +41,7 @@ const MainInfo = ({
         ></MonthlyAction>
       </div>
 
-      <FootprintFooter></FootprintFooter>
+      <FootprintFooter footprint={footprint}></FootprintFooter>
     </section>
   );
 };

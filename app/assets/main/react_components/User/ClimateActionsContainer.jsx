@@ -15,6 +15,10 @@ const ClimateActionsContainer = ({
   climateActionCategories,
   footprint,
   commonText,
+  countryAverage,
+  modelText,
+  lang,
+  registrationsText,
 }) => {
   const deletedAction = useDeletedAction();
   const climateActions = useClimateActions();
@@ -47,13 +51,16 @@ const ClimateActionsContainer = ({
   return (
     <>
       <MainInfo
-        footprint={footprint}
+        footprint={JSON.parse(footprint)}
         commonText={commonText}
         action={monthlyAction}
-        // key={monthlyAction.id}
         user={user}
         updateLocalAccepted={updateLocalAccepted}
         categories={JSON.parse(climateActionCategories)}
+        countryAverage={countryAverage}
+        modelText={modelText}
+        lang={lang}
+        registrationsText={registrationsText}
       ></MainInfo>
       {/* <div className="section-padding space-y-12 t:space-y-6 relative mx-auto mt-4 h-96">
         <div className="left-0 absolute top-0">

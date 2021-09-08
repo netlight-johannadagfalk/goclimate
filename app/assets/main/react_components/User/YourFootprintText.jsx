@@ -5,7 +5,15 @@ import ResultText from "./ResultText.jsx";
  * Result text for your footprint
  * Includes a heading and the footprint result in tonnes
  */
-const YourFootprintText = ({ footprintText, footprintValue }) => {
+const YourFootprintText = ({
+  footprintText,
+  footprintValue,
+  footprint,
+  countryAverage,
+  modelText,
+  lang,
+  registrationsText,
+}) => {
   return (
     <div>
       <h2 className="heading-lg">{footprintText.heading}</h2>
@@ -17,16 +25,17 @@ const YourFootprintText = ({ footprintText, footprintValue }) => {
           {" "}
           {footprintText.tonnes_CO2}
         </span>
-        <p className="hidden t:block mt-6">{footprintText.description}</p>
+        {/* <p className="hidden t:block mt-6">{footprintText.description}</p> */}
+        {/* Hårdkoda in string på engleska */}
       </div>
-      {/* <ResultText
-        text={footprintText.description}
-        customValues={[
-          footprintCo2e.text,
-          relativeText,
-          countryAverage.countries && footprint.country.data.translations[lang],
-        ]}
-      /> */}
+      <ResultText
+        // text={footprintText.description}
+        countryAverage={JSON.parse(countryAverage)}
+        footprint={footprint}
+        modelText={modelText}
+        lang={lang}
+        registrationsText={JSON.parse(registrationsText)}
+      />
     </div>
   );
 };

@@ -6,7 +6,14 @@ import YourFootprintText from "./YourFootprintText.jsx";
  * React container for Result page components
  */
 
-const FootprintContainer = ({ footprint, commonText }) => {
+const FootprintContainer = ({
+  footprint,
+  commonText,
+  countryAverage,
+  modelText,
+  lang,
+  registrationsText,
+}) => {
   const commonStrings = JSON.parse(commonText);
 
   return (
@@ -20,14 +27,17 @@ const FootprintContainer = ({ footprint, commonText }) => {
               description:
                 commonStrings.dashboard.footprint.your_climate_footprint,
             }}
-            footprintValue={(JSON.parse(footprint).total.co2e / 1000).toFixed(
-              1
-            )}
+            footprintValue={(footprint.total.co2e / 1000).toFixed(1)}
+            footprint={footprint}
+            countryAverage={countryAverage}
+            modelText={modelText}
+            lang={lang}
+            registrationsText={registrationsText}
           />
         </div>
         <div className="t:w-1/2">
           <CategoryChart
-            footprint={JSON.parse(footprint)}
+            footprint={footprint}
             categoryChartText={commonStrings}
           />
         </div>

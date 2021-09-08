@@ -1,8 +1,10 @@
 import React from "react";
 
-const FootprintFooter = () => {
+const FootprintFooter = ({ footprint }) => {
   return (
     <div className="text-center space-y-2 space-x-2 mt-8 max-w-5xl">
+      {/* <a href="<%= @footprint.country ? new_lifestyle_footprint_path(country: @footprint.country.alpha2) : root_path%>" class="button"> */}
+      {/* <a href={footprint.country ? } className="button"></a> */}
       <a href="/calculator?country=SE" className="button">
         <i className="fas fa-plus" aria-hidden="true"></i>
         {" New calculation "}
