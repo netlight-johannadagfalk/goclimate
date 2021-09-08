@@ -8,10 +8,13 @@ import { useTexts } from '../context/Footprint/TextsContext.js'
  * Result component page for world comparison
  */
 const WorldPage = ({ footprint, countryAverage }) => {
+
+    const { registrationsText: { well_done } } = useTexts()
+
     return (
         <div className="max-w-lg mx-auto">
             <Title 
-                text={useTexts().registrationsText.well_done}
+                text={well_done}
             />
             <YourFootprintText
                 footprintValue={(footprint.total.co2e / 1000).toFixed(1)}
