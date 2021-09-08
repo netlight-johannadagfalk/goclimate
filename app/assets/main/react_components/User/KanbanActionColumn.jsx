@@ -1,6 +1,7 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import KanbanActionItem from "./KanbanActionItem.jsx";
+import { useMediaQuery } from "react-responsive";
 
 const KanbanActionColumn = ({
   column,
@@ -12,6 +13,7 @@ const KanbanActionColumn = ({
   collapsed,
   isHovering,
 }) => {
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   return (
     <div className="h-full" key={columnId}>
       <Droppable
@@ -75,12 +77,14 @@ const KanbanActionColumn = ({
               color: "lightgrey",
             }}
           ></hr>
-          <button
-            className={`fas rounded-full h-12 w-12 bg-white border border-gray-accent -left-6 -mt-6 absolute focus:outline-none ${
-              collapsed ? "fa-chevron-left" : "fa-chevron-right"
-            }`}
-            onClick={() => setCollapsed(!collapsed)}
-          ></button>
+          {!isTabletOrMobile && (
+            <button
+              className={`fas rounded-full h-12 w-12 bg-white border border-gray-accent -left-6 -mt-6 absolute focus:outline-none ${
+                collapsed ? "fa-chevron-left" : "fa-chevron-right"
+              }`}
+              onClick={() => setCollapsed(!collapsed)}
+            ></button>
+          )}
         </div>
       )}
     </div>
