@@ -15,12 +15,8 @@ const MainInfo = ({
   lang,
   registrationsText,
 }) => {
-  // console.log(commonText);
-  // const commonStrings = JSON.parse(commonText);
-  // console.log(commonStrings);
   return (
     <section className="section-padding pb-28">
-      {/* Fixa så ej hårdkodat! */}
       <h2 className="heading-xl">Hello, climate friend!</h2>
 
       <div className="relative">

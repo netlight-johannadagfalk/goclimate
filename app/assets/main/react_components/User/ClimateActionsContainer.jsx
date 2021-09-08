@@ -62,26 +62,6 @@ const ClimateActionsContainer = ({
         lang={lang}
         registrationsText={registrationsText}
       ></MainInfo>
-      {/* <div className="section-padding space-y-12 t:space-y-6 relative mx-auto mt-4 h-96">
-        <div className="left-0 absolute top-0">
-          <FootprintContainer
-            footprint={footprint}
-            commonText={commonText}
-          ></FootprintContainer>
-        </div>
-        <div className="w-80 mx-auto space-y-3 t:p-8 right-0 absolute top-0">
-          <h3 className="heading">Action of the Month </h3>
-          {monthlyAction && (
-            <CarouselActionItem
-              action={monthlyAction}
-              key={monthlyAction.id}
-              user={user}
-              updateLocalAccepted={updateLocalAccepted}
-              categories={JSON.parse(climateActionCategories)}
-            ></CarouselActionItem>
-          )}
-        </div>
-      </div> */}
 
       <CarouselContainer
         user={user}

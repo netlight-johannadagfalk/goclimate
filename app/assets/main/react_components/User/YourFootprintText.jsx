@@ -3,7 +3,7 @@ import ResultText from "./ResultText.jsx";
 
 /**
  * Result text for your footprint
- * Includes a heading and the footprint result in tonnes
+ * Includes a heading, the footprint result in tonnes and ResultText
  */
 const YourFootprintText = ({
   footprintText,
@@ -25,14 +25,11 @@ const YourFootprintText = ({
           {" "}
           {footprintText.tonnes_CO2}
         </span>
-        {/* <p className="hidden t:block mt-6">{footprintText.description}</p> */}
-        {/* Hårdkoda in string på engleska */}
       </div>
       <ResultText
-        // text={footprintText.description}
         countryAverage={JSON.parse(countryAverage)}
         footprint={footprint}
-        modelText={modelText}
+        modelText={JSON.parse(modelText)}
         lang={lang}
         registrationsText={JSON.parse(registrationsText)}
       />

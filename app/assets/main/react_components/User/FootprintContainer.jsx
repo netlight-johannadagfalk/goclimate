@@ -2,10 +2,6 @@ import React from "react";
 import CategoryChart from "./CategoryChart.jsx";
 import YourFootprintText from "./YourFootprintText.jsx";
 
-/**
- * React container for Result page components
- */
-
 const FootprintContainer = ({
   footprint,
   commonText,

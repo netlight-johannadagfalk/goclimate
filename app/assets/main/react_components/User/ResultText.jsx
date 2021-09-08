@@ -1,8 +1,7 @@
 import React from "react";
 
 /**
- * Simple text component that can be modified using the customValues array
- * If customValues has values, each value is placed in the first found spot in the text that matches: %{...}
+ * Description of the result including calculations of relevant numbers
  */
 const ResultText = ({
   footprint,
@@ -12,11 +11,8 @@ const ResultText = ({
   registrationsText,
 }) => {
   const yourClimateFootprint = registrationsText.your_climate_footprint;
-  // "Your carbon footprint of %{footprint} is %{relative} than the average in %{country}. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030.";
   const yourClimateFootprintComparedWorld =
     registrationsText.your_climate_footprint_compared_world;
-  // "Your carbon footprint of %{footprint} is %{relative} than the world average. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030.";
-  const modelText2 = JSON.parse(modelText);
 
   const footprintCo2e = {
     value: footprint.total.co2e,
@@ -25,8 +21,8 @@ const ResultText = ({
     },
     text: () => {
       return footprintCo2e.inTonnes(footprintCo2e.value < 100 ? 2 : 1) <= 1
-        ? modelText2.one.replace("%{count}", footprintCo2e.inTonnes(1))
-        : modelText2.other.replace(
+        ? modelText.one.replace("%{count}", footprintCo2e.inTonnes(1))
+        : modelText.other.replace(
             "%{count}",
             footprintCo2e.inTonnes(footprintCo2e.value < 100 ? 2 : 1)
           );
