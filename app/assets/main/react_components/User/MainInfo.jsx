@@ -29,12 +29,14 @@ const MainInfo = ({
           registrationsText={registrationsText}
         ></FootprintContainer>
 
-        <MonthlyAction
-          action={action}
-          user={user}
-          updateLocalAccepted={updateLocalAccepted}
-          categories={categories}
-        ></MonthlyAction>
+        <div className="hidden t:block">
+          <MonthlyAction
+            action={action}
+            user={user}
+            updateLocalAccepted={updateLocalAccepted}
+            categories={categories}
+          ></MonthlyAction>
+        </div>
       </div>
 
       <FootprintFooter footprint={footprint}></FootprintFooter>
