@@ -149,7 +149,7 @@ const KanbanActionItem = ({
                     </div>
                   </div>
                   {isBadge && (
-                    <div className="flex justify-center ml-6 -mt-3">
+                    <div className="flex justify-center ml-6 -mt-4">
                       <ProgressBar
                         categories={categories}
                         item={item}
@@ -194,7 +194,7 @@ const KanbanActionItem = ({
                         return (
                           <div key={subitem.id}>
                             {subitem.status === true ? (
-                              <div className="flex mt-1">
+                              <div className="group flex items-center mt-1">
                                 <div
                                   className="mr-3 rounded-full h-7 w-7 bg-cover flex-initial"
                                   style={{
@@ -202,12 +202,11 @@ const KanbanActionItem = ({
                                       "url('/achievement_images/AchievementStarActive.png')",
                                   }}
                                 ></div>
-
                                 <div className="flex-initial text-left">
                                   {subitem.name}
                                 </div>
                                 <button
-                                  className="flex-1 hover:text-gray-shade-1 text-gray-accent text-lg text-right mt-0"
+                                  className="opacity-0 group-hover:opacity-50 hover:!opacity-100 flex-1 text-lg text-right"
                                   onClick={() =>
                                     handleButtonPerformOnDrag(subitem, false)
                                   }
