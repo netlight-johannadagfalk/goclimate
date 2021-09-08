@@ -31,7 +31,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   return (
     <>
       <Swiper
-        slidesPerView={4}
+        slidesPerView={isTabletOrMobile ? 1.5 : 4}
         navigation={{
           nextEl: navigationPrevRef.current,
           prevEl: navigationNextRef.current,
@@ -78,13 +78,13 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
           <div
             ref={navigationPrevRef}
             className={
-              "button border-none shadow-none focus:outline-none fas fa-arrow-left"
+              "button border-none shadow-none focus:outline-none fas fa-arrow-left hidden t:block"
             }
           />
           <div
             ref={navigationNextRef}
             className={
-              "button border-none shadow-none focus:outline-none fas fa-arrow-right"
+              "button border-none shadow-none focus:outline-none fas fa-arrow-right hidden t:block"
             }
           />
         </div>
