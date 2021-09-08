@@ -6,8 +6,10 @@ import { useProjects } from '../context/Footprint/ProjectsContext'
  * Displays all current GoClimate projects
  */
 const LatestProjectsList = () => {
+
     const { registrationsText: { latest_projects } } = useTexts()
     const projects = useProjects()
+    
     return (
         <div className="space-y-3">
             <h3 className="font-semibold">{latest_projects}</h3>
