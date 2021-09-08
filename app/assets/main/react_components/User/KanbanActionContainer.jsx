@@ -20,6 +20,40 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
   const setCategoryBadges = useCategoryBadgesUpdate();
   const setCategoryBadgesOnDrag = useCategoryBadgesUpdateOnDrag();
 
+  const handleExpanded = (item, value) => {
+    if (item.status === false) {
+      setColumns({
+        ...columns,
+        [1]: {
+          ...columns[1],
+          items: columns[1].items.map((expandable) => {
+            return expandable.id === item.id
+              ? {
+                  ...expandable,
+                  expanded: value,
+                }
+              : { ...expandable, expanded: false };
+          }),
+        },
+      });
+    } else {
+      setColumns({
+        ...columns,
+        [2]: {
+          ...columns[2],
+          items: columns[2].items.map((expandable) => {
+            return expandable.id === item.id
+              ? {
+                  ...expandable,
+                  expanded: value,
+                }
+              : { ...expandable, expanded: false };
+          }),
+        },
+      });
+    }
+  };
+
   const handleDelete = (userActionID, actionID) => {
     deleteUserAction(userActionID);
     let performedUserActions = collectPerformedUserActions(columns[2].items);
@@ -236,6 +270,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
                 setCollapsed={setCollapsed}
                 collapsed={collapsed}
                 isHovering={isHovering}
+                handleExpanded={handleExpanded}
               />
             </div>
           );
