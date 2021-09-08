@@ -81,7 +81,7 @@ const KanbanActionItem = ({
                     snapshot
                   )
             }
-            onClick={() => setExpanded(!expanded)}
+            onClick={() => !isBadge && setExpanded(!expanded)}
           >
             {collapsed ? (
               <div className="flex flex-1 items-center justify-center shadow-md">
@@ -99,7 +99,7 @@ const KanbanActionItem = ({
             ) : (
               <div className="h-20">
                 <div
-                  className={`${
+                  className={`h-20 ${
                     expanded && "w-full border-b border-b-gray-tint-2"
                   }`}
                 >
@@ -145,6 +145,7 @@ const KanbanActionItem = ({
                         className={`fas float-right focus:outline-none ${
                           isBadge ? "mt-12 ml-10" : "mt-4 ml-4"
                         } ${expanded ? "fa-chevron-up" : "fa-chevron-down"}`}
+                        onClick={() => setExpanded(!expanded)}
                       ></button>
                     </div>
                   </div>
@@ -194,7 +195,7 @@ const KanbanActionItem = ({
                         return (
                           <div key={subitem.id}>
                             {subitem.status === true ? (
-                              <div className="group flex items-center mt-1">
+                              <div className="group flex items-center mt-1 mb-3">
                                 <div
                                   className="mr-3 rounded-full h-7 w-7 bg-cover flex-initial"
                                   style={{
@@ -215,7 +216,7 @@ const KanbanActionItem = ({
                                 </button>
                               </div>
                             ) : (
-                              <div className="flex mt-1">
+                              <div className="flex mt-1 mb-3">
                                 <div
                                   className="mr-3 rounded-full h-7 w-7 bg-cover flex-initial"
                                   style={{
@@ -237,7 +238,7 @@ const KanbanActionItem = ({
                   item.actionsArray.map((subitem) => {
                     return (
                       <div key={subitem.id}>
-                        <div className="flex mt-1">
+                        <div className="flex mt-1 mb-3">
                           <div
                             className="mr-3 rounded-full h-7 w-7 bg-cover flex-initial"
                             style={{

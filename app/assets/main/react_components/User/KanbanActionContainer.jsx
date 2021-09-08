@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanActionColumn from "./KanbanActionColumn.jsx";
 import { useDeletedActionUpdate } from "./contexts/DeletedActionContext.js";
+import { orderBy } from "lodash";
 import {
   useUserActionsUpdate,
   useUserActionsColumns,
@@ -88,6 +89,10 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
     return performedUserActions;
   };
 
+  const sortActionsBasedOnStatus = (performedActions) => {
+    return orderBy(performedActions, ["status"], ["desc"]);
+  };
+
   const handleButtonPerformOnDrag = (movedItem, perform) => {
     //Move items in kanban through buttons instead of drag and drop
     if (perform) {
@@ -107,14 +112,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
       const sortedDestItems = destItems.map((category) => {
         return {
           ...category,
-          userActionsArray: [
-            ...category.userActionsArray.filter(
-              (action) => action.status == true
-            ),
-            ...category.userActionsArray.filter(
-              (action) => action.status == false
-            ),
-          ],
+          userActionsArray: sortActionsBasedOnStatus(category.userActionsArray),
         };
       });
       setCategoryBadges([...sortedDestItems]);
@@ -155,20 +153,13 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
           }),
         };
       });
+
       const sortedSourceItems = newSourceItems.map((category) => {
         return {
           ...category,
-          userActionsArray: [
-            ...category.userActionsArray.filter(
-              (action) => action.status == true
-            ),
-            ...category.userActionsArray.filter(
-              (action) => action.status == false
-            ),
-          ],
+          userActionsArray: sortActionsBasedOnStatus(category.userActionsArray),
         };
       });
-      //console.log(sortedSourceItems);
       //Check if categoryBadge has any subitem with status true, else delete the categoryBadge
       const checkDelete = sortedSourceItems.filter((category) => {
         return category.userActionsArray.some((item) => item.status === true);
@@ -204,14 +195,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
       const sortedDestItems = destItems.map((category) => {
         return {
           ...category,
-          userActionsArray: [
-            ...category.userActionsArray.filter(
-              (action) => action.status == true
-            ),
-            ...category.userActionsArray.filter(
-              (action) => action.status == false
-            ),
-          ],
+          userActionsArray: sortActionsBasedOnStatus(category.userActionsArray),
         };
       });
       let performedUserActions = collectPerformedUserActions(destItems);
