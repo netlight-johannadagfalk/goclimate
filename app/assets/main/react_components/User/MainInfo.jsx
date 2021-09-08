@@ -16,31 +16,33 @@ const MainInfo = ({
   registrationsText,
 }) => {
   return (
-    <section className="section-padding pb-28 flex flex-row">
-      <h2 className="heading-xl">Hello, climate friend!</h2>
-
-      <div className="">
-        <FootprintContainer
-          footprint={footprint}
-          commonText={commonText}
-          countryAverage={countryAverage}
-          modelText={modelText}
-          lang={lang}
-          registrationsText={registrationsText}
-        ></FootprintContainer>
-
-        <div className="hidden t:block">
-          <MonthlyAction
-            action={action}
-            user={user}
-            updateLocalAccepted={updateLocalAccepted}
-            categories={categories}
-          ></MonthlyAction>
+    <>
+      <section className="section-padding pb-28">
+        <h2 className="heading-xl">Hello, climate friend!</h2>
+        <div className="flex flex-row">
+          <div>
+            <FootprintContainer
+              footprint={footprint}
+              commonText={commonText}
+              countryAverage={countryAverage}
+              modelText={modelText}
+              lang={lang}
+              registrationsText={registrationsText}
+            ></FootprintContainer>
+          </div>
+          <div className="hidden t:block">
+            <MonthlyAction
+              action={action}
+              user={user}
+              updateLocalAccepted={updateLocalAccepted}
+              categories={categories}
+            ></MonthlyAction>
+          </div>
         </div>
-      </div>
 
-      <FootprintFooter footprint={footprint}></FootprintFooter>
-    </section>
+        <FootprintFooter footprint={footprint}></FootprintFooter>
+      </section>
+    </>
   );
 };
 

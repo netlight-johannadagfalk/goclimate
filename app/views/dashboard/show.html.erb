@@ -1,8 +1,9 @@
 <%= render "shared/twitter_script" %>
 <%= render "shared/header" %>
 
-<div class="bg-blue-pastel">
 
+<div class="bg-blue-pastel flex flex-row">
+<div class="flex-grow">
   <% if current_user.number_of_neutral_months > 0 %>
     <section class="section-padding">
       <div class="max-w-4xl mx-auto">
@@ -234,6 +235,8 @@
   </section>
 
   <%= render "shared/bottom_landscape" %>
+</div>
+<div id="sidebar" class="flex-shrink sticky float-right bg-white h-screen top-20 z-10 border-l border-gray-accent "></div>
 </div>
 
 <%= render "shared/footer", skip_prefooter: true %>

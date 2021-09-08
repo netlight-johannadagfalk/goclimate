@@ -9,32 +9,32 @@ const CarouselContainer = ({ user, updateLocalAccepted, categories }) => {
   const category = useCategory();
 
   return (
-    <div className="max-w-5xl mx-auto space-y-3 t:bg-transparent t:rounded-lg t:p-8 mt-4">
-      <div className="-ml-56">
-        <CarouselHeader />
-      </div>
-      <CarouselCategoryButton
-        categoryName={"All categories"}
-        categoryID={null}
-        active={allCategories}
-        setAllCategories={setAllCategories}
-      />
-      {categories.map((cat) => (
+    <section className="section-padding pb-28">
+      <CarouselHeader />
+      <div className="max-w-5xl mx-auto space-y-3 t:bg-transparent t:rounded-lg t:p-8 mt-4">
         <CarouselCategoryButton
-          key={cat.id}
-          categoryName={cat.name}
-          categoryID={cat.id}
-          active={category === cat.id ? true : false}
+          categoryName={"All categories"}
+          categoryID={null}
+          active={allCategories}
           setAllCategories={setAllCategories}
         />
-      ))}
+        {categories.map((cat) => (
+          <CarouselCategoryButton
+            key={cat.id}
+            categoryName={cat.name}
+            categoryID={cat.id}
+            active={category === cat.id ? true : false}
+            setAllCategories={setAllCategories}
+          />
+        ))}
 
-      <CarouselList
-        user={user}
-        updateLocalAccepted={updateLocalAccepted}
-        categories={categories}
-      ></CarouselList>
-    </div>
+        <CarouselList
+          user={user}
+          updateLocalAccepted={updateLocalAccepted}
+          categories={categories}
+        ></CarouselList>
+      </div>
+    </section>
   );
 };
 

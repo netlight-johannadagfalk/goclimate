@@ -48,31 +48,26 @@ const ClimateActionsContainer = ({
   }, [deletedAction]);
 
   return (
-    <div className="flex flex-row">
-      <div className="flex-grow">
-        <MainInfo
-          footprint={JSON.parse(footprint)}
-          commonText={commonText}
-          action={monthlyAction}
-          user={user}
-          updateLocalAccepted={updateLocalAccepted}
-          categories={JSON.parse(climateActionCategories)}
-          countryAverage={countryAverage}
-          modelText={modelText}
-          lang={lang}
-          registrationsText={registrationsText}
-        ></MainInfo>
-        <CarouselContainer
-          user={user}
-          updateLocalAccepted={updateLocalAccepted}
-          categories={formatedCategories}
-        />
-      </div>
-
-      <div className="flex-shrink sticky float-right bg-white h-screen top-20 z-10 border-l border-gray-accent">
-        <Sidebar categories={formatedCategories} />
-      </div>
-    </div>
+    <>
+      <MainInfo
+        footprint={JSON.parse(footprint)}
+        commonText={commonText}
+        action={monthlyAction}
+        user={user}
+        updateLocalAccepted={updateLocalAccepted}
+        categories={JSON.parse(climateActionCategories)}
+        countryAverage={countryAverage}
+        modelText={modelText}
+        lang={lang}
+        registrationsText={registrationsText}
+      ></MainInfo>
+      <CarouselContainer
+        user={user}
+        updateLocalAccepted={updateLocalAccepted}
+        categories={formatedCategories}
+      />
+      <Sidebar categories={formatedCategories} />
+    </>
   );
 };
 export default ClimateActionsContainer;
