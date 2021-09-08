@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import KanbanActionContainer from "./KanbanActionContainer.jsx";
 
-const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(true);
+const Sidebar = ({ categories }) => {
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
     <>
       <div
-        className={`bg-white h-screen right-0 top-20 fixed z-40 border-l border-gray-accent ${
+        className={`bg-white h-screen right-0 top-20 fixed z-10 border-l border-gray-accent ${
           collapsed ? "w-28" : "w-auto"
         }`}
       >
@@ -15,6 +15,7 @@ const Sidebar = () => {
           <KanbanActionContainer
             setCollapsed={setCollapsed}
             collapsed={collapsed}
+            categories={categories}
           />
         </div>
       </div>
