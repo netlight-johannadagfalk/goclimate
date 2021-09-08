@@ -21,23 +21,14 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
   const setCategoryBadgesOnDrag = useCategoryBadgesUpdateOnDrag();
 
   const handleExpanded = (item, value) => {
-    if (item.status === false) {
-      setColumns({
-        ...columns,
-        [1]: {
-          ...columns[1],
-          items: getExpandable(columns[1], item, value),
-        },
-      });
-    } else {
-      setColumns({
-        ...columns,
-        [2]: {
-          ...columns[2],
-          items: getExpandable(columns[2], item, value),
-        },
-      });
-    }
+    const column = item.status === false ? 1 : 2;
+    setColumns({
+      ...columns,
+      [column]: {
+        ...columns[column],
+        items: getExpandable(columns[column], item, value),
+      },
+    });
   };
 
   const getExpandable = (column, item, value) => {

@@ -16,10 +16,10 @@ const MainInfo = ({
   registrationsText,
 }) => {
   return (
-    <section className="section-padding pb-28">
+    <section className="section-padding pb-28 flex flex-row">
       <h2 className="heading-xl">Hello, climate friend!</h2>
 
-      <div className="relative">
+      <div className="">
         <FootprintContainer
           footprint={footprint}
           commonText={commonText}
