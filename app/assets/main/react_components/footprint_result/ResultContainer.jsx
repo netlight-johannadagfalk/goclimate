@@ -18,14 +18,13 @@ import StaticDataProvider from '../context/Footprint/StaticDataProvider.js';
  * React container for Result page components
  */
 const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, plan, slug, currency, lang }) => {
+    
     const [selectedMembership, setSelectedMembership] = useState("single")
     const [multipleOffsets, setMultipleOffsets] = useState(2);
     const [grantedReferralCode, setGrantedReferralCode] = useState(false)
-    const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq')
     
+    const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq')
 
-    // FIX FIX FIX LANG LANG LANG
-    // FIX WORLDCOMPARISON SPECIAL CASE
     return (
         <StaticDataProvider 
             registrationsText={registrationsText}
