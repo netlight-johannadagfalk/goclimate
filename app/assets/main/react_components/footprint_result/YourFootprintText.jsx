@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTexts } from '../context/Footprint/StaticDataContext'
+import { useTexts } from '../context/Footprint/TextsContext.js'
 
 /**
  * Result text for your footprint
@@ -7,12 +7,14 @@ import { useTexts } from '../context/Footprint/StaticDataContext'
  */
 const YourFootprintText = ({ footprintValue }) => {
 
+    const { commonText: { dashboard: { footprint: { heading } }, tonnes_CO2 } } = useTexts()
+
     return (
         <div>
-            <h2 className="text-sm">{useTexts().commonText.dashboard.footprint.heading}</h2>
+            <h2 className="text-sm">{heading}</h2>
             <div className="mt-1">
                 <span className="text-xl font-bold text-green-accent">{footprintValue}</span>
-                <span className="text-lg font-semibold"> {useTexts().commonText.tonnes_CO2}</span>
+                <span className="text-lg font-semibold"> {tonnes_CO2}</span>
             </div>
         </div>
     )

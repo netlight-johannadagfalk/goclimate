@@ -4,7 +4,8 @@ import { numericalKeys, resultKeys, resultObjects } from './footprint-data.js';
 import ProgressBar from './ProgressBar.jsx';
 import QuestionPage from './QuestionPage.jsx';
 import ResultPage from './ResultPage.jsx';
-import { useTexts, useLocaleData } from '../context/Footprint/StaticDataContext.js';
+import { useTexts } from '../context/Footprint/TextsContext.js';
+import { useLocaleData } from '../context/Footprint/LocaleContext.js';
 
 /**
  * FootprintForm has the responsibility to handle the logic for showing the the questions and answers 

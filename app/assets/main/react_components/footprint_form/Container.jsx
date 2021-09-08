@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Link from '../Link.jsx';
 import FootprintForm from './FootprintForm.jsx';
 import InformationSection from './InformationSection.jsx';
-import { StaticDataProvider } from '../context/Footprint/StaticDataContext.js';
+import StaticDataProvider from '../context/Footprint/StaticDataProvider.js';
 
 const Container = ({ footprint, calculator, slug, lang, registrationsText, commonText, modelText, lifestyleFootprintsText, currency, projects }) => {
   const [showInformationSection, setShowInformationSection] = useState(false)
@@ -31,7 +31,7 @@ const Container = ({ footprint, calculator, slug, lang, registrationsText, commo
           linkText={JSON.parse(lifestyleFootprintsText).methodology}
         />
         { showInformationSection && 
-          <InformationSection projects={JSON.parse(projects)}/>
+          <InformationSection />
         }
       </div>
     </StaticDataProvider>

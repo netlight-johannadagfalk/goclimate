@@ -2,7 +2,8 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React, { useState } from 'react';
 import sanitizeHtml from 'sanitize-html';
-import { useTexts, useLocaleData } from '../context/Footprint/StaticDataContext.js';
+import { useTexts } from '../context/Footprint/TextsContext.js';
+import { useLocaleData } from '../context/Footprint/LocaleContext.js';
 import MembershipSelector from '../footprint_result/MembershipSelector.jsx';
 import Payment from '../footprint_result/Payment.jsx';
 import SignUpContainer from '../footprint_result/SignUpContainer.jsx';
@@ -23,8 +24,8 @@ const ResultPage = ({ result, page, onPageChange }) => {
     const footprint = result.footprint;
     const countryAverage = result.country_average;
     const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq')
-    const stripeLocale = useLocaleData().slug
-    const acceptPoliciesLink = useTexts().registrationsText.accept_policies
+    const { slug } = useLocaleData()
+    const { registrationsText: { continue_to_payment, accept_policies }, lifestyleFootprintsText: { next } } = useTexts()
 
     return (
         <div>
@@ -35,11 +36,9 @@ const ResultPage = ({ result, page, onPageChange }) => {
                         countryAverage={countryAverage} 
                     />
                 : page === 1 ?
-                    <CategoryPage
-                        footprint={footprint}
-                    />
+                    <CategoryPage footprint={footprint}/>
                 : 
-                    <Elements stripe={stripePromise} options={{locale: stripeLocale}}>
+                    <Elements stripe={stripePromise} options={{locale: slug}}>
                         <SignUpContainer 
                             selectedMembership={selectedMembership}
                             multipleOffsets={multipleOffsets}
@@ -56,23 +55,21 @@ const ResultPage = ({ result, page, onPageChange }) => {
                                     grantedReferralCode={grantedReferralCode}>
                                 </MembershipSelector>
                             :
-                                <Payment
-                                    selectedMembership={selectedMembership}
-                                />
+                                <Payment selectedMembership={selectedMembership}/>
                             }
                         </SignUpContainer>
                     </Elements>
                 }
             </div>
             <AnswerButton
-                label={page !== 2 ? useTexts().lifestyleFootprintsText.next + " ->" : useTexts().registrationsText.continue_to_payment}
+                label={page !== 2 ? next + " ->" : continue_to_payment}
                 onAnswerGiven={onPageChange}
                 stylingClasses={"w-2/3 " + (page === 2 && "button-cta")}
             />
             { page === 3 && 
                 <div className={"inject-link pt-4"}
                     dangerouslySetInnerHTML={{
-                        __html: sanitizeHtml(acceptPoliciesLink)
+                        __html: sanitizeHtml(accept_policies)
                     }}>
                 </div>
             }

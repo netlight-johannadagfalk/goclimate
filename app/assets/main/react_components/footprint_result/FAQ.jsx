@@ -1,6 +1,7 @@
 import React from 'react'
 import FAQListChild from './FAQListChild.jsx'
-import { useTexts } from '../context/Footprint/StaticDataContext.js'
+import { useTexts } from '../context/Footprint/TextsContext.js'
+
 /**
  * FAQ container for result page
  */

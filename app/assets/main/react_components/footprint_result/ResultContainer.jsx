@@ -12,17 +12,20 @@ import ResultTitle from './ResultTitle.jsx';
 import SignUpContainer from './SignUpContainer.jsx';
 import WorldComparisonChart from './WorldComparisonChart.jsx';
 import YourFootprintText from './YourFootprintText.jsx';
-import { StaticDataProvider } from '../context/Footprint/StaticDataContext.js';
+import StaticDataProvider from '../context/Footprint/StaticDataProvider.js';
+
 /**
  * React container for Result page components
  */
-    
-const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, plan, slug, currency }) => {
+const ResultContainer = ({ footprint, projects, countryAverage, registrationsText, commonText, modelText, lifestyleFootprintsText, plan, slug, currency, lang }) => {
     const [selectedMembership, setSelectedMembership] = useState("single")
     const [multipleOffsets, setMultipleOffsets] = useState(2);
     const [grantedReferralCode, setGrantedReferralCode] = useState(false)
     const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq')
     
+
+    // FIX FIX FIX LANG LANG LANG
+    // FIX WORLDCOMPARISON SPECIAL CASE
     return (
         <StaticDataProvider 
             registrationsText={registrationsText}
@@ -31,6 +34,7 @@ const ResultContainer = ({ footprint, projects, countryAverage, registrationsTex
             lifestyleFootprintsText={lifestyleFootprintsText}
             currency={currency}
             slug={slug}
+            lang={lang}
             projects={projects}
         >
             <div className="relative pb-1">

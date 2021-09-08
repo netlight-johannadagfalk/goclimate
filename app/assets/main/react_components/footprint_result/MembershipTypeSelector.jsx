@@ -1,6 +1,6 @@
 import React from 'react';
 import SelectButton from './SelectButton.jsx';
-import { useTexts } from '../context/Footprint/StaticDataContext.js';
+import { useTexts } from '../context/Footprint/TextsContext.js';
 
 /**
  * React container for Sign up components
