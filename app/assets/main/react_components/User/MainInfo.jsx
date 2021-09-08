@@ -17,9 +17,7 @@ const MainInfo = ({
   totalNoFootprints,
 }) => {
   return (
-    <section className="section-padding pb-28">
-      <h2 className="heading-xl">Hello, climate friend!</h2>
-
+    <section className="section-padding pb-14 -mt-20">
       <div className="relative">
         <FootprintContainer
           footprint={footprint}
