@@ -10,7 +10,7 @@ const CarouselContainer = ({ user, updateLocalAccepted, categories }) => {
 
   return (
     <div className="max-w-5xl mx-auto space-y-3 t:bg-transparent t:rounded-lg t:p-8 mt-4">
-      <div className="-ml-56">
+      <div className="d:-ml-56 mx-4">
         <CarouselHeader />
       </div>
       <CarouselCategoryButton
