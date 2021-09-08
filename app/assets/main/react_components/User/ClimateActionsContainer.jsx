@@ -38,30 +38,33 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
   }, [deletedAction]);
 
   return (
-    <>
-      <div className="hidden t:block">
-        <div className="w-80 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2 justify-center">
-          <h3 className="heading-lg mb-3">Action of the Month </h3>
-          {monthlyAction && (
-            <CarouselActionItem
-              action={monthlyAction}
-              key={monthlyAction.id}
-              user={user}
-              updateLocalAccepted={updateLocalAccepted}
-              categories={formatedCategories}
-            ></CarouselActionItem>
-          )}
+    <div className="flex flex-row">
+      <div className="flex-grow">
+        <div className="hidden t:block">
+          <div className="w-80 mx-auto space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2 justify-center">
+            <h3 className="heading-lg mb-3">Action of the Month </h3>
+            {monthlyAction && (
+              <CarouselActionItem
+                action={monthlyAction}
+                key={monthlyAction.id}
+                user={user}
+                updateLocalAccepted={updateLocalAccepted}
+                categories={formatedCategories}
+              ></CarouselActionItem>
+            )}
+          </div>
         </div>
+        <CarouselContainer
+          user={user}
+          updateLocalAccepted={updateLocalAccepted}
+          categories={formatedCategories}
+        />
       </div>
 
-      <CarouselContainer
-        user={user}
-        updateLocalAccepted={updateLocalAccepted}
-        categories={formatedCategories}
-      />
-
-      <Sidebar categories={formatedCategories} />
-    </>
+      <div className="flex-shrink sticky float-right bg-white h-screen top-20 z-10 border-l border-gray-accent">
+        <Sidebar categories={formatedCategories} />
+      </div>
+    </div>
   );
 };
 export default ClimateActionsContainer;

@@ -6,11 +6,7 @@ const Sidebar = ({ categories }) => {
 
   return (
     <>
-      <div
-        className={`bg-white h-screen right-0 top-20 fixed z-10 border-l border-gray-accent ${
-          collapsed ? "w-28" : "w-auto"
-        }`}
-      >
+      <div className={` ${collapsed ? "w-28" : "w-auto"}`}>
         <div className={` ${collapsed ? "visible" : "visible"}`}>
           <KanbanActionContainer
             setCollapsed={setCollapsed}
