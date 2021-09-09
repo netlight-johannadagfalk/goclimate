@@ -99,6 +99,7 @@
     </div>
   </section>
   <% end %>
+
 <%= react_component 'Dashboard', 
   user: @current_user.to_json(), 
   allUserActions: @get_all_user_climate_actions.to_json(), 
@@ -234,7 +235,8 @@
 
   <%= render "shared/bottom_landscape" %>
 </div>
-<div id="sidebar" class="sticky float-right bg-white h-screen w-1/4 top-20 z-10 border-l border-gray-accent"></div>
+<div id="sidebar" class="sticky float-right bg-white h-screen w-auto top-20 z-10 border-l border-gray-accent"></div>
+
 </div>
 
 <%= render "shared/footer", skip_prefooter: true %>
