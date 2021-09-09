@@ -10,7 +10,6 @@ const KanbanActionItem = ({
   handleButtonPerformOnDrag,
   categories,
   collapsed,
-  //setExpanded,
 }) => {
   const [expanded, setExpanded] = useState(false);
 
