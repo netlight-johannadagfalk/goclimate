@@ -65,23 +65,19 @@ const KanbanActionItem = ({
         return (
           <div
             className={`border border-gray-tint-2 rounded-lg p-0 space-y-3 pt-0 ${
-              collapsed ? "w-24" : "w-full"
+              collapsed ? "w-24" : "t:w-60 d:w-80 d-lg:w-96"
             }
             ${item.expanded ? "h-auto" : "w-24"}`}
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             style={
-              ({
-                minWidth: 100,
-                maxWidth: 150,
-              },
               item.status === false
                 ? setStyleWithReordering(provided.draggableProps.style)
                 : setStyleWithoutReordering(
                     provided.draggableProps.style,
                     snapshot
-                  ))
+                  )
             }
             onClick={() => handleExpanded(item, !item.expanded)}
           >
@@ -143,7 +139,7 @@ const KanbanActionItem = ({
                     </div>
                   </div>
                   {isBadge && (
-                    <div className="flex justify-center w-full ml-6 -mt-5">
+                    <div className="flex justify-center ml-6 -mt-5">
                       <ProgressBar
                         categories={categories}
                         item={item}
