@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<DocumentFragment>
+  <h1
+    class="font-semibold text-xl t:text-2xl d-md:text-3xl my-5"
+  />
+</DocumentFragment>
+`;
