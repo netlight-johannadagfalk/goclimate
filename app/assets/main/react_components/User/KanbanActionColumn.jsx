@@ -11,7 +11,6 @@ const KanbanActionColumn = ({
   setCollapsed,
   collapsed,
   isHovering,
-  handleExpanded,
 }) => {
   return (
     <div className="h-full" key={columnId}>
@@ -61,7 +60,6 @@ const KanbanActionColumn = ({
                       handleButtonPerformOnDrag={handleButtonPerformOnDrag}
                       categories={categories}
                       collapsed={collapsed}
-                      handleExpanded={handleExpanded}
                     />
                   );
                 })}
