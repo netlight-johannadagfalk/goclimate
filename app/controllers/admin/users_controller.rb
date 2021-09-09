@@ -46,7 +46,7 @@ module Admin
       notice = if @user.active_subscription? && subscription_manager.cancel
                  'Subscription successfully cancelled'
                else
-                 "Oups! Something went wrong! #{subscription_manager.errors.full_messages}"
+                 "Sorry, something on our side didn't go as planned. #{subscription_manager.errors.full_messages}"
                end
 
       redirect_to admin_user_path(@user.id), notice: notice
@@ -56,7 +56,7 @@ module Admin
       notice = if @user.deactivate
                  'Account deactivated'
                else
-                 "Oups, something went wrong! #{@user.errors.full_messages}"
+                 "Sorry, something on our side didn't go as planned. #{@user.errors.full_messages}"
                end
 
       redirect_to admin_users_path, notice: notice

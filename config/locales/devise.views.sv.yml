@@ -111,7 +111,7 @@ sv:
       unlocked: Ditt konto har låsts upp. Du är nu inloggad.
   errors:
     messages:
-      something_wrong: Hoppsan, något blev fel!
+      something_wrong: Ursäkta, något från vårt håll gick fel!
       reset_password_token_expired_html: Din länk för lösenordsåterställning är inte längre giltig. <a href=''>Be om en ny</a>.
       already_confirmed: är redan bekräftad, vänligen logga in igen
       confirmation_period_expired: behöver bekräftas inom %{period}. Vänligen begär en ny
