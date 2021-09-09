@@ -27,6 +27,7 @@ const KanbanActionItem = ({
   };
 
   const categoryColor = categoryName();
+
   useEffect(() => {
     setExpanded(false);
   }, [collapsed]);
@@ -64,10 +65,12 @@ const KanbanActionItem = ({
       {(provided, snapshot) => {
         return (
           <div
-            className={`border border-gray-tint-2 rounded-lg shadow-lg p-0 space-y-3 pt-0 ${
+            className={`border border-gray-tint-2 rounded-lg shadow-lg space-y-3 p-0 pt-0 ${
               collapsed ? "w-24" : "w-96"
             }
-            ${expanded ? "h-auto" : "w-24"}`}
+            ${expanded ? "h-auto" : "w-24"}
+            
+            `}
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -79,7 +82,7 @@ const KanbanActionItem = ({
                     snapshot
                   )
             }
-            onClick={() => setExpanded(!expanded)}
+            onClick={() => !isBadge && setExpanded(!expanded)}
           >
             {collapsed ? (
               <div className="flex flex-1 items-center justify-center shadow-md">
@@ -89,14 +92,18 @@ const KanbanActionItem = ({
                     backgroundImage:
                       item.status === false
                         ? `url('${item.image_url}')`
-                        : "url('/achievement_images/AchievementClimateFriend.png')",
+                        : `url('${item.badge_image_url}')`,
                     backgroundSize: "100%",
                   }}
                 ></div>
               </div>
             ) : (
-              <>
-                <div>
+              <div className="h-20">
+                <div
+                  className={`h-20 ${
+                    expanded && "w-full border-b border-b-gray-tint-2"
+                  }`}
+                >
                   {!isBadge && (
                     <div
                       className={`${
@@ -107,39 +114,44 @@ const KanbanActionItem = ({
                     ></div>
                   )}
                   <div
-                    className={`flex flex-row h-14 ${
-                      expanded && "border-b border-b-gray-tint-2 "
-                    }`}
+                    className="flex flex-row h-16"
                     onClick={() => setExpanded(!expanded)}
                   >
                     <div className="flex flex-1">
                       <div
                         className={`mx-auto ${
-                          !isBadge && "-mt-1/4"
+                          isBadge ? "mt-2" : "-mt-1/4"
                         } rounded-full h-16 w-16 items-center justify-center bg-contain bg-center shadow-lg`}
                         style={{
                           backgroundImage:
                             item.status === false
                               ? `url('${item.image_url}')`
-                              : "url('/achievement_images/AchievementClimateFriend.png')",
+                              : `url('${item.badge_image_url}')`,
+                          backgroundSize: "100%",
                         }}
                       ></div>
                     </div>
                     <div className="flex flex-2 justify-start">
-                      <div className="flex flex-1 font-bold text-left">
+                      <div
+                        className={`flex flex-1 font-bold text-left ${
+                          isBadge && "mt-5"
+                        }
+                      `}
+                      >
                         {item.name}
                       </div>
                     </div>
                     <div className="flex flex-1 justify-center items-start">
                       <button
-                        className={`ml-4 fas float-right mt-4 focus:outline-none ${
-                          expanded ? "fa-chevron-up" : "fa-chevron-down"
-                        }`}
+                        className={`fas float-right focus:outline-none ${
+                          isBadge ? "mt-12 ml-10" : "mt-4 ml-4"
+                        } ${expanded ? "fa-chevron-up" : "fa-chevron-down"}`}
+                        onClick={() => setExpanded(!expanded)}
                       ></button>
                     </div>
                   </div>
                   {isBadge && (
-                    <div className="flex justify-center ml-6 -mt-5">
+                    <div className="flex justify-center ml-6 -mt-4">
                       <ProgressBar
                         categories={categories}
                         item={item}
@@ -149,7 +161,7 @@ const KanbanActionItem = ({
                     </div>
                   )}
                 </div>
-              </>
+              </div>
             )}
 
             {expanded && !collapsed && (
@@ -184,33 +196,64 @@ const KanbanActionItem = ({
                         return (
                           <div key={subitem.id}>
                             {subitem.status === true ? (
-                              <div className="text-danger">{subitem.name}</div>
+                              <div className="group flex items-center mt-1 mb-3">
+                                <div
+                                  className="mr-3 rounded-full h-7 w-7 bg-cover flex-initial"
+                                  style={{
+                                    backgroundImage:
+                                      "url('/achievement_images/AchievementStarActive.png')",
+                                  }}
+                                ></div>
+                                <div className="flex-initial text-left">
+                                  {subitem.name}
+                                </div>
+                                <button
+                                  className="opacity-0 group-hover:opacity-50 hover:!opacity-100 flex-1 text-lg text-right"
+                                  onClick={() =>
+                                    handleButtonPerformOnDrag(subitem, false)
+                                  }
+                                >
+                                  &times;
+                                </button>
+                              </div>
                             ) : (
-                              <div className="">{subitem.name}</div>
+                              <div className="flex mt-1 mb-3">
+                                <div
+                                  className="mr-3 rounded-full h-7 w-7 bg-cover flex-initial"
+                                  style={{
+                                    backgroundImage:
+                                      "url('/achievement_images/AchievementStarInactive.png')",
+                                  }}
+                                ></div>
+                                <div className="flex-inital text-left text-gray-accent">
+                                  {subitem.name}
+                                </div>
+                              </div>
                             )}
-                            {subitem.status === true && (
-                              <button
-                                className="button ml-4 button-cta"
-                                onClick={() =>
-                                  handleButtonPerformOnDrag(subitem, false)
-                                }
-                              >
-                                Unperformed{" <"}
-                              </button>
-                            )}
-                          </div>
-                        );
-                      })}
-                    {item.actionsArray &&
-                      item.actionsArray.map((subitem) => {
-                        return (
-                          <div key={subitem.id}>
-                            <div className="">{subitem.name}</div>
                           </div>
                         );
                       })}
                   </div>
                 )}
+                {item.actionsArray &&
+                  item.actionsArray.map((subitem) => {
+                    return (
+                      <div key={subitem.id}>
+                        <div className="flex mt-1 mb-3">
+                          <div
+                            className="mr-3 rounded-full h-7 w-7 bg-cover flex-initial"
+                            style={{
+                              backgroundImage:
+                                "url('/achievement_images/AchievementStarInactive.png')",
+                            }}
+                          ></div>
+                          <div className="flex-inital text-left text-gray-accent">
+                            {subitem.name}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
               </div>
             )}
           </div>

@@ -11,6 +11,12 @@ const Dashboard = ({
   actionsWithUserActions,
   actionsWithoutUserActions,
   climateActionCategories,
+  footprint,
+  commonText,
+  countryAverage,
+  modelText,
+  lang,
+  registrationsText,
 }) => {
   return (
     <DeletedActionProvider>
@@ -28,6 +34,12 @@ const Dashboard = ({
             <ClimateActionsContainer
               user={user}
               climateActionCategories={climateActionCategories}
+              footprint={footprint}
+              commonText={commonText}
+              countryAverage={countryAverage}
+              modelText={modelText}
+              lang={lang}
+              registrationsText={registrationsText}
             ></ClimateActionsContainer>
           </ClimateActionsProvider>
         </UserActionsProvider>
