@@ -2,7 +2,7 @@
 
 module Admin
   class UsersController < AdminController
-    before_action :set_user, only: [:show, :cancel_subscription, :destroy]
+    before_action :set_user, only: [:show, :edit, :update, :cancel_subscription, :destroy]
 
     MIN_CHARS_IN_SEARCH_QUERY = 3
 
@@ -20,6 +20,18 @@ module Admin
       @total_number_of_footprints = LifestyleFootprint.where(user_id: @user.id).count
     end
 
+    def edit
+    end
+
+    def update
+      unless @user.update(user_params)
+        render :edit, notice: "Sorry, something on our side didn't go as planned. #{@user.errors.full_messages}"
+        return
+      end
+
+      redirect_to [:admin, @user], notice: 'User was successfully updated.'
+    end
+
     def search
       if search_params[:search_query].present? && search_params[:search_query].length >= MIN_CHARS_IN_SEARCH_QUERY
         redirect_to admin_users_path(search_params)
@@ -34,7 +46,7 @@ module Admin
       notice = if @user.active_subscription? && subscription_manager.cancel
                  'Subscription successfully cancelled'
                else
-                 "Oups! Something went wrong! #{subscription_manager.errors.full_messages}"
+                 "Sorry, something on our side didn't go as planned. #{subscription_manager.errors.full_messages}"
                end
 
       redirect_to admin_user_path(@user.id), notice: notice
@@ -44,7 +56,7 @@ module Admin
       notice = if @user.deactivate
                  'Account deactivated'
                else
-                 "Oups, something went wrong! #{@user.errors.full_messages}"
+                 "Sorry, something on our side didn't go as planned. #{@user.errors.full_messages}"
                end
 
       redirect_to admin_users_path, notice: notice
@@ -64,6 +76,10 @@ module Admin
       return [] if query.blank?
 
       User.search_email(query, max_entries)
+    end
+
+    def user_params
+      params.require(:user).permit(:email)
     end
   end
 end

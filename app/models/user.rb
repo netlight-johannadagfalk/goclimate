@@ -10,7 +10,7 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :subscription_months, class_name: 'Subscriptions::SubscriptionMonth'
   belongs_to :referred_from, class_name: 'Subscriptions::ReferralCode', optional: true
 
-  validates :email, format: { with: /\A[a-z0-9+\-_.]+@[a-z\d\-.]+\.[a-z]{2,6}\z/i }, on: :create
+  validates :email, format: { with: /\A[a-z0-9+\-_.]+@[a-z\d\-.]+\.[a-z]{2,6}\z/i }
   validates :user_name, format: { without: /.+@.+\..+/ }, allow_blank: true
 
   attribute :region, :region
@@ -18,6 +18,8 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   # accessor and validator of :privacy_policy are only here for client side validation via the ClientSideValidations gem
   validates :privacy_policy, acceptance: true
   attr_accessor :privacy_policy
+
+  after_update :update_email_in_stripe
 
   DEACTIVATED_ACCOUNT_EMAIL_ENDING = '@deactivated.goclimate.com'
 
@@ -179,6 +181,20 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   end
 
   private
+
+  def update_email_in_stripe
+    return unless errors.blank? && saved_change_to_attribute?('email')
+
+    begin
+      Stripe::Customer.update(
+        stripe_customer.id,
+        email: email
+      )
+    rescue Stripe::InvalidRequestError => e
+      logger.error(e)
+      Raven.capture_exception(e)
+    end
+  end
 
   def subscription_end_at_from_stripe(stripe_subscription)
     Time.at(stripe_subscription.ended_at) if stripe_subscription.ended_at.present?
