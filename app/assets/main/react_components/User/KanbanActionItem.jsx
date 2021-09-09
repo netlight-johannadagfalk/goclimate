@@ -72,12 +72,16 @@ const KanbanActionItem = ({
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             style={
+              ({
+                minWidth: 100,
+                maxWidth: 150,
+              },
               item.status === false
                 ? setStyleWithReordering(provided.draggableProps.style)
                 : setStyleWithoutReordering(
                     provided.draggableProps.style,
                     snapshot
-                  )
+                  ))
             }
             onClick={() => handleExpanded(item, !item.expanded)}
           >
@@ -139,7 +143,7 @@ const KanbanActionItem = ({
                     </div>
                   </div>
                   {isBadge && (
-                    <div className="flex justify-center ml-6 -mt-5">
+                    <div className="flex justify-center w-full ml-6 -mt-5">
                       <ProgressBar
                         categories={categories}
                         item={item}
