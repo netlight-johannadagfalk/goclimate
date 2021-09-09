@@ -30,7 +30,7 @@ const MainInfo = ({
               registrationsText={registrationsText}
             ></FootprintContainer>
           </div>
-          <div className="hidden t:block">
+          <div className="hidden d-lg:block">
             <MonthlyAction
               action={action}
               user={user}

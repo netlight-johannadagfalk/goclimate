@@ -34,7 +34,7 @@ const KanbanActionColumn = ({
               style={{
                 background: snapshot.isDraggingOver ? "lightgrey" : "white",
                 padding: 4,
-                width: 410,
+                width: "auto",
               }}
             >
               {columnId == 2 && column.items.length == 0 ? (
