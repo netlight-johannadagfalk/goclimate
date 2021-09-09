@@ -5,7 +5,6 @@ import {
 } from "./contexts/ClimateActionsContext";
 import { useCategoryUpdate } from "./contexts/CategoryContext";
 import { useUserActions } from "./contexts/UserActionsContext";
-import { useMediaQuery } from "react-responsive";
 
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
@@ -22,9 +21,6 @@ const CarouselCategoryButton = ({
   const totClimateActions = useClimateActionsOriginal();
   const userActions = useUserActions();
 
-  //*************** TABLET/MOBILE DEVELOPMENT ************************* */
-  //const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
-
   let options = [{ value: null, label: "All categories" }];
 
   const createOptions = () =>
@@ -32,8 +28,6 @@ const CarouselCategoryButton = ({
       options.push({ value: cat.id, label: cat.name });
     });
   categories && createOptions();
-  categories && console.log(options);
-  //************************************************************ */
 
   const handleCategory = (categoryID) => {
     categoryID != null ? categoryClick(categoryID) : allCategoriesClick();
@@ -69,15 +63,17 @@ const CarouselCategoryButton = ({
   return (
     <>
       {categories ? (
-        <Dropdown
-          //className="w-40 rounded-full button m-1"
-          controlClassName="button rounded-full"
-          //menuClassName="dropdown-menu"
-          //arrowClassName="fa fas-arrow"
-          options={options}
-          defaultOption={options[0]}
-          onChange={(val) => handleCategory(val.value)}
-        ></Dropdown>
+        <div className="mx-5 ">
+          <Dropdown
+            placeholder="All categories"
+            controlClassName="bg-transparent color-primary border-primary rounded p-2 flex flex-row w-36 justify-between"
+            arrowClosed={<i className="fas fa-chevron-down" />}
+            arrowOpen={<i className="fas fa-chevron-up" />}
+            options={options}
+            defaultOption={options[0]}
+            onChange={(val) => handleCategory(val.value)}
+          ></Dropdown>
+        </div>
       ) : (
         <>
           {active ? (
