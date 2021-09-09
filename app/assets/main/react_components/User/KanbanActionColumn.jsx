@@ -12,6 +12,7 @@ const KanbanActionColumn = ({
   setCollapsed,
   collapsed,
   isHovering,
+  handleExpanded,
 }) => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   return (
@@ -62,6 +63,7 @@ const KanbanActionColumn = ({
                       handleButtonPerformOnDrag={handleButtonPerformOnDrag}
                       categories={categories}
                       collapsed={collapsed}
+                      handleExpanded={handleExpanded}
                     />
                   );
                 })}

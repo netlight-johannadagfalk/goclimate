@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanActionColumn from "./KanbanActionColumn.jsx";
 import { useDeletedActionUpdate } from "./contexts/DeletedActionContext.js";
+import { orderBy } from "lodash";
 import {
   useUserActionsUpdate,
   useUserActionsColumns,
@@ -19,6 +20,38 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
   const setDeletedAction = useDeletedActionUpdate();
   const setCategoryBadges = useCategoryBadgesUpdate();
   const setCategoryBadgesOnDrag = useCategoryBadgesUpdateOnDrag();
+
+  const handleExpanded = (item, value) => {
+    if (item.status === false) {
+      setColumns({
+        ...columns,
+        [1]: {
+          ...columns[1],
+          items: getExpandable(columns[1], item, value),
+        },
+      });
+    } else {
+      setColumns({
+        ...columns,
+        [2]: {
+          ...columns[2],
+          items: getExpandable(columns[2], item, value),
+        },
+      });
+    }
+  };
+
+  const getExpandable = (column, item, value) => {
+    const temp = column.items.map((expandable) => {
+      return expandable.id === item.id
+        ? {
+            ...expandable,
+            expanded: value,
+          }
+        : { ...expandable, expanded: false };
+    });
+    return temp;
+  };
 
   const handleDelete = (userActionID, actionID) => {
     deleteUserAction(userActionID);
@@ -88,6 +121,10 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
     return performedUserActions;
   };
 
+  const sortActionsBasedOnStatus = (performedActions) => {
+    return orderBy(performedActions, ["status"], ["desc"]);
+  };
+
   const handleButtonPerformOnDrag = (movedItem, perform) => {
     //Move items in kanban through buttons instead of drag and drop
     if (perform) {
@@ -104,7 +141,13 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
       );
       //Add moved item to second column. Helpfunction in context desides if new categoryBadge should be created or just change status and color on subitem
       const destItems = setCategoryBadgesOnDrag(movedItem, destColumn.items);
-      setCategoryBadges([...destItems]);
+      const sortedDestItems = destItems.map((category) => {
+        return {
+          ...category,
+          userActionsArray: sortActionsBasedOnStatus(category.userActionsArray),
+        };
+      });
+      setCategoryBadges([...sortedDestItems]);
       //Function to get performed useraction from categoryBadges
       let performedUserActions = collectPerformedUserActions(destItems);
       setUserActions([...sourceItems, ...performedUserActions]);
@@ -116,7 +159,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
         },
         [2]: {
           ...destColumn,
-          items: destItems,
+          items: sortedDestItems,
         },
       });
     } else {
@@ -142,8 +185,15 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
           }),
         };
       });
+
+      const sortedSourceItems = newSourceItems.map((category) => {
+        return {
+          ...category,
+          userActionsArray: sortActionsBasedOnStatus(category.userActionsArray),
+        };
+      });
       //Check if categoryBadge has any subitem with status true, else delete the categoryBadge
-      const checkDelete = newSourceItems.filter((category) => {
+      const checkDelete = sortedSourceItems.filter((category) => {
         return category.userActionsArray.some((item) => item.status === true);
       });
       setCategoryBadges([...checkDelete]);
@@ -174,9 +224,15 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
       const [removed] = sourceItems.splice(source.index, 1);
       updateStatus(removed.id, true);
       const destItems = setCategoryBadgesOnDrag(removed, destColumn.items);
+      const sortedDestItems = destItems.map((category) => {
+        return {
+          ...category,
+          userActionsArray: sortActionsBasedOnStatus(category.userActionsArray),
+        };
+      });
       let performedUserActions = collectPerformedUserActions(destItems);
       setUserActions([...sourceItems, ...performedUserActions]);
-      setCategoryBadges([...destItems]);
+      setCategoryBadges([...sortedDestItems]);
       setColumns({
         ...columns,
         [source.droppableId]: {
@@ -185,7 +241,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
         },
         [destination.droppableId]: {
           ...destColumn,
-          items: destItems,
+          items: sortedDestItems,
         },
       });
     } else {
@@ -236,6 +292,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
                 setCollapsed={setCollapsed}
                 collapsed={collapsed}
                 isHovering={isHovering}
+                handleExpanded={handleExpanded}
               />
             </div>
           );
