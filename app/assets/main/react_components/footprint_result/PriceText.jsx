@@ -49,10 +49,15 @@ const PriceText = ({priceObject, currency, months, signUpText, grantedReferralCo
                     </span>
                 </p>
                 { selectedMembership !== "free" &&
-                    <div className="text-center">
-                        <Link linkText={signUpText.where_does_the_money_go.heading}/>
-                    </div>
-                }   
+                    <Link 
+                        link={"information-scroll-position"}
+                        linkText={signUpText.where_does_the_money_go.heading}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            document.getElementById("information-scroll-position").scrollIntoView({ behavior: "smooth" })
+                        }}
+                    />
+                }
             </div>
         }
         </>

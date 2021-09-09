@@ -30,6 +30,7 @@ const Container = ({ footprint, calculator, slug, lang, registrationsText, commo
         />
       </div>
       <Link 
+        style={"text-sm"}
         link="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"
         linkText={texts.lifestyleFootprintsText.methodology}
       />
