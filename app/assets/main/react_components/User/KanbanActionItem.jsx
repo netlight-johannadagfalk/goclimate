@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProgressBar from "./ProgressBar.jsx";
 
 import { Draggable } from "react-beautiful-dnd";
+import { useMediaQuery } from "react-responsive";
 
 const KanbanActionItem = ({
   item,
@@ -12,6 +13,7 @@ const KanbanActionItem = ({
   collapsed,
 }) => {
   const [expanded, setExpanded] = useState(false);
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
   const isBadge = item.userActionsArray ? true : false;
 
@@ -65,8 +67,9 @@ const KanbanActionItem = ({
         return (
           <div
             className={`border border-gray-tint-2 rounded-lg shadow-lg p-0 space-y-3 pt-0 ${
-              collapsed ? "w-24" : "w-96"
+              collapsed ? "w-24" : isTabletOrMobile ? "w-80 ml-5" : "w-96"
             }
+            
             ${expanded ? "h-auto" : "w-24"}`}
             ref={provided.innerRef}
             {...provided.draggableProps}

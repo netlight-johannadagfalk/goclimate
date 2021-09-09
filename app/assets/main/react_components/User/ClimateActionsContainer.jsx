@@ -42,18 +42,32 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
 
   const [showMobileKanban, setShowMobileKanban] = useState(false);
 
+  const getTotalAmountOfAcceptedActions = () => {
+    let amountAccepted = 0;
+    climateActions.map((action) => {
+      if (action.accepted === true) {
+        amountAccepted++;
+      }
+    });
+    return amountAccepted;
+  };
+
   return (
     <>
       {isTabletOrMobile && (
         <div className="fixed top-0 z-50 right-0 mr-20 mt-6">
           <i
             className={`fas fa-2x ${
-              showMobileKanban ? "fa-globe-americas" : "fa-globe-europe"
+              showMobileKanban
+                ? "fa-globe-americas fill-current text-danger "
+                : "fa-globe-europe"
             }`}
             onClick={() => setShowMobileKanban(!showMobileKanban)}
           ></i>
-          <div className="fas rounded-full h-4 w-4 bg-green-tint-2 border border-gray-accent -mt-1 -ml-3 absolute focus:outline-none">
-            4
+          <div className="fas rounded-full h-5 w-5 bg-green-tint-2 border border-gray-accent -mt-1 -ml-3 absolute focus:outline-none">
+            <div className="mb-2 text-white">
+              {getTotalAmountOfAcceptedActions()}
+            </div>
           </div>
         </div>
       )}
