@@ -62,6 +62,9 @@ gem 'wkhtmltopdf-binary', '0.12.4' # Later versions don't work on CircleCI
 
 gem 'meta-tags'
 
+# Pretty prints ruby objects
+gem 'awesome_print'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 3.30'
