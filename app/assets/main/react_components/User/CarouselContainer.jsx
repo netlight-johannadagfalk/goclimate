@@ -13,11 +13,9 @@ const CarouselContainer = ({ user, updateLocalAccepted, categories }) => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
   return (
-    <>
+    <section className="d:section-padding d:pb-28">
+      <CarouselHeader />
       <div className="max-w-5xl mx-auto space-y-3 t:bg-transparent t:rounded-lg t:p-8 mt-4">
-        <div className=" mx-4">
-          <CarouselHeader />
-        </div>
         {isTabletOrMobile ? (
           <CarouselCategoryButton
             categories={categories}
@@ -48,7 +46,7 @@ const CarouselContainer = ({ user, updateLocalAccepted, categories }) => {
           categories={categories}
         ></CarouselList>
       </div>
-    </>
+    </section>
   );
 };
 

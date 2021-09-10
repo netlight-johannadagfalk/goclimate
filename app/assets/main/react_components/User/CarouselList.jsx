@@ -20,7 +20,11 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const navigationNextRef = React.useRef(null);
 
   const climateActions = useClimateActions();
-  const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 414px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
+  const isLargeTablet = useMediaQuery({ query: "(max-width: 1024px)" });
+
+  console.log(isTablet);
 
   const sortForMobileClimateActions = orderBy(
     climateActions,
@@ -32,7 +36,9 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
     <>
       <Swiper
         className="m-4"
-        slidesPerView={isMobile ? 1.5 : 4}
+        slidesPerView={
+          isMobile ? 1.5 : isTablet ? 2.5 : isLargeTablet ? 3.5 : 4
+        }
         navigation={{
           nextEl: navigationPrevRef.current,
           prevEl: navigationNextRef.current,

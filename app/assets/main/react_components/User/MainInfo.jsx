@@ -14,12 +14,11 @@ const MainInfo = ({
   modelText,
   lang,
   registrationsText,
+  totalNoFootprints,
 }) => {
   return (
     <section className="section-padding pb-28">
-      <h2 className="heading-xl">Hello, climate friend!</h2>
-
-      <div className="relative">
+      <div className="flex flex-row">
         <FootprintContainer
           footprint={footprint}
           commonText={commonText}
@@ -29,7 +28,7 @@ const MainInfo = ({
           registrationsText={registrationsText}
         ></FootprintContainer>
 
-        <div className="hidden t:block">
+        <div className="hidden d-lg:block">
           <MonthlyAction
             action={action}
             user={user}
@@ -38,8 +37,10 @@ const MainInfo = ({
           ></MonthlyAction>
         </div>
       </div>
-
-      <FootprintFooter footprint={footprint}></FootprintFooter>
+      <FootprintFooter
+        footprint={footprint}
+        totalNoFootprints={totalNoFootprints}
+      ></FootprintFooter>
     </section>
   );
 };

@@ -20,6 +20,7 @@ const ClimateActionsContainer = ({
   modelText,
   lang,
   registrationsText,
+  totalNoFootprints,
 }) => {
   const deletedAction = useDeletedAction();
   const climateActions = useClimateActions();
@@ -63,14 +64,18 @@ const ClimateActionsContainer = ({
         modelText={modelText}
         lang={lang}
         registrationsText={registrationsText}
+        totalNoFootprints={totalNoFootprints}
       ></MainInfo>
-
       <CarouselContainer
         user={user}
         updateLocalAccepted={updateLocalAccepted}
         categories={formatedCategories}
       />
-      {!isTabletOrMobile && <Sidebar categories={formatedCategories} />}
+      {!isTabletOrMobile && (
+        <div className="w-full">
+          <Sidebar categories={formatedCategories} />
+        </div>
+      )}
     </>
   );
 };

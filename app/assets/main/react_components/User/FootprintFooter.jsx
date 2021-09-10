@@ -1,16 +1,29 @@
 import React from "react";
 
-const FootprintFooter = ({ footprint }) => {
+const FootprintFooter = ({ footprint, totalNoFootprints }) => {
   return (
-    <div className="text-center space-y-2 space-x-2 mt-8 max-w-5xl">
-      {/* <a href="<%= @footprint.country ? new_lifestyle_footprint_path(country: @footprint.country.alpha2) : root_path%>" class="button"> */}
-      {/* <a href={footprint.country ? } className="button"></a> */}
-      <a href="/calculator?country=SE" className="button">
+    <div className="text-center space-y-2 space-x-4 mt-8 max-w-5xl">
+      <a
+        href={
+          footprint.country
+            ? "/calculator?country=" + footprint.country.data.alpha2
+            : "/"
+        }
+        className="button"
+      >
         <i className="fas fa-plus" aria-hidden="true"></i>
         {" New calculation "}
       </a>
+      {totalNoFootprints && (
+        <div className="inline-block">
+          <a className="link whitespace-nowrap" href="/calculator/results">
+            See previous footprints
+          </a>
+        </div>
+      )}
+
       <div className="inline-block">
-        <a className="link whitespace-nowrap m-2" href="/users/subscription">
+        <a className="link whitespace-nowrap" href="/users/subscription">
           Balance your footprint
         </a>
       </div>
