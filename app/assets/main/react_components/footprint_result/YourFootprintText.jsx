@@ -5,13 +5,16 @@ import React from 'react'
  * Includes a heading and the footprint result in tonnes
  */
 const YourFootprintText = ({ footprintText, footprintValue, priceObject, currency, months }) => {
-    console.log(months)
-    const txt = " Ditt årliga klimatavtryck är %{footprint} %{unit_of_co2} koldioxid. För %{price} %{time_unit} hjälper vi dig att klimatkompensera ditt avtryck. Summan fördelas till olika klimatavtryck som gör skillnad för klimatet."
-    const unit_of_c02 = "ton "
-    var t = txt.split("%{footprint}")
-    var a = t[1].split("%{unit_of_co2}")
-    var p = a[1].split("%{price}")
-    var s = p[1].split("%{time_unit}")
+    var text = " Ditt årliga klimatavtryck är %{footprint} %{unit_of_co2} koldioxid. För %{price} %{time_unit} hjälper vi dig att klimatkompensera ditt avtryck. Summan fördelas till olika klimatavtryck som gör skillnad för klimatet."
+    const unit_of_co2 = "ton "
+    const stringKeys = ["%{footprint}" ,"%{unit_of_co2}", "%{price}", "%{time_unit}"]
+    var stringParts = []
+
+    stringKeys.forEach((key) => {
+        stringParts.push(text.split(key)[0])
+        text=text.split(key)[1]
+    })
+    stringParts.push(text)
 
     function extractPrice (priceObject, currency) {
         var currencyText = currency.money.currency_formats[priceObject.currency.iso_code];
@@ -31,13 +34,13 @@ const YourFootprintText = ({ footprintText, footprintValue, priceObject, currenc
     return (
         <div>
             <div className="text-left mt-8">
-                {t[0]} 
+                {stringParts[0]}
                 <span className="text-lg font-bold text-green-accent">{footprintValue}</span>
-                <span className="font-bold text-green-accent"> {unit_of_c02}</span>
-                {p[0]}
-                <span className="text-lg font-bold text-green-accent">{extractPrice(priceObject, currency)}</span>
+                <span className="font-bold text-green-accent"> {unit_of_co2}</span>
+                {stringParts[2]}
+                    <span className="text-lg font-bold text-green-accent">{extractPrice(priceObject, currency)}</span>
                 <span className="font-bold text-green-accent">/{months.one}</span>
-                {s[1]}
+                {stringParts[4]}
             </div>
         </div>
     )
