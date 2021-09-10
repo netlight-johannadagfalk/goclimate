@@ -1,9 +1,14 @@
 import React from "react";
 import CategoryChart from "./CategoryChart.jsx";
 import YourFootprintText from "./YourFootprintText.jsx";
+import {
+  useFootprint,
+  useCommonTextContext,
+} from "./contexts/FootprintContext.js";
 
 const FootprintContainer = () => {
-  const commonStrings = JSON.parse(commonText);
+  const footprint = useFootprint();
+  const commonText = useCommonTextContext();
 
   return (
     <div className="max-w-5xl t:bg-white t:rounded-lg t:shadow-lg t:p-8 mt-12 t:border t:border-gray-tint-2">
@@ -11,24 +16,16 @@ const FootprintContainer = () => {
         <div className="t:w-1/2 space-y-6">
           <YourFootprintText
             footprintText={{
-              heading: commonStrings.dashboard.footprint.heading,
-              tonnes_CO2: commonStrings.tonnes_CO2,
+              heading: commonText.dashboard.footprint.heading,
+              tonnes_CO2: commonText.tonnes_CO2,
               description:
-                commonStrings.dashboard.footprint.your_climate_footprint,
+                commonText.dashboard.footprint.your_climate_footprint,
             }}
             footprintValue={(footprint.total.co2e / 1000).toFixed(1)}
-            footprint={footprint}
-            countryAverage={countryAverage}
-            modelText={modelText}
-            lang={lang}
-            registrationsText={registrationsText}
           />
         </div>
         <div className="t:w-1/2">
-          <CategoryChart
-            footprint={footprint}
-            categoryChartText={commonStrings}
-          />
+          <CategoryChart categoryChartText={commonText} />
         </div>
       </div>
     </div>

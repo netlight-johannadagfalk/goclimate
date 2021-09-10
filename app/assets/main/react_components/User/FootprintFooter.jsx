@@ -1,6 +1,13 @@
 import React from "react";
+import {
+  useFootprint,
+  useTotalNoFootprints,
+} from "./contexts/FootprintContext.js";
 
-const FootprintFooter = ({ footprint, totalNoFootprints }) => {
+const FootprintFooter = () => {
+  const footprint = useFootprint();
+  const totalNoFootprints = useTotalNoFootprints();
+
   return (
     <div className="text-center space-y-2 space-x-4 mt-8 max-w-5xl">
       <a

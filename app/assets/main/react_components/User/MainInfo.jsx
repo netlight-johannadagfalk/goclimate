@@ -8,7 +8,6 @@ const MainInfo = ({ action, user, updateLocalAccepted, categories }) => {
     <section className="section-padding pb-28">
       <div className="flex flex-row">
         <FootprintContainer />
-
         <div className="hidden d-lg:block">
           <MonthlyAction
             action={action}
