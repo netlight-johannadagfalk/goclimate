@@ -1,9 +1,9 @@
 import React from "react";
 import ClimateActionsContainer from "./ClimateActionsContainer.jsx";
-import { CategoryProvider } from "./contexts/CategoryContext.js";
-import { DeletedActionProvider } from "./contexts/DeletedActionContext.js";
-import { UserActionsProvider } from "./contexts/UserActionsContext.js";
-import { ClimateActionsProvider } from "./contexts/ClimateActionsContext.js";
+import { CategoryProvider } from "../contexts/CategoryContext.js";
+import { DeletedActionProvider } from "../contexts/DeletedActionContext.js";
+import { UserActionsProvider } from "../contexts/UserActionsContext.js";
+import { ClimateActionsProvider } from "../contexts/ClimateActionsContext.js";
 
 const Dashboard = ({
   user,

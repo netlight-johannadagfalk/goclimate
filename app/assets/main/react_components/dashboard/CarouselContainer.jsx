@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CarouselHeader from "./CarouselHeader.jsx";
 import CarouselList from "./CarouselList.jsx";
 import CarouselCategoryButton from "./CarouselCategoryButton.jsx";
-import { useCategory } from "./contexts/CategoryContext.js";
+import { useCategory } from "../contexts/CategoryContext.js";
 import { useMediaQuery } from "react-responsive";
 import "react-dropdown/style.css";
 

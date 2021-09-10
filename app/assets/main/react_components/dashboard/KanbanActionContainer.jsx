@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanActionColumn from "./KanbanActionColumn.jsx";
-import { useDeletedActionUpdate } from "./contexts/DeletedActionContext.js";
+import { useDeletedActionUpdate } from "../contexts/DeletedActionContext.js";
 import { orderBy } from "lodash";
 import {
   useUserActionsUpdate,
@@ -10,7 +10,7 @@ import {
   useUserActionsColumnsWithFormatUpdate,
   useCategoryBadgesUpdate,
   useCategoryBadgesUpdateOnDrag,
-} from "./contexts/UserActionsContext.js";
+} from "../contexts/UserActionsContext.js";
 
 const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
   const setUserActions = useUserActionsUpdate();

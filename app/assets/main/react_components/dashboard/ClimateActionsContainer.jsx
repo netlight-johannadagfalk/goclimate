@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import CarouselContainer from "./CarouselContainer.jsx";
 // import CarouselActionItem from "./CarouselActionItem.jsx";
-import { useDeletedAction } from "./contexts/DeletedActionContext.js";
+import { useDeletedAction } from "../contexts/DeletedActionContext.js";
 import {
   useClimateActions,
   useClimateActionsUpdate,
   useClimateActionsOriginal,
-} from "./contexts/ClimateActionsContext.js";
+} from "../contexts/ClimateActionsContext.js";
 import Sidebar from "./Sidebar.jsx";
 import { useMediaQuery } from "react-responsive";
 import MainInfo from "./MainInfo.jsx";
