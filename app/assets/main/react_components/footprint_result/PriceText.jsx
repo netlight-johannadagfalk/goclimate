@@ -79,9 +79,16 @@ const PriceText = ({
             </span>
           </p>
           {selectedMembership !== 'free' && (
-            <div className='text-center'>
-              <Link linkText={heading} />
-            </div>
+            <Link
+              link={'information-scroll-position'}
+              linkText={heading}
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById('information-scroll-position')
+                  .scrollIntoView({ behavior: 'smooth' });
+              }}
+            />
           )}
         </div>
       )}

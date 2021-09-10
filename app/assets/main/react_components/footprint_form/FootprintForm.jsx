@@ -244,6 +244,7 @@ const FootprintForm = ({
           </div>
         </div>
       )}
+      <div id='information-scroll-position'></div>
     </>
   );
 };

@@ -40,6 +40,7 @@ const Container = ({
           />
         </div>
         <Link
+          style={'text-sm'}
           link='https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/'
           linkText={JSON.parse(lifestyleFootprintsText).methodology}
         />
