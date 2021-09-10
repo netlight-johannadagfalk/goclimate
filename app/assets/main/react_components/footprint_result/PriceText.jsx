@@ -31,9 +31,9 @@ const PriceText = ({
     },
   } = useLocaleData();
 
-  const [price, setPrice] = useState(extractPrice());
+  const [price, setPrice] = useState();
 
-  function extractPrice() {
+  const extractPrice = () => {
     var price = priceObject.subunit_amount / 100;
     if (Math.trunc(price) != price) {
       price = price.toFixed(2);
@@ -48,7 +48,7 @@ const PriceText = ({
       price = currency.replace(findCustomPlacement, price);
     }
     return price;
-  }
+  };
 
   useEffect(() => {
     setPrice(extractPrice());

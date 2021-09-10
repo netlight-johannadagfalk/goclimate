@@ -43,21 +43,15 @@ const FootprintForm = ({
   const [currentObject, setCurrentObject] = useState(questionObjects[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    onChangeInformationSection(
-      currentIndex > questionObjects.length + 1 ? true : false
-    );
-  }, [currentIndex]);
-
-  function isQuestionUsed(questionKey) {
+  const isQuestionUsed = (questionKey) => {
     const calculatorKeyForOptions = questionKey.concat('_options');
     return calculator[calculatorKeyForOptions] != null;
-  }
+  };
 
   /**
    * Takes the questions from questionCategories and removes questions not used for the specified country
    */
-  function getUsedQuestions() {
+  const getUsedQuestions = () => {
     for (const question in questionCategories) {
       if (
         !isQuestionUsed(question) &&
@@ -68,24 +62,24 @@ const FootprintForm = ({
       }
     }
     return questionCategories;
-  }
+  };
 
-  function getSessionStorage(key) {
+  const getSessionStorage = (key) => {
     const item = sessionStorage.getItem(key);
     return item ? JSON.parse(item) : {};
-  }
+  };
 
-  function areObjectsEqual(...objects) {
+  const areObjectsEqual = (...objects) => {
     return objects.every(
       (obj) => JSON.stringify(obj) === JSON.stringify(objects[0])
     );
-  }
+  };
 
   /**
    * Cleans upp an object and remocves all entities where value is "null" or "undefined".
    * Used for cleaning up the footprint object.
    */
-  function cleanFootprint(basicFootprint) {
+  const cleanFootprint = (basicFootprint) => {
     for (var footprintField in basicFootprint) {
       if (
         basicFootprint[footprintField] === null ||
@@ -96,14 +90,14 @@ const FootprintForm = ({
     }
     basicFootprint.country = basicFootprint.country.country_data_or_code;
     return basicFootprint;
-  }
+  };
 
   /**
    * Submits the completed form and sends a post request to the server
    * with the cleanFootprint object containing the answers.
    * After completed post request the user gets redirected to the result/sign-up page.
    */
-  function submit() {
+  const submit = () => {
     const answers = result ? footprint : cleanFootprint(footprint);
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const requestOptions = {
@@ -128,12 +122,12 @@ const FootprintForm = ({
       .catch((error) => {
         console.log('Something went wrong, trying again.', error);
       });
-  }
+  };
 
   /**
    * Called on go back-button, loads the previous question by decreasing index and setting the question and options
    */
-  function onGoBack() {
+  const onGoBack = () => {
     let newIndex = currentIndex - 1;
     if (
       newIndex < questionObjects.length &&
@@ -147,13 +141,13 @@ const FootprintForm = ({
         : resultObjects[newIndex - questionObjects.length]
     );
     setCurrentIndex(newIndex);
-  }
+  };
 
   /**
    * Provides numerical input fields with default values
    * Returns actual value if back button has been used, meaning answer has been entered earlier
    */
-  function getSavedValue() {
+  const getSavedValue = () => {
     const questionKey = currentObject.questionKey;
     if (questionKey === 'car_distance') {
       if (footprint[questionKey.concat('_week_answer')])
@@ -163,12 +157,12 @@ const FootprintForm = ({
     if (footprint[questionKey.concat('_answer')])
       return footprint[questionKey.concat('_answer')];
     return '';
-  }
+  };
 
   /**
    * Called when the answer to a question is given, saves the result and loads the next question
    */
-  function onAnswerGiven(givenAnswer) {
+  const onAnswerGiven = (givenAnswer) => {
     footprint[
       currentObject.questionKey === 'car_distance'
         ? currentObject.questionKey.concat('_week_answer')
@@ -193,7 +187,13 @@ const FootprintForm = ({
       setCurrentObject(questionObjects[nextQuestionIndex]);
     }
     setCurrentIndex(nextQuestionIndex);
-  }
+  };
+
+  useEffect(() => {
+    onChangeInformationSection(
+      currentIndex > questionObjects.length + 1 ? true : false
+    );
+  }, [currentIndex]);
 
   return (
     <>

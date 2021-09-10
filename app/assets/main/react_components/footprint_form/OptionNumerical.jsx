@@ -18,19 +18,6 @@ const OptionNumerical = ({
     document.getElementsByClassName('input')[0].focus();
   }, [questionObject]);
 
-  function onKeyPress(e) {
-    if (e.key === 'Enter')
-      onAnswerGiven(value.replace(/,/g, '.').replace(/[.]\s*$/, ''));
-  }
-
-  function onChange(e) {
-    /* Checks if input is valid compared to set requirements */
-    if (e.target.validity.valid) {
-      setValue(e.target.value);
-      onNumericalInput(e.target.value);
-    }
-  }
-
   return (
     <div className='flex flex-col m-lg:flex-row'>
       <label className='input mb-3 m-lg:mb-0 m-lg:mr-3 flex m-lg:w-1/3'>
@@ -43,8 +30,16 @@ const OptionNumerical = ({
           size='7'
           className='flex-1'
           value={value}
-          onKeyPress={(e) => onKeyPress(e)}
-          onChange={(e) => onChange(e)}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter')
+              onAnswerGiven(value.replace(/,/g, '.').replace(/[.]\s*$/, ''));
+          }}
+          onChange={(e) => {
+            if (e.target.validity.valid) {
+              setValue(e.target.value);
+              onNumericalInput(e.target.value);
+            }
+          }}
         />
         {questionObject.isCarOption && <span className='ml-3'>km</span>}
       </label>

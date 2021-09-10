@@ -20,7 +20,7 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
    * Function that sends a POST request to the server on referral code submit
    * and handles and message to the user at invalid code
    */
-  function submit() {
+  const submit = () => {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const URL = '/referral-codes/lookup';
     const requestOptions = {
@@ -45,7 +45,7 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
       .catch((error) => {
         console.log('Something went wrong, trying again.', error);
       });
-  }
+  };
 
   useEffect(() => {
     mounted.current = true;
