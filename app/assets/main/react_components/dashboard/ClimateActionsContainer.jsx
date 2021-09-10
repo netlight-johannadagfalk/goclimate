@@ -7,7 +7,7 @@ import {
   useClimateActionsUpdate,
   useClimateActionsOriginal,
 } from "../contexts/ClimateActionsContext.js";
-import Sidebar from "./Sidebar.jsx";
+import Sidebar from "./manage_actions/sidebar/Sidebar.jsx";
 import { useMediaQuery } from "react-responsive";
 import MainInfo from "./footprint/MainInfo.jsx";
 
