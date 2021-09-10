@@ -33,7 +33,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
     : climateActions;
 
   return (
-    <div className="overflow-visible">
+    <div className="relative">
       <Swiper
         slidesPerView={4}
         navigation={{
@@ -52,10 +52,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
         }}
       >
         {actions.map((action) => (
-          <SwiperSlide
-            key={action.id}
-            className={"h-auto min-h-full mb-10 overflow-visible"}
-          >
+          <SwiperSlide key={action.id} className={"h-auto min-h-full mb-10"}>
             <CarouselActionItem
               action={action}
               user={user}
@@ -64,21 +61,23 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
             ></CarouselActionItem>
           </SwiperSlide>
         ))}
-        <div className="flex flex-row justify-between absolute z-50 top-1/2 w-full overflow-visible">
-          <div
+      </Swiper>
+      <div className="flex flex-row absolute z-10 top-1/2 w-full">
+        <div className="relative w-full">
+          <button
             ref={navigationPrevRef}
             className={
-              "-ml-6 rounded-full h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left "
+              "rounded-full -left-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left absolute"
             }
           />
-          <div
+          <button
             ref={navigationNextRef}
             className={
-              "-mr-6 rounded-full h-12 w-12 bg-white border border-gray-accent fas fa-chevron-right "
+              "rounded-full -right-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-right absolute"
             }
           />
         </div>
-      </Swiper>
+      </div>
     </div>
   );
 };

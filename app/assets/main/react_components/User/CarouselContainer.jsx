@@ -11,7 +11,7 @@ const CarouselContainer = ({ user, updateLocalAccepted, categories }) => {
   return (
     <section className="section-padding pb-28">
       <CarouselHeader />
-      <div className="max-w-7xl mx-auto space-y-3 t:bg-transparent t:rounded-lg t:p-8 mt-4 overflow-visible">
+      <div className="max-w-7xl mx-auto space-y-3 t:bg-transparent t:rounded-lg t:p-8 mt-4">
         <CarouselCategoryButton
           categoryName={"All categories"}
           categoryID={null}
@@ -27,13 +27,11 @@ const CarouselContainer = ({ user, updateLocalAccepted, categories }) => {
             setAllCategories={setAllCategories}
           />
         ))}
-        <div className="overflow-visible">
-          <CarouselList
-            user={user}
-            updateLocalAccepted={updateLocalAccepted}
-            categories={categories}
-          ></CarouselList>
-        </div>
+        <CarouselList
+          user={user}
+          updateLocalAccepted={updateLocalAccepted}
+          categories={categories}
+        ></CarouselList>
       </div>
     </section>
   );

@@ -8,13 +8,11 @@ const Sidebar = ({ categories }) => {
   return ReactDom.createPortal(
     <>
       <div className={`${collapsed ? "w-28" : "w-auto"}`}>
-        {/* <div className={`${collapsed ? "visible" : "visible"}`}> */}
         <KanbanActionContainer
           setCollapsed={setCollapsed}
           collapsed={collapsed}
           categories={categories}
         />
-        {/* </div> */}
       </div>
     </>,
     document.querySelector("#sidebar")
