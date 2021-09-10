@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 
-/**
- * A simple styled button component
- */
 const AnswerButton = ({
   label,
   onAnswerGiven,

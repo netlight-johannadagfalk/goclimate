@@ -2,9 +2,6 @@ import React from 'react';
 import { useTexts } from '../context/Footprint/TextsContext';
 import { useProjects } from '../context/Footprint/ProjectsContext';
 
-/**
- * Displays all current GoClimate projects
- */
 const LatestProjectsList = () => {
   const {
     registrationsText: { latest_projects },

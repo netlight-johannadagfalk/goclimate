@@ -1,9 +1,6 @@
 import React from 'react';
 import SelectorMultipleTimes from './SelectorMultipleTimes.jsx';
 
-/**
- * React container for select buttons
- */
 const SelectButton = ({
   selectedMembership,
   setSelectedMembership,

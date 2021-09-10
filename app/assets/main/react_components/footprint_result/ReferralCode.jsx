@@ -2,10 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import AnswerButton from '../footprint_form/AnswerButton.jsx';
 import { useTexts } from '../context/Footprint/TextsContext.js';
 
-/**
- * React component for referral code field in signup
- * Shows link and input field
- */
 const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
   const [invalidCodeMessage, setInvalidCodeMessage] = useState('');
   const [inputCode, setInputCode] = useState('');
@@ -16,11 +12,7 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
     registrationsText: { code, referral_code_link, referral_code_change },
   } = useTexts();
 
-  /**
-   * Function that sends a POST request to the server on referral code submit
-   * and handles and message to the user at invalid code
-   */
-  const submit = () => {
+  const lookUpReferralCode = () => {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const URL = '/referral-codes/lookup';
     const requestOptions = {
@@ -34,12 +26,14 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
     };
     fetch(URL, requestOptions)
       .then((res) => {
-        if (res.status === 404) {
-          setGrantedReferralCode(false);
-          setInvalidCodeMessage("That's not right, try again");
-        } else if (res.status === 200) {
-          setGrantedReferralCode(true);
-          setInvalidCodeMessage('');
+        if (mounted.current) {
+          if (res.status === 404) {
+            setGrantedReferralCode(false);
+            setInvalidCodeMessage("That's not right, try again");
+          } else if (res.status === 200) {
+            setGrantedReferralCode(true);
+            setInvalidCodeMessage('');
+          }
         }
       })
       .catch((error) => {
@@ -94,11 +88,9 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
                 id='code'
                 value={inputCode}
                 onChange={(e) => setInputCode(e.target.value)}
-                onKeyPress={(e) => {
-                  if (e.key === 'Enter') submit();
-                }}
+                onKeyPress={(e) => e.key === 'Enter' && lookUpReferralCode()}
               />
-              <AnswerButton label={'OK'} onAnswerGiven={submit} />
+              <AnswerButton label={'OK'} onAnswerGiven={lookUpReferralCode} />
             </div>
             <p className='text-orange-shade-1 mt-1'>{invalidCodeMessage}</p>
           </div>

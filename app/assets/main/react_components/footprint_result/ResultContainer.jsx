@@ -14,9 +14,6 @@ import WorldComparisonChart from './WorldComparisonChart.jsx';
 import YourFootprintText from './YourFootprintText.jsx';
 import StaticDataProvider from '../context/Footprint/StaticDataProvider.js';
 
-/**
- * React container for Result page components
- */
 const ResultContainer = ({
   footprint,
   projects,

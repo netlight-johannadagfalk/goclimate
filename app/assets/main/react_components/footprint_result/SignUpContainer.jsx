@@ -4,9 +4,6 @@ import PriceText from './PriceText.jsx';
 import SignUpMotivationText from './SignUpMotivationText.jsx';
 import { useTexts } from '../context/Footprint/TextsContext.js';
 
-/**
- * React container for Sign up components
- */
 const SignUpContainer = (props) => {
   //TODO:
   //Slug för språk i url:en
