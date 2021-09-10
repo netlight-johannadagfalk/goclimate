@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ProgressBar from "./ProgressBar.jsx";
 
 import { Draggable } from "react-beautiful-dnd";
-import { useMediaQuery } from "react-responsive";
+//import { useMediaQuery } from "react-responsive";
 
 const KanbanActionItem = ({
   item,
@@ -14,7 +14,7 @@ const KanbanActionItem = ({
   handleExpanded,
 }) => {
   const isBadge = item.userActionsArray ? true : false;
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  //const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
   const categoryName = () => {
     for (let i = 0; i <= Object.keys(categories).length; i++) {
@@ -66,7 +66,7 @@ const KanbanActionItem = ({
       {(provided, snapshot) => {
         return (
           <div
-            className={`border border-gray-tint-2 rounded-lg shadow-lg p-0 w-80 ${
+            className={`border border-gray-tint-2 rounded-lg shadow-lg p-0 w-80 lg:w-96 ${
               collapsed ? "d:w-24" : "d:w-96"
             }
             

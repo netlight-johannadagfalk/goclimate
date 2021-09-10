@@ -65,7 +65,7 @@ const ClimateActionsContainer = ({
   return (
     <>
       {isTabletOrMobile && (
-        <div className="fixed top-0 z-50 right-0 mr-20 mt-6 t:mr-48 t:right-10">
+        <div className="fixed top-0 z-50 right-0 mr-20 mt-6 lg:mr-48 lg:right-10 t:mr-17 t:right-3">
           <i
             className={`fas fa-2x ${
               showMobileKanban ? "fa-globe-americas" : "fa-globe-europe"
