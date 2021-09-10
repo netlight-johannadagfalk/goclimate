@@ -1,5 +1,5 @@
 import React from "react";
-import ClimateActionsContainer from "./ClimateActionsContainer.jsx";
+import ClimateActionsContainer from "./climate_actions/ClimateActionsContainer.jsx";
 import { CategoryProvider } from "../contexts/CategoryContext.js";
 import { DeletedActionProvider } from "../contexts/DeletedActionContext.js";
 import { UserActionsProvider } from "../contexts/UserActionsContext.js";

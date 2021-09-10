@@ -1,11 +1,11 @@
 import React from "react";
-import { useDeletedActionUpdate } from "../../contexts/DeletedActionContext.js";
+import { useDeletedActionUpdate } from "../../../contexts/DeletedActionContext.js";
 import {
   useUserActions,
   useUserActionsUpdate,
   useUserActionsColumnsWithFullFormatUpdate,
   useCategoryBadges,
-} from "../../contexts/UserActionsContext.js";
+} from "../../../contexts/UserActionsContext.js";
 
 const CarouselActionItem = ({
   action,

@@ -1,6 +1,6 @@
 import React from "react";
 import CarouselActionItem from "./CarouselActionItem.jsx";
-import { useClimateActions } from "../../contexts/ClimateActionsContext.js";
+import { useClimateActions } from "../../../contexts/ClimateActionsContext.js";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.min.css";
