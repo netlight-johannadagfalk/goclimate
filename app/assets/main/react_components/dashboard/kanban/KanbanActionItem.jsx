@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ProgressBar from "../ProgressBar.jsx";
+import ProgressBar from "./ProgressBar.jsx";
 
 import { Draggable } from "react-beautiful-dnd";
 
