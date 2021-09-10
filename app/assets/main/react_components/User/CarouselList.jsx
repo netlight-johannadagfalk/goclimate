@@ -28,8 +28,12 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
     ["desc"]
   );
 
+  const actions = isTabletOrMobile
+    ? sortForMobileClimateActions
+    : climateActions;
+
   return (
-    <>
+    <div className="overflow-visible">
       <Swiper
         slidesPerView={4}
         navigation={{
@@ -47,49 +51,35 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
           });
         }}
       >
-        {isTabletOrMobile
-          ? sortForMobileClimateActions.map((action) => (
-              <SwiperSlide
-                key={action.id}
-                className={"h-auto min-h-full mb-10"}
-              >
-                <CarouselActionItem
-                  action={action}
-                  user={user}
-                  updateLocalAccepted={updateLocalAccepted}
-                  categories={categories}
-                ></CarouselActionItem>
-              </SwiperSlide>
-            ))
-          : climateActions.map((action) => (
-              <SwiperSlide
-                key={action.id}
-                className={"h-auto min-h-full mb-10"}
-              >
-                <CarouselActionItem
-                  action={action}
-                  user={user}
-                  updateLocalAccepted={updateLocalAccepted}
-                  categories={categories}
-                ></CarouselActionItem>
-              </SwiperSlide>
-            ))}
-        <div className="flex flex-row justify-between absolute z-10 top-1/2 w-full">
+        {actions.map((action) => (
+          <SwiperSlide
+            key={action.id}
+            className={"h-auto min-h-full mb-10 overflow-visible"}
+          >
+            <CarouselActionItem
+              action={action}
+              user={user}
+              updateLocalAccepted={updateLocalAccepted}
+              categories={categories}
+            ></CarouselActionItem>
+          </SwiperSlide>
+        ))}
+        <div className="flex flex-row justify-between absolute z-50 top-1/2 w-full overflow-visible">
           <div
             ref={navigationPrevRef}
             className={
-              "button border-none shadow-none focus:outline-none fas fa-arrow-left"
+              "-ml-6 rounded-full h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left "
             }
           />
           <div
             ref={navigationNextRef}
             className={
-              "button border-none shadow-none focus:outline-none fas fa-arrow-right"
+              "-mr-6 rounded-full h-12 w-12 bg-white border border-gray-accent fas fa-chevron-right "
             }
           />
         </div>
       </Swiper>
-    </>
+    </div>
   );
 };
 
