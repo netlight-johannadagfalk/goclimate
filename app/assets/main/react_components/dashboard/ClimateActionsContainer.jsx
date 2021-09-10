@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CarouselContainer from "./CarouselContainer.jsx";
+import CarouselContainer from "./carousel/CarouselContainer.jsx";
 // import CarouselActionItem from "./CarouselActionItem.jsx";
 import { useDeletedAction } from "../contexts/DeletedActionContext.js";
 import {

@@ -1,5 +1,5 @@
 import React from "react";
-import CarouselActionItem from "./CarouselActionItem.jsx";
+import CarouselActionItem from "./carousel/CarouselActionItem.jsx";
 
 const MonthlyAction = ({ action, user, updateLocalAccepted, categories }) => {
   return (
