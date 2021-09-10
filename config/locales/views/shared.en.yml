@@ -5,6 +5,7 @@ en:
         navigation:
           flights: Flights
           offset_flight: Offset flight emissions
+          user_flight_offsets: My flight offsets
         region_recommendation:
           select_country: Select your country or region so that we can show the best information for you.
           continue_button: "Continue to %{region}"

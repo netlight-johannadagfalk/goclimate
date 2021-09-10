@@ -89,6 +89,7 @@ Rails.application.routes.draw do
     end
 
     resources :projects, path: 'climate-projects', only: [:index]
+    resources :user_flight_offsets, only: [:index]
 
     resource :know_your_footprint, controller: 'know_your_footprint', path: 'know-your-carbon-footprint', only: [:show]
     get '/knowyourcarbonfootprint', to: redirect('know-your-carbon-footprint')
@@ -126,6 +127,7 @@ Rails.application.routes.draw do
         resources :airport_suggestions, only: [:index], format: true, constraints: { format: :json }
       end
     end
+
     resources :flight_offsets, only: [:index, :new, :create], param: :key do
       member do
         get 'thank-you'
