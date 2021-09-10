@@ -24,8 +24,6 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
   const isLargeTablet = useMediaQuery({ query: "(max-width: 1024px)" });
 
-  console.log(isTablet);
-
   const sortForMobileClimateActions = orderBy(
     climateActions,
     ["action_of_the_month"],

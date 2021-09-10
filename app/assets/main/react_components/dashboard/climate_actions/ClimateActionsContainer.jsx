@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import CarouselContainer from "./carousel/CarouselContainer.jsx";
-// import CarouselActionItem from "./CarouselActionItem.jsx";
 import { useDeletedAction } from "../../contexts/DeletedActionContext.js";
 import {
   useClimateActions,
   useClimateActionsUpdate,
   useClimateActionsOriginal,
 } from "../../contexts/ClimateActionsContext.js";
-//import Sidebar from "./manage_actions/sidebar/Sidebar.jsx";
-//import { useMediaQuery } from "react-responsive";
 import MainInfo from "../footprint/MainInfo.jsx";
 import ManageActions from "./manage_actions/ManageActions.jsx";
 
@@ -31,8 +28,6 @@ const ClimateActionsContainer = ({
   const [monthlyAction, setMonthlyAction] = useState(
     totClimateActions.find((action) => action.action_of_the_month === true)
   );
-
-  //const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
   const updateLocalAccepted = (actionID) => {
     setClimateActions(
