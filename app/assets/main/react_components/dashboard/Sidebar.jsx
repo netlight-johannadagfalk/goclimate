@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactDom from "react-dom";
-import KanbanActionContainer from "./KanbanActionContainer.jsx";
+import KanbanActionContainer from "./kanban/KanbanActionContainer.jsx";
 
 const Sidebar = ({ categories }) => {
   const [collapsed, setCollapsed] = useState(false);
