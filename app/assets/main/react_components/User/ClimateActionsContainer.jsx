@@ -11,7 +11,6 @@ import Sidebar from "./Sidebar.jsx";
 import MobileKanbanContainer from "./MobileKanbanContainer.jsx";
 import { useMediaQuery } from "react-responsive";
 import MainInfo from "./MainInfo.jsx";
-import CarouselActionItem from "./CarouselActionItem.jsx";
 
 const ClimateActionsContainer = ({
   user,
@@ -66,12 +65,10 @@ const ClimateActionsContainer = ({
   return (
     <>
       {isTabletOrMobile && (
-        <div className="fixed top-0 z-50 right-0 mr-20 mt-6">
+        <div className="fixed top-0 z-50 right-0 mr-20 mt-6 t:mr-48 t:right-10">
           <i
             className={`fas fa-2x ${
-              showMobileKanban
-                ? "fa-globe-americas fill-current text-danger "
-                : "fa-globe-europe"
+              showMobileKanban ? "fa-globe-americas" : "fa-globe-europe"
             }`}
             onClick={() => setShowMobileKanban(!showMobileKanban)}
           ></i>

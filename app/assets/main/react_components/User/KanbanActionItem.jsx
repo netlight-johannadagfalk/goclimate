@@ -66,15 +66,11 @@ const KanbanActionItem = ({
       {(provided, snapshot) => {
         return (
           <div
-            className={`border border-gray-tint-2 rounded-lg shadow-lg p-0 space-y-3 pt-0 ${
-              collapsed
-                ? "w-24"
-                : isTabletOrMobile
-                ? "w-80 ml-5 flex-shrink-0"
-                : "w-96"
+            className={`border border-gray-tint-2 rounded-lg shadow-lg p-0 w-80 ${
+              collapsed ? "d:w-24" : "d:w-96"
             }
             
-            ${item.expanded ? "h-auto" : "w-24"}`}
+            ${item.expanded ? "d:h-auto" : "d:w-24"}`}
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}

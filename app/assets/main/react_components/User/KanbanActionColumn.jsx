@@ -16,7 +16,7 @@ const KanbanActionColumn = ({
 }) => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   return (
-    <div className="h-full" key={columnId}>
+    <div className="h-full flex justify-items-center" key={columnId}>
       <Droppable
         column={column}
         droppableId={columnId}
@@ -26,7 +26,7 @@ const KanbanActionColumn = ({
         {(provided, snapshot) => {
           return (
             <div
-              className={`h-full overflow-x-hidden ${
+              className={`h-full overflow-x-hidden d:flex d:items-stretch flex items-center flex-col ${
                 isHovering && !collapsed
                   ? "overflow-y-auto"
                   : "overflow-y-hidden"
