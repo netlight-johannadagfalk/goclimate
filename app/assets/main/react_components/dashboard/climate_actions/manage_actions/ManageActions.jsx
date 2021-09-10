@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "./sidebar/Sidebar.jsx";
 import { useMediaQuery } from "react-responsive";
-import KanbanActionContainer from "../kanban/KanbanActionContainer.jsx";
+import KanbanActionContainer from "./kanban/KanbanActionContainer.jsx";
 
 const ManageActions = ({ categories }) => {
   const [collapsed, setCollapsed] = useState(false);
