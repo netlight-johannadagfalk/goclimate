@@ -65,8 +65,8 @@ const KanbanActionItem = ({
       {(provided, snapshot) => {
         return (
           <div
-            className={`border border-gray-tint-2 rounded-lg shadow-lg space-y-3 p-0 pt-0 ${
-              collapsed ? "w-24" : "w-96"
+            className={`border border-gray-tint-2 rounded-lg p-0 space-y-3 pt-0 ${
+              collapsed ? "w-24" : "t:w-60 d:w-80 d-lg:w-96"
             }
             ${expanded ? "h-auto" : "w-24"}
             

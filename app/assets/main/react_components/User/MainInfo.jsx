@@ -17,8 +17,8 @@ const MainInfo = ({
   totalNoFootprints,
 }) => {
   return (
-    <section className="section-padding pb-14 -mt-20">
-      <div className="relative">
+    <section className="section-padding pb-28">
+      <div className="flex flex-row">
         <FootprintContainer
           footprint={footprint}
           commonText={commonText}
@@ -28,7 +28,7 @@ const MainInfo = ({
           registrationsText={registrationsText}
         ></FootprintContainer>
 
-        <div className="hidden t:block">
+        <div className="hidden d-lg:block">
           <MonthlyAction
             action={action}
             user={user}
@@ -37,7 +37,6 @@ const MainInfo = ({
           ></MonthlyAction>
         </div>
       </div>
-
       <FootprintFooter
         footprint={footprint}
         totalNoFootprints={totalNoFootprints}

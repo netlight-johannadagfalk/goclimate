@@ -63,14 +63,14 @@ const ClimateActionsContainer = ({
         registrationsText={registrationsText}
         totalNoFootprints={totalNoFootprints}
       ></MainInfo>
-
       <CarouselContainer
         user={user}
         updateLocalAccepted={updateLocalAccepted}
         categories={formatedCategories}
       />
-
-      <Sidebar categories={formatedCategories} />
+      <div className="w-full">
+        <Sidebar categories={formatedCategories} />
+      </div>
     </>
   );
 };

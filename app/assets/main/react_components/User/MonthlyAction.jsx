@@ -3,7 +3,7 @@ import CarouselActionItem from "./CarouselActionItem.jsx";
 
 const MonthlyAction = ({ action, user, updateLocalAccepted, categories }) => {
   return (
-    <div className="w-64 mx-auto space-y-3 right-0 absolute bottom-0">
+    <div className="w-64 ml-10 mt-11">
       <h3 className="heading text-center">Action of the Month </h3>
       <CarouselActionItem
         action={action}
