@@ -4,13 +4,14 @@ import React from 'react'
  * Result text for your footprint
  * Includes a heading and the footprint result in tonnes
  */
-const YourFootprintText = ({ footprintText, footprintValue, priceObject, currency }) => {
-    const txt = footprintText.heading + " is %{footprint} %{unit_of_co2}. It costs you %{price} %{time_unit} to climate compensate."
+const YourFootprintText = ({ footprintText, footprintValue, priceObject, currency, months }) => {
+    console.log(months)
+    const txt = " Ditt årliga klimatavtryck är %{footprint} %{unit_of_co2} koldioxid. För %{price} %{time_unit} hjälper vi dig att klimatkompensera ditt avtryck. Summan fördelas till olika klimatavtryck som gör skillnad för klimatet."
+    const unit_of_c02 = "ton "
     var t = txt.split("%{footprint}")
-    //var a = t[1].split("%{unit_of_co2}")
-    // console.log(a)
-    var p = t[1].split("%{price}")
-    console.log(p)
+    var a = t[1].split("%{unit_of_co2}")
+    var p = a[1].split("%{price}")
+    var s = p[1].split("%{time_unit}")
 
     function extractPrice (priceObject, currency) {
         var currencyText = currency.money.currency_formats[priceObject.currency.iso_code];
@@ -32,17 +33,11 @@ const YourFootprintText = ({ footprintText, footprintValue, priceObject, currenc
             <div className="text-left mt-8">
                 {t[0]} 
                 <span className="text-lg font-bold text-green-accent">{footprintValue}</span>
-                {/* <span className="text-sm font-bold text-green-accent">unit</span> */}
+                <span className="font-bold text-green-accent"> {unit_of_c02}</span>
                 {p[0]}
                 <span className="text-lg font-bold text-green-accent">{extractPrice(priceObject, currency)}</span>
-                {p[1]}
-            </div>
-
-            <span className="text-xl font-bold text-green-accent">{footprintValue}</span>
-
-            <div className="mt-1">
-                <span className="text-xl font-bold text-green-accent">{footprintValue}</span>
-                <span className="text-lg font-semibold"> {footprintText.tonnes_CO2}</span>
+                <span className="font-bold text-green-accent">/{months.one}</span>
+                {s[1]}
             </div>
         </div>
     )

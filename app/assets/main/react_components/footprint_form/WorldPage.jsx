@@ -6,7 +6,7 @@ import WorldComparisonChart from '../footprint_result/WorldComparisonChart.jsx'
 /**
  * Result component page for world comparison
  */
-const WorldPage = ({ footprint, countryAverage, texts, lang, price, currency }) => {
+const WorldPage = ({ footprint, countryAverage, texts, lang, price, currency, months }) => {
     return (
         <div className="max-w-lg mx-auto">
             <Title 
@@ -19,8 +19,10 @@ const WorldPage = ({ footprint, countryAverage, texts, lang, price, currency }) 
                 }} 
                 currency={currency}
                 priceObject={price}
+                months={months}
                 footprintValue={(footprint.total.co2e / 1000).toFixed(1)}
             />
+            <br></br>
             <WorldComparisonChart 
                 footprint={footprint}
                 countryAverage={countryAverage}

@@ -38,6 +38,7 @@ const ResultPage = ({ result, texts, lang, slug, page, onPageChange, currency })
                         lang={lang}
                         price={result.plan.price}
                         currency={currency}
+                        months={texts.commonText.months}
                     />
                 : page === 1 ?
                     <CategoryPage
