@@ -14,11 +14,10 @@ const MainInfo = ({
   modelText,
   lang,
   registrationsText,
+  totalNoFootprints,
 }) => {
   return (
-    <section className="section-padding pb-28">
-      <h2 className="heading-xl">Hello, climate friend!</h2>
-
+    <section className="section-padding pb-14 -mt-20">
       <div className="relative">
         <FootprintContainer
           footprint={footprint}
@@ -39,7 +38,10 @@ const MainInfo = ({
         </div>
       </div>
 
-      <FootprintFooter footprint={footprint}></FootprintFooter>
+      <FootprintFooter
+        footprint={footprint}
+        totalNoFootprints={totalNoFootprints}
+      ></FootprintFooter>
     </section>
   );
 };

@@ -17,6 +17,7 @@ const Dashboard = ({
   modelText,
   lang,
   registrationsText,
+  totalNoFootprints,
 }) => {
   return (
     <DeletedActionProvider>
@@ -40,6 +41,7 @@ const Dashboard = ({
               modelText={modelText}
               lang={lang}
               registrationsText={registrationsText}
+              totalNoFootprints={totalNoFootprints}
             ></ClimateActionsContainer>
           </ClimateActionsProvider>
         </UserActionsProvider>
