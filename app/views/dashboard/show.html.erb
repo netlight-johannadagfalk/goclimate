@@ -1,9 +1,13 @@
 <%= render "shared/twitter_script" %>
 <%= render "shared/header" %>
 
-<div class="bg-blue-pastel">
 
-  <% if current_user.number_of_neutral_months > 0 %>
+<div class="bg-blue-pastel flex ">
+<div class="flex-grow w-3/5">
+<section class="section-padding pb-0">
+    <h2 class="heading-xl"><%= t 'dashboard.heading' %></h2>
+  </section>
+  <%# <% if current_user.number_of_neutral_months > 0 %>
     <section class="section-padding">
       <div class="max-w-4xl mx-auto">
         <div class="section-gutter flex flex-col t:flex-row">
@@ -31,15 +35,15 @@
         </div>
       </div>
     </section>
-  <% end %>
+  <%# <% end %>
 
-<%# remove && false to show footprint %>
+<%# remove '&& false' to show footprint %>
   <% if @footprint && false %> 
   <section class="section-padding space-y-12 t:space-y-6">
     <div class="max-w-5xl mx-auto t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2">
       <div class="flex flex-col t:flex-row t:space-x-8 space-y-6 t:space-y-0">
         <div class="t:w-1/2 space-y-6">
-          <h2 class="heading-lg"><%= t 'dashboard.footprint.heading' %></h2>
+           <h2 class="heading-lg"><%= t 'dashboard.footprint.heading' %></h2>
           <div>
             <span class="text-5xl font-bold text-green-accent"><%= @footprint.total.tonnes.round(1) %></span>
             <span class="heading text-green-accent"><%= t 'tonnes_CO2' %></span>
@@ -110,9 +114,9 @@
   countryAverage: @country_average.to_json(),
   modelText: YAML.load_file('config/locales/models.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['models']['greenhouse_gases']['tonnes'].to_json,
   lang: I18n.locale[0..-1],
-  registrationsText: YAML.load_file('config/locales/views/registrations.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['registrations'].to_json
+  registrationsText: YAML.load_file('config/locales/views/registrations.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['registrations'].to_json,
+  totalNoFootprints: @total_number_of_footprints.to_json()
   %>
-
 
   <section class="section-padding">
     <div class="section-gutter t:flex t:flex-row">
@@ -234,6 +238,9 @@
   </section>
 
   <%= render "shared/bottom_landscape" %>
+</div>
+<div id="sidebar" class="sticky float-right bg-white h-screen w-auto top-20 z-10 border-l border-gray-accent"></div>
+
 </div>
 
 <%= render "shared/footer", skip_prefooter: true %>

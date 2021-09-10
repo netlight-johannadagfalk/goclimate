@@ -22,7 +22,6 @@ const YourFootprintText = ({
           {footprintValue}
         </span>
         <span className="heading text-green-accent">
-          {" "}
           {footprintText.tonnes_CO2}
         </span>
       </div>

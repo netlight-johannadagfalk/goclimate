@@ -12,7 +12,6 @@ const KanbanActionColumn = ({
   setCollapsed,
   collapsed,
   isHovering,
-  handleExpanded,
 }) => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   return (
@@ -32,8 +31,9 @@ const KanbanActionColumn = ({
         {(provided, snapshot) => {
           return (
             <div
-              className={`h-full overflow-x-hidden d:flex d:items-stretch lg:flex lg:items-center lg:flex-col lg:inline-block lg:w-full flex items-center flex-col inline-block w-full ${
-                isHovering && !collapsed
+              className={`h-full overflow-x-hidden d:flex d:items-stretch lg:flex lg:items-center lg:flex-col lg:inline-block lg:w-full flex items-center flex-col inline-block w-full 
+              ${
+                (isHovering && !collapsed) || isTabletOrMobile
                   ? "overflow-y-auto"
                   : "overflow-y-hidden"
               }`}
@@ -42,10 +42,10 @@ const KanbanActionColumn = ({
               style={{
                 background: snapshot.isDraggingOver ? "lightgrey" : "white",
                 padding: 4,
-                width: 410,
+                width: "100%",
               }}
             >
-              {columnId == 2 && column.items.length == 0 ? (
+              {!collapsed && columnId == 2 && column.items.length == 0 ? (
                 <p
                   style={{
                     fontStyle: "italic",
@@ -69,7 +69,6 @@ const KanbanActionColumn = ({
                       handleButtonPerformOnDrag={handleButtonPerformOnDrag}
                       categories={categories}
                       collapsed={collapsed}
-                      handleExpanded={handleExpanded}
                     />
                   );
                 })}

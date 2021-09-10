@@ -20,7 +20,9 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const navigationNextRef = React.useRef(null);
 
   const climateActions = useClimateActions();
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 414px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
+  const isLargeTablet = useMediaQuery({ query: "(max-width: 1024px)" });
 
   const sortForMobileClimateActions = orderBy(
     climateActions,
@@ -31,7 +33,10 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   return (
     <>
       <Swiper
-        slidesPerView={4}
+        className="m-4"
+        slidesPerView={
+          isMobile ? 1.5 : isTablet ? 2.5 : isLargeTablet ? 3.5 : 4
+        }
         navigation={{
           nextEl: navigationPrevRef.current,
           prevEl: navigationNextRef.current,
@@ -47,7 +52,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
           });
         }}
       >
-        {isTabletOrMobile
+        {isMobile
           ? sortForMobileClimateActions.map((action) => (
               <SwiperSlide
                 key={action.id}
@@ -78,13 +83,13 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
           <div
             ref={navigationPrevRef}
             className={
-              "button border-none shadow-none focus:outline-none fas fa-arrow-left"
+              "button border-none shadow-none focus:outline-none fas fa-arrow-left hidden t:block"
             }
           />
           <div
             ref={navigationNextRef}
             className={
-              "button border-none shadow-none focus:outline-none fas fa-arrow-right"
+              "button border-none shadow-none focus:outline-none fas fa-arrow-right hidden t:block"
             }
           />
         </div>

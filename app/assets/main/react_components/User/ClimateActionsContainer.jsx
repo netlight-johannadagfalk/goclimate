@@ -21,6 +21,7 @@ const ClimateActionsContainer = ({
   modelText,
   lang,
   registrationsText,
+  totalNoFootprints,
 }) => {
   const deletedAction = useDeletedAction();
   const climateActions = useClimateActions();
@@ -30,6 +31,8 @@ const ClimateActionsContainer = ({
   const [monthlyAction, setMonthlyAction] = useState(
     totClimateActions.find((action) => action.action_of_the_month === true)
   );
+
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
   const updateLocalAccepted = (actionID) => {
     setClimateActions(
@@ -44,7 +47,7 @@ const ClimateActionsContainer = ({
   };
 
   const formatedCategories = JSON.parse(climateActionCategories);
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  //const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
   useEffect(() => {
     deletedAction != null && updateLocalAccepted(deletedAction);
@@ -52,14 +55,14 @@ const ClimateActionsContainer = ({
 
   const [showMobileKanban, setShowMobileKanban] = useState(false);
 
-  const getTotalAmountOfAcceptedActions = () => {
-    let amountAccepted = 0;
+  const getTotalAmountOfAcceptedActionsForUser = () => {
+    let amountActionsAccepted = 0;
     climateActions.map((action) => {
       if (action.accepted === true) {
-        amountAccepted++;
+        amountActionsAccepted++;
       }
     });
-    return amountAccepted;
+    return amountActionsAccepted;
   };
 
   return (
@@ -74,25 +77,11 @@ const ClimateActionsContainer = ({
           ></i>
           <div className="fas rounded-full h-5 w-5 bg-green-tint-2 border border-gray-accent -mt-1 -ml-3 absolute focus:outline-none">
             <div className="mb-2 text-white">
-              {getTotalAmountOfAcceptedActions()}
+              {getTotalAmountOfAcceptedActionsForUser()}
             </div>
           </div>
         </div>
       )}
-      {/* <div className="hidden t:block">
-        <div className="w-80 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2 justify-center">
-          <h3 className="heading-lg mb-3">Action of the Month </h3>
-          {monthlyAction && (
-            <CarouselActionItem
-              action={monthlyAction}
-              key={monthlyAction.id}
-              user={user}
-              updateLocalAccepted={updateLocalAccepted}
-              categories={formatedCategories}
-            ></CarouselActionItem>
-          )}
-        </div>
-      </div> */}
       <MainInfo
         footprint={JSON.parse(footprint)}
         commonText={commonText}
@@ -104,17 +93,21 @@ const ClimateActionsContainer = ({
         modelText={modelText}
         lang={lang}
         registrationsText={registrationsText}
+        totalNoFootprints={totalNoFootprints}
       ></MainInfo>
-
       <CarouselContainer
         user={user}
         updateLocalAccepted={updateLocalAccepted}
         categories={formatedCategories}
       />
       {showMobileKanban && (
-        <MobileKanbanContainer categories={formatedCategories} />
+        <MobileKanbanContainer categories={formatedCategories} clicked={true} />
       )}
-      {!isTabletOrMobile && <Sidebar categories={formatedCategories} />}
+      {!isTabletOrMobile && (
+        <div className="w-full">
+          <Sidebar categories={formatedCategories} />
+        </div>
+      )}
     </>
   );
 };
