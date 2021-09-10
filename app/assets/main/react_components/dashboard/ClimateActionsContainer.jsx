@@ -9,7 +9,7 @@ import {
 } from "../contexts/ClimateActionsContext.js";
 import Sidebar from "./Sidebar.jsx";
 import { useMediaQuery } from "react-responsive";
-import MainInfo from "./MainInfo.jsx";
+import MainInfo from "./footprint/MainInfo.jsx";
 
 const ClimateActionsContainer = ({
   user,

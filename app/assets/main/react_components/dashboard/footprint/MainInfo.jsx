@@ -1,7 +1,7 @@
 import React from "react";
 import FootprintContainer from "./FootprintContainer.jsx";
 import FootprintFooter from "./FootprintFooter.jsx";
-import MonthlyAction from "./MonthlyAction.jsx";
+import MonthlyAction from "../MonthlyAction.jsx";
 
 const MainInfo = ({
   footprint,

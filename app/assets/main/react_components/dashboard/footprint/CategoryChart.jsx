@@ -1,5 +1,5 @@
 import React from "react";
-import getChartData from "./result-helper";
+import getChartData from "../result-helper";
 import ResultBar from "./ResultBar.jsx";
 
 /**
