@@ -19,6 +19,7 @@ const ClimateActionsContainer = ({
   modelText,
   lang,
   registrationsText,
+  totalNoFootprints,
 }) => {
   const deletedAction = useDeletedAction();
   const climateActions = useClimateActions();
@@ -60,6 +61,7 @@ const ClimateActionsContainer = ({
         modelText={modelText}
         lang={lang}
         registrationsText={registrationsText}
+        totalNoFootprints={totalNoFootprints}
       ></MainInfo>
       <CarouselContainer
         user={user}
