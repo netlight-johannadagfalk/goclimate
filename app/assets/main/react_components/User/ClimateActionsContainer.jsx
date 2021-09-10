@@ -8,6 +8,7 @@ import {
   useClimateActionsOriginal,
 } from "./contexts/ClimateActionsContext.js";
 import Sidebar from "./Sidebar.jsx";
+import { useMediaQuery } from "react-responsive";
 import MainInfo from "./MainInfo.jsx";
 
 const ClimateActionsContainer = ({
@@ -29,6 +30,8 @@ const ClimateActionsContainer = ({
   const [monthlyAction, setMonthlyAction] = useState(
     totClimateActions.find((action) => action.action_of_the_month === true)
   );
+
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
   const updateLocalAccepted = (actionID) => {
     setClimateActions(
@@ -68,9 +71,11 @@ const ClimateActionsContainer = ({
         updateLocalAccepted={updateLocalAccepted}
         categories={formatedCategories}
       />
-      <div className="w-full">
-        <Sidebar categories={formatedCategories} />
-      </div>
+      {!isTabletOrMobile && (
+        <div className="w-full">
+          <Sidebar categories={formatedCategories} />
+        </div>
+      )}
     </>
   );
 };
