@@ -2,13 +2,15 @@
  * Creates list of objects for all questions used in the footprint form
  * Includes the question text, what options to use, its category, and type
  */
-function constructObjects(calculator, options, questions, categories, texts) {
+function constructObjects(calculator, categories, texts) {
   const questionKeys = Object.keys(categories);
   let constructedQuestionObjects = questionKeys
     .filter((questionKey) => calculator[questionKey.concat('_options')])
     .map((usedQuestionKey) => {
       const filteredOptions = Object.fromEntries(
-        Object.entries(options[usedQuestionKey]).filter(([optionKey]) => {
+        Object.entries(
+          texts.lifestyleFootprintsText.options[usedQuestionKey]
+        ).filter(([optionKey]) => {
           return Object.values(
             calculator[usedQuestionKey.concat('_options')]
           ).find(
@@ -18,7 +20,7 @@ function constructObjects(calculator, options, questions, categories, texts) {
       );
       return {
         questionKey: usedQuestionKey,
-        question: questions[usedQuestionKey],
+        question: texts.lifestyleFootprintsText.questions[usedQuestionKey],
         options: filteredOptions,
         category: categories[usedQuestionKey],
         isNumerical: false,
@@ -26,7 +28,7 @@ function constructObjects(calculator, options, questions, categories, texts) {
     });
   let carObject = {
     questionKey: 'car_distance',
-    question: questions['car_distance'],
+    question: texts.lifestyleFootprintsText.questions['car_distance'],
     category: categories['car_distance'],
     text: texts.lifestyleFootprintsText.next,
     isNumerical: true,
@@ -34,7 +36,7 @@ function constructObjects(calculator, options, questions, categories, texts) {
   };
   let flightObject = {
     questionKey: 'flight_hours',
-    question: questions['flight_hours'],
+    question: texts.lifestyleFootprintsText.questions['flight_hours'],
     category: categories['flight_hours'],
     text: texts.lifestyleFootprintsText.title,
     isNumerical: true,

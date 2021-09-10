@@ -2,6 +2,8 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React, { useState } from 'react';
 import sanitizeHtml from 'sanitize-html';
+import { useTexts } from '../context/Footprint/TextsContext.js';
+import { useLocaleData } from '../context/Footprint/LocaleContext.js';
 import MembershipSelector from '../footprint_result/MembershipSelector.jsx';
 import Payment from '../footprint_result/Payment.jsx';
 import SignUpContainer from '../footprint_result/SignUpContainer.jsx';
@@ -14,52 +16,34 @@ import WorldPage from './WorldPage.jsx';
  * If the page number is 0, then the first page, i.e. WorldComparison, should be visible
  * AnswerButton is used to increase currentIndex and with this the page number
  */
-const ResultPage = ({
-  result,
-  texts,
-  lang,
-  slug,
-  page,
-  onPageChange,
-  currency,
-}) => {
-  const footprint = result.footprint;
-  const countryAverage = result.country_average;
+const ResultPage = ({ result, page, onPageChange }) => {
   const [selectedMembership, setSelectedMembership] = useState('single');
   const [multipleOffsets, setMultipleOffsets] = useState(2);
   const [grantedReferralCode, setGrantedReferralCode] = useState(false);
-  const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq');
-  const commonStrings = texts.commonText;
 
-  if (texts.registrationsText.accept_policies === undefined) {
-    texts.registrationsText.accept_policies =
-      'By signing up you accept the <a>terms of use and policies</a>';
-  }
+  const footprint = result.footprint;
+  const countryAverage = result.country_average;
+  const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq');
+  const { slug } = useLocaleData();
+  const {
+    registrationsText: { continue_to_payment, accept_policies },
+    lifestyleFootprintsText: { next },
+  } = useTexts();
 
   return (
     <div>
       <div className='my-8'>
         {page === 0 ? (
-          <WorldPage
-            footprint={footprint}
-            countryAverage={countryAverage}
-            texts={texts}
-            lang={lang}
-          />
+          <WorldPage footprint={footprint} countryAverage={countryAverage} />
         ) : page === 1 ? (
-          <CategoryPage text={texts.commonText} footprint={footprint} />
+          <CategoryPage footprint={footprint} />
         ) : (
-          <Elements stripe={stripePromise} options={{ locale: lang }}>
+          <Elements stripe={stripePromise} options={{ locale: slug }}>
             <SignUpContainer
-              commonStrings={commonStrings}
               selectedMembership={selectedMembership}
               multipleOffsets={multipleOffsets}
-              registrationsText={texts.registrationsText}
               grantedReferralCode={grantedReferralCode}
-              signUpText={texts.registrationsText}
               price={result.plan.price}
-              currency={currency}
-              months={texts.commonText.months}
             >
               {page === 2 ? (
                 <MembershipSelector
@@ -67,26 +51,18 @@ const ResultPage = ({
                   setSelectedMembership={setSelectedMembership}
                   multipleOffsets={multipleOffsets}
                   setMultipleOffsets={setMultipleOffsets}
-                  signUpText={texts.registrationsText}
                   setGrantedReferralCode={setGrantedReferralCode}
                   grantedReferralCode={grantedReferralCode}
                 ></MembershipSelector>
               ) : (
-                <Payment
-                  commonStrings={commonStrings}
-                  selectedMembership={selectedMembership}
-                />
+                <Payment selectedMembership={selectedMembership} />
               )}
             </SignUpContainer>
           </Elements>
         )}
       </div>
       <AnswerButton
-        label={
-          page !== 2
-            ? texts.lifestyleFootprintsText.next + ' ->'
-            : texts.registrationsText.continue_to_payment
-        }
+        label={page !== 2 ? next + ' ->' : continue_to_payment}
         onAnswerGiven={onPageChange}
         stylingClasses={'w-2/3 ' + (page === 2 && 'button-cta')}
       />
@@ -94,14 +70,7 @@ const ResultPage = ({
         <div
           className={'inject-link pt-4'}
           dangerouslySetInnerHTML={{
-            __html: sanitizeHtml(
-              texts.registrationsText.accept_policies.replace(
-                '<a>',
-                "<a href='" +
-                  (slug === 'en' || slug === null ? '' : '/' + slug) +
-                  "/privacy-policy' target='_blank'>"
-              )
-            ),
+            __html: sanitizeHtml(accept_policies),
           }}
         ></div>
       )}

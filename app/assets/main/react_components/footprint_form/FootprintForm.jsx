@@ -1,9 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import constructObjects from './constructObjects.js';
 import { numericalKeys, resultKeys, resultObjects } from './footprint-data.js';
 import ProgressBar from './ProgressBar.jsx';
 import QuestionPage from './QuestionPage.jsx';
 import ResultPage from './ResultPage.jsx';
+import { useTexts } from '../context/Footprint/TextsContext.js';
+import { useLocaleData } from '../context/Footprint/LocaleContext.js';
 
 /**
  * FootprintForm has the responsibility to handle the logic for showing the the questions and answers
@@ -12,14 +14,7 @@ import ResultPage from './ResultPage.jsx';
  */
 const FootprintForm = ({
   calculator,
-  questionStrings,
-  options,
   footprint,
-  URL,
-  slug,
-  texts,
-  lang,
-  currency,
   onChangeInformationSection,
 }) => {
   //key value pairs where the key is each question in order and the value is the corresponding category
@@ -37,17 +32,12 @@ const FootprintForm = ({
     'result-page-1': 'chart-bar',
     'result-page-2': 'chart-bar',
   };
-  const questionObjects = useMemo(
-    () =>
-      constructObjects(
-        calculator,
-        options,
-        questionStrings,
-        questionCategories,
-        texts
-      ),
-    []
+  const questionObjects = constructObjects(
+    calculator,
+    questionCategories,
+    useTexts()
   );
+  const URL = useLocaleData().slug + '/calculator';
 
   const [result, setResult] = useState();
   const [currentObject, setCurrentObject] = useState(questionObjects[0]);
@@ -230,9 +220,6 @@ const FootprintForm = ({
           result && (
             <ResultPage
               result={result}
-              texts={texts}
-              lang={lang}
-              slug={slug}
               page={currentIndex - questionObjects.length}
               onPageChange={() => {
                 setCurrentObject(
@@ -240,7 +227,6 @@ const FootprintForm = ({
                 );
                 setCurrentIndex(currentIndex + 1);
               }}
-              currency={currency}
             />
           )
         )}
@@ -258,7 +244,6 @@ const FootprintForm = ({
           </div>
         </div>
       )}
-      <div id='information-scroll-position'></div>
     </>
   );
 };

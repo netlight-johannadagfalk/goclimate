@@ -1,12 +1,19 @@
 import React from 'react';
+import { useTexts } from '../context/Footprint/TextsContext';
+import { useProjects } from '../context/Footprint/ProjectsContext';
 
 /**
  * Displays all current GoClimate projects
  */
-const LatestProjectsList = ({ latestProjectsText, projects }) => {
+const LatestProjectsList = () => {
+  const {
+    registrationsText: { latest_projects },
+  } = useTexts();
+  const projects = useProjects();
+
   return (
     <div className='space-y-3'>
-      <h3 className='font-semibold'>{latestProjectsText}</h3>
+      <h3 className='font-semibold'>{latest_projects}</h3>
       <ul className='space-y-3'>
         {projects.map((project) => (
           <li

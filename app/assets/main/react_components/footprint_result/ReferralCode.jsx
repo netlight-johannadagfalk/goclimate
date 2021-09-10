@@ -1,25 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import AnswerButton from '../footprint_form/AnswerButton.jsx';
+import { useTexts } from '../context/Footprint/TextsContext.js';
 
 /**
  * React component for referral code field in signup
  * Shows link and input field
  */
-const ReferralCode = ({
-  text,
-  grantedReferralCode,
-  setGrantedReferralCode,
-}) => {
+const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
   const [invalidCodeMessage, setInvalidCodeMessage] = useState('');
   const [inputCode, setInputCode] = useState('');
 
   const mounted = useRef(false);
-  useEffect(() => {
-    mounted.current = true;
-    return () => {
-      mounted.current = false;
-    };
-  }, []);
+
+  const {
+    registrationsText: { code, referral_code_link, referral_code_change },
+  } = useTexts();
 
   /**
    * Function that sends a POST request to the server on referral code submit
@@ -52,13 +47,20 @@ const ReferralCode = ({
       });
   }
 
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
+
   return (
     <div className='mt-3 collapse'>
       <input type='checkbox' id='enter_referral_code' />
       {grantedReferralCode ? (
         <div>
           <p className='text-center text-sm'>
-            {text.referral_code}
+            {code}
             <strong className='mr-1'> {inputCode}</strong>
             <label
               className='link cursor-pointer'
@@ -67,7 +69,7 @@ const ReferralCode = ({
                 setInputCode('');
               }}
             >
-              {text.referral_code_change}
+              {referral_code_change}
             </label>
           </p>
         </div>
@@ -78,7 +80,7 @@ const ReferralCode = ({
               htmlFor='enter_referral_code'
               className='link cursor-pointer'
             >
-              {text.referral_code_link}
+              {referral_code_link}
             </label>
           </p>
           <div className='collapse-content mt-3'>
@@ -86,10 +88,11 @@ const ReferralCode = ({
               <input
                 size='auto'
                 className='input w-full flex-grow mr-2'
-                placeholder={text.referral_code}
+                placeholder={code}
                 type='text'
                 name='code'
                 id='code'
+                value={inputCode}
                 onChange={(e) => setInputCode(e.target.value)}
                 onKeyPress={(e) => {
                   if (e.key === 'Enter') submit();

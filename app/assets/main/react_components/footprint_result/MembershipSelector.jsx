@@ -6,7 +6,6 @@ import ReferralCode from './ReferralCode.jsx';
  * React container for Sign up components
  */
 const MembershipSelector = ({
-  signUpText,
   grantedReferralCode,
   setGrantedReferralCode,
   multipleOffsets,
@@ -17,7 +16,6 @@ const MembershipSelector = ({
   return (
     <>
       <MembershipTypeSelector
-        membershipText={signUpText.membership}
         selectedMembership={selectedMembership}
         setSelectedMembership={setSelectedMembership}
         multipleOffsets={multipleOffsets}
@@ -26,7 +24,6 @@ const MembershipSelector = ({
       <div data-inactive-class='hidden'>
         {selectedMembership !== 'free' && (
           <ReferralCode
-            text={signUpText}
             grantedReferralCode={grantedReferralCode}
             setGrantedReferralCode={setGrantedReferralCode}
           />
