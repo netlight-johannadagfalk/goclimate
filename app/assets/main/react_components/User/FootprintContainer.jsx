@@ -2,14 +2,7 @@ import React from "react";
 import CategoryChart from "./CategoryChart.jsx";
 import YourFootprintText from "./YourFootprintText.jsx";
 
-const FootprintContainer = ({
-  footprint,
-  commonText,
-  countryAverage,
-  modelText,
-  lang,
-  registrationsText,
-}) => {
+const FootprintContainer = () => {
   const commonStrings = JSON.parse(commonText);
 
   return (

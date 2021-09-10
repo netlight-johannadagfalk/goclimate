@@ -3,30 +3,11 @@ import FootprintContainer from "./FootprintContainer.jsx";
 import FootprintFooter from "./FootprintFooter.jsx";
 import MonthlyAction from "./MonthlyAction.jsx";
 
-const MainInfo = ({
-  footprint,
-  commonText,
-  action,
-  user,
-  updateLocalAccepted,
-  categories,
-  countryAverage,
-  modelText,
-  lang,
-  registrationsText,
-  totalNoFootprints,
-}) => {
+const MainInfo = ({ action, user, updateLocalAccepted, categories }) => {
   return (
     <section className="section-padding pb-28">
       <div className="flex flex-row">
-        <FootprintContainer
-          footprint={footprint}
-          commonText={commonText}
-          countryAverage={countryAverage}
-          modelText={modelText}
-          lang={lang}
-          registrationsText={registrationsText}
-        ></FootprintContainer>
+        <FootprintContainer />
 
         <div className="hidden d-lg:block">
           <MonthlyAction
@@ -37,10 +18,7 @@ const MainInfo = ({
           ></MonthlyAction>
         </div>
       </div>
-      <FootprintFooter
-        footprint={footprint}
-        totalNoFootprints={totalNoFootprints}
-      ></FootprintFooter>
+      <FootprintFooter />
     </section>
   );
 };
