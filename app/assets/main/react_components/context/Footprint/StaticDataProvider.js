@@ -12,7 +12,7 @@ const StaticDataProvider = ({
   modelText,
   projects,
   registrationsText,
-  slug,
+  currentRegion,
 }) => {
   return (
     <TextsProvider
@@ -20,9 +20,13 @@ const StaticDataProvider = ({
       lifestyleFootprintsText={lifestyleFootprintsText}
       modelText={modelText}
       registrationsText={registrationsText}
-      slug={slug}
+      slug={JSON.parse(currentRegion).slug}
     >
-      <LocaleProvider currency={currency} lang={lang} slug={slug}>
+      <LocaleProvider
+        currency={currency}
+        lang={lang}
+        currentRegion={JSON.parse(currentRegion)}
+      >
         <ProjectsProvider projects={projects}>{children}</ProjectsProvider>
       </LocaleProvider>
     </TextsProvider>

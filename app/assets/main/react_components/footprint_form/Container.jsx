@@ -7,7 +7,7 @@ import StaticDataProvider from '../context/Footprint/StaticDataProvider.js';
 const Container = ({
   footprint,
   calculator,
-  slug,
+  currentRegion,
   lang,
   registrationsText,
   commonText,
@@ -25,7 +25,7 @@ const Container = ({
       modelText={modelText}
       lifestyleFootprintsText={lifestyleFootprintsText}
       currency={currency}
-      slug={slug}
+      currentRegion={currentRegion}
       lang={lang}
       projects={projects}
     >

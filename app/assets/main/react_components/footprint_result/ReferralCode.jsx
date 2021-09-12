@@ -4,7 +4,7 @@ import { useTexts } from '../context/Footprint/TextsContext.js';
 
 const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
   const [invalidCodeMessage, setInvalidCodeMessage] = useState('');
-  const [inputCode, setInputCode] = useState('');
+  const [inputCode, setInputCode] = useState(grantedReferralCode);
 
   const mounted = useRef(false);
 
@@ -28,10 +28,10 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
       .then((res) => {
         if (mounted.current) {
           if (res.status === 404) {
-            setGrantedReferralCode(false);
+            setGrantedReferralCode();
             setInvalidCodeMessage("That's not right, try again");
           } else if (res.status === 200) {
-            setGrantedReferralCode(true);
+            setGrantedReferralCode(inputCode);
             setInvalidCodeMessage('');
           }
         }
@@ -59,7 +59,7 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
             <label
               className='link cursor-pointer'
               onClick={() => {
-                setGrantedReferralCode(false);
+                setGrantedReferralCode();
                 setInputCode('');
               }}
             >

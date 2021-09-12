@@ -1,16 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from '../Link.jsx';
 import { useTexts } from '../context/Footprint/TextsContext.js';
-import { useLocaleData } from '../context/Footprint/LocaleContext.js';
 
-const PriceText = ({
-  priceObject,
-  grantedReferralCode,
-  selectedMembership,
-  multipleOffsets,
-}) => {
-  const [price, setPrice] = useState();
-
+const PriceText = ({ grantedReferralCode, selectedMembership, price }) => {
   const {
     commonText: {
       months: { one },
@@ -22,37 +14,9 @@ const PriceText = ({
       where_does_the_money_go: { heading },
     },
   } = useTexts();
-  const {
-    currency: {
-      money: {
-        currency_formats: { [priceObject.currency.iso_code]: currency },
-      },
-    },
-  } = useLocaleData();
-
-  const calculatePrice = () => {
-    var price = priceObject.subunit_amount / 100;
-    if (Math.trunc(price) != price) {
-      price = price.toFixed(2);
-    }
-    if (selectedMembership === 'multi') {
-      price = price * multipleOffsets;
-    }
-    if (currency === 'DEFAULT') {
-      price = priceObject.currency.iso_code.toUpperCase() + ' ' + price;
-    } else {
-      const findCustomPlacement = /%{.*?}/i;
-      price = currency.replace(findCustomPlacement, price);
-    }
-    return price;
-  };
-
-  useEffect(() => {
-    setPrice(calculatePrice());
-  }, [grantedReferralCode, selectedMembership, multipleOffsets]);
 
   return (
-    <>
+    <div className='text-center'>
       {grantedReferralCode && selectedMembership != 'free' ? (
         <div id='freeMonth' className='py-6 space-y-1'>
           <p className='heading-lg text-center'>
@@ -89,7 +53,7 @@ const PriceText = ({
           )}
         </div>
       )}
-    </>
+    </div>
   );
 };
 
