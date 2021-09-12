@@ -31,6 +31,68 @@ const Payment = ({
   } = useTexts();
   const { currentRegion, slug } = useLocaleData();
 
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+  const signUp = (paymentMethodID = undefined) => {
+    return fetch(slug + '/users.json', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'X-CSRF-Token': csrfToken,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        lifestyle_footprint: lifestyleFootprint,
+        people: selectedMembership === 'multi' ? multipleOffsets : 1,
+        referral_code: grantedReferralCode,
+        membership: selectedMembership,
+        user: {
+          region: currentRegion,
+          email: userEmail,
+          password: userPassword,
+        },
+        payment_method_id: paymentMethodID,
+      }),
+    })
+      .then((response) => {
+        if (mounted.current) {
+          response.json().then((response) => {
+            switch (response.next_step) {
+              case 'redirect':
+                window.location = response.success_url;
+                break;
+              case 'confirmation_required':
+                confirm(
+                  response.intent_type,
+                  response.intent_client_secret
+                ).then((result) => {
+                  if (result.error !== undefined) {
+                    setErrorMessage(result.error.message);
+                  } else {
+                    window.location = response.success_url;
+                  }
+                });
+                break;
+              default:
+                setErrorMessage(response.error.message);
+                break;
+            }
+          });
+        }
+      })
+      .catch((error) => {
+        if (error.cardError) {
+          setErrorMessage(error.message);
+          return;
+        }
+        window.Sentry.captureException(error); // These errors are unexpected, so report them.
+        console.log('Something went wrong, trying again.', error);
+      })
+      .finally(() => {
+        setLoadingIconState('hidden');
+      });
+  };
+
   const confirm = (intentType, intentClientSecret) => {
     switch (intentType) {
       case 'payment_intent':
@@ -45,88 +107,30 @@ const Payment = ({
   const submitPayment = async (event) => {
     event.preventDefault();
 
-    if (!stripe || !Elements) {
-      setErrorMessage(
-        'An unexpected error occurred. Please start over and try again. If the issue remains, please contact us at hello@goclimate.com.'
-      );
-      return;
-    }
-
     setLoadingIconState('');
 
-    const cardElement = Elements.getElement(CardElement);
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card: cardElement,
-    });
-
-    if (error) {
-      setErrorMessage(error.message);
-      setLoadingIconState('hidden');
-      return;
+    if (selectedMembership !== 'free') {
+      if (!stripe || !Elements) {
+        setErrorMessage(
+          'An unexpected error occurred. Please start over and try again. If the issue remains, please contact us at hello@goclimate.com.'
+        );
+        setLoadingIconState('hidden');
+        return;
+      }
+      const cardElement = Elements.getElement(CardElement);
+      const { error, paymentMethod } = await stripe.createPaymentMethod({
+        type: 'card',
+        card: cardElement,
+      });
+      if (error) {
+        setErrorMessage(error.message);
+        setLoadingIconState('hidden');
+        return;
+      } else {
+        signUp(paymentMethod.id);
+      }
     } else {
-      const csrfToken = document.querySelector(
-        'meta[name="csrf-token"]'
-      ).content;
-
-      const requestOptions = {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'X-CSRF-Token': csrfToken,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          lifestyle_footprint: lifestyleFootprint,
-          people: selectedMembership === 'multi' ? multipleOffsets : 1,
-          referral_code: grantedReferralCode,
-          membership: selectedMembership,
-          user: {
-            region: currentRegion,
-            email: userEmail,
-            password: userPassword,
-          },
-          payment_method_id: paymentMethod.id,
-        }),
-      };
-      fetch(slug + '/users.json', requestOptions)
-        .then((response) => {
-          if (mounted.current) {
-            response.json().then((response) => {
-              switch (response.next_step) {
-                case 'redirect':
-                  window.location = response.success_url;
-                  break;
-                case 'confirmation_required':
-                  confirm(
-                    response.intent_type,
-                    response.intent_client_secret
-                  ).then((result) => {
-                    if (result.error !== undefined) {
-                      setErrorMessage(result.error.message);
-                    } else {
-                      window.location = response.success_url;
-                    }
-                  });
-                  break;
-                default:
-                  setErrorMessage(response.error.message);
-                  break;
-              }
-            });
-          }
-        })
-        .catch((error) => {
-          if (error.cardError) {
-            setErrorMessage(error.message);
-            return;
-          }
-          window.Sentry.captureException(error); // These errors are unexpected, so report them.
-          console.log('Something went wrong, trying again.', error);
-        })
-        .finally(() => {
-          setLoadingIconState('hidden');
-        });
+      signUp();
     }
   };
 
