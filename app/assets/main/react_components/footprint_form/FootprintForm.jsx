@@ -184,6 +184,7 @@ const FootprintForm = ({ calculator, footprint, onChangeInformationSection }) =>
             </div>
           </div>
         }
+        <div id="information-scroll-position"></div>
     </>
   )
 }

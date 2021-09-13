@@ -4,11 +4,22 @@ import FootprintForm from './FootprintForm.jsx';
 import InformationSection from './InformationSection.jsx';
 import StaticDataProvider from '../context/Footprint/StaticDataProvider.js';
 
-const Container = ({ footprint, calculator, slug, lang, registrationsText, commonText, modelText, lifestyleFootprintsText, currency, projects }) => {
-  const [showInformationSection, setShowInformationSection] = useState(false)
-  
+const Container = ({
+  footprint,
+  calculator,
+  slug,
+  lang,
+  registrationsText,
+  commonText,
+  modelText,
+  lifestyleFootprintsText,
+  currency,
+  projects,
+}) => {
+  const [showInformationSection, setShowInformationSection] = useState(false);
+
   return (
-    <StaticDataProvider 
+    <StaticDataProvider
       registrationsText={registrationsText}
       commonText={commonText}
       modelText={modelText}
@@ -18,24 +29,24 @@ const Container = ({ footprint, calculator, slug, lang, registrationsText, commo
       lang={lang}
       projects={projects}
     >
-      <div className="space-y-6">
-        <div className="callout">
+      <div className='space-y-6'>
+        <div className='callout'>
           <FootprintForm
-            footprint={JSON.parse(footprint)} 
+            footprint={JSON.parse(footprint)}
             calculator={JSON.parse(calculator)}
-            onChangeInformationSection={(value) => setShowInformationSection(value)}
+            onChangeInformationSection={(value) =>
+              setShowInformationSection(value)
+            }
           />
         </div>
         <Link
-          link="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"
+          link='https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/'
           linkText={JSON.parse(lifestyleFootprintsText).methodology}
         />
-        { showInformationSection && 
-          <InformationSection />
-        }
+        {showInformationSection && <InformationSection />}
       </div>
     </StaticDataProvider>
-  )  
-}
+  );
+};
 
 export default Container;
