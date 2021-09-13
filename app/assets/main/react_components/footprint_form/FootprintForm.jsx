@@ -149,7 +149,7 @@ const FootprintForm = ({ calculator, questionStrings, options, footprint, URL, s
 
   return (
     <>
-        <div className="question py-8">
+        <div className="question pb-8">
           <ProgressBar 
             questionCategories={getUsedQuestions()} 
             currentObject={currentObject}

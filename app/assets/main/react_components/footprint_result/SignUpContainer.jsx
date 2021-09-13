@@ -12,17 +12,17 @@ const SignUpContainer = ( props ) => {
     //Slug för språk i url:en
     //<a> blir länken i med href
 
+    console.log(props.signUpText.sign_up_heading_collective_efficacy)
+
     return (
         <div className="max-w-lg mx-auto">
             <div className="space-y-3">
-                <Title
-                    text={props.signUpText.sign_up_heading_collective_efficacy}
-                />
+                <Title text={props.signUpText.sign_up_heading_collective_efficacy} custom_style="text-lgr" />
                 <SignUpMotivationText
                     signUpMotivationText={props.signUpText.sign_up_description}                            
                 /> 
                 <div className="toggler-checked:hidden">
-                    <div className="space-y-3">
+                    <div className="space-y-3 py-3">
                         {props.children}
                     </div>
                 </div>

@@ -76,9 +76,9 @@ const ResultPage = ({ result, texts, lang, slug, page, onPageChange, currency })
                 }
             </div>
             <AnswerButton
-                label={page !== 2 ? texts.lifestyleFootprintsText.next + " ->" : texts.registrationsText.continue_to_payment}
+                label={page === 2 ? texts.registrationsText.continue_to_payment + " ->" : page === 3 ? texts.registrationsText.start_subscription : texts.lifestyleFootprintsText.next}
                 onAnswerGiven={onPageChange}
-                stylingClasses={"w-2/3 " + (page === 2 && "button-cta")}
+                stylingClasses={"w-2/3 " + ((page === 2 || page === 3) && "button-cta")}
             />
             { page === 3 && 
                 <div className={"inject-link pt-4"}
