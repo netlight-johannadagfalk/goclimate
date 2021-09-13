@@ -195,10 +195,7 @@ const Payment = ({
             type="submit"
             onClick={() => setErrorMessage('')}
           >
-            <i
-              className={'fas fa-spinner fa-spin ' + loadingIconState}
-              data-target="registrations--form.loadingIndicator"
-            ></i>
+            <i className={'fas fa-spinner fa-spin ' + loadingIconState}></i>
             <span> {start_subscription}</span>
           </button>
         </form>

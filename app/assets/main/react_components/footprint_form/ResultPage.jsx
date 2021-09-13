@@ -26,10 +26,8 @@ const ResultPage = ({ result, page, onPageChange }) => {
     },
   } = useLocaleData();
 
-  //const footprint = result.footprint;
+  const footprint = result.footprint;
   const countryAverage = result.country_average;
-
-  console.log('RES', result.footprint);
 
   const calculatePrice = () => {
     var price = result.plan.price.subunit_amount / 100;
@@ -56,12 +54,9 @@ const ResultPage = ({ result, page, onPageChange }) => {
     <div>
       <div className="my-8">
         {page === 0 ? (
-          <WorldPage
-            footprint={result.footprint}
-            countryAverage={countryAverage}
-          />
+          <WorldPage footprint={footprint} countryAverage={countryAverage} />
         ) : page === 1 ? (
-          <CategoryPage footprint={result.footprint} />
+          <CategoryPage footprint={footprint} />
         ) : page === 2 ? (
           <SignUpContainer
             selectedMembership={selectedMembership}
@@ -75,7 +70,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
         ) : (
           <ConfirmSignUpContainer
             selectedMembership={selectedMembership}
-            lifestyleFootprint={result.footprint.key}
+            lifestyleFootprint={footprint.key}
             grantedReferralCode={grantedReferralCode}
             multipleOffsets={multipleOffsets}
             price={price}
