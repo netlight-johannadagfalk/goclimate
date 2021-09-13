@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 /**
  * Result text for your footprint
@@ -10,13 +10,15 @@ const YourFootprintText = ({ footprintText, footprintValue, priceObject, currenc
     const stringKeys = ["%{footprint}" ,"%{unit_of_co2}", "%{price}", "%{time_unit}"]
     var stringParts = []
 
+    const [price] = useState(extractPrice())
+
     stringKeys.forEach((key) => {
         stringParts.push(text.split(key)[0])
         text=text.split(key)[1]
     })
     stringParts.push(text)
 
-    function extractPrice (priceObject, currency) {
+    function extractPrice () {
         var currencyText = currency.money.currency_formats[priceObject.currency.iso_code];
         var price = (priceObject.subunit_amount/100)
         if (Math.trunc(price) != price) {
@@ -38,7 +40,7 @@ const YourFootprintText = ({ footprintText, footprintValue, priceObject, currenc
                 <span className="text-lg font-bold text-green-accent">{footprintValue}</span>
                 <span className="font-bold text-green-accent"> {unit_of_co2}</span>
                 {stringParts[2]}
-                    <span className="text-lg font-bold text-green-accent">{extractPrice(priceObject, currency)}</span>
+                    <span className="text-lg font-bold text-green-accent">{price}</span>
                 <span className="font-bold text-green-accent">/{months.one}</span>
                 {stringParts[4]}
             </div>
