@@ -4,7 +4,7 @@ import { TextsProvider } from "./TextsContext";
 import { ProjectsProvider } from "./ProjectsContext";
 
 const StaticDataProvider = ({ children, commonText, currency, lang, lifestyleFootprintsText, modelText, projects, registrationsText, slug, reactContentText }) => {
-    console.log(reactContentText);
+
     return (
         <TextsProvider 
             commonText={commonText}
