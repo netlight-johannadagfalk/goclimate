@@ -14,12 +14,12 @@ const SignUpContainer = (props) => {
   } = useTexts();
 
   return (
-    <div className='max-w-lg mx-auto'>
-      <div className='space-y-3'>
+    <div className="max-w-lg mx-auto">
+      <div className="space-y-3">
         <Title text={sign_up_heading_collective_efficacy} />
         <SignUpMotivationText />
-        <div className='toggler-checked:hidden'>
-          <div className='space-y-3'>{props.children}</div>
+        <div className="toggler-checked:hidden">
+          <div className="space-y-3">{props.children}</div>
         </div>
         <PriceText
           priceObject={props.price}

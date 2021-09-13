@@ -44,7 +44,7 @@ const ResultContainer = ({
       lang={lang}
       projects={projects}
     >
-      <div className='relative pb-1'>
+      <div className="relative pb-1">
         <Elements stripe={stripePromise} options={{ locale: slug }}>
           <SignUpContainer
             selectedMembership={selectedMembership}
@@ -70,7 +70,7 @@ const ResultContainer = ({
             ></MembershipSelector>
           </SignUpContainer>
         </Elements>
-        <div className='space-y-6'>
+        <div className="space-y-6">
           <ResultTitle title={JSON.parse(registrationsText).well_done} />
           <YourFootprintText
             footprintValue={(JSON.parse(footprint).total.co2e / 1000).toFixed(

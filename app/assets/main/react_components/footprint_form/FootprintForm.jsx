@@ -182,7 +182,7 @@ const FootprintForm = ({
 
   return (
     <>
-      <div className='question py-8'>
+      <div className="question py-8">
         <ProgressBar
           questionCategories={getUsedQuestions()}
           currentObject={currentObject}
@@ -217,7 +217,7 @@ const FootprintForm = ({
         )}
       </div>
       {currentIndex > 0 && <TextButton onClick={goBack} />}
-      <div id='information-scroll-position'></div>
+      <div id="information-scroll-position"></div>
     </>
   );
 };

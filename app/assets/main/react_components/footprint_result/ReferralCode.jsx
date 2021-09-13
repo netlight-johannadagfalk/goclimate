@@ -49,15 +49,15 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
   }, []);
 
   return (
-    <div className='mt-3 collapse'>
-      <input type='checkbox' id='enter_referral_code' />
+    <div className="mt-3 collapse">
+      <input type="checkbox" id="enter_referral_code" />
       {grantedReferralCode ? (
         <div>
-          <p className='text-center text-sm'>
+          <p className="text-center text-sm">
             {code}
-            <strong className='mr-1'> {inputCode}</strong>
+            <strong className="mr-1"> {inputCode}</strong>
             <label
-              className='link cursor-pointer'
+              className="link cursor-pointer"
               onClick={() => {
                 setGrantedReferralCode(false);
                 setInputCode('');
@@ -69,30 +69,30 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
         </div>
       ) : (
         <>
-          <p className='text-center text-sm'>
+          <p className="text-center text-sm">
             <label
-              htmlFor='enter_referral_code'
-              className='link cursor-pointer'
+              htmlFor="enter_referral_code"
+              className="link cursor-pointer"
             >
               {referral_code_link}
             </label>
           </p>
-          <div className='collapse-content mt-3'>
-            <div className='flex'>
+          <div className="collapse-content mt-3">
+            <div className="flex">
               <input
-                size='auto'
-                className='input w-full flex-grow mr-2'
+                size="auto"
+                className="input w-full flex-grow mr-2"
                 placeholder={code}
-                type='text'
-                name='code'
-                id='code'
+                type="text"
+                name="code"
+                id="code"
                 value={inputCode}
                 onChange={(e) => setInputCode(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && lookUpReferralCode()}
               />
               <AnswerButton label={'OK'} onAnswerGiven={lookUpReferralCode} />
             </div>
-            <p className='text-orange-shade-1 mt-1'>{invalidCodeMessage}</p>
+            <p className="text-orange-shade-1 mt-1">{invalidCodeMessage}</p>
           </div>
         </>
       )}
