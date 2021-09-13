@@ -1,7 +1,9 @@
 import { default as React } from 'react';
+import { useTexts } from '../context/Footprint/TextsContext.js';
 import Title from '../footprint_form/Title.jsx';
 import PriceText from './PriceText.jsx';
 import SignUpIngress from './SignUpIngress.jsx';
+
 /**
  * React container for Sign up components
  */
@@ -11,14 +13,14 @@ const SignUpContainer = ( props ) => {
     //Slug för språk i url:en
     //<a> blir länken i med href
 
-    console.log(props.signUpText.sign_up_heading_collective_efficacy)
+    const { registrationsText: { sign_up_heading_collective_efficacy, sign_up_description,  } } = useTexts()
 
     return (
         <div className="max-w-lg mx-auto">
             <div className="space-y-3">
-                <Title text={props.signUpText.sign_up_heading_collective_efficacy} custom_style="text-lgr" />
+                <Title text={sign_up_heading_collective_efficacy} custom_style="text-lgr" />
                 <SignUpIngress
-                    text={props.signUpText.sign_up_description}                            
+                    text={sign_up_description}                            
                 /> 
                 <div className="toggler-checked:hidden">
                     <div className="space-y-3 py-3">
@@ -27,9 +29,6 @@ const SignUpContainer = ( props ) => {
                 </div>
                 <PriceText
                     priceObject={props.price}
-                    currency={props.currency}
-                    months={props.months}
-                    signUpText={props.signUpText}
                     grantedReferralCode={props.grantedReferralCode}
                     selectedMembership={props.selectedMembership}
                     multipleOffsets={props.multipleOffsets}
