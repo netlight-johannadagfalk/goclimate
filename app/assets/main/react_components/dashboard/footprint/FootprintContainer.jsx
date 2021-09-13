@@ -4,7 +4,7 @@ import YourFootprintText from "./YourFootprintText.jsx";
 import {
   useFootprint,
   useCommonTextContext,
-} from "./contexts/FootprintContext.js";
+} from "../../contexts/FootprintContext.js";
 
 const FootprintContainer = () => {
   const footprint = useFootprint();

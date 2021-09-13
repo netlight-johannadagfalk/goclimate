@@ -2,7 +2,7 @@ import React from "react";
 import {
   useFootprint,
   useTotalNoFootprints,
-} from "./contexts/FootprintContext.js";
+} from "../../contexts/FootprintContext.js";
 
 const FootprintFooter = () => {
   const footprint = useFootprint();

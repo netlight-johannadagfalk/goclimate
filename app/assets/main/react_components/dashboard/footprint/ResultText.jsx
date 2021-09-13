@@ -5,7 +5,7 @@ import {
   useModelText,
   useLang,
   useRegistrationsText,
-} from "./contexts/FootprintContext";
+} from "../../contexts/FootprintContext.js";
 
 /**
  * Description of the result including calculations of relevant numbers

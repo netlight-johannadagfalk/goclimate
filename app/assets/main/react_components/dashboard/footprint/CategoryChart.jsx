@@ -1,7 +1,7 @@
 import React from "react";
 import getChartData from "../../helpers/result-helper";
 import ResultBar from "./ResultBar.jsx";
-import { useFootprint } from "./contexts/FootprintContext.js";
+import { useFootprint } from "../../contexts/FootprintContext.js";
 /**
  * Container to display a ResultBar for each category co2e of the footprint
  */
