@@ -1,9 +1,9 @@
 import React from "react";
-import ClimateActionsContainer from "./ClimateActionsContainer.jsx";
-import { CategoryProvider } from "./contexts/CategoryContext.js";
-import { DeletedActionProvider } from "./contexts/DeletedActionContext.js";
-import { UserActionsProvider } from "./contexts/UserActionsContext.js";
-import { ClimateActionsProvider } from "./contexts/ClimateActionsContext.js";
+import ClimateActionsContainer from "./climate_actions/ClimateActionsContainer.jsx";
+import { CategoryProvider } from "../contexts/CategoryContext.js";
+import { DeletedActionProvider } from "../contexts/DeletedActionContext.js";
+import { UserActionsProvider } from "../contexts/UserActionsContext.js";
+import { ClimateActionsProvider } from "../contexts/ClimateActionsContext.js";
 
 const Dashboard = ({
   user,
@@ -11,6 +11,13 @@ const Dashboard = ({
   actionsWithUserActions,
   actionsWithoutUserActions,
   climateActionCategories,
+  footprint,
+  commonText,
+  countryAverage,
+  modelText,
+  lang,
+  registrationsText,
+  totalNoFootprints,
 }) => {
   return (
     <DeletedActionProvider>
@@ -28,6 +35,13 @@ const Dashboard = ({
             <ClimateActionsContainer
               user={user}
               climateActionCategories={climateActionCategories}
+              footprint={footprint}
+              commonText={commonText}
+              countryAverage={countryAverage}
+              modelText={modelText}
+              lang={lang}
+              registrationsText={registrationsText}
+              totalNoFootprints={totalNoFootprints}
             ></ClimateActionsContainer>
           </ClimateActionsProvider>
         </UserActionsProvider>
