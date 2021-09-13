@@ -30,8 +30,10 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
     ["desc"]
   );
 
+  const actions = isMobile ? sortForMobileClimateActions : climateActions;
+
   return (
-    <>
+    <div className="relative">
       <Swiper
         className="m-4"
         slidesPerView={
@@ -52,49 +54,34 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
           });
         }}
       >
-        {isMobile
-          ? sortForMobileClimateActions.map((action) => (
-              <SwiperSlide
-                key={action.id}
-                className={"h-auto min-h-full mb-10"}
-              >
-                <CarouselActionItem
-                  action={action}
-                  user={user}
-                  updateLocalAccepted={updateLocalAccepted}
-                  categories={categories}
-                ></CarouselActionItem>
-              </SwiperSlide>
-            ))
-          : climateActions.map((action) => (
-              <SwiperSlide
-                key={action.id}
-                className={"h-auto min-h-full mb-10"}
-              >
-                <CarouselActionItem
-                  action={action}
-                  user={user}
-                  updateLocalAccepted={updateLocalAccepted}
-                  categories={categories}
-                ></CarouselActionItem>
-              </SwiperSlide>
-            ))}
-        <div className="flex flex-row justify-between absolute z-10 top-1/2 w-full">
-          <div
+        {actions.map((action) => (
+          <SwiperSlide key={action.id} className={"h-auto min-h-full mb-10"}>
+            <CarouselActionItem
+              action={action}
+              user={user}
+              updateLocalAccepted={updateLocalAccepted}
+              categories={categories}
+            ></CarouselActionItem>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      <div className="flex flex-row absolute z-10 top-1/2 w-full">
+        <div className="relative w-full">
+          <button
             ref={navigationPrevRef}
             className={
-              "button border-none shadow-none focus:outline-none fas fa-arrow-left hidden t:block"
+              "rounded-full -left-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left absolute focus:outline-none"
             }
           />
-          <div
+          <button
             ref={navigationNextRef}
             className={
-              "button border-none shadow-none focus:outline-none fas fa-arrow-right hidden t:block"
+              "rounded-full -right-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-right absolute focus:outline-none"
             }
           />
         </div>
-      </Swiper>
-    </>
+      </div>
+    </div>
   );
 };
 

@@ -9,17 +9,7 @@ import {
 import MainInfo from "../footprint/MainInfo.jsx";
 import ManageActions from "./manage_actions/ManageActions.jsx";
 
-const ClimateActionsContainer = ({
-  user,
-  climateActionCategories,
-  footprint,
-  commonText,
-  countryAverage,
-  modelText,
-  lang,
-  registrationsText,
-  totalNoFootprints,
-}) => {
+const ClimateActionsContainer = ({ user, climateActionCategories }) => {
   const deletedAction = useDeletedAction();
   const climateActions = useClimateActions();
   const setClimateActions = useClimateActionsUpdate();
@@ -50,17 +40,10 @@ const ClimateActionsContainer = ({
   return (
     <>
       <MainInfo
-        footprint={JSON.parse(footprint)}
-        commonText={commonText}
         action={monthlyAction}
         user={user}
         updateLocalAccepted={updateLocalAccepted}
         categories={JSON.parse(climateActionCategories)}
-        countryAverage={countryAverage}
-        modelText={modelText}
-        lang={lang}
-        registrationsText={registrationsText}
-        totalNoFootprints={totalNoFootprints}
       ></MainInfo>
       <CarouselContainer
         user={user}

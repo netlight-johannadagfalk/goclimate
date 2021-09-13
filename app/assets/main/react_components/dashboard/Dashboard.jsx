@@ -4,6 +4,7 @@ import { CategoryProvider } from "../contexts/CategoryContext.js";
 import { DeletedActionProvider } from "../contexts/DeletedActionContext.js";
 import { UserActionsProvider } from "../contexts/UserActionsContext.js";
 import { ClimateActionsProvider } from "../contexts/ClimateActionsContext.js";
+import { FootprintProvider } from "../contexts/FootprintContext.js";
 
 const Dashboard = ({
   user,
@@ -32,9 +33,7 @@ const Dashboard = ({
             actionsWithUserActions={actionsWithUserActions}
             actionsWithoutUserActions={actionsWithoutUserActions}
           >
-            <ClimateActionsContainer
-              user={user}
-              climateActionCategories={climateActionCategories}
+            <FootprintProvider
               footprint={footprint}
               commonText={commonText}
               countryAverage={countryAverage}
@@ -42,7 +41,12 @@ const Dashboard = ({
               lang={lang}
               registrationsText={registrationsText}
               totalNoFootprints={totalNoFootprints}
-            ></ClimateActionsContainer>
+            >
+              <ClimateActionsContainer
+                user={user}
+                climateActionCategories={climateActionCategories}
+              ></ClimateActionsContainer>
+            </FootprintProvider>
           </ClimateActionsProvider>
         </UserActionsProvider>
       </CategoryProvider>
