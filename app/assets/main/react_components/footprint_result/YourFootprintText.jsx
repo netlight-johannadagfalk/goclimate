@@ -17,9 +17,6 @@ const YourFootprintText = ({ footprintValue, priceObject }) => {
         },
     } = useLocaleData();
     const [price] = useState(extractPrice())
-
-    console.log(your_footprint_result_text)
-
     var text = your_footprint_result_text
     const unit_of_co2 = tonnes
     const stringKeys = ["%{footprint}" ,"%{unit_of_co2}", "%{price}", "%{time_unit}"]

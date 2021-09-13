@@ -18,7 +18,7 @@ const Container = ({
   reactContentText
 }) => {
   const [showInformationSection, setShowInformationSection] = useState(false);
-  console.log("object", reactContentText);
+
   return (
     <StaticDataProvider
       registrationsText={registrationsText}
