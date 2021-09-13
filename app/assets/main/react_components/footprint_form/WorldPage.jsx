@@ -10,7 +10,7 @@ const WorldPage = ({ footprint, countryAverage }) => {
   } = useTexts();
 
   return (
-    <div className='max-w-lg mx-auto'>
+    <div className="max-w-lg mx-auto">
       <Title text={well_done} />
       <YourFootprintText
         footprintValue={(footprint.total.co2e / 1000).toFixed(1)}

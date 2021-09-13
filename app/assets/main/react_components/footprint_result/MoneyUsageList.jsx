@@ -14,9 +14,9 @@ const MoneyUsageList = () => {
   );
 
   return (
-    <div className='space-y-3'>
-      <h3 className='font-semibold'>{heading}</h3>
-      <ul className='list-check space-y-3 text-left'>
+    <div className="space-y-3">
+      <h3 className="font-semibold">{heading}</h3>
+      <ul className="list-check space-y-3 text-left">
         {listValues.map(([key, text]) => (
           <li key={key}>{text}</li>
         ))}

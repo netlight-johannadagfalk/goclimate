@@ -15,11 +15,11 @@ const MembershipTypeSelector = ({
   } = useTexts();
 
   return (
-    <div className='space-y-3 text-left'>
+    <div className="space-y-3 text-left">
       <SelectButton
         selectedMembership={selectedMembership}
         setSelectedMembership={setSelectedMembership}
-        buttonType='free'
+        buttonType="free"
         text={free}
         multipleOffsets={multipleOffsets}
         setMultipleOffsets={setMultipleOffsets}
@@ -27,7 +27,7 @@ const MembershipTypeSelector = ({
       <SelectButton
         selectedMembership={selectedMembership}
         setSelectedMembership={setSelectedMembership}
-        buttonType='single'
+        buttonType="single"
         text={single}
         multipleOffsets={multipleOffsets}
         setMultipleOffsets={setMultipleOffsets}
@@ -35,7 +35,7 @@ const MembershipTypeSelector = ({
       <SelectButton
         selectedMembership={selectedMembership}
         setSelectedMembership={setSelectedMembership}
-        buttonType='multi'
+        buttonType="multi"
         text={multi}
         multipleOffsets={multipleOffsets}
         setMultipleOffsets={setMultipleOffsets}

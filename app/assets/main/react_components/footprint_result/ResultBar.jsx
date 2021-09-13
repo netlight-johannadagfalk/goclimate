@@ -11,16 +11,16 @@ const ResultBar = ({
 }) => {
   return (
     <div className={spaceStyling}>
-      <div className='text-left'>
+      <div className="text-left">
         {title.icon && (
           <i
             className={'fas fa-fw m-lg:fa-lg ' + title.icon}
-            aria-hidden='true'
+            aria-hidden="true"
           ></i>
         )}
         <span className={fontWeight}>{title.text}</span>
       </div>
-      <div className='flex-1 pr-24'>
+      <div className="flex-1 pr-24">
         <div
           className={
             'relative h-5 m-lg:h-6 ' + (width > 0 ? 'box-content pr-2' : '')

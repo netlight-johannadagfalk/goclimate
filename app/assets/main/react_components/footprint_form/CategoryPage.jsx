@@ -13,7 +13,7 @@ const CategoryPage = ({ footprint }) => {
   } = useTexts();
 
   return (
-    <div className='max-w-lg mx-auto'>
+    <div className="max-w-lg mx-auto">
       <Title text={heading_more} />
       <CategoryChart footprint={footprint} />
     </div>

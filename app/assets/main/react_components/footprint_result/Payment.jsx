@@ -144,29 +144,29 @@ const Payment = ({
   return (
     <>
       {Elements && stripe && (
-        <form className='text-left' onSubmit={submitPayment}>
-          <label className='block font-semibold mt-3'>{email}</label>
+        <form className="text-left" onSubmit={submitPayment}>
+          <label className="block font-semibold mt-3">{email}</label>
           <input
             required
             placeholder={email}
             onChange={(e) => setUserEmail(e.target.value)}
-            type='email'
-            className='input w-full'
-            autoComplete='on'
+            type="email"
+            className="input w-full"
+            autoComplete="on"
           />
-          <label className='block font-semibold mt-3'>{password}</label>
+          <label className="block font-semibold mt-3">{password}</label>
           <input
             placeholder={password}
             onChange={(e) => setUserPassword(e.target.value)}
-            className='input w-full'
+            className="input w-full"
             minLength={6}
             maxLength={128}
-            autoComplete='new-password'
-            type='password'
+            autoComplete="new-password"
+            type="password"
           />
           {selectedMembership !== 'free' && (
             <>
-              <label className='block font-semibold mt-3'>
+              <label className="block font-semibold mt-3">
                 {credit_or_debit_card}
               </label>
               <CardElement
@@ -174,13 +174,13 @@ const Payment = ({
                   setCardErrorMessage(e.error ? e.error.message : '');
                 }}
                 options={{ hidePostalCode: true }}
-                className='py-3 w-full input mb-1 StripeElement StripeElement--empty'
+                className="py-3 w-full input mb-1 StripeElement StripeElement--empty"
               />
-              <div className='text-orange-shade-1 text-left'>
+              <div className="text-orange-shade-1 text-left">
                 {cardErrorMessage}
               </div>
-              <i className='fas fa-lock' aria-hidden='true'></i>
-              <span className='ml-1'>Secured by Stripe</span>
+              <i className="fas fa-lock" aria-hidden="true"></i>
+              <span className="ml-1">Secured by Stripe</span>
             </>
           )}
           <PriceText
@@ -188,15 +188,16 @@ const Payment = ({
             grantedReferralCode={grantedReferralCode}
             selectedMembership={selectedMembership}
           />
-          <p className='text-orange-shade-1 pb-3 text-left'>{errorMessage}</p>
+          <p className="text-orange-shade-1 pb-3 text-left">{errorMessage}</p>
           <button
+            disabled={loadingIconState === ''}
             className={'button button-cta w-full'}
-            type='submit'
+            type="submit"
             onClick={() => setErrorMessage('')}
           >
             <i
               className={'fas fa-spinner fa-spin ' + loadingIconState}
-              data-target='registrations--form.loadingIndicator'
+              data-target="registrations--form.loadingIndicator"
             ></i>
             <span> {start_subscription}</span>
           </button>

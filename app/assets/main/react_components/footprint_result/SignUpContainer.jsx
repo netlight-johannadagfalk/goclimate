@@ -19,8 +19,8 @@ const SignUpContainer = ({
   } = useTexts();
 
   return (
-    <div className='max-w-lg mx-auto'>
-      <div className='space-y-3'>
+    <div className="max-w-lg mx-auto">
+      <div className="space-y-3">
         <Title text={sign_up_heading_collective_efficacy} />
         <SignUpMotivationText />
         <MembershipSelector

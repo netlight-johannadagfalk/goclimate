@@ -10,7 +10,7 @@ import ConfirmSignUpContainer from '../footprint_result/ConfirmSignUpContainer.j
 const ResultPage = ({ result, page, onPageChange }) => {
   const [selectedMembership, setSelectedMembership] = useState('single');
   const [multipleOffsets, setMultipleOffsets] = useState(2);
-  const [grantedReferralCode, setGrantedReferralCode] = useState();
+  const [grantedReferralCode, setGrantedReferralCode] = useState('');
   const [price, setPrice] = useState(0);
 
   const {
@@ -26,8 +26,10 @@ const ResultPage = ({ result, page, onPageChange }) => {
     },
   } = useLocaleData();
 
-  const footprint = result.footprint;
+  //const footprint = result.footprint;
   const countryAverage = result.country_average;
+
+  console.log('RES', result.footprint);
 
   const calculatePrice = () => {
     var price = result.plan.price.subunit_amount / 100;
@@ -52,11 +54,14 @@ const ResultPage = ({ result, page, onPageChange }) => {
 
   return (
     <div>
-      <div className='my-8'>
+      <div className="my-8">
         {page === 0 ? (
-          <WorldPage footprint={footprint} countryAverage={countryAverage} />
+          <WorldPage
+            footprint={result.footprint}
+            countryAverage={countryAverage}
+          />
         ) : page === 1 ? (
-          <CategoryPage footprint={footprint} />
+          <CategoryPage footprint={result.footprint} />
         ) : page === 2 ? (
           <SignUpContainer
             selectedMembership={selectedMembership}
@@ -70,7 +75,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
         ) : (
           <ConfirmSignUpContainer
             selectedMembership={selectedMembership}
-            lifestyleFootprint={footprint.key}
+            lifestyleFootprint={result.footprint.key}
             grantedReferralCode={grantedReferralCode}
             multipleOffsets={multipleOffsets}
             price={price}

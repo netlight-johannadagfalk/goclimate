@@ -18,7 +18,7 @@ const MembershipSelector = ({
         multipleOffsets={multipleOffsets}
         setMultipleOffsets={setMultipleOffsets}
       />
-      <div data-inactive-class='hidden'>
+      <div data-inactive-class="hidden">
         {selectedMembership !== 'free' && (
           <ReferralCode
             grantedReferralCode={grantedReferralCode}
