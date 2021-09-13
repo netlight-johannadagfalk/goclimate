@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import getChartData from './result-helper';
 import ResultBar from './ResultBar.jsx';
 
@@ -9,7 +9,7 @@ const CategoryChart = ({ footprint, categoryChartText }) => {
     const maxValue = Math.max(footprint.housing.co2e, footprint.food.co2e, footprint.car.co2e, footprint.flights.co2e, footprint.public.co2e, footprint.consumption.co2e)
     const categoryData = getChartData(footprint, categoryChartText)
     return (
-        <div className="space-y-3">
+        <div className="space-y-6 mt-5">
             {categoryData.map((category) => {
                 return (
                     <ResultBar

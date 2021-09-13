@@ -3,13 +3,13 @@ import React from 'react';
 /**
  * React container signup motivation text
  */
-const SignUpMotivationText = ({ signUpMotivationText }) => {
+const SignUpIngress = ({ text }) => {
 
     return (
         <p className="text-center"> 
-            {signUpMotivationText}
+            {text}
         </p>
     )
 }
 
-export default SignUpMotivationText;
+export default SignUpIngress;
