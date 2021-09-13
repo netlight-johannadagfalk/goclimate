@@ -79,7 +79,6 @@ const KanbanActionItem = ({
                     snapshot
                   )
             }
-            onClick={() => handleExpanded(item, !item.expanded)}
           >
             {collapsed ? (
               <div className="flex flex-1 items-center justify-center shadow-md">
