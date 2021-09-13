@@ -28,18 +28,16 @@ class GiftCardReceiptPdf
     gift_card.currency.iso_code
   end
 
-  # TODO: After price data has been migrated to always include VAT/non-VAT
-  # subtotals, use those attributes directly instead of recalculating.
   def total_amount
-    BigDecimal(gift_card.price_incl_taxes.amount)
+    gift_card.price_incl_taxes.amount
   end
 
   def vat_amount
-    (total_amount * (1 - (1 / BigDecimal('1.25')))).round(2)
+    gift_card.vat_amount.amount
   end
 
   def total_amount_before_vat
-    total_amount - vat_amount
+    gift_card.price.amount
   end
 
   def order_id
