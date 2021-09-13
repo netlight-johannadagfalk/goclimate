@@ -1,6 +1,6 @@
 import React from "react";
 import CarouselActionItem from "./CarouselActionItem.jsx";
-import { useClimateActions } from "./contexts/ClimateActionsContext.js";
+import { useClimateActions } from "../../../contexts/ClimateActionsContext.js";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.min.css";
@@ -23,8 +23,6 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 414px)" });
   const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
   const isLargeTablet = useMediaQuery({ query: "(max-width: 1024px)" });
-
-  console.log(isTablet);
 
   const sortForMobileClimateActions = orderBy(
     climateActions,

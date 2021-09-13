@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import CarouselContainer from "./CarouselContainer.jsx";
-// import CarouselActionItem from "./CarouselActionItem.jsx";
-import { useDeletedAction } from "./contexts/DeletedActionContext.js";
+import CarouselContainer from "./carousel/CarouselContainer.jsx";
+import { useDeletedAction } from "../../contexts/DeletedActionContext.js";
 import {
   useClimateActions,
   useClimateActionsUpdate,
   useClimateActionsOriginal,
-} from "./contexts/ClimateActionsContext.js";
-import Sidebar from "./Sidebar.jsx";
-import { useMediaQuery } from "react-responsive";
-import MainInfo from "./MainInfo.jsx";
+} from "../../contexts/ClimateActionsContext.js";
+import MainInfo from "../footprint/MainInfo.jsx";
+import ManageActions from "./manage_actions/ManageActions.jsx";
 
 const ClimateActionsContainer = ({
   user,
@@ -30,8 +28,6 @@ const ClimateActionsContainer = ({
   const [monthlyAction, setMonthlyAction] = useState(
     totClimateActions.find((action) => action.action_of_the_month === true)
   );
-
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
   const updateLocalAccepted = (actionID) => {
     setClimateActions(
@@ -71,11 +67,8 @@ const ClimateActionsContainer = ({
         updateLocalAccepted={updateLocalAccepted}
         categories={formatedCategories}
       />
-      {!isTabletOrMobile && (
-        <div className="w-full">
-          <Sidebar categories={formatedCategories} />
-        </div>
-      )}
+
+      <ManageActions categories={formatedCategories}></ManageActions>
     </>
   );
 };
