@@ -15,9 +15,10 @@ const Container = ({
   lifestyleFootprintsText,
   currency,
   projects,
+  reactContentText
 }) => {
   const [showInformationSection, setShowInformationSection] = useState(false);
-
+  console.log("object", reactContentText);
   return (
     <StaticDataProvider
       registrationsText={registrationsText}
@@ -28,6 +29,7 @@ const Container = ({
       slug={slug}
       lang={lang}
       projects={projects}
+      reactContentText={reactContentText}
     >
       <div className='space-y-6'>
         <div className='callout'>

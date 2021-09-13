@@ -8,13 +8,14 @@ export const useTexts = () => {
     return context
 }
 
-export const TextsProvider = ({ children, commonText, lifestyleFootprintsText, modelText, registrationsText, slug }) => {
+export const TextsProvider = ({ children, commonText, lifestyleFootprintsText, modelText, registrationsText, slug, reactContentText }) => {
     
     const texts = {
         commonText: JSON.parse(commonText),
         lifestyleFootprintsText: JSON.parse(lifestyleFootprintsText),
         modelText: JSON.parse(modelText),
-        registrationsText: JSON.parse(registrationsText)
+        registrationsText: JSON.parse(registrationsText),
+        reactContentText: JSON.parse(reactContentText)
     };
 
     if(texts.registrationsText.accept_policies === undefined)

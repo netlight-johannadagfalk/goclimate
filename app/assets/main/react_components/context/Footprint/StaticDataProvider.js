@@ -3,8 +3,8 @@ import { LocaleProvider } from "./LocaleContext";
 import { TextsProvider } from "./TextsContext";
 import { ProjectsProvider } from "./ProjectsContext";
 
-const StaticDataProvider = ({ children, commonText, currency, lang, lifestyleFootprintsText, modelText, projects, registrationsText, slug }) => {
-
+const StaticDataProvider = ({ children, commonText, currency, lang, lifestyleFootprintsText, modelText, projects, registrationsText, slug, reactContentText }) => {
+    console.log(reactContentText);
     return (
         <TextsProvider 
             commonText={commonText}
@@ -12,6 +12,7 @@ const StaticDataProvider = ({ children, commonText, currency, lang, lifestyleFoo
             modelText={modelText}
             registrationsText={registrationsText}
             slug={slug}
+            reactContentText={reactContentText}
         >
             <LocaleProvider 
                 currency={currency} 

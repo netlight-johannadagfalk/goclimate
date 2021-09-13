@@ -6,9 +6,9 @@ import { useLocaleData } from '../context/Footprint/LocaleContext.js';
  * Result text for your footprint
  * Includes a heading and the footprint result in tonnes
  */
-const YourFootprintText = ({ footprintText, footprintValue, priceObject }) => {
+const YourFootprintText = ({ footprintValue, priceObject }) => {
 
-    const { commonText: { dashboard: { footprint: { heading } }, months: { one: month }, tonnes_CO2 } } = useTexts()
+    const { commonText: { dashboard: { footprint: { heading } }, months: { one: month }, tonnes}, reactContentText: { react: { your_footprint_result_text }}  } = useTexts()
     const {
         currency: {
           money: {
@@ -18,8 +18,10 @@ const YourFootprintText = ({ footprintText, footprintValue, priceObject }) => {
     } = useLocaleData();
     const [price] = useState(extractPrice())
 
-    var text = " Ditt årliga klimatavtryck är %{footprint} %{unit_of_co2} koldioxid. För %{price} %{time_unit} hjälper vi dig att klimatkompensera ditt avtryck. Summan fördelas till olika klimatavtryck som gör skillnad för klimatet."
-    const unit_of_co2 = "ton "
+    console.log(your_footprint_result_text)
+
+    var text = your_footprint_result_text
+    const unit_of_co2 = tonnes
     const stringKeys = ["%{footprint}" ,"%{unit_of_co2}", "%{price}", "%{time_unit}"]
     var stringParts = []
 
@@ -30,7 +32,6 @@ const YourFootprintText = ({ footprintText, footprintValue, priceObject }) => {
     stringParts.push(text)
 
     function extractPrice () {
-        // var currencyText = currency.money.currency_formats[priceObject.currency.iso_code];
         var price = (priceObject.subunit_amount/100)
         if (Math.trunc(price) != price) {
             price = price.toFixed(2);
@@ -54,7 +55,6 @@ const YourFootprintText = ({ footprintText, footprintValue, priceObject }) => {
                 <span className="text-lg font-bold text-green-accent">{price}</span>
                 <span className="font-bold text-green-accent">/{month}</span>
                 {stringParts[4]}
-
             </div>
         </div>
     )

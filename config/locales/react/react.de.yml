@@ -1,3 +1,3 @@
-en:
+de:
   react:
-    your_footprint_result_text: Ditt årliga klimatavtryck är %{footprint} %{unit_of_co2} koldioxid. För %{price} %{time_unit} hjälper vi dig att klimatkompensera ditt avtryck. Summan fördelas till olika klimatavtryck som gör skillnad för klimatet.
+    your_footprint_result_text: Your annual climate footprint is %{footprint} %{unit_of_co2} of carbon dioxide. For %{price} %{time_unit} we help you climate compensate your imprint. The sum is distributed to different climate footprints that make a difference to the climate.
