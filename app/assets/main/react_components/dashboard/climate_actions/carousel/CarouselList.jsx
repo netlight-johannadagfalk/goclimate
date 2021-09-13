@@ -1,6 +1,6 @@
 import React from "react";
 import CarouselActionItem from "./CarouselActionItem.jsx";
-import { useClimateActions } from "./contexts/ClimateActionsContext.js";
+import { useClimateActions } from "../../../contexts/ClimateActionsContext.js";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.min.css";
@@ -20,7 +20,9 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const navigationNextRef = React.useRef(null);
 
   const climateActions = useClimateActions();
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 414px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
+  const isLargeTablet = useMediaQuery({ query: "(max-width: 1024px)" });
 
   const sortForMobileClimateActions = orderBy(
     climateActions,
@@ -28,14 +30,15 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
     ["desc"]
   );
 
-  const actions = isTabletOrMobile
-    ? sortForMobileClimateActions
-    : climateActions;
+  const actions = isMobile ? sortForMobileClimateActions : climateActions;
 
   return (
     <div className="relative">
       <Swiper
-        slidesPerView={4}
+        className="m-4"
+        slidesPerView={
+          isMobile ? 1.5 : isTablet ? 2.5 : isLargeTablet ? 3.5 : 4
+        }
         navigation={{
           nextEl: navigationPrevRef.current,
           prevEl: navigationNextRef.current,
