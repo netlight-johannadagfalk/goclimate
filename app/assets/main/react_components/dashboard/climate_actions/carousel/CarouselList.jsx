@@ -7,6 +7,7 @@ import "swiper/components/navigation/navigation.min.css";
 import "swiper/components/pagination/pagination.min.css";
 import { orderBy } from "lodash";
 import { useMediaQuery } from "react-responsive";
+import { m, t, d } from "../../../constants";
 
 // Swiper resources
 //https://swiperjs.com/react
@@ -20,9 +21,9 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const navigationNextRef = React.useRef(null);
 
   const climateActions = useClimateActions();
-  const isMobile = useMediaQuery({ query: "(max-width: 414px)" });
-  const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
-  const isLargeTablet = useMediaQuery({ query: "(max-width: 1024px)" });
+  const isMobile = useMediaQuery({ query: `(max-width: ${m})` });
+  const isTablet = useMediaQuery({ query: `(max-width: ${t})` });
+  const isLargeTablet = useMediaQuery({ query: `(max-width: ${d})` });
 
   const sortForMobileClimateActions = orderBy(
     climateActions,
