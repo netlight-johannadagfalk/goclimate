@@ -1,9 +1,9 @@
 import React from 'react';
 
 /**
- * React container signup motivation text
+ * React container signup motivation text PREAMBLE
  */
-const SignUpIngress = ({ text }) => {
+const SignUpPreamble = ({ text }) => {
     return (
         <p className="text-center"> 
             {text}
@@ -11,4 +11,4 @@ const SignUpIngress = ({ text }) => {
     )
 }
 
-export default SignUpIngress;
+export default SignUpPreamble;

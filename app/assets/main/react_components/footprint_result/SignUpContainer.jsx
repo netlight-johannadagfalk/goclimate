@@ -2,7 +2,7 @@ import { default as React } from 'react';
 import { useTexts } from '../context/Footprint/TextsContext.js';
 import Title from '../footprint_form/Title.jsx';
 import PriceText from './PriceText.jsx';
-import SignUpIngress from './SignUpIngress.jsx';
+import SignUpPreamble from './SignUpPreamble.jsx';
 
 /**
  * React container for Sign up components
@@ -19,7 +19,7 @@ const SignUpContainer = ( props ) => {
         <div className="max-w-lg mx-auto">
             <div className="space-y-3">
                 <Title text={sign_up_heading_collective_efficacy} custom_style="text-lgr" />
-                <SignUpIngress
+                <SignUpPreamble
                     text={sign_up_description}                            
                 /> 
                 <div className="toggler-checked:hidden">
