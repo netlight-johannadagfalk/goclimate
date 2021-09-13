@@ -79,10 +79,20 @@ module Admin
     def invoice_params
       params
         .require(:invoice)
-        .permit(:amount_in_sek, :co2e, :receiver, :project_id, :fortnox_id, :comment, :certificate_sent_at,
-                :certificate_reciever_email)
+        .tap do |params|
+          params[:amount_in_sek] = money_param_to_subunit(params[:amount_in_sek])
+          params[:offsetting_subtotal] = money_param_to_subunit(params[:offsetting_subtotal])
+          params[:consulting_subtotal] = money_param_to_subunit(params[:consulting_subtotal])
+          params[:products_subtotal] = money_param_to_subunit(params[:products_subtotal])
+        end
+        .permit(:amount_in_sek, :offsetting_subtotal, :consulting_subtotal, :products_subtotal, :co2e, :receiver,
+                :project_id, :fortnox_id, :comment, :certificate_sent_at, :certificate_reciever_email)
         .transform_values { |value| value.blank? ? nil : value }
         .tap { |params| params[:certificate_sent_at] = Time.now if params[:certificate_sent_at] == 'now' }
+    end
+
+    def money_param_to_subunit(string)
+      (string.to_d * 100).to_i if string.present?
     end
   end
 end

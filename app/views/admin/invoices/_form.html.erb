@@ -25,12 +25,27 @@
     </div>
 
     <div class="flex flex-col">
-      <p><%= f.label :amount_in_sek, class: 'font-bold' %> (including VAT)</p>
-      <%= f.number_field :amount_in_sek, class: 'input' %>
+      <p><%= f.label :amount_in_sek, 'Total amount', class: 'font-bold' %> (in SEK, <u>excluding</u> VAT)</p>
+      <%= f.number_field :amount_in_sek, class: 'input', value: f.object.amount_in_sek&.amount %>
     </div>
 
     <div class="flex flex-col">
-      <p><%= f.label :co2e, class: 'font-bold' %> (in kg)</p>
+      <p><%= f.label :offsetting_subtotal, 'Offsetting amount, of total', class: 'font-bold' %> (in SEK)</p>
+      <%= f.number_field :offsetting_subtotal, class: 'input', value: f.object.offsetting_subtotal&.amount %>
+    </div>
+
+    <div class="flex flex-col">
+      <p><%= f.label :consulting_subtotal, 'Consulting amount, of total', class: 'font-bold' %> (in SEK)</p>
+      <%= f.number_field :consulting_subtotal, class: 'input', value: f.object.consulting_subtotal&.amount %>
+    </div>
+
+    <div class="flex flex-col">
+      <p><%= f.label :products_subtotal, 'Products amount, of total', class: 'font-bold' %> (in SEK)</p>
+      <%= f.number_field :products_subtotal, class: 'input', value: f.object.products_subtotal&.amount %>
+    </div>
+
+    <div class="flex flex-col">
+      <p><%= f.label :co2e, 'Offsetting', class: 'font-bold' %> (in kg CO2e)</p>
       <%= f.number_field :co2e, class: 'input' %>
     </div>
 

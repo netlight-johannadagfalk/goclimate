@@ -17,7 +17,7 @@
       <h3 class="heading">Status economy</h3>
       <ul class="list-bullet">
         <li>Not registered invoices: <b><%= @missing_fortnox_ids %></b></li>
-        <li>Total spent on offsets: <%= number_with_delimiter(@total_sek_spent) %> SEK</li>
+        <li>Total spent on offsets: <%= @total_sek_spent.to_s(precision: :auto) %></li>
       </ul>
     </div>
   </section>

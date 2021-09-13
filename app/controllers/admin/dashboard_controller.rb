@@ -7,7 +7,7 @@ module Admin
       @total_co2_consumed = offsetting_statistics.total_sold
       @sold_offsetting_per_month = offsetting_statistics.sold_offsetting_per_month.to_a.reverse.to_h
       @total_co2_bought = Project.total_co2e
-      @total_sek_spent = Project.all.sum('cost_in_sek')
+      @total_sek_spent = Money.new(Project.all.sum('cost_in_sek'), :sek)
       @users_stats = UsersStatistics.new
       @missing_fortnox_ids = missing_fortnox_ids.join(', ')
     end

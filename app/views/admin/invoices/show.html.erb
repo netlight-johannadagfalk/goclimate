@@ -42,7 +42,14 @@
     <dd><%= @invoice.receiver %></dd>
 
     <dt>Amount</dt>
-    <dd><%= @invoice.amount_in_sek %> SEK</dd>
+    <dd><%= @invoice.amount_in_sek || '-' %></dd>
+
+    <dt>Subtotals</dt>
+    <dd>
+      Offsetting: <%= @invoice.offsetting_subtotal || '-' %><br>
+      Consulting: <%= @invoice.consulting_subtotal || '-' %><br>
+      Products: <%= @invoice.products_subtotal || '-' %><br>
+    </dd>
 
     <dt>Carbon offset:</dt>
     <dd><%= @invoice.co2e %> kg co2e</dd>
