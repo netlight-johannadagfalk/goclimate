@@ -70,13 +70,13 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
           <button
             ref={navigationPrevRef}
             className={
-              "rounded-full -left-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left absolute"
+              "rounded-full -left-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left absolute focus:outline-none"
             }
           />
           <button
             ref={navigationNextRef}
             className={
-              "rounded-full -right-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-right absolute"
+              "rounded-full -right-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-right absolute focus:outline-none"
             }
           />
         </div>
