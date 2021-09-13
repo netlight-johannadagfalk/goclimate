@@ -23,7 +23,7 @@ const ProgressBar = ({ questionCategories, currentObject }) => {
 
   return (
     <>
-      <div className='flex justify-center space-x-3 m-lg:space-x-6 text-gray-shade-2'>
+      <div className="flex justify-center space-x-3 m-lg:space-x-6 text-gray-shade-2">
         {categories.map((category) => {
           currentObject.category == category
             ? (currentClass = activeCategoryClass)
@@ -40,10 +40,10 @@ const ProgressBar = ({ questionCategories, currentObject }) => {
                 <div className={'fas fa-lg ' + 'fa-' + category}></div>
               </div>
               {
-                <div className='flex justify-center space-x-1 text-gray-shade-2 content-between text-sm text-gray-accent block'>
+                <div className="flex justify-center space-x-1 text-gray-shade-2 content-between text-sm text-gray-accent block">
                   {isCompletedCategory && (
-                    <div className='text-green-accent block'>
-                      <i className='text-base fa fa-check-circle'></i>
+                    <div className="text-green-accent block">
+                      <i className="text-base fa fa-check-circle"></i>
                     </div>
                   )}
                   {Object.keys(questionCategories).map((question) => {

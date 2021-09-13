@@ -197,7 +197,7 @@ const FootprintForm = ({
 
   return (
     <>
-      <div className='question py-8'>
+      <div className="question py-8">
         <ProgressBar
           questionCategories={getUsedQuestions()}
           currentObject={currentObject}
@@ -232,19 +232,19 @@ const FootprintForm = ({
         )}
       </div>
       {currentIndex > 0 && (
-        <div className='flex justify-space-between'>
-          <div className='block'>
+        <div className="flex justify-space-between">
+          <div className="block">
             <i
-              className='fas fa-chevron-left cursor-pointer'
-              aria-hidden='true'
+              className="fas fa-chevron-left cursor-pointer"
+              aria-hidden="true"
             ></i>
-            <label className='px-1 cursor-pointer' onClick={onGoBack}>
+            <label className="px-1 cursor-pointer" onClick={onGoBack}>
               Go back
             </label>
           </div>
         </div>
       )}
-      <div id='information-scroll-position'></div>
+      <div id="information-scroll-position"></div>
     </>
   );
 };

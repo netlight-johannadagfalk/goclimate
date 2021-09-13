@@ -9,7 +9,7 @@ const OptionList = ({ onAnswerGiven, options, selectedKey }) => {
     <>
       {options.map(([key, value]) => {
         return (
-          <div key={key} className='my-3 flex-1'>
+          <div key={key} className="my-3 flex-1">
             <AnswerButton
               label={value}
               onAnswerGiven={() => onAnswerGiven(key)}

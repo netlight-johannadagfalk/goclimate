@@ -15,14 +15,14 @@ export default class Button extends Component {
       let statusIndicator;
       if (status === 'loading') {
         statusIndicator = (
-          <span className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-            <i className='fas fa-circle-notch fa-spin'></i>
+          <span className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <i className="fas fa-circle-notch fa-spin"></i>
           </span>
         );
       } else if (status === 'success') {
         statusIndicator = (
-          <span className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-            <i className='fas fa-check'></i>
+          <span className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <i className="fas fa-check"></i>
           </span>
         );
       }

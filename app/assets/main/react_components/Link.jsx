@@ -4,11 +4,11 @@ const Link = ({ style, link, linkText, onClick }) => {
   return (
     <div className={style}>
       <a
-        className='link'
-        target='_blank'
+        className="link"
+        target="_blank"
         href={link}
         onClick={onClick}
-        rel='noreferrer'
+        rel="noreferrer"
       >
         {linkText}
       </a>

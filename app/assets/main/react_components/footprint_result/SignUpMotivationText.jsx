@@ -9,7 +9,7 @@ const SignUpMotivationText = () => {
     registrationsText: { sign_up_description },
   } = useTexts();
 
-  return <p className='text-center'>{sign_up_description}</p>;
+  return <p className="text-center">{sign_up_description}</p>;
 };
 
 export default SignUpMotivationText;

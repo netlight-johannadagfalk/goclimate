@@ -29,8 +29,8 @@ const Container = ({
       lang={lang}
       projects={projects}
     >
-      <div className='space-y-6'>
-        <div className='callout'>
+      <div className="space-y-6">
+        <div className="callout">
           <FootprintForm
             footprint={JSON.parse(footprint)}
             calculator={JSON.parse(calculator)}
@@ -41,7 +41,7 @@ const Container = ({
         </div>
         <Link
           style={'text-sm'}
-          link='https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/'
+          link="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"
           linkText={JSON.parse(lifestyleFootprintsText).methodology}
         />
         {showInformationSection && <InformationSection />}

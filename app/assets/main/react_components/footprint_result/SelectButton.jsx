@@ -23,16 +23,16 @@ const SelectButton = ({
   return (
     <label className={style} htmlFor={buttonType}>
       <input
-        className='flex-shrink-0 mr-2'
-        type='radio'
-        name='membership'
+        className="flex-shrink-0 mr-2"
+        type="radio"
+        name="membership"
         id={buttonType}
         checked={selectedMembership === buttonType}
         value={buttonType}
         onChange={() => setSelectedMembership(buttonType)}
       />
       <span>
-        <span className='font-bold'>{boldText}</span>
+        <span className="font-bold">{boldText}</span>
         {unBoldText}
       </span>
       {buttonType == 'multi' && (

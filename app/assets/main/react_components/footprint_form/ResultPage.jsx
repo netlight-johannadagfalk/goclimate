@@ -32,7 +32,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
 
   return (
     <div>
-      <div className='my-8'>
+      <div className="my-8">
         {page === 0 ? (
           <WorldPage footprint={footprint} countryAverage={countryAverage} />
         ) : page === 1 ? (

@@ -10,7 +10,7 @@ const ResultText = ({ text, customValues = [] }) => {
     text = text.replace(findCustomPlacement, customValue);
   });
 
-  return <div className='text-left mt-8'>{text}</div>;
+  return <div className="text-left mt-8">{text}</div>;
 };
 
 export default ResultText;

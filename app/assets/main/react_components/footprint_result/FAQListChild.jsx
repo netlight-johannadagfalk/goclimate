@@ -10,21 +10,21 @@ const FAQListChild = ({ question, answer }) => {
   const [collapseState, setCollapseState] = useState('hidden');
 
   return (
-    <div className='block border p-3 rounded text-left collapse'>
+    <div className="block border p-3 rounded text-left collapse">
       <div
-        className='flex justify-between cursor-pointer'
+        className="flex justify-between cursor-pointer"
         onClick={() =>
           setCollapseState(collapseState === 'hidden' ? 'block' : 'hidden')
         }
       >
-        <div className='font-semibold'>{question}</div>
-        <div className='pl-3'>
+        <div className="font-semibold">{question}</div>
+        <div className="pl-3">
           <i
             className={
               'fas fa-chevron-circle-down transition-transform ease-in-out duration-300 ' +
               (collapseState !== 'hidden' && 'transform rotate-180')
             }
-            aria-hidden='true'
+            aria-hidden="true"
           />
         </div>
       </div>

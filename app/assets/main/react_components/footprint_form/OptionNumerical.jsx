@@ -32,21 +32,21 @@ const OptionNumerical = ({
   }
 
   return (
-    <div className='flex flex-col m-lg:flex-row'>
-      <label className='input mb-3 m-lg:mb-0 m-lg:mr-3 flex m-lg:w-1/3'>
+    <div className="flex flex-col m-lg:flex-row">
+      <label className="input mb-3 m-lg:mb-0 m-lg:mr-3 flex m-lg:w-1/3">
         <input
           autoFocus
-          type='text'
-          min='0'
-          pattern='[0-9]+[.,]?[0-9]*'
-          max='2147483647'
-          size='7'
-          className='flex-1'
+          type="text"
+          min="0"
+          pattern="[0-9]+[.,]?[0-9]*"
+          max="2147483647"
+          size="7"
+          className="flex-1"
           value={value}
           onKeyPress={(e) => onKeyPress(e)}
           onChange={(e) => onChange(e)}
         />
-        {questionObject.isCarOption && <span className='ml-3'>km</span>}
+        {questionObject.isCarOption && <span className="ml-3">km</span>}
       </label>
       <AnswerButton
         label={questionObject.text}
