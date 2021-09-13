@@ -1,22 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import AnswerButton from '../footprint_form/AnswerButton.jsx';
+import { useTexts } from '../context/Footprint/TextsContext.js';
      
 /**
  * React component for referral code field in signup
  * Shows link and input field
  */
-const ReferralCode = ({ text, grantedReferralCode, setGrantedReferralCode }) => {
+const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
 
     const [invalidCodeMessage, setInvalidCodeMessage] = useState("");
     const [inputCode, setInputCode] = useState("");
 
     const mounted = useRef(false);
-    useEffect(() => {
-      mounted.current = true;
-      return () => {
-        mounted.current = false;
-      }
-    }, [])
+
+    const { registrationsText: { code, referral_code_link, referral_code_change } } = useTexts()
 
     /**
      * Function that sends a POST request to the server on referral code submit
@@ -47,30 +44,42 @@ const ReferralCode = ({ text, grantedReferralCode, setGrantedReferralCode }) => 
         .catch(error => {    
             console.log("Something went wrong, trying again.", error);
         })
+    }
+
+    useEffect(() => {
+      mounted.current = true;
+      return () => {
+        mounted.current = false;
       }
+    }, [])
 
     return (
         <div className="mt-3 collapse">
             <input type="checkbox" id="enter_referral_code"/>
             { grantedReferralCode ?
                 <div>
-                    <p className="text-center text-sm">{text.referral_code}
+                    <p className="text-center text-sm">{code}
                         <strong className="mr-1"> {inputCode}</strong>
-                        <label className="link cursor-pointer" onClick={() => {setGrantedReferralCode(false); setInputCode("")}}>{text.referral_code_change}</label>
+                        <label className="link cursor-pointer" 
+                            onClick={() => {
+                                setGrantedReferralCode(false); 
+                                setInputCode("")
+                            }}
+                        >{referral_code_change}</label>
                     </p>
                 </div>
                 :
                 <>
                     <p className="text-center text-sm">
-                        <label htmlFor="enter_referral_code" className="link cursor-pointer">{text.referral_code_link}</label>
+                        <label htmlFor="enter_referral_code" className="link cursor-pointer">{referral_code_link}</label>
                     </p>
                     <div className="collapse-content mt-3">
                         <div className="flex">
-                            <input size="auto" className="input w-full flex-grow mr-2" placeholder={text.referral_code} 
-                                type="text" name="code" id="code" onChange={e => setInputCode(e.target.value)}
-                                onKeyPress = { (e) => { 
+                            <input size="auto" className="input w-full flex-grow mr-2" placeholder={code} 
+                                type="text" name="code" id="code" value={inputCode} onChange={e => setInputCode(e.target.value)}
+                                onKeyPress = {(e) => { 
                                     if (e.key === 'Enter') 
-                                    submit();
+                                        submit();
                                 }}
                             /> 
                             <AnswerButton label={"OK"} onAnswerGiven={submit}/>
@@ -79,7 +88,6 @@ const ReferralCode = ({ text, grantedReferralCode, setGrantedReferralCode }) => 
                     </div> 
                 </>
             }
-
         </div>
     )
 }

@@ -1,12 +1,17 @@
 import React from 'react'
 import ResultBar from './ResultBar.jsx';
 import ResultText from './ResultText.jsx';
+import { useTexts } from '../context/Footprint/TextsContext.js';
+import { useLocaleData } from '../context/Footprint/LocaleContext.js';
 
 /**
  * Chart for comparison to the world using resultbars of different lengths, calculated in scale to each other
  */
-const WorldComparisonChart = ({ footprint, countryAverage, worldComparisonText, lang }) => {
+const WorldComparisonChart = ({ footprint, countryAverage }) => {
+
     const maxValue = Math.max(footprint.total.co2e, countryAverage.co2e.co2e, 2500)
+    const { lang } = useLocaleData()
+    const { modelText: { one, other}, registrationsText: { higher, lower, your_climate_footprint, your_climate_footprint_compared_world, you, goal_2030, average_in, world_average } } = useTexts()
 
     const footprintCo2e = {
         value: footprint.total.co2e,
@@ -15,8 +20,8 @@ const WorldComparisonChart = ({ footprint, countryAverage, worldComparisonText, 
         },
         text: () => {
             return footprintCo2e.inTonnes(footprintCo2e.value < 100 ? 2 : 1) <= 1 ? 
-                (worldComparisonText.one).replace('%{count}', (footprintCo2e.inTonnes(resultFootprint < 100 ? 2 : 1))) : 
-                (worldComparisonText.other).replace('%{count}', (footprintCo2e.inTonnes(footprintCo2e.value < 100 ? 2 : 1)))
+                (one).replace('%{count}', (footprintCo2e.inTonnes(footprintCo2e.value < 100 ? 2 : 1))) : 
+                (other).replace('%{count}', (footprintCo2e.inTonnes(footprintCo2e.value < 100 ? 2 : 1)))
         }
     }
     const countryAverageCo2e = {
@@ -27,16 +32,16 @@ const WorldComparisonChart = ({ footprint, countryAverage, worldComparisonText, 
     }
 
     const relativeText = footprintCo2e.value > countryAverageCo2e.value ? 
-        Math.ceil((footprintCo2e.value / countryAverageCo2e.value - 1) * 100) + " % " + worldComparisonText.higher : 
-        Math.ceil((1 - footprintCo2e.value / countryAverageCo2e.value) * 100) + " % " + worldComparisonText.lower
-    const resultText = countryAverage.countries ? worldComparisonText.your_climate_footprint : worldComparisonText.your_climate_footprint_compared_world
+        Math.ceil((footprintCo2e.value / countryAverageCo2e.value - 1) * 100) + " % " + higher : 
+        Math.ceil((1 - footprintCo2e.value / countryAverageCo2e.value) * 100) + " % " + lower
+    const resultText = countryAverage.countries ? your_climate_footprint : your_climate_footprint_compared_world
 
     return (
         <>
             <div className="relative pb-1">
                 <div className="space-y-6">
                     <ResultBar 
-                        title={{text: worldComparisonText.you + " <-"}}
+                        title={{text: you + " <-"}}
                         width={footprintCo2e.inTonnes(1) > 0 ? footprintCo2e.value / maxValue * 100 : 0} 
                         value={footprintCo2e.inTonnes(1)}
                         color={"bg-green-accent"}
@@ -44,13 +49,13 @@ const WorldComparisonChart = ({ footprint, countryAverage, worldComparisonText, 
                     />
                     <ResultBar 
                         title={{text: countryAverage.countries ? 
-                                worldComparisonText.average_in.replace('%{region}', footprint.country.data.translations[lang])
-                                : worldComparisonText.world_average}}
+                                average_in.replace('%{region}', footprint.country.data.translations[lang])
+                                : world_average}}
                         width={countryAverageCo2e.inTonnes(1) > 0 ? countryAverageCo2e.value / maxValue * 100 : 0} 
                         value={countryAverageCo2e.inTonnes(1)}
                     />
                     <ResultBar 
-                        title={{text: worldComparisonText.goal_2030}}
+                        title={{text: goal_2030}}
                         width={2500 / maxValue * 100} 
                         value={2.5}
                     />
