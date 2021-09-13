@@ -4,32 +4,32 @@ en:
       home:
         hero:
           heading: Take responsibility for your company's climate impact
-          text: Join the movement of companies who take action for our planet. We provide the support your organization needs to succeed with your climate work, whether you’re a large organization with multiple divisions or a small team. Let’s accelerate a sustainable future together!
+          text: Join the movement of companies taking action for our planet. We provide the support your organization needs to succeed with your climate work, whether you’re a large business or a small team. Let’s accelerate a sustainable future together!
         customers: A few of our amazing customers and partners
         our_offer:
           heading: We offer
           bullet_1: Self-serve solutions for calculating and offsetting your organization’s carbon footprint.
-          bullet_2: Customized carbon footprint calculations and advisory from our experienced consultants who will help accelerate your climate work.
-          bullet_3: Tailored climate reports for external and internal use, highlighting current success factors and next steps on how to make the most significant impact within your organization.
-          bullet_4: Lectures, workshops, presentations, and other climate services by request.
+          bullet_2: Customized carbon footprint calculations supported by advisory from our experienced consultants who will help accelerate your climate work.
+          bullet_3: Tailored climate reports for both external and internal use, highlighting current success factors as well as next steps on how to make the most significant impact within your organization.
+          bullet_4: Lectures, workshops, presentations, and other climate services available on request.
         advisory:
           heading: Climate advisory tailored to your organization
-          text: GoClimate calculates the carbon footprint of your organization and helps you fully understand the emissions and their sources. We help you identify what can be done to decrease your emissions, and find out which steps are needed to take you to a low carbon business operation. By using top standards and practices, we put your organization at the forefront of climate action.
+          text: GoClimate calculates the carbon footprint of your organization and helps you fully understand the emissions and their sources. We help you identify what can be done to decrease your emissions, and find out which steps are needed to make your company a low carbon business operation. By using top standards and practices, we can bring your organization to the forefront of climate action.
           read_more: Read more
           book_meeting: Book a meeting
         self_serve:
           heading: Eager to start? Make your own climate report
-          text: Use our tool to calculate and offset your emissions all through our automated method–no complicated procedure. Works for service companies.
+          text: Use our tool to calculate and offset your emissions all through our automated calculator. This tool is ideal for service companies.
           read_more: Read more
           calculate: Calculate business footprint
         offsetting:
           heading: Carbon offsetting for your business
-          text: Whether you're also using our other services or are just looking for great climate projects, you want your money to make the most impact possible. We offer a selection of the most effective and highest quality climate projects for you to support. 
+          text: Whether you're already using our other services or if you're just looking for great climate projects to support, we're guessing that you want money to make the most impact possible. This is why we offer a selection of the most effective and highest quality climate projects available, for you to support.
           learn_more: Learn more
         other_services:
           heading: Other services
           text_html: We can help out with carbon footprint calculations, one time offsets, inspirational lectures, workshops and technical integrations. Contact us at <a href='mailto:hello@goclimate.com'>hello@goclimate.com</a> to learn more.
         questions:
           heading: Any questions?
-          text_html: If you are wondering something, please check out our frequently asked questions or send us an email at <a href='mailto:hello@goclimate.com'>hello@goclimate.com</a>.
+          text_html: For further queries, please check out our frequently asked questions or send us an email at <a href='mailto:hello@goclimate.com'>hello@goclimate.com</a>.
           cta: See frequently asked questions
