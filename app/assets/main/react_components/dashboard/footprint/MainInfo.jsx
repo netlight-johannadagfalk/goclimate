@@ -28,7 +28,7 @@ const MainInfo = ({
           registrationsText={registrationsText}
         ></FootprintContainer>
 
-        <div className="hidden d-lg:block">
+        <div className="">
           <MonthlyAction
             action={action}
             user={user}
