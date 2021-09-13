@@ -10,7 +10,7 @@
   <dd><%= @flight_offset.paid_at %></dd>
 
   <dt>Price:</dt>
-  <dd><%= @flight_offset.price %></dd>
+  <dd><%= @flight_offset.price_incl_taxes %> (of which VAT <%= @flight_offset.vat_amount %>)</dd>
 
   <dt>CO2e:</dt>
   <dd><%= @flight_offset.co2e %></dd>

@@ -10,19 +10,22 @@ class FlightOffset < ApplicationRecord
   attribute :currency, :currency
   attribute :co2e, :greenhouse_gases
   money_attribute :price, :currency
+  money_attribute :vat_amount, :currency
+  money_attribute :price_incl_taxes, :currency
 
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
   validates :email, email: true
-  validates_presence_of :co2e, :price, :currency, :email
+  validates_presence_of :co2e, :price_incl_taxes, :price, :vat_amount, :currency, :email
 
   after_initialize :set_price_if_unset
+  after_initialize :set_subtotals
   before_validation :generate_key
 
   def create_payment_intent
     return payment_intent if payment_intent.present?
 
     @payment_intent = Stripe::PaymentIntent.create(
-      amount: price.subunit_amount,
+      amount: price_incl_taxes.subunit_amount,
       currency: currency.iso_code,
       description: 'Flight offset',
       metadata: { checkout_object: 'flight_offset' }
@@ -71,7 +74,8 @@ class FlightOffset < ApplicationRecord
 
     @payment_intent ||= Stripe::PaymentIntent.retrieve(payment_intent_id)
 
-    unless @payment_intent.amount == price.subunit_amount && @payment_intent.currency == currency.iso_code.to_s
+    unless @payment_intent.amount == price_incl_taxes.subunit_amount &&
+           @payment_intent.currency == currency.iso_code.to_s
       raise InvalidPaymentIntentError
     end
 
@@ -82,10 +86,23 @@ class FlightOffset < ApplicationRecord
     User.find_by_email(email)&.id
   end
 
+  # TODO: During migrations, price means price_incl_taxes if
+  # price_incl_taxes is null. Remove once all data has been migrated.
+  def price_incl_taxes
+    super || price
+  end
+
   private
 
   def set_price_if_unset
-    self.price ||= co2e.consumer_price(currency) if co2e.present? && currency.present?
+    self.price_incl_taxes ||= co2e.consumer_price(currency) if co2e.present? && currency.present?
+  end
+
+  def set_subtotals
+    return unless new_record? && price_incl_taxes.present?
+
+    self.price = price_incl_taxes / BigDecimal('1.25')
+    self.vat_amount = price_incl_taxes - price
   end
 
   def generate_key

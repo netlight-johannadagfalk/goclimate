@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Money
+  class CurrencyMismatchError < StandardError; end
+
   include Comparable
   attr_reader :subunit_amount, :currency
 
@@ -23,8 +25,20 @@ class Money
     subunit_amount <=> other.subunit_amount
   end
 
+  def -(other)
+    raise CurrencyMismatchError, <<~TEXT unless currency == other&.currency
+      Currencies must match to subtract #{other} from #{self}
+    TEXT
+
+    Money.new(subunit_amount - other.subunit_amount, currency)
+  end
+
   def *(other)
     Money.new((subunit_amount * other).round, currency)
+  end
+
+  def /(other)
+    Money.new((subunit_amount / other).round, currency)
   end
 
   def ceil

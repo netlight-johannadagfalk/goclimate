@@ -12,22 +12,26 @@ class GiftCard < ApplicationRecord
   attribute :yearly_footprint, :greenhouse_gases
   attribute :country, :country
   money_attribute :price, :currency
+  money_attribute :vat_amount, :currency
+  money_attribute :price_incl_taxes, :currency
 
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
   validates :customer_email, email: true
-  validates_presence_of :key, :number_of_months, :price, :currency, :customer_email, :co2e
+  validates_presence_of :key, :number_of_months, :price_incl_taxes, :price, :vat_amount, :currency, :customer_email,
+                        :co2e
   # Allow checking validation with payment_intent_id ignored, e.g. valid?(:without_payment_intent_id)
   validates_presence_of :payment_intent_id, on: [:create, :update]
   validate :country_average_exists
 
   after_initialize :set_co2e_and_price_if_new
+  after_initialize :set_subtotals
   before_validation :generate_key
 
   def create_payment_intent
     return payment_intent if payment_intent.present?
 
     @payment_intent = Stripe::PaymentIntent.create(
-      amount: price.subunit_amount,
+      amount: price_incl_taxes.subunit_amount,
       currency: currency.iso_code,
       description: "Gift Card #{number_of_months} months",
       metadata: { checkout_object: 'gift_card' }
@@ -75,7 +79,8 @@ class GiftCard < ApplicationRecord
 
     @payment_intent ||= Stripe::PaymentIntent.retrieve(payment_intent_id)
 
-    unless @payment_intent.amount == price.subunit_amount && @payment_intent.currency == currency.iso_code.to_s
+    unless @payment_intent.amount == price_incl_taxes.subunit_amount &&
+           @payment_intent.currency == currency.iso_code.to_s
       raise InvalidPaymentIntent
     end
 
@@ -86,6 +91,12 @@ class GiftCard < ApplicationRecord
     key
   end
 
+  # TODO: During migrations, price means price_incl_taxes if
+  # price_incl_taxes is null. Remove once all data has been migrated.
+  def price_incl_taxes
+    super || price
+  end
+
   private
 
   def set_co2e_and_price_if_new
@@ -93,7 +104,14 @@ class GiftCard < ApplicationRecord
 
     self.yearly_footprint = LifestyleFootprintAverage.find_by_country(country).co2e
     self.co2e ||= calculate_co2e if number_of_months.present?
-    self.price ||= calculate_price if co2e.present? && currency.present?
+    self.price_incl_taxes ||= calculate_price if co2e.present? && currency.present?
+  end
+
+  def set_subtotals
+    return unless new_record? && price_incl_taxes.present?
+
+    self.price = price_incl_taxes / BigDecimal('1.25')
+    self.vat_amount = price_incl_taxes - price
   end
 
   def calculate_co2e
