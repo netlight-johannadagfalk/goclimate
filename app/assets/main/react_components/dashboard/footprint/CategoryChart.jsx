@@ -1,5 +1,5 @@
 import React from "react";
-import getChartData from "./result-helper";
+import getChartData from "../../helpers/result-helper";
 import ResultBar from "./ResultBar.jsx";
 import { useFootprint } from "./contexts/FootprintContext.js";
 /**

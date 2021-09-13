@@ -1,5 +1,5 @@
 import React from "react";
-import CarouselActionItem from "./CarouselActionItem.jsx";
+import CarouselActionItem from "../dashboard/climate_actions/carousel/CarouselActionItem.jsx";
 
 const MonthlyAction = ({ action, user, updateLocalAccepted, categories }) => {
   return (

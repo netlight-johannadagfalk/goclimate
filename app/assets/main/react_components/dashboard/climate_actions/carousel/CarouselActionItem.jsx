@@ -1,11 +1,11 @@
 import React from "react";
-import { useDeletedActionUpdate } from "./contexts/DeletedActionContext.js";
+import { useDeletedActionUpdate } from "../../../contexts/DeletedActionContext.js";
 import {
   useUserActions,
   useUserActionsUpdate,
   useUserActionsColumnsWithFullFormatUpdate,
   useCategoryBadges,
-} from "./contexts/UserActionsContext.js";
+} from "../../../contexts/UserActionsContext.js";
 
 const CarouselActionItem = ({
   action,
@@ -113,7 +113,7 @@ const CarouselActionItem = ({
               })}
             </div>
             <div className=" flex-1 justify-center align-center self-center">
-              <h3 className="text-base font-bold self-center text-lg">
+              <h3 className={`heading font-bold self-center text-lg`}>
                 {action.name.length > 40
                   ? action.name.slice(0, 40) + "..."
                   : action.name}
