@@ -40,7 +40,7 @@ const YourFootprintText = ({ footprintText, footprintValue, priceObject, currenc
                 <span className="text-lg font-bold text-green-accent">{footprintValue}</span>
                 <span className="font-bold text-green-accent"> {unit_of_co2}</span>
                 {stringParts[2]}
-                    <span className="text-lg font-bold text-green-accent">{price}</span>
+                <span className="text-lg font-bold text-green-accent">{price}</span>
                 <span className="font-bold text-green-accent">/{months.one}</span>
                 {stringParts[4]}
             </div>
