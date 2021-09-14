@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { useDeletedActionUpdate } from "../../../contexts/DeletedActionContext.js";
 import {
   useUserActions,
@@ -19,6 +19,8 @@ const CarouselActionItem = ({
   const setDeletedAction = useDeletedActionUpdate();
   const setColumnsWithFullFormat = useUserActionsColumnsWithFullFormatUpdate();
   const categoryBadges = useCategoryBadges();
+
+  const mounted = useRef(false);
 
   const categoryName = () => {
     for (let i = 0; i <= Object.keys(categories).length; i++) {
@@ -66,14 +68,26 @@ const CarouselActionItem = ({
     };
 
     fetch(URL, requestOptions)
-      .then((res) => res.json())
+      .then((res) => {
+        if (mounted.current) {
+          return res.json();
+        }
+      })
       .then((json) => acceptAction(action, json))
-      .catch((e) => console.log(e));
+      .catch((e) => console.warn(e));
   };
   const handleClickAccepted = (action) => {
     updateLocalAccepted(action.id);
     updateAccepted(action);
   };
+
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
+
   return (
     <div className="flex flex-1 min-h-full ">
       <div className="pt-20 flex m-lg:pt-24 flex-1 justify-evenly">
