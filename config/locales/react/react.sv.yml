@@ -4,4 +4,3 @@ sv:
       text_part_before: Ditt årliga klimatavtryck är %{footprint} %{unit_of_co2}
       text_part_middle: CO2e. För %{price} %{time_unit}
       text_part_end: hjälper vi dig att klimatkompensera ditt avtryck. Summan fördelas till olika klimatprojekt som gör skillnad för klimatet.
-      
