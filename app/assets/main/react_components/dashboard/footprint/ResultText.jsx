@@ -1,15 +1,22 @@
 import React from "react";
+import {
+  useFootprint,
+  useCountryAverage,
+  useModelText,
+  useLang,
+  useRegistrationsText,
+} from "../../contexts/FootprintContext.js";
 
 /**
  * Description of the result including calculations of relevant numbers
  */
-const ResultText = ({
-  footprint,
-  countryAverage,
-  modelText,
-  lang,
-  registrationsText,
-}) => {
+const ResultText = () => {
+  const footprint = useFootprint();
+  const countryAverage = useCountryAverage();
+  const modelText = useModelText();
+  const lang = useLang();
+  const registrationsText = useRegistrationsText();
+
   const yourClimateFootprint = registrationsText.your_climate_footprint;
   const yourClimateFootprintComparedWorld =
     registrationsText.your_climate_footprint_compared_world;
