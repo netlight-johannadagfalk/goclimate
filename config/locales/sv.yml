@@ -111,7 +111,7 @@ sv:
       your_climate_footprint: Ditt klimatavtryck på %{footprint} är %{relative} än genomsnittet i %{country}. För att ligga i linje med Parisavtalets 1,5 gradersmål måste vi globalt ha ett genomsnitt på 2,5 ton per person till år 2030.
       your_climate_footprint_compared_world: Ditt klimatavtryck på %{footprint} är %{relative} än genomsnittet i världen. För att ligga i linje med Parisavtalets 1,5 gradersmål måste vi globalt ha ett genomsnitt på 2,5 ton per person till år 2030.
       heading_compared: Jämfört med världen
-      heading_more: Mer om ditt klimatavtryck
+      heading_more: Ditt klimatavtryck per kategori
       more_about_public_category: Vad är det här?
       category:
         housing: Boende

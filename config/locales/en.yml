@@ -111,7 +111,7 @@ en:
       your_climate_footprint: Your carbon footprint of %{footprint} is %{relative} than the average in %{country}. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030.
       your_climate_footprint_compared_world: Your carbon footprint of %{footprint} is %{relative} than the world average. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030.
       heading_compared: Compared to the world
-      heading_more: More about your carbon footprint
+      heading_more: Your carbon footprint per category
       more_about_public_category: What's this?
       category:
         housing: Housing
