@@ -1,29 +1,39 @@
 import React from 'react';
-import SelectButton from './SelectButton.jsx';
 import { useTexts } from '../context/Footprint/TextsContext.js';
+import SelectButton from './SelectButton.jsx';
 
-/**
- * React container for Sign up components
- */
 const MembershipTypeSelector = ({ selectedMembership, setSelectedMembership, multipleOffsets, setMultipleOffsets}) => {
 
-    const { registrationsText: { membership: { free, single, multi } } } = useTexts()
+    const { 
+        reactContentText: {
+            react: { 
+                    memberships: { 
+                        free_title, 
+                        free_desc, 
+                        single_title, 
+                        single_desc, 
+                        multi_title, 
+                        multi_desc 
+                    }         
+            }
+        }  
+    } = useTexts();
 
     return (
         <div className="space-y-3 text-left">
             <SelectButton 
                 selectedMembership={selectedMembership} setSelectedMembership={setSelectedMembership} 
-                buttonType="free" text={free}
+                buttonType="free" desc={free_desc} title={free_title}
                 multipleOffsets={multipleOffsets} setMultipleOffsets={setMultipleOffsets}
             />
             <SelectButton 
                 selectedMembership={selectedMembership} setSelectedMembership={setSelectedMembership} 
-                buttonType="single" text={single}
+                buttonType="single" desc={single_desc} title={single_title}
                 multipleOffsets={multipleOffsets} setMultipleOffsets={setMultipleOffsets}
             />
             <SelectButton 
                 selectedMembership={selectedMembership} setSelectedMembership={setSelectedMembership} 
-                buttonType="multi" text={multi}
+                buttonType="multi" desc={multi_desc} title={multi_title}
                 multipleOffsets={multipleOffsets} setMultipleOffsets={setMultipleOffsets}
             />
         </div>

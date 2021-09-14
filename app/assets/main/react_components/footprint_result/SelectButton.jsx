@@ -1,16 +1,10 @@
 import React from 'react';
 import SelectorMultipleTimes from './SelectorMultipleTimes.jsx';
 
-/**
- * React container for select buttons 
- */
-const SelectButton = ({selectedMembership, setSelectedMembership, buttonType, text, multipleOffsets, setMultipleOffsets}) => {
-
-    var text = text.split("</span>")
-    var boldText = text[0].replace("<span>","")
-    var unBoldText = text[1]
+const SelectButton = ({selectedMembership, setSelectedMembership, buttonType, title, desc, multipleOffsets, setMultipleOffsets}) => {
 
     const style = "flex flex-row items-center p-3 rounded cursor-pointer " + (buttonType === selectedMembership ? "bg-green-tint-1" : "bg-gray-pastel")
+    desc = desc.replace("%{num}", multipleOffsets.toString())
 
     return (
         <label className={style}
@@ -22,9 +16,10 @@ const SelectButton = ({selectedMembership, setSelectedMembership, buttonType, te
             />        
             <span>
                 <span className="font-bold">
-                    {boldText}
+                    {title}
                 </span>
-                {unBoldText}
+                <br></br>
+                {desc}
             </span>
             { buttonType == "multi" && 
                 <SelectorMultipleTimes
