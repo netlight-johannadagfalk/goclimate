@@ -1,3 +1,4 @@
 en:
   react:
     your_footprint_result_text: Your annual carbon footprint is %{footprint} %{unit_of_co2} CO2e. Paying %{price} %{time_unit} will allow you to offset your footprint. The sum is distributed to different climate projects that make an impact for the climate.
+    
