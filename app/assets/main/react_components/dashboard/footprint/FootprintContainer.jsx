@@ -11,7 +11,7 @@ const FootprintContainer = () => {
   const commonText = useCommonTextContext();
 
   return (
-    <div className="max-w-5xl t:bg-white t:rounded-lg t:shadow-lg t:p-8 mt-12 t:border t:border-gray-tint-2">
+    <div className="max-w-5xl t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2">
       <div className="flex flex-col t:flex-row t:space-x-8 space-y-6 t:space-y-0">
         <div className="t:w-1/2 space-y-6">
           <YourFootprintText
