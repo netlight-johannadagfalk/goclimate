@@ -5,7 +5,7 @@ import MonthlyAction from "../../common/MonthlyAction.jsx";
 
 const MainInfo = ({ action, user, updateLocalAccepted, categories }) => {
   return (
-    <section className="section-padding pb-28">
+    <section className="section-padding">
       <div className="flex flex-row">
         <FootprintContainer />
         <div className="hidden d-lg:block">
