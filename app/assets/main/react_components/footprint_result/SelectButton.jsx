@@ -10,7 +10,7 @@ const SelectButton = ({selectedMembership, setSelectedMembership, buttonType, te
     var boldText = text[0].replace("<span>","")
     var unBoldText = text[1]
 
-    const style = "flex flex-row items-center p-3 rounded cursor-pointer border border-green-accent " + (buttonType === selectedMembership ? "bg-green-tint-1  border-3" : "")
+    const style = "flex flex-row items-center p-3 rounded cursor-pointer border border-green-accent " + (buttonType === selectedMembership ? "bg-green-tint-1" : "")
 
     return (
         <label className={style}
