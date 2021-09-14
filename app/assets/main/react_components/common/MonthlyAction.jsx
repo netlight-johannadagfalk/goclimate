@@ -20,14 +20,14 @@ const MonthlyAction = ({ action, user, updateLocalAccepted, categories }) => {
         }}
       ></div> */}
 
-      <div className="h-80 w-80 top-2 bg-cover absolute">
-        <svg viewBox="0 0 600 600">
+      <div className="h-60 w-60 -top-40 left-10 bg-cover absolute">
+        <svg viewBox="0 0 60 60">
           <path
             id="curve"
             fill="transparent"
-            d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97"
+            d="M 00 60 C 10 40, 30 40, 40 60"
           />
-          <text width="600" fontSize="35">
+          <text width="100" fontSize="4">
             <textPath xlinkHref="#curve">
               ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐
             </textPath>
