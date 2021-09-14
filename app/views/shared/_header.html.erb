@@ -51,13 +51,15 @@
       <% elsif !user_signed_in? %>
         <%= link_to t('views.shared.header.sign_up'), root_url, class: 'button button-cta' %>
       <% end %>
-
+      
       <label for="nav-toggler" class="button d:hidden">
         <i class="fas fa-bars"></i>
       </label>
     </nav>
   </div>
 </div>
+
+
 <div class="h-20"></div>
 
 <% if controller_path.start_with?('business') %>
