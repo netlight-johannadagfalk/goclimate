@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanActionColumn from "./KanbanActionColumn.jsx";
 import { useDeletedActionUpdate } from "../../../../contexts/DeletedActionContext.js";
@@ -20,6 +20,10 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
   const setDeletedAction = useDeletedActionUpdate();
   const setCategoryBadges = useCategoryBadgesUpdate();
   const setCategoryBadgesOnDrag = useCategoryBadgesUpdateOnDrag();
+
+  const [isHovering, setIsHovering] = useState(false);
+
+  const mounted = useRef(false);
 
   const handleExpanded = (item, value) => {
     const column = item.status === false ? 1 : 2;
@@ -77,7 +81,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
         "Content-Type": "application/json",
       },
     };
-    fetch(URL, requestOptions).catch((e) => console.log(e));
+    fetch(URL, requestOptions).catch((e) => console.warn(e));
   };
 
   const updateStatus = (id, status) => {
@@ -94,7 +98,9 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
     };
     fetch(URL, requestOptions)
       .then((res) => {
-        return res.json();
+        if (mounted.current) {
+          return res.json();
+        }
       })
       .catch((error) => console.warn(error));
   };
@@ -251,7 +257,13 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
       });
     }
   };
-  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
 
   return (
     <div className="h-screen">
