@@ -20,14 +20,14 @@ const Dashboard = ({
   lang,
   registrationsText,
   dashboardText,
-  dashboardNewText,
+  climateActionsText,
   lifestyleFootprintText,
   totalNoFootprints,
 }) => {
   return (
     <TextProvider
       dashboardText={JSON.parse(dashboardText)}
-      dashboardNewText={JSON.parse(dashboardNewText)}
+      climateActionsText={JSON.parse(climateActionsText)}
       lifestyleFootprintText={JSON.parse(lifestyleFootprintText)}
     >
       <DeletedActionProvider>
