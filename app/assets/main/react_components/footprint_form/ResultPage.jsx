@@ -65,7 +65,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
             <AnswerButton
                 label={page !== 2 ? next + " ->" : continue_to_payment}
                 onAnswerGiven={onPageChange}
-                stylingClasses={"w-2/3 " + (page === 2 && "button-cta")}
+                stylingClasses={"w-5/6 " + (page === 2 && "button-cta")}
             />
             { page === 3 && 
                 <div className={"inject-link pt-4"}
