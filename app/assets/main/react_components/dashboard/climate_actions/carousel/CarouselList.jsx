@@ -56,7 +56,13 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
         }}
       >
         {actions.map((action) => (
-          <SwiperSlide key={action.id} className={"h-auto min-h-full mb-10"}>
+          <SwiperSlide
+            key={action.id}
+            className={" min-h-full mb-10"}
+            style={{
+              height: "auto",
+            }}
+          >
             <CarouselActionItem
               action={action}
               user={user}
