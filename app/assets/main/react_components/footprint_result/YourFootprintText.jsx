@@ -4,11 +4,22 @@ import { useLocaleData } from '../context/Footprint/LocaleContext.js';
 
 /**
  * Result text for your footprint
- * Includes a heading and the footprint result in tonnes
+ * Includes a footprint result in tonnes
  */
 const YourFootprintText = ({ footprintValue, priceObject }) => {
 
-    const { commonText: { dashboard: { footprint: { heading } }, months: { one: month }, tonnes}, reactContentText: { react: { your_footprint_result_text }}  } = useTexts()
+    const { 
+        commonText: {
+            months: { one: month }, 
+            tonnes
+        }, 
+        reactContentText: {
+            react: { 
+                your_footprint_result_text: { text_part_before, text_part_middle, text_part_end } 
+            }
+        }  
+    } = useTexts();
+
     const {
         currency: {
           money: {
@@ -16,17 +27,10 @@ const YourFootprintText = ({ footprintValue, priceObject }) => {
           },
         },
     } = useLocaleData();
-    const [price] = useState(extractPrice())
-    var text = your_footprint_result_text
-    const unit_of_co2 = tonnes
-    const stringKeys = ["%{footprint}" ,"%{unit_of_co2}", "%{price}", "%{time_unit}"]
-    var stringParts = []
 
-    stringKeys.forEach((key) => {
-        stringParts.push(text.split(key)[0])
-        text=text.split(key)[1]
-    })
-    stringParts.push(text)
+    var part_before = text_part_before.replace("%{footprint}","").replace("%{unit_of_co2}","")
+    var part_middle = text_part_middle.replace("%{price}","").replace("%{time_unit}","")
+    const [price] = useState(extractPrice())
 
     function extractPrice () {
         var price = (priceObject.subunit_amount/100)
@@ -45,13 +49,13 @@ const YourFootprintText = ({ footprintValue, priceObject }) => {
     return (
         <div>
             <div className="text-left mt-8">
-                {stringParts[0]}
-                <span className="text-lg font-bold text-green-accent">{footprintValue}</span>
-                <span className="font-bold text-green-accent"> {unit_of_co2}</span>
-                {stringParts[2]}
+                {part_before}
+                <span className="text-lg font-bold text-green-accent">{footprintValue} </span>
+                <span className="font-bold text-green-accent"> {tonnes} </span>
+                {part_middle}
                 <span className="text-lg font-bold text-green-accent">{price}</span>
-                <span className="font-bold text-green-accent">/{month}</span>
-                {stringParts[4]}
+                <span className="font-bold text-green-accent">/{month} </span>
+                {text_part_end}
             </div>
         </div>
     )
