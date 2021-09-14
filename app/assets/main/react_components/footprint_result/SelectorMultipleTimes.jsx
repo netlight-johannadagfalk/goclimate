@@ -19,7 +19,7 @@ const SelectorMultipleTimes = ({multipleOffsets, setMultipleOffsets}) => {
     
     return (
         <div className="select-wrapper flex-shrink-0">
-            <select value={multipleOffsets} onChange={handleChange} className="select" name="people" id="people">
+            <select value={multipleOffsets} onChange={handleChange} className="select ml-2 border border-green-accent " name="people" id="people">
                 {generateOptions(2,20)}
             </select>
         </div>
