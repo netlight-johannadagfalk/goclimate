@@ -1,3 +1,4 @@
 de:
   react:
     your_footprint_result_text: Your annual climate footprint is %{footprint} %{unit_of_co2} of carbon dioxide. For %{price} %{time_unit} we help you climate compensate your imprint. The sum is distributed to different climate footprints that make a difference to the climate.
+    
