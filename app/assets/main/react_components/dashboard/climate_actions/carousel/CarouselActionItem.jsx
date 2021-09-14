@@ -6,6 +6,7 @@ import {
   useUserActionsColumnsWithFullFormatUpdate,
   useCategoryBadges,
 } from "../../../contexts/UserActionsContext.js";
+import { useDashboardNewText } from "../../../contexts/TextContext.js";
 
 const CarouselActionItem = ({
   action,
@@ -19,6 +20,7 @@ const CarouselActionItem = ({
   const setDeletedAction = useDeletedActionUpdate();
   const setColumnsWithFullFormat = useUserActionsColumnsWithFullFormatUpdate();
   const categoryBadges = useCategoryBadges();
+  const dashboardNewText = useDashboardNewText();
 
   const categoryName = () => {
     for (let i = 0; i <= Object.keys(categories).length; i++) {
@@ -135,14 +137,14 @@ const CarouselActionItem = ({
                   disabled={true}
                   style={{ color: "rgba(28, 70, 55)" }}
                 >
-                  Accepted
+                  {dashboardNewText.accepted}
                 </button>
               ) : (
                 <button
                   className="button inline-block "
                   onClick={() => handleClickAccepted(action)}
                 >
-                  Accept
+                  {dashboardNewText.accept}
                 </button>
               )}
             </div>

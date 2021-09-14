@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { uniqWith } from "lodash";
+import { useDashboardNewText } from "../contexts/TextContext.js";
 
 //*** A context is used to share data that can be considered as "global" for the react tree ***/
 export const UserActionsContext = React.createContext();
@@ -59,6 +60,7 @@ export const UserActionsProvider = ({
   climateActionCategories,
 }) => {
   const [userActions, setUserActions] = useState(allUserActions);
+  const dashboardNewText = useDashboardNewText();
 
   const updateUserActions = (actions) => {
     setUserActions(actions);
@@ -82,12 +84,12 @@ export const UserActionsProvider = ({
     return {
       [1]: {
         id: "Accepted",
-        name: "My Actions",
+        name: dashboardNewText.my_actions,
         items: acceptedList,
       },
       [2]: {
         id: "Performed",
-        name: "Achievements",
+        name: dashboardNewText.achievements,
         items: doneList,
       },
     };

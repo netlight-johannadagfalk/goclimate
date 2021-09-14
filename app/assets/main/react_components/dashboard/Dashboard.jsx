@@ -5,6 +5,7 @@ import { DeletedActionProvider } from "../contexts/DeletedActionContext.js";
 import { UserActionsProvider } from "../contexts/UserActionsContext.js";
 import { ClimateActionsProvider } from "../contexts/ClimateActionsContext.js";
 import { FootprintProvider } from "../contexts/FootprintContext.js";
+import { TextProvider } from "../contexts/TextContext.js";
 
 const Dashboard = ({
   user,
@@ -18,39 +19,48 @@ const Dashboard = ({
   modelText,
   lang,
   registrationsText,
+  dashboardText,
+  dashboardNewText,
+  lifestyleFootprintText,
   totalNoFootprints,
 }) => {
   return (
-    <DeletedActionProvider>
-      <CategoryProvider>
-        <UserActionsProvider
-          allUserActions={JSON.parse(allUserActions)}
-          actionsWithoutUserActions={actionsWithoutUserActions}
-          actionsWithUserActions={actionsWithUserActions}
-          climateActionCategories={climateActionCategories}
-        >
-          <ClimateActionsProvider
-            actionsWithUserActions={actionsWithUserActions}
+    <TextProvider
+      dashboardText={JSON.parse(dashboardText)}
+      dashboardNewText={JSON.parse(dashboardNewText)}
+      lifestyleFootprintText={JSON.parse(lifestyleFootprintText)}
+    >
+      <DeletedActionProvider>
+        <CategoryProvider>
+          <UserActionsProvider
+            allUserActions={JSON.parse(allUserActions)}
             actionsWithoutUserActions={actionsWithoutUserActions}
+            actionsWithUserActions={actionsWithUserActions}
+            climateActionCategories={climateActionCategories}
           >
-            <FootprintProvider
-              footprint={footprint}
-              commonText={commonText}
-              countryAverage={countryAverage}
-              modelText={modelText}
-              lang={lang}
-              registrationsText={registrationsText}
-              totalNoFootprints={totalNoFootprints}
+            <ClimateActionsProvider
+              actionsWithUserActions={actionsWithUserActions}
+              actionsWithoutUserActions={actionsWithoutUserActions}
             >
-              <ClimateActionsContainer
-                user={user}
-                climateActionCategories={climateActionCategories}
-              ></ClimateActionsContainer>
-            </FootprintProvider>
-          </ClimateActionsProvider>
-        </UserActionsProvider>
-      </CategoryProvider>
-    </DeletedActionProvider>
+              <FootprintProvider
+                footprint={footprint}
+                commonText={commonText}
+                countryAverage={countryAverage}
+                modelText={modelText}
+                lang={lang}
+                registrationsText={registrationsText}
+                totalNoFootprints={totalNoFootprints}
+              >
+                <ClimateActionsContainer
+                  user={user}
+                  climateActionCategories={climateActionCategories}
+                ></ClimateActionsContainer>
+              </FootprintProvider>
+            </ClimateActionsProvider>
+          </UserActionsProvider>
+        </CategoryProvider>
+      </DeletedActionProvider>
+    </TextProvider>
   );
 };
 
