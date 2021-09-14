@@ -74,8 +74,8 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
                         <label htmlFor="enter_referral_code" className="link cursor-pointer">{referral_code_link}</label>
                     </p>
                     <div className="collapse-content mt-3">
-                        <div className="flex">
-                            <input size="auto" className="input w-full flex-grow mr-2" placeholder={code} 
+                        <div>
+                            <input size="auto" className="input w-1/2 flex-grow mr-2" placeholder={code} 
                                 type="text" name="code" id="code" value={inputCode} onChange={e => setInputCode(e.target.value)}
                                 onKeyPress = {(e) => { 
                                     if (e.key === 'Enter') 
