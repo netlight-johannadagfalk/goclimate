@@ -53,7 +53,7 @@ const ClimateActionsContainer = ({
     deletedAction != null && updateLocalAccepted(deletedAction);
   }, [deletedAction]);
 
-  const [showMobileKanban, setShowMobileKanban] = useState(false);
+  // const [showMobileKanban, setShowMobileKanban] = useState(false);
 
   const getTotalAmountOfAcceptedActionsForUser = () => {
     let amountActionsAccepted = 0;
@@ -67,7 +67,7 @@ const ClimateActionsContainer = ({
 
   return (
     <>
-      {isTabletOrMobile && (
+      {/* {isTabletOrMobile && (
         <div className="fixed top-0 right-0 mr-20 mt-6 lg:mr-48 lg:right-10 t:mr-17 t:right-3 z-50">
           <i
             className={`fas fa-2x ${
@@ -81,7 +81,7 @@ const ClimateActionsContainer = ({
             </div>
           </div>
         </div>
-      )}
+      )} */}
       <MainInfo
         footprint={JSON.parse(footprint)}
         commonText={commonText}
@@ -100,7 +100,7 @@ const ClimateActionsContainer = ({
         updateLocalAccepted={updateLocalAccepted}
         categories={formatedCategories}
       />
-      {showMobileKanban && (
+      {isTabletOrMobile && (
         <MobileKanbanContainer categories={formatedCategories} clicked={true} />
       )}
       {!isTabletOrMobile && (
