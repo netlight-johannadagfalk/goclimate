@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import CarouselContainer from "./CarouselContainer.jsx";
-// import CarouselActionItem from "./CarouselActionItem.jsx";
 import { useDeletedAction } from "./contexts/DeletedActionContext.js";
 import {
   useClimateActions,
@@ -47,41 +46,13 @@ const ClimateActionsContainer = ({
   };
 
   const formatedCategories = JSON.parse(climateActionCategories);
-  //const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
   useEffect(() => {
     deletedAction != null && updateLocalAccepted(deletedAction);
   }, [deletedAction]);
 
-  // const [showMobileKanban, setShowMobileKanban] = useState(false);
-
-  const getTotalAmountOfAcceptedActionsForUser = () => {
-    let amountActionsAccepted = 0;
-    climateActions.map((action) => {
-      if (action.accepted === true) {
-        amountActionsAccepted++;
-      }
-    });
-    return amountActionsAccepted;
-  };
-
   return (
     <>
-      {/* {isTabletOrMobile && (
-        <div className="fixed top-0 right-0 mr-20 mt-6 lg:mr-48 lg:right-10 t:mr-17 t:right-3 z-50">
-          <i
-            className={`fas fa-2x ${
-              showMobileKanban ? "fa-globe-americas" : "fa-globe-europe"
-            }`}
-            onClick={() => setShowMobileKanban(!showMobileKanban)}
-          ></i>
-          <div className="fas rounded-full h-5 w-5 bg-green-tint-2 border border-gray-accent -mt-1 -ml-3 absolute focus:outline-none">
-            <div className="mb-2 text-white">
-              {getTotalAmountOfAcceptedActionsForUser()}
-            </div>
-          </div>
-        </div>
-      )} */}
       <MainInfo
         footprint={JSON.parse(footprint)}
         commonText={commonText}
@@ -101,7 +72,10 @@ const ClimateActionsContainer = ({
         categories={formatedCategories}
       />
       {isTabletOrMobile && (
-        <MobileKanbanContainer categories={formatedCategories} clicked={true} />
+        <MobileKanbanContainer
+          categories={formatedCategories}
+          climateActions={climateActions}
+        />
       )}
       {!isTabletOrMobile && (
         <div className="w-full">
