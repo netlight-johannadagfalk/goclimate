@@ -62,7 +62,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
                 }
             </div>
             <AnswerButton
-                label={page === 2 ? continue_to_payment + " ->" : page === 3 ? start_subscription : next}
+                label={page === 2 ? continue_to_payment : page === 3 ? start_subscription : next }
                 onAnswerGiven={onPageChange}
                 stylingClasses={"w-2/3 " + ((page === 2 || page === 3) && "button-cta")}
             />

@@ -11,7 +11,7 @@ const Payment = ({ selectedMembership }) => {
     const { commonText: { email, password, credit_or_debit_card } } = useTexts()
     
     return (
-      <div className="text-left">
+      <div className="text-left px-2">
         <label className="block font-semibold mt-3">{email}</label>
         <input className="input w-full"/>
         <label className="block font-semibold mt-3">{password}</label>
