@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import CarouselHeader from "./CarouselHeader.jsx";
 import CarouselList from "./CarouselList.jsx";
 import CarouselCategoryButton from "./CarouselCategoryButton.jsx";
-import { useCategory } from "./contexts/CategoryContext.js";
+import { useCategory } from "../../../contexts/CategoryContext.js";
 import { useMediaQuery } from "react-responsive";
+import { d } from "../../../constants";
 import "react-dropdown/style.css";
 
 const CarouselContainer = ({ user, updateLocalAccepted, categories }) => {
   const [allCategories, setAllCategories] = useState(true);
   const category = useCategory();
 
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${d})` });
 
   return (
-    <section className="d:section-padding d:pb-28">
+    <section className="section-padding">
       <CarouselHeader />
-      <div className="max-w-5xl mx-auto space-y-3 t:bg-transparent t:rounded-lg t:p-8 mt-4">
+      <div className="max-w-6xl mx-auto space-y-3 t:bg-transparent t:rounded-lg t:p-8 mt-4">
         {isTabletOrMobile ? (
           <CarouselCategoryButton
             categories={categories}

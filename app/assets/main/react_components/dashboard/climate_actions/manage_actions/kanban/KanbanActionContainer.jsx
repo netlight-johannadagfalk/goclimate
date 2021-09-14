@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import KanbanActionColumn from "./KanbanActionColumn.jsx";
-import { useDeletedActionUpdate } from "./contexts/DeletedActionContext.js";
+import { useDeletedActionUpdate } from "../../../../contexts/DeletedActionContext.js";
 import { orderBy } from "lodash";
 import {
   useUserActionsUpdate,
@@ -10,7 +10,7 @@ import {
   useUserActionsColumnsWithFormatUpdate,
   useCategoryBadgesUpdate,
   useCategoryBadgesUpdateOnDrag,
-} from "./contexts/UserActionsContext.js";
+} from "../../../../contexts/UserActionsContext.js";
 
 const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
   const setUserActions = useUserActionsUpdate();
@@ -20,6 +20,29 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
   const setDeletedAction = useDeletedActionUpdate();
   const setCategoryBadges = useCategoryBadgesUpdate();
   const setCategoryBadgesOnDrag = useCategoryBadgesUpdateOnDrag();
+
+  const handleExpanded = (item, value) => {
+    const column = item.status === false ? 1 : 2;
+    setColumns({
+      ...columns,
+      [column]: {
+        ...columns[column],
+        items: getExpandable(columns[column], item, value),
+      },
+    });
+  };
+
+  const getExpandable = (column, item, value) => {
+    const temp = column.items.map((expandable) => {
+      return expandable.id === item.id
+        ? {
+            ...expandable,
+            expanded: value,
+          }
+        : { ...expandable, expanded: false };
+    });
+    return temp;
+  };
 
   const handleDelete = (userActionID, actionID) => {
     deleteUserAction(userActionID);
@@ -261,6 +284,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
                 setCollapsed={setCollapsed}
                 collapsed={collapsed}
                 isHovering={isHovering}
+                handleExpanded={handleExpanded}
               />
             </div>
           );

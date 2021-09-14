@@ -1,11 +1,12 @@
 import React from "react";
-import getChartData from "./result-helper";
+import getChartData from "../../helpers/result-helper";
 import ResultBar from "./ResultBar.jsx";
-
+import { useFootprint } from "../../contexts/FootprintContext.js";
 /**
  * Container to display a ResultBar for each category co2e of the footprint
  */
-const CategoryChart = ({ footprint, categoryChartText }) => {
+const CategoryChart = ({ categoryChartText }) => {
+  const footprint = useFootprint();
   const maxValue = Math.max(
     footprint.housing.co2e,
     footprint.food.co2e,

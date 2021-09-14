@@ -2,6 +2,7 @@ import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import KanbanActionItem from "./KanbanActionItem.jsx";
 import { useMediaQuery } from "react-responsive";
+import { d } from "../../../../constants";
 
 const KanbanActionColumn = ({
   column,
@@ -12,8 +13,9 @@ const KanbanActionColumn = ({
   setCollapsed,
   collapsed,
   isHovering,
+  handleExpanded,
 }) => {
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${d})` });
   return (
     <div
       className={`h-full ${
@@ -69,6 +71,7 @@ const KanbanActionColumn = ({
                       handleButtonPerformOnDrag={handleButtonPerformOnDrag}
                       categories={categories}
                       collapsed={collapsed}
+                      handleExpanded={handleExpanded}
                     />
                   );
                 })}

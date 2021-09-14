@@ -2,9 +2,9 @@ import React from "react";
 import {
   useClimateActionsOriginal,
   useClimateActionsUpdate,
-} from "./contexts/ClimateActionsContext";
-import { useCategoryUpdate } from "./contexts/CategoryContext";
-import { useUserActions } from "./contexts/UserActionsContext";
+} from "../../../contexts/ClimateActionsContext";
+import { useCategoryUpdate } from "../../../contexts/CategoryContext";
+import { useUserActions } from "../../../contexts/UserActionsContext";
 
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
