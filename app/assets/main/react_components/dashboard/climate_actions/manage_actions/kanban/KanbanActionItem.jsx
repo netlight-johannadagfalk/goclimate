@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import ProgressBar from "./ProgressBar.jsx";
 
 import { Draggable } from "react-beautiful-dnd";
@@ -10,9 +10,8 @@ const KanbanActionItem = ({
   handleButtonPerformOnDrag,
   categories,
   collapsed,
+  handleExpanded,
 }) => {
-  const [expanded, setExpanded] = useState(false);
-
   const isBadge = item.userActionsArray ? true : false;
 
   const categoryName = () => {
@@ -29,7 +28,7 @@ const KanbanActionItem = ({
   const categoryColor = categoryName();
 
   useEffect(() => {
-    setExpanded(false);
+    handleExpanded(item, false);
   }, [collapsed]);
 
   const setStyleWithoutReordering = (style, snapshot) => {
@@ -68,7 +67,7 @@ const KanbanActionItem = ({
             className={`border border-gray-tint-2 rounded-lg p-0 space-y-3 pt-0 ${
               collapsed ? "w-24" : "t:w-60 d:w-80 d-lg:w-96"
             }
-            ${expanded ? "h-auto" : "w-24"}
+            ${item.expanded ? "h-auto" : "w-24"}
             
             `}
             ref={provided.innerRef}
@@ -82,7 +81,6 @@ const KanbanActionItem = ({
                     snapshot
                   )
             }
-            onClick={() => !isBadge && setExpanded(!expanded)}
           >
             {collapsed ? (
               <div className="flex flex-1 items-center justify-center shadow-md">
@@ -101,7 +99,7 @@ const KanbanActionItem = ({
               <div className="h-20">
                 <div
                   className={`h-20 ${
-                    expanded && "w-full border-b border-b-gray-tint-2"
+                    item.expanded && "w-full border-b border-b-gray-tint-2"
                   }`}
                 >
                   {!isBadge && (
@@ -115,7 +113,7 @@ const KanbanActionItem = ({
                   )}
                   <div
                     className="flex flex-row h-16"
-                    onClick={() => setExpanded(!expanded)}
+                    onClick={() => handleExpanded(item, !item.expanded)}
                   >
                     <div className="flex flex-1">
                       <div
@@ -145,8 +143,10 @@ const KanbanActionItem = ({
                       <button
                         className={`fas float-right focus:outline-none ${
                           isBadge ? "mt-12 ml-10" : "mt-4 ml-4"
-                        } ${expanded ? "fa-chevron-up" : "fa-chevron-down"}`}
-                        onClick={() => setExpanded(!expanded)}
+                        } ${
+                          item.expanded ? "fa-chevron-up" : "fa-chevron-down"
+                        }`}
+                        onClick={() => handleExpanded(item, !item.expanded)}
                       ></button>
                     </div>
                   </div>
@@ -164,7 +164,7 @@ const KanbanActionItem = ({
               </div>
             )}
 
-            {expanded && !collapsed && (
+            {item.expanded && !collapsed && (
               <div className="mb-4 mx-2">
                 {item.status === false ? (
                   <div className="flex flex-1 flex-col text-center">
