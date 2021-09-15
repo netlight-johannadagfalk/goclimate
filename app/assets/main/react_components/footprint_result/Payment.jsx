@@ -7,25 +7,28 @@ import { useTexts } from '../context/Footprint/TextsContext';
  * TODO: add stripe logic, including collection of email and password
  */
 const Payment = ({ selectedMembership }) => {
+  const {
+    commonText: { email, password, credit_or_debit_card },
+  } = useTexts();
 
-    const { commonText: { email, password, credit_or_debit_card } } = useTexts()
-    
-    return (
-      <div className="text-left">
-        <label className="block font-semibold mt-3">{email}</label>
-        <input className="input w-full"/>
-        <label className="block font-semibold mt-3">{password}</label>
-        <input className="input w-full"/>
-        { selectedMembership !== "free" &&
-          <>
-            <label className="block font-semibold mt-3">{credit_or_debit_card}</label>
-            <CardElement className="py-3 w-full input mb-1 StripeElement StripeElement--empty"/>
-            <i className="fas fa-lock" aria-hidden="true"></i>
-            <span className="ml-1">Secured by Stripe</span>
-          </>
-        }
-      </div>
-    )
-}
+  return (
+    <div className="text-left">
+      <label className="block font-semibold mt-3">{email}</label>
+      <input className="input w-full" />
+      <label className="block font-semibold mt-3">{password}</label>
+      <input className="input w-full" />
+      {selectedMembership !== 'free' && (
+        <>
+          <label className="block font-semibold mt-3">
+            {credit_or_debit_card}
+          </label>
+          <CardElement className="py-3 w-full input mb-1 StripeElement StripeElement--empty" />
+          <i className="fas fa-lock" aria-hidden="true"></i>
+          <span className="ml-1">Secured by Stripe</span>
+        </>
+      )}
+    </div>
+  );
+};
 
 export default Payment;
