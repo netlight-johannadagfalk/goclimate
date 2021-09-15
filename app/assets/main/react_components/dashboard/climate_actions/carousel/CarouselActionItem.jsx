@@ -127,7 +127,7 @@ const CarouselActionItem = ({
               })}
             </div>
             <div className=" flex-1 justify-center align-center self-center">
-              <h3 className={`heading font-bold self-center text-lg`}>
+              <h3 className={`text-base font-bold self-center`}>
                 {action.name.length > 40
                   ? action.name.slice(0, 40) + "..."
                   : action.name}
@@ -135,7 +135,7 @@ const CarouselActionItem = ({
             </div>
 
             <div className="flex-4">
-              <p>
+              <p className="text-sm">
                 {action.description.length > 200
                   ? action.description.slice(0, 200) + "..."
                   : action.description}

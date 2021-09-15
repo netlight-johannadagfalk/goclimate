@@ -7,7 +7,7 @@ import "swiper/components/navigation/navigation.min.css";
 import "swiper/components/pagination/pagination.min.css";
 import { orderBy } from "lodash";
 import { useMediaQuery } from "react-responsive";
-import { m, t, d } from "../../../constants";
+import { m, t, d, dMd } from "../../../constants";
 
 // Swiper resources
 //https://swiperjs.com/react
@@ -24,6 +24,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const isMobile = useMediaQuery({ query: `(max-width: ${m})` });
   const isTablet = useMediaQuery({ query: `(max-width: ${t})` });
   const isLargeTablet = useMediaQuery({ query: `(max-width: ${d})` });
+  const isDesktop = useMediaQuery({ query: `(max-width: ${dMd})` });
 
   const sortForMobileClimateActions = orderBy(
     climateActions,
@@ -34,11 +35,19 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const actions = isMobile ? sortForMobileClimateActions : climateActions;
 
   return (
-    <div className="relative">
+    <div className="relative overflow-visible">
       <Swiper
         className="m-4"
         slidesPerView={
-          isMobile ? 1.5 : isTablet ? 2.5 : isLargeTablet ? 3.5 : 4
+          isMobile
+            ? 1.5
+            : isTablet
+            ? 2.5
+            : isLargeTablet
+            ? 3
+            : isDesktop
+            ? 3.5
+            : 4
         }
         navigation={{
           nextEl: navigationPrevRef.current,
@@ -56,7 +65,13 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
         }}
       >
         {actions.map((action) => (
-          <SwiperSlide key={action.id} className={"h-auto min-h-full mb-10"}>
+          <SwiperSlide
+            key={action.id}
+            className={"min-h-full mb-10"}
+            style={{
+              height: "auto",
+            }}
+          >
             <CarouselActionItem
               action={action}
               user={user}
