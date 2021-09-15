@@ -61,21 +61,20 @@ const CarouselCategoryButton = ({
           }
         : { ...action, accepted: false };
     });
-    console.log(localUserActions);
 
-    let oneMoreFiltering = [];
-    oneMoreFiltering = filteredActionsWithStatus.map((action) => {
-      return localUserActions.some(
-        (localUserAction) => localUserAction[0].id === action.id
-      )
-        ? {
-            ...action,
-            total: ++action.total,
-          }
-        : action;
-    });
-
-    setClimateActions(oneMoreFiltering);
+    const filteredActionsWithStatusAndTotal = filteredActionsWithStatus.map(
+      (action) => {
+        return localUserActions.some(
+          (localUserAction) => localUserAction[0].id === action.id
+        )
+          ? {
+              ...action,
+              total: ++action.total,
+            }
+          : action;
+      }
+    );
+    setClimateActions(filteredActionsWithStatusAndTotal);
   };
 
   return (

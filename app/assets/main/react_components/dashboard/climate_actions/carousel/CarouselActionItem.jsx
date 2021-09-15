@@ -141,25 +141,56 @@ const CarouselActionItem = ({
                   : action.description}
               </p>
             </div>
-            <div className="flex-1 flex-none mb-1">
-              <label>{action.total} people have accepted</label>
-            </div>
+
             <div className="flex-1 mt-5 justify-center align-center">
               {action.accepted ? (
-                <button
-                  className="button inline-block "
-                  disabled={true}
-                  style={{ color: "rgba(28, 70, 55)" }}
-                >
-                  Accepted
-                </button>
+                <div>
+                  <div className="flex flex-row justify-center mb-1">
+                    <label className="text-sm mr-1">You and</label>
+                    <p className="text-sm text-yellow-accent">{action.total}</p>
+                    <label className="text-sm ml-1">more have:</label>
+                  </div>
+                  <button
+                    className="button inline-block "
+                    disabled={true}
+                    style={{ color: "rgba(28, 70, 55)" }}
+                  >
+                    Accepted
+                  </button>
+                </div>
               ) : (
-                <button
-                  className="button inline-block "
-                  onClick={() => handleClickAccepted(action)}
-                >
-                  Accept
-                </button>
+                <div>
+                  {action.total !== 0 ? (
+                    action.total > 1 ? (
+                      <div className="flex flex-row justify-center mb-1">
+                        <label className="text-sm mr-1">Do as</label>
+                        <p className="text-sm text-yellow-accent">
+                          {action.total}
+                        </p>
+                        <label className="text-sm ml-1">others:</label>
+                      </div>
+                    ) : (
+                      <div className="flex flex-row justify-center mb-1">
+                        <label className="text-sm mr-1">Do as</label>
+                        <p className="text-sm text-yellow-accent">
+                          {action.total}
+                        </p>
+                        <label className="text-sm ml-1">other:</label>
+                      </div>
+                    )
+                  ) : (
+                    <div className="flex flex-row justify-center mb-1">
+                      <label className="text-sm">Be the first one to:</label>
+                    </div>
+                  )}
+
+                  <button
+                    className="button inline-block "
+                    onClick={() => handleClickAccepted(action)}
+                  >
+                    Accept
+                  </button>
+                </div>
               )}
             </div>
           </div>

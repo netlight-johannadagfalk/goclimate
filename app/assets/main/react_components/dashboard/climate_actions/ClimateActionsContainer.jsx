@@ -22,8 +22,8 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
   const [monthlyAction, setMonthlyAction] = useState(
     totClimateActions.find((action) => action.action_of_the_month === true)
   );
-
   const [localUserActions, setLocalUserActions] = useState([]);
+
   const updateLocalAccepted = (actionID) => {
     setClimateActions(
       climateActions.map((action) =>
@@ -36,42 +36,23 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
           : action
       )
     );
-
-    let temp = climateActions.filter((action) => action.id === actionID);
-
-    let tempArray = [...localUserActions, temp];
-    let temp2 = [];
+    //Saves all items that are userActions locally but not yet in DB to use for categoryFiltering
+    let filteredLocalUserActions = climateActions.filter(
+      (action) => action.id === actionID
+    );
+    let tempArray = [...localUserActions, filteredLocalUserActions];
     if (deletedAction !== null) {
-      console.log("deletedAction not null");
-      console.log({ tempArray, deletedAction });
-      temp2 = tempArray.filter((action) => action[0].id !== deletedAction);
-      console.log({ temp2 });
-      tempArray = temp2;
+      const localUserActionsWithoutDeleted = tempArray.filter(
+        (action) => action[0].id !== deletedAction
+      );
+      tempArray = localUserActionsWithoutDeleted;
     }
-
     setLocalUserActions(tempArray);
+    setDeletedAction(null);
 
     monthlyAction.id === actionID &&
       setMonthlyAction({ ...monthlyAction, accepted: !monthlyAction.accepted });
-
-    //is this needed?
-    setDeletedAction(null);
   };
-
-  // const updateLocalAccepted = (actionID) => {
-  //   setClimateActionsUser(
-  //     climateActionsUser.map((action) =>
-  //       action.id === actionID
-  //         ? {
-  //             ...action,
-  //             accepted: !action.accepted,
-  //             total: deletedAction ? --action.total : ++action.total,
-  //           }
-  //         : action
-  //     )
-  //   );
-  //   setDeletedAction(null);
-  // };
 
   const formatedCategories = JSON.parse(climateActionCategories);
 
