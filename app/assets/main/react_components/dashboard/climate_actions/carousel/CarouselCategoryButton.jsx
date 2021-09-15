@@ -66,7 +66,7 @@ const CarouselCategoryButton = ({
         <div className="mx-5 ">
           <Dropdown
             placeholder="All categories"
-            controlClassName="bg-transparent color-primary border-primary rounded p-2 flex flex-row w-36 justify-between"
+            controlClassName={"dropdown-control"}
             arrowClosed={<i className="fas fa-chevron-down" />}
             arrowOpen={<i className="fas fa-chevron-up" />}
             options={options}
