@@ -7,9 +7,10 @@ export const useLocaleData = () => {
   return context;
 };
 
-export const LocaleProvider = ({ children, currency, lang, slug }) => {
+export const LocaleProvider = ({ children, currency, lang, currentRegion }) => {
   const localeData = {
-    slug: slug ? '/' + slug : '',
+    currentRegion: currentRegion.id,
+    slug: currentRegion.slug ? '/' + currentRegion.slug : '',
     lang: lang,
     currency: JSON.parse(currency),
   };

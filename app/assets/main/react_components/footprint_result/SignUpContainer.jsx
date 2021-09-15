@@ -1,14 +1,19 @@
 import { default as React } from 'react';
 import Title from '../footprint_form/Title.jsx';
-import PriceText from './PriceText.jsx';
 import SignUpMotivationText from './SignUpMotivationText.jsx';
 import { useTexts } from '../context/Footprint/TextsContext.js';
+import MembershipSelector from './MembershipSelector.jsx';
+import PriceText from './PriceText.jsx';
 
-const SignUpContainer = (props) => {
-  //TODO:
-  //Slug för språk i url:en
-  //<a> blir länken i med href
-
+const SignUpContainer = ({
+  selectedMembership,
+  setSelectedMembership,
+  multipleOffsets,
+  setMultipleOffsets,
+  grantedReferralCode,
+  setGrantedReferralCode,
+  price,
+}) => {
   const {
     registrationsText: { sign_up_heading_collective_efficacy },
   } = useTexts();
@@ -18,14 +23,19 @@ const SignUpContainer = (props) => {
       <div className="space-y-3">
         <Title text={sign_up_heading_collective_efficacy} />
         <SignUpMotivationText />
-        <div className="toggler-checked:hidden">
-          <div className="space-y-3">{props.children}</div>
-        </div>
+        <MembershipSelector
+          selectedMembership={selectedMembership}
+          setSelectedMembership={setSelectedMembership}
+          multipleOffsets={multipleOffsets}
+          setMultipleOffsets={setMultipleOffsets}
+          setGrantedReferralCode={setGrantedReferralCode}
+          grantedReferralCode={grantedReferralCode}
+        />
         <PriceText
-          priceObject={props.price}
-          grantedReferralCode={props.grantedReferralCode}
-          selectedMembership={props.selectedMembership}
-          multipleOffsets={props.multipleOffsets}
+          price={price}
+          grantedReferralCode={grantedReferralCode}
+          selectedMembership={selectedMembership}
+          multipleOffsets={multipleOffsets}
         />
       </div>
     </div>
