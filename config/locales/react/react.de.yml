@@ -13,4 +13,4 @@ de:
       multi_desc: "Support climate projects to offset %{num} times your climate footprint each month"
     category_chart:
       title: "Your climate footprint by category"
-      desc: "This is your carbon footprint given by category? Does it match your expectations?"
+      desc: "This is your carbon footprint given by category. Does it match your expectations?"

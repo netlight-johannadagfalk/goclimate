@@ -25,10 +25,10 @@ const CategoryPage = ({ footprint }) => {
         <div className="max-w-lg mx-auto">
             <Title 
                 custom_style="text-lgr"
-                text={heading_more}
+                text={title}
             />
             <SignUpPreamble
-                text={"Här kommer fannys text!"}                            
+                text={desc}                            
             /> 
             <CategoryChart
                 footprint={footprint} 
