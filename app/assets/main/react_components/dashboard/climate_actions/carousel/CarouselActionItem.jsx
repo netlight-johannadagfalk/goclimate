@@ -141,7 +141,9 @@ const CarouselActionItem = ({
                   : action.description}
               </p>
             </div>
-
+            <div className="flex-1 flex-none mb-1">
+              <label>{action.total} people have accepted</label>
+            </div>
             <div className="flex-1 mt-5 justify-center align-center">
               {action.accepted ? (
                 <button
