@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useTexts } from '../context/Footprint/TextsContext.js';
+import React, { useEffect, useState } from 'react';
 import { useLocaleData } from '../context/Footprint/LocaleContext.js';
+import { useTexts } from '../context/Footprint/TextsContext.js';
+import ConfirmSignUpContainer from '../footprint_result/ConfirmSignUpContainer.jsx';
 import SignUpContainer from '../footprint_result/SignUpContainer.jsx';
 import AnswerButton from './AnswerButton.jsx';
 import CategoryPage from './CategoryPage.jsx';
 import WorldPage from './WorldPage.jsx';
-import ConfirmSignUpContainer from '../footprint_result/ConfirmSignUpContainer.jsx';
 
 const ResultPage = ({ result, page, onPageChange }) => {
   const [selectedMembership, setSelectedMembership] = useState('single');
@@ -79,10 +79,9 @@ const ResultPage = ({ result, page, onPageChange }) => {
       </div>
       {page !== 3 && (
         <AnswerButton
-          label={page !== 2 ? next + ' ->' : continue_to_payment}
+          label={page === 2 ? continue_to_payment : page === 3 ? start_subscription : next }
           onAnswerGiven={onPageChange}
-          stylingClasses={'w-2/3 ' + (page === 2 && 'button-cta')}
-        />
+          stylingClasses={"w-2/3 " + ((page === 2 || page === 3) && "button-cta")}        />
       )}
     </div>
   );

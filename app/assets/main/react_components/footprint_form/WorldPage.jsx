@@ -1,8 +1,8 @@
 import React from 'react';
-import Title from './Title.jsx';
-import YourFootprintText from '../footprint_result/YourFootprintText.jsx';
-import WorldComparisonChart from '../footprint_result/WorldComparisonChart.jsx';
 import { useTexts } from '../context/Footprint/TextsContext.js';
+import WorldComparisonChart from '../footprint_result/WorldComparisonChart.jsx';
+import YourFootprintText from '../footprint_result/YourFootprintText.jsx';
+import Title from './Title.jsx';
 
 const WorldPage = ({ footprint, countryAverage }) => {
   const {
@@ -11,7 +11,10 @@ const WorldPage = ({ footprint, countryAverage }) => {
 
   return (
     <div className="max-w-lg mx-auto">
-      <Title text={well_done} />
+      <Title 
+        custom_style="text-lgr"
+        text={well_done}
+      />
       <YourFootprintText
         footprintValue={(footprint.total.co2e / 1000).toFixed(1)}
       />

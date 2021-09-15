@@ -1,12 +1,12 @@
-import React from 'react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import Payment from './Payment.jsx';
-import Title from '../footprint_form/Title.jsx';
-import SignUpMotivationText from './SignUpMotivationText.jsx';
-import { useTexts } from '../context/Footprint/TextsContext.js';
-import { useLocaleData } from '../context/Footprint/LocaleContext.js';
+import React from 'react';
 import sanitizeHtml from 'sanitize-html';
+import { useLocaleData } from '../context/Footprint/LocaleContext.js';
+import { useTexts } from '../context/Footprint/TextsContext.js';
+import Title from '../footprint_form/Title.jsx';
+import Payment from './Payment.jsx';
+import SignUpPreamble from './SignUpPreamble.jsx';
 
 const ConfirmSignUpContainer = ({
   selectedMembership,
@@ -16,7 +16,7 @@ const ConfirmSignUpContainer = ({
   price,
 }) => {
   const {
-    registrationsText: { sign_up_heading_collective_efficacy, accept_policies },
+    registrationsText: { sign_up_heading_collective_efficacy, sign_up_description, accept_policies },
   } = useTexts();
   const { lang } = useLocaleData();
   const stripePromise = loadStripe(window.stripe._apiKey);
@@ -26,7 +26,7 @@ const ConfirmSignUpContainer = ({
       <div className="max-w-lg mx-auto">
         <div className="space-y-3">
           <Title text={sign_up_heading_collective_efficacy} />
-          <SignUpMotivationText />
+          <SignUpPreamble text={sign_up_description} />
           <Elements stripe={stripePromise} options={{ locale: lang }}>
             <Payment
               selectedMembership={selectedMembership}

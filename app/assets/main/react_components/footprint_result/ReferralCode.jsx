@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import AnswerButton from '../footprint_form/AnswerButton.jsx';
 import { useTexts } from '../context/Footprint/TextsContext.js';
-
+import AnswerButton from '../footprint_form/AnswerButton.jsx';
+     
+/**
+ * React component for referral code field in signup
+ * Shows link and input field
+ */
 const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
   const [invalidCodeMessage, setInvalidCodeMessage] = useState('');
   const [inputCode, setInputCode] = useState(grantedReferralCode);

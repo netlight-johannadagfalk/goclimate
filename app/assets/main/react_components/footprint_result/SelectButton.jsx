@@ -14,7 +14,7 @@ const SelectButton = ({
   var unBoldText = splittedText[1];
 
   const style =
-    'flex flex-row items-center p-3 rounded cursor-pointer ' +
+    'flex flex-row items-center p-3 rounded cursor-pointer mt-3 ' +
     (buttonType === selectedMembership ? 'bg-green-tint-1' : 'bg-gray-pastel');
 
   return (

@@ -1,12 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocaleData } from '../context/Footprint/LocaleContext';
 import { useTexts } from '../context/Footprint/TextsContext';
 import PriceText from './PriceText.jsx';
 
-/**
- * Component for inputing payment details and doing a payment
- */
 const Payment = ({
   selectedMembership,
   lifestyleFootprint,
@@ -144,7 +141,7 @@ const Payment = ({
   return (
     <>
       {Elements && stripe && (
-        <form className="text-left" onSubmit={submitPayment}>
+        <form className="text-left px-2" onSubmit={submitPayment}>
           <label className="block font-semibold mt-3">{email}</label>
           <input
             required
