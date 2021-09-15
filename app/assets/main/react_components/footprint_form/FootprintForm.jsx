@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useLocaleData } from '../context/Footprint/LocaleContext.js';
+import { useTexts } from '../context/Footprint/TextsContext.js';
 import constructQuestionObjects from './constructQuestionObjects.js';
 import { numericalKeys, resultKeys, resultObjects } from './footprint-data.js';
 import ProgressBar from './ProgressBar.jsx';
 import QuestionPage from './QuestionPage.jsx';
 import ResultPage from './ResultPage.jsx';
-import { useTexts } from '../context/Footprint/TextsContext.js';
-import { useLocaleData } from '../context/Footprint/LocaleContext.js';
 import TextButton from './TextButton.jsx';
 
 const FootprintForm = ({
@@ -182,7 +182,7 @@ const FootprintForm = ({
 
   return (
     <>
-      <div className="question py-8">
+      <div className="question pb-8">
         <ProgressBar
           questionCategories={getUsedQuestions()}
           currentObject={currentObject}

@@ -22,12 +22,12 @@ const StaticDataProvider = ({
       lifestyleFootprintsText={lifestyleFootprintsText}
       modelText={modelText}
       registrationsText={registrationsText}
-      slug={JSON.parse(currentRegion).slug}
+      slug={currentRegion.slug}
     >
       <LocaleProvider
         currency={currency}
         lang={lang}
-        currentRegion={JSON.parse(currentRegion)}
+        currentRegion={currentRegion}
       >
         <ProjectsProvider projects={projects}>
           <VersionProvider version={version}>{children}</VersionProvider>

@@ -120,6 +120,7 @@ module.exports = {
       sm: ['0.8125rem', theme('lineHeight.6')],
       base: ['1rem', theme('lineHeight.6')],
       lg: ['1.25rem', theme('lineHeight.8')],
+      lgr: ['1.5rem', theme('lineHeight.8')],
       xl: ['1.75rem', theme('lineHeight.8')],
       '2xl': ['2.25rem', theme('lineHeight.10')],
       '3xl': ['2.75rem', theme('lineHeight.12')],
