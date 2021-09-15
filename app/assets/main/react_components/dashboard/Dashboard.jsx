@@ -19,17 +19,11 @@ const Dashboard = ({
   modelText,
   lang,
   registrationsText,
-  dashboardText,
   climateActionsText,
-  lifestyleFootprintText,
   totalNoFootprints,
 }) => {
   return (
-    <TextProvider
-      dashboardText={JSON.parse(dashboardText)}
-      climateActionsText={JSON.parse(climateActionsText)}
-      lifestyleFootprintText={JSON.parse(lifestyleFootprintText)}
-    >
+    <TextProvider climateActionsText={JSON.parse(climateActionsText)}>
       <DeletedActionProvider>
         <CategoryProvider>
           <UserActionsProvider

@@ -1,10 +1,15 @@
 en:
-  views:
-    climate_actions:
-      monthly_action: Action of the month
-      take_action: Take action to reduce your carbon footprint
-      low_effort_high_impact_actions: Here you can find high impact, low effort climate actions
-      my_actions: My actions
-      achievements: Achievements
-      accept: Accept
-      accepted: Accepted
+  assets:
+    main:
+      react_components:
+        monthly_action: Action of the month
+        take_action: Take action to reduce your carbon footprint
+        low_effort_high_impact_actions: Here you can find high impact, low effort climate actions
+        my_actions: My actions
+        achievements: Achievements
+        accept: Accept
+        accepted: Accepted
+        new_calculation: New calculation
+        previous_footprints: See previous footprints
+        balance_footprint: Balance your footprint
+        how_calculate: How do we calculate?
