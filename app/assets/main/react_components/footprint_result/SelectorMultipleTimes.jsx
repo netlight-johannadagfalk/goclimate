@@ -6,7 +6,7 @@ const SelectorMultipleTimes = ({ multipleOffsets, setMultipleOffsets }) => {
       <select
         value={multipleOffsets}
         onChange={(e) => setMultipleOffsets(e.target.value)}
-        className="select"
+        className="select ml-2 border border-green-accent "
         name="people"
         id="people"
       >
