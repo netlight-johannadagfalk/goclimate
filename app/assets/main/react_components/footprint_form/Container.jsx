@@ -21,7 +21,7 @@ const Container = ({
       modelText={modelText}
       lifestyleFootprintsText={lifestyleFootprintsText}
       currency={currency}
-      currentRegion={currentRegion}
+      currentRegion={JSON.parse(currentRegion)}
       lang={lang}
       projects={projects}
     >
