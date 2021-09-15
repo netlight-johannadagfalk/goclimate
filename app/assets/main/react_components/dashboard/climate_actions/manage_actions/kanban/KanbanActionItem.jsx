@@ -64,7 +64,7 @@ const KanbanActionItem = ({
         return (
           <div
             className={`border border-gray-tint-2 rounded-lg shadow-lg p-0 space-y-3 pt-0 w-80 ${
-              collapsed ? "d:w-24" : "t:w-80 d:w-80 d-lg:w-80"
+              collapsed ? "d:w-24" : "t:w-80"
             }
             
             ${item.expanded ? "h-auto" : "w-24"}`}

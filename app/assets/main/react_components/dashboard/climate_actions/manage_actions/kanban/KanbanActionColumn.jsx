@@ -33,7 +33,7 @@ const KanbanActionColumn = ({
         {(provided, snapshot) => {
           return (
             <div
-              className={`h-full overflow-x-hidden d:flex d:items-stretch lg:flex lg:items-center lg:flex-col lg:inline-block lg:w-full flex items-center flex-col inline-block w-full 
+              className={`h-full overflow-x-hidden d:flex d:items-stretch flex items-center flex-col inline-block w-full 
               ${
                 (isHovering && !collapsed) || isTabletOrMobile
                   ? "overflow-y-auto"
