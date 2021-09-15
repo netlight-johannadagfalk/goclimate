@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Link = ({ style, link, linkText, onClick }) => {
+const Link = ({ style, link, linkText, linkStyle = 'link', onClick }) => {
   return (
     <div className={style}>
       <a
-        className="link"
+        className={linkStyle}
         target="_blank"
         href={link}
         onClick={onClick}
