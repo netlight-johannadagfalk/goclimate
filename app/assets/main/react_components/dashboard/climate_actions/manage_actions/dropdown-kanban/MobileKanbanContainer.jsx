@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
 const MobileKanbanContainer = ({ climateActions, children }) => {
-  const getTotalAmountOfAcceptedActionsForUser = () => {
-    let amountActionsAccepted = 0;
+  const getAcceptedActionsForUser = () => {
+    let actionsAccepted = 0;
     climateActions.map((action) => {
       if (action.accepted === true) {
-        amountActionsAccepted++;
+        actionsAccepted++;
       }
     });
-    return amountActionsAccepted;
+    return actionsAccepted;
   };
 
   const [showMobileKanban, setShowMobileKanban] = useState(false);
@@ -32,9 +32,9 @@ const MobileKanbanContainer = ({ climateActions, children }) => {
             showMobileKanban ? "fa-globe-europe" : "fa-globe-americas"
           }`}
         ></i>
-        <div className="fas rounded-full h-5 w-5 bg-green-tint-2 border border-gray-accent -mt-1 -ml-3 absolute focus:outline-none">
+        <div className="fas rounded-full h-5 w-5 bg-green-tint-3 -mt-1 -ml-3 absolute focus:outline-none">
           <div className="mb-2 text-white text-center">
-            {getTotalAmountOfAcceptedActionsForUser()}
+            {getAcceptedActionsForUser()}
           </div>
         </div>
       </button>

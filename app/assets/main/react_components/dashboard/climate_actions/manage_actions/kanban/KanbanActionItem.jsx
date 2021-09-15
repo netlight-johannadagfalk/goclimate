@@ -64,7 +64,7 @@ const KanbanActionItem = ({
         return (
           <div
             className={`border border-gray-tint-2 rounded-lg shadow-lg p-0 space-y-3 pt-0 w-80 ${
-              collapsed ? "d:w-24" : "t:w-80 d:w-80 d-lg:w-80"
+              collapsed ? "d:w-24" : "t:w-80"
             }
             
             ${item.expanded ? "h-auto" : "w-24"}`}
@@ -210,7 +210,7 @@ const KanbanActionItem = ({
                                   {subitem.name}
                                 </div>
                                 <button
-                                  className="opacity-0 group-hover:opacity-50 hover:!opacity-100 flex-1 text-lg text-right"
+                                  className="d:opacity-0 d:group-hover:opacity-50 d:hover:!opacity-100 opacity-50 flex-1 text-lg text-right"
                                   onClick={() =>
                                     handleButtonPerformOnDrag(subitem, false)
                                   }
