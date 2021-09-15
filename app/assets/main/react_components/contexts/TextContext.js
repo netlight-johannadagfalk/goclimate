@@ -11,8 +11,6 @@ export const useClimateActionsText = () => {
 
 //***  To wrap components that need acces to the context in ***/
 export const TextProvider = ({ children, climateActionsText }) => {
-  //   const dashboardText = JSON.parse(dashboardText);
-
   return (
     <ClimateActionsTextContext.Provider value={climateActionsText}>
       {children}
