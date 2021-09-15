@@ -1,9 +1,9 @@
-import React from "react";
-import { LocaleProvider } from "./LocaleContext";
-import { TextsProvider } from "./TextsContext";
-import { ProjectsProvider } from "./ProjectsContext";
+import React from 'react';
+import { LocaleProvider } from './LocaleContext';
+import { TextsProvider } from './TextsContext';
+import { ProjectsProvider } from './ProjectsContext';
 
-const StaticDataProvider = ({ children, commonText, currency, lang, lifestyleFootprintsText, modelText, projects, registrationsText, slug, reactContentText }) => {
+const StaticDataProvider = ({ children, commonText, currency, lang, lifestyleFootprintsText, modelText, projects, registrationsText, currentRegion, reactContentText }) => {
 
     return (
         <TextsProvider 
@@ -11,13 +11,13 @@ const StaticDataProvider = ({ children, commonText, currency, lang, lifestyleFoo
             lifestyleFootprintsText={lifestyleFootprintsText}
             modelText={modelText}
             registrationsText={registrationsText}
-            slug={slug}
+            slug={currentRegion.slug}
             reactContentText={reactContentText}
         >
             <LocaleProvider 
                 currency={currency} 
                 lang={lang}
-                slug={slug}
+                currentRegion={currentRegion}
             >
                 <ProjectsProvider projects={projects}>
                     {children}
@@ -25,6 +25,6 @@ const StaticDataProvider = ({ children, commonText, currency, lang, lifestyleFoo
             </LocaleProvider>
         </TextsProvider>
     );
-};
+    };
 
 export default StaticDataProvider;
