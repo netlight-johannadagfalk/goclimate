@@ -3,7 +3,6 @@ const borderSpecificColors = require("./lib/tailwind_plugins/border_specific_col
 module.exports = {
   purge: false,
   plugins: [borderSpecificColors],
-  //important: true,
   theme: {
     variants: {
       borderWidth: ["responsive", "hover"],

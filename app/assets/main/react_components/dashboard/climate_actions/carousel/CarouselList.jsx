@@ -47,10 +47,14 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
             ? 2.5
             : 4
         }
-        navigation={{
-          nextEl: navigationPrevRef.current,
-          prevEl: navigationNextRef.current,
-        }}
+        navigation={
+          !isMobile
+            ? {
+                nextEl: navigationPrevRef.current,
+                prevEl: navigationNextRef.current,
+              }
+            : false
+        }
         pagination={true}
         onSwiper={(swiper) => {
           setTimeout(() => {
@@ -63,7 +67,13 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
         }}
       >
         {actions.map((action) => (
-          <SwiperSlide key={action.id} className={"h-auto min-h-full mb-10"}>
+          <SwiperSlide
+            key={action.id}
+            className={" min-h-full mb-10"}
+            style={{
+              height: "auto",
+            }}
+          >
             <CarouselActionItem
               action={action}
               user={user}
@@ -73,22 +83,24 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="flex flex-row absolute z-10 top-1/2 w-full">
-        <div className="relative w-full">
-          <button
-            ref={navigationPrevRef}
-            className={
-              "rounded-full -left-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left absolute focus:outline-none"
-            }
-          />
-          <button
-            ref={navigationNextRef}
-            className={
-              "rounded-full -right-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-right absolute focus:outline-none"
-            }
-          />
+      {!isMobile && (
+        <div className="flex flex-row absolute z-10 top-1/2 w-full">
+          <div className="relative w-full">
+            <button
+              ref={navigationPrevRef}
+              className={
+                "rounded-full -left-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left absolute focus:outline-none"
+              }
+            />
+            <button
+              ref={navigationNextRef}
+              className={
+                "rounded-full -right-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-right absolute focus:outline-none"
+              }
+            />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

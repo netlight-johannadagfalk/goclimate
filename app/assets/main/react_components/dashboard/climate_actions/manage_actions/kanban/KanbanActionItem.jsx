@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ProgressBar from "./ProgressBar.jsx";
 import { Draggable } from "react-beautiful-dnd";
 import { useMediaQuery } from "react-responsive";
-import { m, t } from "../../../../constants";
+import { m, t, mLg } from "../../../../constants";
 
 const KanbanActionItem = ({
   item,
@@ -17,6 +17,7 @@ const KanbanActionItem = ({
 
   const isMobile = useMediaQuery({ query: `(max-width: ${m})` });
   const isTablet = useMediaQuery({ query: `(max-width: ${t})` });
+  const isMediumScreen = useMediaQuery({ query: `(max-width: ${mLg})` });
 
   const categoryName = () => {
     for (let i = 0; i <= Object.keys(categories).length; i++) {
@@ -40,7 +41,7 @@ const KanbanActionItem = ({
     if (!snapshot.isDragging) {
       return {
         userSelect: "none",
-        padding: 16,
+        padding: 0,
         margin: "0 0 8px 0",
         minHeight: "auto",
       };
@@ -51,7 +52,7 @@ const KanbanActionItem = ({
     /** Moving element inside accepted column */
     return {
       userSelect: "none",
-      padding: 16,
+      padding: 0,
       margin: "0 0 8px 0",
       minHeight: "auto",
       ...style,
@@ -137,7 +138,7 @@ const KanbanActionItem = ({
                         className={`flex flex-1 font-bold text-left ${
                           isBadge && "mt-5"
                         }
-                        ${isMobile && "text-sm"}
+                        ${isMobile || (isTablet && "text-sm")}
                       `}
                       >
                         {item.name}
@@ -173,7 +174,7 @@ const KanbanActionItem = ({
                 {item.status === false ? (
                   <div className="flex flex-1 flex-col text-center">
                     <div className="flex-1 justify-center">
-                      <p className={`${isMobile && "text-sm"}`}>
+                      <p className={`${isMobile || (isTablet && "text-sm")}`}>
                         {item.description.length > 200
                           ? item.description.slice(0, 200) + "..."
                           : item.description}
@@ -210,7 +211,7 @@ const KanbanActionItem = ({
                                 ></div>
                                 <div
                                   className={`flex-initial text-left ${
-                                    isMobile && "text-sm"
+                                    (isMobile || isTablet) && "text-sm"
                                   }`}
                                 >
                                   {subitem.name}
@@ -235,7 +236,7 @@ const KanbanActionItem = ({
                                 ></div>
                                 <div
                                   className={`flex-inital text-left text-gray-accent ${
-                                    isMobile && "text-sm"
+                                    (isMobile || isTablet) && "text-sm"
                                   }`}
                                 >
                                   {subitem.name}
@@ -259,7 +260,11 @@ const KanbanActionItem = ({
                                 "url('/achievement_images/AchievementStarInactive.png')",
                             }}
                           ></div>
-                          <div className="flex-inital text-left text-gray-accent">
+                          <div
+                            className={`flex-inital text-left text-gray-accent ${
+                              (isMobile || isTablet) && "text-sm"
+                            }`}
+                          >
                             {subitem.name}
                           </div>
                         </div>
