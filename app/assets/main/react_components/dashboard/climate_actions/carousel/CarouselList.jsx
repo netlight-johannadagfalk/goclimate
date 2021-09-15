@@ -7,7 +7,7 @@ import "swiper/components/navigation/navigation.min.css";
 import "swiper/components/pagination/pagination.min.css";
 import { orderBy } from "lodash";
 import { useMediaQuery } from "react-responsive";
-import { m, t, d, dMd } from "../../../constants";
+import { m, d, dLg } from "../../../constants";
 
 // Swiper resources
 //https://swiperjs.com/react
@@ -22,9 +22,8 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
 
   const climateActions = useClimateActions();
   const isMobile = useMediaQuery({ query: `(max-width: ${m})` });
-  const isTablet = useMediaQuery({ query: `(max-width: ${t})` });
   const isLargeTablet = useMediaQuery({ query: `(max-width: ${d})` });
-  const isDesktop = useMediaQuery({ query: `(max-width: ${dMd})` });
+  const isDesktop = useMediaQuery({ query: `(max-width: ${dLg})` });
 
   const sortForMobileClimateActions = orderBy(
     climateActions,
@@ -38,17 +37,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
     <div className="relative overflow-visible">
       <Swiper
         className="m-4"
-        slidesPerView={
-          isMobile
-            ? 1.5
-            : isTablet
-            ? 2.5
-            : isLargeTablet
-            ? 3
-            : isDesktop
-            ? 3.5
-            : 4
-        }
+        slidesPerView={isMobile ? 1.5 : isLargeTablet ? 2.5 : isDesktop ? 3 : 4}
         navigation={
           !isMobile
             ? {
