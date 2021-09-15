@@ -33,13 +33,25 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
 
   const actions = isMobile ? sortForMobileClimateActions : climateActions;
 
+  const showNoOfActions = isMobile
+    ? 1.5
+    : isLargeTablet
+    ? 2.5
+    : isDesktop
+    ? 3
+    : 4;
+
+  const loopActions = actions.length > showNoOfActions ? true : false;
+  const noArrows = isMobile || !loopActions ? true : false;
+
   return (
     <div className="relative overflow-visible">
       <Swiper
         className="m-4"
-        slidesPerView={isMobile ? 1.5 : isLargeTablet ? 2.5 : isDesktop ? 3 : 4}
+        loop={loopActions}
+        slidesPerView={showNoOfActions}
         navigation={
-          !isMobile
+          !isMobile || !loopActions
             ? {
                 nextEl: navigationPrevRef.current,
                 prevEl: navigationNextRef.current,
@@ -74,7 +86,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      {!isMobile && (
+      {!noArrows && (
         <div className="flex flex-row absolute z-10 top-1/2 w-full">
           <div className="relative w-full">
             <button
