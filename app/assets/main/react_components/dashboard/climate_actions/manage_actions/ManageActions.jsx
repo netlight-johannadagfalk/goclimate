@@ -3,11 +3,11 @@ import Sidebar from "./sidebar/Sidebar.jsx";
 import MobileKanbanContainer from "./dropdown-kanban/MobileKanbanContainer.jsx";
 import { useMediaQuery } from "react-responsive";
 import KanbanActionContainer from "./kanban/KanbanActionContainer.jsx";
-import { d } from "../../../constants";
+import { t } from "../../../constants";
 
 const ManageActions = ({ categories, climateActions }) => {
   const [collapsed, setCollapsed] = useState(false);
-  const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${d})` });
+  const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
 
   return (
     <>

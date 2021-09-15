@@ -26,7 +26,7 @@
               <% if user_signed_in? %> 
                 <div class="d:dropdown"> 
                   <input type="checkbox" id="user-menu" class="dropdown-toggler">
-                  <label for="user-menu" class="button hidden d:block" aria-haspopup="true" aria-expanded="false">
+                  <label for="user-menu" class="button hidden d:block t-lg:hidden" aria-haspopup="true" aria-expanded="false">
                     <%= current_user.user_name.nil? || current_user.user_name.empty? ? current_user.email : current_user.user_name %>
                     <i class="fas fa-caret-down" aria-hidden="true"></i>
                   </label> 
