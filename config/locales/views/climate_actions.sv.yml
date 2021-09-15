@@ -1,0 +1,12 @@
+sv:
+  assets:
+    main:
+      react_components:
+        common:
+          monthly_action: Månadens utmaning
+          take_action: Agera för att minska ditt koldioxidavtryck
+          low_effort_high_impact_actions: Här hittar du lätta utmaningar som kan bidra till stor påverkan
+          my_actions: Mina Utmaningar
+          achievements: Utmärkelser
+          accept: Acceptera
+          accepted: Accepterad
