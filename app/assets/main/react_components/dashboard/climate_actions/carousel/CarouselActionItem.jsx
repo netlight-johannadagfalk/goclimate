@@ -135,7 +135,7 @@ const CarouselActionItem = ({
             </div>
 
             <div className="flex-4">
-              <p className="text-base">
+              <p className="text-sm">
                 {action.description.length > 200
                   ? action.description.slice(0, 200) + "..."
                   : action.description}
