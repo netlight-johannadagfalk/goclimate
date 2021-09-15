@@ -1,192 +1,225 @@
-import React, { useEffect, useState } from 'react';
-import constructObjects from './constructObjects.js';
+import React, { useEffect, useRef, useState } from 'react';
+import { useLocaleData } from '../context/Footprint/LocaleContext.js';
+import { useTexts } from '../context/Footprint/TextsContext.js';
+import constructQuestionObjects from './constructQuestionObjects.js';
 import { numericalKeys, resultKeys, resultObjects } from './footprint-data.js';
 import ProgressBar from './ProgressBar.jsx';
 import QuestionPage from './QuestionPage.jsx';
 import ResultPage from './ResultPage.jsx';
-import { useTexts } from '../context/Footprint/TextsContext.js';
-import { useLocaleData } from '../context/Footprint/LocaleContext.js';
+import TextButton from './TextButton.jsx';
 
-/**
- * FootprintForm has the responsibility to handle the logic for showing the the questions and answers 
- * in the form as well as show the current question on the form-page, one at the time. 
- * It also has the responsibility to store the answers filled in by the user by changing the footprint object.
- */
-const FootprintForm = ({ calculator, footprint, onChangeInformationSection }) => {
-  //key value pairs where the key is each question in order and the value is the corresponding category
-  const questionCategories = {"region": "home", "home": "home", "home_area": "home", "heating": "home", "green_electricity": "home", "food": "utensils", "shopping": "shopping-bag", "car_type": "car", "car_distance": "car", "flight_hours": "plane", "result-page-1": "chart-bar", "result-page-2": "chart-bar"};
-  const questionObjects = constructObjects(calculator, questionCategories, useTexts());
-  const URL = useLocaleData().slug + '/calculator'
+const FootprintForm = ({
+  calculator,
+  footprint,
+  onChangeInformationSection,
+}) => {
+  const questionCategories = {
+    region: 'home',
+    home: 'home',
+    home_area: 'home',
+    heating: 'home',
+    green_electricity: 'home',
+    food: 'utensils',
+    shopping: 'shopping-bag',
+    car_type: 'car',
+    car_distance: 'car',
+    flight_hours: 'plane',
+    result_page_1: 'chart-bar',
+    result_page_2: 'chart-bar',
+  };
+
+  const questionObjects = constructQuestionObjects(
+    calculator,
+    questionCategories,
+    useTexts()
+  );
+  const URL = useLocaleData().slug + '/calculator';
 
   const [result, setResult] = useState();
   const [currentObject, setCurrentObject] = useState(questionObjects[0]);
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    onChangeInformationSection(currentIndex > questionObjects.length + 1 ? true : false)
-  }, [currentIndex])
+  const mounted = useRef(false);
 
-  function isQuestionUsed(questionKey){
-    const calculatorKeyForOptions = questionKey.concat("_options")
-    return calculator[calculatorKeyForOptions] != null
-  }
-
-  /**
-   * Takes the questions from questionCategories and removes questions not used for the specified country
-   */
-  function getUsedQuestions(){
-    for (const question in questionCategories){
-        if(!isQuestionUsed(question) && !numericalKeys.includes(question) && !resultKeys.includes(question)){
-          delete questionCategories[question]
-        }
-      }   
-    return questionCategories
-  }
-
-  function getSessionStorage(key){
-    const item = sessionStorage.getItem(key)
-    return item ? JSON.parse(item) : {}
-  }    
-
-  function areObjectsEqual(...objects){
-    return objects.every(obj => JSON.stringify(obj) === JSON.stringify(objects[0]));
-  }
-
-  /**
-   * Cleans upp an object and remocves all entities where value is "null" or "undefined".
-   * Used for cleaning up the footprint object.
-   */
-  function cleanFootprint(basicFootprint){
+  const cleanFootprint = (basicFootprint) => {
     for (var footprintField in basicFootprint) {
-      if (basicFootprint[footprintField] === null || basicFootprint[footprintField] === undefined) {
+      if (
+        basicFootprint[footprintField] === null ||
+        basicFootprint[footprintField] === undefined
+      ) {
         delete basicFootprint[footprintField];
       }
     }
     basicFootprint.country = basicFootprint.country.country_data_or_code;
-    return basicFootprint
-  } 
+    return basicFootprint;
+  };
 
-  /**
-   * Submits the completed form and sends a post request to the server
-   * with the cleanFootprint object containing the answers.
-   * After completed post request the user gets redirected to the result/sign-up page.
-   */
-  function submit(){
-    const answers = result ? footprint : cleanFootprint(footprint)
+  const submitFootprintForm = () => {
+    const answers = result ? footprint : cleanFootprint(footprint);
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const requestOptions = {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'X-CSRF-Token': csrfToken,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(answers)
-      };
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'X-CSRF-Token': csrfToken,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(answers),
+    };
     fetch(URL, requestOptions)
-      .then(response => {
-        /* IF RESULT IN FORM: */
-        response.json().then(calculatedFootprint => {
-          setResult(calculatedFootprint)
-          setCurrentObject(resultObjects[0])
-        })
-        /* IF RESULT ON RESULT PAGE: */
-        // window.location.href = response.url
+      .then((response) => {
+        if (mounted.current) {
+          /* IF RESULT IN FORM: */
+          response.json().then((calculatedFootprint) => {
+            setResult(calculatedFootprint);
+            setCurrentObject(resultObjects[0]);
+          });
+          /* IF RESULT ON RESULT PAGE: */
+          // window.location.href = response.url
+        }
       })
-      .catch(error => {
-        console.log("Something went wrong, trying again.", error);
-      })
-  }
+      .catch((error) => {
+        console.log('Something went wrong, trying again.', error);
+      });
+  };
 
-  /**
-   * Called on go back-button, loads the previous question by decreasing index and setting the question and options
-   */
-  function onGoBack(){
-    let newIndex = currentIndex - 1
-    if(newIndex < questionObjects.length
-      && questionObjects[newIndex].questionKey === "car_distance"
-      && footprint["car_type_answer"] === "no_car")
-      newIndex--
-    setCurrentObject(newIndex < questionObjects.length ? questionObjects[newIndex] : resultObjects[newIndex - questionObjects.length])
-    setCurrentIndex(newIndex)
-  }
+  const areObjectsEqual = (...objects) => {
+    return objects.every(
+      (obj) => JSON.stringify(obj) === JSON.stringify(objects[0])
+    );
+  };
 
-  /**
-   * Provides numerical input fields with default values
-   * Returns actual value if back button has been used, meaning answer has been entered earlier
-   */
-  function getSavedValue(){
-    const questionKey = currentObject.questionKey;
-    if(questionKey === "car_distance"){
-      if(footprint[questionKey.concat("_week_answer")])
-        return footprint[questionKey.concat("_week_answer")]
-      return ""
+  const getSessionStorage = (key) => {
+    const item = sessionStorage.getItem(key);
+    return item ? JSON.parse(item) : {};
+  };
+
+  const isQuestionUsed = (questionKey) => {
+    const calculatorKeyForOptions = questionKey.concat('_options');
+    return calculator[calculatorKeyForOptions] != null;
+  };
+
+  const getUsedQuestions = () => {
+    for (const question in questionCategories) {
+      if (
+        !isQuestionUsed(question) &&
+        !numericalKeys.includes(question) &&
+        !resultKeys.includes(question)
+      ) {
+        delete questionCategories[question];
+      }
     }
-    if(footprint[questionKey.concat("_answer")])
-      return footprint[questionKey.concat("_answer")]
-    return ""
-  }
+    return questionCategories;
+  };
 
-  /**
-   * Called when the answer to a question is given, saves the result and loads the next question
-   */
-  function onAnswerGiven(givenAnswer){
-    footprint[currentObject.questionKey === "car_distance" ? currentObject.questionKey.concat("_week_answer") : currentObject.questionKey.concat("_answer")] = givenAnswer
+  const setAnswer = (givenAnswer) => {
+    footprint[
+      currentObject.questionKey === 'car_distance'
+        ? currentObject.questionKey.concat('_week_answer')
+        : currentObject.questionKey.concat('_answer')
+    ] = givenAnswer;
     let nextQuestionIndex = currentIndex + 1;
-    if(!questionObjects[nextQuestionIndex]){
-      if(!result || result && !areObjectsEqual(footprint, getSessionStorage('footprint'))){
-        submit()
-        sessionStorage.setItem('footprint', JSON.stringify(footprint))
+    if (!questionObjects[nextQuestionIndex]) {
+      if (
+        !result ||
+        (result && !areObjectsEqual(footprint, getSessionStorage('footprint')))
+      ) {
+        submitFootprintForm();
+        sessionStorage.setItem('footprint', JSON.stringify(footprint));
       } else {
-        setCurrentObject(resultObjects[0])
+        setCurrentObject(resultObjects[0]);
       }
     } else {
-      if (givenAnswer === "no_car"){
+      if (givenAnswer === 'no_car') {
         nextQuestionIndex++;
-        delete questionCategories["car_distance"]      
+        delete questionCategories['car_distance'];
       }
-      setCurrentObject(questionObjects[nextQuestionIndex])
+      setCurrentObject(questionObjects[nextQuestionIndex]);
     }
-    setCurrentIndex(nextQuestionIndex)
-  }
+    setCurrentIndex(nextQuestionIndex);
+  };
+
+  const getSavedAnswer = () => {
+    const questionKey = currentObject.questionKey;
+    if (questionKey === 'car_distance') {
+      if (footprint[questionKey.concat('_week_answer')])
+        return footprint[questionKey.concat('_week_answer')];
+      return '';
+    }
+    if (footprint[questionKey.concat('_answer')])
+      return footprint[questionKey.concat('_answer')];
+    return '';
+  };
+
+  const goBack = () => {
+    let newIndex = currentIndex - 1;
+    if (
+      newIndex < questionObjects.length &&
+      questionObjects[newIndex].questionKey === 'car_distance' &&
+      footprint['car_type_answer'] === 'no_car'
+    )
+      newIndex--;
+    setCurrentObject(
+      newIndex < questionObjects.length
+        ? questionObjects[newIndex]
+        : resultObjects[newIndex - questionObjects.length]
+    );
+    setCurrentIndex(newIndex);
+  };
+
+  useEffect(() => {
+    onChangeInformationSection(
+      currentIndex > questionObjects.length + 1 ? true : false
+    );
+  }, [currentIndex]);
+
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
 
   return (
     <>
-        <div className="question py-8">
-          <ProgressBar 
-            questionCategories={getUsedQuestions()} 
+      <div className="question pb-8">
+        <ProgressBar
+          questionCategories={getUsedQuestions()}
+          currentObject={currentObject}
+        />
+        {currentIndex < questionObjects.length ? (
+          <QuestionPage
             currentObject={currentObject}
+            onAnswerGiven={(givenAnswer) => setAnswer(givenAnswer)}
+            selectedKey={footprint[currentObject.questionKey.concat('_answer')]}
+            onNumericalInput={(givenAnswer) =>
+              (footprint[
+                currentObject.questionKey === 'car_distance'
+                  ? currentObject.questionKey.concat('_week_answer')
+                  : currentObject.questionKey.concat('_answer')
+              ] = givenAnswer)
+            }
+            savedValue={getSavedAnswer()}
           />
-          {currentIndex < questionObjects.length ?
-            <QuestionPage
-              currentObject={currentObject}
-              onAnswerGiven={(givenAnswer) => onAnswerGiven(givenAnswer)}
-              selectedKey={footprint[currentObject.questionKey.concat("_answer")]}
-              onNumericalInput={(givenAnswer) => footprint[currentObject.questionKey === "car_distance" ? currentObject.questionKey.concat("_week_answer") : currentObject.questionKey.concat("_answer")] = givenAnswer}
-              savedValue={getSavedValue()}
-            />
-            :
-            result && <ResultPage 
-              result={result} 
+        ) : (
+          result && (
+            <ResultPage
+              result={result}
               page={currentIndex - questionObjects.length}
               onPageChange={() => {
-                setCurrentObject(resultObjects[currentIndex + 1 - questionObjects.length])
-                setCurrentIndex(currentIndex + 1)
+                setCurrentObject(
+                  resultObjects[currentIndex + 1 - questionObjects.length]
+                );
+                setCurrentIndex(currentIndex + 1);
               }}
-            />            
-          }
-        </div>
-        {currentIndex > 0 &&
-          <div className="flex justify-space-between">
-            <div className="block">
-              <i className="fas fa-chevron-left cursor-pointer" aria-hidden="true"></i>     
-              <label className="px-1 cursor-pointer" onClick={onGoBack}>Go back</label>
-            </div>
-          </div>
-        }
-        <div id="information-scroll-position"></div>
+            />
+          )
+        )}
+      </div>
+      {currentIndex > 0 && <TextButton onClick={goBack} />}
+      <div id="information-scroll-position"></div>
     </>
-  )
-}
+  );
+};
 
 export default FootprintForm;
