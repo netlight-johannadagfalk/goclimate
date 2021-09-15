@@ -1,4 +1,5 @@
 <% title(t('views.lifestyle_footprints.title')) %>
+
 <%= render "shared/header" %>
 
 <div class="relative min-h-screen bg-blue-tint-1 -mt-20 pt-20 z-10">
@@ -271,7 +272,7 @@
                 <% end %>
               </div>
             <% end %>
-            
+
             <% if @calculator.car_type_options.present? %>
               <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="car">
                 <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.car_distance' %></h2>
