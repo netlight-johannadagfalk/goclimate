@@ -44,3 +44,14 @@ html {
 .swiper-pagination > .swiper-pagination-bullet-active {
   background-color: #1c4637;
 }
+
+.dropdown-control {
+  width: 9rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 0.25rem !important;
+  padding: 0.5rem !important;
+  background-color: transparent !important;
+  color: #1c4637 !important;
+}
