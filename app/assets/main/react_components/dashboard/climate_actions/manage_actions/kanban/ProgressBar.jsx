@@ -26,7 +26,7 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
     <div className="w-3/4 flex flex-row justify-center items-center">
       <div className="h-3 w-2/3 bg-gray-tint-2 bg-opacity-70 rounded-lg">
         <div
-          className={`h-3 ${
+          className={`h-3  ${
             "w-" + completed + "/" + total
           } rounded-lg text-right ${
             "category_" +

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import ProgressBar from "./ProgressBar.jsx";
-
 import { Draggable } from "react-beautiful-dnd";
 
 const KanbanActionItem = ({
@@ -36,7 +35,7 @@ const KanbanActionItem = ({
     if (!snapshot.isDragging) {
       return {
         userSelect: "none",
-        padding: 16,
+        padding: 0,
         margin: "0 0 8px 0",
         minHeight: "auto",
       };
@@ -47,7 +46,7 @@ const KanbanActionItem = ({
     /** Moving element inside accepted column */
     return {
       userSelect: "none",
-      padding: 16,
+      padding: 0,
       margin: "0 0 8px 0",
       minHeight: "auto",
       ...style,
@@ -64,12 +63,11 @@ const KanbanActionItem = ({
       {(provided, snapshot) => {
         return (
           <div
-            className={`border border-gray-tint-2 rounded-lg p-0 space-y-3 pt-0 ${
-              collapsed ? "w-24" : "t:w-60 d:w-80 d-lg:w-96"
+            className={`border border-gray-tint-2 rounded-lg shadow-lg p-0 space-y-3 pt-0 w-80 ${
+              collapsed ? "d:w-24" : "t:w-80 d:w-80 d-lg:w-80"
             }
-            ${item.expanded ? "h-auto" : "w-24"}
             
-            `}
+            ${item.expanded ? "h-auto" : "w-24"}`}
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -134,6 +132,7 @@ const KanbanActionItem = ({
                         className={`flex flex-1 font-bold text-left ${
                           isBadge && "mt-5"
                         }
+                      text-sm
                       `}
                       >
                         {item.name}
@@ -169,7 +168,7 @@ const KanbanActionItem = ({
                 {item.status === false ? (
                   <div className="flex flex-1 flex-col text-center">
                     <div className="flex-1 justify-center">
-                      <p>
+                      <p className="text-sm">
                         {item.description.length > 200
                           ? item.description.slice(0, 200) + "..."
                           : item.description}
@@ -204,7 +203,10 @@ const KanbanActionItem = ({
                                       "url('/achievement_images/AchievementStarActive.png')",
                                   }}
                                 ></div>
-                                <div className="flex-initial text-left">
+                                <div
+                                  className={`flex-initial text-left text-sm
+                                  `}
+                                >
                                   {subitem.name}
                                 </div>
                                 <button
@@ -225,7 +227,10 @@ const KanbanActionItem = ({
                                       "url('/achievement_images/AchievementStarInactive.png')",
                                   }}
                                 ></div>
-                                <div className="flex-inital text-left text-gray-accent">
+                                <div
+                                  className={`flex-inital text-left text-gray-accent text-sm
+                                  `}
+                                >
                                   {subitem.name}
                                 </div>
                               </div>
@@ -247,7 +252,10 @@ const KanbanActionItem = ({
                                 "url('/achievement_images/AchievementStarInactive.png')",
                             }}
                           ></div>
-                          <div className="flex-inital text-left text-gray-accent">
+                          <div
+                            className={`flex-inital text-left text-gray-accent text-sm"
+                            `}
+                          >
                             {subitem.name}
                           </div>
                         </div>
