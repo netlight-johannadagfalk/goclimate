@@ -4,7 +4,7 @@
 <div class="relative min-h-screen bg-blue-tint-1 -mt-20 pt-20 z-10">
   <section class="text-primary text-base">
     <div class="text-center pt-16 pb-48 px-4 md:px-10 lg:px-0 max-w-2xl mx-auto space-y-6">
-      <% if experiment_active?(:react) %>  
+      <% if experiment_active?(:v1) || experiment_active?(:v2)%>  
         <%= react_component 'Container', 
           lang: I18n.locale[0..-1], 
           currentRegion: current_region.to_json, 
@@ -15,7 +15,8 @@
           registrationsText: YAML.load_file('config/locales/views/registrations.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['registrations'].to_json, 
           commonText: YAML.load_file('config/locales/' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]].to_json,
           modelText: YAML.load_file('config/locales/models.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['models']['greenhouse_gases']['tonnes'].to_json,
-          projects: @projects.to_json
+          projects: @projects.to_json,
+          version: experiment_active?(:v2) ? 'v2' : 'v1'
         %>
       <% else %>
         <div class="callout" data-controller="lifestyle-footprints--calculator">

@@ -33,7 +33,7 @@ class LifestyleFootprintsController < ApplicationController
       return
     end
     
-    if experiment_active?(:react)
+    if experiment_active?(:v1) || experiment_active?(:v2)
       @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
       @footprint_tonnes = @footprint&.total
       number_of_people = params[:membership] == 'multi' && params[:people].present? ? params[:people].to_i : 1
