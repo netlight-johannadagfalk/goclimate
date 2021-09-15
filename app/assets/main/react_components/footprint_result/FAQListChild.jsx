@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-// Used as good practice in order to prevent unwanted HTML when using dangerouslySetInnterHTML
 import sanitizeHtml from 'sanitize-html';
 
-/**
- * Single FAQ list object
- * collapseState is used to check whether or not the list object should be expanded or not
- */
 const FAQListChild = ({ question, answer }) => {
   const [collapseState, setCollapseState] = useState('hidden');
 

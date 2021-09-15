@@ -1,10 +1,9 @@
 import React, { useMemo } from 'react';
 import countryList from 'react-select-country-list';
 
-/**
- * Form for choosing country of residence prior to filling out footprint calculator
- */
 const CountryForm = ({ slug, countryText }) => {
+  const countryListData = useMemo(() => countryList().getData(), []);
+
   return (
     <form
       className='m-lg:flex m-lg:justify-center mt-3'
@@ -23,7 +22,7 @@ const CountryForm = ({ slug, countryText }) => {
           id='country'
         >
           <option value=''>{countryText.i_live_in}</option>
-          {useMemo(() => countryList().getData(), []).map((country) => (
+          {countryListData.map((country) => (
             <option value={country.value} key={country.value}>
               {country.label}
             </option>

@@ -31,7 +31,7 @@ export const TextsProvider = ({
       '<a>',
       "<a href='" +
         (slug ? '/' + slug : '') +
-        "/privacy-policy' target='_blank'>"
+        "/privacy-policy' target='_blank' rel='noreferrer'>"
     );
 
   return (

@@ -1,9 +1,6 @@
 import React from 'react';
 import AnswerButton from './AnswerButton.jsx';
 
-/**
- * Receives a list of all options for a specific question, and maps
- */
 const OptionList = ({ onAnswerGiven, options, selectedKey }) => {
   return (
     <>

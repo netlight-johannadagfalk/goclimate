@@ -1,10 +1,6 @@
 import React from 'react';
 import { useTexts } from '../context/Footprint/TextsContext.js';
 
-/**
- * Result text for your footprint
- * Includes a heading and the footprint result in tonnes
- */
 const YourFootprintText = ({ footprintValue }) => {
   const {
     commonText: {

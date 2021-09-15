@@ -11,24 +11,20 @@ import AnswerButton from './AnswerButton.jsx';
 import CategoryPage from './CategoryPage.jsx';
 import WorldPage from './WorldPage.jsx';
 
-/**
- * Container for FootprintForm page that is related to results
- * If the page number is 0, then the first page, i.e. WorldComparison, should be visible
- * AnswerButton is used to increase currentIndex and with this the page number
- */
 const ResultPage = ({ result, page, onPageChange }) => {
   const [selectedMembership, setSelectedMembership] = useState('single');
   const [multipleOffsets, setMultipleOffsets] = useState(2);
   const [grantedReferralCode, setGrantedReferralCode] = useState(false);
 
-  const footprint = result.footprint;
-  const countryAverage = result.country_average;
-  const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq');
   const { slug } = useLocaleData();
   const {
     registrationsText: { continue_to_payment, accept_policies },
     lifestyleFootprintsText: { next },
   } = useTexts();
+
+  const footprint = result.footprint;
+  const countryAverage = result.country_average;
+  const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq');
 
   return (
     <div>

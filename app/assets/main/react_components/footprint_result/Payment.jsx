@@ -2,10 +2,6 @@ import { CardElement } from '@stripe/react-stripe-js';
 import React from 'react';
 import { useTexts } from '../context/Footprint/TextsContext';
 
-/**
- * Logic-less component for inputing payment details
- * TODO: add stripe logic, including collection of email and password
- */
 const Payment = ({ selectedMembership }) => {
   const {
     commonText: { email, password, credit_or_debit_card },

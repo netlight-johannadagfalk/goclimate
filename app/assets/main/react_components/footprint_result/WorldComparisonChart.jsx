@@ -4,16 +4,7 @@ import ResultText from './ResultText.jsx';
 import { useTexts } from '../context/Footprint/TextsContext.js';
 import { useLocaleData } from '../context/Footprint/LocaleContext.js';
 
-/**
- * Chart for comparison to the world using resultbars of different lengths, calculated in scale to each other
- */
 const WorldComparisonChart = ({ footprint, countryAverage }) => {
-  const maxValue = Math.max(
-    footprint.total.co2e,
-    countryAverage.co2e.co2e,
-    2500
-  );
-  const { lang } = useLocaleData();
   const {
     modelText: { one, other },
     registrationsText: {
@@ -27,6 +18,13 @@ const WorldComparisonChart = ({ footprint, countryAverage }) => {
       world_average,
     },
   } = useTexts();
+  const { lang } = useLocaleData();
+
+  const maxValue = Math.max(
+    footprint.total.co2e,
+    countryAverage.co2e.co2e,
+    2500
+  );
 
   const footprintCo2e = {
     value: footprint.total.co2e,

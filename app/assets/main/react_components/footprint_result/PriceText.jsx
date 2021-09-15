@@ -3,15 +3,14 @@ import Link from '../Link.jsx';
 import { useTexts } from '../context/Footprint/TextsContext.js';
 import { useLocaleData } from '../context/Footprint/LocaleContext.js';
 
-/**
- * Price text that adapts to region, selected membership type and referral code
- */
 const PriceText = ({
   priceObject,
   grantedReferralCode,
   selectedMembership,
   multipleOffsets,
 }) => {
+  const [price, setPrice] = useState();
+
   const {
     commonText: {
       months: { one },
@@ -31,9 +30,7 @@ const PriceText = ({
     },
   } = useLocaleData();
 
-  const [price, setPrice] = useState(extractPrice());
-
-  function extractPrice() {
+  const calculatePrice = () => {
     var price = priceObject.subunit_amount / 100;
     if (Math.trunc(price) != price) {
       price = price.toFixed(2);
@@ -48,10 +45,10 @@ const PriceText = ({
       price = currency.replace(findCustomPlacement, price);
     }
     return price;
-  }
+  };
 
   useEffect(() => {
-    setPrice(extractPrice());
+    setPrice(calculatePrice());
   }, [grantedReferralCode, selectedMembership, multipleOffsets]);
 
   return (

@@ -1,8 +1,4 @@
-/**
- * Creates list of objects for all questions used in the footprint form
- * Includes the question text, what options to use, its category, and type
- */
-function constructObjects(calculator, categories, texts) {
+function constructQuestionObjects(calculator, categories, texts) {
   const questionKeys = Object.keys(categories);
   let constructedQuestionObjects = questionKeys
     .filter((questionKey) => calculator[questionKey.concat('_options')])
@@ -26,6 +22,7 @@ function constructObjects(calculator, categories, texts) {
         isNumerical: false,
       };
     });
+
   let carObject = {
     questionKey: 'car_distance',
     question: texts.lifestyleFootprintsText.questions['car_distance'],
@@ -42,8 +39,10 @@ function constructObjects(calculator, categories, texts) {
     isNumerical: true,
     isCarOption: false,
   };
+
   constructedQuestionObjects.push(carObject, flightObject);
+
   return constructedQuestionObjects;
 }
 
-export default constructObjects;
+export default constructQuestionObjects;

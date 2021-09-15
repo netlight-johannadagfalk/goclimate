@@ -1,9 +1,6 @@
 import React from 'react';
 import { useTexts } from '../context/Footprint/TextsContext';
 
-/**
- * Displays a list explaining what donated money goes to
- */
 const MoneyUsageList = () => {
   const {
     registrationsText: {
@@ -11,6 +8,7 @@ const MoneyUsageList = () => {
       where_does_the_money_go: { heading },
     },
   } = useTexts();
+
   const listValues = Object.entries(where_does_the_money_go).filter(
     ([key]) => key !== 'heading'
   );
