@@ -34,7 +34,6 @@ export default function getChartData(footprint, categoryChartText){
             icon: "fa-plane",
             color: "bg-blue-accent"
         },
-
         {
             text: categoryChartText.dashboard.footprint.category["public"],
             co2e: footprint["public"].co2e,
