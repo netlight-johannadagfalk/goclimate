@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
-import Link from '../Link.jsx';
-import FootprintForm from './FootprintForm.jsx';
-import InformationSection from './InformationSection.jsx';
+import React from 'react';
 import StaticDataProvider from '../context/Footprint/StaticDataProvider.js';
+import FootprintFormContainer from './FootprintFormContainer.jsx';
 
 const Container = ({
   footprint,
   calculator,
-  slug,
+  currentRegion,
   lang,
   registrationsText,
   commonText,
@@ -15,9 +13,8 @@ const Container = ({
   lifestyleFootprintsText,
   currency,
   projects,
+  reactContentText
 }) => {
-  const [showInformationSection, setShowInformationSection] = useState(false);
-
   return (
     <StaticDataProvider
       registrationsText={registrationsText}
@@ -25,26 +22,15 @@ const Container = ({
       modelText={modelText}
       lifestyleFootprintsText={lifestyleFootprintsText}
       currency={currency}
-      slug={slug}
+      currentRegion={JSON.parse(currentRegion)}
       lang={lang}
       projects={projects}
+      reactContentText={reactContentText}
     >
-      <div className='space-y-6'>
-        <div className='callout'>
-          <FootprintForm
-            footprint={JSON.parse(footprint)}
-            calculator={JSON.parse(calculator)}
-            onChangeInformationSection={(value) =>
-              setShowInformationSection(value)
-            }
-          />
-        </div>
-        <Link
-          link='https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/'
-          linkText={JSON.parse(lifestyleFootprintsText).methodology}
-        />
-        {showInformationSection && <InformationSection />}
-      </div>
+      <FootprintFormContainer
+        footprint={JSON.parse(footprint)}
+        calculator={JSON.parse(calculator)}
+      />
     </StaticDataProvider>
   );
 };
