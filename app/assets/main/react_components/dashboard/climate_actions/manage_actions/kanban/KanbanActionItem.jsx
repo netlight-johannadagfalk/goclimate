@@ -210,7 +210,7 @@ const KanbanActionItem = ({
                                   {subitem.name}
                                 </div>
                                 <button
-                                  className="opacity-0 group-hover:opacity-50 hover:!opacity-100 flex-1 text-lg text-right"
+                                  className="d:opacity-0 d:group-hover:opacity-50 d:hover:!opacity-100 opacity-50 flex-1 text-lg text-right"
                                   onClick={() =>
                                     handleButtonPerformOnDrag(subitem, false)
                                   }
