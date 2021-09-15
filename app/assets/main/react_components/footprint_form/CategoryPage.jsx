@@ -9,12 +9,23 @@ import { useTexts } from '../context/Footprint/TextsContext.js';
 const CategoryPage = ({ footprint }) => {
 
     const { commonText: { dashboard: { footprint: { heading_more } } } } = useTexts()
+    const { 
+        reactContentText: {
+            react: { 
+                category_chart: { 
+                    title, 
+                    desc
+                }         
+            }
+        }  
+    } = useTexts();
 
     return (
         <div className="max-w-lg mx-auto">
             <Title 
-                text={heading_more}
+                text={title}
             />
+            <SingUpPreamble />
             <CategoryChart
                 footprint={footprint} 
             />
