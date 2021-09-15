@@ -24,6 +24,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const isMobile = useMediaQuery({ query: `(max-width: ${m})` });
   const isTablet = useMediaQuery({ query: `(max-width: ${t})` });
   const isLargeTablet = useMediaQuery({ query: `(max-width: ${d})` });
+  const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
 
   const sortForMobileClimateActions = orderBy(
     climateActions,
@@ -38,7 +39,13 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
       <Swiper
         className="m-4"
         slidesPerView={
-          isMobile ? 1.5 : isTablet ? 2.5 : isLargeTablet ? 3.5 : 4
+          isMobile
+            ? 1.5
+            : isTablet || isTabletOrMobile
+            ? 2.5
+            : isLargeTablet
+            ? 2.5
+            : 4
         }
         navigation={
           !isMobile

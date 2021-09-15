@@ -50,8 +50,10 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
         updateLocalAccepted={updateLocalAccepted}
         categories={formatedCategories}
       />
-
-      <ManageActions categories={formatedCategories}></ManageActions>
+      <ManageActions
+        categories={formatedCategories}
+        climateActions={climateActions}
+      ></ManageActions>
     </>
   );
 };
