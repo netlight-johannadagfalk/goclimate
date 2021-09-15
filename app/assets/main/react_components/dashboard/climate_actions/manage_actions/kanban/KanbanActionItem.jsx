@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import ProgressBar from "./ProgressBar.jsx";
-
 import { Draggable } from "react-beautiful-dnd";
+import { useMediaQuery } from "react-responsive";
+import { m, t } from "../../../../constants";
 
 const KanbanActionItem = ({
   item,
@@ -13,6 +14,9 @@ const KanbanActionItem = ({
   handleExpanded,
 }) => {
   const isBadge = item.userActionsArray ? true : false;
+
+  const isMobile = useMediaQuery({ query: `(max-width: ${m})` });
+  const isTablet = useMediaQuery({ query: `(max-width: ${t})` });
 
   const categoryName = () => {
     for (let i = 0; i <= Object.keys(categories).length; i++) {
@@ -65,7 +69,7 @@ const KanbanActionItem = ({
         return (
           <div
             className={`border border-gray-tint-2 rounded-lg shadow-lg p-0 space-y-3 pt-0 w-80 ${
-              collapsed ? "d:w-24" : "t:w-96 d:w-80 d-lg:w-96"
+              collapsed ? "d:w-24" : "t:w-96 d:w-96 d-lg:w-96"
             }
             
             ${item.expanded ? "h-auto" : "w-24"}`}
@@ -133,6 +137,7 @@ const KanbanActionItem = ({
                         className={`flex flex-1 font-bold text-left ${
                           isBadge && "mt-5"
                         }
+                        ${isMobile && "text-sm"}
                       `}
                       >
                         {item.name}
@@ -168,7 +173,7 @@ const KanbanActionItem = ({
                 {item.status === false ? (
                   <div className="flex flex-1 flex-col text-center">
                     <div className="flex-1 justify-center">
-                      <p>
+                      <p className={`${isMobile && "text-sm"}`}>
                         {item.description.length > 200
                           ? item.description.slice(0, 200) + "..."
                           : item.description}
@@ -203,7 +208,11 @@ const KanbanActionItem = ({
                                       "url('/achievement_images/AchievementStarActive.png')",
                                   }}
                                 ></div>
-                                <div className="flex-initial text-left">
+                                <div
+                                  className={`flex-initial text-left ${
+                                    isMobile && "text-sm"
+                                  }`}
+                                >
                                   {subitem.name}
                                 </div>
                                 <button
@@ -224,7 +233,11 @@ const KanbanActionItem = ({
                                       "url('/achievement_images/AchievementStarInactive.png')",
                                   }}
                                 ></div>
-                                <div className="flex-inital text-left text-gray-accent">
+                                <div
+                                  className={`flex-inital text-left text-gray-accent ${
+                                    isMobile && "text-sm"
+                                  }`}
+                                >
                                   {subitem.name}
                                 </div>
                               </div>
