@@ -19,13 +19,12 @@ const ConfirmSignUpContainer = ({
     registrationsText: { sign_up_heading_collective_efficacy, accept_policies },
   } = useTexts();
   const { lang } = useLocaleData();
-
   const stripePromise = loadStripe(window.stripe._apiKey);
 
   return (
     <>
-      <div className='max-w-lg mx-auto'>
-        <div className='space-y-3'>
+      <div className="max-w-lg mx-auto">
+        <div className="space-y-3">
           <Title text={sign_up_heading_collective_efficacy} />
           <SignUpMotivationText />
           <Elements stripe={stripePromise} options={{ locale: lang }}>
