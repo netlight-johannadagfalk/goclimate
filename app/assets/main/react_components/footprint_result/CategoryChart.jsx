@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
+import { useTexts } from '../context/Footprint/TextsContext';
 import getChartData from './result-helper';
 import ResultBar from './ResultBar.jsx';
-import { useTexts } from '../context/Footprint/TextsContext';
 
 /**
  * Container to display a ResultBar for each category co2e of the footprint
@@ -11,7 +11,7 @@ const CategoryChart = ({ footprint }) => {
     const { commonText, commonText: { tonnes } } = useTexts()
     const categoryData = getChartData(footprint, commonText)
     return (
-        <div className="space-y-3">
+        <div className="space-y-5 mt-5">
             {categoryData.map((category) => {
                 return (
                     <ResultBar

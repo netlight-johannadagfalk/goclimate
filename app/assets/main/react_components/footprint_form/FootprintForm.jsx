@@ -152,7 +152,7 @@ const FootprintForm = ({ calculator, footprint, onChangeInformationSection }) =>
 
   return (
     <>
-        <div className="question py-8">
+        <div className="question pb-8">
           <ProgressBar 
             questionCategories={getUsedQuestions()} 
             currentObject={currentObject}

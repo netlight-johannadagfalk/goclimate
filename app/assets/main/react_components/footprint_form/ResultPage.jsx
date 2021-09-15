@@ -2,8 +2,8 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React, { useState } from 'react';
 import sanitizeHtml from 'sanitize-html';
-import { useTexts } from '../context/Footprint/TextsContext.js';
 import { useLocaleData } from '../context/Footprint/LocaleContext.js';
+import { useTexts } from '../context/Footprint/TextsContext.js';
 import MembershipSelector from '../footprint_result/MembershipSelector.jsx';
 import Payment from '../footprint_result/Payment.jsx';
 import SignUpContainer from '../footprint_result/SignUpContainer.jsx';
@@ -25,7 +25,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
     const countryAverage = result.country_average;
     const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq')
     const { slug } = useLocaleData()
-    const { registrationsText: { continue_to_payment, accept_policies }, lifestyleFootprintsText: { next } } = useTexts()
+    const { registrationsText: { continue_to_payment, accept_policies, start_subscription }, lifestyleFootprintsText: { next } } = useTexts()
 
     return (
         <div>
@@ -63,9 +63,9 @@ const ResultPage = ({ result, page, onPageChange }) => {
                 }
             </div>
             <AnswerButton
-                label={page !== 2 ? next + " ->" : continue_to_payment}
+                label={page === 2 ? continue_to_payment : page === 3 ? start_subscription : next }
                 onAnswerGiven={onPageChange}
-                stylingClasses={"w-2/3 " + (page === 2 && "button-cta")}
+                stylingClasses={"w-2/3 " + ((page === 2 || page === 3) && "button-cta")}
             />
             { page === 3 && 
                 <div className={"inject-link pt-4"}
