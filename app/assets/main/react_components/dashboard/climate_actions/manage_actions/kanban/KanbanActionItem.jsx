@@ -36,7 +36,7 @@ const KanbanActionItem = ({
     if (!snapshot.isDragging) {
       return {
         userSelect: "none",
-        padding: 16,
+        padding: 0,
         margin: "0 0 8px 0",
         minHeight: "auto",
       };
@@ -47,7 +47,7 @@ const KanbanActionItem = ({
     /** Moving element inside accepted column */
     return {
       userSelect: "none",
-      padding: 16,
+      padding: 0,
       margin: "0 0 8px 0",
       minHeight: "auto",
       ...style,
@@ -64,7 +64,7 @@ const KanbanActionItem = ({
       {(provided, snapshot) => {
         return (
           <div
-            className={`border border-gray-tint-2 rounded-lg p-0 space-y-3 pt-0 ${
+            className={`border border-gray-tint-2 rounded-lg space-y-3 ${
               collapsed ? "w-24" : "t:w-60 d:w-80 d-lg:w-96"
             }
             ${item.expanded ? "h-auto" : "w-24"}
