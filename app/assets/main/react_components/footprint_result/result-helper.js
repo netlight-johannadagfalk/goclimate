@@ -16,6 +16,12 @@ export default function getChartData(footprint, categoryChartText){
             color: "bg-yellow-accent"
         },
         {
+            text: categoryChartText.dashboard.footprint.category["shopping"],
+            co2e: footprint["consumption"].co2e,
+            icon: "fa-shopping-bag",
+            color: "bg-pink-accent"
+        },
+        {
             text: categoryChartText.dashboard.footprint.category["car"],
             co2e: footprint["car"].co2e,
             icon: "fa-car",
@@ -28,12 +34,7 @@ export default function getChartData(footprint, categoryChartText){
             icon: "fa-plane",
             color: "bg-blue-accent"
         },
-        {
-            text: categoryChartText.dashboard.footprint.category["shopping"],
-            co2e: footprint["consumption"].co2e,
-            icon: "fa-shopping-bag",
-            color: "bg-pink-accent"
-        },
+
         {
             text: categoryChartText.dashboard.footprint.category["public"],
             co2e: footprint["public"].co2e,
