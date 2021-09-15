@@ -1,10 +1,13 @@
 import React from "react";
 import CarouselActionItem from "./CarouselActionItem.jsx";
-import { useClimateActions } from "./contexts/ClimateActionsContext.js";
+import { useClimateActions } from "../../../contexts/ClimateActionsContext.js";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.min.css";
 import "swiper/components/pagination/pagination.min.css";
+import { orderBy } from "lodash";
+import { useMediaQuery } from "react-responsive";
+import { m, t, d } from "../../../constants";
 
 // Swiper resources
 //https://swiperjs.com/react
@@ -18,10 +21,25 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const navigationNextRef = React.useRef(null);
 
   const climateActions = useClimateActions();
+  const isMobile = useMediaQuery({ query: `(max-width: ${m})` });
+  const isTablet = useMediaQuery({ query: `(max-width: ${t})` });
+  const isLargeTablet = useMediaQuery({ query: `(max-width: ${d})` });
+
+  const sortForMobileClimateActions = orderBy(
+    climateActions,
+    ["action_of_the_month"],
+    ["desc"]
+  );
+
+  const actions = isMobile ? sortForMobileClimateActions : climateActions;
+
   return (
-    <>
+    <div className="relative">
       <Swiper
-        slidesPerView={4}
+        className="m-4"
+        slidesPerView={
+          isMobile ? 1.5 : isTablet ? 2.5 : isLargeTablet ? 3.5 : 4
+        }
         navigation={{
           nextEl: navigationPrevRef.current,
           prevEl: navigationNextRef.current,
@@ -37,7 +55,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
           });
         }}
       >
-        {climateActions.map((action) => (
+        {actions.map((action) => (
           <SwiperSlide key={action.id} className={"h-auto min-h-full mb-10"}>
             <CarouselActionItem
               action={action}
@@ -47,22 +65,24 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
             ></CarouselActionItem>
           </SwiperSlide>
         ))}
-        <div className="flex flex-row justify-between absolute z-10 top-1/2 w-full">
-          <div
+      </Swiper>
+      <div className="flex flex-row absolute z-10 top-1/2 w-full">
+        <div className="relative w-full">
+          <button
             ref={navigationPrevRef}
             className={
-              "button border-none shadow-none focus:outline-none fas fa-arrow-left"
+              "rounded-full -left-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left absolute focus:outline-none"
             }
           />
-          <div
+          <button
             ref={navigationNextRef}
             className={
-              "button border-none shadow-none focus:outline-none fas fa-arrow-right"
+              "rounded-full -right-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-right absolute focus:outline-none"
             }
           />
         </div>
-      </Swiper>
-    </>
+      </div>
+    </div>
   );
 };
 

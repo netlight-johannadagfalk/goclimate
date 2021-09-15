@@ -11,6 +11,7 @@ const KanbanActionColumn = ({
   setCollapsed,
   collapsed,
   isHovering,
+  handleExpanded,
 }) => {
   return (
     <div className="h-full" key={columnId}>
@@ -33,10 +34,10 @@ const KanbanActionColumn = ({
               style={{
                 background: snapshot.isDraggingOver ? "lightgrey" : "white",
                 padding: 4,
-                width: 410,
+                width: "100%",
               }}
             >
-              {columnId == 2 && column.items.length == 0 ? (
+              {!collapsed && columnId == 2 && column.items.length == 0 ? (
                 <p
                   style={{
                     fontStyle: "italic",
@@ -61,6 +62,7 @@ const KanbanActionColumn = ({
                       handleButtonPerformOnDrag={handleButtonPerformOnDrag}
                       categories={categories}
                       collapsed={collapsed}
+                      handleExpanded={handleExpanded}
                     />
                   );
                 })}

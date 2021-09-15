@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import CarouselContainer from "./CarouselContainer.jsx";
-import CarouselActionItem from "./CarouselActionItem.jsx";
-import { useDeletedAction } from "./contexts/DeletedActionContext.js";
+import CarouselContainer from "./carousel/CarouselContainer.jsx";
+import { useDeletedAction } from "../../contexts/DeletedActionContext.js";
 import {
   useClimateActions,
   useClimateActionsUpdate,
   useClimateActionsOriginal,
-} from "./contexts/ClimateActionsContext.js";
-import Sidebar from "./Sidebar.jsx";
+} from "../../contexts/ClimateActionsContext.js";
+import MainInfo from "../footprint/MainInfo.jsx";
+import ManageActions from "./manage_actions/ManageActions.jsx";
 
 const ClimateActionsContainer = ({ user, climateActionCategories }) => {
   const deletedAction = useDeletedAction();
@@ -39,26 +39,19 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
 
   return (
     <>
-      <div className="w-80 mx-auto  space-y-3 t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2 justify-center">
-        <h3 className="heading-lg mb-3">Action of the Month </h3>
-        {monthlyAction && (
-          <CarouselActionItem
-            action={monthlyAction}
-            key={monthlyAction.id}
-            user={user}
-            updateLocalAccepted={updateLocalAccepted}
-            categories={formatedCategories}
-          ></CarouselActionItem>
-        )}
-      </div>
-
+      <MainInfo
+        action={monthlyAction}
+        user={user}
+        updateLocalAccepted={updateLocalAccepted}
+        categories={JSON.parse(climateActionCategories)}
+      ></MainInfo>
       <CarouselContainer
         user={user}
         updateLocalAccepted={updateLocalAccepted}
         categories={formatedCategories}
       />
 
-      <Sidebar categories={formatedCategories} />
+      <ManageActions categories={formatedCategories}></ManageActions>
     </>
   );
 };
