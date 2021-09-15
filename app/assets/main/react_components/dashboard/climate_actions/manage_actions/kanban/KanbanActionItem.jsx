@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import ProgressBar from "./ProgressBar.jsx";
 import { Draggable } from "react-beautiful-dnd";
-import { useMediaQuery } from "react-responsive";
-import { m, t, mLg } from "../../../../constants";
 
 const KanbanActionItem = ({
   item,
@@ -14,10 +12,6 @@ const KanbanActionItem = ({
   handleExpanded,
 }) => {
   const isBadge = item.userActionsArray ? true : false;
-
-  const isMobile = useMediaQuery({ query: `(max-width: ${m})` });
-  const isTablet = useMediaQuery({ query: `(max-width: ${t})` });
-  const isMediumScreen = useMediaQuery({ query: `(max-width: ${mLg})` });
 
   const categoryName = () => {
     for (let i = 0; i <= Object.keys(categories).length; i++) {
@@ -70,7 +64,7 @@ const KanbanActionItem = ({
         return (
           <div
             className={`border border-gray-tint-2 rounded-lg shadow-lg p-0 space-y-3 pt-0 w-80 ${
-              collapsed ? "d:w-24" : "t:w-96 d:w-96 d-lg:w-96"
+              collapsed ? "d:w-24" : "t:w-80 d:w-80 d-lg:w-80"
             }
             
             ${item.expanded ? "h-auto" : "w-24"}`}
@@ -138,7 +132,7 @@ const KanbanActionItem = ({
                         className={`flex flex-1 font-bold text-left ${
                           isBadge && "mt-5"
                         }
-                        ${isMobile || (isTablet && "text-sm")}
+                      text-sm
                       `}
                       >
                         {item.name}
@@ -174,7 +168,7 @@ const KanbanActionItem = ({
                 {item.status === false ? (
                   <div className="flex flex-1 flex-col text-center">
                     <div className="flex-1 justify-center">
-                      <p className={`${isMobile || (isTablet && "text-sm")}`}>
+                      <p className="text-sm">
                         {item.description.length > 200
                           ? item.description.slice(0, 200) + "..."
                           : item.description}
@@ -210,9 +204,8 @@ const KanbanActionItem = ({
                                   }}
                                 ></div>
                                 <div
-                                  className={`flex-initial text-left ${
-                                    (isMobile || isTablet) && "text-sm"
-                                  }`}
+                                  className={`flex-initial text-left text-sm
+                                  `}
                                 >
                                   {subitem.name}
                                 </div>
@@ -235,9 +228,8 @@ const KanbanActionItem = ({
                                   }}
                                 ></div>
                                 <div
-                                  className={`flex-inital text-left text-gray-accent ${
-                                    (isMobile || isTablet) && "text-sm"
-                                  }`}
+                                  className={`flex-inital text-left text-gray-accent text-sm
+                                  `}
                                 >
                                   {subitem.name}
                                 </div>
@@ -261,9 +253,8 @@ const KanbanActionItem = ({
                             }}
                           ></div>
                           <div
-                            className={`flex-inital text-left text-gray-accent ${
-                              (isMobile || isTablet) && "text-sm"
-                            }`}
+                            className={`flex-inital text-left text-gray-accent text-sm"
+                            `}
                           >
                             {subitem.name}
                           </div>
