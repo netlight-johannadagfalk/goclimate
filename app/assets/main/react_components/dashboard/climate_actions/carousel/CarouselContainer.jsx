@@ -7,7 +7,12 @@ import { useMediaQuery } from "react-responsive";
 import { d } from "../../../constants";
 import "react-dropdown/style.css";
 
-const CarouselContainer = ({ user, updateLocalAccepted, categories }) => {
+const CarouselContainer = ({
+  user,
+  updateLocalAccepted,
+  categories,
+  localUserActions,
+}) => {
   const [allCategories, setAllCategories] = useState(true);
   const category = useCategory();
 
@@ -16,11 +21,12 @@ const CarouselContainer = ({ user, updateLocalAccepted, categories }) => {
   return (
     <section className="section-padding">
       <CarouselHeader />
-      <div className="max-w-6xl mx-auto space-y-3 t:bg-transparent t:rounded-lg t:p-8 mt-4">
+      <div className="max-w-6xl mx-auto space-y-3 t:bg-transparent t:rounded-lg t:p-0 mt-4">
         {isTabletOrMobile ? (
           <CarouselCategoryButton
             categories={categories}
             setAllCategories={setAllCategories}
+            localUserActions={localUserActions}
           ></CarouselCategoryButton>
         ) : (
           <>
@@ -29,6 +35,7 @@ const CarouselContainer = ({ user, updateLocalAccepted, categories }) => {
               categoryID={null}
               active={allCategories}
               setAllCategories={setAllCategories}
+              localUserActions={localUserActions}
             />
             {categories.map((cat) => (
               <CarouselCategoryButton
@@ -37,6 +44,7 @@ const CarouselContainer = ({ user, updateLocalAccepted, categories }) => {
                 categoryID={cat.id}
                 active={category === cat.id ? true : false}
                 setAllCategories={setAllCategories}
+                localUserActions={localUserActions}
               />
             ))}
           </>
