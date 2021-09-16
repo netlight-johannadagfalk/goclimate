@@ -28,16 +28,20 @@ const ProgressBar = ({ questionCategories, currentObject }) => {
             <div key={category}>
               <div
                 className={
-                  'rounded-full w-12 h-12 flex justify-center items-center box-content p-1 mb-2 border ' +
+                  'rounded-full w-3 h-3 m-xxs:w-5 m-xxs:h-5 m-xs:w-8 m-xs:h-8 m-s:w-12 m-s:h-12 flex justify-center items-center box-content p-1 mb-2 border ' +
                   currentClass
                 }
               >
-                <div className={'fas fa-lg ' + 'fa-' + category}></div>
+                <div
+                  className={
+                    'fas text-base m-xxs:text-sm m-s:text-lg fa-' + category
+                  }
+                ></div>
               </div>
               {
-                <div className="flex justify-center space-x-1 text-gray-shade-2 content-between text-sm text-gray-accent block">
+                <div className="flex justify-center space-x-1 text-gray-shade-2 content-between w-0 h-0 m-xs:w-full m-xs:h-full text-gray-accent block">
                   {isCompletedCategory ? (
-                    <div className="text-green-accent block">
+                    <div className="text-green-accent invisible m-xs:visible block">
                       <i className="text-base fa fa-check-circle"></i>
                     </div>
                   ) : (
@@ -47,17 +51,17 @@ const ProgressBar = ({ questionCategories, currentObject }) => {
                       )
                       .map((question) =>
                         question == currentObject.questionKey ? (
-                          <i
+                          <div
                             key={question}
                             className={
-                              'fa-circle text-sm block fas text-green-accent'
+                              'fa-circle invisible m-xs:visible text-sm block fas text-green-accent'
                             }
                           />
                         ) : (
-                          <i
+                          <div
                             key={question}
                             className={
-                              'fa-circle text-sm block far text-gray-accent'
+                              'fa-circle invisible m-xs:visible text-sm block far text-gray-accent'
                             }
                           />
                         )
