@@ -5,17 +5,16 @@ const SelectButton = ({
   selectedMembership,
   setSelectedMembership,
   buttonType,
-  text,
+  title,
+  desc,
   multipleOffsets,
   setMultipleOffsets,
 }) => {
-  var splittedText = text.split('</span>');
-  var boldText = splittedText[0].replace('<span>', '');
-  var unBoldText = splittedText[1];
-
   const style =
     'flex flex-row items-center p-3 rounded cursor-pointer mt-3 border border-green-accent ' +
     (buttonType === selectedMembership ? 'bg-green-tint-1' : '');
+
+  desc = desc.replace('%{num}', multipleOffsets.toString());
 
   return (
     <label className={style} htmlFor={buttonType}>
@@ -29,8 +28,9 @@ const SelectButton = ({
         onChange={() => setSelectedMembership(buttonType)}
       />
       <span>
-        <span className="font-bold">{boldText}</span>
-        {unBoldText}
+        <span className="font-bold">{title}</span>
+        <br></br>
+        {desc}
       </span>
       {buttonType == 'multi' && (
         <SelectorMultipleTimes

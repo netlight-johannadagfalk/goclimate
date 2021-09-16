@@ -58,7 +58,11 @@ const ResultPage = ({ result, page, onPageChange }) => {
     <div>
       <div className="my-8">
         {page === 0 ? (
-          <WorldPage footprint={footprint} countryAverage={countryAverage} />
+          <WorldPage
+            footprint={footprint}
+            countryAverage={countryAverage}
+            priceObject={result.plan.price}
+          />
         ) : page === 1 ? (
           <CategoryPage footprint={footprint} />
         ) : page === 2 ? (

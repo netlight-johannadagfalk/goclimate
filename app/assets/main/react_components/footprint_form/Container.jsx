@@ -14,6 +14,7 @@ const Container = ({
   currency,
   projects,
   version,
+  reactContentText,
 }) => {
   return (
     <StaticDataProvider
@@ -26,6 +27,7 @@ const Container = ({
       lang={lang}
       projects={projects}
       version={version}
+      reactContentText={reactContentText}
     >
       <FootprintFormContainer
         footprint={JSON.parse(footprint)}

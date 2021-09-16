@@ -17,7 +17,8 @@
           commonText: YAML.load_file('config/locales/' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]].to_json,
           modelText: YAML.load_file('config/locales/models.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['models']['greenhouse_gases']['tonnes'].to_json,
           projects: @projects.to_json,
-          version: experiment_active?(:v2) ? 'v2' : 'v1'
+          version: experiment_active?(:v2) ? 'v2' : 'v1',
+          reactContentText: YAML.load_file('config/locales/react/react.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]].to_json
         %>
       <% else %>
         <div class="callout" data-controller="lifestyle-footprints--calculator">
