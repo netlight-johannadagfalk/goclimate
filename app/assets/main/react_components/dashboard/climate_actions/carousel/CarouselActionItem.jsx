@@ -6,6 +6,7 @@ import {
   useUserActionsColumnsWithFullFormatUpdate,
   useCategoryBadges,
 } from "../../../contexts/UserActionsContext.js";
+import { useClimateActionsText } from "../../../contexts/TextContext.js";
 
 const CarouselActionItem = ({
   action,
@@ -19,6 +20,7 @@ const CarouselActionItem = ({
   const setDeletedAction = useDeletedActionUpdate();
   const setColumnsWithFullFormat = useUserActionsColumnsWithFullFormatUpdate();
   const categoryBadges = useCategoryBadges();
+  const climateActionsText = useClimateActionsText();
 
   const mounted = useRef(false);
 
@@ -43,7 +45,7 @@ const CarouselActionItem = ({
       climate_action_category_id: action.climate_action_category_id,
       image_url: action.image_url,
     };
-    const tempList = [...userActions, temp];
+    const tempList = [temp, ...userActions];
     setUserActions(tempList);
     setColumnsWithFullFormat(tempList, categoryBadges);
   };
@@ -100,7 +102,7 @@ const CarouselActionItem = ({
             } h-7 w-full rounded-t border-t-gray-tint-2 bg-opacity-60`}
           ></div>
           <div
-            className={`mx-auto bg-gray-tint-2 bg-opacity-10 shadow-md -mt-1/2 rounded-full h-40 w-40 items-center justify-center bg-cover filter drop-shadow-xl`}
+            className={`mx-auto bg-gray-tint-2 bg-opacity-10 shadow-md -mt-24 rounded-full h-40 w-40 items-center justify-center bg-cover filter drop-shadow-xl`}
             style={{
               backgroundImage: action.image_url
                 ? `url('${action.image_url}')`
@@ -127,7 +129,7 @@ const CarouselActionItem = ({
               })}
             </div>
             <div className=" flex-1 justify-center align-center self-center">
-              <h3 className={`heading font-bold self-center text-lg`}>
+              <h3 className={`text-base font-bold self-center`}>
                 {action.name.length > 40
                   ? action.name.slice(0, 40) + "..."
                   : action.name}
@@ -135,7 +137,7 @@ const CarouselActionItem = ({
             </div>
 
             <div className="flex-4">
-              <p>
+              <p className="text-sm">
                 {action.description.length > 200
                   ? action.description.slice(0, 200) + "..."
                   : action.description}
@@ -143,21 +145,69 @@ const CarouselActionItem = ({
             </div>
 
             <div className="flex-1 mt-5 justify-center align-center">
-              {action.accepted ? (
-                <button
-                  className="button inline-block "
-                  disabled={true}
-                  style={{ color: "rgba(28, 70, 55)" }}
-                >
-                  Accepted
-                </button>
+              {action.accepted && action.total > 1 ? (
+                <div>
+                  <div className="flex flex-row justify-center mb-1">
+                    <label className="text-sm mr-1">You and</label>
+                    <p className="text-sm text-yellow-accent">
+                      {action.total - 1}
+                    </p>
+                    <label className="text-sm ml-1">more have:</label>
+                  </div>
+                  <button
+                    className="button inline-block "
+                    disabled={true}
+                    style={{ color: "rgba(28, 70, 55)" }}
+                  >
+                    Accepted
+                  </button>
+                </div>
+              ) : action.accepted && action.total == 1 ? (
+                <div>
+                  <div className="flex flex-row justify-center mb-1">
+                    <label className="text-sm mr-1">You have accepted</label>
+                  </div>
+                  <button
+                    className="button inline-block "
+                    disabled={true}
+                    style={{ color: "rgba(28, 70, 55)" }}
+                  >
+                    {climateActionsText.accepted}
+                  </button>
+                </div>
               ) : (
-                <button
-                  className="button inline-block "
-                  onClick={() => handleClickAccepted(action)}
-                >
-                  Accept
-                </button>
+                <div>
+                  {!action.accepted && action.total !== 0 ? (
+                    action.total > 1 ? (
+                      <div className="flex flex-row justify-center mb-1">
+                        <label className="text-sm mr-1">Do as</label>
+                        <p className="text-sm text-yellow-accent">
+                          {action.total}
+                        </p>
+                        <label className="text-sm ml-1">others:</label>
+                      </div>
+                    ) : (
+                      <div className="flex flex-row justify-center mb-1">
+                        <label className="text-sm mr-1">Do as</label>
+                        <p className="text-sm text-yellow-accent">
+                          {action.total}
+                        </p>
+                        <label className="text-sm ml-1">other:</label>
+                      </div>
+                    )
+                  ) : (
+                    <div className="flex flex-row justify-center mb-1">
+                      <label className="text-sm">Be the first one to:</label>
+                    </div>
+                  )}
+
+                  <button
+                    className="button inline-block "
+                    onClick={() => handleClickAccepted(action)}
+                  >
+                    {climateActionsText.accept}
+                  </button>
+                </div>
               )}
             </div>
           </div>

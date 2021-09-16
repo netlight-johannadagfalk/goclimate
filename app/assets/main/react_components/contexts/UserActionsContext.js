@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { uniqWith } from "lodash";
+import { useClimateActionsText } from "../contexts/TextContext.js";
 
 //*** A context is used to share data that can be considered as "global" for the react tree ***/
 export const UserActionsContext = React.createContext();
@@ -59,6 +60,7 @@ export const UserActionsProvider = ({
   climateActionCategories,
 }) => {
   const [userActions, setUserActions] = useState(allUserActions);
+  const climateActionsText = useClimateActionsText();
 
   const updateUserActions = (actions) => {
     setUserActions(actions);
@@ -82,12 +84,12 @@ export const UserActionsProvider = ({
     return {
       [1]: {
         id: "Accepted",
-        name: "My Actions",
+        name: climateActionsText.my_actions,
         items: acceptedList,
       },
       [2]: {
         id: "Performed",
-        name: "Achievements",
+        name: climateActionsText.achievements,
         items: doneList,
       },
     };
@@ -168,6 +170,8 @@ export const UserActionsProvider = ({
         category.id,
         false
       );
+
+      //map trough userActionsArray and save latest update timestamp and set to the whole category
       return {
         ...category,
         userActionsArray: [...category.userActionsArray, ...allUserActions],

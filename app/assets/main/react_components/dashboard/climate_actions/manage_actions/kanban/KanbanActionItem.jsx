@@ -62,7 +62,7 @@ const KanbanActionItem = ({
         return (
           <div
             className={`rounded-lg p-0 space-y-3 pt-0 w-80 mb-2 ${
-              collapsed ? "d:w-24" : "t:w-80 border border-gray-tint-2 mx-4"
+              collapsed ? "d:w-24" : "t:w-80 border border-gray-tint-2 mx-5"
             }
             
             ${item.expanded ? "h-auto" : "w-24"}`}
@@ -251,7 +251,7 @@ const KanbanActionItem = ({
                             }}
                           ></div>
                           <div
-                            className={`text-sm flex-inital text-left text-gray-accent"
+                            className={`text-gray-accent text-sm flex-inital text-left "
                             `}
                           >
                             {subitem.name}

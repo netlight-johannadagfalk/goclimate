@@ -15,6 +15,7 @@ const CarouselCategoryButton = ({
   active,
   setAllCategories,
   categories,
+  localUserActions,
 }) => {
   const setCategory = useCategoryUpdate();
   const setClimateActions = useClimateActionsUpdate();
@@ -54,10 +55,26 @@ const CarouselCategoryButton = ({
       return userActions.some(
         (userAction) => userAction.climate_action_id === action.id
       )
-        ? { ...action, accepted: true }
+        ? {
+            ...action,
+            accepted: true,
+          }
         : { ...action, accepted: false };
     });
-    setClimateActions(filteredActionsWithStatus);
+
+    const filteredActionsWithStatusAndTotal = filteredActionsWithStatus.map(
+      (action) => {
+        return localUserActions.some(
+          (localUserAction) => localUserAction[0].id === action.id
+        )
+          ? {
+              ...action,
+              total: ++action.total,
+            }
+          : action;
+      }
+    );
+    setClimateActions(filteredActionsWithStatusAndTotal);
   };
 
   return (

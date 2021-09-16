@@ -33,9 +33,21 @@ class DashboardController < ApplicationController
     .where(["user_climate_actions.user_id = ? and climate_actions.id = user_climate_actions.climate_action_id", current_user.id])
     .select("user_climate_actions.id", :climate_action_id, :name, :description, :status, :user_id, :climate_action_category_id, :image_url)
 
-    @get_all_climate_actions_without_user_actions = ClimateAction.where.not(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
-    @get_all_climate_actions_with_user_actions = ClimateAction.where(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
+    # @get_all_climate_actions_without_user_actions = ClimateAction.where.not(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
+    # @get_all_climate_actions_with_user_actions = ClimateAction.where(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
     
+@get_all_climate_actions_without_user_actions =
+      ClimateAction.where.not(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
+      .joins("LEFT JOIN user_climate_actions ON user_climate_actions.climate_action_id = climate_actions.id")
+      .select("climate_actions.*, COUNT(user_climate_actions.climate_action_id) AS total")
+      .group("climate_actions.id")
+    
+    @get_all_climate_actions_with_user_actions =
+      ClimateAction.where(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
+      .joins(:user_climate_actions)
+      .select("climate_actions.*, COUNT(user_climate_actions.climate_action_id) AS total")
+      .group("climate_actions.id")
+
     #@all_actions_with_accepted_user_actions = ClimateAction.right_outer_joins(:user_climate_actions)
     #.where(["user_climate_actions.user_id = ?", current_user.id])
     #.select("user_climate_actions.id", :climate_action_id, :name, :description, :status, :user_id)

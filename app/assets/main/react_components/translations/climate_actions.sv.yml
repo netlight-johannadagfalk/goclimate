@@ -1,0 +1,15 @@
+sv:
+  assets:
+    main:
+      react_components:
+        monthly_action: Månadens utmaning
+        take_action: Minska ditt klimatavtryck
+        low_effort_high_impact_actions: Här hittar du utmaningar som kan bidra till stor påverkan på klimatet
+        my_actions: Mina Utmaningar
+        achievements: Utmärkelser
+        accept: Acceptera
+        accepted: Accepterad
+        new_calculation: Ny beräkning
+        previous_footprints: Se tidigare klimatavtryck
+        balance_footprint: Balansera ditt klimatavtryck
+        how_calculate: Hur har vi räknat?

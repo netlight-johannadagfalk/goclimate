@@ -145,8 +145,13 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
         };
       });
       setCategoryBadges([...sortedDestItems]);
+      const newSortedDestItems = orderBadgesOnItemDragged(
+        sortedDestItems,
+        movedItem
+      );
       //Function to get performed useraction from categoryBadges
-      let performedUserActions = collectPerformedUserActions(destItems);
+      let performedUserActions =
+        collectPerformedUserActions(newSortedDestItems);
       setUserActions([...sourceItems, ...performedUserActions]);
 
       setColumns({
@@ -157,7 +162,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
         },
         [2]: {
           ...destColumn,
-          items: sortedDestItems,
+          items: newSortedDestItems,
         },
       });
     } else {
@@ -210,6 +215,14 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
     }
   };
 
+  const orderBadgesOnItemDragged = (performedCategories, movedItem) => {
+    return orderBy(performedCategories, ({ id }) =>
+      id == movedItem.climate_action_category_id ? 0 : 1
+    );
+  };
+
+  //_.sortBy(items, ({type}) => type === 'vegetable' ? 0 : 1);
+
   const onDragEnd = (result, columns, setColumns) => {
     //If you drag but drop in the same column and do not reorder items
     if (!result.destination) return;
@@ -230,7 +243,11 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
       });
       let performedUserActions = collectPerformedUserActions(destItems);
       setUserActions([...sourceItems, ...performedUserActions]);
-      setCategoryBadges([...sortedDestItems]);
+      const newSortedDestItems = orderBadgesOnItemDragged(
+        sortedDestItems,
+        removed
+      );
+      setCategoryBadges([...newSortedDestItems]);
       setColumns({
         ...columns,
         [source.droppableId]: {
@@ -239,7 +256,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
         },
         [destination.droppableId]: {
           ...destColumn,
-          items: sortedDestItems,
+          items: newSortedDestItems,
         },
       });
     } else {
