@@ -4,3 +4,10 @@ de:
       text_part_before: Your annual carbon footprint is
       text_part_middle: CO2e. Paying
       text_part_end: will allow you to offset your footprint. The sum is distributed to different climate projects that make an impact for the climate.
+    memberships: 
+      free_title: Free account
+      free_desc: Save and follow your carbon footprint over time
+      single_title: Compensate monthly
+      single_desc: Support climate projects to offset your climate footprint each month
+      multi_title: Compensate multiple times
+      multi_desc: Support climate projects to offset %{num} times your climate footprint each month

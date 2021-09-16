@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import { useTexts } from '../context/Footprint/TextsContext.js';
 import { useLocaleData } from '../context/Footprint/LocaleContext.js';
+import { useTexts } from '../context/Footprint/TextsContext.js';
 
-/**
- * Result text for your footprint
- * Includes a footprint result in tonnes
- */
 const YourFootprintText = ({ footprintValue, priceObject }) => {
   const {
     commonText: {

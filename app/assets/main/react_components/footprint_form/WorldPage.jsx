@@ -4,9 +4,6 @@ import WorldComparisonChart from '../footprint_result/WorldComparisonChart.jsx';
 import YourFootprintText from '../footprint_result/YourFootprintText.jsx';
 import Title from './Title.jsx';
 
-/**
- * Result component page for world comparison
- */
 const WorldPage = ({ footprint, countryAverage, priceObject }) => {
   const {
     registrationsText: { well_done },

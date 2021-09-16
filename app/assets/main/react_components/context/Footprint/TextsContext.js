@@ -14,15 +14,14 @@ export const TextsProvider = ({
   modelText,
   registrationsText,
   slug,
-  reactContentText
+  reactContentText,
 }) => {
   const texts = {
     commonText: JSON.parse(commonText),
     lifestyleFootprintsText: JSON.parse(lifestyleFootprintsText),
     modelText: JSON.parse(modelText),
     registrationsText: JSON.parse(registrationsText),
-    reactContentText: JSON.parse(reactContentText)
-
+    reactContentText: JSON.parse(reactContentText),
   };
 
   if (texts.registrationsText.accept_policies === undefined)
