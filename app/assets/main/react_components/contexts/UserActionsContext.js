@@ -170,6 +170,8 @@ export const UserActionsProvider = ({
         category.id,
         false
       );
+
+      //map trough userActionsArray and save latest update timestamp and set to the whole category
       return {
         ...category,
         userActionsArray: [...category.userActionsArray, ...allUserActions],
