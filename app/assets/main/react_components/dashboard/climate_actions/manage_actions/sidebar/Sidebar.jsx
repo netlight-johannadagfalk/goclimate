@@ -7,7 +7,7 @@ const Sidebar = ({ children, collapsed }) => {
 
   return ReactDom.createPortal(
     <>
-      <div className={`${collapsed ? "w-28" : "w-auto"}`}>{children}</div>
+      <div className={`${collapsed ? "w-24" : "w-auto"}`}>{children}</div>
     </>,
     document.querySelector("#sidebar")
   );

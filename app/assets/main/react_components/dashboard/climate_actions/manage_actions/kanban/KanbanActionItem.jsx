@@ -36,7 +36,6 @@ const KanbanActionItem = ({
       return {
         userSelect: "none",
         padding: 0,
-        margin: "0 0 8px 0",
         minHeight: "auto",
       };
     }
@@ -47,7 +46,6 @@ const KanbanActionItem = ({
     return {
       userSelect: "none",
       padding: 0,
-      margin: "0 0 8px 0",
       minHeight: "auto",
       ...style,
     };
@@ -63,8 +61,8 @@ const KanbanActionItem = ({
       {(provided, snapshot) => {
         return (
           <div
-            className={`border border-gray-tint-2 rounded-lg shadow-lg p-0 space-y-3 pt-0 w-80 ${
-              collapsed ? "d:w-24" : "t:w-80"
+            className={`rounded-lg p-0 space-y-3 pt-0 w-80 mb-2 ${
+              collapsed ? "d:w-24" : "t:w-80 border border-gray-tint-2 mx-4"
             }
             
             ${item.expanded ? "h-auto" : "w-24"}`}
@@ -83,7 +81,7 @@ const KanbanActionItem = ({
             {collapsed ? (
               <div className="flex flex-1 items-center justify-center shadow-md">
                 <div
-                  className={`rounded-full h-16 w-16 bg-cover`}
+                  className={`rounded-full h-16 w-16 bg-cover shadow-lg`}
                   style={{
                     backgroundImage:
                       item.status === false
@@ -167,7 +165,7 @@ const KanbanActionItem = ({
               <div className="mb-4 ml-7 mr-4">
                 {item.status === false ? (
                   <div className="flex flex-1 flex-col text-center">
-                    <div className="flex-1 justify-center">
+                    <div className="flex-1 justify-center text-left">
                       <p className="text-sm">
                         {item.description.length > 200
                           ? item.description.slice(0, 200) + "..."
