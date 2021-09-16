@@ -124,6 +124,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
             linkStyle={'text-green-shade-1'}
             link={slug + '/climate-tips'}
             linkText={button_text}
+            target={''}
           />
         </>
       )}
