@@ -10,12 +10,11 @@ const SelectButton = ({
   multipleOffsets,
   setMultipleOffsets,
 }) => {
-
   const style =
     'flex flex-row items-center p-3 rounded cursor-pointer mt-3 border border-green-accent ' +
     (buttonType === selectedMembership ? 'bg-green-tint-1' : '');
 
-  desc = desc.replace("%{num}", multipleOffsets.toString())
+  desc = desc.replace('%{num}', multipleOffsets.toString());
 
   return (
     <label className={style} htmlFor={buttonType}>

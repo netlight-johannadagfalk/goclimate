@@ -23,6 +23,6 @@ const WorldPage = ({ footprint, countryAverage, priceObject }) => {
       />
     </div>
   );
-}
+};
 
-export default WorldPage
+export default WorldPage;
