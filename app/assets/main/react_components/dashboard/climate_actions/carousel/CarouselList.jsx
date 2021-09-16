@@ -7,7 +7,7 @@ import "swiper/components/navigation/navigation.min.css";
 import "swiper/components/pagination/pagination.min.css";
 import { orderBy } from "lodash";
 import { useMediaQuery } from "react-responsive";
-import { m, t, d } from "../../../constants";
+import { m, d, dLg } from "../../../constants";
 
 // Swiper resources
 //https://swiperjs.com/react
@@ -22,9 +22,8 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
 
   const climateActions = useClimateActions();
   const isMobile = useMediaQuery({ query: `(max-width: ${m})` });
-  const isTablet = useMediaQuery({ query: `(max-width: ${t})` });
   const isLargeTablet = useMediaQuery({ query: `(max-width: ${d})` });
-  const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
+  const isDesktop = useMediaQuery({ query: `(max-width: ${dLg})` });
 
   const sortForMobileClimateActions = orderBy(
     climateActions,
@@ -34,21 +33,24 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
 
   const actions = isMobile ? sortForMobileClimateActions : climateActions;
 
+  const noOfItemsShown = isMobile
+    ? 1.5
+    : isLargeTablet
+    ? 2.5
+    : isDesktop
+    ? 3
+    : 4;
+
+  const loopActions = actions.length > noOfItemsShown ? true : false;
+  const hideArrows = isMobile || !loopActions ? true : false;
   return (
-    <div className="relative">
+    <div className="relative overflow-visible">
       <Swiper
         className="m-4"
-        slidesPerView={
-          isMobile
-            ? 1.5
-            : isTablet || isTabletOrMobile
-            ? 2.5
-            : isLargeTablet
-            ? 2.5
-            : 4
-        }
+        loop={loopActions}
+        slidesPerView={noOfItemsShown}
         navigation={
-          !isMobile
+          hideArrows
             ? {
                 nextEl: navigationPrevRef.current,
                 prevEl: navigationNextRef.current,
@@ -69,7 +71,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
         {actions.map((action) => (
           <SwiperSlide
             key={action.id}
-            className={" min-h-full mb-10"}
+            className={"min-h-full mb-10"}
             style={{
               height: "auto",
             }}
@@ -83,7 +85,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      {!isMobile && (
+      {!hideArrows && (
         <div className="flex flex-row absolute z-10 top-1/2 w-full">
           <div className="relative w-full">
             <button
