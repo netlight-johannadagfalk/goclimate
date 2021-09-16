@@ -1,7 +1,7 @@
 import React from 'react';
-import Link from '../Link.jsx';
 import { useTexts } from '../context/Footprint/TextsContext.js';
 import { useVersion } from '../context/Footprint/VersionContext.js';
+import Link from '../Link.jsx';
 
 const PriceText = ({ grantedReferralCode, selectedMembership, price }) => {
   const {
@@ -42,19 +42,19 @@ const PriceText = ({ grantedReferralCode, selectedMembership, price }) => {
               )}
             </span>
           </p>
-          {selectedMembership !== 'free' && version === 'v1' && (
-            <Link
-              link={'information-scroll-position'}
-              linkText={heading}
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .getElementById('information-scroll-position')
-                  .scrollIntoView({ behavior: 'smooth' });
-              }}
-            />
-          )}
         </div>
+      )}
+      {selectedMembership !== 'free' && version === 'v1' && (
+        <Link
+          link={'information-scroll-position'}
+          linkText={heading}
+          onClick={(e) => {
+            e.preventDefault();
+            document
+              .getElementById('information-scroll-position')
+              .scrollIntoView({ behavior: 'smooth' });
+          }}
+        />
       )}
     </div>
   );
