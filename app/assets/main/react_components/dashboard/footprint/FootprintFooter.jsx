@@ -3,10 +3,12 @@ import {
   useFootprint,
   useTotalNoFootprints,
 } from "../../contexts/FootprintContext.js";
+import { useClimateActionsText } from "../../contexts/TextContext.js";
 
 const FootprintFooter = () => {
   const footprint = useFootprint();
   const totalNoFootprints = useTotalNoFootprints();
+  const climateActionsText = useClimateActionsText();
 
   return (
     <div className="text-center space-y-2 space-x-4 mt-8 max-w-5xl">
@@ -19,19 +21,19 @@ const FootprintFooter = () => {
         className="button"
       >
         <i className="fas fa-plus" aria-hidden="true"></i>
-        {" New calculation "}
+        {" " + climateActionsText.new_calculation}
       </a>
       {totalNoFootprints && (
         <div className="inline-block">
           <a className="link whitespace-nowrap" href="/calculator/results">
-            See previous footprints
+            {climateActionsText.previous_footprints}
           </a>
         </div>
       )}
 
       <div className="inline-block">
         <a className="link whitespace-nowrap" href="/users/subscription">
-          Balance your footprint
+          {climateActionsText.balance_footprint}
         </a>
       </div>
       <div className="inline-block">
@@ -40,7 +42,7 @@ const FootprintFooter = () => {
           href="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"
           target="_blank"
         >
-          How do we calculate?
+          {climateActionsText.how_calculate}
         </a>
       </div>
     </div>

@@ -6,6 +6,7 @@ import {
   useUserActionsColumnsWithFullFormatUpdate,
   useCategoryBadges,
 } from "../../../contexts/UserActionsContext.js";
+import { useClimateActionsText } from "../../../contexts/TextContext.js";
 
 const CarouselActionItem = ({
   action,
@@ -19,6 +20,7 @@ const CarouselActionItem = ({
   const setDeletedAction = useDeletedActionUpdate();
   const setColumnsWithFullFormat = useUserActionsColumnsWithFullFormatUpdate();
   const categoryBadges = useCategoryBadges();
+  const climateActionsText = useClimateActionsText();
 
   const mounted = useRef(false);
 
@@ -149,14 +151,14 @@ const CarouselActionItem = ({
                   disabled={true}
                   style={{ color: "rgba(28, 70, 55)" }}
                 >
-                  Accepted
+                  {climateActionsText.accepted}
                 </button>
               ) : (
                 <button
                   className="button inline-block "
                   onClick={() => handleClickAccepted(action)}
                 >
-                  Accept
+                  {climateActionsText.accept}
                 </button>
               )}
             </div>
