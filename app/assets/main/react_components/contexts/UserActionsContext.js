@@ -177,17 +177,8 @@ export const UserActionsProvider = ({
         userActionsArray: [...category.userActionsArray, ...allUserActions],
         actionsArray: [...allActionsWithoutUserActions],
         id: category.id.toString(),
-        //latest_update: mapValue
       };
     });
-
-  //Waiting for backend - Use lodash function to sort the categories by latest update in userActionsArray
-  // const orderCategoryArray = sortBy(
-  //   getCompleteCategoryArrays,
-  //   function (dateObj) {
-  //     return new Date(dateObj.latest_update);
-  //   }
-  // );
 
   //Check for further refactoring below:
 
