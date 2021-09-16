@@ -143,12 +143,27 @@ const CarouselActionItem = ({
             </div>
 
             <div className="flex-1 mt-5 justify-center align-center">
-              {action.accepted ? (
+              {action.accepted && action.total > 1 ? (
                 <div>
                   <div className="flex flex-row justify-center mb-1">
                     <label className="text-sm mr-1">You and</label>
-                    <p className="text-sm text-yellow-accent">{action.total}</p>
+                    <p className="text-sm text-yellow-accent">
+                      {action.total - 1}
+                    </p>
                     <label className="text-sm ml-1">more have:</label>
+                  </div>
+                  <button
+                    className="button inline-block "
+                    disabled={true}
+                    style={{ color: "rgba(28, 70, 55)" }}
+                  >
+                    Accepted
+                  </button>
+                </div>
+              ) : action.accepted && action.total == 1 ? (
+                <div>
+                  <div className="flex flex-row justify-center mb-1">
+                    <label className="text-sm mr-1">You have accepted</label>
                   </div>
                   <button
                     className="button inline-block "
@@ -160,7 +175,7 @@ const CarouselActionItem = ({
                 </div>
               ) : (
                 <div>
-                  {action.total !== 0 ? (
+                  {!action.accepted && action.total !== 0 ? (
                     action.total > 1 ? (
                       <div className="flex flex-row justify-center mb-1">
                         <label className="text-sm mr-1">Do as</label>
