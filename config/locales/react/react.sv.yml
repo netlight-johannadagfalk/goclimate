@@ -1,0 +1,16 @@
+sv:
+  react:
+    your_footprint_result_text:
+      text_part_before: Ditt årliga klimatavtryck är
+      text_part_middle: CO2e. För
+      text_part_end: hjälper vi dig att klimatkompensera ditt avtryck. Summan fördelas till olika klimatprojekt som gör skillnad för klimatet.
+    memberships: 
+      free_title: Gratis konto
+      free_desc: Spara och följ ditt klimatavtryck över tid
+      single_title: Kompensera månadsvis
+      single_desc: Stöd klimatprojekt motsvarande ditt klimatavtryck varje månad
+      multi_title: Kompensera för flera personer
+      multi_desc: Stöd klimatprojekt motsvarande %{num} gånger ditt klimatavtryck varje månad
+    category_chart:
+      title: Ditt klimatavtryck per kategori
+      desc: Detta är ditt klimatavtryck i kategorier, var det som du förväntade dig?
