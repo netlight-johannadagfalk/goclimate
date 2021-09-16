@@ -19,6 +19,11 @@ const ResultPage = ({ result, page, onPageChange }) => {
   const {
     registrationsText: { continue_to_payment },
     lifestyleFootprintsText: { next },
+    reactContentText: {
+      react: {
+        leave_without_membership: { button_text },
+      },
+    },
   } = useTexts();
 
   const {
@@ -118,7 +123,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
             style={'text-sm mt-2'}
             linkStyle={'text-green-shade-1'}
             link={slug + '/climate-tips'}
-            linkText={'Leave footprint calculation page'}
+            linkText={button_text}
           />
         </>
       )}
