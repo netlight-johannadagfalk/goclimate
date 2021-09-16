@@ -225,9 +225,9 @@ Rails.application.routes.draw do
     end
     resources :data_requests
     resources :data_reporters
-    resources :reported_datas, only: [:index, :show, :destroy] do
+    resources :reported_datas, only: [:index] do
       collection do
-        get :export_to_csv
+        get :export_to_xlsx
       end
     end
     resources :invoices
