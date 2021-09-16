@@ -1,8 +1,8 @@
 import React from 'react';
 import { LocaleProvider } from './LocaleContext';
-import { TextsProvider } from './TextsContext';
 import { ProjectsProvider } from './ProjectsContext';
 import { VersionProvider } from './VersionContext';
+import { TextsProvider } from './TextsContext';
 
 const StaticDataProvider = ({
   children,
@@ -15,6 +15,7 @@ const StaticDataProvider = ({
   registrationsText,
   currentRegion,
   version,
+  reactContentText,
 }) => {
   return (
     <TextsProvider
@@ -23,6 +24,7 @@ const StaticDataProvider = ({
       modelText={modelText}
       registrationsText={registrationsText}
       slug={currentRegion.slug}
+      reactContentText={reactContentText}
     >
       <LocaleProvider
         currency={currency}

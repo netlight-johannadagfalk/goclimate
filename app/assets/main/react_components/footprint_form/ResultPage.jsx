@@ -54,7 +54,11 @@ const ResultPage = ({ result, page, onPageChange }) => {
     <div>
       <div className="my-8">
         {page === 0 ? (
-          <WorldPage footprint={footprint} countryAverage={countryAverage} />
+          <WorldPage
+            footprint={footprint}
+            countryAverage={countryAverage}
+            priceObject={result.plan.price}
+          />
         ) : page === 1 ? (
           <CategoryPage footprint={footprint} />
         ) : page === 2 ? (
@@ -79,9 +83,18 @@ const ResultPage = ({ result, page, onPageChange }) => {
       </div>
       {page !== 3 && (
         <AnswerButton
-          label={page === 2 ? continue_to_payment : page === 3 ? start_subscription : next }
+          label={
+            page === 2
+              ? continue_to_payment
+              : page === 3
+              ? start_subscription
+              : next
+          }
           onAnswerGiven={onPageChange}
-          stylingClasses={"w-2/3 " + ((page === 2 || page === 3) && "button-cta")}        />
+          stylingClasses={
+            'w-5/6 ' + ((page === 2 || page === 3) && 'button-cta')
+          }
+        />
       )}
     </div>
   );

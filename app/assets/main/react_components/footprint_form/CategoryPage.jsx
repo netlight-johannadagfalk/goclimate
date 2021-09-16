@@ -6,22 +6,17 @@ import Title from './Title.jsx';
 
 const CategoryPage = ({ footprint }) => {
   const {
-    commonText: {
-      dashboard: {
-        footprint: { heading_more },
+    reactContentText: {
+      react: {
+        category_chart: { title, desc },
       },
     },
   } = useTexts();
 
   return (
     <div className="max-w-lg mx-auto">
-      <Title 
-        custom_style="text-lgr"
-        text={heading_more}
-      />
-      <SignUpPreamble
-        text={"Här kommer fannys text!"}                            
-      /> 
+      <Title custom_style="text-lgr" text={title} />
+      <SignUpPreamble text={desc} />
       <CategoryChart footprint={footprint} />
     </div>
   );
