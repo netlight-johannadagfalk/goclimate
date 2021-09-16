@@ -16,21 +16,23 @@ const StaticDataProvider = ({
   reactContentText
 }) => {
   return (
-    <TextsProvider
-      commonText={commonText}
-      lifestyleFootprintsText={lifestyleFootprintsText}
-      modelText={modelText}
-      registrationsText={registrationsText}
-      slug={currentRegion.slug}
-      reactContentText={reactContentText}
+    <TextsProvider 
+        commonText={commonText}
+        lifestyleFootprintsText={lifestyleFootprintsText}
+        modelText={modelText}
+        registrationsText={registrationsText}
+        slug={currentRegion.slug}
+        reactContentText={reactContentText}
     >
-      <LocaleProvider
-        currency={currency}
-        lang={lang}
-        currentRegion={currentRegion}
-      >
-        <ProjectsProvider projects={projects}>{children}</ProjectsProvider>
-      </LocaleProvider>
+        <LocaleProvider 
+            currency={currency} 
+            lang={lang}
+            currentRegion={currentRegion}
+        >
+            <ProjectsProvider projects={projects}>
+                {children}
+            </ProjectsProvider>
+        </LocaleProvider>
     </TextsProvider>
   );
 };
