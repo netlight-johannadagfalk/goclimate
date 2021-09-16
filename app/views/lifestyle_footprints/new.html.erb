@@ -1,4 +1,5 @@
 <% title(t('views.lifestyle_footprints.title')) %>
+
 <%= render "shared/header" %>
 
 <div class="relative min-h-screen bg-blue-tint-1 -mt-20 pt-20 z-10">
@@ -168,6 +169,7 @@
             <%= f.hidden_field :lifestyle_calculator_id %>
             <%= f.hidden_field :country %>
             <%= hidden_field_tag :campaign, params[:campaign] %>
+
             <% if @calculator.region_options.present? %>
               <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="home">
                 <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.region' %></h2>
@@ -180,6 +182,7 @@
                 <% end %>
               </div>
             <% end %>
+
             <% if @calculator.home_options.present? %>
               <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="home">
                 <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.home' %></h2>
@@ -192,6 +195,7 @@
                 <% end %>
               </div>
             <% end %>
+
             <% if @calculator.home_area_options.present? %>
               <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="home">
                 <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.home_area' %></h2>
@@ -204,6 +208,7 @@
                 <% end %>
               </div>
             <% end %>
+
             <% if @calculator.heating_options.present? %>
               <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="home">
                 <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.heating' %></h2>
@@ -216,6 +221,7 @@
                 <% end %>
               </div>
             <% end %>
+
             <% if @calculator.green_electricity_options.present? %>
               <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="home">
                 <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.green_electricity' %></h2>
@@ -228,6 +234,7 @@
                 <% end %>
               </div>
             <% end %>
+
             <% if @calculator.food_options.present? %>
               <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="food">
                 <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.food' %></h2>
@@ -240,6 +247,7 @@
                 <% end %>
               </div>
             <% end %>
+
             <% if @calculator.shopping_options.present? %>
               <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="consumption">
                 <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.shopping' %></h2>
@@ -251,6 +259,7 @@
                 <% end %>
               </div>
             <% end %>
+
             <% if @calculator.car_type_options.present? %>
               <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="car">
                 <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.car_type' %></h2>
@@ -263,6 +272,7 @@
                 <% end %>
               </div>
             <% end %>
+            
             <% if @calculator.car_type_options.present? %>
               <div class="question py-8 hidden" data-target="lifestyle-footprints--calculator.question" data-category="car">
                 <h2 class="heading my-4"><%=t 'views.lifestyle_footprints.questions.car_distance' %></h2>
