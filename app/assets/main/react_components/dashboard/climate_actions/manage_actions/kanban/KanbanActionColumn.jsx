@@ -59,6 +59,7 @@ const KanbanActionColumn = ({
               ) : (
                 ""
               )}
+
               {column.items
                 .slice(0, collapsed ? 4 : column.items.length)
                 .map((item, index) => {
