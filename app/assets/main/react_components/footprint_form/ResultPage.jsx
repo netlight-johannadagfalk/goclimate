@@ -92,7 +92,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
           }
           onAnswerGiven={onPageChange}
           stylingClasses={
-            'w-2/3 ' + ((page === 2 || page === 3) && 'button-cta')
+            'w-5/6 ' + ((page === 2 || page === 3) && 'button-cta')
           }
         />
       )}
