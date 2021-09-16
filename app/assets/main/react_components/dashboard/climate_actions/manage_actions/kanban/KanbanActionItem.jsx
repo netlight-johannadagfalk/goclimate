@@ -81,7 +81,7 @@ const KanbanActionItem = ({
             {collapsed ? (
               <div className="flex flex-1 items-center justify-center shadow-md">
                 <div
-                  className={`rounded-full h-16 w-16 bg-cover shadow-lg`}
+                  className={`rounded-full h-16 w-16 bg-cover shadow-lg my-1`}
                   style={{
                     backgroundImage:
                       item.status === false
