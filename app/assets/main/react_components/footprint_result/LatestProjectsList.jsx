@@ -9,7 +9,7 @@ const LatestProjectsList = () => {
   const projects = useProjects();
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 text-left">
       <h3 className="font-semibold">{latest_projects}</h3>
       <ul className="space-y-3">
         {projects.map((project) => (

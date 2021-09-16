@@ -4,5 +4,7 @@
 #   frequency: 0.5
 calculator_landing_page:
   frequency: 0.5
-react:
+v1:
+  frequency: 0.5
+v2:
   frequency: 0.5
