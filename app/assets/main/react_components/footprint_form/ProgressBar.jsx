@@ -39,7 +39,7 @@ const ProgressBar = ({ questionCategories, currentObject }) => {
                 ></div>
               </div>
               {
-                <div className="flex justify-center space-x-1 text-gray-shade-2 content-between w-0 h-0 m-xs:w-full m-xs:h-full  text-gray-accent block">
+                <div className="flex justify-center space-x-1 text-gray-shade-2 content-between w-0 h-0 m-xs:w-full m-xs:h-full text-gray-accent block">
                   {isCompletedCategory ? (
                     <div className="text-green-accent invisible m-xs:visible block">
                       <i className="text-base fa fa-check-circle"></i>
