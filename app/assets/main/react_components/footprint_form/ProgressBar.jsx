@@ -28,7 +28,7 @@ const ProgressBar = ({ questionCategories, currentObject }) => {
             <div key={category}>
               <div
                 className={
-                  'rounded-full w-2 h-2 m-xxs:w-5 m-xxs:h-5 m-xs:w-8 m-xs:h-8 m-s:w-12 m-s:h-12 flex justify-center items-center box-content p-1 mb-2 border ' +
+                  'rounded-full w-3 h-3 m-xxs:w-5 m-xxs:h-5 m-xs:w-8 m-xs:h-8 m-s:w-12 m-s:h-12 flex justify-center items-center box-content p-1 mb-2 border ' +
                   currentClass
                 }
               >
