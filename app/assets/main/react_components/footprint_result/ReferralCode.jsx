@@ -13,7 +13,7 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
   const mounted = useRef(false);
 
   const {
-    registrationsText: { code, referral_code_link, referral_code_change },
+    registrationsText: { referral_code, referral_code_link, referral_code_change },
   } = useTexts();
 
   const lookUpReferralCode = () => {
@@ -58,7 +58,7 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
       {grantedReferralCode ? (
         <div>
           <p className="text-center text-sm">
-            {code}
+            {referral_code + ':'}
             <strong className="mr-1"> {inputCode}</strong>
             <label
               className="link cursor-pointer"
@@ -86,7 +86,7 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
               <input
                 size="auto"
                 className="input w-1/2 flex-grow mr-2"
-                placeholder={code}
+                placeholder={referral_code}
                 type="text"
                 name="code"
                 id="code"
