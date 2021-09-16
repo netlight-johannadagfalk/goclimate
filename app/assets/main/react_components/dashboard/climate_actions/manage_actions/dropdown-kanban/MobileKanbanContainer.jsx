@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-const MobileKanbanContainer = ({ climateActions, children }) => {
+const MobileKanbanContainer = ({ children, userActions }) => {
   const getAcceptedActionsForUser = () => {
     let actionsAccepted = 0;
-    climateActions.map((action) => {
-      if (action.accepted === true) {
+    userActions.map((action) => {
+      if (action.status === false) {
         actionsAccepted++;
       }
     });

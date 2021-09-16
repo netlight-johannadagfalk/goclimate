@@ -9,6 +9,7 @@ import {
   useClimateActionsUpdate,
   useClimateActionsOriginal,
 } from "../../contexts/ClimateActionsContext.js";
+import { useUserActions } from "../../contexts/UserActionsContext";
 import MainInfo from "../footprint/MainInfo.jsx";
 import ManageActions from "./manage_actions/ManageActions.jsx";
 
@@ -18,6 +19,7 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
   const climateActions = useClimateActions();
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
+  const userActions = useUserActions();
 
   const [monthlyAction, setMonthlyAction] = useState(
     totClimateActions.find((action) => action.action_of_the_month === true)
@@ -75,7 +77,10 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
         localUserActions={localUserActions}
       />
 
-      <ManageActions categories={formatedCategories}></ManageActions>
+      <ManageActions
+        categories={formatedCategories}
+        userActions={userActions}
+      ></ManageActions>
     </>
   );
 };
