@@ -74,8 +74,10 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
         categories={formatedCategories}
         localUserActions={localUserActions}
       />
-
-      <ManageActions categories={formatedCategories}></ManageActions>
+      <ManageActions
+        categories={formatedCategories}
+        climateActions={climateActions}
+      ></ManageActions>
     </>
   );
 };

@@ -3,7 +3,6 @@ const borderSpecificColors = require("./lib/tailwind_plugins/border_specific_col
 module.exports = {
   purge: false,
   plugins: [borderSpecificColors],
-  important: true,
   theme: {
     variants: {
       borderWidth: ["responsive", "hover"],
@@ -33,6 +32,7 @@ module.exports = {
         "shade-2": "#2E8731",
         accent: "#48A12A",
         "tint-2": "#90CF78",
+        "tint-3": "#538047",
         "tint-1": "#EBF6E6",
         pastel: "#F6FFF2",
       },

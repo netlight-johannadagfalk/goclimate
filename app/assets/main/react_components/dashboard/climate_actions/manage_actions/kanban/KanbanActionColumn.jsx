@@ -1,6 +1,8 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import KanbanActionItem from "./KanbanActionItem.jsx";
+import { useMediaQuery } from "react-responsive";
+import { t } from "../../../../constants";
 
 const KanbanActionColumn = ({
   column,
@@ -13,8 +15,15 @@ const KanbanActionColumn = ({
   isHovering,
   handleExpanded,
 }) => {
+  const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
   return (
-    <div className="h-full" key={columnId}>
+    <div
+      className={`h-full ${
+        isTabletOrMobile &&
+        "lg:flex lg:justify-evenly lg:justify-items-center flex justify-evenly justify-items-center"
+      }`}
+      key={columnId}
+    >
       <Droppable
         column={column}
         droppableId={columnId}
@@ -24,8 +33,9 @@ const KanbanActionColumn = ({
         {(provided, snapshot) => {
           return (
             <div
-              className={`h-full overflow-x-hidden ${
-                isHovering && !collapsed
+              className={`h-full overflow-x-hidden d:flex d:items-stretch flex items-center flex-col inline-block w-full 
+              ${
+                (isHovering && !collapsed) || isTabletOrMobile
                   ? "overflow-y-auto"
                   : "overflow-y-hidden"
               }`}
@@ -77,12 +87,14 @@ const KanbanActionColumn = ({
               color: "lightgrey",
             }}
           ></hr>
-          <button
-            className={`fas rounded-full h-12 w-12 bg-white border border-gray-accent -left-6 -mt-6 absolute focus:outline-none ${
-              collapsed ? "fa-chevron-left" : "fa-chevron-right"
-            }`}
-            onClick={() => setCollapsed(!collapsed)}
-          ></button>
+          {!isTabletOrMobile && (
+            <button
+              className={`fas rounded-full h-12 w-12 bg-white border border-gray-accent -left-6 -mt-6 absolute focus:outline-none ${
+                collapsed ? "fa-chevron-left" : "fa-chevron-right"
+              }`}
+              onClick={() => setCollapsed(!collapsed)}
+            ></button>
+          )}
         </div>
       )}
     </div>
