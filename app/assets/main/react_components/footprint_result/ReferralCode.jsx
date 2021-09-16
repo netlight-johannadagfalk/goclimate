@@ -32,7 +32,7 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
       .then((res) => {
         if (mounted.current) {
           if (res.status === 404) {
-            setGrantedReferralCode();
+            setGrantedReferralCode('');
             setInvalidCodeMessage("That's not right, try again");
           } else if (res.status === 200) {
             setGrantedReferralCode(inputCode);
