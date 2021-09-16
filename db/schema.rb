@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_08_080429) do
-
+ActiveRecord::Schema.define(version: 2021_09_08_095510) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -197,8 +196,10 @@ ActiveRecord::Schema.define(version: 2021_07_08_080429) do
     t.text "currency"
     t.text "payment_intent_id"
     t.datetime "paid_at"
+    t.bigint "user_id"
     t.index ["key"], name: "index_flight_offsets_on_key"
     t.index ["payment_intent_id"], name: "index_flight_offsets_on_payment_intent_id"
+    t.index ["user_id"], name: "index_flight_offsets_on_user_id"
   end
 
   create_table "gift_cards", force: :cascade do |t|

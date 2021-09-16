@@ -95,7 +95,7 @@
 
           <div class="flex justify-between">
             <span class="font-semibold"><%= t 'views.registrations.know_your_footprint.sign_up.free_account.your_footprint' %></span>
-            <span class="text-right"><%= @plan.footprint.to_s(precision: :auto) %>/<%= t 'years.one' %></span>
+            <span class="text-right"><%= @plan.footprint.to_s(unit: :tonnes) %>/<%= t 'years.one' %></span>
           </div>
 
           <div class="h-px w-full bg-gray-tint-2"></div>
@@ -139,7 +139,7 @@
 
           <div class="flex justify-between">
             <span class="font-semibold"><%= t 'views.registrations.your_subscription' %></span>
-            <span class="text-right"><span data-target="registrations--price.subscription"><%= @plan.footprint.to_s(precision: :auto) %></span>/<%= t 'years.one' %></span>
+            <span class="text-right"><span data-target="registrations--price.subscription"><%= @plan.footprint.to_s(unit: :tonnes) %></span>/<%= t 'years.one' %></span>
           </div>
 
           <div class="h-px w-full bg-gray-tint-2"></div>

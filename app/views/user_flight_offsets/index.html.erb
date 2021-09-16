@@ -1,0 +1,38 @@
+<%= render "shared/twitter_script" %>
+
+<%= render "shared/header" %>
+
+<div class="bg-blue-pastel">
+  <section class="section-padding pb-0">
+  <h1 class="heading-lg">My flight offsets</h1>
+  <br/>
+    <dl class="dl-horizontal">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date:</th>
+            <th>Price:</th>
+            <th>Tonnes of CO2e offsetted:</th>
+            <th>Email:</th>
+            <th>Download your certificate:</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%@user_flight_offsets.each do |flight_offset| %>
+            <tr>
+              <td><%= time_tag(flight_offset.created_at.to_date) %></td>
+              <td><%= flight_offset.price %></td>
+              <td><%= flight_offset.co2e %></td>
+              <td><%= flight_offset.email %></td>
+              <td><%= link_to t('views.flight_offsets.thank_you.download_certificate'), flight_offset_certificates_path(flight_offset, format: :pdf), class: 'link'%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </dl>
+  </section>
+ <%= render "shared/bottom_landscape" %>
+</div>
+
+<%= render "shared/footer", skip_prefooter: true %>

@@ -21,6 +21,8 @@ class FlightOffsetsController < ApplicationController
       params.require(:flight_offset).permit(:co2e, :currency, :email)
     )
 
+    @offset.user_id = current_user&.id || @offset.infer_user_id
+
     render_validation_errors_json && return unless @offset.valid?(:without_payment_intent_id)
 
     @offset.create_payment_intent
