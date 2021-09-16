@@ -11,3 +11,4 @@ sv:
       single_desc: "Stöd klimatprojekt motsvarande ditt klimatavtryck varje månad"
       multi_title: "Kompensera för flera personer"
       multi_desc: "Stöd klimatprojekt motsvarande %{num} gånger ditt klimatavtryck varje månad"
+      
