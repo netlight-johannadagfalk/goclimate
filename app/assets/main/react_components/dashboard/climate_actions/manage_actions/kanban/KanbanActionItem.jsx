@@ -253,7 +253,7 @@ const KanbanActionItem = ({
                             }}
                           ></div>
                           <div
-                            className={`flex-inital text-left text-gray-accent text-sm"
+                            className={`flex-inital text-left text-gray-accent text-sm
                             `}
                           >
                             {subitem.name}
