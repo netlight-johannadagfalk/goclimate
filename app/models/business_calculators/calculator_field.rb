@@ -37,7 +37,7 @@ module BusinessCalculators
                             .where('data_requests.report_area_id': report_area.id, calculator_field_id: id)
                             .order(created_at: :asc)
       answers = answers.where('data_requests.data_reporter_id': data_reporter.id) if data_reporter.present?
-      answers = answers.reorder(created_at: :desc).limit(1) unless multiple_answers
+      answers = answers.reorder(created_at: :desc).limit(1) unless multiple_answers || survey?
       answers
     end
 
