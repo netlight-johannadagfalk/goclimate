@@ -13,4 +13,4 @@ sv:
       multi_desc: "Stöd klimatprojekt motsvarande %{num} gånger ditt klimatavtryck varje månad"
     category_chart:
       title: "Ditt klimatavtryck per kategori"
-      desc: "Detta är dittt klimatavtryck i kategorier, var det som du förväntade dig?"
+      desc: "Detta är ditt klimatavtryck i kategorier, var det som du förväntade dig?"
