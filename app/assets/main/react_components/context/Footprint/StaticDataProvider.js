@@ -1,6 +1,7 @@
 import React from 'react';
 import { LocaleProvider } from './LocaleContext';
 import { ProjectsProvider } from './ProjectsContext';
+import { VersionProvider } from './VersionContext';
 import { TextsProvider } from './TextsContext';
 
 const StaticDataProvider = ({
@@ -13,6 +14,7 @@ const StaticDataProvider = ({
   projects,
   registrationsText,
   currentRegion,
+  version,
   reactContentText,
 }) => {
   return (
@@ -29,7 +31,9 @@ const StaticDataProvider = ({
         lang={lang}
         currentRegion={currentRegion}
       >
-        <ProjectsProvider projects={projects}>{children}</ProjectsProvider>
+        <ProjectsProvider projects={projects}>
+          <VersionProvider version={version}>{children}</VersionProvider>
+        </ProjectsProvider>
       </LocaleProvider>
     </TextsProvider>
   );
