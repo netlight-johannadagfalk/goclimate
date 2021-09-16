@@ -82,10 +82,10 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
             </label>
           </p>
           <div className="collapse-content mt-3">
-            <div className="flex">
+            <div>
               <input
                 size="auto"
-                className="input w-full flex-grow mr-2"
+                className="input w-1/2 flex-grow mr-2"
                 placeholder={code}
                 type="text"
                 name="code"
