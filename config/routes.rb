@@ -61,19 +61,17 @@ Rails.application.routes.draw do
     resource :transparency, controller: 'about/transparency', only: [:show]
     resource :privacy_policy, controller: 'about/privacy_policy', path: 'privacy-policy', only: [:show]
     resource :travel_calculator, controller: 'travel_calculator', path: 'travel-calculator', only: [:show]
-    resource :price_increase_confirmation, controller: 'price_increase_confirmation', path: 'price-increase', only: [:new, :create], path_names: { new: '' } do
-      member do
-        post :opt_in
-        post :opt_out
-        get 'thank-you'
-      end
-    end
+    resource :price_increase_confirmation, controller: 'price_increase_confirmation', path: 'price-increase', only: [:show], path_names: { new: '' }
     resource :climate_tips, path: 'climate-tips', only: [:show]
     resource :take_action, controller: 'take_action', path: 'take-action', only: [:show]
 
     resources :lifestyle_footprints, path: 'calculator', only: [:new, :create], path_names: { new: '' } do
+      member do
+        post :update_name
+      end
       collection do
         resources :lifestyle_footprints, path: 'results', only: [:index, :show, :destroy]
+        get 'start', to: 'lifestyle_footprints#start'
       end
     end
 
@@ -92,6 +90,7 @@ Rails.application.routes.draw do
     end
 
     resources :projects, path: 'climate-projects', only: [:index]
+    resources :user_flight_offsets, only: [:index]
 
     resource :know_your_footprint, controller: 'know_your_footprint', path: 'know-your-carbon-footprint', only: [:show]
     get '/knowyourcarbonfootprint', to: redirect('know-your-carbon-footprint')
@@ -129,6 +128,7 @@ Rails.application.routes.draw do
         resources :airport_suggestions, only: [:index], format: true, constraints: { format: :json }
       end
     end
+
     resources :flight_offsets, only: [:index, :new, :create], param: :key do
       member do
         get 'thank-you'
@@ -251,7 +251,15 @@ Rails.application.routes.draw do
       post 'send_email', on: :collection
     end
     resource :flight_batch, controller: 'flight_batch', only: [:new, :create]
-    post '/refresh_instagram_token', to: 'dashboard#refresh_instagram_token'
+    resources :users, only: [:index, :show, :destroy, :edit, :update] do
+      collection do
+        post :search
+      end
+      member do
+        get :cancel_subscription
+      end
+    end
+    resources :lifestyle_footprints, only: [:index, :show, :destroy]
   end
 
   # Errors

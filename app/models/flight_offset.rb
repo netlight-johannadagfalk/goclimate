@@ -90,6 +90,10 @@ class FlightOffset < ApplicationRecord
     super(price)
   end
 
+  def infer_user_id
+    User.find_by_email(email)&.id
+  end
+
   private
 
   def set_price_if_unset

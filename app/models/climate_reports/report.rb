@@ -22,12 +22,28 @@ module ClimateReports
       )
     end
 
+    def answers
+      all_answers = []
+      areas&.each do |area|
+        all_answers += area.answers
+      end
+
+      all_answers
+    end
+
     def number_of_questions
       total = 0
       areas&.each do |area|
-        area.calculator&.categories&.each do |category|
-          total += category.fields&.length
-        end
+        total += area.number_of_questions
+      end
+
+      total
+    end
+
+    def number_of_answered_questions
+      total = 0
+      areas&.each do |area|
+        total += area.number_of_answered_questions
       end
 
       total

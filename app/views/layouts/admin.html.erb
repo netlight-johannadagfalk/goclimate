@@ -10,74 +10,105 @@
     <%= yield :javascript_tags %>
   </head>
 
-  <body class="admin <%= controller_name + " " + controller_name + "-" + action_name %><% unless ENV['HEROKU_ENV'] == 'production' %> admin-non-production-stripes<% end %>">
-    <div class="row" style="width: 100%; height: 100vh;">
-      <div class="col-sm-2" style="height: 100%">
-        <nav class="navbar-inverse" style="height: 100%; overflow-y: auto">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <%= link_to 'GoClimate Admin', admin_root_path, class: 'navbar-brand' %>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-              <ul class="nav navbar-nav">
-                <li<% if controller_name == 'climate_report_invoices' %> class="active"<% end %>>
-                  <%= link_to 'Climate Report Invoices', admin_climate_report_invoices_path %></a>
-                </li>
-                <li<% if controller_name == 'invoices' %> class="active"<% end %>>
-                  <%= link_to 'Invoices', admin_invoices_path %></a>
-                </li>
-                <li<% if controller_name == 'projects' %> class="active"<% end %>>
-                  <%= link_to 'Projects', admin_projects_path %></a>
-                </li>
-                <li<% if controller_name == 'referral_codes' %> class="active"<% end %>>
-                  <%= link_to 'Referral codes', admin_referral_codes_path %></a>
-                </li>
-                <li<% if controller_name == 'flight_offsets' %> class="active"<% end %>>
-                  <%= link_to 'Flight offsets', admin_flight_offsets_path %></a>
-                </li>
-                <li<% if controller_name == 'api_keys' %> class="active"<% end %>>
-                  <%= link_to 'API Keys', admin_api_keys_path %></a>
-                </li>
-                <li<% if controller_name == 'flight_batch' %> class="active"<% end %>>
-                  <%= link_to 'Flight Batch', new_admin_flight_batch_path %></a>
-                </li>
-                <li<% if controller_name == 'lifestyle_calculators' %> class="active"<% end %>>
-                  <%= link_to 'Lifestyle Calculators', admin_lifestyle_calculators_path %></a>
-                </li>
-                <li<% if controller_name == 'business_calculators' %> class="active"<% end %>>
-                  <%= link_to 'Business Calculators', admin_business_calculators_path %></a>
-                </li>
-                <li<% if controller_name == 'units' %> class="active"<% end %>>
-                  <%= link_to 'Units', admin_units_path %></a>
-                </li>
-                <li<% if controller_name == 'organizations' %> class="active"<% end %>>
-                  <%= link_to 'Organizations', admin_organizations_path %></a>
-                </li>
-                <li<% if controller_name == 'climate_reports' %> class="active"<% end %>>
-                  <%= link_to 'Climate Reports', admin_climate_reports_path %></a>
-                </li>
-                <li<% if controller_name == 'climate_action_categories' %> class="active"<% end %>>
-                  <%= link_to 'Climate Action Categories', admin_climate_action_categories_path %></a>
-                </li>
-                <li<% if controller_name == 'climate_actions' %> class="active"<% end %>>
-                  <%= link_to 'Climate Actions', admin_climate_actions_path %></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </div>
-      <div class="col-sm-10">
-        <div class="container-fluid admin-main" style="height: 100vh; overflow-y: auto;">
-          <%= yield %>
+  <body class="admin <%= controller_name + " " + controller_name + "-" + action_name %><% unless ENV['HEROKU_ENV'] == 'production' %> admin-non-production-stripes<% end %> text-primary">
+    <div class="w-full h-screen flex flex-col t:flex-row">
+      <nav class="w-full t:w-60 text-white t:overflow-y-auto t:bg-green-dark">
+        <div class="fixed t:static w-screen t:w-auto flex flex-rox justify-between py-3 px-6 bg-green-dark h-14 t:h-auto z-40">
+          <%= link_to 'GoClimate Admin', admin_root_path, class: 'text-lg t:text-xl font-semibold' %>
+          <label class="t:hidden" for="admin-menu-toggler"><i class="fas fa-bars"></i></label>
         </div>
-      </div>
+        <input type="checkbox" id="admin-menu-toggler" class="toggler">
+        <ul class="fixed t:static top-0 left-0 pt-14 t:pt-0 h-screen t:h-auto flex flex-col transform transition-transform -translate-x-full t:translate-x-0 toggler-checked:translate-x-0 z-30 overflow-y-auto t:overflow-y-visible bg-green-dark">
+          <%
+            menu_items = [
+              {
+                controller_name: 'climate_report_invoices',
+                path: admin_climate_report_invoices_path,
+                title: 'Climate Report Invoices'
+              },
+              {
+                controller_name: 'invoices',
+                path: admin_invoices_path,
+                title: 'Invoices'
+              },
+              {
+                controller_name: 'projects',
+                path: admin_projects_path,
+                title: 'Projects'
+              },
+              {
+                controller_name: 'referral_codes',
+                path: admin_referral_codes_path,
+                title: 'Referral codes'
+              },
+              {
+                controller_name: 'flight_offsets',
+                path: admin_flight_offsets_path,
+                title: 'Flight offsets'
+              },
+              {
+                controller_name: 'api_keys',
+                path: admin_api_keys_path,
+                title: 'API Keys'
+              },
+              {
+                controller_name: 'flight_batch',
+                path: new_admin_flight_batch_path,
+                title: 'Flight Batch'
+              },
+              {
+                controller_name: 'lifestyle_calculators',
+                path: admin_lifestyle_calculators_path,
+                title: 'Lifestyle Calculators'
+              },
+              {
+                controller_name: 'business_calculators',
+                path: admin_business_calculators_path,
+                title: 'Business Calculators'
+              },
+              {
+                controller_name: 'units',
+                path: admin_units_path,
+                title: 'Units'
+              },
+              {
+                controller_name: 'organizations',
+                path: admin_organizations_path,
+                title: 'Organizations'
+              },
+              {
+                controller_name: 'climate_reports',
+                path: admin_climate_reports_path,
+                title: 'Climate Reports'
+              },
+              {
+                controller_name: 'users',
+                path: admin_users_path,
+                title: 'Users'
+              },
+              {
+                controller_name: 'climate_action_categories',
+                path: admin_climate_action_categories_path,
+                title: 'Climate action categories'
+              },
+              {
+                controller_name: 'climate_actions',
+                path: admin_climate_actions_path,
+                title: 'Climate actions'
+              }
+            ]
+          %>
+          <% menu_items.each do |menu_item| %>
+            <li>
+              <%= link_to menu_item[:title], menu_item[:path], class: "w-full h-full block py-3 px-6 bg-green-dark hover:bg-green-shade-1 #{'bg-green-shade-1 font-bold' if controller_name == menu_item[:controller_name]}" %></a>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+
+      <section class="relative w-full t:flex-1 t:overflow-y-auto p-6 pt-20 t:pt-6">
+        <%= yield %>
+      </section>
     </div>
   </body>
 

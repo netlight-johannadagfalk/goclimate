@@ -85,9 +85,6 @@ en:
       index:
         heading: Your carbon footprints
         text: This is an overview of your carbon footprints you have calculated.
-        list:
-          date: Date
-          amount: Yearly amount
       show:
         heading_public: My yearly carbon footprint
         my_climate_footprint: My carbon footprint of %{footprint} is %{relative} than the average in %{country}. To be in line with the 1.5 degree target set by the Paris agreement, we need to reach an average of 2.5 tonnes per person globally by the year 2030.
@@ -99,6 +96,13 @@ en:
           text: You are about to delete your carbon footprint calculation that was created at %{date}.
           cta: Delete calculation
           abort: Keep calculation
+          success: Your carbon footprint calculation was deleted sucessfully
         share:
           text: One of the most powerful ways to create change is to inspire others to take action - and we would for you to share your carbon footprint in your own channels.
           social_quote: My carbon footprint is %{tonnes} tonnes! See mine and calculate your own carbon footprint at %{url}
+        update:
+          placeholder: Add title
+          cta_create: Create title
+          cta_update: Update title
+      start:
+        heading: Calculate your carbon footprint to get started!

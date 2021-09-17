@@ -1,50 +1,60 @@
-<%= render 'admin/shared/notice_banner' %>
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
 
-<h1>Projects</h1>
+  <%= render 'admin/shared/content_header', heading: 'Projects', actions: [
+      {
+        title: 'New',
+        path: new_admin_project_path,
+        class: 'button-cta'
+      }
+    ] %>
 
-<dl>
-  <dt>Total CO2</dt><dd><%= @total_co2 %> tonnes</dd>
-  <dt>Total spent</dt><dd><%= @total_sek_spent %> SEK</dd>
-</dl>
+  <div class="callout flex flex-row max-w-3xl">
+    <div class="w-1/2">
+      <h2>Total CO2</h2>
+      <p class="heading-lg"><%= @total_co2 %> tonnes</p>
+    </div>
+    <div class="w-1/2">
+      <h2>Total spent</h2>
+      <p class="heading-lg"><%= @total_sek_spent %> SEK</p>
+    </div>
+  </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Carbon offset</th>
-      <th>Carbon offset available</th>
-      <th>Cost</th>
-      <th>Date bought</th>
-      <th>Country</th>
-      <th>Offset type</th>
-      <th>Gold Standard ID</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @projects.each do |project| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= project.id %></td>
-        <td><%= project.name %></td>
-        <td><%= project.co2e %></td>
-        <td><%= project.co2e_available %></td>
-        <td><%= project.cost_in_sek %> SEK</td>
-        <td><%= project.date_bought.to_date %></td>
-        <td><%= project.country %></td>
-        <td><%= project.offset_type %></td>
-        <td><%= project.gold_standard_id %></td>
-        <td class="admin-actions">
-          <%= link_to 'Show', [:admin, project] %> &nbsp;
-          <%= link_to 'Edit', edit_admin_project_path(project) %> &nbsp;
-          <%= link_to 'Destroy', [:admin, project], method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Carbon offset</th>
+        <th>Carbon offset available</th>
+        <th>Cost</th>
+        <th>Date bought</th>
+        <th>Country</th>
+        <th>Offset type</th>
+        <th>Gold Standard ID</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<hr>
-
-<%= link_to 'New Project', new_admin_project_path, class: 'btn btn-default' %>
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= project.id %></td>
+          <td><%= project.name %></td>
+          <td><%= project.co2e %></td>
+          <td><%= project.co2e_available %></td>
+          <td><%= project.cost_in_sek %> SEK</td>
+          <td><%= project.date_bought.to_date %></td>
+          <td><%= project.country %></td>
+          <td><%= project.offset_type %></td>
+          <td><%= project.gold_standard_id %></td>
+          <td class="whitespace-nowrap">
+            <%= link_to 'Show', [:admin, project], class: 'link-ui text-green-shade-2' %> &nbsp;
+            <%= link_to 'Edit', edit_admin_project_path(project), class: 'link-ui text-green-shade-2' %> &nbsp;
+            <%= link_to 'Destroy', [:admin, project], method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-ui text-green-shade-2' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

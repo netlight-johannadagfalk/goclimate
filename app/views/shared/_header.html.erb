@@ -2,11 +2,11 @@
 <div class="w-full fixed z-50">
   <input type="checkbox" id="nav-toggler" class="toggler">
   <!-- Background box with height transition in mobile layout-->
-  <div class="relative z-0 overflow-hidden d:overflow-visible h-20 toggler-checked:h-screen d:max-h-20 transition-size duration-500 ease-in-out bg-white">
-    <nav class="p-4 t:px-8 h-20 flex items-center space-x-4 bg-white">
+  <div class="relative z-0 overflow-hidden d:overflow-visible h-16 m-lg:h-20 toggler-checked:h-screen d:max-h-20 transition-size duration-500 ease-in-out bg-white">
+    <nav class="p-4 t:px-8 h-16 m-lg:h-20 flex items-center space-x-4 bg-white">
       <div class="flex-grow d:flex items-center d:space-x-8">
         <a href="<%= root_path %>">
-          <%= image_tag webpack_asset_path('images/logo.svg'), alt: 'GoClimate', class: 'h-12 inline-block' %>
+          <%= image_tag webpack_asset_path('images/logo.svg'), alt: 'GoClimate', class: 'h-10 m-lg:h-12 inline-block' %>
         </a>
 
         <!-- Spacer for mobile layout / Container for larger screens -->
@@ -33,6 +33,9 @@
                   <ul class="d:dropdown-menu d:dropdown-menu-right space-y-4 d:space-y-0" aria-labelledby="user-menu"> 
                     <li><%= link_to 'Dashboard', dashboard_path, class: 'link-ui' %></li>
                     <li><%= link_to t('views.shared.header.navigation.offset_flight'), new_flight_footprint_path , class: 'link-ui'%></li>
+                    <% if  current_user.flight_offsets? %>
+                      <li><%= link_to t('views.shared.header.navigation.user_flight_offsets'), user_flight_offsets_path , class: 'link-ui'%></li>
+                    <% end %>
                     <li><%= link_to t('settings'), edit_user_registration_path , class: 'link-ui'%></li>
                     <hr class="hidden d:block d:dropdown-separator">
                     <li class="pt-4 d:pt-0"><%= link_to I18n.t('log_out'), destroy_user_session_path, method: :delete, class: 'button text-left' %></li> 
@@ -49,7 +52,7 @@
       <% if controller_path.start_with?('business') %>
         <%= link_to t('views.shared.header.book_meeting'), new_business_contact_url, class: 'button button-cta' %>
       <% elsif !user_signed_in? %>
-        <%= link_to t('views.shared.header.sign_up'), root_url, class: 'button button-cta' %>
+        <%= link_to t('views.shared.header.sign_up'), experiment_active?(:calculator_landing_page) ? start_lifestyle_footprints_url : root_url, class: 'button button-cta' %>
       <% end %>
       
       <label for="nav-toggler" class="button d:hidden">

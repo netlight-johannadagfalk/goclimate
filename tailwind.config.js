@@ -179,6 +179,9 @@ module.exports = {
         "1/2": "50%",
         "3/4": "75%",
       },
+      minWidth: {
+        40: '10rem'
+      },
       spacing: {
         96: "24rem",
         128: "32rem",

@@ -2,9 +2,5 @@
 #
 # new_feature:
 #   frequency: 0.5
-impact:
-  frequency: 0.5
-collective_efficacy:
-  frequency: 0.5
-partners:
+calculator_landing_page:
   frequency: 0.5

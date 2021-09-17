@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_23_081824) do
+ActiveRecord::Schema.define(version: 2021_09_08_095510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2021_08_23_081824) do
     t.jsonb "units"
     t.string "field_type", default: "open_ended"
     t.text "alternatives", array: true
+    t.boolean "multiple_answers", default: false
     t.index ["category_id"], name: "index_business_calculators_calculator_fields_on_category_id"
   end
 
@@ -219,8 +220,10 @@ ActiveRecord::Schema.define(version: 2021_08_23_081824) do
     t.text "currency"
     t.text "payment_intent_id"
     t.datetime "paid_at"
+    t.bigint "user_id"
     t.index ["key"], name: "index_flight_offsets_on_key"
     t.index ["payment_intent_id"], name: "index_flight_offsets_on_payment_intent_id"
+    t.index ["user_id"], name: "index_flight_offsets_on_user_id"
   end
 
   create_table "gift_cards", force: :cascade do |t|
@@ -301,6 +304,7 @@ ActiveRecord::Schema.define(version: 2021_08_23_081824) do
     t.text "country"
     t.text "home_area_answer"
     t.text "shopping_answer"
+    t.text "name"
     t.index ["lifestyle_calculator_id"], name: "index_lifestyle_footprints_on_lifestyle_calculator_id"
     t.index ["user_id"], name: "index_lifestyle_footprints_on_user_id"
   end
