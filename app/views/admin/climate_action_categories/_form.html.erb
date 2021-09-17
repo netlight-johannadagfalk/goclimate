@@ -10,34 +10,34 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: 'form-control' %>
+  <div class="flex flex-col">
+    <%= form.label :name, class: 'font-bold' %>
+    <%= form.text_field :name, class: 'input' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :description %>
-    <%= form.text_field :description, class: 'form-control' %>
+  <div class="flex flex-col">
+    <%= form.label :description, class: 'font-bold' %>
+    <%= form.text_field :description, class: 'input' %>
   </div>
 
-  <div class="form-group">
+  <div class="flex flex-col">
     <h3>Category badge</h3>
   </div>
 
-  <div class="form-group">
-    <%= form.label :badge_name %>
-    <%= form.text_field :badge_name, class: 'form-control' %>
+  <div class="flex flex-col">
+    <%= form.label :badge_name, class: 'font-bold' %>
+    <%= form.text_field :badge_name, class: 'input' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :badge_description %>
-    <%= form.text_field :badge_description, class: 'form-control' %>
+  <div class="flex flex-col">
+    <%= form.label :badge_description, class: 'font-bold' %>
+    <%= form.text_field :badge_description, class: 'input'%>
   </div>
 
-  <div class="form-group">
-    <%= form.label :badge_image_url %>
-    <%= form.text_field :badge_image_url, class: 'form-control' %>
+  <div class="flex flex-col">
+    <%= form.label :badge_image_url, class: 'font-bold' %>
+    <%= form.text_field :badge_image_url, class: 'input' %>
   </div>
 
-  <%= form.submit class: 'btn btn-primary' %>
+  <%= form.submit class: 'button button-cta mt-10' %>
 <% end %>

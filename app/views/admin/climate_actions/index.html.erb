@@ -1,30 +1,30 @@
 <p id="notice"><%= notice %></p>
-<h1>Climate Actions</h1>
-<div class="row">
-  <div id = "climate_action_toplist-container">
-    <%= render 'show_action_toplist' %>
+<div class="flex flex-col">
+  <div class="row">
+    <div id = "climate_action_toplist-container">
+      <%= render 'show_action_toplist' %>
+    </div>
+    <div id = "actionofthemonth-container">
+      <%= render 'action_of_the_month' %>
+    </div>
+    <div id = "showModal">
+      <%= render 'change_action_of_the_month'%>
+    </div>
   </div>
-  <div id = "actionofthemonth-container">
-    <%= render 'action_of_the_month' %>
+  <div class="mt-10">
+    <h2 class="heading">All Climate Actions</h2>
+    <div class="filter-container mt-4">
+      <%= form_tag(admin_climate_actions_filter_path, remote: true) do %>
+      <div class="field mt-5">
+        <%= label_tag :category, "Filter actions: "%>
+      </div>
+        <%= select_tag :category, options_from_collection_for_select(ClimateActionCategory.all, :id, :name), options ={:prompt => "All Categories", :class => "btn btn-default", :style=>"height:34px"}%>
+        <%= select_tag :points, options_from_collection_for_select(ClimateAction.select(:points).distinct, :points, :points), options ={:prompt => "Climate Impact Points", :class => "btn btn-default", :style=>"height:34px"}%>
+        <%= submit_tag "Filter", class: 'button button-cta ml-5'%>
+        <% end%>
+    </div>
   </div>
-  <div id = "showModal">
-    <%= render 'change_action_of_the_month'%>
+  <div id="climate_actions_filtered">
+      <%= render 'climate_actions' %>
   </div>
-</div>
-<h3>All Climate Actions</h3>
-<div class="filter-container">
-  <%= form_tag(admin_climate_actions_filter_path, remote: true) do %>
-  <div class="field">
-    <%= label_tag :category, "Filter actions: "%>
-  </div>
-  <%= select_tag :category, options_from_collection_for_select(ClimateActionCategory.all, :id, :name), options ={:prompt => "All Categories", :class => "btn btn-default", :style=>"height:34px"}%>
-  <%= select_tag :points, options_from_collection_for_select(ClimateAction.select(:points).distinct, :points, :points), options ={:prompt => "Climate Impact Points", :class => "btn btn-default", :style=>"height:34px"}%>
-  <%= submit_tag "Filter", class: 'btn btn-default'%>
-  <% end%>
-</div>
-
-<br>
-
-<div id="climate_actions_filtered">
-    <%= render 'climate_actions' %>
 </div>

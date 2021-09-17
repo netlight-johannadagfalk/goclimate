@@ -1,23 +1,12 @@
-<style>
-.modal-dialog{
-    overflow-y: initial !important;
-    width: 80vh;
-}
-.modal-body{
-    height: 30vh;
-    overflow-y: auto;
-}
-</style>
-
-<div id="myModal" class="modal">
+<div id="myModal" class="modal hidden">
 <%= form_tag(admin_climate_actions_set_action_of_the_month_path, remote: true) do %>
-    <div class="modal-dialog">
+    <div style="width:80vh">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" onclick = "document.getElementById('myModal').style.display='none'">×</button>
-                <h2 class="modal-title">Choose the action of the month</h2>
+        <div class="group flex items-center">
+            <div class="flex-initial">Change action of the month </div>
+            <button type="button" class="close flex-1 text-lg text-right right-0" data-dismiss="modal" onclick = "document.getElementById('myModal').style.display='none'">×</button>
             </div>
-            <div class="modal-body">
+            <div style="height:30vh;overflow-y:auto">
                 <table class="table"> 
                 <thead>
                 <tr>
@@ -42,7 +31,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <%= submit_tag "Save", class: 'btn btn-default'%>
+                <%= submit_tag "Save", class: 'button button-cta'%>
             </div>
         </div>
     </div>
