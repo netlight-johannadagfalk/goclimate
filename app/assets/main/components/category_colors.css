@@ -59,6 +59,13 @@
   @apply bg-green-accent;
 }
 
+/* Climate-Friend - Membership badge */
+.category_climate_friend:hover,
+.category_climate_friend_active,
+.category_climate_friend_active:hover {
+  @apply bg-green-tint-4;
+}
+
 /* Other */
 .category_other:hover,
 .category_other_active,

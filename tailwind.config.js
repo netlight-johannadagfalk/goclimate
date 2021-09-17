@@ -33,6 +33,7 @@ module.exports = {
         accent: "#48A12A",
         "tint-2": "#90CF78",
         "tint-3": "#538047",
+        "tint-4": "#D5EDD1",
         "tint-1": "#EBF6E6",
         pastel: "#F6FFF2",
       },

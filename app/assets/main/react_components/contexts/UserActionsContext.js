@@ -67,8 +67,6 @@ export const UserActionsProvider = ({
     setUserActions(actions);
   };
 
-  console.log({ userSubscriptionType });
-
   const formatedUserActions = (inVal) => {
     return inVal.map((userActions) => ({
       ...userActions,
@@ -118,14 +116,14 @@ export const UserActionsProvider = ({
     name: "Climate Friend",
     badge_image_url: "/achievement_images/AchievementClimateFriend.png",
     userActionsArray:
-      userSubscriptionType == true
+      JSON.parse(userSubscriptionType) == true
         ? [
             { id: "-2", name: "GoClimate free membership", status: true },
             { id: "-3", name: "GoClimate paid membership", status: true },
           ]
         : [{ id: "-2", name: "GoClimate free membership", status: true }],
     actionsArray:
-      userSubscriptionType == true
+      JSON.parse(userSubscriptionType) == true
         ? []
         : [{ id: "-3", name: "GoClimate paid membership" }],
   };
@@ -318,7 +316,6 @@ export const UserActionsProvider = ({
     getCompleteCategoryArrays
   );
 
-  console.log({ categoryBadges });
   const [columns, setColumns] = useState(
     columnUserActions(
       acceptedUserActions(userActions),
