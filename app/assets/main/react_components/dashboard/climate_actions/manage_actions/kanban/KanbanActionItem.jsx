@@ -61,7 +61,7 @@ const KanbanActionItem = ({
       {(provided, snapshot) => {
         return (
           <div
-            className={`rounded-lg p-0 space-y-3 pt-0 w-80 mb-2 ${
+            className={`rounded-lg p-0 space-y-3 pt-0 w-80 mb-2 focus:outline-none ${
               collapsed ? "d:w-24" : "t:w-80 border border-gray-tint-2 mx-5"
             }
             
@@ -108,7 +108,7 @@ const KanbanActionItem = ({
                     ></div>
                   )}
                   <div
-                    className="flex flex-row h-16"
+                    className="flex flex-row h-auto"
                     onClick={() => handleExpanded(item, !item.expanded)}
                   >
                     <div className="flex flex-1">
