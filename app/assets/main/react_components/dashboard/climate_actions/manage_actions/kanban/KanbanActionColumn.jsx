@@ -3,6 +3,7 @@ import { Droppable } from "react-beautiful-dnd";
 import KanbanActionItem from "./KanbanActionItem.jsx";
 import { useMediaQuery } from "react-responsive";
 import { t } from "../../../../constants";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const KanbanActionColumn = ({
   column,
@@ -59,22 +60,30 @@ const KanbanActionColumn = ({
               ) : (
                 ""
               )}
-              {column.items
-                .slice(0, collapsed ? 4 : column.items.length)
-                .map((item, index) => {
-                  return (
-                    <KanbanActionItem
-                      item={item}
-                      index={index}
-                      key={item.id}
-                      handleDelete={handleDelete}
-                      handleButtonPerformOnDrag={handleButtonPerformOnDrag}
-                      categories={categories}
-                      collapsed={collapsed}
-                      handleExpanded={handleExpanded}
-                    />
-                  );
-                })}
+              <TransitionGroup component={null}>
+                {column.items
+                  .slice(0, collapsed ? 4 : column.items.length)
+                  .map((item, index) => {
+                    return (
+                      <CSSTransition
+                        timeout={500}
+                        classNames="display"
+                        key={item.id}
+                      >
+                        <KanbanActionItem
+                          item={item}
+                          index={index}
+                          key={item.id}
+                          handleDelete={handleDelete}
+                          handleButtonPerformOnDrag={handleButtonPerformOnDrag}
+                          categories={categories}
+                          collapsed={collapsed}
+                          handleExpanded={handleExpanded}
+                        />
+                      </CSSTransition>
+                    );
+                  })}
+              </TransitionGroup>
               {provided.placeholder}
             </div>
           );

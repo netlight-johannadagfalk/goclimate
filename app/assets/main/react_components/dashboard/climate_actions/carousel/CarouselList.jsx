@@ -16,7 +16,12 @@ import { m, d, dLg } from "../../../constants";
 import SwiperCore, { Navigation, Pagination, Scrollbar } from "swiper/core";
 SwiperCore.use([Pagination, Navigation, Scrollbar]);
 
-const CarouselList = ({ user, updateLocalAccepted, categories }) => {
+const CarouselList = ({
+  user,
+  updateLocalAccepted,
+  categories,
+  updateNumberForMobileKanban,
+}) => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
 
@@ -81,6 +86,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
               user={user}
               updateLocalAccepted={updateLocalAccepted}
               categories={categories}
+              updateNumberForMobileKanban={updateNumberForMobileKanban}
             ></CarouselActionItem>
           </SwiperSlide>
         ))}

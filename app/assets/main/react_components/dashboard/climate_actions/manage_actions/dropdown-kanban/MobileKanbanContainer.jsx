@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const MobileKanbanContainer = ({ children, userActions }) => {
-  const getAcceptedActionsForUser = () => {
-    let actionsAccepted = 0;
-    userActions.map((action) => {
-      if (action.status === false) {
-        actionsAccepted++;
-      }
-    });
-    return actionsAccepted;
-  };
+const MobileKanbanContainer = ({ children, acceptedActions }) => {
+  const [ping, setPing] = useState(false);
+
+  useEffect(() => {
+    setPing(true);
+    const timer = setTimeout(() => {
+      setPing(false);
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [acceptedActions]);
 
   const [showMobileKanban, setShowMobileKanban] = useState(false);
 
@@ -32,13 +34,13 @@ const MobileKanbanContainer = ({ children, userActions }) => {
             showMobileKanban ? "fa-globe-europe" : "fa-globe-americas"
           }`}
         ></i>
-        {getAcceptedActionsForUser() > 0 && (
-          <div className="fas rounded-full h-5 w-5 bg-green-tint-3 -mt-1 -ml-3 absolute focus:outline-none">
-            <div className="mb-2 text-white text-center">
-              {getAcceptedActionsForUser()}
-            </div>
-          </div>
-        )}
+        <div
+          className={`fas ${
+            ping && "ping"
+          } rounded-full h-5 w-5 bg-green-tint-3 -mt-1 -ml-3 absolute focus:outline-none`}
+        >
+          <div className="mb-2 text-white text-center">{acceptedActions}</div>
+        </div>
       </button>
     </>
   );

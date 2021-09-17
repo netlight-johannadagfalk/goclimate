@@ -1,0 +1,17 @@
+.display-enter {
+  opacity: 0.01;
+}
+
+.display-enter.display-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.display-exit {
+  opacity: 1;
+}
+
+.display-exit.display-exit-active {
+  opacity: 0.01;
+  transition: opacity 1ms ease-in;
+}

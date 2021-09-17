@@ -20,8 +20,7 @@
 @import "components/tabs.css";
 @import "components/toggler.css";
 @import "components/tooltip.css";
-@import "components/category_colors.css";
-
+@import "components/display.css";
 @import "components/category_colors.css";
 
 @import "tailwindcss/utilities";
@@ -54,4 +53,18 @@ html {
   padding: 0.5rem !important;
   background-color: transparent !important;
   color: #1c4637 !important;
+}
+
+.ping {
+  animation-name: ping;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
 }

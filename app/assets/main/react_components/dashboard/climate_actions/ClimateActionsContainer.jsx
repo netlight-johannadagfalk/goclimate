@@ -58,6 +58,24 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
 
   const formatedCategories = JSON.parse(climateActionCategories);
 
+  const findUserActionsWithStatusFalse = () => {
+    let actionsAccepted = 1;
+    userActions.map((action) => {
+      if (action.status === false) {
+        actionsAccepted++;
+      }
+    });
+    return actionsAccepted;
+  };
+
+  const [acceptedActions, setAcceptedActions] = useState(
+    findUserActionsWithStatusFalse
+  );
+
+  const updateNumberForMobileKanban = () => {
+    setAcceptedActions(findUserActionsWithStatusFalse);
+  };
+
   useEffect(() => {
     deletedAction != null && updateLocalAccepted(deletedAction);
   }, [deletedAction]);
@@ -75,11 +93,12 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
         updateLocalAccepted={updateLocalAccepted}
         categories={formatedCategories}
         localUserActions={localUserActions}
+        updateNumberForMobileKanban={updateNumberForMobileKanban}
       />
 
       <ManageActions
         categories={formatedCategories}
-        userActions={userActions}
+        acceptedActions={acceptedActions}
       ></ManageActions>
     </>
   );
