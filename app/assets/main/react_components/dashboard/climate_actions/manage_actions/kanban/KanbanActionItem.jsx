@@ -36,7 +36,6 @@ const KanbanActionItem = ({
       return {
         userSelect: "none",
         padding: 0,
-        margin: "0 0 8px 0",
         minHeight: "auto",
       };
     }
@@ -47,7 +46,6 @@ const KanbanActionItem = ({
     return {
       userSelect: "none",
       padding: 0,
-      margin: "0 0 8px 0",
       minHeight: "auto",
       ...style,
     };
@@ -63,8 +61,8 @@ const KanbanActionItem = ({
       {(provided, snapshot) => {
         return (
           <div
-            className={`border border-gray-tint-2 rounded-lg shadow-lg p-0 space-y-3 pt-0 w-80 ${
-              collapsed ? "d:w-24" : "t:w-80"
+            className={`rounded-lg p-0 space-y-3 pt-0 w-80 mb-2 focus:outline-none ${
+              collapsed ? "d:w-24" : "t:w-80 border border-gray-tint-2 mx-5"
             }
             
             ${item.expanded ? "h-auto" : "w-24"}`}
@@ -83,7 +81,7 @@ const KanbanActionItem = ({
             {collapsed ? (
               <div className="flex flex-1 items-center justify-center shadow-md">
                 <div
-                  className={`rounded-full h-16 w-16 bg-cover`}
+                  className={`rounded-full h-16 w-16 bg-cover shadow-lg my-1`}
                   style={{
                     backgroundImage:
                       item.status === false
@@ -110,7 +108,7 @@ const KanbanActionItem = ({
                     ></div>
                   )}
                   <div
-                    className="flex flex-row h-16"
+                    className="flex flex-row h-auto"
                     onClick={() => handleExpanded(item, !item.expanded)}
                   >
                     <div className="flex flex-1">
@@ -164,10 +162,10 @@ const KanbanActionItem = ({
             )}
 
             {item.expanded && !collapsed && (
-              <div className="mb-4 mx-2">
+              <div className="mb-4 ml-7 mr-4">
                 {item.status === false ? (
                   <div className="flex flex-1 flex-col text-center">
-                    <div className="flex-1 justify-center">
+                    <div className="flex-1 justify-center text-left">
                       <p className="text-sm">
                         {item.description.length > 200
                           ? item.description.slice(0, 200) + "..."
@@ -197,7 +195,7 @@ const KanbanActionItem = ({
                             {subitem.status === true ? (
                               <div className="group flex items-center mt-1 mb-3">
                                 <div
-                                  className="mr-3 rounded-full h-7 w-7 bg-cover flex-initial"
+                                  className="mr-3 rounded-full h-6 w-6 bg-cover flex-initial"
                                   style={{
                                     backgroundImage:
                                       "url('/achievement_images/AchievementStarActive.png')",
@@ -221,14 +219,14 @@ const KanbanActionItem = ({
                             ) : (
                               <div className="flex mt-1 mb-3">
                                 <div
-                                  className="mr-3 rounded-full h-7 w-7 bg-cover flex-initial"
+                                  className="mr-3 rounded-full h-6 w-6 bg-cover flex-initial"
                                   style={{
                                     backgroundImage:
                                       "url('/achievement_images/AchievementStarInactive.png')",
                                   }}
                                 ></div>
                                 <div
-                                  className={`flex-inital text-left text-gray-accent text-sm
+                                  className={`text-sm flex-inital text-left text-gray-accent
                                   `}
                                 >
                                   {subitem.name}
@@ -246,14 +244,14 @@ const KanbanActionItem = ({
                       <div key={subitem.id}>
                         <div className="flex mt-1 mb-3">
                           <div
-                            className="mr-3 rounded-full h-7 w-7 bg-cover flex-initial"
+                            className="mr-3 rounded-full h-6 w-6 bg-cover flex-initial"
                             style={{
                               backgroundImage:
                                 "url('/achievement_images/AchievementStarInactive.png')",
                             }}
                           ></div>
                           <div
-                            className={`flex-inital text-left text-gray-accent text-sm
+                            className={`text-gray-accent text-sm flex-inital text-left "
                             `}
                           >
                             {subitem.name}
