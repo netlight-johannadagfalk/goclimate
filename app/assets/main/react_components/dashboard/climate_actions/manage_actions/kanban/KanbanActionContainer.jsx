@@ -20,7 +20,6 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
   const setDeletedAction = useDeletedActionUpdate();
   const setCategoryBadges = useCategoryBadgesUpdate();
   const setCategoryBadgesOnDrag = useCategoryBadgesUpdateOnDrag();
-
   const [isHovering, setIsHovering] = useState(false);
 
   const mounted = useRef(false);

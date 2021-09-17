@@ -113,6 +113,23 @@ export const UserActionsProvider = ({
     setCategoryBadges(badge);
   };
 
+  const memberShipBadge = {
+    id: "-1",
+    name: "Climate Friend",
+    badge_image_url: "/achievement_images/AchievementClimateFriend.png",
+    userActionsArray:
+      userSubscriptionType == true
+        ? [
+            { id: "-2", name: "GoClimate free membership", status: true },
+            { id: "-3", name: "GoClimate paid membership", status: true },
+          ]
+        : [{ id: "-2", name: "GoClimate free membership", status: true }],
+    actionsArray:
+      userSubscriptionType == true
+        ? []
+        : [{ id: "-3", name: "GoClimate paid membership" }],
+  };
+
   /** Finds the correct category based on id */
   const findCategory = (performedColumn, item) => {
     return performedColumn.find(
@@ -161,27 +178,30 @@ export const UserActionsProvider = ({
   /** This function creates badges from start */
   const getCompleteCategoryArrays =
     //Add actions
-    appendUserActionsArrayToCategory.map((category) => {
-      const allActionsWithoutUserActions = filterCategoryRelatedActions(
-        JSON.parse(actionsWithoutUserActions),
-        category.id
-      );
+    [
+      ...appendUserActionsArrayToCategory.map((category) => {
+        const allActionsWithoutUserActions = filterCategoryRelatedActions(
+          JSON.parse(actionsWithoutUserActions),
+          category.id
+        );
 
-      //Add useractions with status false
-      const allUserActions = filterCategoryRelatedUserActions(
-        userActions,
-        category.id,
-        false
-      );
+        //Add useractions with status false
+        const allUserActions = filterCategoryRelatedUserActions(
+          userActions,
+          category.id,
+          false
+        );
 
-      //map trough userActionsArray and save latest update timestamp and set to the whole category
-      return {
-        ...category,
-        userActionsArray: [...category.userActionsArray, ...allUserActions],
-        actionsArray: [...allActionsWithoutUserActions],
-        id: category.id.toString(),
-      };
-    });
+        //map trough userActionsArray and save latest update timestamp and set to the whole category
+        return {
+          ...category,
+          userActionsArray: [...category.userActionsArray, ...allUserActions],
+          actionsArray: [...allActionsWithoutUserActions],
+          id: category.id.toString(),
+        };
+      }),
+      memberShipBadge,
+    ];
 
   //Check for further refactoring below:
 
@@ -297,6 +317,8 @@ export const UserActionsProvider = ({
   const [categoryBadges, setCategoryBadges] = useState(
     getCompleteCategoryArrays
   );
+
+  console.log({ categoryBadges });
   const [columns, setColumns] = useState(
     columnUserActions(
       acceptedUserActions(userActions),
