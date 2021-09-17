@@ -58,6 +58,7 @@ export const UserActionsProvider = ({
   actionsWithoutUserActions,
   actionsWithUserActions,
   climateActionCategories,
+  userSubscriptionType,
 }) => {
   const [userActions, setUserActions] = useState(allUserActions);
   const climateActionsText = useClimateActionsText();
@@ -65,6 +66,8 @@ export const UserActionsProvider = ({
   const updateUserActions = (actions) => {
     setUserActions(actions);
   };
+
+  console.log({ userSubscriptionType });
 
   const formatedUserActions = (inVal) => {
     return inVal.map((userActions) => ({
