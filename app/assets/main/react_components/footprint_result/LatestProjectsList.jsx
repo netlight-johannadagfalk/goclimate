@@ -17,7 +17,7 @@ const LatestProjectsList = () => {
         {projects.map((project) => (
           <>
             <div className="d:w-1/3 pt-20 px-1 m-lg:pt-16">
-              <div className="callout h-full space-y-3 pt-0 p-2">
+              <div className="callout h-full space-y-3 pt-0 p-4">
                 <div className="inline-block w-full">
                   <img
                     className="mx-auto h-10 w-10 -mt-10 m-lg:h-24 m-lg:w-24 m-lg:-mt-12 rounded-full object-cover"
