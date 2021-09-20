@@ -8,11 +8,11 @@ de:
         eur: '€'
     greenhouse_gases:
       tonnes:
-        one: '%{count} Tonnen CO2e'
-        other: '%{count} Tonnen CO2e'
+        one: '%{formatted_count} Tonnen CO2e'
+        other: '%{formatted_count} Tonnen CO2e'
       kg:
-        one: '%{count} kg CO2e'
-        other: '%{count} kg CO2e'
+        one: '%{formatted_count} kg CO2e'
+        other: '%{formatted_count} kg CO2e'
     project:
       offset_type:
         'GS': Gold Standard zertifiziert

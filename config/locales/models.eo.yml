@@ -28,11 +28,11 @@ eo:
         usd: 'crwdns12680:0crwdne12680:0'
     greenhouse_gases:
       tonnes:
-        one: 'crwdns12686:1%{count}crwdne12686:1'
-        other: 'crwdns12686:5%{count}crwdne12686:5'
+        one: 'crwdns12686:1%{formatted_count}crwdne12686:1'
+        other: 'crwdns12686:5%{formatted_count}crwdne12686:5'
       kg:
-        one: 'crwdns12688:1%{count}crwdne12688:1'
-        other: 'crwdns12688:5%{count}crwdne12688:5'
+        one: 'crwdns12688:1%{formatted_count}crwdne12688:1'
+        other: 'crwdns12688:5%{formatted_count}crwdne12688:5'
     project:
       offset_type:
         'GS': crwdns12690:0crwdne12690:0
