@@ -127,7 +127,7 @@ module Users
 
     def render_price_json
       render json: {
-        subscription: @plan.footprint.to_s(precision: :auto),
+        subscription: @plan.footprint.to_s(unit: :tonnes),
         price: @plan.price.to_s(precision: :auto)
       }
     end

@@ -111,7 +111,7 @@ en:
       unlocked: Your account has been unlocked successfully. Please sign in to continue.
   errors:
     messages:
-      something_wrong: Oups, something went wrong!
+      something_wrong: Sorry, something on our side didn't go as planned.
       reset_password_token_expired_html: Your reset password link has expired. <a href=''>Please request a new one</a>.
       already_confirmed: was already confirmed, please try signing in
       confirmation_period_expired: needs to be confirmed within %{period}, please request a new one

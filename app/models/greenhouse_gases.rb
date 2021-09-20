@@ -88,17 +88,28 @@ class GreenhouseGases
     GreenhouseGases.new(co2e - other.co2e)
   end
 
-  def to_s(options = {})
-    if options[:precision] == :auto
-      rounded_tonnes = (BigDecimal(co2e) / 1000).round(co2e < 100 ? 2 : 1)
+  def to_s(unit: :kgs, precision: nil)
+    case unit
+    when :kgs
+      I18n.translate(
+        'models.greenhouse_gases.kg',
+        count: co2e,
+        formatted_count: ActiveSupport::NumberHelper.number_to_delimited(co2e)
+      )
+    when :tonnes
+      precision ||= co2e < 100 ? 2 : 1
+      rounded_tonnes = tonnes.round(precision)
 
-      return I18n.translate('models.greenhouse_gases.tonnes', count: rounded_tonnes)
-    end
-
-    if co2e % 1000 == 0
-      I18n.translate('models.greenhouse_gases.tonnes', count: co2e / 1000)
-    else
-      I18n.translate('models.greenhouse_gases.kg', count: co2e)
+      I18n.translate(
+        'models.greenhouse_gases.tonnes',
+        count: rounded_tonnes,
+        formatted_count: ActiveSupport::NumberHelper.number_to_rounded(
+          rounded_tonnes,
+          # Default delimiter for number_to_rounded is no delimiter, so we need to pass the locale delimiter explicitly
+          delimiter: I18n.translate(:'number.format.delimiter'),
+          precision: precision
+        )
+      )
     end
   end
 

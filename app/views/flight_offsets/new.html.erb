@@ -74,7 +74,7 @@
 
             <div>
               <label for="email" class="font-bold padding-top"><%=t 'email' %></label>
-              <%= f.email_field :email, class: 'input w-full', required: '' %>
+              <%= f.email_field :email, class: 'input w-full', required: '', value: current_user&.email %>
             </div>
 
             <div data-controller="stripe-card-element" data-target="checkout-form.stripeCardElement">

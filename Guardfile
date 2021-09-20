@@ -61,7 +61,7 @@ group :javascript do
   end
 end
 
-guard :brakeman, run_on_start: false do
+guard :brakeman, quiet: true do
   watch(%r{^app/.+\.(erb|haml|rhtml|rb)$})
   watch(%r{^config/.+\.rb$})
   watch('Gemfile')

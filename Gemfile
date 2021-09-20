@@ -67,6 +67,7 @@ group :development, :test do
   gem 'capybara', '~> 3.30'
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
+  gem 'pry-byebug' # Drop `binding.pry` anywhere you want to start debugging
   gem 'rb-readline'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 4.0'
@@ -85,7 +86,6 @@ group :development do
   gem 'guard-rspec', require: false
   gem 'guard-rubocop', require: false
   gem 'i18n-tasks', require: false
-  gem 'pry-byebug' # Drop `binding.pry` anywhere you want to start debugging
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'

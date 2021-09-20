@@ -372,4 +372,26 @@ RSpec.describe FlightOffset do
       expect(offset.to_param).to eq(offset.key)
     end
   end
+
+  describe '#user_id=' do
+    it 'sets user_id if user has signed in' do
+      user = create(:user)
+      flight_offset = build(:flight_offset)
+
+      flight_offset.email = user.email
+      flight_offset.user_id = flight_offset.infer_user_id
+      flight_offset.save
+
+      expect(flight_offset.user_id).to eq(user.id)
+    end
+
+     it 'does not set user_id if user has not signed in' do
+      flight_offset = build(:flight_offset)
+
+      flight_offset.user_id = flight_offset.infer_user_id
+      flight_offset.save
+
+      expect(flight_offset.user_id).to be_nil
+    end
+  end
 end
