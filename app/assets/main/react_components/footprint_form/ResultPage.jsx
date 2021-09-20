@@ -21,6 +21,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
     lifestyleFootprintsText: { next },
     reactContentText: {
       react: {
+        category_page: { answer_button_logged_in },
         leave_without_membership: { button_text },
       },
     },
@@ -94,9 +95,19 @@ const ResultPage = ({ result, page, onPageChange }) => {
       </div>
       {page !== 3 && (
         <AnswerButton
-          label={page === 2 ? continue_to_payment : next}
-          onAnswerGiven={onPageChange}
-          stylingClasses={'w-2/3 ' + (page === 2 && 'button-cta')}
+          label={
+            page === 1 && result.user_page_path
+              ? answer_button_logged_in
+              : page === 2
+              ? continue_to_payment
+              : next
+          }
+          onAnswerGiven={() => {
+            if (result.user_page_path && page === 1)
+              window.location.href = result.user_page_path;
+            else onPageChange();
+          }}
+          stylingClasses={'w-5/6 ' + (page === 2 && 'button-cta')}
         />
       )}
       {page === 2 && version == 'v2' && (
@@ -117,7 +128,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
                 behavior: 'smooth',
               });
             }}
-            stylingClasses={'w-2/3 button-cta'}
+            stylingClasses={'w-5/6 button-cta'}
           />
           <Link
             style={'text-sm mt-2'}
