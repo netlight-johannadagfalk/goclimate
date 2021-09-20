@@ -13,11 +13,18 @@ const ProjectSummary = ({ project }) => {
           />
         </div>
         <h3 className="font-semibold">{project.name}</h3>
-        <p>
+        {/* <p>
           {collapseState === 'hidden'
             ? project.short_description.slice(0, 80) + '...'
             : project.short_description}
+        </p> */}
+        <p 
+        className={collapseState === 'hidden'
+            ? " fadeProjects inline-block w-full "
+            : " inline-block w-full "}>
+          {project.short_description}
         </p>
+
         <div
           className="flex justify-between cursor-pointer"
           onClick={() =>
