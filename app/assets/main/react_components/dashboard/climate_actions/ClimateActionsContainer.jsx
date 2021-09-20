@@ -60,6 +60,7 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
 
   const findUserActionsWithStatusFalse = () => {
     let actionsAccepted = 0;
+
     userActions.map((action) => {
       if (action.status === false) {
         actionsAccepted++;
@@ -69,7 +70,7 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
   };
 
   const [acceptedActions, setAcceptedActions] = useState(
-    findUserActionsWithStatusFalse
+    findUserActionsWithStatusFalse()
   );
 
   const updateNumberForMobileKanban = () => {

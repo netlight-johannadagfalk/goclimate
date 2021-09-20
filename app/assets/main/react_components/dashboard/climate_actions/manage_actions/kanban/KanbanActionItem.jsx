@@ -60,8 +60,8 @@ const KanbanActionItem = ({
       {(provided, snapshot) => {
         return (
           <div
-            className={`border border-gray-tint-2 rounded-lg shadow-lg p-0 space-y-3 pt-0 w-80 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-102 ${
-              collapsed ? "d:w-24" : "t:w-80"
+            className={`rounded-lg p-0 space-y-3 pt-0 w-80 mb-2 focus:outline-none transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-102 ${
+              collapsed ? "d:w-24" : "t:w-80 border border-gray-tint-2 mx-5"
             }
             ${item.expanded ? "h-auto" : "w-24"}`}
             ref={provided.innerRef}
@@ -81,10 +81,9 @@ const KanbanActionItem = ({
                 <div
                   className={`rounded-full h-16 w-16 bg-cover shadow-lg my-1`}
                   style={{
-                    backgroundImage:
-                      item.status === false
-                        ? `url('${item.image_url}')`
-                        : `url('${item.badge_image_url}')`,
+                    backgroundImage: isBadge
+                      ? `url('${item.badge_image_url}')`
+                      : `url('${item.image_url}')`,
                     backgroundSize: "100%",
                   }}
                 ></div>
@@ -115,10 +114,9 @@ const KanbanActionItem = ({
                           isBadge ? "mt-2" : "-mt-1/4"
                         } rounded-full h-16 w-16 items-center justify-center bg-contain bg-center shadow-lg`}
                         style={{
-                          backgroundImage:
-                            item.status === false
-                              ? `url('${item.image_url}')`
-                              : `url('${item.badge_image_url}')`,
+                          backgroundImage: isBadge
+                            ? `url('${item.badge_image_url}')`
+                            : `url('${item.image_url}')`,
                           backgroundSize: "100%",
                         }}
                       ></div>
