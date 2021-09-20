@@ -121,11 +121,11 @@ export const UserActionsProvider = ({
             { id: "-2", name: "GoClimate free membership", status: true },
             { id: "-3", name: "GoClimate paid membership", status: true },
           ]
-        : [{ id: "-2", name: "GoClimate free membership", status: true }],
-    actionsArray:
-      JSON.parse(userSubscriptionType) == true
-        ? []
-        : [{ id: "-3", name: "GoClimate paid membership" }],
+        : [
+            { id: "-2", name: "GoClimate free membership", status: true },
+            { id: "-3", name: "GoClimate paid membership", status: false },
+          ],
+    actionsArray: [],
   };
 
   /** Finds the correct category based on id */
