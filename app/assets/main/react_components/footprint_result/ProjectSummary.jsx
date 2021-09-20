@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useTexts } from '../context/Footprint/TextsContext.js';
 
 const ProjectSummary = ({ project }) => {
   const [collapseState, setCollapseState] = useState('hidden');
+  const {commonTexts: { read_more }} = useTexts();
 
   return (
     <div className="d:w-1/3 pt-20 px-1 m-lg:pt-16">
@@ -12,28 +14,19 @@ const ProjectSummary = ({ project }) => {
             src={project.image_url}
           />
         </div>
-        <div className={collapseState === 'hidden'
-              ? " fadeProjects w-full"
-              : ""}>
-            
+        <div
+          className={collapseState === 'hidden' ? ' fadeProjects w-full' : ''}
+        >
           <h3 className="font-semibold">{project.name}</h3>
-          {/* <p>
-            {collapseState === 'hidden'
-              ? project.short_description.slice(0, 80) + '...'
-              : project.short_description}
-          </p> */}
-          <p className="pt-2">
-            {project.short_description}
-          </p>
+          <p className="pt-2">{project.short_description}</p>
         </div>
-
         <div
           className="flex cursor-pointer"
           onClick={() =>
             setCollapseState(collapseState === 'hidden' ? 'block' : 'hidden')
           }
         >
-          <div className="font-semibold">Read more</div>
+          <div className="font-semibold">Read more{read_more}</div>
           <div className="pl-1">
             <i
               className={

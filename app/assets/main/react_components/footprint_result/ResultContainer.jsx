@@ -26,13 +26,14 @@ const ResultContainer = ({
   slug,
   currency,
   lang,
+  sharedText,
 }) => {
   const [selectedMembership, setSelectedMembership] = useState('single');
   const [multipleOffsets, setMultipleOffsets] = useState(2);
   const [grantedReferralCode, setGrantedReferralCode] = useState(false);
 
   const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq');
-
+  console.log(sharedText);
   return (
     <StaticDataProvider
       registrationsText={registrationsText}
@@ -43,6 +44,7 @@ const ResultContainer = ({
       slug={slug}
       lang={lang}
       projects={projects}
+      sharedText={sharedText}
     >
       <div className="relative pb-1">
         <Elements stripe={stripePromise} options={{ locale: slug }}>

@@ -15,13 +15,16 @@ export const TextsProvider = ({
   registrationsText,
   slug,
   reactContentText,
+  sharedText,
 }) => {
+  console.log(sharedText)
   const texts = {
     commonText: JSON.parse(commonText),
     lifestyleFootprintsText: JSON.parse(lifestyleFootprintsText),
     modelText: JSON.parse(modelText),
     registrationsText: JSON.parse(registrationsText),
     reactContentText: JSON.parse(reactContentText),
+    sharedText: JSON.parse(sharedText),
   };
 
   if (texts.registrationsText.accept_policies === undefined)
