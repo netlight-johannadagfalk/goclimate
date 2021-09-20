@@ -8,6 +8,7 @@ const ProgressBar = ({ questionCategories, currentObject }) => {
     'car',
     'plane',
     'chart-bar',
+    'award',
   ];
   const inactiveCategoryClass = 'border-gray-tint-2';
   const activeCategoryClass =
