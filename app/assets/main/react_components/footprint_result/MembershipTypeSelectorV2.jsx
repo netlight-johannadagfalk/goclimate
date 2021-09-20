@@ -1,58 +1,63 @@
 import React from 'react';
 import { useTexts } from '../context/Footprint/TextsContext.js';
-import SelectButton from './SelectButton.jsx';
+import Title from '../footprint_form/Title.jsx';
+import MembershipAlternative from './MembershipAlternative.jsx';
 
 const MembershipTypeSelectorV2 = ({
   selectedMembership,
   setSelectedMembership,
   multipleOffsets,
   setMultipleOffsets,
+  grantedReferralCode,
+  result,
 }) => {
   const {
     reactContentText: {
       react: {
-        memberships: {
-          free_title,
-          free_desc,
-          single_title,
-          single_desc,
-          multi_title,
-          multi_desc,
-        },
+        memberships_v2: { free, single, multi },
       },
     },
   } = useTexts();
 
   return (
-    <div className="space-y-3 text-left">
-      <SelectButton
-        selectedMembership={selectedMembership}
-        setSelectedMembership={setSelectedMembership}
-        buttonType="free"
-        title={free_title}
-        desc={free_desc}
-        multipleOffsets={multipleOffsets}
-        setMultipleOffsets={setMultipleOffsets}
-      />
-      <SelectButton
-        selectedMembership={selectedMembership}
-        setSelectedMembership={setSelectedMembership}
-        buttonType="single"
-        title={single_title}
-        desc={single_desc}
-        multipleOffsets={multipleOffsets}
-        setMultipleOffsets={setMultipleOffsets}
-      />
-      <SelectButton
-        selectedMembership={selectedMembership}
-        setSelectedMembership={setSelectedMembership}
-        buttonType="multi"
-        title={multi_title}
-        desc={multi_desc}
-        multipleOffsets={multipleOffsets}
-        setMultipleOffsets={setMultipleOffsets}
-      />
-    </div>
+    <>
+      <Title custom_style="text-lgr" text={'Välj ditt medlemskap'} />
+      <div className="lg:flex text-left">
+        <MembershipAlternative
+          selectedMembership={selectedMembership}
+          setSelectedMembership={setSelectedMembership}
+          type="free"
+          title={free.title}
+          points={free.points}
+          multipleOffsets={multipleOffsets}
+          setMultipleOffsets={setMultipleOffsets}
+          grantedReferralCode={grantedReferralCode}
+          result={result}
+        />
+        <MembershipAlternative
+          selectedMembership={selectedMembership}
+          setSelectedMembership={setSelectedMembership}
+          type="single"
+          title={single.title}
+          points={single.points}
+          multipleOffsets={multipleOffsets}
+          setMultipleOffsets={setMultipleOffsets}
+          grantedReferralCode={grantedReferralCode}
+          result={result}
+        />
+        <MembershipAlternative
+          selectedMembership={selectedMembership}
+          setSelectedMembership={setSelectedMembership}
+          type="multi"
+          title={multi.title}
+          points={multi.points}
+          multipleOffsets={multipleOffsets}
+          setMultipleOffsets={setMultipleOffsets}
+          grantedReferralCode={grantedReferralCode}
+          result={result}
+        />
+      </div>
+    </>
   );
 };
 

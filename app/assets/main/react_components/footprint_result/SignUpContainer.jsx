@@ -14,6 +14,7 @@ const SignUpContainer = ({
   grantedReferralCode,
   setGrantedReferralCode,
   price,
+  result,
 }) => {
   const {
     registrationsText: {
@@ -39,6 +40,7 @@ const SignUpContainer = ({
           setMultipleOffsets={setMultipleOffsets}
           setGrantedReferralCode={setGrantedReferralCode}
           grantedReferralCode={grantedReferralCode}
+          result={result}
         />
         {version === 'v1' && (
           <PriceText
