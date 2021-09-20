@@ -11,9 +11,9 @@ module.exports = {
     },
     screens: {
       // Default: Mobile
-      'm-xxs': '280px', // Special case for progress bar: Extra extra small screen
-      'm-xs': '360px', // Special case for progress bar: Extra small screen
-      'm-s': '500px', // Special case for progress bar: Small screen
+      'm-xxs': '350px', // Special case for progress bar: Extra extra small screen
+      'm-xs': '420px', // Special case for progress bar: Extra small screen
+      'm-s': '550px', // Special case for progress bar: Small screen
       'm-lg': '640px', // Mobile Large
       t: '768px', // Tablet
       d: '1024px', // Desktop
