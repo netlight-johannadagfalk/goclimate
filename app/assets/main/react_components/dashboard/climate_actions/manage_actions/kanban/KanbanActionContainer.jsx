@@ -289,13 +289,12 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
         {Object.entries(columns).map(([columnId, column]) => {
           return (
             <div
-              className="text-center h-1/2 pb-24 -mb-8"
-              style={{ margin: 2 }}
+              className="text-center h-1/2 pb-24 -mb-10"
               key={columnId}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              <div className="h-8">
+              <div className="h-10">
                 <p
                   className={`font-normal text-base text-primary text-lg text-center`}
                 >
