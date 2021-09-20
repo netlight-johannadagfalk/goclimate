@@ -18,7 +18,7 @@ const FormInformationSection = ({
       <div className="callout my-8">
         <MoneyUsageList />
       </div>
-      <div className="callout my-8">
+      <div className="my-8">
         <LatestProjectsList />
       </div>
       <PriceText
