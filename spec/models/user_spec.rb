@@ -103,6 +103,38 @@ RSpec.describe User do
     end
   end
 
+  describe '#update' do
+    let(:user) { create(:user, user_name: 'Jane', stripe_customer_id: stripe_customer&.id) }
+    let(:new_email) { 'new_very_cool@email.com' }
+
+    before do
+      allow(Stripe::Customer)
+        .to receive(:create)
+        .and_return(stripe_customer)
+      allow(Stripe::Customer)
+        .to receive(:retrieve)
+        .with(id: user.stripe_customer_id, expand: %w[subscriptions sources])
+        .and_return(stripe_customer)
+      allow(Stripe::Customer).to receive(:update).with(user.stripe_customer_id, email: new_email)
+    end
+
+    context 'when updating email' do
+      it 'does update stripe customer' do
+        user.update(email: new_email)
+
+        expect(Stripe::Customer).to have_received(:update).with(user.stripe_customer_id, email: new_email)
+      end
+    end
+
+    context 'when not updating email' do
+      it 'does not update stripe customer when not updating email' do
+        user.update(user_name: 'Jane Doe')
+
+        expect(Stripe::Customer).not_to have_received(:update)
+      end
+    end
+  end
+
   describe '#number_of_neutral_months' do
     before do
       allow(Stripe::Customer)
@@ -216,6 +248,108 @@ RSpec.describe User do
 
       it 'returns false' do
         expect(user.active_subscription?).to eq(false)
+      end
+    end
+  end
+
+  describe '#deactivated?' do
+    context 'when an account is not deactivated' do
+      it 'returns false' do
+        expect(user.deactivated?).to eq(false)
+      end
+    end
+
+    context 'when an account is already deactivated' do
+      subject(:user) { build(:user, email: '56@deactivated.goclimate.com', stripe_customer_id: stripe_customer&.id) }
+
+      it 'returns true' do
+        expect(user.deactivated?).to eq(true)
+      end
+    end
+  end
+
+  describe '#deactivate' do
+    context 'when an account is already deactivated' do
+      subject(:user) { build(:user, email: '56@deactivated.goclimate.com', stripe_customer_id: stripe_customer&.id) }
+
+      it 'returns false' do
+        expect(user.deactivate).to eq(false)
+      end
+    end
+
+    context 'when subscription manager fails' do
+      subject(:manager) { Subscriptions::StripeSubscriptionManager.new(user) }
+
+      before do
+        allow(Stripe::Customer)
+          .to receive(:retrieve)
+          .with(id: user.stripe_customer_id, expand: %w[subscriptions sources])
+          .and_return(stripe_customer)
+
+        allow(manager.subscription)
+          .to receive(:delete)
+          .and_raise(Stripe::InvalidRequestError.new('invalid_request_error', 400))
+      end
+
+      it 'returns false' do
+        expect(user.deactivate).to eq(false)
+      end
+    end
+
+    context 'when stripe customer update fails' do
+      subject(:manager) { Subscriptions::StripeSubscriptionManager.new(user) }
+
+      let(:payment_methods) do
+        Stripe::ListObject.construct_from(stripe_json_fixture('payment_methods_list.json'))
+      end
+
+      before do
+        allow(Stripe::Customer)
+          .to receive(:retrieve)
+          .with(id: user.stripe_customer_id, expand: %w[subscriptions sources])
+          .and_return(stripe_customer)
+
+        allow(manager.subscription).to receive(:delete)
+        allow(Stripe::PaymentMethod)
+          .to receive(:list).with(customer: user.stripe_customer_id, type: 'card').and_return(payment_methods)
+        allow(Stripe::PaymentMethod).to receive(:detach)
+        allow(Stripe::Customer)
+          .to receive(:update).and_raise(Stripe::InvalidRequestError.new('invalid_request_error', 400))
+        allow(stripe_customer).to receive(:refresh).and_return(stripe_customer)
+      end
+
+      it 'returns false' do
+        expect(user.deactivate).to eq(false)
+      end
+    end
+
+    context 'when everything is normal' do
+      subject(:manager) { Subscriptions::StripeSubscriptionManager.new(user) }
+
+      let(:cancelled_subscription) do
+        Stripe::Subscription.construct_from(stripe_json_fixture('subscription_cancelled.json'))
+      end
+      let(:payment_methods) do
+        Stripe::ListObject.construct_from(stripe_json_fixture('payment_methods_list.json'))
+      end
+
+      before do
+        allow(Stripe::Customer)
+          .to receive(:retrieve)
+          .with(id: user.stripe_customer_id, expand: %w[subscriptions sources])
+          .and_return(stripe_customer)
+
+        allow(manager.subscription).to receive(:delete)
+        allow(Stripe::PaymentMethod)
+          .to receive(:list).with(customer: user.stripe_customer_id, type: 'card').and_return(payment_methods)
+        allow(Stripe::PaymentMethod).to receive(:detach)
+        allow(Stripe::Customer)
+          .to receive(:update)
+        allow(stripe_customer).to receive(:refresh).and_return(stripe_customer)
+      end
+
+      it 'returns true' do
+        expect(user.deactivate).to eq(true)
       end
     end
   end

@@ -13,11 +13,11 @@ sv:
         sek: ' kr'
     greenhouse_gases:
       tonnes:
-        one: '%{count} ton koldioxid'
-        other: '%{count} ton koldioxid'
+        one: '%{formatted_count} ton koldioxid'
+        other: '%{formatted_count} ton koldioxid'
       kg:
-        one: '%{count} kg koldioxid'
-        other: '%{count} kg koldioxid'
+        one: '%{formatted_count} kg koldioxid'
+        other: '%{formatted_count} kg koldioxid'
     project:
       offset_type:
         'GS': Gold Standard-certifierat

@@ -4,6 +4,7 @@ import { useTexts } from '../context/Footprint/TextsContext.js';
 import { useVersion } from '../context/Footprint/VersionContext.js';
 import ConfirmSignUpContainer from '../footprint_result/ConfirmSignUpContainer.jsx';
 import SignUpContainer from '../footprint_result/SignUpContainer.jsx';
+import Link from '../Link.jsx';
 import AnswerButton from './AnswerButton.jsx';
 import CategoryPage from './CategoryPage.jsx';
 import FormInformationSection from './FormInformationSection.jsx';
@@ -18,6 +19,11 @@ const ResultPage = ({ result, page, onPageChange }) => {
   const {
     registrationsText: { continue_to_payment },
     lifestyleFootprintsText: { next },
+    reactContentText: {
+      react: {
+        leave_without_membership: { button_text },
+      },
+    },
   } = useTexts();
 
   const {
@@ -26,6 +32,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
         currency_formats: { [result.plan.price.currency.iso_code]: currency },
       },
     },
+    slug,
   } = useLocaleData();
 
   const version = useVersion();
@@ -112,6 +119,13 @@ const ResultPage = ({ result, page, onPageChange }) => {
               });
             }}
             stylingClasses={'w-2/3 button-cta'}
+          />
+          <Link
+            style={'text-sm mt-2'}
+            linkStyle={'text-green-shade-1'}
+            link={slug + '/climate-tips'}
+            linkText={button_text}
+            target={''}
           />
         </>
       )}

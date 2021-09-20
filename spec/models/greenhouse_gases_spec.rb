@@ -94,20 +94,42 @@ RSpec.describe GreenhouseGases do
   end
 
   describe '#to_s' do
-    it 'uses tonnes when evenly divisible by tonnes' do
-      expect(described_class.new(1000).to_s).to eq('1 tonne CO2e')
-    end
-
-    it 'uses kgs when not evenly divisible by tonnes' do
+    it 'formats in kgs by default ' do
       expect(described_class.new(768).to_s).to eq('768 kg CO2e')
     end
 
-    it 'rounds to nearest 0.1 tonnes with option precision: :auto' do
-      expect(described_class.new(768).to_s(precision: :auto)).to eq('0.8 tonnes CO2e')
+    it 'uses delimiters for large numbers' do
+      expect(described_class.new(1_000).to_s).to eq('1,000 kg CO2e')
     end
 
-    it 'rounds to nearest 0.01 tonnes with option precision: :auto and values under 0.1 tonnes' do
-      expect(described_class.new(68).to_s(precision: :auto)).to eq('0.07 tonnes CO2e')
+    it 'rounds to nearest 0.1 tonnes with option unit: :tonnes' do
+      expect(described_class.new(768).to_s(unit: :tonnes)).to eq('0.8 tonnes CO2e')
+    end
+
+    it 'rounds to nearest 0.01 tonnes with option unit: :tonnes and values under 0.1 tonnes' do
+      expect(described_class.new(68).to_s(unit: :tonnes)).to eq('0.07 tonnes CO2e')
+    end
+
+    it 'allows setting precision for tonnes' do
+      expect(described_class.new(50_100).to_s(unit: :tonnes, precision: 0)).to eq('50 tonnes CO2e')
+    end
+
+    it 'delimits large numbers in tonnes' do
+      expect(described_class.new(500_000_100).to_s(unit: :tonnes)).to eq('500,000.1 tonnes CO2e')
+    end
+
+    context 'with a locale with different formatting' do
+      around do |example|
+        I18n.with_locale(:sv, &example)
+      end
+
+      it 'uses delimiter for kgs' do
+        expect(described_class.new(1_000).to_s).to eq('1 000 kg koldioxid')
+      end
+
+      it 'uses delimiter and separator for tonnes' do
+        expect(described_class.new(1_000_100).to_s(unit: :tonnes)).to eq('1 000,1 ton koldioxid')
+      end
     end
   end
 end
