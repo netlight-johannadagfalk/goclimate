@@ -297,7 +297,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
             >
               <div className="h-10">
                 <p
-                  className={`font-normal text-base text-primary text-lg text-center`}
+                  className={`font-normal text-base text-primary text-lg text-center mx-28`}
                 >
                   {!collapsed && column.name}
                 </p>
