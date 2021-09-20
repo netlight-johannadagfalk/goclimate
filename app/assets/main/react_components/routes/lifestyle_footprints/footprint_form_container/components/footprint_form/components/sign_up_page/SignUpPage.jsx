@@ -71,11 +71,13 @@ const SignUpPage = ({ result, page, onPageChange }) => {
         />
       )}
       {page !== 3 && (
-        <AnswerButton
-          label={page === 2 ? continue_to_payment : next}
-          onAnswerGiven={onPageChange}
-          stylingClasses={'w-2/3 ' + (page === 2 && 'button-cta')}
-        />
+        <div className="mt-8">
+          <AnswerButton
+            label={page === 2 ? continue_to_payment : next}
+            onAnswerGiven={onPageChange}
+            stylingClasses={'w-2/3 ' + (page === 2 && 'button-cta')}
+          />
+        </div>
       )}
       {page === 2 && version == 'v2' && (
         <>
