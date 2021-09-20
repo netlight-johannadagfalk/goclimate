@@ -8,9 +8,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
   const {
     lifestyleFootprintsText: { next },
     reactContentText: {
-      react: {
-        category_page: { answer_button_logged_in },
-      },
+      category_page: { answer_button_logged_in },
     },
   } = useTexts();
 

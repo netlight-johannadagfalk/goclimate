@@ -10,15 +10,13 @@ const MembershipTypeSelector = ({
 }) => {
   const {
     reactContentText: {
-      react: {
-        memberships: {
-          free_title,
-          free_desc,
-          single_title,
-          single_desc,
-          multi_title,
-          multi_desc,
-        },
+      memberships: {
+        free_title,
+        free_desc,
+        single_title,
+        single_desc,
+        multi_title,
+        multi_desc,
       },
     },
   } = useTexts();

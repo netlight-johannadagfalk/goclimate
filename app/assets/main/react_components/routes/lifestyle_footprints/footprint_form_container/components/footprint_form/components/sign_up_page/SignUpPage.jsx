@@ -18,9 +18,7 @@ const SignUpPage = ({ result, page, onPageChange }) => {
     registrationsText: { continue_to_payment },
     lifestyleFootprintsText: { next },
     reactContentText: {
-      react: {
-        leave_without_membership: { button_text },
-      },
+      leave_without_membership: { button_text },
     },
   } = useTexts();
 
