@@ -13,7 +13,11 @@ import { useUserActions } from "../../contexts/UserActionsContext";
 import MainInfo from "../footprint/MainInfo.jsx";
 import ManageActions from "./manage_actions/ManageActions.jsx";
 
-const ClimateActionsContainer = ({ user, climateActionCategories }) => {
+const ClimateActionsContainer = ({
+  user,
+  climateActionCategories,
+  actionsToplist,
+}) => {
   const deletedAction = useDeletedAction();
   const setDeletedAction = useDeletedActionUpdate();
   const climateActions = useClimateActions();
@@ -76,6 +80,7 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
           updateLocalAccepted={updateLocalAccepted}
           categories={formatedCategories}
           localUserActions={localUserActions}
+          actionsToplist={actionsToplist}
         />
       )}
       <ManageActions

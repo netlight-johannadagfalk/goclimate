@@ -13,6 +13,7 @@ const CarouselContainer = ({
   updateLocalAccepted,
   categories,
   localUserActions,
+  actionsToplist,
 }) => {
   const [allCategories, setAllCategories] = useState(true);
   const category = useCategory();
@@ -63,6 +64,7 @@ const CarouselContainer = ({
           user={user}
           updateLocalAccepted={updateLocalAccepted}
           categories={categories}
+          actionsToplist={actionsToplist}
         ></CarouselList>
       </div>
     </section>

@@ -117,6 +117,7 @@
   climateActionsText: YAML.load_file('app/assets/main/react_components/translations/climate_actions.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['assets']['main']['react_components'].to_json,
   totalNoFootprints: @total_number_of_footprints.to_json(),
   userSubscriptionType: @getSubscriptionType
+  actionsToplist: @number_of_users_completed_actions_ordered
   %>
 
   <section class="section-padding">

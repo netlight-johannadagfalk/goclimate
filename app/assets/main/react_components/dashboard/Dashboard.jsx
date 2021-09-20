@@ -22,6 +22,7 @@ const Dashboard = ({
   climateActionsText,
   totalNoFootprints,
   userSubscriptionType,
+  actionsToplist,
 }) => {
   return (
     <TextProvider climateActionsText={JSON.parse(climateActionsText)}>
@@ -50,6 +51,7 @@ const Dashboard = ({
                 <ClimateActionsContainer
                   user={user}
                   climateActionCategories={climateActionCategories}
+                  actionsToplist={actionsToplist}
                 ></ClimateActionsContainer>
               </FootprintProvider>
             </ClimateActionsProvider>
