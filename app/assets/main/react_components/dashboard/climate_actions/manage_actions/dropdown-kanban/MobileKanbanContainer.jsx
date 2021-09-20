@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-const MobileKanbanContainer = ({ children, acceptedActions }) => {
+const MobileKanbanContainer = ({ children, acceptedActions, userActions }) => {
   const [pinga, setPinga] = useState(false);
 
   useEffect(() => {
+    console.log("acceptedActions have been updated");
     setPinga(true);
     const timer = setTimeout(() => {
       setPinga(false);

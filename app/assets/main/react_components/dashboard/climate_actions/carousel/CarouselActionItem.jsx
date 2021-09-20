@@ -80,6 +80,7 @@ const CarouselActionItem = ({
       .catch((e) => console.warn(e));
   };
   const handleClickAccepted = (action) => {
+    console.log("nu har vi klickat");
     updateLocalAccepted(action.id);
     updateAccepted(action);
     updateNumberForMobileKanban();

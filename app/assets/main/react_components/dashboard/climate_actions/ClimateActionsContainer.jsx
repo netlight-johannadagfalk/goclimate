@@ -66,6 +66,10 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
         actionsAccepted++;
       }
     });
+    console.log({
+      actionsAccepted,
+      userActions,
+    });
     return actionsAccepted;
   };
 
@@ -74,7 +78,8 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
   );
 
   const updateNumberForMobileKanban = () => {
-    setAcceptedActions(findUserActionsWithStatusFalse);
+    setAcceptedActions(findUserActionsWithStatusFalse());
+    console.log("entered clicked", { userActions });
   };
 
   useEffect(() => {
@@ -100,6 +105,7 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
       <ManageActions
         categories={formatedCategories}
         acceptedActions={acceptedActions}
+        userActions={userActions}
       ></ManageActions>
     </>
   );
