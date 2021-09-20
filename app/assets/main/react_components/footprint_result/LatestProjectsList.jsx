@@ -11,7 +11,7 @@ const LatestProjectsList = () => {
 
   return (
     <>
-      <div className="space-y-3 text-left">
+      <div className="space-y-3">
         <h3 className="font-semibold">{latest_projects}</h3>
         <div className="mt-12 flex flex-col d:flex-row">
           {projects.map((project) => (
