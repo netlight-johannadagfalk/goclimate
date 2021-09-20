@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 const MobileKanbanContainer = ({ children, acceptedActions }) => {
-  const [ping, setPing] = useState(false);
+  const [pinga, setPinga] = useState(false);
 
   useEffect(() => {
-    setPing(true);
+    setPinga(true);
     const timer = setTimeout(() => {
-      setPing(false);
+      setPinga(false);
     }, 1000);
     return () => {
       clearTimeout(timer);
@@ -34,13 +34,15 @@ const MobileKanbanContainer = ({ children, acceptedActions }) => {
             showMobileKanban ? "fa-globe-europe" : "fa-globe-americas"
           }`}
         ></i>
-        <div
-          className={`fas ${
-            ping && "ping"
-          } rounded-full h-5 w-5 bg-green-tint-3 -mt-1 -ml-3 absolute focus:outline-none`}
-        >
-          <div className="mb-2 text-white text-center">{acceptedActions}</div>
-        </div>
+        {acceptedActions > 0 && (
+          <div
+            className={`fas ${
+              pinga && "pinga"
+            } rounded-full h-5 w-5 bg-green-tint-3 -mt-1 -ml-3 absolute focus:outline-none`}
+          >
+            <div className="mb-2 text-white text-center">{acceptedActions}</div>
+          </div>
+        )}
       </button>
     </>
   );

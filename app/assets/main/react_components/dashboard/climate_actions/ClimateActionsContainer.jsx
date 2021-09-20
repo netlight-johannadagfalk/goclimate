@@ -59,7 +59,7 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
   const formatedCategories = JSON.parse(climateActionCategories);
 
   const findUserActionsWithStatusFalse = () => {
-    let actionsAccepted = 1;
+    let actionsAccepted = 0;
     userActions.map((action) => {
       if (action.status === false) {
         actionsAccepted++;

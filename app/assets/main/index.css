@@ -20,7 +20,7 @@
 @import "components/tabs.css";
 @import "components/toggler.css";
 @import "components/tooltip.css";
-@import "components/display.css";
+/* @import "components/display.css"; */
 @import "components/category_colors.css";
 
 @import "tailwindcss/utilities";
@@ -55,16 +55,37 @@ html {
   color: #1c4637 !important;
 }
 
-.ping {
-  animation-name: ping;
+.pinga {
+  animation-name: pinga;
   animation-duration: 0.5s;
   animation-iteration-count: 1;
 }
 
-@keyframes ping {
+@keyframes pinga {
   75%,
   100% {
     transform: scale(0.8);
     opacity: 0;
   }
+}
+
+.display-enter {
+  opacity: 0.01;
+}
+
+.display-enter-active {
+  opacity: 0.01;
+}
+
+.display-enter-done {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.display-exit {
+  opacity: 1;
+}
+
+.display-exit-active {
+  opacity: 0.01;
+  transition: opacity 1ms ease-in;
 }

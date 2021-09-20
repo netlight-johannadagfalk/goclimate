@@ -66,7 +66,10 @@ const KanbanActionColumn = ({
                   .map((item, index) => {
                     return (
                       <CSSTransition
-                        timeout={500}
+                        timeout={{
+                          enter: 100,
+                          exit: 500,
+                        }}
                         classNames="display"
                         key={item.id}
                       >
