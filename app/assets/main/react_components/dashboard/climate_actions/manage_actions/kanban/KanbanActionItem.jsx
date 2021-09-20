@@ -61,11 +61,13 @@ const KanbanActionItem = ({
       {(provided, snapshot) => {
         return (
           <div
+            id="card"
             className={`rounded-lg p-0 space-y-3 pt-0 w-80 mb-2 focus:outline-none ${
               collapsed ? "d:w-24" : "t:w-80 border border-gray-tint-2 mx-5"
             }
             
             ${item.expanded ? "h-auto" : "w-24"}`}
+            // Unclear what all of this means - change, rename or add comments?
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -92,72 +94,68 @@ const KanbanActionItem = ({
                 ></div>
               </div>
             ) : (
-              <div className="h-20">
-                <div
-                  className={`h-20 ${
-                    item.expanded && "w-full border-b border-b-gray-tint-2"
-                  }`}
-                >
-                  {!isBadge && (
-                    <div
-                      className={`${
-                        "category_" +
-                        categoryColor.toLowerCase().replace(/ /g, "_") +
-                        "_active"
-                      } h-7 w-full rounded-t border-t-gray-tint-2 bg-opacity-60`}
-                    ></div>
-                  )}
+              <div
+                className={`h-20 ${
+                  item.expanded && "w-full border-b border-b-gray-tint-2"
+                }`}
+              >
+                {!isBadge && (
                   <div
-                    className="flex flex-row h-auto"
-                    onClick={() => handleExpanded(item, !item.expanded)}
-                  >
-                    <div className="flex flex-1">
-                      <div
-                        className={`mx-auto ${
-                          isBadge ? "mt-2" : "-mt-1/4"
-                        } rounded-full h-16 w-16 items-center justify-center bg-contain bg-center shadow-lg`}
-                        style={{
-                          backgroundImage:
-                            item.status === false
-                              ? `url('${item.image_url}')`
-                              : `url('${item.badge_image_url}')`,
-                          backgroundSize: "100%",
-                        }}
-                      ></div>
-                    </div>
-                    <div className="flex flex-2 justify-start">
-                      <div
-                        className={`flex flex-1 font-bold text-left ${
-                          isBadge && "mt-5"
-                        }
+                    className={`${
+                      "category_" +
+                      categoryColor.toLowerCase().replace(/ /g, "_") +
+                      "_active"
+                    } h-7 w-full rounded-t border-t-gray-tint-2 bg-opacity-60`}
+                  ></div>
+                )}
+                <div
+                  className="flex flex-row h-auto"
+                  onClick={() => handleExpanded(item, !item.expanded)}
+                >
+                  <div className="flex flex-1">
+                    <div
+                      className={`mx-auto ${
+                        isBadge ? "mt-2" : "-mt-1/4"
+                      } rounded-full h-16 w-16 items-center justify-center bg-contain bg-center shadow-lg`}
+                      style={{
+                        backgroundImage:
+                          item.status === false
+                            ? `url('${item.image_url}')`
+                            : `url('${item.badge_image_url}')`,
+                        backgroundSize: "100%",
+                      }}
+                    ></div>
+                  </div>
+                  <div className="flex flex-2 justify-start">
+                    <div
+                      className={`flex flex-1 font-bold text-left ${
+                        isBadge && "mt-5"
+                      }
                       text-sm
                       `}
-                      >
-                        {item.name}
-                      </div>
-                    </div>
-                    <div className="flex flex-1 justify-center items-start">
-                      <button
-                        className={`fas float-right focus:outline-none ${
-                          isBadge ? "mt-12 ml-10" : "mt-4 ml-4"
-                        } ${
-                          item.expanded ? "fa-chevron-up" : "fa-chevron-down"
-                        }`}
-                        onClick={() => handleExpanded(item, !item.expanded)}
-                      ></button>
+                    >
+                      {item.name}
                     </div>
                   </div>
-                  {isBadge && (
-                    <div className="flex justify-center ml-6 -mt-4">
-                      <ProgressBar
-                        categories={categories}
-                        item={item}
-                        userActions={item.userActionsArray}
-                        actions={item.actionsArray}
-                      />
-                    </div>
-                  )}
+                  <div className="flex flex-1 justify-center items-start">
+                    <button
+                      className={`fas float-right focus:outline-none ${
+                        isBadge ? "mt-12 ml-10" : "mt-4 ml-4"
+                      } ${item.expanded ? "fa-chevron-up" : "fa-chevron-down"}`}
+                      onClick={() => handleExpanded(item, !item.expanded)}
+                    ></button>
+                  </div>
                 </div>
+                {isBadge && (
+                  <div className="flex justify-center ml-6 -mt-4">
+                    <ProgressBar
+                      categories={categories}
+                      item={item}
+                      userActions={item.userActionsArray}
+                      actions={item.actionsArray}
+                    />
+                  </div>
+                )}
               </div>
             )}
 
