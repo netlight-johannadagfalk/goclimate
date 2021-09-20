@@ -40,12 +40,12 @@ module BusinessCalculators
 
     def publish
       self.status = 'published'
-      self.save
+      save
     end
 
     def archive
       self.status = 'archived'
-      self.save
+      save
     end
 
     def duplicate # rubocop:disable Layout/MethodLength
@@ -78,7 +78,7 @@ module BusinessCalculators
 
     def status_value
       available_options = %w[published archived draft]
-      errors.add(self.status, "must be one of #{available_options.join(', ')}") unless available_options.include?(self.status) # rubocop:disable Layout/LineLength
+      errors.add(status, "must be one of #{available_options.join(', ')}") unless available_options.include?(status)
     end
   end
 end
