@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-const ProjectSummary = ({ key, project }) => {
+const ProjectSummary = ({ project }) => {
   const [collapseState, setCollapseState] = useState('hidden');
 
   return (
-    <div key={key} className="d:w-1/3 pt-20 px-1 m-lg:pt-16">
+    <div className="d:w-1/3 pt-20 px-1 m-lg:pt-16">
       <div className="callout h-full space-y-3 pt-0 p-4 text-left collapse">
         <div className="inline-block w-full">
           <img
