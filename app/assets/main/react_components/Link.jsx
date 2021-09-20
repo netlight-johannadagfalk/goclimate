@@ -1,11 +1,18 @@
 import React from 'react';
 
-const Link = ({ style, link, linkText, onClick }) => {
+const Link = ({
+  style,
+  link,
+  linkText,
+  linkStyle = 'link',
+  onClick,
+  target = '_blank',
+}) => {
   return (
     <div className={style}>
       <a
-        className="link"
-        target="_blank"
+        className={linkStyle}
+        target={target}
         href={link}
         onClick={onClick}
         rel="noreferrer"
