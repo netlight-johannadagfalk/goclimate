@@ -6,6 +6,7 @@ import SignUpContainer from './components/membership/SignUpContainer.jsx';
 import ConfirmSignUpContainer from './components/payment/ConfirmSignUpContainer.jsx';
 import AnswerButton from '../common/AnswerButton.jsx';
 import FormInformationSection from './components/form_information_section/FormInformationSection.jsx';
+import Link from '../../../common/Link.jsx';
 
 const SignUpPage = ({ result, page, onPageChange }) => {
   const [selectedMembership, setSelectedMembership] = useState('single');
@@ -16,6 +17,11 @@ const SignUpPage = ({ result, page, onPageChange }) => {
   const {
     registrationsText: { continue_to_payment },
     lifestyleFootprintsText: { next },
+    reactContentText: {
+      react: {
+        leave_without_membership: { button_text },
+      },
+    },
   } = useTexts();
 
   const {
@@ -24,6 +30,7 @@ const SignUpPage = ({ result, page, onPageChange }) => {
         currency_formats: { [result.plan.price.currency.iso_code]: currency },
       },
     },
+    slug,
   } = useLocaleData();
 
   const version = useVersion();
@@ -97,7 +104,14 @@ const SignUpPage = ({ result, page, onPageChange }) => {
                 behavior: 'smooth',
               });
             }}
-            stylingClasses={'w-2/3 button-cta'}
+            stylingClasses={'w-5/6 button-cta'}
+          />
+          <Link
+            style={'text-sm mt-2'}
+            linkStyle={'text-green-shade-1'}
+            link={slug + '/climate-tips'}
+            linkText={button_text}
+            target={''}
           />
         </>
       )}

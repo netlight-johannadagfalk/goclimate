@@ -31,6 +31,8 @@ const FootprintForm = ({
     flight_hours: 'plane',
     result_page_1: 'chart-bar',
     result_page_2: 'chart-bar',
+    sign_up_page_1: 'award',
+    sign_up_page_2: 'award',
   };
 
   const questionObjects = constructQuestionObjects(

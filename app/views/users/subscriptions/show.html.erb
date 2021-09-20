@@ -36,7 +36,7 @@
                     <% else %>
                       <%= plan.price.to_s(precision: :auto) %>
                     <% end %>
-                    (<%= plan.footprint.to_s(precision: :auto) %>/<%= t 'years.one' %>)
+                    (<%= plan.footprint.to_s(unit: :tonnes) %>/<%= t 'years.one' %>)
                   </option>
                 <% end %>
               </select>
@@ -139,8 +139,8 @@
                   <% end %>
                 </div>
                 <div class="modal-actions">
-                  <button type="button" class="button button-cta" data-action="modal#close"><%= t('views.subscriptions.cancel.abort') %></button>
-                  <%= button_tag t('views.subscriptions.cancel.action'), id: 'confirm_cancellation', class: 'button', type: 'submit' %>
+                  <button type="button" class="button" data-action="modal#close"><%= t('views.subscriptions.cancel.abort') %></button>
+                  <%= button_tag t('views.subscriptions.cancel.action'), id: 'confirm_cancellation', class: 'button button-danger', type: 'submit' %>
                 </div>
               <% end %>
             </div>

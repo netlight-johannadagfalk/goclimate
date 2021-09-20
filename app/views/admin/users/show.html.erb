@@ -1,7 +1,37 @@
 <div class="space-y-3">
   <%= render 'admin/shared/notice_banner' %>
 
-  <h1 class="heading-lg">User</h1>
+  <%
+    actions = []
+    unless @user.deactivated?
+      actions.push(
+        {
+          title: 'Edit',
+          path: edit_admin_user_path(@user),
+          class: 'button-cta'
+        },
+        {
+          title: 'Deactivate account',
+          path: admin_user_path(@user.id),
+          method: :delete,
+          class: 'button-danger',
+          data: { confirm: 'Are you sure?' }
+        }
+      )
+    end
+    if @user.active_subscription?
+      actions.push(
+          {
+            title: 'Cancel subscription',
+            path: cancel_subscription_admin_user_path(@user.id),
+            class: 'button-danger',
+            data: { confirm: 'Are you sure?' }
+          }
+        )
+    end
+  %>
+
+  <%= render 'admin/shared/content_header', heading: 'User', actions: actions %>
 
   <dl class="dl-horizontal">
     <dt>Id:</dt>
@@ -33,6 +63,8 @@
 
     <hr class="my-1">
 
+    <dt>Stripe customer id:</dt>
+    <dd><code><%= @user.stripe_customer.id || '' %></code></dd>
     <dt>Active subscription:</dt>
     <dd><%= @user.active_subscription? %></dd>
     <dt>1st subscription date:</dt>
@@ -41,6 +73,13 @@
     <dd><%= @user.subscription_price || 'No subscription' %></dd>
     <dt>Subscription currency:</dt>
     <dd><%= @user.subscription_currency || 'No subscription' %></dd>
+    <dt>Billed at day of month:</dt>
+    <dd>
+      <%= @user.subscription_billing_date&.strftime("%d") || 'No subscription' %>
+      <% if @user.active_subscription? %>
+        (<a class="link-ui text-green-shade-2" href="https://www.notion.so/goclimate/Update-subscription-pay-date-860fb844d5d44e35bd3dff67309bcdc4">how to change</a>)
+      <% end %>
+    </dd>
     <dt>Footprint coverage:</dt>
     <dd><%= @user.footprint_coverage || 0 %>%</dd>
 

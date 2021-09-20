@@ -7,6 +7,11 @@ import WorldPage from './components/world_section/WorldPage.jsx';
 const ResultPage = ({ result, page, onPageChange }) => {
   const {
     lifestyleFootprintsText: { next },
+    reactContentText: {
+      react: {
+        category_page: { answer_button_logged_in },
+      },
+    },
   } = useTexts();
 
   const footprint = result.footprint;
@@ -26,9 +31,15 @@ const ResultPage = ({ result, page, onPageChange }) => {
         )}
       </div>
       <AnswerButton
-        label={next}
-        onAnswerGiven={onPageChange}
-        stylingClasses={'w-2/3 ' + (page === 2 && 'button-cta')}
+        label={
+          page === 1 && result.user_page_path ? answer_button_logged_in : next
+        }
+        onAnswerGiven={() => {
+          if (result.user_page_path && page === 1)
+            window.location.href = result.user_page_path;
+          else onPageChange();
+        }}
+        stylingClasses={'w-5/6 ' + (page === 2 && 'button-cta')}
       />
     </div>
   );

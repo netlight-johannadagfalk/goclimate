@@ -28,11 +28,11 @@ en:
         usd: 'DEFAULT'
     greenhouse_gases:
       tonnes:
-        one: '%{count} tonne CO2e'
-        other: '%{count} tonnes CO2e'
+        one: '%{formatted_count} tonne CO2e'
+        other: '%{formatted_count} tonnes CO2e'
       kg:
-        one: '%{count} kg CO2e'
-        other: '%{count} kg CO2e'
+        one: '%{formatted_count} kg CO2e'
+        other: '%{formatted_count} kg CO2e'
     project:
       offset_type:
         'GS': Gold Standard certified
