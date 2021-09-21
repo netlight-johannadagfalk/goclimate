@@ -17,7 +17,7 @@ const CarouselCategoryButton = ({
   categories,
   localUserActions,
   actionsToplist,
-  setActionsToplist,
+  setToplist,
 }) => {
   const setCategory = useCategoryUpdate();
   const setClimateActions = useClimateActionsUpdate();
@@ -33,48 +33,31 @@ const CarouselCategoryButton = ({
   categories && createOptions();
 
   const handleCategory = (categoryID) => {
-    if (categoryID === "toplist") {
-      toplistClick(categoryID);
-    } else if (categoryID === "allCategories") {
-      allCategoriesClick(categoryID);
-    } else {
-      categoryClick(categoryID);
-    }
-  };
-
-  const allCategoriesClick = (categoryID) => {
-    setAllCategories(true);
-    setActionsToplist(false);
-    updateCategory(categoryID);
-  };
-
-  const toplistClick = (categoryID) => {
-    setAllCategories(false);
-    setActionsToplist(true);
-    updateCategory(categoryID);
-  };
-
-  const categoryClick = (categoryID) => {
-    updateCategory(categoryID);
-    setAllCategories(false);
-    setActionsToplist(false);
-  };
-
-  const updateCategory = (cat) => {
     let filteredActions = [];
-    if (cat === "toplist") {
+    if (categoryID === "toplist") {
+      categoryClick(true, false);
       setCategory();
       filteredActions = actionsToplist;
-    } else if (cat === "allCategories") {
+    } else if (categoryID === "allCategories") {
+      categoryClick(false, true);
       setCategory();
       filteredActions = totClimateActions;
     } else {
-      setCategory(cat);
+      categoryClick(false, false);
+      setCategory(categoryID);
       filteredActions = totClimateActions.filter(
-        (temp) => temp.climate_action_category_id === cat
+        (temp) => temp.climate_action_category_id === categoryID
       );
     }
+    updateCategoryWithAcceptedAndTotal(filteredActions);
+  };
 
+  const categoryClick = (toplistValue, allCategoriesValue) => {
+    setToplist(toplistValue);
+    setAllCategories(allCategoriesValue);
+  };
+
+  const updateCategoryWithAcceptedAndTotal = (filteredActions) => {
     const filteredActionsWithStatus = filteredActions.map((action) => {
       return userActions.some(
         (userAction) => userAction.climate_action_id === action.id
