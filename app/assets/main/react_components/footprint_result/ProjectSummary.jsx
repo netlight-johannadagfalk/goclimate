@@ -3,7 +3,7 @@ import { useTexts } from '../context/Footprint/TextsContext.js';
 
 const ProjectSummary = ({ project }) => {
   const [collapseState, setCollapseState] = useState('hidden');
-  const {sharedText: { read_more }} = useTexts();
+  const {sharedText: { read_more } } = useTexts();
 
   return (
     <div className="d:w-1/3 pt-20 px-1 m-lg:pt-16">
