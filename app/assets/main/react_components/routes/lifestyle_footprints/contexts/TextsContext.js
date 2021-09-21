@@ -16,6 +16,7 @@ export const TextsProvider = ({
   registrationsText,
   slug,
   reactContentText,
+  sharedText,
 }) => {
   const texts = {
     commonText: JSON.parse(commonText),
@@ -23,6 +24,7 @@ export const TextsProvider = ({
     modelText: JSON.parse(modelText),
     registrationsText: JSON.parse(registrationsText),
     reactContentText: JSON.parse(reactContentText),
+    sharedText: JSON.parse(sharedText),
   };
 
   if (texts.registrationsText.accept_policies === undefined)

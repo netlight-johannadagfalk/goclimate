@@ -16,6 +16,7 @@ const StaticDataProvider = ({
   currentRegion,
   version,
   reactContentText,
+  sharedText,
 }) => {
   return (
     <TextsProvider
@@ -25,6 +26,7 @@ const StaticDataProvider = ({
       registrationsText={registrationsText}
       slug={currentRegion.slug}
       reactContentText={reactContentText}
+      sharedText={sharedText}
     >
       <LocaleProvider
         currency={currency}

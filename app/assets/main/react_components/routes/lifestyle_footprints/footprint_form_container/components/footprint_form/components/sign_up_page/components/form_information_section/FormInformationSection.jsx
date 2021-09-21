@@ -1,5 +1,5 @@
 import React from 'react';
-import LatestProjectsList from '../../../../../common/LatestProjectsList.jsx';
+import LatestProjectsList from '../../../../../common/latest_projects_list/LatestProjectsList.jsx';
 import MoneyUsageList from '../../../../../common/MoneyUsageList.jsx';
 import PriceText from '../../../common/PriceText.jsx';
 import ArgumentsList from './components/ArgumentsList.jsx';
@@ -18,7 +18,7 @@ const FormInformationSection = ({
       <div className="callout my-8">
         <MoneyUsageList />
       </div>
-      <div className="callout my-8">
+      <div className="my-8">
         <LatestProjectsList />
       </div>
       <PriceText
