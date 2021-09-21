@@ -13,7 +13,6 @@ const CarouselActionItem = ({
   user,
   updateLocalAccepted,
   categories,
-  updateNumberForMobileKanban,
 }) => {
   const currUser = JSON.parse(user);
   const userActions = useUserActions();
@@ -80,10 +79,8 @@ const CarouselActionItem = ({
       .catch((e) => console.warn(e));
   };
   const handleClickAccepted = (action) => {
-    console.log("nu har vi klickat");
     updateLocalAccepted(action.id);
     updateAccepted(action);
-    updateNumberForMobileKanban();
   };
 
   useEffect(() => {

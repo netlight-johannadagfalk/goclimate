@@ -5,7 +5,7 @@ import { useMediaQuery } from "react-responsive";
 import KanbanActionContainer from "./kanban/KanbanActionContainer.jsx";
 import { t } from "../../../constants";
 
-const ManageActions = ({ categories, acceptedActions, userActions }) => {
+const ManageActions = ({ categories }) => {
   const [collapsed, setCollapsed] = useState(false);
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
 
@@ -27,10 +27,7 @@ const ManageActions = ({ categories, acceptedActions, userActions }) => {
         </div>
       )}
       {isTabletOrMobile && (
-        <MobileKanbanContainer
-          acceptedActions={acceptedActions}
-          userActions={userActions}
-        >
+        <MobileKanbanContainer>
           <KanbanActionContainer
             setCollapsed={setCollapsed}
             collapsed={false}

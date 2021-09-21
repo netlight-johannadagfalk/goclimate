@@ -12,7 +12,6 @@ const CarouselContainer = ({
   updateLocalAccepted,
   categories,
   localUserActions,
-  updateNumberForMobileKanban,
 }) => {
   const [allCategories, setAllCategories] = useState(true);
   const category = useCategory();
@@ -54,7 +53,6 @@ const CarouselContainer = ({
           user={user}
           updateLocalAccepted={updateLocalAccepted}
           categories={categories}
-          updateNumberForMobileKanban={updateNumberForMobileKanban}
         ></CarouselList>
       </div>
     </section>

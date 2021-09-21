@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useAcceptedActions } from "../../../../contexts/UserActionsContext.js";
 
-const MobileKanbanContainer = ({ children, acceptedActions, userActions }) => {
-  const [pinga, setPinga] = useState(false);
+const MobileKanbanContainer = ({ children }) => {
+  const acceptedActions = useAcceptedActions();
+  const [ping, setPing] = useState(false);
+  const [showMobileKanban, setShowMobileKanban] = useState(false);
 
   useEffect(() => {
-    console.log("acceptedActions have been updated");
-    setPinga(true);
+    setPing(true);
     const timer = setTimeout(() => {
-      setPinga(false);
+      setPing(false);
     }, 1000);
     return () => {
       clearTimeout(timer);
     };
   }, [acceptedActions]);
-
-  const [showMobileKanban, setShowMobileKanban] = useState(false);
 
   return (
     <>
@@ -38,7 +38,7 @@ const MobileKanbanContainer = ({ children, acceptedActions, userActions }) => {
         {acceptedActions > 0 && (
           <div
             className={`fas ${
-              pinga && "pinga"
+              ping && "ping"
             } rounded-full h-5 w-5 bg-green-tint-3 -mt-1 -ml-3 absolute focus:outline-none`}
           >
             <div className="mb-2 text-white text-center">{acceptedActions}</div>

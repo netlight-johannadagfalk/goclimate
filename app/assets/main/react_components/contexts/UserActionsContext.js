@@ -15,6 +15,8 @@ export const CategoryBadgesContext = React.createContext();
 export const CategoryBadgesUpdateContext = React.createContext();
 export const CategoryBadgesUpdateOnDragContext = React.createContext();
 
+export const AcceptedActionsContext = React.createContext();
+
 //***  Functions that endables access to the context and updating the context in the components ***/
 export const useUserActions = () => {
   return useContext(UserActionsContext);
@@ -51,6 +53,10 @@ export const useCategoryBadgesUpdateOnDrag = () => {
   return useContext(CategoryBadgesUpdateOnDragContext);
 };
 
+export const useAcceptedActions = () => {
+  return useContext(AcceptedActionsContext);
+};
+
 //***  To wrap components that need acces to the context in ***/
 export const UserActionsProvider = ({
   children,
@@ -63,8 +69,25 @@ export const UserActionsProvider = ({
   const [userActions, setUserActions] = useState(allUserActions);
   const climateActionsText = useClimateActionsText();
 
+  const findUserActionsWithStatusFalse = (actions) => {
+    let actionsAccepted = 0;
+
+    actions.map((action) => {
+      if (action.status === false) {
+        actionsAccepted++;
+      }
+    });
+    return actionsAccepted;
+  };
+
+  const [acceptedActions, setAcceptedActions] = useState(
+    findUserActionsWithStatusFalse(userActions)
+  );
+
   const updateUserActions = (actions) => {
     setUserActions(actions);
+    let tempActions = findUserActionsWithStatusFalse(actions);
+    setAcceptedActions(tempActions);
   };
 
   const formatedUserActions = (inVal) => {
@@ -339,7 +362,9 @@ export const UserActionsProvider = ({
                     value={updateCategoryBadges}
                   >
                     <CategoryBadgesContext.Provider value={categoryBadges}>
-                      {children}
+                      <AcceptedActionsContext.Provider value={acceptedActions}>
+                        {children}
+                      </AcceptedActionsContext.Provider>
                     </CategoryBadgesContext.Provider>
                   </CategoryBadgesUpdateContext.Provider>
                 </CategoryBadgesUpdateOnDragContext.Provider>
