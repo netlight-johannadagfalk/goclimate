@@ -76,7 +76,7 @@ const MembershipAlternative = ({
             </ul>
           </div>
           {type == 'multi' && (
-            <div className="align-center align-bottom">
+            <div className="align-center align-bottom w-full">
               <SelectorMultipleTimes
                 multipleOffsets={multipleOffsets}
                 setMultipleOffsets={setMultipleOffsets}
