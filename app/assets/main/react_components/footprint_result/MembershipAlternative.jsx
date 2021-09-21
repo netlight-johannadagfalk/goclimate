@@ -8,7 +8,7 @@ const MembershipAlternative = ({
   setSelectedMembership,
   type,
   title,
-  points,
+  sellingPoints,
   multipleOffsets,
   setMultipleOffsets,
   grantedReferralCode,
@@ -16,11 +16,14 @@ const MembershipAlternative = ({
 }) => {
   const style =
     'rounded content-between relative lg:w-1/3 cursor-pointer m-1 p-2 border border-green-accent ' +
-    (type === selectedMembership ? 'bg-green-tint-1' : '');
+    (type === selectedMembership ? 'bg-green-tint-1 border-8' : '');
 
   //PRISET GIVEN ALTERNATIV, variabel per kategori istället för alla har samma
-  for (var point in points) {
-    points[point] = points[point].replace(/\d+/, multipleOffsets.toString());
+  for (var point in sellingPoints) {
+    sellingPoints[point] = sellingPoints[point].replace(
+      /\d+/,
+      multipleOffsets.toString()
+    );
   }
 
   const {
@@ -51,11 +54,11 @@ const MembershipAlternative = ({
   return (
     <div className={style}>
       <label htmlFor={type}>
-        <div className="h-3 text-center font-bold">
-          <span>{title}</span>
-        </div>
-        <br></br>
-        <div className="h-2/4">
+        <div className="h-full">
+          <div className="h-3 text-center font-bold">
+            <span>{title}</span>
+          </div>
+          <br></br>
           <PriceTextV2
             price={calculatePrice()}
             grantedReferralCode={grantedReferralCode}
@@ -63,36 +66,34 @@ const MembershipAlternative = ({
           />
           <div className="p-6">
             <ul className="list-disc">
-              {Object.keys(points).map((point) => {
+              {Object.keys(sellingPoints).map((point) => {
                 return (
                   <li className="lg:my-3 text-sm text-left" key={point}>
-                    {points[point]}
+                    {sellingPoints[point]}
                   </li>
                 );
               })}
             </ul>
           </div>
-        </div>
-        <div className="align-center">
           {type == 'multi' && (
-            <div className="text-left">
+            <div className="align-center align-bottom">
               <SelectorMultipleTimes
                 multipleOffsets={multipleOffsets}
                 setMultipleOffsets={setMultipleOffsets}
               />
             </div>
           )}
-        </div>
-        <div className="text-center absolute inset-x-0 pt-5 bottom-0">
-          <input
-            className="flex-shrink-0 mr-2 "
-            type="radio"
-            name="membership"
-            id={type}
-            checked={selectedMembership === type}
-            value={type}
-            onChange={() => setSelectedMembership(type)}
-          />
+          <div className="text-center absolute inset-x-0 pt-5 bottom-0">
+            <input
+              className="flex-shrink-0 mr-2 "
+              type="radio"
+              name="membership"
+              id={type}
+              checked={selectedMembership === type}
+              value={type}
+              onChange={() => setSelectedMembership(type)}
+            />
+          </div>
         </div>
       </label>
     </div>
