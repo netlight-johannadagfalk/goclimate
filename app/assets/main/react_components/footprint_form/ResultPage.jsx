@@ -82,6 +82,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
             grantedReferralCode={grantedReferralCode}
             setGrantedReferralCode={setGrantedReferralCode}
             price={price}
+            result={result}
           />
         ) : (
           <ConfirmSignUpContainer

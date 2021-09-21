@@ -11,7 +11,7 @@ const MembershipTypeSelector = ({
   const {
     reactContentText: {
       react: {
-        memberships: {
+        memberships_v1: {
           free_title,
           free_desc,
           single_title,

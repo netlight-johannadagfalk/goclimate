@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTexts } from '../context/Footprint/TextsContext.js';
-import { useVersion } from '../context/Footprint/VersionContext.js';
 import Link from '../Link.jsx';
 
 const PriceText = ({ grantedReferralCode, selectedMembership, price }) => {
@@ -15,8 +14,6 @@ const PriceText = ({ grantedReferralCode, selectedMembership, price }) => {
       where_does_the_money_go: { heading },
     },
   } = useTexts();
-
-  const version = useVersion();
 
   return (
     <div className="text-center">
@@ -42,19 +39,19 @@ const PriceText = ({ grantedReferralCode, selectedMembership, price }) => {
               )}
             </span>
           </p>
+          {selectedMembership !== 'free' && (
+            <Link
+              link={'information-scroll-position'}
+              linkText={heading}
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById('information-scroll-position')
+                  .scrollIntoView({ behavior: 'smooth' });
+              }}
+            />
+          )}
         </div>
-      )}
-      {selectedMembership !== 'free' && version === 'v1' && (
-        <Link
-          link={'information-scroll-position'}
-          linkText={heading}
-          onClick={(e) => {
-            e.preventDefault();
-            document
-              .getElementById('information-scroll-position')
-              .scrollIntoView({ behavior: 'smooth' });
-          }}
-        />
       )}
     </div>
   );

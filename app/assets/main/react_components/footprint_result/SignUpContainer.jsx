@@ -14,6 +14,7 @@ const SignUpContainer = ({
   grantedReferralCode,
   setGrantedReferralCode,
   price,
+  result,
 }) => {
   const {
     registrationsText: {
@@ -25,7 +26,7 @@ const SignUpContainer = ({
   const version = useVersion();
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className={version==='v1' ? "max-w-lg mx-auto" : ""}>
       <div className="space-y-3">
         <Title
           text={sign_up_heading_collective_efficacy}
@@ -39,6 +40,7 @@ const SignUpContainer = ({
           setMultipleOffsets={setMultipleOffsets}
           setGrantedReferralCode={setGrantedReferralCode}
           grantedReferralCode={grantedReferralCode}
+          result={result}
         />
         {version === 'v1' && (
           <PriceText
