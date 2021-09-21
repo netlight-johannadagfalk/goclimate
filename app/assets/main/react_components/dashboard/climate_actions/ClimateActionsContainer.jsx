@@ -20,11 +20,32 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
   const userActions = useUserActions();
-
   const [monthlyAction, setMonthlyAction] = useState(
     totClimateActions.find((action) => action.action_of_the_month === true)
   );
-  const [localUserActions, setLocalUserActions] = useState([]);
+
+  const getSessionStorage = (key) => {
+    const storedState = JSON.parse(sessionStorage.getItem(key));
+    console.log({ storedState });
+    if (storedState === null) {
+      return [];
+    } else {
+      return storedState;
+    }
+  };
+
+  const [localUserActions, setLocalUserActions] = useState(
+    getSessionStorage("localUserActions")
+  );
+  console.log({ localUserActions });
+
+  useEffect(() => {
+    //sessionStorage.removeItem("localUserActions");
+    sessionStorage.setItem(
+      "localUserActions",
+      JSON.stringify(localUserActions)
+    );
+  }, [localUserActions]);
 
   const updateLocalAccepted = (actionID) => {
     setClimateActions(
