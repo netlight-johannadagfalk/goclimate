@@ -6,11 +6,11 @@ const ProjectSummary = ({ project }) => {
   const {sharedText: { read_more } } = useTexts();
 
   return (
-    <div className="d:w-1/3 pt-20 px-1 m-lg:pt-16">
-      <div className="callout space-y-3 pt-0 p-4 text-left collapse min-h-1/4">
+    <div className="t:w-1/3 pt-14 t:px-1 self-center">
+      <div className="callout space-y-3 pt-0 p-4 text-left collapse min-h-1/4 max-w-sm		">
         <div className="inline-block w-full ">
           <img
-            className="mx-auto h-10 w-10 -mt-10 m-lg:h-24 m-lg:w-24 m-lg:-mt-12 rounded-full object-cover"
+            className="mx-auto h-20 w-20 -mt-10 m-lg:h-24 m-lg:w-24 m-lg:-mt-12 rounded-full object-cover"
             src={project.image_url}
           />
         </div>
@@ -21,7 +21,7 @@ const ProjectSummary = ({ project }) => {
           <p className="pt-2">{project.short_description}</p>
         </div>
         <div
-          className="flex cursor-pointer"
+          className="flex cursor-pointer justify-center"
           onClick={() =>
             setCollapseState(collapseState === 'hidden' ? 'block' : 'hidden')
           }

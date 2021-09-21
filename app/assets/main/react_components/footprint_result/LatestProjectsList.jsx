@@ -13,7 +13,7 @@ const LatestProjectsList = () => {
     <>
       <div className="space-y-3">
         <h3 className="font-semibold">{latest_projects}</h3>
-        <div className="mt-12 flex flex-col d:flex-row">
+        <div className="mt-12 flex flex-col mx-0 md:flex-row lg:flex-row m-2 justify-center">
           {projects.map((project) => (
             <ProjectSummary
               key={project.id}
