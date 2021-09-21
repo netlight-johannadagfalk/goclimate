@@ -15,7 +15,7 @@ const MembershipAlternative = ({
   result,
 }) => {
   const style =
-    'rounded content-between relative sm:pb-8 md:pb-8 lg:w-1/3 m-1 border border-green-accent ' +
+    'rounded content-between relative lg:w-1/3 m-1 border border-green-accent ' +
     (type === selectedMembership ? 'bg-green-tint-1 border-2 ' : '');
 
   for (var point in sellingPoints) {
@@ -50,11 +50,12 @@ const MembershipAlternative = ({
     return price;
   };
 
+  console.log(":)")
   return (
     <div className={style}>
       <label htmlFor={type}>
-        <div className="h-full m-2 cursor-pointer">
-          <div className="h-3 text-center font-bold">
+        <div className="h-full m-2 cursor-pointer pb-6">
+          <div className="h-4 my-2 text-center font-bold">
             <span>{title}</span>
           </div>
           <br></br>
