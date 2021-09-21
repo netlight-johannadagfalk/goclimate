@@ -2,7 +2,7 @@ import React from 'react';
 
 const SelectorMultipleTimes = ({ multipleOffsets, setMultipleOffsets }) => {
   return (
-    <div className="select-wrapper flex-shrink-0 lg:w-full lg:pr-3">
+    <div className="select-wrapper flex-shrink-0 ">
       <select
         value={multipleOffsets}
         onChange={(e) => setMultipleOffsets(e.target.value)}
