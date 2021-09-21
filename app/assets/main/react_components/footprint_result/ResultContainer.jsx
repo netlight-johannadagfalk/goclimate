@@ -33,7 +33,7 @@ const ResultContainer = ({
   const [grantedReferralCode, setGrantedReferralCode] = useState(false);
 
   const stripePromise = loadStripe('pk_test_4QHSdRjQiwkzokPPCiK33eOq');
-  console.log(sharedText);
+
   return (
     <StaticDataProvider
       registrationsText={registrationsText}
