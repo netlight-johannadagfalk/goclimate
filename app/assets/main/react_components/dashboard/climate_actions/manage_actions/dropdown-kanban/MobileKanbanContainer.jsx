@@ -16,7 +16,7 @@ const MobileKanbanContainer = ({ children, userActions }) => {
   return (
     <>
       <div
-        className={`fixed top-20 z-30 bg-white w-full overflow-hidden ${
+        className={`fixed top-16 z-30 bg-white w-full overflow-hidden ${
           showMobileKanban ? "h-screen" : "h-0"
         } transition-size duration-500`}
       >
