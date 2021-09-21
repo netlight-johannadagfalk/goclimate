@@ -17,7 +17,6 @@ export const TextsProvider = ({
   reactContentText,
   sharedText,
 }) => {
-  console.log(sharedText)
   const texts = {
     commonText: JSON.parse(commonText),
     lifestyleFootprintsText: JSON.parse(lifestyleFootprintsText),

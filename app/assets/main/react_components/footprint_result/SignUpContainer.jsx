@@ -23,7 +23,7 @@ const SignUpContainer = ({
   } = useTexts();
 
   const version = useVersion();
-
+  
   return (
     <div className="max-w-lg mx-auto">
       <div className="space-y-3">

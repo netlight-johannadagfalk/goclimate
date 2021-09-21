@@ -15,6 +15,7 @@ const Container = ({
   projects,
   version,
   reactContentText,
+  sharedText,
 }) => {
   return (
     <StaticDataProvider
@@ -28,6 +29,7 @@ const Container = ({
       projects={projects}
       version={version}
       reactContentText={reactContentText}
+      sharedText={sharedText}
     >
       <FootprintFormContainer
         footprint={JSON.parse(footprint)}
