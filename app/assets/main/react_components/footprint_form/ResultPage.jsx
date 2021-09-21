@@ -4,6 +4,7 @@ import { useTexts } from '../context/Footprint/TextsContext.js';
 import { useVersion } from '../context/Footprint/VersionContext.js';
 import ConfirmSignUpContainer from '../footprint_result/ConfirmSignUpContainer.jsx';
 import SignUpContainer from '../footprint_result/SignUpContainer.jsx';
+import Link from '../Link.jsx';
 import AnswerButton from './AnswerButton.jsx';
 import CategoryPage from './CategoryPage.jsx';
 import FormInformationSection from './FormInformationSection.jsx';
@@ -18,6 +19,12 @@ const ResultPage = ({ result, page, onPageChange }) => {
   const {
     registrationsText: { continue_to_payment },
     lifestyleFootprintsText: { next },
+    reactContentText: {
+      react: {
+        category_page: { answer_button_logged_in },
+        leave_without_membership: { button_text },
+      },
+    },
   } = useTexts();
 
   const {
@@ -26,6 +33,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
         currency_formats: { [result.plan.price.currency.iso_code]: currency },
       },
     },
+    slug,
   } = useLocaleData();
 
   const version = useVersion();
@@ -87,9 +95,19 @@ const ResultPage = ({ result, page, onPageChange }) => {
       </div>
       {page !== 3 && (
         <AnswerButton
-          label={page === 2 ? continue_to_payment : next}
-          onAnswerGiven={onPageChange}
-          stylingClasses={'w-2/3 ' + (page === 2 && 'button-cta')}
+          label={
+            page === 1 && result.user_page_path
+              ? answer_button_logged_in
+              : page === 2
+              ? continue_to_payment
+              : next
+          }
+          onAnswerGiven={() => {
+            if (result.user_page_path && page === 1)
+              window.location.href = result.user_page_path;
+            else onPageChange();
+          }}
+          stylingClasses={'w-5/6 ' + (page === 2 && 'button-cta')}
         />
       )}
       {page === 2 && version == 'v2' && (
@@ -110,7 +128,14 @@ const ResultPage = ({ result, page, onPageChange }) => {
                 behavior: 'smooth',
               });
             }}
-            stylingClasses={'w-2/3 button-cta'}
+            stylingClasses={'w-5/6 button-cta'}
+          />
+          <Link
+            style={'text-sm mt-2'}
+            linkStyle={'text-green-shade-1'}
+            link={slug + '/climate-tips'}
+            linkText={button_text}
+            target={''}
           />
         </>
       )}

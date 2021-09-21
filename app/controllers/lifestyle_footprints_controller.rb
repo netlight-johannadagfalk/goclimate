@@ -27,11 +27,6 @@ class LifestyleFootprintsController < ApplicationController
     @footprint.update_from_lifestyle_calculator
     @footprint.user = current_user
     @footprint.save!
-
-    if current_user
-      redirect_to lifestyle_footprint_path(id: @footprint)
-      return
-    end
     
     if experiment_active?(:v1) || experiment_active?(:v2)
       @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
@@ -39,7 +34,16 @@ class LifestyleFootprintsController < ApplicationController
       number_of_people = params[:membership] == 'multi' && params[:people].present? ? params[:people].to_i : 1
       @plan = Subscriptions::Plan.for_footprint(@footprint_tonnes * number_of_people, current_region.currency)
       
+      if current_user
+        render json: {footprint: @footprint, country_average: @country_average, plan: @plan, user_page_path: lifestyle_footprint_path(id: @footprint)}
+        return
+      end  
       render json: {footprint: @footprint, country_average: @country_average, plan: @plan}
+      return
+    end
+
+    if current_user
+      redirect_to lifestyle_footprint_path(id: @footprint)
       return
     end
     

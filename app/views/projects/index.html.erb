@@ -81,7 +81,7 @@
 
           <div class="text-sm mt-3">
             <%=l project.date_bought.to_date %> &bull;
-            <%= project.co2e.to_s(precision: 0) %> &bull;
+            <%= project.co2e.to_s(unit: :tonnes, precision: 0) %> &bull;
             <%=t "models.project.offset_type.#{project.offset_type}" %> &bull;
             <% if project.certificate_url.present? %>
               <%= link_to t('views.projects.index.invoice'), project.invoice_url, target: '_blank' %> &bull;
