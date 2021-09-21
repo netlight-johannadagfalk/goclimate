@@ -15,7 +15,7 @@ const MembershipAlternative = ({
   result,
 }) => {
   const style =
-    'rounded content-between relative lg:w-1/3 cursor-pointer m-1 p-2 border border-green-accent ' +
+    'rounded content-between relative sm:pb-8 md:pb-8 lg:w-1/3 cursor-pointer m-1 p-2 border border-green-accent ' +
     (type === selectedMembership ? 'bg-green-tint-1 border-2 ' : '');
 
   //PRISET GIVEN ALTERNATIV, variabel per kategori istället för alla har samma
@@ -64,7 +64,7 @@ const MembershipAlternative = ({
             grantedReferralCode={grantedReferralCode}
             selectedMembership={type}
           />
-          <div className="p-6">
+          <div className="pl-6">
             <ul className="list-disc">
               {Object.keys(sellingPoints).map((point) => {
                 return (
