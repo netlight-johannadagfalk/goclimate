@@ -6,6 +6,7 @@ import PriceText from '../../../common/PriceText.jsx';
 import Preamble from '../../../common/Preamble.jsx';
 import ReferralCode from './components/ReferralCode.jsx';
 import MembershipsList from './components/memberships_list/MembershipsList.jsx';
+import MembershipsListV2 from './components/memberships_list/MembershipsListV2.jsx';
 
 const MembershipPage = ({
   selectedMembership,
@@ -15,6 +16,7 @@ const MembershipPage = ({
   grantedReferralCode,
   setGrantedReferralCode,
   price,
+  result,
 }) => {
   const {
     registrationsText: {
@@ -26,21 +28,30 @@ const MembershipPage = ({
   const version = useVersion();
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className={version === 'v1' ? 'max-w-lg mx-auto' : ''}>
       <div className="space-y-3">
         <Title
           text={sign_up_heading_collective_efficacy}
           custom_style="text-lgr"
         />
         <Preamble text={sign_up_description} />
-        <MembershipsList
-          selectedMembership={selectedMembership}
-          setSelectedMembership={setSelectedMembership}
-          multipleOffsets={multipleOffsets}
-          setMultipleOffsets={setMultipleOffsets}
-          setGrantedReferralCode={setGrantedReferralCode}
-          grantedReferralCode={grantedReferralCode}
-        />
+        {version === 'v1' ? (
+          <MembershipsList
+            selectedMembership={selectedMembership}
+            setSelectedMembership={setSelectedMembership}
+            multipleOffsets={multipleOffsets}
+            setMultipleOffsets={setMultipleOffsets}
+          />
+        ) : (
+          <MembershipsListV2
+            selectedMembership={selectedMembership}
+            setSelectedMembership={setSelectedMembership}
+            multipleOffsets={multipleOffsets}
+            setMultipleOffsets={setMultipleOffsets}
+            grantedReferralCode={grantedReferralCode}
+            result={result}
+          />
+        )}
         <div data-inactive-class="hidden">
           {selectedMembership !== 'free' && (
             <ReferralCode

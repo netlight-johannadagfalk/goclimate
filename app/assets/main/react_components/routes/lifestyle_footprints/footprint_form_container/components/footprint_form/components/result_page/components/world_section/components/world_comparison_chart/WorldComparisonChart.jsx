@@ -34,11 +34,11 @@ const WorldComparisonChart = ({ footprint, countryAverage }) => {
     text: () => {
       return footprintCo2e.inTonnes(footprintCo2e.value < 100 ? 2 : 1) <= 1
         ? one.replace(
-            '%{count}',
+            /%{.*?}/i,
             footprintCo2e.inTonnes(footprintCo2e.value < 100 ? 2 : 1)
           )
         : other.replace(
-            '%{count}',
+            /%{.*?}/i,
             footprintCo2e.inTonnes(footprintCo2e.value < 100 ? 2 : 1)
           );
     },
@@ -81,7 +81,7 @@ const WorldComparisonChart = ({ footprint, countryAverage }) => {
             title={{
               text: countryAverage.countries
                 ? average_in.replace(
-                    '%{region}',
+                    /%{.*?}/i,
                     footprint.country.data.translations[lang]
                   )
                 : world_average,

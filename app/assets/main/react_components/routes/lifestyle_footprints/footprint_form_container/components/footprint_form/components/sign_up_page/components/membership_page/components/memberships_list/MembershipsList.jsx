@@ -10,7 +10,7 @@ const MembershipsList = ({
 }) => {
   const {
     reactContentText: {
-      memberships: {
+      memberships_v1: {
         free_title,
         free_desc,
         single_title,

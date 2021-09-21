@@ -4,13 +4,29 @@ de:
       text_part_before: Your annual carbon footprint is
       text_part_middle: CO2e. Paying
       text_part_end: will allow you to offset your footprint. The sum is distributed to different climate projects that make an impact for the climate.
-    memberships:
+    memberships_v1:
       free_title: Free account
       free_desc: Save and follow your carbon footprint over time
       single_title: Compensate monthly
       single_desc: Support climate projects to offset your climate footprint each month
       multi_title: Compensate multiple times
       multi_desc: Support climate projects to offset %{num} times your climate footprint each month
+    memberships_v2:
+      title: Choose your membership
+      free:
+        title: Gratis konto
+        selling_points:
+          point1: Spara och följ ditt klimatavtryck över tid
+      single:
+        title: Klimatkompensera månadsvis
+        selling_points:
+          point1: Spara och följ ditt klimatavtryck över tid
+          point2: Kompensera motsvarande ditt kliamtavtryck till utvalda projekt
+      multi:
+        title: Klimatkompensera flera gånger
+        selling_points:
+          point1: Spara och följ ditt klimatavtryck över tid
+          point2: Stöd klimatprojekt motsvarande 2 gånger ditt klimatavtryck till utvalda projekt varje månad
     category_chart:
       title: Your climate footprint by category
       desc: This is your carbon footprint given by category. Does it match your expectations?

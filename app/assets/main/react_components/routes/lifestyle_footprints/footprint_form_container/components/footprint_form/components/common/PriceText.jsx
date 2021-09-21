@@ -20,7 +20,7 @@ const PriceText = ({ grantedReferralCode, selectedMembership, price }) => {
 
   return (
     <div className="text-center">
-      {grantedReferralCode !== '' && selectedMembership != 'free' ? (
+      {grantedReferralCode !== '' && selectedMembership !== 'free' ? (
         <div id="freeMonth" className="py-6 space-y-1">
           <p className="heading-lg text-center">
             <span>{first_month_free}</span>

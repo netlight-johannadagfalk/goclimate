@@ -6,11 +6,11 @@ const MembershipDropdown = ({ multipleOffsets, setMultipleOffsets }) => {
       <select
         value={multipleOffsets}
         onChange={(e) => setMultipleOffsets(e.target.value)}
-        className="select ml-2 border border-green-accent "
+        className="select border border-green-accent my-4 mx-2"
         name="people"
         id="people"
       >
-        {Array.from({ length: 20 }, (_, i) => i + 1).map((optionValue) => (
+        {Array.from({ length: 19 }, (_, i) => i + 2).map((optionValue) => (
           <option value={optionValue} key={optionValue}>
             {optionValue}
           </option>
