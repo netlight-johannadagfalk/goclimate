@@ -18,7 +18,6 @@ const MembershipAlternative = ({
     'rounded content-between relative sm:pb-8 md:pb-8 lg:w-1/3 cursor-pointer m-1 p-2 border border-green-accent ' +
     (type === selectedMembership ? 'bg-green-tint-1 border-2 ' : '');
 
-  //PRISET GIVEN ALTERNATIV, variabel per kategori istället för alla har samma
   for (var point in sellingPoints) {
     sellingPoints[point] = sellingPoints[point].replace(
       /\d+/,

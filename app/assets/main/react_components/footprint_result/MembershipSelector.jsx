@@ -24,17 +24,17 @@ const MembershipSelector = ({
           multipleOffsets={multipleOffsets}
           setMultipleOffsets={setMultipleOffsets}
         />
-      ) : version === 'v2' ? (
-        <MembershipTypeSelectorV2
-          selectedMembership={selectedMembership}
-          setSelectedMembership={setSelectedMembership}
-          multipleOffsets={multipleOffsets}
-          setMultipleOffsets={setMultipleOffsets}
-          grantedReferralCode={grantedReferralCode}
-          result={result}
-        />
       ) : (
-        <>{console.log('no version? ):')}</>
+        version === 'v2' && (
+          <MembershipTypeSelectorV2
+            selectedMembership={selectedMembership}
+            setSelectedMembership={setSelectedMembership}
+            multipleOffsets={multipleOffsets}
+            setMultipleOffsets={setMultipleOffsets}
+            grantedReferralCode={grantedReferralCode}
+            result={result}
+          />
+        )
       )}
       <div data-inactive-class="hidden">
         {selectedMembership !== 'free' && (
