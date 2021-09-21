@@ -27,7 +27,7 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
 
   const completed = calculateProgressBar();
   return (
-    <div className="w-3/4 flex flex-row justify-center items-center">
+    <div className="w-3/4 -mt-4 flex flex-row justify-center items-center">
       <div className="h-3 w-2/3 bg-gray-tint-2 bg-opacity-70 rounded-lg">
         <div
           className={`h-3  ${
