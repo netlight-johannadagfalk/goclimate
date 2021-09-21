@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLocaleData } from '../../../../../../../../contexts/LocaleContext.js';
 import { useTexts } from '../../../../../../../../contexts/TextsContext.js';
+import { calculatePrice } from '../../../../../../../../helpers/result-helper.js';
 
 const YourFootprintText = ({ footprintValue, priceObject }) => {
   const {
@@ -25,21 +26,7 @@ const YourFootprintText = ({ footprintValue, priceObject }) => {
     },
   } = useLocaleData();
 
-  const [price] = useState(extractPrice());
-
-  function extractPrice() {
-    var price = priceObject.subunit_amount / 100;
-    if (Math.trunc(price) != price) {
-      price = price.toFixed(2);
-    }
-    if (currency === 'DEFAULT') {
-      price = priceObject.currency.iso_code.toUpperCase() + ' ' + price;
-    } else {
-      const findCustomPlacement = /%{.*?}/i;
-      price = currency.replace(findCustomPlacement, price);
-    }
-    return price;
-  }
+  const price = calculatePrice(priceObject, currency, true);
 
   return (
     <div>

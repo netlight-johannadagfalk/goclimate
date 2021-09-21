@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTexts } from '../../../../../../../contexts/TextsContext.js';
 import CategoryChart from './components/CategoryChart.jsx';
-import SignUpPreamble from '../../../common/SignUpPreamble.jsx';
+import Preamble from '../../../common/Preamble.jsx';
 import Title from '../../../common/Title.jsx';
 
 const CategoryPage = ({ footprint }) => {
@@ -14,7 +14,7 @@ const CategoryPage = ({ footprint }) => {
   return (
     <div className="max-w-lg mx-auto">
       <Title custom_style="text-lgr" text={title} />
-      <SignUpPreamble text={desc} />
+      <Preamble text={desc} />
       <CategoryChart footprint={footprint} />
     </div>
   );

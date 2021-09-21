@@ -1,6 +1,6 @@
 import React from 'react';
 import ResultBar from '../../../common/ResultBar.jsx';
-import ResultText from './components/ResultText.jsx';
+import WorldComparisonText from './components/WorldComparisonText.jsx';
 import { useTexts } from '../../../../../../../../../contexts/TextsContext.js';
 import { useLocaleData } from '../../../../../../../../../contexts/LocaleContext.js';
 
@@ -100,7 +100,7 @@ const WorldComparisonChart = ({ footprint, countryAverage }) => {
           />
         </div>
       </div>
-      <ResultText
+      <WorldComparisonText
         text={resultText}
         customValues={[
           footprintCo2e.text,

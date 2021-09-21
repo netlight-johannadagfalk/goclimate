@@ -1,7 +1,7 @@
 import React from 'react';
-import SelectorMultipleTimes from './components/SelectorMultipleTimes.jsx';
+import MembershipDropdown from './components/MembershipDropdown.jsx';
 
-const SelectButton = ({
+const MembershipAlternative = ({
   selectedMembership,
   setSelectedMembership,
   buttonType,
@@ -33,7 +33,7 @@ const SelectButton = ({
         {desc}
       </span>
       {buttonType == 'multi' && (
-        <SelectorMultipleTimes
+        <MembershipDropdown
           multipleOffsets={multipleOffsets}
           setMultipleOffsets={setMultipleOffsets}
         />
@@ -42,4 +42,4 @@ const SelectButton = ({
   );
 };
 
-export default SelectButton;
+export default MembershipAlternative;

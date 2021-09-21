@@ -1,8 +1,8 @@
 import React from 'react';
-import { useTexts } from '../../../../../../../../../../../contexts/TextsContext.js';
-import SelectButton from './components/select_button/SelectButton.jsx';
+import { useTexts } from '../../../../../../../../../contexts/TextsContext.js';
+import MembershipAlternative from './components/membership_alternative/MembershipAlternative.jsx';
 
-const MembershipTypeSelector = ({
+const MembershipsList = ({
   selectedMembership,
   setSelectedMembership,
   multipleOffsets,
@@ -23,7 +23,7 @@ const MembershipTypeSelector = ({
 
   return (
     <div className="space-y-3 text-left">
-      <SelectButton
+      <MembershipAlternative
         selectedMembership={selectedMembership}
         setSelectedMembership={setSelectedMembership}
         buttonType="free"
@@ -32,7 +32,7 @@ const MembershipTypeSelector = ({
         multipleOffsets={multipleOffsets}
         setMultipleOffsets={setMultipleOffsets}
       />
-      <SelectButton
+      <MembershipAlternative
         selectedMembership={selectedMembership}
         setSelectedMembership={setSelectedMembership}
         buttonType="single"
@@ -41,7 +41,7 @@ const MembershipTypeSelector = ({
         multipleOffsets={multipleOffsets}
         setMultipleOffsets={setMultipleOffsets}
       />
-      <SelectButton
+      <MembershipAlternative
         selectedMembership={selectedMembership}
         setSelectedMembership={setSelectedMembership}
         buttonType="multi"
@@ -54,4 +54,4 @@ const MembershipTypeSelector = ({
   );
 };
 
-export default MembershipTypeSelector;
+export default MembershipsList;

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useTexts } from '../../../../../contexts/TextsContext.js';
 import { useLocaleData } from '../../../../../contexts/LocaleContext.js';
 import { useVersion } from '../../../../../contexts/VersionContext.js';
-import SignUpContainer from './components/membership/SignUpContainer.jsx';
-import ConfirmSignUpContainer from './components/payment/ConfirmSignUpContainer.jsx';
+import MembershipPage from './components/membership_page/MembershipPage.jsx';
+import RegistrationPage from './components/registration_page/RegistrationPage.jsx';
 import AnswerButton from '../common/AnswerButton.jsx';
 import FormInformationSection from './components/form_information_section/FormInformationSection.jsx';
 import Link from '../../../common/Link.jsx';
+import { calculatePrice } from '../../../../../helpers/result-helper.js';
 
 const SignUpPage = ({ result, page, onPageChange }) => {
   const [selectedMembership, setSelectedMembership] = useState('single');
@@ -33,31 +34,22 @@ const SignUpPage = ({ result, page, onPageChange }) => {
 
   const version = useVersion();
 
-  const calculatePrice = () => {
-    var price = result.plan.price.subunit_amount / 100;
-    if (Math.trunc(price) != price) {
-      price = price.toFixed(2);
-    }
-    if (selectedMembership === 'multi') {
-      price = price * multipleOffsets;
-    }
-    if (currency === 'DEFAULT') {
-      price = result.plan.price.currency.iso_code.toUpperCase() + ' ' + price;
-    } else {
-      const findCustomPlacement = /%{.*?}/i;
-      price = currency.replace(findCustomPlacement, price);
-    }
-    return price;
-  };
-
   useEffect(() => {
-    setPrice(calculatePrice());
+    setPrice(
+      calculatePrice(
+        result.plan.price,
+        currency,
+        false,
+        selectedMembership,
+        multipleOffsets
+      )
+    );
   }, [grantedReferralCode, selectedMembership, multipleOffsets]);
 
   return (
     <>
       {page === 2 ? (
-        <SignUpContainer
+        <MembershipPage
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}
           multipleOffsets={multipleOffsets}
@@ -67,7 +59,7 @@ const SignUpPage = ({ result, page, onPageChange }) => {
           price={price}
         />
       ) : (
-        <ConfirmSignUpContainer
+        <RegistrationPage
           selectedMembership={selectedMembership}
           lifestyleFootprint={result.footprint.key}
           grantedReferralCode={grantedReferralCode}

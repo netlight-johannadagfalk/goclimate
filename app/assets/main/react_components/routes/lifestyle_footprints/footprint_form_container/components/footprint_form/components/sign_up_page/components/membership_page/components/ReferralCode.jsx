@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useTexts } from '../../../../../../../../../../contexts/TextsContext.js';
-import AnswerButton from '../../../../../../common/AnswerButton.jsx';
+import { useTexts } from '../../../../../../../../contexts/TextsContext.js';
+import AnswerButton from '../../../../../components/common/AnswerButton.jsx';
 
 /**
  * React component for referral code field in signup

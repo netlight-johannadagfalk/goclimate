@@ -6,9 +6,9 @@ import { useLocaleData } from '../../../../../../../contexts/LocaleContext.js';
 import { useTexts } from '../../../../../../../contexts/TextsContext.js';
 import Title from '../../../common/Title.jsx';
 import Payment from './components/Payment.jsx';
-import SignUpPreamble from '../../../common/SignUpPreamble.jsx';
+import Preamble from '../../../common/Preamble.jsx';
 
-const ConfirmSignUpContainer = ({
+const RegistrationPage = ({
   selectedMembership,
   lifestyleFootprint,
   grantedReferralCode,
@@ -30,7 +30,7 @@ const ConfirmSignUpContainer = ({
       <div className="max-w-lg mx-auto">
         <div className="space-y-3">
           <Title text={sign_up_heading_collective_efficacy} />
-          <SignUpPreamble text={sign_up_description} />
+          <Preamble text={sign_up_description} />
           <Elements stripe={stripePromise} options={{ locale: lang }}>
             <Payment
               selectedMembership={selectedMembership}
@@ -52,4 +52,4 @@ const ConfirmSignUpContainer = ({
   );
 };
 
-export default ConfirmSignUpContainer;
+export default RegistrationPage;

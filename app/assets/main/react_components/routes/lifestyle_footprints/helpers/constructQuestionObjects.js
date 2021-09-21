@@ -1,4 +1,4 @@
-function constructQuestionObjects(calculator, categories, texts) {
+const constructQuestionObjects = (calculator, categories, texts) => {
   const questionKeys = Object.keys(categories);
   let constructedQuestionObjects = questionKeys
     .filter((questionKey) => calculator[questionKey.concat('_options')])
@@ -43,6 +43,6 @@ function constructQuestionObjects(calculator, categories, texts) {
   constructedQuestionObjects.push(carObject, flightObject);
 
   return constructedQuestionObjects;
-}
+};
 
 export default constructQuestionObjects;

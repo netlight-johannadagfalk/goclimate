@@ -1,4 +1,4 @@
-export default function getChartData(footprint, categoryChartText) {
+const getChartData = (footprint, categoryChartText) => {
   return [
     {
       text: categoryChartText.dashboard.footprint.category['housing'],
@@ -37,4 +37,29 @@ export default function getChartData(footprint, categoryChartText) {
       color: 'bg-gray-accent',
     },
   ];
-}
+};
+
+const calculatePrice = (
+  basePrice,
+  currency,
+  simplifiedCalculation,
+  selectedMembership = '',
+  multipleOffsets = 1
+) => {
+  var price = basePrice.subunit_amount / 100;
+  if (Math.trunc(price) != price) {
+    price = price.toFixed(2);
+  }
+  if (!simplifiedCalculation && selectedMembership === 'multi') {
+    price = price * multipleOffsets;
+  }
+  if (currency === 'DEFAULT') {
+    price = basePrice.currency.iso_code.toUpperCase() + ' ' + price;
+  } else {
+    const findCustomPlacement = /%{.*?}/i;
+    price = currency.replace(findCustomPlacement, price);
+  }
+  return price;
+};
+
+export { getChartData, calculatePrice };

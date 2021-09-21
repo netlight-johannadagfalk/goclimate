@@ -2,19 +2,6 @@
 
 <section class="bg-blue-tint-1">
   <div class="section-padding">
-    <%= react_component 'ResultContainer',
-      footprint: @footprint.to_json,
-      projects: @projects.to_json,
-      countryAverage: @country_average.to_json,
-      plan: @plan.to_json,
-      currency: YAML.load_file('config/locales/models.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['models'].to_json,
-      slug: current_region.slug, 
-      lang: I18n.locale[0..-1], 
-      registrationsText: YAML.load_file('config/locales/views/registrations.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['registrations'].to_json, 
-      commonText: YAML.load_file('config/locales/' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]].to_json,
-      modelText: YAML.load_file('config/locales/models.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['models']['greenhouse_gases']['tonnes'].to_json,
-      lifestyleFootprintsText: YAML.load_file('config/locales/views/lifestyle_footprints.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['lifestyle_footprints'].to_json
-    %>
     <div class="text-center pb-8 t:pb-16 d:pb-32 lg:px-0 max-w-4xl mx-auto">
       <h1 class="font-semibold text-xl t:text-2xl d-md:text-3xl my-5"><%= t 'views.registrations.well_done' %></h1>
     </div>

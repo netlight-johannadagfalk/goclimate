@@ -2,11 +2,12 @@ import { default as React } from 'react';
 import { useTexts } from '../../../../../../../contexts/TextsContext.js';
 import { useVersion } from '../../../../../../../contexts/VersionContext.js';
 import Title from '../../../common/Title.jsx';
-import MembershipSelector from './components/membership_selector/MembershipSelector.jsx';
 import PriceText from '../../../common/PriceText.jsx';
-import SignUpPreamble from '../../../common/SignUpPreamble.jsx';
+import Preamble from '../../../common/Preamble.jsx';
+import ReferralCode from './components/ReferralCode.jsx';
+import MembershipsList from './components/memberships_list/MembershipsList.jsx';
 
-const SignUpContainer = ({
+const MembershipPage = ({
   selectedMembership,
   setSelectedMembership,
   multipleOffsets,
@@ -31,8 +32,8 @@ const SignUpContainer = ({
           text={sign_up_heading_collective_efficacy}
           custom_style="text-lgr"
         />
-        <SignUpPreamble text={sign_up_description} />
-        <MembershipSelector
+        <Preamble text={sign_up_description} />
+        <MembershipsList
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}
           multipleOffsets={multipleOffsets}
@@ -40,6 +41,14 @@ const SignUpContainer = ({
           setGrantedReferralCode={setGrantedReferralCode}
           grantedReferralCode={grantedReferralCode}
         />
+        <div data-inactive-class="hidden">
+          {selectedMembership !== 'free' && (
+            <ReferralCode
+              grantedReferralCode={grantedReferralCode}
+              setGrantedReferralCode={setGrantedReferralCode}
+            />
+          )}
+        </div>
         {version === 'v1' && (
           <PriceText
             price={price}
@@ -53,4 +62,4 @@ const SignUpContainer = ({
   );
 };
 
-export default SignUpContainer;
+export default MembershipPage;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTexts } from '../../../../../../../../contexts/TextsContext.js';
-import getChartData from '../../../../../../../../helpers/result-helper.js';
+import { getChartData } from '../../../../../../../../helpers/result-helper.js';
 import ResultBar from '../../common/ResultBar.jsx';
 
 const CategoryChart = ({ footprint }) => {
@@ -16,6 +16,7 @@ const CategoryChart = ({ footprint }) => {
     commonText,
     commonText: { tonnes },
   } = useTexts();
+
   const categoryData = getChartData(footprint, commonText);
 
   return (

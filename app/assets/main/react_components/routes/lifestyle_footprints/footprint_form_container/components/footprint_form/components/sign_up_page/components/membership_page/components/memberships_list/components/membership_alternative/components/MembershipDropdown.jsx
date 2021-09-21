@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SelectorMultipleTimes = ({ multipleOffsets, setMultipleOffsets }) => {
+const MembershipDropdown = ({ multipleOffsets, setMultipleOffsets }) => {
   return (
     <div className="select-wrapper flex-shrink-0">
       <select
@@ -20,4 +20,4 @@ const SelectorMultipleTimes = ({ multipleOffsets, setMultipleOffsets }) => {
   );
 };
 
-export default SelectorMultipleTimes;
+export default MembershipDropdown;
