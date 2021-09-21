@@ -2,7 +2,7 @@ import React from 'react';
 
 const MembershipDropdown = ({ multipleOffsets, setMultipleOffsets }) => {
   return (
-    <div className="select-wrapper flex-shrink-0">
+    <div className="select-wrapper flex-shrink-0 ">
       <select
         value={multipleOffsets}
         onChange={(e) => setMultipleOffsets(e.target.value)}
