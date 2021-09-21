@@ -1,6 +1,7 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import KanbanActionItem from "./KanbanActionItem.jsx";
+import Card from "./card_components/Card.jsx";
 import { useMediaQuery } from "react-responsive";
 import { t } from "../../../../constants";
 
@@ -64,16 +65,28 @@ const KanbanActionColumn = ({
                 .slice(0, collapsed ? 4 : column.items.length)
                 .map((item, index) => {
                   return (
-                    <KanbanActionItem
-                      item={item}
-                      index={index}
-                      key={item.id}
-                      handleDelete={handleDelete}
-                      handleButtonPerformOnDrag={handleButtonPerformOnDrag}
-                      categories={categories}
-                      collapsed={collapsed}
-                      handleExpanded={handleExpanded}
-                    />
+                    <div key={item.id + "div"}>
+                      <KanbanActionItem
+                        item={item}
+                        index={index}
+                        key={item.id}
+                        handleDelete={handleDelete}
+                        handleButtonPerformOnDrag={handleButtonPerformOnDrag}
+                        categories={categories}
+                        collapsed={collapsed}
+                        handleExpanded={handleExpanded}
+                      />
+                      <Card
+                        item={item}
+                        index={index}
+                        key={item.id + "card"}
+                        handleDelete={handleDelete}
+                        handleButtonPerformOnDrag={handleButtonPerformOnDrag}
+                        categories={categories}
+                        collapsed={collapsed}
+                        handleExpanded={handleExpanded}
+                      />
+                    </div>
                   );
                 })}
               {provided.placeholder}

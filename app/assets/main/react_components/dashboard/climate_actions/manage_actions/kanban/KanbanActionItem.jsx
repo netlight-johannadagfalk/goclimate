@@ -11,11 +11,11 @@ const KanbanActionItem = ({
   collapsed,
   handleExpanded,
 }) => {
-  const isBadge = item.userActionsArray ? true : false;
+  const isAchievement = item.userActionsArray ? true : false;
 
   const categoryName = () => {
     for (let i = 0; i <= Object.keys(categories).length; i++) {
-      if (isBadge) return "";
+      if (isAchievement) return "";
 
       if (categories[i].id === item.climate_action_category_id) {
         return categories[i].name.toString();
@@ -99,7 +99,7 @@ const KanbanActionItem = ({
                   item.expanded && "w-full border-b border-b-gray-tint-2"
                 }`}
               >
-                {!isBadge && (
+                {!isAchievement && (
                   <div
                     className={`${
                       "category_" +
@@ -115,7 +115,7 @@ const KanbanActionItem = ({
                   <div className="flex flex-1">
                     <div
                       className={`mx-auto ${
-                        isBadge ? "mt-2" : "-mt-1/4"
+                        isAchievement ? "mt-2" : "-mt-1/4"
                       } rounded-full h-16 w-16 items-center justify-center bg-contain bg-center shadow-lg`}
                       style={{
                         backgroundImage:
@@ -129,7 +129,7 @@ const KanbanActionItem = ({
                   <div className="flex flex-2 justify-start">
                     <div
                       className={`flex flex-1 font-bold text-left ${
-                        isBadge && "mt-5"
+                        isAchievement && "mt-5"
                       }
                       text-sm
                       `}
@@ -140,13 +140,13 @@ const KanbanActionItem = ({
                   <div className="flex flex-1 justify-center items-start">
                     <button
                       className={`fas float-right focus:outline-none ${
-                        isBadge ? "mt-12 ml-10" : "mt-4 ml-4"
+                        isAchievement ? "mt-12 ml-10" : "mt-4 ml-4"
                       } ${item.expanded ? "fa-chevron-up" : "fa-chevron-down"}`}
                       onClick={() => handleExpanded(item, !item.expanded)}
                     ></button>
                   </div>
                 </div>
-                {isBadge && (
+                {isAchievement && (
                   <div className="flex justify-center ml-6 -mt-4">
                     <ProgressBar
                       categories={categories}
