@@ -50,7 +50,6 @@ const MembershipAlternative = ({
     return price;
   };
 
-  console.log(":)")
   return (
     <div className={style}>
       <label htmlFor={type}>
