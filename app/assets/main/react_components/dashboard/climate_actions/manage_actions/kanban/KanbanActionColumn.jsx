@@ -34,7 +34,7 @@ const KanbanActionColumn = ({
         {(provided, snapshot) => {
           return (
             <div
-              className={`h-full overflow-x-hidden d:flex d:items-stretch flex items-center flex-col inline-block w-full 
+              className={`h-full pt-1 overflow-x-hidden d:flex d:items-stretch flex items-center flex-col inline-block w-full 
               ${
                 (isHovering && !collapsed) || isTabletOrMobile
                   ? "overflow-y-auto"
@@ -44,7 +44,6 @@ const KanbanActionColumn = ({
               ref={provided.innerRef}
               style={{
                 background: snapshot.isDraggingOver ? "lightgrey" : "white",
-                padding: 0,
                 width: "100%",
               }}
             >
