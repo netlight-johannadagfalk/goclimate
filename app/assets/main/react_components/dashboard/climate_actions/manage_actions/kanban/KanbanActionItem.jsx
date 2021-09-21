@@ -12,7 +12,6 @@ const KanbanActionItem = ({
   handleExpanded,
 }) => {
   const isBadge = item.userActionsArray ? true : false;
-
   const categoryName = () => {
     for (let i = 0; i <= Object.keys(categories).length; i++) {
       if (isBadge) return "";
@@ -207,14 +206,16 @@ const KanbanActionItem = ({
                                 >
                                   {subitem.name}
                                 </div>
-                                <button
-                                  className="d:opacity-0 d:group-hover:opacity-50 d:hover:!opacity-100 opacity-50 flex-1 text-lg text-right"
-                                  onClick={() =>
-                                    handleButtonPerformOnDrag(subitem, false)
-                                  }
-                                >
-                                  &times;
-                                </button>
+                                {subitem.id > 0 && (
+                                  <button
+                                    className="d:opacity-0 d:group-hover:opacity-50 d:hover:!opacity-100 opacity-50 flex-1 text-lg text-right"
+                                    onClick={() =>
+                                      handleButtonPerformOnDrag(subitem, false)
+                                    }
+                                  >
+                                    &times;
+                                  </button>
+                                )}
                               </div>
                             ) : (
                               <div className="flex mt-1 mb-3">
