@@ -17,6 +17,7 @@ class SubscriptionMailer < ApplicationMailer
       @action_of_the_month_name = @action_of_the_month.first.name
       @action_of_the_month_description = @action_of_the_month.first.description
       @action_of_the_month_points = @action_of_the_month.first.points
+      @action_of_the_month_image_url = @action_of_the_month.first.image_url
     end
     mail subject: I18n.t('thank_you')
   end
