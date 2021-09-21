@@ -295,7 +295,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              <div className="h-10">
+              <div className="h-10" style={{ width: 360 }}>
                 <p
                   className={`font-normal text-base text-primary text-lg text-center`}
                 >

@@ -139,7 +139,7 @@ const KanbanActionItem = ({
                     <div className="flex flex-1 justify-center items-start">
                       <button
                         className={`fas float-right focus:outline-none ${
-                          isBadge ? "mt-12 ml-10" : "mt-4 ml-4"
+                          isBadge ? "mt-9 ml-4" : "mt-4 ml-4"
                         } ${
                           item.expanded ? "fa-chevron-up" : "fa-chevron-down"
                         }`}
@@ -148,7 +148,7 @@ const KanbanActionItem = ({
                     </div>
                   </div>
                   {isBadge && (
-                    <div className="flex justify-center ml-6 -mt-4">
+                    <div className="flex justify-center ml-6 -mt-7">
                       <ProgressBar
                         categories={categories}
                         item={item}
