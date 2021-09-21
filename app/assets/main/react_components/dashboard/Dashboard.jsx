@@ -51,7 +51,7 @@ const Dashboard = ({
                 <ClimateActionsContainer
                   user={user}
                   climateActionCategories={climateActionCategories}
-                  actionsToplist={actionsToplist}
+                  actionsToplist={JSON.parse(actionsToplist)}
                 ></ClimateActionsContainer>
               </FootprintProvider>
             </ClimateActionsProvider>

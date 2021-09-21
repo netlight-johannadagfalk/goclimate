@@ -16,6 +16,8 @@ const CarouselContainer = ({
   actionsToplist,
 }) => {
   const [allCategories, setAllCategories] = useState(true);
+
+  const [toplist, setToplist] = useState(false);
   const category = useCategory();
   const totClimateActions = useClimateActionsOriginal();
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${d})` });
@@ -40,10 +42,20 @@ const CarouselContainer = ({
           <>
             <CarouselCategoryButton
               categoryName={"All categories"}
-              categoryID={null}
+              categoryID={"allCategories"}
               active={allCategories}
+              setToplist={setToplist}
               setAllCategories={setAllCategories}
               localUserActions={localUserActions}
+            />
+            <CarouselCategoryButton
+              categoryName={"Toplist"}
+              categoryID={"toplist"}
+              active={toplist}
+              setToplist={setToplist}
+              setAllCategories={setAllCategories}
+              localUserActions={localUserActions}
+              actionsToplist={actionsToplist}
             />
             {categories.map(
               (cat) =>
@@ -53,6 +65,7 @@ const CarouselContainer = ({
                     categoryName={cat.name}
                     categoryID={cat.id}
                     active={category === cat.id ? true : false}
+                    setToplist={setToplist}
                     setAllCategories={setAllCategories}
                     localUserActions={localUserActions}
                   />

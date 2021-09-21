@@ -16,12 +16,7 @@ import { m, d, dLg } from "../../../constants";
 import SwiperCore, { Navigation, Pagination, Scrollbar } from "swiper/core";
 SwiperCore.use([Pagination, Navigation, Scrollbar]);
 
-const CarouselList = ({
-  user,
-  updateLocalAccepted,
-  categories,
-  actionsToplist,
-}) => {
+const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
 
@@ -35,8 +30,6 @@ const CarouselList = ({
     ["action_of_the_month"],
     ["desc"]
   );
-
-  console.log({ climateActions, actionsToplist });
 
   const actions = isMobile ? sortForMobileClimateActions : climateActions;
 

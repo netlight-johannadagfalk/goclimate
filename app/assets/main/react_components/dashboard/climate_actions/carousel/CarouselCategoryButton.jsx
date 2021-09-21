@@ -16,6 +16,8 @@ const CarouselCategoryButton = ({
   setAllCategories,
   categories,
   localUserActions,
+  actionsToplist,
+  setActionsToplist,
 }) => {
   const setCategory = useCategoryUpdate();
   const setClimateActions = useClimateActionsUpdate();
@@ -31,25 +33,47 @@ const CarouselCategoryButton = ({
   categories && createOptions();
 
   const handleCategory = (categoryID) => {
-    categoryID != null ? categoryClick(categoryID) : allCategoriesClick();
+    if (categoryID === "toplist") {
+      toplistClick(categoryID);
+    } else if (categoryID === "allCategories") {
+      allCategoriesClick(categoryID);
+    } else {
+      categoryClick(categoryID);
+    }
   };
 
-  const allCategoriesClick = () => {
+  const allCategoriesClick = (categoryID) => {
     setAllCategories(true);
-    updateCategory();
+    setActionsToplist(false);
+    updateCategory(categoryID);
   };
+
+  const toplistClick = (categoryID) => {
+    setAllCategories(false);
+    setActionsToplist(true);
+    updateCategory(categoryID);
+  };
+
   const categoryClick = (categoryID) => {
     updateCategory(categoryID);
     setAllCategories(false);
+    setActionsToplist(false);
   };
 
   const updateCategory = (cat) => {
-    setCategory(cat);
-    const filteredActions = cat
-      ? totClimateActions.filter(
-          (temp) => temp.climate_action_category_id === cat
-        )
-      : totClimateActions;
+    let filteredActions = [];
+    if (cat === "toplist") {
+      setCategory();
+      filteredActions = actionsToplist;
+    } else if (cat === "allCategories") {
+      setCategory();
+      filteredActions = totClimateActions;
+    } else {
+      setCategory(cat);
+      filteredActions = totClimateActions.filter(
+        (temp) => temp.climate_action_category_id === cat
+      );
+    }
 
     const filteredActionsWithStatus = filteredActions.map((action) => {
       return userActions.some(
