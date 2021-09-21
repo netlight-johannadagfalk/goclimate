@@ -115,16 +115,14 @@ export const UserActionsProvider = ({
     id: "-1",
     name: "Climate Friend",
     badge_image_url: "/achievement_images/AchievementClimateFriend.png",
-    userActionsArray:
-      JSON.parse(userSubscriptionType) == true
-        ? [
-            { id: "-2", name: "GoClimate free membership", status: true },
-            { id: "-3", name: "GoClimate paid membership", status: true },
-          ]
-        : [
-            { id: "-2", name: "GoClimate free membership", status: true },
-            { id: "-3", name: "GoClimate paid membership", status: false },
-          ],
+    userActionsArray: [
+      { id: "-2", name: "GoClimate free membership", status: true },
+      {
+        id: "-3",
+        name: "GoClimate paid membership",
+        status: JSON.parse(userSubscriptionType) == true ? true : false,
+      },
+    ],
     actionsArray: [],
   };
 
