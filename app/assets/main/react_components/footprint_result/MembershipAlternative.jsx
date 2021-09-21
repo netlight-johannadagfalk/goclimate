@@ -14,6 +14,14 @@ const MembershipAlternative = ({
   grantedReferralCode,
   result,
 }) => {
+  const {
+    currency: {
+      money: {
+        currency_formats: { [result.plan.price.currency.iso_code]: currency },
+      },
+    },
+  } = useLocaleData();
+
   const style =
     'rounded content-between relative lg:w-1/3 m-1 border border-green-accent ' +
     (type === selectedMembership ? 'bg-green-tint-1 border-2 ' : '');
@@ -24,14 +32,6 @@ const MembershipAlternative = ({
       multipleOffsets.toString()
     );
   }
-
-  const {
-    currency: {
-      money: {
-        currency_formats: { [result.plan.price.currency.iso_code]: currency },
-      },
-    },
-  } = useLocaleData();
 
   const calculatePrice = () => {
     var price = result.plan.price.subunit_amount / 100;
@@ -65,13 +65,11 @@ const MembershipAlternative = ({
           />
           <div className="pl-6">
             <ul className="list-disc">
-              {Object.keys(sellingPoints).map((point) => {
-                return (
-                  <li className="lg:my-3 text-sm text-left" key={point}>
-                    {sellingPoints[point]}
-                  </li>
-                );
-              })}
+              {Object.keys(sellingPoints).map((point) => (
+                <li className="lg:my-3 text-sm text-left" key={point}>
+                  {sellingPoints[point]}
+                </li>
+              ))}
             </ul>
           </div>
           {type == 'multi' && (
