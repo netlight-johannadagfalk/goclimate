@@ -38,13 +38,13 @@ const CarouselCategoryButton = ({
   const handleCategory = (categoryID) => {
     let filteredActions = [];
     if (categoryID === "popular") {
-      categoryClick(true, false);
+      handleCategoryClick(true, false);
       filteredActions = actionsToplist.slice(0, 5);
     } else if (categoryID === "allCategories") {
-      categoryClick(false, true);
+      handleCategoryClick(false, true);
       filteredActions = totClimateActions;
     } else {
-      categoryClick(false, false, categoryID);
+      handleCategoryClick(false, false, categoryID);
       filteredActions = totClimateActions.filter(
         (temp) => temp.climate_action_category_id === categoryID
       );
@@ -52,9 +52,9 @@ const CarouselCategoryButton = ({
     updateCategoryAttributes(filteredActions);
   };
 
-  const categoryClick = (popularValue, allCategoriesValue, categoryID) => {
-    setPopular(popularValue);
-    setAllCategories(allCategoriesValue);
+  const handleCategoryClick = (showPopular, showAllCategories, categoryID) => {
+    setPopular(showPopular);
+    setAllCategories(showAllCategories);
     categoryID ? setCategory(categoryID) : setCategory();
   };
 
