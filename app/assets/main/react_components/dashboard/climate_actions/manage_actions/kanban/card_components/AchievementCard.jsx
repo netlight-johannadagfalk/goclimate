@@ -33,10 +33,9 @@ const AchievementCard = ({
                 <div
                   className="mr-3 rounded-full h-6 w-6 bg-cover flex-initial"
                   style={{
-                    backgroundImage:
-                      action.status === true
-                        ? "url('/achievement_images/AchievementStarActive.png')"
-                        : "url('/achievement_images/AchievementStarInactive.png')",
+                    backgroundImage: action.status
+                      ? "url('/achievement_images/AchievementStarActive.png')"
+                      : "url('/achievement_images/AchievementStarInactive.png')",
                   }}
                 ></div>
                 <div
