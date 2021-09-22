@@ -24,28 +24,7 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
     totClimateActions.find((action) => action.action_of_the_month === true)
   );
 
-  const getSessionStorage = (key) => {
-    const storedState = JSON.parse(sessionStorage.getItem(key));
-    console.log({ storedState });
-    if (storedState === null) {
-      return [];
-    } else {
-      return storedState;
-    }
-  };
-
-  const [localUserActions, setLocalUserActions] = useState(
-    getSessionStorage("localUserActions")
-  );
-  console.log({ localUserActions });
-
-  useEffect(() => {
-    //sessionStorage.removeItem("localUserActions");
-    sessionStorage.setItem(
-      "localUserActions",
-      JSON.stringify(localUserActions)
-    );
-  }, [localUserActions]);
+  const [localUserActions, setLocalUserActions] = useState([]);
 
   const updateLocalAccepted = (actionID) => {
     setClimateActions(

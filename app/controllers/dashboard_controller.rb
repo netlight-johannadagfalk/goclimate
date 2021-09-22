@@ -5,6 +5,7 @@ require 'uri'
 class DashboardController < ApplicationController
   before_action :authenticate_user!
   before_action :flash_when_registered
+  #before_action :set_cache_headers
 
   def show
     @total_carbon_offset = OffsettingStatistics.new.total_sold.tonnes.round
@@ -36,7 +37,7 @@ class DashboardController < ApplicationController
     # @get_all_climate_actions_without_user_actions = ClimateAction.where.not(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
     # @get_all_climate_actions_with_user_actions = ClimateAction.where(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
     
-@get_all_climate_actions_without_user_actions =
+    @get_all_climate_actions_without_user_actions =
       ClimateAction.where.not(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
       .joins("LEFT JOIN user_climate_actions ON user_climate_actions.climate_action_id = climate_actions.id")
       .select("climate_actions.*, COUNT(user_climate_actions.climate_action_id) AS total")
@@ -65,6 +66,12 @@ class DashboardController < ApplicationController
   end
 
   private
+
+  def set_cache_headers
+    response.headers["Cache-Control"] = "no-cache, no-store"
+    #response.headers["Pragma"] = "no-cache"
+    #response.headers["Expires"] = "Mon, 01 Jan 1990 00:00:00 GMT"
+  end
 
   def flash_when_registered
     flash.now[:notice] = t('devise.registrations.signed_up') if params[:subscribed]
