@@ -9,14 +9,14 @@ const AchievementCard = ({
 }) => {
   return (
     <div>
-      <div className="flex justify-center ml-6 -mt-4">
-        <ProgressBar
-          categories={categories}
-          item={item}
-          userActions={item.userActionsArray}
-          actions={item.actionsArray}
-        />
-      </div>
+      {/* <div className="flex justify-center ml-6 -mt-4"> */}
+      <ProgressBar
+        categories={categories}
+        item={item}
+        userActions={item.userActionsArray}
+        actions={item.actionsArray}
+      />
+      {/* </div> */}
 
       {item.expanded && !collapsed && (
         <div className="mb-4 mt-7 ml-7 mr-4">
