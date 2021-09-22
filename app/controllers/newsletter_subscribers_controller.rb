@@ -16,6 +16,12 @@ class NewsletterSubscribersController < ApplicationController
       return
     end
 
+    if params[:newsletter_type] == NewsletterSubscriber::BUSINESS_TYPE
+      NewsletterMailer.business_newsletter_signup_email(params[:newsletter_email]).deliver_now
+    else
+      NewsletterMailer.newsletter_signup_email(params[:newsletter_email]).deliver_now
+    end
+
     head :ok
   end
 end
