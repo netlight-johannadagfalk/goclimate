@@ -101,7 +101,7 @@ const Card = ({
                   }`}
                 >
                   <div
-                    className="flex flex-row h-14 w-full bottom-0 absolute justify-center"
+                    className="flex flex-row h-14 w-full top-0 mt-6 absolute justify-center"
                     onClick={() => handleExpanded(item, !item.expanded)}
                   >
                     <div className="flex flex-1 z-10">

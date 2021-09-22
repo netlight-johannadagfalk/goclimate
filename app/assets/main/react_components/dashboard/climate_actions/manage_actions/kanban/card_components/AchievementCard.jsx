@@ -19,7 +19,7 @@ const AchievementCard = ({
       </div>
 
       {item.expanded && !collapsed && (
-        <div className="mb-4 ml-7 mr-4">
+        <div className="mb-4 mt-7 ml-7 mr-4">
           <div>
             {/* Map through both arrays in categoryBadge. All actions in the category should be rendered in a list, but those userActions that are performed should be highlighted */}
             {item.userActionsArray.map((subitem) => {
