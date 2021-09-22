@@ -5,7 +5,7 @@ require 'uri'
 class DashboardController < ApplicationController
   before_action :authenticate_user!
   before_action :flash_when_registered
-  #before_action :set_cache_headers
+  before_action :set_cache_headers
 
   def show
     @total_carbon_offset = OffsettingStatistics.new.total_sold.tonnes.round
@@ -33,9 +33,6 @@ class DashboardController < ApplicationController
     @get_all_user_climate_actions = ClimateAction.joins(:user_climate_actions)
     .where(["user_climate_actions.user_id = ? and climate_actions.id = user_climate_actions.climate_action_id", current_user.id])
     .select("user_climate_actions.id", :climate_action_id, :name, :description, :status, :user_id, :climate_action_category_id, :image_url)
-
-    # @get_all_climate_actions_without_user_actions = ClimateAction.where.not(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
-    # @get_all_climate_actions_with_user_actions = ClimateAction.where(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
     
     @get_all_climate_actions_without_user_actions =
       ClimateAction.where.not(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
@@ -48,29 +45,12 @@ class DashboardController < ApplicationController
       .joins(:user_climate_actions)
       .select("climate_actions.*, COUNT(user_climate_actions.climate_action_id) AS total")
       .group("climate_actions.id")
-
-    #@all_actions_with_accepted_user_actions = ClimateAction.right_outer_joins(:user_climate_actions)
-    #.where(["user_climate_actions.user_id = ?", current_user.id])
-    #.select("user_climate_actions.id", :climate_action_id, :name, :description, :status, :user_id)
-
-    #@all_actions_with_accepted_user_actions = @get_all_user_climate_actions + @get_all_climate_actions_without_user_actions
-  
-    #@all_actions_with_accepted_user_actions = ClimateAction.where()
-    
-    #Done = True
-    #Status = True
-    #@getAllDoneActions = UserClimateAction.where(["user_climate_actions.user_id = ? and user_climate_actions.status = ?", current_user.id, true]).select("*")
-    #Accepted = True
-    #Status = False
-    #@getAllAcceptedActions = UserClimateAction.where(["user_climate_actions.user_id = ? and user_climate_actions.status = ?", current_user.id, false]).select("*")
   end
 
   private
 
   def set_cache_headers
-    response.headers["Cache-Control"] = "no-cache, no-store"
-    #response.headers["Pragma"] = "no-cache"
-    #response.headers["Expires"] = "Mon, 01 Jan 1990 00:00:00 GMT"
+    response.headers["Cache-Control"] = "no-store"
   end
 
   def flash_when_registered
