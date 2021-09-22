@@ -9,6 +9,11 @@ const AchievementCard = ({
   sidebarCollapsed,
   handleUncompleteAction,
 }) => {
+  const actions = [
+    ...achievement.userActionsArray,
+    ...achievement.actionsArray,
+  ];
+
   return (
     <div>
       <div className="h-20">
