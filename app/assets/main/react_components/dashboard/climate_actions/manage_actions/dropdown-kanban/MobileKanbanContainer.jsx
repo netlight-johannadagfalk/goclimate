@@ -32,6 +32,8 @@ const MobileKanbanContainer = ({ children, userActions }) => {
             showMobileKanban ? "fa-globe-europe" : "fa-globe-americas"
           }`}
         ></i>
+        {showMobileKanban &&
+          (document.getElementById("nav-toggler").checked = false)}
         {getAcceptedActionsForUser() > 0 && (
           <div className="fas rounded-full h-5 w-5 bg-green-tint-3 -mt-1 -ml-3 absolute focus:outline-none">
             <div className="mb-2 text-white text-center">
