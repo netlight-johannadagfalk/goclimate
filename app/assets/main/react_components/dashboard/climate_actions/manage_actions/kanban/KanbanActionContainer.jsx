@@ -126,7 +126,7 @@ const KanbanActionContainer = ({
     return orderBy(performedActions, ["status"], ["desc"]);
   };
 
-  const handleButtonPerformOnDrag = (movedItem, perform) => {
+  const handleCompleteAction = (movedItem, perform) => {
     //Move items in kanban through buttons instead of drag and drop
     if (perform) {
       //Button for performing an action
@@ -311,7 +311,7 @@ const KanbanActionContainer = ({
                 columnId={columnId}
                 key={columnId}
                 handleDelete={handleDelete}
-                handleButtonPerformOnDrag={handleButtonPerformOnDrag}
+                handleCompleteAction={handleCompleteAction}
                 categories={categories}
                 setSidebarCollapsed={setSidebarCollapsed}
                 sidebarCollapsed={sidebarCollapsed}

@@ -3,7 +3,7 @@ import React from "react";
 const ActionCard = ({
   item,
   handleDelete,
-  handleButtonPerformOnDrag,
+  handleCompleteAction,
   sidebarCollapsed,
   categoryColor,
 }) => {
@@ -18,25 +18,23 @@ const ActionCard = ({
       ></div>
 
       {item.expanded && !sidebarCollapsed && (
-        <div className="mt-4 mx-6">
-          <div className="flex flex-1 flex-col text-center">
-            <div className="flex-1 justify-center text-left">
-              <p className="text-sm">
-                {item.description.length > 200
-                  ? item.description.slice(0, 200) + "..."
-                  : item.description}
-              </p>
-            </div>
-            <div className="flex-1 justify-center my-4">
-              <button
-                className=" mr-4 fas fa-times-circle h-4 w-4 focus:outline-none"
-                onClick={() => handleDelete(item.id, item.climate_action_id)}
-              ></button>
-              <button
-                className="ml-4 fas fa-check-circle focus:outline-none"
-                onClick={() => handleButtonPerformOnDrag(item, true)}
-              ></button>
-            </div>
+        <div className="mt-4 mx-6 flex flex-1 flex-col text-center">
+          <div className="flex-1 justify-center text-left">
+            <p className="text-sm">
+              {item.description.length > 200
+                ? item.description.slice(0, 200) + "..."
+                : item.description}
+            </p>
+          </div>
+          <div className="flex-1 justify-center my-4">
+            <button
+              className=" mr-4 fas fa-times-circle h-4 w-4 focus:outline-none"
+              onClick={() => handleDelete(item.id, item.climate_action_id)}
+            ></button>
+            <button
+              className="ml-4 fas fa-check-circle focus:outline-none"
+              onClick={() => handleCompleteAction(item, true)}
+            ></button>
           </div>
         </div>
       )}
