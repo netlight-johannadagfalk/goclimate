@@ -101,12 +101,12 @@ const Card = ({
                   }`}
                 >
                   <div
-                    className="flex flex-row h-full items-center"
+                    className="flex flex-row h-14 w-full bottom-0 absolute justify-center"
                     onClick={() => handleExpanded(item, !item.expanded)}
                   >
                     <div className="flex flex-1 z-10">
                       <div
-                        className="mx-auto rounded-full h-16 w-16 items-center justify-center bg-contain bg-center shadow-lg"
+                        className="mx-auto rounded-full h-16 w-16 items-center justify-center bg-contain bg-center shadow-lg -mt-4"
                         style={{
                           backgroundImage: `url('${
                             isAchievement
@@ -119,8 +119,8 @@ const Card = ({
                     </div>
                     <div className="flex flex-2 justify-start">
                       <div
-                        className={`flex flex-1 font-bold text-left text-sm ${
-                          isAchievement ? "-mt-5" : "mt-5"
+                        className={`flex flex-1 font-bold text-left text-sm mt-1.5 ${
+                          isAchievement && "-mt-2"
                         }`}
                       >
                         {item.name}
