@@ -2,7 +2,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
 import sanitizeHtml from 'sanitize-html';
-import { useLocaleData } from '../../../../../../../contexts/LocaleContext.js';
+import { useSessionInformation } from '../../../../../../../contexts/SessionInformationContext.js';
 import { useTexts } from '../../../../../../../contexts/TextsContext.js';
 import Title from '../../../common/Title.jsx';
 import Payment from './components/Payment.jsx';
@@ -22,7 +22,7 @@ const RegistrationPage = ({
       accept_policies,
     },
   } = useTexts();
-  const { lang } = useLocaleData();
+  const { lang } = useSessionInformation();
   const stripePromise = loadStripe(window.stripe._apiKey);
 
   return (
