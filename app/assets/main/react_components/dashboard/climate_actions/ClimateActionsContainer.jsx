@@ -70,13 +70,14 @@ const ClimateActionsContainer = ({ user, climateActionCategories }) => {
         updateLocalAccepted={updateLocalAccepted}
         categories={JSON.parse(climateActionCategories)}
       ></MainInfo>
-      <CarouselContainer
-        user={user}
-        updateLocalAccepted={updateLocalAccepted}
-        categories={formatedCategories}
-        localUserActions={localUserActions}
-      />
-
+      {climateActions.length > 0 && (
+        <CarouselContainer
+          user={user}
+          updateLocalAccepted={updateLocalAccepted}
+          categories={formatedCategories}
+          localUserActions={localUserActions}
+        />
+      )}
       <ManageActions
         categories={formatedCategories}
         userActions={userActions}
