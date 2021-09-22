@@ -84,7 +84,7 @@ const Card = ({
                   )
             }
           >
-            {sidebarCollapsed ? (
+            {sidebarCollapsed ? ( // Make own component?
               <div className="flex flex-1 items-center justify-center shadow-md">
                 <div
                   className={`rounded-full h-16 w-16 bg-cover shadow-lg my-1`}
@@ -142,7 +142,7 @@ const Card = ({
 
                 {isAchievement ? (
                   <AchievementCard
-                    item={item}
+                    achievement={item}
                     index={index}
                     key={item.id}
                     handleDelete={handleDelete}
@@ -154,7 +154,7 @@ const Card = ({
                   ></AchievementCard>
                 ) : (
                   <ActionCard
-                    item={item}
+                    userAction={item}
                     index={index}
                     key={item.id}
                     handleDelete={handleDelete}
