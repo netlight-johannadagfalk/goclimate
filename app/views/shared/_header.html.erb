@@ -3,6 +3,7 @@
   <input type="checkbox" id="nav-toggler" class="toggler">
   <!-- Background box with height transition in mobile layout-->
   <div class="relative z-0 overflow-hidden d:overflow-visible h-16 m-lg:h-20 toggler-checked:h-screen d:max-h-20 transition-size duration-500 ease-in-out bg-white">
+      <script> document.querySelector("mobile-kanban").style.height = "0" </script>
     <nav class="p-4 t:px-8 h-16 m-lg:h-20 flex items-center space-x-4 bg-white">
       <div class="flex-grow d:flex items-center d:space-x-8">
         <a href="<%= root_path %>">

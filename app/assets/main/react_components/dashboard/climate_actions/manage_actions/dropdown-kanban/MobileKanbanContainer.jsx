@@ -14,7 +14,9 @@ const MobileKanbanContainer = ({ children, userActions }) => {
   const [showMobileKanban, setShowMobileKanban] = useState(false);
 
   return (
-    <>
+    <div id="mobile-kanban">
+      {showMobileKanban &&
+        (document.getElementById("nav-toggler").checked = false)}
       <div
         className={`fixed top-16 z-30 bg-white w-full overflow-hidden ${
           showMobileKanban ? "h-screen" : "h-0"
@@ -32,8 +34,7 @@ const MobileKanbanContainer = ({ children, userActions }) => {
             showMobileKanban ? "fa-globe-europe" : "fa-globe-americas"
           }`}
         ></i>
-        {showMobileKanban &&
-          (document.getElementById("nav-toggler").checked = false)}
+
         {getAcceptedActionsForUser() > 0 && (
           <div className="fas rounded-full h-5 w-5 bg-green-tint-3 -mt-1 -ml-3 absolute focus:outline-none">
             <div className="mb-2 text-white text-center">
@@ -42,7 +43,7 @@ const MobileKanbanContainer = ({ children, userActions }) => {
           </div>
         )}
       </button>
-    </>
+    </div>
   );
 };
 
