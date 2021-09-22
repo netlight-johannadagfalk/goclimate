@@ -1,6 +1,10 @@
 import React from "react";
 
 const ProgressBar = ({ categories, item, userActions, actions }) => {
+  const categoriesWithMembershipBadge = [
+    ...categories,
+    { id: "-1", name: "Climate Friend" },
+  ];
   const categoryName = (categories) => {
     for (let i = 0; i <= Object.keys(categories).length - 1; i++) {
       if (categories[i].id == item.id) {
@@ -30,7 +34,9 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
             "w-" + completed + "/" + total
           } rounded-lg text-right ${
             "category_" +
-            categoryName(categories).toLowerCase().replace(/ /g, "_") +
+            categoryName(categoriesWithMembershipBadge)
+              .toLowerCase()
+              .replace(/ /g, "_") +
             "_active"
           }`}
         ></div>

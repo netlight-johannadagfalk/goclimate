@@ -28,6 +28,8 @@ class DashboardController < ApplicationController
     @climate_actions_categories = ClimateActionCategory.all
     @climate_user_action = UserClimateAction.all
 
+    @getSubscriptionType = current_user.active_subscription?
+
     # Functions get climate actions
     @get_all_user_climate_actions = ClimateAction.joins(:user_climate_actions)
     .where(["user_climate_actions.user_id = ? and climate_actions.id = user_climate_actions.climate_action_id", current_user.id])

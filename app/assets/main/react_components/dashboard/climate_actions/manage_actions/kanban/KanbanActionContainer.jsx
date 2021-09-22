@@ -20,7 +20,6 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
   const setDeletedAction = useDeletedActionUpdate();
   const setCategoryBadges = useCategoryBadgesUpdate();
   const setCategoryBadgesOnDrag = useCategoryBadgesUpdateOnDrag();
-
   const [isHovering, setIsHovering] = useState(false);
 
   const mounted = useRef(false);
@@ -295,7 +294,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              <div className="h-10">
+              <div className="h-10" style={{ width: 360 }}>
                 <p
                   className={`font-normal text-base text-primary text-lg text-center`}
                 >
