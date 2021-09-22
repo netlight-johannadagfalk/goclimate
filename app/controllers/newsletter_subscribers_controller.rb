@@ -3,20 +3,19 @@
 class NewsletterSubscribersController < ApplicationController
   def create
     params.require(:newsletter_email)
-    params.permit(:logged_in_user_id, :region)
+    params.permit(:newsletter_email, :user_id, :region, :newsletter_type)
     subscriber = NewsletterSubscriber.new(
       email: params[:newsletter_email],
-      logged_in_user_id: params[:logged_in_user_id],
-      region: params[:region]
+      user_id: params[:user_id],
+      region: params[:region],
+      newsletter_type: params[:newsletter_type]
     )
 
-    if subscriber.save
-      head :ok
-    else
-      render(
-        status: :bad_request,
-        json: { error: { message: 'email' } }
-      )
+    unless subscriber.save
+      render(status: :bad_request, json: { status: 400, errors: subscriber.errors })
+      return
     end
+
+    head :ok
   end
 end

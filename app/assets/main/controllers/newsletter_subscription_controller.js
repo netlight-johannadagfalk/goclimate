@@ -22,13 +22,22 @@ export default class NewsletterSubscriptionController extends Controller {
         }
       })
       .catch((error) => {
-        if (error.status === 400) {
-          this.setErrorMessage('Please enter a valid email address.');
-        } else {
-          window.Sentry.captureException(error); // These errors are unexpected, so report them.
-          this.setErrorMessage('An unexpected error occurred. Please start over and try again. If the issue remains, please contact us at hello@goclimate.com.');
-        }
-        this.enableIdleState();
+        error.json()
+          .then((data) => {
+            if (data.status === 400 && data.errors.email.includes('duplicate')) {
+              this.clearEmailField();
+              this.enableSuccessState();
+              return;
+            }
+
+            if (data.status === 400) {
+              this.setErrorMessage('Please enter a valid email address.');
+            } else {
+              window.Sentry.captureException(data); // These errors are unexpected, so report them.
+              this.setErrorMessage('An unexpected error occurred. Please start over and try again. If the issue remains, please contact us at hello@goclimate.com.');
+            }
+            this.enableIdleState();
+          });
       });
   }
 
@@ -38,7 +47,6 @@ export default class NewsletterSubscriptionController extends Controller {
 
   handleSuccess() {
     this.enableSuccessState();
-    setTimeout(() => { this.enableIdleState(); }, 2000);
   }
 
   setErrorMessage(errorMessage) {
@@ -52,16 +60,19 @@ export default class NewsletterSubscriptionController extends Controller {
   }
 
   enableSuccessState() {
-    swapToActiveClassList(this.successIndicatorTarget);
+    swapToActiveClassList(this.successMessageTarget);
+    swapToInactiveClassList(this.formWrapperTarget);
     swapToInactiveClassList(this.idleIndicatorTarget);
     swapToInactiveClassList(this.loadingIndicatorTarget);
   }
 
   enableIdleState() {
     swapToActiveClassList(this.idleIndicatorTarget);
+    swapToInactiveClassList(this.successMessageTarget);
+    swapToActiveClassList(this.formWrapperTarget);
     swapToInactiveClassList(this.loadingIndicatorTarget);
     swapToInactiveClassList(this.successIndicatorTarget);
   }
 }
 
-NewsletterSubscriptionController.targets = ['emailField', 'idleIndicator', 'loadingIndicator', 'successIndicator', 'errorMessage'];
+NewsletterSubscriptionController.targets = ['emailField', 'idleIndicator', 'loadingIndicator', 'successIndicator', 'errorMessage', 'formWrapper', 'successMessage'];
