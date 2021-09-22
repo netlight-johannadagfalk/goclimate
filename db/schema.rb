@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_08_095510) do
+ActiveRecord::Schema.define(version: 2021_09_16_123617) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -415,7 +416,6 @@ ActiveRecord::Schema.define(version: 2021_09_08_095510) do
   add_foreign_key "data_requests", "climate_reports_report_areas", column: "report_area_id"
   add_foreign_key "data_requests", "data_reporters", column: "recipient_id"
   add_foreign_key "invoices", "projects"
-  add_foreign_key "newsletter_subscribers", "users", column: "logged_in_user_id"
   add_foreign_key "price_increase_confirmations", "users"
   add_foreign_key "reported_data", "business_calculators_calculator_fields", column: "calculator_field_id"
   add_foreign_key "reported_data", "data_requests"
