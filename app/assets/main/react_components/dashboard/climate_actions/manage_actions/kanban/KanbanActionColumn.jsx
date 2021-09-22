@@ -65,28 +65,16 @@ const KanbanActionColumn = ({
                 .slice(0, collapsed ? 4 : column.items.length)
                 .map((item, index) => {
                   return (
-                    <div key={item.id + "div"}>
-                      <KanbanActionItem
-                        item={item}
-                        index={index}
-                        key={item.id}
-                        handleDelete={handleDelete}
-                        handleButtonPerformOnDrag={handleButtonPerformOnDrag}
-                        categories={categories}
-                        collapsed={collapsed}
-                        handleExpanded={handleExpanded}
-                      />
-                      <Card
-                        item={item}
-                        index={index}
-                        key={item.id + "card"}
-                        handleDelete={handleDelete}
-                        handleButtonPerformOnDrag={handleButtonPerformOnDrag}
-                        categories={categories}
-                        collapsed={collapsed}
-                        handleExpanded={handleExpanded}
-                      />
-                    </div>
+                    <Card
+                      item={item}
+                      index={index}
+                      key={item.id}
+                      handleDelete={handleDelete}
+                      handleButtonPerformOnDrag={handleButtonPerformOnDrag}
+                      categories={categories}
+                      collapsed={collapsed}
+                      handleExpanded={handleExpanded}
+                    />
                   );
                 })}
               {provided.placeholder}
