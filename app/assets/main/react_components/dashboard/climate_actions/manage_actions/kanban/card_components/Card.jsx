@@ -83,22 +83,28 @@ const Card = ({
                   )
             }
           >
-            {sidebarCollapsed ? ( // Make own component?
-              <div className="flex flex-1 items-center justify-center shadow-md">
-                <div
-                  className={`rounded-full h-16 w-16 bg-cover shadow-lg my-1`}
-                  style={{
-                    backgroundImage: `url('${
-                      isAchievement ? item.badge_image_url : item.image_url
-                    }')`,
-                    backgroundSize: "100%",
-                  }}
-                ></div>
-              </div>
-            ) : (
+            <div
+              className={`${
+                sidebarCollapsed
+                  ? "mx-auto rounded-full h-16 w-16 items-center justify-center bg-contain bg-center shadow-lg -mt-4"
+                  : "flex flex-1 items-center shadow-md ml-3"
+              }`}
+            >
+              <div
+                className={`rounded-full h-16 w-16 bg-cover shadow-lg my-1 z-10`}
+                style={{
+                  backgroundImage: `url('${
+                    isAchievement ? item.badge_image_url : item.image_url
+                  }')`,
+                  backgroundSize: "100%",
+                }}
+              ></div>
+            </div>
+
+            {!sidebarCollapsed && (
               <div>
                 <div
-                  className={`h-20 ${
+                  className={` ${
                     item.expanded && "w-full border-b border-b-gray-tint-2"
                   }`}
                 >
@@ -106,36 +112,19 @@ const Card = ({
                     className="flex flex-row h-14 w-full top-0 mt-6 absolute justify-center"
                     onClick={() => handleExpanded(item, !item.expanded)}
                   >
-                    <div className="flex flex-1 z-10">
-                      <div
-                        className="mx-auto rounded-full h-16 w-16 items-center justify-center bg-contain bg-center shadow-lg -mt-4"
-                        style={{
-                          backgroundImage: `url('${
-                            isAchievement
-                              ? item.badge_image_url
-                              : item.image_url
-                          }')`,
-                          backgroundSize: "100%",
-                        }}
-                      ></div>
+                    <div
+                      className={`flex flex-1 font-bold text-left text-sm mt-1.5 ml-20 ${
+                        isAchievement && "-mt-2"
+                      }`}
+                    >
+                      {item.name}
                     </div>
-                    <div className="flex flex-2 justify-start">
-                      <div
-                        className={`flex flex-1 font-bold text-left text-sm mt-1.5 ${
-                          isAchievement && "-mt-2"
-                        }`}
-                      >
-                        {item.name}
-                      </div>
-                    </div>
-                    <div className="flex flex-1 justify-center items-start">
-                      <button
-                        className={`fas float-right focus:outline-none mt-4 ml-4 ${
-                          item.expanded ? "fa-chevron-up" : "fa-chevron-down"
-                        }`}
-                        onClick={() => handleExpanded(item, !item.expanded)}
-                      ></button>
-                    </div>
+                    <button
+                      className={`fas float-right focus:outline-none mr-4 ${
+                        item.expanded ? "fa-chevron-up" : "fa-chevron-down"
+                      }`}
+                      onClick={() => handleExpanded(item, !item.expanded)}
+                    ></button>
                   </div>
                 </div>
 
@@ -166,6 +155,7 @@ const Card = ({
                 )}
               </div>
             )}
+            {/* // )} */}
           </div>
         );
       }}
