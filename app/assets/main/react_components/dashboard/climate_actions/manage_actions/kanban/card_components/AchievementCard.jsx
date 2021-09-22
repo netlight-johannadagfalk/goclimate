@@ -5,18 +5,16 @@ const AchievementCard = ({
   item,
   categories,
   sidebarCollapsed,
-  handleCompleteAction,
+  handleUncompleteAction,
 }) => {
   return (
     <div>
-      {/* <div className="flex justify-center ml-6 -mt-4"> */}
       <ProgressBar
         categories={categories}
         item={item}
         userActions={item.userActionsArray}
         actions={item.actionsArray}
       />
-      {/* </div> */}
 
       {item.expanded && !sidebarCollapsed && (
         <div className="mb-4 mt-7 ml-7 mr-4">
@@ -42,7 +40,7 @@ const AchievementCard = ({
                       </div>
                       <button
                         className="d:opacity-0 d:group-hover:opacity-50 d:hover:!opacity-100 opacity-50 flex-1 text-lg text-right"
-                        onClick={() => handleCompleteAction(subitem, false)}
+                        onClick={() => handleUncompleteAction(subitem)}
                       >
                         &times;
                       </button>
