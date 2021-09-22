@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLocaleData } from '../../../../../../../../../../../contexts/LocaleContext.js';
+import { calculatePrice } from '../../../../../../../../../../../helpers/result-helper.js';
 import PriceTextV2 from '../../../../../../../common/PriceTextV2.jsx';
 import MembershipDropdown from './components/MembershipDropdown.jsx';
-import { calculatePrice } from '../../../../../../../../../../../helpers/result-helper.js';
 
 const MembershipAlternativeV2 = ({
   selectedMembership,
@@ -45,6 +45,7 @@ const MembershipAlternativeV2 = ({
   return (
     <div className={style}>
       <label htmlFor={type}>
+        <div className="sm:invisible md:visible">
         <div className="h-full m-2 cursor-pointer pb-6">
           <div className="h-4 my-2 text-center font-bold">
             <span>{title}</span>
@@ -83,6 +84,48 @@ const MembershipAlternativeV2 = ({
               onChange={() => setSelectedMembership(type)}
             />
           </div>
+        </div>
+        </div>
+        <div className="sm:visible md:invisible" >
+        <div className="h-full m-2 cursor-pointer pb-6">
+          <div className="h-4 my-2 text-center font-bold">
+            <span>{title}</span>
+          </div>
+          <br></br>
+          <PriceTextV2
+            price={price}
+            grantedReferralCode={grantedReferralCode}
+            selectedMembership={type}
+          />
+          <div className="pl-6">
+            <ul className="list-disc">
+              {Object.keys(sellingPoints).map((point) => (
+                <li className="lg:my-3 text-sm text-left" key={point}>
+                  {sellingPoints[point]}
+                </li>
+              ))}
+            </ul>
+          </div>
+          {type == 'multi' && (
+            <div className="align-center align-bottom w-full">
+              <MembershipDropdown
+                multipleOffsets={multipleOffsets}
+                setMultipleOffsets={setMultipleOffsets}
+              />
+            </div>
+          )}
+          <div className="text-center absolute inset-x-0 pt-5 bottom-0">
+            <input
+              className="flex-shrink-0 mr-2 "
+              type="radio"
+              name="membership"
+              id={type}
+              checked={selectedMembership === type}
+              value={type}
+              onChange={() => setSelectedMembership(type)}
+            />
+          </div>
+        </div>
         </div>
       </label>
     </div>
