@@ -6,21 +6,17 @@ import KanbanActionContainer from "./kanban/KanbanActionContainer.jsx";
 import { t } from "../../../constants";
 
 const ManageActions = ({ categories, userActions }) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
 
   return (
     <>
       {!isTabletOrMobile && (
         <div className="w-full">
-          <Sidebar
-            categories={categories}
-            collapsed={collapsed}
-            setCollapsed={setCollapsed}
-          >
+          <Sidebar categories={categories} sidebarCollapsed={sidebarCollapsed}>
             <KanbanActionContainer
-              setCollapsed={setCollapsed}
-              collapsed={collapsed}
+              setSidebarCollapsed={setSidebarCollapsed}
+              sidebarCollapsed={sidebarCollapsed}
               categories={categories}
             />
           </Sidebar>
@@ -29,8 +25,8 @@ const ManageActions = ({ categories, userActions }) => {
       {isTabletOrMobile && (
         <DropDownKanbanContainer userActions={userActions}>
           <KanbanActionContainer
-            setCollapsed={setCollapsed}
-            collapsed={false}
+            setSidebarCollapsed={setSidebarCollapsed}
+            sidebarCollapsed={false}
             categories={categories}
           />
         </DropDownKanbanContainer>

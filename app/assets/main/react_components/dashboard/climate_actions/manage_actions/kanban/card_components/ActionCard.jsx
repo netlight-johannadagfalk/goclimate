@@ -4,7 +4,7 @@ const ActionCard = ({
   item,
   handleDelete,
   handleButtonPerformOnDrag,
-  collapsed,
+  sidebarCollapsed,
   categoryColor,
 }) => {
   return (
@@ -17,7 +17,7 @@ const ActionCard = ({
         } h-7 w-full rounded-t border-t-gray-tint-2 bg-opacity-60 top-0 absolute`}
       ></div>
 
-      {item.expanded && !collapsed && (
+      {item.expanded && !sidebarCollapsed && (
         <div className="mt-4 mx-6">
           <div className="flex flex-1 flex-col text-center">
             <div className="flex-1 justify-center text-left">

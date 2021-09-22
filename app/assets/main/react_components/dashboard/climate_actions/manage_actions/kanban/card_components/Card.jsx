@@ -9,7 +9,7 @@ const Card = ({
   handleDelete,
   handleButtonPerformOnDrag,
   categories,
-  collapsed,
+  sidebarCollapsed,
   handleExpanded,
 }) => {
   const isAchievement = item.userActionsArray ? true : false;
@@ -29,7 +29,7 @@ const Card = ({
 
   useEffect(() => {
     handleExpanded(item, false);
-  }, [collapsed]);
+  }, [sidebarCollapsed]);
 
   const setStyleWithoutReordering = (style, snapshot) => {
     /** Moving element from accepted column to achieved column */
@@ -64,7 +64,9 @@ const Card = ({
           <div
             id="card"
             className={`rounded-lg h-20 p-0 space-y-3 pt-0 w-80 mb-2 focus:outline-none relative ${
-              collapsed ? "d:w-24" : "t:w-80 border border-gray-tint-2 mx-5"
+              sidebarCollapsed
+                ? "d:w-24"
+                : "t:w-80 border border-gray-tint-2 mx-5"
             }
             
             ${item.expanded ? "h-auto" : "w-24"}`}
@@ -81,7 +83,7 @@ const Card = ({
                   )
             }
           >
-            {collapsed ? (
+            {sidebarCollapsed ? (
               <div className="flex flex-1 items-center justify-center shadow-md">
                 <div
                   className={`rounded-full h-16 w-16 bg-cover shadow-lg my-1`}
@@ -145,7 +147,7 @@ const Card = ({
                     handleDelete={handleDelete}
                     handleButtonPerformOnDrag={handleButtonPerformOnDrag}
                     categories={categories}
-                    collapsed={collapsed}
+                    sidebarCollapsed={sidebarCollapsed}
                     handleExpanded={handleExpanded}
                     categoryColor={categoryColor}
                   ></AchievementCard>
@@ -157,7 +159,7 @@ const Card = ({
                     handleDelete={handleDelete}
                     handleButtonPerformOnDrag={handleButtonPerformOnDrag}
                     categories={categories}
-                    collapsed={collapsed}
+                    sidebarCollapsed={sidebarCollapsed}
                     handleExpanded={handleExpanded}
                     categoryColor={categoryColor}
                   ></ActionCard>

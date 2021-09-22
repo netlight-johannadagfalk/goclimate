@@ -4,7 +4,7 @@ import ProgressBar from "../ProgressBar.jsx";
 const AchievementCard = ({
   item,
   categories,
-  collapsed,
+  sidebarCollapsed,
   handleButtonPerformOnDrag,
 }) => {
   return (
@@ -18,7 +18,7 @@ const AchievementCard = ({
       />
       {/* </div> */}
 
-      {item.expanded && !collapsed && (
+      {item.expanded && !sidebarCollapsed && (
         <div className="mb-4 mt-7 ml-7 mr-4">
           <div>
             {/* Map through both arrays in categoryBadge. All actions in the category should be rendered in a list, but those userActions that are performed should be highlighted */}
