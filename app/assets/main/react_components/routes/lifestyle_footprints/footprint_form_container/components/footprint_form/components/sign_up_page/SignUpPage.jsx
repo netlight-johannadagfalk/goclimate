@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useTexts } from '../../../../../contexts/TextsContext.js';
+import React, { useEffect, useState } from 'react';
 import { useLocaleData } from '../../../../../contexts/LocaleContext.js';
+import { useTexts } from '../../../../../contexts/TextsContext.js';
 import { useVersion } from '../../../../../contexts/VersionContext.js';
-import MembershipPage from './components/membership_page/MembershipPage.jsx';
-import RegistrationPage from './components/registration_page/RegistrationPage.jsx';
+import { calculatePrice } from '../../../../../helpers/result-helper.js';
+import Link from '../../../common/Link.jsx';
 import AnswerButton from '../common/AnswerButton.jsx';
 import FormInformationSection from './components/form_information_section/FormInformationSection.jsx';
-import Link from '../../../common/Link.jsx';
-import { calculatePrice } from '../../../../../helpers/result-helper.js';
+import MembershipPage from './components/membership_page/MembershipPage.jsx';
+import RegistrationPage from './components/registration_page/RegistrationPage.jsx';
 
 const SignUpPage = ({ result, page, onPageChange }) => {
   const [selectedMembership, setSelectedMembership] = useState('single');
@@ -71,7 +71,7 @@ const SignUpPage = ({ result, page, onPageChange }) => {
       {page !== 3 && (
         <div className="mt-8">
           <AnswerButton
-            label={page === 2 ? continue_to_payment : next}
+            label={page === 2 && selectedMembership !== 'free' ? continue_to_payment : next}
             onAnswerGiven={onPageChange}
             stylingClasses={'w-2/3 ' + (page === 2 && 'button-cta')}
           />
