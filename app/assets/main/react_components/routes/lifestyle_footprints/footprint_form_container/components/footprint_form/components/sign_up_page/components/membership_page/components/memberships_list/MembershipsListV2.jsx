@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTexts } from '../../../../../../../../../contexts/TextsContext.js';
-import MembershipAlternativeV2 from './components/membership_alternative/MembershipAlternativeV2.jsx';
 import Title from '../../../../../common/Title.jsx';
+import MembershipAlternativeV2 from './components/membership_alternative/MembershipAlternativeV2.jsx';
 
 const MembershipsListV2 = ({
   selectedMembership,
@@ -13,7 +13,10 @@ const MembershipsListV2 = ({
 }) => {
   const {
     reactContentText: {
-      memberships_v2: { free, single, multi, title },
+      memberships_v2: {
+        mobile,
+        desktop: { free, single, multi, title },
+      },
     },
   } = useTexts();
 
@@ -25,6 +28,7 @@ const MembershipsListV2 = ({
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}
           type="free"
+          mobile={mobile.free}
           title={free.title}
           sellingPoints={free.selling_points}
           multipleOffsets={multipleOffsets}
@@ -36,6 +40,7 @@ const MembershipsListV2 = ({
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}
           type="single"
+          mobile={mobile.single}
           title={single.title}
           sellingPoints={single.selling_points}
           multipleOffsets={multipleOffsets}
@@ -47,6 +52,7 @@ const MembershipsListV2 = ({
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}
           type="multi"
+          mobile={mobile.multi}
           title={multi.title}
           sellingPoints={multi.selling_points}
           multipleOffsets={multipleOffsets}

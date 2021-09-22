@@ -4,7 +4,7 @@ import { calculatePrice } from '../../../../../../../../../../../helpers/result-
 import PriceTextV2 from '../../../../../../../common/PriceTextV2.jsx';
 import MembershipDropdown from './components/MembershipDropdown.jsx';
 
-const MembershipAlternativeV2 = ({
+const MembershipAlternativeV2Mobile = ({
   selectedMembership,
   setSelectedMembership,
   type,
@@ -132,4 +132,4 @@ const MembershipAlternativeV2 = ({
   );
 };
 
-export default MembershipAlternativeV2;
+export default MembershipAlternativeV2Mobile;
