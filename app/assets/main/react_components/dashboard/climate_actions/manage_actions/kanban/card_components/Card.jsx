@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import ActionCard from "./ActionCard.jsx";
+import UserActionCard from "./UserActionCard.jsx";
 import AchievementCard from "./AchievementCard.jsx";
 
 const Card = ({
@@ -153,7 +153,7 @@ const Card = ({
                     categoryColor={categoryColor}
                   ></AchievementCard>
                 ) : (
-                  <ActionCard
+                  <UserActionCard
                     userAction={item}
                     index={index}
                     key={item.id}
@@ -163,7 +163,7 @@ const Card = ({
                     sidebarCollapsed={sidebarCollapsed}
                     handleExpanded={handleExpanded}
                     categoryColor={categoryColor}
-                  ></ActionCard>
+                  ></UserActionCard>
                 )}
               </div>
             )}

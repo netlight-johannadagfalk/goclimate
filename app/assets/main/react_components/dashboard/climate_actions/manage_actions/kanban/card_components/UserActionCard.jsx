@@ -1,6 +1,6 @@
 import React from "react";
 
-const ActionCard = ({
+const UserActionCard = ({
   userAction,
   handleDelete,
   handleCompleteAction,
@@ -45,4 +45,4 @@ const ActionCard = ({
   );
 };
 
-export default ActionCard;
+export default UserActionCard;
