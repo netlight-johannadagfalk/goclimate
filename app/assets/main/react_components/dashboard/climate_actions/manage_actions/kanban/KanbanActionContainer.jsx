@@ -125,97 +125,96 @@ const KanbanActionContainer = ({
     return orderBy(performedActions, ["status"], ["desc"]);
   };
 
-  const handleCompleteAction = (movedItem, perform) => {
+  const handleCompleteAction = (movedItem) => {
     //Move items in kanban through buttons instead of drag and drop
-    if (perform) {
-      //Button for performing an action
-      const sourceColumn = columns[1];
-      const destColumn = columns[2];
-      const sourceItems = [...sourceColumn.items];
-      //Updade status both locally and DB needs to happen before the filtering through status below
-      updateStatus(movedItem.id, true);
-      movedItem.status = true;
-      //Filter out moved item from first column by local status.
-      const filteredSourceItems = sourceItems.filter(
-        (item) => item.status === false
-      );
-      //Add moved item to second column. Helpfunction in context desides if new categoryBadge should be created or just change status and color on subitem
-      const destItems = setCategoryBadgesOnDrag(movedItem, destColumn.items);
-      const sortedDestItems = destItems.map((category) => {
-        return {
-          ...category,
-          userActionsArray: sortActionsBasedOnStatus(category.userActionsArray),
-        };
-      });
-      setCategoryBadges([...sortedDestItems]);
-      const newSortedDestItems = orderBadgesOnItemDragged(
-        sortedDestItems,
-        movedItem
-      );
-      //Function to get performed useraction from categoryBadges
-      let performedUserActions =
-        collectPerformedUserActions(newSortedDestItems);
-      setUserActions([...sourceItems, ...performedUserActions]);
+    //Button for performing an action
+    const sourceColumn = columns[1];
+    const destColumn = columns[2];
+    const sourceItems = [...sourceColumn.items];
+    //Updade status both locally and DB needs to happen before the filtering through status below
+    updateStatus(movedItem.id, true);
+    movedItem.status = true;
+    //Filter out moved item from first column by local status.
+    const filteredSourceItems = sourceItems.filter(
+      (item) => item.status === false
+    );
+    //Add moved item to second column. Helpfunction in context desides if new categoryBadge should be created or just change status and color on subitem
+    const destItems = setCategoryBadgesOnDrag(movedItem, destColumn.items);
+    const sortedDestItems = destItems.map((category) => {
+      return {
+        ...category,
+        userActionsArray: sortActionsBasedOnStatus(category.userActionsArray),
+      };
+    });
+    setCategoryBadges([...sortedDestItems]);
+    const newSortedDestItems = orderBadgesOnItemDragged(
+      sortedDestItems,
+      movedItem
+    );
+    //Function to get performed useraction from categoryBadges
+    let performedUserActions = collectPerformedUserActions(newSortedDestItems);
+    setUserActions([...sourceItems, ...performedUserActions]);
 
-      setColumns({
-        ...columns,
-        [1]: {
-          ...sourceColumn,
-          items: filteredSourceItems,
-        },
-        [2]: {
-          ...destColumn,
-          items: newSortedDestItems,
-        },
-      });
-    } else {
-      /** Button for unperform */
-      const sourceColumn = columns[2];
-      const destColumn = columns[1];
-      const sourceItems = [...sourceColumn.items];
-      const destItems = [...destColumn.items];
-      //When we unperform a subitem within a categoryBadge we "create" a new userAction card, which needs an id as string
-      movedItem.id = movedItem.id.toString();
-      //We add the card in the end of the list
-      const destIndex = destItems.length;
-      destItems.splice(destIndex, 0, movedItem);
-      //change the local status and in DB
-      movedItem.status = false;
-      updateStatus(movedItem.id, false);
-      //Change the status of the subitem so that color can depend the categoryBadge
-      const newSourceItems = sourceItems.map((category) => {
-        return {
-          ...category,
-          userActionsArray: category.userActionsArray.map((item) => {
-            return item.id == movedItem.id ? { ...item, status: false } : item;
-          }),
-        };
-      });
+    setColumns({
+      ...columns,
+      [1]: {
+        ...sourceColumn,
+        items: filteredSourceItems,
+      },
+      [2]: {
+        ...destColumn,
+        items: newSortedDestItems,
+      },
+    });
+  };
 
-      const sortedSourceItems = newSourceItems.map((category) => {
-        return {
-          ...category,
-          userActionsArray: sortActionsBasedOnStatus(category.userActionsArray),
-        };
-      });
-      //Check if categoryBadge has any subitem with status true, else delete the categoryBadge
-      const checkDelete = sortedSourceItems.filter((category) => {
-        return category.userActionsArray.some((item) => item.status === true);
-      });
-      setCategoryBadges([...checkDelete]);
-      setUserActions([...destItems]);
-      setColumns({
-        ...columns,
-        [1]: {
-          ...destColumn,
-          items: destItems,
-        },
-        [2]: {
-          ...sourceColumn,
-          items: checkDelete,
-        },
-      });
-    }
+  const handleUncompleteAction = (movedItem) => {
+    /** Button for unperform */
+    const sourceColumn = columns[2];
+    const destColumn = columns[1];
+    const sourceItems = [...sourceColumn.items];
+    const destItems = [...destColumn.items];
+    //When we unperform a subitem within a categoryBadge we "create" a new userAction card, which needs an id as string
+    movedItem.id = movedItem.id.toString();
+    //We add the card in the end of the list
+    const destIndex = destItems.length;
+    destItems.splice(destIndex, 0, movedItem);
+    //change the local status and in DB
+    movedItem.status = false;
+    updateStatus(movedItem.id, false);
+    //Change the status of the subitem so that color can depend the categoryBadge
+    const newSourceItems = sourceItems.map((category) => {
+      return {
+        ...category,
+        userActionsArray: category.userActionsArray.map((item) => {
+          return item.id == movedItem.id ? { ...item, status: false } : item;
+        }),
+      };
+    });
+
+    const sortedSourceItems = newSourceItems.map((category) => {
+      return {
+        ...category,
+        userActionsArray: sortActionsBasedOnStatus(category.userActionsArray),
+      };
+    });
+    //Check if categoryBadge has any subitem with status true, else delete the categoryBadge
+    const checkDelete = sortedSourceItems.filter((category) => {
+      return category.userActionsArray.some((item) => item.status === true);
+    });
+    setCategoryBadges([...checkDelete]);
+    setUserActions([...destItems]);
+    setColumns({
+      ...columns,
+      [1]: {
+        ...destColumn,
+        items: destItems,
+      },
+      [2]: {
+        ...sourceColumn,
+        items: checkDelete,
+      },
+    });
   };
 
   const orderBadgesOnItemDragged = (performedCategories, movedItem) => {
@@ -311,6 +310,7 @@ const KanbanActionContainer = ({
                 key={columnId}
                 handleDelete={handleDelete}
                 handleCompleteAction={handleCompleteAction}
+                handleUncompleteAction={handleUncompleteAction}
                 categories={categories}
                 setSidebarCollapsed={setSidebarCollapsed}
                 sidebarCollapsed={sidebarCollapsed}

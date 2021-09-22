@@ -8,6 +8,7 @@ const Card = ({
   index,
   handleDelete,
   handleCompleteAction,
+  handleUncompleteAction,
   categories,
   sidebarCollapsed,
   handleExpanded,
@@ -145,7 +146,7 @@ const Card = ({
                     index={index}
                     key={item.id}
                     handleDelete={handleDelete}
-                    handleCompleteAction={handleCompleteAction}
+                    handleUncompleteAction={handleUncompleteAction}
                     categories={categories}
                     sidebarCollapsed={sidebarCollapsed}
                     handleExpanded={handleExpanded}
