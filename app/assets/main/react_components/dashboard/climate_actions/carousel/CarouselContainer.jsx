@@ -16,8 +16,7 @@ const CarouselContainer = ({
   actionsToplist,
 }) => {
   const [allCategories, setAllCategories] = useState(true);
-
-  const [toplist, setToplist] = useState(false);
+  const [popular, setPopular] = useState(false);
   const category = useCategory();
   const totClimateActions = useClimateActionsOriginal();
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${d})` });
@@ -35,8 +34,10 @@ const CarouselContainer = ({
         {isTabletOrMobile ? (
           <CarouselCategoryButton
             categories={categories}
+            setPopular={setPopular}
             setAllCategories={setAllCategories}
             localUserActions={localUserActions}
+            actionsToplist={actionsToplist}
           ></CarouselCategoryButton>
         ) : (
           <>
@@ -44,15 +45,15 @@ const CarouselContainer = ({
               categoryName={"All categories"}
               categoryID={"allCategories"}
               active={allCategories}
-              setToplist={setToplist}
+              setPopular={setPopular}
               setAllCategories={setAllCategories}
               localUserActions={localUserActions}
             />
             <CarouselCategoryButton
-              categoryName={"Toplist"}
-              categoryID={"toplist"}
-              active={toplist}
-              setToplist={setToplist}
+              categoryName={"Popular"}
+              categoryID={"popular"}
+              active={popular}
+              setPopular={setPopular}
               setAllCategories={setAllCategories}
               localUserActions={localUserActions}
               actionsToplist={actionsToplist}
@@ -65,7 +66,7 @@ const CarouselContainer = ({
                     categoryName={cat.name}
                     categoryID={cat.id}
                     active={category === cat.id ? true : false}
-                    setToplist={setToplist}
+                    setPopular={setPopular}
                     setAllCategories={setAllCategories}
                     localUserActions={localUserActions}
                   />

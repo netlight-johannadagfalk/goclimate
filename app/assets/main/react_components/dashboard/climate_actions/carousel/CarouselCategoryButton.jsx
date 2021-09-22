@@ -17,14 +17,17 @@ const CarouselCategoryButton = ({
   categories,
   localUserActions,
   actionsToplist,
-  setToplist,
+  setPopular,
 }) => {
   const setCategory = useCategoryUpdate();
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
   const userActions = useUserActions();
 
-  let options = [{ value: null, label: "All categories" }];
+  let options = [
+    { value: "allCategories", label: "All categories" },
+    { value: "popular", label: "Popular" },
+  ];
 
   const createOptions = () =>
     categories.map((cat) => {
@@ -34,30 +37,28 @@ const CarouselCategoryButton = ({
 
   const handleCategory = (categoryID) => {
     let filteredActions = [];
-    if (categoryID === "toplist") {
+    if (categoryID === "popular") {
       categoryClick(true, false);
-      setCategory();
-      filteredActions = actionsToplist;
+      filteredActions = actionsToplist.slice(0, 5);
     } else if (categoryID === "allCategories") {
       categoryClick(false, true);
-      setCategory();
       filteredActions = totClimateActions;
     } else {
-      categoryClick(false, false);
-      setCategory(categoryID);
+      categoryClick(false, false, categoryID);
       filteredActions = totClimateActions.filter(
         (temp) => temp.climate_action_category_id === categoryID
       );
     }
-    updateCategoryWithAcceptedAndTotal(filteredActions);
+    updateCategoryAttributes(filteredActions);
   };
 
-  const categoryClick = (toplistValue, allCategoriesValue) => {
-    setToplist(toplistValue);
+  const categoryClick = (popularValue, allCategoriesValue, categoryID) => {
+    setPopular(popularValue);
     setAllCategories(allCategoriesValue);
+    categoryID ? setCategory(categoryID) : setCategory();
   };
 
-  const updateCategoryWithAcceptedAndTotal = (filteredActions) => {
+  const updateCategoryAttributes = (filteredActions) => {
     const filteredActionsWithStatus = filteredActions.map((action) => {
       return userActions.some(
         (userAction) => userAction.climate_action_id === action.id
