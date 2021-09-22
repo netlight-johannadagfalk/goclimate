@@ -25,7 +25,7 @@
 </div>
 <p>
   <% footprint_text_options = {
-      footprint: @footprint.total.to_s(precision: :auto),
+      footprint: @footprint.total.to_s(unit: :tonnes),
       relative:
         if @footprint.total > @country_average.co2e
           "#{((@footprint.total.co2e.to_f / @country_average.co2e.co2e - 1) * 100).ceil} % #{t 'views.registrations.higher'}"
@@ -40,9 +40,3 @@
     <%= t("views.registrations.your_climate_footprint", **footprint_text_options) %>
   <% end %>
 </p>
-<% if experiment_active?(:impact) %>
-  <p class="font-bold">
-    <%= t("views.registrations.impact_test") %>
-  </p>
-<% end %>
-

@@ -47,6 +47,7 @@ class BusinessContact
       ("Name: #{name}" if name.present?),
       ("Company: #{company}" if company.present?),
       ("Phone: #{phone}" if phone.present?),
+      "Email: #{email}",
       ("Contact me via: #{preferred_contact_method}" if preferred_contact_method.present?),
       "Locale used on web: #{locale}"
     ].compact.join("\n")

@@ -11,40 +11,40 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, :maxlength => 40, class: 'form-control'  %>
+  <div class="flex flex-col">
+    <%= form.label :name, class: 'font-bold' %>
+    <%= form.text_field :name, :maxlength => 40, class: 'input'  %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :description %>
-    <%= form.text_field :description, :maxlength => 200, class: 'form-control' %>
+  <div class="flex flex-col">
+    <%= form.label :description, class: 'font-bold'  %>
+    <%= form.text_field :description, :maxlength => 200, class: 'input' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :points %>
-    <%= form.number_field :points, class: 'form-control'  %>
+  <div class="flex flex-col">
+    <%= form.label :points, class: 'font-bold'  %>
+    <%= form.number_field :points, class: 'input'  %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :image_url %>
-    <%= form.text_field :image_url, class: 'form-control'%>
+  <div class="flex flex-col">
+    <%= form.label :image_url, class: 'font-bold'  %>
+    <%= form.text_field :image_url, class: 'input'%>
   </div>
 
-  <div class="form-group">
-    <%= form.label :repeatable %>
+  <div class="flex flex-col">
+    <%= form.label :repeatable, class: 'font-bold'  %>
     <%= form.check_box :repeatable %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :action_of_the_month %>
+  <div class="flex flex-col">
+    <%= form.label :action_of_the_month, class: 'font-bold'  %>
     <%= form.check_box :action_of_the_month%>
   </div>
 
-<div class="form-group">
-    <%= form.label :climate_action_category_id %>
-    <%= form.collection_select :climate_action_category_id, ClimateActionCategory.all , :id, :name, class: 'form-control'%>
+<div class="flex flex-col">
+    <%= form.label :climate_action_category_id, class: 'font-bold'  %>
+    <%= form.collection_select :climate_action_category_id, ClimateActionCategory.all , :id, :name%>
   </div>
 
-  <%= form.submit class: 'btn btn-primary' %>
+  <%= form.submit class: 'button button-cta mt-10' %>
 <% end %>

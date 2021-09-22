@@ -6,7 +6,7 @@ class FlightFootprintsController < ApplicationController
 
   def create
     render json: {
-      footprint: footprint.footprint.to_s(precision: :auto),
+      footprint: footprint.footprint.to_s(unit: :tonnes),
       price: footprint.footprint.consumer_price(current_region.currency).to_s,
       offset_path: new_flight_offset_path(offset_params: offset_params, num_persons: params[:num_persons])
     }

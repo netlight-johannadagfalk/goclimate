@@ -16,14 +16,14 @@ const MobileKanbanContainer = ({ children, userActions }) => {
   return (
     <>
       <div
-        className={`fixed top-20 z-30 bg-white w-full overflow-hidden ${
+        className={`fixed top-16 z-30 bg-white w-full overflow-hidden ${
           showMobileKanban ? "h-screen" : "h-0"
         } transition-size duration-500`}
       >
         {children}
       </div>
       <button
-        className="fixed top-0 right-0 mr-20 mt-6 lg:mr-48 lg:right-10 t:mr-17 t:right-3 z-50 outline-none 
+        className="fixed top-0 right-0 mr-20 mt-4 lg:mr-48 lg:right-10 t:mr-17 t:right-3 z-50 outline-none 
         focus:outline-none"
         onClick={() => setShowMobileKanban(!showMobileKanban)}
       >

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User < ApplicationRecord
+class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :subscription_months, class_name: 'Subscriptions::SubscriptionMonth'
   belongs_to :referred_from, class_name: 'Subscriptions::ReferralCode', optional: true
   has_many :user_climate_actions
+  has_many :flight_offsets
+
+  validates :email, format: { with: /\A[a-z0-9+\-_.]+@[a-z\d\-.]+\.[a-z]{2,6}\z/i }
   validates :user_name, format: { without: /.+@.+\..+/ }, allow_blank: true
 
   attribute :region, :region
@@ -17,6 +20,14 @@ class User < ApplicationRecord
   # accessor and validator of :privacy_policy are only here for client side validation via the ClientSideValidations gem
   validates :privacy_policy, acceptance: true
   attr_accessor :privacy_policy
+
+  after_update :update_email_in_stripe
+
+  DEACTIVATED_ACCOUNT_EMAIL_ENDING = '@deactivated.goclimate.com'
+
+  def self.search_email(query, limit = 30)
+    where('email LIKE ?', "%#{sanitize_sql_like(query.downcase)}%").limit(limit)
+  end
 
   def stripe_customer
     @stripe_customer ||=
@@ -34,6 +45,8 @@ class User < ApplicationRecord
   end
 
   def subscription_amount
+    return 0 unless active_subscription?
+
     stripe_customer.subscriptions.first.plan.amount.to_f / 100
   end
 
@@ -94,10 +107,13 @@ class User < ApplicationRecord
   end
 
   def active_subscription?
+    return false if stripe_customer.deleted?
+
     stripe_customer.subscriptions&.any?
   end
 
   def current_plan
+    return nil unless active_subscription?
     return nil unless (plan = stripe_customer.subscriptions.first&.plan)
 
     @current_plan ||= Subscriptions::Plan.from_stripe_plan(plan)
@@ -115,6 +131,12 @@ class User < ApplicationRecord
     current_plan.price
   end
 
+  def subscription_billing_date
+    return nil unless active_subscription?
+
+    Time.at(stripe_customer.subscriptions.first&.billing_cycle_anchor)
+  end
+
   def footprint_coverage
     return nil unless active_subscription?
 
@@ -128,9 +150,73 @@ class User < ApplicationRecord
     last_card_charge.created_at < (Date.today - 3.months)
   end
 
+  def deactivated?
+    email.include?(DEACTIVATED_ACCOUNT_EMAIL_ENDING)
+  end
+
+  def deactivate
+    handle_errors_and_return_status do
+      raise(StandardError::ArgumentError, 'User is already deactivated') if deactivated?
+
+      if active_subscription?
+        subscription_manager = Subscriptions::StripeSubscriptionManager.new(self)
+        subscription_manager.cancel
+      end
+
+      new_email = "#{Date.today.strftime('%Y-%m-%d')}_#{SecureRandom.hex(3)}#{DEACTIVATED_ACCOUNT_EMAIL_ENDING}"
+
+      Stripe::Customer.update(
+        stripe_customer.id,
+        email: new_email,
+        name: nil,
+        phone: nil,
+        shipping: nil
+      )
+
+      update(
+        user_name: nil,
+        country: nil,
+        email: new_email,
+        password: SecureRandom.hex(20)
+      )
+    end
+  end
+
+  def flight_offsets?
+    flight_offsets.present?
+  end
+
   private
+
+  def update_email_in_stripe
+    return unless errors.blank? && saved_change_to_attribute?('email')
+
+    begin
+      Stripe::Customer.update(
+        stripe_customer.id,
+        email: email
+      )
+    rescue Stripe::InvalidRequestError => e
+      logger.error(e)
+      Raven.capture_exception(e)
+    end
+  end
 
   def subscription_end_at_from_stripe(stripe_subscription)
     Time.at(stripe_subscription.ended_at) if stripe_subscription.ended_at.present?
+  end
+
+  def handle_errors_and_return_status
+    yield
+
+    true
+  rescue Stripe::InvalidRequestError => e
+    errors.add(e.code&.to_sym || :generic, e.message || e.to_s)
+
+    false
+  rescue StandardError => e
+    errors.add(:base, e.to_s)
+
+    false
   end
 end

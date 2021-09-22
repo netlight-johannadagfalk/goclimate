@@ -1,54 +1,59 @@
-<%= render 'admin/shared/notice_banner' %>
+<div class="space-y-6">
+  <%= render 'admin/shared/notice_banner' %>
 
-<h1>Climate Report</h1>
+  <%= render 'admin/shared/content_header', heading: 'Climate report', actions: [
+      {
+        title: 'Edit',
+        path: edit_admin_climate_report_path(@report),
+        class: 'button-cta'
+      }
+    ] %>
 
-<dl class="dl-horizontal">
-  <dt>See results:</dt>
-  <dd>
-    <%= link_to 'Reported data', admin_reported_datas_path(report_id: @report.id) %>
-    (<%= ReportedData.all_latest_from_report(@report).length %> questions answered out of
-    <%= @report.number_of_questions %>)
-  </dd>
-
-  <dt>Title:</dt>
-  <dd><%= @report.title %></dd>
-  
-  <dt>Updated:</dt>
-  <dd><%= time_tag(@report.updated_at) %></dd>
-
-  <dt>Organization:</dt>
-  <dd><%= @report.organization.name %></dd>
-
-  <dt>Reporting period:</dt>
-  <dd><%= @report.reporting_period %></dd>
-
-  <dt>Report areas:</dt>
-  <% @report.areas.each do |area| %>
-    <dd style="padding-bottom: 1em">
-      <% calculator = BusinessCalculators::Calculator.find(area.calculator_id) %>
-      <strong><%= area.title %></strong> &mdash; Calculator <%= link_to calculator.name, admin_business_calculator_path(calculator) %>
-      <div style="padding-left: 1em">
-        <p>
-          <% number_of_questions = area.number_of_questions
-            number_of_answered_questions = area.number_of_answered_questions
-            %>
-          <%= "✅" if number_of_answered_questions == number_of_questions %>
-          <%= number_of_answered_questions %>/<%= number_of_questions %>
-          questions answered
-          &nbsp; <%= link_to 'See answers', admin_reported_datas_path(report_area_id: area.id) %>
-        </p>
-        <% data_requests = DataRequest.where(report_area_id: area.id) %>
-        <% data_reporters = DataReporter.joins(:data_requests).where("data_requests.report_area_id = #{area.id}").distinct %>
-        Data reporters (<%= data_reporters.count %>) &nbsp;
-        <%= link_to 'See all requests', admin_data_requests_path(report_area_id: area.id) %> &nbsp;
-        <%= link_to '+ New data request', new_admin_data_request_path(area: area), class: 'btn btn-default' %>
-      </div>
+  <dl class="dl-horizontal">
+    <dt>See results:</dt>
+    <dd>
+      <%= link_to 'Reported data', admin_reported_datas_path(report_id: @report.id), class: 'link' %>
+      (<%= @report.number_of_answered_questions %> questions answered out of
+      <%= @report.number_of_questions %>)
     </dd>
-  <% end %>
-</dl>
 
-<hr>
+    <dt>Title:</dt>
+    <dd><%= @report.title %></dd>
+    
+    <dt>Updated:</dt>
+    <dd><%= time_tag(@report.updated_at) %></dd>
 
-<%= link_to 'Edit', edit_admin_climate_report_path(@report), class: 'btn btn-default' %>
-<%= link_to 'Preview form', preview_admin_climate_report_path(@report), class: 'btn btn-default' %>
-<%= link_to 'All reports', admin_climate_reports_path, class: 'btn btn-link' %>
+    <dt>Organization:</dt>
+    <dd><%= @report.organization.name %></dd>
+
+    <dt>Reporting period:</dt>
+    <dd><%= @report.reporting_period %></dd>
+
+    <dt>Report areas:</dt>
+    <% @report.areas.each do |area| %>
+      <dd style="padding-bottom: 1em">
+        <% calculator = BusinessCalculators::Calculator.find(area.calculator_id) %>
+        <strong><%= area.title %></strong> &mdash; Calculator <%= link_to calculator.name, admin_business_calculator_path(calculator), class: 'link-ui text-green-shade-2' %>
+        <div style="padding-left: 1em">
+          <p>
+            <% number_of_questions = area.number_of_questions
+              number_of_answered_questions = area.number_of_answered_questions
+              %>
+            <%= "✅" if number_of_answered_questions == number_of_questions %>
+            <%= number_of_answered_questions %>/<%= number_of_questions %>
+            questions answered
+            &nbsp; <%= link_to 'See answers', admin_reported_datas_path(report_area_id: area.id), class: 'link-ui text-green-shade-2' %>
+          </p>
+          <% data_requests = DataRequest.where(report_area_id: area.id) %>
+          <% data_reporters = DataReporter.joins(:data_requests).where("data_requests.report_area_id = #{area.id}").distinct %>
+          Data reporters (<%= data_reporters.count %>) &nbsp;
+          <%= link_to 'See all requests', admin_data_requests_path(report_area_id: area.id), class: 'link-ui text-green-shade-2' %> &nbsp;
+          <%= link_to '+ New data request', new_admin_data_request_path(area: area), class: 'button' %>
+        </div>
+      </dd>
+    <% end %>
+  </dl>
+</div>
+
+
+

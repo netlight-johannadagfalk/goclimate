@@ -1,28 +1,31 @@
-<%= render 'admin/shared/notice_banner' %>
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
 
-<h1>API Key</h1>
+  <%= render 'admin/shared/content_header', heading: 'API Key', actions: [
+      {
+        title: 'Edit',
+        path: edit_admin_api_key_path(@api_key),
+        class: 'button-cta'
+      }
+    ] %>
 
-<dl class="dl-horizontal">
-  <dt>Created:</dt>
-  <dd><%= time_tag(@api_key.created_at) %></dd>
+  <dl class="dl-horizontal">
+    <dt>Created:</dt>
+    <dd><%= time_tag(@api_key.created_at) %></dd>
 
-  <dt>Key:</dt>
-  <dd><code><%= @api_key.key %></code></dd>
+    <dt>Key:</dt>
+    <dd><code><%= @api_key.key %></code></dd>
 
-  <dt>Name:</dt>
-  <dd><%= @api_key.name %></dd>
+    <dt>Name:</dt>
+    <dd><%= @api_key.name %></dd>
 
-  <dt>Usage description:</dt>
-  <dd><%= @api_key.usage_description %></dd>
+    <dt>Usage description:</dt>
+    <dd><%= @api_key.usage_description %></dd>
 
-  <dt>Contact name:</dt>
-  <dd><%= @api_key.contact_name %></dd>
+    <dt>Contact name:</dt>
+    <dd><%= @api_key.contact_name %></dd>
 
-  <dt>Contact email:</dt>
-  <dd><%= @api_key.contact_email %></dd>
-</dl>
-
-<hr>
-
-<%= link_to 'Edit', edit_admin_api_key_path(@api_key), class: 'btn btn-default' %>
-<%= link_to 'Back', admin_api_keys_path, class: 'btn btn-link' %>
+    <dt>Contact email:</dt>
+    <dd><%= @api_key.contact_email %></dd>
+  </dl>
+</div>

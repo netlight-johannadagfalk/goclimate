@@ -1,49 +1,78 @@
-<%= render 'admin/shared/notice_banner' %>
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
 
-<h1>Reported data</h1>
-<% if @report %>
-  <h3>For report: <%= link_to @report.title, [:admin, @report] %></h3>
-<% end %>
-<% if @report_area %>
-  <h3>For report area: <%= link_to @report_area.title, [:admin, @report_area.report] %></h3>
-<% end %>
-<% if @report || @report_area %>
-  <p>Showing the latest answer for each question.</p>
-<% end %>
+  <%= render 'admin/shared/content_header', heading: 'Reported data', actions: [
+    {
+      title: 'Export data to .csv',
+      path: export_to_csv_admin_reported_datas_path(params.permit(:report_id, :report_area_id)),
+      class: 'button-cta'
+    }
+  ] %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Report area</th>
-      <th>Question</th>
-      <th>Answer</th>
-      <th>Unit</th>
-      <% unless @report %>
-        <th>Report</th>
-      <% end %>
-      <th>Created at</th>
-      <th></th>
-    </tr>
-  </thead>
+  <% if @report %>
+    <h3 class="heading">For report: <%= link_to @report.title, [:admin, @report], class: 'link' %></h3>
+  <% end %>
+  <% if @report_area %>
+    <h3 class="heading">For report area: <%= link_to @report_area.title, [:admin, @report_area.report], class: 'link' %></h3>
+  <% end %>
 
-  <tbody>
-    <% @reported_datas&.each do |data| %>
-      <tr>
-        <td><%= data[:report_area].title %></td>
-        <td><%= data[:reported_data].calculator_field.label %></td>
-        <td><%= data[:reported_data].value %></td>
-        <td><%= data[:reported_data].unit %></td>
-        <% unless @report %>
-          <td><%= link_to data[:report].title, admin_reported_datas_path(report_id: data[:report].id) %></td>
+  <% if @report || @report_area %>
+    <h4 class="font-bold">Unanswered questions</h4>
+    <ul class="list-bullet">
+      <% @report_area&.fields&.each do |field| %>
+        <% unless field.answers?(@report_area) %>
+          <li><%= field.label %></li>
         <% end %>
-        <td><%= time_tag(data[:reported_data].created_at, format: '%F %R') %></td>
-        <td class="admin-actions">
-          <%= link_to 'Show', admin_reported_data_path(data[:reported_data]) %> &nbsp;
-          <%= link_to 'Destroy', admin_reported_data_path(data[:reported_data]), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+      <% @report&.areas&.each do |area| %>
+        <% area&.fields&.each do |field| %>
+          <% unless field.answers?(area) %>
+            <li><%= field.label %></li>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
 
-<%= link_to 'Export data to .csv', export_to_csv_admin_reported_datas_path(params.permit(:report_id, :report_area_id)), class: 'btn btn-default' %>
+  <table class="table">
+    <thead>
+      <tr>
+        <% unless @report_area %>
+          <th>Report area</th>
+        <% end %>
+        <% unless @report %>
+          <th>Report</th>
+        <% end %>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>Unit</th>
+        <th>Multiple answers allowed</th>
+        <th>Created at</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @reported_datas&.each do |data| %>
+        <tr>
+          <% unless @report_area %>
+            <td><%= data[:report_area].title %></td>
+          <% end %>
+          <% unless @report %>
+            <td><%= link_to data[:report].title, admin_reported_datas_path(report_id: data[:report].id), class: 'link-ui text-green-shade-2' %></td>
+          <% end %>
+          <td><%= data[:reported_data].calculator_field.label %></td>
+          <td><%= data[:reported_data].value %></td>
+          <td><%= data[:reported_data].unit %></td>
+          <td><%= BusinessCalculators::CalculatorField.find(data[:reported_data].calculator_field_id).multiple_answers %></td>
+          <td><%= time_tag(data[:reported_data].created_at, format: '%F %R') %></td>
+          <td class="whitespace-nowrap">
+            <%= link_to 'Show', admin_reported_data_path(data[:reported_data]), class: 'link-ui text-green-shade-2' %> &nbsp;
+            <%= link_to 'Destroy', admin_reported_data_path(data[:reported_data]), method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-ui text-green-shade-2' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

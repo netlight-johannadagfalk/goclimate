@@ -1,0 +1,22 @@
+<div class="flex flex-row justify-between">
+  <h1 class="heading-lg"><%= local_assigns[:heading] %></h1>
+
+  <div class="flex flex-row-reverse items-start space-x-reverse space-x-1">
+    <% local_assigns[:actions].each do |action| %>
+      <%= link_to action[:title], action[:path], class: "button #{action[:class]}", target: action[:target_blank] ? :_blank : '', method: action[:method], data: action[:data] %>
+    <% end %>
+    <% if local_assigns[:additional_actions].present? %>
+      <div class="dropdown">
+        <input id="additional-actions-trigger" type="checkbox" class="dropdown-toggler">
+        <label for="additional-actions-trigger" class="button" aria-haspopup="true" aria-expanded="false">
+          More actions <i class="fas fa-chevron-down"></i>
+        </label>
+        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="additional-actions-trigger">
+          <% local_assigns[:additional_actions].each do |action| %>
+            <li><%= link_to action[:title], action[:path], class: "button #{action[:class]}", target: action[:target_blank] ? :_blank : '', method: action[:method], data: action[:data] %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>
