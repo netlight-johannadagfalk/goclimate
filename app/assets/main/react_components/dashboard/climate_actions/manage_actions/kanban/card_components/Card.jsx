@@ -7,7 +7,7 @@ const Card = ({
   item,
   index,
   handleDelete,
-  handleButtonPerformOnDrag,
+  handleCompleteAction,
   categories,
   sidebarCollapsed,
   handleExpanded,
@@ -145,7 +145,7 @@ const Card = ({
                     index={index}
                     key={item.id}
                     handleDelete={handleDelete}
-                    handleButtonPerformOnDrag={handleButtonPerformOnDrag}
+                    handleCompleteAction={handleCompleteAction}
                     categories={categories}
                     sidebarCollapsed={sidebarCollapsed}
                     handleExpanded={handleExpanded}
@@ -157,7 +157,7 @@ const Card = ({
                     index={index}
                     key={item.id}
                     handleDelete={handleDelete}
-                    handleButtonPerformOnDrag={handleButtonPerformOnDrag}
+                    handleCompleteAction={handleCompleteAction}
                     categories={categories}
                     sidebarCollapsed={sidebarCollapsed}
                     handleExpanded={handleExpanded}
