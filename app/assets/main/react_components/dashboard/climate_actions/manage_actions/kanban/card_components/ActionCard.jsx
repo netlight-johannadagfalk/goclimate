@@ -18,7 +18,7 @@ const ActionCard = ({
       ></div>
 
       {item.expanded && !collapsed && (
-        <div className="mb-4 ml-7 mr-4">
+        <div className="mt-4 mx-6">
           <div className="flex flex-1 flex-col text-center">
             <div className="flex-1 justify-center text-left">
               <p className="text-sm">
