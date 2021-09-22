@@ -12,7 +12,11 @@ import {
   useCategoryBadgesUpdateOnDrag,
 } from "../../../../contexts/UserActionsContext.js";
 
-const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
+const KanbanActionContainer = ({
+  sidebarCollapsed,
+  setSidebarCollapsed,
+  categories,
+}) => {
   const setUserActions = useUserActionsUpdate();
   const columns = useUserActionsColumns();
   const setColumns = useUserActionsColumnsUpdate();
@@ -299,7 +303,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
                 <p
                   className={`font-normal text-base text-primary text-lg text-center`}
                 >
-                  {!collapsed && column.name}
+                  {!sidebarCollapsed && column.name}
                 </p>
               </div>
               <KanbanActionColumn
@@ -309,8 +313,8 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
                 handleDelete={handleDelete}
                 handleButtonPerformOnDrag={handleButtonPerformOnDrag}
                 categories={categories}
-                setCollapsed={setCollapsed}
-                collapsed={collapsed}
+                setSidebarCollapsed={setSidebarCollapsed}
+                sidebarCollapsed={sidebarCollapsed}
                 isHovering={isHovering}
                 handleExpanded={handleExpanded}
               />
