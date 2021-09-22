@@ -9,6 +9,7 @@ const KanbanActionColumn = ({
   columnId,
   handleDelete,
   handleCompleteAction,
+  handleUncompleteAction,
   categories,
   setSidebarCollapsed,
   sidebarCollapsed,
@@ -71,6 +72,7 @@ const KanbanActionColumn = ({
                       key={item.id}
                       handleDelete={handleDelete}
                       handleCompleteAction={handleCompleteAction}
+                      handleUncompleteAction={handleUncompleteAction}
                       categories={categories}
                       sidebarCollapsed={sidebarCollapsed}
                       handleExpanded={handleExpanded}
