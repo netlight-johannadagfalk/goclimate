@@ -33,7 +33,7 @@ const ActionCard = ({
             ></button>
             <button
               className="ml-4 fas fa-check-circle focus:outline-none"
-              onClick={() => handleCompleteAction(item, true)}
+              onClick={() => handleCompleteAction(item)}
             ></button>
           </div>
         </div>
