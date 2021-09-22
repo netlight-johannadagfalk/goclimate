@@ -69,8 +69,7 @@ const Card = ({
                 ? "d:w-24"
                 : "t:w-80 border border-gray-tint-2 mx-5"
             }
-            
-            ${item.expanded ? "h-auto" : "w-24"}`}
+            ${item.expanded && "h-auto"}`}
             // Unclear what all of this means - change, rename or add comments?
             ref={provided.innerRef}
             {...provided.draggableProps}
