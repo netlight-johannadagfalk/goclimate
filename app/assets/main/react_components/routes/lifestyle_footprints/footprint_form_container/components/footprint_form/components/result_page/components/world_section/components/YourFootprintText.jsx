@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSessionInformation } from '../../../../../../../../contexts/SessionInformationContext.js';
+import { useSession } from '../../../../../../../../contexts/SessionContext.js';
 import { useTexts } from '../../../../../../../../contexts/TextsContext.js';
 import { calculatePrice } from '../../../../../../../../helpers/result-helper.js';
 
@@ -24,7 +24,7 @@ const YourFootprintText = ({ footprintValue, priceObject }) => {
         currency_formats: { [priceObject.currency.iso_code]: currency },
       },
     },
-  } = useSessionInformation();
+  } = useSession();
 
   const price = calculatePrice(priceObject, currency, true);
 

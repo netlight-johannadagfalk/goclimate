@@ -1,8 +1,8 @@
 import React from 'react';
-import { useSessionInformation } from '../../../../contexts/SessionInformationContext';
+import { useSession } from '../../../../contexts/SessionContext';
 
 const ProgressBar = ({ questionCategories, currentObject }) => {
-  const { signedInUser } = useSessionInformation();
+  const { signedInUser } = useSession();
 
   const categories = [
     'home',

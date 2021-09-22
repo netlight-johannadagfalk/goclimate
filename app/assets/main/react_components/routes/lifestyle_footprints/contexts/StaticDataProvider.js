@@ -1,5 +1,5 @@
 import React from 'react';
-import { SessionInformationProvider } from './SessionInformationContext.js';
+import { SessionProvider } from './SessionContext.js';
 import { ProjectsProvider } from './ProjectsContext.js';
 import { VersionProvider } from './VersionContext.js';
 import { TextsProvider } from './TextsContext.js';
@@ -29,7 +29,7 @@ const StaticDataProvider = ({
       reactContentText={reactContentText}
       sharedText={sharedText}
     >
-      <SessionInformationProvider
+      <SessionProvider
         currency={currency}
         lang={lang}
         currentRegion={currentRegion}
@@ -38,7 +38,7 @@ const StaticDataProvider = ({
         <ProjectsProvider projects={projects}>
           <VersionProvider version={version}>{children}</VersionProvider>
         </ProjectsProvider>
-      </SessionInformationProvider>
+      </SessionProvider>
     </TextsProvider>
   );
 };

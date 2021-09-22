@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useRef, useState } from 'react';
-import { useSessionInformation } from '../../../../../../../../contexts/SessionInformationContext.js';
+import { useSession } from '../../../../../../../../contexts/SessionContext.js';
 import { useTexts } from '../../../../../../../../contexts/TextsContext.js';
 import PriceText from '../../../../common/PriceText.jsx';
 
@@ -26,7 +26,7 @@ const Payment = ({
     commonText: { email, password, credit_or_debit_card },
     registrationsText: { start_subscription },
   } = useTexts();
-  const { currentRegion, slug } = useSessionInformation();
+  const { currentRegion, slug } = useSession();
 
   const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 

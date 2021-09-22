@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useSessionInformation } from '../../../contexts/SessionInformationContext.js';
+import { useSession } from '../../../contexts/SessionContext.js';
 import { useTexts } from '../../../contexts/TextsContext.js';
 import constructQuestionObjects from '../../../helpers/constructQuestionObjects.js';
 import {
@@ -40,7 +40,7 @@ const FootprintForm = ({
     questionCategories,
     useTexts()
   );
-  const URL = useSessionInformation().slug + '/calculator';
+  const URL = useSession().slug + '/calculator';
 
   const [result, setResult] = useState();
   const [currentObject, setCurrentObject] = useState(questionObjects[0]);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSessionInformation } from '../../../../../contexts/SessionInformationContext.js';
+import { useSession } from '../../../../../contexts/SessionContext.js';
 import { useTexts } from '../../../../../contexts/TextsContext.js';
 import { useVersion } from '../../../../../contexts/VersionContext.js';
 import { calculatePrice } from '../../../../../helpers/result-helper.js';
@@ -30,7 +30,7 @@ const SignUpPage = ({ result, page, onPageChange }) => {
       },
     },
     slug,
-  } = useSessionInformation();
+  } = useSession();
 
   const version = useVersion();
 
