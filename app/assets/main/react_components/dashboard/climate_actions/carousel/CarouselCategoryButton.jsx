@@ -70,8 +70,8 @@ const CarouselCategoryButton = ({
         : { ...action, accepted: false };
     });
 
-    const filteredActionsWithStatusAndTotal = filteredActionsWithStatus.map(
-      (action) => {
+    setClimateActions(
+      filteredActionsWithStatus.map((action) => {
         return localUserActions.some(
           (localUserAction) => localUserAction[0].id === action.id
         )
@@ -80,9 +80,8 @@ const CarouselCategoryButton = ({
               total: ++action.total,
             }
           : action;
-      }
+      })
     );
-    setClimateActions(filteredActionsWithStatusAndTotal);
   };
 
   return (
