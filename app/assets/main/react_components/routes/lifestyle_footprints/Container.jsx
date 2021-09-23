@@ -16,6 +16,7 @@ const Container = ({
   version,
   reactContentText,
   sharedText,
+  isUserSignedIn,
 }) => {
   return (
     <StaticDataProvider
@@ -30,6 +31,7 @@ const Container = ({
       version={version}
       reactContentText={reactContentText}
       sharedText={sharedText}
+      isUserSignedIn={isUserSignedIn}
     >
       <FootprintFormContainer
         footprint={JSON.parse(footprint)}

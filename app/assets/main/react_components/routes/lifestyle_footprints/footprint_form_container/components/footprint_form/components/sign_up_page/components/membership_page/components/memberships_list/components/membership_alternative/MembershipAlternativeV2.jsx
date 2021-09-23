@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocaleData } from '../../../../../../../../../../../contexts/LocaleContext.js';
+import { useSession } from '../../../../../../../../../../../contexts/SessionContext.js';
 import PriceTextV2 from '../../../../../../../common/PriceTextV2.jsx';
 import MembershipDropdown from './components/MembershipDropdown.jsx';
 import { calculatePrice } from '../../../../../../../../../../../helpers/result-helper.js';
@@ -21,7 +21,7 @@ const MembershipAlternativeV2 = ({
         currency_formats: { [result.plan.price.currency.iso_code]: currency },
       },
     },
-  } = useLocaleData();
+  } = useSession();
 
   const style =
     'rounded content-between relative lg:w-1/3 m-1 border border-green-accent ' +
