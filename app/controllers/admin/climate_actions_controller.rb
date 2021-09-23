@@ -50,6 +50,14 @@ module Admin
                          end
     end
 
+    def number_of_users_completed_actions_in_order
+      @number_of_users_completed_actions_ordered =
+        ClimateAction.joins(:user_climate_actions)
+                     .select('climate_actions.*, count(user_climate_actions.climate_action_id) as total')
+                     .order('COUNT(user_climate_actions.climate_action_id) DESC')
+                     .group('climate_actions.id')
+    end
+
     # GET /climate_actions or /climate_actions.json
     def index
       @choose_climate_actions = ClimateAction.all
@@ -121,14 +129,6 @@ module Admin
     end
 
     private
-
-    def number_of_users_completed_actions_in_order
-      @number_of_users_completed_actions_ordered =
-        ClimateAction.joins(:user_climate_actions)
-                     .select('climate_actions.*, count(user_climate_actions.climate_action_id) as total')
-                     .order('COUNT(user_climate_actions.climate_action_id) DESC')
-                     .group('climate_actions.id')
-    end
 
     # Set all other actions to action_of_the_month false so no duplicates
     def check_monthly_mail_update(id)

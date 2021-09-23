@@ -116,9 +116,9 @@
   registrationsText: YAML.load_file('config/locales/views/registrations.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['registrations'].to_json,
   climateActionsText: YAML.load_file('app/assets/main/react_components/translations/climate_actions.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['assets']['main']['react_components'].to_json,
   totalNoFootprints: @total_number_of_footprints.to_json(),
-  userSubscriptionType: @get_subscription_type
+  userSubscriptionType: @get_subscription_type,
+  actionsToplist: @number_of_users_completed_actions_ordered.to_json()
   %>
-
   <section class="section-padding">
     <div class="section-gutter t:flex t:flex-row">
       <div class="t:w-1/2">

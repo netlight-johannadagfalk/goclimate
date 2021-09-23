@@ -31,9 +31,18 @@ class DashboardController < ApplicationController
     @get_all_user_climate_actions = all_user_climate_actions
     @get_all_climate_actions_without_user_actions = all_climate_actions_without_user_actions
     @get_all_climate_actions_with_user_actions = all_climate_actions_with_user_actions
+    @number_of_users_completed_actions_ordered = number_of_users_completed_actions_ordered
   end
 
   private
+
+  def number_of_users_completed_actions_ordered
+    ClimateAction
+      .joins(:user_climate_actions)
+      .select('climate_actions.*, count(user_climate_actions.climate_action_id) as total')
+      .order('COUNT(user_climate_actions.climate_action_id) DESC')
+      .group('climate_actions.id')
+  end
 
   def all_climate_actions_with_user_actions
     ClimateAction
