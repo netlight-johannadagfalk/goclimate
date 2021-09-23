@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import UserActionCard from "./UserActionCard.jsx";
 import AchievementCard from "./AchievementCard.jsx";
+import ProgressBar from "../ProgressBar.jsx";
 
 const Card = ({
   item,
@@ -37,7 +38,6 @@ const Card = ({
     if (!snapshot.isDragging) {
       return {
         userSelect: "none",
-        padding: 0,
         minHeight: "auto",
       };
     }
@@ -47,7 +47,6 @@ const Card = ({
     /** Moving element inside accepted column */
     return {
       userSelect: "none",
-      padding: 0,
       minHeight: "auto",
       ...style,
     };
@@ -63,8 +62,7 @@ const Card = ({
       {(provided, snapshot) => {
         return (
           <div
-            id="card"
-            className={`rounded-lg h-20 p-0 space-y-3 pt-0 w-80 mb-2 focus:outline-none relative ${
+            className={`rounded-lg h-20 space-y-3 w-80 mb-2 focus:outline-none relative ${
               sidebarCollapsed
                 ? "d:w-24"
                 : "t:w-80 border border-gray-tint-2 mx-5"
@@ -83,15 +81,20 @@ const Card = ({
                   )
             }
           >
-            <div
-              className={`${
-                sidebarCollapsed
-                  ? "mx-auto rounded-full h-16 w-16 items-center justify-center bg-contain bg-center shadow-lg -mt-4"
-                  : "flex flex-1 items-center shadow-md ml-3"
-              }`}
-            >
+            <div>
+              {!sidebarCollapsed && (
+                <div
+                  className={`${
+                    "category_" +
+                    categoryColor.toLowerCase().replace(/ /g, "_") +
+                    "_active"
+                  } h-7 w-full rounded-t border-t-gray-tint-2 bg-opacity-60 top-0`}
+                ></div>
+              )}
               <div
-                className={`rounded-full h-16 w-16 bg-cover shadow-lg my-1 z-10`}
+                className={`shadow-lg h-16 w-16 items-center rounded-full bg-cover mx-auto ${
+                  !sidebarCollapsed && "flex flex-1 ml-3 -mt-5"
+                }`}
                 style={{
                   backgroundImage: `url('${
                     isAchievement ? item.badge_image_url : item.image_url
@@ -104,28 +107,31 @@ const Card = ({
             {!sidebarCollapsed && (
               <div>
                 <div
-                  className={` ${
-                    item.expanded && "w-full border-b border-b-gray-tint-2"
-                  }`}
+                  className=" h-14 w-full top-0 mt-6 absolute justify-center"
+                  onClick={() => handleExpanded(item, !item.expanded)}
                 >
                   <div
-                    className="flex flex-row h-14 w-full top-0 mt-6 absolute justify-center"
-                    onClick={() => handleExpanded(item, !item.expanded)}
+                    className={`font-bold text-left text-sm mt-1.5 ml-20 ${
+                      isAchievement && "-mt-2"
+                    }`}
                   >
-                    <div
-                      className={`flex flex-1 font-bold text-left text-sm mt-1.5 ml-20 ${
-                        isAchievement && "-mt-2"
-                      }`}
-                    >
-                      {item.name}
-                    </div>
-                    <button
-                      className={`fas float-right focus:outline-none mr-4 ${
-                        item.expanded ? "fa-chevron-up" : "fa-chevron-down"
-                      }`}
-                      onClick={() => handleExpanded(item, !item.expanded)}
-                    ></button>
+                    {item.name}
                   </div>
+
+                  <button
+                    className={`fas float-right focus:outline-none mr-4 ${
+                      item.status === false && "-mt-3"
+                    } ${item.expanded ? "fa-chevron-up" : "fa-chevron-down"} `}
+                    onClick={() => handleExpanded(item, !item.expanded)}
+                  ></button>
+                  {isAchievement && (
+                    <ProgressBar
+                      categories={categories}
+                      item={item}
+                      userActions={item.userActionsArray}
+                      actions={item.actionsArray}
+                    />
+                  )}
                 </div>
 
                 {isAchievement ? (
@@ -155,7 +161,6 @@ const Card = ({
                 )}
               </div>
             )}
-            {/* // )} */}
           </div>
         );
       }}
