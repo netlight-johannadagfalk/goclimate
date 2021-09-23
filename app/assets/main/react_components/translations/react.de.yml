@@ -15,29 +15,29 @@ de:
       desktop:
         title: Choose your membership
         free:
-          title: Gratis konto
+          title: Free account
           selling_points:
-            point1: Spara och följ ditt klimatavtryck över tid
+            point1: Save and track your climate footprint over time
         single:
-          title: Klimatkompensera månadsvis
+          title: Climate compensate monthly
           selling_points:
-            point1: Spara och följ ditt klimatavtryck över tid
-            point2: Kompensera motsvarande ditt kliamtavtryck till utvalda projekt
+            point1: Save and track your climate footprint over time
+            point2: Compensate corresponding to your carbon footprint toward selected projects
         multi:
-          title: Klimatkompensera flera gånger
+          title: Climate compensate several times
           selling_points:
-            point1: Spara och följ ditt klimatavtryck över tid
-            point2: Stöd klimatprojekt motsvarande 2 gånger ditt klimatavtryck till utvalda projekt varje månad
+            point1: Save and track your climate footprint over time
+            point2: Compensate corresponding to your carbon footprint 2 times over
       mobile:
         free:
-          title: Gratis konto
-          selling_points: Spara och följ ditt klimatavtryck över tid
+          title: Free account
+          selling_point: Save and track your climate footprint over time
         single:
-          title: Klimatkompensera
-          selling_points: Spara och följ ditt klimatavtryck över tid
+          title: Climate compensate monthly
+          selling_point: Compensate corresponding to your carbon footprint toward selected projects
         multi:
-          title: Klimatkompensera mera
-          selling_points: Spara och följ ditt klimatavtryck över tid
+          title: Climate compensate several times
+          selling_point: Compensate corresponding to your carbon footprint 2 times over
     category_chart:
       title: Your climate footprint by category
       desc: This is your carbon footprint given by category. Does it match your expectations?

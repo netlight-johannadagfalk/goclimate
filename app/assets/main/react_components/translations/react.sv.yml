@@ -31,13 +31,13 @@ sv:
       mobile:
         free:
           title: Gratis konto
-          selling_points: Spara och följ ditt klimatavtryck över tid
+          selling_point: Spara och följ ditt klimatavtryck över tid
         single:
           title: Klimatkompensera
-          selling_points: Spara och följ ditt klimatavtryck över tid
+          selling_point: Kompensera motsvarande ditt klimatavtryck
         multi:
           title: Klimatkompensera mera
-          selling_points: Spara och följ ditt klimatavtryck över tid
+          selling_point: Kompensera 2 gånger ditt klimatavtryck till utvalda projekt
     category_chart:
       title: Ditt klimatavtryck per kategori
       desc: Detta är ditt klimatavtryck i kategorier, var det som du förväntade dig?
