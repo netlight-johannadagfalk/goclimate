@@ -64,11 +64,7 @@ export const UserActionsProvider = ({
 
   const updateUserActions = (actions) => {
     setUserActions(actions);
-    //sessionStorage.removeItem("localUserActions");
-    //sessionStorage.setItem("localUserActions", JSON.stringify(actions));
   };
-
-  //console.log(JSON.parse(sessionStorage.getItem("localUserActions")));
 
   const formatedUserActions = (inVal) => {
     return inVal.map((userActions) => ({
@@ -299,15 +295,6 @@ export const UserActionsProvider = ({
     getCompleteCategoryArrays
   );
 
-  // const checkIfLocalStorage = (key) => {
-  //   const localActions = JSON.parse(sessionStorage.getItem(key));
-  //   if (localActions != null) {
-  //     return localActions;
-  //   } else {
-  //     return userActions;
-  //   }
-  // };
-  //checkIfLocalStorage("localUserActions")
   const [columns, setColumns] = useState(
     columnUserActions(
       acceptedUserActions(userActions),
