@@ -2,7 +2,7 @@ import React from "react";
 const ShowClimateInfo = ({ action }) => {
   return (
     <div>
-      <div className=" flex-1 justify-center align-center self-center">
+      <div className="flex-1 justify-center align-center self-center">
         <h3 className={`text-base font-bold self-center`}>
           {action.name.length > 40
             ? action.name.slice(0, 40) + "..."
