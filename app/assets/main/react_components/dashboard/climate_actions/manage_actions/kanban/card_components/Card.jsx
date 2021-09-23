@@ -124,12 +124,6 @@ const Card = ({
                     {item.name}
                   </div>
 
-                  <button
-                    className={`fas float-right focus:outline-none mr-4 ${
-                      item.status === false && "-mt-3"
-                    } ${item.expanded ? "fa-chevron-up" : "fa-chevron-down"} `}
-                    onClick={() => handleExpanded(item, !item.expanded)}
-                  ></button>
                   {isAchievement && (
                     <ProgressBar
                       categories={categories}
