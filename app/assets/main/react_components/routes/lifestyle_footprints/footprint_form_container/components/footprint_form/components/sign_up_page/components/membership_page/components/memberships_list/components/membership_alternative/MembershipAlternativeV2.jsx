@@ -68,7 +68,10 @@ const MembershipAlternativeV2 = ({
             <div className="align-center align-bottom w-full">
               <MembershipDropdown
                 multipleOffsets={multipleOffsets}
-                setMultipleOffsets={setMultipleOffsets}
+                setMultipleOffsets={(dropdownValue) => {
+                  setSelectedMembership(type);
+                  setMultipleOffsets(dropdownValue);
+                }}
               />
             </div>
           )}
