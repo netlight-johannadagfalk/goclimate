@@ -60,7 +60,6 @@ module Admin
 
     # GET /climate_actions or /climate_actions.json
     def index
-      # Fetch the action of the month so it is shown in the index-view
       @choose_climate_actions = ClimateAction.all
       @action_of_the_month = ClimateAction.where(action_of_the_month: true).first
       number_of_times_action_performed
@@ -120,13 +119,6 @@ module Admin
       end
     end
 
-    # Set all other actions to action_of_the_month false so no duplicates
-    def check_monthly_mail_update(id)
-      if ClimateAction.where(action_of_the_month: true).count > 1
-        ClimateAction.where.not(id: id).update_all(action_of_the_month: false)
-      end
-    end
-
     # DELETE /climate_actions/1 or /climate_actions/1.json
     def destroy
       @climate_action.destroy
@@ -137,6 +129,13 @@ module Admin
     end
 
     private
+
+    # Set all other actions to action_of_the_month false so no duplicates
+    def check_monthly_mail_update(id)
+      return unless ClimateAction.where(action_of_the_month: true).count > 1
+
+      ClimateAction.where.not(id: id).update_all(action_of_the_month: false)
+    end
 
     def action_of_the_month_number_of_times_completed
       UserClimateAction

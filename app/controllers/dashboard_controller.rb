@@ -22,12 +22,12 @@ class DashboardController < ApplicationController
     show_climate_actions(current_user)
   end
 
+  # Function to get all information related to climate actions
   def show_climate_actions(current_user)
     @climate_actions = ClimateAction.all
     @climate_actions_categories = ClimateActionCategory.all
     @climate_user_action = UserClimateAction.all
     @get_subscription_type = current_user.active_subscription?
-    # Functions get climate actions
     @get_all_user_climate_actions = all_user_climate_actions
     @get_all_climate_actions_without_user_actions = all_climate_actions_without_user_actions
     @get_all_climate_actions_with_user_actions = all_climate_actions_with_user_actions
