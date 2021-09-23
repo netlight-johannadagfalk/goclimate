@@ -38,7 +38,7 @@ const MembershipAlternativeV2Desktop = ({
             <div className="pl-6">
               <ul className="list-disc">
                 {Object.keys(sellingPoints).map((point) => (
-                  <li className="lg:my-3 text-sm text-left" key={point}>
+                  <li className="my-3 text-sm text-left" key={point}>
                     {sellingPoints[point]}
                   </li>
                 ))}

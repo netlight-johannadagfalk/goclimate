@@ -26,12 +26,11 @@ const MembershipAlternativeV2Mobile = ({
         <label htmlFor={type}>
           <div className="h-full flex flex-row m-2 cursor-pointer">
             <div className="w-1/2 h-full">
-              <div className="h-4 my-2 text-left font-bold">
+              <div className="my-1 mb-1 text-left font-bold">
                 <span>{mobile.title}</span>
               </div>
-              <br></br>
               {type == 'multi' && (
-                <div className="w-full">
+                <div className="w-full my-1">
                   <MembershipDropdown
                     multipleOffsets={multipleOffsets}
                     setMultipleOffsets={setMultipleOffsets}
