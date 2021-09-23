@@ -44,7 +44,6 @@ const KanbanActionColumn = ({
               ref={provided.innerRef}
               style={{
                 background: snapshot.isDraggingOver ? "lightgrey" : "white",
-                padding: 0,
                 width: "100%",
               }}
             >
