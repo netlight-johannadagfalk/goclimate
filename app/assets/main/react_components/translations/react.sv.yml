@@ -3,7 +3,7 @@ sv:
     your_footprint_result_text:
       text_part_before: Ditt årliga klimatavtryck är
       text_part_middle: CO2e. För
-      text_part_end: hjälper vi dig att klimatkompensera ditt avtryck. Summan fördelas mellan handplockade klimatprojekt som gör skillnad på riktigt.
+      text_part_end: ' hjälper vi dig att klimatkompensera ditt avtryck. Summan fördelas mellan handplockade klimatprojekt som gör skillnad på riktigt.'
     memberships_v1:
       free_title: Gratis konto
       free_desc: Spara och följ ditt klimatavtryck över tid
