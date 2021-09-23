@@ -27,18 +27,9 @@ class LifestyleFootprintsController < ApplicationController
     @footprint.update_from_lifestyle_calculator
     @footprint.user = current_user
     @footprint.save!
-    
+
     if experiment_active?(:v1) || experiment_active?(:v2)
-      @country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
-      @footprint_tonnes = @footprint&.total
-      number_of_people = params[:membership] == 'multi' && params[:people].present? ? params[:people].to_i : 1
-      @plan = Subscriptions::Plan.for_footprint(@footprint_tonnes * number_of_people, current_region.currency)
-      
-      if current_user
-        render json: {footprint: @footprint, country_average: @country_average, plan: @plan, user_page_path: lifestyle_footprint_path(id: @footprint)}
-        return
-      end  
-      render json: {footprint: @footprint, country_average: @country_average, plan: @plan}
+      render json: generate_react_payload
       return
     end
 
@@ -46,8 +37,19 @@ class LifestyleFootprintsController < ApplicationController
       redirect_to lifestyle_footprint_path(id: @footprint)
       return
     end
-    
+
     redirect_to new_registration_path(:user, lifestyle_footprint: @footprint, campaign: params[:campaign].presence)
+  end
+
+  def generate_react_payload
+    footprint_tonnes = @footprint&.total
+    country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
+    number_of_people = params[:membership] == 'multi' && params[:people].present? ? params[:people].to_i : 1
+    plan = Subscriptions::Plan.for_footprint(footprint_tonnes * number_of_people, current_region.currency)
+
+    payload = { footprint: @footprint, country_average: country_average, plan: plan }
+    payload['user_page_path'] = lifestyle_footprint_path(id: @footprint) if current_user
+    payload
   end
 
   def show
