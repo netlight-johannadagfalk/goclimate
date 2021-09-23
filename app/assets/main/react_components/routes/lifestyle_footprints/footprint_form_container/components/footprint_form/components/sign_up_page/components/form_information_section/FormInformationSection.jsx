@@ -12,7 +12,7 @@ const FormInformationSection = ({
 }) => {
   return (
     <>
-      <div className="callout my-8">
+      <div className="my-8">
         <ArgumentsList />
       </div>
       <div className="my-8 mx-4">
