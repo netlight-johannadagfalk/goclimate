@@ -1,12 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { useDeletedActionUpdate } from "../../../contexts/DeletedActionContext.js";
-import {
-  useUserActions,
-  useUserActionsUpdate,
-  useUserActionsColumnsWithFullFormatUpdate,
-  useCategoryBadges,
-} from "../../../contexts/UserActionsContext.js";
 import { useClimateActionsText } from "../../../contexts/TextContext.js";
+import { useUserState, useUserActions } from "../../../contexts/UserContext.js";
 
 const CarouselActionItem = ({
   action,
@@ -15,11 +10,12 @@ const CarouselActionItem = ({
   categories,
 }) => {
   const currUser = JSON.parse(user);
-  const userActions = useUserActions();
-  const setUserActions = useUserActionsUpdate();
   const setDeletedAction = useDeletedActionUpdate();
-  const setColumnsWithFullFormat = useUserActionsColumnsWithFullFormatUpdate();
-  const categoryBadges = useCategoryBadges();
+  const { data: data } = useUserState();
+  const { updateUserActions, updateColumnsWithFullFormat } = useUserActions();
+  const userActions = data.userActions;
+  const achievements = data.achievements;
+
   const climateActionsText = useClimateActionsText();
 
   const mounted = useRef(false);
@@ -46,8 +42,8 @@ const CarouselActionItem = ({
       image_url: action.image_url,
     };
     const tempList = [temp, ...userActions];
-    setUserActions(tempList);
-    setColumnsWithFullFormat(tempList, categoryBadges);
+    updateUserActions(tempList);
+    updateColumnsWithFullFormat(tempList, achievements);
   };
 
   //FUNCTION WHERE USER ACCEPT AN ACTION IN DB -> MOVES TO ACCEPTED

@@ -2,10 +2,11 @@ import React from "react";
 import ClimateActionsContainer from "./climate_actions/ClimateActionsContainer.jsx";
 import { CategoryProvider } from "../contexts/CategoryContext.js";
 import { DeletedActionProvider } from "../contexts/DeletedActionContext.js";
-import { UserActionsProvider } from "../contexts/UserActionsContext.js";
+// import { UserActionsProvider } from "../contexts/UserActionsContext.js";
 import { ClimateActionsProvider } from "../contexts/ClimateActionsContext.js";
 import { FootprintProvider } from "../contexts/FootprintContext.js";
 import { TextProvider } from "../contexts/TextContext.js";
+import { UserProvider } from "../contexts/UserContext.js";
 
 const Dashboard = ({
   user,
@@ -28,7 +29,7 @@ const Dashboard = ({
     <TextProvider climateActionsText={JSON.parse(climateActionsText)}>
       <DeletedActionProvider>
         <CategoryProvider>
-          <UserActionsProvider
+          <UserProvider
             allUserActions={JSON.parse(allUserActions)}
             actionsWithoutUserActions={actionsWithoutUserActions}
             actionsWithUserActions={actionsWithUserActions}
@@ -55,7 +56,7 @@ const Dashboard = ({
                 ></ClimateActionsContainer>
               </FootprintProvider>
             </ClimateActionsProvider>
-          </UserActionsProvider>
+          </UserProvider>
         </CategoryProvider>
       </DeletedActionProvider>
     </TextProvider>

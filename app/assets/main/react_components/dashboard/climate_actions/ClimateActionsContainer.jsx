@@ -9,7 +9,7 @@ import {
   useClimateActionsUpdate,
   useClimateActionsOriginal,
 } from "../../contexts/ClimateActionsContext.js";
-import { useUserActions } from "../../contexts/UserActionsContext";
+import { useUserState } from "../../contexts/UserContext.js";
 import MainInfo from "../footprint/MainInfo.jsx";
 import ManageActions from "./manage_actions/ManageActions.jsx";
 
@@ -23,7 +23,10 @@ const ClimateActionsContainer = ({
   const climateActions = useClimateActions();
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
-  const userActions = useUserActions();
+
+  const { data: data, getInitialData: getInitialData } = useUserState();
+  const userActions = data.userActions;
+
   const [monthlyAction, setMonthlyAction] = useState(
     totClimateActions.find((action) => action.action_of_the_month === true)
   );
@@ -68,25 +71,29 @@ const ClimateActionsContainer = ({
 
   return (
     <>
-      <MainInfo
-        action={monthlyAction}
-        user={user}
-        updateLocalAccepted={updateLocalAccepted}
-        categories={JSON.parse(climateActionCategories)}
-      ></MainInfo>
-      {climateActions.length > 0 && (
-        <CarouselContainer
-          user={user}
-          updateLocalAccepted={updateLocalAccepted}
-          categories={formatedCategories}
-          localUserActions={localUserActions}
-          actionsToplist={actionsToplist}
-        />
+      {getInitialData.isSuccess && (
+        <>
+          <MainInfo
+            action={monthlyAction}
+            user={user}
+            updateLocalAccepted={updateLocalAccepted}
+            categories={JSON.parse(climateActionCategories)}
+          ></MainInfo>
+          {climateActions.length > 0 && (
+            <CarouselContainer
+              user={user}
+              updateLocalAccepted={updateLocalAccepted}
+              categories={formatedCategories}
+              localUserActions={localUserActions}
+              actionsToplist={actionsToplist}
+            />
+          )}
+          <ManageActions
+            categories={formatedCategories}
+            userActions={userActions}
+          ></ManageActions>
+        </>
       )}
-      <ManageActions
-        categories={formatedCategories}
-        userActions={userActions}
-      ></ManageActions>
     </>
   );
 };
