@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSession } from '../../../../../../../../../../../contexts/SessionContext.js';
 import { calculatePrice } from '../../../../../../../../../../../helpers/result-helper.js';
-import MembershipAlternativeV2Desktop from './MembershipAlternativeV2Desktop.jsx';
-import MembershipAlternativeV2Mobile from './MembershipAlternativeV2Mobile.jsx';
+import MembershipAlternativeV2Desktop from './components/MembershipAlternativeV2Desktop.jsx';
+import MembershipAlternativeV2Mobile from './components/MembershipAlternativeV2Mobile.jsx';
 
 const MembershipAlternativeV2 = ({
   selectedMembership,

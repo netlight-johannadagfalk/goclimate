@@ -1,6 +1,6 @@
 import React from 'react';
-import PriceTextV2 from '../../../../../../../common/PriceTextV2.jsx';
-import MembershipDropdown from './components/MembershipDropdown.jsx';
+import PriceTextV2 from '../../../../../../../../common/PriceTextV2.jsx';
+import MembershipDropdown from './MembershipDropdown.jsx';
 
 const MembershipAlternativeV2Desktop = ({
   selectedMembership,
