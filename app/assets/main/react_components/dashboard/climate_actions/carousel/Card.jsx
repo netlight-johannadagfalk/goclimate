@@ -9,6 +9,8 @@ import {
 import { useClimateActionsText } from "../../../contexts/TextContext.js";
 import CategoryColor from "./CategoryColor.jsx";
 import ShowClimateImpact from "./ShowActionPoints.jsx";
+import ShowNumberOfPersonsAcceptedAction from "./ShowNumberOfPersonsAcceptedAction.jsx";
+import CarouselImage from "./CarouselImage.jsx";
 
 const Card = ({ action, user, updateLocalAccepted, categories }) => {
   const currUser = JSON.parse(user);
@@ -92,15 +94,7 @@ const Card = ({ action, user, updateLocalAccepted, categories }) => {
       <div className="pt-20 flex m-lg:pt-24 flex-1 justify-evenly">
         <div className=" border-gray-tint-2 rounded-lg shadow-lg pb-2 ml-2 mr-2 flex flex-col flex-1 bg-white">
           <CategoryColor categories={categories} action={action} />
-          <div
-            className={`mx-auto bg-gray-tint-2 bg-opacity-10 shadow-md -mt-24 rounded-full h-40 w-40 items-center justify-center bg-cover filter drop-shadow-xl`}
-            style={{
-              backgroundImage: action.image_url
-                ? `url('${action.image_url}')`
-                : "url('/action_images/Globe.png')",
-              backgroundSize: "100%",
-            }}
-          ></div>
+          <CarouselImage action={action} />
           <div className="flex flex-col flex-1 text-center mx-2">
             <ShowClimateImpact action={action} />
             <div className="flex-1 justify-center align-center self-center">
@@ -110,7 +104,6 @@ const Card = ({ action, user, updateLocalAccepted, categories }) => {
                   : action.name}
               </h3>
             </div>
-
             <div className="flex-4">
               <p className="text-sm">
                 {action.description.length > 200
@@ -118,64 +111,52 @@ const Card = ({ action, user, updateLocalAccepted, categories }) => {
                   : action.description}
               </p>
             </div>
-
             <div className="flex-1 mt-5 justify-center align-center">
               {action.accepted && action.total > 1 ? (
-                <div>
-                  <div className="flex flex-row justify-center mb-1">
-                    <label className="text-sm mr-1">You and</label>
-                    <p className="text-sm text-yellow-accent">
-                      {action.total - 1}
-                    </p>
-                    <label className="text-sm ml-1">more have:</label>
-                  </div>
-                  <button
-                    className="button inline-block "
-                    disabled={true}
-                    style={{ color: "rgba(28, 70, 55)" }}
-                  >
-                    Accepted
-                  </button>
-                </div>
+                <ShowNumberOfPersonsAcceptedAction
+                  startText={"You and"}
+                  endText={"more have:"}
+                  action={action}
+                  disabled={true}
+                  currentAloneUser={false}
+                />
               ) : action.accepted && action.total == 1 ? (
-                <div>
-                  <div className="flex flex-row justify-center mb-1">
-                    <label className="text-sm mr-1">You have accepted</label>
-                  </div>
-                  <button
-                    className="button inline-block "
-                    disabled={true}
-                    style={{ color: "rgba(28, 70, 55)" }}
-                  >
-                    {climateActionsText.accepted}
-                  </button>
-                </div>
+                <ShowNumberOfPersonsAcceptedAction
+                  startText={"You have accepted"}
+                  endText={""}
+                  action={action}
+                  disabled={true}
+                  currentAloneUser={true}
+                />
               ) : (
                 <div>
                   {!action.accepted && action.total !== 0 ? (
                     action.total > 1 ? (
-                      <div className="flex flex-row justify-center mb-1">
-                        <label className="text-sm mr-1">Do as</label>
-                        <p className="text-sm text-yellow-accent">
-                          {action.total}
-                        </p>
-                        <label className="text-sm ml-1">others:</label>
-                      </div>
+                      <ShowNumberOfPersonsAcceptedAction
+                        startText={"Do as"}
+                        endText={"others:"}
+                        action={action}
+                        disabled={false}
+                        currentAloneUser={false}
+                      />
                     ) : (
-                      <div className="flex flex-row justify-center mb-1">
-                        <label className="text-sm mr-1">Do as</label>
-                        <p className="text-sm text-yellow-accent">
-                          {action.total}
-                        </p>
-                        <label className="text-sm ml-1">other:</label>
-                      </div>
+                      <ShowNumberOfPersonsAcceptedAction
+                        startText={"Do as"}
+                        endText={"other"}
+                        action={action}
+                        disabled={false}
+                        currentAloneUser={false}
+                      />
                     )
                   ) : (
-                    <div className="flex flex-row justify-center mb-1">
-                      <label className="text-sm">Be the first one to:</label>
-                    </div>
+                    <ShowNumberOfPersonsAcceptedAction
+                      startText={"Be the first one to:"}
+                      endText={""}
+                      action={action}
+                      disabled={false}
+                      currentAloneUser={true}
+                    />
                   )}
-
                   <button
                     className="button inline-block "
                     onClick={() => handleClickAccepted(action)}
