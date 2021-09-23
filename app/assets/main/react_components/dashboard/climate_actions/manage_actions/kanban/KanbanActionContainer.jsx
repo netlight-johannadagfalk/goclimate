@@ -4,29 +4,30 @@ import KanbanActionColumn from "./KanbanActionColumn.jsx";
 import { useDeletedActionUpdate } from "../../../../contexts/DeletedActionContext.js";
 import { orderBy } from "lodash";
 import {
-  useUserActionsUpdate,
-  useUserActionsColumns,
-  useUserActionsColumnsUpdate,
-  useUserActionsColumnsWithFormatUpdate,
-  useCategoryBadgesUpdate,
-  useCategoryBadgesUpdateOnDrag,
-} from "../../../../contexts/UserActionsContext.js";
+  useUserState,
+  useUserActions,
+} from "../../../../contexts/UserContext.js";
 
 const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
-  const setUserActions = useUserActionsUpdate();
-  const columns = useUserActionsColumns();
-  const setColumns = useUserActionsColumnsUpdate();
-  const setColumnsWithFormat = useUserActionsColumnsWithFormatUpdate();
   const setDeletedAction = useDeletedActionUpdate();
-  const setCategoryBadges = useCategoryBadgesUpdate();
-  const setCategoryBadgesOnDrag = useCategoryBadgesUpdateOnDrag();
+  const { data: data } = useUserState();
+  const {
+    updateUserActions,
+    updateColumns,
+    updateColumnsWithFormat,
+    updateAchievements,
+    updateAchievementsOnMove,
+  } = useUserActions();
+
+  const columns = data.columns;
+
   const [isHovering, setIsHovering] = useState(false);
 
   const mounted = useRef(false);
 
   const handleExpanded = (item, value) => {
     const column = item.status === false ? 1 : 2;
-    setColumns({
+    updateColumns({
       ...columns,
       [column]: {
         ...columns[column],
@@ -64,8 +65,8 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
     destItems,
     deletedAction
   ) => {
-    setUserActions([...updatedList, ...performed]);
-    setColumnsWithFormat(updatedList, destItems);
+    updateUserActions([...updatedList, ...performed]);
+    updateColumnsWithFormat(updatedList, destItems);
     setDeletedAction(deletedAction);
   };
 
@@ -136,14 +137,14 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
         (item) => item.status === false
       );
       //Add moved item to second column. Helpfunction in context desides if new categoryBadge should be created or just change status and color on subitem
-      const destItems = setCategoryBadgesOnDrag(movedItem, destColumn.items);
+      const destItems = updateAchievementsOnMove(movedItem, destColumn.items);
       const sortedDestItems = destItems.map((category) => {
         return {
           ...category,
           userActionsArray: sortActionsBasedOnStatus(category.userActionsArray),
         };
       });
-      setCategoryBadges([...sortedDestItems]);
+      updateAchievements([...sortedDestItems]);
       const newSortedDestItems = orderBadgesOnItemDragged(
         sortedDestItems,
         movedItem
@@ -151,9 +152,9 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
       //Function to get performed useraction from categoryBadges
       let performedUserActions =
         collectPerformedUserActions(newSortedDestItems);
-      setUserActions([...sourceItems, ...performedUserActions]);
+      updateUserActions([...sourceItems, ...performedUserActions]);
 
-      setColumns({
+      updateColumns({
         ...columns,
         [1]: {
           ...sourceColumn,
@@ -198,9 +199,9 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
       const checkDelete = sortedSourceItems.filter((category) => {
         return category.userActionsArray.some((item) => item.status === true);
       });
-      setCategoryBadges([...checkDelete]);
-      setUserActions([...destItems]);
-      setColumns({
+      updateAchievements([...checkDelete]);
+      updateUserActions([...destItems]);
+      updateColumns({
         ...columns,
         [1]: {
           ...destColumn,
@@ -222,7 +223,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
 
   //_.sortBy(items, ({type}) => type === 'vegetable' ? 0 : 1);
 
-  const onDragEnd = (result, columns, setColumns) => {
+  const onDragEnd = (result, columns) => {
     //If you drag but drop in the same column and do not reorder items
     if (!result.destination) return;
     const { source, destination } = result;
@@ -233,7 +234,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
       const sourceItems = [...sourceColumn.items];
       const [removed] = sourceItems.splice(source.index, 1);
       updateStatus(removed.id, true);
-      const destItems = setCategoryBadgesOnDrag(removed, destColumn.items);
+      const destItems = updateAchievementsOnMove(removed, destColumn.items);
       const sortedDestItems = destItems.map((category) => {
         return {
           ...category,
@@ -241,13 +242,13 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
         };
       });
       let performedUserActions = collectPerformedUserActions(destItems);
-      setUserActions([...sourceItems, ...performedUserActions]);
+      updateUserActions([...sourceItems, ...performedUserActions]);
       const newSortedDestItems = orderBadgesOnItemDragged(
         sortedDestItems,
         removed
       );
-      setCategoryBadges([...newSortedDestItems]);
-      setColumns({
+      updateAchievements([...newSortedDestItems]);
+      updateColumns({
         ...columns,
         [source.droppableId]: {
           ...sourceColumn,
@@ -264,7 +265,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
       const copiedItems = [...column.items];
       const [removed] = copiedItems.splice(source.index, 1);
       copiedItems.splice(destination.index, 0, removed);
-      setColumns({
+      updateColumns({
         ...columns,
         [source.droppableId]: {
           ...column,
@@ -283,9 +284,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
 
   return (
     <div className="h-screen">
-      <DragDropContext
-        onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
-      >
+      <DragDropContext onDragEnd={(result) => onDragEnd(result, columns)}>
         {Object.entries(columns).map(([columnId, column]) => {
           return (
             <div
