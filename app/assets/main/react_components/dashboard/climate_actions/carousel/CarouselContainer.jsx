@@ -13,8 +13,10 @@ const CarouselContainer = ({
   updateLocalAccepted,
   categories,
   localUserActions,
+  actionsToplist,
 }) => {
   const [allCategories, setAllCategories] = useState(true);
+  const [popular, setPopular] = useState(false);
   const category = useCategory();
   const totClimateActions = useClimateActionsOriginal();
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${d})` });
@@ -32,17 +34,29 @@ const CarouselContainer = ({
         {isTabletOrMobile ? (
           <CarouselCategoryButton
             categories={categories}
+            setPopular={setPopular}
             setAllCategories={setAllCategories}
             localUserActions={localUserActions}
+            actionsToplist={actionsToplist}
           ></CarouselCategoryButton>
         ) : (
           <>
             <CarouselCategoryButton
               categoryName={"All categories"}
-              categoryID={null}
+              categoryID={"allCategories"}
               active={allCategories}
+              setPopular={setPopular}
               setAllCategories={setAllCategories}
               localUserActions={localUserActions}
+            />
+            <CarouselCategoryButton
+              categoryName={"Popular"}
+              categoryID={"popular"}
+              active={popular}
+              setPopular={setPopular}
+              setAllCategories={setAllCategories}
+              localUserActions={localUserActions}
+              actionsToplist={actionsToplist}
             />
             {categories.map(
               (cat) =>
@@ -52,6 +66,7 @@ const CarouselContainer = ({
                     categoryName={cat.name}
                     categoryID={cat.id}
                     active={category === cat.id ? true : false}
+                    setPopular={setPopular}
                     setAllCategories={setAllCategories}
                     localUserActions={localUserActions}
                   />
@@ -63,6 +78,7 @@ const CarouselContainer = ({
           user={user}
           updateLocalAccepted={updateLocalAccepted}
           categories={categories}
+          actionsToplist={actionsToplist}
         ></CarouselList>
       </div>
     </section>
