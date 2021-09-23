@@ -47,3 +47,5 @@ sv:
         title: Ingen bindningstid
         text: Ingen bindningstid, sluta klimatkompensera när du vill
         icon: unlock
+    membership_page:
+      preamble: Nu när du vet mer om din klimatpåverkan är det dags att agera. Genom att bli medlem kan du spara och jämföra dina resultat, få hjälp att minska ditt avtryck och möjligheten att stötta handplockade klimatprojekt.

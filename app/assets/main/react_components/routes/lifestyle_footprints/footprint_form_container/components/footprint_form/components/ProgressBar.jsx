@@ -1,6 +1,9 @@
 import React from 'react';
+import { useSession } from '../../../../contexts/SessionContext';
 
 const ProgressBar = ({ questionCategories, currentObject }) => {
+  const { signedInUser } = useSession();
+
   const categories = [
     'home',
     'utensils',
@@ -8,7 +11,7 @@ const ProgressBar = ({ questionCategories, currentObject }) => {
     'car',
     'plane',
     'chart-bar',
-    'award',
+    ...(!signedInUser ? ['award'] : []),
   ];
   const inactiveCategoryClass = 'border-gray-tint-2';
   const activeCategoryClass =
