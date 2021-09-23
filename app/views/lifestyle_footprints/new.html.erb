@@ -19,7 +19,8 @@
           projects: @projects.to_json,
           version: experiment_active?(:v2) ? 'v2' : 'v1',
           reactContentText: YAML.load_file('app/assets/main/react_components/translations/react.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['react'].to_json,
-          sharedText: YAML.load_file('config/locales/views/shared.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['shared'].to_json
+          sharedText: YAML.load_file('config/locales/views/shared.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['shared'].to_json,
+          isUserSignedIn: current_user ? true : false
         %>
       <% else %>
         <div class="callout" data-controller="lifestyle-footprints--calculator">

@@ -3,7 +3,10 @@
 require 'rails_helper'
 
 RSpec.feature 'Subscription receipts', type: :feature, js: true do
-  let(:user) { create(:user, email: 'test@example.com', password: 'password', stripe_customer_id: 'cus_TEST', region: 'us') }
+  let(:user) do
+    create(:user, email: 'test@example.com', password: 'password', stripe_customer_id: 'cus_TEST', region: 'us')
+  end
+
   before do
     create(:card_charge_monthly, stripe_customer_id: user.stripe_customer_id)
   end

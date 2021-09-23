@@ -1,6 +1,9 @@
 import React from 'react';
+import { useSession } from '../../../../contexts/SessionContext';
 
 const ProgressBar = ({ questionCategories, currentObject }) => {
+  const { signedInUser } = useSession();
+
   const categories = [
     'home',
     'utensils',
@@ -8,7 +11,7 @@ const ProgressBar = ({ questionCategories, currentObject }) => {
     'car',
     'plane',
     'chart-bar',
-    'award',
+    ...(!signedInUser ? ['award'] : []),
   ];
   const inactiveCategoryClass = 'border-gray-tint-2';
   const activeCategoryClass =
@@ -20,6 +23,9 @@ const ProgressBar = ({ questionCategories, currentObject }) => {
     <>
       <div className="flex justify-center space-x-3 m-lg:space-x-6 text-gray-shade-2">
         {categories.map((category) => {
+          const currentQuestions = Object.keys(questionCategories).filter(
+            (question) => questionCategories[question] == category
+          );
           let currentClass = inactiveCategoryClass;
           if (currentObject.category == category) {
             currentClass = activeCategoryClass;
@@ -46,27 +52,24 @@ const ProgressBar = ({ questionCategories, currentObject }) => {
                       <i className="text-base fa fa-check-circle"></i>
                     </div>
                   ) : (
-                    Object.keys(questionCategories)
-                      .filter(
-                        (question) => questionCategories[question] == category
+                    currentQuestions.map((question, questionIndex) =>
+                      questionIndex <=
+                      currentQuestions.indexOf(currentObject.questionKey) ? (
+                        <div
+                          key={question}
+                          className={
+                            'fa-circle invisible m-xs:visible text-sm block fas text-green-accent'
+                          }
+                        />
+                      ) : (
+                        <div
+                          key={question}
+                          className={
+                            'fa-circle invisible m-xs:visible text-sm block far text-gray-accent'
+                          }
+                        />
                       )
-                      .map((question) =>
-                        question == currentObject.questionKey ? (
-                          <div
-                            key={question}
-                            className={
-                              'fa-circle invisible m-xs:visible text-sm block fas text-green-accent'
-                            }
-                          />
-                        ) : (
-                          <div
-                            key={question}
-                            className={
-                              'fa-circle invisible m-xs:visible text-sm block far text-gray-accent'
-                            }
-                          />
-                        )
-                      )
+                    )
                   )}
                 </div>
               }

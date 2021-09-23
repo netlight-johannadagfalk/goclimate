@@ -2,7 +2,7 @@ import React from 'react';
 import ResultBar from '../../../common/ResultBar.jsx';
 import WorldComparisonText from './components/WorldComparisonText.jsx';
 import { useTexts } from '../../../../../../../../../contexts/TextsContext.js';
-import { useLocaleData } from '../../../../../../../../../contexts/LocaleContext.js';
+import { useSession } from '../../../../../../../../../contexts/SessionContext.js';
 
 const WorldComparisonChart = ({ footprint, countryAverage }) => {
   const {
@@ -18,7 +18,7 @@ const WorldComparisonChart = ({ footprint, countryAverage }) => {
       world_average,
     },
   } = useTexts();
-  const { lang } = useLocaleData();
+  const { lang } = useSession();
 
   const maxValue = Math.max(
     footprint.total.co2e,

@@ -33,3 +33,18 @@ sv:
     category_page:
       answer_button_logged_in: Gå till profil
     back_to_homepage: Tillbaka till startsidan
+    arguments_list:
+      transparency:
+        title: Full transparens
+        text: Vi vill att du ska känna dig helt trygg med hur dina pengar gör klimatnytta
+        icon: eye
+      projects:
+        title: Projekt som gör skillnad
+        text: Med hjälp av vår kompetens handplockar vi de projekt som ger mest klimatnytta
+        icon: globe-americas
+      binding_time:
+        title: Ingen bindningstid
+        text: Ingen bindningstid, sluta klimatkompensera när du vill
+        icon: unlock
+    membership_page:
+      preamble: Nu när du vet mer om din klimatpåverkan är det dags att agera. Genom att bli medlem kan du spara och jämföra dina resultat, få hjälp att minska ditt avtryck och möjligheten att stötta handplockade klimatprojekt.

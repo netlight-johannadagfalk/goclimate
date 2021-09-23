@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocaleData } from '../../../../../contexts/LocaleContext.js';
+import { useSession } from '../../../../../contexts/SessionContext.js';
 import { useTexts } from '../../../../../contexts/TextsContext.js';
 import { useVersion } from '../../../../../contexts/VersionContext.js';
 import { calculatePrice } from '../../../../../helpers/result-helper.js';
@@ -28,7 +28,7 @@ const SignUpPage = ({ result, page, onPageChange }) => {
       },
     },
     slug,
-  } = useLocaleData();
+  } = useSession();
 
   const version = useVersion();
 
