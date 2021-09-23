@@ -2,10 +2,12 @@ import React, { useEffect, useContext, createContext, useReducer } from "react";
 import {
   updateAchievementsOnDrag,
   getCompleteCategoryArrays,
+} from "../helpers/AchievementsHelper";
+import {
   formatedUserActions,
   acceptedUserActions,
   columnUserActions,
-} from "./help.js";
+} from "../helpers/UserActionsHelper.js";
 import { useClimateActionsText } from "../contexts/TextContext.js";
 
 const UserStateContext = createContext(undefined);
