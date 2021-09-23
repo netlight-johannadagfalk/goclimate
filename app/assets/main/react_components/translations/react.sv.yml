@@ -32,5 +32,4 @@ sv:
       desc: Detta är ditt klimatavtryck i kategorier, var det som du förväntade dig?
     category_page:
       answer_button_logged_in: Gå till profil
-    leave_without_membership:
-      button_text: Lämna utan medlemskap
+    back_to_homepage: Tillbaka till startsidan

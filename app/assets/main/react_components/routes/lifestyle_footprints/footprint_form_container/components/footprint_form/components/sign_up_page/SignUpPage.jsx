@@ -18,9 +18,7 @@ const SignUpPage = ({ result, page, onPageChange }) => {
   const {
     registrationsText: { continue_to_payment },
     lifestyleFootprintsText: { next },
-    reactContentText: {
-      leave_without_membership: { button_text },
-    },
+    reactContentText: { back_to_homepage },
   } = useTexts();
 
   const {
@@ -71,7 +69,11 @@ const SignUpPage = ({ result, page, onPageChange }) => {
       {page !== 3 && (
         <div className="mt-8">
           <AnswerButton
-            label={page === 2 && selectedMembership !== 'free' ? continue_to_payment : next}
+            label={
+              page === 2 && selectedMembership !== 'free'
+                ? continue_to_payment
+                : next
+            }
             onAnswerGiven={onPageChange}
             stylingClasses={'w-2/3 ' + (page === 2 && 'button-cta')}
           />
@@ -100,8 +102,8 @@ const SignUpPage = ({ result, page, onPageChange }) => {
           <Link
             style={'text-sm mt-2'}
             linkStyle={'text-green-shade-1'}
-            link={slug + '/climate-tips'}
-            linkText={button_text}
+            link={slug + '/'}
+            linkText={back_to_homepage}
             target={''}
           />
         </>

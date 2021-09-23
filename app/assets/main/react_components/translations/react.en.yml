@@ -32,5 +32,4 @@ en:
       desc: This is your carbon footprint given by category. Does it match your expectations?
     category_page:
       answer_button_logged_in: Go to profile
-    leave_without_membership:
-      button_text: Exit without membership
+    back_to_homepage: Back to homepage
