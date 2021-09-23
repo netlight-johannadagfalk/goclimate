@@ -1,0 +1,43 @@
+.toggler {
+  @apply hidden;
+
+  &:checked ~ .toggler-checked\:h-screen,
+  &:checked ~ * .toggler-checked\:h-screen {
+    @apply h-screen;
+  }
+
+  &:checked ~ .toggler-checked\:scale-y-100,
+  &:checked ~ * .toggler-checked\:scale-y-100 {
+    @apply scale-y-100;
+  }
+
+  &:checked ~ .toggler-checked\:opacity-100,
+  &:checked ~ * .toggler-checked\:opacity-100 {
+    @apply opacity-100;
+  }
+  
+  &:checked ~ .toggler-checked\:hidden,
+  &:checked ~ * .toggler-checked\:hidden {
+    @apply hidden;
+  }
+  
+  &:not(:checked) ~ .toggler-not-checked\:hidden,
+  &:not(:checked) ~ * .toggler-not-checked\:hidden {
+    @apply hidden;
+  }
+
+  &:checked ~ .toggler-checked\:block,
+  &:checked ~ * .toggler-checked\:block {
+    @apply block;
+  }
+
+  &:checked ~ .toggler-checked\:rotate-180,
+  &:checked ~ * .toggler-checked\:rotate-180 {
+    @apply rotate-180;
+  }
+
+  &:checked ~ .toggler-checked\:translate-x-0,
+  &:checked ~ * .toggler-checked\:translate-x-0 {
+    @apply translate-x-0;
+  }
+}

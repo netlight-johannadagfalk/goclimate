@@ -12,7 +12,6 @@ const KanbanActionItem = ({
   handleExpanded,
 }) => {
   const isBadge = item.userActionsArray ? true : false;
-
   const categoryName = () => {
     for (let i = 0; i <= Object.keys(categories).length; i++) {
       if (isBadge) return "";
@@ -139,7 +138,7 @@ const KanbanActionItem = ({
                     <div className="flex flex-1 justify-center items-start">
                       <button
                         className={`fas float-right focus:outline-none ${
-                          isBadge ? "mt-12 ml-10" : "mt-4 ml-4"
+                          isBadge ? "mt-9 ml-4" : "mt-4 ml-4"
                         } ${
                           item.expanded ? "fa-chevron-up" : "fa-chevron-down"
                         }`}
@@ -148,7 +147,7 @@ const KanbanActionItem = ({
                     </div>
                   </div>
                   {isBadge && (
-                    <div className="flex justify-center ml-6 -mt-4">
+                    <div className="flex justify-center ml-6 -mt-7">
                       <ProgressBar
                         categories={categories}
                         item={item}
@@ -207,14 +206,16 @@ const KanbanActionItem = ({
                                 >
                                   {subitem.name}
                                 </div>
-                                <button
-                                  className="d:opacity-0 d:group-hover:opacity-50 d:hover:!opacity-100 opacity-50 flex-1 text-lg text-right"
-                                  onClick={() =>
-                                    handleButtonPerformOnDrag(subitem, false)
-                                  }
-                                >
-                                  &times;
-                                </button>
+                                {subitem.id > 0 && (
+                                  <button
+                                    className="d:opacity-0 d:group-hover:opacity-50 d:hover:!opacity-100 opacity-50 flex-1 text-lg text-right"
+                                    onClick={() =>
+                                      handleButtonPerformOnDrag(subitem, false)
+                                    }
+                                  >
+                                    &times;
+                                  </button>
+                                )}
                               </div>
                             ) : (
                               <div className="flex mt-1 mb-3">

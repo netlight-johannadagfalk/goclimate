@@ -33,6 +33,7 @@ module.exports = {
         accent: "#48A12A",
         "tint-2": "#90CF78",
         "tint-3": "#538047",
+        "tint-4": "#D5EDD1",
         "tint-1": "#EBF6E6",
         pastel: "#F6FFF2",
       },
@@ -178,6 +179,9 @@ module.exports = {
         "1/4": "25%",
         "1/2": "50%",
         "3/4": "75%",
+      },
+      minWidth: {
+        40: '10rem'
       },
       spacing: {
         96: "24rem",

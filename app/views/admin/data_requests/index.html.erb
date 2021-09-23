@@ -1,39 +1,42 @@
-<%= render 'admin/shared/notice_banner' %>
+<div class="space-y-3">
+  <%= render 'admin/shared/notice_banner' %>
 
-<h1>Data Requests</h1>
-<% if @report %>
-  <h3>For report: <%= link_to @report.title, [:admin, @report] %></h3>
-<% end %>
-<% if @report_area %>
-  <h3>For report area: <%= link_to @report_area.title, [:admin, @report_area.report] %></h3>
-<% end %>
+  <h1 class="heading-lg">Data Requests</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Recipient</th>
-      <th>Report</th>
-      <th>Created at</th>
-      <th></th>
-    </tr>
-  </thead>
+  <% if @report %>
+    <h3 class="heading">For report: <%= link_to @report.title, [:admin, @report], class: 'link' %></h3>
+  <% end %>
+  <% if @report_area %>
+    <h3 class="heading">For report area: <%= link_to @report_area.title, [:admin, @report_area.report], class: 'link' %></h3>
+  <% end %>
 
-  <tbody>
-    <% @data_requests.each do |data_request| %>
-      <% report = ClimateReports::ReportArea.find(data_request.report_area_id).report %>
+  <table class="table">
+    <thead>
       <tr>
-        <td>
-          <% reporter = DataReporter.find(data_request.recipient_id) %>
-          <%= link_to reporter.email, [:admin, reporter] %>
-        </td>
-        <td><%= link_to report.title, [:admin, report] %></td>
-        <td><%= time_tag(data_request.created_at, format: '%F %R') %></td>
-        <td class="admin-actions">
-          <%= link_to 'Show', [:admin, data_request] %> &nbsp;
-          <%= link_to 'Edit', edit_admin_data_request_path(data_request) %> &nbsp;
-          <%= link_to 'Destroy', [:admin, data_request], method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
+        <th>Recipient</th>
+        <th>Report</th>
+        <th>Created at</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @data_requests.each do |data_request| %>
+        <% report = ClimateReports::ReportArea.find(data_request.report_area_id).report %>
+        <tr>
+          <td>
+            <% reporter = DataReporter.find(data_request.recipient_id) %>
+            <%= link_to reporter.email, [:admin, reporter], class: 'link-ui text-green-shade-2' %>
+          </td>
+          <td><%= link_to report.title, [:admin, report], class: 'link-ui text-green-shade-2' %></td>
+          <td><%= time_tag(data_request.created_at, format: '%F %R') %></td>
+          <td class="whitespace-nowrap">
+            <%= link_to 'Show', [:admin, data_request], class: 'link-ui text-green-shade-2' %> &nbsp;
+            <%= link_to 'Edit', edit_admin_data_request_path(data_request), class: 'link-ui text-green-shade-2' %> &nbsp;
+            <%= link_to 'Destroy', [:admin, data_request], method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-ui text-green-shade-2' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

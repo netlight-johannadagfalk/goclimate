@@ -58,6 +58,7 @@ export const UserActionsProvider = ({
   actionsWithoutUserActions,
   actionsWithUserActions,
   climateActionCategories,
+  userSubscriptionType,
 }) => {
   const [userActions, setUserActions] = useState(allUserActions);
   const climateActionsText = useClimateActionsText();
@@ -110,6 +111,21 @@ export const UserActionsProvider = ({
     setCategoryBadges(badge);
   };
 
+  const memberShipBadge = {
+    id: "-1",
+    name: "Climate Friend",
+    badge_image_url: "/achievement_images/AchievementClimateFriend.png",
+    userActionsArray: [
+      { id: "-2", name: "GoClimate free membership", status: true },
+      {
+        id: "-3",
+        name: "GoClimate paid membership",
+        status: JSON.parse(userSubscriptionType) == true ? true : false,
+      },
+    ],
+    actionsArray: [],
+  };
+
   /** Finds the correct category based on id */
   const findCategory = (performedColumn, item) => {
     return performedColumn.find(
@@ -158,27 +174,30 @@ export const UserActionsProvider = ({
   /** This function creates badges from start */
   const getCompleteCategoryArrays =
     //Add actions
-    appendUserActionsArrayToCategory.map((category) => {
-      const allActionsWithoutUserActions = filterCategoryRelatedActions(
-        JSON.parse(actionsWithoutUserActions),
-        category.id
-      );
+    [
+      ...appendUserActionsArrayToCategory.map((category) => {
+        const allActionsWithoutUserActions = filterCategoryRelatedActions(
+          JSON.parse(actionsWithoutUserActions),
+          category.id
+        );
 
-      //Add useractions with status false
-      const allUserActions = filterCategoryRelatedUserActions(
-        userActions,
-        category.id,
-        false
-      );
+        //Add useractions with status false
+        const allUserActions = filterCategoryRelatedUserActions(
+          userActions,
+          category.id,
+          false
+        );
 
-      //map trough userActionsArray and save latest update timestamp and set to the whole category
-      return {
-        ...category,
-        userActionsArray: [...category.userActionsArray, ...allUserActions],
-        actionsArray: [...allActionsWithoutUserActions],
-        id: category.id.toString(),
-      };
-    });
+        //map trough userActionsArray and save latest update timestamp and set to the whole category
+        return {
+          ...category,
+          userActionsArray: [...category.userActionsArray, ...allUserActions],
+          actionsArray: [...allActionsWithoutUserActions],
+          id: category.id.toString(),
+        };
+      }),
+      memberShipBadge,
+    ];
 
   //Check for further refactoring below:
 

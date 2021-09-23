@@ -3,6 +3,7 @@ import CarouselHeader from "./CarouselHeader.jsx";
 import CarouselList from "./CarouselList.jsx";
 import CarouselCategoryButton from "./CarouselCategoryButton.jsx";
 import { useCategory } from "../../../contexts/CategoryContext.js";
+import { useClimateActionsOriginal } from "../../../contexts/ClimateActionsContext";
 import { useMediaQuery } from "react-responsive";
 import { d } from "../../../constants";
 import "react-dropdown/style.css";
@@ -15,8 +16,14 @@ const CarouselContainer = ({
 }) => {
   const [allCategories, setAllCategories] = useState(true);
   const category = useCategory();
-
+  const totClimateActions = useClimateActionsOriginal();
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${d})` });
+
+  const showFilterButton = (cat) => {
+    return totClimateActions.some(
+      (temp) => temp.climate_action_category_id === cat.id
+    );
+  };
 
   return (
     <section className="section-padding">
@@ -37,16 +44,19 @@ const CarouselContainer = ({
               setAllCategories={setAllCategories}
               localUserActions={localUserActions}
             />
-            {categories.map((cat) => (
-              <CarouselCategoryButton
-                key={cat.id}
-                categoryName={cat.name}
-                categoryID={cat.id}
-                active={category === cat.id ? true : false}
-                setAllCategories={setAllCategories}
-                localUserActions={localUserActions}
-              />
-            ))}
+            {categories.map(
+              (cat) =>
+                showFilterButton(cat) && (
+                  <CarouselCategoryButton
+                    key={cat.id}
+                    categoryName={cat.name}
+                    categoryID={cat.id}
+                    active={category === cat.id ? true : false}
+                    setAllCategories={setAllCategories}
+                    localUserActions={localUserActions}
+                  />
+                )
+            )}
           </>
         )}
         <CarouselList

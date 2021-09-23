@@ -1,5 +1,5 @@
-<div class = "container" style = "margin-bottom: 10px;display: inline-block;float:left;width:45%">
-<h3>Action of the month:</h3>
+<div class = "container" style = "margin-bottom: 10px;display: inline-block;float:left;width:45%;margin-left:10px">
+<h3 class="heading">Action of the month:</h3>
   <div class = "card" style = "outline: 2px dashed grey">
       <% if @action_of_the_month.nil?%>
       <h6 style="text-align:center"><b>No action of the month is chosen, please choose one.</b></h6> 
@@ -32,5 +32,5 @@
       </table> 
       <%end%>
   </div>
-<%= link_to "Change Action of the month", admin_climate_actions_show_climate_actions_path, remote: true, class: 'btn btn-default' %>
+<%= link_to "Change Action of the month", admin_climate_actions_show_climate_actions_path, remote: true, class: 'button button-cta mt-5' %>
 </div>

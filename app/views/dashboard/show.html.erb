@@ -44,13 +44,13 @@
         <div class="t:w-1/2 space-y-6">
            <h2 class="heading-lg"><%= t 'dashboard.footprint.heading' %></h2>
           <div>
-            <span class="text-5xl font-bold text-green-accent"><%= @footprint.total.tonnes.round(1) %></span>
+            <span class="text-3xl m-lg:text-5xl font-bold text-green-accent"><%= number_with_delimiter(@footprint.total.tonnes.round(1)) %></span>
             <span class="heading text-green-accent"><%= t 'tonnes_CO2' %></span>
           </div>
           <% if @footprint.country %>
             <p class="hidden t:block">
               <% footprint_text_options = {
-                  footprint: @footprint.total.to_s(precision: :auto),
+                  footprint: number_with_delimiter(@footprint.total.tonnes.round(1)),
                   relative:
                     if @footprint.total > @country_average.co2e
                       "#{((@footprint.total.co2e.to_f / @country_average.co2e.co2e - 1) * 100).ceil} % #{t 'views.registrations.higher'}"
@@ -115,7 +115,8 @@
   lang: I18n.locale[0..-1],
   registrationsText: YAML.load_file('config/locales/views/registrations.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['registrations'].to_json,
   climateActionsText: YAML.load_file('app/assets/main/react_components/translations/climate_actions.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['assets']['main']['react_components'].to_json,
-  totalNoFootprints: @total_number_of_footprints.to_json()
+  totalNoFootprints: @total_number_of_footprints.to_json(),
+  userSubscriptionType: @getSubscriptionType
   %>
 
   <section class="section-padding">
