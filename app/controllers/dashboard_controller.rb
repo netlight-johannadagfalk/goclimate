@@ -50,6 +50,12 @@ class DashboardController < ApplicationController
       .select("climate_actions.*, COUNT(user_climate_actions.climate_action_id) AS total")
       .group("climate_actions.id")
 
+      @number_of_users_completed_actions_ordered =
+        ClimateAction.joins(:user_climate_actions)
+        .select("climate_actions.*, count(user_climate_actions.climate_action_id) as total")
+        .order('COUNT(user_climate_actions.climate_action_id) DESC')
+        .group('climate_actions.id')
+
     #@all_actions_with_accepted_user_actions = ClimateAction.right_outer_joins(:user_climate_actions)
     #.where(["user_climate_actions.user_id = ?", current_user.id])
     #.select("user_climate_actions.id", :climate_action_id, :name, :description, :status, :user_id)

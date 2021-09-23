@@ -16,13 +16,18 @@ const CarouselCategoryButton = ({
   setAllCategories,
   categories,
   localUserActions,
+  actionsToplist,
+  setPopular,
 }) => {
   const setCategory = useCategoryUpdate();
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
   const userActions = useUserActions();
 
-  let options = [{ value: null, label: "All categories" }];
+  let options = [
+    { value: "allCategories", label: "All categories" },
+    { value: "popular", label: "Popular" },
+  ];
 
   const createOptions = () =>
     categories.map((cat) => {
@@ -31,26 +36,29 @@ const CarouselCategoryButton = ({
   categories && createOptions();
 
   const handleCategory = (categoryID) => {
-    categoryID != null ? categoryClick(categoryID) : allCategoriesClick();
+    let filteredActions = [];
+    if (categoryID === "popular") {
+      handleCategoryClick(true, false);
+      filteredActions = actionsToplist.slice(0, 5);
+    } else if (categoryID === "allCategories") {
+      handleCategoryClick(false, true);
+      filteredActions = totClimateActions;
+    } else {
+      handleCategoryClick(false, false, categoryID);
+      filteredActions = totClimateActions.filter(
+        (temp) => temp.climate_action_category_id === categoryID
+      );
+    }
+    updateCategoryAttributes(filteredActions);
   };
 
-  const allCategoriesClick = () => {
-    setAllCategories(true);
-    updateCategory();
-  };
-  const categoryClick = (categoryID) => {
-    updateCategory(categoryID);
-    setAllCategories(false);
+  const handleCategoryClick = (showPopular, showAllCategories, categoryID) => {
+    setPopular(showPopular);
+    setAllCategories(showAllCategories);
+    categoryID ? setCategory(categoryID) : setCategory();
   };
 
-  const updateCategory = (cat) => {
-    setCategory(cat);
-    const filteredActions = cat
-      ? totClimateActions.filter(
-          (temp) => temp.climate_action_category_id === cat
-        )
-      : totClimateActions;
-
+  const updateCategoryAttributes = (filteredActions) => {
     const filteredActionsWithStatus = filteredActions.map((action) => {
       return userActions.some(
         (userAction) => userAction.climate_action_id === action.id
@@ -62,8 +70,8 @@ const CarouselCategoryButton = ({
         : { ...action, accepted: false };
     });
 
-    const filteredActionsWithStatusAndTotal = filteredActionsWithStatus.map(
-      (action) => {
+    setClimateActions(
+      filteredActionsWithStatus.map((action) => {
         return localUserActions.some(
           (localUserAction) => localUserAction[0].id === action.id
         )
@@ -72,9 +80,8 @@ const CarouselCategoryButton = ({
               total: ++action.total,
             }
           : action;
-      }
+      })
     );
-    setClimateActions(filteredActionsWithStatusAndTotal);
   };
 
   return (
