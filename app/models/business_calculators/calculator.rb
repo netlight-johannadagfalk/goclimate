@@ -2,10 +2,11 @@
 
 module BusinessCalculators
   class Calculator < ApplicationRecord
-    has_many :categories,
-             ->(calculator) { order(sanitize_sql_for_order(["POSITION(id::text IN '?')", calculator.category_order])) },
-             class_name: 'BusinessCalculators::CalculatorCategory',
-             dependent: :destroy
+    has_many     :categories,
+                 class_name: 'BusinessCalculators::CalculatorCategory',
+                 foreign_key: 'calculator_id',
+                 dependent: :destroy,
+                 inverse_of: :calculator
 
     accepts_nested_attributes_for :categories, allow_destroy: true, reject_if:
       proc { |attributes|
@@ -15,6 +16,10 @@ module BusinessCalculators
     validate :status_value
 
     after_create :set_default_status
+
+    def ordered_categories
+      BusinessCalculators::CalculatorCategory.where(calculator_id: id).order_as(category_order)
+    end
 
     def self.model_name
       @model_name ||= ActiveModel::Name.new(self, nil, 'business_calculator')
@@ -53,18 +58,26 @@ module BusinessCalculators
       new_calculator.name = "#{new_calculator.name} (copy)"
       new_calculator.status = 'draft'
 
+      category_order = []
+
       if new_calculator.save
         categories.each do |category|
           new_category = category.dup
           new_category.calculator_id = new_calculator.id
           new_category.save
 
+          category_order << new_category.id
+          field_order = []
+
           category.fields.each do |field|
             new_field = field.dup
             new_field.category_id = new_category.id
             new_field.save
+            field_order << new_field.id
           end
+          new_category.update!(field_order: field_order)
         end
+        new_calculator.update!(category_order: category_order)
       else
         errors.add(self, 'was not duplicated')
       end
