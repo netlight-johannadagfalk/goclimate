@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const MobileKanbanContainer = ({ children, userActions }) => {
+  const [showMobileKanban, setShowMobileKanban] = useState(false);
   const getAcceptedActionsForUser = () => {
     let actionsAccepted = 0;
     userActions.map((action) => {
@@ -11,7 +12,14 @@ const MobileKanbanContainer = ({ children, userActions }) => {
     return actionsAccepted;
   };
 
-  const [showMobileKanban, setShowMobileKanban] = useState(false);
+  const toggleScroll = (bool) => {
+    const scrollable = document.getElementById("scrollable");
+    bool
+      ? (scrollable.className += " overflow-hidden")
+      : (scrollable.className -= " overflow-hidden");
+  };
+
+  showMobileKanban ? toggleScroll(true) : toggleScroll(false);
 
   return (
     <div id="mobile-kanban">
@@ -25,7 +33,7 @@ const MobileKanbanContainer = ({ children, userActions }) => {
         {children}
       </div>
       <button
-        className="fixed top-0 right-0 mr-20 mt-4 lg:mr-48 lg:right-10 t:mr-17 t:right-3 z-50 outline-none 
+        className="fixed top-0 right-0 mr-20 mt-4 t:mt-6 lg:mr-48 lg:right-10 t:mr-17 t:right-3 z-50 outline-none 
         focus:outline-none"
         onClick={() => setShowMobileKanban(!showMobileKanban)}
       >
