@@ -23,7 +23,7 @@ const MembershipsListV2 = ({
   return (
     <>
       <Title custom_style="text-lgr" text={title} />
-      <div className="md:flex text-left">
+      <div className="t:flex text-left">
         <MembershipAlternativeV2
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}
