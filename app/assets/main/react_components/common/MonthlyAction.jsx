@@ -4,7 +4,6 @@ import CarouselActionItem from "../dashboard/climate_actions/carousel/CarouselAc
 const MonthlyAction = ({ action, user, updateLocalAccepted, categories }) => {
   return (
     <div className="w-64 ml-10 mt-11 relative">
-      <h3 className="heading text-center">Action of the Month </h3>
       <CarouselActionItem
         action={action}
         key={action.id}
@@ -12,24 +11,17 @@ const MonthlyAction = ({ action, user, updateLocalAccepted, categories }) => {
         updateLocalAccepted={updateLocalAccepted}
         categories={categories}
       ></CarouselActionItem>
-      {/* <div
-        className="h-7 w-7 top-20 left-6 bg-cover absolute"
-        style={{
-          backgroundImage:
-            "url('/achievement_images/AchievementStarActive.png')",
-        }}
-      ></div> */}
 
-      <div className="h-60 w-60 -top-40 left-10 bg-cover absolute">
-        <svg viewBox="0 0 60 60">
+      <div className="h-64 w-64 -top-16 left-0 bg-cover absolute">
+        <svg viewBox="0 0 150 150">
           <path
             id="curve"
             fill="transparent"
-            d="M 00 60 C 10 40, 30 40, 40 60"
+            d="M 20 90 C 20 15, 130 15, 130 90"
           />
-          <text width="100" fontSize="4">
+          <text className="green-primary text-sm font-thin">
             <textPath xlinkHref="#curve">
-              ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐
+              &nbsp; &nbsp; &nbsp; &nbsp; Action of the month
             </textPath>
           </text>
         </svg>

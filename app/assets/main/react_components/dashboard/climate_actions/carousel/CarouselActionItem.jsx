@@ -78,6 +78,23 @@ const CarouselActionItem = ({
     <div className="flex flex-1 min-h-full ">
       <div className="pt-20 flex m-lg:pt-24 flex-1 justify-evenly">
         <div className=" border-gray-tint-2 rounded-lg shadow-lg pb-2 ml-2 mr-2 flex flex-col flex-1 bg-white">
+          {/* {action.action_of_the_month && (
+            <div className="h-56 w-56 -mt-32 bg-cover absolute">
+              <svg viewBox="0 0 150 150">
+                <path
+                  id="curve"
+                  fill="transparent"
+                  d="M 20 90 C 20 15, 130 15, 130 90"
+                />
+                <text className="green-primary text-sm font-thin">
+                  <textPath xlinkHref="#curve">
+                    &nbsp; &nbsp; &nbsp; &nbsp; Action of the month
+                  </textPath>
+                </text>
+              </svg>
+            </div>
+          )} */}
+
           <div
             className={`${
               "category_" +
