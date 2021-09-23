@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :newsletter_subscriber do
-    # TODO: implement later
+    email { 'test@example.com' }
+    newsletter_type { 'consumer' }
   end
 end
