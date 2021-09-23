@@ -110,20 +110,20 @@ const Card = ({
                   className=" h-14 w-full top-0 mt-6 absolute justify-center"
                   onClick={() => handleExpanded(item, !item.expanded)}
                 >
+                  <button
+                    className={`fas right-0 focus:outline-none mr-4 absolute ${
+                      item.status === true ? "mt-1" : "mt-4"
+                    } ${item.expanded ? "fa-chevron-up" : "fa-chevron-down"} `}
+                    onClick={() => handleExpanded(item, !item.expanded)}
+                  ></button>
                   <div
-                    className={`font-bold text-left text-sm mt-1.5 ml-20 ${
+                    className={`font-bold text-left text-sm mt-1.5 ml-20 w-3/5 ${
                       isAchievement && "-mt-2"
                     }`}
                   >
                     {item.name}
                   </div>
 
-                  <button
-                    className={`fas float-right focus:outline-none mr-4 ${
-                      item.status === false && "-mt-3"
-                    } ${item.expanded ? "fa-chevron-up" : "fa-chevron-down"} `}
-                    onClick={() => handleExpanded(item, !item.expanded)}
-                  ></button>
                   {isAchievement && (
                     <ProgressBar
                       categories={categories}
@@ -137,26 +137,15 @@ const Card = ({
                 {isAchievement ? (
                   <AchievementCard
                     achievement={item}
-                    index={index}
-                    key={item.id}
-                    handleDelete={handleDelete}
-                    handleUncompleteAction={handleUncompleteAction}
-                    categories={categories}
                     sidebarCollapsed={sidebarCollapsed}
-                    handleExpanded={handleExpanded}
-                    categoryColor={categoryColor}
+                    handleUncompleteAction={handleUncompleteAction}
                   ></AchievementCard>
                 ) : (
                   <UserActionCard
                     userAction={item}
-                    index={index}
-                    key={item.id}
                     handleDelete={handleDelete}
                     handleCompleteAction={handleCompleteAction}
-                    categories={categories}
                     sidebarCollapsed={sidebarCollapsed}
-                    handleExpanded={handleExpanded}
-                    categoryColor={categoryColor}
                   ></UserActionCard>
                 )}
               </div>
