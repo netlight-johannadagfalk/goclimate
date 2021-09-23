@@ -10,6 +10,14 @@ module BusinessCalculators
     validate :units_exists
     validate :correct_field_type
 
+    scope :order_as, lambda { |ids|
+      return unless ids
+
+      order = sanitize_sql_array(["position((',' || id::text || ',') in ?)", ids
+        .join(',') + ','])
+      where(id: ids).order(Arel.sql(order)) if order
+    }
+
     def self.model_name
       @model_name ||= ActiveModel::Name.new(self, nil, 'calculator_field')
     end

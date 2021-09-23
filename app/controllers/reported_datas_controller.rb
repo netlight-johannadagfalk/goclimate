@@ -77,10 +77,10 @@ class ReportedDatasController < ApplicationController
   end
 
   def category_fields_reported_datas(report_area = nil)
-    @category_fields_reported_datas = @calculator.categories.map do |category|
+    @category_fields_reported_datas = @calculator.ordered_categories.map do |category|
       [
         category,
-        category.fields.map { |field| field },
+        category.ordered_fields.map { |field| field },
         set_reported_datas(category, report_area)
       ]
     end

@@ -45,7 +45,20 @@ Our domain consists of:
 | `GreenhouseGases`     | An amount of greenhouse gases, either estimated emissions or offset amount. We use the term `co2e` and always store this in kg's |
 | `Project`             | A carbon offsetting project. These are the credits we sell through our products. |
 | `Money`               | An amount and a currency. Amounts are stored and processed as smallest units (cents/öres). |
+| `Currency`            | Representation of a currency, including rounding rules. |
 | `Region`              | A named region with a combination of language and currency. Each region corresponds to their own base URL for SEO reasons. (Not yet implemented.) |
+| `User`                | A registered user. We have accounts both with and without subscriptions. Active subscriptions are handled in Stripe, with some metadata duplicated in this model. |
+| `CardCharge`          | Charges for purchases of an offset product.         |
+
+### Products
+
+| Model                 | Description                                         |
+| ----------------------|-----------------------------------------------------|
+| `SubscriptionMonth`   | Monthly offset for subscriptions of an individual's full lifestyle footprint. |
+| `GiftCard`            | A sold gift card.                                   |
+| `FlightOffset`        | A sold flight offset.                               |
+| `ClimateReportInvoice` | Sold offsetting for a climate report done by a service company. |
+| `Invoice`             | Other sold offsetting, consulting or products.              |
 
 ### Calculators
 
@@ -55,23 +68,6 @@ Our domain consists of:
 | `GenericFlightFootprint` | Footprint for flight iteniraries.                |
 | (Gift cards)          | (Done inline in `GiftCard`.)                        |
 | (Service companies)   | (Done inline in `ClimateReportCalculation`.)        |
-
-### Products
-
-| Model                 | Description                                         |
-| ----------------------|-----------------------------------------------------|
-| Subscription & related payments (in Stripe) | Monthly subscription for continuously offseting an individuals full lifestyle footprint. |
-| `GiftCard`            | A sold gift card.                                   |
-| `FlightOffset`        | A sold flight offset.                               |
-| `ClimateReportInvoice` | Sold offsetting for a climate report done by a service company. |
-| `Invoice`             | Sold offsetting for ad-hoc agreements.              |
-
-### Supporting
-
-| Model                 | Description                                         |
-| ----------------------|-----------------------------------------------------|
-| `User`                | A registered user. Account creation is currently only possible by signing up for a subscription, but you can cancel and still keep the account. |
-| `CardCharge`          | Charges for purchases of an offset product.         |
 
 ## Coding guidelines
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocaleData } from '../../../../../contexts/LocaleContext.js';
+import { useSession } from '../../../../../contexts/SessionContext.js';
 import { useTexts } from '../../../../../contexts/TextsContext.js';
 import { useVersion } from '../../../../../contexts/VersionContext.js';
 import { calculatePrice } from '../../../../../helpers/result-helper.js';
@@ -30,7 +30,7 @@ const SignUpPage = ({ result, page, onPageChange }) => {
       },
     },
     slug,
-  } = useLocaleData();
+  } = useSession();
 
   const version = useVersion();
 
@@ -71,7 +71,11 @@ const SignUpPage = ({ result, page, onPageChange }) => {
       {page !== 3 && (
         <div className="mt-8">
           <AnswerButton
-            label={page === 2 && selectedMembership !== 'free' ? continue_to_payment : next}
+            label={
+              page === 2 && selectedMembership !== 'free'
+                ? continue_to_payment
+                : next
+            }
             onAnswerGiven={onPageChange}
             stylingClasses={'w-2/3 ' + (page === 2 && 'button-cta')}
           />
