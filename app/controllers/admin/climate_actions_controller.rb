@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
-  class ClimateActionsController < AdminController
+  class ClimateActionsController < AdminController # rubocop:disable Metrics/ClassLength
     before_action :set_climate_action, only: [:show, :edit, :update, :destroy, :delete]
 
     def set_action_of_the_month
