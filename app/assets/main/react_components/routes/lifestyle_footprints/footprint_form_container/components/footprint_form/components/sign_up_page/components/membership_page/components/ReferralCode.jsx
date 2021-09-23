@@ -9,13 +9,7 @@ import AnswerButton from '../../../../../components/common/AnswerButton.jsx';
 const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
   const [invalidCodeMessage, setInvalidCodeMessage] = useState('');
   const [inputCode, setInputCode] = useState(grantedReferralCode);
-  const [showInput, setShowInput] = useState(() => {
-    if (grantedReferralCode === '') {
-      return false;
-    } else {
-      return true;
-    }
-  });
+  const [showInput, setShowInput] = useState(grantedReferralCode !== '');
   const mounted = useRef(false);
 
   const {
