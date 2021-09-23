@@ -1,7 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
+
+import {
+  useMobileKanban,
+  useMobileKanbanUpdate,
+} from "../../../../contexts/MobileKanbanContext.js";
 
 const MobileKanbanContainer = ({ children, userActions }) => {
-  const [showMobileKanban, setShowMobileKanban] = useState(false);
+  const showMobileKanban = useMobileKanban();
+  const setShowMobileKanban = useMobileKanbanUpdate();
+
   const getAcceptedActionsForUser = () => {
     let actionsAccepted = 0;
     userActions.map((action) => {
