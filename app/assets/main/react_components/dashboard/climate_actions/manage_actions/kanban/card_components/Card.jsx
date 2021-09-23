@@ -92,7 +92,7 @@ const Card = ({
                 ></div>
               )}
               <div
-                className={`shadow-lg h-16 w-16 items-center rounded-full bg-cover mx-auto ${
+                className={`shadow h-16 w-16 items-center rounded-full bg-cover mx-auto ${
                   !sidebarCollapsed && "flex flex-1 ml-3 -mt-5"
                 }`}
                 style={{
