@@ -69,7 +69,7 @@ export const UserActionsProvider = ({
   const [userActions, setUserActions] = useState(allUserActions);
   const climateActionsText = useClimateActionsText();
 
-  const findUserActionsWithStatusFalse = (actions) => {
+  const findAcceptedUserActions = (actions) => {
     let actionsAccepted = 0;
 
     actions.map((action) => {
@@ -81,13 +81,12 @@ export const UserActionsProvider = ({
   };
 
   const [acceptedActions, setAcceptedActions] = useState(
-    findUserActionsWithStatusFalse(userActions)
+    findAcceptedUserActions(userActions)
   );
 
   const updateUserActions = (actions) => {
     setUserActions(actions);
-    let tempActions = findUserActionsWithStatusFalse(actions);
-    setAcceptedActions(tempActions);
+    setAcceptedActions(findAcceptedUserActions(actions));
   };
 
   const formatedUserActions = (inVal) => {

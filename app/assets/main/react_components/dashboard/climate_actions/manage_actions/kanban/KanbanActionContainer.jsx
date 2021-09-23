@@ -282,7 +282,11 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
   }, []);
 
   return (
-    <div className="h-screen">
+    <div
+      className={`h-screen ${
+        collapsed ? "w-24" : "d:w-80"
+      } transition-size duration-500`}
+    >
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
@@ -294,7 +298,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              <div className="h-10" style={{ width: 360 }}>
+              <div className="h-10 w-360">
                 <p
                   className={`font-normal text-base text-primary text-lg text-center`}
                 >
