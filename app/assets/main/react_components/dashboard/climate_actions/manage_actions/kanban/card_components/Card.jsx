@@ -3,6 +3,7 @@ import { Draggable } from "react-beautiful-dnd";
 import UserActionCard from "./UserActionCard.jsx";
 import CardImage from "./CardImage.jsx";
 import AchievementCard from "./AchievementCard.jsx";
+import ProgressBar from "../ProgressBar.jsx";
 
 const Card = ({
   item,
@@ -38,7 +39,6 @@ const Card = ({
     if (!snapshot.isDragging) {
       return {
         userSelect: "none",
-        padding: 0,
         minHeight: "auto",
       };
     }
@@ -48,7 +48,6 @@ const Card = ({
     /** Moving element inside accepted column */
     return {
       userSelect: "none",
-      padding: 0,
       minHeight: "auto",
       ...style,
     };
@@ -124,10 +123,24 @@ const Card = ({
                   >
                     {item.name}
                   </div>
+
+                  <button
+                    className={`fas float-right focus:outline-none mr-4 ${
+                      item.status === false && "-mt-3"
+                    } ${item.expanded ? "fa-chevron-up" : "fa-chevron-down"} `}
+                    onClick={() => handleExpanded(item, !item.expanded)}
+                  ></button>
+                  {isAchievement && (
+                    <ProgressBar
+                      categories={categories}
+                      item={item}
+                      userActions={item.userActionsArray}
+                      actions={item.actionsArray}
+                    />
+                  )}
                 </div>
               </div>
             )}
-            {/* // )} */}
           </div>
         );
       }}
