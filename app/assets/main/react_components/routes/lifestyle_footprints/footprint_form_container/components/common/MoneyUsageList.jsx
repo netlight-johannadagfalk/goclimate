@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTexts } from '../../../contexts/TextsContext.js';
+import blobImage from '../../../../../images/blob_5.svg';
 
 const MoneyUsageList = () => {
   const {
@@ -14,13 +15,22 @@ const MoneyUsageList = () => {
   );
 
   return (
-    <div className="space-y-3">
-      <h3 className="font-semibold">{heading}</h3>
-      <ul className="list-check space-y-3 text-left">
-        {listValues.map(([key, text]) => (
-          <li key={key}>{text}</li>
-        ))}
-      </ul>
+    <div className="mt-20 mb-16">
+      <div className="relative mx-auto w-full">
+        <img
+          className="invisible m-s:visible w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          alt=""
+          src={blobImage}
+        />
+        <div className="relative space-y-3">
+          <h3 className="text-center heading">{heading}</h3>
+          <ul className="list-check space-y-3 text-left">
+            {listValues.map(([key, text]) => (
+              <li key={key}>{text}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };
