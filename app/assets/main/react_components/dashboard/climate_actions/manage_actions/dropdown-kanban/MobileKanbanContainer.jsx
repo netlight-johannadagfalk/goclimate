@@ -1,13 +1,7 @@
-import React from "react";
-
-import {
-  useMobileKanban,
-  useMobileKanbanUpdate,
-} from "../../../../contexts/MobileKanbanContext.js";
+import React, { useState, useEffect } from "react";
 
 const MobileKanbanContainer = ({ children, userActions }) => {
-  const showMobileKanban = useMobileKanban();
-  const setShowMobileKanban = useMobileKanbanUpdate();
+  const [showMobileKanban, setShowMobileKanban] = useState(false);
 
   const getAcceptedActionsForUser = () => {
     let actionsAccepted = 0;
@@ -26,12 +20,18 @@ const MobileKanbanContainer = ({ children, userActions }) => {
       : (scrollable.className -= " overflow-hidden");
   };
 
+  useEffect(() => {
+    const toggleMobileKanban = () => setShowMobileKanban(false);
+    const hamburgerMenu = document.getElementById("nav-toggler");
+    hamburgerMenu.addEventListener("input", toggleMobileKanban);
+    return () => hamburgerMenu.removeEventListener("input", toggleMobileKanban);
+  }, []);
+
+  showMobileKanban && (document.getElementById("nav-toggler").checked = false);
   showMobileKanban ? toggleScroll(true) : toggleScroll(false);
 
   return (
-    <div id="mobile-kanban">
-      {showMobileKanban &&
-        (document.getElementById("nav-toggler").checked = false)}
+    <div>
       <div
         className={`fixed top-16 z-30 bg-white w-full overflow-hidden ${
           showMobileKanban ? "h-screen" : "h-0"

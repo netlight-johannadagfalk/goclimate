@@ -1,13 +1,11 @@
 import React from "react";
 import ClimateActionsContainer from "./climate_actions/ClimateActionsContainer.jsx";
-import Helper from "../common/Helper.jsx";
 import { CategoryProvider } from "../contexts/CategoryContext.js";
 import { DeletedActionProvider } from "../contexts/DeletedActionContext.js";
 import { UserActionsProvider } from "../contexts/UserActionsContext.js";
 import { ClimateActionsProvider } from "../contexts/ClimateActionsContext.js";
 import { FootprintProvider } from "../contexts/FootprintContext.js";
 import { TextProvider } from "../contexts/TextContext.js";
-import { MobileKanbanProvider } from "../contexts/MobileKanbanContext.js";
 
 const Dashboard = ({
   user,
@@ -50,14 +48,11 @@ const Dashboard = ({
                 registrationsText={registrationsText}
                 totalNoFootprints={totalNoFootprints}
               >
-                <MobileKanbanProvider>
-                  <ClimateActionsContainer
-                    user={user}
-                    climateActionCategories={climateActionCategories}
-                    actionsToplist={JSON.parse(actionsToplist)}
-                  ></ClimateActionsContainer>
-                  <Helper></Helper>
-                </MobileKanbanProvider>
+                <ClimateActionsContainer
+                  user={user}
+                  climateActionCategories={climateActionCategories}
+                  actionsToplist={JSON.parse(actionsToplist)}
+                ></ClimateActionsContainer>
               </FootprintProvider>
             </ClimateActionsProvider>
           </UserActionsProvider>
