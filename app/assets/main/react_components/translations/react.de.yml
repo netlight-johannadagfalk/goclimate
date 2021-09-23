@@ -45,3 +45,18 @@ de:
       answer_button_logged_in: Go to profile
     leave_without_membership:
       button_text: Exit without membership
+    arguments_list:
+      transparency:
+        title: Full transparency
+        text: We want you to feel completely safe with how your money is distributed
+        icon: eye
+      projects:
+        title: Handpicked projects
+        text: With the help of our expertise, we pick projects that provide the most climate benefit
+        icon: globe-americas
+      binding_time:
+        title: No binding time
+        text: No binding time, stop climate offsetting when you want
+        icon: unlock
+    membership_page:
+      preamble: Now that you know more about your climate impact, it's time to act. By becoming a member, you can save and compare your results, get help to reduce your carbon footprint and the opportunity to support hand-picked climate projects.

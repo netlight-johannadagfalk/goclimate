@@ -1,5 +1,5 @@
 import React from 'react';
-import { LocaleProvider } from './LocaleContext.js';
+import { SessionProvider } from './SessionContext.js';
 import { ProjectsProvider } from './ProjectsContext.js';
 import { VersionProvider } from './VersionContext.js';
 import { TextsProvider } from './TextsContext.js';
@@ -17,6 +17,7 @@ const StaticDataProvider = ({
   version,
   reactContentText,
   sharedText,
+  isUserSignedIn,
 }) => {
   return (
     <TextsProvider
@@ -28,15 +29,16 @@ const StaticDataProvider = ({
       reactContentText={reactContentText}
       sharedText={sharedText}
     >
-      <LocaleProvider
+      <SessionProvider
         currency={currency}
         lang={lang}
         currentRegion={currentRegion}
+        isUserSignedIn={isUserSignedIn}
       >
         <ProjectsProvider projects={projects}>
           <VersionProvider version={version}>{children}</VersionProvider>
         </ProjectsProvider>
-      </LocaleProvider>
+      </SessionProvider>
     </TextsProvider>
   );
 };

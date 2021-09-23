@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocaleData } from '../../../../../../../../../../../contexts/LocaleContext.js';
+import { useSession } from '../../../../../../../../../../../contexts/SessionContext.js';
 import { calculatePrice } from '../../../../../../../../../../../helpers/result-helper.js';
 import MembershipAlternativeV2Desktop from './MembershipAlternativeV2Desktop.jsx';
 import MembershipAlternativeV2Mobile from './MembershipAlternativeV2Mobile.jsx';
@@ -22,7 +22,7 @@ const MembershipAlternativeV2 = ({
         currency_formats: { [result.plan.price.currency.iso_code]: currency },
       },
     },
-  } = useLocaleData();
+  } = useSession();
 
   const style =
     'rounded content-between relative m-1 border border-green-accent h-full ' +

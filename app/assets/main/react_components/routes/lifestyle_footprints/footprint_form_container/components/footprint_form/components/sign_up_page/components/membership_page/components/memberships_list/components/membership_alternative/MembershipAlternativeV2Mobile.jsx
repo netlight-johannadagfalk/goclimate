@@ -25,7 +25,7 @@ const MembershipAlternativeV2Mobile = ({
       <div className={style}>
         <label htmlFor={type}>
           <div className="h-full flex flex-row m-2 cursor-pointer">
-            <div className="w-1/2 h-full">
+            <div className="w-1/2 h-full mr-4">
               <div className="my-1 mb-1 text-left font-bold">
                 <span>{mobile.title}</span>
               </div>

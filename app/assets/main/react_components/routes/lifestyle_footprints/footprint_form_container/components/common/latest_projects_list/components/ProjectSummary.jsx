@@ -8,7 +8,7 @@ const ProjectSummary = ({ project }) => {
   } = useTexts();
 
   return (
-    <div className="t:w-1/3 pt-14 t:px-1 self-center">
+    <div className="t:w-1/3 pt-14 t:px-1 self-center t:self-start">
       <div className="callout space-y-3 pt-0 p-4 text-left collapse min-h-1/4 max-w-sm		">
         <div className="inline-block w-full ">
           <img
