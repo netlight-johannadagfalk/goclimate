@@ -18,9 +18,13 @@ const RegistrationPage = ({
   const {
     registrationsText: {
       sign_up_heading_collective_efficacy,
-      sign_up_description,
       accept_policies,
     },
+    reactContentText: {
+      registration_page: {
+        preamble
+      }
+    }
   } = useTexts();
   const { lang } = useSession();
   const stripePromise = loadStripe(window.stripe._apiKey);
@@ -30,7 +34,7 @@ const RegistrationPage = ({
       <div className="max-w-lg mx-auto">
         <div className="space-y-3">
           <Title text={sign_up_heading_collective_efficacy} />
-          <Preamble text={sign_up_description} />
+          <Preamble text={preamble} />
           <Elements stripe={stripePromise} options={{ locale: lang }}>
             <Payment
               selectedMembership={selectedMembership}
