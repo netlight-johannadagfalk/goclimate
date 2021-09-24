@@ -7,6 +7,10 @@ import {
   useUserState,
   useUserActions,
 } from "../../../../contexts/UserContext.js";
+import {
+  updateStatus,
+  deleteUserAction,
+} from "../../../../helpers/db-requests.js";
 
 const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
   const setDeletedAction = useDeletedActionUpdate();
@@ -70,41 +74,6 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
     setDeletedAction(deletedAction);
   };
 
-  const deleteUserAction = (id) => {
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    const URL = "/user_climate_actions/" + id.toString();
-    const requestOptions = {
-      method: "DELETE",
-      credentials: "include",
-      headers: {
-        "X-CSRF-Token": csrfToken,
-        "Content-Type": "application/json",
-      },
-    };
-    fetch(URL, requestOptions).catch((e) => console.warn(e));
-  };
-
-  const updateStatus = (id, status) => {
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    const URL = "/user_climate_actions/" + id.toString();
-    const requestOptions = {
-      method: "PUT",
-      credentials: "include",
-      headers: {
-        "X-CSRF-Token": csrfToken,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ status: status }),
-    };
-    fetch(URL, requestOptions)
-      .then((res) => {
-        if (mounted.current) {
-          return res.json();
-        }
-      })
-      .catch((error) => console.warn(error));
-  };
-
   const collectPerformedUserActions = (destItems) => {
     let performedUserActions = [];
     destItems.map((category) => {
@@ -130,7 +99,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
       const destColumn = columns[2];
       const sourceItems = [...sourceColumn.items];
       //Updade status both locally and DB needs to happen before the filtering through status below
-      updateStatus(movedItem.id, true);
+      updateStatus(movedItem.id, true, mounted);
       movedItem.status = true;
       //Filter out moved item from first column by local status.
       const filteredSourceItems = sourceItems.filter(
@@ -178,7 +147,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
       destItems.splice(destIndex, 0, movedItem);
       //change the local status and in DB
       movedItem.status = false;
-      updateStatus(movedItem.id, false);
+      updateStatus(movedItem.id, false, mounted);
       //Change the status of the subitem so that color can depend the categoryBadge
       const newSourceItems = sourceItems.map((category) => {
         return {
@@ -233,7 +202,7 @@ const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
       const destColumn = columns[destination.droppableId];
       const sourceItems = [...sourceColumn.items];
       const [removed] = sourceItems.splice(source.index, 1);
-      updateStatus(removed.id, true);
+      updateStatus(removed.id, true, mounted);
       const destItems = updateAchievementsOnMove(removed, destColumn.items);
       const sortedDestItems = destItems.map((category) => {
         return {
