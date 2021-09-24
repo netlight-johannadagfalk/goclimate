@@ -22,10 +22,10 @@ const DropDownKanbanContainer = ({ children, userActions }) => {
 
   useEffect(() => {
     const toggleDropDownKanban = () => setShowDropDownKanban(false);
-    const hamburgerMenu = document.getElementById("nav-toggler");
-    hamburgerMenu.addEventListener("input", toggleDropDownKanban);
+    const dropDownMenu = document.getElementById("nav-toggler");
+    dropDownMenu.addEventListener("input", toggleDropDownKanban);
     return () =>
-      hamburgerMenu.removeEventListener("input", toggleDropDownKanban);
+      dropDownMenu.removeEventListener("input", toggleDropDownKanban);
   }, []);
 
   showDropDownKanban &&
