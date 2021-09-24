@@ -24,10 +24,10 @@ const ClimateActionsContainer = ({
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
   const userActions = useUserActions();
-
   const [monthlyAction, setMonthlyAction] = useState(
     totClimateActions.find((action) => action.action_of_the_month === true)
   );
+
   const [localUserActions, setLocalUserActions] = useState([]);
 
   const updateLocalAccepted = (actionID) => {
