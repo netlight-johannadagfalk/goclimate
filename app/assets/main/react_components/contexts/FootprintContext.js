@@ -33,7 +33,7 @@ const useFootprint = () => {
   const context = useContext(FootprintContext);
   if (!context) {
     throw new Error(
-      "Please wrap component in UserProvider to use useUserActions"
+      "Please wrap component in FootprintProvider to use useFootprint"
     );
   }
 
