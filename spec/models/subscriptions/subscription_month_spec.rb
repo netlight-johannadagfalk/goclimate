@@ -19,7 +19,7 @@ RSpec.describe Subscriptions::SubscriptionMonth do
     it 'sets price from provided payment' do
       month = described_class.create_from_stripe_invoice_line!(invoice_line, charge)
 
-      expect(month.price).to eq(invoice_line.amount)
+      expect(month.price).to eq(Money.new(7_00, Currency::EUR))
     end
 
     it 'sets currency from provided payment' do

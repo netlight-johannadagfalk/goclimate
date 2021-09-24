@@ -109,6 +109,8 @@ ActiveRecord::Schema.define(version: 2021_09_16_123738) do
     t.string "fortnox_id"
     t.datetime "certificate_sent_at"
     t.string "certificate_reciever_email"
+    t.integer "offsetting_subtotal"
+    t.integer "report_subtotal"
     t.index ["climate_report_id"], name: "index_climate_report_invoices_on_climate_report_id"
     t.index ["project_id"], name: "index_climate_report_invoices_on_project_id"
   end
@@ -198,6 +200,8 @@ ActiveRecord::Schema.define(version: 2021_09_16_123738) do
     t.text "payment_intent_id"
     t.datetime "paid_at"
     t.bigint "user_id"
+    t.integer "vat_amount"
+    t.integer "price_incl_taxes"
     t.index ["key"], name: "index_flight_offsets_on_key"
     t.index ["payment_intent_id"], name: "index_flight_offsets_on_payment_intent_id"
     t.index ["user_id"], name: "index_flight_offsets_on_user_id"
@@ -217,6 +221,8 @@ ActiveRecord::Schema.define(version: 2021_09_16_123738) do
     t.datetime "paid_at"
     t.text "country"
     t.integer "yearly_footprint"
+    t.integer "vat_amount"
+    t.integer "price_incl_taxes"
     t.index ["key"], name: "index_gift_cards_on_key"
     t.index ["payment_intent_id"], name: "index_gift_cards_on_payment_intent_id"
   end
@@ -232,6 +238,9 @@ ActiveRecord::Schema.define(version: 2021_09_16_123738) do
     t.string "comment"
     t.datetime "certificate_sent_at"
     t.string "certificate_reciever_email"
+    t.integer "offsetting_subtotal"
+    t.integer "consulting_subtotal"
+    t.integer "products_subtotal"
     t.index ["project_id"], name: "index_invoices_on_project_id"
   end
 
@@ -352,14 +361,6 @@ ActiveRecord::Schema.define(version: 2021_09_16_123738) do
     t.index ["data_request_id"], name: "index_reported_data_on_data_request_id"
   end
 
-  create_table "stripe_payouts", force: :cascade do |t|
-    t.string "stripe_payout_id"
-    t.integer "amount"
-    t.datetime "stripe_created"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "subscription_cancellation_feedbacks", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -377,6 +378,8 @@ ActiveRecord::Schema.define(version: 2021_09_16_123738) do
     t.bigint "user_id"
     t.string "payment_type"
     t.bigint "payment_id"
+    t.integer "vat_amount"
+    t.integer "price_incl_taxes"
     t.index ["payment_type", "payment_id"], name: "index_subscription_months_on_payment_type_and_payment_id"
     t.index ["user_id"], name: "index_subscription_months_on_user_id"
   end
