@@ -20,13 +20,25 @@ RSpec.describe FlightOffset do
       it 'sets price' do
         offset = described_class.new(co2e: 1200, currency: :sek)
 
-        expect(offset.price).to eq(Money.new(72_00, :sek))
+        expect(offset.price_incl_taxes).to eq(Money.new(72_00, :sek))
       end
 
       it 'allows setting price explicitly' do
-        offset = described_class.new(co2e: 1200, price: 60_00, currency: :sek)
+        offset = described_class.new(co2e: 1200, price_incl_taxes: 60_00, currency: :sek)
 
-        expect(offset.price).to eq(Money.new(60_00, :sek))
+        expect(offset.price_incl_taxes).to eq(Money.new(60_00, :sek))
+      end
+
+      it 'sets price without taxes' do
+        offset = described_class.new(co2e: 1200, price_incl_taxes: 60_00, currency: :sek)
+
+        expect(offset.price).to eq(Money.new(48_00, :sek))
+      end
+
+      it 'sets VAT amount' do
+        offset = described_class.new(co2e: 1200, price_incl_taxes: 60_00, currency: :sek)
+
+        expect(offset.vat_amount).to eq(Money.new(12_00, :sek))
       end
     end
   end
@@ -46,7 +58,7 @@ RSpec.describe FlightOffset do
       offset.create_payment_intent
 
       expect(Stripe::PaymentIntent).to have_received(:create)
-        .with(hash_including(amount: offset.price.subunit_amount))
+        .with(hash_including(amount: offset.price_incl_taxes.subunit_amount))
     end
 
     it 'creates a Stripe::PaymentIntent with currency' do
@@ -85,7 +97,9 @@ RSpec.describe FlightOffset do
     end
 
     context 'when payment intent already exists' do
-      subject(:offset) { build(:flight_offset, price: 1000, currency: :sek, payment_intent_id: payment_intent.id) }
+      subject(:offset) do
+        build(:flight_offset, price_incl_taxes: 1000, currency: :sek, payment_intent_id: payment_intent.id)
+      end
 
       before do
         allow(Stripe::PaymentIntent).to receive(:retrieve).and_return(payment_intent)
@@ -105,7 +119,7 @@ RSpec.describe FlightOffset do
         end
 
         it 'raises InvalidPaymentIntentError' do
-          offset = build(:flight_offset, price: 1000, currency: :sek, payment_intent_id: payment_intent.id)
+          offset = build(:flight_offset, price_incl_taxes: 1000, currency: :sek, payment_intent_id: payment_intent.id)
 
           expect do
             offset.create_payment_intent
@@ -121,7 +135,7 @@ RSpec.describe FlightOffset do
         end
 
         it 'raises InvalidPaymentIntentError' do
-          offset = build(:flight_offset, price: 1000, currency: :sek, payment_intent_id: payment_intent.id)
+          offset = build(:flight_offset, price_incl_taxes: 1000, currency: :sek, payment_intent_id: payment_intent.id)
 
           expect do
             offset.create_payment_intent
@@ -133,7 +147,7 @@ RSpec.describe FlightOffset do
 
   describe '#finalize' do
     subject(:offset) do
-      build(:flight_offset, price: 1000, currency: :sek, paid_at: nil, payment_intent_id: payment_intent.id)
+      build(:flight_offset, price_incl_taxes: 1000, currency: :sek, paid_at: nil, payment_intent_id: payment_intent.id)
     end
 
     let(:payment_intent) do
@@ -164,7 +178,13 @@ RSpec.describe FlightOffset do
 
     context 'when already marked as paid' do
       subject(:offset) do
-        build(:flight_offset, price: 1000, currency: 'sek', paid_at: 1.hour.ago, payment_intent_id: payment_intent.id)
+        build(
+          :flight_offset,
+          price_incl_taxes: 1000,
+          currency: 'sek',
+          paid_at: 1.hour.ago,
+          payment_intent_id: payment_intent.id
+        )
       end
 
       it 'returns true' do

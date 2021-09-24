@@ -69,25 +69,37 @@ RSpec.describe GiftCard do
       it 'sets price based on co2e for SEK, ceiled to nearest 10 kr' do
         gift_card = described_class.new(co2e: 1_900, currency: Currency::SEK)
 
-        expect(gift_card.price).to eq(Money.new(120_00, :sek))
+        expect(gift_card.price_incl_taxes).to eq(Money.new(120_00, :sek))
       end
 
       it 'sets price based on co2e for EUR, ceiled to nearest Euro' do
         gift_card = described_class.new(co2e: 1_900, currency: Currency::EUR)
 
-        expect(gift_card.price).to eq(Money.new(12_00, :eur))
+        expect(gift_card.price_incl_taxes).to eq(Money.new(12_00, :eur))
       end
 
       it 'sets price based on co2e for USD, ceiled to nearest Dollar' do
         gift_card = described_class.new(co2e: 1_900, currency: Currency::USD)
 
-        expect(gift_card.price).to eq(Money.new(14_00, :usd))
+        expect(gift_card.price_incl_taxes).to eq(Money.new(14_00, :usd))
       end
 
       it 'allows setting price explicitly' do
-        gift_card = described_class.new(number_of_months: 1, price: 60_00, currency: :sek)
+        gift_card = described_class.new(number_of_months: 1, price_incl_taxes: 60_00, currency: :sek)
 
-        expect(gift_card.price).to eq(Money.new(60_00, :sek))
+        expect(gift_card.price_incl_taxes).to eq(Money.new(60_00, :sek))
+      end
+
+      it 'sets price without taxes' do
+        gift_card = described_class.new(number_of_months: 1, price_incl_taxes: 60_00, currency: :sek)
+
+        expect(gift_card.price).to eq(Money.new(48_00, :sek))
+      end
+
+      it 'sets VAT amount' do
+        gift_card = described_class.new(number_of_months: 1, price_incl_taxes: 60_00, currency: :sek)
+
+        expect(gift_card.vat_amount).to eq(Money.new(12_00, :sek))
       end
 
       it 'allows setting co2e explicitly' do
@@ -110,6 +122,10 @@ RSpec.describe GiftCard do
     end
 
     context 'when not new' do
+      subject(:gift_card) do
+        create(:gift_card, price: Money.new(20_00, :sek), price_incl_taxes: Money.new(30_00, :sek))
+      end
+
       it 'does not overwrite key' do
         gift_card = create(:gift_card)
 
@@ -117,6 +133,10 @@ RSpec.describe GiftCard do
           gift_card.message = 'Something else'
           gift_card.save
         end.not_to change(gift_card, :key)
+      end
+
+      it 'does no price calculations' do
+        expect(described_class.find(gift_card.id).price).to eq(Money.new(20_00, :sek))
       end
     end
   end
@@ -136,7 +156,7 @@ RSpec.describe GiftCard do
       gift_card.create_payment_intent
 
       expect(Stripe::PaymentIntent).to have_received(:create)
-        .with(hash_including(amount: gift_card.price.subunit_amount))
+        .with(hash_including(amount: gift_card.price_incl_taxes.subunit_amount))
     end
 
     it 'creates a Stripe::PaymentIntent with currency' do
@@ -175,7 +195,9 @@ RSpec.describe GiftCard do
     end
 
     context 'when payment intent already exists' do
-      subject(:gift_card) { build(:gift_card, price: 1000, currency: :sek, payment_intent_id: payment_intent.id) }
+      subject(:gift_card) do
+        build(:gift_card, price_incl_taxes: 1000, currency: :sek, payment_intent_id: payment_intent.id)
+      end
 
       before do
         allow(Stripe::PaymentIntent).to receive(:retrieve).and_return(payment_intent)
@@ -195,7 +217,7 @@ RSpec.describe GiftCard do
         end
 
         it 'raises InvalidPaymentIntent' do
-          gift_card = build(:gift_card, price: 1000, currency: :sek, payment_intent_id: payment_intent.id)
+          gift_card = build(:gift_card, price_incl_taxes: 1000, currency: :sek, payment_intent_id: payment_intent.id)
 
           expect do
             gift_card.finalize
@@ -211,7 +233,7 @@ RSpec.describe GiftCard do
         end
 
         it 'raises InvalidPaymentIntent' do
-          gift_card = build(:gift_card, price: 1000, currency: :sek, payment_intent_id: payment_intent.id)
+          gift_card = build(:gift_card, price_incl_taxes: 1000, currency: :sek, payment_intent_id: payment_intent.id)
 
           expect do
             gift_card.finalize
@@ -223,7 +245,7 @@ RSpec.describe GiftCard do
 
   describe '#finalize' do
     subject(:gift_card) do
-      build(:gift_card, price: 1000, currency: :sek, paid_at: nil, payment_intent_id: payment_intent.id)
+      build(:gift_card, price_incl_taxes: 1000, currency: :sek, paid_at: nil, payment_intent_id: payment_intent.id)
     end
 
     let(:payment_intent) do
@@ -254,7 +276,13 @@ RSpec.describe GiftCard do
 
     context 'when already marked as paid' do
       subject(:gift_card) do
-        build(:gift_card, price: 1000, currency: 'sek', paid_at: 1.hour.ago, payment_intent_id: payment_intent.id)
+        build(
+          :gift_card,
+          price_incl_taxes: 1000,
+          currency: 'sek',
+          paid_at: 1.hour.ago,
+          payment_intent_id: payment_intent.id
+        )
       end
 
       it 'returns true' do
@@ -386,9 +414,9 @@ RSpec.describe GiftCard do
 
   describe '#price' do
     it 'returns a Money' do
-      gift_card = build(:gift_card, price: 100_00, currency: :sek)
+      gift_card = build(:gift_card, price_incl_taxes: 100_00, currency: :sek)
 
-      expect(gift_card.price).to eq(Money.new(100_00, :sek))
+      expect(gift_card.price_incl_taxes).to eq(Money.new(100_00, :sek))
     end
   end
 
@@ -396,7 +424,7 @@ RSpec.describe GiftCard do
     it 'sets currency when provided with a Money' do
       gift_card = build(:gift_card)
 
-      gift_card.price = Money.new(150_00, :sek)
+      gift_card.price_incl_taxes = Money.new(150_00, :sek)
 
       expect(gift_card.currency).to eq(Currency::SEK)
     end
@@ -404,9 +432,9 @@ RSpec.describe GiftCard do
     it 'sets price as subunit amount when provided with a Money' do
       gift_card = build(:gift_card)
 
-      gift_card.price = Money.new(200_00, :sek)
+      gift_card.price_incl_taxes = Money.new(200_00, :sek)
 
-      expect(gift_card.price_before_type_cast).to eq(200_00)
+      expect(gift_card.price_incl_taxes_before_type_cast).to eq(200_00)
     end
   end
 end

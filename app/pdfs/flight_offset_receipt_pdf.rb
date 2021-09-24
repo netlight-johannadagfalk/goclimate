@@ -28,8 +28,10 @@ class FlightOffsetReceiptPdf
     flight_offset.currency
   end
 
+  # TODO: After price data has been migrated to always include VAT/non-VAT
+  # subtotals, use those attributes directly instead of recalculating.
   def total_amount
-    flight_offset.price.subunit_amount.to_d / 100
+    flight_offset.price_incl_taxes.subunit_amount.to_d / 100
   end
 
   def vat_amount
