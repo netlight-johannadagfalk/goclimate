@@ -82,10 +82,9 @@ const KanbanActionItem = ({
                 <div
                   className={`rounded-full h-16 w-16 bg-cover shadow-lg my-1`}
                   style={{
-                    backgroundImage:
-                      item.status === false
-                        ? `url('${item.image_url}')`
-                        : `url('${item.badge_image_url}')`,
+                    backgroundImage: !isBadge
+                      ? `url('${item.image_url}')`
+                      : `url('${item.badge_image_url}')`,
                     backgroundSize: "100%",
                   }}
                 ></div>
@@ -116,10 +115,9 @@ const KanbanActionItem = ({
                           isBadge ? "mt-2" : "-mt-1/4"
                         } rounded-full h-16 w-16 items-center justify-center bg-contain bg-center shadow-lg`}
                         style={{
-                          backgroundImage:
-                            item.status === false
-                              ? `url('${item.image_url}')`
-                              : `url('${item.badge_image_url}')`,
+                          backgroundImage: !isBadge
+                            ? `url('${item.image_url}')`
+                            : `url('${item.badge_image_url}')`,
                           backgroundSize: "100%",
                         }}
                       ></div>
