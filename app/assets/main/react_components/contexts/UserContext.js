@@ -64,7 +64,7 @@ const reducer = (state, action) => {
           isSuccess: true,
         },
       };
-    case "update_column_init":
+    case "update_columns_init":
       return {
         ...state,
         getInitialColumns: {
@@ -73,7 +73,7 @@ const reducer = (state, action) => {
           isSuccess: false,
         },
       };
-    case "update_column_success":
+    case "update_columns_success":
       return {
         ...state,
         data: {
@@ -87,7 +87,7 @@ const reducer = (state, action) => {
         },
       };
 
-    case "update_category_achievements_init":
+    case "update_achievements_init":
       return {
         ...state,
         getInitialAchievements: {
@@ -96,7 +96,7 @@ const reducer = (state, action) => {
           isSuccess: false,
         },
       };
-    case "update_category_achievements_success":
+    case "update_achievements_success":
       return {
         ...state,
         data: {
@@ -136,7 +136,7 @@ const UserProvider = ({
       dispatch({ type: "update_user_actions_init", payload: actions });
     },
     updateColumns: (columns) => {
-      dispatch({ type: "update_column_init", payload: columns });
+      dispatch({ type: "update_columns_init", payload: columns });
     },
     updateColumnsWithFormat: (updatedList, performedList) => {
       const columns = columnUserActions(
@@ -144,7 +144,7 @@ const UserProvider = ({
         performedList,
         climateActionsText
       );
-      dispatch({ type: "update_column_init", payload: columns });
+      dispatch({ type: "update_columns_init", payload: columns });
     },
     updateColumnsWithFullFormat: (col, achievements) => {
       const columns = columnUserActions(
@@ -152,11 +152,11 @@ const UserProvider = ({
         achievements,
         climateActionsText
       );
-      dispatch({ type: "update_column_init", payload: columns });
+      dispatch({ type: "update_columns_init", payload: columns });
     },
     updateAchievements: (achievement) => {
       dispatch({
-        type: "update_category_achievements_init",
+        type: "update_achievements_init", //kolla namn
         payload: achievement,
       });
     },
@@ -183,7 +183,7 @@ const UserProvider = ({
     );
 
     dispatch({
-      type: "update_column_init",
+      type: "update_columns_init",
       payload: columnUserActions(
         acceptedUserActions(allUserActions),
         achievements,
@@ -191,7 +191,7 @@ const UserProvider = ({
       ),
     });
     dispatch({
-      type: "update_category_achievements_init",
+      type: "update_achievements_init",
       payload: achievements,
     });
   }, [allUserActions]);
@@ -210,6 +210,7 @@ const UserProvider = ({
   useEffect(() => {
     const addUserAction = () => {
       if (state.getInitialUserAction.isLoading) {
+        //är indatan ok?
         dispatch({
           type: "update_user_actions_success",
           payload: state.getInitialUserAction.pendingUserActions,
@@ -223,7 +224,7 @@ const UserProvider = ({
     const addColumns = () => {
       if (state.getInitialColumns.isLoading) {
         dispatch({
-          type: "update_column_success",
+          type: "update_columns_success",
           payload: state.getInitialColumns.pendingColumns,
         });
       }
@@ -235,7 +236,7 @@ const UserProvider = ({
     const addAchievements = () => {
       if (state.getInitialAchievements.isLoading) {
         dispatch({
-          type: "update_category_achievements_success",
+          type: "update_achievements_success",
           payload: state.getInitialAchievements.pendingAchievements,
         });
       }
