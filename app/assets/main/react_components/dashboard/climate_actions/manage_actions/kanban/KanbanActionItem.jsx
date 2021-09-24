@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ProgressBar from "./ProgressBar.jsx";
+import ProgressBar from "./card_components/ProgressBar.jsx";
 import { Draggable } from "react-beautiful-dnd";
 
 const KanbanActionItem = ({
