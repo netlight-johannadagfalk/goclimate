@@ -12,8 +12,8 @@ module ClimateReports
 
     def answers
       all_answers = []
-      calculator&.categories&.each do |category|
-        category.fields&.each do |field|
+      calculator&.ordered_categories&.each do |category|
+        category.ordered_fields&.each do |field|
           all_answers += field.answers(self).to_a
         end
       end
@@ -23,8 +23,8 @@ module ClimateReports
 
     def fields
       all_fields = []
-      calculator&.categories&.each do |category|
-        category.fields&.each do |field|
+      calculator&.ordered_categories&.each do |category|
+        category.ordered_fields&.each do |field|
           all_fields.push(field)
         end
       end
