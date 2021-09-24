@@ -30,7 +30,7 @@ const MembershipAlternativeV2Mobile = ({
             </div>
           </div>
           <div className="text-center">
-            <span className="text-sm my-2 mb-2 px-1">
+            <span className="text-sm mt-2 mb-4 px-1">
               {mobile.selling_point}
             </span>
             <br></br>
@@ -42,7 +42,7 @@ const MembershipAlternativeV2Mobile = ({
                     setMultipleOffsets={setMultipleOffsets}
                   />
                 </div>
-                <div className="justify-self-start self-center bt-2 m-4 pl-4 p-1">
+                <div className="justify-self-start self-center m-4 pl-4 p-1">
                   <PriceTextV2
                     price={price}
                     grantedReferralCode={grantedReferralCode}
