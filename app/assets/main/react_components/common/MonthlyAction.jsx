@@ -10,6 +10,7 @@ const MonthlyAction = ({ action, user, updateLocalAccepted, categories }) => {
         user={user}
         updateLocalAccepted={updateLocalAccepted}
         categories={categories}
+        monthlyActionBanner={true}
       ></CarouselActionItem>
 
       <div className="h-64 w-64 -top-16 left-0 bg-cover absolute">
