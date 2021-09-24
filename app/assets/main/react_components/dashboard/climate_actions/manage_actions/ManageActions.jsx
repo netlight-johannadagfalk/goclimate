@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Sidebar from "./sidebar/Sidebar.jsx";
-import MobileKanbanContainer from "./dropdown-kanban/MobileKanbanContainer.jsx";
+import DropDownKanbanContainer from "./dropdown-kanban/DropDownKanbanContainer.jsx";
 import { useMediaQuery } from "react-responsive";
 import KanbanActionContainer from "./kanban/KanbanActionContainer.jsx";
 import { t } from "../../../constants";
@@ -27,13 +27,13 @@ const ManageActions = ({ categories, userActions }) => {
         </div>
       )}
       {isTabletOrMobile && (
-        <MobileKanbanContainer userActions={userActions}>
+        <DropDownKanbanContainer userActions={userActions}>
           <KanbanActionContainer
             setCollapsed={setCollapsed}
             collapsed={false}
             categories={categories}
           />
-        </MobileKanbanContainer>
+        </DropDownKanbanContainer>
       )}
     </>
   );

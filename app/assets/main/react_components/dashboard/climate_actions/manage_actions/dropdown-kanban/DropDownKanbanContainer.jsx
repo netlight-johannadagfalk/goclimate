@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-const MobileKanbanContainer = ({ children, userActions }) => {
-  const [showMobileKanban, setShowMobileKanban] = useState(false);
+const DropDownKanbanContainer = ({ children, userActions }) => {
+  const [showDropDownKanban, setShowDropDownKanban] = useState(false);
 
   const getAcceptedActionsForUser = () => {
     let actionsAccepted = 0;
@@ -21,20 +21,22 @@ const MobileKanbanContainer = ({ children, userActions }) => {
   };
 
   useEffect(() => {
-    const toggleMobileKanban = () => setShowMobileKanban(false);
+    const toggleDropDownKanban = () => setShowDropDownKanban(false);
     const hamburgerMenu = document.getElementById("nav-toggler");
-    hamburgerMenu.addEventListener("input", toggleMobileKanban);
-    return () => hamburgerMenu.removeEventListener("input", toggleMobileKanban);
+    hamburgerMenu.addEventListener("input", toggleDropDownKanban);
+    return () =>
+      hamburgerMenu.removeEventListener("input", toggleDropDownKanban);
   }, []);
 
-  showMobileKanban && (document.getElementById("nav-toggler").checked = false);
-  showMobileKanban ? toggleScroll(true) : toggleScroll(false);
+  showDropDownKanban &&
+    (document.getElementById("nav-toggler").checked = false);
+  showDropDownKanban ? toggleScroll(true) : toggleScroll(false);
 
   return (
     <div>
       <div
         className={`fixed top-16 z-30 bg-white w-full overflow-hidden ${
-          showMobileKanban ? "h-screen" : "h-0"
+          showDropDownKanban ? "h-screen" : "h-0"
         } transition-size duration-500`}
       >
         {children}
@@ -42,11 +44,11 @@ const MobileKanbanContainer = ({ children, userActions }) => {
       <button
         className="fixed top-0 right-0 mr-20 mt-4 t:mt-6 lg:mr-48 lg:right-10 t:mr-17 t:right-3 z-50 outline-none 
         focus:outline-none"
-        onClick={() => setShowMobileKanban(!showMobileKanban)}
+        onClick={() => setShowDropDownKanban(!showDropDownKanban)}
       >
         <i
           className={`fas fa-2x ${
-            showMobileKanban ? "fa-globe-europe" : "fa-globe-americas"
+            showDropDownKanban ? "fa-globe-europe" : "fa-globe-americas"
           }`}
         ></i>
         {getAcceptedActionsForUser() > 0 && (
@@ -61,4 +63,4 @@ const MobileKanbanContainer = ({ children, userActions }) => {
   );
 };
 
-export default MobileKanbanContainer;
+export default DropDownKanbanContainer;
