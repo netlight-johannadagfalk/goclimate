@@ -9,7 +9,7 @@ import AnswerButton from '../../../../../components/common/AnswerButton.jsx';
 const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
   const [invalidCodeMessage, setInvalidCodeMessage] = useState('');
   const [inputCode, setInputCode] = useState(grantedReferralCode);
-
+  const [showInput, setShowInput] = useState(grantedReferralCode !== '');
   const mounted = useRef(false);
 
   const {
@@ -58,7 +58,6 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
 
   return (
     <div className="mt-3 collapse">
-      <input type="checkbox" id="enter_referral_code" />
       {grantedReferralCode ? (
         <div>
           <p className="text-center text-sm">
@@ -79,29 +78,32 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
         <>
           <p className="text-center text-sm">
             <label
-              htmlFor="enter_referral_code"
               className="link cursor-pointer"
+              onClick={() => setShowInput(!showInput)}
             >
               {referral_code_link}
             </label>
           </p>
-          <div className="collapse-content mt-3">
-            <div>
-              <input
-                size="auto"
-                className="input w-1/2 flex-grow mr-2"
-                placeholder={referral_code}
-                type="text"
-                name="code"
-                id="code"
-                value={inputCode}
-                onChange={(e) => setInputCode(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && lookUpReferralCode()}
-              />
-              <AnswerButton label={'OK'} onAnswerGiven={lookUpReferralCode} />
+
+          {showInput && (
+            <div className="mt-3">
+              <div>
+                <input
+                  size="auto"
+                  className="input w-1/2 flex-grow mr-2"
+                  placeholder={referral_code}
+                  type="text"
+                  name="code"
+                  id="code"
+                  value={inputCode}
+                  onChange={(e) => setInputCode(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && lookUpReferralCode()}
+                />
+                <AnswerButton label={'OK'} onAnswerGiven={lookUpReferralCode} />
+              </div>
+              <p className="text-orange-shade-1 mt-1">{invalidCodeMessage}</p>
             </div>
-            <p className="text-orange-shade-1 mt-1">{invalidCodeMessage}</p>
-          </div>
+          )}
         </>
       )}
     </div>

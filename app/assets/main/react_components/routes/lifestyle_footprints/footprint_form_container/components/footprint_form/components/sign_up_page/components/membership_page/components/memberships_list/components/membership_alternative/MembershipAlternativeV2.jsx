@@ -27,7 +27,7 @@ const MembershipAlternativeV2 = ({
   const style =
     'my-6 t:my-0 rounded content-between relative m-1 h-full ' +
     (type === selectedMembership
-      ? 'bg-green-tint-1 border-4 '
+      ? 'bg-green-tint-1 border-2 '
       : ' border border-gray-tint-2 ');
 
   const price = calculatePrice(

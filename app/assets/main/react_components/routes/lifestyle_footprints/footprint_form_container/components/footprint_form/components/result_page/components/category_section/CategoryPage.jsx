@@ -8,6 +8,7 @@ const CategoryPage = ({ footprint }) => {
   const {
     reactContentText: {
       category_chart: { title, desc },
+      public_emissions,
     },
   } = useTexts();
 
@@ -16,6 +17,8 @@ const CategoryPage = ({ footprint }) => {
       <Title custom_style="text-lgr" text={title} />
       <Preamble text={desc} />
       <CategoryChart footprint={footprint} />
+      <br></br>
+      <Preamble text={public_emissions} />
     </div>
   );
 };
