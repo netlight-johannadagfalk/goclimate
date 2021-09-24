@@ -23,6 +23,7 @@ const UserActionCard = ({
         <CardImage
           img={userAction.image_url}
           sidebarCollapsed={sidebarCollapsed}
+          isUserAction={true}
         ></CardImage>
       </div>
 

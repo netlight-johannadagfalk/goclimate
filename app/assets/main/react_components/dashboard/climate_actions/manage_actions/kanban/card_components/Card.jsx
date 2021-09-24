@@ -86,6 +86,7 @@ const Card = ({
               <CardImage
                 img={isAchievement ? item.badge_image_url : item.image_url}
                 sidebarCollapsed={sidebarCollapsed}
+                isUserAction={isAchievement ? false : true}
               ></CardImage>
             ) : isAchievement ? (
               <AchievementCard

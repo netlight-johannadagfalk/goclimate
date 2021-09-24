@@ -15,6 +15,7 @@ const AchievementCard = ({
         <CardImage
           img={achievement.badge_image_url}
           sidebarCollapsed={sidebarCollapsed}
+          isUserAction={false}
         ></CardImage>
         <ProgressBar
           categories={categories}

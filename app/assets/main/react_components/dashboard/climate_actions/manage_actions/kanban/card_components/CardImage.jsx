@@ -1,11 +1,11 @@
 import React from "react";
 
-const CardImage = ({ img, sidebarCollapsed }) => {
+const CardImage = ({ img, sidebarCollapsed, isUserAction }) => {
   return (
     <div
-      className={`shadow h-16 w-16 items-center flex flex-1 rounded-full bg-cover mx-auto z-10 mt-2 ${
-        sidebarCollapsed ? "justify-center" : "absolute ml-3"
-      }`}
+      className={`h-16 w-16 items-center flex flex-1 rounded-full bg-cover mx-auto z-10 ${
+        isUserAction && "shadow"
+      } ${sidebarCollapsed ? "justify-center" : "absolute ml-3 mt-2"}`}
       style={{
         backgroundImage: `url('${img}')`,
         backgroundSize: "100%",
