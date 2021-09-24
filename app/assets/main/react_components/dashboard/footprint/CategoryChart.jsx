@@ -6,7 +6,7 @@ import { useFootprint } from "../../contexts/FootprintContext.js";
  * Container to display a ResultBar for each category co2e of the footprint
  */
 const CategoryChart = ({ categoryChartText }) => {
-  const footprint = useFootprint();
+  const { footprint } = useFootprint();
   const maxValue = Math.max(
     footprint.housing.co2e,
     footprint.food.co2e,
