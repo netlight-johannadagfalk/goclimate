@@ -46,7 +46,6 @@ const appendUserActionsArrayToCategory = (
   );
 };
 
-//retunerar ingenting :( )
 export const getCompleteCategoryArrays = (
   actionsWithoutUserActions,
   allUserActions,
@@ -54,7 +53,7 @@ export const getCompleteCategoryArrays = (
 ) => {
   const userActions = allUserActions;
   //Add actions
-  const hej = appendUserActionsArrayToCategory(
+  const res = appendUserActionsArrayToCategory(
     climateActionCategories,
     userActions
   ).map((category) => {
@@ -78,7 +77,7 @@ export const getCompleteCategoryArrays = (
       id: category.id.toString(),
     };
   });
-  return hej;
+  return res;
 };
 
 export const updateAchievementsOnDrag = (
