@@ -39,7 +39,7 @@
           </td>
           <td><%= invoice.receiver %></td>
           <td><%= number_with_delimiter(invoice.co2e, delimiter: ' ') %> kg co2e</td>
-          <td><%= invoice.amount_in_sek %> SEK</td>
+          <td><%= invoice.amount_in_sek&.to_s(precision: :auto) || '-' %></td>
           <td><%= invoice.project.name if invoice.project.present? %></td>
           <td class="whitespace-nowrap">
             <%= link_to 'Show', [:admin, invoice], class: 'link-ui text-green-shade-2' %> &nbsp;

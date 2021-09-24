@@ -91,12 +91,6 @@ class GiftCard < ApplicationRecord
     key
   end
 
-  # TODO: During migrations, price means price_incl_taxes if
-  # price_incl_taxes is null. Remove once all data has been migrated.
-  def price_incl_taxes
-    super || price
-  end
-
   private
 
   def set_co2e_and_price_if_new

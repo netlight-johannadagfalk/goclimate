@@ -22,17 +22,21 @@ module HasMoneyAttributes
     # +attribute+  The attribute to overwrite as a money attribute.
     #
     # +currency_attribute+ The name of the attribute holding the currency to be
-    # used for this money attribute.
+    # used for this money attribute. Alternatively, a Currency object to be used.
     def self.money_attribute(attribute, currency_attribute)
       @money_methods_module.define_method(attribute) do
-        Money.new(super(), send(currency_attribute)) if super().present?
+        currency = currency_attribute.is_a?(Currency) ? currency_attribute : send(currency_attribute)
+
+        Money.new(super(), currency) if super().present?
       end
 
       @money_methods_module.define_method("#{attribute}=") do |value|
         return super(value) unless value.is_a?(Money)
 
-        send("#{currency_attribute}=", value.currency) if send(currency_attribute).nil?
-        raise CurrencyMismatchError, <<~TEXT unless value.currency == send(currency_attribute)
+        currency = currency_attribute.is_a?(Currency) ? currency_attribute : send(currency_attribute)
+
+        currency = send("#{currency_attribute}=", value.currency) if currency.nil?
+        raise CurrencyMismatchError, <<~TEXT unless value.currency == currency
           New value #{value} for #{attribute} must match #{currency_attribute} (#{currency})
         TEXT
 
