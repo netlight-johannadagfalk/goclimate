@@ -52,7 +52,7 @@
     <%= render 'third_party_javascripts' %>
   </head>
 
-  <body class="<%= controller_name + " " + controller_name + "-" + action_name %> min-h-screen text-base text-primary bg-green-dark">
+  <body id="scrollable" class="<%= controller_name + " " + controller_name + "-" + action_name %> min-h-screen text-base text-primary bg-green-dark">
 
     <% if params[:registered].to_i == 1 %>
       <script>
