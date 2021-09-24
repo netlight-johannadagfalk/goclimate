@@ -10,7 +10,7 @@ import {
 import {
   updateStatus,
   deleteUserAction,
-} from "../../../../helpers/db-requests.js";
+} from "../../../../helpers/DBRequests.js";
 
 const KanbanActionContainer = ({ collapsed, setCollapsed, categories }) => {
   const setDeletedAction = useDeletedActionUpdate();
