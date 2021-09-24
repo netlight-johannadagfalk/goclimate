@@ -13,6 +13,7 @@ const CarouselActionItem = ({
   user,
   updateLocalAccepted,
   categories,
+  monthlyActionBanner,
 }) => {
   const currUser = JSON.parse(user);
   const userActions = useUserActions();
@@ -109,7 +110,23 @@ const CarouselActionItem = ({
                 : "url('/action_images/Globe.png')",
               backgroundSize: "100%",
             }}
-          ></div>
+          >
+            {action.action_of_the_month && !monthlyActionBanner && (
+              <svg viewBox="0 0 140 140" className="-mt-10 -ml-4">
+                <path
+                  id="curve"
+                  fill="transparent"
+                  d="M 10 90 C 10 15, 130 15, 130 90"
+                />
+                <text className="green-primary text-sm font-thin">
+                  <textPath xlinkHref="#curve">
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    {climateActionsText.monthly_action}
+                  </textPath>
+                </text>
+              </svg>
+            )}
+          </div>
           <div className="flex flex-col flex-1 text-center mx-2">
             <div className="flex-1 flex flex-row justify-center self-center">
               {[1, 2, 3, 4, 5].map((index) => {
