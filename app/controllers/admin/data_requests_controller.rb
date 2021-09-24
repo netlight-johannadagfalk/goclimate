@@ -44,7 +44,7 @@ module Admin
         data_request = DataRequest.new(
           {
             report_area_id: data_request_params[:area].to_i,
-            recipient: data_reporter,
+            recipient: data_reporter
           }
         )
 

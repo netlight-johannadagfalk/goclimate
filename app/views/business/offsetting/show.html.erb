@@ -88,10 +88,12 @@
   </div>
 </section>
 
-<section class="section-padding t:text-center">
+<section class="section-padding">
   <h2 class="heading-lg"><%=t 'views.business.offsetting.other_ways.heading' %></h2>
-  <p class="mt-6 t:w-2/3 d:w-1/2 mx-auto"><%=t('views.business.offsetting.other_ways.text_html').gsub('<a', '<a class="link"').html_safe %></p>
+  <p class="mt-6 t:w-2/3 d:w-1/2"><%=t('views.business.offsetting.other_ways.text_html').gsub('<a', '<a class="link"').html_safe %></p>
 </section>
 
+<%= render 'business/shared/newsletter_subscription' %>
+
 <%= render 'shared/bottom_landscape' %>
-<%= render 'shared/footer', skip_prefooter: true %>
+<%= render 'shared/footer', skip_prefooter: true, skip_newsletter_signup: true %>
