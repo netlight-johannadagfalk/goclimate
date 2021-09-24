@@ -114,7 +114,8 @@ export const UserActionsProvider = ({
   const memberShipBadge = {
     id: "-1",
     name: "Climate Friend",
-    badge_image_url: "/achievement_images/AchievementClimateFriend.png",
+    badge_image_url:
+      "/achievement_images_shadow/AchievementClimateFriendShadow.png",
     userActionsArray: [
       { id: "-2", name: "GoClimate free membership", status: true },
       {
