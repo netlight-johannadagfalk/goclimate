@@ -1,0 +1,8 @@
+en:
+  views:
+    business:
+      shared:
+        newsletter_signup:
+          heading: Sign up to our business newsletter!
+          text: Receive tips and inspiration on how you as a company can improve your climate work 
+          cta: Subscribe

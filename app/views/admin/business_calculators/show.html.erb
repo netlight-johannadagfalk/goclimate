@@ -24,10 +24,10 @@
 
     <dt>Categories:</dt>
     <dd>
-      <% @calculator.categories.each do |category| %>
+      <% @calculator.ordered_categories.each do |category| %>
         <b><%= category.name %></b>
         <ul class="list-bullet pl-3">
-          <% category.fields.each do |field| %>
+          <% category.ordered_fields.each do |field| %>
             <li>
               <%= field.label %>
               <ul>

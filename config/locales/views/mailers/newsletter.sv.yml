@@ -1,0 +1,6 @@
+sv:
+  mailers:
+    newsletter:
+      sign_up:
+        subject: Tack för att du prenumererar på vårt nyhetsbrev!
+        text: Några gånger per år kommer vi uppdatera dig om hur det går för GoClimate, vilka projekt vi finansierar och hur vi som ett community gör gott för planeten!

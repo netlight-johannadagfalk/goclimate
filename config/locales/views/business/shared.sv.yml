@@ -1,0 +1,8 @@
+sv:
+  views:
+    business:
+      shared:
+        newsletter_signup:
+          heading: Prenumerera på vårt nyhetsbrev för företag!
+          text: Få tips och inspiration till hur ni som företag kan förbättra ert klimatarbete
+          cta: Prenumerera
