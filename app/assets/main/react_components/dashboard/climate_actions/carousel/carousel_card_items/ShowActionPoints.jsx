@@ -1,5 +1,5 @@
 import React from "react";
-const ShowClimateImpact = ({ action }) => {
+const ShowActionPoints = ({ action }) => {
   return (
     <div className="flex-1 flex flex-row justify-center self-center">
       {[1, 2, 3, 4, 5].map((index) => {
@@ -20,4 +20,4 @@ const ShowClimateImpact = ({ action }) => {
     </div>
   );
 };
-export default ShowClimateImpact;
+export default ShowActionPoints;

@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "./Card.jsx";
+import CarouselActionItem from "./carousel_card_items/CarouselActionItem.jsx";
 import { useClimateActions } from "../../../contexts/ClimateActionsContext.js";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
@@ -81,12 +81,12 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
               height: "auto",
             }}
           >
-            <Card
+            <CarouselActionItem
               action={action}
               user={user}
               updateLocalAccepted={updateLocalAccepted}
               categories={categories}
-            ></Card>
+            ></CarouselActionItem>
           </SwiperSlide>
         ))}
       </Swiper>
