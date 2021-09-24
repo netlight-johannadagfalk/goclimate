@@ -1,10 +1,12 @@
 import React from "react";
+import { useClimateActionsText } from ".././../../../../contexts/TextContext.js";
 
 const UserActionCardExpanded = ({
   userAction,
   handleDelete,
   handleCompleteAction,
 }) => {
+  const climateActionsText = useClimateActionsText();
   return (
     <div>
       <div className="mt-4 mx-6 flex flex-1 flex-col text-center">
@@ -17,15 +19,17 @@ const UserActionCardExpanded = ({
         </div>
         <div className="flex-1 justify-center my-4">
           <button
-            className=" mr-4 fas fa-times-circle h-4 w-4 focus:outline-none"
+            className=" mr-4 fas fa-trash-alt h-4 w-4 focus:outline-none"
             onClick={() =>
               handleDelete(userAction.id, userAction.climate_action_id)
             }
           ></button>
           <button
-            className="ml-4 fas fa-check-circle focus:outline-none"
+            className={`rounded-full py-1 px-4 button inline-block focus:outline-none text-primary border border-color-primary m-1`}
             onClick={() => handleCompleteAction(userAction)}
-          ></button>
+          >
+            {climateActionsText.action_completed}
+          </button>
         </div>
       </div>
     </div>
