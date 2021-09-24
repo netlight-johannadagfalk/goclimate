@@ -156,7 +156,7 @@ const UserProvider = ({
     },
     updateAchievements: (achievement) => {
       dispatch({
-        type: "update_achievements_init", //kolla namn
+        type: "update_achievements_init",
         payload: achievement,
       });
     },
@@ -210,7 +210,6 @@ const UserProvider = ({
   useEffect(() => {
     const addUserAction = () => {
       if (state.getInitialUserAction.isLoading) {
-        //är indatan ok?
         dispatch({
           type: "update_user_actions_success",
           payload: state.getInitialUserAction.pendingUserActions,
