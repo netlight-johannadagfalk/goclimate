@@ -1,10 +1,11 @@
 import React from "react";
 import CarouselActionItem from "../dashboard/climate_actions/carousel/CarouselActionItem.jsx";
 import { useClimateActionsText } from "../contexts/TextContext.js";
+import TextBanner from "./TextBanner.jsx";
 
 const MonthlyAction = ({ action, user, updateLocalAccepted, categories }) => {
   const climateActionsText = useClimateActionsText();
-
+  const text = climateActionsText.monthly_action;
   return (
     <div className="w-64 ml-10 mt-11 relative">
       <CarouselActionItem
@@ -16,19 +17,8 @@ const MonthlyAction = ({ action, user, updateLocalAccepted, categories }) => {
         monthlyActionBanner={true}
       ></CarouselActionItem>
 
-      <div className="h-64 w-64 -top-12 left-0 bg-cover absolute">
-        <svg viewBox="0 0 150 150">
-          <path
-            id="curve"
-            fill="transparent"
-            d="M 20 90 C 20 15, 130 15, 130 90"
-          />
-          <text className="green-primary text-sm font-thin">
-            <textPath xlinkHref="#curve">
-              &nbsp; &nbsp; &nbsp; &nbsp; {climateActionsText.monthly_action}
-            </textPath>
-          </text>
-        </svg>
+      <div className="h-52 w-52 -top-4 left-6 bg-cover absolute">
+        <TextBanner text={text} />
       </div>
     </div>
   );

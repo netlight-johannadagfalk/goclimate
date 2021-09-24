@@ -7,6 +7,7 @@ import {
   useCategoryBadges,
 } from "../../../contexts/UserActionsContext.js";
 import { useClimateActionsText } from "../../../contexts/TextContext.js";
+import TextBanner from "../../../common/TextBanner.jsx";
 
 const CarouselActionItem = ({
   action,
@@ -21,9 +22,11 @@ const CarouselActionItem = ({
   const setDeletedAction = useDeletedActionUpdate();
   const setColumnsWithFullFormat = useUserActionsColumnsWithFullFormatUpdate();
   const categoryBadges = useCategoryBadges();
-  const climateActionsText = useClimateActionsText();
 
   const mounted = useRef(false);
+
+  const climateActionsText = useClimateActionsText();
+  const text = climateActionsText.monthly_action;
 
   const categoryName = () => {
     for (let i = 0; i <= Object.keys(categories).length; i++) {
@@ -112,19 +115,7 @@ const CarouselActionItem = ({
             }}
           >
             {action.action_of_the_month && !monthlyActionBanner && (
-              <svg viewBox="0 0 140 140" className="-mt-10 -ml-4">
-                <path
-                  id="curve"
-                  fill="transparent"
-                  d="M 10 90 C 10 15, 130 15, 130 90"
-                />
-                <text className="green-primary text-sm font-thin">
-                  <textPath xlinkHref="#curve">
-                    &nbsp; &nbsp; &nbsp; &nbsp;
-                    {climateActionsText.monthly_action}
-                  </textPath>
-                </text>
-              </svg>
+              <TextBanner text={text} />
             )}
           </div>
           <div className="flex flex-col flex-1 text-center mx-2">
