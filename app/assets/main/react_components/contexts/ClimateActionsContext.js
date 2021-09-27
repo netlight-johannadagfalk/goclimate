@@ -22,19 +22,17 @@ export const ClimateActionsProvider = ({
   actionsWithUserActions,
   actionsWithoutUserActions,
 }) => {
-  const localActionsWithUserActions = JSON.parse(actionsWithUserActions).map(
+  const localActionsWithUserActions = actionsWithUserActions.map((action) => ({
+    ...action,
+    accepted: true,
+  }));
+
+  const localActionsWithoutUserActions = actionsWithoutUserActions.map(
     (action) => ({
       ...action,
-      accepted: true,
+      accepted: false,
     })
   );
-
-  const localActionsWithoutUserActions = JSON.parse(
-    actionsWithoutUserActions
-  ).map((action) => ({
-    ...action,
-    accepted: false,
-  }));
 
   const shuffledActionsWithoutUserActions = shuffle(
     localActionsWithoutUserActions

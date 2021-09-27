@@ -43,7 +43,7 @@ const appendUserActionsArrayToCategory = (
   userActions
 ) => {
   return (
-    JSON.parse(climateActionCategories)
+    climateActionCategories
       .map((category) => {
         //The userActions with status true decides weather a categoryBadge should be created
         const userPerformedActions = filterCategoryRelatedUserActions(
@@ -76,7 +76,7 @@ export const getCompleteCategoryArrays = (
       userActions
     ).map((category) => {
       const allActionsWithoutUserActions = filterCategoryRelatedActions(
-        JSON.parse(actionsWithoutUserActions),
+        actionsWithoutUserActions,
         category.id
       );
 
@@ -140,19 +140,16 @@ export const handleAchievementsOnMove = (
     return resultArray;
   } else {
     /** Category badge does not exist so we need to create a new one */
-    const newCategory = JSON.parse(climateActionCategories).find(
+    const newCategory = climateActionCategories.find(
       (cat) => cat.id === movedItem.climate_action_category_id
     );
     /** Fetch all actions */
     const allClimateActions = [
       ...filterCategoryRelatedActions(
-        JSON.parse(actionsWithoutUserActions),
+        actionsWithoutUserActions,
         newCategory.id
       ),
-      ...filterCategoryRelatedActions(
-        JSON.parse(actionsWithUserActions),
-        newCategory.id
-      ),
+      ...filterCategoryRelatedActions(actionsWithUserActions, newCategory.id),
     ];
     /** Fetch all actions that the user have accepted,
      * fetch with status true as well since when the user clicks on performed button its

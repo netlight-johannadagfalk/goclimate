@@ -13,12 +13,12 @@ const FootprintProvider = ({
   totalNoFootprints,
 }) => {
   const data = {
-    footprint: JSON.parse(footprint),
-    commonText: JSON.parse(commonText),
-    countryAverage: JSON.parse(countryAverage),
-    modelText: JSON.parse(modelText),
+    footprint: footprint,
+    commonText: commonText,
+    countryAverage: countryAverage,
+    modelText: modelText,
     lang: lang,
-    registrationsText: JSON.parse(registrationsText),
+    registrationsText: registrationsText,
     totalNoFootprints: totalNoFootprints,
   };
 
