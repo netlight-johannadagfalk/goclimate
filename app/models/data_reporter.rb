@@ -3,7 +3,7 @@
 class DataReporter < ApplicationRecord
   belongs_to :report, class_name: 'ClimateReports::Report'
 
-  has_many :data_requests, class_name: 'DataRequest', foreign_key: 'recipient_id'
+  has_many :data_requests, class_name: 'DataRequest', foreign_key: 'data_reporter_id'
 
   validates_presence_of :report
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{24}\z/ }

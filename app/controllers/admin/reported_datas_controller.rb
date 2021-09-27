@@ -14,7 +14,7 @@ module Admin
       @calculator_field = BusinessCalculators::CalculatorField.find(@reported_data.calculator_field_id)
       data_request = DataRequest.find(@reported_data.data_request_id)
       @report = ClimateReports::ReportArea.find(data_request.report_area_id).report
-      @data_reporter = DataReporter.find(data_request.recipient_id)
+      @data_reporter = DataReporter.find(data_request.data_reporter_id)
     end
 
     def destroy
