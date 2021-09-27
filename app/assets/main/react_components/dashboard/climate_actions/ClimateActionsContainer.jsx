@@ -34,6 +34,9 @@ const ClimateActionsContainer = ({
   const [localUserActions, setLocalUserActions] = useState([]);
 
   const updateLocalAccepted = (actionID) => {
+    console.log("I enter here");
+    console.log({ climateActions });
+    console.log({ actionID });
     setClimateActions(
       climateActions.map((action) =>
         action.id === actionID
