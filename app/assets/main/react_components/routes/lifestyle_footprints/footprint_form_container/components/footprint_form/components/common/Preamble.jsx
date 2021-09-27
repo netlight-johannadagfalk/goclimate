@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Preamble = ({ text, styling }) => {
-  return <p className={styling}>{text}</p>;
+const Preamble = ({ text }) => {
+  return <p>{text}</p>;
 };
 
 export default Preamble;
