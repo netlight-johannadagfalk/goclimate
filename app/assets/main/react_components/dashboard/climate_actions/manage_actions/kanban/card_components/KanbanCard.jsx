@@ -107,7 +107,7 @@ const KanbanCard = ({
 
             {!sidebarCollapsed && (
               <div>
-                <button
+                <div
                   className="flex flex-row h-14 w-full top-0 mt-6 absolute justify-center focus:outline-none"
                   onClick={() => handleExpanded(item, !item.expanded)}
                 >
@@ -118,12 +118,12 @@ const KanbanCard = ({
                   >
                     {item.name}
                   </div>
-                  <div
+                  <button
                     className={`flex-1 fas right-0 focus:outline-none mr-4 absolute ${
                       item.status === true ? "mt-1" : "mt-4"
                     } ${item.expanded ? "fa-chevron-up" : "fa-chevron-down"}`}
-                  ></div>
-                </button>
+                  ></button>
+                </div>
               </div>
             )}
           </div>
