@@ -1,6 +1,4 @@
 import React from 'react';
-import { useTexts } from '../../../../../../../../../contexts/TextsContext.js';
-import Title from '../../../../../common/Title.jsx';
 import MembershipAlternativeV2 from './components/membership_alternative/MembershipAlternativeV2.jsx';
 
 const MembershipsListV2 = ({
@@ -11,17 +9,8 @@ const MembershipsListV2 = ({
   grantedReferralCode,
   result,
 }) => {
-  const {
-    reactContentText: {
-      memberships_v2: {
-        desktop: { title },
-      },
-    },
-  } = useTexts();
-
   return (
     <>
-      <Title custom_style="text-lgr" text={title} />
       <div className="t:flex text-left">
         <MembershipAlternativeV2
           selectedMembership={selectedMembership}

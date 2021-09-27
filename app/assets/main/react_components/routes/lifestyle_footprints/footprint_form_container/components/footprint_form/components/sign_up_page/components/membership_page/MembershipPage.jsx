@@ -34,7 +34,7 @@ const MembershipPage = ({
           text={sign_up_heading_collective_efficacy}
           custom_style="text-lgr"
         />
-        <Preamble text={preamble} />
+        <Preamble text={preamble} styling={version === 'v2' ? 'text-center' : ''} />
         {version === 'v1' ? (
           <MembershipsList
             selectedMembership={selectedMembership}
