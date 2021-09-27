@@ -59,6 +59,10 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
             : false
         }
         pagination={true}
+        preventClicks={false}
+        preventClicksPropagation={false}
+        noSwiping={true}
+        noSwipingSelector={"button"}
         onSwiper={(swiper) => {
           setTimeout(() => {
             swiper.params.navigation.prevEl = navigationPrevRef.current;
