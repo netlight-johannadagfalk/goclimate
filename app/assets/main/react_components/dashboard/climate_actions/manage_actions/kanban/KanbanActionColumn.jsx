@@ -54,7 +54,7 @@ const KanbanActionColumn = ({
                   <p
                     style={{
                       fontStyle: "italic",
-                      marginTop: "25%",
+                      marginTop: "10%",
                     }}
                   >
                     Take action and <br /> accept an action!
