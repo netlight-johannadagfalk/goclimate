@@ -31,7 +31,8 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
     ["desc"]
   );
 
-  const actions = isMobile ? sortForMobileClimateActions : climateActions;
+  const actions =
+    isMobile || isLargeTablet ? sortForMobileClimateActions : climateActions;
 
   const noOfItemsShown = isMobile
     ? 1.5
