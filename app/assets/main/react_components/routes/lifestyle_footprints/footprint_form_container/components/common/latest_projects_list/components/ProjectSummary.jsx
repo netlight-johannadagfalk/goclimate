@@ -27,7 +27,7 @@ const ProjectSummary = ({ project }) => {
       <div
         id={'projectBox' + project.id}
         className="callout space-y-3 pt-0 p-4 text-left collapse min-h-1/4 w-full"
-        style={{ minHeight: +tempHeight + 'px' }}
+        style={{ minHeight: +tempHeight + 'px', minWidth: "100%"}}
       >
         <div className="inline-block w-full ">
           <img
