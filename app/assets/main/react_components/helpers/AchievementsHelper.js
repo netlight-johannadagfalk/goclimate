@@ -46,7 +46,6 @@ const appendUserActionsArrayToCategory = (
   );
 };
 
-//retunerar ingenting :( )
 export const getCompleteCategoryArrays = (
   actionsWithoutUserActions,
   allUserActions,
@@ -54,7 +53,7 @@ export const getCompleteCategoryArrays = (
 ) => {
   const userActions = allUserActions;
   //Add actions
-  const hej = appendUserActionsArrayToCategory(
+  const res = appendUserActionsArrayToCategory(
     climateActionCategories,
     userActions
   ).map((category) => {
@@ -78,10 +77,10 @@ export const getCompleteCategoryArrays = (
       id: category.id.toString(),
     };
   });
-  return hej;
+  return res;
 };
 
-export const updateAchievementsOnDrag = (
+export const handleAchievementsOnMove = (
   movedItem,
   performedColumn,
   climateActionCategories,
@@ -170,23 +169,29 @@ export const updateAchievementsOnDrag = (
     );
 
     /** Combines the arrays to be able to filter out duplicates in the arrays */
-    const combinedArray = [...updatedUserActionsArray, ...updatedActionsArray];
+    const combinedActionsArray = [
+      ...updatedUserActionsArray,
+      ...updatedActionsArray,
+    ];
 
     /** Uses uniqwith to be able to search for unique values */
-    const newCombinedArray = uniqWith(combinedArray, filterDuplicatesNames);
+    const newCombinedActionsArray = uniqWith(
+      combinedActionsArray,
+      filterDuplicatesNames
+    );
 
     /** Updates the result that consists of no duplicates */
-    const updatedResult = {
+    const updatedAchievements = {
       ...newCategory,
-      userActionsArray: newCombinedArray.filter(
+      userActionsArray: newCombinedActionsArray.filter(
         (userAction) => userAction.user_id
       ),
-      actionsArray: newCombinedArray.filter((action) => !action.user_id),
+      actionsArray: newCombinedActionsArray.filter((action) => !action.user_id),
       id: newCategory.id.toString(),
     };
 
     /** Combines the final result */
-    const resultArray = [...performedColumn, updatedResult];
+    const resultArray = [...performedColumn, updatedAchievements];
 
     return resultArray;
   }

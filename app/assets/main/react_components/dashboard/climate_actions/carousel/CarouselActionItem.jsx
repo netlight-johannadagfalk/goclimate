@@ -18,9 +18,7 @@ const CarouselActionItem = ({
   const achievements = data.achievements;
 
   const climateActionsText = useClimateActionsText();
-
   const mounted = useRef(false);
-
   const text = climateActionsText.monthly_action;
 
   const categoryName = () => {
