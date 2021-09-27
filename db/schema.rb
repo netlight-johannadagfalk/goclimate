@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_16_123738) do
+ActiveRecord::Schema.define(version: 2021_09_27_062003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,9 +182,9 @@ ActiveRecord::Schema.define(version: 2021_09_16_123738) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "report_area_id", null: false
-    t.bigint "recipient_id", null: false
+    t.bigint "data_reporter_id", null: false
     t.text "key"
-    t.index ["recipient_id"], name: "index_data_requests_on_recipient_id"
+    t.index ["data_reporter_id"], name: "index_data_requests_on_data_reporter_id"
     t.index ["report_area_id"], name: "index_data_requests_on_report_area_id"
   end
 
@@ -418,7 +418,7 @@ ActiveRecord::Schema.define(version: 2021_09_16_123738) do
   add_foreign_key "data_reporters", "climate_reports_reports", column: "report_id"
   add_foreign_key "data_reporters", "users"
   add_foreign_key "data_requests", "climate_reports_report_areas", column: "report_area_id"
-  add_foreign_key "data_requests", "data_reporters", column: "recipient_id"
+  add_foreign_key "data_requests", "data_reporters"
   add_foreign_key "invoices", "projects"
   add_foreign_key "price_increase_confirmations", "users"
   add_foreign_key "reported_data", "business_calculators_calculator_fields", column: "calculator_field_id"
