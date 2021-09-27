@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTexts } from '../../../../../../../../../contexts/TextsContext.js';
 import MembershipAlternativeV2 from './components/membership_alternative/MembershipAlternativeV2.jsx';
 
 const MembershipsListV2 = ({
@@ -10,12 +9,6 @@ const MembershipsListV2 = ({
   grantedReferralCode,
   result,
 }) => {
-  const {
-    reactContentText: {
-      memberships_v2: { free, single, multi },
-    },
-  } = useTexts();
-
   return (
     <>
       <div className="lg:flex text-left pt-4">
@@ -23,8 +16,6 @@ const MembershipsListV2 = ({
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}
           type="free"
-          title={free.title}
-          sellingPoints={free.selling_points}
           multipleOffsets={multipleOffsets}
           setMultipleOffsets={setMultipleOffsets}
           grantedReferralCode={grantedReferralCode}
@@ -34,8 +25,6 @@ const MembershipsListV2 = ({
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}
           type="single"
-          title={single.title}
-          sellingPoints={single.selling_points}
           multipleOffsets={multipleOffsets}
           setMultipleOffsets={setMultipleOffsets}
           grantedReferralCode={grantedReferralCode}
@@ -45,8 +34,6 @@ const MembershipsListV2 = ({
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}
           type="multi"
-          title={multi.title}
-          sellingPoints={multi.selling_points}
           multipleOffsets={multipleOffsets}
           setMultipleOffsets={setMultipleOffsets}
           grantedReferralCode={grantedReferralCode}

@@ -12,21 +12,32 @@ sv:
       multi_title: Kompensera för flera personer
       multi_desc: Stöd klimatprojekt motsvarande %{num} gånger ditt klimatavtryck varje månad
     memberships_v2:
-      title: Välj ditt medlemskap
-      free:
-        title: Gratis konto
-        selling_points:
-          point1: Spara och följ ditt klimatavtryck över tid
-      single:
-        title: Klimatkompensera månadsvis
-        selling_points:
-          point1: Spara och följ ditt klimatavtryck över tid
-          point2: Kompensera motsvarande ditt klimatavtryck till utvalda projekt
-      multi:
-        title: Klimatkompensera flera gånger
-        selling_points:
-          point1: Spara och följ ditt klimatavtryck över tid
-          point2: Stöd klimatprojekt motsvarande 2 gånger ditt klimatavtryck till utvalda projekt varje månad
+      desktop:
+        title: Välj ditt medlemskap
+        free:
+          title: Gratis konto
+          selling_points:
+            point1: Spara och följ ditt klimatavtryck över tid
+        single:
+          title: Klimatkompensera månadsvis
+          selling_points:
+            point1: Spara och följ ditt klimatavtryck över tid
+            point2: Kompensera motsvarande ditt klimatavtryck till utvalda projekt
+        multi:
+          title: Klimatkompensera flera gånger
+          selling_points:
+            point1: Spara och följ ditt klimatavtryck över tid
+            point2: Stöd klimatprojekt motsvarande 2 gånger ditt klimatavtryck till utvalda projekt varje månad
+      mobile:
+        free:
+          title: Gratis konto
+          selling_point: Spara och följ ditt klimatavtryck över tid
+        single:
+          title: Klimatkompensera
+          selling_point: Kompensera motsvarande ditt klimatavtryck
+        multi:
+          title: Klimatkompensera mera
+          selling_point: Kompensera 2 gånger ditt klimatavtryck till utvalda projekt
     category_chart:
       title: Ditt klimatavtryck per kategori
       desc: Detta är ditt klimatavtryck i kategorier, var det som du förväntade dig?
@@ -49,3 +60,5 @@ sv:
         icon: unlock
     membership_page:
       preamble: Nu när du vet mer om din klimatpåverkan är det dags att agera. Genom att bli medlem kan du spara och jämföra dina resultat, få hjälp att minska ditt avtryck och möjligheten att stötta handplockade klimatprojekt.
+    registration_page:
+      preamble: Fyll i din information nedan för att bli en del av vårt community!

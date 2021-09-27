@@ -1,12 +1,12 @@
 import { default as React } from 'react';
 import { useTexts } from '../../../../../../../contexts/TextsContext.js';
 import { useVersion } from '../../../../../../../contexts/VersionContext.js';
-import Title from '../../../common/Title.jsx';
-import PriceText from '../../../common/PriceText.jsx';
 import Preamble from '../../../common/Preamble.jsx';
-import ReferralCode from './components/ReferralCode.jsx';
+import PriceText from '../../../common/PriceText.jsx';
+import Title from '../../../common/Title.jsx';
 import MembershipsList from './components/memberships_list/MembershipsList.jsx';
 import MembershipsListV2 from './components/memberships_list/MembershipsListV2.jsx';
+import ReferralCode from './components/ReferralCode.jsx';
 
 const MembershipPage = ({
   selectedMembership,
