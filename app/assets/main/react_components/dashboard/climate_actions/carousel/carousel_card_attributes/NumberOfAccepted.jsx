@@ -1,5 +1,5 @@
 import React from "react";
-const ShowNumberOfPersonsAcceptedAction = ({
+const NumberOfAccepted = ({
   startText,
   endText,
   action,
@@ -17,16 +17,7 @@ const ShowNumberOfPersonsAcceptedAction = ({
         )}
         <label className="text-sm ml-1">{endText}</label>
       </div>
-      {disabled && (
-        <button
-          className="button inline-block "
-          disabled={disabled}
-          style={{ color: "rgba(28, 70, 55)" }}
-        >
-          Accepted
-        </button>
-      )}
     </div>
   );
 };
-export default ShowNumberOfPersonsAcceptedAction;
+export default NumberOfAccepted;
