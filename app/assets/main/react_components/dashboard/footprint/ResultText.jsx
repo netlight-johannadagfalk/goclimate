@@ -28,9 +28,9 @@ const ResultText = () => {
     },
     text: () => {
       return footprintCo2e.inTonnes(footprintCo2e.value < 100 ? 2 : 1) <= 1
-        ? modelText.one.replace("%{count}", footprintCo2e.inTonnes(1))
+        ? modelText.one.replace(/%{.*?}/i, footprintCo2e.inTonnes(1))
         : modelText.other.replace(
-            "%{count}",
+            /%{.*?}/i,
             footprintCo2e.inTonnes(footprintCo2e.value < 100 ? 2 : 1)
           );
     },
