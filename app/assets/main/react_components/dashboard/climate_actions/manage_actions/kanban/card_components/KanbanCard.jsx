@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import UserActionCard from "./UserActionCard.jsx";
-import CardImage from "./CardImage.jsx";
+import KanbanCardImage from "./KanbanCardImage.jsx";
 import AchievementCard from "./AchievementCard.jsx";
 
-const Card = ({
+const KanbanCard = ({
   item,
   index,
   handleDelete,
@@ -83,11 +83,11 @@ const Card = ({
             }
           >
             {sidebarCollapsed ? (
-              <CardImage
+              <KanbanCardImage
                 img={isAchievement ? item.badge_image_url : item.image_url}
                 sidebarCollapsed={sidebarCollapsed}
                 isUserAction={isAchievement ? false : true}
-              ></CardImage>
+              ></KanbanCardImage>
             ) : isAchievement ? (
               <AchievementCard
                 categories={categories}
@@ -133,4 +133,4 @@ const Card = ({
   );
 };
 
-export default Card;
+export default KanbanCard;

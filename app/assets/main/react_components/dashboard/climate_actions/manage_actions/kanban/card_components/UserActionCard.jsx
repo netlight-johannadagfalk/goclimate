@@ -1,6 +1,6 @@
 import React from "react";
 import UserActionCardExpanded from "./UserActionCardExpanded.jsx";
-import CardImage from "./CardImage.jsx";
+import KanbanCardImage from "./KanbanCardImage.jsx";
 
 const UserActionCard = ({
   categoryColor,
@@ -20,11 +20,11 @@ const UserActionCard = ({
           } h-7 w-full rounded-t border-t-gray-tint-2 bg-opacity-60 top-0 absolute z-0`}
         ></div>
 
-        <CardImage
+        <KanbanCardImage
           img={userAction.image_url}
           sidebarCollapsed={sidebarCollapsed}
           isUserAction={true}
-        ></CardImage>
+        ></KanbanCardImage>
       </div>
 
       <div>
