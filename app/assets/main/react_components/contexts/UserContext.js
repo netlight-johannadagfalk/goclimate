@@ -147,7 +147,11 @@ const UserProvider = ({
       dispatch({ type: "update_columns_init", payload: columns });
     },
     updateColumnsWithFullFormat: (col, achievements) => {
-      const columns = columnUserActions(achievements, climateActionsText);
+      const columns = columnUserActions(
+        acceptedUserActions(col),
+        achievements,
+        climateActionsText
+      );
       dispatch({ type: "update_columns_init", payload: columns });
     },
     updateAchievements: (achievement) => {

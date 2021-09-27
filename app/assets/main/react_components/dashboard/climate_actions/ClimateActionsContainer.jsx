@@ -34,9 +34,6 @@ const ClimateActionsContainer = ({
   const [localUserActions, setLocalUserActions] = useState([]);
 
   const updateLocalAccepted = (actionID) => {
-    console.log("I enter here");
-    console.log({ climateActions });
-    console.log({ actionID });
     setClimateActions(
       climateActions.map((action) =>
         action.id === actionID
@@ -55,7 +52,7 @@ const ClimateActionsContainer = ({
     let tempArray = [...localUserActions, filteredLocalUserActions];
     if (deletedAction) {
       const localUserActionsWithoutDeleted = tempArray.filter(
-        (action) => action[0].id !== deletedAction
+        (action) => action.id !== deletedAction
       );
       tempArray = localUserActionsWithoutDeleted;
     }
