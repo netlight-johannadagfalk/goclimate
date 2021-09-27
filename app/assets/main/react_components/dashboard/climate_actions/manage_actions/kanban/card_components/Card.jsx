@@ -107,24 +107,23 @@ const Card = ({
 
             {!sidebarCollapsed && (
               <div>
-                <div
-                  className=" h-14 w-full top-0 mt-6 absolute justify-center"
+                <button
+                  className="flex flex-row h-14 w-full top-0 mt-6 absolute justify-center focus:outline-none"
                   onClick={() => handleExpanded(item, !item.expanded)}
                 >
-                  <button
-                    className={`fas right-0 focus:outline-none mr-4 absolute ${
-                      item.status === true ? "mt-1" : "mt-4"
-                    } ${item.expanded ? "fa-chevron-up" : "fa-chevron-down"} `}
-                    onClick={() => handleExpanded(item, !item.expanded)}
-                  ></button>
                   <div
-                    className={`font-bold text-left text-sm mt-1.5 ml-20 w-3/5 ${
+                    className={`flex-1 font-bold text-left text-sm mt-1.5 ml-20 mr-10 ${
                       isAchievement && "-mt-2"
                     }`}
                   >
                     {item.name}
                   </div>
-                </div>
+                  <div
+                    className={`flex-1 fas right-0 focus:outline-none mr-4 absolute ${
+                      item.status === true ? "mt-1" : "mt-4"
+                    } ${item.expanded ? "fa-chevron-up" : "fa-chevron-down"}`}
+                  ></div>
+                </button>
               </div>
             )}
           </div>
