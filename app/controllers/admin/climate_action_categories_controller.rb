@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 module Admin
-
   class ClimateActionCategoriesController < AdminController
-    before_action :set_climate_action_category, only: %i[ show edit update destroy ]
+    before_action :set_climate_action_category, only: [:show, :edit, :update, :destroy]
 
-    #@check = ClimateAction.where(climate_action_category_id: 2)
+    # @check = ClimateAction.where(climate_action_category_id: 2)
 
     def check
       if ClimateAction.include?(climate_action_category_id: 2)
-        return true
+        true
       else
-        return false
+        false
       end
     end
+
     # GET /climate_action_categories or /climate_action_categories.json
     def index
       @climate_action_categories = ClimateActionCategory.all
@@ -36,7 +38,9 @@ module Admin
 
       respond_to do |format|
         if @climate_action_category.save
-          format.html { redirect_to [:admin, @climate_action_category], notice: "Climate action category was successfully created." }
+          format.html do
+            redirect_to [:admin, @climate_action_category], notice: 'Climate action category was successfully created.'
+          end
           format.json { render :show, status: :created, location: @climate_action_category }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -49,7 +53,9 @@ module Admin
     def update
       respond_to do |format|
         if @climate_action_category.update(climate_action_category_params)
-          format.html { redirect_to [:admin, @climate_action_category], notice: "Climate action category was successfully updated." }
+          format.html do
+            redirect_to [:admin, @climate_action_category], notice: 'Climate action category was successfully updated.'
+          end
           format.json { render :show, status: :ok, location: @climate_action_category }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -62,20 +68,24 @@ module Admin
     def destroy
       @climate_action_category.destroy
       respond_to do |format|
-        format.html { redirect_to admin_climate_action_categories_url, notice: "Climate action category was successfully destroyed." }
+        format.html do
+          redirect_to admin_climate_action_categories_url, notice: 'Climate action category was successfully destroyed.'
+        end
         format.json { head :no_content }
       end
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_climate_action_category
-        @climate_action_category = ClimateActionCategory.find(params[:id])
-      end
 
-      # Only allow a list of trusted parameters through.
-      def climate_action_category_params
-        params.require(:climate_action_category).permit(:id, :name, :description, :badge_name, :badge_description, :badge_image_url)
-      end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_climate_action_category
+      @climate_action_category = ClimateActionCategory.find(params[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def climate_action_category_params
+      params.require(:climate_action_category).permit(:id, :name, :description, :badge_name, :badge_description,
+                                                      :badge_image_url)
+    end
   end
 end

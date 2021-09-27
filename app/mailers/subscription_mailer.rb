@@ -12,8 +12,8 @@ class SubscriptionMailer < ApplicationMailer
   def one_more_month_email
     @climate_neutral_months = @user.number_of_neutral_months
     @total_carbon_offset = OffsettingStatistics.new.total_sold.tonnes.round
-    @action_of_the_month = ClimateAction.where(action_of_the_month: true).select("*")
-    if !@action_of_the_month.first.nil?
+    @action_of_the_month = ClimateAction.where(action_of_the_month: true).select('*')
+    unless @action_of_the_month.first.nil?
       @action_of_the_month_name = @action_of_the_month.first.name
       @action_of_the_month_description = @action_of_the_month.first.description
       @action_of_the_month_points = @action_of_the_month.first.points
