@@ -1,13 +1,14 @@
 import React, { useRef, useEffect } from "react";
 import { useDeletedActionUpdate } from "../../../contexts/DeletedActionContext.js";
 import { useClimateActionsText } from "../../../contexts/TextContext.js";
-import { useUserState, useUserActions } from "../../../contexts/UserContext.js";
+import TextBanner from "../../../common/TextBanner.jsx";
 
 const CarouselActionItem = ({
   action,
   user,
   updateLocalAccepted,
   categories,
+  monthlyActionBanner,
 }) => {
   const currUser = JSON.parse(user);
   const setDeletedAction = useDeletedActionUpdate();
@@ -19,6 +20,9 @@ const CarouselActionItem = ({
   const climateActionsText = useClimateActionsText();
 
   const mounted = useRef(false);
+
+  const climateActionsText = useClimateActionsText();
+  const text = climateActionsText.monthly_action;
 
   const categoryName = () => {
     for (let i = 0; i <= Object.keys(categories).length; i++) {
@@ -105,7 +109,11 @@ const CarouselActionItem = ({
                 : "url('/action_images/Globe.png')",
               backgroundSize: "100%",
             }}
-          ></div>
+          >
+            {action.action_of_the_month && !monthlyActionBanner && (
+              <TextBanner text={text} />
+            )}
+          </div>
           <div className="flex flex-col flex-1 text-center mx-2">
             <div className="flex-1 flex flex-row justify-center self-center">
               {[1, 2, 3, 4, 5].map((index) => {
