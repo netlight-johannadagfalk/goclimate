@@ -47,13 +47,9 @@ export const ClimateActionsProvider = ({
 
   const [climateActions, setClimateActions] = useState([...totClimateActions]);
 
-  const updateClimateActions = (cat) => {
-    setClimateActions(cat);
-  };
-
   return (
     <ClimateActionsContext.Provider value={climateActions}>
-      <ClimateActionsUpdateContext.Provider value={updateClimateActions}>
+      <ClimateActionsUpdateContext.Provider value={setClimateActions}>
         <ClimateActionsContextOriginal.Provider value={totClimateActions}>
           {children}
         </ClimateActionsContextOriginal.Provider>
