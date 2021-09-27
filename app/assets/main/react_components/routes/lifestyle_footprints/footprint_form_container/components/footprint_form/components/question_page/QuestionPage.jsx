@@ -11,7 +11,7 @@ const QuestionPage = ({
   savedValue,
 }) => {
   return (
-    <div>
+    <>
       <Title text={currentObject.question} />
       {!currentObject.isNumerical ? (
         <OptionList
@@ -27,7 +27,7 @@ const QuestionPage = ({
           onNumericalInput={onNumericalInput}
         />
       )}
-    </div>
+    </>
   );
 };
 

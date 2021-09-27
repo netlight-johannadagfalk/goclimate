@@ -7,14 +7,16 @@ import { useVersion } from '../../../contexts/VersionContext.js';
 const InformationSection = () => {
   const version = useVersion();
   return (
-    <div className="text-left space-y-6">
+    <div className="text-left">
       {version === 'v1' && (
         <>
           <MoneyUsageList />
           <LatestProjectsList />
         </>
       )}
-      <FAQ />
+      <div className="mt-24">
+        <FAQ />
+      </div>
     </div>
   );
 };
