@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import { useDeletedActionUpdate } from "../../../contexts/DeletedActionContext.js";
 import { useClimateActionsText } from "../../../contexts/TextContext.js";
+import { useUserState, useUserActions } from "../../../contexts/UserContext.js";
 import TextBanner from "../../../common/TextBanner.jsx";
-
 const CarouselActionItem = ({
   action,
   user,
@@ -21,7 +21,6 @@ const CarouselActionItem = ({
 
   const mounted = useRef(false);
 
-  const climateActionsText = useClimateActionsText();
   const text = climateActionsText.monthly_action;
 
   const categoryName = () => {
