@@ -14,7 +14,7 @@ const filterCategoryRelatedActions = (filter, condition) => {
       filterUserAction.climate_action_category_id === condition
   );
 };
-const memberShipBadge = (userSubscriptionType) => {
+const memberShipAchievement = (userSubscriptionType) => {
   const res = {
     id: "-1",
     name: "Climate Friend",
@@ -95,7 +95,7 @@ export const getCompleteCategoryArrays = (
         id: category.id.toString(),
       };
     }),
-    memberShipBadge(userSubscriptionType),
+    memberShipAchievement(userSubscriptionType),
   ];
   return res;
 };
