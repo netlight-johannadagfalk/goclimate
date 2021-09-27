@@ -3,6 +3,7 @@ import { useDeletedActionUpdate } from "../../../contexts/DeletedActionContext.j
 import { useClimateActionsText } from "../../../contexts/TextContext.js";
 import TextBanner from "../../../common/TextBanner.jsx";
 import { useUserState, useUserActions } from "../../../contexts/UserContext.js";
+import { updateAccepted } from "../../../helpers/DBRequests.js";
 
 const CarouselActionItem = ({
   action,
@@ -48,37 +49,9 @@ const CarouselActionItem = ({
     updateColumnsWithFullFormat(tempList, achievements);
   };
 
-  //FUNCTION WHERE USER ACCEPT AN ACTION IN DB -> MOVES TO ACCEPTED
-  const updateAccepted = (action) => {
-    const actionID = action.id;
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    const URL = "/user_climate_actions";
-    const requestOptions = {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "X-CSRF-Token": csrfToken,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        climate_action_id: actionID,
-        user_id: currUser.id,
-        status: false,
-      }),
-    };
-
-    fetch(URL, requestOptions)
-      .then((res) => {
-        if (mounted.current) {
-          return res.json();
-        }
-      })
-      .then((json) => acceptAction(action, json))
-      .catch((e) => console.warn(e));
-  };
   const handleClickAccepted = (action) => {
     updateLocalAccepted(action.id);
-    updateAccepted(action);
+    updateAccepted(action, currUser, mounted, acceptAction);
   };
 
   useEffect(() => {
