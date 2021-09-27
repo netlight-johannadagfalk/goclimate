@@ -59,6 +59,8 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
             : false
         }
         pagination={true}
+        preventClicks={false}
+        preventClicksPropagation={false}
         noSwiping={true}
         noSwipingSelector={"button"}
         onSwiper={(swiper) => {
