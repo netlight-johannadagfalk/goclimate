@@ -4,33 +4,38 @@ import KanbanActionColumn from "./KanbanActionColumn.jsx";
 import { useDeletedActionUpdate } from "../../../../contexts/DeletedActionContext.js";
 import { orderBy } from "lodash";
 import {
-  useUserActionsUpdate,
-  useUserActionsColumns,
-  useUserActionsColumnsUpdate,
-  useUserActionsColumnsWithFormatUpdate,
-  useCategoryBadgesUpdate,
-  useCategoryBadgesUpdateOnDrag,
-} from "../../../../contexts/UserActionsContext.js";
+  useUserState,
+  useUserActions,
+} from "../../../../contexts/UserContext.js";
+import {
+  updateStatus,
+  deleteUserAction,
+} from "../../../../helpers/DBRequests.js";
 
 const KanbanActionContainer = ({
   sidebarCollapsed,
   setSidebarCollapsed,
   categories,
 }) => {
-  const setUserActions = useUserActionsUpdate();
-  const columns = useUserActionsColumns();
-  const setColumns = useUserActionsColumnsUpdate();
-  const setColumnsWithFormat = useUserActionsColumnsWithFormatUpdate();
   const setDeletedAction = useDeletedActionUpdate();
-  const setCategoryBadges = useCategoryBadgesUpdate();
-  const setCategoryBadgesOnDrag = useCategoryBadgesUpdateOnDrag();
+  const { data: data } = useUserState();
+  const {
+    updateUserActions,
+    updateColumns,
+    updateColumnsWithFormat,
+    updateAchievements,
+    updateAchievementsOnMove,
+  } = useUserActions();
+
+  const columns = data.columns;
+
   const [isHovering, setIsHovering] = useState(false);
 
   const mounted = useRef(false);
 
   const handleExpanded = (item, value) => {
     const column = item.status === false ? 1 : 2;
-    setColumns({
+    updateColumns({
       ...columns,
       [column]: {
         ...columns[column],
@@ -68,44 +73,9 @@ const KanbanActionContainer = ({
     destItems,
     deletedAction
   ) => {
-    setUserActions([...updatedList, ...performed]);
-    setColumnsWithFormat(updatedList, destItems);
+    updateUserActions([...updatedList, ...performed]);
+    updateColumnsWithFormat(updatedList, destItems);
     setDeletedAction(deletedAction);
-  };
-
-  const deleteUserAction = (id) => {
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    const URL = "/user_climate_actions/" + id.toString();
-    const requestOptions = {
-      method: "DELETE",
-      credentials: "include",
-      headers: {
-        "X-CSRF-Token": csrfToken,
-        "Content-Type": "application/json",
-      },
-    };
-    fetch(URL, requestOptions).catch((e) => console.warn(e));
-  };
-
-  const updateStatus = (id, status) => {
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    const URL = "/user_climate_actions/" + id.toString();
-    const requestOptions = {
-      method: "PUT",
-      credentials: "include",
-      headers: {
-        "X-CSRF-Token": csrfToken,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ status: status }),
-    };
-    fetch(URL, requestOptions)
-      .then((res) => {
-        if (mounted.current) {
-          return res.json();
-        }
-      })
-      .catch((error) => console.warn(error));
   };
 
   const collectPerformedUserActions = (destItems) => {
@@ -139,23 +109,23 @@ const KanbanActionContainer = ({
       (item) => item.status === false
     );
     //Add moved item to second column. Helpfunction in context desides if new categoryBadge should be created or just change status and color on subitem
-    const destItems = setCategoryBadgesOnDrag(movedItem, destColumn.items);
+    const destItems = updateAchievementsOnMove(movedItem, destColumn.items);
     const sortedDestItems = destItems.map((category) => {
       return {
         ...category,
         userActionsArray: sortActionsBasedOnStatus(category.userActionsArray),
       };
     });
-    setCategoryBadges([...sortedDestItems]);
+    updateAchievements([...sortedDestItems]);
     const newSortedDestItems = orderBadgesOnItemDragged(
       sortedDestItems,
       movedItem
     );
     //Function to get performed useraction from categoryBadges
     let performedUserActions = collectPerformedUserActions(newSortedDestItems);
-    setUserActions([...sourceItems, ...performedUserActions]);
+    updateUserActions([...sourceItems, ...performedUserActions]);
 
-    setColumns({
+    updateColumns({
       ...columns,
       [1]: {
         ...sourceColumn,
@@ -202,9 +172,9 @@ const KanbanActionContainer = ({
     const checkDelete = sortedSourceItems.filter((category) => {
       return category.userActionsArray.some((item) => item.status === true);
     });
-    setCategoryBadges([...checkDelete]);
-    setUserActions([...destItems]);
-    setColumns({
+    updateAchievements([...checkDelete]);
+    updateUserActions([...destItems]);
+    updateColumns({
       ...columns,
       [1]: {
         ...destColumn,
@@ -225,7 +195,7 @@ const KanbanActionContainer = ({
 
   //_.sortBy(items, ({type}) => type === 'vegetable' ? 0 : 1);
 
-  const onDragEnd = (result, columns, setColumns) => {
+  const onDragEnd = (result, columns) => {
     //If you drag but drop in the same column and do not reorder items
     if (!result.destination) return;
     const { source, destination } = result;
@@ -235,8 +205,8 @@ const KanbanActionContainer = ({
       const destColumn = columns[destination.droppableId];
       const sourceItems = [...sourceColumn.items];
       const [removed] = sourceItems.splice(source.index, 1);
-      updateStatus(removed.id, true);
-      const destItems = setCategoryBadgesOnDrag(removed, destColumn.items);
+      updateStatus(removed.id, true, mounted);
+      const destItems = updateAchievementsOnMove(removed, destColumn.items);
       const sortedDestItems = destItems.map((category) => {
         return {
           ...category,
@@ -244,13 +214,13 @@ const KanbanActionContainer = ({
         };
       });
       let performedUserActions = collectPerformedUserActions(destItems);
-      setUserActions([...sourceItems, ...performedUserActions]);
+      updateUserActions([...sourceItems, ...performedUserActions]);
       const newSortedDestItems = orderBadgesOnItemDragged(
         sortedDestItems,
         removed
       );
-      setCategoryBadges([...newSortedDestItems]);
-      setColumns({
+      updateAchievements([...newSortedDestItems]);
+      updateColumns({
         ...columns,
         [source.droppableId]: {
           ...sourceColumn,
@@ -267,7 +237,7 @@ const KanbanActionContainer = ({
       const copiedItems = [...column.items];
       const [removed] = copiedItems.splice(source.index, 1);
       copiedItems.splice(destination.index, 0, removed);
-      setColumns({
+      updateColumns({
         ...columns,
         [source.droppableId]: {
           ...column,
@@ -286,9 +256,7 @@ const KanbanActionContainer = ({
 
   return (
     <div className="h-screen">
-      <DragDropContext
-        onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
-      >
+      <DragDropContext onDragEnd={(result) => onDragEnd(result, columns)}>
         {Object.entries(columns).map(([columnId, column]) => {
           return (
             <div

@@ -4,10 +4,10 @@ import {
   useClimateActionsUpdate,
 } from "../../../contexts/ClimateActionsContext";
 import { useCategoryUpdate } from "../../../contexts/CategoryContext";
-import { useUserActions } from "../../../contexts/UserActionsContext";
 
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
+import { useUserState } from "../../../contexts/UserContext";
 
 const CarouselCategoryButton = ({
   categoryName,
@@ -22,7 +22,8 @@ const CarouselCategoryButton = ({
   const setCategory = useCategoryUpdate();
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
-  const userActions = useUserActions();
+  const { data: data } = useUserState();
+  const userActions = data.userActions;
 
   let options = [
     { value: "allCategories", label: "All categories" },

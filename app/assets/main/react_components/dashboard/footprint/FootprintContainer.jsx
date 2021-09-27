@@ -1,14 +1,10 @@
 import React from "react";
 import CategoryChart from "./CategoryChart.jsx";
 import YourFootprintText from "./YourFootprintText.jsx";
-import {
-  useFootprint,
-  useCommonTextContext,
-} from "../../contexts/FootprintContext.js";
+import { useFootprint } from "../../contexts/FootprintContext.js";
 
 const FootprintContainer = () => {
-  const footprint = useFootprint();
-  const commonText = useCommonTextContext();
+  const { footprint, commonText } = useFootprint();
 
   return (
     <div className="max-w-5xl t:bg-white t:rounded-lg t:shadow-lg t:p-8 t:border t:border-gray-tint-2">
