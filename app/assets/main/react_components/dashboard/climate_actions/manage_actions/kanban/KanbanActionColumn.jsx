@@ -48,6 +48,28 @@ const KanbanActionColumn = ({
               }}
             >
               {!sidebarCollapsed &&
+              columnId == 1 &&
+              column.items.length == 0 ? (
+                <>
+                  <p
+                    style={{
+                      fontStyle: "italic",
+                      marginTop: "25%",
+                    }}
+                  >
+                    Take action and <br /> accept an action!
+                  </p>
+                  <img
+                    src="/Mascot.png"
+                    width="150"
+                    height="150"
+                    className="flex self-center"
+                  />
+                </>
+              ) : (
+                ""
+              )}
+              {!sidebarCollapsed &&
               columnId == 2 &&
               column.items.length == 0 ? (
                 <p
