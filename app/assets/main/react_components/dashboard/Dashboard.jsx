@@ -30,9 +30,9 @@ const Dashboard = ({
         <CategoryProvider>
           <UserProvider
             allUserActions={JSON.parse(allUserActions)}
-            actionsWithoutUserActions={actionsWithoutUserActions}
-            actionsWithUserActions={actionsWithUserActions}
-            climateActionCategories={climateActionCategories}
+            actionsWithoutUserActions={JSON.parse(actionsWithoutUserActions)}
+            actionsWithUserActions={JSON.parse(actionsWithUserActions)}
+            climateActionCategories={JSON.parse(climateActionCategories)}
             userSubscriptionType={userSubscriptionType}
           >
             <ClimateActionsProvider
