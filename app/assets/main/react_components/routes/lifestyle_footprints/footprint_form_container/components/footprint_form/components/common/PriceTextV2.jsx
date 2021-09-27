@@ -10,7 +10,7 @@ const PriceTextV2 = ({ grantedReferralCode, selectedMembership, price }) => {
   } = useTexts();
 
   return (
-    <div className="justify-self-end t:w-full">
+    <div className="justify-self-end t:w-full mt-2 mb-1">
       {grantedReferralCode !== '' && selectedMembership !== 'free' ? (
         <div id="freeMonth" className="py-6 space-y-1">
           <p className="text-base font-bold text-center">
@@ -21,13 +21,13 @@ const PriceTextV2 = ({ grantedReferralCode, selectedMembership, price }) => {
           </p>
         </div>
       ) : (
-        <div id="showPrice" className="t:mt-6 d:mt-0 t:py-6 t:pb-4 t:space-y-1">
+        <div id="showPrice" className="mb-2">
           <div className="text-base font-bold t:text-center">
             <span>
               {selectedMembership === 'free' ? (
                 <span className="show-on-desktop d:inline">{price_free}</span>
               ) : (
-                <div className="d:h-3">
+                <div>
                   <span>{price}</span>
                   <br className="hidden-on-desktop"></br>/{one}
                 </div>

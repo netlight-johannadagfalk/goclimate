@@ -23,7 +23,7 @@ const MembershipAlternativeV2Desktop = ({
     },
   } = useTexts();
 
-  var sellingPoints = selling_points
+  var sellingPoints = selling_points;
   for (var point in sellingPoints) {
     sellingPoints[point] = sellingPoints[point].replace(
       /\d+/,
@@ -34,37 +34,47 @@ const MembershipAlternativeV2Desktop = ({
   return (
     <>
       <div className={style}>
-        <label className={'h-full'} htmlFor={type}>
-          <div className="m-2 cursor-pointer pb-6 h-full">
-            <div className="h-4 my-2 text-center font-bold">
-              <span>{title}</span>
+        <label htmlFor={type}>
+          <div className="m-2 cursor-pointer pb-14 h-full">
+            <div className="h-2/5">
+              <div className="h-1/3 mt-2 text-center">
+                <span>{title}</span>
+              </div>
+              <div className="h-2/3 content-center flex flex-wrap">
+                <PriceTextV2
+                  price={price}
+                  grantedReferralCode={grantedReferralCode}
+                  selectedMembership={type}
+                />
+                {type == 'multi' && (
+                  <div className="text-center w-full ">
+                    <MembershipDropdown
+                      multipleOffsets={multipleOffsets}
+                      setMultipleOffsets={(dropdownValue) => {
+                        setSelectedMembership(type);
+                        setMultipleOffsets(dropdownValue);
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
-            <br></br>
-            <PriceTextV2
-              price={price}
-              grantedReferralCode={grantedReferralCode}
-              selectedMembership={type}
-            />
-            <div className="pl-6">
+            <div className="ml-4 mt-3 space-y-2">
               <ul className="list-disc">
                 {Object.keys(sellingPoints).map((point) => (
-                  <li className="my-3 text-sm text-left leading-3" key={point}>
+                  <li className="text-sm text-left leading-3 mb-2" key={point}>
                     {sellingPoints[point]}
                   </li>
                 ))}
               </ul>
             </div>
-            {type == 'multi' && (
-              <div className="align-center align-bottom w-full">
-                <MembershipDropdown
-                  multipleOffsets={multipleOffsets}
-                  setMultipleOffsets={setMultipleOffsets}
-                />
-              </div>
-            )}
-            <div className="text-center absolute inset-x-0 pt-5 bottom-0">
+            <div className="text-center absolute inset-x-0 bottom-0 mb-1">
               <input
-                className="flex-shrink-0 mr-2 "
+                className="flex-shrink-0"
+                style={{
+                  height: '25px',
+                  width: '25px',
+                }}
                 type="radio"
                 name="membership_desktop"
                 id={type}
