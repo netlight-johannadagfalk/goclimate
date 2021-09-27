@@ -8,9 +8,6 @@ const MembershipAlternativeV2 = ({
   selectedMembership,
   setSelectedMembership,
   type,
-  mobile,
-  title,
-  sellingPoints,
   multipleOffsets,
   setMultipleOffsets,
   grantedReferralCode,
@@ -46,8 +43,6 @@ const MembershipAlternativeV2 = ({
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}
           type={type}
-          title={title}
-          sellingPoints={sellingPoints}
           multipleOffsets={multipleOffsets}
           setMultipleOffsets={setMultipleOffsets}
           grantedReferralCode={grantedReferralCode}
@@ -61,8 +56,6 @@ const MembershipAlternativeV2 = ({
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}
           type={type}
-          mobile={mobile}
-          sellingPoints={sellingPoints}
           multipleOffsets={multipleOffsets}
           setMultipleOffsets={setMultipleOffsets}
           grantedReferralCode={grantedReferralCode}
