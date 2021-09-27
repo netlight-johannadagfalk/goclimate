@@ -5,6 +5,7 @@ require 'uri'
 class DashboardController < ApplicationController
   before_action :authenticate_user!
   before_action :flash_when_registered
+  before_action :set_cache_headers
 
   def show
     @total_carbon_offset = OffsettingStatistics.new.total_sold.tonnes.round
@@ -67,6 +68,10 @@ class DashboardController < ApplicationController
               current_user.id])
       .select('user_climate_actions.id', :climate_action_id, :name, :description,
               :status, :user_id, :climate_action_category_id, :image_url)
+  end
+
+  def set_cache_headers
+    response.headers['Cache-Control'] = 'no-store'
   end
 
   def flash_when_registered
