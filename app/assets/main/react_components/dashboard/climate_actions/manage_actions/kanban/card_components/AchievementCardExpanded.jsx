@@ -28,7 +28,7 @@ const AchievementCardExpanded = ({ achievement, handleUncompleteAction }) => {
               >
                 {action.name}
               </div>
-              {action.status && (
+              {action.status && action.id > 0 && (
                 <button
                   className="d:opacity-0 d:group-hover:opacity-50 d:hover:!opacity-100 opacity-50 flex-1 text-right fas fa-trash-alt fa-sm"
                   onClick={() => handleUncompleteAction(action)}
