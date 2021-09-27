@@ -1,6 +1,6 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
-import KanbanActionItem from "./KanbanActionItem.jsx";
+import KanbanCard from "./card_components/KanbanCard.jsx";
 import { useMediaQuery } from "react-responsive";
 import { t } from "../../../../constants";
 
@@ -8,10 +8,11 @@ const KanbanActionColumn = ({
   column,
   columnId,
   handleDelete,
-  handleButtonPerformOnDrag,
+  handleCompleteAction,
+  handleUncompleteAction,
   categories,
-  setCollapsed,
-  collapsed,
+  setSidebarCollapsed,
+  sidebarCollapsed,
   isHovering,
   handleExpanded,
 }) => {
@@ -28,14 +29,14 @@ const KanbanActionColumn = ({
         column={column}
         droppableId={columnId}
         key={columnId}
-        isDropDisabled={collapsed}
+        isDropDisabled={sidebarCollapsed}
       >
         {(provided, snapshot) => {
           return (
             <div
               className={`h-full overflow-x-hidden d:flex d:items-stretch flex items-center flex-col inline-block w-full 
               ${
-                (isHovering && !collapsed) || isTabletOrMobile
+                (isHovering && !sidebarCollapsed) || isTabletOrMobile
                   ? "overflow-y-auto"
                   : "overflow-y-hidden"
               }`}
@@ -43,11 +44,12 @@ const KanbanActionColumn = ({
               ref={provided.innerRef}
               style={{
                 background: snapshot.isDraggingOver ? "lightgrey" : "white",
-                padding: 0,
                 width: "100%",
               }}
             >
-              {!collapsed && columnId == 2 && column.items.length == 0 ? (
+              {!sidebarCollapsed &&
+              columnId == 2 &&
+              column.items.length == 0 ? (
                 <p
                   style={{
                     fontStyle: "italic",
@@ -60,17 +62,18 @@ const KanbanActionColumn = ({
                 ""
               )}
               {column.items
-                .slice(0, collapsed ? 4 : column.items.length)
+                .slice(0, sidebarCollapsed ? 4 : column.items.length)
                 .map((item, index) => {
                   return (
-                    <KanbanActionItem
+                    <KanbanCard
                       item={item}
                       index={index}
                       key={item.id}
                       handleDelete={handleDelete}
-                      handleButtonPerformOnDrag={handleButtonPerformOnDrag}
+                      handleCompleteAction={handleCompleteAction}
+                      handleUncompleteAction={handleUncompleteAction}
                       categories={categories}
-                      collapsed={collapsed}
+                      sidebarCollapsed={sidebarCollapsed}
                       handleExpanded={handleExpanded}
                     />
                   );
@@ -90,9 +93,9 @@ const KanbanActionColumn = ({
           {!isTabletOrMobile && (
             <button
               className={`fas rounded-full h-12 w-12 bg-white border border-gray-accent -left-6 -mt-6 absolute focus:outline-none ${
-                collapsed ? "fa-chevron-left" : "fa-chevron-right"
+                sidebarCollapsed ? "fa-chevron-left" : "fa-chevron-right"
               }`}
-              onClick={() => setCollapsed(!collapsed)}
+              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
             ></button>
           )}
         </div>
