@@ -17,7 +17,7 @@ const UserActionCardExpanded = ({
               : userAction.description}
           </p>
         </div>
-        <div className="flex-1 justify-center my-4">
+        <div className="flex-1 justify-center mt-4">
           <button
             className=" mr-4 fas fa-trash-alt h-4 w-4 focus:outline-none"
             onClick={() =>
@@ -25,7 +25,7 @@ const UserActionCardExpanded = ({
             }
           ></button>
           <button
-            className={`rounded-full py-1 px-4 button inline-block focus:outline-none text-primary border border-color-primary m-1`}
+            className={`rounded-full py-1 px-4 button inline-block focus:outline-none text-primary text-sm border border-color-primary m-1`}
             onClick={() => handleCompleteAction(userAction)}
           >
             {climateActionsText.action_completed}
