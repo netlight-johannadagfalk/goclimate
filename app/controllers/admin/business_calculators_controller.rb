@@ -2,6 +2,7 @@
 
 module Admin
   class BusinessCalculatorsController < AdminController
+    include BusinessCalculatorsHelper
     before_action :set_calculator, only: [:show, :edit, :update, :destroy, :publish, :archive, :duplicate]
     before_action :set_units, only: [:new, :edit, :update]
     before_action :verify_editable, only: [:edit, :update]
@@ -26,21 +27,28 @@ module Admin
     end
 
     def create
-      @calculator = BusinessCalculators::Calculator.new(calculator_params)
+      begin
+        @calculator = BusinessCalculators::Calculator.create!(calculator_params.except('categories_attributes'))
+        calculator_params['categories_attributes'].each_value do |new_category|
+          next unless new_category['name'].present?
 
-      if @calculator.save
-        redirect_to [:admin, @calculator], notice: 'Calculator was successfully created.'
-      else
-        render :new
+          category = @calculator.categories.create!(name: new_category['name'])
+          new_category['fields_attributes'].each_value do |new_field|
+            category.fields.create!(new_field) if new_field['label'].present?
+          end
+        end
+        update_order(@calculator, calculator_params['category_order'])
+      rescue ActiveRecord::RecordInvalid
+        return render :new
       end
+      redirect_to [:admin, @calculator], notice: 'Calculator was successfully created.'
     end
 
     def update
-      if @calculator.update(calculator_params)
-        redirect_to [:admin, @calculator], notice: 'Calculator was successfully updated.'
-      else
-        render :edit
-      end
+      return render :edit unless @calculator.update(calculator_params)
+
+      update_order(@calculator, calculator_params['category_order'])
+      redirect_to [:admin, @calculator], notice: 'Calculator was successfully updated.'
     end
 
     def publish
@@ -89,7 +97,8 @@ module Admin
             :description,
             :field_order,
             :_destroy,
-            { fields_attributes: [:id, :label, :field_type, :multiple_answers, :_destroy, alternatives: [], units: []] }
+            { fields_attributes: [:id, :label, :field_type, :multiple_answers, :_destroy,
+                                  { alternatives: [], units: [] }] }
           ]
         }
       )

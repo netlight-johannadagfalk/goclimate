@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UserClimateActionsController < ApplicationController
-  before_action :set_user_climate_action, only: %i[ show edit update destroy ]
+  before_action :set_user_climate_action, only: [:show, :edit, :update, :destroy]
 
   # GET /user_climate_actions or /user_climate_actions.json
   def index
@@ -43,8 +45,8 @@ class UserClimateActionsController < ApplicationController
   def destroy
     # @user_climate_action.destroy
     # respond_to do |format|
-      # format.html { redirect_to user_climate_actions_url, notice: "User climate action was successfully destroyed." }
-      # format.json { head :no_content }
+    # format.html { redirect_to user_climate_actions_url, notice: "User climate action was successfully destroyed." }
+    # format.json { head :no_content }
     # end
     if @user_climate_action.destroy
       render json: @user_climate_action
@@ -54,13 +56,14 @@ class UserClimateActionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user_climate_action
-      @user_climate_action = UserClimateAction.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def user_climate_action_params
-      params.require(:user_climate_action).permit(:user_id, :climate_action_id, :status)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user_climate_action
+    @user_climate_action = UserClimateAction.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def user_climate_action_params
+    params.require(:user_climate_action).permit(:user_id, :climate_action_id, :status)
+  end
 end
