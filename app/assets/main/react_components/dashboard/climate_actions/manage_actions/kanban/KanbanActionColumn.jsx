@@ -1,6 +1,6 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
-import Card from "./card_components/Card.jsx";
+import KanbanCard from "./card_components/KanbanCard.jsx";
 import { useMediaQuery } from "react-responsive";
 import { t } from "../../../../constants";
 
@@ -65,7 +65,7 @@ const KanbanActionColumn = ({
                 .slice(0, sidebarCollapsed ? 4 : column.items.length)
                 .map((item, index) => {
                   return (
-                    <Card
+                    <KanbanCard
                       item={item}
                       index={index}
                       key={item.id}

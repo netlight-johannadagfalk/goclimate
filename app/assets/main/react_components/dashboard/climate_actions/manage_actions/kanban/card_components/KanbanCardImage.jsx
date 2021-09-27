@@ -1,6 +1,6 @@
 import React from "react";
 
-const CardImage = ({ img, sidebarCollapsed, isUserAction }) => {
+const KanbanCardImage = ({ img, sidebarCollapsed, isUserAction }) => {
   return (
     <div
       className={`h-16 w-16 items-center flex flex-1 rounded-full bg-cover mx-auto z-10 ${
@@ -14,4 +14,4 @@ const CardImage = ({ img, sidebarCollapsed, isUserAction }) => {
   );
 };
 
-export default CardImage;
+export default KanbanCardImage;
