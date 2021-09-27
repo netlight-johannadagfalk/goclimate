@@ -44,6 +44,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
 
   const loopActions = actions.length > noOfItemsShown ? true : false;
   const hideArrows = isMobile || !loopActions ? true : false;
+
   return (
     <div className="relative overflow-visible">
       <Swiper
