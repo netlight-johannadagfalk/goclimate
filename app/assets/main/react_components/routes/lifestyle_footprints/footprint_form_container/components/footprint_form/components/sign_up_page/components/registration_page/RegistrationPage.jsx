@@ -4,9 +4,9 @@ import React from 'react';
 import sanitizeHtml from 'sanitize-html';
 import { useSession } from '../../../../../../../contexts/SessionContext.js';
 import { useTexts } from '../../../../../../../contexts/TextsContext.js';
+import Preamble from '../../../common/Preamble.jsx';
 import Title from '../../../common/Title.jsx';
 import Payment from './components/Payment.jsx';
-import Preamble from '../../../common/Preamble.jsx';
 
 const RegistrationPage = ({
   selectedMembership,
