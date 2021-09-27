@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, createContext, useReducer } from "react";
 import {
-  updateAchievementsOnDrag,
+  handleAchievementsOnMove,
   getCompleteCategoryArrays,
 } from "../helpers/AchievementsHelper";
 import {
@@ -161,7 +161,7 @@ const UserProvider = ({
       });
     },
     updateAchievementsOnMove: (movedItem, performedColumn) => {
-      return updateAchievementsOnDrag(
+      return handleAchievementsOnMove(
         movedItem,
         performedColumn,
         climateActionCategories,
