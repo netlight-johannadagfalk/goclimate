@@ -1,15 +1,13 @@
 import React from 'react';
 import { useSession } from '../../../../../../../../../../../contexts/SessionContext.js';
-import PriceTextV2 from '../../../../../../../common/PriceTextV2.jsx';
-import MembershipDropdown from './components/MembershipDropdown.jsx';
 import { calculatePrice } from '../../../../../../../../../../../helpers/result-helper.js';
+import MembershipAlternativeV2Desktop from './components/MembershipAlternativeV2Desktop.jsx';
+import MembershipAlternativeV2Mobile from './components/MembershipAlternativeV2Mobile.jsx';
 
 const MembershipAlternativeV2 = ({
   selectedMembership,
   setSelectedMembership,
   type,
-  title,
-  sellingPoints,
   multipleOffsets,
   setMultipleOffsets,
   grantedReferralCode,
@@ -24,15 +22,10 @@ const MembershipAlternativeV2 = ({
   } = useSession();
 
   const style =
-    'rounded content-between relative lg:w-1/3 m-1 border border-green-accent ' +
-    (type === selectedMembership ? 'bg-green-tint-1 border-2 ' : '');
-
-  for (var point in sellingPoints) {
-    sellingPoints[point] = sellingPoints[point].replace(
-      /\d+/,
-      multipleOffsets.toString()
-    );
-  }
+    'my-6 t:my-0 rounded content-between relative m-1 h-full ' +
+    (type === selectedMembership
+      ? 'bg-green-tint-1 border-2 '
+      : ' border border-gray-tint-2 ');
 
   const price = calculatePrice(
     result.plan.price,
@@ -41,54 +34,35 @@ const MembershipAlternativeV2 = ({
     type,
     multipleOffsets
   );
-
   return (
-    <div className={style}>
-      <label htmlFor={type}>
-        <div className="h-full m-2 cursor-pointer pb-6">
-          <div className="h-4 my-2 text-center font-bold">
-            <span>{title}</span>
-          </div>
-          <br></br>
-          <PriceTextV2
-            price={price}
-            grantedReferralCode={grantedReferralCode}
-            selectedMembership={type}
-          />
-          <div className="pl-6">
-            <ul className="list-disc">
-              {Object.keys(sellingPoints).map((point) => (
-                <li className="lg:my-3 text-sm text-left" key={point}>
-                  {sellingPoints[point]}
-                </li>
-              ))}
-            </ul>
-          </div>
-          {type == 'multi' && (
-            <div className="align-center align-bottom w-full">
-              <MembershipDropdown
-                multipleOffsets={multipleOffsets}
-                setMultipleOffsets={(dropdownValue) => {
-                  setSelectedMembership(type);
-                  setMultipleOffsets(dropdownValue);
-                }}
-              />
-            </div>
-          )}
-          <div className="text-center absolute inset-x-0 pt-5 bottom-0">
-            <input
-              className="flex-shrink-0 mr-2 "
-              type="radio"
-              name="membership"
-              id={type}
-              checked={selectedMembership === type}
-              value={type}
-              onChange={() => setSelectedMembership(type)}
-            />
-          </div>
-        </div>
-      </label>
-    </div>
+    <>
+      <div className="show-on-desktop w-1/3">
+        <MembershipAlternativeV2Desktop
+          price={price}
+          style={style}
+          selectedMembership={selectedMembership}
+          setSelectedMembership={setSelectedMembership}
+          type={type}
+          multipleOffsets={multipleOffsets}
+          setMultipleOffsets={setMultipleOffsets}
+          grantedReferralCode={grantedReferralCode}
+          result={result}
+        />
+      </div>
+      <div className="hidden-on-desktop">
+        <MembershipAlternativeV2Mobile
+          price={price}
+          style={style}
+          selectedMembership={selectedMembership}
+          setSelectedMembership={setSelectedMembership}
+          type={type}
+          multipleOffsets={multipleOffsets}
+          setMultipleOffsets={setMultipleOffsets}
+          grantedReferralCode={grantedReferralCode}
+          result={result}
+        />
+      </div>
+    </>
   );
 };
 
