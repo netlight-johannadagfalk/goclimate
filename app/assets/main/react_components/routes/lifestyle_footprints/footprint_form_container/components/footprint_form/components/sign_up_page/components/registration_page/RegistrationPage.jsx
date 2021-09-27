@@ -27,9 +27,12 @@ const RegistrationPage = ({
 
   return (
     <>
+      <Title
+        customStyle="text-lgr"
+        text={sign_up_heading_collective_efficacy}
+      />
       <div className="max-w-lg mx-auto">
         <div className="space-y-3">
-          <Title text={sign_up_heading_collective_efficacy} />
           <Preamble text={sign_up_description} />
           <Elements stripe={stripePromise} options={{ locale: lang }}>
             <Payment

@@ -15,7 +15,7 @@ const MoneyUsageList = () => {
   );
 
   return (
-    <div className="mt-20 mb-16">
+    <div className="my-36 mx-4">
       <div className="relative mx-auto w-full">
         <img
           className="invisible m-s:visible w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"

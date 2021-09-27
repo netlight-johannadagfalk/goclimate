@@ -10,8 +10,8 @@ const LatestProjectsList = () => {
   const projects = useProjects();
 
   return (
-    <div className="space-y-3">
-      <h3 className="font-semibold">{latest_projects}</h3>
+    <div className="my-20 space-y-3">
+      <h3 className="heading">{latest_projects}</h3>
       <div className="mt-12 flex flex-col mx-0 t:flex-row m-2">
         {projects.map((project) => (
           <ProjectSummary key={project.id} project={project} />

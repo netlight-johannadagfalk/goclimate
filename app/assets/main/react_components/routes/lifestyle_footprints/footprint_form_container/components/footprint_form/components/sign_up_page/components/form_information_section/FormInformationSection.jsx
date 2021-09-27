@@ -12,15 +12,9 @@ const FormInformationSection = ({
 }) => {
   return (
     <>
-      <div className="my-8">
-        <ArgumentsList />
-      </div>
-      <div className="my-8 mx-4">
-        <MoneyUsageList />
-      </div>
-      <div className="my-8">
-        <LatestProjectsList />
-      </div>
+      <ArgumentsList />
+      <MoneyUsageList />
+      <LatestProjectsList />
       <PriceText
         price={price}
         grantedReferralCode={grantedReferralCode}

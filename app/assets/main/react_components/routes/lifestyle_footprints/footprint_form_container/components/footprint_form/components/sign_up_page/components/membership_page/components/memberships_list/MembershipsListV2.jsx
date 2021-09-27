@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTexts } from '../../../../../../../../../contexts/TextsContext.js';
 import MembershipAlternativeV2 from './components/membership_alternative/MembershipAlternativeV2.jsx';
-import Title from '../../../../../common/Title.jsx';
 
 const MembershipsListV2 = ({
   selectedMembership,
@@ -13,14 +12,13 @@ const MembershipsListV2 = ({
 }) => {
   const {
     reactContentText: {
-      memberships_v2: { free, single, multi, title },
+      memberships_v2: { free, single, multi },
     },
   } = useTexts();
 
   return (
     <>
-      <Title custom_style="text-lgr" text={title} />
-      <div className="lg:flex text-left">
+      <div className="lg:flex text-left pt-4">
         <MembershipAlternativeV2
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}
