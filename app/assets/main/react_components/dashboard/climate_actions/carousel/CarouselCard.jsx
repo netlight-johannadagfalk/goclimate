@@ -56,7 +56,7 @@ const CarouselCard = ({
   }, []);
 
   return (
-    <div className="flex flex-1 min-h-full ">
+    <div className="flex flex-1 min-h-full">
       <div className="pt-20 flex m-lg:pt-24 flex-1 justify-evenly">
         <div className=" border-gray-tint-2 rounded-lg shadow-lg pb-2 ml-2 mr-2 flex flex-col flex-1 bg-white">
           <CategoryColor categories={categories} action={action} />
@@ -89,15 +89,16 @@ const CarouselCard = ({
                   : action.description}
               </p>
             </div>
-
             <div className="flex-1 mt-5 justify-center align-center">
               <AcceptanceStatistics action={action} />
-              <button
-                className="button inline-block "
-                onClick={() => handleClickAccepted(action)}
-              >
-                {climateActionsText.accept}
-              </button>
+              {!action.accepted && (
+                <button
+                  className="button inline-block "
+                  onClick={() => handleClickAccepted(action)}
+                >
+                  {climateActionsText.accept}
+                </button>
+              )}
             </div>
           </div>
         </div>

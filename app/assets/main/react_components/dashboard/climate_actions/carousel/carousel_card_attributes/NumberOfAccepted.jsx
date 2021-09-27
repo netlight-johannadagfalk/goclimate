@@ -1,4 +1,6 @@
 import React from "react";
+import { useClimateActionsText } from "../../../../contexts/TextContext.js";
+
 const NumberOfAccepted = ({
   startText,
   endText,
@@ -6,6 +8,8 @@ const NumberOfAccepted = ({
   disabled,
   currentAloneUser,
 }) => {
+  const climateActionsText = useClimateActionsText();
+
   return (
     <div>
       <div className="flex flex-row justify-center mb-1">
@@ -17,6 +21,15 @@ const NumberOfAccepted = ({
         )}
         <label className="text-sm ml-1">{endText}</label>
       </div>
+      {disabled && (
+        <button
+          className="button inline-block "
+          disabled={disabled}
+          style={{ color: "rgba(28, 70, 55)" }}
+        >
+          {climateActionsText.accepted}
+        </button>
+      )}
     </div>
   );
 };
