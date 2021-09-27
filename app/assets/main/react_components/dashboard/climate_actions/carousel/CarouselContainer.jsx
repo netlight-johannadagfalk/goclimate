@@ -49,15 +49,17 @@ const CarouselContainer = ({
               setAllCategories={setAllCategories}
               localUserActions={localUserActions}
             />
-            <CarouselCategoryButton
-              categoryName={"Popular"}
-              categoryID={"popular"}
-              active={popular}
-              setPopular={setPopular}
-              setAllCategories={setAllCategories}
-              localUserActions={localUserActions}
-              actionsToplist={actionsToplist}
-            />
+            {actionsToplist.length > 0 && (
+              <CarouselCategoryButton
+                categoryName={"Popular"}
+                categoryID={"popular"}
+                active={popular}
+                setPopular={setPopular}
+                setAllCategories={setAllCategories}
+                localUserActions={localUserActions}
+                actionsToplist={actionsToplist}
+              />
+            )}
             {categories.map(
               (cat) =>
                 showFilterButton(cat) && (

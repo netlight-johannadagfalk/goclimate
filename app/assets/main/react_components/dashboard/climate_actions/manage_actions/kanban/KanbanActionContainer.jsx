@@ -30,9 +30,7 @@ const KanbanActionContainer = ({
   } = useUserActions();
 
   const columns = data.columns;
-
   const [isHovering, setIsHovering] = useState(false);
-
   const mounted = useRef(false);
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
 
@@ -196,13 +194,9 @@ const KanbanActionContainer = ({
     );
   };
 
-  //_.sortBy(items, ({type}) => type === 'vegetable' ? 0 : 1);
-
   const onDragEnd = (result, columns) => {
-    //If you drag but drop in the same column and do not reorder items
     if (!result.destination) return;
     const { source, destination } = result;
-    //Drag is only enabled from column 1 to column 2 (when merged with saras code). Keep generalized
     if (source.droppableId !== destination.droppableId) {
       const sourceColumn = columns[source.droppableId];
       const destColumn = columns[destination.droppableId];
@@ -235,7 +229,6 @@ const KanbanActionContainer = ({
         },
       });
     } else {
-      //If you drag but drop in the current column but reorder the items
       const column = columns[source.droppableId];
       const copiedItems = [...column.items];
       const [removed] = copiedItems.splice(source.index, 1);

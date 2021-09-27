@@ -45,7 +45,6 @@ const ClimateActionsContainer = ({
           : action
       )
     );
-    //Saves all items that are userActions locally but not yet in DB to use for categoryFiltering
     let filteredLocalUserActions = climateActions.filter(
       (action) => action.id === actionID
     );
