@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTexts } from '../../../../../../../contexts/TextsContext.js';
-import CategoryChart from './components/CategoryChart.jsx';
 import Preamble from '../../../common/Preamble.jsx';
 import Title from '../../../common/Title.jsx';
+import CategoryChart from './components/CategoryChart.jsx';
 
 const CategoryPage = ({ footprint }) => {
   const {
@@ -18,7 +18,9 @@ const CategoryPage = ({ footprint }) => {
       <Preamble text={desc} />
       <CategoryChart footprint={footprint} />
       <br></br>
-      <Preamble text={public_emissions} />
+      <div className="text-left">
+        <Preamble text={public_emissions} />
+      </div>
     </div>
   );
 };
