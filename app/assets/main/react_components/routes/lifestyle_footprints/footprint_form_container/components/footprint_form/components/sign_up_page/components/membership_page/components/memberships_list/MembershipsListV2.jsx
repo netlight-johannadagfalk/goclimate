@@ -14,8 +14,7 @@ const MembershipsListV2 = ({
   const {
     reactContentText: {
       memberships_v2: {
-        mobile,
-        desktop: { free, single, multi, title },
+        desktop: { title },
       },
     },
   } = useTexts();
@@ -28,9 +27,6 @@ const MembershipsListV2 = ({
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}
           type="free"
-          mobile={mobile.free}
-          title={free.title}
-          sellingPoints={free.selling_points}
           multipleOffsets={multipleOffsets}
           setMultipleOffsets={setMultipleOffsets}
           grantedReferralCode={grantedReferralCode}
@@ -40,9 +36,6 @@ const MembershipsListV2 = ({
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}
           type="single"
-          mobile={mobile.single}
-          title={single.title}
-          sellingPoints={single.selling_points}
           multipleOffsets={multipleOffsets}
           setMultipleOffsets={setMultipleOffsets}
           grantedReferralCode={grantedReferralCode}
@@ -52,9 +45,6 @@ const MembershipsListV2 = ({
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}
           type="multi"
-          mobile={mobile.multi}
-          title={multi.title}
-          sellingPoints={multi.selling_points}
           multipleOffsets={multipleOffsets}
           setMultipleOffsets={setMultipleOffsets}
           grantedReferralCode={grantedReferralCode}

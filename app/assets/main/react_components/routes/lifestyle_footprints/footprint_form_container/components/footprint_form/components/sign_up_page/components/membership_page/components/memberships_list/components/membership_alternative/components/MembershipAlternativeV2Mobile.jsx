@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTexts } from '../../../../../../../../../../../../contexts/TextsContext.js';
 import PriceTextV2 from '../../../../../../../../common/PriceTextV2.jsx';
 import MembershipDropdown from './MembershipDropdown.jsx';
 
@@ -6,15 +7,25 @@ const MembershipAlternativeV2Mobile = ({
   selectedMembership,
   setSelectedMembership,
   type,
-  mobile,
   multipleOffsets,
   setMultipleOffsets,
   grantedReferralCode,
   price,
   style,
 }) => {
+  const {
+    reactContentText: {
+      memberships_v2: {
+        mobile: {
+          [type]: { title, selling_point },
+        },
+      },
+    },
+  } = useTexts();
+
+  var sellingPoint = selling_point;
   if (type === 'multi') {
-    mobile.selling_point = mobile.selling_point.replace(
+    sellingPoint = selling_point.replace(
       /\d+/,
       multipleOffsets.toString()
     );
@@ -26,12 +37,12 @@ const MembershipAlternativeV2Mobile = ({
         <label htmlFor={type}>
           <div className="m-2">
             <div className="text-center font-bold">
-              <span>{mobile.title}</span>
+              <span>{title}</span>
             </div>
           </div>
           <div className="text-center">
             <span className="text-sm mt-2 mb-4 px-1">
-              {mobile.selling_point}
+              {sellingPoint}
             </span>
             <br></br>
             {type == 'multi' ? (

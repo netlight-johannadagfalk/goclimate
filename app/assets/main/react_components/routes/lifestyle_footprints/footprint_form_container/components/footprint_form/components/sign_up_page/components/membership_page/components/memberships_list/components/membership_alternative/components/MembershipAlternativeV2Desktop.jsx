@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTexts } from '../../../../../../../../../../../../contexts/TextsContext.js';
 import PriceTextV2 from '../../../../../../../../common/PriceTextV2.jsx';
 import MembershipDropdown from './MembershipDropdown.jsx';
 
@@ -6,14 +7,23 @@ const MembershipAlternativeV2Desktop = ({
   selectedMembership,
   setSelectedMembership,
   type,
-  title,
-  sellingPoints,
   multipleOffsets,
   setMultipleOffsets,
   grantedReferralCode,
   price,
   style,
 }) => {
+  const {
+    reactContentText: {
+      memberships_v2: {
+        desktop: {
+          [type]: { title, selling_points },
+        },
+      },
+    },
+  } = useTexts();
+
+  var sellingPoints = selling_points
   for (var point in sellingPoints) {
     sellingPoints[point] = sellingPoints[point].replace(
       /\d+/,
