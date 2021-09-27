@@ -3,7 +3,7 @@ import { useDeletedActionUpdate } from "../../../contexts/DeletedActionContext.j
 import { useClimateActionsText } from "../../../contexts/TextContext.js";
 import TextBanner from "../../../common/TextBanner.jsx";
 import { useUserState, useUserActions } from "../../../contexts/UserContext.js";
-import { updateAccepted } from "../../../helpers/db-requests.js";
+import { updateAccepted } from "../../../helpers/DBRequests.js";
 
 const CarouselActionItem = ({
   action,
