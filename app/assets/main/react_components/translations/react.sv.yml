@@ -60,3 +60,5 @@ sv:
         icon: unlock
     membership_page:
       preamble: Nu när du vet mer om din klimatpåverkan är det dags att agera. Genom att bli medlem kan du spara och jämföra dina resultat, få hjälp att minska ditt avtryck och möjligheten att stötta handplockade klimatprojekt.
+    registration_page:
+      preamble: Fyll i din information nedan för att bli en del av vårt community!
