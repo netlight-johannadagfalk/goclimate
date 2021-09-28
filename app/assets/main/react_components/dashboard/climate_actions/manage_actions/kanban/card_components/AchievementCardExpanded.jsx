@@ -1,17 +1,16 @@
 import React from "react";
 
 import { handleUncompleteAction } from "../../../../../helpers/KanbanHelper.js";
-
 import {
   useUserState,
   useUserActions,
 } from "../../../../../contexts/UserContext.js";
+
 const AchievementCardExpanded = ({ achievement }) => {
   const { updateUserActions, updateColumns, updateAchievements } =
     useUserActions();
 
   const { data: data } = useUserState();
-
   const columns = data.columns;
 
   const actions = [

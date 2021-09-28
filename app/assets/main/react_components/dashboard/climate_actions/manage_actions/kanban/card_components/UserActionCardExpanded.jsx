@@ -1,11 +1,11 @@
 import React from "react";
 import { useClimateActionsText } from ".././../../../../contexts/TextContext.js";
 import { handleCompleteAction } from "../../../../../helpers/KanbanHelper.js";
-
 import {
   useUserState,
   useUserActions,
 } from "../../../../../contexts/UserContext.js";
+
 const UserActionCardExpanded = ({ userAction, handleDelete }) => {
   const {
     updateUserActions,
@@ -13,12 +13,10 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
     updateAchievements,
     updateAchievementsOnMove,
   } = useUserActions();
-
   const { data: data } = useUserState();
-
   const columns = data.columns;
-
   const climateActionsText = useClimateActionsText();
+
   return (
     <div className="mt-4 mx-6 flex flex-col text-center">
       <div className="flex-1 justify-center text-left">
