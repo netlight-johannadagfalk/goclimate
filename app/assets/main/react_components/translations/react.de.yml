@@ -2,8 +2,8 @@ de:
   react:
     your_footprint_result_text:
       text_part_before: Your annual carbon footprint is
-      text_part_middle: CO2e. Paying
-      text_part_end: will allow you to offset your footprint. The sum is distributed to different climate projects that make an impact for the climate.
+      text_part_middle: CO2e. By subscribing you can offset your footprint by paying
+      text_part_end: . The sum is distributed among handpicked climate projects that make a real difference for our planet.
     memberships_v1:
       free_title: Free account
       free_desc: Save and follow your carbon footprint over time
