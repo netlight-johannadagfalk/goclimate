@@ -3,7 +3,11 @@ import { useTexts } from '../../../../../../../../contexts/TextsContext';
 
 const ArgumentsList = () => {
   const {
-    reactContentText: { arguments_list },
+    reactContentText: {
+      sign_up_page: {
+        membership_page: { arguments_list },
+      },
+    },
   } = useTexts();
 
   return (

@@ -13,8 +13,12 @@ const MembershipsListV2 = ({
 }) => {
   const {
     reactContentText: {
-      memberships_v2: {
-        desktop: { title },
+      sign_up_page: {
+        membership_page: {
+          memberships_v2: {
+            desktop: { title },
+          },
+        },
       },
     },
   } = useTexts();

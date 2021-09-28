@@ -16,15 +16,12 @@ const RegistrationPage = ({
   price,
 }) => {
   const {
-    registrationsText: {
-      sign_up_heading_collective_efficacy,
-      accept_policies,
-    },
+    registrationsText: { sign_up_heading_collective_efficacy, accept_policies },
     reactContentText: {
-      registration_page: {
-        preamble
-      }
-    }
+      sign_up_page: {
+        registration_page: { preamble },
+      },
+    },
   } = useTexts();
   const { lang } = useSession();
   const stripePromise = loadStripe(window.stripe._apiKey);

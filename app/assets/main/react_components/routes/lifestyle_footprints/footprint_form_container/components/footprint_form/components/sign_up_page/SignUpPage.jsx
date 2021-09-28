@@ -18,7 +18,11 @@ const SignUpPage = ({ result, page, onPageChange }) => {
   const {
     registrationsText: { continue_to_payment },
     lifestyleFootprintsText: { next },
-    reactContentText: { back_to_homepage },
+    reactContentText: {
+      sign_up_page: {
+        membership_page: { back_to_homepage },
+      },
+    },
   } = useTexts();
 
   const {
