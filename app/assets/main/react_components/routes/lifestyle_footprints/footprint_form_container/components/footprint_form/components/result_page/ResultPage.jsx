@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTexts } from '../../../../../contexts/TextsContext.js';
-import scrollToTop from '../../../../../helpers/scroll-to-top.js';
 import AnswerButton from '../common/AnswerButton.jsx';
 import CategoryPage from './components/category_section/CategoryPage.jsx';
 import WorldPage from './components/world_section/WorldPage.jsx';
@@ -15,12 +14,6 @@ const ResultPage = ({ result, page, onPageChange }) => {
 
   const footprint = result.footprint;
   const countryAverage = result.country_average;
-
-  useEffect(() => {
-    if (window.innerWidth <= 768) {
-      scrollToTop();
-    }
-  }, [page]);
 
   return (
     <div>
