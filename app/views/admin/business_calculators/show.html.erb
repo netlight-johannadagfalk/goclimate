@@ -29,14 +29,19 @@
           <% category.ordered_fields.each do |field| %>
             <li>
               <%= field.label %>
-              <ul>
-                <li>Field type: <%= field.field_type %></li>
-                <li>Multiple answers allowed: <%= field.multiple_answers %></li>
+              <% if field.field_type == "radio" %>
+                (Alternatives: <%= field.alternatives&.join(", ") %>)
+              <% end %>
+              <ul class="inline text-sm">
+                <% tag_classes = 'rounded inline-block px-1 py-0 lowercase' %>
+                <li class="<%= tag_classes %> bg-gray-tint-2"><%= field.field_type %></li>
+                <% if field.multiple_answers %>
+                  <li class="<%= tag_classes %> bg-yellow-tint-2">multiple answers</li>
+                <% end %>
                 <% if field.field_type == "open_ended" %>
-                  <% formatted_unit_names = field.units&.map { |(key, _value)| BusinessCalculators::Unit.where(key: key).first.name }&.join(", ") %>
-                  <li>Units: <%= "#{formatted_unit_names}#{formatted_unit_names.present? ? ', free form' : 'Free form'}" %></li>
-                <% else %>
-                  <li>Alternatives: <%= field.alternatives&.join(", ") %></li>
+                  <% field.units&.map { |(key, _value)| BusinessCalculators::Unit.find_by(key: key) }&.each do |unit| %>
+                    <li class="<%= tag_classes %> bg-green-tint-2"><%= unit.name %></li>
+                  <% end %>
                 <% end %>
               </ul>
             </li>
