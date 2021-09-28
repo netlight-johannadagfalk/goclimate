@@ -3,7 +3,7 @@ import { useProjects } from '../../../../contexts/ProjectsContext.js';
 import { useTexts } from '../../../../contexts/TextsContext.js';
 import ProjectSummary from './components/ProjectSummary.jsx';
 
-const LatestProjectsList = () => {
+const LatestProjectsListV2 = () => {
   const {
     registrationsText: { latest_projects },
   } = useTexts();
@@ -21,4 +21,4 @@ const LatestProjectsList = () => {
   );
 };
 
-export default LatestProjectsList;
+export default LatestProjectsListV2;
