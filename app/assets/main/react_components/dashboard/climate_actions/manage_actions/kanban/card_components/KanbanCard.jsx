@@ -64,10 +64,8 @@ const KanbanCard = ({
       {(provided, snapshot) => {
         return (
           <div
-            className={`rounded-lg w-80 h-20 space-y-3 mb-2 focus:outline-none transistion duration-500 transform hover:-translate-y-1 hover:scale-102 ${
-              sidebarCollapsed
-                ? "d:w-24"
-                : "d:w-auto border border-gray-tint-2 mx-5"
+            className={`rounded-lg w-80 h-20 space-y-3 mb-2 focus:outline-none duration-500 transistion transform border border-gray-tint-2 ${
+              sidebarCollapsed ? "d:w-24 border-none" : "d:w-auto mx-5"
             } 
             ${item.expanded ? "h-auto" : "w-24"}`}
             ref={provided.innerRef}
