@@ -17,7 +17,10 @@ const ResultPage = ({ result, page, onPageChange }) => {
   const countryAverage = result.country_average;
 
   useEffect(() => {
-    window.addEventListener('load', scrollToTop());
+    var width = window.window.screen.width;
+    if (width < 758) {
+      window.addEventListener('load', scrollToTop());
+    }
   }, [page]);
 
   return (
