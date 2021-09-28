@@ -5,7 +5,7 @@ import { useMediaQuery } from "react-responsive";
 import KanbanContainer from "./kanban/KanbanContainer.jsx";
 import { t } from "../../../constants";
 
-const ManageActions = ({ categories, userActions }) => {
+const ManageUserActions = ({ categories, userActions }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
 
@@ -35,4 +35,4 @@ const ManageActions = ({ categories, userActions }) => {
   );
 };
 
-export default ManageActions;
+export default ManageUserActions;
