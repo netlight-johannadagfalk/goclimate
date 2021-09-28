@@ -21,12 +21,18 @@
 
 <%= render 'shared/email/action_of_the_month', 
   prefix: "The action of the month is:",
-  action_name: @action_of_the_month_name,
-  action_description: @action_of_the_month_description,
-  action_impact_points: "The climate impact point is: " + String(@action_of_the_month_points) + " CO2"
+  action_name: @action_of_the_month_name
+  #action_description: @action_of_the_month_description,
+  #action_impact_points: "The climate impact point is: " + String(@action_of_the_month_points) + " CO2"
   #suffix: @action_of_the_month.first.description,
   #climate_impact: "The climate impact point is: " + String(@action_of_the_month.first.points) + " CO2"
 %>
+
+<%= render 'shared/email/spacer' %>
+
+  <%= render 'shared/email/button',
+    text: 'Accept action',
+    href: twitter_share_url(@user) %>
 
 <%= render 'shared/email/spacer' %>
 
