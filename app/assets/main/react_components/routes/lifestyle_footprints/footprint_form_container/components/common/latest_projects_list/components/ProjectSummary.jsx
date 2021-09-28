@@ -3,9 +3,10 @@ import { useTexts } from '../../../../../contexts/TextsContext.js';
 
 const ProjectSummary = ({ project }) => {
   const [collapseState, setCollapseState] = useState('hidden');
-  const [isShortText, setShortText] = useState(false);
+  const [isShortText, setIsShortText] = useState(false);
   const [tempHeight, setTempHeight] = useState(0.0);
   const minimumProjectHeight = 125;
+  const roundingHeightCompensator = 3; // Used to compensate for diff in div height to align with other divs in the same column
 
   const {
     sharedText: { read_more },
@@ -19,8 +20,8 @@ const ProjectSummary = ({ project }) => {
     const projectBoxElement = document.getElementById(
       'projectBox' + project.id
     );
-    setTempHeight(projectBoxElement?.clientHeight + 3);
-    setShortText(
+    setTempHeight(projectBoxElement?.clientHeight + roundingHeightCompensator);
+    setIsShortText(
       titleElement?.scrollHeight + descriptionElement?.scrollHeight <
         minimumProjectHeight
     );
