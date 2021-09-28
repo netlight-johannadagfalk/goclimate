@@ -8,7 +8,7 @@ const AchievementCardExpanded = ({ achievement, handleUncompleteAction }) => {
 
   return (
     <div>
-      <div className="mb-4 mt-5 ml-7 mr-4">
+      <div className="mb-4 ml-7 mr-4">
         {/* Map through both arrays in categoryBadge. All actions in the category should be rendered in a list, but those userActions that are performed should be highlighted */}
         {actions.map((action) => {
           return (
