@@ -1,7 +1,7 @@
 import React from "react";
 
 const ProgressBar = ({ categories, item, userActions, actions }) => {
-  const categoriesWithMembershipBadge = [
+  const categoriesWithMembershipAchievement = [
     ...categories,
     { id: "-1", name: "Climate Friend" },
   ];
@@ -34,7 +34,7 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
             "w-" + completed + "/" + total
           } rounded-lg text-right ${
             "category_" +
-            categoryName(categoriesWithMembershipBadge)
+            categoryName(categoriesWithMembershipAchievement)
               .toLowerCase()
               .replace(/ /g, "_") +
             "_active"
