@@ -11,7 +11,7 @@ const MembershipsListV2 = ({
 }) => {
   return (
     <>
-      <div className="t:flex text-left">
+      <div className="t:flex text-left pt-4">
         <MembershipAlternativeV2
           selectedMembership={selectedMembership}
           setSelectedMembership={setSelectedMembership}

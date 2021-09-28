@@ -13,15 +13,17 @@ const CategoryPage = ({ footprint }) => {
   } = useTexts();
 
   return (
-    <div className="max-w-lg mx-auto">
+    <>
       <Title custom_style="text-lgr" text={title} />
-      <Preamble text={desc} />
-      <CategoryChart footprint={footprint} />
-      <br></br>
-      <div className="text-left">
-        <Preamble text={public_emissions} />
+      <div className="max-w-lg mx-auto">
+        <Preamble text={desc} />
+        <CategoryChart footprint={footprint} />
+        <br></br>
+        <div className="text-left">
+          <Preamble text={public_emissions} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -2,8 +2,8 @@ en:
   react:
     your_footprint_result_text:
       text_part_before: Your annual carbon footprint is
-      text_part_middle: CO2e. Paying
-      text_part_end: will allow you to offset your footprint. The sum is distributed to different climate projects that make an impact for the climate.
+      text_part_middle: CO2e. By subscribing you can offset your footprint by paying
+      text_part_end: . The sum is distributed among handpicked climate projects that make a real difference for our planet.
     memberships_v1:
       free_title: Free account
       free_desc: Save and follow your carbon footprint over time
@@ -52,7 +52,7 @@ en:
         icon: eye
       projects:
         title: Handpicked projects
-        text: With the help of our expertise, we pick projects that provide the most climate benefit
+        text: We pick projects that provide the most climate benefit by cost
         icon: globe-americas
       binding_time:
         title: No binding time
@@ -60,3 +60,5 @@ en:
         icon: unlock
     membership_page:
       preamble: Now that you know more about your climate impact, it's time to act. By becoming a member, you can save and compare your results, get help to reduce your carbon footprint and the opportunity to support hand-picked climate projects.
+    registration_page:
+      preamble: Fill in your information below to become a part of our community!

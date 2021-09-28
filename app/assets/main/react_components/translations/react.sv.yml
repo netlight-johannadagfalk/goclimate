@@ -3,7 +3,7 @@ sv:
     your_footprint_result_text:
       text_part_before: Ditt årliga klimatavtryck är
       text_part_middle: CO2e. För
-      text_part_end: hjälper vi dig att klimatkompensera ditt avtryck. Summan fördelas till olika klimatprojekt som gör skillnad för klimatet.
+      text_part_end: ' hjälper vi dig att klimatkompensera ditt avtryck. Summan fördelas mellan handplockade klimatprojekt som gör skillnad på riktigt.'
     memberships_v1:
       free_title: Gratis konto
       free_desc: Spara och följ ditt klimatavtryck över tid
@@ -40,7 +40,7 @@ sv:
           selling_point: Kompensera 2 gånger ditt klimatavtryck till utvalda projekt
     category_chart:
       title: Ditt klimatavtryck per kategori
-      desc: Detta är ditt klimatavtryck i kategorier, var det som du förväntade dig?
+      desc: Här är ditt klimatavtryck i kategorier. Var det som du förväntade dig?
     category_page:
       answer_button_logged_in: Gå till profil
     back_to_homepage: Tillbaka till startsidan
@@ -52,7 +52,7 @@ sv:
         icon: eye
       projects:
         title: Projekt som gör skillnad
-        text: Med hjälp av vår kompetens handplockar vi de projekt som ger mest klimatnytta
+        text: Vi väljer våra projekt noggrant utifrån mest klimatnytta för pengarna
         icon: globe-americas
       binding_time:
         title: Ingen bindningstid
@@ -60,3 +60,5 @@ sv:
         icon: unlock
     membership_page:
       preamble: Nu när du vet mer om din klimatpåverkan är det dags att agera. Genom att bli medlem kan du spara och jämföra dina resultat, få hjälp att minska ditt avtryck och möjligheten att stötta handplockade klimatprojekt.
+    registration_page:
+      preamble: Fyll i din information nedan för att bli en del av vårt community!
