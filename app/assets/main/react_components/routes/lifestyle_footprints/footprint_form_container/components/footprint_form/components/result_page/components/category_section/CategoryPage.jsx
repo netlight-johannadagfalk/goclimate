@@ -7,8 +7,10 @@ import Title from '../../../common/Title.jsx';
 const CategoryPage = ({ footprint }) => {
   const {
     reactContentText: {
-      category_chart: { title, desc },
-      public_emissions,
+      category_page: {
+        category_chart: { title, desc },
+        public_emissions,
+      },
     },
   } = useTexts();
 
