@@ -14,7 +14,7 @@ import {
 import { useMediaQuery } from "react-responsive";
 import { t } from "../../../../constants";
 
-const KanbanActionContainer = ({
+const KanbanContainer = ({
   sidebarCollapsed,
   setSidebarCollapsed,
   categories,
@@ -299,4 +299,4 @@ const KanbanActionContainer = ({
   );
 };
 
-export default KanbanActionContainer;
+export default KanbanContainer;

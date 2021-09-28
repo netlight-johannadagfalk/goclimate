@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "./sidebar/Sidebar.jsx";
 import DropDownKanbanContainer from "./dropdown-kanban/DropDownKanbanContainer.jsx";
 import { useMediaQuery } from "react-responsive";
-import KanbanActionContainer from "./kanban/KanbanActionContainer.jsx";
+import KanbanContainer from "./kanban/KanbanContainer.jsx";
 import { t } from "../../../constants";
 
 const ManageActions = ({ categories, userActions }) => {
@@ -14,7 +14,7 @@ const ManageActions = ({ categories, userActions }) => {
       {!isTabletOrMobile && (
         <div className="w-full">
           <Sidebar categories={categories} sidebarCollapsed={sidebarCollapsed}>
-            <KanbanActionContainer
+            <KanbanContainer
               setSidebarCollapsed={setSidebarCollapsed}
               sidebarCollapsed={sidebarCollapsed}
               categories={categories}
@@ -24,7 +24,7 @@ const ManageActions = ({ categories, userActions }) => {
       )}
       {isTabletOrMobile && (
         <DropDownKanbanContainer userActions={userActions}>
-          <KanbanActionContainer
+          <KanbanContainer
             setSidebarCollapsed={setSidebarCollapsed}
             sidebarCollapsed={false}
             categories={categories}
