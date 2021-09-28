@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTexts } from '../../../../../contexts/TextsContext.js';
 import AnswerButton from '../common/AnswerButton.jsx';
 import CategoryPage from './components/category_section/CategoryPage.jsx';
@@ -14,23 +14,6 @@ const ResultPage = ({ result, page, onPageChange }) => {
 
   const footprint = result.footprint;
   const countryAverage = result.country_average;
-
-  useEffect(() => {
-    setTimeout(function () {
-      var scrollPos = 0
-      scrollPos =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      if (scrollPos > 1) {
-        window.scrollTo({
-          top: 50,
-          left: 0,
-          behavior: 'smooth',
-        });
-      }
-    }, 2);
-  }, [page]);
 
   return (
     <div>
