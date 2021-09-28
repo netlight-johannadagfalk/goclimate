@@ -18,7 +18,7 @@ const membershipAchievement = (userSubscriptionType) => {
   const res = {
     id: "-1",
     name: "Climate Friend",
-    badge_image_url: "/achievement_images/AchievementClimateFriend.png",
+    badge_image_url: "/achievement_images/AchievementClimateFriendShadow.png",
     userActionsArray: [
       { id: "-2", name: "GoClimate free membership", status: true },
       {
