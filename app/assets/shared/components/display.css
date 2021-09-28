@@ -7,12 +7,7 @@
 }
 
 .display-exit {
-  opacity: 1;
-}
-
-.display-exit.display-exit-active {
-  opacity: 0.01;
-  transition: opacity ease-in-out;
+  display: none;
 }
 
 @keyframes pulse {
