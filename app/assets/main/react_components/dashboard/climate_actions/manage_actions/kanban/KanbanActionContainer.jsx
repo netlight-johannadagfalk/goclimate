@@ -273,8 +273,10 @@ const KanbanActionContainer = ({
               onMouseLeave={() => setIsHovering(false)}
             >
               <div
-                className="h-10 w-360 mt-2"
-                style={isTabletOrMobile ? {} : { width: 360 }}
+                className="h-10 mt-2"
+                style={
+                  isTabletOrMobile || sidebarCollapsed ? {} : { width: 360 }
+                }
               >
                 <p
                   className={`font-normal text-base text-primary text-lg text-center`}

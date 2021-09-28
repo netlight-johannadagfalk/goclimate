@@ -37,7 +37,7 @@ const KanbanActionColumn = ({
             <div
               className={`h-full overflow-x-hidden pt-1 d:flex d:items-stretch flex items-center flex-col inline-block w-full 
               ${
-                (isHovering && !sidebarCollapsed) || isTabletOrMobile
+                isHovering || isTabletOrMobile
                   ? "overflow-y-auto"
                   : "overflow-y-hidden"
               }`}
@@ -48,6 +48,28 @@ const KanbanActionColumn = ({
                 width: "100%",
               }}
             >
+              {!sidebarCollapsed &&
+              columnId == 1 &&
+              column.items.length == 0 ? (
+                <>
+                  <p
+                    style={{
+                      fontStyle: "italic",
+                      marginTop: "10%",
+                    }}
+                  >
+                    Take action and <br /> accept an action!
+                  </p>
+                  <img
+                    src="/Mascot.png"
+                    width="100"
+                    height="100"
+                    className="flex self-center"
+                  />
+                </>
+              ) : (
+                ""
+              )}
               {!sidebarCollapsed &&
               columnId == 2 &&
               column.items.length == 0 ? (
@@ -64,7 +86,7 @@ const KanbanActionColumn = ({
               )}
               <TransitionGroup component={null}>
                 {column.items
-                  .slice(0, sidebarCollapsed ? 4 : column.items.length)
+                  .slice(0, column.items.length)
                   .map((item, index) => {
                     return (
                       <CSSTransition
