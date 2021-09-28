@@ -147,6 +147,7 @@ const UserProvider = ({
   actionsWithoutUserActions,
   actionsWithUserActions,
   climateActionCategories,
+  userSubscriptionType,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const climateActionsText = useClimateActionsText();
@@ -203,7 +204,8 @@ const UserProvider = ({
     const achievements = getCompleteCategoryArrays(
       actionsWithoutUserActions,
       allUserActions,
-      climateActionCategories
+      climateActionCategories,
+      userSubscriptionType
     );
 
     dispatch({
