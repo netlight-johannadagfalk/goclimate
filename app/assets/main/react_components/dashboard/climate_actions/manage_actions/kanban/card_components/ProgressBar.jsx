@@ -16,22 +16,22 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
 
   const total = userActions.length + actions.length;
   const calculateProgressBar = () => {
-    let progress_completed = 0;
+    let progress = 0;
     userActions.map((userAction) => {
       if (userAction.status === true) {
-        progress_completed++;
+        progress++;
       }
     });
-    return progress_completed;
+    return progress;
   };
 
-  const completed = calculateProgressBar();
+  const progress = calculateProgressBar();
   return (
     <div className="w-full ml-1 flex flex-row justify-center items-center absolute mt-9">
       <div className="h-3 w-2/5 bg-gray-tint-2 bg-opacity-70 rounded-lg">
         <div
           className={`h-3  ${
-            "w-" + completed + "/" + total
+            "w-" + progress + "/" + total
           } rounded-lg text-right ${
             "category_" +
             categoryName(categoriesWithMembershipAchievement)
@@ -42,7 +42,7 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
         ></div>
       </div>
 
-      <span className="ml-5 text-sm">{`${completed + "/" + total}`}</span>
+      <span className="ml-5 text-sm">{`${progress + "/" + total}`}</span>
     </div>
   );
 };

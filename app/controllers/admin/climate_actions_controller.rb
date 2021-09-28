@@ -50,8 +50,8 @@ module Admin
                          end
     end
 
-    def number_of_users_completed_actions_in_order
-      @number_of_users_completed_actions_ordered =
+    def number_of_performed_users_actions_in_order
+      @number_of_performed_users_actions_in_order =
         ClimateAction.joins(:user_climate_actions)
                      .select('climate_actions.*, count(user_climate_actions.climate_action_id) as total')
                      .order('COUNT(user_climate_actions.climate_action_id) DESC')
@@ -63,15 +63,15 @@ module Admin
       @choose_climate_actions = ClimateAction.all
       @action_of_the_month = ClimateAction.where(action_of_the_month: true).first
       number_of_times_action_performed
-      number_of_users_completed_actions_in_order
+      number_of_performed_users_actions_in_order
       show_actions_filtered_on_categories_and_points(params[:category], params[:points])
     end
 
     def number_of_times_action_performed
-      @action_of_the_month_number_of_times_completed = if @action_of_the_month.nil?
+      @action_of_the_month_number_of_times_performed = if @action_of_the_month.nil?
                                                          nil
                                                        else
-                                                         action_of_the_month_number_of_times_completed
+                                                         action_of_the_month_number_of_times_performed
                                                        end
     end
 
@@ -137,7 +137,7 @@ module Admin
       ClimateAction.where.not(id: id).update_all(action_of_the_month: false)
     end
 
-    def action_of_the_month_number_of_times_completed
+    def action_of_the_month_number_of_times_performed
       UserClimateAction
         .where(climate_action_id: @action_of_the_month.id)
         .count
