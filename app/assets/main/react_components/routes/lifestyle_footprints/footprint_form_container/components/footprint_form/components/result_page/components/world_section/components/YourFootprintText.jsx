@@ -30,7 +30,7 @@ const YourFootprintText = ({ footprintValue, priceObject }) => {
 
   return (
     <div>
-      <div className="text-left mt-8">
+      <div className="text-center mt-8">
         {text_part_before}
         <span className="text-lg font-bold text-green-accent">
           {' '}

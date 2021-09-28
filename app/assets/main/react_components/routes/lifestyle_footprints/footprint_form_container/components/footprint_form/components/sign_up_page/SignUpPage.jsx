@@ -44,8 +44,24 @@ const SignUpPage = ({ result, page, onPageChange }) => {
     );
   }, [grantedReferralCode, selectedMembership, multipleOffsets]);
 
+  useEffect(() => {
+    setTimeout(function () {
+      var scrollPos =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      if (scrollPos > 1) {
+        window.scrollTo({
+          top: 30,
+          left: 0,
+          behavior: 'smooth',
+        });
+      }
+    }, 2);
+  }, [page]);
+
   return (
-    <>
+    <div className="my-8">
       {page === 2 ? (
         <MembershipPage
           selectedMembership={selectedMembership}
@@ -108,7 +124,7 @@ const SignUpPage = ({ result, page, onPageChange }) => {
           />
         </>
       )}
-    </>
+    </div>
   );
 };
 

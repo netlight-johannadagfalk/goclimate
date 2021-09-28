@@ -1,6 +1,6 @@
 import React from 'react';
-import { useTexts } from '../../../../contexts/TextsContext.js';
 import { useProjects } from '../../../../contexts/ProjectsContext.js';
+import { useTexts } from '../../../../contexts/TextsContext.js';
 import ProjectSummary from './components/ProjectSummary.jsx';
 
 const LatestProjectsList = () => {
