@@ -24,7 +24,7 @@ const membershipAchievement = (userSubscriptionType) => {
       {
         id: "-3",
         name: "GoClimate paid membership",
-        status: JSON.parse(userSubscriptionType) == true ? true : false,
+        status: userSubscriptionType == true ? true : false,
       },
     ],
     actionsArray: [],

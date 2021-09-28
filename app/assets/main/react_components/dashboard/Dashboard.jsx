@@ -33,7 +33,7 @@ const Dashboard = ({
             actionsWithoutUserActions={JSON.parse(actionsWithoutUserActions)}
             actionsWithUserActions={JSON.parse(actionsWithUserActions)}
             climateActionCategories={JSON.parse(climateActionCategories)}
-            userSubscriptionType={userSubscriptionType}
+            userSubscriptionType={JSON.parse(userSubscriptionType)}
           >
             <ClimateActionsProvider
               actionsWithUserActions={JSON.parse(actionsWithUserActions)}

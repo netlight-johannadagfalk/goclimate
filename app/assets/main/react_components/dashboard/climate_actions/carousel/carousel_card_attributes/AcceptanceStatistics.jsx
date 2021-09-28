@@ -21,7 +21,7 @@ const AcceptanceStatistics = ({ action }) => {
           isFirstToAccept={true}
         />
       ) : (
-        <div>
+        <>
           {!action.accepted && action.total !== 0 ? (
             action.total > 1 ? (
               <NumberOfAccepted
@@ -49,7 +49,7 @@ const AcceptanceStatistics = ({ action }) => {
               isFirstToAccept={true}
             />
           )}
-        </div>
+        </>
       )}
     </>
   );
