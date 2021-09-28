@@ -10,7 +10,7 @@ sv:
         title: Ditt klimatavtryck per kategori
         desc: Detta är ditt klimatavtryck i kategorier, var det som du förväntade dig?
       public_emissions: Kategorin för samhälle beskriver de utsläpp som samhället orsakar, beroende på var i världen du bor. Detta inkluderar till exempel myndigheter, sjukvård, utbildning och kollektivtrafik.
-      answer_button_logged_in: Gå till profil 
+      answer_button_logged_in: Gå till profil
     sign_up_page:
       membership_page:
         preamble: Nu när du vet mer om din klimatpåverkan är det dags att agera. Genom att bli medlem kan du spara och jämföra dina resultat, få hjälp att minska ditt avtryck och möjligheten att stötta handplockade klimatprojekt.
