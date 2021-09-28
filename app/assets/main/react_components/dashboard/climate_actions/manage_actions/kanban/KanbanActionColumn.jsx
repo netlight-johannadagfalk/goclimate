@@ -43,7 +43,7 @@ const KanbanActionColumn = ({
               {...provided.droppableProps}
               ref={provided.innerRef}
               style={{
-                background: snapshot.isDraggingOver ? "lightgrey" : "white",
+                background: snapshot.isDraggingOver ? "GhostWhite" : "white",
                 width: "100%",
               }}
             >
