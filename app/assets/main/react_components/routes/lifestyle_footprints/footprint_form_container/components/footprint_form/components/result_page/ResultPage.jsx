@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTexts } from '../../../../../contexts/TextsContext.js';
+import scrollToTop from '../../../../../helpers/scroll-to-top.js';
 import AnswerButton from '../common/AnswerButton.jsx';
 import CategoryPage from './components/category_section/CategoryPage.jsx';
 import WorldPage from './components/world_section/WorldPage.jsx';
@@ -16,20 +17,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
   const countryAverage = result.country_average;
 
   useEffect(() => {
-    setTimeout(function () {
-      var scrollPos = 0
-      scrollPos =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      if (scrollPos > 1) {
-        window.scrollTo({
-          top: 50,
-          left: 0,
-          behavior: 'smooth',
-        });
-      }
-    }, 2);
+    window.addEventListener('load', scrollToTop());
   }, [page]);
 
   return (

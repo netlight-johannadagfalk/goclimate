@@ -3,6 +3,7 @@ import { useSession } from '../../../../../contexts/SessionContext.js';
 import { useTexts } from '../../../../../contexts/TextsContext.js';
 import { useVersion } from '../../../../../contexts/VersionContext.js';
 import { calculatePrice } from '../../../../../helpers/result-helper.js';
+import scrollToTop from '../../../../../helpers/scroll-to-top.js';
 import Link from '../../../common/Link.jsx';
 import AnswerButton from '../common/AnswerButton.jsx';
 import FormInformationSection from './components/form_information_section/FormInformationSection.jsx';
@@ -33,6 +34,10 @@ const SignUpPage = ({ result, page, onPageChange }) => {
   const version = useVersion();
 
   useEffect(() => {
+    window.addEventListener('load', scrollToTop());
+  }, [page]);
+
+  useEffect(() => {
     setPrice(
       calculatePrice(
         result.plan.price,
@@ -43,22 +48,6 @@ const SignUpPage = ({ result, page, onPageChange }) => {
       )
     );
   }, [grantedReferralCode, selectedMembership, multipleOffsets]);
-
-  useEffect(() => {
-    setTimeout(function () {
-      var scrollPos =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      if (scrollPos > 1) {
-        window.scrollTo({
-          top: 30,
-          left: 0,
-          behavior: 'smooth',
-        });
-      }
-    }, 2);
-  }, [page]);
 
   return (
     <div className="my-8">
