@@ -15,7 +15,6 @@ const CarouselCard = ({
   categories,
   monthlyActionBanner,
 }) => {
-  const currUser = JSON.parse(user);
   const { data: data } = useUserState();
   const { updateUserActions, updateColumnsWithFullFormat } = useUserActions();
 
@@ -45,7 +44,7 @@ const CarouselCard = ({
 
   const handleClickAccepted = (action) => {
     updateLocalAccepted(action.id);
-    updateAccepted(action, currUser, mounted, acceptAction);
+    updateAccepted(action, user, mounted, acceptAction);
   };
 
   useEffect(() => {

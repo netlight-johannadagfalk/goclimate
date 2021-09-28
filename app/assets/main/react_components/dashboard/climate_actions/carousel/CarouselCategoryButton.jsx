@@ -30,9 +30,15 @@ const CarouselCategoryButton = ({
     { value: "popular", label: "Popular" },
   ];
 
-  let categoryColor = active
-    ? "category_" + categoryName.toLowerCase().replace(/ /g, "_") + "_active"
-    : "category_" + categoryName.toLowerCase().replace(/ /g, "_");
+  const categoryColor = () => {
+    if (!categories) {
+      return active
+        ? "category_" +
+            categoryName.toLowerCase().replace(/ /g, "_") +
+            "_active"
+        : "category_" + categoryName.toLowerCase().replace(/ /g, "_");
+    }
+  };
 
   const createOptions = () =>
     categories.map((cat) => {
