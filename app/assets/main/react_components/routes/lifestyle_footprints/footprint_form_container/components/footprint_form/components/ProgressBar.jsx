@@ -21,7 +21,7 @@ const ProgressBar = ({ questionCategories, currentObject }) => {
 
   return (
     <>
-      <div className="flex justify-center space-x-3 m-lg:space-x-6 text-gray-shade-2">
+      <div className="flex justify-center space-x-3 m-lg:space-x-6 text-gray-shade-2 mt-3">
         {categories.map((category) => {
           const currentQuestions = Object.keys(questionCategories).filter(
             (question) => questionCategories[question] == category

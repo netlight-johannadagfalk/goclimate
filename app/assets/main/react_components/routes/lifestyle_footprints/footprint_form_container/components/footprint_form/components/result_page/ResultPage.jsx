@@ -17,7 +17,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
 
   return (
     <div>
-      <div className="my-8">
+      <div className="t:mt-8 mb-8">
         {page === 0 ? (
           <WorldPage
             footprint={footprint}
