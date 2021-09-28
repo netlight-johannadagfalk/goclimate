@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import KanbanActionColumn from "./KanbanActionColumn.jsx";
+import KanbanColumn from "./KanbanColumn.jsx";
 import { useDeletedActionUpdate } from "../../../../contexts/DeletedActionContext.js";
 import { orderBy } from "lodash";
 import {
@@ -278,7 +278,7 @@ const KanbanActionContainer = ({
                   {!sidebarCollapsed && column.name}
                 </p>
               </div>
-              <KanbanActionColumn
+              <KanbanColumn
                 column={column}
                 columnId={columnId}
                 key={columnId}
