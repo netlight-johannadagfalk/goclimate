@@ -11,6 +11,8 @@ import {
   updateStatus,
   deleteUserAction,
 } from "../../../../helpers/DBRequests.js";
+import { useMediaQuery } from "react-responsive";
+import { t } from "../../../../constants";
 
 const KanbanActionContainer = ({
   sidebarCollapsed,
@@ -32,6 +34,7 @@ const KanbanActionContainer = ({
   const [isHovering, setIsHovering] = useState(false);
 
   const mounted = useRef(false);
+  const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
 
   const handleExpanded = (item, value) => {
     const column = item.status === false ? 1 : 2;
@@ -265,7 +268,10 @@ const KanbanActionContainer = ({
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              <div className="h-10 w-360 mt-2">
+              <div
+                className="h-10 w-360 mt-2"
+                style={isTabletOrMobile ? {} : { width: 360 }}
+              >
                 <p
                   className={`font-normal text-base text-primary text-lg text-center`}
                 >
