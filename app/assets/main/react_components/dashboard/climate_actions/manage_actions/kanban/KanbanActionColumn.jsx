@@ -3,6 +3,7 @@ import { Droppable } from "react-beautiful-dnd";
 import KanbanCard from "./card_components/KanbanCard.jsx";
 import { useMediaQuery } from "react-responsive";
 import { t } from "../../../../constants";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const KanbanActionColumn = ({
   column,
@@ -34,7 +35,7 @@ const KanbanActionColumn = ({
         {(provided, snapshot) => {
           return (
             <div
-              className={`h-full overflow-x-hidden d:flex d:items-stretch flex items-center flex-col inline-block w-full 
+              className={`h-full overflow-x-hidden pt-1 d:flex d:items-stretch flex items-center flex-col inline-block w-full 
               ${
                 (isHovering && !sidebarCollapsed) || isTabletOrMobile
                   ? "overflow-y-auto"
@@ -61,23 +62,34 @@ const KanbanActionColumn = ({
               ) : (
                 ""
               )}
-              {column.items
-                .slice(0, sidebarCollapsed ? 4 : column.items.length)
-                .map((item, index) => {
-                  return (
-                    <KanbanCard
-                      item={item}
-                      index={index}
-                      key={item.id}
-                      handleDelete={handleDelete}
-                      handleCompleteAction={handleCompleteAction}
-                      handleUncompleteAction={handleUncompleteAction}
-                      categories={categories}
-                      sidebarCollapsed={sidebarCollapsed}
-                      handleExpanded={handleExpanded}
-                    />
-                  );
-                })}
+              <TransitionGroup component={null}>
+                {column.items
+                  .slice(0, sidebarCollapsed ? 4 : column.items.length)
+                  .map((item, index) => {
+                    return (
+                      <CSSTransition
+                        timeout={{
+                          enter: 100,
+                          exit: 500,
+                        }}
+                        classNames="display"
+                        key={item.id}
+                      >
+                        <KanbanCard
+                          item={item}
+                          index={index}
+                          key={item.id}
+                          handleDelete={handleDelete}
+                          handleCompleteAction={handleCompleteAction}
+                          handleUncompleteAction={handleUncompleteAction}
+                          categories={categories}
+                          sidebarCollapsed={sidebarCollapsed}
+                          handleExpanded={handleExpanded}
+                        />
+                      </CSSTransition>
+                    );
+                  })}
+              </TransitionGroup>
               {provided.placeholder}
             </div>
           );

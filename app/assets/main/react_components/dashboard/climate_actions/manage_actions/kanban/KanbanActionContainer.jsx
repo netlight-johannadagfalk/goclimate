@@ -255,7 +255,11 @@ const KanbanActionContainer = ({
   }, []);
 
   return (
-    <div className="h-screen">
+    <div
+      className={`h-screen ${
+        sidebarCollapsed ? "w-24" : "d:w-80"
+      } transition-size duration-500`}
+    >
       <DragDropContext onDragEnd={(result) => onDragEnd(result, columns)}>
         {Object.entries(columns).map(([columnId, column]) => {
           return (
@@ -265,7 +269,7 @@ const KanbanActionContainer = ({
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              <div className="h-10 w-360 mt-2">
+              <div className="h-10 w-360 mt-2" style={{ width: 360 }}>
                 <p
                   className={`font-normal text-base text-primary text-lg text-center`}
                 >

@@ -7,6 +7,7 @@ import {
   formatedUserActions,
   acceptedUserActions,
   columnUserActions,
+  findAcceptedUserActions,
 } from "../helpers/UserActionsHelper.js";
 import { useClimateActionsText } from "../contexts/TextContext.js";
 
@@ -33,10 +34,16 @@ const initialState = {
     isLoading: false,
     isSuccess: false,
   },
+  getInitialNoOfAcceptedActions: {
+    pendingNoAcceptedActions: undefined,
+    isLoading: false,
+    isSuccess: false,
+  },
   data: {
     userActions: undefined,
     columns: undefined,
     achievements: undefined,
+    noOfAcceptedActions: undefined,
   },
 };
 
@@ -104,6 +111,19 @@ const reducer = (state, action) => {
           achievements: action.payload,
         },
         getInitialAchievements: {
+          isLoading: false,
+          isSuccess: true,
+        },
+      };
+    case "update_no_of_accepted_actions_success":
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          noOfAcceptedActions: action.payload,
+        },
+        getInitialNoOfAcceptedActions: {
+          pendingNoOfAcceptedActions: undefined,
           isLoading: false,
           isSuccess: true,
         },
@@ -176,6 +196,10 @@ const UserProvider = ({
   useEffect(() => {
     dispatch({ type: "update_user_actions_success", payload: allUserActions });
 
+    dispatch({
+      type: "update_no_of_accepted_actions_success",
+      payload: findAcceptedUserActions(allUserActions),
+    });
     const achievements = getCompleteCategoryArrays(
       actionsWithoutUserActions,
       allUserActions,
@@ -218,6 +242,18 @@ const UserProvider = ({
     };
     addUserAction();
   }, [state.getInitialUserAction.isLoading]);
+
+  useEffect(() => {
+    const countUserActions = () => {
+      if (state.getInitialUserAction.isSuccess) {
+        dispatch({
+          type: "update_no_of_accepted_actions_success",
+          payload: findAcceptedUserActions(state.data.userActions),
+        });
+      }
+    };
+    countUserActions();
+  }, [state.getInitialUserAction.isSuccess]);
 
   useEffect(() => {
     const addColumns = () => {

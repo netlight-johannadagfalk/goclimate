@@ -1,0 +1,25 @@
+.display-enter {
+  opacity: 0.01;
+}
+
+.display-enter.display-enter-active {
+  transition: pulse 2s cubic-bezier(0.68, -0.6, 0.32, 1.6) infinite;
+}
+
+.display-exit {
+  opacity: 1;
+}
+
+.display-exit.display-exit-active {
+  opacity: 0.01;
+  transition: opacity ease-in-out;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}

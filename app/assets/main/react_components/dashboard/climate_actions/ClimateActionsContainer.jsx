@@ -88,10 +88,7 @@ const ClimateActionsContainer = ({
               actionsToplist={actionsToplist}
             />
           )}
-          <ManageActions
-            categories={formatedCategories}
-            userActions={userActions}
-          ></ManageActions>
+          <ManageActions categories={formatedCategories}></ManageActions>
         </>
       )}
     </>

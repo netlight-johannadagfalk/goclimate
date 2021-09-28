@@ -64,11 +64,11 @@ const KanbanCard = ({
       {(provided, snapshot) => {
         return (
           <div
-            className={`rounded-lg h-20 space-y-3 mb-2 focus:outline-none relative justify-center ${
+            className={`rounded-lg w-80 h-20 space-y-3 mb-2 focus:outline-none transistion duration-500 transform hover:-translate-y-1 hover:scale-102 ${
               sidebarCollapsed
                 ? "d:w-24"
-                : "w-80 border border-gray-tint-2 mx-5"
-            }
+                : "d:w-auto border border-gray-tint-2 mx-5"
+            } 
             ${item.expanded ? "h-auto" : "w-24"}`}
             ref={provided.innerRef}
             {...provided.draggableProps}

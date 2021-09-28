@@ -62,7 +62,7 @@ const CarouselActionItem = ({
   }, []);
 
   return (
-    <div className="flex flex-1 min-h-full ">
+    <div className="flex flex-1 min-h-full transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-102">
       <div className="pt-20 flex m-lg:pt-24 flex-1 justify-evenly">
         <div className=" border-gray-tint-2 rounded-lg shadow-lg pb-2 ml-2 mr-2 flex flex-col flex-1 bg-white">
           <div
