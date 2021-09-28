@@ -36,7 +36,7 @@ const KanbanActionColumn = ({
             <div
               className={`h-full overflow-x-hidden d:flex d:items-stretch flex items-center flex-col inline-block w-full 
               ${
-                (isHovering && !sidebarCollapsed) || isTabletOrMobile
+                isHovering || isTabletOrMobile
                   ? "overflow-y-auto"
                   : "overflow-y-hidden"
               }`}
@@ -83,23 +83,21 @@ const KanbanActionColumn = ({
               ) : (
                 ""
               )}
-              {column.items
-                .slice(0, sidebarCollapsed ? 4 : column.items.length)
-                .map((item, index) => {
-                  return (
-                    <KanbanCard
-                      item={item}
-                      index={index}
-                      key={item.id}
-                      handleDelete={handleDelete}
-                      handleCompleteAction={handleCompleteAction}
-                      handleUncompleteAction={handleUncompleteAction}
-                      categories={categories}
-                      sidebarCollapsed={sidebarCollapsed}
-                      handleExpanded={handleExpanded}
-                    />
-                  );
-                })}
+              {column.items.slice(0, column.items.length).map((item, index) => {
+                return (
+                  <KanbanCard
+                    item={item}
+                    index={index}
+                    key={item.id}
+                    handleDelete={handleDelete}
+                    handleCompleteAction={handleCompleteAction}
+                    handleUncompleteAction={handleUncompleteAction}
+                    categories={categories}
+                    sidebarCollapsed={sidebarCollapsed}
+                    handleExpanded={handleExpanded}
+                  />
+                );
+              })}
               {provided.placeholder}
             </div>
           );
