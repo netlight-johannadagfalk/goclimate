@@ -3,8 +3,9 @@ import { useTexts } from '../../../../../contexts/TextsContext.js';
 
 const ProjectSummary = ({ project }) => {
   const [collapseState, setCollapseState] = useState('hidden');
-  const [shortText, setShortText] = useState(false);
+  const [isShortText, setShortText] = useState(false);
   const [tempHeight, setTempHeight] = useState(0.0);
+  const minimumProjectHeight = 125;
 
   const {
     sharedText: { read_more },
@@ -19,7 +20,10 @@ const ProjectSummary = ({ project }) => {
       'projectBox' + project.id
     );
     setTempHeight(projectBoxElement?.clientHeight + 3);
-    setShortText((titleElement?.scrollHeight + descriptionElement?.scrollHeight < 125));
+    setShortText(
+      titleElement?.scrollHeight + descriptionElement?.scrollHeight <
+        minimumProjectHeight
+    );
   }, []);
 
   return (
@@ -27,7 +31,7 @@ const ProjectSummary = ({ project }) => {
       <div
         id={'projectBox' + project.id}
         className="callout space-y-3 pt-0 p-4 text-left collapse min-h-1/4 w-full"
-        style={{ minHeight: +tempHeight + 'px', minWidth: "100%"}}
+        style={{ minHeight: +tempHeight + 'px', minWidth: '100%' }}
       >
         <div className="inline-block w-full ">
           <img
@@ -46,7 +50,7 @@ const ProjectSummary = ({ project }) => {
             {project.short_description}
           </p>
         </div>
-        {!shortText && (
+        {!isShortText && (
           <div
             className="flex cursor-pointer justify-center"
             onClick={() =>
