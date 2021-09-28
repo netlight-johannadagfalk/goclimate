@@ -14,7 +14,7 @@ const CategoryPage = ({ footprint }) => {
 
   return (
     <>
-      <Title custom_style="text-lgr" text={title} />
+      <Title customStyle="text-lgr" text={title} />
       <div className="max-w-lg mx-auto">
         <Preamble text={desc} />
         <CategoryChart footprint={footprint} />
