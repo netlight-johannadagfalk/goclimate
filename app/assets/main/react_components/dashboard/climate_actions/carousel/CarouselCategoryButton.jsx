@@ -98,7 +98,7 @@ const CarouselCategoryButton = ({
   return (
     <>
       {categories ? (
-        <div className="mx-5 ">
+        <div className="mx-5">
           <Dropdown
             placeholder="All categories"
             controlClassName={"dropdown-control"}
@@ -110,18 +110,16 @@ const CarouselCategoryButton = ({
           ></Dropdown>
         </div>
       ) : (
-        <>
-          <button
-            className={`${categoryColor} rounded-full py-1 px-4 button inline-block focus:outline-none m-1 ${
-              active
-                ? "category_unknown_active text-white"
-                : "category_unknown hover:text-white hover:bg-opacity-80"
-            } `}
-            onClick={() => !active && handleCategory(categoryID)}
-          >
-            {categoryName}
-          </button>
-        </>
+        <button
+          className={`${categoryColor()} rounded-full py-1 px-4 button inline-block focus:outline-none m-1 ${
+            active
+              ? "category_unknown_active text-white"
+              : "category_unknown hover:text-white hover:bg-opacity-80"
+          } `}
+          onClick={() => !active && handleCategory(categoryID)}
+        >
+          {categoryName}
+        </button>
       )}
     </>
   );

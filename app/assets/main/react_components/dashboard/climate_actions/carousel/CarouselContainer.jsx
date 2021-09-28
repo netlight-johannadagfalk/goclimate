@@ -23,7 +23,7 @@ const CarouselContainer = ({
 
   const showFilterButton = (cat) => {
     return totClimateActions.some(
-      (temp) => temp.climate_action_category_id === cat.id
+      (action) => action.climate_action_category_id === cat.id
     );
   };
 
