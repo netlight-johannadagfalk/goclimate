@@ -37,7 +37,7 @@ const MembershipAlternativeV2Desktop = ({
         <label htmlFor={type}>
           <div className="m-2 cursor-pointer pb-14 h-full">
             <div className="h-2/5">
-              <div className="h-1/3 mt-2 text-center">
+              <div className="h-1/3 mt-3 text-center">
                 <span>{title}</span>
               </div>
               <div className="h-2/3 content-center flex flex-wrap">
