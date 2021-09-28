@@ -61,8 +61,8 @@ const KanbanActionColumn = ({
                   </p>
                   <img
                     src="/Mascot.png"
-                    width="150"
-                    height="150"
+                    width="100"
+                    height="100"
                     className="flex self-center"
                   />
                 </>
