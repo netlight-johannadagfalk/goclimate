@@ -10,18 +10,20 @@ const WorldPage = ({ footprint, countryAverage, priceObject }) => {
   } = useTexts();
 
   return (
-    <div className="max-w-lg mx-auto">
-      <Title custom_style="text-lgr" text={well_done} />
-      <YourFootprintText
-        footprintValue={(footprint.total.co2e / 1000).toFixed(1)}
-        priceObject={priceObject}
-      />
-      <br></br>
-      <WorldComparisonChart
-        footprint={footprint}
-        countryAverage={countryAverage}
-      />
-    </div>
+    <>
+      <Title customStyle="text-lgr" text={well_done} />
+      <div className="max-w-lg mx-auto">
+        <YourFootprintText
+          footprintValue={(footprint.total.co2e / 1000).toFixed(1)}
+          priceObject={priceObject}
+        />
+        <br></br>
+        <WorldComparisonChart
+          footprint={footprint}
+          countryAverage={countryAverage}
+        />
+      </div>
+    </>
   );
 };
 
