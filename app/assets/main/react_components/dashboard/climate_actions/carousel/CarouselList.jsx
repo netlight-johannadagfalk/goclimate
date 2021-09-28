@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CarouselActionItem from "./CarouselActionItem.jsx";
 import { useClimateActions } from "../../../contexts/ClimateActionsContext.js";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -45,6 +45,40 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const loopActions = actions.length > noOfItemsShown ? true : false;
   const hideArrows = isMobile || !loopActions ? true : false;
 
+  // const [loopActions, setLoopActions] = useState(true);
+
+  // const [hideArrows, setHideArrows] = useState(false);
+
+  // useEffect(() => {
+  //   actions.length > noOfItemsShown
+  //     ? setLoopActions(true)
+  //     : setLoopActions(false);
+  // }, [climateActions]);
+
+  // useEffect(() => {
+  //   isMobile || !loopActions ? setHideArrows(true) : setHideArrows(false);
+  // }, [loopActions]);
+
+  // console.log({ hideArrows });
+
+  //const hideArrows = isMobile ? true : false;
+
+  // const [loopActions, setLoopActions] = useState();
+  // const [hideArrows, setHideArrows] = useState();
+  // useEffect(() => {
+  //   actions.length > noOfItemsShown
+  //     ? setLoopActions(true)
+  //     : setLoopActions(false),
+  //     [actions.length];
+  // });
+
+  // useEffect(() => {
+  //   isMobile || !loopActions ? setHideArrows(true) : setHideArrows(false),
+  //     [loopActions];
+  // });
+
+  //console.log({ hideArrows });
+  //console.log({ navigationNextRef });
   return (
     <div className="relative overflow-visible">
       <Swiper
@@ -52,14 +86,17 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
         loop={loopActions}
         slidesPerView={noOfItemsShown}
         navigation={
-          hideArrows
-            ? {
-                nextEl: navigationPrevRef.current,
-                prevEl: navigationNextRef.current,
-              }
-            : false
+          //hideArrows
+          //?
+          {
+            // nextEl: navigationPrevRef.current,
+            // prevEl: navigationNextRef.current,
+            prevEl: navigationPrevRef.current,
+            nextEl: navigationNextRef.current,
+          }
+          //: false
         }
-        pagination={true}
+        // pagination={true}
         onSwiper={(swiper) => {
           setTimeout(() => {
             swiper.params.navigation.prevEl = navigationPrevRef.current;
@@ -88,10 +125,14 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
         ))}
       </Swiper>
       {!hideArrows && (
-        <div className="flex flex-row absolute z-10 top-1/2 w-full">
+        <div
+          className={`flex flex-row absolute z-10 top-1/2 w-full
+        `}
+        >
           <div className="relative w-full">
             <button
               ref={navigationPrevRef}
+              onClick={() => console.log(navigationPrevRef)}
               className={
                 "rounded-full -left-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left absolute focus:outline-none"
               }
