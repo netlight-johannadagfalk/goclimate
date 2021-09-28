@@ -1,13 +1,9 @@
 import React from "react";
-import {
-  useFootprint,
-  useTotalNoFootprints,
-} from "../../contexts/FootprintContext.js";
+import { useFootprint } from "../../contexts/FootprintContext.js";
 import { useClimateActionsText } from "../../contexts/TextContext.js";
 
 const FootprintFooter = () => {
-  const footprint = useFootprint();
-  const totalNoFootprints = useTotalNoFootprints();
+  const { footprint, totalNoFootprints } = useFootprint();
   const climateActionsText = useClimateActionsText();
 
   return (
