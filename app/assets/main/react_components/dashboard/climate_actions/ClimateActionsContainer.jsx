@@ -49,7 +49,7 @@ const ClimateActionsContainer = ({
     let filteredLocalUserActions = climateActions.filter(
       (action) => action.id === actionID
     );
-    let tempArray = [...localUserActions, filteredLocalUserActions];
+    let tempArray = [...localUserActions, ...filteredLocalUserActions];
     if (deletedAction) {
       const localUserActionsWithoutDeleted = tempArray.filter(
         (action) => action.id !== deletedAction
