@@ -34,11 +34,8 @@ const SignUpPage = ({ result, page, onPageChange }) => {
   const version = useVersion();
 
   useEffect(() => {
-    var width = window.window.screen.width;
-    console.log(width)
-    console.log(width < 758)
-    if (width < 758) {
-      window.addEventListener('load', scrollToTop());
+    if (window.innerWidth <= 768) {
+      scrollToTop();
     }
   }, [page]);
 

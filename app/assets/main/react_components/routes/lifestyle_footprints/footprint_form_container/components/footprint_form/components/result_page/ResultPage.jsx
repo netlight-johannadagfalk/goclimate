@@ -17,9 +17,8 @@ const ResultPage = ({ result, page, onPageChange }) => {
   const countryAverage = result.country_average;
 
   useEffect(() => {
-    var width = window.window.screen.width;
-    if (width < 758) {
-      window.addEventListener('load', scrollToTop());
+    if (window.innerWidth <= 768) {
+      scrollToTop();
     }
   }, [page]);
 
