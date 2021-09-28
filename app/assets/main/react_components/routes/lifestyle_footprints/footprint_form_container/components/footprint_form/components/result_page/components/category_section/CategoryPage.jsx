@@ -20,7 +20,7 @@ const CategoryPage = ({ footprint }) => {
       <Title custom_style="text-lgr" text={title} />
       <Preamble text={desc} />
       <CategoryChart footprint={footprint} />
-      {version === 'v1' && (
+      {version === 'v2' && (
         <>
           <br></br>
           <div className="text-left">
