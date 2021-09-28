@@ -80,31 +80,29 @@ const KanbanCard = ({
                   )
             }
           >
-            {sidebarCollapsed ? (
-              <KanbanCardImage
-                img={isAchievement ? item.badge_image_url : item.image_url}
-                sidebarCollapsed={sidebarCollapsed}
-                isUserAction={isAchievement ? false : true}
-              ></KanbanCardImage>
-            ) : isAchievement ? (
-              <AchievementCard
-                categories={categories}
-                achievement={item}
-                sidebarCollapsed={sidebarCollapsed}
-                handleUncompleteAction={handleUncompleteAction}
-              ></AchievementCard>
-            ) : (
-              <UserActionCard
-                categoryColor={categoryColor}
-                userAction={item}
-                handleDelete={handleDelete}
-                handleCompleteAction={handleCompleteAction}
-                sidebarCollapsed={sidebarCollapsed}
-              ></UserActionCard>
-            )}
+            <KanbanCardImage
+              img={isAchievement ? item.badge_image_url : item.image_url}
+              isUserAction={isAchievement ? false : true}
+            ></KanbanCardImage>
 
             {!sidebarCollapsed && (
               <div>
+                {isAchievement ? (
+                  <AchievementCard
+                    categories={categories}
+                    achievement={item}
+                    sidebarCollapsed={sidebarCollapsed}
+                    handleUncompleteAction={handleUncompleteAction}
+                  ></AchievementCard>
+                ) : (
+                  <UserActionCard
+                    categoryColor={categoryColor}
+                    userAction={item}
+                    handleDelete={handleDelete}
+                    handleCompleteAction={handleCompleteAction}
+                    sidebarCollapsed={sidebarCollapsed}
+                  ></UserActionCard>
+                )}
                 <div
                   className="flex flex-row h-14 w-full top-0 mt-6 absolute justify-center focus:outline-none"
                   onClick={() => handleExpanded(item, !item.expanded)}
