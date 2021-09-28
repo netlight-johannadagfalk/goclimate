@@ -1,6 +1,6 @@
 import React from "react";
 
-const ActionPoints = ({ action }) => {
+const ImpactPoints = ({ action }) => {
   return (
     <div className="flex-1 flex flex-row justify-center self-center">
       {[1, 2, 3, 4, 5].map((index) => {
@@ -21,4 +21,4 @@ const ActionPoints = ({ action }) => {
     </div>
   );
 };
-export default ActionPoints;
+export default ImpactPoints;

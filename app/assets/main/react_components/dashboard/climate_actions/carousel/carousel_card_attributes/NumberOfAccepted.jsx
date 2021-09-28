@@ -6,7 +6,7 @@ const NumberOfAccepted = ({
   endText,
   action,
   disabled,
-  currentAloneUser,
+  isFirstToAccept,
 }) => {
   const climateActionsText = useClimateActionsText();
 
@@ -14,7 +14,7 @@ const NumberOfAccepted = ({
     <div>
       <div className="flex flex-row justify-center mb-1">
         <label className="text-sm mr-1">{startText}</label>
-        {!currentAloneUser && (
+        {!isFirstToAccept && (
           <p className="text-sm text-yellow-accent">
             {disabled ? action.total - 1 : action.total}
           </p>

@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import { useClimateActionsText } from "../../../contexts/TextContext.js";
 import { useDeletedActionUpdate } from "../../../contexts/DeletedActionContext.js";
-import CategoryColor from "./carousel_card_attributes/CategoryColor.jsx";
-import ActionPoints from "./carousel_card_attributes/ActionPoints.jsx";
+import CategoryColorBanner from "./carousel_card_attributes/CategoryColorBanner.jsx";
+import ImpactPoints from "./carousel_card_attributes/ImpactPoints.jsx";
 import AcceptanceStatistics from "./carousel_card_attributes/AcceptanceStatistics.jsx";
 import TextBanner from "../../../common/TextBanner.jsx";
 import { useUserState, useUserActions } from "../../../contexts/UserContext.js";
@@ -59,7 +59,7 @@ const CarouselCard = ({
     <div className="flex flex-1 min-h-full">
       <div className="pt-20 flex m-lg:pt-24 flex-1 justify-evenly">
         <div className=" border-gray-tint-2 rounded-lg shadow-lg pb-2 ml-2 mr-2 flex flex-col flex-1 bg-white">
-          <CategoryColor categories={categories} action={action} />
+          <CategoryColorBanner categories={categories} action={action} />
           <div
             className={`mx-auto bg-gray-tint-2 bg-opacity-10 shadow-md -mt-24 rounded-full h-40 w-40 items-center justify-center bg-cover filter drop-shadow-xl`}
             style={{
@@ -74,7 +74,7 @@ const CarouselCard = ({
             )}
           </div>
           <div className="flex flex-col flex-1 text-center mx-2">
-            <ActionPoints action={action} />
+            <ImpactPoints action={action} />
             <div className="flex-1 justify-center align-center self-center">
               <h3 className={`text-base font-bold self-center`}>
                 {action.name.length > 40

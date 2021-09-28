@@ -10,7 +10,7 @@ const AcceptanceStatistics = ({ action }) => {
           endText={"more have:"}
           action={action}
           disabled={true}
-          currentAloneUser={false}
+          isFirstToAccept={false}
         />
       ) : action.accepted && action.total == 1 ? (
         <NumberOfAccepted
@@ -18,7 +18,7 @@ const AcceptanceStatistics = ({ action }) => {
           endText={""}
           action={action}
           disabled={true}
-          currentAloneUser={true}
+          isFirstToAccept={true}
         />
       ) : (
         <div>
@@ -29,7 +29,7 @@ const AcceptanceStatistics = ({ action }) => {
                 endText={"others:"}
                 action={action}
                 disabled={false}
-                currentAloneUser={false}
+                isFirstToAccept={false}
               />
             ) : (
               <NumberOfAccepted
@@ -37,7 +37,7 @@ const AcceptanceStatistics = ({ action }) => {
                 endText={"other"}
                 action={action}
                 disabled={false}
-                currentAloneUser={false}
+                isFirstToAccept={false}
               />
             )
           ) : (
@@ -46,7 +46,7 @@ const AcceptanceStatistics = ({ action }) => {
               endText={""}
               action={action}
               disabled={false}
-              currentAloneUser={true}
+              isFirstToAccept={true}
             />
           )}
         </div>

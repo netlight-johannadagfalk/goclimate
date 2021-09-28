@@ -1,6 +1,6 @@
 import React from "react";
 
-const CategoryColor = ({ categories, action }) => {
+const CategoryColorBanner = ({ categories, action }) => {
   const categoryName = () => {
     for (let i = 0; i <= Object.keys(categories).length; i++) {
       if (categories[i].id === action.climate_action_category_id) {
@@ -19,4 +19,4 @@ const CategoryColor = ({ categories, action }) => {
     ></div>
   );
 };
-export default CategoryColor;
+export default CategoryColorBanner;
