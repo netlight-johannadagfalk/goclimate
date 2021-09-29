@@ -3,15 +3,15 @@ import React, { useState, useEffect } from "react";
 const DropDownKanbanContainer = ({ children, userActions }) => {
   const [showDropDownKanban, setShowDropDownKanban] = useState(false);
 
-  const getAcceptedActionsForUser = () => {
-    let actionsAccepted = 0;
-    userActions.map((action) => {
-      if (action.status === false) {
-        actionsAccepted++;
+  const acceptedActionsForUser = userActions.reduce(
+    (noOfAccepted, userAction) => {
+      if (userAction.status === false) {
+        noOfAccepted++;
       }
-    });
-    return actionsAccepted;
-  };
+      return noOfAccepted;
+    },
+    0
+  );
 
   const toggleScroll = (bool) => {
     const scrollable = document.getElementById("scrollable");
@@ -50,9 +50,9 @@ const DropDownKanbanContainer = ({ children, userActions }) => {
             showDropDownKanban ? "fa-globe-europe" : "fa-globe-americas"
           }`}
         ></i>
-        {getAcceptedActionsForUser() > 0 && (
+        {acceptedActionsForUser > 0 && (
           <div className="fas rounded-full h-5 w-5 bg-green-tint-3 -mt-1 -ml-3 absolute mb-2 text-white text-center focus:outline-none">
-            {getAcceptedActionsForUser()}
+            {acceptedActionsForUser}
           </div>
         )}
       </button>
