@@ -1,17 +1,11 @@
 import React from "react";
 import ProgressBar from "./ProgressBar.jsx";
 import AchievementCardExpanded from "./AchievementCardExpanded.jsx";
-import KanbanCardImage from "./KanbanCardImage.jsx";
 
-const AchievementCard = ({ categories, achievement, sidebarCollapsed }) => {
+const AchievementCard = ({ categories, achievement }) => {
   return (
     <div>
       <div className="h-20">
-        <KanbanCardImage
-          img={achievement.badge_image_url}
-          sidebarCollapsed={sidebarCollapsed}
-          isUserAction={false}
-        ></KanbanCardImage>
         <ProgressBar
           categories={categories}
           item={achievement}

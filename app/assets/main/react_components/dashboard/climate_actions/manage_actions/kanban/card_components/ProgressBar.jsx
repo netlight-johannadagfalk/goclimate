@@ -23,7 +23,7 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
   }, 0);
 
   return (
-    <div className="w-full ml-1 flex flex-row justify-center items-center absolute mt-9">
+    <div className="w-full ml-4 flex flex-row justify-center items-center absolute mt-6">
       <div className="h-3 w-2/5 bg-gray-tint-2 bg-opacity-70 rounded-lg">
         <div
           className={`h-3  ${

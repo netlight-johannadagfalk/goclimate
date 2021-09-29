@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useUserState } from "../../../../contexts/UserContext";
 
-const DropDownKanbanContainer = ({ children, userActions }) => {
+const DropDownKanbanContainer = ({ children }) => {
   const [showDropDownKanban, setShowDropDownKanban] = useState(false);
-
-  const acceptedActionsForUser = userActions.reduce(
-    (noOfAccepted, userAction) => {
-      if (userAction.status === false) {
-        noOfAccepted++;
-      }
-      return noOfAccepted;
-    },
-    0
-  );
+  const [ping, setPing] = useState(false);
+  const { data: data } = useUserState();
 
   const toggleScroll = (bool) => {
     const scrollable = document.getElementById("scrollable");
@@ -27,6 +20,16 @@ const DropDownKanbanContainer = ({ children, userActions }) => {
     return () =>
       dropDownMenu.removeEventListener("input", toggleDropDownKanban);
   }, []);
+
+  useEffect(() => {
+    setPing(true);
+    const timer = setTimeout(() => {
+      setPing(false);
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [data.noOfAcceptedActions]);
 
   showDropDownKanban &&
     (document.getElementById("nav-toggler").checked = false);
@@ -50,9 +53,15 @@ const DropDownKanbanContainer = ({ children, userActions }) => {
             showDropDownKanban ? "fa-globe-europe" : "fa-globe-americas"
           }`}
         ></i>
-        {acceptedActionsForUser > 0 && (
-          <div className="fas rounded-full h-5 w-5 bg-green-tint-3 -mt-1 -ml-3 absolute mb-2 text-white text-center focus:outline-none">
-            {acceptedActionsForUser}
+        {data.noOfAcceptedActions > 0 && (
+          <div
+            className={`fas ${
+              ping && "ping"
+            } rounded-full h-5 w-5 bg-green-tint-3 -mt-1 -ml-3 absolute focus:outline-none`}
+          >
+            <div className="mb-2 text-white text-center">
+              {data.noOfAcceptedActions}
+            </div>
           </div>
         )}
       </button>

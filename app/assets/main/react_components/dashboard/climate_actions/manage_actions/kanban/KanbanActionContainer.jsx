@@ -87,7 +87,11 @@ const KanbanActionContainer = ({
   }, []);
 
   return (
-    <div className="h-screen">
+    <div
+      className={`h-screen ${
+        sidebarCollapsed ? "w-24" : "d:w-80"
+      } transition-size duration-500`}
+    >
       <DragDropContext
         onDragEnd={(result) =>
           onDragEnd(
@@ -112,7 +116,7 @@ const KanbanActionContainer = ({
               <div
                 className="h-10 mt-2"
                 style={
-                  isTabletOrMobile || sidebarCollapsed ? {} : { width: 360 }
+                  isTabletOrMobile || sidebarCollapsed ? {} : { width: "20rem" }
                 }
               >
                 <p

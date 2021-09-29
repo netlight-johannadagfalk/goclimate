@@ -55,44 +55,46 @@ const CarouselCard = ({
   }, []);
 
   return (
-    <div className="min-h-full pt-20 flex m-lg:pt-24 justify-evenly">
-      <div className="border-gray-tint-2 rounded-lg shadow-lg pb-2 mx-2 flex flex-col bg-white">
-        <CategoryColorBanner categories={categories} action={action} />
-        <div
-          className={`mx-auto bg-gray-tint-2 bg-opacity-10 shadow-md -mt-24 rounded-full h-40 w-40 items-center justify-center bg-cover filter drop-shadow-xl`}
-          style={{
-            backgroundImage: action.image_url
-              ? `url('${action.image_url}')`
-              : "url('/action_images/Globe.png')",
-            backgroundSize: "100%",
-          }}
-        >
-          {action.action_of_the_month && !monthlyActionBanner && (
-            <TextBanner text={text} />
-          )}
-        </div>
-        <div className="flex flex-col flex-1 text-center mx-2">
-          <ImpactPoints action={action} />
-          <h3 className="flex-1 justify-center align-center text-base font-bold self-center">
-            {action.name.length > 40
-              ? action.name.slice(0, 40) + "..."
-              : action.name}
-          </h3>
-          <p className="flex-4 text-sm">
-            {action.description.length > 200
-              ? action.description.slice(0, 200) + "..."
-              : action.description}
-          </p>
-          <div className="flex-1 mt-5 justify-center align-center">
-            <AcceptanceStatistics action={action} />
-            {!action.accepted && (
-              <button
-                className="button inline-block "
-                onClick={() => handleClickAccepted(action)}
-              >
-                {climateActionsText.accept}
-              </button>
+    <div className="flex flex-1 min-h-full transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-102">
+      <div className="min-h-full pt-20 flex m-lg:pt-24 justify-evenly">
+        <div className="border-gray-tint-2 rounded-lg shadow-lg pb-2 mx-2 flex flex-col bg-white">
+          <CategoryColorBanner categories={categories} action={action} />
+          <div
+            className={`mx-auto bg-gray-tint-2 bg-opacity-10 shadow-md -mt-24 rounded-full h-40 w-40 items-center justify-center bg-cover filter drop-shadow-xl`}
+            style={{
+              backgroundImage: action.image_url
+                ? `url('${action.image_url}')`
+                : "url('/action_images/Globe.png')",
+              backgroundSize: "100%",
+            }}
+          >
+            {action.action_of_the_month && !monthlyActionBanner && (
+              <TextBanner text={text} />
             )}
+          </div>
+          <div className="flex flex-col flex-1 text-center mx-2">
+            <ImpactPoints action={action} />
+            <h3 className="flex-1 justify-center align-center text-base font-bold self-center">
+              {action.name.length > 40
+                ? action.name.slice(0, 40) + "..."
+                : action.name}
+            </h3>
+            <p className="flex-4 text-sm">
+              {action.description.length > 200
+                ? action.description.slice(0, 200) + "..."
+                : action.description}
+            </p>
+            <div className="flex-1 mt-5 justify-center align-center">
+              <AcceptanceStatistics action={action} />
+              {!action.accepted && (
+                <button
+                  className="button inline-block "
+                  onClick={() => handleClickAccepted(action)}
+                >
+                  {climateActionsText.accept}
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>

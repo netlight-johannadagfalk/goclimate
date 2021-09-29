@@ -29,3 +29,14 @@ export const columnUserActions = (
     },
   };
 };
+
+export const findAcceptedUserActions = (actions) => {
+  let actionsAccepted = 0;
+
+  actions.map((action) => {
+    if (action.status === false) {
+      actionsAccepted++;
+    }
+  });
+  return actionsAccepted;
+};
