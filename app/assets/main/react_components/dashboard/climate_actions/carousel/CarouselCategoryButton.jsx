@@ -97,6 +97,17 @@ const CarouselCategoryButton = ({
           : action;
       })
     );
+
+    setClimateActions(
+      filteredActionsWithStatus.map((action) => {
+        return userActions.some((userAction) => userAction.id === action.id)
+          ? {
+              ...action,
+              total: ++action.total,
+            }
+          : action;
+      })
+    );
   };
 
   return (
