@@ -88,7 +88,7 @@ const CarouselCategoryButton = ({
     setClimateActions(
       filteredActionsWithStatus.map((action) => {
         return localUserActions.some(
-          (localUserAction) => localUserAction[0].id === action.id
+          (localUserAction) => localUserAction.id === action.id
         )
           ? {
               ...action,
