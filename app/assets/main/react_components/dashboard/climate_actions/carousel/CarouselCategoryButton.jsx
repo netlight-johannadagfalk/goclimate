@@ -93,26 +93,6 @@ const CarouselCategoryButton = ({
           : action;
       })
     );
-
-    const test2 = filteredActionsWithStatus.map((action) => {
-      return localUserActions.some(
-        (localUserAction) => localUserAction[0].id === action.id
-      )
-        ? {
-            ...action,
-            total: ++action.total,
-          }
-        : action;
-    });
-    const test = filteredActionsWithStatus.map((action) => {
-      return localUserActions.reduce((accumulator, currentValue) => {
-        if (currentValue[0].id === action.id) {
-          return accumulator + 1;
-        }
-      }, 0);
-    });
-
-    console.log({ test, test2 });
   };
 
   return (
