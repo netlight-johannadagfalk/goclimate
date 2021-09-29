@@ -10,27 +10,22 @@
 <table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="8a54b6e4-145d-4427-b4aa-e0225fe1e7f6.1" data-mc-module-version="2019-10-22">
   <tbody>
     <tr>
-      <td style="text-align:inherit; line-height:40px; padding:18px 24px 0px 24px;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 30px; font-family: inherit"><strong>
+      <td style="text-align:inherit; line-height:50px; padding:18px 100px 0px 100px;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: center">
+      <div class = "card" style = "border: 0.8px solid #274538">
+      <span style="font-size: 20px; font-family: inherit">
+      <strong>
         <%= action_name %>
-      </strong></span></div><div></div></div></td>
-    </tr>
-  </tbody>
-</table>
-<table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="8a54b6e4-145d-4427-b4aa-e0225fe1e7f6.1.1" data-mc-module-version="2019-10-22">
-  <tbody>
-    <tr>
-      <td style="line-height:22px; text-align:inherit; padding:0px 24px 0px 24px;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: center">
+      </strong></span>
+      <%= render 'shared/email/spacer' %>
+      <div style="line-height:22px; text-align:inherit; padding:0px 24px 0px 24px;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: center">
         <%= action_description %>
-      </div><div></div></div></td>
-    </tr>
-  </tbody>
-</table>
-<table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="8a54b6e4-145d-4427-b4aa-e0225fe1e7f6.1.1" data-mc-module-version="2019-10-22">
-  <tbody>
-    <tr>
-      <td style="line-height:22px; text-align:inherit; padding:0px 24px 0px 24px;" height="100%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: center">
-        <%= action_impact_points %>
-      </div><div></div></div></td>
+      </div><div></div></div></div>
+      <%= render 'shared/email/spacer' %>
+      <%= render 'shared/email/button',
+        text: 'Check it out!',
+        href: dashboard_url%>
+      <%= render 'shared/email/spacer' %>
+      </div><div></div></div></div></td>
     </tr>
   </tbody>
 </table>
