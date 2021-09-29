@@ -3,6 +3,7 @@ import { useSession } from '../../../../../contexts/SessionContext.js';
 import { useTexts } from '../../../../../contexts/TextsContext.js';
 import { useVersion } from '../../../../../contexts/VersionContext.js';
 import { calculatePrice } from '../../../../../helpers/result-helper.js';
+import scrollToTop from '../../../../../helpers/scroll-to-top.js';
 import Link from '../../../common/Link.jsx';
 import AnswerButton from '../common/AnswerButton.jsx';
 import FormInformationSection from './components/form_information_section/FormInformationSection.jsx';
@@ -18,7 +19,11 @@ const SignUpPage = ({ result, page, onPageChange }) => {
   const {
     registrationsText: { continue_to_payment },
     lifestyleFootprintsText: { next },
-    reactContentText: { back_to_homepage },
+    reactContentText: {
+      sign_up_page: {
+        membership_page: { back_to_homepage },
+      },
+    },
   } = useTexts();
 
   const {
@@ -31,6 +36,13 @@ const SignUpPage = ({ result, page, onPageChange }) => {
   } = useSession();
 
   const version = useVersion();
+  const tabletBreakpoint = 768;
+
+  useEffect(() => {
+    if (window.innerWidth <= tabletBreakpoint) {
+      scrollToTop();
+    }
+  }, [page]);
 
   useEffect(() => {
     setPrice(
@@ -45,7 +57,7 @@ const SignUpPage = ({ result, page, onPageChange }) => {
   }, [grantedReferralCode, selectedMembership, multipleOffsets]);
 
   return (
-    <>
+    <div className="my-8">
       {page === 2 ? (
         <MembershipPage
           selectedMembership={selectedMembership}
@@ -91,11 +103,7 @@ const SignUpPage = ({ result, page, onPageChange }) => {
             label={continue_to_payment}
             onAnswerGiven={() => {
               onPageChange();
-              window.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: 'smooth',
-              });
+              scrollToTop()
             }}
             stylingClasses={'w-5/6 button-cta'}
           />
@@ -108,7 +116,7 @@ const SignUpPage = ({ result, page, onPageChange }) => {
           />
         </>
       )}
-    </>
+    </div>
   );
 };
 

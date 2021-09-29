@@ -15,9 +15,13 @@ const MembershipAlternativeV2Mobile = ({
 }) => {
   const {
     reactContentText: {
-      memberships_v2: {
-        mobile: {
-          [type]: { title, selling_point },
+      sign_up_page: {
+        membership_page: {
+          memberships_v2: {
+            mobile: {
+              [type]: { title, selling_point },
+            },
+          },
         },
       },
     },

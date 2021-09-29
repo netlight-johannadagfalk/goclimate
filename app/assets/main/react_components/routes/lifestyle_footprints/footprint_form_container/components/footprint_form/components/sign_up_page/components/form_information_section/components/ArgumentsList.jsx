@@ -3,11 +3,15 @@ import { useTexts } from '../../../../../../../../contexts/TextsContext';
 
 const ArgumentsList = () => {
   const {
-    reactContentText: { arguments_list },
+    reactContentText: {
+      sign_up_page: {
+        membership_page: { arguments_list },
+      },
+    },
   } = useTexts();
 
   return (
-    <div className="flex flex-col mx-0 t:flex-row justify-center">
+    <div className="flex flex-col mx-0 t:flex-row justify-center my-20">
       {Object.values(arguments_list).map((argument, index) => (
         <div
           className={
@@ -23,7 +27,7 @@ const ArgumentsList = () => {
               }
             ></div>
           </div>
-          <div className="w-5/6 t:w-full pr-1 pl-2 t:pr-0 t:pl-0">
+          <div className="w-5/6 t:w-full px-2">
             <h2 className="heading text-base my-4 hidden t:block">
               {argument.title}
             </h2>

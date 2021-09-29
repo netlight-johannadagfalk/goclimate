@@ -1,20 +1,22 @@
 import React from 'react';
-import MoneyUsageList from '../common/MoneyUsageList.jsx';
-import LatestProjectsList from '../common/latest_projects_list/LatestProjectsList.jsx';
-import FAQ from './components/faq/FAQ.jsx';
 import { useVersion } from '../../../contexts/VersionContext.js';
+import LatestProjectsListV1 from '../common/latest_projects_list/LatestProjectsListV1.jsx';
+import MoneyUsageList from '../common/MoneyUsageList.jsx';
+import FAQ from './components/faq/FAQ.jsx';
 
 const InformationSection = () => {
   const version = useVersion();
   return (
-    <div className="text-left space-y-6">
+    <div className="text-left">
       {version === 'v1' && (
         <>
           <MoneyUsageList />
-          <LatestProjectsList />
+          <LatestProjectsListV1 />
         </>
       )}
-      <FAQ />
+      <div className="mt-24">
+        <FAQ />
+      </div>
     </div>
   );
 };

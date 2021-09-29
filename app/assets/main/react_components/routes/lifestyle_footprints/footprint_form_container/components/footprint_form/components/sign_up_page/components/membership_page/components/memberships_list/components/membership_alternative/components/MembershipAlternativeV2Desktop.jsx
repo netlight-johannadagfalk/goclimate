@@ -15,9 +15,13 @@ const MembershipAlternativeV2Desktop = ({
 }) => {
   const {
     reactContentText: {
-      memberships_v2: {
-        desktop: {
-          [type]: { title, selling_points },
+      sign_up_page: {
+        membership_page: {
+          memberships_v2: {
+            desktop: {
+              [type]: { title, selling_points },
+            },
+          },
         },
       },
     },
