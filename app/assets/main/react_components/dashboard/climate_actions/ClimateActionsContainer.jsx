@@ -24,8 +24,7 @@ const ClimateActionsContainer = ({
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
 
-  const { data: data, getInitialData: getInitialData } = useUserState();
-  const userActions = data.userActions;
+  const { getInitialData: getInitialData } = useUserState();
 
   const [monthlyAction, setMonthlyAction] = useState(
     totClimateActions.find((action) => action.action_of_the_month === true)
