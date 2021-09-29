@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
 const ClimateActionsTextContext = React.createContext(undefined);
 
@@ -14,7 +14,7 @@ const useClimateActionsText = () => {
   const context = useContext(ClimateActionsTextContext);
   if (!context) {
     throw new Error(
-      "Please wrap component in FootprintProvider to use useFootprint"
+      'Please wrap component in FootprintProvider to use useFootprint'
     );
   }
 

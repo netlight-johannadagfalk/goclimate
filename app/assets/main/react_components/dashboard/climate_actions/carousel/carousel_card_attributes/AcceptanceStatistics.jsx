@@ -1,6 +1,6 @@
-import React from "react";
-import NumberOfAccepted from "./NumberOfAccepted.jsx";
-import { useClimateActionsText } from "../../../../contexts/TextContext.js";
+import React from 'react';
+import NumberOfAccepted from './NumberOfAccepted.jsx';
+import { useClimateActionsText } from '../../../../contexts/TextContext.js';
 
 const AcceptanceStatistics = ({ action }) => {
   const climateActionsText = useClimateActionsText();

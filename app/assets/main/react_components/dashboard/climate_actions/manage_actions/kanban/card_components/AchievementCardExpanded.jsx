@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import { handleUncompleteAction } from "../../../../../helpers/KanbanHelper.js";
 import {
@@ -34,7 +34,7 @@ const AchievementCardExpanded = ({ achievement }) => {
               ></div>
               <div
                 className={`flex-initial text-left text-sm ${
-                  action.status ? "text-black" : "text-gray-accent"
+                  action.status ? 'text-black' : 'text-gray-accent'
                 }`}
               >
                 {action.name}

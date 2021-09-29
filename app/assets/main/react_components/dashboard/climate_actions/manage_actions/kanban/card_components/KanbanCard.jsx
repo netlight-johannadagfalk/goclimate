@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { Draggable } from "react-beautiful-dnd";
-import UserActionCard from "./UserActionCard.jsx";
-import KanbanCardImage from "./KanbanCardImage.jsx";
-import AchievementCard from "./AchievementCard.jsx";
-import { categoryName } from "../../../../../helpers/CategoryColorHelper.js";
+import React, { useEffect } from 'react';
+import { Draggable } from 'react-beautiful-dnd';
+import UserActionCard from './UserActionCard.jsx';
+import KanbanCardImage from './KanbanCardImage.jsx';
+import AchievementCard from './AchievementCard.jsx';
+import { categoryName } from '../../../../../helpers/CategoryColorHelper.js';
 
 const KanbanCard = ({
   item,
@@ -22,18 +22,18 @@ const KanbanCard = ({
   const setStyleWithoutReordering = (style, snapshot) => {
     if (!snapshot.isDragging) {
       return {
-        userSelect: "none",
+        userSelect: 'none',
         padding: 0,
-        minHeight: "auto",
+        minHeight: 'auto',
       };
     }
   };
 
   const setStyleWithReordering = (style) => {
     return {
-      userSelect: "none",
+      userSelect: 'none',
       padding: 0,
-      minHeight: "auto",
+      minHeight: 'auto',
       ...style,
     };
   };
@@ -50,10 +50,10 @@ const KanbanCard = ({
           <div
             className={`rounded-lg h-20 space-y-3 mb-2 focus:outline-none duration-500 transistion transform border border-gray-tint-2 ${
               sidebarCollapsed
-                ? "d:w-24 border-none ml-1"
-                : "w-72 d:w-auto mx-5"
+                ? 'd:w-24 border-none ml-1'
+                : 'w-72 d:w-auto mx-5'
             }
-            ${item.expanded ? "h-auto" : "w-24"}`}
+            ${item.expanded ? 'h-auto' : 'w-24'}`}
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -97,15 +97,15 @@ const KanbanCard = ({
                 >
                   <div
                     className={`flex-1 font-bold text-left text-sm mt-1.5 ml-20 mr-10 ${
-                      isAchievement && "-mt-2"
+                      isAchievement && '-mt-2'
                     }`}
                   >
                     {item.name}
                   </div>
                   <button
                     className={`flex-1 fas right-0 focus:outline-none mr-4 absolute ${
-                      item.status === true ? "mt-1" : "mt-4"
-                    } ${item.expanded ? "fa-chevron-up" : "fa-chevron-down"}`}
+                      item.status === true ? 'mt-1' : 'mt-4'
+                    } ${item.expanded ? 'fa-chevron-up' : 'fa-chevron-down'}`}
                   ></button>
                 </div>
               </div>

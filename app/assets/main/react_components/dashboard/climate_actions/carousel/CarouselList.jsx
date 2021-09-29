@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import CarouselCard from "./CarouselCard.jsx";
-import { useClimateActions } from "../../../contexts/ClimateActionsContext.js";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper.scss";
-import "swiper/components/navigation/navigation.min.css";
-import "swiper/components/pagination/pagination.min.css";
-import { orderBy } from "lodash";
-import { useMediaQuery } from "react-responsive";
-import { m, d, dLg } from "../../../constants";
+import React, { useState, useEffect } from 'react';
+import CarouselCard from './CarouselCard.jsx';
+import { useClimateActions } from '../../../contexts/ClimateActionsContext.js';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.min.css';
+import 'swiper/components/pagination/pagination.min.css';
+import { orderBy } from 'lodash';
+import { useMediaQuery } from 'react-responsive';
+import { m, d, dLg } from '../../../constants';
 
 // Swiper resources
 //https://swiperjs.com/react
 //https://swiperjs.com/swiper-api#parameters
 
-import SwiperCore, { Navigation, Pagination, Scrollbar } from "swiper/core";
+import SwiperCore, { Navigation, Pagination, Scrollbar } from 'swiper/core';
 SwiperCore.use([Pagination, Navigation, Scrollbar]);
 
 const CarouselList = ({ user, updateLocalAccepted, categories }) => {
@@ -26,8 +26,8 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
 
   const sortForMobileClimateActions = orderBy(
     climateActions,
-    ["action_of_the_month"],
-    ["desc"]
+    ['action_of_the_month'],
+    ['desc']
   );
 
   const actions =
@@ -58,14 +58,14 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
         loop={loopActions}
         slidesPerView={noOfItemsShown}
         navigation={{
-          prevEl: ".prevButton",
-          nextEl: ".nextButton",
+          prevEl: '.prevButton',
+          nextEl: '.nextButton',
         }}
         pagination={true}
         preventClicks={false}
         preventClicksPropagation={false}
         noSwiping={true}
-        noSwipingSelector={"button"}
+        noSwipingSelector={'button'}
         onSwiper={(swiper) => {
           setTimeout(() => {
             swiper.params.navigation.prevEl = navigationPrevRef.current;
@@ -79,9 +79,9 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
         {actions.map((action) => (
           <SwiperSlide
             key={action.id}
-            className={"min-h-full mb-10"}
+            className={'min-h-full mb-10'}
             style={{
-              height: "auto",
+              height: 'auto',
             }}
           >
             <CarouselCard
@@ -95,7 +95,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
       </Swiper>
       <div
         className={`flex flex-row absolute z-10 top-1/2 w-full ${
-          hideArrows ? "invisible" : ""
+          hideArrows ? 'invisible' : ''
         }
         `}
       >
@@ -104,14 +104,14 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
             ref={navigationPrevRef}
             disabled={!loopActions}
             className={
-              "rounded-full -left-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left absolute focus:outline-none prevButton"
+              'rounded-full -left-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left absolute focus:outline-none prevButton'
             }
           />
           <button
             ref={navigationNextRef}
             disabled={!loopActions}
             className={
-              "rounded-full -right-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-right absolute focus:outline-none nextButton"
+              'rounded-full -right-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-right absolute focus:outline-none nextButton'
             }
           />
         </div>

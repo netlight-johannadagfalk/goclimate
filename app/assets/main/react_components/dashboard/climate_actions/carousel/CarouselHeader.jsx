@@ -1,5 +1,5 @@
-import React from "react";
-import { useClimateActionsText } from "../../../contexts/TextContext.js";
+import React from 'react';
+import { useClimateActionsText } from '../../../contexts/TextContext.js';
 
 const CarouselHeader = () => {
   const climateActionsText = useClimateActionsText();

@@ -1,7 +1,7 @@
-import React from "react";
-import CategoryChart from "./CategoryChart.jsx";
-import YourFootprintText from "./YourFootprintText.jsx";
-import { useFootprint } from "../../contexts/FootprintContext.js";
+import React from 'react';
+import CategoryChart from './CategoryChart.jsx';
+import YourFootprintText from './YourFootprintText.jsx';
+import { useFootprint } from '../../contexts/FootprintContext.js';
 
 const FootprintContainer = () => {
   const { footprint, commonText } = useFootprint();

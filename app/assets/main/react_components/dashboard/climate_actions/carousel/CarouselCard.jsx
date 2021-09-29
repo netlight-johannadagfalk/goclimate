@@ -1,12 +1,12 @@
-import React, { useRef, useEffect } from "react";
-import { useClimateActionsText } from "../../../contexts/TextContext.js";
-import { useDeletedActionUpdate } from "../../../contexts/DeletedActionContext.js";
-import CategoryColorBanner from "./carousel_card_attributes/CategoryColorBanner.jsx";
-import ImpactPoints from "./carousel_card_attributes/ImpactPoints.jsx";
-import AcceptanceStatistics from "./carousel_card_attributes/AcceptanceStatistics.jsx";
-import TextBanner from "../../../common/TextBanner.jsx";
-import { useUserState, useUserActions } from "../../../contexts/UserContext.js";
-import { updateAccepted } from "../../../helpers/DBRequests.js";
+import React, { useRef, useEffect } from 'react';
+import { useClimateActionsText } from '../../../contexts/TextContext.js';
+import { useDeletedActionUpdate } from '../../../contexts/DeletedActionContext.js';
+import CategoryColorBanner from './carousel_card_attributes/CategoryColorBanner.jsx';
+import ImpactPoints from './carousel_card_attributes/ImpactPoints.jsx';
+import AcceptanceStatistics from './carousel_card_attributes/AcceptanceStatistics.jsx';
+import TextBanner from '../../../common/TextBanner.jsx';
+import { useUserState, useUserActions } from '../../../contexts/UserContext.js';
+import { updateAccepted } from '../../../helpers/DBRequests.js';
 
 const CarouselCard = ({
   action,
@@ -65,7 +65,7 @@ const CarouselCard = ({
               backgroundImage: action.image_url
                 ? `url('${action.image_url}')`
                 : "url('/action_images/Globe.png')",
-              backgroundSize: "100%",
+              backgroundSize: '100%',
             }}
           >
             {action.action_of_the_month && !monthlyActionBanner && (
@@ -76,12 +76,12 @@ const CarouselCard = ({
             <ImpactPoints action={action} />
             <h3 className="flex-1 justify-center align-center text-base font-bold self-center">
               {action.name.length > 40
-                ? action.name.slice(0, 40) + "..."
+                ? action.name.slice(0, 40) + '...'
                 : action.name}
             </h3>
             <p className="flex-4 text-sm">
               {action.description.length > 200
-                ? action.description.slice(0, 200) + "..."
+                ? action.description.slice(0, 200) + '...'
                 : action.description}
             </p>
             <div className="flex-1 mt-5 justify-center align-center">

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useUserState } from "../../../../contexts/UserContext";
+import React, { useState, useEffect } from 'react';
+import { useUserState } from '../../../../contexts/UserContext';
 
 const DropDownKanbanContainer = ({ children }) => {
   const [showDropDownKanban, setShowDropDownKanban] = useState(false);
@@ -7,18 +7,18 @@ const DropDownKanbanContainer = ({ children }) => {
   const { data: data } = useUserState();
 
   const toggleScroll = (bool) => {
-    const scrollable = document.getElementById("scrollable");
+    const scrollable = document.getElementById('scrollable');
     bool
-      ? (scrollable.className += " overflow-hidden")
-      : (scrollable.className -= " overflow-hidden");
+      ? (scrollable.className += ' overflow-hidden')
+      : (scrollable.className -= ' overflow-hidden');
   };
 
   useEffect(() => {
     const toggleDropDownKanban = () => setShowDropDownKanban(false);
-    const dropDownMenu = document.getElementById("nav-toggler");
-    dropDownMenu.addEventListener("input", toggleDropDownKanban);
+    const dropDownMenu = document.getElementById('nav-toggler');
+    dropDownMenu.addEventListener('input', toggleDropDownKanban);
     return () =>
-      dropDownMenu.removeEventListener("input", toggleDropDownKanban);
+      dropDownMenu.removeEventListener('input', toggleDropDownKanban);
   }, []);
 
   useEffect(() => {
@@ -32,14 +32,14 @@ const DropDownKanbanContainer = ({ children }) => {
   }, [data.noOfAcceptedActions]);
 
   showDropDownKanban &&
-    (document.getElementById("nav-toggler").checked = false);
+    (document.getElementById('nav-toggler').checked = false);
   showDropDownKanban ? toggleScroll(true) : toggleScroll(false);
 
   return (
     <div>
       <div
         className={`fixed top-16 z-30 bg-white w-full overflow-hidden ${
-          showDropDownKanban ? "h-screen" : "h-0"
+          showDropDownKanban ? 'h-screen' : 'h-0'
         } transition-size duration-500`}
       >
         {children}
@@ -50,13 +50,13 @@ const DropDownKanbanContainer = ({ children }) => {
       >
         <i
           className={`fas fa-2x ${
-            showDropDownKanban ? "fa-globe-europe" : "fa-globe-americas"
+            showDropDownKanban ? 'fa-globe-europe' : 'fa-globe-americas'
           }`}
         ></i>
         {data.noOfAcceptedActions > 0 && (
           <div
             className={`fas ${
-              ping && "ping"
+              ping && 'ping'
             } rounded-full h-5 w-5 bg-green-tint-3 -mt-1 -ml-3 absolute focus:outline-none`}
           >
             <div className="mb-2 text-white text-center">
