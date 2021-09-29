@@ -22,19 +22,10 @@
 <%= render 'shared/email/action_of_the_month', 
   prefix: "Take action and accept the action of the month!",
   action_name: @action_of_the_month_name,
-  action_description: @action_of_the_month_description
-  #action_impact_points: "The climate impact point is: " + String(@action_of_the_month_points) + " CO2"
-  #suffix: @action_of_the_month.first.description,
-  #climate_impact: "The climate impact point is: " + String(@action_of_the_month.first.points) + " CO2"
+  action_description: @action_of_the_month_description 
 %>
 
 <%= render 'shared/email/spacer' %>
-
-  <%# <%= render 'shared/email/button',
-    text: 'Check it out!',
-    href: 'http://localhost:3000/dashboard'%>
-
-<%# <%= render 'shared/email/spacer' %>
 
 <%= render 'shared/email/paragraph',
   text: t('goclimateneutral_and_this_planet_loves_you') %>
