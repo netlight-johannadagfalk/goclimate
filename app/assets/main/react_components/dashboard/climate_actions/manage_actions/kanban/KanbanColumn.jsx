@@ -6,7 +6,7 @@ import { t } from "../../../../constants";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { useClimateActionsText } from "../../../../contexts/TextContext.js";
 
-const KanbanActionColumn = ({
+const KanbanColumn = ({
   column,
   columnId,
   handleDelete,
@@ -129,4 +129,4 @@ const KanbanActionColumn = ({
   );
 };
 
-export default KanbanActionColumn;
+export default KanbanColumn;
