@@ -15,15 +15,19 @@ const MembershipAlternativeV2Desktop = ({
 }) => {
   const {
     reactContentText: {
-      memberships_v2: {
-        desktop: {
-          [type]: { title, selling_points },
+      sign_up_page: {
+        membership_page: {
+          memberships_v2: {
+            desktop: {
+              [type]: { title, selling_points },
+            },
+          },
         },
       },
     },
   } = useTexts();
 
-  var sellingPoints = selling_points
+  var sellingPoints = selling_points;
   for (var point in sellingPoints) {
     sellingPoints[point] = sellingPoints[point].replace(
       /\d+/,

@@ -21,7 +21,9 @@ const MembershipPage = ({
   const {
     registrationsText: { sign_up_heading_collective_efficacy },
     reactContentText: {
-      membership_page: { preamble },
+      sign_up_page: {
+        membership_page: { preamble },
+      },
     },
   } = useTexts();
 
