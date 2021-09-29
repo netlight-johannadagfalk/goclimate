@@ -72,14 +72,14 @@ const CarouselCard = ({
               <TextBanner text={text} />
             )}
           </div>
-          <div className="flex flex-col flex-1 text-center mx-2">
+          <div className="flex flex-col flex-1 mx-8 text-center ">
             <ImpactPoints action={action} />
-            <h3 className="flex-1 justify-center align-center text-base font-bold self-center">
+            <h3 className="flex-1 justify-center my-2 align-center text-base font-bold self-center">
               {action.name.length > 40
                 ? action.name.slice(0, 40) + '...'
                 : action.name}
             </h3>
-            <p className="flex-4 text-sm">
+            <p className="flex-4 text-sm text-left">
               {action.description.length > 200
                 ? action.description.slice(0, 200) + '...'
                 : action.description}
