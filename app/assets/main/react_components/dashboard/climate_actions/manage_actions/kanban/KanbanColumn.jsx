@@ -4,7 +4,7 @@ import KanbanCard from "./card_components/KanbanCard.jsx";
 import { useMediaQuery } from "react-responsive";
 import { t } from "../../../../constants";
 
-const KanbanActionColumn = ({
+const KanbanColumn = ({
   column,
   columnId,
   handleDelete,
@@ -120,4 +120,4 @@ const KanbanActionColumn = ({
   );
 };
 
-export default KanbanActionColumn;
+export default KanbanColumn;
