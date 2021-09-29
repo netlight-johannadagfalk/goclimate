@@ -11,7 +11,7 @@ import {
 } from "../../contexts/ClimateActionsContext.js";
 import { useUserState } from "../../contexts/UserContext.js";
 import MainInfo from "../footprint/MainInfo.jsx";
-import ManageActions from "./manage_actions/ManageActions.jsx";
+import ManageUserActions from "./manage_actions/ManageUserActions.jsx";
 
 const ClimateActionsContainer = ({
   user,
@@ -85,10 +85,10 @@ const ClimateActionsContainer = ({
               actionsToplist={actionsToplist}
             />
           )}
-          <ManageActions
+          <ManageUserActions
             categories={climateActionCategories}
             userActions={userActions}
-          ></ManageActions>
+          />
         </>
       )}
     </>
