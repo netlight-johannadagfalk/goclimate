@@ -19,18 +19,15 @@ const ClimateActionsContainer = ({
   actionsToplist,
 }) => {
   const deletedAction = useDeletedAction();
-  const setDeletedAction = useDeletedActionUpdate();
   const climateActions = useClimateActions();
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
-
   const { getInitialData: getInitialData } = useUserState();
-
   const [monthlyAction, setMonthlyAction] = useState(
     totClimateActions.find((action) => action.action_of_the_month === true)
   );
-
   const [localUserActions, setLocalUserActions] = useState([]);
+  const [locallyDeletedActions, setLocallyDeletedActions] = useState([]);
 
   const updateLocalAccepted = (actionID) => {
     setClimateActions(
@@ -55,7 +52,6 @@ const ClimateActionsContainer = ({
       tempArray = localUserActionsWithoutDeleted;
     }
     setLocalUserActions(tempArray);
-    setDeletedAction(null);
 
     monthlyAction.id === actionID &&
       setMonthlyAction({ ...monthlyAction, accepted: !monthlyAction.accepted });
@@ -63,6 +59,7 @@ const ClimateActionsContainer = ({
 
   useEffect(() => {
     deletedAction != null && updateLocalAccepted(deletedAction);
+    setLocallyDeletedActions([...locallyDeletedActions, deletedAction]);
   }, [deletedAction]);
 
   return (
@@ -81,6 +78,7 @@ const ClimateActionsContainer = ({
               updateLocalAccepted={updateLocalAccepted}
               categories={climateActionCategories}
               localUserActions={localUserActions}
+              locallyDeletedActions={locallyDeletedActions}
               actionsToplist={actionsToplist}
             />
           )}
