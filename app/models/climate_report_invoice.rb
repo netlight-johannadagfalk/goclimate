@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 class ClimateReportInvoice < ApplicationRecord
+  include HasMoneyAttributes
+
   belongs_to :climate_report
   belongs_to :project, optional: true
+
+  attribute :currency, :currency
+  money_attribute :amount, :currency
 
   validates_presence_of :invoice_address, :co2e, :amount, :currency
   validates :certificate_reciever_email, email: true
@@ -12,7 +17,7 @@ class ClimateReportInvoice < ApplicationRecord
   def calculate_from_report
     self.co2e = climate_report.calculation.total_emissions * BUFFER_FACTOR
     self.amount = calculate_amount
-    self.currency = 'sek'
+    self.currency = Currency::SEK
   end
 
   private

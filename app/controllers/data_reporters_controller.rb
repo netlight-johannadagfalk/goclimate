@@ -3,7 +3,7 @@
 class DataReportersController < ApplicationController
   def show
     @reporter = DataReporter.where(key: params[:id]).first
-    @request_items = DataRequest.where(recipient_id: @reporter.id).map do |request|
+    @request_items = DataRequest.where(data_reporter_id: @reporter.id).map do |request|
       report_area = ClimateReports::ReportArea.find(request.report_area_id)
       calculator = BusinessCalculators::Calculator.find(report_area.calculator_id)
       {

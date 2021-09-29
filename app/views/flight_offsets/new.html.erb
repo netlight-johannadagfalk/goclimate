@@ -63,7 +63,7 @@
 
           <div class="flex justify-between font-bold">
             <span><%=t 'views.flight_offsets.new.sum' %></span>
-            <span><%= @offset.price.to_s(precision: :auto) %></span>
+            <span><%= @offset.price_incl_taxes.to_s(precision: :auto) %></span>
           </div>
 
           <div class="w-full border-t border-gray-accent"></div>

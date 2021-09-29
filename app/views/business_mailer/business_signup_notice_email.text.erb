@@ -1,7 +1,7 @@
 Företag: <%= @climate_report.company_name %>
 Kontakt: <%= @climate_report.contact_email %>
 Antal ton: <%= co2e_string(@climate_report.invoice.co2e, omit_unit: true) %>
-Pris: <%= price_string(@climate_report.invoice.amount, @climate_report.invoice.currency, lowest_denominator: true) %>
+Pris: <%= @climate_report.invoice.amount %>
 Fakturaadress:
 <%= @climate_report.invoice.invoice_address %>
 

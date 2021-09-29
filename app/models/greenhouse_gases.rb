@@ -3,6 +3,7 @@
 class GreenhouseGases
   include Comparable
 
+  # Consumer prices are inclusive of 25% Swedish VAT.
   CONSUMER_PRICE_PER_TONNE = {
     Currency::AUD => Money.new(9_50, :aud),
     Currency::CAD => Money.new(8_80, :cad),
@@ -23,6 +24,7 @@ class GreenhouseGases
     Currency::USD => Money.new(4_70, :usd)
   }.freeze
 
+  # Business prices are exclusive of any taxes.
   BUSINESS_PRICE_PER_TONNE = {
     Currency::AUD => Money.new(8_80, :aud),
     Currency::CAD => Money.new(8_45, :cad),

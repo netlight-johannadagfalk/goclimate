@@ -27,7 +27,7 @@ class ReportedDatasController < ApplicationController
   def thank_you
     @data_request = DataRequest.where(key: params[:id]).first
     @report_area = ClimateReports::ReportArea.find(@data_request.report_area_id)
-    @data_reporter = DataReporter.find(@data_request.recipient_id)
+    @data_reporter = DataReporter.find(@data_request.data_reporter_id)
   end
 
   def preview
@@ -89,7 +89,7 @@ class ReportedDatasController < ApplicationController
   def set_reported_datas(category, report_area) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     reported_datas = []
     category.fields.each do |field|
-      data_reporter = @calculator.survey && @data_request.present? ? DataReporter.find(@data_request.recipient_id) : nil
+      data_reporter = DataReporter.find(@data_request&.data_reporter_id) if @calculator.survey
       answers = field.answers(report_area, data_reporter)
       if answers.present? && answers.count > 0
         if @calculator.survey || field.multiple_answers

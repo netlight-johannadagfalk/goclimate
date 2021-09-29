@@ -9,7 +9,7 @@ module Admin
     def index
       @projects = Project.all.order(id: :desc)
       @total_co2 = Project.all.sum('co2e') / 1000
-      @total_sek_spent = Project.all.sum('cost_in_sek')
+      @total_sek_spent = Money.new(Project.all.sum('cost_in_sek'), :sek)
     end
 
     # GET /projects/1
@@ -77,12 +77,16 @@ module Admin
     def project_params
       params
         .require(:project)
+        .tap do |params|
+          params[:cost_in_sek] = (params[:cost_in_sek].to_d * 100).to_i if params[:cost_in_sek].present?
+        end
         .permit(
           :name, :cdm_url, :image_url, :blog_url, :longitude, :latitude,
           :co2e, :country, :offset_type, :cost_in_sek, :date_bought,
           :certificate_url, :invoice_url, :gold_standard_id, :cdm_id,
           :start_block, :end_block, :gold_standard_url, :short_description
-        ).transform_values { |value| value.blank? ? nil : value }
+        )
+        .transform_values { |value| value.blank? ? nil : value }
     end
   end
 end

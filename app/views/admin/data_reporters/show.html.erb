@@ -26,7 +26,7 @@
     <dd><%= time_tag(@data_reporter.created_at) %></dd>
 
     <dt>Data requests:</dt>
-    <% DataRequest.where(recipient_id: @data_reporter.id).each do |request| %>
+    <% DataRequest.where(data_reporter_id: @data_reporter.id).each do |request| %>
       <dd>
         - <%= ClimateReports::ReportArea.find(request.report_area_id).title %>, <%= time_tag(request.created_at) %>
       </dd>

@@ -9,14 +9,15 @@ module Admin
       @report_area = ClimateReports::ReportArea.find(params[:report_area_id]) if params[:report_area_id]
 
       @data_requests = if @report_area
-                         DataRequest.where(report_area_id: @report_area.id).order(recipient_id: :asc, created_at: :desc)
+                         DataRequest.where(report_area_id: @report_area.id)
+                                    .order(data_reporter_id: :asc, created_at: :desc)
                        else
                          DataRequest.all
                        end
     end
 
     def show
-      @data_reporter = DataReporter.find(@data_request.recipient_id)
+      @data_reporter = DataReporter.find(@data_request.data_reporter_id)
     end
 
     def new
@@ -26,7 +27,7 @@ module Admin
     end
 
     def edit
-      @data_reporter = DataReporter.find(@data_request.recipient_id)
+      @data_reporter = DataReporter.find(@data_request.data_reporter_id)
     end
 
     def create # rubocop:disable Metrics/MethodLength
@@ -35,24 +36,22 @@ module Admin
         data_reporter = DataReporter.find_or_create_by({ email: email, report: report })
 
         unless data_reporter.save
-          redirect_to [
+          return redirect_to [
             :admin, report
           ], notice: "There was and error and the data reporter with email '#{email}' was not saved!"
-          break
         end
 
         data_request = DataRequest.new(
           {
             report_area_id: data_request_params[:area].to_i,
-            recipient: data_reporter
+            data_reporter: data_reporter
           }
         )
 
         unless data_request.save
-          redirect_to [
+          return redirect_to [
             :admin, data_request
           ], notice: "There was and error and the data request for email '#{email}' was not saved!"
-          break
         end
 
         send_email(data_reporter, data_request) if data_request_params[:send_email] == '1'
