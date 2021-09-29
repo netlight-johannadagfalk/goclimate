@@ -42,14 +42,10 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
     ? 3
     : 4;
 
-  //const loopActions = actions.length > noOfItemsShown ? true : false;
-
   const [loopActions, setLoopActions] = useState(
     actions.length > noOfItemsShown ? true : false
   );
   const hideArrows = isMobile || !loopActions ? true : false;
-
-  // const [hideArrows, setHideArrows] = useState(false);
 
   useEffect(() => {
     actions.length > noOfItemsShown
@@ -57,57 +53,21 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
       : setLoopActions(false);
   }, [climateActions]);
 
-  // useEffect(() => {
-  //   isMobile || !loopActions ? setHideArrows(true) : setHideArrows(false);
-  // }, [loopActions]);
-
-  // console.log({ hideArrows });
-
-  //const hideArrows = isMobile ? true : false;
-
-  // const [loopActions, setLoopActions] = useState();
-  // const [hideArrows, setHideArrows] = useState();
-  // useEffect(() => {
-  //   actions.length > noOfItemsShown
-  //     ? setLoopActions(true)
-  //     : setLoopActions(false),
-  //     [actions.length];
-  // });
-
-  // useEffect(() => {
-  //   isMobile || !loopActions ? setHideArrows(true) : setHideArrows(false),
-  //     [loopActions];
-  // });
-
-  //console.log({ hideArrows });
-  //console.log({ navigationNextRef });
-  console.log({ navigationPrevRef });
   return (
     <div className="relative overflow-visible">
       <Swiper
         className="m-4"
         loop={loopActions}
         slidesPerView={noOfItemsShown}
-        //slidesPerGroup={noOfItemsShown}
-        //onSwiper={console.log}
-        navigation={
-          //hideArrows
-          //?
-          {
-            // nextEl: ".testing",
-            // prevEl: ".testing1",
-            nextEl: ".testing1",
-            prevEl: ".testing",
-          }
-          //: false
-        }
-        //pagination={true}
+        navigation={{
+          prevEl: ".prevButton",
+          nextEl: ".nextButton",
+        }}
+        pagination={true}
         preventClicks={false}
         preventClicksPropagation={false}
         noSwiping={true}
         noSwipingSelector={"button"}
-        observer={true}
-        observeParents={true}
         onSwiper={(swiper) => {
           setTimeout(() => {
             swiper.params.navigation.prevEl = navigationPrevRef.current;
@@ -144,13 +104,16 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
         <div className="relative w-full">
           <button
             ref={navigationPrevRef}
-            onClick={() => console.log(navigationPrevRef)}
-            className={`rounded-full -left-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left absolute focus:outline-none testing`}
+            disabled={!loopActions}
+            className={
+              "rounded-full -left-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left absolute focus:outline-none prevButton"
+            }
           />
           <button
             ref={navigationNextRef}
+            disabled={!loopActions}
             className={
-              "rounded-full -right-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-right absolute focus:outline-none testing1"
+              "rounded-full -right-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-right absolute focus:outline-none nextButton"
             }
           />
         </div>
