@@ -8,8 +8,6 @@ const LatestProjectsListV1 = () => {
   } = useTexts();
   const projects = useProjects();
 
-  console.log('v1');
-
   return (
     <div className="space-y-3 text-left">
       <h3 className="font-semibold">{latest_projects}</h3>
