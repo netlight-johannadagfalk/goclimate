@@ -30,27 +30,27 @@ const Dashboard = ({
         <CategoryProvider>
           <UserProvider
             allUserActions={JSON.parse(allUserActions)}
-            actionsWithoutUserActions={actionsWithoutUserActions}
-            actionsWithUserActions={actionsWithUserActions}
-            climateActionCategories={climateActionCategories}
-            userSubscriptionType={userSubscriptionType}
+            actionsWithoutUserActions={JSON.parse(actionsWithoutUserActions)}
+            actionsWithUserActions={JSON.parse(actionsWithUserActions)}
+            climateActionCategories={JSON.parse(climateActionCategories)}
+            userSubscriptionType={JSON.parse(userSubscriptionType)}
           >
             <ClimateActionsProvider
-              actionsWithUserActions={actionsWithUserActions}
-              actionsWithoutUserActions={actionsWithoutUserActions}
+              actionsWithUserActions={JSON.parse(actionsWithUserActions)}
+              actionsWithoutUserActions={JSON.parse(actionsWithoutUserActions)}
             >
               <FootprintProvider
-                footprint={footprint}
-                commonText={commonText}
-                countryAverage={countryAverage}
-                modelText={modelText}
+                footprint={JSON.parse(footprint)}
+                commonText={JSON.parse(commonText)}
+                countryAverage={JSON.parse(countryAverage)}
+                modelText={JSON.parse(modelText)}
                 lang={lang}
-                registrationsText={registrationsText}
+                registrationsText={JSON.parse(registrationsText)}
                 totalNoFootprints={totalNoFootprints}
               >
                 <ClimateActionsContainer
-                  user={user}
-                  climateActionCategories={climateActionCategories}
+                  user={JSON.parse(user)}
+                  climateActionCategories={JSON.parse(climateActionCategories)}
                   actionsToplist={JSON.parse(actionsToplist)}
                 ></ClimateActionsContainer>
               </FootprintProvider>

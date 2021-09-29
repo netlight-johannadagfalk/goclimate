@@ -12,15 +12,13 @@ const ManageActions = ({ categories, userActions }) => {
   return (
     <>
       {!isTabletOrMobile && (
-        <div className="w-full">
-          <Sidebar categories={categories} sidebarCollapsed={sidebarCollapsed}>
-            <KanbanActionContainer
-              setSidebarCollapsed={setSidebarCollapsed}
-              sidebarCollapsed={sidebarCollapsed}
-              categories={categories}
-            />
-          </Sidebar>
-        </div>
+        <Sidebar categories={categories} sidebarCollapsed={sidebarCollapsed}>
+          <KanbanActionContainer
+            setSidebarCollapsed={setSidebarCollapsed}
+            sidebarCollapsed={sidebarCollapsed}
+            categories={categories}
+          />
+        </Sidebar>
       )}
       {isTabletOrMobile && (
         <DropDownKanbanContainer userActions={userActions}>

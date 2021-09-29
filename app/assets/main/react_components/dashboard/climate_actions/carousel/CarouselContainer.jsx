@@ -23,14 +23,14 @@ const CarouselContainer = ({
 
   const showFilterButton = (cat) => {
     return totClimateActions.some(
-      (temp) => temp.climate_action_category_id === cat.id
+      (action) => action.climate_action_category_id === cat.id
     );
   };
 
   return (
     <section className="section-padding">
       <CarouselHeader />
-      <div className="max-w-6xl mx-auto space-y-3 t:bg-transparent t:rounded-lg t:p-0 mt-4">
+      <div className="max-w-6xl mx-auto space-y-3 t:bg-transparent t:rounded-lg">
         {isTabletOrMobile ? (
           <CarouselCategoryButton
             categories={categories}
@@ -49,15 +49,17 @@ const CarouselContainer = ({
               setAllCategories={setAllCategories}
               localUserActions={localUserActions}
             />
-            <CarouselCategoryButton
-              categoryName={"Popular"}
-              categoryID={"popular"}
-              active={popular}
-              setPopular={setPopular}
-              setAllCategories={setAllCategories}
-              localUserActions={localUserActions}
-              actionsToplist={actionsToplist}
-            />
+            {actionsToplist.length > 0 && (
+              <CarouselCategoryButton
+                categoryName={"Popular"}
+                categoryID={"popular"}
+                active={popular}
+                setPopular={setPopular}
+                setAllCategories={setAllCategories}
+                localUserActions={localUserActions}
+                actionsToplist={actionsToplist}
+              />
+            )}
             {categories.map(
               (cat) =>
                 showFilterButton(cat) && (

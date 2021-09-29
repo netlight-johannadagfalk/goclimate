@@ -45,7 +45,6 @@ const ClimateActionsContainer = ({
           : action
       )
     );
-    //Saves all items that are userActions locally but not yet in DB to use for categoryFiltering
     let filteredLocalUserActions = climateActions.filter(
       (action) => action.id === actionID
     );
@@ -63,8 +62,6 @@ const ClimateActionsContainer = ({
       setMonthlyAction({ ...monthlyAction, accepted: !monthlyAction.accepted });
   };
 
-  const formatedCategories = JSON.parse(climateActionCategories);
-
   useEffect(() => {
     deletedAction != null && updateLocalAccepted(deletedAction);
   }, [deletedAction]);
@@ -77,19 +74,19 @@ const ClimateActionsContainer = ({
             action={monthlyAction}
             user={user}
             updateLocalAccepted={updateLocalAccepted}
-            categories={JSON.parse(climateActionCategories)}
+            categories={climateActionCategories}
           ></MainInfo>
           {climateActions.length > 0 && (
             <CarouselContainer
               user={user}
               updateLocalAccepted={updateLocalAccepted}
-              categories={formatedCategories}
+              categories={climateActionCategories}
               localUserActions={localUserActions}
               actionsToplist={actionsToplist}
             />
           )}
           <ManageActions
-            categories={formatedCategories}
+            categories={climateActionCategories}
             userActions={userActions}
           ></ManageActions>
         </>

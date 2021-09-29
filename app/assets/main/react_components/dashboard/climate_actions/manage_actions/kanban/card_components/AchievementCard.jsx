@@ -3,12 +3,7 @@ import ProgressBar from "./ProgressBar.jsx";
 import AchievementCardExpanded from "./AchievementCardExpanded.jsx";
 import KanbanCardImage from "./KanbanCardImage.jsx";
 
-const AchievementCard = ({
-  categories,
-  achievement,
-  sidebarCollapsed,
-  handleUncompleteAction,
-}) => {
+const AchievementCard = ({ categories, achievement, sidebarCollapsed }) => {
   return (
     <div>
       <div className="h-20">
@@ -27,7 +22,6 @@ const AchievementCard = ({
       {achievement.expanded && (
         <AchievementCardExpanded
           achievement={achievement}
-          handleUncompleteAction={handleUncompleteAction}
         ></AchievementCardExpanded>
       )}
     </div>

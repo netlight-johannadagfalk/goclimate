@@ -1,6 +1,18 @@
 import React from "react";
 
-const AchievementCardExpanded = ({ achievement, handleUncompleteAction }) => {
+import { handleUncompleteAction } from "../../../../../helpers/KanbanHelper.js";
+import {
+  useUserState,
+  useUserActions,
+} from "../../../../../contexts/UserContext.js";
+
+const AchievementCardExpanded = ({ achievement }) => {
+  const { updateUserActions, updateColumns, updateAchievements } =
+    useUserActions();
+
+  const { data: data } = useUserState();
+  const columns = data.columns;
+
   const actions = [
     ...achievement.userActionsArray,
     ...achievement.actionsArray,
@@ -31,7 +43,15 @@ const AchievementCardExpanded = ({ achievement, handleUncompleteAction }) => {
               {action.status && action.id > 0 && (
                 <button
                   className="d:opacity-0 d:group-hover:opacity-50 d:hover:!opacity-100 opacity-50 flex-1 text-right fas fa-trash-alt fa-sm focus:outline-none"
-                  onClick={() => handleUncompleteAction(action)}
+                  onClick={() =>
+                    handleUncompleteAction(
+                      action,
+                      columns,
+                      updateUserActions,
+                      updateColumns,
+                      updateAchievements
+                    )
+                  }
                 ></button>
               )}
             </div>

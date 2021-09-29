@@ -42,8 +42,7 @@ const DropDownKanbanContainer = ({ children, userActions }) => {
         {children}
       </div>
       <button
-        className="fixed top-0 right-0 mr-20 mt-4 t:mt-6 lg:mr-48 lg:right-10 t:mr-17 t:right-3 z-50 outline-none 
-        focus:outline-none"
+        className="fixed top-0 right-0 mr-20 mt-4 z-50 focus:outline-none t:mt-6 lg:mr-48 lg:right-10 t:mr-17 t:right-3"
         onClick={() => setShowDropDownKanban(!showDropDownKanban)}
       >
         <i
@@ -52,10 +51,8 @@ const DropDownKanbanContainer = ({ children, userActions }) => {
           }`}
         ></i>
         {getAcceptedActionsForUser() > 0 && (
-          <div className="fas rounded-full h-5 w-5 bg-green-tint-3 -mt-1 -ml-3 absolute focus:outline-none">
-            <div className="mb-2 text-white text-center">
-              {getAcceptedActionsForUser()}
-            </div>
+          <div className="fas rounded-full h-5 w-5 bg-green-tint-3 -mt-1 -ml-3 absolute mb-2 text-white text-center focus:outline-none">
+            {getAcceptedActionsForUser()}
           </div>
         )}
       </button>
