@@ -19,7 +19,6 @@ SwiperCore.use([Pagination, Navigation, Scrollbar]);
 const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
-
   const climateActions = useClimateActions();
   const isMobile = useMediaQuery({ query: `(max-width: ${m})` });
   const isLargeTablet = useMediaQuery({ query: `(max-width: ${d})` });
@@ -47,7 +46,6 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   return (
     <div className="relative overflow-visible">
       <Swiper
-        className="m-4"
         loop={loopActions}
         slidesPerView={noOfItemsShown}
         navigation={

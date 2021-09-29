@@ -30,6 +30,16 @@ const CarouselCategoryButton = ({
     { value: "popular", label: "Popular" },
   ];
 
+  const categoryColor = () => {
+    if (!categories) {
+      return active
+        ? "category_" +
+            categoryName.toLowerCase().replace(/ /g, "_") +
+            "_active"
+        : "category_" + categoryName.toLowerCase().replace(/ /g, "_");
+    }
+  };
+
   const createOptions = () =>
     categories.map((cat) => {
       options.push({ value: cat.id, label: cat.name });
@@ -88,7 +98,7 @@ const CarouselCategoryButton = ({
   return (
     <>
       {categories ? (
-        <div className="mx-5 ">
+        <div className="mx-5">
           <Dropdown
             placeholder="All categories"
             controlClassName={"dropdown-control"}
@@ -100,31 +110,16 @@ const CarouselCategoryButton = ({
           ></Dropdown>
         </div>
       ) : (
-        <>
-          {active ? (
-            <button
-              className={`${
-                "category_" +
-                categoryName.toLowerCase().replace(/ /g, "_") +
-                "_active"
-              } category_unknown_active rounded-full py-1 px-4 button inline-block focus:outline-none text-white m-1`}
-            >
-              {" "}
-              {categoryName}{" "}
-            </button>
-          ) : (
-            <button
-              className={` ${
-                "category_" + categoryName.toLowerCase().replace(/ /g, "_")
-              }
-          category_unknown rounded-full py-1 px-4 button inline-block m-1 hover:text-white focus:outline-none hover:bg-opacity-80`}
-              onClick={() => handleCategory(categoryID)}
-            >
-              {" "}
-              {categoryName}{" "}
-            </button>
-          )}
-        </>
+        <button
+          className={`${categoryColor()} rounded-full py-1 px-4 button inline-block focus:outline-none m-1 ${
+            active
+              ? "category_unknown_active text-white"
+              : "category_unknown hover:text-white hover:bg-opacity-80"
+          } `}
+          onClick={() => !active && handleCategory(categoryID)}
+        >
+          {categoryName}
+        </button>
       )}
     </>
   );

@@ -45,8 +45,7 @@ const DropDownKanbanContainer = ({ children }) => {
         {children}
       </div>
       <button
-        className="fixed top-0 right-0 mr-20 mt-4 t:mt-6 lg:mr-48 lg:right-10 t:mr-17 t:right-3 z-50 outline-none 
-        focus:outline-none"
+        className="fixed top-0 right-0 mr-20 mt-4 z-50 focus:outline-none t:mt-6 lg:mr-48 lg:right-10 t:mr-17 t:right-3"
         onClick={() => setShowDropDownKanban(!showDropDownKanban)}
       >
         <i

@@ -8,6 +8,9 @@ const MonthlyAction = ({ action, user, updateLocalAccepted, categories }) => {
   const text = climateActionsText.monthly_action;
   return (
     <div className="w-64 ml-10 mt-11 relative">
+      <div className="h-52 w-52 -top-4 left-6 bg-cover absolute">
+        <TextBanner text={text} />
+      </div>
       <CarouselCard
         action={action}
         key={action.id}
@@ -16,9 +19,6 @@ const MonthlyAction = ({ action, user, updateLocalAccepted, categories }) => {
         categories={categories}
         monthlyActionBanner={true}
       ></CarouselCard>
-      <div className="h-52 w-52 -top-4 left-6 bg-cover absolute">
-        <TextBanner text={text} />
-      </div>
     </div>
   );
 };

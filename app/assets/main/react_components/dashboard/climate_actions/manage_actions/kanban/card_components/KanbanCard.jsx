@@ -3,31 +3,17 @@ import { Draggable } from "react-beautiful-dnd";
 import UserActionCard from "./UserActionCard.jsx";
 import KanbanCardImage from "./KanbanCardImage.jsx";
 import AchievementCard from "./AchievementCard.jsx";
+import { categoryName } from "../../../../../helpers/CategoryColorHelper.js";
 
 const KanbanCard = ({
   item,
   index,
   handleDelete,
-  handleCompleteAction,
-  handleUncompleteAction,
   categories,
   sidebarCollapsed,
   handleExpanded,
 }) => {
   const isAchievement = item.userActionsArray ? true : false;
-
-  const categoryName = () => {
-    for (let i = 0; i <= Object.keys(categories).length; i++) {
-      if (isAchievement) return "";
-
-      if (categories[i].id === item.climate_action_category_id) {
-        return categories[i].name.toString();
-      }
-    }
-    return "unknown";
-  };
-
-  const categoryColor = categoryName();
 
   useEffect(() => {
     handleExpanded(item, false);
@@ -92,14 +78,16 @@ const KanbanCard = ({
                     categories={categories}
                     achievement={item}
                     sidebarCollapsed={sidebarCollapsed}
-                    handleUncompleteAction={handleUncompleteAction}
                   ></AchievementCard>
                 ) : (
                   <UserActionCard
-                    categoryColor={categoryColor}
+                    categoryColor={categoryName(
+                      categories,
+                      item.climate_action_category_id,
+                      isAchievement
+                    )}
                     userAction={item}
                     handleDelete={handleDelete}
-                    handleCompleteAction={handleCompleteAction}
                     sidebarCollapsed={sidebarCollapsed}
                   ></UserActionCard>
                 )}

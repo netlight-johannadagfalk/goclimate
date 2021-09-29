@@ -12,11 +12,11 @@ export const useCategoryUpdate = () => {
 };
 
 export const CategoryProvider = ({ children }) => {
-  const [currCategory, setCurrCategory] = useState(null);
+  const [category, setCategory] = useState(null);
 
   return (
-    <CategoryContext.Provider value={currCategory}>
-      <CategoryUpdateContext.Provider value={setCurrCategory}>
+    <CategoryContext.Provider value={category}>
+      <CategoryUpdateContext.Provider value={setCategory}>
         {children}
       </CategoryUpdateContext.Provider>
     </CategoryContext.Provider>
