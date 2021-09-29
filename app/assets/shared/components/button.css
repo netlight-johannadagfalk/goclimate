@@ -39,6 +39,10 @@
   }
 }
 
+.button-dark {
+  @apply text-white bg-green-shade-2 border-green-shade-2;
+}
+
 .button-cta {
   @apply bg-yellow-accent border-yellow-accent;
 
