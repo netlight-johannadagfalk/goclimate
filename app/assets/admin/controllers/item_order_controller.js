@@ -1,5 +1,6 @@
 import { Controller } from 'stimulus';
 import createPsqlList from '../../util/create_psql_list';
+import { swapToActiveClassList, swapToInactiveClassList } from '../../util/swap_classes';
 
 export default class ItemOrderController extends Controller {
   initialize() {
@@ -7,19 +8,26 @@ export default class ItemOrderController extends Controller {
   }
 
   move(e) {
-    const currentIndex = e.target.dataset.position;
+    const currentIndex = Number(e.target.dataset.position);
     const targetIndex = e.target.value - 1;
     const elementToMove = this.itemTargets[currentIndex];
     const targetElement = this.itemTargets[targetIndex];
 
+    swapToActiveClassList(elementToMove);
+
     if (targetIndex === this.itemTargets.length - 1) {
-      targetElement.parentNode.insertBefore(elementToMove, targetElement);
+      targetElement.parentNode.insertBefore(elementToMove, null);
+    } else if (currentIndex === 0 && targetIndex === 1) {
       targetElement.parentNode.insertBefore(targetElement, elementToMove);
     } else {
       targetElement.parentNode.insertBefore(elementToMove, targetElement);
     }
     this.updatePositionData();
     this.updateOrderField();
+
+    setTimeout(() => {
+      swapToInactiveClassList(elementToMove);
+    }, 5000);
   }
 
   updatePositionData() {
