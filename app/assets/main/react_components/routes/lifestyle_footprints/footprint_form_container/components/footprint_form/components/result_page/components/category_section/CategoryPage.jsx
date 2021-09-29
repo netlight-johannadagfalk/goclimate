@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTexts } from '../../../../../../../contexts/TextsContext.js';
+import { useVersion } from '../../../../../../../contexts/VersionContext.js';
 import Preamble from '../../../common/Preamble.jsx';
 import Title from '../../../common/Title.jsx';
 import CategoryChart from './components/CategoryChart.jsx';
@@ -14,16 +15,22 @@ const CategoryPage = ({ footprint }) => {
     },
   } = useTexts();
 
+  const version = useVersion();
+
   return (
     <>
       <Title customStyle="text-lgr" text={title} />
       <div className="max-w-lg mx-auto">
         <Preamble text={desc} />
         <CategoryChart footprint={footprint} />
-        <br></br>
-        <div className="text-left">
-          <Preamble text={public_emissions} />
-        </div>
+        {version === 'v2' && (
+          <>
+            <br></br>
+            <div className="text-left">
+              <Preamble text={public_emissions} />
+            </div>
+          </>
+        )}
       </div>
     </>
   );
