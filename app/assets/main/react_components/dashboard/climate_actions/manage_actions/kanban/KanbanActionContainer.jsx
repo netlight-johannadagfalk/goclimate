@@ -275,7 +275,7 @@ const KanbanActionContainer = ({
               <div
                 className="h-10 mt-2"
                 style={
-                  isTabletOrMobile || sidebarCollapsed ? {} : { width: 360 }
+                  isTabletOrMobile || sidebarCollapsed ? {} : { width: "20rem" }
                 }
               >
                 <p
