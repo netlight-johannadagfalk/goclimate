@@ -47,7 +47,7 @@ const ProjectSummary = ({ project }) => {
           <h3 className="font-semibold" id={'title' + project.id}>
             {project.name}
           </h3>
-          <p className="pt-2" id={'description' + project.id}>
+          <p className="pt-2 text-sm t:text-base" id={'description' + project.id}>
             {project.short_description}
           </p>
         </div>
