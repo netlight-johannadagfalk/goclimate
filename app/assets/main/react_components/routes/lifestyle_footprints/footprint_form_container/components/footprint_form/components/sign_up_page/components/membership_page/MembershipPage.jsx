@@ -19,7 +19,10 @@ const MembershipPage = ({
   result,
 }) => {
   const {
-    registrationsText: { sign_up_heading_collective_efficacy },
+    registrationsText: {
+      sign_up_heading_collective_efficacy,
+      sign_up_description,
+    },
     reactContentText: {
       sign_up_page: {
         membership_page: { preamble },
@@ -36,23 +39,28 @@ const MembershipPage = ({
           text={sign_up_heading_collective_efficacy}
           customStyle="text-lgr"
         />
-        <Preamble text={preamble} />
         {version === 'v1' ? (
-          <MembershipsList
-            selectedMembership={selectedMembership}
-            setSelectedMembership={setSelectedMembership}
-            multipleOffsets={multipleOffsets}
-            setMultipleOffsets={setMultipleOffsets}
-          />
+          <>
+            <Preamble text={sign_up_description} />
+            <MembershipsList
+              selectedMembership={selectedMembership}
+              setSelectedMembership={setSelectedMembership}
+              multipleOffsets={multipleOffsets}
+              setMultipleOffsets={setMultipleOffsets}
+            />
+          </>
         ) : (
-          <MembershipsListV2
-            selectedMembership={selectedMembership}
-            setSelectedMembership={setSelectedMembership}
-            multipleOffsets={multipleOffsets}
-            setMultipleOffsets={setMultipleOffsets}
-            grantedReferralCode={grantedReferralCode}
-            result={result}
-          />
+          <>
+            <Preamble text={preamble} />
+            <MembershipsListV2
+              selectedMembership={selectedMembership}
+              setSelectedMembership={setSelectedMembership}
+              multipleOffsets={multipleOffsets}
+              setMultipleOffsets={setMultipleOffsets}
+              grantedReferralCode={grantedReferralCode}
+              result={result}
+            />
+          </>
         )}
         <div data-inactive-class="hidden">
           {selectedMembership !== 'free' && (
