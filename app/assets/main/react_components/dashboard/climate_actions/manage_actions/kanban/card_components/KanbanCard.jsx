@@ -20,7 +20,6 @@ const KanbanCard = ({
   }, [sidebarCollapsed]);
 
   const setStyleWithoutReordering = (style, snapshot) => {
-    /** Moving element from accepted column to achieved column */
     if (!snapshot.isDragging) {
       return {
         userSelect: "none",
@@ -31,7 +30,6 @@ const KanbanCard = ({
   };
 
   const setStyleWithReordering = (style) => {
-    /** Moving element inside accepted column */
     return {
       userSelect: "none",
       padding: 0,
