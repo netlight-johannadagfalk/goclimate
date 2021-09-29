@@ -7,6 +7,7 @@ import {
   formatedUserActions,
   acceptedUserActions,
   columnUserActions,
+  findAcceptedUserActions,
 } from "../helpers/UserActionsHelper.js";
 import { useClimateActionsText } from "../contexts/TextContext.js";
 
@@ -33,10 +34,16 @@ const initialState = {
     isLoading: false,
     isSuccess: false,
   },
+  getInitialNoOfAcceptedActions: {
+    pendingNoAcceptedActions: undefined,
+    isLoading: false,
+    isSuccess: false,
+  },
   data: {
     userActions: undefined,
     columns: undefined,
     achievements: undefined,
+    noOfAcceptedActions: undefined,
   },
 };
 
@@ -108,6 +115,19 @@ const reducer = (state, action) => {
           isSuccess: true,
         },
       };
+    case "update_no_of_accepted_actions_success":
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          noOfAcceptedActions: action.payload,
+        },
+        getInitialNoOfAcceptedActions: {
+          pendingNoOfAcceptedActions: undefined,
+          isLoading: false,
+          isSuccess: true,
+        },
+      };
     case "mounting_done":
       return {
         ...state,
@@ -139,10 +159,10 @@ const UserProvider = ({
     updateColumns: (columns) => {
       dispatch({ type: "update_columns_init", payload: columns });
     },
-    updateColumnsWithFormat: (updatedList, performedList) => {
+    updateColumnsWithFormat: (updatedList, achievements) => {
       const columns = columnUserActions(
         updatedList,
-        performedList,
+        achievements,
         climateActionsText
       );
       dispatch({ type: "update_columns_init", payload: columns });
@@ -161,10 +181,10 @@ const UserProvider = ({
         payload: achievement,
       });
     },
-    updateAchievementsOnMove: (movedItem, performedColumn) => {
+    updateAchievementsOnMove: (movedItem, achievementColumn) => {
       return handleAchievementsOnMove(
         movedItem,
-        performedColumn,
+        achievementColumn,
         climateActionCategories,
         state.data.userActions,
         actionsWithoutUserActions,
@@ -177,6 +197,10 @@ const UserProvider = ({
   useEffect(() => {
     dispatch({ type: "update_user_actions_success", payload: allUserActions });
 
+    dispatch({
+      type: "update_no_of_accepted_actions_success",
+      payload: findAcceptedUserActions(allUserActions),
+    });
     const achievements = getCompleteCategoryArrays(
       actionsWithoutUserActions,
       allUserActions,
@@ -220,6 +244,18 @@ const UserProvider = ({
     };
     addUserAction();
   }, [state.getInitialUserAction.isLoading]);
+
+  useEffect(() => {
+    const countUserActions = () => {
+      if (state.getInitialUserAction.isSuccess) {
+        dispatch({
+          type: "update_no_of_accepted_actions_success",
+          payload: findAcceptedUserActions(state.data.userActions),
+        });
+      }
+    };
+    countUserActions();
+  }, [state.getInitialUserAction.isSuccess]);
 
   useEffect(() => {
     const addColumns = () => {

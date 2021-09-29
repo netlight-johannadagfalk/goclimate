@@ -18,7 +18,7 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
   const climateActionsText = useClimateActionsText();
 
   return (
-    <div className="mt-4 mx-6 flex flex-col text-center">
+    <div className="mt-1 mx-6 flex flex-col text-center">
       <div className="flex-1 justify-center text-left">
         <p className="text-sm">
           {userAction.description.length > 200
@@ -26,7 +26,7 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
             : userAction.description}
         </p>
       </div>
-      <div className="flex-1 justify-center mt-4">
+      <div className="flex-1 justify-center mt-4 mb-2">
         <button
           className=" mr-4 fas fa-trash-alt h-4 w-4 focus:outline-none"
           onClick={() =>

@@ -20,7 +20,7 @@ const AchievementCardExpanded = ({ achievement }) => {
 
   return (
     <div>
-      <div className="mb-4 mt-5 ml-7 mr-4">
+      <div className="mb-4 ml-7 mr-4">
         {actions.map((action) => {
           return (
             <div className="group flex items-center mt-1 mb-3" key={action.id}>

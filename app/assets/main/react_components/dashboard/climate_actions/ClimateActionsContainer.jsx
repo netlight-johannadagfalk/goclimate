@@ -24,8 +24,7 @@ const ClimateActionsContainer = ({
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
 
-  const { data: data, getInitialData: getInitialData } = useUserState();
-  const userActions = data.userActions;
+  const { getInitialData: getInitialData } = useUserState();
 
   const [monthlyAction, setMonthlyAction] = useState(
     totClimateActions.find((action) => action.action_of_the_month === true)
@@ -48,10 +47,10 @@ const ClimateActionsContainer = ({
     let filteredLocalUserActions = climateActions.filter(
       (action) => action.id === actionID
     );
-    let tempArray = [...localUserActions, filteredLocalUserActions];
+    let tempArray = [...localUserActions, ...filteredLocalUserActions];
     if (deletedAction) {
       const localUserActionsWithoutDeleted = tempArray.filter(
-        (action) => action[0].id !== deletedAction
+        (action) => action.id !== deletedAction
       );
       tempArray = localUserActionsWithoutDeleted;
     }
@@ -87,8 +86,7 @@ const ClimateActionsContainer = ({
           )}
           <ManageUserActions
             categories={climateActionCategories}
-            userActions={userActions}
-          />
+          ></ManageUserActions>
         </>
       )}
     </>

@@ -23,10 +23,10 @@
         </tr>
         <tr>
           <th>Times performed:</th>
-          <% if @action_of_the_month_number_of_times_completed.nil? %>
-          <td> No one have completed this action</td>
+          <% if @action_of_the_month_number_of_times_performed.nil? %>
+          <td> No one have performed this action</td>
           <% else %>
-          <td><%= @action_of_the_month_number_of_times_completed %></td>
+          <td><%= @action_of_the_month_number_of_times_performed %></td>
           <% end%>
         </tr>
       </table> 

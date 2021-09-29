@@ -32,9 +32,9 @@ const membershipAchievement = (userSubscriptionType) => {
   return res;
 };
 
-const findCategory = (performedColumn, item) => {
-  return performedColumn.find(
-    (performedItem) => item.climate_action_category_id == performedItem.id
+const findCategory = (achievementColumn, item) => {
+  return achievementColumn.find(
+    (performedAction) => item.climate_action_category_id == performedAction.id
   );
 };
 
@@ -95,7 +95,7 @@ export const getCompleteCategoryArrays = (
 
 export const handleAchievementsOnMove = (
   movedItem,
-  performedColumn,
+  achievementColumn,
   climateActionCategories,
   userActions,
   actionsWithoutUserActions,
@@ -105,7 +105,7 @@ export const handleAchievementsOnMove = (
   const filterDuplicatesNames = (arrVal, othVal) => {
     return arrVal.name === othVal.name;
   };
-  const category = findCategory(performedColumn, movedItem);
+  const category = findCategory(achievementColumn, movedItem);
   if (category !== undefined) {
     movedItem.status = true;
     const updatedUserItemsArray = category.userActionsArray.filter((action) => {
@@ -114,7 +114,8 @@ export const handleAchievementsOnMove = (
     const updatedActionItemsArray = category.actionsArray.filter((action) => {
       return action.name != movedItem.name;
     });
-    const resultArray = performedColumn.map((performedCategory) => {
+
+    const resultArray = achievementColumn.map((performedCategory) => {
       return performedCategory.id === category.id
         ? {
             ...performedCategory,
@@ -179,8 +180,7 @@ export const handleAchievementsOnMove = (
       actionsArray: newCombinedActionsArray.filter((action) => !action.user_id),
       id: newCategory.id.toString(),
     };
-
-    const resultArray = [...performedColumn, updatedAchievements];
+    const resultArray = [...achievementColumn, updatedAchievements];
 
     return resultArray;
   }

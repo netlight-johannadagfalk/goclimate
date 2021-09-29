@@ -48,10 +48,10 @@ const KanbanCard = ({
       {(provided, snapshot) => {
         return (
           <div
-            className={`rounded-lg h-20 space-y-3 mb-2 focus:outline-none relative justify-center ${
+            className={`rounded-lg h-20 space-y-3 mb-2 focus:outline-none duration-500 transistion transform border border-gray-tint-2 ${
               sidebarCollapsed
-                ? "d:w-24"
-                : "w-80 border border-gray-tint-2 mx-5"
+                ? "d:w-24 border-none ml-1"
+                : "w-72 d:w-auto mx-5"
             }
             ${item.expanded ? "h-auto" : "w-24"}`}
             ref={provided.innerRef}
@@ -66,33 +66,31 @@ const KanbanCard = ({
                   )
             }
           >
-            {sidebarCollapsed ? (
-              <KanbanCardImage
-                img={isAchievement ? item.badge_image_url : item.image_url}
-                sidebarCollapsed={sidebarCollapsed}
-                isUserAction={isAchievement ? false : true}
-              ></KanbanCardImage>
-            ) : isAchievement ? (
-              <AchievementCard
-                categories={categories}
-                achievement={item}
-                sidebarCollapsed={sidebarCollapsed}
-              ></AchievementCard>
-            ) : (
-              <UserActionCard
-                categoryColor={categoryName(
-                  categories,
-                  item.climate_action_category_id,
-                  isAchievement
-                )}
-                userAction={item}
-                handleDelete={handleDelete}
-                sidebarCollapsed={sidebarCollapsed}
-              ></UserActionCard>
-            )}
+            <KanbanCardImage
+              img={isAchievement ? item.badge_image_url : item.image_url}
+              isUserAction={isAchievement ? false : true}
+            ></KanbanCardImage>
 
             {!sidebarCollapsed && (
               <div>
+                {isAchievement ? (
+                  <AchievementCard
+                    categories={categories}
+                    achievement={item}
+                    sidebarCollapsed={sidebarCollapsed}
+                  ></AchievementCard>
+                ) : (
+                  <UserActionCard
+                    categoryColor={categoryName(
+                      categories,
+                      item.climate_action_category_id,
+                      isAchievement
+                    )}
+                    userAction={item}
+                    handleDelete={handleDelete}
+                    sidebarCollapsed={sidebarCollapsed}
+                  ></UserActionCard>
+                )}
                 <div
                   className="flex flex-row h-14 w-full top-0 mt-6 absolute justify-center focus:outline-none"
                   onClick={() => handleExpanded(item, !item.expanded)}
