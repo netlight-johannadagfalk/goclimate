@@ -1,5 +1,5 @@
 import React from 'react';
-import blobImage from '../../../../../images/blob_5.svg';
+import blobImage from '../../../../../../../../assets/images/shapes/blob_5.svg';
 import { useTexts } from '../../../contexts/TextsContext.js';
 
 const MoneyUsageList = () => {

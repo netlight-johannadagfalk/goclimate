@@ -7,21 +7,25 @@ import CategoryChart from './components/CategoryChart.jsx';
 const CategoryPage = ({ footprint }) => {
   const {
     reactContentText: {
-      category_chart: { title, desc },
-      public_emissions,
+      category_page: {
+        category_chart: { title, desc },
+        public_emissions,
+      },
     },
   } = useTexts();
 
   return (
-    <div className="max-w-lg mx-auto">
-      <Title custom_style="text-lgr" text={title} />
-      <Preamble text={desc} />
-      <CategoryChart footprint={footprint} />
-      <br></br>
-      <div className="text-left">
-        <Preamble text={public_emissions} />
+    <>
+      <Title customStyle="text-lgr" text={title} />
+      <div className="max-w-lg mx-auto">
+        <Preamble text={desc} />
+        <CategoryChart footprint={footprint} />
+        <br></br>
+        <div className="text-left">
+          <Preamble text={public_emissions} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
