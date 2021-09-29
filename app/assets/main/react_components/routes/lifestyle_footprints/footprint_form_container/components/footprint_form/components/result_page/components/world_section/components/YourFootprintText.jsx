@@ -10,10 +10,12 @@ const YourFootprintText = ({ footprintValue, priceObject }) => {
       tonnes,
     },
     reactContentText: {
-      your_footprint_result_text: {
-        text_part_before,
-        text_part_middle,
-        text_part_end,
+      world_page: {
+        your_footprint_result_text: {
+          text_part_before,
+          text_part_middle,
+          text_part_end,
+        },
       },
     },
   } = useTexts();
