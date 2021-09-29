@@ -14,7 +14,7 @@ const InformationSection = () => {
           <LatestProjectsList />
         </>
       )}
-      <div className="mt-24">
+      <div className="mt-14">
         <FAQ />
       </div>
     </div>
