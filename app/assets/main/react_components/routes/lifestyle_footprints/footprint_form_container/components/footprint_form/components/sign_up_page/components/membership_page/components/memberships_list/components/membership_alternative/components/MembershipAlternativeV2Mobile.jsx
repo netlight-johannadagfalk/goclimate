@@ -36,48 +36,61 @@ const MembershipAlternativeV2Mobile = ({
     <>
       <div className={style + 'p-2'}>
         <label htmlFor={type}>
-          <div className="m-2">
-            <div className="text-center font-bold">
-              <span>{title}</span>
+          <div className="w-full block m-xs:hidden mb-2">{title}</div>
+          <div className="flex flex-col m-xs:flex-row">
+            <div className="flex-wrap content-center hidden m-xs:flex pr-0 m-xxs:pr-3">
+              <input
+                style={{
+                  height: '15px',
+                  width: '15px',
+                }}
+                type="radio"
+                name="membership_mobile"
+                id={type}
+                checked={selectedMembership === type}
+                value={type}
+                onChange={() => setSelectedMembership(type)}
+              />
             </div>
-          </div>
-          <div className="text-center">
-            <span className="text-sm mt-2 mb-4 px-1">{sellingPoint}</span>
-            <br></br>
-            {type == 'multi' ? (
-              <div className="my-1 grid grid-flow-col justify-items-stretch self-center">
-                <div className="justify-self-end my-2">
-                  <MembershipDropdown
-                    multipleOffsets={multipleOffsets}
-                    setMultipleOffsets={setMultipleOffsets}
-                  />
+            <div className="flex w-full justify-between flex-col m-xs:flex-row">
+              <div className="">
+                <div className="flex flex-col pr-2 m-xs:pr-0">
+                  <div className="mb-2 hidden m-xs:block">{title}</div>
+                  <div
+                    className={
+                      'text-sm ' +
+                      (type !== 'free' && 'pr-0 m-xs:pr-2 pb-2 m-xs:pb-0')
+                    }
+                  >
+                    {sellingPoint}
+                  </div>
                 </div>
-                <div className="justify-self-start self-center m-4 pl-4 p-1">
+              </div>
+              {type !== 'free' && (
+                <div className="flex flex-wrap content-center pr-0 m-xs:pr-2">
                   <PriceTextV2
                     price={price}
                     grantedReferralCode={grantedReferralCode}
                     selectedMembership={type}
+                    textStyle={'text-sm w-auto m-xs:w-max ml-auto'}
+                    style="w-full text-right"
+                    forMobileLayout={true}
                   />
+                  {type === 'multi' && (
+                    <div className="w-full text-right">
+                      <MembershipDropdown
+                        multipleOffsets={multipleOffsets}
+                        setMultipleOffsets={(dropdownValue) => {
+                          setSelectedMembership(type);
+                          setMultipleOffsets(dropdownValue);
+                        }}
+                        style="py-0"
+                      />
+                    </div>
+                  )}
                 </div>
-              </div>
-            ) : (
-              <div className="m-4">
-                <PriceTextV2
-                  price={price}
-                  grantedReferralCode={grantedReferralCode}
-                  selectedMembership={type}
-                />
-              </div>
-            )}
-            <input
-              className="width: 1em"
-              type="radio"
-              name="membership_mobile"
-              id={type}
-              checked={selectedMembership === type}
-              value={type}
-              onChange={() => setSelectedMembership(type)}
-            />
+              )}
+            </div>
           </div>
         </label>
       </div>

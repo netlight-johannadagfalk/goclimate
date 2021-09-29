@@ -22,10 +22,10 @@ const MembershipAlternativeV2 = ({
   } = useSession();
 
   const style =
-    'my-6 t:my-0 rounded content-between relative m-1 h-full ' +
+    'my-6 t:my-0 rounded content-between relative m-1 h-full shadow-lg border-2 ' +
     (type === selectedMembership
-      ? 'bg-green-tint-1 border-2 '
-      : ' border border-gray-tint-2 ');
+      ? ' bg-green-tint-1 '
+      : ' border-gray-tint-1 ');
 
   const price = calculatePrice(
     result.plan.price,

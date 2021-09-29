@@ -1,7 +1,14 @@
 import React from 'react';
 import { useTexts } from '../../../../../contexts/TextsContext.js';
 
-const PriceTextV2 = ({ grantedReferralCode, selectedMembership, price }) => {
+const PriceTextV2 = ({
+  grantedReferralCode,
+  selectedMembership,
+  price,
+  style = 'mt-2 mb-1',
+  textStyle = '',
+  forMobileLayout = false,
+}) => {
   const {
     commonText: {
       months: { one },
@@ -10,26 +17,30 @@ const PriceTextV2 = ({ grantedReferralCode, selectedMembership, price }) => {
   } = useTexts();
 
   return (
-    <div className="justify-self-end t:w-full">
+    <div className={'justify-self-end t:w-full ' + style}>
       {grantedReferralCode !== '' && selectedMembership !== 'free' ? (
-        <div id="freeMonth" className="py-6 space-y-1">
-          <p className="text-base font-bold text-center">
-            <span>{first_month_free}</span>
-          </p>
-          <p className="font-bold text-center text-sm">
-            {then} <span>{price}</span>/{one}
-          </p>
+        <div
+          id="freeMonth"
+          className={
+            'font-bold text-sm ' +
+            (!forMobileLayout
+              ? 'text-center space-y-1 pb-1'
+              : 'w-max ml-auto pb-2')
+          }
+        >
+          {first_month_free}
+          <br />
+          {then} {price}/{one}
         </div>
       ) : (
-        <div id="showPrice" className="t:mt-6 d:mt-0 t:py-6 t:pb-4 t:space-y-1">
-          <div className="text-base font-bold t:text-center">
+        <div id="showPrice" className="mb-2 t:mb-0 d:mb-2">
+          <div className={'font-bold t:text-center ' + textStyle}>
             <span>
               {selectedMembership === 'free' ? (
                 <span className="show-on-desktop d:inline">{price_free}</span>
               ) : (
-                <div className="d:h-3">
-                  <span>{price}</span>
-                  <br className="hidden-on-desktop"></br>/{one}
+                <div>
+                  <span>{price}</span>/{one}
                 </div>
               )}
             </span>
