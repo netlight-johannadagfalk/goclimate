@@ -8,6 +8,8 @@ import { useMediaQuery } from "react-responsive";
 import { d } from "../../../constants";
 import "react-dropdown/style.css";
 
+import { useClimateActionsText } from "../../../contexts/TextContext.js";
+
 const CarouselContainer = ({
   user,
   updateLocalAccepted,
@@ -20,6 +22,7 @@ const CarouselContainer = ({
   const category = useCategory();
   const totClimateActions = useClimateActionsOriginal();
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${d})` });
+  const climateActionsText = useClimateActionsText();
 
   const showFilterButton = (cat) => {
     return totClimateActions.some(
@@ -42,7 +45,7 @@ const CarouselContainer = ({
         ) : (
           <>
             <CarouselCategoryButton
-              categoryName={"All categories"}
+              categoryName={climateActionsText.all_categories}
               categoryID={"allCategories"}
               active={allCategories}
               setPopular={setPopular}
@@ -51,7 +54,7 @@ const CarouselContainer = ({
             />
             {actionsToplist.length > 0 && (
               <CarouselCategoryButton
-                categoryName={"Popular"}
+                categoryName={climateActionsText.popular}
                 categoryID={"popular"}
                 active={popular}
                 setPopular={setPopular}

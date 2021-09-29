@@ -5,6 +5,8 @@ import {
 } from "../../../contexts/ClimateActionsContext";
 import { useCategoryUpdate } from "../../../contexts/CategoryContext";
 
+import { useClimateActionsText } from "../../../contexts/TextContext.js";
+
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { useUserState } from "../../../contexts/UserContext";
@@ -25,9 +27,11 @@ const CarouselCategoryButton = ({
   const { data: data } = useUserState();
   const userActions = data.userActions;
 
+  const climateActionsText = useClimateActionsText();
+
   let options = [
-    { value: "allCategories", label: "All categories" },
-    { value: "popular", label: "Popular" },
+    { value: "allCategories", label: climateActionsText.all_categories },
+    { value: "popular", label: climateActionsText.popular },
   ];
 
   const categoryColor = () => {
@@ -100,7 +104,7 @@ const CarouselCategoryButton = ({
       {categories ? (
         <div className="mx-5">
           <Dropdown
-            placeholder="All categories"
+            placeholder={climateActionsText.all_categories}
             controlClassName={"dropdown-control"}
             arrowClosed={<i className="fas fa-chevron-down" />}
             arrowOpen={<i className="fas fa-chevron-up" />}
