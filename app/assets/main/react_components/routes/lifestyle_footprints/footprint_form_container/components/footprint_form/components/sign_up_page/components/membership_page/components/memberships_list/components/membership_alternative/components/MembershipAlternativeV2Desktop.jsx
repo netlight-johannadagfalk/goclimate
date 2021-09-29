@@ -37,14 +37,15 @@ const MembershipAlternativeV2Desktop = ({
         <label htmlFor={type}>
           <div className="m-2 cursor-pointer pb-14 h-full">
             <div className="h-2/5">
-              <div className="h-1/3 mt-3 text-center">
+              <div className="h-2/5 d:h-1/3 text-center">
                 <span>{title}</span>
               </div>
-              <div className="h-2/3 content-center flex flex-wrap">
+              <div className="flex flex-wrap mt-2 d:mt-4">
                 <PriceTextV2
                   price={price}
                   grantedReferralCode={grantedReferralCode}
                   selectedMembership={type}
+                  style={'mt-0 mb-1'}
                 />
                 {type == 'multi' && (
                   <div className="text-center w-full ">
@@ -54,12 +55,18 @@ const MembershipAlternativeV2Desktop = ({
                         setSelectedMembership(type);
                         setMultipleOffsets(dropdownValue);
                       }}
+                      style={'py-0'}
                     />
                   </div>
                 )}
               </div>
             </div>
-            <div className="ml-4 mt-3 space-y-2">
+            <div
+              className={
+                'ml-4 space-y-2 ' +
+                (grantedReferralCode !== '' && 'pt-2 t:pt-4')
+              }
+            >
               <ul className="list-disc">
                 {Object.keys(sellingPoints).map((point) => (
                   <li className="text-sm text-left leading-3 mb-2" key={point}>
@@ -72,8 +79,8 @@ const MembershipAlternativeV2Desktop = ({
               <input
                 className="flex-shrink-0"
                 style={{
-                  height: '25px',
-                  width: '25px',
+                  height: '20px',
+                  width: '20px',
                 }}
                 type="radio"
                 name="membership_desktop"

@@ -1,12 +1,16 @@
 import React from 'react';
 
-const MembershipDropdown = ({ multipleOffsets, setMultipleOffsets }) => {
+const MembershipDropdown = ({
+  multipleOffsets,
+  setMultipleOffsets,
+  style = 'py-1',
+}) => {
   return (
     <div className="select-wrapper flex-shrink-0">
       <select
         value={multipleOffsets}
         onChange={(e) => setMultipleOffsets(e.target.value)}
-        className="select border py-1 pl-2"
+        className={'select border pl-2 ' + style}
         name="people"
         id="people"
         style={{
