@@ -8,9 +8,24 @@ sv:
         my_actions: Mina Utmaningar
         achievements: Utmärkelser
         accept: Acceptera
-        accepted: Accepterad
+        accepted: Accepterat
         new_calculation: Ny beräkning
         previous_footprints: Se tidigare klimatavtryck
         balance_footprint: Balansera ditt klimatavtryck
         how_calculate: Hur har vi räknat?
         action_performed: Avklarat!
+        statistics_11: Du och
+        statistics_12: "andra har:"
+        statistics_21: "Du har:"
+        statistics_22: ""
+        statistics_31: Gör som
+        statistics_32: "andra:"
+        statistics_41: Gör som
+        statistics_42: "annan:"
+        statistics_51: "Bli den första att:"
+        statistics_52: ""
+        all_categories: Alla kategorier
+        popular: Populära
+        mascot_1: Ta ansvar och
+        mascot_2: acceptera en utmaning!
+        empty_achievements_column: Dra dina genomförda utmaningar hit

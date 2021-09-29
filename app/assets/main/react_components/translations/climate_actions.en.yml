@@ -14,3 +14,18 @@ en:
         balance_footprint: Balance your footprint
         how_calculate: How do we calculate?
         action_performed: I did it!
+        statistics_11: You and
+        statistics_12: "more have:"
+        statistics_21: "You have:"
+        statistics_22: ""
+        statistics_31: Do as
+        statistics_32: "others:"
+        statistics_41: Do as
+        statistics_42: "other:"
+        statistics_51: "Be the first one to:"
+        statistics_52: ""
+        all_categories: All categories
+        popular: Popular
+        mascot_1: Take action and
+        mascot_2: accept an action!
+        empty_achievements_column: Drag your finished actions here
