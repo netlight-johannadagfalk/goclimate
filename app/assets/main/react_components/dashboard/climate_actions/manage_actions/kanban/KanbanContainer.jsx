@@ -14,7 +14,7 @@ import {
   collectPerformedUserActions,
 } from "../../../../helpers/KanbanHelper.js";
 
-const KanbanActionContainer = ({
+const KanbanContainer = ({
   sidebarCollapsed,
   setSidebarCollapsed,
   categories,
@@ -140,4 +140,4 @@ const KanbanActionContainer = ({
   );
 };
 
-export default KanbanActionContainer;
+export default KanbanContainer;
