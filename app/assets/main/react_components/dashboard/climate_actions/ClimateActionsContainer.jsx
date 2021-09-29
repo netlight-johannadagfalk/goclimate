@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import CarouselContainer from "./carousel/CarouselContainer.jsx";
+import React, { useEffect, useState } from 'react';
+import CarouselContainer from './carousel/CarouselContainer.jsx';
 import {
   useDeletedAction,
   useDeletedActionUpdate,
-} from "../../contexts/DeletedActionContext.js";
+} from '../../contexts/DeletedActionContext.js';
 import {
   useClimateActions,
   useClimateActionsUpdate,
   useClimateActionsOriginal,
-} from "../../contexts/ClimateActionsContext.js";
-import { useUserState } from "../../contexts/UserContext.js";
-import MainInfo from "../footprint/MainInfo.jsx";
-import ManageUserActions from "./manage_actions/ManageUserActions.jsx";
+} from '../../contexts/ClimateActionsContext.js';
+import { useUserState } from '../../contexts/UserContext.js';
+import MainInfo from '../footprint/MainInfo.jsx';
+import ManageUserActions from './manage_actions/ManageUserActions.jsx';
 
 const ClimateActionsContainer = ({
   user,

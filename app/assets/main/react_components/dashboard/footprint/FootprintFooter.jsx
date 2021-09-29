@@ -1,6 +1,6 @@
-import React from "react";
-import { useFootprint } from "../../contexts/FootprintContext.js";
-import { useClimateActionsText } from "../../contexts/TextContext.js";
+import React from 'react';
+import { useFootprint } from '../../contexts/FootprintContext.js';
+import { useClimateActionsText } from '../../contexts/TextContext.js';
 
 const FootprintFooter = () => {
   const { footprint, totalNoFootprints } = useFootprint();
@@ -11,13 +11,13 @@ const FootprintFooter = () => {
       <a
         href={
           footprint.country
-            ? "/calculator?country=" + footprint.country.data.alpha2
-            : "/"
+            ? '/calculator?country=' + footprint.country.data.alpha2
+            : '/'
         }
         className="button"
       >
         <i className="fas fa-plus" aria-hidden="true"></i>
-        {" " + climateActionsText.new_calculation}
+        {' ' + climateActionsText.new_calculation}
       </a>
       {totalNoFootprints && (
         <div className="inline-block">

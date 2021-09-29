@@ -1,5 +1,5 @@
-import React from "react";
-import { useFootprint } from "../../contexts/FootprintContext.js";
+import React from 'react';
+import { useFootprint } from '../../contexts/FootprintContext.js';
 
 /**
  * Description of the result including calculations of relevant numbers
@@ -36,10 +36,10 @@ const ResultText = () => {
   const relativeText =
     footprintCo2e.value > countryAverageCo2e.value
       ? Math.ceil((footprintCo2e.value / countryAverageCo2e.value - 1) * 100) +
-        " % " +
+        ' % ' +
         registrationsText.higher
       : Math.ceil((1 - footprintCo2e.value / countryAverageCo2e.value) * 100) +
-        " % " +
+        ' % ' +
         registrationsText.lower;
   let resultText = countryAverage.countries
     ? yourClimateFootprint

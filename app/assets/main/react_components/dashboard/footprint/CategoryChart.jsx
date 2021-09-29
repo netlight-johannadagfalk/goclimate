@@ -1,7 +1,7 @@
-import React from "react";
-import getChartData from "../../helpers/ResultHelper.js";
-import ResultBar from "./ResultBar.jsx";
-import { useFootprint } from "../../contexts/FootprintContext.js";
+import React from 'react';
+import getChartData from '../../helpers/ResultHelper.js';
+import ResultBar from './ResultBar.jsx';
+import { useFootprint } from '../../contexts/FootprintContext.js';
 /**
  * Container to display a ResultBar for each category co2e of the footprint
  */
@@ -33,13 +33,13 @@ const CategoryChart = ({ categoryChartText }) => {
                 ((category.co2e / 1000).toFixed(1) > 0
                   ? (category.co2e / 1000).toFixed(1)
                   : 0) +
-                " " +
-                categoryChartText["tonnes"]
+                ' ' +
+                categoryChartText['tonnes']
               }
               color={category.color}
-              fontWeight={"text-sm"}
-              spaceStyling={"space-y-1"}
-              spanWidth={"w-24"}
+              fontWeight={'text-sm'}
+              spaceStyling={'space-y-1'}
+              spanWidth={'w-24'}
             />
           );
         })}

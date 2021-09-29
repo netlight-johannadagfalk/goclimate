@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import CarouselHeader from "./CarouselHeader.jsx";
-import CarouselList from "./CarouselList.jsx";
-import CarouselCategoryButton from "./CarouselCategoryButton.jsx";
-import { useCategory } from "../../../contexts/CategoryContext.js";
-import { useClimateActionsOriginal } from "../../../contexts/ClimateActionsContext";
-import { useMediaQuery } from "react-responsive";
-import { d } from "../../../constants";
-import "react-dropdown/style.css";
+import React, { useState } from 'react';
+import CarouselHeader from './CarouselHeader.jsx';
+import CarouselList from './CarouselList.jsx';
+import CarouselCategoryButton from './CarouselCategoryButton.jsx';
+import { useCategory } from '../../../contexts/CategoryContext.js';
+import { useClimateActionsOriginal } from '../../../contexts/ClimateActionsContext';
+import { useMediaQuery } from 'react-responsive';
+import { d } from '../../../constants';
+import 'react-dropdown/style.css';
 
-import { useClimateActionsText } from "../../../contexts/TextContext.js";
+import { useClimateActionsText } from '../../../contexts/TextContext.js';
 
 const CarouselContainer = ({
   user,
@@ -46,7 +46,7 @@ const CarouselContainer = ({
           <>
             <CarouselCategoryButton
               categoryName={climateActionsText.all_categories}
-              categoryID={"allCategories"}
+              categoryID={'allCategories'}
               active={allCategories}
               setPopular={setPopular}
               setAllCategories={setAllCategories}
@@ -55,7 +55,7 @@ const CarouselContainer = ({
             {actionsToplist.length > 0 && (
               <CarouselCategoryButton
                 categoryName={climateActionsText.popular}
-                categoryID={"popular"}
+                categoryID={'popular'}
                 active={popular}
                 setPopular={setPopular}
                 setAllCategories={setAllCategories}

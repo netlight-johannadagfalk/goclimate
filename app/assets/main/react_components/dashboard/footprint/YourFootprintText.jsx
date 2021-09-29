@@ -1,5 +1,5 @@
-import React from "react";
-import ResultText from "./ResultText.jsx";
+import React from 'react';
+import ResultText from './ResultText.jsx';
 
 /**
  * Result text for your footprint

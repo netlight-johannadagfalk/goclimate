@@ -18,12 +18,12 @@ export const columnUserActions = (
 ) => {
   return {
     [1]: {
-      id: "Accepted",
+      id: 'Accepted',
       name: climateActionsText.my_actions,
       items: acceptedList,
     },
     [2]: {
-      id: "Performed",
+      id: 'Performed',
       name: climateActionsText.achievements,
       items: doneList,
     },

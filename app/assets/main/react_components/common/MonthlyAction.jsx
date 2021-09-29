@@ -1,7 +1,7 @@
-import React from "react";
-import CarouselCard from "../dashboard/climate_actions/carousel/CarouselCard.jsx";
-import { useClimateActionsText } from "../contexts/TextContext.js";
-import TextBanner from "./TextBanner.jsx";
+import React from 'react';
+import CarouselCard from '../dashboard/climate_actions/carousel/CarouselCard.jsx';
+import { useClimateActionsText } from '../contexts/TextContext.js';
+import TextBanner from './TextBanner.jsx';
 
 const MonthlyAction = ({ action, user, updateLocalAccepted, categories }) => {
   const climateActionsText = useClimateActionsText();

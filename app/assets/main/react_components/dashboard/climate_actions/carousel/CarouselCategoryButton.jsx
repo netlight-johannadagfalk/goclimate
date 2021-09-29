@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 import {
   useClimateActionsOriginal,
   useClimateActionsUpdate,
-} from "../../../contexts/ClimateActionsContext";
-import { useCategoryUpdate } from "../../../contexts/CategoryContext";
+} from '../../../contexts/ClimateActionsContext';
+import { useCategoryUpdate } from '../../../contexts/CategoryContext';
 
-import { useClimateActionsText } from "../../../contexts/TextContext.js";
+import { useClimateActionsText } from '../../../contexts/TextContext.js';
 
-import Dropdown from "react-dropdown";
-import "react-dropdown/style.css";
-import { useUserState } from "../../../contexts/UserContext";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+import { useUserState } from '../../../contexts/UserContext';
 
 const CarouselCategoryButton = ({
   categoryName,
@@ -30,17 +30,17 @@ const CarouselCategoryButton = ({
   const climateActionsText = useClimateActionsText();
 
   let options = [
-    { value: "allCategories", label: climateActionsText.all_categories },
-    { value: "popular", label: climateActionsText.popular },
+    { value: 'allCategories', label: climateActionsText.all_categories },
+    { value: 'popular', label: climateActionsText.popular },
   ];
 
   const categoryColor = () => {
     if (!categories) {
       return active
-        ? "category_" +
-            categoryName.toLowerCase().replace(/ /g, "_") +
-            "_active"
-        : "category_" + categoryName.toLowerCase().replace(/ /g, "_");
+        ? 'category_' +
+            categoryName.toLowerCase().replace(/ /g, '_') +
+            '_active'
+        : 'category_' + categoryName.toLowerCase().replace(/ /g, '_');
     }
   };
 
@@ -52,10 +52,10 @@ const CarouselCategoryButton = ({
 
   const handleCategory = (categoryID) => {
     let filteredActions = [];
-    if (categoryID === "popular") {
+    if (categoryID === 'popular') {
       handleCategoryClick(true, false);
       filteredActions = actionsToplist.slice(0, 5);
-    } else if (categoryID === "allCategories") {
+    } else if (categoryID === 'allCategories') {
       handleCategoryClick(false, true);
       filteredActions = totClimateActions;
     } else {
@@ -105,7 +105,7 @@ const CarouselCategoryButton = ({
         <div className="mx-5">
           <Dropdown
             placeholder={climateActionsText.all_categories}
-            controlClassName={"dropdown-control"}
+            controlClassName={'dropdown-control'}
             arrowClosed={<i className="fas fa-chevron-down" />}
             arrowOpen={<i className="fas fa-chevron-up" />}
             options={options}
@@ -117,8 +117,8 @@ const CarouselCategoryButton = ({
         <button
           className={`${categoryColor()} rounded-full py-1 px-4 button inline-block focus:outline-none m-1 ${
             active
-              ? "category_unknown_active text-white"
-              : "category_unknown hover:text-white hover:bg-opacity-80"
+              ? 'category_unknown_active text-white'
+              : 'category_unknown hover:text-white hover:bg-opacity-80'
           } `}
           onClick={() => !active && handleCategory(categoryID)}
         >

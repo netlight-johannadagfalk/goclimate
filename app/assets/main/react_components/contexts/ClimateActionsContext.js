@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { shuffle } from "lodash";
+import React, { useState, useContext } from 'react';
+import { shuffle } from 'lodash';
 
 const ClimateActionsContext = React.createContext();
 const ClimateActionsUpdateContext = React.createContext();

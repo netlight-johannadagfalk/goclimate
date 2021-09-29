@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 const ProgressBar = ({ categories, item, userActions, actions }) => {
   const categoriesWithMembershipAchievement = [
     ...categories,
-    { id: "-1", name: "Climate Friend" },
+    { id: '-1', name: 'Climate Friend' },
   ];
   const categoryName = (categories) => {
     for (let i = 0; i <= Object.keys(categories).length - 1; i++) {
@@ -11,7 +11,7 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
         return categories[i].name.toString();
       }
     }
-    return "unknown";
+    return 'unknown';
   };
 
   const total = userActions.length + actions.length;
@@ -27,18 +27,18 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
       <div className="h-3 w-2/5 bg-gray-tint-2 bg-opacity-70 rounded-lg">
         <div
           className={`h-3  ${
-            "w-" + completed + "/" + total
+            'w-' + completed + '/' + total
           } rounded-lg text-right ${
-            "category_" +
+            'category_' +
             categoryName(categoriesWithMembershipAchievement)
               .toLowerCase()
-              .replace(/ /g, "_") +
-            "_active"
+              .replace(/ /g, '_') +
+            '_active'
           }`}
         ></div>
       </div>
 
-      <span className="ml-5 text-sm">{`${completed + "/" + total}`}</span>
+      <span className="ml-5 text-sm">{`${completed + '/' + total}`}</span>
     </div>
   );
 };

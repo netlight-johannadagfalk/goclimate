@@ -1,6 +1,6 @@
-import React from "react";
-import ProgressBar from "./ProgressBar.jsx";
-import AchievementCardExpanded from "./AchievementCardExpanded.jsx";
+import React from 'react';
+import ProgressBar from './ProgressBar.jsx';
+import AchievementCardExpanded from './AchievementCardExpanded.jsx';
 
 const AchievementCard = ({ categories, achievement }) => {
   return (

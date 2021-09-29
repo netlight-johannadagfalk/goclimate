@@ -1,10 +1,10 @@
-import React from "react";
-import { useClimateActionsText } from ".././../../../../contexts/TextContext.js";
-import { handleCompleteActionOnClick } from "../../../../../helpers/KanbanHelper.js";
+import React from 'react';
+import { useClimateActionsText } from '.././../../../../contexts/TextContext.js';
+import { handleCompleteActionOnClick } from '../../../../../helpers/KanbanHelper.js';
 import {
   useUserState,
   useUserActions,
-} from "../../../../../contexts/UserContext.js";
+} from '../../../../../contexts/UserContext.js';
 
 const UserActionCardExpanded = ({ userAction, handleDelete }) => {
   const {
@@ -22,7 +22,7 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
       <div className="flex-1 justify-center text-left">
         <p className="text-sm">
           {userAction.description.length > 200
-            ? userAction.description.slice(0, 200) + "..."
+            ? userAction.description.slice(0, 200) + '...'
             : userAction.description}
         </p>
       </div>

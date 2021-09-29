@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
 const FootprintContext = React.createContext(undefined);
 
@@ -33,7 +33,7 @@ const useFootprint = () => {
   const context = useContext(FootprintContext);
   if (!context) {
     throw new Error(
-      "Please wrap component in FootprintProvider to use useFootprint"
+      'Please wrap component in FootprintProvider to use useFootprint'
     );
   }
 

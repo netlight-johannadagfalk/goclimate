@@ -1,5 +1,5 @@
-import React from "react";
-import { useClimateActionsText } from "../../../../contexts/TextContext.js";
+import React from 'react';
+import { useClimateActionsText } from '../../../../contexts/TextContext.js';
 
 const NumberOfAccepted = ({
   startText,
@@ -25,7 +25,7 @@ const NumberOfAccepted = ({
         <button
           className="button inline-block "
           disabled={disabled}
-          style={{ color: "rgba(28, 70, 55)" }}
+          style={{ color: 'rgba(28, 70, 55)' }}
         >
           {climateActionsText.accepted}
         </button>

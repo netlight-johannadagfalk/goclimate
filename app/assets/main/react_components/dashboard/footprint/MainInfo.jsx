@@ -1,7 +1,7 @@
-import React from "react";
-import FootprintContainer from "./FootprintContainer.jsx";
-import FootprintFooter from "./FootprintFooter.jsx";
-import MonthlyAction from "../../common/MonthlyAction.jsx";
+import React from 'react';
+import FootprintContainer from './FootprintContainer.jsx';
+import FootprintFooter from './FootprintFooter.jsx';
+import MonthlyAction from '../../common/MonthlyAction.jsx';
 
 const MainInfo = ({ action, user, updateLocalAccepted, categories }) => {
   return (

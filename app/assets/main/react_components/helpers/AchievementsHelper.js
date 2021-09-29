@@ -1,4 +1,4 @@
-import { uniqWith } from "lodash";
+import { uniqWith } from 'lodash';
 
 const filterCategoryRelatedUserActions = (filter, condition, status) => {
   return filter.filter(
@@ -16,14 +16,14 @@ const filterCategoryRelatedActions = (filter, condition) => {
 };
 const membershipAchievement = (userSubscriptionType) => {
   const res = {
-    id: "-1",
-    name: "Climate Friend",
-    badge_image_url: "/achievement_images/AchievementClimateFriendShadow.png",
+    id: '-1',
+    name: 'Climate Friend',
+    badge_image_url: '/achievement_images/AchievementClimateFriendShadow.png',
     userActionsArray: [
-      { id: "-2", name: "GoClimate free membership", status: true },
+      { id: '-2', name: 'GoClimate free membership', status: true },
       {
-        id: "-3",
-        name: "GoClimate paid membership",
+        id: '-3',
+        name: 'GoClimate paid membership',
         status: userSubscriptionType == true ? true : false,
       },
     ],
