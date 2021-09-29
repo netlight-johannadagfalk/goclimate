@@ -15,9 +15,13 @@ const MembershipAlternativeV2Mobile = ({
 }) => {
   const {
     reactContentText: {
-      memberships_v2: {
-        mobile: {
-          [type]: { title, selling_point },
+      sign_up_page: {
+        membership_page: {
+          memberships_v2: {
+            mobile: {
+              [type]: { title, selling_point },
+            },
+          },
         },
       },
     },
@@ -25,10 +29,7 @@ const MembershipAlternativeV2Mobile = ({
 
   var sellingPoint = selling_point;
   if (type === 'multi') {
-    sellingPoint = selling_point.replace(
-      /\d+/,
-      multipleOffsets.toString()
-    );
+    sellingPoint = selling_point.replace(/\d+/, multipleOffsets.toString());
   }
 
   return (
@@ -41,9 +42,7 @@ const MembershipAlternativeV2Mobile = ({
             </div>
           </div>
           <div className="text-center">
-            <span className="text-sm mt-2 mb-4 px-1">
-              {sellingPoint}
-            </span>
+            <span className="text-sm mt-2 mb-4 px-1">{sellingPoint}</span>
             <br></br>
             {type == 'multi' ? (
               <div className="my-1 grid grid-flow-col justify-items-stretch self-center">

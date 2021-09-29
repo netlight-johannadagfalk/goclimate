@@ -23,7 +23,9 @@ const RegistrationPage = ({
       sign_up_description,
     },
     reactContentText: {
-      registration_page: { preamble },
+      sign_up_page: {
+        registration_page: { preamble },
+      },
     },
   } = useTexts();
 

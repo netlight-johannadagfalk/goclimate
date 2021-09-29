@@ -10,13 +10,17 @@ const MembershipsList = ({
 }) => {
   const {
     reactContentText: {
-      memberships_v1: {
-        free_title,
-        free_desc,
-        single_title,
-        single_desc,
-        multi_title,
-        multi_desc,
+      sign_up_page: {
+        membership_page: {
+          memberships_v1: {
+            free_title,
+            free_desc,
+            single_title,
+            single_desc,
+            multi_title,
+            multi_desc,
+          },
+        },
       },
     },
   } = useTexts();

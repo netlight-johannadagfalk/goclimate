@@ -24,7 +24,9 @@ const MembershipPage = ({
       sign_up_description,
     },
     reactContentText: {
-      membership_page: { preamble },
+      sign_up_page: {
+        membership_page: { preamble },
+      },
     },
   } = useTexts();
 
