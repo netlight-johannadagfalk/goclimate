@@ -15,7 +15,6 @@ const CarouselCard = ({
   categories,
   monthlyActionBanner,
 }) => {
-  const currUser = JSON.parse(user);
   const { data: data } = useUserState();
   const { updateUserActions, updateColumnsWithFullFormat } = useUserActions();
 
@@ -45,7 +44,7 @@ const CarouselCard = ({
 
   const handleClickAccepted = (action) => {
     updateLocalAccepted(action.id);
-    updateAccepted(action, currUser, mounted, acceptAction);
+    updateAccepted(action, user, mounted.current, acceptAction);
   };
 
   useEffect(() => {
@@ -56,9 +55,9 @@ const CarouselCard = ({
   }, []);
 
   return (
-    <div className="flex flex-1 min-h-full">
-      <div className="pt-20 flex m-lg:pt-24 flex-1 justify-evenly">
-        <div className=" border-gray-tint-2 rounded-lg shadow-lg pb-2 ml-2 mr-2 flex flex-col flex-1 bg-white">
+    <div className="flex flex-1 min-h-full transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-102">
+      <div className="min-h-full pt-20 flex m-lg:pt-24 justify-evenly">
+        <div className="border-gray-tint-2 rounded-lg shadow-lg pb-2 mx-2 flex flex-col bg-white">
           <CategoryColorBanner categories={categories} action={action} />
           <div
             className={`mx-auto bg-gray-tint-2 bg-opacity-10 shadow-md -mt-24 rounded-full h-40 w-40 items-center justify-center bg-cover filter drop-shadow-xl`}
@@ -75,20 +74,16 @@ const CarouselCard = ({
           </div>
           <div className="flex flex-col flex-1 text-center mx-2">
             <ImpactPoints action={action} />
-            <div className="flex-1 justify-center align-center self-center">
-              <h3 className={`text-base font-bold self-center`}>
-                {action.name.length > 40
-                  ? action.name.slice(0, 40) + "..."
-                  : action.name}
-              </h3>
-            </div>
-            <div className="flex-4">
-              <p className="text-sm">
-                {action.description.length > 200
-                  ? action.description.slice(0, 200) + "..."
-                  : action.description}
-              </p>
-            </div>
+            <h3 className="flex-1 justify-center align-center text-base font-bold self-center">
+              {action.name.length > 40
+                ? action.name.slice(0, 40) + "..."
+                : action.name}
+            </h3>
+            <p className="flex-4 text-sm">
+              {action.description.length > 200
+                ? action.description.slice(0, 200) + "..."
+                : action.description}
+            </p>
             <div className="flex-1 mt-5 justify-center align-center">
               <AcceptanceStatistics action={action} />
               {!action.accepted && (

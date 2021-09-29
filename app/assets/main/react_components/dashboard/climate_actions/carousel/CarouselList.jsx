@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CarouselCard from "./CarouselCard.jsx";
 import { useClimateActions } from "../../../contexts/ClimateActionsContext.js";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -19,7 +19,6 @@ SwiperCore.use([Pagination, Navigation, Scrollbar]);
 const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
-
   const climateActions = useClimateActions();
   const isMobile = useMediaQuery({ query: `(max-width: ${m})` });
   const isLargeTablet = useMediaQuery({ query: `(max-width: ${d})` });
@@ -42,22 +41,26 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
     ? 3
     : 4;
 
-  const loopActions = actions.length > noOfItemsShown ? true : false;
+  const [loopActions, setLoopActions] = useState(
+    actions.length > noOfItemsShown ? true : false
+  );
   const hideArrows = isMobile || !loopActions ? true : false;
+
+  useEffect(() => {
+    actions.length > noOfItemsShown
+      ? setLoopActions(true)
+      : setLoopActions(false);
+  }, [climateActions]);
+
   return (
     <div className="relative overflow-visible">
       <Swiper
-        className="m-4"
         loop={loopActions}
         slidesPerView={noOfItemsShown}
-        navigation={
-          hideArrows
-            ? {
-                nextEl: navigationPrevRef.current,
-                prevEl: navigationNextRef.current,
-              }
-            : false
-        }
+        navigation={{
+          prevEl: ".prevButton",
+          nextEl: ".nextButton",
+        }}
         pagination={true}
         preventClicks={false}
         preventClicksPropagation={false}
@@ -90,24 +93,29 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      {!hideArrows && (
-        <div className="flex flex-row absolute z-10 top-1/2 w-full">
-          <div className="relative w-full">
-            <button
-              ref={navigationPrevRef}
-              className={
-                "rounded-full -left-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left absolute focus:outline-none"
-              }
-            />
-            <button
-              ref={navigationNextRef}
-              className={
-                "rounded-full -right-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-right absolute focus:outline-none"
-              }
-            />
-          </div>
+      <div
+        className={`flex flex-row absolute z-10 top-1/2 w-full ${
+          hideArrows ? "invisible" : ""
+        }
+        `}
+      >
+        <div className="relative w-full">
+          <button
+            ref={navigationPrevRef}
+            disabled={!loopActions}
+            className={
+              "rounded-full -left-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-left absolute focus:outline-none prevButton"
+            }
+          />
+          <button
+            ref={navigationNextRef}
+            disabled={!loopActions}
+            className={
+              "rounded-full -right-6 h-12 w-12 bg-white border border-gray-accent fas fa-chevron-right absolute focus:outline-none nextButton"
+            }
+          />
         </div>
-      )}
+      </div>
     </div>
   );
 };

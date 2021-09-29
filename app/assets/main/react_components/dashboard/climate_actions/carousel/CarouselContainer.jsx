@@ -8,6 +8,8 @@ import { useMediaQuery } from "react-responsive";
 import { d } from "../../../constants";
 import "react-dropdown/style.css";
 
+import { useClimateActionsText } from "../../../contexts/TextContext.js";
+
 const CarouselContainer = ({
   user,
   updateLocalAccepted,
@@ -20,17 +22,18 @@ const CarouselContainer = ({
   const category = useCategory();
   const totClimateActions = useClimateActionsOriginal();
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${d})` });
+  const climateActionsText = useClimateActionsText();
 
   const showFilterButton = (cat) => {
     return totClimateActions.some(
-      (temp) => temp.climate_action_category_id === cat.id
+      (action) => action.climate_action_category_id === cat.id
     );
   };
 
   return (
     <section className="section-padding">
       <CarouselHeader />
-      <div className="max-w-6xl mx-auto space-y-3 t:bg-transparent t:rounded-lg t:p-0 mt-4">
+      <div className="max-w-6xl mx-auto space-y-3 t:bg-transparent t:rounded-lg">
         {isTabletOrMobile ? (
           <CarouselCategoryButton
             categories={categories}
@@ -42,22 +45,24 @@ const CarouselContainer = ({
         ) : (
           <>
             <CarouselCategoryButton
-              categoryName={"All categories"}
+              categoryName={climateActionsText.all_categories}
               categoryID={"allCategories"}
               active={allCategories}
               setPopular={setPopular}
               setAllCategories={setAllCategories}
               localUserActions={localUserActions}
             />
-            <CarouselCategoryButton
-              categoryName={"Popular"}
-              categoryID={"popular"}
-              active={popular}
-              setPopular={setPopular}
-              setAllCategories={setAllCategories}
-              localUserActions={localUserActions}
-              actionsToplist={actionsToplist}
-            />
+            {actionsToplist.length > 0 && (
+              <CarouselCategoryButton
+                categoryName={climateActionsText.popular}
+                categoryID={"popular"}
+                active={popular}
+                setPopular={setPopular}
+                setAllCategories={setAllCategories}
+                localUserActions={localUserActions}
+                actionsToplist={actionsToplist}
+              />
+            )}
             {categories.map(
               (cat) =>
                 showFilterButton(cat) && (

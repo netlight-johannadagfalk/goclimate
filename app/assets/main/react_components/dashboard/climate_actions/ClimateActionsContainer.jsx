@@ -11,7 +11,7 @@ import {
 } from "../../contexts/ClimateActionsContext.js";
 import { useUserState } from "../../contexts/UserContext.js";
 import MainInfo from "../footprint/MainInfo.jsx";
-import ManageActions from "./manage_actions/ManageActions.jsx";
+import ManageUserActions from "./manage_actions/ManageUserActions.jsx";
 
 const ClimateActionsContainer = ({
   user,
@@ -24,8 +24,7 @@ const ClimateActionsContainer = ({
   const setClimateActions = useClimateActionsUpdate();
   const totClimateActions = useClimateActionsOriginal();
 
-  const { data: data, getInitialData: getInitialData } = useUserState();
-  const userActions = data.userActions;
+  const { getInitialData: getInitialData } = useUserState();
 
   const [monthlyAction, setMonthlyAction] = useState(
     totClimateActions.find((action) => action.action_of_the_month === true)
@@ -45,14 +44,13 @@ const ClimateActionsContainer = ({
           : action
       )
     );
-    //Saves all items that are userActions locally but not yet in DB to use for categoryFiltering
     let filteredLocalUserActions = climateActions.filter(
       (action) => action.id === actionID
     );
-    let tempArray = [...localUserActions, filteredLocalUserActions];
+    let tempArray = [...localUserActions, ...filteredLocalUserActions];
     if (deletedAction) {
       const localUserActionsWithoutDeleted = tempArray.filter(
-        (action) => action[0].id !== deletedAction
+        (action) => action.id !== deletedAction
       );
       tempArray = localUserActionsWithoutDeleted;
     }
@@ -62,8 +60,6 @@ const ClimateActionsContainer = ({
     monthlyAction.id === actionID &&
       setMonthlyAction({ ...monthlyAction, accepted: !monthlyAction.accepted });
   };
-
-  const formatedCategories = JSON.parse(climateActionCategories);
 
   useEffect(() => {
     deletedAction != null && updateLocalAccepted(deletedAction);
@@ -77,21 +73,20 @@ const ClimateActionsContainer = ({
             action={monthlyAction}
             user={user}
             updateLocalAccepted={updateLocalAccepted}
-            categories={JSON.parse(climateActionCategories)}
+            categories={climateActionCategories}
           ></MainInfo>
           {climateActions.length > 0 && (
             <CarouselContainer
               user={user}
               updateLocalAccepted={updateLocalAccepted}
-              categories={formatedCategories}
+              categories={climateActionCategories}
               localUserActions={localUserActions}
               actionsToplist={actionsToplist}
             />
           )}
-          <ManageActions
-            categories={formatedCategories}
-            userActions={userActions}
-          ></ManageActions>
+          <ManageUserActions
+            categories={climateActionCategories}
+          ></ManageUserActions>
         </>
       )}
     </>

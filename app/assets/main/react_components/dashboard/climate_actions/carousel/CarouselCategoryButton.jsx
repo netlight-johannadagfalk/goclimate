@@ -5,6 +5,8 @@ import {
 } from "../../../contexts/ClimateActionsContext";
 import { useCategoryUpdate } from "../../../contexts/CategoryContext";
 
+import { useClimateActionsText } from "../../../contexts/TextContext.js";
+
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { useUserState } from "../../../contexts/UserContext";
@@ -25,10 +27,22 @@ const CarouselCategoryButton = ({
   const { data: data } = useUserState();
   const userActions = data.userActions;
 
+  const climateActionsText = useClimateActionsText();
+
   let options = [
-    { value: "allCategories", label: "All categories" },
-    { value: "popular", label: "Popular" },
+    { value: "allCategories", label: climateActionsText.all_categories },
+    { value: "popular", label: climateActionsText.popular },
   ];
+
+  const categoryColor = () => {
+    if (!categories) {
+      return active
+        ? "category_" +
+            categoryName.toLowerCase().replace(/ /g, "_") +
+            "_active"
+        : "category_" + categoryName.toLowerCase().replace(/ /g, "_");
+    }
+  };
 
   const createOptions = () =>
     categories.map((cat) => {
@@ -74,7 +88,7 @@ const CarouselCategoryButton = ({
     setClimateActions(
       filteredActionsWithStatus.map((action) => {
         return localUserActions.some(
-          (localUserAction) => localUserAction[0].id === action.id
+          (localUserAction) => localUserAction.id === action.id
         )
           ? {
               ...action,
@@ -88,9 +102,9 @@ const CarouselCategoryButton = ({
   return (
     <>
       {categories ? (
-        <div className="mx-5 ">
+        <div className="mx-5">
           <Dropdown
-            placeholder="All categories"
+            placeholder={climateActionsText.all_categories}
             controlClassName={"dropdown-control"}
             arrowClosed={<i className="fas fa-chevron-down" />}
             arrowOpen={<i className="fas fa-chevron-up" />}
@@ -100,31 +114,16 @@ const CarouselCategoryButton = ({
           ></Dropdown>
         </div>
       ) : (
-        <>
-          {active ? (
-            <button
-              className={`${
-                "category_" +
-                categoryName.toLowerCase().replace(/ /g, "_") +
-                "_active"
-              } category_unknown_active rounded-full py-1 px-4 button inline-block focus:outline-none text-white m-1`}
-            >
-              {" "}
-              {categoryName}{" "}
-            </button>
-          ) : (
-            <button
-              className={` ${
-                "category_" + categoryName.toLowerCase().replace(/ /g, "_")
-              }
-          category_unknown rounded-full py-1 px-4 button inline-block m-1 hover:text-white focus:outline-none hover:bg-opacity-80`}
-              onClick={() => handleCategory(categoryID)}
-            >
-              {" "}
-              {categoryName}{" "}
-            </button>
-          )}
-        </>
+        <button
+          className={`${categoryColor()} rounded-full py-1 px-4 button inline-block focus:outline-none m-1 ${
+            active
+              ? "category_unknown_active text-white"
+              : "category_unknown hover:text-white hover:bg-opacity-80"
+          } `}
+          onClick={() => !active && handleCategory(categoryID)}
+        >
+          {categoryName}
+        </button>
       )}
     </>
   );

@@ -1,4 +1,4 @@
-export const updateAccepted = (action, currUser, mounted, acceptAction) => {
+export const updateAccepted = (action, user, mounted, acceptAction) => {
   const actionID = action.id;
   const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
   const URL = "/user_climate_actions";
@@ -11,14 +11,14 @@ export const updateAccepted = (action, currUser, mounted, acceptAction) => {
     },
     body: JSON.stringify({
       climate_action_id: actionID,
-      user_id: currUser.id,
+      user_id: user.id,
       status: false,
     }),
   };
 
   fetch(URL, requestOptions)
     .then((res) => {
-      if (mounted.current) {
+      if (mounted) {
         return res.json();
       }
     })
@@ -54,7 +54,7 @@ export const updateStatus = (id, status, mounted) => {
   };
   fetch(URL, requestOptions)
     .then((res) => {
-      if (mounted.current) {
+      if (mounted) {
         return res.json();
       }
     })
