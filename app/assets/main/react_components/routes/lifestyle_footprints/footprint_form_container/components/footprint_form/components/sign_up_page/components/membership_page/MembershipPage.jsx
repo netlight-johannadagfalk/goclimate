@@ -21,7 +21,7 @@ const MembershipPage = ({
   const {
     registrationsText: { sign_up_heading_collective_efficacy },
     reactContentText: {
-      membership_page: { preamble },
+      membership_page: { preamble_part_1, preamble_part_2 },
     },
   } = useTexts();
 
@@ -34,7 +34,8 @@ const MembershipPage = ({
           text={sign_up_heading_collective_efficacy}
           customStyle="text-lgr"
         />
-        <Preamble text={preamble} />
+        <Preamble text={preamble_part_1} />
+        <Preamble text={preamble_part_2} />
         {version === 'v1' ? (
           <MembershipsList
             selectedMembership={selectedMembership}
