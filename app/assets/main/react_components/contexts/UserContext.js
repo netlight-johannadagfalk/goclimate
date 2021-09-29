@@ -159,10 +159,10 @@ const UserProvider = ({
     updateColumns: (columns) => {
       dispatch({ type: "update_columns_init", payload: columns });
     },
-    updateColumnsWithFormat: (updatedList, performedList) => {
+    updateColumnsWithFormat: (updatedList, achievements) => {
       const columns = columnUserActions(
         updatedList,
-        performedList,
+        achievements,
         climateActionsText
       );
       dispatch({ type: "update_columns_init", payload: columns });
@@ -181,10 +181,10 @@ const UserProvider = ({
         payload: achievement,
       });
     },
-    updateAchievementsOnMove: (movedItem, performedColumn) => {
+    updateAchievementsOnMove: (movedItem, achievementColumn) => {
       return handleAchievementsOnMove(
         movedItem,
-        performedColumn,
+        achievementColumn,
         climateActionCategories,
         state.data.userActions,
         actionsWithoutUserActions,

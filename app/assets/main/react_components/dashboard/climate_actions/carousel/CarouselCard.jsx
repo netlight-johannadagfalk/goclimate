@@ -44,7 +44,7 @@ const CarouselCard = ({
 
   const handleClickAccepted = (action) => {
     updateLocalAccepted(action.id);
-    updateAccepted(action, user, mounted, acceptAction);
+    updateAccepted(action, user, mounted.current, acceptAction);
   };
 
   useEffect(() => {

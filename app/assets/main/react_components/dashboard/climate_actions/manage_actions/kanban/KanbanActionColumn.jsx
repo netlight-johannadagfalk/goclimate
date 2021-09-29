@@ -4,6 +4,7 @@ import KanbanCard from "./card_components/KanbanCard.jsx";
 import { useMediaQuery } from "react-responsive";
 import { t } from "../../../../constants";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { useClimateActionsText } from "../../../../contexts/TextContext.js";
 
 const KanbanActionColumn = ({
   column,
@@ -16,6 +17,7 @@ const KanbanActionColumn = ({
   handleExpanded,
 }) => {
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
+  const climateActionsText = useClimateActionsText();
   return (
     <div
       className={`h-full ${
@@ -46,9 +48,7 @@ const KanbanActionColumn = ({
                 width: "100%",
               }}
             >
-              {!sidebarCollapsed &&
-              columnId == 1 &&
-              column.items.length == 0 ? (
+              {!sidebarCollapsed && columnId == 1 && column.items.length == 0 && (
                 <>
                   <p
                     style={{
@@ -56,7 +56,8 @@ const KanbanActionColumn = ({
                       marginTop: "10%",
                     }}
                   >
-                    Take action and <br /> accept an action!
+                    {climateActionsText.mascot_1} <br />
+                    {climateActionsText.mascot_2}
                   </p>
                   <img
                     src="/Mascot.png"
@@ -65,22 +66,6 @@ const KanbanActionColumn = ({
                     className="flex self-center"
                   />
                 </>
-              ) : (
-                ""
-              )}
-              {!sidebarCollapsed &&
-              columnId == 2 &&
-              column.items.length == 0 ? (
-                <p
-                  style={{
-                    fontStyle: "italic",
-                    marginTop: "25%",
-                  }}
-                >
-                  Drag your finished actions here
-                </p>
-              ) : (
-                ""
               )}
               <TransitionGroup component={null}>
                 {column.items
@@ -108,6 +93,16 @@ const KanbanActionColumn = ({
                     );
                   })}
               </TransitionGroup>
+              {!sidebarCollapsed && columnId == 2 && column.items.length < 2 && (
+                <p
+                  style={{
+                    fontStyle: "italic",
+                    marginTop: "25%",
+                  }}
+                >
+                  {climateActionsText.empty_achievements_column}
+                </p>
+              )}
               {provided.placeholder}
             </div>
           );

@@ -1,7 +1,7 @@
 import React from "react";
 
 const ProgressBar = ({ categories, item, userActions, actions }) => {
-  const categoriesWithMembershipBadge = [
+  const categoriesWithMembershipAchievement = [
     ...categories,
     { id: "-1", name: "Climate Friend" },
   ];
@@ -15,17 +15,13 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
   };
 
   const total = userActions.length + actions.length;
-  const calculateProgressBar = () => {
-    let progress_completed = 0;
-    userActions.map((userAction) => {
-      if (userAction.status === true) {
-        progress_completed++;
-      }
-    });
-    return progress_completed;
-  };
+  const completed = userActions.reduce((progress, userAction) => {
+    if (userAction.status === true) {
+      progress++;
+    }
+    return progress;
+  }, 0);
 
-  const completed = calculateProgressBar();
   return (
     <div className="w-full ml-4 flex flex-row justify-center items-center absolute mt-6">
       <div className="h-3 w-2/5 bg-gray-tint-2 bg-opacity-70 rounded-lg">
@@ -34,7 +30,7 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
             "w-" + completed + "/" + total
           } rounded-lg text-right ${
             "category_" +
-            categoryName(categoriesWithMembershipBadge)
+            categoryName(categoriesWithMembershipAchievement)
               .toLowerCase()
               .replace(/ /g, "_") +
             "_active"

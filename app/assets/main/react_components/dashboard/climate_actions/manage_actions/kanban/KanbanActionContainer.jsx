@@ -96,7 +96,7 @@ const KanbanActionContainer = ({
         onDragEnd={(result) =>
           onDragEnd(
             result,
-            mounted,
+            mounted.current,
             columns,
             updateUserActions,
             updateColumns,
