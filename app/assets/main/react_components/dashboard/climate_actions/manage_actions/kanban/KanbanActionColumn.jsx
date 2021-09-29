@@ -1,6 +1,6 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
-import KanbanActionItem from "./KanbanActionItem.jsx";
+import KanbanCard from "./card_components/KanbanCard.jsx";
 import { useMediaQuery } from "react-responsive";
 import { t } from "../../../../constants";
 
@@ -8,10 +8,11 @@ const KanbanActionColumn = ({
   column,
   columnId,
   handleDelete,
-  handleButtonPerformOnDrag,
+  handleCompleteAction,
+  handleUncompleteAction,
   categories,
-  setCollapsed,
-  collapsed,
+  setSidebarCollapsed,
+  sidebarCollapsed,
   isHovering,
   handleExpanded,
 }) => {
@@ -28,26 +29,49 @@ const KanbanActionColumn = ({
         column={column}
         droppableId={columnId}
         key={columnId}
-        isDropDisabled={collapsed}
+        isDropDisabled={sidebarCollapsed}
       >
         {(provided, snapshot) => {
           return (
             <div
               className={`h-full overflow-x-hidden d:flex d:items-stretch flex items-center flex-col inline-block w-full 
               ${
-                (isHovering && !collapsed) || isTabletOrMobile
+                isHovering || isTabletOrMobile
                   ? "overflow-y-auto"
                   : "overflow-y-hidden"
               }`}
               {...provided.droppableProps}
               ref={provided.innerRef}
               style={{
-                background: snapshot.isDraggingOver ? "lightgrey" : "white",
-                padding: 0,
+                background: snapshot.isDraggingOver ? "GhostWhite" : "white",
                 width: "100%",
               }}
             >
-              {!collapsed && columnId == 2 && column.items.length == 0 ? (
+              {!sidebarCollapsed &&
+              columnId == 1 &&
+              column.items.length == 0 ? (
+                <>
+                  <p
+                    style={{
+                      fontStyle: "italic",
+                      marginTop: "10%",
+                    }}
+                  >
+                    Take action and <br /> accept an action!
+                  </p>
+                  <img
+                    src="/Mascot.png"
+                    width="100"
+                    height="100"
+                    className="flex self-center"
+                  />
+                </>
+              ) : (
+                ""
+              )}
+              {!sidebarCollapsed &&
+              columnId == 2 &&
+              column.items.length == 0 ? (
                 <p
                   style={{
                     fontStyle: "italic",
@@ -59,22 +83,21 @@ const KanbanActionColumn = ({
               ) : (
                 ""
               )}
-              {column.items
-                .slice(0, collapsed ? 4 : column.items.length)
-                .map((item, index) => {
-                  return (
-                    <KanbanActionItem
-                      item={item}
-                      index={index}
-                      key={item.id}
-                      handleDelete={handleDelete}
-                      handleButtonPerformOnDrag={handleButtonPerformOnDrag}
-                      categories={categories}
-                      collapsed={collapsed}
-                      handleExpanded={handleExpanded}
-                    />
-                  );
-                })}
+              {column.items.slice(0, column.items.length).map((item, index) => {
+                return (
+                  <KanbanCard
+                    item={item}
+                    index={index}
+                    key={item.id}
+                    handleDelete={handleDelete}
+                    handleCompleteAction={handleCompleteAction}
+                    handleUncompleteAction={handleUncompleteAction}
+                    categories={categories}
+                    sidebarCollapsed={sidebarCollapsed}
+                    handleExpanded={handleExpanded}
+                  />
+                );
+              })}
               {provided.placeholder}
             </div>
           );
@@ -90,9 +113,9 @@ const KanbanActionColumn = ({
           {!isTabletOrMobile && (
             <button
               className={`fas rounded-full h-12 w-12 bg-white border border-gray-accent -left-6 -mt-6 absolute focus:outline-none ${
-                collapsed ? "fa-chevron-left" : "fa-chevron-right"
+                sidebarCollapsed ? "fa-chevron-left" : "fa-chevron-right"
               }`}
-              onClick={() => setCollapsed(!collapsed)}
+              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
             ></button>
           )}
         </div>

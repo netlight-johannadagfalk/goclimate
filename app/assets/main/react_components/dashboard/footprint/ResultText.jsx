@@ -1,21 +1,12 @@
 import React from "react";
-import {
-  useFootprint,
-  useCountryAverage,
-  useModelText,
-  useLang,
-  useRegistrationsText,
-} from "../../contexts/FootprintContext.js";
+import { useFootprint } from "../../contexts/FootprintContext.js";
 
 /**
  * Description of the result including calculations of relevant numbers
  */
 const ResultText = () => {
-  const footprint = useFootprint();
-  const countryAverage = useCountryAverage();
-  const modelText = useModelText();
-  const lang = useLang();
-  const registrationsText = useRegistrationsText();
+  const { footprint, countryAverage, modelText, lang, registrationsText } =
+    useFootprint();
 
   const yourClimateFootprint = registrationsText.your_climate_footprint;
   const yourClimateFootprintComparedWorld =
@@ -28,9 +19,9 @@ const ResultText = () => {
     },
     text: () => {
       return footprintCo2e.inTonnes(footprintCo2e.value < 100 ? 2 : 1) <= 1
-        ? modelText.one.replace("%{count}", footprintCo2e.inTonnes(1))
+        ? modelText.one.replace(/%{.*?}/i, footprintCo2e.inTonnes(1))
         : modelText.other.replace(
-            "%{count}",
+            /%{.*?}/i,
             footprintCo2e.inTonnes(footprintCo2e.value < 100 ? 2 : 1)
           );
     },
