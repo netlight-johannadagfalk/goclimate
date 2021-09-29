@@ -15,9 +15,10 @@ const ResultPage = ({ result, page, onPageChange }) => {
 
   const footprint = result.footprint;
   const countryAverage = result.country_average;
+  const tabletBreakpoint = 768;
 
   useEffect(() => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= tabletBreakpoint) {
       scrollToTop();
     }
   }, [page]);
