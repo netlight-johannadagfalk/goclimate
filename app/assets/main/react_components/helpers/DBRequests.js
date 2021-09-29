@@ -18,7 +18,7 @@ export const updateAccepted = (action, user, mounted, acceptAction) => {
 
   fetch(URL, requestOptions)
     .then((res) => {
-      if (mounted.current) {
+      if (mounted) {
         return res.json();
       }
     })
@@ -54,7 +54,7 @@ export const updateStatus = (id, status, mounted) => {
   };
   fetch(URL, requestOptions)
     .then((res) => {
-      if (mounted.current) {
+      if (mounted) {
         return res.json();
       }
     })
