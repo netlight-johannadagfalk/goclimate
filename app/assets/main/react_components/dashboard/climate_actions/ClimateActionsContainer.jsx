@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CarouselContainer from './carousel/CarouselContainer.jsx';
-import {
-  useDeletedAction,
-  useDeletedActionUpdate,
-} from '../../contexts/DeletedActionContext.js';
+import { useDeletedAction } from '../../contexts/DeletedActionContext.js';
 import {
   useClimateActions,
   useClimateActionsUpdate,
@@ -36,7 +33,11 @@ const ClimateActionsContainer = ({
           ? {
               ...action,
               accepted: !action.accepted,
-              total: deletedAction ? --action.total : ++action.total,
+              total: deletedAction
+                ? action.total > 0
+                  ? --action.total
+                  : (action.total = 0)
+                : ++action.total,
             }
           : action
       )

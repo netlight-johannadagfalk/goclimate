@@ -98,7 +98,6 @@ const CarouselCategoryButton = ({
           : action;
       })
     );
-
     setClimateActions(
       filteredActionsWithStatus.map((action) => {
         return locallyDeletedActions.some(
@@ -106,7 +105,7 @@ const CarouselCategoryButton = ({
         )
           ? {
               ...action,
-              total: --action.total,
+              total: action.total > 0 ? --action.total : (action.total = 0),
             }
           : action;
       })
