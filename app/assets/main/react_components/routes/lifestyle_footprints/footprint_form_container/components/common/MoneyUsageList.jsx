@@ -1,6 +1,6 @@
 import React from 'react';
-import { useTexts } from '../../../contexts/TextsContext.js';
 import blobImage from '../../../../../../../../assets/images/shapes/blob_5.svg';
+import { useTexts } from '../../../contexts/TextsContext.js';
 
 const MoneyUsageList = () => {
   const {
@@ -24,7 +24,7 @@ const MoneyUsageList = () => {
         />
         <div className="relative space-y-3">
           <h3 className="text-center heading">{heading}</h3>
-          <ul className="list-check space-y-3 text-left">
+          <ul className="list-check space-y-3 text-left text-sm">
             {listValues.map(([key, text]) => (
               <li key={key}>{text}</li>
             ))}
