@@ -24,7 +24,7 @@ export const collectPerformedUserActions = (destItems) => {
   return performedUserActions;
 };
 
-export const handleCompleteAction = (
+export const handleCompleteActionOnClick = (
   movedItem,
   columns,
   updateUserActions,
@@ -32,6 +32,7 @@ export const handleCompleteAction = (
   updateAchievements,
   updateAchievementsOnMove
 ) => {
+  console.log("hej");
   const sourceColumn = columns[1];
   const destColumn = columns[2];
   const sourceItems = [...sourceColumn.items];

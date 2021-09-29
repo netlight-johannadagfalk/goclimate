@@ -1,6 +1,6 @@
 import React from "react";
 import { useClimateActionsText } from ".././../../../../contexts/TextContext.js";
-import { handleCompleteAction } from "../../../../../helpers/KanbanHelper.js";
+import { handleCompleteActionOnClick } from "../../../../../helpers/KanbanHelper.js";
 import {
   useUserState,
   useUserActions,
@@ -36,7 +36,7 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
         <button
           className={`rounded-full py-1 px-4 button inline-block focus:outline-none text-primary text-sm border border-color-primary m-1`}
           onClick={() =>
-            handleCompleteAction(
+            handleCompleteActionOnClick(
               userAction,
               columns,
               updateUserActions,
