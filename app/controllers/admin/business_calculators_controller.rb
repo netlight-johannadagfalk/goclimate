@@ -17,6 +17,7 @@ module Admin
       @reports = ClimateReports::Report.joins_report_areas.where(
         'climate_reports_report_areas.calculator_id': @calculator.id
       )
+      flash.now[:notice] = '🎉 Business calculator was successfully updated!' if params[:success]
     end
 
     def new
@@ -45,10 +46,13 @@ module Admin
     end
 
     def update
-      return render :edit unless @calculator.update(calculator_params)
+      unless @calculator.update(calculator_params)
+        return render(status: :bad_request,
+                      json: { status: 400, errors: @calculator.errors })
+      end
 
       update_order(@calculator, calculator_params['category_order'])
-      redirect_to [:admin, @calculator], notice: 'Calculator was successfully updated.'
+      render(status: :ok, json: { status: 200, success_url: admin_business_calculator_url(@calculator, success: 1) })
     end
 
     def publish

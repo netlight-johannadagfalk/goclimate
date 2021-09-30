@@ -16,7 +16,7 @@
               </label>
             </div>
             <div class="hidden t:flex flex-row items-end w-1/3">
-              <% if field.open_ended_type? %>
+              <% if field.open_ended_type? && field.units.any? %>
                 <%= label_tag t('reported_datas.units'), nil, class: 'font-semibold' %>
               <% end %>
             </div>
