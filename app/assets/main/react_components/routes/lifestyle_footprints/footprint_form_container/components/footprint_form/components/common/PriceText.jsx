@@ -45,6 +45,7 @@ const PriceText = ({ grantedReferralCode, selectedMembership, price }) => {
             <Link
               link={'information-scroll-position'}
               linkText={heading}
+              linkStyle = 'link text-sm'
               onClick={(e) => {
                 e.preventDefault();
                 document
