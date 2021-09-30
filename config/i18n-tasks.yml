@@ -91,10 +91,10 @@ search:
 
 ## Do not consider these keys missing:
 ignore_missing:
-- 'activerecord.errors.*'
-- 'models.currency.{suffix,prefix}.*'
-- 'models.money.currency_formats.*'
-- 'moment' # Inlined & minified JS code happen to require moment with a function call that got the minified name 't'
+  - 'activerecord.errors.*'
+  - 'models.currency.{suffix,prefix}.*'
+  - 'models.money.currency_formats.*'
+  - 'moment' # Inlined & minified JS code happen to require moment with a function call that got the minified name 't'
 # - '{devise,simple_form}.*'
 
 # Consider these keys used:
@@ -106,6 +106,7 @@ ignore_unused:
   - 'number.format.*'
   - 'activerecord.{attributes,errors,models}.*'
   - 'errors.*'
+  - 'views.climate_actions.*'
 # - '{devise,kaminari,will_paginate}.*'
 # - 'simple_form.{yes,no}'
 # - 'simple_form.{placeholders,hints,labels}.*'
@@ -121,7 +122,6 @@ ignore_unused:
 # Exclude these keys from the `i18n-tasks check-consistent-interpolations` report:
 ignore_inconsistent_interpolations:
   - 'models.{money,currency}.*'
-
 ## Ignore these keys completely:
 # ignore:
 #  - kaminari.*
