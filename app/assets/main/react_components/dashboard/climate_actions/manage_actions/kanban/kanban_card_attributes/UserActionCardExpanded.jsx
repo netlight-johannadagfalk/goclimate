@@ -3,7 +3,7 @@ import { useClimateActionsText } from '.././../../../../contexts/TextContext.js'
 import { handleCompleteActionOnClick } from '../../../../../helpers/KanbanHelper.js';
 import {
   useUserState,
-  useUserActions,
+  useUserActions
 } from '../../../../../contexts/UserContext.js';
 
 const UserActionCardExpanded = ({ userAction, handleDelete }) => {
@@ -11,7 +11,7 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
     updateUserActions,
     updateColumns,
     updateAchievements,
-    updateAchievementsOnMove,
+    updateAchievementsOnMove
   } = useUserActions();
   const { data: data } = useUserState();
   const columns = data.columns;
@@ -26,7 +26,7 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
             : userAction.description}
         </p>
       </div>
-      <div className="flex-1 justify-center mt-4 mb-2">
+      <div className="flex-1 justify-center mt-4 mb-4">
         <button
           className=" mr-4 fas fa-trash-alt h-4 w-4 focus:outline-none"
           onClick={() =>
