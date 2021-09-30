@@ -30,12 +30,12 @@ en:
               selling_points:
                 point1: Save and track your climate footprint over time
             single:
-              title: Climate compensate monthly
+              title: Compensate monthly
               selling_points:
                 point1: Save and track your climate footprint over time
                 point2: Compensate corresponding to your carbon footprint toward selected projects
             multi:
-              title: Climate compensate several times
+              title: Compensate several times
               selling_points:
                 point1: Save and track your climate footprint over time
                 point2: Compensate corresponding to 2 times your carbon footprint
@@ -44,10 +44,10 @@ en:
               title: Free account
               selling_point: Save and track your climate footprint over time
             single:
-              title: Climate compensate monthly
+              title: Compensate monthly
               selling_point: Compensate for your carbon footprint by supporting selected projects
             multi:
-              title: Climate compensate several times
+              title: Compensate several times
               selling_point: Compensate for 2 times your carbon footprint
         arguments_list:
           transparency:
