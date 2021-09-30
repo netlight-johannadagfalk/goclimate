@@ -1,6 +1,6 @@
 import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
-import KanbanCard from './card_components/KanbanCard.jsx';
+import KanbanCard from './KanbanCard.jsx';
 import { useMediaQuery } from 'react-responsive';
 import { t } from '../../../../constants';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
