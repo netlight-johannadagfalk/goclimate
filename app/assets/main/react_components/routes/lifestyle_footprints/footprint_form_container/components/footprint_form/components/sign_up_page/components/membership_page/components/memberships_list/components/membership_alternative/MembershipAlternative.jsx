@@ -11,8 +11,10 @@ const MembershipAlternative = ({
   setMultipleOffsets,
 }) => {
   const style =
-    'flex flex-row items-center p-3 rounded cursor-pointer mt-3 border border-green-accent ' +
-    (buttonType === selectedMembership ? 'bg-green-tint-1' : '');
+    'flex flex-row items-center p-3 rounded cursor-pointer mt-3 border ' +
+    (buttonType === selectedMembership
+      ? ' bg-green-tint-1 '
+      : ' border-gray-tint-1 ');
 
   desc = desc.replace(/%{.*?}/i, multipleOffsets.toString());
 
