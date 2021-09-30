@@ -2,30 +2,30 @@
 de:
   views:
     climate_actions:
-      monthly_action: Action of the month
-      take_action: Take action to reduce your carbon footprint
-      low_effort_high_impact_actions: Here you can find high impact, low effort climate actions
-      my_actions: My actions
+      monthly_action: Aktion des Monats
+      take_action: Nimm es in die Hand deinen CO2-Fußabdruck zu verringern
+      low_effort_high_impact_actions: Hier kannst du Klimaaktionen mit hoher Wirkung und geringem Aufwand finden
+      my_actions: Meine Aktionen
       achievements: Achievements
-      accept: Accept
-      accepted: Accepted
-      new_calculation: New calculation
-      previous_footprints: See previous footprints
-      balance_footprint: Balance your footprint
-      how_calculate: How do we calculate?
-      action_performed: I did it!
-      statistics_11: You and
-      statistics_12: 'more have:'
-      statistics_21: 'You have:'
+      accept: Akzeptieren
+      accepted: Akzeptiert
+      new_calculation: Neue Berechnung
+      previous_footprints: Deine bisherigen Fußabdrücke
+      balance_footprint: Fußabdruck ausgleichen
+      how_calculate: Wie rechnen wir?
+      action_performed: Ich habe es geschafft!
+      statistics_11: Du und
+      statistics_12: 'weitere haben:'
+      statistics_21: 'Du hast:'
       statistics_22: ''
-      statistics_31: Do as
-      statistics_32: 'others:'
-      statistics_41: Do as
-      statistics_42: 'other:'
-      statistics_51: 'Be the first one to:'
+      statistics_31: Handle wie
+      statistics_32: 'andere:'
+      statistics_41: Handle wie
+      statistics_42: 'andere:'
+      statistics_51: 'Akzeptiere als Erste:'
       statistics_52: ''
-      all_categories: All categories
-      popular: Popular
-      mascot_1: Take action and
-      mascot_2: accept an action!
-      empty_achievements_column: Drag your finished actions here
+      all_categories: Alle Kategorien
+      popular: Beliebt
+      mascot_1: Handle jetzt und
+      mascot_2: akzeptiere eine Aktion!
+      empty_achievements_column: Ziehe deine abgeschlossenen Maßnahmen hierhin
