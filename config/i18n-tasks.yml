@@ -106,6 +106,7 @@ ignore_unused:
   - 'number.format.*'
   - 'activerecord.{attributes,errors,models}.*'
   - 'errors.*'
+  - 'views.react_lifestyle_footprints.*'
 # - '{devise,kaminari,will_paginate}.*'
 # - 'simple_form.{yes,no}'
 # - 'simple_form.{placeholders,hints,labels}.*'
