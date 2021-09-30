@@ -36,7 +36,7 @@ const RegistrationPage = ({
   return (
     <>
       <Title
-        customStyle="text-lgr"
+        customStyle="text-lgr px-4"
         text={sign_up_heading_collective_efficacy}
       />
       <div className="max-w-lg mx-auto">
