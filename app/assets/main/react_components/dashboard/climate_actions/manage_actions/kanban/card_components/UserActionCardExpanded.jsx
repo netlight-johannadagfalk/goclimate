@@ -46,7 +46,7 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
             )
           }
         >
-          {climateActionsText.action_completed}
+          {climateActionsText.action_performed}
         </button>
       </div>
     </div>
