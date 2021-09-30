@@ -32,7 +32,6 @@ export const handleCompleteActionOnClick = (
   updateAchievements,
   updateAchievementsOnMove
 ) => {
-  console.log("hej");
   const sourceColumn = columns[1];
   const destColumn = columns[2];
   const sourceItems = [...sourceColumn.items];

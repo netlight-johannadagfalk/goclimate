@@ -15,6 +15,7 @@ const CarouselContainer = ({
   updateLocalAccepted,
   categories,
   localUserActions,
+  locallyDeletedActions,
   actionsToplist,
 }) => {
   const [allCategories, setAllCategories] = useState(true);
@@ -40,6 +41,7 @@ const CarouselContainer = ({
             setPopular={setPopular}
             setAllCategories={setAllCategories}
             localUserActions={localUserActions}
+            locallyDeletedActions={locallyDeletedActions}
             actionsToplist={actionsToplist}
           ></CarouselCategoryButton>
         ) : (
@@ -51,6 +53,7 @@ const CarouselContainer = ({
               setPopular={setPopular}
               setAllCategories={setAllCategories}
               localUserActions={localUserActions}
+              locallyDeletedActions={locallyDeletedActions}
             />
             {actionsToplist.length > 0 && (
               <CarouselCategoryButton
@@ -60,6 +63,7 @@ const CarouselContainer = ({
                 setPopular={setPopular}
                 setAllCategories={setAllCategories}
                 localUserActions={localUserActions}
+                locallyDeletedActions={locallyDeletedActions}
                 actionsToplist={actionsToplist}
               />
             )}
@@ -74,6 +78,7 @@ const CarouselContainer = ({
                     setPopular={setPopular}
                     setAllCategories={setAllCategories}
                     localUserActions={localUserActions}
+                    locallyDeletedActions={locallyDeletedActions}
                   />
                 )
             )}

@@ -20,6 +20,7 @@ const CarouselCategoryButton = ({
   localUserActions,
   actionsToplist,
   setPopular,
+  locallyDeletedActions,
 }) => {
   const setCategory = useCategoryUpdate();
   const setClimateActions = useClimateActionsUpdate();
@@ -93,6 +94,18 @@ const CarouselCategoryButton = ({
           ? {
               ...action,
               total: ++action.total,
+            }
+          : action;
+      })
+    );
+    setClimateActions(
+      filteredActionsWithStatus.map((action) => {
+        return locallyDeletedActions.some(
+          (deletedAction) => deletedAction === action.id
+        )
+          ? {
+              ...action,
+              total: action.total > 0 ? --action.total : (action.total = 0),
             }
           : action;
       })
