@@ -6,14 +6,14 @@ import Link from '../../../common/Link.jsx';
 const PriceText = ({ grantedReferralCode, selectedMembership, price }) => {
   const {
     commonText: {
-      months: { one },
+      months: { one }
     },
     registrationsText: {
       first_month_free,
       then,
       price_free,
-      where_does_the_money_go: { heading },
-    },
+      where_does_the_money_go: { heading }
+    }
   } = useTexts();
   const version = useVersion();
 
@@ -45,7 +45,7 @@ const PriceText = ({ grantedReferralCode, selectedMembership, price }) => {
             <Link
               link={'information-scroll-position'}
               linkText={heading}
-              linkStyle = 'link text-sm'
+              linkStyle="link text-sm"
               onClick={(e) => {
                 e.preventDefault();
                 document
