@@ -13,7 +13,8 @@ sv:
       answer_button_logged_in: Gå till profil
     sign_up_page:
       membership_page:
-        preamble: Nu när du vet mer om din klimatpåverkan är det dags att agera. Genom att bli medlem kan du spara och jämföra dina resultat, få hjälp att minska ditt avtryck och möjligheten att stötta handplockade klimatprojekt.
+        preamble_part_1: Nu när du vet mer om din klimatpåverkan är det dags att agera.
+        preamble_part_2: Genom att bli medlem kan du spara och jämföra dina resultat, få hjälp att minska ditt avtryck och möjligheten att stötta handplockade klimatprojekt.
         memberships_v1:
           free_title: Gratis konto
           free_desc: Spara och följ ditt klimatavtryck över tid

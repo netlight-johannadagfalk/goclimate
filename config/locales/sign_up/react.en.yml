@@ -13,7 +13,8 @@ en:
       answer_button_logged_in: Go to profile
     sign_up_page:
       membership_page:
-        preamble: Now that you know more about your climate impact, it's time to act. By becoming a member, you can save and compare your results, get help to reduce your carbon footprint and the opportunity to support hand-picked climate projects.
+        preamble_part_1: Now that you know more about your climate impact, it's time to act. 
+        preamble_part_2: By becoming a member, you can save and compare your results, get help to reduce your carbon footprint and the opportunity to support hand-picked climate projects.
         memberships_v1:
           free_title: Free account
           free_desc: Save and follow your carbon footprint over time

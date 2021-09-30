@@ -57,7 +57,7 @@ const SignUpPage = ({ result, page, onPageChange }) => {
   }, [grantedReferralCode, selectedMembership, multipleOffsets]);
 
   return (
-    <div className="my-8">
+    <div className="t:mt-8 mb-8">
       {page === 2 ? (
         <MembershipPage
           selectedMembership={selectedMembership}

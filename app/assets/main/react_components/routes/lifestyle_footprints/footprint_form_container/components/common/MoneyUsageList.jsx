@@ -18,7 +18,7 @@ const MoneyUsageList = () => {
   );
 
   return (
-    <div className="my-20 mx-4">
+    <div className="my-10 t:my-20 mx-4">
       <div className="relative mx-auto w-full">
         {version === 'v2' && (
           <img

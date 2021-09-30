@@ -25,7 +25,7 @@ const MembershipPage = ({
     },
     reactContentText: {
       sign_up_page: {
-        membership_page: { preamble },
+        membership_page: { preamble_part_1, preamble_part_2 },
       },
     },
   } = useTexts();
@@ -51,7 +51,8 @@ const MembershipPage = ({
           </>
         ) : (
           <>
-            <Preamble text={preamble} />
+            <Preamble text={preamble_part_1} />
+            <Preamble text={preamble_part_2} />
             <MembershipsListV2
               selectedMembership={selectedMembership}
               setSelectedMembership={setSelectedMembership}
