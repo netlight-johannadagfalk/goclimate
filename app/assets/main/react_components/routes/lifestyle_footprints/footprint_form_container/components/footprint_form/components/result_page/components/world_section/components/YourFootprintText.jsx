@@ -34,14 +34,27 @@ const YourFootprintText = ({ footprintValue, priceObject }) => {
     <div>
       <div className="text-center">
         {text_part_before}
-        <span className="text-lg font-bold text-green-accent">
+        <span
+          className="text-lg font-bold text-green-accent"
+          style={{ lineHeight: 1 }}
+        >
           {' '}
           {footprintValue}{' '}
         </span>
-        <span className="font-bold text-green-accent"> {tonnes} </span>{' '}
+        <span className="font-bold text-green-accent" style={{ lineHeight: 1 }}>
+          {' '}
+          {tonnes}{' '}
+        </span>{' '}
         {text_part_middle}{' '}
-        <span className="text-lg font-bold text-green-accent">{price}</span>
-        <span className="font-bold text-green-accent">/{month}</span>
+        <span
+          className="text-lg font-bold text-green-accent"
+          style={{ lineHeight: 1 }}
+        >
+          {price}
+        </span>
+        <span className="font-bold text-green-accent" style={{ lineHeight: 1 }}>
+          /{month}
+        </span>
         {text_part_end}
       </div>
     </div>
