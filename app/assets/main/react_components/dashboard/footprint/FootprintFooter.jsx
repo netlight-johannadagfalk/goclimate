@@ -7,7 +7,7 @@ const FootprintFooter = () => {
   const climateActionsText = useClimateActionsText();
 
   return (
-    <div className="text-center space-y-2 space-x-4 mt-8 max-w-5xl">
+    <div className="text-center space-y-2 t:space-x-4 mt-8 max-w-5xl">
       <a
         href={
           footprint.country
@@ -20,19 +20,19 @@ const FootprintFooter = () => {
         {' ' + climateActionsText.new_calculation}
       </a>
       {totalNoFootprints && (
-        <div className="inline-block">
+        <div className="t:inline-block">
           <a className="link whitespace-nowrap" href="/calculator/results">
             {climateActionsText.previous_footprints}
           </a>
         </div>
       )}
 
-      <div className="inline-block">
+      <div className="t:inline-block">
         <a className="link whitespace-nowrap" href="/users/subscription">
           {climateActionsText.balance_footprint}
         </a>
       </div>
-      <div className="inline-block">
+      <div className="t:inline-block">
         <a
           className="link"
           href="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"
