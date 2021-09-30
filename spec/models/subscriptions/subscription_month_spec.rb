@@ -19,13 +19,13 @@ RSpec.describe Subscriptions::SubscriptionMonth do
     it 'sets price from provided payment' do
       month = described_class.create_from_stripe_invoice_line!(invoice_line, charge)
 
-      expect(month.price).to eq(invoice_line.amount)
+      expect(month.price_incl_taxes).to eq(Money.new(7_00, :eur))
     end
 
     it 'sets currency from provided payment' do
       month = described_class.create_from_stripe_invoice_line!(invoice_line, charge)
 
-      expect(month.currency).to eq(Currency.from_iso_code(invoice_line.currency))
+      expect(month.currency).to eq(Currency::EUR)
     end
 
     it 'sets start_at from provided invoice' do
@@ -61,6 +61,45 @@ RSpec.describe Subscriptions::SubscriptionMonth do
         month = described_class.create_from_stripe_invoice_line!(invoice_line, charge)
 
         expect(month.co2e).to eq(GreenhouseGases.new(1_000))
+      end
+    end
+  end
+
+  describe 'callbacks' do
+    subject(:month) do
+      described_class.new(start_at: Time.now, co2e: 1000, price_incl_taxes: Money.new(5_00, :eur))
+    end
+
+    it 'sets price without taxes' do
+      expect(month.price).to eq(Money.new(4_00, :eur))
+    end
+
+    it 'sets VAT amount' do
+      expect(month.vat_amount).to eq(Money.new(1_00, :eur))
+    end
+
+    context 'when price_incl_taxes is nil' do
+      subject(:month) do
+        described_class.new(start_at: Time.now, co2e: 1000)
+      end
+
+      it 'does no calculations' do
+        expect(month.price).to be_nil
+      end
+    end
+
+    context 'when record is already saved' do
+      let(:reloaded_month) { described_class.find(month.id) }
+
+      before do
+        month.payment = create(:card_charge_monthly)
+        month.user = create(:user)
+        month.price = Money.new(2_00, :eur)
+        month.save!
+      end
+
+      it 'does no calculations' do
+        expect(reloaded_month.price).to eq(Money.new(2_00, :eur))
       end
     end
   end

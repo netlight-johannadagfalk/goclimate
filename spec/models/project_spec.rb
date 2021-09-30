@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'shared_examples/models/types/greenhouse_gases_type'
 
 RSpec.describe Project do
-  subject(:project) { create(:project, co2e: 10_000) }
+  subject(:project) { create(:project, co2e: 10_000, cost_in_sek: 1_000_00) }
 
   include_examples 'greenhouse gases attributes', [:co2e]
 
@@ -37,6 +37,12 @@ RSpec.describe Project do
       expect(project.map_url).to eq(<<~URL.chomp)
         https://www.google.com/maps?z=15&t=k&q=loc:59.33172+18.06695
       URL
+    end
+  end
+
+  describe '#cost_in_sek' do
+    it 'returns a Money' do
+      expect(project.cost_in_sek).to eq(Money.new(1_000_00, :sek))
     end
   end
 end

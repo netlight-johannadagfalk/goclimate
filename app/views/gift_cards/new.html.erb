@@ -29,7 +29,7 @@
             </div>
             <div class="flex justify-between">
               <span class="font-bold"><%=t 'price' %></span>
-              <span><%= @gift_card.price.to_s(precision: 0) %></span>
+              <span><%= @gift_card.price_incl_taxes.to_s(precision: :auto) %></span>
             </div>
 
             <div class="border-t border-gray-accent"></div>

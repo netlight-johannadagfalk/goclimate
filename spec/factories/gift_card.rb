@@ -5,7 +5,9 @@ FactoryBot.define do
     number_of_months { 6 }
     message { 'God jul önskar tomten' }
     co2e { 11_000 }
-    price { 440_00 }
+    price_incl_taxes { 440_00 }
+    price { 352_00 }
+    vat_amount { 88_00 }
     country { 'SE' }
     currency { 'sek' }
     customer_email { 'test@example.com' }

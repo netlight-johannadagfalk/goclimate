@@ -7,7 +7,7 @@ class DataRequestMailerPreview < ActionMailer::Preview
 
     DataRequestMailer.with(
       data_reporter: data_reporter,
-      data_request: DataRequest.where(recipient_id: data_reporter.id),
+      data_request: DataRequest.where(data_reporter_id: data_reporter.id),
       locale: 'sv',
       sender: 'Alexandra'
     ).data_request_email

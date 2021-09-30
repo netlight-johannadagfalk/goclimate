@@ -3,8 +3,8 @@
 
   <%= render 'admin/shared/content_header', heading: 'Reported data', actions: [
     {
-      title: 'Export data to .csv',
-      path: export_to_csv_admin_reported_datas_path(params.permit(:report_id, :report_area_id)),
+      title: 'Export data to .xlsx',
+      path: export_to_xlsx_admin_reported_datas_path(params.permit(:report_id, :report_area_id)),
       class: 'button-cta'
     }
   ] %>
@@ -16,63 +16,47 @@
     <h3 class="heading">For report area: <%= link_to @report_area.title, [:admin, @report_area.report], class: 'link' %></h3>
   <% end %>
 
-  <% if @report || @report_area %>
-    <h4 class="font-bold">Unanswered questions</h4>
-    <ul class="list-bullet">
-      <% @report_area&.fields&.each do |field| %>
-        <% unless field.answers?(@report_area) %>
-          <li><%= field.label %></li>
+  <div data-controller="tabs">
+    <% if @report %>
+      <ul data-target="tabs.tablist">
+        <% @report&.areas&.each do |report_area| %>
+          <li>
+            <a href="#" data-target="tabs.tab"><%= report_area.title %><%= ' (survey)' if report_area.calculator.survey %></a>
+          </li>
         <% end %>
-      <% end %>
-      <% @report&.areas&.each do |area| %>
-        <% area&.fields&.each do |field| %>
-          <% unless field.answers?(area) %>
-            <li><%= field.label %></li>
-          <% end %>
-        <% end %>
-      <% end %>
-    </ul>
-  <% end %>
+      </ul>
+    <% end %>
+    <% @report_areas.each do |report_area| %>
+      <section data-target="tabs.panel">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Question</th>
+              <th>Answer</th>
+              <th>Unit</th>
+              <th><span class="whitespace-nowrap">Created at</span></th>
+              <th>User</th>
+              <th><span class="whitespace-nowrap">Answer ID</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% report_area.fields.each do |calculator_field| %>
+              <% answers = calculator_field.answers(report_area) %>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <% unless @report_area %>
-          <th>Report area</th>
-        <% end %>
-        <% unless @report %>
-          <th>Report</th>
-        <% end %>
-        <th>Question</th>
-        <th>Answer</th>
-        <th>Unit</th>
-        <th>Multiple answers allowed</th>
-        <th>Created at</th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @reported_datas&.each do |data| %>
-        <tr>
-          <% unless @report_area %>
-            <td><%= data[:report_area].title %></td>
-          <% end %>
-          <% unless @report %>
-            <td><%= link_to data[:report].title, admin_reported_datas_path(report_id: data[:report].id), class: 'link-ui text-green-shade-2' %></td>
-          <% end %>
-          <td><%= data[:reported_data].calculator_field.label %></td>
-          <td><%= data[:reported_data].value %></td>
-          <td><%= data[:reported_data].unit %></td>
-          <td><%= BusinessCalculators::CalculatorField.find(data[:reported_data].calculator_field_id).multiple_answers %></td>
-          <td><%= time_tag(data[:reported_data].created_at, format: '%F %R') %></td>
-          <td class="whitespace-nowrap">
-            <%= link_to 'Show', admin_reported_data_path(data[:reported_data]), class: 'link-ui text-green-shade-2' %> &nbsp;
-            <%= link_to 'Destroy', admin_reported_data_path(data[:reported_data]), method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-ui text-green-shade-2' %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
+              <% (answers.empty? ? 1 : answers.length).times do |answer_index| %>
+                <tr>
+                  <td><%= ("#{calculator_field.label}#{' [multiple answers allowed]' if calculator_field.multiple_answers}") if answer_index == 0 %></td>
+                  <td><%= answers[answer_index]&.value || '-' %></td>
+                  <td><%= answers[answer_index]&.unit unless answers[answer_index]&.unit == 'freeform' %></td>
+                  <td><span class="whitespace-nowrap"><%= time_tag(answers[answer_index]&.created_at, format: '%F %R') if answers[answer_index].present? %></span></td>
+                  <td><%= link_to(answers[answer_index]&.data_request&.data_reporter&.email, [:admin, answers[answer_index]&.data_request&.data_reporter], class: 'link-ui text-green-shade-2') if answers[answer_index].present? %></td>
+                  <td><%= answers[answer_index]&.id %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </section>
+    <% end %>
+  </div>
 </div>

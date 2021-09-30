@@ -16,11 +16,14 @@ module Admin
 
     def create
       @flight_offset = FlightOffset.new(
-        params.require(:flight_offset).permit(:co2e, :email)
+        params
+          .require(:flight_offset)
+          .permit(:co2e, :email)
+          .merge(
+            price_incl_taxes: Money.new(0, :sek),
+            paid_at: Time.now
+          )
       )
-
-      @flight_offset.price = Money.new(0, :sek)
-      @flight_offset.paid_at = Time.now
 
       unless @flight_offset.save
         render :new
