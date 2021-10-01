@@ -4,38 +4,38 @@ const getChartData = (footprint, categoryChartText) => {
       text: categoryChartText.dashboard.footprint.category['housing'],
       co2e: footprint['housing'].co2e,
       icon: 'fa-home',
-      color: 'bg-green-accent',
+      color: 'bg-green-accent'
     },
     {
       text: categoryChartText.dashboard.footprint.category['food'],
       co2e: footprint['food'].co2e,
       icon: 'fa-utensils',
-      color: 'bg-yellow-accent',
+      color: 'bg-yellow-accent'
     },
     {
       text: categoryChartText.dashboard.footprint.category['shopping'],
       co2e: footprint['consumption'].co2e,
       icon: 'fa-shopping-bag',
-      color: 'bg-pink-accent',
+      color: 'bg-pink-accent'
     },
     {
       text: categoryChartText.dashboard.footprint.category['car'],
       co2e: footprint['car'].co2e,
       icon: 'fa-car',
-      color: 'bg-orange-accent',
+      color: 'bg-orange-accent'
     },
     {
       text: categoryChartText.dashboard.footprint.category['flights'],
       co2e: footprint['flights'].co2e,
       icon: 'fa-plane',
-      color: 'bg-blue-accent',
+      color: 'bg-blue-accent'
     },
     {
       text: categoryChartText.dashboard.footprint.category['public'],
       co2e: footprint['public'].co2e,
       icon: 'fa-university',
-      color: 'bg-gray-accent',
-    },
+      color: 'bg-gray-accent'
+    }
   ];
 };
 

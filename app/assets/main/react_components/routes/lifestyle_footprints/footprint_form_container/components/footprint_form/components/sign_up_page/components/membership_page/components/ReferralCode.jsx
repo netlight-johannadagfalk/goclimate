@@ -2,10 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useTexts } from '../../../../../../../../contexts/TextsContext.js';
 import AnswerButton from '../../../../../components/common/AnswerButton.jsx';
 
-/**
- * React component for referral code field in signup
- * Shows link and input field
- */
 const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
   const [invalidCodeMessage, setInvalidCodeMessage] = useState('');
   const [inputCode, setInputCode] = useState(grantedReferralCode);
@@ -16,8 +12,8 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
     registrationsText: {
       referral_code,
       referral_code_link,
-      referral_code_change,
-    },
+      referral_code_change
+    }
   } = useTexts();
 
   const lookUpReferralCode = () => {
@@ -28,9 +24,9 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
       credentials: 'include',
       headers: {
         'X-CSRF-Token': csrfToken,
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ code: inputCode }),
+      body: JSON.stringify({ code: inputCode })
     };
     fetch(URL, requestOptions)
       .then((res) => {

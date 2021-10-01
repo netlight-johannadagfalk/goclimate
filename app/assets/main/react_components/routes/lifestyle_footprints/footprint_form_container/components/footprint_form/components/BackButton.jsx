@@ -1,10 +1,11 @@
 import React from 'react';
 import { useTexts } from '../../../../contexts/TextsContext.js';
 
-const TextButton = ({ onClick }) => {
+const BackButton = ({ onClick }) => {
   const {
-    lifestyleFootprintsText: { back },
+    lifestyleFootprintsText: { back }
   } = useTexts();
+
   return (
     <div className="flex justify-space-between">
       <div className="block">
@@ -20,4 +21,4 @@ const TextButton = ({ onClick }) => {
   );
 };
 
-export default TextButton;
+export default BackButton;

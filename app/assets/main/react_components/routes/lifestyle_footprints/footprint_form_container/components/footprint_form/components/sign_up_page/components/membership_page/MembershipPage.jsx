@@ -16,18 +16,18 @@ const MembershipPage = ({
   grantedReferralCode,
   setGrantedReferralCode,
   price,
-  result,
+  result
 }) => {
   const {
     registrationsText: {
       sign_up_heading_collective_efficacy,
-      sign_up_description,
+      sign_up_description
     },
     reactContentText: {
       sign_up_page: {
-        membership_page: { preamble_part_1, preamble_part_2 },
-      },
-    },
+        membership_page: { preamble_part_1, preamble_part_2 }
+      }
+    }
   } = useTexts();
 
   const version = useVersion();
@@ -37,7 +37,7 @@ const MembershipPage = ({
       <div className="space-y-3">
         <Title
           text={sign_up_heading_collective_efficacy}
-          customStyle="text-lgr"
+          customStyle="text-lgr px-4"
         />
         {version === 'v1' ? (
           <>

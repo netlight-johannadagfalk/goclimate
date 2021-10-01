@@ -15,14 +15,14 @@ export const SessionProvider = ({
   currency,
   lang,
   currentRegion,
-  isUserSignedIn,
+  isUserSignedIn
 }) => {
   const sessionData = {
     currentRegion: currentRegion.id,
     slug: currentRegion.slug ? '/' + currentRegion.slug : '',
     lang: lang,
     currency: JSON.parse(currency),
-    signedInUser: isUserSignedIn,
+    signedInUser: isUserSignedIn
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTexts } from '../../../../../contexts/TextsContext.js';
 
 const ProjectSummary = ({ project }) => {
@@ -9,7 +9,7 @@ const ProjectSummary = ({ project }) => {
   const roundingHeightCompensator = 3; // Used to compensate for diff in div height to align with other divs in the same column
 
   const {
-    sharedText: { read_more },
+    sharedText: { read_more }
   } = useTexts();
 
   useEffect(() => {
@@ -47,7 +47,10 @@ const ProjectSummary = ({ project }) => {
           <h3 className="font-semibold" id={'title' + project.id}>
             {project.name}
           </h3>
-          <p className="pt-2 text-sm t:text-base" id={'description' + project.id}>
+          <p
+            className="pt-2 text-sm t:text-base"
+            id={'description' + project.id}
+          >
             {project.short_description}
           </p>
         </div>

@@ -3,66 +3,66 @@ de:
     react_lifestyle_footprints:
       world_page:
         your_footprint_result_text:
-          text_part_before: Your annual carbon footprint is
-          text_part_middle: CO2e. Paying
-          text_part_end: will allow you to offset your footprint. The sum is distributed to different climate projects that make an impact for the climate.
+          text_part_before: Dein jährlicher CO2-Fußabdruck beträgt
+          text_part_middle: '. Mit einer Zahlung von'
+          text_part_end: ' kannst Du diesen Fußabdruck kompensieren. Der Betrag wird an verschiedene Klimaprojekte verteilt, welche einen positiven Effekt auf das Klima haben.'
       category_page:
         category_chart:
-          title: Your climate footprint by category
-          desc: This is your carbon footprint given by category. Does it match your expectations?
-        public_emissions: Public emissions are the emissions caused by society, depending on were you live. This includes for example authorities, health care, education and public transport.
-        answer_button_logged_in: Go to profile
+          title: Dein Klimafußabdruck nach Kategorie
+          desc: Ist dein CO2-Fußabdruck nach Kategorie. Stimmt er mit deinen Erwartungen überein?
+        public_emissions: Öffentliche Emissionen sind von der Gesellschaft verursachte Emissionen in Abhängigkeit zu deinem Wohnort.
+        answer_button_logged_in: Zum Profil
       sign_up_page:
         membership_page:
-          preamble_part_1: Now that you know more about your climate impact, it's time to act.
-          preamble_part_2: By becoming a member, you can save and compare your results, get help to reduce your carbon footprint and the opportunity to support hand-picked climate projects.
+          preamble_part_1: Nun, da du mehr über deinen Einfluss aufs Klima weißt, ist es Zeit zu handeln.
+          preamble_part_2: Als Mitglied kannst du deine Ergebnisse speichern und vergleichen, Unterstützung bei der Reduzierung deines CO2-Fußabdrucks erhalten und die Möglichkeit nutzen handverlesene Klimaprojekte zu unterstützen.
           memberships_v1:
-            free_title: Free account
-            free_desc: Save and follow your carbon footprint over time
-            single_title: Compensate monthly
-            single_desc: Support climate projects to offset your climate footprint each month
-            multi_title: Compensate multiple times
-            multi_desc: Support climate projects to offset %{num} times your climate footprint each month
+            free_title: Kostenloser Account
+            free_desc: Speicher’ und verfolg’ deinen Klimafußabdruck über längere Zeit
+            single_title: Kompensiere monatlich
+            single_desc: Unterstütze Klimaprojekte um jeden Monat deinen Klimafußabdruck zu kompensieren
+            multi_title: Klimakompensiere mehrfach
+            multi_desc: Unterstütze Klimaprojekte um monatlich das %{num}–fache deines Klimafußabdrucks zu kompensieren
           memberships_v2:
             desktop:
-              title: Choose your membership
+              title: Wähle deine Mitgliedschaft
               free:
-                title: Free account
+                title: Kostenloser Account
                 selling_points:
-                  point1: Save and track your climate footprint over time
+                  point1: Speicher’ und verfolg’ deinen Klimafußabdruck über längere Zeit
               single:
-                title: Compensate monthly
+                title: Klimakompensiere monatlich
                 selling_points:
-                  point1: Save and track your climate footprint over time
+                  point1: Speicher’ und verfolg’ deinen Klimafußabdruck über längere Zeit
                   point2: Compensate corresponding to your carbon footprint toward selected projects
               multi:
-                title: Compensate several times
+                title: Mehrfach kompensieren
                 selling_points:
-                  point1: Save and track your climate footprint over time
-                  point2: Compensate corresponding to your carbon footprint 2 times over
+                  point1: Speicher’ und verfolg’ deinen Klimafußabdruck über längere Zeit
+                  point2: Kompensiere ein 2-faches basierend auf deinem CO2-Fußabdruck
             mobile:
               free:
-                title: Free account
-                selling_point: Save and track your climate footprint over time
+                title: Kostenloser Account
+                selling_point: Speicher’ und verfolg’ deinen Klimafußabdruck über längere Zeit
               single:
-                title: Compensate monthly
+                title: Klimakompensiere monatlich
                 selling_point: Compensate corresponding to your carbon footprint toward selected projects
               multi:
-                title: Compensate several times
-                selling_point: Compensate corresponding to your carbon footprint 2 times over
+                title: Klimakompensiere mehrfach
+                selling_point: Kompensiere ein 2-faches basierend auf deinem CO2-Fußabdruck
           arguments_list:
             transparency:
-              title: Full transparency
-              text: We want you to feel completely safe with how your money is distributed
+              title: Volle Transparenz
+              text: Wir möchten, dass du dich bei der Verteilung deines Geldes absolut sicher fühlst.
               icon: eye
             projects:
-              title: Handpicked projects
-              text: With the help of our expertise, we pick projects that provide the most climate benefit
+              title: Handverlesene Projekte
+              text: Mithilfe unserer Expertise wählen wir Projekte aus, die den größten Klimanutzen bringen
               icon: globe-americas
             binding_time:
-              title: No binding time
-              text: No binding time, stop climate offsetting when you want
+              title: Keine Mindestlaufzeit
+              text: Keine Mindestlaufzeit, du kannst die Klimakompensation jederzeit stoppen
               icon: unlock
-          back_to_homepage: Back to homepage
+          back_to_homepage: Zur Startseite
         registration_page:
-          preamble: Fill in your information below to become a part of our community!
+          preamble: Geben Sie unten Ihre Informationen ein, um Teil unserer Community zu werden!

@@ -7,13 +7,13 @@ const PriceTextV2 = ({
   price,
   style = 'mt-2 mb-1',
   textStyle = '',
-  forMobileLayout = false,
+  forMobileLayout = false
 }) => {
   const {
     commonText: {
-      months: { one },
+      months: { one }
     },
-    registrationsText: { first_month_free, then, price_free },
+    registrationsText: { first_month_free, then, price_free }
   } = useTexts();
 
   return (
