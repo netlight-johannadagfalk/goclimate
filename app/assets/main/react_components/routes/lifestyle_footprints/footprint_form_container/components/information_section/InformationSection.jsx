@@ -1,7 +1,7 @@
 import React from 'react';
 import { useVersion } from '../../../contexts/VersionContext.js';
 import LatestProjectsListV1 from '../common/latest_projects_list/LatestProjectsListV1.jsx';
-import MoneyUsageList from '../common/MoneyUsageList.jsx';
+import WhereDoesTheMoneyGo from '../common/WhereDoesTheMoneyGo.jsx';
 import FAQ from './components/faq/FAQ.jsx';
 
 const InformationSection = () => {
@@ -11,7 +11,7 @@ const InformationSection = () => {
     <div className="text-left">
       {version === 'v1' && (
         <>
-          <MoneyUsageList />
+          <WhereDoesTheMoneyGo />
           <LatestProjectsListV1 />
         </>
       )}

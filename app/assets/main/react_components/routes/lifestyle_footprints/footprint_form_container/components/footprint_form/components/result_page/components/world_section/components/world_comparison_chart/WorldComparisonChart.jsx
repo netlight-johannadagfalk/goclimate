@@ -18,6 +18,7 @@ const WorldComparisonChart = ({ footprint, countryAverage }) => {
       world_average
     }
   } = useTexts();
+
   const { lang } = useSession();
 
   const maxValue = Math.max(
@@ -58,6 +59,7 @@ const WorldComparisonChart = ({ footprint, countryAverage }) => {
       : Math.ceil((1 - footprintCo2e.value / countryAverageCo2e.value) * 100) +
         ' % ' +
         lower;
+
   const resultText = countryAverage.countries
     ? your_climate_footprint
     : your_climate_footprint_compared_world;
