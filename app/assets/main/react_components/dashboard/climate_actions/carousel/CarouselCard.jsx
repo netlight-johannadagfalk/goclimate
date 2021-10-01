@@ -7,6 +7,7 @@ import AcceptanceStatistics from './carousel_card_attributes/AcceptanceStatistic
 import TextBanner from '../../../common/TextBanner.jsx';
 import { useUserState, useUserActions } from '../../../contexts/UserContext.js';
 import { updateAccepted } from '../../../helpers/DBRequests.js';
+import { categoryName } from '../../../helpers/CategoryColorHelper';
 
 const CarouselCard = ({
   action,
@@ -55,9 +56,13 @@ const CarouselCard = ({
   }, []);
 
   return (
-    <div className="flex flex-1 min-h-full transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-102">
-      <div className="min-h-full pt-20 flex m-lg:pt-24 justify-evenly">
-        <div className="border-gray-tint-2 rounded-lg shadow-lg pb-2 mx-2 flex flex-col bg-white">
+    <div
+      className={`flex flex-1 min-h-full transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-102`}
+    >
+      <div className={`min-h-full pt-20 flex m-lg:pt-24 justify-evenly`}>
+        <div
+          className={`group border-gray-tint-2 rounded-lg shadow-lg pb-2 mx-2 flex flex-col bg-white`}
+        >
           <CategoryColorBanner categories={categories} action={action} />
           <div
             className={`mx-auto bg-gray-tint-2 bg-opacity-10 shadow-md -mt-24 rounded-full h-40 w-40 items-center justify-center bg-cover filter drop-shadow-xl`}
