@@ -4,7 +4,7 @@ const AnswerButton = ({
   label,
   onAnswerGiven,
   disableOnClick = false,
-  stylingClasses = '',
+  stylingClasses = ''
 }) => {
   const [disabled, setDisabled] = useState(false);
 

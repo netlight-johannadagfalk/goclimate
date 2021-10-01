@@ -5,9 +5,9 @@ const ArgumentsList = () => {
   const {
     reactContentText: {
       sign_up_page: {
-        membership_page: { arguments_list },
-      },
-    },
+        membership_page: { arguments_list }
+      }
+    }
   } = useTexts();
 
   return (
@@ -23,11 +23,11 @@ const ArgumentsList = () => {
           <div className="w-1/6 t:w-full text-center pl-1/5 t:pl-0">
             <div
               className={
-                'fas m-xs:text-3xl t:text-5xl text-2xl fa-' + argument.icon
+                'fas text-2xl m-xs:text-3xl t:text-5xl fa-' + argument.icon
               }
             ></div>
           </div>
-          <div className="w-5/6 t:w-full px-2">
+          <div className="w-5/6 px-2 t:w-full">
             <h2 className="heading text-base my-4 hidden t:block">
               {argument.title}
             </h2>

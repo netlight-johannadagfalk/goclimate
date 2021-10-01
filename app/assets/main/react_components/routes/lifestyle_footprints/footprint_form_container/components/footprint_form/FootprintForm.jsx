@@ -5,18 +5,18 @@ import constructQuestionObjects from '../../../helpers/constructQuestionObjects.
 import {
   numericalKeys,
   resultKeys,
-  resultObjects,
+  resultObjects
 } from '../../../helpers/footprint-data.js';
+import BackButton from './components/BackButton.jsx';
 import ProgressBar from './components/ProgressBar.jsx';
 import QuestionPage from './components/question_page/QuestionPage.jsx';
 import ResultPage from './components/result_page/ResultPage.jsx';
-import TextButton from './components/TextButton.jsx';
 import SignUpPage from './components/sign_up_page/SignUpPage.jsx';
 
 const FootprintForm = ({
   calculator,
   footprint,
-  onChangeInformationSection,
+  onChangeInformationSection
 }) => {
   const questionCategories = {
     region: 'home',
@@ -32,7 +32,7 @@ const FootprintForm = ({
     result_page_1: 'chart-bar',
     result_page_2: 'chart-bar',
     sign_up_page_1: 'award',
-    sign_up_page_2: 'award',
+    sign_up_page_2: 'award'
   };
 
   const questionObjects = constructQuestionObjects(
@@ -40,6 +40,7 @@ const FootprintForm = ({
     questionCategories,
     useTexts()
   );
+
   const URL = useSession().slug + '/calculator';
 
   const [result, setResult] = useState();
@@ -48,17 +49,17 @@ const FootprintForm = ({
 
   const mounted = useRef(false);
 
-  const cleanFootprint = (basicFootprint) => {
-    for (var footprintField in basicFootprint) {
+  const cleanFootprint = (footprint) => {
+    for (var footprintField in footprint) {
       if (
-        basicFootprint[footprintField] === null ||
-        basicFootprint[footprintField] === undefined
+        footprint[footprintField] === null ||
+        footprint[footprintField] === undefined
       ) {
-        delete basicFootprint[footprintField];
+        delete footprint[footprintField];
       }
     }
-    basicFootprint.country = basicFootprint.country.country_data_or_code;
-    return basicFootprint;
+    footprint.country = footprint.country.country_data_or_code;
+    return footprint;
   };
 
   const submitFootprintForm = () => {
@@ -69,9 +70,9 @@ const FootprintForm = ({
       credentials: 'include',
       headers: {
         'X-CSRF-Token': csrfToken,
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(answers),
+      body: JSON.stringify(answers)
     };
     fetch(URL, requestOptions)
       .then((response) => {
@@ -235,7 +236,7 @@ const FootprintForm = ({
           ))
         )}
       </div>
-      {currentIndex > 0 && <TextButton onClick={goBack} />}
+      {currentIndex > 0 && <BackButton onClick={goBack} />}
       <div id="information-scroll-position"></div>
     </>
   );

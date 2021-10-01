@@ -6,6 +6,7 @@ import FAQ from './components/faq/FAQ.jsx';
 
 const InformationSection = () => {
   const version = useVersion();
+
   return (
     <div className="text-left">
       {version === 'v1' && (

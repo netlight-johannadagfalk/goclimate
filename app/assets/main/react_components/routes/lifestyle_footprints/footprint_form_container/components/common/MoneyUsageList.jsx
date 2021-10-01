@@ -7,8 +7,8 @@ const MoneyUsageList = () => {
   const {
     registrationsText: {
       where_does_the_money_go,
-      where_does_the_money_go: { heading },
-    },
+      where_does_the_money_go: { heading }
+    }
   } = useTexts();
 
   const version = useVersion();
@@ -29,7 +29,12 @@ const MoneyUsageList = () => {
         )}
         <div className="relative space-y-3">
           <h3 className="text-center heading">{heading}</h3>
-          <ul className={"list-check space-y-3 text-left" + (version === "v2" && " text-sm")}>
+          <ul
+            className={
+              'list-check space-y-3 text-left' +
+              (version === 'v2' && ' text-sm')
+            }
+          >
             {listValues.map(([key, text]) => (
               <li key={key}>{text}</li>
             ))}

@@ -16,7 +16,7 @@ const Container = ({
   version,
   reactContentText,
   sharedText,
-  isUserSignedIn,
+  isUserSignedIn
 }) => {
   return (
     <StaticDataProvider

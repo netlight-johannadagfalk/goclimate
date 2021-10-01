@@ -11,12 +11,11 @@ const ProgressBar = ({ questionCategories, currentObject }) => {
     'car',
     'plane',
     'chart-bar',
-    ...(!signedInUser ? ['award'] : []),
+    ...(!signedInUser ? ['award'] : [])
   ];
   const inactiveCategoryClass = 'border-gray-tint-2';
   const activeCategoryClass =
     'border-green-tint-1 bg-green-tint-1 text-primary';
-
   let isCompletedCategory = true;
 
   return (
