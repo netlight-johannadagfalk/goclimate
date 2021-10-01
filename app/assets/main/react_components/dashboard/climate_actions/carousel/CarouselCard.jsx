@@ -7,14 +7,13 @@ import AcceptanceStatistics from './carousel_card_attributes/AcceptanceStatistic
 import TextBanner from '../../../common/TextBanner.jsx';
 import { useUserState, useUserActions } from '../../../contexts/UserContext.js';
 import { updateAccepted } from '../../../helpers/DBRequests.js';
-import { categoryName } from '../../../helpers/CategoryColorHelper';
 
 const CarouselCard = ({
   action,
   user,
   updateLocalAccepted,
   categories,
-  monthlyActionBanner
+  monthlyActionBanner,
 }) => {
   const { data: data } = useUserState();
   const { updateUserActions, updateColumnsWithFullFormat } = useUserActions();
@@ -36,7 +35,7 @@ const CarouselCard = ({
       status: userAction.status,
       user_id: userAction.user_id,
       climate_action_category_id: action.climate_action_category_id,
-      image_url: action.image_url
+      image_url: action.image_url,
     };
     const tempList = [temp, ...userActions];
     updateUserActions(tempList);
@@ -70,7 +69,7 @@ const CarouselCard = ({
               backgroundImage: action.image_url
                 ? `url('${action.image_url}')`
                 : "url('/action_images/Globe.png')",
-              backgroundSize: '100%'
+              backgroundSize: '100%',
             }}
           >
             {action.action_of_the_month && !monthlyActionBanner && (
