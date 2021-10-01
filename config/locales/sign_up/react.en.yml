@@ -9,7 +9,7 @@ en:
       category_chart:
         title: Your climate footprint by category
         desc: This is your carbon footprint split per category. Does it match your expectations?
-      public_emissions: Public emissions are the emissions caused by the society where you live. Examples of this are government agencies, health care, education and public transport.
+      public_emissions: Public emissions are the emissions caused by the society where you live. For example government agencies, health care, education and public transport.
       answer_button_logged_in: Go to profile
     sign_up_page:
       membership_page:
