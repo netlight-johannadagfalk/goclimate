@@ -1,0 +1,68 @@
+de:
+  views:
+    react_lifestyle_footprints:
+      world_page:
+        your_footprint_result_text:
+          text_part_before: Dein jährlicher CO2-Fußabdruck beträgt
+          text_part_middle: '. Mit einer Zahlung von'
+          text_part_end: ' kannst Du diesen Fußabdruck kompensieren. Der Betrag wird an verschiedene Klimaprojekte verteilt, welche einen positiven Effekt auf das Klima haben.'
+      category_page:
+        category_chart:
+          title: Dein Klimafußabdruck nach Kategorie
+          desc: Ist dein CO2-Fußabdruck nach Kategorie. Stimmt er mit deinen Erwartungen überein?
+        public_emissions: Öffentliche Emissionen sind von der Gesellschaft verursachte Emissionen in Abhängigkeit zu deinem Wohnort.
+        answer_button_logged_in: Zum Profil
+      sign_up_page:
+        membership_page:
+          preamble_part_1: Nun, da du mehr über deinen Einfluss aufs Klima weißt, ist es Zeit zu handeln.
+          preamble_part_2: Als Mitglied kannst du deine Ergebnisse speichern und vergleichen, Unterstützung bei der Reduzierung deines CO2-Fußabdrucks erhalten und die Möglichkeit nutzen handverlesene Klimaprojekte zu unterstützen.
+          memberships_v1:
+            free_title: Kostenloser Account
+            free_desc: Speicher’ und verfolg’ deinen Klimafußabdruck über längere Zeit
+            single_title: Kompensiere monatlich
+            single_desc: Unterstütze Klimaprojekte um jeden Monat deinen Klimafußabdruck zu kompensieren
+            multi_title: Klimakompensiere mehrfach
+            multi_desc: Unterstütze Klimaprojekte um monatlich das %{num}–fache deines Klimafußabdrucks zu kompensieren
+          memberships_v2:
+            desktop:
+              title: Wähle deine Mitgliedschaft
+              free:
+                title: Kostenloser Account
+                selling_points:
+                  point1: Speicher’ und verfolg’ deinen Klimafußabdruck über längere Zeit
+              single:
+                title: Klimakompensiere monatlich
+                selling_points:
+                  point1: Speicher’ und verfolg’ deinen Klimafußabdruck über längere Zeit
+                  point2: Compensate corresponding to your carbon footprint toward selected projects
+              multi:
+                title: Mehrfach kompensieren
+                selling_points:
+                  point1: Speicher’ und verfolg’ deinen Klimafußabdruck über längere Zeit
+                  point2: Kompensiere ein 2-faches basierend auf deinem CO2-Fußabdruck
+            mobile:
+              free:
+                title: Kostenloser Account
+                selling_point: Speicher’ und verfolg’ deinen Klimafußabdruck über längere Zeit
+              single:
+                title: Klimakompensiere monatlich
+                selling_point: Compensate corresponding to your carbon footprint toward selected projects
+              multi:
+                title: Klimakompensiere mehrfach
+                selling_point: Kompensiere ein 2-faches basierend auf deinem CO2-Fußabdruck
+          arguments_list:
+            transparency:
+              title: Volle Transparenz
+              text: Wir möchten, dass du dich bei der Verteilung deines Geldes absolut sicher fühlst.
+              icon: eye
+            projects:
+              title: Handverlesene Projekte
+              text: Mithilfe unserer Expertise wählen wir Projekte aus, die den größten Klimanutzen bringen
+              icon: globe-americas
+            binding_time:
+              title: Keine Mindestlaufzeit
+              text: Keine Mindestlaufzeit, du kannst die Klimakompensation jederzeit stoppen
+              icon: unlock
+          back_to_homepage: Zur Startseite
+        registration_page:
+          preamble: Geben Sie unten Ihre Informationen ein, um Teil unserer Community zu werden!

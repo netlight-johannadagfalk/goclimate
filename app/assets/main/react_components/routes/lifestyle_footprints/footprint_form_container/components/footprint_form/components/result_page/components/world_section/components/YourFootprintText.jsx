@@ -43,8 +43,8 @@ const YourFootprintText = ({ footprintValue, priceObject }) => {
         </span>
         <span className="font-bold text-green-accent" style={{ lineHeight: 1 }}>
           {' '}
-          {tonnes}{' '}
-        </span>{' '}
+          {tonnes}
+        </span>
         {text_part_middle}{' '}
         <span
           className="text-lg font-bold text-green-accent"
