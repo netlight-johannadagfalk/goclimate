@@ -12,6 +12,14 @@ import ProgressBar from './components/ProgressBar.jsx';
 import QuestionPage from './components/question_page/QuestionPage.jsx';
 import ResultPage from './components/result_page/ResultPage.jsx';
 import SignUpPage from './components/sign_up_page/SignUpPage.jsx';
+import {
+  cleanFootprint,
+  areObjectsEqual,
+  getSessionStorage,
+  getUsedQuestions,
+  getSavedAnswer,
+  goBack
+} from './footprint-form-helper.js';
 
 const FootprintForm = ({
   calculator,
@@ -48,19 +56,6 @@ const FootprintForm = ({
 
   const mounted = useRef(false);
 
-  const cleanFootprint = (basicFootprint) => {
-    for (var footprintField in basicFootprint) {
-      if (
-        basicFootprint[footprintField] === null ||
-        basicFootprint[footprintField] === undefined
-      ) {
-        delete basicFootprint[footprintField];
-      }
-    }
-    basicFootprint.country = basicFootprint.country.country_data_or_code;
-    return basicFootprint;
-  };
-
   const submitFootprintForm = () => {
     const answers = result ? footprint : cleanFootprint(footprint);
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
@@ -90,35 +85,6 @@ const FootprintForm = ({
       });
   };
 
-  const areObjectsEqual = (...objects) => {
-    return objects.every(
-      (obj) => JSON.stringify(obj) === JSON.stringify(objects[0])
-    );
-  };
-
-  const getSessionStorage = (key) => {
-    const item = sessionStorage.getItem(key);
-    return item ? JSON.parse(item) : {};
-  };
-
-  const isQuestionUsed = (questionKey) => {
-    const calculatorKeyForOptions = questionKey.concat('_options');
-    return calculator[calculatorKeyForOptions] != null;
-  };
-
-  const getUsedQuestions = () => {
-    for (const question in questionCategories) {
-      if (
-        !isQuestionUsed(question) &&
-        !numericalKeys.includes(question) &&
-        !resultKeys.includes(question)
-      ) {
-        delete questionCategories[question];
-      }
-    }
-    return questionCategories;
-  };
-
   const setAnswer = (givenAnswer) => {
     footprint[
       currentObject.questionKey === 'car_distance'
@@ -146,34 +112,6 @@ const FootprintForm = ({
     setCurrentIndex(nextQuestionIndex);
   };
 
-  const getSavedAnswer = () => {
-    const questionKey = currentObject.questionKey;
-    if (questionKey === 'car_distance') {
-      if (footprint[questionKey.concat('_week_answer')])
-        return footprint[questionKey.concat('_week_answer')];
-      return '';
-    }
-    if (footprint[questionKey.concat('_answer')])
-      return footprint[questionKey.concat('_answer')];
-    return '';
-  };
-
-  const goBack = () => {
-    let newIndex = currentIndex - 1;
-    if (
-      newIndex < questionObjects.length &&
-      questionObjects[newIndex].questionKey === 'car_distance' &&
-      footprint['car_type_answer'] === 'no_car'
-    )
-      newIndex--;
-    setCurrentObject(
-      newIndex < questionObjects.length
-        ? questionObjects[newIndex]
-        : resultObjects[newIndex - questionObjects.length]
-    );
-    setCurrentIndex(newIndex);
-  };
-
   useEffect(() => {
     onChangeInformationSection(
       currentIndex > questionObjects.length + 1 ? true : false
@@ -191,7 +129,12 @@ const FootprintForm = ({
     <>
       <div className="question pb-8">
         <ProgressBar
-          questionCategories={getUsedQuestions()}
+          questionCategories={getUsedQuestions(
+            questionCategories,
+            calculator,
+            numericalKeys,
+            resultKeys
+          )}
           currentObject={currentObject}
         />
         {currentIndex < questionObjects.length ? (
@@ -206,7 +149,7 @@ const FootprintForm = ({
                   : currentObject.questionKey.concat('_answer')
               ] = givenAnswer)
             }
-            savedValue={getSavedAnswer()}
+            savedValue={getSavedAnswer(currentObject, footprint)}
           />
         ) : (
           result &&
@@ -235,7 +178,20 @@ const FootprintForm = ({
           ))
         )}
       </div>
-      {currentIndex > 0 && <BackButton onClick={goBack} />}
+      {currentIndex > 0 && (
+        <BackButton
+          onClick={() =>
+            goBack(
+              currentIndex,
+              questionObjects,
+              footprint,
+              setCurrentObject,
+              resultObjects,
+              setCurrentIndex
+            )
+          }
+        />
+      )}
       <div id="information-scroll-position"></div>
     </>
   );
