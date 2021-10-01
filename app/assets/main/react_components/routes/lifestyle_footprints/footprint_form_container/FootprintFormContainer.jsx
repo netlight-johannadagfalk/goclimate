@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTexts } from '../contexts/TextsContext.js';
 import Link from './components/common/Link.jsx';
-import FootprintForm from './components/footprint_form/FootprintForm.jsx';
+import FootprintForm from './components/footprint_form/FootprintForm/FootprintForm.jsx';
 import InformationSection from './components/information_section/InformationSection.jsx';
 
 const FootprintFormContainer = ({ footprint, calculator }) => {

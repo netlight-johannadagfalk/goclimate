@@ -16,11 +16,10 @@ const Payment = ({
   const [errorMessage, setErrorMessage] = useState('');
   const [cardErrorMessage, setCardErrorMessage] = useState('');
   const [loadingIconState, setLoadingIconState] = useState('hidden');
-
   const mounted = useRef(false);
-
   const Elements = useElements();
   const stripe = useStripe();
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
   const {
     commonText: { email, password, credit_or_debit_card },
@@ -29,7 +28,12 @@ const Payment = ({
 
   const { currentRegion, slug } = useSession();
 
-  const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
 
   useEffect(() => {
     mounted.current = true;
