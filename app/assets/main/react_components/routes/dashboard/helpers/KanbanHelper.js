@@ -1,8 +1,8 @@
-import { updateStatus } from "../helpers/DBRequests.js";
-import { orderBy } from "lodash";
+import { updateStatus } from '../helpers/DBRequests.js';
+import { orderBy } from 'lodash';
 
 const sortActionsBasedOnStatus = (performedActions) => {
-  return orderBy(performedActions, ["status"], ["desc"]);
+  return orderBy(performedActions, ['status'], ['desc']);
 };
 
 const orderBadgesOnItemDragged = (performedCategories, movedItem) => {
@@ -44,7 +44,7 @@ export const handleCompleteActionOnClick = (
   const sortedDestItems = destItems.map((category) => {
     return {
       ...category,
-      userActionsArray: sortActionsBasedOnStatus(category.userActionsArray),
+      userActionsArray: sortActionsBasedOnStatus(category.userActionsArray)
     };
   });
   updateAchievements([...sortedDestItems]);
@@ -59,12 +59,12 @@ export const handleCompleteActionOnClick = (
     ...columns,
     [1]: {
       ...sourceColumn,
-      items: filteredSourceItems,
+      items: filteredSourceItems
     },
     [2]: {
       ...destColumn,
-      items: newSortedDestItems,
-    },
+      items: newSortedDestItems
+    }
   });
 };
 
@@ -89,14 +89,14 @@ export const handleUncompleteAction = (
       ...category,
       userActionsArray: category.userActionsArray.map((item) => {
         return item.id == movedItem.id ? { ...item, status: false } : item;
-      }),
+      })
     };
   });
 
   const sortedSourceItems = newSourceItems.map((category) => {
     return {
       ...category,
-      userActionsArray: sortActionsBasedOnStatus(category.userActionsArray),
+      userActionsArray: sortActionsBasedOnStatus(category.userActionsArray)
     };
   });
   const checkDelete = sortedSourceItems.filter((category) => {
@@ -108,12 +108,12 @@ export const handleUncompleteAction = (
     ...columns,
     [1]: {
       ...destColumn,
-      items: destItems,
+      items: destItems
     },
     [2]: {
       ...sourceColumn,
-      items: checkDelete,
-    },
+      items: checkDelete
+    }
   });
 };
 
@@ -138,7 +138,7 @@ export const onDragEnd = (
     const sortedDestItems = destItems.map((category) => {
       return {
         ...category,
-        userActionsArray: sortActionsBasedOnStatus(category.userActionsArray),
+        userActionsArray: sortActionsBasedOnStatus(category.userActionsArray)
       };
     });
     let performedUserActions = collectPerformedUserActions(destItems);
@@ -152,12 +152,12 @@ export const onDragEnd = (
       ...columns,
       [source.droppableId]: {
         ...sourceColumn,
-        items: sourceItems,
+        items: sourceItems
       },
       [destination.droppableId]: {
         ...destColumn,
-        items: newSortedDestItems,
-      },
+        items: newSortedDestItems
+      }
     });
   } else {
     const column = columns[source.droppableId];
@@ -168,8 +168,8 @@ export const onDragEnd = (
       ...columns,
       [source.droppableId]: {
         ...column,
-        items: copiedItems,
-      },
+        items: copiedItems
+      }
     });
   }
 };

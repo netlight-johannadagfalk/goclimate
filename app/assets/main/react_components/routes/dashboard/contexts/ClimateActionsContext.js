@@ -20,17 +20,17 @@ export const useClimateActionsOriginal = () => {
 export const ClimateActionsProvider = ({
   children,
   actionsWithUserActions,
-  actionsWithoutUserActions,
+  actionsWithoutUserActions
 }) => {
   const localActionsWithUserActions = actionsWithUserActions.map((action) => ({
     ...action,
-    accepted: true,
+    accepted: true
   }));
 
   const localActionsWithoutUserActions = actionsWithoutUserActions.map(
     (action) => ({
       ...action,
-      accepted: false,
+      accepted: false
     })
   );
 
@@ -40,7 +40,7 @@ export const ClimateActionsProvider = ({
 
   const totClimateActions = [
     ...shuffledActionsWithoutUserActions,
-    ...localActionsWithUserActions,
+    ...localActionsWithUserActions
   ];
 
   const [climateActions, setClimateActions] = useState([...totClimateActions]);

@@ -3,7 +3,7 @@ export const categoryName = (categories, itemID, isAchievement) => {
     if (categories[i].id === itemID) {
       return categories[i].name.toString();
     }
-    if (isAchievement) return "";
+    if (isAchievement) return '';
   }
-  return "unknown";
+  return 'unknown';
 };

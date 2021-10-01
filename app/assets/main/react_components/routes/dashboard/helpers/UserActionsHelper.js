@@ -1,7 +1,7 @@
 export const formatedUserActions = (inVal) => {
   return inVal.map((userActions) => ({
     ...userActions,
-    id: userActions.id.toString(),
+    id: userActions.id.toString()
   }));
 };
 
@@ -20,13 +20,13 @@ export const columnUserActions = (
     [1]: {
       id: 'Accepted',
       name: climateActionsText.my_actions,
-      items: acceptedList,
+      items: acceptedList
     },
     [2]: {
       id: 'Performed',
       name: climateActionsText.achievements,
-      items: doneList,
-    },
+      items: doneList
+    }
   };
 };
 

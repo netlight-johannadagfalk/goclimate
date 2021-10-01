@@ -10,7 +10,7 @@ const FootprintProvider = ({
   modelText,
   lang,
   registrationsText,
-  totalNoFootprints,
+  totalNoFootprints
 }) => {
   const data = {
     footprint: footprint,
@@ -19,7 +19,7 @@ const FootprintProvider = ({
     modelText: modelText,
     lang: lang,
     registrationsText: registrationsText,
-    totalNoFootprints: totalNoFootprints,
+    totalNoFootprints: totalNoFootprints
   };
 
   return (

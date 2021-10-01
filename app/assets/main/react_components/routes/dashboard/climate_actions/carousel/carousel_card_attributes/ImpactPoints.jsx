@@ -11,7 +11,7 @@ const ImpactPoints = ({ action }) => {
             style={
               index <= action.points
                 ? {
-                    backgroundImage: "url('/action_images/Globe.png')",
+                    backgroundImage: "url('/action_images/Globe.png')"
                   }
                 : {}
             }

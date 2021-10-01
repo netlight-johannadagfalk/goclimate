@@ -24,10 +24,10 @@ const membershipAchievement = (userSubscriptionType) => {
       {
         id: '-3',
         name: 'GoClimate paid membership',
-        status: userSubscriptionType == true ? true : false,
-      },
+        status: userSubscriptionType == true ? true : false
+      }
     ],
-    actionsArray: [],
+    actionsArray: []
   };
   return res;
 };
@@ -52,7 +52,7 @@ const appendUserActionsArrayToCategory = (
       if (userPerformedActions.length !== 0) {
         return {
           ...category,
-          userActionsArray: userPerformedActions,
+          userActionsArray: userPerformedActions
         };
       }
     })
@@ -85,10 +85,10 @@ export const getCompleteCategoryArrays = (
         ...category,
         userActionsArray: [...category.userActionsArray, ...allUserActions],
         actionsArray: [...allActionsWithoutUserActions],
-        id: category.id.toString(),
+        id: category.id.toString()
       };
     }),
-    membershipAchievement(userSubscriptionType),
+    membershipAchievement(userSubscriptionType)
   ];
   return res;
 };
@@ -120,7 +120,7 @@ export const handleAchievementsOnMove = (
         ? {
             ...performedCategory,
             userActionsArray: [...updatedUserItemsArray, movedItem],
-            actionsArray: updatedActionItemsArray,
+            actionsArray: updatedActionItemsArray
           }
         : performedCategory;
     });
@@ -134,7 +134,7 @@ export const handleAchievementsOnMove = (
         actionsWithoutUserActions,
         newCategory.id
       ),
-      ...filterCategoryRelatedActions(actionsWithUserActions, newCategory.id),
+      ...filterCategoryRelatedActions(actionsWithUserActions, newCategory.id)
     ];
     const allUserActions = [
       ...filterCategoryRelatedUserActions(
@@ -146,13 +146,13 @@ export const handleAchievementsOnMove = (
         formatedUserActions(userActions),
         newCategory.id,
         true
-      ),
+      )
     ];
     const result = {
       ...newCategory,
       actionsArray: [...allClimateActions],
       userActionsArray: [...allUserActions],
-      id: newCategory.id.toString(),
+      id: newCategory.id.toString()
     };
     const updatedUserActionsArray = result.userActionsArray.map((action) => {
       return action.id == movedItem.id ? { ...action, status: true } : action;
@@ -164,7 +164,7 @@ export const handleAchievementsOnMove = (
 
     const combinedActionsArray = [
       ...updatedUserActionsArray,
-      ...updatedActionsArray,
+      ...updatedActionsArray
     ];
 
     const newCombinedActionsArray = uniqWith(
@@ -178,7 +178,7 @@ export const handleAchievementsOnMove = (
         (userAction) => userAction.user_id
       ),
       actionsArray: newCombinedActionsArray.filter((action) => !action.user_id),
-      id: newCategory.id.toString(),
+      id: newCategory.id.toString()
     };
     const resultArray = [...achievementColumn, updatedAchievements];
 

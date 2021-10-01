@@ -11,7 +11,7 @@ const KanbanCard = ({
   handleDelete,
   categories,
   sidebarCollapsed,
-  handleExpanded,
+  handleExpanded
 }) => {
   const isAchievement = item.userActionsArray ? true : false;
 
@@ -24,7 +24,7 @@ const KanbanCard = ({
       return {
         userSelect: 'none',
         padding: 0,
-        minHeight: 'auto',
+        minHeight: 'auto'
       };
     }
   };
@@ -34,7 +34,7 @@ const KanbanCard = ({
       userSelect: 'none',
       padding: 0,
       minHeight: 'auto',
-      ...style,
+      ...style
     };
   };
 

@@ -10,7 +10,7 @@ const ResultBar = ({
   color = 'bg-primary',
   fontWeight = '',
   spaceStyling = '',
-  spanWidth = '',
+  spanWidth = ''
 }) => {
   return (
     <div className={spaceStyling}>

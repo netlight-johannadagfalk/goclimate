@@ -7,13 +7,13 @@ export const updateAccepted = (action, user, mounted, acceptAction) => {
     credentials: 'include',
     headers: {
       'X-CSRF-Token': csrfToken,
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       climate_action_id: actionID,
       user_id: user.id,
-      status: false,
-    }),
+      status: false
+    })
   };
 
   fetch(URL, requestOptions)
@@ -34,8 +34,8 @@ export const deleteUserAction = (id) => {
     credentials: 'include',
     headers: {
       'X-CSRF-Token': csrfToken,
-      'Content-Type': 'application/json',
-    },
+      'Content-Type': 'application/json'
+    }
   };
   fetch(URL, requestOptions).catch((e) => console.warn(e));
 };
@@ -48,9 +48,9 @@ export const updateStatus = (id, status, mounted) => {
     credentials: 'include',
     headers: {
       'X-CSRF-Token': csrfToken,
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ status: status }),
+    body: JSON.stringify({ status: status })
   };
   fetch(URL, requestOptions)
     .then((res) => {
