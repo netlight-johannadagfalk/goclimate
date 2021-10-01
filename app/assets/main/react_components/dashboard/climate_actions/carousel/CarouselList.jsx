@@ -7,7 +7,7 @@ import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import { orderBy } from 'lodash';
 import { useMediaQuery } from 'react-responsive';
-import { m, d, dLg } from '../../../constants';
+import { m, t, d, dMd, dLg } from '../../../constants';
 
 // Swiper resources
 //https://swiperjs.com/react
@@ -21,8 +21,10 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   const navigationNextRef = React.useRef(null);
   const climateActions = useClimateActions();
   const isMobile = useMediaQuery({ query: `(max-width: ${m})` });
-  const isLargeTablet = useMediaQuery({ query: `(max-width: ${d})` });
-  const isDesktop = useMediaQuery({ query: `(max-width: ${dLg})` });
+  const isTablet = useMediaQuery({ query: `(max-width: ${t})` });
+  const isSmallDesktop = useMediaQuery({ query: `(max-width: ${d})` });
+  const isMediumDesktop = useMediaQuery({ query: `(max-width: ${dMd})` });
+  const isLargeDesktop = useMediaQuery({ query: `(max-width: ${dLg})` });
 
   const sortForMobileClimateActions = orderBy(
     climateActions,
@@ -31,13 +33,17 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
   );
 
   const actions =
-    isMobile || isLargeTablet ? sortForMobileClimateActions : climateActions;
+    isMobile || isSmallDesktop ? sortForMobileClimateActions : climateActions;
 
   const noOfItemsShown = isMobile
-    ? 1.5
-    : isLargeTablet
+    ? 1.25
+    : isTablet
+    ? 2.25
+    : isSmallDesktop
+    ? 2
+    : isMediumDesktop
     ? 2.5
-    : isDesktop
+    : isLargeDesktop
     ? 3
     : 4;
 
