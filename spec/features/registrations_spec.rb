@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.feature 'Registrations', type: :feature, js: true do
   scenario 'Register' do
     # Homepage
-    visit '/us'
+    visit '/us?disable_experiments=v1,v2'
 
     select('Sweden', from: 'country')
     click_button 'Get started'
@@ -42,7 +42,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
 
   scenario 'Register with 3D Secure card' do
     # Homepage
-    visit '/'
+    visit '/?disable_experiments=v1,v2'
 
     select('Sweden', from: 'country')
     click_button 'Get started'
@@ -80,7 +80,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
 
   scenario 'Register with referral code' do
     # Homepage
-    visit '/?enable_experiments=new_signup'
+    visit '/?disable_experiments=v1,v2'
 
     select('Sweden', from: 'country')
     click_button 'Get started'
@@ -126,7 +126,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
   end
 
   scenario 'Register without subscription' do
-    visit '/'
+    visit '/?disable_experiments=v1,v2'
 
     select('Sweden', from: 'country')
     click_button 'Get started'
@@ -156,7 +156,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
 
   scenario 'Register through campaign page' do
     # Campaign page
-    visit '/know-your-carbon-footprint'
+    visit '/know-your-carbon-footprint?disable_experiments=v1,v2'
 
     within '#first-registration-form' do
       select('Sweden', from: 'country')
@@ -193,7 +193,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
 
   scenario 'Register through campaign page with 3D Secure card' do
     # Campaign page
-    visit '/know-your-carbon-footprint'
+    visit '/know-your-carbon-footprint?disable_experiments=v1,v2'
 
     within '#first-registration-form' do
       select('Sweden', from: 'country')
@@ -233,7 +233,7 @@ RSpec.feature 'Registrations', type: :feature, js: true do
 
   scenario 'Register through campaign page without subscription' do
     # Campaign page
-    visit '/know-your-carbon-footprint'
+    visit '/know-your-carbon-footprint?disable_experiments=v1,v2'
 
     within '#first-registration-form' do
       select('Sweden', from: 'country')
