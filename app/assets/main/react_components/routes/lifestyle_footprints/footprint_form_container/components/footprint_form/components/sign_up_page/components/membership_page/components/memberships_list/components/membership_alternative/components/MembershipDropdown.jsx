@@ -3,7 +3,7 @@ import React from 'react';
 const MembershipDropdown = ({
   multipleOffsets,
   setMultipleOffsets,
-  style = 'py-1',
+  style = 'py-1'
 }) => {
   return (
     <div className="select-wrapper flex-shrink-0">
@@ -11,10 +11,8 @@ const MembershipDropdown = ({
         value={multipleOffsets}
         onChange={(e) => setMultipleOffsets(e.target.value)}
         className={'select border pl-2 ' + style}
-        name="people"
-        id="people"
         style={{
-          paddingRight: '2em',
+          paddingRight: '2em'
         }}
       >
         {Array.from({ length: 19 }, (_, i) => i + 2).map((optionValue) => (

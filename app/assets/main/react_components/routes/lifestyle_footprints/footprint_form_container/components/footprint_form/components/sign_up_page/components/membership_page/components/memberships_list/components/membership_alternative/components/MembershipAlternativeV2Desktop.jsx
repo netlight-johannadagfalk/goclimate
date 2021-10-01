@@ -11,7 +11,7 @@ const MembershipAlternativeV2Desktop = ({
   setMultipleOffsets,
   grantedReferralCode,
   price,
-  style,
+  style
 }) => {
   const {
     reactContentText: {
@@ -19,21 +19,26 @@ const MembershipAlternativeV2Desktop = ({
         membership_page: {
           memberships_v2: {
             desktop: {
-              [type]: { title, selling_points },
-            },
-          },
-        },
-      },
-    },
+              [type]: { title, selling_points }
+            }
+          }
+        }
+      }
+    }
   } = useTexts();
 
-  var sellingPoints = selling_points;
-  for (var point in sellingPoints) {
-    sellingPoints[point] = sellingPoints[point].replace(
-      /\d+/,
-      multipleOffsets.toString()
-    );
-  }
+  const replaceMultipleOffsetsNumber = (sellingPoints) => {
+    var newSellingPoints = sellingPoints;
+    for (var point in newSellingPoints) {
+      newSellingPoints[point] = newSellingPoints[point].replace(
+        /\d+/,
+        multipleOffsets.toString()
+      );
+    }
+    return newSellingPoints;
+  };
+
+  const sellingPoints = replaceMultipleOffsetsNumber(selling_points);
 
   return (
     <>
@@ -84,7 +89,7 @@ const MembershipAlternativeV2Desktop = ({
                 className="flex-shrink-0"
                 style={{
                   height: '20px',
-                  width: '20px',
+                  width: '20px'
                 }}
                 type="radio"
                 name="membership_desktop"

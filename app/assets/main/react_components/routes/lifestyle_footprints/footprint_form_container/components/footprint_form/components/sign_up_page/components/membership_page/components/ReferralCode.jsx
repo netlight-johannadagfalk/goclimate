@@ -16,6 +16,13 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
     }
   } = useTexts();
 
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
+
   const lookUpReferralCode = () => {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const URL = '/referral-codes/lookup';
@@ -44,13 +51,6 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
         console.log('Something went wrong, trying again.', error);
       });
   };
-
-  useEffect(() => {
-    mounted.current = true;
-    return () => {
-      mounted.current = false;
-    };
-  }, []);
 
   return (
     <div className="mt-3 collapse">
@@ -89,8 +89,6 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
                   className="input w-1/2 flex-grow mr-2"
                   placeholder={referral_code}
                   type="text"
-                  name="code"
-                  id="code"
                   value={inputCode}
                   onChange={(e) => setInputCode(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && lookUpReferralCode()}

@@ -1,8 +1,8 @@
 import React from 'react';
+import { useSession } from '../../../../../../../../../contexts/SessionContext.js';
+import { useTexts } from '../../../../../../../../../contexts/TextsContext.js';
 import ResultBar from '../../../common/ResultBar.jsx';
 import WorldComparisonText from './components/WorldComparisonText.jsx';
-import { useTexts } from '../../../../../../../../../contexts/TextsContext.js';
-import { useSession } from '../../../../../../../../../contexts/SessionContext.js';
 
 const WorldComparisonChart = ({ footprint, countryAverage }) => {
   const {
@@ -15,9 +15,10 @@ const WorldComparisonChart = ({ footprint, countryAverage }) => {
       you,
       goal_2030,
       average_in,
-      world_average,
-    },
+      world_average
+    }
   } = useTexts();
+
   const { lang } = useSession();
 
   const maxValue = Math.max(
@@ -41,13 +42,13 @@ const WorldComparisonChart = ({ footprint, countryAverage }) => {
             /%{.*?}/i,
             footprintCo2e.inTonnes(footprintCo2e.value < 100 ? 2 : 1)
           );
-    },
+    }
   };
   const countryAverageCo2e = {
     value: countryAverage.co2e.co2e,
     inTonnes: (decimalPlaces) => {
       return (countryAverageCo2e.value / 1000).toFixed(decimalPlaces);
-    },
+    }
   };
 
   const relativeText =
@@ -58,6 +59,7 @@ const WorldComparisonChart = ({ footprint, countryAverage }) => {
       : Math.ceil((1 - footprintCo2e.value / countryAverageCo2e.value) * 100) +
         ' % ' +
         lower;
+
   const resultText = countryAverage.countries
     ? your_climate_footprint
     : your_climate_footprint_compared_world;
@@ -75,7 +77,7 @@ const WorldComparisonChart = ({ footprint, countryAverage }) => {
             }
             value={footprintCo2e.inTonnes(1)}
             color={'bg-green-accent'}
-            fontWeight={'font-bold'}
+            fontStyling={'font-bold'}
           />
           <ResultBar
             title={{
@@ -84,7 +86,7 @@ const WorldComparisonChart = ({ footprint, countryAverage }) => {
                     /%{.*?}/i,
                     footprint.country.data.translations[lang]
                   )
-                : world_average,
+                : world_average
             }}
             width={
               countryAverageCo2e.inTonnes(1) > 0
@@ -105,7 +107,7 @@ const WorldComparisonChart = ({ footprint, countryAverage }) => {
         customValues={[
           footprintCo2e.text,
           relativeText,
-          countryAverage.countries && footprint.country.data.translations[lang],
+          countryAverage.countries && footprint.country.data.translations[lang]
         ]}
       />
     </>

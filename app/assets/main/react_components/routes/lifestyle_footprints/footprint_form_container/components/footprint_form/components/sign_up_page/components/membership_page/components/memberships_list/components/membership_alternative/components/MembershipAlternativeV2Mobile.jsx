@@ -11,7 +11,7 @@ const MembershipAlternativeV2Mobile = ({
   setMultipleOffsets,
   grantedReferralCode,
   price,
-  style,
+  style
 }) => {
   const {
     reactContentText: {
@@ -19,18 +19,17 @@ const MembershipAlternativeV2Mobile = ({
         membership_page: {
           memberships_v2: {
             mobile: {
-              [type]: { title, selling_point },
-            },
-          },
-        },
-      },
-    },
+              [type]: { title, selling_point }
+            }
+          }
+        }
+      }
+    }
   } = useTexts();
 
   var sellingPoint = selling_point;
-  if (type === 'multi') {
-    sellingPoint = selling_point.replace(/\d+/, multipleOffsets.toString());
-  }
+  type === 'multi' &&
+    (sellingPoint = selling_point.replace(/\d+/, multipleOffsets.toString()));
 
   return (
     <>
@@ -42,7 +41,7 @@ const MembershipAlternativeV2Mobile = ({
               <input
                 style={{
                   height: '15px',
-                  width: '15px',
+                  width: '15px'
                 }}
                 type="radio"
                 name="membership_mobile"

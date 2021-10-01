@@ -14,7 +14,7 @@ const CategoryChart = ({ footprint }) => {
   );
   const {
     commonText,
-    commonText: { tonnes },
+    commonText: { tonnes }
   } = useTexts();
 
   const categoryData = getChartData(footprint, commonText);
@@ -39,7 +39,7 @@ const CategoryChart = ({ footprint }) => {
               tonnes
             }
             color={category.color}
-            fontWeight={'text-sm'}
+            fontStyling={'text-sm'}
             spaceStyling={'space-y-1'}
             spanWidth={'w-24'}
           />

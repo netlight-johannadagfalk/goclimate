@@ -9,26 +9,38 @@ const Payment = ({
   lifestyleFootprint,
   grantedReferralCode,
   multipleOffsets,
-  price,
+  price
 }) => {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [cardErrorMessage, setCardErrorMessage] = useState('');
   const [loadingIconState, setLoadingIconState] = useState('hidden');
-
   const mounted = useRef(false);
-
   const Elements = useElements();
   const stripe = useStripe();
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
   const {
     commonText: { email, password, credit_or_debit_card },
-    registrationsText: { start_subscription },
+    registrationsText: { start_subscription }
   } = useTexts();
+
   const { currentRegion, slug } = useSession();
 
-  const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
 
   const signUp = (paymentMethodID = undefined) => {
     return fetch(slug + '/users.json', {
@@ -36,7 +48,7 @@ const Payment = ({
       credentials: 'include',
       headers: {
         'X-CSRF-Token': csrfToken,
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         lifestyle_footprint: lifestyleFootprint,
@@ -46,10 +58,10 @@ const Payment = ({
         user: {
           region: currentRegion,
           email: userEmail,
-          password: userPassword,
+          password: userPassword
         },
-        payment_method_id: paymentMethodID,
-      }),
+        payment_method_id: paymentMethodID
+      })
     })
       .then((response) => {
         if (mounted.current) {
@@ -117,7 +129,7 @@ const Payment = ({
       const cardElement = Elements.getElement(CardElement);
       const { error, paymentMethod } = await stripe.createPaymentMethod({
         type: 'card',
-        card: cardElement,
+        card: cardElement
       });
       if (error) {
         setErrorMessage(error.message);
@@ -130,13 +142,6 @@ const Payment = ({
       signUp();
     }
   };
-
-  useEffect(() => {
-    mounted.current = true;
-    return () => {
-      mounted.current = false;
-    };
-  }, []);
 
   return (
     <>

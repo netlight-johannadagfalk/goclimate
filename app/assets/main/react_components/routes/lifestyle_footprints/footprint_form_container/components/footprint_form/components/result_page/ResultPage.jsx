@@ -18,9 +18,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
   const tabletBreakpoint = 768;
 
   useEffect(() => {
-    if (window.innerWidth <= tabletBreakpoint) {
-      scrollToTop();
-    }
+    window.innerWidth <= tabletBreakpoint && scrollToTop();
   }, [page]);
 
   return (
@@ -41,9 +39,9 @@ const ResultPage = ({ result, page, onPageChange }) => {
           page === 1 && result.user_page_path ? answer_button_logged_in : next
         }
         onAnswerGiven={() => {
-          if (result.user_page_path && page === 1)
-            window.location.href = result.user_page_path;
-          else onPageChange();
+          result.user_page_path && page === 1
+            ? (window.location.href = result.user_page_path)
+            : onPageChange();
         }}
         stylingClasses={'w-5/6 ' + (page === 2 && 'button-cta')}
       />

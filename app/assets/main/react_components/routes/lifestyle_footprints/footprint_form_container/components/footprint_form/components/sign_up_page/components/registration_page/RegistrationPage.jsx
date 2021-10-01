@@ -14,19 +14,19 @@ const RegistrationPage = ({
   lifestyleFootprint,
   grantedReferralCode,
   multipleOffsets,
-  price,
+  price
 }) => {
   const {
     registrationsText: {
       sign_up_heading_collective_efficacy,
       accept_policies,
-      sign_up_description,
+      sign_up_description
     },
     reactContentText: {
       sign_up_page: {
-        registration_page: { preamble },
-      },
-    },
+        registration_page: { preamble }
+      }
+    }
   } = useTexts();
 
   const { lang } = useSession();
@@ -60,7 +60,7 @@ const RegistrationPage = ({
       <div
         className={'inject-link pt-4'}
         dangerouslySetInnerHTML={{
-          __html: sanitizeHtml(accept_policies),
+          __html: sanitizeHtml(accept_policies)
         }}
       ></div>
     </>

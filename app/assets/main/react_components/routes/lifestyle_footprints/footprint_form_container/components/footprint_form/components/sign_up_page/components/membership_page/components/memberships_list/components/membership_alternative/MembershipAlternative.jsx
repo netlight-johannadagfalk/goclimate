@@ -8,7 +8,7 @@ const MembershipAlternative = ({
   title,
   desc,
   multipleOffsets,
-  setMultipleOffsets,
+  setMultipleOffsets
 }) => {
   const style =
     'flex flex-row items-center p-3 rounded cursor-pointer mt-3 border-2 shadow-lg' +
