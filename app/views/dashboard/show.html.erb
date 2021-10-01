@@ -114,7 +114,7 @@
   modelText: YAML.load_file('config/locales/models.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['models']['greenhouse_gases']['tonnes'].to_json,
   lang: I18n.locale[0..-1],
   registrationsText: YAML.load_file('config/locales/views/registrations.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['registrations'].to_json,
-  climateActionsText: YAML.load_file('app/assets/main/react_components/translations/climate_actions.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['assets']['main']['react_components'].to_json,
+  climateActionsText: YAML.load_file('config/locales/views/climate_actions.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['climate_actions'].to_json,
   totalNoFootprints: @total_number_of_footprints.to_json(),
   userSubscriptionType: @get_subscription_type,
   actionsToplist: @number_of_performed_users_actions_ordered.to_json()

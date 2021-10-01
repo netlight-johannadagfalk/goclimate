@@ -14,7 +14,7 @@ const CarouselCard = ({
   user,
   updateLocalAccepted,
   categories,
-  monthlyActionBanner,
+  monthlyActionBanner
 }) => {
   const { data: data } = useUserState();
   const { updateUserActions, updateColumnsWithFullFormat } = useUserActions();
@@ -36,7 +36,7 @@ const CarouselCard = ({
       status: userAction.status,
       user_id: userAction.user_id,
       climate_action_category_id: action.climate_action_category_id,
-      image_url: action.image_url,
+      image_url: action.image_url
     };
     const tempList = [temp, ...userActions];
     updateUserActions(tempList);
@@ -70,14 +70,14 @@ const CarouselCard = ({
               backgroundImage: action.image_url
                 ? `url('${action.image_url}')`
                 : "url('/action_images/Globe.png')",
-              backgroundSize: '100%',
+              backgroundSize: '100%'
             }}
           >
             {action.action_of_the_month && !monthlyActionBanner && (
               <TextBanner text={text} />
             )}
           </div>
-          <div className="flex flex-col flex-1 mx-8 text-center ">
+          <div className="flex flex-col flex-1 mx-6 text-center ">
             <ImpactPoints action={action} />
             <h3 className="flex-1 justify-center my-2 align-center text-base font-bold self-center">
               {action.name.length > 40
@@ -89,7 +89,7 @@ const CarouselCard = ({
                 ? action.description.slice(0, 200) + '...'
                 : action.description}
             </p>
-            <div className="flex-1 mt-5 justify-center align-center">
+            <div className="flex-1 mt-5 mb-4 justify-center align-center">
               <AcceptanceStatistics action={action} />
               {!action.accepted && (
                 <button

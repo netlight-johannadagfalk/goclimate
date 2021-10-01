@@ -34,7 +34,7 @@ const CarouselContainer = ({
   return (
     <section className="section-padding">
       <CarouselHeader />
-      <div className="max-w-6xl mx-auto space-y-3 t:bg-transparent t:rounded-lg">
+      <div className="mx-auto space-y-3 t:bg-transparent t:rounded-lg">
         {isTabletOrMobile ? (
           <CarouselCategoryButton
             categories={categories}
