@@ -8,7 +8,7 @@ const FormInformationSection = ({
   price,
   grantedReferralCode,
   selectedMembership,
-  multipleOffsets,
+  multipleOffsets
 }) => {
   return (
     <>

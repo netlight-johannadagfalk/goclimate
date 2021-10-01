@@ -1,8 +1,8 @@
 import React from 'react';
-import { SessionProvider } from './SessionContext.js';
 import { ProjectsProvider } from './ProjectsContext.js';
-import { VersionProvider } from './VersionContext.js';
+import { SessionProvider } from './SessionContext.js';
 import { TextsProvider } from './TextsContext.js';
+import { VersionProvider } from './VersionContext.js';
 
 const StaticDataProvider = ({
   children,
@@ -17,7 +17,7 @@ const StaticDataProvider = ({
   version,
   reactContentText,
   sharedText,
-  isUserSignedIn,
+  isUserSignedIn
 }) => {
   return (
     <TextsProvider
