@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { useSession } from '../../../contexts/SessionContext.js';
-import { useTexts } from '../../../contexts/TextsContext.js';
-import constructQuestionObjects from '../../../helpers/constructQuestionObjects.js';
+import { useSession } from '../../../../contexts/SessionContext.js';
+import { useTexts } from '../../../../contexts/TextsContext.js';
+import constructQuestionObjects from '../../../../helpers/constructQuestionObjects.js';
 import {
   numericalKeys,
   resultKeys,
   resultObjects
-} from '../../../helpers/footprint-data.js';
-import BackButton from './components/BackButton.jsx';
-import ProgressBar from './components/ProgressBar.jsx';
-import QuestionPage from './components/question_page/QuestionPage.jsx';
-import ResultPage from './components/result_page/ResultPage.jsx';
-import SignUpPage from './components/sign_up_page/SignUpPage.jsx';
+} from '../../../../helpers/footprint-data.js';
+import BackButton from '../components/BackButton.jsx';
+import ProgressBar from '../components/ProgressBar.jsx';
+import QuestionPage from '../components/question_page/QuestionPage.jsx';
+import ResultPage from '../components/result_page/ResultPage.jsx';
+import SignUpPage from '../components/sign_up_page/SignUpPage.jsx';
 import {
   submitFootprintForm,
   areObjectsEqual,
@@ -19,7 +19,7 @@ import {
   getUsedQuestions,
   getSavedAnswer,
   goBack
-} from './helpers/footprint-form-helper.js';
+} from './footprint-form-logic.js';
 
 const questionCategories = {
   region: 'home',
