@@ -22,8 +22,10 @@ const Dashboard = ({
   climateActionsText,
   totalNoFootprints,
   userSubscriptionType,
-  actionsToplist,
+  actionsToplist
 }) => {
+  console.log(JSON.parse(actionsWithUserActions));
+  console.log(JSON.parse(actionsWithoutUserActions));
   return (
     <TextProvider climateActionsText={JSON.parse(climateActionsText)}>
       <DeletedActionProvider>

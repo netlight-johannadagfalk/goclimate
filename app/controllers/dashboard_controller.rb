@@ -49,16 +49,18 @@ class DashboardController < ApplicationController
     ClimateAction
       .where(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
       .joins(:user_climate_actions)
-      .select('climate_actions.*, COUNT(user_climate_actions.climate_action_id) AS total')
-      .group('climate_actions.id')
+      .joins('LEFT JOIN climate_action_categories ON climate_action_categories.id = climate_actions.climate_action_category_id')
+      .select('climate_actions.*, climate_action_categories.name AS category, COUNT(user_climate_actions.climate_action_id) AS total')
+      .group('climate_actions.id, climate_action_categories.name')
   end
 
   def all_climate_actions_without_user_actions
     ClimateAction
       .where.not(id: UserClimateAction.where(user_id: current_user.id).select(:climate_action_id))
       .joins('LEFT JOIN user_climate_actions ON user_climate_actions.climate_action_id = climate_actions.id')
-      .select('climate_actions.*, COUNT(user_climate_actions.climate_action_id) AS total')
-      .group('climate_actions.id')
+      .joins('LEFT JOIN climate_action_categories ON climate_action_categories.id = climate_actions.climate_action_category_id')
+      .select('climate_actions.*, climate_action_categories.name AS category, COUNT(user_climate_actions.climate_action_id) AS total')
+      .group('climate_actions.id, climate_action_categories.name')
   end
 
   def all_user_climate_actions
