@@ -87,13 +87,9 @@ const getUsedQuestions = (
 const getSavedAnswer = (currentObject, footprint) => {
   const questionKey = currentObject.questionKey;
   if (questionKey === 'car_distance') {
-    if (footprint[questionKey.concat('_week_answer')])
-      return footprint[questionKey.concat('_week_answer')];
-    return '';
+    return footprint[questionKey.concat('_week_answer')] || '';
   }
-  if (footprint[questionKey.concat('_answer')])
-    return footprint[questionKey.concat('_answer')];
-  return '';
+  return footprint[questionKey.concat('_answer')] || '';
 };
 
 const goBack = (
