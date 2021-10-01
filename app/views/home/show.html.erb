@@ -11,13 +11,6 @@
 
 <section class="z-0 bg-blue-tint-1">
   <div class="relative z-20 max-w-3xl mx-auto px-4 t:px-16 d:px-0 pt-16 t:pt-24 d:pt-32 text-center">
-  <% if experiment_active?(:v1) || experiment_active?(:v2) %> 
-    <%= react_component 'CountrySelectContainer', 
-      slug: current_region.slug, 
-      welcomeText: YAML.load_file('config/locales/views/welcome.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['welcome']['index'].to_json, 
-      sharedText: YAML.load_file('config/locales/views/shared.' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]]['views']['shared']['header']['region_recommendation'].to_json 
-    %>
-  <% else %>
     <h1 class="heading-xl mb-6 t:mb-12">
       <%= t 'views.welcome.index.hero.heading' %><br>
     </h1>
@@ -39,7 +32,6 @@
         <%= f.submit t('views.welcome.index.get_started'), name: nil, class: 'button button-cta mt-2 m-lg:mt-0 m-lg:ml-2 w-full m-lg:w-auto' %>
       <% end %>
     </div>
-  <% end %>
   </div>
   <div class="z-10 t:-mt-16">
     <%= render "shared/hero_landscape" %>

@@ -40,7 +40,6 @@ const FootprintForm = ({
     questionCategories,
     useTexts()
   );
-
   const URL = useSession().slug + '/calculator';
 
   const [result, setResult] = useState();
@@ -49,17 +48,17 @@ const FootprintForm = ({
 
   const mounted = useRef(false);
 
-  const cleanFootprint = (footprint) => {
-    for (var footprintField in footprint) {
+  const cleanFootprint = (basicFootprint) => {
+    for (var footprintField in basicFootprint) {
       if (
-        footprint[footprintField] === null ||
-        footprint[footprintField] === undefined
+        basicFootprint[footprintField] === null ||
+        basicFootprint[footprintField] === undefined
       ) {
-        delete footprint[footprintField];
+        delete basicFootprint[footprintField];
       }
     }
-    footprint.country = footprint.country.country_data_or_code;
-    return footprint;
+    basicFootprint.country = basicFootprint.country.country_data_or_code;
+    return basicFootprint;
   };
 
   const submitFootprintForm = () => {
