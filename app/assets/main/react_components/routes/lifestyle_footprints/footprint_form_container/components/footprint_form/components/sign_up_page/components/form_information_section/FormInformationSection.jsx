@@ -7,8 +7,7 @@ import ArgumentsList from './components/ArgumentsList.jsx';
 const FormInformationSection = ({
   price,
   grantedReferralCode,
-  selectedMembership,
-  multipleOffsets
+  selectedMembership
 }) => {
   return (
     <>
@@ -19,7 +18,6 @@ const FormInformationSection = ({
         price={price}
         grantedReferralCode={grantedReferralCode}
         selectedMembership={selectedMembership}
-        multipleOffsets={multipleOffsets}
       />
     </>
   );

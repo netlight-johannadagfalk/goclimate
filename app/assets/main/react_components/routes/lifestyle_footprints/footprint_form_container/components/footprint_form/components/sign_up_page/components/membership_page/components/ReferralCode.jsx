@@ -89,8 +89,6 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
                   className="input w-1/2 flex-grow mr-2"
                   placeholder={referral_code}
                   type="text"
-                  name="code"
-                  id="code"
                   value={inputCode}
                   onChange={(e) => setInputCode(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && lookUpReferralCode()}

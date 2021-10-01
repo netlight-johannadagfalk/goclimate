@@ -11,18 +11,18 @@ const MembershipAlternativeV2 = ({
   multipleOffsets,
   setMultipleOffsets,
   grantedReferralCode,
-  result,
+  result
 }) => {
   const {
     currency: {
       money: {
-        currency_formats: { [result.plan.price.currency.iso_code]: currency },
-      },
-    },
+        currency_formats: { [result.plan.price.currency.iso_code]: currency }
+      }
+    }
   } = useSession();
 
   const style =
-    'my-6 t:my-0 rounded content-between relative m-1 h-full shadow-lg border-2 ' +
+    'my-6 t:my-0 pb-4 rounded content-between relative m-1 h-full shadow-lg border-2 ' +
     (type === selectedMembership
       ? ' bg-green-tint-1 '
       : ' border-gray-tint-1 ');

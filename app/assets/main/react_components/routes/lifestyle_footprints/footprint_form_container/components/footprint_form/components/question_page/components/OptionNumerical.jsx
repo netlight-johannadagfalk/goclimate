@@ -5,7 +5,7 @@ const OptionNumerical = ({
   questionObject,
   onAnswerGiven,
   savedValue,
-  onNumericalInput,
+  onNumericalInput
 }) => {
   const [value, setValue] = useState(savedValue);
 

@@ -8,7 +8,7 @@ const QuestionPage = ({
   onAnswerGiven,
   selectedKey,
   onNumericalInput,
-  savedValue,
+  savedValue
 }) => {
   return (
     <>

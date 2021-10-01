@@ -7,7 +7,7 @@ const MembershipsListV2 = ({
   multipleOffsets,
   setMultipleOffsets,
   grantedReferralCode,
-  result,
+  result
 }) => {
   return (
     <>

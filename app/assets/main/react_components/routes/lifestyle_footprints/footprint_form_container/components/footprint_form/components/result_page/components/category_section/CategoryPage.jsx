@@ -25,7 +25,7 @@ const CategoryPage = ({ footprint }) => {
         <CategoryChart footprint={footprint} />
         {version === 'v2' && (
           <>
-            <br></br>
+            <br />
             <div className="text-left">
               <Preamble text={public_emissions} />
             </div>

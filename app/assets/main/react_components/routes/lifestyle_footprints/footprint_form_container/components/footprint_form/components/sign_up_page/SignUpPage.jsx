@@ -15,31 +15,30 @@ const SignUpPage = ({ result, page, onPageChange }) => {
   const [multipleOffsets, setMultipleOffsets] = useState(2);
   const [grantedReferralCode, setGrantedReferralCode] = useState('');
   const [price, setPrice] = useState(0);
+  const version = useVersion();
+  const tabletScrollBreakpoint = 768;
 
   const {
     registrationsText: { continue_to_payment },
     lifestyleFootprintsText: { next },
     reactContentText: {
       sign_up_page: {
-        membership_page: { back_to_homepage },
-      },
-    },
+        membership_page: { back_to_homepage }
+      }
+    }
   } = useTexts();
 
   const {
     currency: {
       money: {
-        currency_formats: { [result.plan.price.currency.iso_code]: currency },
-      },
+        currency_formats: { [result.plan.price.currency.iso_code]: currency }
+      }
     },
-    slug,
+    slug
   } = useSession();
 
-  const version = useVersion();
-  const tabletBreakpoint = 768;
-
   useEffect(() => {
-    if (window.innerWidth <= tabletBreakpoint) {
+    if (window.innerWidth <= tabletScrollBreakpoint) {
       scrollToTop();
     }
   }, [page]);
@@ -97,13 +96,12 @@ const SignUpPage = ({ result, page, onPageChange }) => {
             price={price}
             grantedReferralCode={grantedReferralCode}
             selectedMembership={selectedMembership}
-            multipleOffsets={multipleOffsets}
           />
           <AnswerButton
             label={continue_to_payment}
             onAnswerGiven={() => {
               onPageChange();
-              scrollToTop()
+              scrollToTop();
             }}
             stylingClasses={'w-5/6 button-cta'}
           />

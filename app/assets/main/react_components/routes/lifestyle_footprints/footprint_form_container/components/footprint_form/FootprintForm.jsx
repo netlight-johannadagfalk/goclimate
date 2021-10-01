@@ -235,7 +235,7 @@ const FootprintForm = ({
           ))
         )}
       </div>
-      {currentIndex > 0 && <BackButton onClick={goBack} />}
+      {currentIndex > 0 && <BackButton goBack={goBack} />}
       <div id="information-scroll-position"></div>
     </>
   );

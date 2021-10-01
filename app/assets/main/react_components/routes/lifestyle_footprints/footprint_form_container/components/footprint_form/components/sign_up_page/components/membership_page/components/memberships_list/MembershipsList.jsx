@@ -6,7 +6,7 @@ const MembershipsList = ({
   selectedMembership,
   setSelectedMembership,
   multipleOffsets,
-  setMultipleOffsets,
+  setMultipleOffsets
 }) => {
   const {
     reactContentText: {
@@ -18,11 +18,11 @@ const MembershipsList = ({
             single_title,
             single_desc,
             multi_title,
-            multi_desc,
-          },
-        },
-      },
-    },
+            multi_desc
+          }
+        }
+      }
+    }
   } = useTexts();
 
   return (

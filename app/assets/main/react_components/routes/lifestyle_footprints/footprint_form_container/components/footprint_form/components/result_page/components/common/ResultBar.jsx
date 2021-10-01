@@ -5,9 +5,9 @@ const ResultBar = ({
   width,
   value,
   color = 'bg-primary',
-  fontWeight = '',
+  fontStyling = '',
   spaceStyling = '',
-  spanWidth = '',
+  spanWidth = ''
 }) => {
   return (
     <div className={spaceStyling}>
@@ -18,7 +18,7 @@ const ResultBar = ({
             aria-hidden="true"
           ></i>
         )}
-        <span className={fontWeight}>{title.text}</span>
+        <span className={fontStyling}>{title.text}</span>
       </div>
       <div className="flex-1 pr-24">
         <div
