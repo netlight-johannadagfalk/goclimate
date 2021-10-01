@@ -11,7 +11,7 @@ const ArgumentsList = () => {
   } = useTexts();
 
   return (
-    <div className="flex flex-col mx-0 t:flex-row justify-center my-14 px-2">
+    <div className="flex flex-col mx-0 t:flex-row justify-center my-14 t:my-24 px-2">
       {Object.values(arguments_list).map((argument, index) => (
         <div
           className={

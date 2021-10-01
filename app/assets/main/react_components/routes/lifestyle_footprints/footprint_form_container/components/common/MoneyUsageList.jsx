@@ -18,7 +18,7 @@ const MoneyUsageList = () => {
   );
 
   return (
-    <div className="my-10 t:my-20 mx-4">
+    <div className="my-10 mx-4 m-s:my-20 t:my-30 d:my-36">
       <div className="relative mx-auto w-full">
         {version === 'v2' && (
           <img
@@ -29,7 +29,12 @@ const MoneyUsageList = () => {
         )}
         <div className="relative space-y-3">
           <h3 className="text-center heading">{heading}</h3>
-          <ul className={"list-check space-y-3 text-left" + (version === "v2" && " text-sm")}>
+          <ul
+            className={
+              'list-check space-y-3 text-left' +
+              (version === 'v2' && ' text-sm')
+            }
+          >
             {listValues.map(([key, text]) => (
               <li key={key}>{text}</li>
             ))}

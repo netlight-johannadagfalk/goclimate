@@ -37,7 +37,7 @@ const MembershipPage = ({
       <div className="space-y-3">
         <Title
           text={sign_up_heading_collective_efficacy}
-          customStyle="text-lgr"
+          customStyle="text-lgr px-4"
         />
         {version === 'v1' ? (
           <>
