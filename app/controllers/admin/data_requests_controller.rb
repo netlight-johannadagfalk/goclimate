@@ -30,8 +30,7 @@ module Admin
       @data_reporter = DataReporter.find(@data_request.data_reporter_id)
     end
 
-    def create # rubocop:disable Metrics/MethodLength
-      report = ClimateReports::ReportArea.find(data_request_params[:area]).report
+    def create(report = ClimateReports::ReportArea.find(data_request_params[:area]).report)
       data_request_params[:email].split(',').map(&:strip).each do |email|
         data_reporter = DataReporter.find_or_create_by({ email: email, report: report })
 
