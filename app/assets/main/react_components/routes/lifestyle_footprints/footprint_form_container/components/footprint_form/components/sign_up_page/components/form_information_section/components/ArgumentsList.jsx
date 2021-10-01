@@ -29,9 +29,9 @@ const ArgumentsList = () => {
           </div>
           <div className="w-5/6 t:w-full h-full px-2">
             <div className="h-1/3 w-full flex flex-wrap content-center text-center">
-            <h2 className="heading text-base my-4 t:my-0 w-full t:pt-2 hidden t:block">
-              {argument.title}
-            </h2>
+              <h2 className="heading text-base my-4 t:my-0 w-full t:pt-2 hidden t:block">
+                {argument.title}
+              </h2>
             </div>
             <div className="text-sm text-left t:text-center pt-0 t:pt-2">
               {argument.text}
