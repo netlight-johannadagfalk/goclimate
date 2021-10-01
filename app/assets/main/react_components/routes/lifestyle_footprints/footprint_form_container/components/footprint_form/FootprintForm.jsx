@@ -43,6 +43,18 @@ const FootprintForm = ({
     sign_up_page_2: 'award'
   };
 
+  const questionObjects = constructQuestionObjects(
+    calculator,
+    questionCategories,
+    useTexts()
+  );
+
+  const URL = useSession().slug + '/calculator';
+  const [result, setResult] = useState(undefined);
+  const [currentObject, setCurrentObject] = useState(questionObjects[0]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const mounted = useRef(false);
+  
   useEffect(() => {
     onChangeInformationSection(
       currentIndex > questionObjects.length + 1 ? true : false
@@ -55,19 +67,7 @@ const FootprintForm = ({
       mounted.current = false;
     };
   }, []);
-
-  const questionObjects = constructQuestionObjects(
-    calculator,
-    questionCategories,
-    useTexts()
-  );
-
-  const URL = useSession().slug + '/calculator';
-  const [result, setResult] = useState(undefined);
-  const [currentObject, setCurrentObject] = useState(questionObjects[0]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const mounted = useRef(false);
-
+  
   const setAnswer = useCallback(
     (givenAnswer) => {
       footprint[
