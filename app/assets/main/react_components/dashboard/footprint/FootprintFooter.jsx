@@ -37,6 +37,7 @@ const FootprintFooter = () => {
           className="link"
           href="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"
           target="_blank"
+          rel="noreferrer"
         >
           {climateActionsText.how_calculate}
         </a>
