@@ -23,7 +23,7 @@ const ArgumentsList = () => {
           <div className="w-1/6 t:w-full text-center pl-1/5 t:pl-0">
             <div
               className={
-                'fas m-xs:text-3xl t:text-5xl text-2xl fa-' + argument.icon
+                'fas text-2xl m-xs:text-3xl t:text-5xl fa-' + argument.icon
               }
             ></div>
           </div>

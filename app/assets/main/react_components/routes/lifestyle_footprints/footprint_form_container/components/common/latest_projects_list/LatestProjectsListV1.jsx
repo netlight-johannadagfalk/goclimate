@@ -4,8 +4,9 @@ import { useTexts } from '../../../../contexts/TextsContext.js';
 
 const LatestProjectsListV1 = () => {
   const {
-    registrationsText: { latest_projects },
+    registrationsText: { latest_projects }
   } = useTexts();
+
   const projects = useProjects();
 
   return (

@@ -19,7 +19,7 @@ const constructQuestionObjects = (calculator, categories, texts) => {
         question: texts.lifestyleFootprintsText.questions[usedQuestionKey],
         options: filteredOptions,
         category: categories[usedQuestionKey],
-        isNumerical: false,
+        isNumerical: false
       };
     });
 
@@ -29,7 +29,7 @@ const constructQuestionObjects = (calculator, categories, texts) => {
     category: categories['car_distance'],
     text: texts.lifestyleFootprintsText.next,
     isNumerical: true,
-    isCarOption: true,
+    isCarOption: true
   };
   let flightObject = {
     questionKey: 'flight_hours',
@@ -37,7 +37,7 @@ const constructQuestionObjects = (calculator, categories, texts) => {
     category: categories['flight_hours'],
     text: texts.lifestyleFootprintsText.title,
     isNumerical: true,
-    isCarOption: false,
+    isCarOption: false
   };
 
   constructedQuestionObjects.push(carObject, flightObject);
