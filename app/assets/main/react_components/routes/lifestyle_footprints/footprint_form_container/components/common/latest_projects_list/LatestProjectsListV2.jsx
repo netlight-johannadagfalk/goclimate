@@ -5,8 +5,9 @@ import ProjectSummary from './components/ProjectSummary.jsx';
 
 const LatestProjectsListV2 = () => {
   const {
-    registrationsText: { latest_projects },
+    registrationsText: { latest_projects }
   } = useTexts();
+
   const projects = useProjects();
 
   return (

@@ -7,8 +7,8 @@ const MoneyUsageList = () => {
   const {
     registrationsText: {
       where_does_the_money_go,
-      where_does_the_money_go: { heading },
-    },
+      where_does_the_money_go: { heading }
+    }
   } = useTexts();
 
   const version = useVersion();

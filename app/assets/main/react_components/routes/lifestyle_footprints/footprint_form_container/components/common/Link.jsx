@@ -6,7 +6,7 @@ const Link = ({
   linkText,
   linkStyle = 'link',
   onClick,
-  target = '_blank',
+  target = '_blank'
 }) => {
   return (
     <div className={style}>

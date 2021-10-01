@@ -7,7 +7,7 @@ import InformationSection from './components/information_section/InformationSect
 const FootprintFormContainer = ({ footprint, calculator }) => {
   const [showInformationSection, setShowInformationSection] = useState(false);
   const {
-    lifestyleFootprintsText: { methodology },
+    lifestyleFootprintsText: { methodology }
   } = useTexts();
 
   return (

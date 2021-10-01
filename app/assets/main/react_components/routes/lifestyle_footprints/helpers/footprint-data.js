@@ -4,14 +4,17 @@ const resultKeys = [
   'result_page_1',
   'result_page_2',
   'sign_up_page_1',
-  'sign_up_page_2',
+  'sign_up_page_2'
 ];
 
-const resultObjects = [
-  { questionKey: 'result_page_1', category: 'chart-bar' },
-  { questionKey: 'result_page_2', category: 'chart-bar' },
-  { questionKey: 'sign_up_page_1', category: 'award' },
-  { questionKey: 'sign_up_page_2', category: 'award' },
-];
+const resultCategories = ['chart-bar', 'chart-bar', 'award', 'award'];
+
+var resultObjects = [];
+for (var i = 0; i < resultKeys.length; i++) {
+  resultObjects.push({
+    questionKey: resultKeys[i],
+    category: resultCategories[i]
+  });
+}
 
 export { numericalKeys, resultKeys, resultObjects };
