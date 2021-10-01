@@ -42,7 +42,7 @@ const FootprintForm = ({
   );
   const URL = useSession().slug + '/calculator';
 
-  const [result, setResult] = useState();
+  const [result, setResult] = useState(undefined);
   const [currentObject, setCurrentObject] = useState(questionObjects[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
