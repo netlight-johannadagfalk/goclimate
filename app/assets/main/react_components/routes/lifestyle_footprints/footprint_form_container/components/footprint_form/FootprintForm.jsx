@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useSession } from '../../../contexts/SessionContext.js';
 import { useTexts } from '../../../contexts/TextsContext.js';
 import constructQuestionObjects from '../../../helpers/constructQuestionObjects.js';
@@ -48,47 +48,51 @@ const FootprintForm = ({
     questionCategories,
     useTexts()
   );
-  
+
   const URL = useSession().slug + '/calculator';
   const [result, setResult] = useState(undefined);
   const [currentObject, setCurrentObject] = useState(questionObjects[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const mounted = useRef(false);
 
-  const setAnswer = (givenAnswer) => {
-    footprint[
-      currentObject.questionKey === 'car_distance'
-        ? currentObject.questionKey.concat('_week_answer')
-        : currentObject.questionKey.concat('_answer')
-    ] = givenAnswer;
-    let nextQuestionIndex = currentIndex + 1;
-    if (!questionObjects[nextQuestionIndex]) {
-      if (
-        !result ||
-        (result && !areObjectsEqual(footprint, getSessionStorage('footprint')))
-      ) {
-        submitFootprintForm(
-          result,
-          footprint,
-          mounted,
-          setResult,
-          setCurrentObject,
-          resultObjects,
-          URL
-        );
-        sessionStorage.setItem('footprint', JSON.stringify(footprint));
+  const setAnswer = useCallback(
+    (givenAnswer) => {
+      footprint[
+        currentObject.questionKey === 'car_distance'
+          ? currentObject.questionKey.concat('_week_answer')
+          : currentObject.questionKey.concat('_answer')
+      ] = givenAnswer;
+      let nextQuestionIndex = currentIndex + 1;
+      if (!questionObjects[nextQuestionIndex]) {
+        if (
+          !result ||
+          (result &&
+            !areObjectsEqual(footprint, getSessionStorage('footprint')))
+        ) {
+          submitFootprintForm(
+            result,
+            footprint,
+            mounted,
+            setResult,
+            setCurrentObject,
+            resultObjects,
+            URL
+          );
+          sessionStorage.setItem('footprint', JSON.stringify(footprint));
+        } else {
+          setCurrentObject(resultObjects[0]);
+        }
       } else {
-        setCurrentObject(resultObjects[0]);
+        if (givenAnswer === 'no_car') {
+          nextQuestionIndex++;
+          delete questionCategories['car_distance'];
+        }
+        setCurrentObject(questionObjects[nextQuestionIndex]);
       }
-    } else {
-      if (givenAnswer === 'no_car') {
-        nextQuestionIndex++;
-        delete questionCategories['car_distance'];
-      }
-      setCurrentObject(questionObjects[nextQuestionIndex]);
-    }
-    setCurrentIndex(nextQuestionIndex);
-  };
+      setCurrentIndex(nextQuestionIndex);
+    },
+    [footprint, currentObject, questionObjects, result, sessionStorage]
+  );
 
   useEffect(() => {
     onChangeInformationSection(
