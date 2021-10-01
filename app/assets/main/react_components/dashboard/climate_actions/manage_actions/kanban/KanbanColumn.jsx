@@ -14,7 +14,7 @@ const KanbanColumn = ({
   setSidebarCollapsed,
   sidebarCollapsed,
   isHovering,
-  handleExpanded,
+  handleExpanded
 }) => {
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
   const climateActionsText = useClimateActionsText();
@@ -45,7 +45,7 @@ const KanbanColumn = ({
               ref={provided.innerRef}
               style={{
                 background: snapshot.isDraggingOver ? 'GhostWhite' : 'white',
-                width: '100%',
+                width: '100%'
               }}
             >
               {!sidebarCollapsed && columnId == 1 && column.items.length == 0 && (
@@ -53,7 +53,7 @@ const KanbanColumn = ({
                   <p
                     style={{
                       fontStyle: 'italic',
-                      marginTop: '10%',
+                      marginTop: '10%'
                     }}
                   >
                     {climateActionsText.mascot_1} <br />
@@ -75,7 +75,7 @@ const KanbanColumn = ({
                       <CSSTransition
                         timeout={{
                           enter: 100,
-                          exit: 500,
+                          exit: 500
                         }}
                         classNames="display"
                         key={item.id}
@@ -97,7 +97,7 @@ const KanbanColumn = ({
                 <p
                   style={{
                     fontStyle: 'italic',
-                    marginTop: '25%',
+                    marginTop: '25%'
                   }}
                 >
                   {climateActionsText.empty_achievements_column}
@@ -112,7 +112,7 @@ const KanbanColumn = ({
         <div>
           <hr
             style={{
-              color: 'lightgrey',
+              color: 'lightgrey'
             }}
           ></hr>
           {!isTabletOrMobile && (

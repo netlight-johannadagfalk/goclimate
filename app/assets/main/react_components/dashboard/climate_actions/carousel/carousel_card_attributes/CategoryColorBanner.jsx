@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   categoryName,
-  getCategoryColor,
+  getCategoryColor
 } from '../../../../helpers/CategoryColorHelper';
 
 const CategoryColorBanner = ({ categories, action }) => {

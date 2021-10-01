@@ -16,7 +16,7 @@ const CarouselContainer = ({
   categories,
   localUserActions,
   locallyDeletedActions,
-  actionsToplist,
+  actionsToplist
 }) => {
   const [allCategories, setAllCategories] = useState(true);
   const [popular, setPopular] = useState(false);

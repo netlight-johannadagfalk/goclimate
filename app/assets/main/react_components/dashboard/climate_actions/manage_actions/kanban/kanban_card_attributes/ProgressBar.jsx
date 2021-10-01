@@ -3,7 +3,7 @@ import React from 'react';
 const ProgressBar = ({ categories, item, userActions, actions }) => {
   const categoriesWithMembershipAchievement = [
     ...categories,
-    { id: '-1', name: 'Climate Friend' },
+    { id: '-1', name: 'Climate Friend' }
   ];
   const categoryName = (categories) => {
     for (let i = 0; i <= Object.keys(categories).length - 1; i++) {

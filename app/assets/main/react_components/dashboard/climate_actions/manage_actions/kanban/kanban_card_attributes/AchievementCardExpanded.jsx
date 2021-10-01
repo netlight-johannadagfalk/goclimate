@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { handleUncompleteAction } from "../../../../../helpers/KanbanHelper.js";
+import { handleUncompleteAction } from '../../../../../helpers/KanbanHelper.js';
 import {
   useUserState,
-  useUserActions,
-} from "../../../../../contexts/UserContext.js";
+  useUserActions
+} from '../../../../../contexts/UserContext.js';
 
 const AchievementCardExpanded = ({ achievement }) => {
   const { updateUserActions, updateColumns, updateAchievements } =
@@ -15,7 +15,7 @@ const AchievementCardExpanded = ({ achievement }) => {
 
   const actions = [
     ...achievement.userActionsArray,
-    ...achievement.actionsArray,
+    ...achievement.actionsArray
   ];
 
   return (
@@ -29,7 +29,7 @@ const AchievementCardExpanded = ({ achievement }) => {
                 style={{
                   backgroundImage: action.status
                     ? "url('/achievement_images/AchievementStarActive.png')"
-                    : "url('/achievement_images/AchievementStarInactive.png')",
+                    : "url('/achievement_images/AchievementStarInactive.png')"
                 }}
               ></div>
               <div

@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   useClimateActionsOriginal,
-  useClimateActionsUpdate,
+  useClimateActionsUpdate
 } from '../../../contexts/ClimateActionsContext';
 import { useCategoryUpdate } from '../../../contexts/CategoryContext';
 
@@ -20,7 +20,7 @@ const CarouselCategoryButton = ({
   localUserActions,
   actionsToplist,
   setPopular,
-  locallyDeletedActions,
+  locallyDeletedActions
 }) => {
   const setCategory = useCategoryUpdate();
   const setClimateActions = useClimateActionsUpdate();
@@ -32,7 +32,7 @@ const CarouselCategoryButton = ({
 
   let options = [
     { value: 'allCategories', label: climateActionsText.all_categories },
-    { value: 'popular', label: climateActionsText.popular },
+    { value: 'popular', label: climateActionsText.popular }
   ];
 
   const categoryColor = () => {
@@ -81,7 +81,7 @@ const CarouselCategoryButton = ({
       )
         ? {
             ...action,
-            accepted: true,
+            accepted: true
           }
         : { ...action, accepted: false };
     });
@@ -93,7 +93,7 @@ const CarouselCategoryButton = ({
         )
           ? {
               ...action,
-              total: ++action.total,
+              total: ++action.total
             }
           : action;
       })
@@ -105,7 +105,7 @@ const CarouselCategoryButton = ({
         )
           ? {
               ...action,
-              total: action.total > 0 ? --action.total : (action.total = 0),
+              total: action.total > 0 ? --action.total : (action.total = 0)
             }
           : action;
       })

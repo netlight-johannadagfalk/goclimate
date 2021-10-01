@@ -1,23 +1,23 @@
-import React, { useState, useRef, useEffect } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
-import KanbanColumn from "./KanbanColumn.jsx";
-import { useDeletedActionUpdate } from "../../../../contexts/DeletedActionContext.js";
+import React, { useState, useRef, useEffect } from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
+import KanbanColumn from './KanbanColumn.jsx';
+import { useDeletedActionUpdate } from '../../../../contexts/DeletedActionContext.js';
 import {
   useUserState,
-  useUserActions,
-} from "../../../../contexts/UserContext.js";
-import { deleteUserAction } from "../../../../helpers/DBRequests.js";
-import { useMediaQuery } from "react-responsive";
-import { t } from "../../../../constants";
+  useUserActions
+} from '../../../../contexts/UserContext.js';
+import { deleteUserAction } from '../../../../helpers/DBRequests.js';
+import { useMediaQuery } from 'react-responsive';
+import { t } from '../../../../constants';
 import {
   onDragEnd,
-  collectPerformedUserActions,
-} from "../../../../helpers/KanbanHelper.js";
+  collectPerformedUserActions
+} from '../../../../helpers/KanbanHelper.js';
 
 const KanbanContainer = ({
   sidebarCollapsed,
   setSidebarCollapsed,
-  categories,
+  categories
 }) => {
   const setDeletedAction = useDeletedActionUpdate();
   const { data: data } = useUserState();
@@ -26,7 +26,7 @@ const KanbanContainer = ({
     updateColumns,
     updateColumnsWithFormat,
     updateAchievements,
-    updateAchievementsOnMove,
+    updateAchievementsOnMove
   } = useUserActions();
 
   const columns = data.columns;
@@ -40,8 +40,8 @@ const KanbanContainer = ({
       ...columns,
       [column]: {
         ...columns[column],
-        items: getExpandable(columns[column], item, value),
-      },
+        items: getExpandable(columns[column], item, value)
+      }
     });
   };
 
@@ -50,7 +50,7 @@ const KanbanContainer = ({
       return expandable.id === item.id
         ? {
             ...expandable,
-            expanded: value,
+            expanded: value
           }
         : { ...expandable, expanded: false };
     });
@@ -89,7 +89,7 @@ const KanbanContainer = ({
   return (
     <div
       className={`h-screen ${
-        sidebarCollapsed ? "w-24" : "d:w-80"
+        sidebarCollapsed ? 'w-24' : 'd:w-80'
       } transition-size duration-500`}
     >
       <DragDropContext
@@ -116,7 +116,7 @@ const KanbanContainer = ({
               <div
                 className="h-10 mt-2"
                 style={
-                  isTabletOrMobile || sidebarCollapsed ? {} : { width: "20rem" }
+                  isTabletOrMobile || sidebarCollapsed ? {} : { width: '20rem' }
                 }
               >
                 <p

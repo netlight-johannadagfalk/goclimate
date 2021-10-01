@@ -65,7 +65,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
         slidesPerView={noOfItemsShown}
         navigation={{
           prevEl: '.prevButton',
-          nextEl: '.nextButton',
+          nextEl: '.nextButton'
         }}
         pagination={true}
         preventClicks={false}
@@ -87,7 +87,7 @@ const CarouselList = ({ user, updateLocalAccepted, categories }) => {
             key={action.id}
             className={'min-h-full mb-10'}
             style={{
-              height: 'auto',
+              height: 'auto'
             }}
           >
             <CarouselCard

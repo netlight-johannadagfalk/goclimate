@@ -6,7 +6,7 @@ const NumberOfAccepted = ({
   endText,
   action,
   disabled,
-  isFirstToAccept,
+  isFirstToAccept
 }) => {
   const climateActionsText = useClimateActionsText();
 
