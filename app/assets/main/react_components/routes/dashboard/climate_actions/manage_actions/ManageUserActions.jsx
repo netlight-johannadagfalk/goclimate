@@ -3,7 +3,7 @@ import Sidebar from './sidebar/Sidebar.jsx';
 import DropDownKanbanContainer from './dropdown-kanban/DropDownKanbanContainer.jsx';
 import { useMediaQuery } from 'react-responsive';
 import KanbanContainer from './kanban/KanbanContainer.jsx';
-import { t } from '../../../constants';
+import { t } from '../../constants';
 
 const ManageUserActions = ({ categories }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);

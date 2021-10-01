@@ -3,13 +3,13 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import KanbanColumn from './KanbanColumn.jsx';
 import { useDeletedActionUpdate } from '../../../contexts/DeletedActionContext.js';
 import { useUserState, useUserActions } from '../../../contexts/UserContext.js';
-import { deleteUserAction } from '../../../../helpers/DBRequests.js';
+import { deleteUserAction } from '../../../helpers/DBRequests.js';
 import { useMediaQuery } from 'react-responsive';
 import { t } from '../../../constants';
 import {
   onDragEnd,
   collectPerformedUserActions
-} from '../../../../helpers/KanbanHelper.js';
+} from '../../../helpers/KanbanHelper.js';
 
 const KanbanContainer = ({
   sidebarCollapsed,

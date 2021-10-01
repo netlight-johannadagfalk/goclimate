@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { handleUncompleteAction } from '../../../../../helpers/KanbanHelper.js';
+import { handleUncompleteAction } from '../../../../helpers/KanbanHelper.js';
 import {
   useUserState,
   useUserActions

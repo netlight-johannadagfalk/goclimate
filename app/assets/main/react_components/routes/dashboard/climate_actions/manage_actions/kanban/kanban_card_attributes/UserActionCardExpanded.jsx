@@ -1,6 +1,6 @@
 import React from 'react';
 import { useClimateActionsText } from '../../../../contexts/TextContext.js';
-import { handleCompleteActionOnClick } from '../../../../../helpers/KanbanHelper.js';
+import { handleCompleteActionOnClick } from '../../../../helpers/KanbanHelper.js';
 import {
   useUserState,
   useUserActions

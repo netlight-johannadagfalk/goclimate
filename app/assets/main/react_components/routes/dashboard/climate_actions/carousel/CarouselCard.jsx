@@ -6,7 +6,7 @@ import ImpactPoints from './carousel_card_attributes/ImpactPoints.jsx';
 import AcceptanceStatistics from './carousel_card_attributes/AcceptanceStatistics.jsx';
 import TextBanner from '../../common/TextBanner.jsx';
 import { useUserState, useUserActions } from '../../contexts/UserContext.js';
-import { updateAccepted } from '../../../helpers/DBRequests.js';
+import { updateAccepted } from '../../helpers/DBRequests.js';
 
 const CarouselCard = ({
   action,

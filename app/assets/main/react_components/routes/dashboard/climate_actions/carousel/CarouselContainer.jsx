@@ -5,7 +5,7 @@ import CarouselCategoryButton from './CarouselCategoryButton.jsx';
 import { useCategory } from '../../contexts/CategoryContext.js';
 import { useClimateActionsOriginal } from '../../contexts/ClimateActionsContext';
 import { useMediaQuery } from 'react-responsive';
-import { d } from '../../../constants';
+import { d } from '../../constants';
 import 'react-dropdown/style.css';
 
 import { useClimateActionsText } from '../../contexts/TextContext.js';

@@ -3,7 +3,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import UserActionCard from './kanban_card_attributes/UserActionCard.jsx';
 import KanbanCardImage from './kanban_card_attributes/KanbanCardImage.jsx';
 import AchievementCard from './kanban_card_attributes/AchievementCard.jsx';
-import { categoryName } from '../../../../helpers/CategoryColorHelper.js';
+import { categoryName } from '../../../helpers/CategoryColorHelper.js';
 
 const KanbanCard = ({
   item,

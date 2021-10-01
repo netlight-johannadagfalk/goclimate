@@ -1,5 +1,5 @@
 import React from 'react';
-import { categoryName } from '../../../../helpers/CategoryColorHelper';
+import { categoryName } from '../../../helpers/CategoryColorHelper';
 
 const CategoryColorBanner = ({ categories, action }) => {
   return (

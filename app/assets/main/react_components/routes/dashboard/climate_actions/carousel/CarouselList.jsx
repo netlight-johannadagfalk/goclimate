@@ -7,7 +7,7 @@ import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import { orderBy } from 'lodash';
 import { useMediaQuery } from 'react-responsive';
-import { m, t, d, dMd, dLg } from '../../../constants';
+import { m, t, d, dMd, dLg } from '../../constants';
 
 // Swiper resources
 //https://swiperjs.com/react
