@@ -43,6 +43,19 @@ const FootprintForm = ({
     sign_up_page_2: 'award'
   };
 
+  useEffect(() => {
+    onChangeInformationSection(
+      currentIndex > questionObjects.length + 1 ? true : false
+    );
+  }, [currentIndex]);
+
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
+
   const questionObjects = constructQuestionObjects(
     calculator,
     questionCategories,
@@ -93,19 +106,6 @@ const FootprintForm = ({
     },
     [footprint, currentObject, questionObjects, result, sessionStorage]
   );
-
-  useEffect(() => {
-    onChangeInformationSection(
-      currentIndex > questionObjects.length + 1 ? true : false
-    );
-  }, [currentIndex]);
-
-  useEffect(() => {
-    mounted.current = true;
-    return () => {
-      mounted.current = false;
-    };
-  }, []);
 
   return (
     <>
