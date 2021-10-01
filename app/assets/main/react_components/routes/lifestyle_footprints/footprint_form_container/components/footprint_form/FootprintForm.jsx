@@ -21,28 +21,28 @@ import {
   goBack
 } from './helpers/footprint-form-helper.js';
 
+const questionCategories = {
+  region: 'home',
+  home: 'home',
+  home_area: 'home',
+  heating: 'home',
+  green_electricity: 'home',
+  food: 'utensils',
+  shopping: 'shopping-bag',
+  car_type: 'car',
+  car_distance: 'car',
+  flight_hours: 'plane',
+  result_page_1: 'chart-bar',
+  result_page_2: 'chart-bar',
+  sign_up_page_1: 'award',
+  sign_up_page_2: 'award'
+};
+
 const FootprintForm = ({
   calculator,
   footprint,
   onChangeInformationSection
 }) => {
-  const questionCategories = {
-    region: 'home',
-    home: 'home',
-    home_area: 'home',
-    heating: 'home',
-    green_electricity: 'home',
-    food: 'utensils',
-    shopping: 'shopping-bag',
-    car_type: 'car',
-    car_distance: 'car',
-    flight_hours: 'plane',
-    result_page_1: 'chart-bar',
-    result_page_2: 'chart-bar',
-    sign_up_page_1: 'award',
-    sign_up_page_2: 'award'
-  };
-
   const questionObjects = constructQuestionObjects(
     calculator,
     questionCategories,
@@ -54,7 +54,7 @@ const FootprintForm = ({
   const [currentObject, setCurrentObject] = useState(questionObjects[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const mounted = useRef(false);
-  
+
   useEffect(() => {
     onChangeInformationSection(
       currentIndex > questionObjects.length + 1 ? true : false
@@ -67,7 +67,7 @@ const FootprintForm = ({
       mounted.current = false;
     };
   }, []);
-  
+
   const setAnswer = useCallback(
     (givenAnswer) => {
       footprint[
