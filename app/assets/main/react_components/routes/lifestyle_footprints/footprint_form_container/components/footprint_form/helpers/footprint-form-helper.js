@@ -1,14 +1,15 @@
-const cleanFootprint = ({...footprint}) => {
-  for (var footprintField in footprint) {
+const cleanFootprint = (footprint) => {
+  var tempFootprint = { ...footprint };
+  for (var footprintField in tempFootprint) {
     if (
-      footprint[footprintField] === null ||
-      footprint[footprintField] === undefined
+      tempFootprint[footprintField] === null ||
+      tempFootprint[footprintField] === undefined
     ) {
-      delete footprint[footprintField];
+      delete tempFootprint[footprintField];
     }
   }
-  footprint.country = footprint.country.country_data_or_code;
-  return footprint;
+  tempFootprint.country = tempFootprint.country.country_data_or_code;
+  return tempFootprint;
 };
 
 const submitFootprintForm = (
@@ -59,30 +60,31 @@ const getSessionStorage = (key) => {
   return item ? JSON.parse(item) : {};
 };
 
-const isQuestionUsed = (questionKey, {...calculator}) => {
+const isQuestionUsed = (questionKey, calculator) => {
   const calculatorKeyForOptions = questionKey.concat('_options');
   return calculator[calculatorKeyForOptions] != null;
 };
 
 const getUsedQuestions = (
-  {...questionCategories},
+  questionCategories,
   calculator,
   numericalKeys,
   resultKeys
 ) => {
-  for (const question in questionCategories) {
+  const tempQuestionCategories = { ...questionCategories };
+  for (const question in tempQuestionCategories) {
     if (
       !isQuestionUsed(question, calculator) &&
       !numericalKeys.includes(question) &&
       !resultKeys.includes(question)
     ) {
-      delete questionCategories[question];
+      delete tempQuestionCategories[question];
     }
   }
-  return questionCategories;
+  return tempQuestionCategories;
 };
 
-const getSavedAnswer = (currentObject, {...footprint}) => {
+const getSavedAnswer = (currentObject, footprint) => {
   const questionKey = currentObject.questionKey;
   if (questionKey === 'car_distance') {
     if (footprint[questionKey.concat('_week_answer')])
