@@ -10,9 +10,9 @@ const CategoryPage = ({ footprint }) => {
     reactContentText: {
       category_page: {
         category_chart: { title, desc },
-        public_emissions,
-      },
-    },
+        public_emissions
+      }
+    }
   } = useTexts();
 
   const version = useVersion();

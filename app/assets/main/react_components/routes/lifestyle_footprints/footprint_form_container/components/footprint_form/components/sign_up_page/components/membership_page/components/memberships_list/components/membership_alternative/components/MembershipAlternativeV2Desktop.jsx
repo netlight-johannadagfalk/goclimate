@@ -71,7 +71,7 @@ const MembershipAlternativeV2Desktop = ({
                 (grantedReferralCode !== '' && 'pt-2 t:pt-4')
               }
             >
-              <ul className="list-disc">
+              <ul className="list-disc pt-4">
                 {Object.keys(sellingPoints).map((point) => (
                   <li className="text-sm text-left leading-3 mb-2" key={point}>
                     {sellingPoints[point]}

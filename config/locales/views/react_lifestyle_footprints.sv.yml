@@ -4,12 +4,12 @@ sv:
       world_page:
         your_footprint_result_text:
           text_part_before: Ditt årliga klimatavtryck är
-          text_part_middle: CO2e. För
-          text_part_end: hjälper vi dig att klimatkompensera ditt avtryck. Summan fördelas till olika klimatprojekt som gör skillnad för klimatet.
+          text_part_middle: ' CO2e. För'
+          text_part_end: ' klimatkompenserar vi ditt avtryck. Summan fördelas mellan handplockade klimatprojekt som gör skillnad på riktigt.'
       category_page:
         category_chart:
           title: Ditt klimatavtryck per kategori
-          desc: Detta är ditt klimatavtryck i kategorier, var det som du förväntade dig?
+          desc: Här är ditt klimatavtryck indelat i kategorier. Var det som du förväntade dig?
         public_emissions: Kategorin för samhälle beskriver de utsläpp som samhället orsakar, beroende på var i världen du bor. Detta inkluderar till exempel myndigheter, sjukvård, utbildning och kollektivtrafik.
         answer_button_logged_in: Gå till profil
       sign_up_page:
@@ -53,7 +53,7 @@ sv:
           arguments_list:
             transparency:
               title: Full transparens
-              text: Vi vill att du ska känna dig helt trygg med hur dina pengar gör klimatnytta
+              text: Du har insyn i vår verksamhet för att du ska känna dig trygg med att dina pengar gör klimatnytta
               icon: eye
             projects:
               title: Projekt som gör skillnad
@@ -65,4 +65,4 @@ sv:
               icon: unlock
           back_to_homepage: Tillbaka till startsidan
         registration_page:
-          preamble: Fyll i din information nedan för att bli en del av vårt community!
+          preamble: Fyll i din information nedan för att bli en del av vårt community

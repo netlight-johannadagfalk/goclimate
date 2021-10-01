@@ -4,13 +4,13 @@ en:
       world_page:
         your_footprint_result_text:
           text_part_before: Your annual carbon footprint is
-          text_part_middle: CO2e. Paying
-          text_part_end: will allow you to offset your footprint. The sum is distributed to various climate projects that make an impact for the climate.
+          text_part_middle: ' CO2e. Paying'
+          text_part_end: ' will allow you to offset your footprint. The sum is distributed to various climate projects that make an impact for the climate.'
       category_page:
         category_chart:
           title: Your climate footprint by category
           desc: This is your carbon footprint split per category. Does it match your expectations?
-        public_emissions: Public emissions are the emissions caused by society, depending on where you live. This includes for example government agencies, health care, education and public transport.
+        public_emissions: Public emissions are the emissions caused by the society where you live. For example government agencies, health care, education and public transport.
         answer_button_logged_in: Go to profile
       sign_up_page:
         membership_page:
@@ -53,7 +53,7 @@ en:
           arguments_list:
             transparency:
               title: Full transparency
-              text: We want you to feel completely safe with how your money is distributed
+              text: You always have insight into our operations, to be sure your money is used efficiently
               icon: eye
             projects:
               title: Handpicked projects
@@ -65,4 +65,4 @@ en:
               icon: unlock
           back_to_homepage: Back to homepage
         registration_page:
-          preamble: Fill in your information below to become a part of our community!
+          preamble: Fill in your information below to become a part of our community
