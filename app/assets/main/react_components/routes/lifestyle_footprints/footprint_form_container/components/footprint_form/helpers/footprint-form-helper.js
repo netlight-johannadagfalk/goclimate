@@ -11,6 +11,43 @@ const cleanFootprint = (basicFootprint) => {
   return basicFootprint;
 };
 
+const submitFootprintForm = (
+  result,
+  footprint,
+  mounted,
+  setResult,
+  setCurrentObject,
+  resultObjects,
+  URL
+) => {
+  const answers = result ? footprint : cleanFootprint(footprint);
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+  const requestOptions = {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'X-CSRF-Token': csrfToken,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(answers)
+  };
+  fetch(URL, requestOptions)
+    .then((response) => {
+      if (mounted.current) {
+        /* IF RESULT IN FORM: */
+        response.json().then((calculatedFootprint) => {
+          setResult(calculatedFootprint);
+          setCurrentObject(resultObjects[0]);
+        });
+        /* IF RESULT ON RESULT PAGE: */
+        // window.location.href = response.url
+      }
+    })
+    .catch((error) => {
+      console.log('Something went wrong, trying again.', error);
+    });
+};
+
 const areObjectsEqual = (...objects) => {
   return objects.every(
     (obj) => JSON.stringify(obj) === JSON.stringify(objects[0])
@@ -82,6 +119,7 @@ const goBack = (
 
 export {
   cleanFootprint,
+  submitFootprintForm,
   areObjectsEqual,
   getSessionStorage,
   isQuestionUsed,

@@ -13,13 +13,13 @@ import QuestionPage from './components/question_page/QuestionPage.jsx';
 import ResultPage from './components/result_page/ResultPage.jsx';
 import SignUpPage from './components/sign_up_page/SignUpPage.jsx';
 import {
-  cleanFootprint,
+  submitFootprintForm,
   areObjectsEqual,
   getSessionStorage,
   getUsedQuestions,
   getSavedAnswer,
   goBack
-} from './footprint-form-helper.js';
+} from './helpers/footprint-form-helper.js';
 
 const FootprintForm = ({
   calculator,
@@ -48,42 +48,12 @@ const FootprintForm = ({
     questionCategories,
     useTexts()
   );
+  
   const URL = useSession().slug + '/calculator';
-
   const [result, setResult] = useState(undefined);
   const [currentObject, setCurrentObject] = useState(questionObjects[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const mounted = useRef(false);
-
-  const submitFootprintForm = () => {
-    const answers = result ? footprint : cleanFootprint(footprint);
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    const requestOptions = {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'X-CSRF-Token': csrfToken,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(answers)
-    };
-    fetch(URL, requestOptions)
-      .then((response) => {
-        if (mounted.current) {
-          /* IF RESULT IN FORM: */
-          response.json().then((calculatedFootprint) => {
-            setResult(calculatedFootprint);
-            setCurrentObject(resultObjects[0]);
-          });
-          /* IF RESULT ON RESULT PAGE: */
-          // window.location.href = response.url
-        }
-      })
-      .catch((error) => {
-        console.log('Something went wrong, trying again.', error);
-      });
-  };
 
   const setAnswer = (givenAnswer) => {
     footprint[
@@ -97,7 +67,15 @@ const FootprintForm = ({
         !result ||
         (result && !areObjectsEqual(footprint, getSessionStorage('footprint')))
       ) {
-        submitFootprintForm();
+        submitFootprintForm(
+          result,
+          footprint,
+          mounted,
+          setResult,
+          setCurrentObject,
+          resultObjects,
+          URL
+        );
         sessionStorage.setItem('footprint', JSON.stringify(footprint));
       } else {
         setCurrentObject(resultObjects[0]);
