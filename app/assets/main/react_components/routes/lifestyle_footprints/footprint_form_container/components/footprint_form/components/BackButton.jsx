@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTexts } from '../../../../contexts/TextsContext.js';
 
-const BackButton = ({ goBack }) => {
+const BackButton = ({ onClick }) => {
   const {
     lifestyleFootprintsText: { back }
   } = useTexts();
@@ -13,7 +13,7 @@ const BackButton = ({ goBack }) => {
           className="fas fa-chevron-left cursor-pointer"
           aria-hidden="true"
         ></i>
-        <label className="px-1 cursor-pointer" onClick={goBack}>
+        <label className="px-1 cursor-pointer" onClick={onClick}>
           {back}
         </label>
       </div>
