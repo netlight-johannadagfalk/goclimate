@@ -3,7 +3,7 @@ import UserActionCardExpanded from './UserActionCardExpanded.jsx';
 
 const UserActionCard = ({ categoryColor, userAction, handleDelete }) => {
   return (
-    <div>
+    <>
       <div className="h-20">
         <div
           className={`${
@@ -17,9 +17,9 @@ const UserActionCard = ({ categoryColor, userAction, handleDelete }) => {
         <UserActionCardExpanded
           userAction={userAction}
           handleDelete={handleDelete}
-        ></UserActionCardExpanded>
+        />
       )}
-    </div>
+    </>
   );
 };
 

@@ -13,8 +13,9 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
     updateAchievements,
     updateAchievementsOnMove
   } = useUserActions();
-  const { data: data } = useUserState();
-  const columns = data.columns;
+  const {
+    data: { columns }
+  } = useUserState(); // destructuring
   const climateActionsText = useClimateActionsText();
 
   return (
@@ -32,7 +33,7 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
           onClick={() =>
             handleDelete(userAction.id, userAction.climate_action_id)
           }
-        ></button>
+        />
         <button
           className={`rounded-full py-1 px-4 button inline-block focus:outline-none text-primary text-sm border border-color-primary m-1`}
           onClick={() =>

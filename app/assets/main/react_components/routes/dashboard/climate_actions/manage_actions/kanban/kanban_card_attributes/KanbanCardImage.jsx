@@ -10,7 +10,7 @@ const KanbanCardImage = ({ img, sidebarCollapsed, isUserAction }) => {
         backgroundImage: `url('${img}')`,
         backgroundSize: '100%'
       }}
-    ></div>
+    />
   );
 };
 

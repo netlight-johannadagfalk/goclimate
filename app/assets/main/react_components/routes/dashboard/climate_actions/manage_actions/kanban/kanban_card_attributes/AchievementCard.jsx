@@ -3,8 +3,9 @@ import ProgressBar from './ProgressBar.jsx';
 import AchievementCardExpanded from './AchievementCardExpanded.jsx';
 
 const AchievementCard = ({ categories, achievement }) => {
+  //läste något tips om att man bör, för att hålla DOM så rent som möjligt, undvika div-taggar i onödan
   return (
-    <div>
+    <>
       <div className="h-20">
         <ProgressBar
           categories={categories}
@@ -18,7 +19,7 @@ const AchievementCard = ({ categories, achievement }) => {
           achievement={achievement}
         ></AchievementCardExpanded>
       )}
-    </div>
+    </>
   );
 };
 

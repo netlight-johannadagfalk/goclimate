@@ -37,8 +37,7 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
           }`}
         ></div>
       </div>
-
-      <span className="ml-5 text-sm">{`${completed + '/' + total}`}</span>
+      <span className="ml-5 text-sm">{completed + '/' + total}</span>
     </div>
   );
 };
