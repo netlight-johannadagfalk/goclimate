@@ -1,10 +1,7 @@
 const cleanFootprint = (footprint) => {
-  const cleanedFootprint = {...footprint}
+  const cleanedFootprint = { ...footprint };
   for (var footprintField in cleanedFootprint) {
-    if (
-      cleanedFootprint[footprintField] === null ||
-      cleanedFootprint[footprintField] === undefined
-    ) {
+    if (!cleanedFootprint[footprintField]) {
       delete cleanedFootprint[footprintField];
     }
   }
