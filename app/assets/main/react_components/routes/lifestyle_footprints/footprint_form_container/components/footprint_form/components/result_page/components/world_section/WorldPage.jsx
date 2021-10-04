@@ -12,12 +12,11 @@ const WorldPage = ({ footprint, countryAverage, priceObject }) => {
   return (
     <>
       <Title customStyle="text-lgr" text={well_done} />
-      <div className="max-w-lg mx-auto">
+      <div className="max-w-lg mx-auto space-y-8">
         <YourFootprintText
           footprintValue={(footprint.total.co2e / 1000).toFixed(1)}
           priceObject={priceObject}
         />
-        <br />
         <WorldComparisonChart
           footprint={footprint}
           countryAverage={countryAverage}

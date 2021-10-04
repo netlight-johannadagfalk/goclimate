@@ -3,10 +3,10 @@ import AnswerButton from '../../common/AnswerButton.jsx';
 
 const OptionList = ({ onAnswerGiven, options, selectedKey }) => {
   return (
-    <>
+    <div className="space-y-3">
       {options.map(([key, value]) => {
         return (
-          <div key={key} className="my-3 flex-1">
+          <div key={key}>
             <AnswerButton
               label={value}
               onAnswerGiven={() => onAnswerGiven(key)}
@@ -15,7 +15,7 @@ const OptionList = ({ onAnswerGiven, options, selectedKey }) => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 

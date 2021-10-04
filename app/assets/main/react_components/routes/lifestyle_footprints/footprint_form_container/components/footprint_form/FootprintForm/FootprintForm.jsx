@@ -109,7 +109,7 @@ const FootprintForm = ({
 
   return (
     <>
-      <div className="question pb-8">
+      <div className="question pb-8 space-y-4 t:space-y-8">
         <ProgressBar
           questionCategories={getUsedQuestions(
             questionCategories,

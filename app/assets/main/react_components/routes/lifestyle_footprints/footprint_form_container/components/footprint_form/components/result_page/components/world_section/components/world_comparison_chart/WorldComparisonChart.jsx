@@ -66,7 +66,7 @@ const WorldComparisonChart = ({ footprint, countryAverage }) => {
 
   return (
     <>
-      <div className="relative pb-1">
+      <div className="relative">
         <div className="space-y-6">
           <ResultBar
             title={{ text: you + ' <-' }}
