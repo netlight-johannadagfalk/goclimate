@@ -1,15 +1,15 @@
 const cleanFootprint = (footprint) => {
-  var tempFootprint = { ...footprint };
-  for (var footprintField in tempFootprint) {
+  const cleanedFootprint = {...footprint}
+  for (var footprintField in cleanedFootprint) {
     if (
-      tempFootprint[footprintField] === null ||
-      tempFootprint[footprintField] === undefined
+      cleanedFootprint[footprintField] === null ||
+      cleanedFootprint[footprintField] === undefined
     ) {
-      delete tempFootprint[footprintField];
+      delete cleanedFootprint[footprintField];
     }
   }
-  tempFootprint.country = tempFootprint.country.country_data_or_code;
-  return tempFootprint;
+  cleanedFootprint.country = cleanedFootprint.country.country_data_or_code;
+  return cleanedFootprint;
 };
 
 const submitFootprintForm = (
@@ -21,7 +21,6 @@ const submitFootprintForm = (
   resultObjects,
   URL
 ) => {
-  const answers = result ? footprint : cleanFootprint(footprint);
   const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
   const requestOptions = {
     method: 'POST',
@@ -30,7 +29,7 @@ const submitFootprintForm = (
       'X-CSRF-Token': csrfToken,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(answers)
+    body: JSON.stringify(cleanFootprint(footprint))
   };
   fetch(URL, requestOptions)
     .then((response) => {
