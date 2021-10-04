@@ -31,13 +31,10 @@ const submitFootprintForm = (
   fetch(URL, requestOptions)
     .then((response) => {
       if (mounted.current) {
-        /* IF RESULT IN FORM: */
         response.json().then((calculatedFootprint) => {
           setResult(calculatedFootprint);
           setCurrentObject(resultObjects[0]);
         });
-        /* IF RESULT ON RESULT PAGE: */
-        // window.location.href = response.url
       }
     })
     .catch((error) => {
