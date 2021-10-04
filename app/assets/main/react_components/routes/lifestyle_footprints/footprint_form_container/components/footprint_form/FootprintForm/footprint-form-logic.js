@@ -1,15 +1,12 @@
 const cleanFootprint = (footprint) => {
-  var tempFootprint = { ...footprint };
-  for (var footprintField in tempFootprint) {
-    if (
-      tempFootprint[footprintField] === null ||
-      tempFootprint[footprintField] === undefined
-    ) {
-      delete tempFootprint[footprintField];
+  const cleanedFootprint = { ...footprint };
+  for (var footprintField in cleanedFootprint) {
+    if (!cleanedFootprint[footprintField]) {
+      delete cleanedFootprint[footprintField];
     }
   }
-  tempFootprint.country = tempFootprint.country.country_data_or_code;
-  return tempFootprint;
+  cleanedFootprint.country = cleanedFootprint.country.country_data_or_code;
+  return cleanedFootprint;
 };
 
 const submitFootprintForm = (
@@ -21,7 +18,6 @@ const submitFootprintForm = (
   resultObjects,
   URL
 ) => {
-  const answers = result ? footprint : cleanFootprint(footprint);
   const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
   const requestOptions = {
     method: 'POST',
@@ -30,18 +26,15 @@ const submitFootprintForm = (
       'X-CSRF-Token': csrfToken,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(answers)
+    body: JSON.stringify(cleanFootprint(footprint))
   };
   fetch(URL, requestOptions)
     .then((response) => {
       if (mounted.current) {
-        /* IF RESULT IN FORM: */
         response.json().then((calculatedFootprint) => {
           setResult(calculatedFootprint);
           setCurrentObject(resultObjects[0]);
         });
-        /* IF RESULT ON RESULT PAGE: */
-        // window.location.href = response.url
       }
     })
     .catch((error) => {
