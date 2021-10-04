@@ -3,10 +3,10 @@ import { Draggable } from 'react-beautiful-dnd';
 import UserActionCard from './kanban_card_attributes/UserActionCard.jsx';
 import KanbanCardImage from './kanban_card_attributes/KanbanCardImage.jsx';
 import AchievementCard from './kanban_card_attributes/AchievementCard.jsx';
-import {
-  categoryName,
-  getCategoryColor
-} from '../../../helpers/CategoryColorHelper.js';
+// import {
+//   categoryName,
+//   getCategoryColor
+// } from '../../../helpers/CategoryColorHelper.js';
 
 const KanbanCard = ({
   item,
@@ -84,24 +84,11 @@ const KanbanCard = ({
                   ></AchievementCard>
                 ) : (
                   <UserActionCard
-                    categoryColor={categoryName(
-                      categories,
-                      item.climate_action_category_id,
-                      isAchievement
-                    )}
+                    isAchievement={isAchievement}
+                    categories={categories}
                     userAction={item}
                     handleDelete={handleDelete}
                     sidebarCollapsed={sidebarCollapsed}
-                    categoryColorHover={getCategoryColor(
-                      'category_' +
-                        categoryName(
-                          categories,
-                          item.climate_action_category_id
-                        )
-                          .toLowerCase()
-                          .replace(/ /g, '_') +
-                        '_active'
-                    )}
                   ></UserActionCard>
                 )}
                 <div
