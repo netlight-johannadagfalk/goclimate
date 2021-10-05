@@ -146,44 +146,50 @@ const Payment = ({
   return (
     <>
       {Elements && stripe && (
-        <form className="text-left px-2" onSubmit={submitPayment}>
-          <label className="block font-semibold mt-3">{email}</label>
-          <input
-            required
-            placeholder={email}
-            onChange={(e) => setUserEmail(e.target.value)}
-            type="email"
-            className="input w-full"
-            autoComplete="on"
-          />
-          <label className="block font-semibold mt-3">{password}</label>
-          <input
-            placeholder={password}
-            onChange={(e) => setUserPassword(e.target.value)}
-            className="input w-full"
-            minLength={6}
-            maxLength={128}
-            autoComplete="new-password"
-            type="password"
-          />
+        <form className="text-left px-2 space-y-3" onSubmit={submitPayment}>
+          <div>
+            <label className="block font-semibold">{email}</label>
+            <input
+              required
+              placeholder={email}
+              onChange={(e) => setUserEmail(e.target.value)}
+              type="email"
+              className="input w-full"
+              autoComplete="on"
+            />
+          </div>
+          <div>
+            <label className="block font-semibold">{password}</label>
+            <input
+              placeholder={password}
+              onChange={(e) => setUserPassword(e.target.value)}
+              className="input w-full"
+              minLength={6}
+              maxLength={128}
+              autoComplete="new-password"
+              type="password"
+            />
+          </div>
           {selectedMembership !== 'free' && (
-            <>
-              <label className="block font-semibold mt-3">
+            <div>
+              <label className="block font-semibold">
                 {credit_or_debit_card}
               </label>
-              <CardElement
-                onChange={(e) => {
-                  setCardErrorMessage(e.error ? e.error.message : '');
-                }}
-                options={{ hidePostalCode: true }}
-                className="py-3 w-full input mb-1 StripeElement StripeElement--empty"
-              />
-              <div className="text-orange-shade-1 text-left">
-                {cardErrorMessage}
+              <div className="space-y-1">
+                <CardElement
+                  onChange={(e) => {
+                    setCardErrorMessage(e.error ? e.error.message : '');
+                  }}
+                  options={{ hidePostalCode: true }}
+                  className="py-3 w-full input StripeElement StripeElement--empty"
+                />
+                <div className="text-orange-shade-1 text-left">
+                  {cardErrorMessage}
+                </div>
               </div>
               <i className="fas fa-lock" aria-hidden="true"></i>
               <span className="ml-1">Secured by Stripe</span>
-            </>
+            </div>
           )}
           <PriceText
             price={price}

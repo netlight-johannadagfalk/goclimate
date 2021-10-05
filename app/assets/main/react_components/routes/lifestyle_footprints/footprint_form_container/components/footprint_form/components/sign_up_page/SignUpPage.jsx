@@ -56,29 +56,29 @@ const SignUpPage = ({ result, page, onPageChange }) => {
   }, [grantedReferralCode, selectedMembership, multipleOffsets]);
 
   return (
-    <div className="t:mt-8 mb-8">
-      {page === 2 ? (
-        <MembershipPage
-          selectedMembership={selectedMembership}
-          setSelectedMembership={setSelectedMembership}
-          multipleOffsets={multipleOffsets}
-          setMultipleOffsets={setMultipleOffsets}
-          grantedReferralCode={grantedReferralCode}
-          setGrantedReferralCode={setGrantedReferralCode}
-          price={price}
-          result={result}
-        />
-      ) : (
-        <RegistrationPage
-          selectedMembership={selectedMembership}
-          lifestyleFootprint={result.footprint.key}
-          grantedReferralCode={grantedReferralCode}
-          multipleOffsets={multipleOffsets}
-          price={price}
-        />
-      )}
-      {page !== 3 && (
-        <div className="mt-8">
+    <div className="space-y-20">
+      <div className="space-y-8">
+        {page === 2 ? (
+          <MembershipPage
+            selectedMembership={selectedMembership}
+            setSelectedMembership={setSelectedMembership}
+            multipleOffsets={multipleOffsets}
+            setMultipleOffsets={setMultipleOffsets}
+            grantedReferralCode={grantedReferralCode}
+            setGrantedReferralCode={setGrantedReferralCode}
+            price={price}
+            result={result}
+          />
+        ) : (
+          <RegistrationPage
+            selectedMembership={selectedMembership}
+            lifestyleFootprint={result.footprint.key}
+            grantedReferralCode={grantedReferralCode}
+            multipleOffsets={multipleOffsets}
+            price={price}
+          />
+        )}
+        {page !== 3 && (
           <AnswerButton
             label={
               page === 2 && selectedMembership !== 'free'
@@ -88,31 +88,33 @@ const SignUpPage = ({ result, page, onPageChange }) => {
             onAnswerGiven={onPageChange}
             stylingClasses={'w-2/3 ' + (page === 2 && 'button-cta')}
           />
-        </div>
-      )}
+        )}
+      </div>
       {page === 2 && version == 'v2' && (
-        <>
+        <div className="space-y-8">
           <FormInformationSection
             price={price}
             grantedReferralCode={grantedReferralCode}
             selectedMembership={selectedMembership}
           />
-          <AnswerButton
-            label={continue_to_payment}
-            onAnswerGiven={() => {
-              onPageChange();
-              scrollToTop();
-            }}
-            stylingClasses={'w-5/6 button-cta'}
-          />
-          <Link
-            style={'text-sm mt-2'}
-            linkStyle={'text-green-shade-1'}
-            link={slug + '/'}
-            linkText={back_to_homepage}
-            target={''}
-          />
-        </>
+          <div className="space-y-2">
+            <AnswerButton
+              label={continue_to_payment}
+              onAnswerGiven={() => {
+                onPageChange();
+                scrollToTop();
+              }}
+              stylingClasses={'w-5/6 button-cta'}
+            />
+            <Link
+              style={'text-sm'}
+              linkStyle={'text-green-shade-1'}
+              link={slug + '/'}
+              linkText={back_to_homepage}
+              target={''}
+            />
+          </div>
+        </div>
       )}
     </div>
   );

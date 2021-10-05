@@ -11,21 +11,23 @@ const FootprintFormContainer = ({ footprint, calculator }) => {
   } = useTexts();
 
   return (
-    <div className="space-y-6">
-      <div className="callout">
-        <FootprintForm
-          footprint={footprint}
-          calculator={calculator}
-          onChangeInformationSection={(value) =>
-            setShowInformationSection(value)
-          }
+    <div className="space-y-8">
+      <div className="space-y-6">
+        <div className="callout space-y-8">
+          <FootprintForm
+            footprint={footprint}
+            calculator={calculator}
+            onChangeInformationSection={(value) =>
+              setShowInformationSection(value)
+            }
+          />
+        </div>
+        <Link
+          style={'text-sm'}
+          link="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"
+          linkText={methodology}
         />
       </div>
-      <Link
-        style={'text-sm'}
-        link="https://www.goclimate.com/blog/methodology-behind-the-carbon-footprint-calculator/"
-        linkText={methodology}
-      />
       {showInformationSection && <InformationSection />}
     </div>
   );

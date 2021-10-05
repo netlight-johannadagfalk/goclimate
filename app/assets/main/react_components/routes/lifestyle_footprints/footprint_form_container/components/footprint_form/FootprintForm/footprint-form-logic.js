@@ -1,19 +1,15 @@
 const cleanFootprint = (footprint) => {
-  var tempFootprint = { ...footprint };
-  for (var footprintField in tempFootprint) {
-    if (
-      tempFootprint[footprintField] === null ||
-      tempFootprint[footprintField] === undefined
-    ) {
-      delete tempFootprint[footprintField];
-    }
-  }
-  tempFootprint.country = tempFootprint.country.country_data_or_code;
-  return tempFootprint;
+  let cleanedFootprint = { ...footprint };
+  cleanedFootprint = Object.fromEntries(
+    Object.entries(cleanedFootprint).filter(
+      (footprintField) => footprintField[1] !== null
+    )
+  );
+  cleanedFootprint.country = cleanedFootprint.country.country_data_or_code;
+  return cleanedFootprint;
 };
 
 const submitFootprintForm = (
-  result,
   footprint,
   mounted,
   setResult,
@@ -21,7 +17,6 @@ const submitFootprintForm = (
   resultObjects,
   URL
 ) => {
-  const answers = result ? footprint : cleanFootprint(footprint);
   const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
   const requestOptions = {
     method: 'POST',
@@ -30,18 +25,15 @@ const submitFootprintForm = (
       'X-CSRF-Token': csrfToken,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(answers)
+    body: JSON.stringify(cleanFootprint(footprint))
   };
   fetch(URL, requestOptions)
     .then((response) => {
       if (mounted.current) {
-        /* IF RESULT IN FORM: */
         response.json().then((calculatedFootprint) => {
           setResult(calculatedFootprint);
           setCurrentObject(resultObjects[0]);
         });
-        /* IF RESULT ON RESULT PAGE: */
-        // window.location.href = response.url
       }
     })
     .catch((error) => {
@@ -71,17 +63,16 @@ const getUsedQuestions = (
   numericalKeys,
   resultKeys
 ) => {
-  const tempQuestionCategories = { ...questionCategories };
-  for (const question in tempQuestionCategories) {
-    if (
-      !isQuestionUsed(question, calculator) &&
-      !numericalKeys.includes(question) &&
-      !resultKeys.includes(question)
-    ) {
-      delete tempQuestionCategories[question];
-    }
-  }
-  return tempQuestionCategories;
+  let filteredQuestionCategories = { ...questionCategories };
+  filteredQuestionCategories = Object.fromEntries(
+    Object.entries(filteredQuestionCategories).filter(
+      ([categoryKey]) =>
+        isQuestionUsed(categoryKey, calculator) ||
+        numericalKeys.includes(categoryKey) ||
+        resultKeys.includes(categoryKey)
+    )
+  );
+  return filteredQuestionCategories;
 };
 
 const getSavedAnswer = (currentObject, footprint) => {
@@ -116,11 +107,9 @@ const goBack = (
 };
 
 export {
-  cleanFootprint,
   submitFootprintForm,
   areObjectsEqual,
   getSessionStorage,
-  isQuestionUsed,
   getUsedQuestions,
   getSavedAnswer,
   goBack

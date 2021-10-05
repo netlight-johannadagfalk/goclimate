@@ -8,16 +8,14 @@ const InformationSection = () => {
   const version = useVersion();
 
   return (
-    <div className="text-left">
+    <div className="text-left space-y-14">
       {version === 'v1' && (
         <>
           <WhereDoesTheMoneyGo />
           <LatestProjectsListV1 />
         </>
       )}
-      <div className="mt-14">
-        <FAQ />
-      </div>
+      <FAQ />
     </div>
   );
 };

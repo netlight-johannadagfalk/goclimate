@@ -20,7 +20,7 @@ const CategoryChart = ({ footprint }) => {
   const categoryData = getChartData(footprint, commonText);
 
   return (
-    <div className="space-y-5 mt-5">
+    <div className="space-y-5">
       {categoryData.map((category) => {
         return (
           <ResultBar
