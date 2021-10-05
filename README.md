@@ -49,6 +49,7 @@ Our domain consists of:
 | `Region`              | A named region with a combination of language and currency. Each region corresponds to their own base URL for SEO reasons. (Not yet implemented.) |
 | `User`                | A registered user. We have accounts both with and without subscriptions. Active subscriptions are handled in Stripe, with some metadata duplicated in this model. |
 | `CardCharge`          | Charges for purchases of an offset product.         |
+| `ClimateActions`      | High impact, low-effort actions available for users to accept and perform. |
 
 ### Products
 
@@ -100,6 +101,10 @@ what](https://chris.beams.io/posts/git-commit/).
 Follow linter config (open a PR with rule changes if you disagree) and write
 tests according to [Better Specs](http://www.betterspecs.org).
 
+For react files this project uses Prettier for stylistic rules and ESlint for code quality rules. To avoid conflicts, ESlint runs Prettier as an ESlint rule. 
+
+Eslint and prettier runs with a script, but we recommend to additionally make use of code editor extensions and enable format on save according to Prettier. 
+
 #### Views
 
 When writing HTML views, we write utility-first CSS, using [TailwindCSS](https://tailwindcss.com/), combined with some of our own custom utilities and components. In order to have coherency in the code, these are some conventions we follow:
@@ -140,11 +145,15 @@ disable_experiments=my_feature,my_other_feature
 
 We have a custom implementation of React component that combines our current Javascript framework, Stimulus.js, and Rails partials to inject react components anywhere in the views.
 
+[React](https://reactjs.org/) is a javascript library for building user interfaces. 
+
 ##### Creating React components
 
 Our React components are placed in the `app/assets/main/react_components/` folder in `.jsx` format. These components are created and function as any React component, you can use the Virtual DOM and the full React lifecycle.
 
 The file structure and file names within the `react_components` folder is possible to structure in sub-folders. It's advised to not give components the same name, even though they are situated in different folders as the component name is what is used in the React helper.
+
+
 
 ##### Usage
 
@@ -168,6 +177,9 @@ import Button from 'ReactComponents/Button.jsx';
 
 Don't forget the file extension!
 
+##### State handling
+This project uses the react hook useContext to handle global states. 
+
 ## Getting started
 
 ### Requirements
@@ -176,6 +188,7 @@ Don't forget the file extension!
 * PostgreSQL
 * Firefox and geckodriver
 * For working with localized strings: Crowdin CLI & account (https://support.crowdin.com/cli-tool/)
+* Yarn is the package manager of this code-base.
 
 ### Setup
 
@@ -201,9 +214,10 @@ Don't forget the file extension!
 ## Developing
 
 * Run the development server: `bin/rails server`
-* If you're doing front-end work, Webpack dev server gives you hot realoding of JS & CSS: `bin/yarn dev`
+* If you're doing front-end work, Webpack dev server gives you hot realoding of JS & CSS: `bin/yarn dev`. (Run simultaneously as bin/rails server)
 * Watch for updates and continuosly run relevant specs & linters: `bin/guard`
-* Run Ruby tests: `bin/rspec`
+* For changes inside the react-components folder, run eslint and prettier: `bin/yarn lint`
+* Run Ruby tests: `bin/rspec`. (Do not run when webpack dev server is running)
 * Run Ruby linter: `bin/rubocop`
 
 ## Deployment
