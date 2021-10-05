@@ -28,7 +28,7 @@
         <% if climate_action_category.badge_image_url.eql? nil%>
           <td>No image chosen for this category achievement</td>
           <% else %>
-          <td> <%= image_tag image_url(climate_action_category.badge_image_url), style: 'height:15%;width:auto;' %></td>
+          <td> <%= image_tag image_url(climate_action_category.badge_image_url), style: 'height:5%;width:auto;' %></td>
           <% end%>
         <td><%= link_to 'Edit', edit_admin_climate_action_category_path(climate_action_category) %></td> &nbsp;
         <% if ClimateAction.where(climate_action_category_id: climate_action_category.id).count==0%>

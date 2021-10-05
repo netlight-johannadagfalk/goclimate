@@ -9,16 +9,19 @@ const MonthlyAction = ({ action, user, updateLocalAccepted, categories }) => {
   return (
     <div className="w-64 ml-10 mt-11 relative">
       <div className="h-52 w-52 -top-4 left-9 bg-cover absolute">
-        <TextBanner text={text} />
+        {action && <TextBanner text={text} />}
       </div>
-      <CarouselCard
-        action={action}
-        key={action.id}
-        user={user}
-        updateLocalAccepted={updateLocalAccepted}
-        categories={categories}
-        monthlyActionBanner={true}
-      ></CarouselCard>
+
+      {action && (
+        <CarouselCard
+          action={action}
+          key={action.id}
+          user={user}
+          updateLocalAccepted={updateLocalAccepted}
+          categories={categories}
+          monthlyActionBanner={true}
+        ></CarouselCard>
+      )}
     </div>
   );
 };
