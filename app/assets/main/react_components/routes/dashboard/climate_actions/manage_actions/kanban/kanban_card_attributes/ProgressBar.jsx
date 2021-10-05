@@ -9,7 +9,7 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
     //getCategoryName kanske?
     for (let i = 0; i <= Object.keys(categories).length - 1; i++) {
       if (categories[i].id == item.id) {
-        return categories[i].id == item.id && categories[i].name.toString();
+        return categories[i].name.toString();
       }
     }
     return 'unknown';
