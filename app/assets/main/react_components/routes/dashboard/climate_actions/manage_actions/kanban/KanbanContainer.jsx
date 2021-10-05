@@ -32,6 +32,13 @@ const KanbanContainer = ({
   const mounted = useRef(false);
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
 
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
+
   const handleExpanded = (item, value) => {
     const column = item.status === false ? 1 : 2;
     updateColumns({
@@ -76,13 +83,6 @@ const KanbanContainer = ({
     updateColumnsWithFormat(updatedList, destItems);
     setDeletedAction(deletedAction);
   };
-
-  useEffect(() => {
-    mounted.current = true;
-    return () => {
-      mounted.current = false;
-    };
-  }, []);
 
   return (
     <div
