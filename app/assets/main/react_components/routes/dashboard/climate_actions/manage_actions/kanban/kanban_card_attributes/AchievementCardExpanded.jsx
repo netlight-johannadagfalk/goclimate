@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { handleUncompleteAction } from '../../../../helpers/KanbanHelper.js';
 import {
   useUserState,
@@ -12,7 +11,7 @@ const AchievementCardExpanded = ({ achievement }) => {
 
   const {
     data: { columns }
-  } = useUserState(); // destructuring
+  } = useUserState();
 
   const actions = [
     ...achievement.userActionsArray,
@@ -20,7 +19,7 @@ const AchievementCardExpanded = ({ achievement }) => {
   ];
 
   return (
-    <>
+    <div>
       <div className="mb-4 ml-7 mr-4">
         {actions.map((action) => (
           <div className="group flex items-center mt-1 mb-3" key={action.id}>
@@ -31,7 +30,7 @@ const AchievementCardExpanded = ({ achievement }) => {
                   ? "url('/achievement_images/AchievementStarActive.png')"
                   : "url('/achievement_images/AchievementStarInactive.png')"
               }}
-            ></div>
+            />
             <div
               className={`flex-initial text-left text-sm ${
                 action.status ? 'text-black' : 'text-gray-accent'
@@ -56,7 +55,7 @@ const AchievementCardExpanded = ({ achievement }) => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

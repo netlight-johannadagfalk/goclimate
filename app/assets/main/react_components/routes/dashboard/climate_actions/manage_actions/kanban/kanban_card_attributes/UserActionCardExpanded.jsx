@@ -16,7 +16,7 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
   const {
     data: { columns }
   } = useUserState(); // destructuring
-  const climateActionsText = useClimateActionsText();
+  const { action_performed } = useClimateActionsText(); // destructuring
 
   return (
     <div className="mt-1 mx-6 flex flex-col text-center">
@@ -47,7 +47,7 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
             )
           }
         >
-          {climateActionsText.action_performed}
+          {action_performed}
         </button>
       </div>
     </div>

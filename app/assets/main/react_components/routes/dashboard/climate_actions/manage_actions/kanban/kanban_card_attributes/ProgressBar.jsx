@@ -6,9 +6,10 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
     { id: '-1', name: 'Climate Friend' }
   ];
   const categoryName = (categories) => {
+    //getCategoryName kanske?
     for (let i = 0; i <= Object.keys(categories).length - 1; i++) {
       if (categories[i].id == item.id) {
-        return categories[i].name.toString();
+        return categories[i].id == item.id && categories[i].name.toString();
       }
     }
     return 'unknown';
@@ -16,7 +17,7 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
 
   const total = userActions.length + actions.length;
   const completed = userActions.reduce((progress, userAction) => {
-    if (userAction.status === true) {
+    if (userAction.status) {
       progress++;
     }
     return progress;
@@ -35,7 +36,7 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
               .replace(/ /g, '_') +
             '_active'
           }`}
-        ></div>
+        />
       </div>
       <span className="ml-5 text-sm">{completed + '/' + total}</span>
     </div>

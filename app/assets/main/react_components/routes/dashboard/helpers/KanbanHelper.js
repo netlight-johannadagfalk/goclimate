@@ -16,7 +16,6 @@ export const collectPerformedUserActions = (destItems) => {
   destItems.map((category) => {
     return category.userActionsArray.map((userAction) => {
       if (userAction.status) {
-        // Ta bort === true?
         userAction.id.toString(); // ?
         performedUserActions = [...performedUserActions, userAction];
       }
@@ -36,7 +35,7 @@ export const handleCompleteActionOnClick = (
   const sourceColumn = columns[1];
   const destColumn = columns[2];
   const sourceItems = [...sourceColumn.items];
-  updateStatus(movedItem.id, true); //updateUserActionStatus kanske?
+  updateStatus(movedItem.id, true); // kan denna metod få ett litet tydligare namn? de övriga här känns väldigt tydliga
   movedItem.status = true;
   const filteredSourceItems = sourceItems.filter((item) => !item.status);
   const destItems = updateAchievementsOnMove(movedItem, destColumn.items);
@@ -78,12 +77,11 @@ export const handleUncompleteAction = (
   const destColumn = columns[1];
   const sourceItems = [...sourceColumn.items];
   const destItems = [...destColumn.items];
-
   movedItem.id = movedItem.id.toString();
   const destIndex = destItems.length;
   destItems.splice(destIndex, 0, movedItem);
   movedItem.status = false;
-  updateStatus(movedItem.id, false); // kan denna ligga runt rad 106 så alla updates är samlade?
+  updateStatus(movedItem.id, false);
   const newSourceItems = sourceItems.map((category) => {
     return {
       ...category,
@@ -100,7 +98,7 @@ export const handleUncompleteAction = (
     };
   });
   const checkDelete = sortedSourceItems.filter((category) => {
-    return category.userActionsArray.some((item) => item.status === true);
+    return category.userActionsArray.some((item) => item.status);
   });
   updateAchievements([...checkDelete]);
   updateUserActions([...destItems]);
@@ -127,16 +125,13 @@ export const onDragEnd = (
   updateAchievementsOnMove
 ) => {
   if (!result.destination) return;
-
   const { source, destination } = result;
   if (source.droppableId !== destination.droppableId) {
     const sourceColumn = columns[source.droppableId];
     const destColumn = columns[destination.droppableId];
     const sourceItems = [...sourceColumn.items];
     const [removed] = sourceItems.splice(source.index, 1);
-
     updateStatus(removed.id, true, mounted);
-
     const destItems = updateAchievementsOnMove(removed, destColumn.items);
     const sortedDestItems = destItems.map((category) => {
       return {

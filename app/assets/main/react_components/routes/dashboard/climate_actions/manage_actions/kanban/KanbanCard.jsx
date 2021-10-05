@@ -43,7 +43,7 @@ const KanbanCard = ({
       key={item.id}
       draggableId={item.id}
       index={index}
-      isDragDisabled={item.status !== false}
+      isDragDisabled={item.status}
     >
       {(provided, snapshot) => {
         return (
@@ -58,7 +58,7 @@ const KanbanCard = ({
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             style={
-              item.status === false
+              !item.status
                 ? setStyleWithReordering(provided.draggableProps.style)
                 : setStyleWithoutReordering(snapshot)
             }
@@ -67,7 +67,6 @@ const KanbanCard = ({
               img={isAchievement ? item.badge_image_url : item.image_url}
               isUserAction={!isAchievement}
             />
-
             {!sidebarCollapsed && (
               <div>
                 {isAchievement ? (
@@ -79,7 +78,6 @@ const KanbanCard = ({
                 ) : (
                   <UserActionCard
                     categoryColor={categoryName(
-                      //getCategoryName ?
                       categories,
                       item.climate_action_category_id,
                       isAchievement
@@ -102,7 +100,7 @@ const KanbanCard = ({
                   </div>
                   <button
                     className={`flex-1 fas right-0 focus:outline-none mr-4 absolute ${
-                      item.status === true ? 'mt-1' : 'mt-4'
+                      item.status ? 'mt-1' : 'mt-4'
                     } ${item.expanded ? 'fa-chevron-up' : 'fa-chevron-down'}`}
                   />
                 </div>

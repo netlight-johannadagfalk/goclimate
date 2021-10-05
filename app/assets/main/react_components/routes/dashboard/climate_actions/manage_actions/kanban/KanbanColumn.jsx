@@ -2,7 +2,7 @@ import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import KanbanCard from './KanbanCard.jsx';
 import { useMediaQuery } from 'react-responsive';
-import { t } from '../../../constants'; // Bör dessa mått kanske finna i config-filen? Eller vara baserade på config-måtten?
+import { t } from '../../../constants';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { useClimateActionsText } from '../../../contexts/TextContext.js';
 
@@ -19,7 +19,6 @@ const KanbanColumn = ({
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
   const { mascot_1, mascot_2, empty_achievements_column } =
     useClimateActionsText(); // destructuring
-
   return (
     <div
       className={`h-full ${
@@ -34,83 +33,87 @@ const KanbanColumn = ({
         key={columnId}
         isDropDisabled={sidebarCollapsed}
       >
-        {(provided, snapshot) => (
-          <div
-            className={`h-full overflow-x-hidden pt-1 d:flex d:items-stretch flex items-center flex-col inline-block w-full 
+        {(provided, snapshot) => {
+          return (
+            <div
+              className={`h-full overflow-x-hidden pt-1 d:flex d:items-stretch flex items-center flex-col inline-block w-full 
               ${
                 isHovering || isTabletOrMobile
                   ? 'overflow-y-auto'
                   : 'overflow-y-hidden'
               }`}
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-            style={{
-              background: snapshot.isDraggingOver ? 'GhostWhite' : 'white', // introducerar en ny färg till paletten, OK?
-              width: '100%'
-            }}
-          >
-            {!sidebarCollapsed && columnId == 1 && column.items.length == 0 && (
-              <>
-                {/* För att förhålla sig till deras tailwindanvändning: <p> får className italic för fontstyle */}
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              style={{
+                background: snapshot.isDraggingOver ? 'GhostWhite' : 'white', // Är det OK att introducera en ny färg till paletten?
+                width: '100%'
+              }}
+            >
+              {!sidebarCollapsed && columnId == 1 && column.items.length == 0 && (
+                <>
+                  <p
+                    style={{
+                      // kan tailwind användas istället?
+                      fontStyle: 'italic',
+                      marginTop: '10%'
+                    }}
+                  >
+                    {mascot_1} <br />
+                    {mascot_2}
+                  </p>
+                  <img
+                    src="/Mascot.png"
+                    width="100"
+                    height="100"
+                    className="flex self-center"
+                  />
+                </>
+              )}
+              <TransitionGroup component={null}>
+                {column.items
+                  .slice(0, column.items.length)
+                  .map((item, index) => (
+                    <CSSTransition
+                      timeout={{
+                        enter: 100,
+                        exit: 500
+                      }}
+                      classNames="display"
+                      key={item.id}
+                    >
+                      <KanbanCard
+                        item={item}
+                        index={index}
+                        key={item.id}
+                        handleDelete={handleDelete}
+                        categories={categories}
+                        sidebarCollapsed={sidebarCollapsed}
+                        handleExpanded={handleExpanded}
+                      />
+                    </CSSTransition>
+                  ))}
+              </TransitionGroup>
+              {!sidebarCollapsed && columnId == 2 && column.items.length < 2 && (
                 <p
                   style={{
+                    // tailwind?
                     fontStyle: 'italic',
-                    marginTop: '10%'
+                    marginTop: '25%'
                   }}
                 >
-                  {mascot_1} <br />
-                  {mascot_2}
+                  {empty_achievements_column}
                 </p>
-                <img
-                  src="/Mascot.png"
-                  width="100"
-                  height="100"
-                  className="flex self-center"
-                />
-              </>
-            )}
-            <TransitionGroup component={null}>
-              {column.items.slice(0, column.items.length).map((item, index) => {
-                return (
-                  <CSSTransition
-                    timeout={{
-                      enter: 100,
-                      exit: 500
-                    }}
-                    classNames="display"
-                    key={item.id}
-                  >
-                    <KanbanCard
-                      item={item}
-                      index={index}
-                      key={item.id}
-                      handleDelete={handleDelete}
-                      categories={categories}
-                      sidebarCollapsed={sidebarCollapsed}
-                      handleExpanded={handleExpanded}
-                    />
-                  </CSSTransition>
-                );
-              })}
-            </TransitionGroup>
-            {!sidebarCollapsed && columnId == 2 && column.items.length < 2 && (
-              <p
-                style={{
-                  fontStyle: 'italic',
-                  marginTop: '25%'
-                }}
-              >
-                {empty_achievements_column}
-              </p>
-            )}
-            {provided.placeholder}
-          </div>
-        )}
+              )}
+              {provided.placeholder}
+            </div>
+          );
+        }}
       </Droppable>
       {columnId === '1' && (
         <div>
           <hr
             style={{
+              // kanske finns i tailwind config-färguppsättningen?
               color: 'lightgrey'
             }}
           />

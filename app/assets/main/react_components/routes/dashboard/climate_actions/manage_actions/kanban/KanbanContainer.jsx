@@ -16,13 +16,10 @@ const KanbanContainer = ({
   setSidebarCollapsed,
   categories
 }) => {
-  /* 
-    kanske ändra lite ordning så hooks-grejer hamnar överst och sen övriga variabler
-    exempelvis först state, sen ref, sen custom hooks, sen const, eller liknande
-    useEffect bör enligt Micke-feedback ligga överst
-  */
   const setDeletedAction = useDeletedActionUpdate();
-  const { data: data } = useUserState();
+  const {
+    data: { columns }
+  } = useUserState();
   const {
     updateUserActions,
     updateColumns,
@@ -31,21 +28,11 @@ const KanbanContainer = ({
     updateAchievementsOnMove
   } = useUserActions();
 
-  const columns = data.columns; // kan detta läggas in som ett ytterligare destructuring-lager på rad 20?
   const [isHovering, setIsHovering] = useState(false);
   const mounted = useRef(false);
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
 
-  useEffect(() => {
-    // kanske flytta upp hit?
-    mounted.current = true;
-    return () => {
-      mounted.current = false;
-    };
-  }, []);
-
   const handleExpanded = (item, value) => {
-    // value känns ganska generellt, finns ett mer beskrivande ord? gäller nedan också
     const column = item.status === false ? 1 : 2;
     updateColumns({
       ...columns,
@@ -57,7 +44,7 @@ const KanbanContainer = ({
   };
 
   const getExpandable = (column, item, value) => {
-    return column.items.map((expandable) => {
+    const temp = column.items.map((expandable) => {
       return expandable.id === item.id
         ? {
             ...expandable,
@@ -65,6 +52,7 @@ const KanbanContainer = ({
           }
         : { ...expandable, expanded: false };
     });
+    return temp;
   };
 
   const handleDelete = (userActionID, actionID) => {
@@ -89,15 +77,18 @@ const KanbanContainer = ({
     setDeletedAction(deletedAction);
   };
 
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
+
   return (
     <div
       className={`h-screen ${
         sidebarCollapsed ? 'w-24' : 'd:w-80'
       } transition-size duration-500`}
-      /* 
-        Kan ternary-grejerna läggas sist i className-listor "överallt"? 
-        Skulle nog vara lättare att läsa
-      */
     >
       <DragDropContext
         onDragEnd={(result) =>
@@ -112,38 +103,40 @@ const KanbanContainer = ({
           )
         }
       >
-        {Object.entries(columns).map(([columnId, column]) => (
-          <div
-            className="text-center h-1/2 pb-24 -mb-10"
-            key={columnId}
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-          >
+        {Object.entries(columns).map(([columnId, column]) => {
+          return (
             <div
-              className="h-10 mt-2"
-              style={
-                isTabletOrMobile || sidebarCollapsed ? {} : { width: '20rem' }
-              }
-            >
-              <p
-                className={`font-normal text-base text-primary text-lg text-center`}
-              >
-                {!sidebarCollapsed && column.name}
-              </p>
-            </div>
-            <KanbanColumn
-              column={column}
-              columnId={columnId}
+              className="text-center h-1/2 pb-24 -mb-10"
               key={columnId}
-              handleDelete={handleDelete}
-              categories={categories}
-              setSidebarCollapsed={setSidebarCollapsed}
-              sidebarCollapsed={sidebarCollapsed}
-              isHovering={isHovering}
-              handleExpanded={handleExpanded}
-            />
-          </div>
-        ))}
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+            >
+              <div
+                className="h-10 mt-2"
+                style={
+                  isTabletOrMobile || sidebarCollapsed ? {} : { width: '20rem' }
+                }
+              >
+                <p
+                  className={`font-normal text-base text-primary text-lg text-center`}
+                >
+                  {!sidebarCollapsed && column.name}
+                </p>
+              </div>
+              <KanbanColumn
+                column={column}
+                columnId={columnId}
+                key={columnId}
+                handleDelete={handleDelete}
+                categories={categories}
+                setSidebarCollapsed={setSidebarCollapsed}
+                sidebarCollapsed={sidebarCollapsed}
+                isHovering={isHovering}
+                handleExpanded={handleExpanded}
+              />
+            </div>
+          );
+        })}
       </DragDropContext>
     </div>
   );
