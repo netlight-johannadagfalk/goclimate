@@ -63,7 +63,7 @@ const MembershipPage = ({
             />
           </>
         )}
-        <div data-inactive-class="hidden">
+        <div>
           {selectedMembership !== 'free' && (
             <ReferralCode
               grantedReferralCode={grantedReferralCode}
