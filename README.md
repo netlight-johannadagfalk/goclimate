@@ -204,10 +204,10 @@ This project uses the react hook useContext to handle global states.
 
 ##### Language in React
 
-Language files (.yml) are reached in react by reaching and loading the file through its path, and package it to a json object. Each specific language code is reached by using I18n.locale[0..-1] that returns e.g. ‘en’. Se example below. The object ‘text’ can then be reached from within the react component by parsing the json object. 
+Language files (.yml) are reached in react by reaching and loading the file through its path, and package it to a json object. Each specific language code is reached by using I18n.locale[0..-1] that returns e.g. ‘en’. Se example below. The object ‘text’ can then be reached from within the react component by parsing the json object. The object is then made global through useContext.
 ```
  <%= react_component 'Container', 
-  text: YAML.load_file('config/locales/' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]].to_json,
+   text: YAML.load_file('config/locales/' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]].to_json,
  %>
 ```
 
