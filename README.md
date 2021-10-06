@@ -141,6 +141,30 @@ enable_experiments=my_feature,my_other_feature
 disable_experiments=my_feature,my_other_feature
 ```
 
+##### Specific React flags
+
+There are two active react experiments for the form and sign up process.
+Flaggs that can be enabled and disabled are:
+```
+V1 & V2 
+```
+V2 overrides V1 which menas that if you want to enable V1 you first need to disable V2.
+If you want to run v1 your need to run:
+```
+disable_experiments=v2
+disable_experiments=v1
+```
+
+If you want to run v2 your only need to run:
+```
+enable_experiments=v2
+```
+
+If you want to disable all react versions run:
+```
+disable_experiments=v1,v2
+```
+
 #### React.js
 
 We have a custom implementation of React component that combines our current Javascript framework, Stimulus.js, and Rails partials to inject react components anywhere in the views.
@@ -177,6 +201,15 @@ Don't forget the file extension!
 
 ##### State handling
 This project uses the react hook useContext to handle global states. 
+
+##### Language in React
+
+Language files (.yml) are reached in react by reaching and loading the file through its path, and package it to a json object. Each specific language code is reached by using I18n.locale[0..-1] that returns e.g. ‘en’. Se example below. The object ‘text’ can then be reached from within the react component by parsing the json object. 
+```
+ <%= react_component 'Container', 
+  text: YAML.load_file('config/locales/' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]].to_json,
+ %>
+```
 
 ## Getting started
 
