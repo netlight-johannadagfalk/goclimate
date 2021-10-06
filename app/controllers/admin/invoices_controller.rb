@@ -86,7 +86,7 @@ module Admin
           params[:products_subtotal] = money_param_to_subunit(params[:products_subtotal])
         end
         .permit(:amount_in_sek, :offsetting_subtotal, :consulting_subtotal, :products_subtotal, :co2e, :receiver,
-                :project_id, :fortnox_id, :comment, :certificate_sent_at, :certificate_reciever_email, :invoice_date)
+                :project_id, :fortnox_id, :comment, :certificate_sent_at, :certificate_reciever_email)
         .transform_values { |value| value.blank? ? nil : value }
         .tap { |params| params[:certificate_sent_at] = Time.now if params[:certificate_sent_at] == 'now' }
     end
