@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_28_092550) do
+ActiveRecord::Schema.define(version: 2021_10_06_065502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -240,6 +240,7 @@ ActiveRecord::Schema.define(version: 2021_09_28_092550) do
     t.integer "offsetting_subtotal"
     t.integer "consulting_subtotal"
     t.integer "products_subtotal"
+    t.datetime "invoice_date"
     t.index ["project_id"], name: "index_invoices_on_project_id"
   end
 

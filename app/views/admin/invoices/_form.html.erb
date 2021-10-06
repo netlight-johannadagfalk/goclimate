@@ -25,6 +25,11 @@
     </div>
 
     <div class="flex flex-col">
+      <p><%= f.label :invoice_date, 'Invoice date', class: 'font-bold' %></p>
+      <%= f.date_field :invoice_date, class: 'input', value: f.object.invoice_date %>
+    </div>
+
+    <div class="flex flex-col">
       <p><%= f.label :amount_in_sek, 'Total amount', class: 'font-bold' %> (in SEK, <u>excluding</u> VAT)</p>
       <%= f.number_field :amount_in_sek, class: 'input', value: f.object.amount_in_sek&.amount %>
     </div>
