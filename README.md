@@ -148,22 +148,7 @@ Flaggs that can be enabled and disabled are:
 
 `V1` & `V2` 
 
-`V2` overrides V1 which menas that if you want to enable `V1` you first need to disable `V2`.
-If you want to run v1 your need to run:
-```
-disable_experiments=v2
-disable_experiments=v1
-```
-
-If you want to run `V2` your only need to run:
-```
-enable_experiments=v2
-```
-
-If you want to disable all react versions run:
-```
-disable_experiments=v1,v2
-```
+`V2` overrides V1 which menas that if you want to enable `V1` you first need to disable `V2`. If you want to want to enable `v2` you only need enable it accoring to the A/B test instructions above.
 
 #### React.js
 
