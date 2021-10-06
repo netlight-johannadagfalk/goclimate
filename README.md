@@ -145,17 +145,17 @@ disable_experiments=my_feature,my_other_feature
 
 There are two active react experiments for the form and sign up process.
 Flaggs that can be enabled and disabled are:
-```
-V1 & V2 
-```
-V2 overrides V1 which menas that if you want to enable V1 you first need to disable V2.
+
+`V1` & `V2` 
+
+`V2` overrides V1 which menas that if you want to enable `V1` you first need to disable `V2`.
 If you want to run v1 your need to run:
 ```
 disable_experiments=v2
 disable_experiments=v1
 ```
 
-If you want to run v2 your only need to run:
+If you want to run `V2` your only need to run:
 ```
 enable_experiments=v2
 ```
