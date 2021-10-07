@@ -51,8 +51,6 @@
     "proj4": "^2.6.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-select-country-list": "^2.2.3",
-    "react-stripe-elements": "^6.1.2",
     "sanitize-html": "^2.4.0",
     "stimulus": "^1.1.1",
     "tailwindcss": "^2.0.1",
