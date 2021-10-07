@@ -7,10 +7,10 @@ const DropDownKanbanContainer = ({ children }) => {
   const { data: data } = useUserState();
 
   const toggleScroll = (bool) => {
-    const scrollable = document.getElementById('scrollable');
+    const scrollable = document.getElementById('globeTest');
     bool
-      ? (scrollable.className += ' overflow-hidden')
-      : (scrollable.className -= ' overflow-hidden');
+      ? (scrollable.className += ' invisible')
+      : (scrollable.className -= ' invisible');
   };
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const DropDownKanbanContainer = ({ children }) => {
     <div>
       <div
         className={`fixed top-16 z-30 bg-white w-full overflow-hidden ${
-          showDropDownKanban ? 'h-screen' : 'h-0'
+          showDropDownKanban ? 'h-20' : 'h-0'
         } transition-size duration-500`}
       >
         {children}
