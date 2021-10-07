@@ -56,6 +56,7 @@ module Admin
                      .select('climate_actions.*, count(user_climate_actions.climate_action_id) as total')
                      .order('COUNT(user_climate_actions.climate_action_id) DESC')
                      .group('climate_actions.id')
+                     .limit(10)
     end
 
     # GET /climate_actions or /climate_actions.json
