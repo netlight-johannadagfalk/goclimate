@@ -49,7 +49,6 @@ Our domain consists of:
 | `Region`              | A named region with a combination of language and currency. Each region corresponds to their own base URL for SEO reasons. (Not yet implemented.) |
 | `User`                | A registered user. We have accounts both with and without subscriptions. Active subscriptions are handled in Stripe, with some metadata duplicated in this model. |
 | `CardCharge`          | Charges for purchases of an offset product.         |
-| `ClimateActions`      | High impact, low-effort actions available for users to accept and perform. |
 
 ### Products
 
@@ -101,7 +100,7 @@ what](https://chris.beams.io/posts/git-commit/).
 Follow linter config (open a PR with rule changes if you disagree) and write
 tests according to [Better Specs](http://www.betterspecs.org).
 
-For react files this project uses Prettier for stylistic rules and ESlint for code quality rules. To avoid conflicts, ESlint runs Prettier as an ESlint rule. 
+For React files this project uses Prettier for stylistic rules and ESlint for code quality rules. To avoid conflicts, ESlint runs Prettier as an ESlint rule. 
 
 Eslint and prettier runs with a script, but we recommend to additionally make use of code editor extensions and enable format on save according to Prettier. 
 
@@ -140,15 +139,14 @@ enable_experiments=my_feature,my_other_feature
 ```
 disable_experiments=my_feature,my_other_feature
 ```
-
 ##### Specific React flags
 
-There are two active react experiments for the form and sign up process.
+There are two active React experiments for the form and sign up process.
 Flaggs that can be enabled and disabled are:
 
-`V1` & `V2` 
+`v1` & `v2` 
 
-`V2` overrides V1 which menas that if you want to enable `V1` you first need to disable `V2`. If you want to want to enable `v2` you only need enable it accoring to the A/B test instructions above.
+The experiment `v2` overrides `v1` which menas that if you want to enable `v1` you first need to disable `v2`. If you want to want to enable `v2` you only need enable it accoring to the A/B test instructions above.
 
 #### React.js
 
@@ -189,7 +187,7 @@ This project uses the react hook useContext to handle global states.
 
 ##### Language in React
 
-Language files (.yml) are reached in react by reaching and loading the file through its path, and package it to a json object. Each specific language code is reached by using I18n.locale[0..-1] that returns e.g. ‘en’. Se example below. The object ‘text’ can then be reached from within the react component by parsing the json object. The object is then made global through useContext.
+Language files (.yml) are reached in React by loading the file through its path as a props, and package it to a json object. Each specific language code is reached by using I18n.locale[0..-1] that returns e.g. ‘en’. Se example below. The received prop ‘text’ can then be reached from within the React component by parsing the json object. The object is then made global through useContext.
 ```
  <%= react_component 'Container', 
    text: YAML.load_file('config/locales/' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]].to_json,
@@ -230,7 +228,7 @@ Language files (.yml) are reached in react by reaching and loading the file thro
 ## Developing
 
 * Run the development server: `bin/rails server`
-* If you're doing front-end work, Webpack dev server gives you hot realoding of JS & CSS: `bin/yarn dev`. (Run simultaneously as bin/rails server)
+* If you're doing front-end work, Webpack dev server gives you hot realoding of JS & CSS: `bin/yarn dev`. (Run this simultaneously as `bin/rails server`)
 * Watch for updates and continuosly run relevant specs & linters: `bin/guard`
 * For changes inside the react-components folder, run eslint and prettier: `bin/yarn lint`
 * Run Ruby tests: `bin/rspec`. (Do not run when webpack dev server is running)
