@@ -35,7 +35,7 @@ export const handleCompleteActionOnClick = (
   const sourceColumn = columns[1];
   const destColumn = columns[2];
   const sourceItems = [...sourceColumn.items];
-  updateStatus(movedItem.id, true); // kan denna metod få ett litet tydligare namn? de övriga här känns väldigt tydliga
+  updateStatus(movedItem.id, true); 
   movedItem.status = true;
   const filteredSourceItems = sourceItems.filter((item) => !item.status);
   const destItems = updateAchievementsOnMove(movedItem, destColumn.items);
