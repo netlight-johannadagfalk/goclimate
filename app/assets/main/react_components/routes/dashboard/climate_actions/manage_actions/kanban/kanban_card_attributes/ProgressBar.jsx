@@ -5,8 +5,7 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
     ...categories,
     { id: '-1', name: 'Climate Friend' }
   ];
-  const categoryName = (categories) => {
-    //getCategoryName kanske?
+  const getCategoryName = (categories) => {
     for (let i = 0; i <= Object.keys(categories).length - 1; i++) {
       if (categories[i].id == item.id) {
         return categories[i].name.toString();
@@ -17,7 +16,7 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
 
   const total = userActions.length + actions.length;
   const completed = userActions.reduce((progress, userAction) => {
-    if (userAction.status) {
+    if (userAction?.status) {
       progress++;
     }
     return progress;
@@ -31,7 +30,7 @@ const ProgressBar = ({ categories, item, userActions, actions }) => {
             'w-' + completed + '/' + total
           } rounded-lg text-right ${
             'category_' +
-            categoryName(categoriesWithMembershipAchievement)
+            getCategoryName(categoriesWithMembershipAchievement)
               .toLowerCase()
               .replace(/ /g, '_') +
             '_active'

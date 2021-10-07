@@ -15,8 +15,8 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
   } = useUserActions();
   const {
     data: { columns }
-  } = useUserState(); // destructuring
-  const { action_performed } = useClimateActionsText(); // destructuring
+  } = useUserState();
+  const { action_performed } = useClimateActionsText();
 
   return (
     <div className="mt-1 mx-6 flex flex-col text-center">

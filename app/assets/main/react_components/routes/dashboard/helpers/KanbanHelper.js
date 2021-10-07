@@ -1,4 +1,4 @@
-import { updateStatus } from '../helpers/DBRequests.js';
+import { updateUserActionStatus } from '../helpers/DBRequests.js';
 import { orderBy } from 'lodash';
 
 const sortActionsBasedOnStatus = (performedActions) => {
@@ -15,8 +15,7 @@ export const collectPerformedUserActions = (destItems) => {
   let performedUserActions = [];
   destItems.map((category) => {
     return category.userActionsArray.map((userAction) => {
-      if (userAction.status) {
-        userAction.id.toString(); // ?
+      if (userAction?.status) {
         performedUserActions = [...performedUserActions, userAction];
       }
     });
@@ -35,7 +34,7 @@ export const handleCompleteActionOnClick = (
   const sourceColumn = columns[1];
   const destColumn = columns[2];
   const sourceItems = [...sourceColumn.items];
-  updateStatus(movedItem.id, true); 
+  updateUserActionStatus(movedItem.id, true); 
   movedItem.status = true;
   const filteredSourceItems = sourceItems.filter((item) => !item.status);
   const destItems = updateAchievementsOnMove(movedItem, destColumn.items);
@@ -81,7 +80,7 @@ export const handleUncompleteAction = (
   const destIndex = destItems.length;
   destItems.splice(destIndex, 0, movedItem);
   movedItem.status = false;
-  updateStatus(movedItem.id, false);
+  updateUserActionStatus(movedItem.id, false);
   const newSourceItems = sourceItems.map((category) => {
     return {
       ...category,
@@ -131,7 +130,7 @@ export const onDragEnd = (
     const destColumn = columns[destination.droppableId];
     const sourceItems = [...sourceColumn.items];
     const [removed] = sourceItems.splice(source.index, 1);
-    updateStatus(removed.id, true, mounted);
+    updateUserActionStatus(removed.id, true, mounted);
     const destItems = updateAchievementsOnMove(removed, destColumn.items);
     const sortedDestItems = destItems.map((category) => {
       return {

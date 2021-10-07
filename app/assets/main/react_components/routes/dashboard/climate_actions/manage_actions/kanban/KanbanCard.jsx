@@ -3,7 +3,6 @@ import { Draggable } from 'react-beautiful-dnd';
 import UserActionCard from './kanban_card_attributes/UserActionCard.jsx';
 import KanbanCardImage from './kanban_card_attributes/KanbanCardImage.jsx';
 import AchievementCard from './kanban_card_attributes/AchievementCard.jsx';
-import { categoryName } from '../../../helpers/CategoryColorHelper.js';
 
 const KanbanCard = ({
   item,
@@ -48,7 +47,7 @@ const KanbanCard = ({
       {(provided, snapshot) => {
         return (
           <div
-            className={`rounded-lg h-20 space-y-3 mb-2 focus:outline-none duration-500 transistion transform border border-gray-tint-2 ${
+            className={`group rounded-lg h-20 space-y-3 mb-2 focus:outline-none duration-500 transistion transform border border-gray-tint-2 ${
               sidebarCollapsed
                 ? 'd:w-24 border-none ml-1'
                 : 'w-72 d:w-auto mx-5'
@@ -58,7 +57,7 @@ const KanbanCard = ({
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             style={
-              !item.status
+              !item?.status
                 ? setStyleWithReordering(provided.draggableProps.style)
                 : setStyleWithoutReordering(snapshot)
             }
@@ -77,11 +76,8 @@ const KanbanCard = ({
                   />
                 ) : (
                   <UserActionCard
-                    categoryColor={categoryName(
-                      categories,
-                      item.climate_action_category_id,
-                      isAchievement
-                    )}
+                    isAchievement={isAchievement}
+                    categories={categories}
                     userAction={item}
                     handleDelete={handleDelete}
                     sidebarCollapsed={sidebarCollapsed}
