@@ -5,12 +5,13 @@ const ProjectSummary = ({ project }) => {
   const [collapseState, setCollapseState] = useState('hidden');
   const [isShortText, setIsShortText] = useState(false);
   const [tempHeight, setTempHeight] = useState(0.0);
-  const minimumProjectHeight = 125;
-  const roundingHeightCompensator = 3; // Used to compensate for diff in div height to align with other divs in the same column
 
   const {
     sharedText: { read_more }
   } = useTexts();
+
+  const minimumProjectHeight = 125;
+  const roundingHeightCompensator = 3; // Used to compensate for diff in div height to align with other divs in the same column
 
   useEffect(() => {
     const titleElement = document.getElementById('title' + project.id);
@@ -40,7 +41,6 @@ const ProjectSummary = ({ project }) => {
             src={project.image_url}
           />
         </div>
-
         <div
           className={collapseState === 'hidden' ? ' fadeProjects w-full' : ''}
         >

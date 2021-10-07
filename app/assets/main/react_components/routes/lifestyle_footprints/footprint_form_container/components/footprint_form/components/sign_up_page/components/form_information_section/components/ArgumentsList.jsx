@@ -11,12 +11,11 @@ const ArgumentsList = () => {
   } = useTexts();
 
   return (
-    <div className="flex flex-col mx-0 t:flex-row justify-center my-14 t:my-24 px-2">
-      {Object.values(arguments_list).map((argument, index) => (
+    <div className="flex flex-col mx-0 t:flex-row justify-center px-2 space-y-4 t:space-y-0">
+      {Object.values(arguments_list).map((argument) => (
         <div
           className={
-            'flex flex-row t:flex-col w-full t:w-1/3 items-center justify-around t:justify-start mx-0 t:my-0' +
-            (index == 1 && ' t:mx-2 my-4')
+            'flex flex-row t:flex-col w-full t:w-1/3 items-center justify-around t:justify-start mx-0'
           }
           key={argument.title}
         >
@@ -27,9 +26,9 @@ const ArgumentsList = () => {
               }
             ></div>
           </div>
-          <div className="w-5/6 t:w-full h-full px-2">
+          <div className="w-5/6 t:w-full h-full px-2 space-y-4 t:space-y-0">
             <div className="h-1/3 w-full flex flex-wrap content-center text-center">
-              <h2 className="heading text-base my-4 t:my-0 w-full t:pt-2 hidden t:block">
+              <h2 className="heading text-base w-full t:pt-2 hidden t:block">
                 {argument.title}
               </h2>
             </div>

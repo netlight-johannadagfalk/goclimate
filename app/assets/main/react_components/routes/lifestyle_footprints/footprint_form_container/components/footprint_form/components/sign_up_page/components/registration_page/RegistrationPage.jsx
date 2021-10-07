@@ -58,11 +58,11 @@ const RegistrationPage = ({
         </div>
       </div>
       <div
-        className={'inject-link pt-4'}
+        className={'inject-link'}
         dangerouslySetInnerHTML={{
           __html: sanitizeHtml(accept_policies)
         }}
-      ></div>
+      />
     </>
   );
 };

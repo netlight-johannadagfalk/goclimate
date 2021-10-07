@@ -1,16 +1,15 @@
 const cleanFootprint = (footprint) => {
-  const cleanedFootprint = { ...footprint };
-  for (var footprintField in cleanedFootprint) {
-    if (!cleanedFootprint[footprintField]) {
-      delete cleanedFootprint[footprintField];
-    }
-  }
+  let cleanedFootprint = { ...footprint };
+  cleanedFootprint = Object.fromEntries(
+    Object.entries(cleanedFootprint).filter(
+      (footprintField) => footprintField[1] !== null
+    )
+  );
   cleanedFootprint.country = cleanedFootprint.country.country_data_or_code;
   return cleanedFootprint;
 };
 
 const submitFootprintForm = (
-  result,
   footprint,
   mounted,
   setResult,
@@ -64,17 +63,16 @@ const getUsedQuestions = (
   numericalKeys,
   resultKeys
 ) => {
-  const tempQuestionCategories = { ...questionCategories };
-  for (const question in tempQuestionCategories) {
-    if (
-      !isQuestionUsed(question, calculator) &&
-      !numericalKeys.includes(question) &&
-      !resultKeys.includes(question)
-    ) {
-      delete tempQuestionCategories[question];
-    }
-  }
-  return tempQuestionCategories;
+  let filteredQuestionCategories = { ...questionCategories };
+  filteredQuestionCategories = Object.fromEntries(
+    Object.entries(filteredQuestionCategories).filter(
+      ([categoryKey]) =>
+        isQuestionUsed(categoryKey, calculator) ||
+        numericalKeys.includes(categoryKey) ||
+        resultKeys.includes(categoryKey)
+    )
+  );
+  return filteredQuestionCategories;
 };
 
 const getSavedAnswer = (currentObject, footprint) => {
@@ -109,11 +107,9 @@ const goBack = (
 };
 
 export {
-  cleanFootprint,
   submitFootprintForm,
   areObjectsEqual,
   getSessionStorage,
-  isQuestionUsed,
   getUsedQuestions,
   getSavedAnswer,
   goBack

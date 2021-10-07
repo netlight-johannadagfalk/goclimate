@@ -20,7 +20,7 @@ const ProgressBar = ({ questionCategories, currentObject }) => {
 
   return (
     <>
-      <div className="flex justify-center space-x-3 m-lg:space-x-6 text-gray-shade-2 mt-3">
+      <div className="flex justify-center space-x-3 m-lg:space-x-6 text-gray-shade-2 mt-3 t:mt-0">
         {categories.map((category) => {
           const currentQuestions = Object.keys(questionCategories).filter(
             (question) => questionCategories[question] == category
@@ -31,21 +31,23 @@ const ProgressBar = ({ questionCategories, currentObject }) => {
             isCompletedCategory = false;
           }
           return (
-            <div key={category}>
-              <div
-                className={
-                  'rounded-full w-3 h-3 m-xxs:w-5 m-xxs:h-5 m-xs:w-8 m-xs:h-8 m-s:w-12 m-s:h-12 flex justify-center items-center box-content p-1 mb-2 border ' +
-                  currentClass
-                }
-              >
+            <div key={category} className="space-y-2">
+              <div>
                 <div
                   className={
-                    'fas text-base m-xxs:text-sm m-s:text-lg fa-' + category
+                    'rounded-full w-3 h-3 m-xxs:w-5 m-xxs:h-5 m-xs:w-8 m-xs:h-8 m-s:w-12 m-s:h-12 flex justify-center items-center box-content p-1 border ' +
+                    currentClass
                   }
-                ></div>
+                >
+                  <div
+                    className={
+                      'fas text-base m-xxs:text-sm m-s:text-lg fa-' + category
+                    }
+                  ></div>
+                </div>
               </div>
               {
-                <div className="flex justify-center space-x-1 text-gray-shade-2 content-between w-0 h-0 m-xs:w-full m-xs:h-full text-gray-accent block">
+                <div className="flex justify-center space-x-1 text-gray-shade-2 content-between w-0 h-0 m-xs:w-full m-xs:h-auto text-gray-accent block">
                   {isCompletedCategory ? (
                     <div className="text-green-accent invisible m-xs:visible block">
                       <i className="text-base fa fa-check-circle"></i>

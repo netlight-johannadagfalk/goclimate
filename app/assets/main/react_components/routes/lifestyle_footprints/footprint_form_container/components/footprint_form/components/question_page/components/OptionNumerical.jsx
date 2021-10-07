@@ -15,8 +15,8 @@ const OptionNumerical = ({
   }, [questionObject]);
 
   return (
-    <div className="flex flex-col m-lg:flex-row">
-      <label className="input mb-3 m-lg:mb-0 m-lg:mr-3 flex m-lg:w-1/3">
+    <div className="flex flex-col m-lg:flex-row space-y-3 m-lg:space-y-0">
+      <label className="input m-lg:mr-3 flex m-lg:w-1/3">
         <input
           autoFocus
           type="text"

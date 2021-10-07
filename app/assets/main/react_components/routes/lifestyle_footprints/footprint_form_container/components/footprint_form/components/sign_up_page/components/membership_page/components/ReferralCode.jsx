@@ -53,7 +53,7 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
   };
 
   return (
-    <div className="mt-3 collapse">
+    <div className="collapse">
       {grantedReferralCode ? (
         <div>
           <p className="text-center text-sm">
@@ -71,7 +71,7 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
           </p>
         </div>
       ) : (
-        <>
+        <div className="space-y-3">
           <p className="text-center text-sm">
             <label
               className="link cursor-pointer"
@@ -80,9 +80,8 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
               {referral_code_link}
             </label>
           </p>
-
           {showInput && (
-            <div className="mt-3">
+            <div className="space-y-1">
               <div>
                 <input
                   size="auto"
@@ -95,10 +94,10 @@ const ReferralCode = ({ grantedReferralCode, setGrantedReferralCode }) => {
                 />
                 <AnswerButton label={'OK'} onAnswerGiven={lookUpReferralCode} />
               </div>
-              <p className="text-orange-shade-1 mt-1">{invalidCodeMessage}</p>
+              <p className="text-orange-shade-1">{invalidCodeMessage}</p>
             </div>
           )}
-        </>
+        </div>
       )}
     </div>
   );
