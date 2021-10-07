@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useSession } from '../../../../contexts/SessionContext.js';
 import { useTexts } from '../../../../contexts/TextsContext.js';
+import { useVersion } from '../../../../contexts/VersionContext.js';
 import constructQuestionObjects from '../../../../helpers/constructQuestionObjects.js';
 import {
   numericalKeys,
@@ -54,6 +55,14 @@ const FootprintForm = ({
   const [result, setResult] = useState(undefined);
   const [currentObject, setCurrentObject] = useState(questionObjects[0]);
   const mounted = useRef(false);
+  const version = useVersion();
+
+  const currentQuestions = getUsedQuestions(
+    questionCategories,
+    calculator,
+    numericalKeys,
+    resultKeys
+  );
 
   const currentIndex = getCurrentIndex(questionObjects, currentObject);
 
@@ -106,14 +115,9 @@ const FootprintForm = ({
 
   return (
     <>
-      <div className="question pb-8">
+      <div className="space-y-4 t:space-y-8">
         <ProgressBar
-          questionCategories={getUsedQuestions(
-            questionCategories,
-            calculator,
-            numericalKeys,
-            resultKeys
-          )}
+          questionCategories={currentQuestions}
           currentObject={currentObject}
         />
         {currentIndex < questionObjects.length ? (
@@ -154,20 +158,22 @@ const FootprintForm = ({
           />
         )}
       </div>
-      {currentIndex > 0 && (
-        <BackButton
-          onClick={() =>
-            goBack(
-              currentIndex,
-              questionObjects,
-              footprint,
-              setCurrentObject,
-              resultObjects
-            )
-          }
-        />
-      )}
-      <div id="information-scroll-position"></div>
+      <div>
+        {currentIndex > 0 && (
+          <BackButton
+            onClick={() =>
+              goBack(
+                currentIndex,
+                questionObjects,
+                footprint,
+                setCurrentObject,
+                resultObjects
+              )
+            }
+          />
+        )}
+        {version === 'v1' && <div id="information-scroll-position" />}
+      </div>
     </>
   );
 };

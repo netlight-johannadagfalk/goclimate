@@ -20,12 +20,11 @@ const CategoryPage = ({ footprint }) => {
   return (
     <>
       <Title customStyle="text-lgr" text={title} />
-      <div className="max-w-lg mx-auto">
+      <div className="max-w-lg mx-auto space-y-4">
         <Preamble text={desc} />
         <CategoryChart footprint={footprint} />
         {version === 'v2' && (
           <>
-            <br />
             <div className="text-left">
               <Preamble text={public_emissions} />
             </div>

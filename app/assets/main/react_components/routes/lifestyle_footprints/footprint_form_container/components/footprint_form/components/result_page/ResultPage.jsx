@@ -22,8 +22,8 @@ const ResultPage = ({ result, page, onPageChange }) => {
   }, [page]);
 
   return (
-    <div>
-      <div className="t:mt-8 mb-8">
+    <div className="space-y-8">
+      <>
         {page === 0 ? (
           <WorldPage
             footprint={footprint}
@@ -33,7 +33,7 @@ const ResultPage = ({ result, page, onPageChange }) => {
         ) : (
           <CategoryPage footprint={footprint} />
         )}
-      </div>
+      </>
       <AnswerButton
         label={
           page === 1 && result.user_page_path ? answer_button_logged_in : next

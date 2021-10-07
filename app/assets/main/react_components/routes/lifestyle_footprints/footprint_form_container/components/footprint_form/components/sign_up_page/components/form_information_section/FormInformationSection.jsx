@@ -10,16 +10,18 @@ const FormInformationSection = ({
   selectedMembership
 }) => {
   return (
-    <>
-      <ArgumentsList />
-      <WhereDoesTheMoneyGo />
-      <LatestProjectsListV2 />
+    <div className="space-y-10">
+      <div className="space-y-28 t:space-y-32">
+        <ArgumentsList />
+        <WhereDoesTheMoneyGo />
+        <LatestProjectsListV2 />
+      </div>
       <PriceText
         price={price}
         grantedReferralCode={grantedReferralCode}
         selectedMembership={selectedMembership}
       />
-    </>
+    </div>
   );
 };
 

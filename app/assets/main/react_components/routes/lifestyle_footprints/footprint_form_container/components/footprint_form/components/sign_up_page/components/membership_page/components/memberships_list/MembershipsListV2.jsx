@@ -10,37 +10,35 @@ const MembershipsListV2 = ({
   result
 }) => {
   return (
-    <>
-      <div className="t:flex text-left t:pt-4">
-        <MembershipAlternativeV2
-          selectedMembership={selectedMembership}
-          setSelectedMembership={setSelectedMembership}
-          type="free"
-          multipleOffsets={multipleOffsets}
-          setMultipleOffsets={setMultipleOffsets}
-          grantedReferralCode={grantedReferralCode}
-          result={result}
-        />
-        <MembershipAlternativeV2
-          selectedMembership={selectedMembership}
-          setSelectedMembership={setSelectedMembership}
-          type="single"
-          multipleOffsets={multipleOffsets}
-          setMultipleOffsets={setMultipleOffsets}
-          grantedReferralCode={grantedReferralCode}
-          result={result}
-        />
-        <MembershipAlternativeV2
-          selectedMembership={selectedMembership}
-          setSelectedMembership={setSelectedMembership}
-          type="multi"
-          multipleOffsets={multipleOffsets}
-          setMultipleOffsets={setMultipleOffsets}
-          grantedReferralCode={grantedReferralCode}
-          result={result}
-        />
-      </div>
-    </>
+    <div className="t:flex text-left">
+      <MembershipAlternativeV2
+        selectedMembership={selectedMembership}
+        setSelectedMembership={setSelectedMembership}
+        type="free"
+        multipleOffsets={multipleOffsets}
+        setMultipleOffsets={setMultipleOffsets}
+        grantedReferralCode={grantedReferralCode}
+        result={result}
+      />
+      <MembershipAlternativeV2
+        selectedMembership={selectedMembership}
+        setSelectedMembership={setSelectedMembership}
+        type="single"
+        multipleOffsets={multipleOffsets}
+        setMultipleOffsets={setMultipleOffsets}
+        grantedReferralCode={grantedReferralCode}
+        result={result}
+      />
+      <MembershipAlternativeV2
+        selectedMembership={selectedMembership}
+        setSelectedMembership={setSelectedMembership}
+        type="multi"
+        multipleOffsets={multipleOffsets}
+        setMultipleOffsets={setMultipleOffsets}
+        grantedReferralCode={grantedReferralCode}
+        result={result}
+      />
+    </div>
   );
 };
 
