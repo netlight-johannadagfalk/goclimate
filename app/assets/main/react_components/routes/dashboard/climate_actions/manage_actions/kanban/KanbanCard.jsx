@@ -58,7 +58,7 @@ const KanbanCard = ({
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             style={
-              !item.status
+              !item?.status
                 ? setStyleWithReordering(provided.draggableProps.style)
                 : setStyleWithoutReordering(snapshot)
             }

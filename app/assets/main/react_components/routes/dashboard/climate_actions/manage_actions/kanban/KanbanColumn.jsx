@@ -18,7 +18,7 @@ const KanbanColumn = ({
 }) => {
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
   const { mascot_1, mascot_2, empty_achievements_column } =
-    useClimateActionsText(); // destructuring
+    useClimateActionsText();
   return (
     <div
       className={`h-full ${
@@ -45,7 +45,7 @@ const KanbanColumn = ({
               {...provided.droppableProps}
               ref={provided.innerRef}
               style={{
-                background: snapshot.isDraggingOver ? 'GhostWhite' : 'white', // Är det OK att introducera en ny färg till paletten?
+                background: snapshot.isDraggingOver ? 'GhostWhite' : 'white',
                 width: '100%'
               }}
             >
@@ -53,7 +53,6 @@ const KanbanColumn = ({
                 <>
                   <p
                     style={{
-                      // kan tailwind användas istället?
                       fontStyle: 'italic',
                       marginTop: '10%'
                     }}
@@ -96,7 +95,6 @@ const KanbanColumn = ({
               {!sidebarCollapsed && columnId == 2 && column.items.length < 2 && (
                 <p
                   style={{
-                    // tailwind?
                     fontStyle: 'italic',
                     marginTop: '25%'
                   }}
@@ -113,7 +111,6 @@ const KanbanColumn = ({
         <div>
           <hr
             style={{
-              // kanske finns i tailwind config-färguppsättningen?
               color: 'lightgrey'
             }}
           />

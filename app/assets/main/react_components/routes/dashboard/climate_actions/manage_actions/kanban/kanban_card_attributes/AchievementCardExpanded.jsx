@@ -19,7 +19,7 @@ const AchievementCardExpanded = ({ achievement }) => {
   ];
 
   return (
-    <div>
+    <>
       <div className="mb-4 ml-7 mr-4">
         {actions.map((action) => (
           <div className="group flex items-center mt-1 mb-3" key={action.id}>
@@ -55,7 +55,7 @@ const AchievementCardExpanded = ({ achievement }) => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
