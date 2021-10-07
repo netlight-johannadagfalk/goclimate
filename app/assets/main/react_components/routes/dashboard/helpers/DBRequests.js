@@ -40,7 +40,7 @@ export const deleteUserAction = (id) => {
   fetch(URL, requestOptions).catch((e) => console.warn(e));
 };
 
-export const updateStatus = (id, status, mounted) => {
+export const updateUserActionStatus = (id, status, mounted) => {
   const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
   const URL = '/user_climate_actions/' + id.toString();
   const requestOptions = {

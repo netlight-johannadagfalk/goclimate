@@ -23,7 +23,7 @@ const UserActionCard = ({
     '_active';
 
   return (
-    <div>
+    <>
       <div className="h-20">
         <div
           className={`${bannerColor} group-hover:${getCategoryColor(
@@ -35,9 +35,9 @@ const UserActionCard = ({
         <UserActionCardExpanded
           userAction={userAction}
           handleDelete={handleDelete}
-        ></UserActionCardExpanded>
+        />
       )}
-    </div>
+    </>
   );
 };
 

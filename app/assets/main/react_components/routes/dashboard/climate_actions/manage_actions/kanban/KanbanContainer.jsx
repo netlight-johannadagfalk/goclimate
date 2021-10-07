@@ -17,7 +17,9 @@ const KanbanContainer = ({
   categories
 }) => {
   const setDeletedAction = useDeletedActionUpdate();
-  const { data: data } = useUserState();
+  const {
+    data: { columns }
+  } = useUserState();
   const {
     updateUserActions,
     updateColumns,
@@ -26,10 +28,16 @@ const KanbanContainer = ({
     updateAchievementsOnMove
   } = useUserActions();
 
-  const columns = data.columns;
   const [isHovering, setIsHovering] = useState(false);
   const mounted = useRef(false);
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
+
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
 
   const handleExpanded = (item, value) => {
     const column = item.status === false ? 1 : 2;
@@ -75,13 +83,6 @@ const KanbanContainer = ({
     updateColumnsWithFormat(updatedList, destItems);
     setDeletedAction(deletedAction);
   };
-
-  useEffect(() => {
-    mounted.current = true;
-    return () => {
-      mounted.current = false;
-    };
-  }, []);
 
   return (
     <div

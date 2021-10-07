@@ -13,9 +13,10 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
     updateAchievements,
     updateAchievementsOnMove
   } = useUserActions();
-  const { data: data } = useUserState();
-  const columns = data.columns;
-  const climateActionsText = useClimateActionsText();
+  const {
+    data: { columns }
+  } = useUserState();
+  const { action_performed } = useClimateActionsText();
 
   return (
     <div className="mt-1 mx-6 flex flex-col text-center">
@@ -32,7 +33,7 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
           onClick={() =>
             handleDelete(userAction.id, userAction.climate_action_id)
           }
-        ></button>
+        />
         <button
           className={`rounded-full py-1 px-4 button inline-block focus:outline-none text-primary text-sm border border-color-primary m-1`}
           onClick={() =>
@@ -46,7 +47,7 @@ const UserActionCardExpanded = ({ userAction, handleDelete }) => {
             )
           }
         >
-          {climateActionsText.action_performed}
+          {action_performed}
         </button>
       </div>
     </div>

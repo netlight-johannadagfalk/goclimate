@@ -4,7 +4,7 @@ import AchievementCardExpanded from './AchievementCardExpanded.jsx';
 
 const AchievementCard = ({ categories, achievement }) => {
   return (
-    <div>
+    <>
       <div className="h-20">
         <ProgressBar
           categories={categories}
@@ -14,11 +14,9 @@ const AchievementCard = ({ categories, achievement }) => {
         />
       </div>
       {achievement.expanded && (
-        <AchievementCardExpanded
-          achievement={achievement}
-        ></AchievementCardExpanded>
+        <AchievementCardExpanded achievement={achievement} />
       )}
-    </div>
+    </>
   );
 };
 

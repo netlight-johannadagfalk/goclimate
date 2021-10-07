@@ -18,14 +18,14 @@ const KanbanCard = ({
     handleExpanded(item, false);
   }, [sidebarCollapsed]);
 
-  const setStyleWithoutReordering = (style, snapshot) => {
-    if (!snapshot.isDragging) {
-      return {
+  const setStyleWithoutReordering = (snapshot) => {
+    return (
+      !snapshot.isDragging && {
         userSelect: 'none',
         padding: 0,
         minHeight: 'auto'
-      };
-    }
+      }
+    );
   };
 
   const setStyleWithReordering = (style) => {
@@ -42,7 +42,7 @@ const KanbanCard = ({
       key={item.id}
       draggableId={item.id}
       index={index}
-      isDragDisabled={item.status !== false}
+      isDragDisabled={item.status}
     >
       {(provided, snapshot) => {
         return (
@@ -57,19 +57,15 @@ const KanbanCard = ({
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             style={
-              item.status === false
+              !item?.status
                 ? setStyleWithReordering(provided.draggableProps.style)
-                : setStyleWithoutReordering(
-                    provided.draggableProps.style,
-                    snapshot
-                  )
+                : setStyleWithoutReordering(snapshot)
             }
           >
             <KanbanCardImage
               img={isAchievement ? item.badge_image_url : item.image_url}
-              isUserAction={isAchievement ? false : true}
-            ></KanbanCardImage>
-
+              isUserAction={!isAchievement}
+            />
             {!sidebarCollapsed && (
               <div>
                 {isAchievement ? (
@@ -77,7 +73,7 @@ const KanbanCard = ({
                     categories={categories}
                     achievement={item}
                     sidebarCollapsed={sidebarCollapsed}
-                  ></AchievementCard>
+                  />
                 ) : (
                   <UserActionCard
                     isAchievement={isAchievement}
@@ -85,7 +81,7 @@ const KanbanCard = ({
                     userAction={item}
                     handleDelete={handleDelete}
                     sidebarCollapsed={sidebarCollapsed}
-                  ></UserActionCard>
+                  />
                 )}
                 <div
                   className="flex flex-row h-14 w-full top-0 mt-6 absolute justify-center focus:outline-none"
@@ -100,9 +96,9 @@ const KanbanCard = ({
                   </div>
                   <button
                     className={`flex-1 fas right-0 focus:outline-none mr-4 absolute ${
-                      item.status === true ? 'mt-1' : 'mt-4'
+                      item.status ? 'mt-1' : 'mt-4'
                     } ${item.expanded ? 'fa-chevron-up' : 'fa-chevron-down'}`}
-                  ></button>
+                  />
                 </div>
               </div>
             )}

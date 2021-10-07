@@ -17,7 +17,8 @@ const KanbanColumn = ({
   handleExpanded
 }) => {
   const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${t})` });
-  const climateActionsText = useClimateActionsText();
+  const { mascot_1, mascot_2, empty_achievements_column } =
+    useClimateActionsText();
   return (
     <div
       className={`h-full ${
@@ -56,8 +57,8 @@ const KanbanColumn = ({
                       marginTop: '10%'
                     }}
                   >
-                    {climateActionsText.mascot_1} <br />
-                    {climateActionsText.mascot_2}
+                    {mascot_1} <br />
+                    {mascot_2}
                   </p>
                   <img
                     src="/Mascot.png"
@@ -70,28 +71,26 @@ const KanbanColumn = ({
               <TransitionGroup component={null}>
                 {column.items
                   .slice(0, column.items.length)
-                  .map((item, index) => {
-                    return (
-                      <CSSTransition
-                        timeout={{
-                          enter: 100,
-                          exit: 500
-                        }}
-                        classNames="display"
+                  .map((item, index) => (
+                    <CSSTransition
+                      timeout={{
+                        enter: 100,
+                        exit: 500
+                      }}
+                      classNames="display"
+                      key={item.id}
+                    >
+                      <KanbanCard
+                        item={item}
+                        index={index}
                         key={item.id}
-                      >
-                        <KanbanCard
-                          item={item}
-                          index={index}
-                          key={item.id}
-                          handleDelete={handleDelete}
-                          categories={categories}
-                          sidebarCollapsed={sidebarCollapsed}
-                          handleExpanded={handleExpanded}
-                        />
-                      </CSSTransition>
-                    );
-                  })}
+                        handleDelete={handleDelete}
+                        categories={categories}
+                        sidebarCollapsed={sidebarCollapsed}
+                        handleExpanded={handleExpanded}
+                      />
+                    </CSSTransition>
+                  ))}
               </TransitionGroup>
               {!sidebarCollapsed && columnId == 2 && column.items.length < 2 && (
                 <p
@@ -100,7 +99,7 @@ const KanbanColumn = ({
                     marginTop: '25%'
                   }}
                 >
-                  {climateActionsText.empty_achievements_column}
+                  {empty_achievements_column}
                 </p>
               )}
               {provided.placeholder}
@@ -114,14 +113,14 @@ const KanbanColumn = ({
             style={{
               color: 'lightgrey'
             }}
-          ></hr>
+          />
           {!isTabletOrMobile && (
             <button
               className={`fas rounded-full h-12 w-12 bg-white border border-gray-accent -left-6 -mt-6 absolute focus:outline-none ${
                 sidebarCollapsed ? 'fa-chevron-left' : 'fa-chevron-right'
               }`}
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            ></button>
+            />
           )}
         </div>
       )}
