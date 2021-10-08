@@ -100,6 +100,10 @@ what](https://chris.beams.io/posts/git-commit/).
 Follow linter config (open a PR with rule changes if you disagree) and write
 tests according to [Better Specs](http://www.betterspecs.org).
 
+For React files this project uses Prettier for stylistic rules and ESlint for code quality rules. To avoid conflicts, ESlint runs Prettier as an ESlint rule. 
+
+Eslint and prettier runs with a script, but we recommend to additionally make use of code editor extensions and enable format on save according to Prettier. 
+
 #### Views
 
 When writing HTML views, we write utility-first CSS, using [TailwindCSS](https://tailwindcss.com/), combined with some of our own custom utilities and components. In order to have coherency in the code, these are some conventions we follow:
@@ -135,10 +139,20 @@ enable_experiments=my_feature,my_other_feature
 ```
 disable_experiments=my_feature,my_other_feature
 ```
+##### Specific React flags
+
+There are two active React experiments for the form and sign up process.
+Flaggs that can be enabled and disabled are:
+
+`v1` & `v2` 
+
+The experiment `v2` overrides `v1` which menas that if you want to enable `v1` you first need to disable `v2`. If you want to want to enable `v2` you only need enable it accoring to the A/B test instructions above.
 
 #### React.js
 
 We have a custom implementation of React component that combines our current Javascript framework, Stimulus.js, and Rails partials to inject react components anywhere in the views.
+
+[React](https://reactjs.org/) is a javascript library for building user interfaces. 
 
 ##### Creating React components
 
@@ -168,6 +182,18 @@ import Button from 'ReactComponents/Button.jsx';
 
 Don't forget the file extension!
 
+##### State handling
+This project uses the react hook useContext to handle global states. 
+
+##### Language in React
+
+Language files (.yml) are reached in React by loading the file through its path as a props, and package it to a json object. Each specific language code is reached by using I18n.locale[0..-1] that returns e.g. ‘en’. Se example below. The received prop ‘text’ can then be reached from within the React component by parsing the json object. The object is then made global through useContext.
+```
+ <%= react_component 'Container', 
+   text: YAML.load_file('config/locales/' + I18n.locale[0..-1] + '.yml')[I18n.locale[0..-1]].to_json,
+ %>
+```
+
 ## Getting started
 
 ### Requirements
@@ -176,6 +202,7 @@ Don't forget the file extension!
 * PostgreSQL
 * Firefox and geckodriver
 * For working with localized strings: Crowdin CLI & account (https://support.crowdin.com/cli-tool/)
+* Yarn is the package manager of this code-base.
 
 ### Setup
 
@@ -201,9 +228,10 @@ Don't forget the file extension!
 ## Developing
 
 * Run the development server: `bin/rails server`
-* If you're doing front-end work, Webpack dev server gives you hot realoding of JS & CSS: `bin/yarn dev`
+* If you're doing front-end work, Webpack dev server gives you hot realoding of JS & CSS: `bin/yarn dev`. (Run this simultaneously as `bin/rails server`)
 * Watch for updates and continuosly run relevant specs & linters: `bin/guard`
-* Run Ruby tests: `bin/rspec`
+* For changes inside the react-components folder, run eslint and prettier: `bin/yarn lint`
+* Run Ruby tests: `bin/rspec`. (Do not run when webpack dev server is running)
 * Run Ruby linter: `bin/rubocop`
 
 ## Deployment
