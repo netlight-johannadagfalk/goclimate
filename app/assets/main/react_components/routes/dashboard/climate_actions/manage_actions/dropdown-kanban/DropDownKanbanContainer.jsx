@@ -39,7 +39,7 @@ const DropDownKanbanContainer = ({ children }) => {
     <div>
       <div
         className={`fixed top-16 z-30 bg-white w-full overflow-hidden ${
-          showDropDownKanban ? 'h-screen' : 'h-0'
+          showDropDownKanban ? 'h-full' : 'h-0'
         } transition-size duration-500`}
       >
         {children}
