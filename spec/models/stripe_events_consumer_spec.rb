@@ -68,7 +68,7 @@ RSpec.describe StripeEventsConsumer do
           create(
             :gift_card,
             payment_intent_id: event.data.object.id,
-            price: event.data.object.amount,
+            price_incl_taxes: event.data.object.amount,
             currency: event.data.object.currency
           )
         end
@@ -104,7 +104,7 @@ RSpec.describe StripeEventsConsumer do
           create(
             :flight_offset,
             payment_intent_id: event.data.object.id,
-            price: event.data.object.amount,
+            price_incl_taxes: event.data.object.amount,
             currency: event.data.object.currency
           )
         end

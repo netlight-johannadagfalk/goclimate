@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 class Project < ApplicationRecord
+  include HasMoneyAttributes
+
   has_many :invoices
   has_many :climate_report_invoices
 
   attribute :co2e, :greenhouse_gases
+  money_attribute :cost_in_sek, Currency::SEK
 
   validates_presence_of :name, :co2e, :date_bought, :latitude, :longitude, :image_url, :blog_url, :short_description
   validates :offset_type, inclusion: %w[GS CDM+GS CDM], allow_nil: true

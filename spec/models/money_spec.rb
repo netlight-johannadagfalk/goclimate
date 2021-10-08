@@ -110,6 +110,19 @@ RSpec.describe Money do
     end
   end
 
+  describe '-' do
+    it 'raises CurrencyMismatchError if currencies differ' do
+      expect do
+        described_class.new(1_00, :sek) - described_class.new(1_00, :eur)
+      end.to raise_error(Money::CurrencyMismatchError)
+    end
+
+    it 'subtracts other money' do
+      expect(described_class.new(10_00, :sek) - described_class.new(1_00, :sek))
+        .to eq(described_class.new(9_00, :sek))
+    end
+  end
+
   describe '*' do
     it 'multiplies with given number' do
       expect(described_class.new(40_00, :sek) * BigDecimal('1.5'))
@@ -118,6 +131,19 @@ RSpec.describe Money do
 
     it 'rounds multiplied numbers' do
       money = described_class.new(40_00, :sek) * 1.232
+
+      expect(money.subunit_amount).to be_an(Integer)
+    end
+  end
+
+  describe '/' do
+    it 'divides with given number' do
+      expect(described_class.new(40_00, :sek) / 2)
+        .to eq(described_class.new(20_00, :sek))
+    end
+
+    it 'rounds multiplied numbers' do
+      money = described_class.new(40_00, :sek) / BigDecimal('1.5')
 
       expect(money.subunit_amount).to be_an(Integer)
     end

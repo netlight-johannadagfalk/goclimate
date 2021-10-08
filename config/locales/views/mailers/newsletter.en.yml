@@ -1,0 +1,6 @@
+en:
+  mailers:
+    newsletter:
+      sign_up:
+        subject: Thank you for signing up to our newsletter!
+        text: A couple of times each year, you will be updated on how GoClimate is doing, what projects we are financing and how we as a community are making an impact!

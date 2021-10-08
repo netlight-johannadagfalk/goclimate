@@ -25,7 +25,7 @@
         <% report = ClimateReports::ReportArea.find(data_request.report_area_id).report %>
         <tr>
           <td>
-            <% reporter = DataReporter.find(data_request.recipient_id) %>
+            <% reporter = DataReporter.find(data_request.data_reporter_id) %>
             <%= link_to reporter.email, [:admin, reporter], class: 'link-ui text-green-shade-2' %>
           </td>
           <td><%= link_to report.title, [:admin, report], class: 'link-ui text-green-shade-2' %></td>

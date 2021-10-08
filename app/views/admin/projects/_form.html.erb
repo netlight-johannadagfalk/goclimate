@@ -59,8 +59,8 @@
     </div>
 
     <div class="flex flex-col">
-      <%= f.label :cost_in_sek, 'Cost in SEK (including VAT)', class: 'font-bold' %>
-      <%= f.number_field :cost_in_sek, class: 'input' %>
+      <%= f.label :cost_in_sek, 'Cost in SEK (<u>excluding</u> VAT)'.html_safe, class: 'font-bold' %>
+      <%= f.number_field :cost_in_sek, class: 'input', value: f.object.cost_in_sek&.amount %>
     </div>
 
     <div class="flex flex-col">

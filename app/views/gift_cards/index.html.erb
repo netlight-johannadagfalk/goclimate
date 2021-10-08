@@ -18,7 +18,7 @@
       <div class="t:w-1/2 d:w-1/4">
         <div class="callout w-full text-center">
           <p class="heading"><%= t("views.gift_cards.index.description.#{month}") %></p>
-          <p class="heading-lg my-6"><%= @gift_cards[month].price.to_s(precision: 0) %></p>
+          <p class="heading-lg my-6"><%= @gift_cards[month].price_incl_taxes.to_s(precision: :auto) %></p>
           <div>
             <%= link_to t("views.gift_cards.index.cta.#{month}"),
                   new_gift_card_path(subscription_months_to_gift: month, country: @country.alpha2),

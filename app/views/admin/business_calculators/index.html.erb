@@ -32,7 +32,7 @@
             <% else %>
               <span style="color: gray; cursor: not-allowed;">Edit</span>
             <% end %> &nbsp;
-            <%= link_to 'Preview form', preview_reported_data_path(calculator.id), target: :_blank, class: 'link-ui text-green-shade-2' %> &nbsp;
+            <%= link_to 'Preview form', preview_reported_data_path(calculator.id), class: 'link-ui text-green-shade-2' %> &nbsp;
             <%= link_to 'Duplicate', duplicate_admin_business_calculator_path(calculator), method: :post, class: 'link-ui text-green-shade-2' %> &nbsp;
             <% unless calculator.archived? %>
               <%= link_to 'Archive', archive_admin_business_calculator_path(calculator), method: :post, data: { confirm: 'Are you sure? You can no longer edit or use this calculator.' }, class: 'link-ui text-green-shade-2' %> &nbsp;

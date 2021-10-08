@@ -60,10 +60,16 @@ gem 'wkhtmltopdf-binary', '0.12.4' # Later versions don't work on CircleCI
 # wklhtmltopdf-binary provides binaries for Linux and macOS. If this fails you
 # will have to install wkhtmltopdf manually.
 
+# Excel export
+gem 'caxlsx', '~> 3.0'
+
 gem 'meta-tags'
 
 # Pretty prints ruby objects
 gem 'awesome_print'
+
+# Framework for background job processing
+gem 'delayed_job_active_record'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

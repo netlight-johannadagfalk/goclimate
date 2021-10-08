@@ -1,12 +1,20 @@
 <%= render "shared/header" %>
 
 <div class="section-padding pb-0">
-  <h1 class="heading-xl"><%= title(t('views.business.offsetting.hero.heading')) %></h1>
+  <div class="section-gutter t:flex t:flex-row items-center">
+    <div class="t:w-1/2 d:w-2/3 space-y-4">
+      <h1 class="heading-xl"><%= title(t('views.business.offsetting.hero.heading')) %></h1>
+    </div>
+    <div class="w-4/5 mx-auto t:w-1/2 d:w-1/3">
+      <div class="relative mx-auto m-lg:w-2/3 t:w-full max-w-md">
+          <%= image_tag webpack_asset_path('images/shapes/blob_3.svg'), class: 'w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2', alt: '' %>
+          <%= image_tag webpack_asset_path('images/illustrations/business/co2_right_aligned.svg'), class: 'w-full relative mx-auto', alt: '' %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <section class="section-padding">
-  <h2 class="heading-lg"><%=t 'views.business.offsetting.services.heading' %></h2>
-
   <div class="section-gutter mt-12 flex flex-col t:flex-row flex-wrap">
     <div class="d:w-1/3">
       <div class="h-full callout w-full">
@@ -88,10 +96,12 @@
   </div>
 </section>
 
-<section class="section-padding t:text-center">
+<section class="section-padding">
   <h2 class="heading-lg"><%=t 'views.business.offsetting.other_ways.heading' %></h2>
-  <p class="mt-6 t:w-2/3 d:w-1/2 mx-auto"><%=t('views.business.offsetting.other_ways.text_html').gsub('<a', '<a class="link"').html_safe %></p>
+  <p class="mt-6 t:w-2/3 d:w-1/2"><%=t('views.business.offsetting.other_ways.text_html').gsub('<a', '<a class="link"').html_safe %></p>
 </section>
 
+<%= render 'business/shared/newsletter_subscription' %>
+
 <%= render 'shared/bottom_landscape' %>
-<%= render 'shared/footer', skip_prefooter: true %>
+<%= render 'shared/footer', skip_prefooter: true, skip_newsletter_signup: true %>

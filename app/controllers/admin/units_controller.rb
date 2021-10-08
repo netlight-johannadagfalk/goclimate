@@ -49,7 +49,7 @@ module Admin
     end
 
     def unit_params
-      params.require(:unit).permit(:name, :key, :input_type)
+      params.require(:unit).permit(:name, :key)
     end
   end
 end
