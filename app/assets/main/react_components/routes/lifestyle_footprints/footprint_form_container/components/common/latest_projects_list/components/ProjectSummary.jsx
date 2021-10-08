@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useTexts } from '../../../../../contexts/TextsContext.js';
 
 const ProjectSummary = ({ project }) => {
   const [collapseState, setCollapseState] = useState('hidden');
   const [isShortText, setIsShortText] = useState(false);
   const [tempHeight, setTempHeight] = useState(0.0);
-
-  const {
-    sharedText: { read_more }
-  } = useTexts();
 
   const minimumProjectHeight = 125;
   const roundingHeightCompensator = 3; // Used to compensate for diff in div height to align with other divs in the same column
@@ -61,7 +56,6 @@ const ProjectSummary = ({ project }) => {
               setCollapseState(collapseState === 'hidden' ? 'block' : 'hidden')
             }
           >
-            <div className="font-semibold">{read_more}</div>
             <div className="pl-1">
               <i
                 className={
