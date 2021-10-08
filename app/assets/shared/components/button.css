@@ -11,7 +11,11 @@
     cursor-pointer;
 
   &:hover {
-    @apply bg-primary text-white;
+    @apply bg-primary text-white border-primary;
+  }
+
+  &:focus {
+    @apply outline-none ring-2;
   }
 
   &:active {
@@ -31,27 +35,31 @@
   @apply text-white;
 
   &:hover {
-    @apply bg-white text-primary;
+    @apply bg-white text-primary border-white;
   }
 }
 
+.button-dark {
+  @apply text-white bg-green-shade-2 border-green-shade-2;
+}
+
 .button-cta {
-  @apply bg-yellow-accent border-none;
+  @apply bg-yellow-accent border-yellow-accent;
 
   &:hover {
-    @apply bg-primary text-white;
+    @apply bg-primary text-white border-primary;
   }
 
   &:disabled {
-    @apply bg-yellow-accent text-primary;
+    @apply bg-yellow-accent text-primary border-yellow-accent;
   }
 }
 
 .button-danger {
-  @apply text-white bg-danger;
+  @apply text-white bg-danger border-danger;
 
   &:hover {
-    @apply text-white bg-primary;
+    @apply text-white bg-primary border-primary;
   }
 }
 

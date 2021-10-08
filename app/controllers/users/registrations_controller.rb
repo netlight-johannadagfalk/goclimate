@@ -45,9 +45,10 @@ module Users
       if @manager.errors.any?
         render_signup_failed_json
       elsif @manager.confirmation_required?
+        send_welcome_email
         render_confirmation_required_json
       else
-        WelcomeMailer.with(email: @user.email).welcome_email.deliver_now
+        send_welcome_email
         render_success_json
       end
     rescue StandardError => e
@@ -93,6 +94,10 @@ module Users
     end
 
     private
+
+    def send_welcome_email
+      WelcomeMailer.with(email: @user.email).welcome_email.deliver_now
+    end
 
     def set_footprint_and_price
       @footprint = LifestyleFootprint.find_by_key!(params[:lifestyle_footprint])
