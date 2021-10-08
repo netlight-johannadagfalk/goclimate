@@ -53,9 +53,10 @@ const ClimateActionsContainer = ({
       tempArray = localUserActionsWithoutDeleted;
     }
     setLocalUserActions(tempArray);
-
+    if (monthlyAction) {
     monthlyAction.id === actionID &&
       setMonthlyAction({ ...monthlyAction, accepted: !monthlyAction.accepted });
+    }
   };
 
   useEffect(() => {
