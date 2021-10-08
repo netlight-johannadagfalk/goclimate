@@ -29,15 +29,15 @@ class GiftCardReceiptPdf
   end
 
   def total_amount
-    BigDecimal(gift_card.price.amount)
+    gift_card.price_incl_taxes.amount
   end
 
   def vat_amount
-    (total_amount * (1 - (1 / BigDecimal('1.25')))).round(2)
+    gift_card.vat_amount.amount
   end
 
   def total_amount_before_vat
-    total_amount - vat_amount
+    gift_card.price.amount
   end
 
   def order_id

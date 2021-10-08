@@ -6,3 +6,6 @@ sv:
         thank_you: Tack för att du gjort en klimatuträkning hos oss!
         link_description: "För att du enkelt ska kunna dela dina resultat med dina kollegor och hitta tillbaka till dem senare kommer här en länk till resultaten:"
         reply_to_this_email: Svara gärna på det här mailet om du har några frågor så hjälper vi mer än gärna till!
+      newsletter_signup:
+        subject: Tack för att du prenumererar på vårt nyhetsbrev för företag!
+        text: Några gånger per år kommer du att få tips och inspiration till hur ni som företag kan förbättra ert klimatarbete. Vi är jätteglada över att få göra denna resa med er!

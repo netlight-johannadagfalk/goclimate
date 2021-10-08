@@ -16,7 +16,7 @@
     </div>
     <div class="w-1/2">
       <h2>Total spent</h2>
-      <p class="heading-lg"><%= @total_sek_spent %> SEK</p>
+      <p class="heading-lg"><%= @total_sek_spent.to_s(precision: :auto) %></p>
     </div>
   </div>
 
@@ -43,7 +43,7 @@
           <td><%= project.name %></td>
           <td><%= project.co2e %></td>
           <td><%= project.co2e_available %></td>
-          <td><%= project.cost_in_sek %> SEK</td>
+          <td><%= project.cost_in_sek&.to_s(precision: :auto) || '-' %></td>
           <td><%= project.date_bought.to_date %></td>
           <td><%= project.country %></td>
           <td><%= project.offset_type %></td>

@@ -29,15 +29,15 @@ class FlightOffsetReceiptPdf
   end
 
   def total_amount
-    flight_offset.price.subunit_amount.to_d / 100
+    flight_offset.price_incl_taxes.amount
   end
 
   def vat_amount
-    (total_amount * (1 - (1 / BigDecimal('1.25')))).round(2)
+    flight_offset.vat_amount.amount
   end
 
   def total_amount_before_vat
-    total_amount - vat_amount
+    flight_offset.price.amount
   end
 
   def order_id

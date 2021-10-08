@@ -9,7 +9,9 @@ SENDGRID_ASM_GROUP_IDS =
       invoice_certificates: 26_003,
       welcome: 27_414,
       payment_failed: 28_840,
-      data_requests: 29_667
+      data_requests: 29_667,
+      business_newsletter: 30_878,
+      newsletter: 18_797
     }
   else
     {
@@ -19,6 +21,8 @@ SENDGRID_ASM_GROUP_IDS =
       invoice_certificates: 12_404,
       welcome: 13_849,
       payment_failed: 15_417,
-      data_requests: 16_144
+      data_requests: 16_144,
+      business_newsletter: 16_871,
+      newsletter: 16_870
     }
   end

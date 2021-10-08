@@ -26,7 +26,7 @@
         <tr>
           <td><%= time_tag(flight_offset.created_at, format: '%F %R') %></td>
           <td><%= time_tag(flight_offset.paid_at, format: '%F %R') if flight_offset.paid_at.present? %></td>
-          <td><%= flight_offset.price %></td>
+          <td><%= flight_offset.price_incl_taxes %></td>
           <td><%= flight_offset.co2e %></td>
           <td><%= flight_offset.email %></td>
           <td class="whitespace-nowrap">

@@ -1,11 +1,19 @@
 <%= render "shared/header" %>
 
 <section class="section-padding">
-  <div class="max-w-4xl space-y-4">
-    <h1 class="heading-xl"><%= t 'views.business.advisory.intro.heading' %></h1>
-    <p class="text-lg"><%= t 'views.business.advisory.intro.text_1' %></p>
-    <p><%= t 'views.business.advisory.intro.text_2' %></p>
-    <p><%= link_to t('views.business.advisory.get_in_touch.button'), new_business_contact_path, class: 'button button-cta mt-4' %></p>
+  <div class="section-gutter t:flex t:flex-row items-center">
+    <div class="t:w-1/2 d:w-2/3 space-y-4">
+      <h1 class="heading-xl"><%= t 'views.business.advisory.intro.heading' %></h1>
+      <p class="text-lg"><%= t 'views.business.advisory.intro.text_1' %></p>
+      <p><%= t 'views.business.advisory.intro.text_2' %></p>
+      <p><%= link_to t('views.business.advisory.get_in_touch.button'), new_business_contact_path, class: 'button button-cta mt-4' %></p>
+    </div>
+    <div class="w-4/5 mx-auto t:w-1/2 d:w-1/3">
+      <div class="relative mx-auto m-lg:w-2/3 t:w-full max-w-md">
+          <%= image_tag webpack_asset_path('images/shapes/blob_3.svg'), class: 'w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2', alt: '' %>
+          <%= image_tag webpack_asset_path('images/illustrations/business/meeting.svg'), class: 'w-full relative mx-auto', alt: '' %>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -90,11 +98,21 @@
 </section>
 
 <section class="section-padding">
-  <div class="callout max-w-4xl mx-auto text-center py-12 space-y-8">
-    <h2 class="heading-lg"><%=t 'views.business.advisory.get_in_touch.heading' %></h2>
-    <p><%= link_to t('views.business.advisory.get_in_touch.button'), new_business_contact_path, class: 'button button-cta' %></p>
+  <div class="callout section-gutter max-w-3xl mx-auto py-12 flex flex-col m-lg:flex-row m-lg:items-center space-y-6">
+    <div class="m-lg:w-1/2 space-y-8">
+      <h2 class="heading-lg"><%=t 'views.business.advisory.get_in_touch.heading' %></h2>
+      <p><%= link_to t('views.business.advisory.get_in_touch.button'), new_business_contact_path, class: 'button button-cta' %></p>
+    </div>
+    <div class="w-5/6 m-lg:w-1/2 mx-auto">
+      <div class="relative mx-auto">
+        <%= image_tag webpack_asset_path('images/shapes/blob_2.svg'), class: 'w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2', alt: '' %>
+        <%= image_tag webpack_asset_path('images/illustrations/business/conversation.svg'), class: 'w-5/6 relative mx-auto', alt: '' %>
+      </div>
+    </div>
   </div>
 </section>
 
+<%= render 'business/shared/newsletter_subscription' %>
+
 <%= render 'shared/bottom_landscape' %>
-<%= render 'shared/footer', skip_prefooter: true %>
+<%= render 'shared/footer', skip_prefooter: true, skip_newsletter_signup: true %>

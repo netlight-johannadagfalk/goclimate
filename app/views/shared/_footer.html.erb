@@ -31,35 +31,50 @@
           </li>
         </ul>
 
-        <div>
-          <%= form_with url: NewsletterSubscriber.new(), html: { 'data-controller': 'newsletter-subscription' } do |f| %>
-            <%= f.hidden_field :logged_in_user_id, value: current_user&.id || nil %>
-            <%= f.label :newsletter_email, t('views.shared.footer.newsletter.heading'), class: 'font-bold' %>
-            <div class="flex flex-row space-x-2">
-              <%= f.email_field :newsletter_email, class: 'input input-sm', placeholder: t('email'), 'data-target': 'newsletter-subscription.emailField' %>
-              <button type="button" class="button button-inverted button-sm relative" data-action="click->newsletter-subscription#submit">
-                <span
-                  data-target="newsletter-subscription.idleIndicator"
-                  data-active-class="inline"
-                  data-inactive-class="invisible"
-                ><%= t('views.shared.footer.newsletter.cta') %></span>
-                <span
-                  data-target="newsletter-subscription.loadingIndicator"
-                  class="hidden"
-                  data-active-class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+        <% unless local_assigns[:skip_newsletter_signup] %>
+          <div>
+            <%= form_with url: NewsletterSubscriber.new(), html: { id: 'newsletter-subscription-form', 'data-controller': 'newsletter-subscription' } do |f| %>
+              <%= f.hidden_field :user_id, value: current_user&.id || nil %>
+              <%= f.hidden_field :newsletter_type, value: NewsletterSubscriber::CONSUMER_TYPE %>
+              <%= f.hidden_field :region, value: ISO3166::Country.new(request.headers['CF-IPCountry'])&.alpha2 || current_region.country_codes || nil %>
+              <%= f.label :newsletter_email, t('views.shared.footer.newsletter.heading'), class: 'font-bold' %>
+              <div class="relative">
+                <div class="flex flex-row space-x-2"
+                  data-target="newsletter-subscription.formWrapper"
+                  data-active-class="flex flex-row space-x-2"
+                  data-inactive-class="invisible flex flex-row space-x-2"
+                >
+                  <%= f.email_field :newsletter_email, class: 'input input-sm', placeholder: t('email'), 'data-target': 'newsletter-subscription.emailField' %>
+                  <button type="submit" id="newsletter-subscription-submit" class="button button-inverted button-sm relative" data-action="click->newsletter-subscription#submit">
+                    <span
+                      data-target="newsletter-subscription.idleIndicator"
+                      data-active-class="inline"
+                      data-inactive-class="invisible"
+                    ><%= t('views.shared.footer.newsletter.cta') %></span>
+                    <span
+                      data-target="newsletter-subscription.loadingIndicator"
+                      class="hidden"
+                      data-active-class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                      data-inactive-class="hidden"
+                    ><i class="fas fa-circle-notch fa-spin"></i></span>
+                    <span
+                      data-target="newsletter-subscription.successIndicator"
+                      class="hidden"
+                      data-active-class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                      data-inactive-class="hidden"
+                    ><i class="fas fa-check"></i></span>
+                  </button>
+                </div>
+                <p class="absolute" data-target="newsletter-subscription.errorMessage"></p>
+                <p class="absolute top-0 hidden"
+                  data-target="newsletter-subscription.successMessage"
+                  data-active-class="absolute top-0"
                   data-inactive-class="hidden"
-                ><i class="fas fa-circle-notch fa-spin"></i></span>
-                <span
-                  data-target="newsletter-subscription.successIndicator"
-                  class="hidden"
-                  data-active-class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                  data-inactive-class="hidden"
-                ><i class="fas fa-check"></i></span>
-              </button>
-            </div>
-            <p data-target="newsletter-subscription.errorMessage"></p>
-          <% end %>
-        </div>
+                >Thank you!</p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
       <div class="w-full t:w-1/4 d:w-1/6 d:max-w-xs p-4">
         <h3 class="font-bold"><%= t('views.shared.footer.headers.make_a_difference') %></h3>

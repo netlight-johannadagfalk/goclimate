@@ -1,0 +1,58 @@
+<section class="section-padding relative d:pt-28 text-center">
+  <div class="relative">
+    <div class="relative z-10 space-y-6">
+      <h2 class="heading-lg"><%= t 'views.business.shared.newsletter_signup.heading' %></h2>
+      <p><%= t 'views.business.shared.newsletter_signup.text' %></p>
+      <div>
+        <%= form_with url: NewsletterSubscriber.new(), html: { id: 'newsletter-subscription-form', class: 'relative', 'data-controller': 'newsletter-subscription' } do |f| %>
+          <%= f.hidden_field :user_id, value: current_user&.id || nil %>
+          <%= f.hidden_field :newsletter_type, value: NewsletterSubscriber::BUSINESS_TYPE %>
+          <%= f.hidden_field :region, value: ISO3166::Country.new(request.headers['CF-IPCountry'])&.alpha2 || current_region.country_codes || nil %>
+          <div class="flex flex-col m-lg:flex-row justify-center space-y-1 m-lg:space-y-0 m-lg:space-x-2"
+            data-target="newsletter-subscription.formWrapper"
+            data-active-class="flex flex-col m-lg:flex-row justify-center space-y-1 m-lg:space-y-0 m-lg:space-x-2"
+            data-inactive-class="invisible flex flex-col m-lg:flex-row justify-center space-y-1 m-lg:space-y-0 m-lg:space-x-2">
+            <div class="relative">
+              <%= f.email_field :newsletter_email,
+                class: 'input w-full m-lg:w-auto',
+                placeholder: t('email'),
+                'data-target': 'newsletter-subscription.emailField',
+                'data-inactive-class': 'invisible'
+              %>
+              <p class="absolute mt-1" data-target="newsletter-subscription.errorMessage"></p>
+            </div>
+            <button
+              type="submit"
+              class="button button-cta relative"
+              data-action="click->newsletter-subscription#submit"
+            >
+              <span
+                data-target="newsletter-subscription.idleIndicator"
+                data-active-class="inline"
+                data-inactive-class="invisible"
+              ><%= t 'views.business.shared.newsletter_signup.cta' %></span>
+              <span
+                data-target="newsletter-subscription.loadingIndicator"
+                class="hidden"
+                data-active-class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                data-inactive-class="hidden"
+              ><i class="fas fa-circle-notch fa-spin"></i></span>
+              <span
+                data-target="newsletter-subscription.successIndicator"
+                class="hidden"
+                data-active-class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                data-inactive-class="hidden"
+              ><i class="fas fa-check"></i></span>
+            </button>
+          </div>
+          <p class="absolute top-1/2 w-full text-center font-bold transform -translate-y-1/2 hidden"
+            data-target="newsletter-subscription.successMessage"
+            data-active-class="absolute top-1/2 w-full text-center font-bold transform -translate-y-1/2"
+            data-inactive-class="hidden"
+          >Thank you!</p>
+        <% end %>
+      </div>
+    </div>
+    <%= image_tag webpack_asset_path('images/shapes/blob_3.svg'), class: 'w-full d:w-1/3 max-w-xs d:max-w-sm absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0', alt: '' %>
+  </div>
+</section>

@@ -47,7 +47,7 @@
     </dd>
 
     <dt>Cost:</dt>
-    <dd><%= @project.cost_in_sek %> SEK (including VAT)</dd>
+    <dd><%= @project.cost_in_sek || '-' %> (<u>excluding</u> VAT)</dd>
 
     <dt>Date bought:</dt>
     <dd><%= @project.date_bought %></dd>

@@ -1,51 +1,59 @@
 <div data-controller="units-and-question-types" class="w-full flex flex-col space-y-2">
-  <div class="flex flex-row space-x-2">
-    <div class="flex flex-col <%= local_assigns[:hide_delete] ? 'w-full' : 'w-11/12' %>">
-      <%= local_assigns[:fields].label :question, class: "font-bold #{local_assigns[:label_class]}" %>
-      <%= local_assigns[:fields].text_field :label, class: "input #{local_assigns[:input_class]}" %>
+  <div class="flex flex-col d:flex-row t:justify-between space-x-2 bg-gray-tint-2 d:h-20 p-2 -ml-2 -mr-2">
+    <div class="flex flex-col">
+      <%= local_assigns[:fields].label :question_type, class: "font-bold #{local_assigns[:label_class]}" %>
+      <div class="select-wrapper">
+        <%= local_assigns[:fields].select :field_type, options_for_select([['Open ended', 'open_ended'], ['Choose one alternative', 'radio']], local_assigns[:fields].object&.field_type), {}, class: "select #{local_assigns[:input_class]}", 'data-target': 'units-and-question-types.fieldType', 'data-action': 'units-and-question-types#toggle' %>
+      </div>
     </div>
-    <% unless local_assigns[:hide_delete] %>
-      <div class="w-1/12">
+    <div>
+      <label class="font-bold">
+        <%= local_assigns[:fields].check_box :multiple_answers %>
+        Multiple answers allowed
+      </label>
+    </div>
+    <div class="w-full d:w-1/12">
+      <% unless local_assigns[:hide_delete] %>
         <label class="font-bold <%= local_assigns[:label_class] %>">
           <%= local_assigns[:fields].check_box :_destroy, class: local_assigns[:input_class] %>
           Delete
         </label>
-      </div>
-    <% end %>
-  </div>
-  <div class="flex flex-row space-x-2">
-    <div class="w-9/12" data-controller="add-alternatives">
-      <div data-target="units-and-question-types.units">
-        <%= local_assigns[:fields].label :allowed_units, class: "font-bold #{local_assigns[:label_class]}" %>
-        <%= local_assigns[:fields].select :units, options_from_collection_for_select(@units, :key, :name, local_assigns[:fields].object&.units&.keys), {}, class: "input w-full #{local_assigns[:input_class]}", multiple: true %>
-      </div>
-      <div class="hidden" data-target="units-and-question-types.alternatives">
-        <%= local_assigns[:fields].label :alternatives, class: "font-bold #{local_assigns[:label_class]}" %>
-        <% classes_for_alternatives = "w-full inline-block py-1 px-2 mb-1 bg-none border border-gray-accent rounded cursor-pointer" %>
-        <%= local_assigns[:fields].text_field :alternatives, class: "hidden #{classes_for_alternatives} #{local_assigns[:input_class]}", 'data-target': 'add-alternatives.template', 'data-action': 'click->add-alternatives#remove', multiple: true, disabled: true %>
-        <div data-target="add-alternatives.destination">
-          <% local_assigns[:field]&.alternatives&.reject(&:blank?)&.each do |alternative| %>
-            <%= local_assigns[:fields].text_field :alternatives, value: alternative, class: "#{classes_for_alternatives} #{local_assigns[:input_class]}", 'data-action': 'click->add-alternatives#remove', multiple: true, size: alternative.length %>
-          <% end %>
-        </div>
-        <div class="flex flex-row">
-          <input type="text" class="input w-4/5 <%= local_assigns[:input_class] %>" data-target="add-alternatives.input" data-action="submit->add-alternatives#add">
-          <%= local_assigns[:fields].button 'Add', type: 'button', class: 'button flex-1', 'data-action': 'add-alternatives#add' %>
-        </div>
-      </div>
+      <% end %>
     </div>
-    <div class="w-3/12 space-y-2">
-      <div>
-        <%= local_assigns[:fields].label :question_type, class: "font-bold #{local_assigns[:label_class]}" %>
-        <div class="select-wrapper">
-          <%= local_assigns[:fields].select :field_type, options_for_select([['Open ended', 'open_ended'], ['Choose one alternative', 'radio']], local_assigns[:fields].object&.field_type), {}, class: "select #{local_assigns[:input_class]}", 'data-target': 'units-and-question-types.fieldType', 'data-action': 'units-and-question-types#toggle' %>
-        </div>
+  </div>
+  <div class="flex flex-col d:flex-row space-y-2 d:space-y-0 d:space-x-2"
+    data-controller="add-alternatives"
+    data-target="units-and-question-types.container"
+    data-active-class="flex flex-col d:flex-row space-y-2 d:space-y-0 d:space-x-2"
+    data-inactive-class="flex flex-col space-y-2"
+  >
+    <div class="flex flex-col flex-1">
+      <%= local_assigns[:fields].label :question, class: "font-bold #{local_assigns[:label_class]}" %>
+      <%= local_assigns[:fields].text_area :label, class: "input #{local_assigns[:input_class]}" %>
+    </div>
+    <div data-target="units-and-question-types.units">
+      <%= local_assigns[:fields].label :allowed_units, class: "font-bold #{local_assigns[:label_class]}" %>
+      <%= local_assigns[:fields].select :units, options_from_collection_for_select(@units, :key, :name, local_assigns[:fields].object&.units&.keys), {}, class: "input w-full #{local_assigns[:input_class]}", multiple: true %>
+    </div>
+    <div class="alternatives-container hidden" data-target="units-and-question-types.alternatives">
+      <%= local_assigns[:fields].label :alternatives, class: "font-bold #{local_assigns[:label_class]}" %>
+      <% classes_for_alternatives = "w-full inline-block input" %>
+      <div class="flex space-x-1 hidden" data-target="add-alternatives.template">
+        <%= local_assigns[:fields].text_field :alternatives, class: "#{classes_for_alternatives} #{local_assigns[:input_class]}", multiple: true, disabled: true, 'data-action': 'keydown->add-alternatives#handleKeyPress' %>
+        <button class="button hover:bg-danger hover:border-danger" type="button" disabled="true" data-action="click->add-alternatives#remove"><i class="fas fa-times"></i></button>
       </div>
-      <div>
-        <label class="font-bold">
-          <%= local_assigns[:fields].check_box :multiple_answers %>
-          Multiple answers allowed
-        </label>
+      <div class="space-y-1" data-target="add-alternatives.destination">
+        <% local_assigns[:field]&.alternatives&.reject(&:blank?)&.each do |alternative| %>
+          <div class="flex space-x-1">
+            <%= local_assigns[:fields].text_field :alternatives, value: alternative, class: "#{classes_for_alternatives} #{local_assigns[:input_class]}", multiple: true, size: alternative.length, 'data-action': 'keydown->add-alternatives#handleKeyPress' %>
+            <button class="button hover:bg-danger hover:border-danger" type="button" data-action="click->add-alternatives#remove"><i class="fas fa-times"></i></button>
+          </div>
+        <% end %>
+      </div>
+      <div class="flex flex-row justify-center mt-1">
+        <%= local_assigns[:fields].button 'Add alternative', type: 'button', class: 'add-alternative-button button button-dark', 'data-action': 'add-alternatives#add keydown->add-alternatives#handleKeyPress' do %>
+          <i class="fas fa-plus" aria-hidden="true"></i> Add alternative
+        <% end %>
       </div>
     </div>
   </div>

@@ -184,7 +184,7 @@
           <tfoot>
             <tr class="font-bold">
               <td class="pt-3"><%=t 'business.climate_reports.show.sum' %></td>
-              <td class="pt-3 text-right"><%= price_string(@invoice.amount, 'sek', lowest_denominator: true) %></td>
+              <td class="pt-3 text-right"><%= @invoice.amount.to_s(precision: :auto) %></td>
             </tr>
           </tfoot>
         </table>
@@ -244,8 +244,10 @@
   </p>
 </section>
 
-<%= render "shared/bottom_landscape" %>
-<%= render "shared/footer", skip_prefooter: true %>
+<%= render 'business/shared/newsletter_subscription' %>
+
+<%= render 'shared/bottom_landscape' %>
+<%= render 'shared/footer', skip_prefooter: true, skip_newsletter_signup: true %>
 
 <%= intercom_script_tag(
   custom_data: {

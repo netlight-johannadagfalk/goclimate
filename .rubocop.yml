@@ -99,6 +99,9 @@ Style/Documentation:
 Style/FormatStringToken:
   Enabled: false
 
+Style/MultilineBlockChain:
+  Enabled: false
+
 Style/NumericPredicate:
   Enabled: false
 

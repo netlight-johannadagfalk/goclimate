@@ -14,7 +14,6 @@
       <tr>
         <th>Name</th>
         <th>Key</th>
-        <th>Input type</th>
         <th>Updated</th>
         <th></th>
       </tr>
@@ -25,7 +24,6 @@
         <tr>
           <td><%= unit.name %></td>
           <td><%= unit.key %></td>
-          <td><%= unit.input_type %></td>
           <td><%= time_tag(unit.updated_at, format: '%F %R') %></td>
           <td class="whitespace-nowrap">
             <%= link_to 'Show', [:admin, unit], class: 'link-ui text-green-shade-2' %> &nbsp;

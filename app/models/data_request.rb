@@ -2,10 +2,10 @@
 
 class DataRequest < ApplicationRecord
   belongs_to :report_area, class_name: 'ClimateReports::ReportArea'
-  belongs_to :recipient, class_name: 'DataReporter'
+  belongs_to :data_reporter
   has_many :reported_data
 
-  validates_presence_of :report_area, :recipient_id
+  validates_presence_of :report_area, :data_reporter_id
   validates :key, uniqueness: true, format: { with: /\A[a-f0-9]{40}\z/ }
 
   before_validation :generate_key

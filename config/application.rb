@@ -56,5 +56,7 @@ module GoClimate
     config.exceptions_app = routes
 
     config.active_model.i18n_customize_full_message = true
+
+    config.active_job.queue_adapter = :delayed_job
   end
 end

@@ -13,7 +13,7 @@
     rounded
     text-primary text-left bg-white
     shadow
-    z-10;
+    z-40;
 
     @nest .dropdown-toggler:checked ~ & {
       @apply block;

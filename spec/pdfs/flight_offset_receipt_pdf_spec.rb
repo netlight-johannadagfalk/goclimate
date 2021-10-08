@@ -6,7 +6,7 @@ require 'models/shared_example_for_receipts'
 RSpec.describe FlightOffsetReceiptPdf do
   subject(:receipt) { described_class.new(offset) }
 
-  let(:offset) { create(:flight_offset) }
+  let(:offset) { create(:flight_offset, price_incl_taxes: 8_00, price: 6_40, vat_amount: 1_60) }
 
   it_behaves_like 'a receipt'
 
@@ -30,31 +30,19 @@ RSpec.describe FlightOffsetReceiptPdf do
 
   describe '#total_amount' do
     it 'returns amount from Flight Offset' do
-      offset.price = 800
-
       expect(receipt.total_amount).to eq(8)
     end
   end
 
   describe '#vat_amount' do
     it 'returns amount based on 25% VAT on charged amount in flight offset' do
-      offset.price = 800
-
       expect(receipt.vat_amount).to eq(BigDecimal('1.60'))
-    end
-
-    it 'rounds VAT amount to nearest 2 decimals' do
-      offset.price = 822
-
-      expect(receipt.vat_amount).to eq(BigDecimal('1.64'))
     end
   end
 
   describe '#total_amount_before_vat' do
     it 'returns total amount minus VAT amount' do
-      offset.price = 822
-
-      expect(receipt.total_amount_before_vat).to eq(BigDecimal('6.58'))
+      expect(receipt.total_amount_before_vat).to eq(BigDecimal('6.40'))
     end
   end
 
