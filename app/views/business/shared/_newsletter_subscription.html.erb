@@ -1,4 +1,4 @@
-<section class="section-padding relative d:pt-24 text-center">
+<section class="section-padding relative d:pt-28 text-center">
   <div class="relative">
     <div class="relative z-10 space-y-6">
       <h2 class="heading-lg"><%= t 'views.business.shared.newsletter_signup.heading' %></h2>
@@ -8,13 +8,13 @@
           <%= f.hidden_field :user_id, value: current_user&.id || nil %>
           <%= f.hidden_field :newsletter_type, value: NewsletterSubscriber::BUSINESS_TYPE %>
           <%= f.hidden_field :region, value: ISO3166::Country.new(request.headers['CF-IPCountry'])&.alpha2 || current_region.country_codes || nil %>
-          <div class="flex flex-row justify-center space-x-2"
+          <div class="flex flex-col m-lg:flex-row justify-center space-y-1 m-lg:space-y-0 m-lg:space-x-2"
             data-target="newsletter-subscription.formWrapper"
-            data-active-class="flex flex-row justify-center space-x-2"
-            data-inactive-class="invisible flex flex-row justify-center space-x-2">
+            data-active-class="flex flex-col m-lg:flex-row justify-center space-y-1 m-lg:space-y-0 m-lg:space-x-2"
+            data-inactive-class="invisible flex flex-col m-lg:flex-row justify-center space-y-1 m-lg:space-y-0 m-lg:space-x-2">
             <div class="relative">
               <%= f.email_field :newsletter_email,
-                class: 'input',
+                class: 'input w-full m-lg:w-auto',
                 placeholder: t('email'),
                 'data-target': 'newsletter-subscription.emailField',
                 'data-inactive-class': 'invisible'

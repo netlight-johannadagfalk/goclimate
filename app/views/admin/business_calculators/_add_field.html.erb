@@ -1,8 +1,10 @@
 <div data-controller="add-nested-fields" class="space-y-3">
   <%= fields_for local_assigns[:fields_for], BusinessCalculators::CalculatorField.new do |field_fields| %>
-    <div class="hidden flex flex-row" data-target="add-nested-fields.template" style="">
+    <div class="hidden flex flex-row border border-gray-accent rounded p-2 pt-0" data-target="add-nested-fields.template" style="">
       <div class="w-1/12">
-        <span class="text-sm py-1 px-2 bg-green-accent rounded">NEW</span>
+        <div class="bg-gray-tint-2 p-2 -ml-2 h-20">
+          <span class="text-sm py-1 px-2 bg-green-accent rounded">NEW</span>
+        </div>
       </div>
       <%= render "field_layout", fields: field_fields, hide_delete: true, label_class: 'add-nested-fields-label-field', input_class: 'add-nested-fields-input-field' %>
     </div>
@@ -10,7 +12,7 @@
 
   <div class="space-y-10" data-target="add-nested-fields.destination"></div>
 
-  <button type="button" class="button" data-action="add-nested-fields#cloneToDestinationWithSecondNumberIncremented">
+  <button type="button" class="button button-dark" data-action="add-nested-fields#cloneToDestinationWithSecondNumberIncremented">
     <i class="fas fa-plus" aria-hidden="true"></i> Add field
   </button>
 </div>  

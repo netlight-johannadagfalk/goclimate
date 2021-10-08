@@ -14,4 +14,13 @@
   
   <dt>Updated:</dt>
   <dd><%= time_tag(@organization.updated_at) %></dd>
+
+  <dt>Reports:</dt>
+  <dd>
+    <ul class="list-bullet pl-3">
+      <% @organization.reports&.each do |report| %>
+        <li><%= link_to report.title, [:admin, report], class: 'link' %></li>
+      <% end %>
+    </ul>
+  </dd>
 </dl>

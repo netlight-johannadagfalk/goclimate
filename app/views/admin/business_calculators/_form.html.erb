@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, calculator], local: true, html: { 'data-controller': 'item-order', class: 'space-y-3' }) do |form| %>
+<%= form_with(model: [:admin, calculator], local: true, html: { 'data-controller': 'item-order data-collection-form', class: 'space-y-3' }) do |form| %>
   <% if calculator.errors.any? %>
     <div>
       <h2><%= pluralize(calculator.errors.count, "error") %> prohibited this calculator from being saved:</h2>
@@ -29,9 +29,15 @@
       <%= fields_for "business_calculator[categories_attributes][#{category_index}]", category do |category_fields| %>
         <%= category_fields.hidden_field :id %>
 
-        <div data-target="item-order.item" data-id="<%= category.id %>" class="space-y-3 callout">
-          <div class="flex flex-row space-x-1">
-            <div class="flex flex-col w-1/12">
+        <div 
+          data-target="item-order.item"
+          data-id="<%= category.id %>"
+          class="space-y-3 callout"
+          data-active-class="space-y-3 callout border-green-accent ring ring-2 ring-opacity-100 ring-green-accent"
+          data-inactive-class="space-y-3 callout"
+        >
+          <div class="flex flex-col d:flex-row d:space-x-1">
+            <div class="flex flex-col w-full d:w-1/12">
               <%= category_fields.label :position, class: 'font-bold' %>
               <div class="select-wrapper">
                 <select class="select text-lg" data-target="item-order.select" data-action="item-order#move" data-position="<%= category_index %>">
@@ -41,11 +47,11 @@
                 </select>
               </div>
             </div>
-            <div class="flex flex-col w-10/12">
+            <div class="flex flex-col flex-1">
               <%= category_fields.label :category_name, class: 'font-bold' %>
               <%= category_fields.text_field :name, class: 'input text-lg font-semibold' %>
             </div>
-            <div class="flex flex-col w-1/12">
+            <div class="flex flex-col d:w-1/12">
               <label class="font-bold">
                 <%= category_fields.check_box :_destroy %>
                 Delete
@@ -62,16 +68,24 @@
             <%= category_fields.hidden_field :field_order, 'data-target': 'item-order.order' %>
             <% category.ordered_fields.each_with_index do |field, field_index| %>
               <%= fields_for "business_calculator[categories_attributes][#{category_index}][fields_attributes][#{field_index}]", field do |field_fields| %>
-                <div class="flex flex-row" data-target="item-order.item" data-id="<%= field.id %>">
+                <% item_base_classes = "flex flex-col d:flex-row border rounded p-2 pt-0" %>
+                <div class="<%= item_base_classes %> border-gray-accent"
+                  data-target="item-order.item"
+                  data-id="<%= field.id %>"
+                  data-active-class="<%= item_base_classes %> border-green-accent ring ring-2 ring-opacity-100 ring-green-accent"
+                  data-inactive-class="<%= item_base_classes %> border-gray-accent"
+                >
                   <%= field_fields.hidden_field :id %>
-                  <div class="w-1/12">
-                    <%= field_fields.label :position, class: 'font-bold' %>
-                    <div class="select-wrapper">
-                      <select class="select" data-target="item-order.select" data-action="item-order#move" data-position="<%= field_index %>">
-                        <% (1..category.fields.length).to_a.each do |number| %>
-                          <option value="<%= number %>" <%= number - 1 == field_index ? 'selected' : '' %>><%= number %></option>
-                        <% end %>
-                      </select>
+                  <div class="w-full d:w-1/12">
+                    <div class="bg-gray-tint-2 p-2 -ml-2 -mr-2 d:mr-0 d:h-20">
+                      <%= field_fields.label :position, class: 'font-bold' %>
+                      <div class="select-wrapper">
+                        <select class="select" data-target="item-order.select" data-action="item-order#move" data-position="<%= field_index %>">
+                          <% (1..category.fields.length).to_a.each do |number| %>
+                            <option value="<%= number %>" <%= number - 1 == field_index ? 'selected' : '' %>><%= number %></option>
+                          <% end %>
+                        </select>
+                      </div>
                     </div>
                   </div>
                   <%= render "field_layout", fields: field_fields, field: field %>
@@ -80,7 +94,6 @@
             <% end %>
           </div>
           <%= render "add_field", fields_for: "business_calculator[categories_attributes][#{category_index}][fields_attributes][#{category.fields.length}]" %>
-          <p class="text-muted">Please note that all open ended fields will automatically have a "free form" unit.</p>
         </div>
       <% end %>
     <% end %>
@@ -95,13 +108,18 @@
     <div class="space-y-3" data-target="add-nested-fields.destination"></div>
 
     <div>
-      <button type="button" class="button" data-action="add-nested-fields#cloneToDestinationWithFirstNumberIncremented">
+      <button type="button" class="button button-dark" data-action="add-nested-fields#cloneToDestinationWithFirstNumberIncremented">
         <i class="fas fa-plus" aria-hidden="true"></i> Add category
       </button>
     </div>
   </div>
 
+  <div class="hidden text-danger border-danger rounded"
+    data-target="data-collection-form.errorMessage"
+    data-active-class="text-danger border border-danger rounded"
+    data-inactive-class="hidden text-danger border-danger rounded"></div>
+
   <div class="text-right">
-    <%= form.submit class: 'button button-cta' %>
+    <%= form.button class: 'button button-cta', type: 'button', 'data-disable-with': 'Please wait..', 'data-action': 'data-collection-form#submit' %>
   </div>
 <% end %>

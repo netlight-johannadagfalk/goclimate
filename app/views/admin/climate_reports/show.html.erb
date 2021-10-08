@@ -24,7 +24,7 @@
     <dd><%= time_tag(@report.updated_at) %></dd>
 
     <dt>Organization:</dt>
-    <dd><%= @report.organization.name %></dd>
+    <dd><%= link_to @report.organization.name, admin_organization_path(@report.organization), class: 'link' %></dd>
 
     <dt>Reporting period:</dt>
     <dd><%= @report.reporting_period %></dd>
