@@ -8,7 +8,7 @@ const InformationSection = () => {
   const version = useVersion();
 
   return (
-    <div className="text-left space-y-14">
+    <div className="text-left space-y-14 pb-40">
       {version === 'v1' && (
         <>
           <WhereDoesTheMoneyGo />
