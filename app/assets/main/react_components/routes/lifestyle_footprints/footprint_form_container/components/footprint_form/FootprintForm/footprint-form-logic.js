@@ -1,3 +1,20 @@
+import { resultObjects } from '../../../../helpers/footprint-data';
+
+const getCurrentIndex = (questionObjects, currentObject) => {
+  const isCurrentObjectQuestion =
+    questionObjects.findIndex(
+      (q) => q.questionKey === currentObject.questionKey
+    ) > -1;
+  return isCurrentObjectQuestion
+    ? questionObjects.findIndex(
+        (q) => q.questionKey === currentObject.questionKey
+      )
+    : questionObjects.length +
+        resultObjects.findIndex(
+          (r) => r.questionKey === currentObject.questionKey
+        );
+};
+
 const cleanFootprint = (footprint) => {
   let cleanedFootprint = { ...footprint };
   cleanedFootprint = Object.fromEntries(
@@ -88,8 +105,7 @@ const goBack = (
   questionObjects,
   footprint,
   setCurrentObject,
-  resultObjects,
-  setCurrentIndex
+  resultObjects
 ) => {
   let newIndex = currentIndex - 1;
   if (
@@ -103,10 +119,11 @@ const goBack = (
       ? questionObjects[newIndex]
       : resultObjects[newIndex - questionObjects.length]
   );
-  setCurrentIndex(newIndex);
 };
 
 export {
+  getCurrentIndex,
+  cleanFootprint,
   submitFootprintForm,
   areObjectsEqual,
   getSessionStorage,

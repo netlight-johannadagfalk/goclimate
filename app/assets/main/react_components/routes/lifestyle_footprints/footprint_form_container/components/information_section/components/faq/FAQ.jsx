@@ -26,7 +26,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className="text-center max-w-2xl mx-auto mb-20 space-y-3">
+    <div className="text-center max-w-2xl mx-auto space-y-3">
       <h2 className="heading">{faq}</h2>
       {getQuestions().map((question) => {
         return (

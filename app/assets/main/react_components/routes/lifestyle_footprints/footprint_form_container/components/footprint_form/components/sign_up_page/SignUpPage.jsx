@@ -57,7 +57,7 @@ const SignUpPage = ({ result, page, onPageChange }) => {
 
   return (
     <div className="space-y-20">
-      <div className="space-y-8">
+      <div className="space-y-6">
         {page === 2 ? (
           <MembershipPage
             selectedMembership={selectedMembership}

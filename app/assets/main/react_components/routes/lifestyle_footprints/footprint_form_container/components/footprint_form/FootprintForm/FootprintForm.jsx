@@ -19,7 +19,8 @@ import {
   getSessionStorage,
   getUsedQuestions,
   getSavedAnswer,
-  goBack
+  goBack,
+  getCurrentIndex
 } from './footprint-form-logic.js';
 
 const questionCategories = {
@@ -53,7 +54,6 @@ const FootprintForm = ({
   const URL = useSession().slug + '/calculator';
   const [result, setResult] = useState(undefined);
   const [currentObject, setCurrentObject] = useState(questionObjects[0]);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const mounted = useRef(false);
   const version = useVersion();
 
@@ -64,9 +64,11 @@ const FootprintForm = ({
     resultKeys
   );
 
+  const currentIndex = getCurrentIndex(questionObjects, currentObject);
+
   useEffect(() => {
     onChangeInformationSection(currentIndex > questionObjects.length + 1);
-  }, [currentIndex]);
+  }, [currentObject]);
 
   useEffect(() => {
     mounted.current = true;
@@ -86,8 +88,7 @@ const FootprintForm = ({
       if (!questionObjects[nextQuestionIndex]) {
         if (
           !result ||
-          (result &&
-            !areObjectsEqual(footprint, getSessionStorage('footprint')))
+          !areObjectsEqual(footprint, getSessionStorage('footprint'))
         ) {
           submitFootprintForm(
             footprint,
@@ -108,7 +109,6 @@ const FootprintForm = ({
         }
         setCurrentObject(questionObjects[nextQuestionIndex]);
       }
-      setCurrentIndex(nextQuestionIndex);
     },
     [footprint, currentObject, questionObjects, result, sessionStorage]
   );
@@ -134,31 +134,28 @@ const FootprintForm = ({
             }
             savedValue={getSavedAnswer(currentObject, footprint)}
           />
+        ) : resultObjects.findIndex(
+            (o) => o.questionKey === currentObject.questionKey
+          ) <= 1 ? (
+          <ResultPage
+            result={result}
+            page={currentIndex - questionObjects.length}
+            onPageChange={() => {
+              setCurrentObject(
+                resultObjects[currentIndex + 1 - questionObjects.length]
+              );
+            }}
+          />
         ) : (
-          result &&
-          (currentIndex - questionObjects.length < 2 ? (
-            <ResultPage
-              result={result}
-              page={currentIndex - questionObjects.length}
-              onPageChange={() => {
-                setCurrentObject(
-                  resultObjects[currentIndex + 1 - questionObjects.length]
-                );
-                setCurrentIndex(currentIndex + 1);
-              }}
-            />
-          ) : (
-            <SignUpPage
-              result={result}
-              page={currentIndex - questionObjects.length}
-              onPageChange={() => {
-                setCurrentObject(
-                  resultObjects[currentIndex + 1 - questionObjects.length]
-                );
-                setCurrentIndex(currentIndex + 1);
-              }}
-            />
-          ))
+          <SignUpPage
+            result={result}
+            page={currentIndex - questionObjects.length}
+            onPageChange={() => {
+              setCurrentObject(
+                resultObjects[currentIndex + 1 - questionObjects.length]
+              );
+            }}
+          />
         )}
       </div>
       <div>
@@ -170,8 +167,7 @@ const FootprintForm = ({
                 questionObjects,
                 footprint,
                 setCurrentObject,
-                resultObjects,
-                setCurrentIndex
+                resultObjects
               )
             }
           />

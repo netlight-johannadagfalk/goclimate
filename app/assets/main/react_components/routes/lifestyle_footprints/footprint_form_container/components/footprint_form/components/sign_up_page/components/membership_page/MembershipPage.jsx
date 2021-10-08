@@ -34,7 +34,7 @@ const MembershipPage = ({
 
   return (
     <div
-      className={'space-y-4 ' + (version === 'v1' ? 'max-w-lg mx-auto' : '')}
+      className={'space-y-6 ' + (version === 'v1' ? 'max-w-lg mx-auto' : '')}
     >
       <div className="space-y-3">
         <Title
