@@ -17,6 +17,8 @@ class LifestyleFootprintsController < ApplicationController
 
     render_not_found && return unless @calculator.present?
 
+    @projects = Project.order(id: :desc).limit(3)
+
     @footprint = LifestyleFootprint.new(lifestyle_calculator: @calculator, country: params[:country])
   end
 
@@ -26,12 +28,28 @@ class LifestyleFootprintsController < ApplicationController
     @footprint.user = current_user
     @footprint.save!
 
+    if experiment_active?(:v1) || experiment_active?(:v2)
+      render json: generate_react_payload
+      return
+    end
+
     if current_user
       redirect_to lifestyle_footprint_path(id: @footprint)
       return
     end
 
     redirect_to new_registration_path(:user, lifestyle_footprint: @footprint, campaign: params[:campaign].presence)
+  end
+
+  def generate_react_payload
+    footprint_tonnes = @footprint&.total
+    country_average = LifestyleFootprintAverage.find_by_country(@footprint.country)
+    number_of_people = params[:membership] == 'multi' && params[:people].present? ? params[:people].to_i : 1
+    plan = Subscriptions::Plan.for_footprint(footprint_tonnes * number_of_people, current_region.currency)
+
+    payload = { footprint: @footprint, country_average: country_average, plan: plan }
+    payload['user_page_path'] = lifestyle_footprint_path(id: @footprint) if current_user
+    payload
   end
 
   def show

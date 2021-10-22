@@ -1,26 +1,27 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true
-    },
-    "extends": [
-        "airbnb-base"
-    ],
-    "globals": {
-        "FB": "readonly",
-        "ga": "readonly",
-        "Stripe": "readonly"
-    },
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "rules": {
-      "comma-dangle": ["error", "never"],
-      "arrow-parens": ["error", "always"],
-      "no-param-reassign": ["error", {
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["airbnb-base"],
+  "globals": {
+    "FB": "readonly",
+    "ga": "readonly",
+    "Stripe": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "comma-dangle": ["error", "never"],
+    "arrow-parens": ["error", "always"],
+    "no-param-reassign": [
+      "error",
+      {
         "props": false
-      }],
-      "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
-    }
+      }
+    ],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+  }
 }

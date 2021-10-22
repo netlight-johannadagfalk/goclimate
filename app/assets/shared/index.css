@@ -22,6 +22,8 @@
 @import 'components/tabs.css';
 @import 'components/toggler.css';
 @import 'components/tooltip.css';
+@import 'components/projects.css';
+@import 'components/sign_up_responsive.css';
 
 @import 'tailwindcss/utilities';
 
